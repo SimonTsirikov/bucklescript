@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 List = require "../../lib/js/list";
 Curry = require "../../lib/js/curry";
@@ -882,15 +882,15 @@ function of_list(l) do
           if (match_3) then do
             if (match_3[1]) then do
               l_1 = List.sort_uniq(__String.compare, l);
-              sub = function (n, l) do
+              sub = function(n, l) do
                 local ___conditional___=(n);
                 do
-                   if ___conditional___ = 0 then do
+                   if ___conditional___ == 0 then do
                       return --[[ tuple ]]{
                               --[[ Empty ]]0,
                               l
-                            };end end end 
-                   if ___conditional___ = 1 then do
+                            }; end end 
+                   if ___conditional___ == 1 then do
                       if (l) then do
                         return --[[ tuple ]]{
                                 --[[ Node ]]{
@@ -902,8 +902,8 @@ function of_list(l) do
                                 l[1]
                               };
                       end
-                       end end else 
-                   if ___conditional___ = 2 then do
+                       end  end else 
+                   if ___conditional___ == 2 then do
                       if (l) then do
                         match = l[1];
                         if (match) then do
@@ -924,8 +924,8 @@ function of_list(l) do
                         end
                          end 
                       end
-                       end end else 
-                   if ___conditional___ = 3 then do
+                       end  end else 
+                   if ___conditional___ == 3 then do
                       if (l) then do
                         match_1 = l[1];
                         if (match_1) then do
@@ -955,11 +955,9 @@ function of_list(l) do
                         end
                          end 
                       end
-                       end end else 
-                   do end end end
-                  else do
-                    end end
-                    
+                       end  end else 
+                   end end end end end end
+                  
                 end
                 nl = n / 2 | 0;
                 match_3 = sub(nl, l);
@@ -1047,6 +1045,7 @@ end;
 
 x = 1;
 
+exports = {}
 exports.M = M;
 exports.x = x;
 exports.__Set = __Set;

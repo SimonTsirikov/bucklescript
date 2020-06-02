@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 
 function ff(x) do
@@ -19,6 +19,7 @@ function h_ext(x) do
   return x.cse(3)(2);
 end end
 
+exports = {}
 exports.ff = ff;
 exports.h = h;
 exports.f_ext = f_ext;

@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Caml_array = require "../../lib/js/caml_array";
 Caml_js_exceptions = require "../../lib/js/caml_js_exceptions";
@@ -23,6 +23,7 @@ end end,function(raw_exn) do
   end end 
 end end)
 
+exports = {}
 exports.x = x;
 exports.y = y;
 --[[ y Not a pure module ]]

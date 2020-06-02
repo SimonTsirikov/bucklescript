@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 List = require "../../lib/js/list";
@@ -18,7 +18,7 @@ function eq(loc, x, y) do
   suites.contents = --[[ :: ]]{
     --[[ tuple ]]{
       loc .. (" id " .. String(test_id.contents)),
-      (function (param) do
+      (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     x,
                     y
@@ -59,6 +59,7 @@ V = --[[ alias ]]0;
 
 J = --[[ alias ]]0;
 
+exports = {}
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;

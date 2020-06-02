@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Curry = require "./curry";
 Caml_option = require "./caml_option";
@@ -332,7 +332,7 @@ function fromArray(xs) do
   if (len == 0) then do
     return nil;
   end else do
-    next = Belt_SortArray.strictlySortedLengthU(xs, (function (param, param_1) do
+    next = Belt_SortArray.strictlySortedLengthU(xs, (function(param, param_1) do
             return param[0] < param_1[0];
           end end));
     result;
@@ -356,6 +356,7 @@ A = --[[ alias ]]0;
 
 S = --[[ alias ]]0;
 
+exports = {}
 exports.N = N;
 exports.A = A;
 exports.S = S;

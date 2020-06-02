@@ -41,6 +41,12 @@ let exports cxt f (idents : Ident.t list) =
           else (s,str) :: acc ))
   in    
   P.newline f ;
+  P.string f L.exports;
+  P.space f ;
+  P.string f L.eq;
+  P.space f;
+  P.string f "{}";
+  P.newline f;
   Ext_list.rev_iter reversed_list (fun (s,export) -> 
       P.group f 0 @@ (fun _ ->  
           P.string f L.exports;

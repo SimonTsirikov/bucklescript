@@ -497,7 +497,7 @@ end end
 function to_hex(x) do
   x_lo = x[--[[ lo ]]1];
   x_hi = x[--[[ hi ]]0];
-  aux = function (v) do
+  aux = function(v) do
     return (v >>> 0).toString(16);
   end end;
   if (x_hi == 0 and x_lo == 0) then do

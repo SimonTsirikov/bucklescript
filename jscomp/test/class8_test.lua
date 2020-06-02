@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Curry = require "../../lib/js/curry";
@@ -28,7 +28,7 @@ end end
 
 function comparable_001(__class) do
   CamlinternalOO.get_method_label(__class, "leq");
-  return (function (env, self) do
+  return (function(env, self) do
       return CamlinternalOO.create_object_opt(self, __class);
     end end);
 end end
@@ -53,15 +53,15 @@ function money_init(__class) do
   obj_init = inh[0];
   CamlinternalOO.set_methods(__class, {
         value,
-        (function (self$2) do
+        (function(self$2) do
             return self$2[repr];
           end end),
         leq,
-        (function (self$2, p) do
+        (function(self$2, p) do
             return self$2[repr] <= Caml_oo_curry.js1(834174833, 1, p);
           end end)
       });
-  return (function (env, self, x_1) do
+  return (function(env, self, x_1) do
       self_1 = CamlinternalOO.create_object_opt(self, __class);
       self_1[x] = x_1;
       Curry._1(obj_init, self_1);
@@ -78,12 +78,12 @@ function money2_init(__class) do
   inh = CamlinternalOO.inherits(__class, shared_1, 0, shared, money, true);
   obj_init = inh[0];
   repr = inh[1];
-  CamlinternalOO.set_method(__class, times, (function (self$3, k) do
+  CamlinternalOO.set_method(__class, times, (function(self$3, k) do
           copy = Caml_exceptions.caml_set_oo_id(Caml_obj.caml_obj_dup(self$3));
           copy[repr] = k * self$3[repr];
           return copy;
         end end));
-  return (function (env, self, x_1) do
+  return (function(env, self, x_1) do
       self_1 = CamlinternalOO.create_object_opt(self, __class);
       self_1[x] = x_1;
       Curry._2(obj_init, self_1, x_1);
@@ -115,6 +115,7 @@ eq("File \"class8_test.ml\", line 35, characters 5-12", 3, Caml_oo_curry.js1(834
 
 Mt.from_pair_suites("Class8_test", suites.contents);
 
+exports = {}
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;

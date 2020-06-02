@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Caml_exceptions = require "../../lib/js/caml_exceptions";
 
@@ -21,6 +21,7 @@ d = {
 
 u = B;
 
+exports = {}
 exports.A = A;
 exports.v = v;
 exports.B = B;

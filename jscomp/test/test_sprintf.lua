@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Block = require "../../lib/js/block";
 Curry = require "../../lib/js/curry";
@@ -17,4 +17,5 @@ console.error(Curry._2(Printf.sprintf(--[[ Format ]]{
               "%d%s"
             }), 32, "ss"));
 
+exports = {}
 --[[  Not a pure module ]]

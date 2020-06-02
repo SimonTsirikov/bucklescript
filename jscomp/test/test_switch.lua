@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Block = require "../../lib/js/block";
 Curry = require "../../lib/js/curry";
@@ -13,15 +13,14 @@ function f(param) do
   end else do
     local ___conditional___=(param.tag | 0);
     do
-       if ___conditional___ = 0--[[ A ]] then do
-          return 0;end end end 
-       if ___conditional___ = 1--[[ B ]] then do
-          return 1;end end end 
-       if ___conditional___ = 2--[[ C ]] then do
-          return 2;end end end 
-       if ___conditional___ = 3--[[ F ]] then do
-          return 3;end end end 
-       do
+       if ___conditional___ == 0--[[ A ]] then do
+          return 0; end end 
+       if ___conditional___ == 1--[[ B ]] then do
+          return 1; end end 
+       if ___conditional___ == 2--[[ C ]] then do
+          return 2; end end 
+       if ___conditional___ == 3--[[ F ]] then do
+          return 3; end end 
       
     end
   end end 
@@ -35,6 +34,7 @@ function bind(x, f) do
   end end 
 end end
 
+exports = {}
 exports.f = f;
 exports.bind = bind;
 --[[ No side effect ]]

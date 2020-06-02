@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 SysBluebird = require "sys-blue";
 
@@ -8,9 +8,9 @@ end end
 
 p = new SysBluebird.Promise();
 
-p.then((function (x) do
+p.then((function(x) do
           return x + 3 | 0;
-        end end)).catch((function (reason) do
+        end end)).catch((function(reason) do
         return reason;
       end end));
 
@@ -25,6 +25,7 @@ end;
 
 hh = uu["'x"];
 
+exports = {}
 exports.f = f;
 exports.u = u;
 exports.uu = uu;

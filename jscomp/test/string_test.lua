@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 List = require "../../lib/js/list";
@@ -13,20 +13,18 @@ function ff(x) do
   a;
   local ___conditional___=(x);
   do
-     if ___conditional___ = "0"
-     or ___conditional___ = "1"
-     or ___conditional___ = "2" then do
-        a = 3;end else 
-     if ___conditional___ = "3" then do
-        a = 4;end else 
-     if ___conditional___ = "4" then do
-        a = 6;end else 
-     if ___conditional___ = "7" then do
-        a = 7;end else 
-     do end end end end end
-    else do
-      a = 8;
-      end end
+     if ___conditional___ == "0"
+     or ___conditional___ == "1"
+     or ___conditional___ == "2" then do
+        a = 3; end else 
+     if ___conditional___ == "3" then do
+        a = 4; end else 
+     if ___conditional___ == "4" then do
+        a = 6; end else 
+     if ___conditional___ == "7" then do
+        a = 7; end else 
+     end end end end end end end end
+    a = 8;
       
   end
   return a + 3 | 0;
@@ -36,31 +34,29 @@ function gg(x) do
   a;
   local ___conditional___=(x);
   do
-     if ___conditional___ = 0
-     or ___conditional___ = 1
-     or ___conditional___ = 2 then do
-        a = 3;end else 
-     if ___conditional___ = 3 then do
-        a = 4;end else 
-     if ___conditional___ = 4 then do
-        a = 6;end else 
-     if ___conditional___ = 5
-     or ___conditional___ = 6
-     or ___conditional___ = 7 then do
-        a = 8;end else 
-     if ___conditional___ = 8 then do
-        a = 7;end else 
-     do end end end end end end
-    else do
-      a = 8;
-      end end
+     if ___conditional___ == 0
+     or ___conditional___ == 1
+     or ___conditional___ == 2 then do
+        a = 3; end else 
+     if ___conditional___ == 3 then do
+        a = 4; end else 
+     if ___conditional___ == 4 then do
+        a = 6; end else 
+     if ___conditional___ == 5
+     or ___conditional___ == 6
+     or ___conditional___ == 7 then do
+        a = 8; end else 
+     if ___conditional___ == 8 then do
+        a = 7; end else 
+     end end end end end end end end end end
+    a = 8;
       
   end
   return a + 3 | 0;
 end end
 
 function rev_split_by_char(c, s) do
-  loop = function (i, l) do
+  loop = function(i, l) do
     xpcall(function() do
       i$prime = __String.index_from(s, i, c);
       s$prime = __String.sub(s, i, i$prime - i | 0);
@@ -126,7 +122,7 @@ function xsplit(delim, s) do
 end end
 
 function string_of_chars(x) do
-  return __String.concat("", List.map((function (prim) do
+  return __String.concat("", List.map((function(prim) do
                     return String.fromCharCode(prim);
                   end end), x));
 end end
@@ -134,7 +130,7 @@ end end
 Mt.from_pair_suites("String_test", --[[ :: ]]{
       --[[ tuple ]]{
         "mutliple switch",
-        (function (param) do
+        (function(param) do
             return --[[ Eq ]]Block.__(0, {
                       9,
                       ff("4")
@@ -144,7 +140,7 @@ Mt.from_pair_suites("String_test", --[[ :: ]]{
       --[[ :: ]]{
         --[[ tuple ]]{
           "int switch",
-          (function (param) do
+          (function(param) do
               return --[[ Eq ]]Block.__(0, {
                         9,
                         gg(4)
@@ -154,7 +150,7 @@ Mt.from_pair_suites("String_test", --[[ :: ]]{
         --[[ :: ]]{
           --[[ tuple ]]{
             "escape_normal",
-            (function (param) do
+            (function(param) do
                 return --[[ Eq ]]Block.__(0, {
                           "haha",
                           __String.escaped("haha")
@@ -164,7 +160,7 @@ Mt.from_pair_suites("String_test", --[[ :: ]]{
           --[[ :: ]]{
             --[[ tuple ]]{
               "escape_bytes",
-              (function (param) do
+              (function(param) do
                   return --[[ Eq ]]Block.__(0, {
                             Bytes.of_string("haha"),
                             Bytes.escaped(Bytes.of_string("haha"))
@@ -174,7 +170,7 @@ Mt.from_pair_suites("String_test", --[[ :: ]]{
             --[[ :: ]]{
               --[[ tuple ]]{
                 "escape_quote",
-                (function (param) do
+                (function(param) do
                     return --[[ Eq ]]Block.__(0, {
                               "\\\"\\\"",
                               __String.escaped("\"\"")
@@ -184,7 +180,7 @@ Mt.from_pair_suites("String_test", --[[ :: ]]{
               --[[ :: ]]{
                 --[[ tuple ]]{
                   "rev_split_by_char",
-                  (function (param) do
+                  (function(param) do
                       return --[[ Eq ]]Block.__(0, {
                                 --[[ :: ]]{
                                   "",
@@ -203,7 +199,7 @@ Mt.from_pair_suites("String_test", --[[ :: ]]{
                 --[[ :: ]]{
                   --[[ tuple ]]{
                     "File \"string_test.ml\", line 74, characters 2-9",
-                    (function (param) do
+                    (function(param) do
                         return --[[ Eq ]]Block.__(0, {
                                   --[[ :: ]]{
                                     "aaaa",
@@ -216,7 +212,7 @@ Mt.from_pair_suites("String_test", --[[ :: ]]{
                   --[[ :: ]]{
                     --[[ tuple ]]{
                       "xsplit",
-                      (function (param) do
+                      (function(param) do
                           return --[[ Eq ]]Block.__(0, {
                                     --[[ :: ]]{
                                       "a",
@@ -235,7 +231,7 @@ Mt.from_pair_suites("String_test", --[[ :: ]]{
                     --[[ :: ]]{
                       --[[ tuple ]]{
                         "split_empty",
-                        (function (param) do
+                        (function(param) do
                             return --[[ Eq ]]Block.__(0, {
                                       --[[ [] ]]0,
                                       Ext_string_test.split(undefined, "", --[[ "_" ]]95)
@@ -245,7 +241,7 @@ Mt.from_pair_suites("String_test", --[[ :: ]]{
                       --[[ :: ]]{
                         --[[ tuple ]]{
                           "split_empty2",
-                          (function (param) do
+                          (function(param) do
                               return --[[ Eq ]]Block.__(0, {
                                         --[[ :: ]]{
                                           "test_unsafe_obj_ffi_ppx.cmi",
@@ -258,7 +254,7 @@ Mt.from_pair_suites("String_test", --[[ :: ]]{
                         --[[ :: ]]{
                           --[[ tuple ]]{
                             "rfind",
-                            (function (param) do
+                            (function(param) do
                                 return --[[ Eq ]]Block.__(0, {
                                           7,
                                           Ext_string_test.rfind("__", "__index__js")
@@ -268,7 +264,7 @@ Mt.from_pair_suites("String_test", --[[ :: ]]{
                           --[[ :: ]]{
                             --[[ tuple ]]{
                               "rfind_2",
-                              (function (param) do
+                              (function(param) do
                                   return --[[ Eq ]]Block.__(0, {
                                             0,
                                             Ext_string_test.rfind("__", "__index_js")
@@ -278,7 +274,7 @@ Mt.from_pair_suites("String_test", --[[ :: ]]{
                             --[[ :: ]]{
                               --[[ tuple ]]{
                                 "rfind_3",
-                                (function (param) do
+                                (function(param) do
                                     return --[[ Eq ]]Block.__(0, {
                                               -1,
                                               Ext_string_test.rfind("__", "_index_js")
@@ -288,7 +284,7 @@ Mt.from_pair_suites("String_test", --[[ :: ]]{
                               --[[ :: ]]{
                                 --[[ tuple ]]{
                                   "find",
-                                  (function (param) do
+                                  (function(param) do
                                       return --[[ Eq ]]Block.__(0, {
                                                 0,
                                                 Ext_string_test.find(undefined, "__", "__index__js")
@@ -298,7 +294,7 @@ Mt.from_pair_suites("String_test", --[[ :: ]]{
                                 --[[ :: ]]{
                                   --[[ tuple ]]{
                                     "find_2",
-                                    (function (param) do
+                                    (function(param) do
                                         return --[[ Eq ]]Block.__(0, {
                                                   6,
                                                   Ext_string_test.find(undefined, "__", "_index__js")
@@ -308,7 +304,7 @@ Mt.from_pair_suites("String_test", --[[ :: ]]{
                                   --[[ :: ]]{
                                     --[[ tuple ]]{
                                       "find_3",
-                                      (function (param) do
+                                      (function(param) do
                                           return --[[ Eq ]]Block.__(0, {
                                                     -1,
                                                     Ext_string_test.find(undefined, "__", "_index_js")
@@ -318,7 +314,7 @@ Mt.from_pair_suites("String_test", --[[ :: ]]{
                                     --[[ :: ]]{
                                       --[[ tuple ]]{
                                         "of_char",
-                                        (function (param) do
+                                        (function(param) do
                                             return --[[ Eq ]]Block.__(0, {
                                                       String.fromCharCode(--[[ "0" ]]48),
                                                       Caml_bytes.bytes_to_string(Bytes.make(1, --[[ "0" ]]48))
@@ -328,7 +324,7 @@ Mt.from_pair_suites("String_test", --[[ :: ]]{
                                       --[[ :: ]]{
                                         --[[ tuple ]]{
                                           "of_chars",
-                                          (function (param) do
+                                          (function(param) do
                                               return --[[ Eq ]]Block.__(0, {
                                                         string_of_chars(--[[ :: ]]{
                                                               --[[ "0" ]]48,
@@ -364,6 +360,7 @@ Mt.from_pair_suites("String_test", --[[ :: ]]{
       }
     });
 
+exports = {}
 exports.ff = ff;
 exports.gg = gg;
 exports.rev_split_by_char = rev_split_by_char;

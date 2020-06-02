@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Block = require "../../lib/js/block";
@@ -21,7 +21,7 @@ function eq(loc, x, y) do
   suites.contents = --[[ :: ]]{
     --[[ tuple ]]{
       loc .. (" id " .. String(test_id.contents)),
-      (function (param) do
+      (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     x,
                     y
@@ -39,7 +39,7 @@ Hello = Caml_exceptions.create("Exception_repr_test.Hello");
 
 A = Caml_exceptions.create("Exception_repr_test.A");
 
-Printexc.register_printer((function (param) do
+Printexc.register_printer((function(param) do
         if (param == Hi) then do
           return "hey";
         end else if (param[0] == A) then do
@@ -81,6 +81,7 @@ Mt.from_pair_suites("Exception_repr_test", suites.contents);
 
 AAA = Exception_def.A;
 
+exports = {}
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;

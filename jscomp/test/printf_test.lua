@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Block = require "../../lib/js/block";
@@ -34,7 +34,7 @@ end end
 
 suites_000 = --[[ tuple ]]{
   "sprintf_simple",
-  (function (param) do
+  (function(param) do
       return --[[ Eq ]]Block.__(0, {
                 "3232",
                 Curry._2(Printf.sprintf(--[[ Format ]]{
@@ -56,7 +56,7 @@ suites_000 = --[[ tuple ]]{
 suites_001 = --[[ :: ]]{
   --[[ tuple ]]{
     "print_asprintf",
-    (function (param) do
+    (function(param) do
         return --[[ Eq ]]Block.__(0, {
                   "xx",
                   Format.asprintf(--[[ Format ]]{
@@ -72,7 +72,7 @@ suites_001 = --[[ :: ]]{
   --[[ :: ]]{
     --[[ tuple ]]{
       "print_pair",
-      (function (param) do
+      (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     "(1,2)",
                     Curry._2(Format.asprintf(--[[ Format ]]{
@@ -104,6 +104,7 @@ v = Format.asprintf(--[[ Format ]]{
 
 Mt.from_pair_suites("Printf_test", suites);
 
+exports = {}
 exports.print_pair = print_pair;
 exports.suites = suites;
 exports.v = v;

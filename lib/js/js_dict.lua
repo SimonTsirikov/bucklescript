@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Caml_option = require "./caml_option";
 
@@ -75,6 +75,7 @@ function map(f, source) do
   return target;
 end end
 
+exports = {}
 exports.get = get;
 exports.unsafeDeleteKey = unsafeDeleteKey;
 exports.entries = entries;

@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 
 function f(resp) do
@@ -7,5 +7,6 @@ function f(resp) do
   return --[[ () ]]0;
 end end
 
+exports = {}
 exports.f = f;
 --[[ No side effect ]]

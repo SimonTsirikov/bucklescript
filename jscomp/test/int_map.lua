@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Curry = require "../../lib/js/curry";
 Caml_option = require "../../lib/js/caml_option";
@@ -976,6 +976,7 @@ choose = min_binding;
 
 choose_opt = min_binding_opt;
 
+exports = {}
 exports.empty = empty;
 exports.is_empty = is_empty;
 exports.mem = mem;

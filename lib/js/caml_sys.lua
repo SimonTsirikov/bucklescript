@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Caml_builtin_exceptions = require "./caml_builtin_exceptions";
 
@@ -91,6 +91,7 @@ function caml_sys_file_exists(_s) do
   })
 end end
 
+exports = {}
 exports.caml_sys_getenv = caml_sys_getenv;
 exports.caml_sys_time = caml_sys_time;
 exports.os_type = os_type;

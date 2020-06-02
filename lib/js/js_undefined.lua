@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Caml_option = require "./caml_option";
 
@@ -42,6 +42,7 @@ end end
 
 from_opt = fromOption;
 
+exports = {}
 exports.test = test;
 exports.testAny = testAny;
 exports.getExn = getExn;

@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 
 __ArrayBuffer = { };
@@ -29,6 +29,7 @@ Float32_array = --[[ alias ]]0;
 
 Float64_array = --[[ alias ]]0;
 
+exports = {}
 exports.__ArrayBuffer = __ArrayBuffer;
 exports.__Int8Array = __Int8Array;
 exports.__Uint8Array = __Uint8Array;

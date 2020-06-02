@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 __String = require "../../lib/js/string";
 
@@ -15,6 +15,7 @@ end end
 
 s = __String;
 
+exports = {}
 exports.v = v;
 exports.u = u;
 exports.s = s;

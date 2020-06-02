@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 U = require "";
 VV = require "";
@@ -6,7 +6,7 @@ List = require "../../lib/js/list";
 Curry = require "../../lib/js/curry";
 
 function f(x) do
-  return (function (param) do
+  return (function(param) do
       return x + param | 0;
     end end);
 end end
@@ -149,6 +149,7 @@ sort_uniq = List.sort_uniq;
 
 merge = List.merge;
 
+exports = {}
 exports.f = f;
 exports.f1 = f1;
 exports.f3 = f3;

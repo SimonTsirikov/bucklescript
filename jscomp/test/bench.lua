@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Curry = require "../../lib/js/curry";
 Caml_array = require "../../lib/js/caml_array";
@@ -53,13 +53,13 @@ function fold_left(f, x, a) do
 end end
 
 function f2(param) do
-  arr = init(3000000, (function (i) do
+  arr = init(3000000, (function(i) do
           return i;
         end end));
-  b = map((function (i) do
+  b = map((function(i) do
           return i + i - 1;
         end end), arr);
-  v = fold_left((function (prim, prim_1) do
+  v = fold_left((function(prim, prim_1) do
           return prim + prim_1;
         end end), 0, b);
   console.log(Pervasives.string_of_float(v));
@@ -68,6 +68,7 @@ end end
 
 f2(--[[ () ]]0);
 
+exports = {}
 exports.map = map;
 exports.init = init;
 exports.fold_left = fold_left;

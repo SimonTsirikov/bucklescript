@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Obj = require "./obj";
 
@@ -11,6 +11,7 @@ function register_exception(name, exn) do
   return --[[ () ]]0;
 end end
 
+exports = {}
 exports.register = register;
 exports.register_exception = register_exception;
 --[[ No side effect ]]

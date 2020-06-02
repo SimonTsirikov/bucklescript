@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Curry = require "../../lib/js/curry";
 Caml_option = require "../../lib/js/caml_option";
@@ -95,6 +95,7 @@ end end
 
 none_arg = undefined;
 
+exports = {}
 exports.arg_string = arg_string;
 exports.arg_pair = arg_pair;
 exports.some_arg = some_arg;

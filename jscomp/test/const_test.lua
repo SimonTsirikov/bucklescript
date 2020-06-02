@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Block = require "../../lib/js/block";
 
@@ -14,13 +14,12 @@ function fff(x) do
   match = --[[ A ]]Block.__(0, {x});
   local ___conditional___=(match.tag | 0);
   do
-     if ___conditional___ = 0--[[ A ]] then do
-        return x;end end end 
-     if ___conditional___ = 1--[[ B ]] then do
-        return 1;end end end 
-     if ___conditional___ = 2--[[ C ]] then do
-        return 2;end end end 
-     do
+     if ___conditional___ == 0--[[ A ]] then do
+        return x; end end 
+     if ___conditional___ == 1--[[ B ]] then do
+        return 1; end end 
+     if ___conditional___ == 2--[[ C ]] then do
+        return 2; end end 
     
   end
 end end
@@ -43,6 +42,7 @@ end end
 
 g = h(--[[ A ]]65);
 
+exports = {}
 exports.f = f;
 exports.ff = ff;
 exports.fff = fff;

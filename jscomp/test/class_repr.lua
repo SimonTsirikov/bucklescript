@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Oo = require "../../lib/js/oo";
 Curry = require "../../lib/js/curry";
@@ -20,7 +20,7 @@ shared_2 = {
 function x0_init(__class) do
   v = CamlinternalOO.new_variable(__class, "");
   x = CamlinternalOO.new_variable(__class, "x");
-  return (function (env, self, v_1) do
+  return (function(env, self, v_1) do
       self_1 = CamlinternalOO.create_object_opt(self, __class);
       self_1[v] = v_1;
       self_1[x] = v_1 + 2 | 0;
@@ -35,10 +35,10 @@ function x_init(__class) do
   ids = CamlinternalOO.new_methods_variables(__class, shared_1, shared);
   get_x = ids[0];
   x = ids[1];
-  CamlinternalOO.set_method(__class, get_x, (function (self$2) do
+  CamlinternalOO.set_method(__class, get_x, (function(self$2) do
           return self$2[x];
         end end));
-  return (function (env, self, v_1) do
+  return (function(env, self, v_1) do
       self_1 = CamlinternalOO.create_object_opt(self, __class);
       self_1[v] = v_1;
       self_1[x] = v_1;
@@ -84,17 +84,17 @@ function xx_init(__class) do
   money = ids[2];
   CamlinternalOO.set_methods(__class, {
         get_money,
-        (function (self$3) do
+        (function(self$3) do
             return self$3[money];
           end end),
         incr,
-        (function (self$3) do
+        (function(self$3) do
             copy = Caml_exceptions.caml_set_oo_id(Caml_obj.caml_obj_dup(self$3));
             copy[money] = 2 * self$3[x] + Curry._1(self$3[0][get_money], self$3);
             return copy;
           end end)
       });
-  return (function (env, self, x_1) do
+  return (function(env, self, x_1) do
       self_1 = CamlinternalOO.create_object_opt(self, __class);
       self_1[x] = x_1;
       self_1[money] = x_1;
@@ -147,15 +147,15 @@ function point_init(__class) do
   x = ids[2];
   CamlinternalOO.set_methods(__class, {
         get_x,
-        (function (self$4) do
+        (function(self$4) do
             return self$4[x];
           end end),
         get_x5,
-        (function (self$4) do
+        (function(self$4) do
             return Curry._1(self$4[0][get_x], self$4) + 5 | 0;
           end end)
       });
-  return (function (env, self) do
+  return (function(env, self) do
       self_1 = CamlinternalOO.create_object_opt(self, __class);
       self_1[x] = 0;
       return self_1;
@@ -197,18 +197,18 @@ function xx0_init(__class) do
   a2 = ids[5];
   CamlinternalOO.set_methods(__class, {
         get_money,
-        (function (self$5) do
+        (function(self$5) do
             return self$5[money];
           end end),
         incr,
-        (function (self$5) do
+        (function(self$5) do
             copy = Caml_exceptions.caml_set_oo_id(Caml_obj.caml_obj_dup(self$5));
             copy[money] = 2 * self$5[x] + Curry._1(self$5[0][get_money], self$5);
             copy[a0] = 2;
             return copy;
           end end)
       });
-  return (function (env, self, x_1) do
+  return (function(env, self, x_1) do
       self_1 = CamlinternalOO.create_object_opt(self, __class);
       self_1[x] = x_1;
       self_1[money] = x_1;
@@ -221,6 +221,7 @@ end end
 
 xx0 = CamlinternalOO.make_class(shared_2, xx0_init);
 
+exports = {}
 exports.x0 = x0;
 exports.x = x;
 exports.u = u;

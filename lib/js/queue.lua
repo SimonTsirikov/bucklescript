@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Curry = require "./curry";
 Caml_exceptions = require "./caml_exceptions";
@@ -166,6 +166,7 @@ pop = take;
 
 top = peek;
 
+exports = {}
 exports.Empty = Empty;
 exports.create = create;
 exports.add = add;

@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Block = require "../../lib/js/block";
@@ -17,7 +17,7 @@ function eq(loc, x, y) do
   suites.contents = --[[ :: ]]{
     --[[ tuple ]]{
       loc .. (" id " .. String(test_id.contents)),
-      (function (param) do
+      (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     x,
                     y
@@ -43,6 +43,7 @@ eq("File \"gpr_1658_test.ml\", line 17, characters 7-14", true, Js_types.test(ni
 
 Mt.from_pair_suites("File \"gpr_1658_test.ml\", line 19, characters 22-29", suites.contents);
 
+exports = {}
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;

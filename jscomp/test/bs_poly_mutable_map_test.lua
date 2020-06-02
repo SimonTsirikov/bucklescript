@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Belt_Id = require "../../lib/js/belt_Id";
@@ -36,7 +36,7 @@ function ff(x) do
 end end
 
 function randomRange(i, j) do
-  return Belt_Array.map(Array_data_util.randomRange(i, j), (function (x) do
+  return Belt_Array.map(Array_data_util.randomRange(i, j), (function(x) do
                 return --[[ tuple ]]{
                         x,
                         x
@@ -85,6 +85,7 @@ A = --[[ alias ]]0;
 
 I = --[[ alias ]]0;
 
+exports = {}
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;

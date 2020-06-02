@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 List = require "../../lib/js/list";
 Curry = require "../../lib/js/curry";
@@ -137,7 +137,7 @@ end end
 function of_record(l) do
   return --[[ `List ]]{
           848054398,
-          List.map((function (param) do
+          List.map((function(param) do
                   return of_field(param[0], param[1]);
                 end end), l)
         };
@@ -262,7 +262,7 @@ function to_float(e) do
 end end
 
 function to_string(e) do
-  return _try_atom(e, (function (x) do
+  return _try_atom(e, (function(x) do
                 return x;
               end end));
 end end
@@ -289,10 +289,10 @@ function to_pair(e) do
 end end
 
 function to_pair_with(f1, f2, e) do
-  return $great$great$eq(to_pair(e), (function (param) do
+  return $great$great$eq(to_pair(e), (function(param) do
                 y = param[1];
-                return $great$great$eq(Curry._1(f1, param[0]), (function (x) do
-                              return $great$great$eq(Curry._1(f2, y), (function (y) do
+                return $great$great$eq(Curry._1(f1, param[0]), (function(x) do
+                              return $great$great$eq(Curry._1(f2, y), (function(y) do
                                             return --[[ tuple ]]{
                                                     x,
                                                     y
@@ -330,12 +330,12 @@ function to_triple(e) do
 end end
 
 function to_triple_with(f1, f2, f3, e) do
-  return $great$great$eq(to_triple(e), (function (param) do
+  return $great$great$eq(to_triple(e), (function(param) do
                 z = param[2];
                 y = param[1];
-                return $great$great$eq(Curry._1(f1, param[0]), (function (x) do
-                              return $great$great$eq(Curry._1(f2, y), (function (y) do
-                                            return $great$great$eq(Curry._1(f3, z), (function (z) do
+                return $great$great$eq(Curry._1(f1, param[0]), (function(x) do
+                              return $great$great$eq(Curry._1(f2, y), (function(y) do
+                                            return $great$great$eq(Curry._1(f3, z), (function(z) do
                                                           return --[[ tuple ]]{
                                                                   x,
                                                                   y,
@@ -539,6 +539,7 @@ Traverse = do
   get_exn: get_exn
 end;
 
+exports = {}
 exports.equal = equal;
 exports.compare = compare;
 exports.hash = hash;

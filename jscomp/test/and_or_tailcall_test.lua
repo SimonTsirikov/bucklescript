@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Block = require "../../lib/js/block";
@@ -31,7 +31,7 @@ end end
 
 suites_000 = --[[ tuple ]]{
   "and_tail",
-  (function (param) do
+  (function(param) do
       return --[[ Eq ]]Block.__(0, {
                 false,
                 f(true, 1, 0)
@@ -42,7 +42,7 @@ suites_000 = --[[ tuple ]]{
 suites_001 = --[[ :: ]]{
   --[[ tuple ]]{
     "or_tail",
-    (function (param) do
+    (function(param) do
         return --[[ Eq ]]Block.__(0, {
                   false,
                   or_f(false, 1, 0)
@@ -59,6 +59,7 @@ suites = --[[ :: ]]{
 
 Mt.from_pair_suites("And_or_tailcall_test", suites);
 
+exports = {}
 exports.f = f;
 exports.or_f = or_f;
 exports.suites = suites;

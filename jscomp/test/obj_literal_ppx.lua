@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 
 a = do
@@ -10,7 +10,7 @@ b = do
   x: 3,
   y: {1},
   z: 3,
-  u: (function (x, y) do
+  u: (function(x, y) do
       return x + y | 0;
     end end)
 end;
@@ -29,6 +29,7 @@ v = f(b);
 
 vv = h(b);
 
+exports = {}
 exports.a = a;
 exports.b = b;
 exports.f = f;

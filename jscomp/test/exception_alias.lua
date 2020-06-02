@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 List = require "../../lib/js/list";
 Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
@@ -79,6 +79,7 @@ a4 = a0;
 
 a5 = a0;
 
+exports = {}
 exports.a0 = a0;
 exports.a1 = a1;
 exports.a2 = a2;

@@ -1,18 +1,18 @@
-console.log = print;
+console = {log = print};
 
 List = require "../../lib/js/list";
 Curry = require "../../lib/js/curry";
 Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 function Make(Ord) do
-  height = function (param) do
+  height = function(param) do
     if (param) then do
       return param[3];
     end else do
       return 0;
     end end 
   end end;
-  create = function (l, v, r) do
+  create = function(l, v, r) do
     hl = l and l[3] or 0;
     hr = r and r[3] or 0;
     return --[[ Node ]]{
@@ -22,7 +22,7 @@ function Make(Ord) do
             hl >= hr and hl + 1 | 0 or hr + 1 | 0
           };
   end end;
-  bal = function (l, v, r) do
+  bal = function(l, v, r) do
     hl = l and l[3] or 0;
     hr = r and r[3] or 0;
     if (hl > (hr + 2 | 0)) then do
@@ -76,7 +76,7 @@ function Make(Ord) do
             };
     end end  end 
   end end;
-  add = function (x, t) do
+  add = function(x, t) do
     if (t) then do
       r = t[2];
       v = t[1];
@@ -98,7 +98,7 @@ function Make(Ord) do
             };
     end end 
   end end;
-  singleton = function (x) do
+  singleton = function(x) do
     return --[[ Node ]]{
             --[[ Empty ]]0,
             x,
@@ -106,21 +106,21 @@ function Make(Ord) do
             1
           };
   end end;
-  add_min_element = function (v, param) do
+  add_min_element = function(v, param) do
     if (param) then do
       return bal(add_min_element(v, param[0]), param[1], param[2]);
     end else do
       return singleton(v);
     end end 
   end end;
-  add_max_element = function (v, param) do
+  add_max_element = function(v, param) do
     if (param) then do
       return bal(param[0], param[1], add_max_element(v, param[2]));
     end else do
       return singleton(v);
     end end 
   end end;
-  join = function (l, v, r) do
+  join = function(l, v, r) do
     if (l) then do
       if (r) then do
         rh = r[3];
@@ -139,7 +139,7 @@ function Make(Ord) do
       return add_min_element(v, r);
     end end 
   end end;
-  min_elt = function (_param) do
+  min_elt = function(_param) do
     while(true) do
       param = _param;
       if (param) then do
@@ -155,7 +155,7 @@ function Make(Ord) do
       end end 
     end;
   end end;
-  max_elt = function (_param) do
+  max_elt = function(_param) do
     while(true) do
       param = _param;
       if (param) then do
@@ -171,7 +171,7 @@ function Make(Ord) do
       end end 
     end;
   end end;
-  remove_min_elt = function (param) do
+  remove_min_elt = function(param) do
     if (param) then do
       l = param[0];
       if (l) then do
@@ -186,7 +186,7 @@ function Make(Ord) do
       })
     end end 
   end end;
-  merge = function (t1, t2) do
+  merge = function(t1, t2) do
     if (t1) then do
       if (t2) then do
         return bal(t1, min_elt(t2), remove_min_elt(t2));
@@ -197,7 +197,7 @@ function Make(Ord) do
       return t2;
     end end 
   end end;
-  concat = function (t1, t2) do
+  concat = function(t1, t2) do
     if (t1) then do
       if (t2) then do
         return join(t1, min_elt(t2), remove_min_elt(t2));
@@ -208,7 +208,7 @@ function Make(Ord) do
       return t2;
     end end 
   end end;
-  split = function (x, param) do
+  split = function(x, param) do
     if (param) then do
       r = param[2];
       v = param[1];
@@ -243,14 +243,14 @@ function Make(Ord) do
             };
     end end 
   end end;
-  is_empty = function (param) do
+  is_empty = function(param) do
     if (param) then do
       return false;
     end else do
       return true;
     end end 
   end end;
-  mem = function (x, _param) do
+  mem = function(x, _param) do
     while(true) do
       param = _param;
       if (param) then do
@@ -266,7 +266,7 @@ function Make(Ord) do
       end end 
     end;
   end end;
-  remove = function (x, param) do
+  remove = function(x, param) do
     if (param) then do
       r = param[2];
       v = param[1];
@@ -283,7 +283,7 @@ function Make(Ord) do
       return --[[ Empty ]]0;
     end end 
   end end;
-  union = function (s1, s2) do
+  union = function(s1, s2) do
     if (s1) then do
       if (s2) then do
         h2 = s2[3];
@@ -310,7 +310,7 @@ function Make(Ord) do
       return s2;
     end end 
   end end;
-  inter = function (s1, s2) do
+  inter = function(s1, s2) do
     if (s1 and s2) then do
       r1 = s1[2];
       v1 = s1[1];
@@ -326,7 +326,7 @@ function Make(Ord) do
       return --[[ Empty ]]0;
     end end 
   end end;
-  diff = function (s1, s2) do
+  diff = function(s1, s2) do
     if (s1) then do
       if (s2) then do
         r1 = s1[2];
@@ -346,7 +346,7 @@ function Make(Ord) do
       return --[[ Empty ]]0;
     end end 
   end end;
-  cons_enum = function (_s, _e) do
+  cons_enum = function(_s, _e) do
     while(true) do
       e = _e;
       s = _s;
@@ -363,7 +363,7 @@ function Make(Ord) do
       end end 
     end;
   end end;
-  compare_aux = function (_e1, _e2) do
+  compare_aux = function(_e1, _e2) do
     while(true) do
       e2 = _e2;
       e1 = _e1;
@@ -387,13 +387,13 @@ function Make(Ord) do
       end end  end 
     end;
   end end;
-  compare = function (s1, s2) do
+  compare = function(s1, s2) do
     return compare_aux(cons_enum(s1, --[[ End ]]0), cons_enum(s2, --[[ End ]]0));
   end end;
-  equal = function (s1, s2) do
+  equal = function(s1, s2) do
     return compare(s1, s2) == 0;
   end end;
-  subset = function (_s1, _s2) do
+  subset = function(_s1, _s2) do
     while(true) do
       s2 = _s2;
       s1 = _s1;
@@ -444,7 +444,7 @@ function Make(Ord) do
       end end 
     end;
   end end;
-  iter = function (f, _param) do
+  iter = function(f, _param) do
     while(true) do
       param = _param;
       if (param) then do
@@ -457,7 +457,7 @@ function Make(Ord) do
       end end 
     end;
   end end;
-  fold = function (f, _s, _accu) do
+  fold = function(f, _s, _accu) do
     while(true) do
       accu = _accu;
       s = _s;
@@ -470,7 +470,7 @@ function Make(Ord) do
       end end 
     end;
   end end;
-  for_all = function (p, _param) do
+  for_all = function(p, _param) do
     while(true) do
       param = _param;
       if (param) then do
@@ -485,7 +485,7 @@ function Make(Ord) do
       end end 
     end;
   end end;
-  exists = function (p, _param) do
+  exists = function(p, _param) do
     while(true) do
       param = _param;
       if (param) then do
@@ -500,7 +500,7 @@ function Make(Ord) do
       end end 
     end;
   end end;
-  filter = function (p, param) do
+  filter = function(p, param) do
     if (param) then do
       v = param[1];
       l$prime = filter(p, param[0]);
@@ -515,7 +515,7 @@ function Make(Ord) do
       return --[[ Empty ]]0;
     end end 
   end end;
-  partition = function (p, param) do
+  partition = function(p, param) do
     if (param) then do
       v = param[1];
       match = partition(p, param[0]);
@@ -543,14 +543,14 @@ function Make(Ord) do
             };
     end end 
   end end;
-  cardinal = function (param) do
+  cardinal = function(param) do
     if (param) then do
       return (cardinal(param[0]) + 1 | 0) + cardinal(param[2]) | 0;
     end else do
       return 0;
     end end 
   end end;
-  elements_aux = function (_accu, _param) do
+  elements_aux = function(_accu, _param) do
     while(true) do
       param = _param;
       accu = _accu;
@@ -566,10 +566,10 @@ function Make(Ord) do
       end end 
     end;
   end end;
-  elements = function (s) do
+  elements = function(s) do
     return elements_aux(--[[ [] ]]0, s);
   end end;
-  find = function (x, _param) do
+  find = function(x, _param) do
     while(true) do
       param = _param;
       if (param) then do
@@ -586,16 +586,16 @@ function Make(Ord) do
       end end 
     end;
   end end;
-  of_sorted_list = function (l) do
-    sub = function (n, l) do
+  of_sorted_list = function(l) do
+    sub = function(n, l) do
       local ___conditional___=(n);
       do
-         if ___conditional___ = 0 then do
+         if ___conditional___ == 0 then do
             return --[[ tuple ]]{
                     --[[ Empty ]]0,
                     l
-                  };end end end 
-         if ___conditional___ = 1 then do
+                  }; end end 
+         if ___conditional___ == 1 then do
             if (l) then do
               return --[[ tuple ]]{
                       --[[ Node ]]{
@@ -607,8 +607,8 @@ function Make(Ord) do
                       l[1]
                     };
             end
-             end end else 
-         if ___conditional___ = 2 then do
+             end  end else 
+         if ___conditional___ == 2 then do
             if (l) then do
               match = l[1];
               if (match) then do
@@ -629,8 +629,8 @@ function Make(Ord) do
               end
                end 
             end
-             end end else 
-         if ___conditional___ = 3 then do
+             end  end else 
+         if ___conditional___ == 3 then do
             if (l) then do
               match_1 = l[1];
               if (match_1) then do
@@ -660,11 +660,9 @@ function Make(Ord) do
               end
                end 
             end
-             end end else 
-         do end end end
-        else do
-          end end
-          
+             end  end else 
+         end end end end end end
+        
       end
       nl = n / 2 | 0;
       match_3 = sub(nl, l);
@@ -688,7 +686,7 @@ function Make(Ord) do
     end end;
     return sub(List.length(l), l)[0];
   end end;
-  of_list = function (l) do
+  of_list = function(l) do
     if (l) then do
       match = l[1];
       x0 = l[0];
@@ -770,6 +768,7 @@ N = do
   a: 3
 end;
 
+exports = {}
 exports.Make = Make;
 exports.N = N;
 --[[ No side effect ]]

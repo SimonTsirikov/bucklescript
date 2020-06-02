@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 
 setter_suffix = "#=";
@@ -143,6 +143,7 @@ bytecode = "bytecode";
 
 js = "js";
 
+exports = {}
 exports.js_array_ctor = js_array_ctor;
 exports.js_type_number = js_type_number;
 exports.js_type_string = js_type_string;

@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Marshal = require "./marshal";
 Caml_array = require "./caml_array";
@@ -160,6 +160,7 @@ Ephemeron = do
   blit_data: Ephemeron_blit_data
 end;
 
+exports = {}
 exports.is_block = is_block;
 exports.double_field = double_field;
 exports.set_double_field = set_double_field;

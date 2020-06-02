@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 
 function f_list(x) do
@@ -131,6 +131,7 @@ function f_opion(x) do
   end end 
 end end
 
+exports = {}
 exports.f_list = f_list;
 exports.f_arr = f_arr;
 exports.f_opion = f_opion;

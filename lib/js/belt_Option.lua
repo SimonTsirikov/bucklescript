@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Curry = require "./curry";
 Caml_option = require "./caml_option";
@@ -107,6 +107,7 @@ function cmp(a, b, f) do
   return cmpU(a, b, Curry.__2(f));
 end end
 
+exports = {}
 exports.forEachU = forEachU;
 exports.forEach = forEach;
 exports.getExn = getExn;

@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 List = require "./list";
 Caml_exceptions = require "./caml_exceptions";
@@ -70,6 +70,7 @@ function fold(f, acc, s) do
   return List.fold_left(f, acc, s.c);
 end end
 
+exports = {}
 exports.Empty = Empty;
 exports.create = create;
 exports.push = push;

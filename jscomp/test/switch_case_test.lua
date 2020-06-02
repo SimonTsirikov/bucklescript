@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Block = require "../../lib/js/block";
@@ -16,7 +16,7 @@ function eq(loc, x, y) do
   suites.contents = --[[ :: ]]{
     --[[ tuple ]]{
       loc .. (" id " .. String(test_id.contents)),
-      (function (param) do
+      (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     x,
                     y
@@ -31,18 +31,15 @@ end end
 function f(x) do
   local ___conditional___=(x);
   do
-     if ___conditional___ = "xx\"" then do
-        return 1;end end end 
-     if ___conditional___ = "xx'''" then do
-        return 0;end end end 
-     if ___conditional___ = "xx\\\"" then do
-        return 2;end end end 
-     if ___conditional___ = "xx\\\"\"" then do
-        return 3;end end end 
-     do
-    else do
-      return 4;
-      end end
+     if ___conditional___ == "xx\"" then do
+        return 1; end end 
+     if ___conditional___ == "xx'''" then do
+        return 0; end end 
+     if ___conditional___ == "xx\\\"" then do
+        return 2; end end 
+     if ___conditional___ == "xx\\\"\"" then do
+        return 3; end end 
+    return 4;
       
   end
 end end
@@ -57,6 +54,7 @@ eq("File \"switch_case_test.ml\", line 22, characters 7-14", f("xx\\\"\""), 3);
 
 Mt.from_pair_suites("Switch_case_test", suites.contents);
 
+exports = {}
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;

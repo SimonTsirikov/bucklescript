@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Caml_option = require "../../lib/js/caml_option";
@@ -16,7 +16,7 @@ function eq(loc, x, y) do
 end end
 
 function make(s, b, i) do
-  return (function (param) do
+  return (function(param) do
       tmp = { };
       if (s ~= undefined) then do
         tmp.s = Caml_option.valFromOption(s);
@@ -50,6 +50,7 @@ console.log(hh);
 
 Mt.from_pair_suites("Optional_regression_test", suites.contents);
 
+exports = {}
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;

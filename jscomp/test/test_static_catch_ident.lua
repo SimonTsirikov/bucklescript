@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Caml_exceptions = require "../../lib/js/caml_exceptions";
 Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
@@ -19,6 +19,7 @@ function scanf_bad_input(ib, x) do
   return --[[ () ]]0;
 end end
 
+exports = {}
 exports.Scan_failure = Scan_failure;
 exports.scanf_bad_input = scanf_bad_input;
 --[[ No side effect ]]

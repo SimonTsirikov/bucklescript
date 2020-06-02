@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Block = require "../../lib/js/block";
@@ -19,7 +19,7 @@ function eq(loc, x, y) do
   suites.contents = --[[ :: ]]{
     --[[ tuple ]]{
       loc .. (" id " .. String(test_id.contents)),
-      (function (param) do
+      (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     x,
                     y
@@ -53,16 +53,16 @@ function create(param) do
     data = ids[2];
     CamlinternalOO.set_methods(__class, {
           add,
-          (function (self$1, param) do
+          (function(self$1, param) do
               self$1[data] = self$1[data] + 1 | 0;
               return self$1;
             end end),
           get,
-          (function (self$1, param) do
+          (function(self$1, param) do
               return self$1[data];
             end end)
         });
-    env_init = function (env_1) do
+    env_init = function(env_1) do
       self = CamlinternalOO.create_object_opt(0, __class);
       self[data] = 0;
       self[env] = env_1;
@@ -95,6 +95,7 @@ eq("File \"gpr_2250_test.ml\", line 37, characters 5-12", result2, 2);
 
 Mt.from_pair_suites("Gpr_2250_test", suites.contents);
 
+exports = {}
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;

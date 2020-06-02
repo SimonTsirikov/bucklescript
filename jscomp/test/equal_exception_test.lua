@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Bytes = require "../../lib/js/bytes";
@@ -123,6 +123,7 @@ suites = --[[ :: ]]{
 
 Mt.from_suites("exception", suites);
 
+exports = {}
 exports.v = v;
 exports.is_equal = is_equal;
 exports.is_exception = is_exception;

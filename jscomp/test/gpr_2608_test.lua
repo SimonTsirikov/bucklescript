@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 List = require "../../lib/js/list";
@@ -23,7 +23,7 @@ oppHeroes = --[[ :: ]]{
 huntGrootCondition = false;
 
 if (List.length(--[[ [] ]]0) > 0) then do
-  x = List.filter((function (h) do
+  x = List.filter((function(h) do
             return List.hd(--[[ [] ]]0) <= 1000;
           end end))(oppHeroes);
   huntGrootCondition = List.length(x) == 0;
@@ -33,7 +33,7 @@ end
 huntGrootCondition2 = true;
 
 if (List.length(--[[ [] ]]0) < 0) then do
-  x_1 = List.filter((function (h) do
+  x_1 = List.filter((function(h) do
             return List.hd(--[[ [] ]]0) <= 1000;
           end end))(oppHeroes);
   huntGrootCondition2 = List.length(x_1) == 0;
@@ -48,6 +48,7 @@ Mt.from_pair_suites("Gpr_2608_test", suites.contents);
 
 nearestGroots = --[[ [] ]]0;
 
+exports = {}
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;

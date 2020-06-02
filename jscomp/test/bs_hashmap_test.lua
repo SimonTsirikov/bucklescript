@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Belt_Id = require "../../lib/js/belt_Id";
@@ -95,7 +95,7 @@ end
 
 eqx("File \"bs_hashmap_test.ml\", line 56, characters 6-13", v_1.size, 98000);
 
-b("File \"bs_hashmap_test.ml\", line 57, characters 4-11", Belt_Array.every(Array_data_util.range(2001, 100000), (function (x) do
+b("File \"bs_hashmap_test.ml\", line 57, characters 4-11", Belt_Array.every(Array_data_util.range(2001, 100000), (function(x) do
             return Belt_HashMap.has(v_1, x);
           end end)));
 
@@ -113,6 +113,7 @@ A = --[[ alias ]]0;
 
 So = --[[ alias ]]0;
 
+exports = {}
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eqx = eqx;

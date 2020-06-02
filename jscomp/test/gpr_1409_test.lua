@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 __Array = require "../../lib/js/array";
@@ -20,7 +20,7 @@ function eq(loc, x, y) do
   suites.contents = --[[ :: ]]{
     --[[ tuple ]]{
       loc .. (" id " .. String(test_id.contents)),
-      (function (param) do
+      (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     x,
                     y
@@ -46,10 +46,10 @@ function map(f, x) do
 end end
 
 function make(foo) do
-  partial_arg = map((function (prim) do
+  partial_arg = map((function(prim) do
           return String(prim);
         end end), foo);
-  return (function (param) do
+  return (function(param) do
       tmp = { };
       if (partial_arg ~= undefined) then do
         tmp.foo = Caml_option.valFromOption(partial_arg);
@@ -173,6 +173,7 @@ eq("File \"gpr_1409_test.ml\", line 73, characters 6-13", keys(--[[ :: ]]{
 
 Mt.from_pair_suites("Gpr_1409_test", suites.contents);
 
+exports = {}
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;

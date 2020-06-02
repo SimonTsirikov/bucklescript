@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Caml_array = require "../../lib/js/caml_array";
 Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
@@ -41,6 +41,7 @@ function caml_make_vect(len, init) do
   return b;
 end end
 
+exports = {}
 exports.caml_array_sub = caml_array_sub;
 exports.caml_array_set = caml_array_set;
 exports.caml_array_get = caml_array_get;

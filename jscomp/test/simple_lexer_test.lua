@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Block = require "../../lib/js/block";
@@ -27,19 +27,16 @@ function __ocaml_lex_translate_rec(lexbuf, ___ocaml_lex_state) do
     __ocaml_lex_state_1 = Lexing.engine(__ocaml_lex_tables, __ocaml_lex_state, lexbuf);
     local ___conditional___=(__ocaml_lex_state_1);
     do
-       if ___conditional___ = 0 then do
-          return "." .. __ocaml_lex_translate_rec(lexbuf, 0);end end end 
-       if ___conditional___ = 1 then do
+       if ___conditional___ == 0 then do
+          return "." .. __ocaml_lex_translate_rec(lexbuf, 0); end end 
+       if ___conditional___ == 1 then do
           c = Caml_bytes.get(lexbuf.lex_buffer, lexbuf.lex_start_pos);
-          return Caml_bytes.bytes_to_string(Bytes.make(1, c)) .. __ocaml_lex_translate_rec(lexbuf, 0);end end end 
-       if ___conditional___ = 2 then do
-          return "";end end end 
-       do
-      else do
-        Curry._1(lexbuf.refill_buff, lexbuf);
+          return Caml_bytes.bytes_to_string(Bytes.make(1, c)) .. __ocaml_lex_translate_rec(lexbuf, 0); end end 
+       if ___conditional___ == 2 then do
+          return ""; end end 
+      Curry._1(lexbuf.refill_buff, lexbuf);
         ___ocaml_lex_state = __ocaml_lex_state_1;
         ::continue:: ;
-        end end
         
     end
   end;
@@ -51,7 +48,7 @@ end end
 
 suites_000 = --[[ tuple ]]{
   "translate",
-  (function (param) do
+  (function(param) do
       return --[[ Eq ]]Block.__(0, {
                 __ocaml_lex_translate_rec(Lexing.from_string("-- current_directory --"), 0),
                 "-- . --"
@@ -66,6 +63,7 @@ suites = --[[ :: ]]{
 
 Mt.from_pair_suites("Simple_lexer_test", suites);
 
+exports = {}
 exports.__ocaml_lex_tables = __ocaml_lex_tables;
 exports.translate = translate;
 exports.__ocaml_lex_translate_rec = __ocaml_lex_translate_rec;

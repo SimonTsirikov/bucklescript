@@ -33,32 +33,31 @@ function escaped(c) do
   end else do
     local ___conditional___=(c);
     do
-       if ___conditional___ = 8 then do
-          return "\\b";end end end 
-       if ___conditional___ = 9 then do
-          return "\\t";end end end 
-       if ___conditional___ = 10 then do
-          return "\\n";end end end 
-       if ___conditional___ = 0
-       or ___conditional___ = 1
-       or ___conditional___ = 2
-       or ___conditional___ = 3
-       or ___conditional___ = 4
-       or ___conditional___ = 5
-       or ___conditional___ = 6
-       or ___conditional___ = 7
-       or ___conditional___ = 11
-       or ___conditional___ = 12 then do
-          exit = 1;end else 
-       if ___conditional___ = 13 then do
-          return "\\r";end end end 
-       do
+       if ___conditional___ == 8 then do
+          return "\\b"; end end 
+       if ___conditional___ == 9 then do
+          return "\\t"; end end 
+       if ___conditional___ == 10 then do
+          return "\\n"; end end 
+       if ___conditional___ == 0
+       or ___conditional___ == 1
+       or ___conditional___ == 2
+       or ___conditional___ == 3
+       or ___conditional___ == 4
+       or ___conditional___ == 5
+       or ___conditional___ == 6
+       or ___conditional___ == 7
+       or ___conditional___ == 11
+       or ___conditional___ == 12 then do
+          exit = 1; end else 
+       if ___conditional___ == 13 then do
+          return "\\r"; end end end end 
       
     end
   end end  end  end 
   local ___conditional___=(exit);
   do
-     if ___conditional___ = 1 then do
+     if ___conditional___ == 1 then do
         s = {
           0,
           0,
@@ -69,12 +68,11 @@ function escaped(c) do
         s[1] = 48 + (c / 100 | 0) | 0;
         s[2] = 48 + (c / 10 | 0) % 10 | 0;
         s[3] = 48 + c % 10 | 0;
-        return Caml_bytes.bytes_to_string(s);end end end 
-     if ___conditional___ = 2 then do
+        return Caml_bytes.bytes_to_string(s); end end 
+     if ___conditional___ == 2 then do
         s_1 = {0};
         s_1[0] = c;
-        return Caml_bytes.bytes_to_string(s_1);end end end 
-     do
+        return Caml_bytes.bytes_to_string(s_1); end end 
     
   end
 end end

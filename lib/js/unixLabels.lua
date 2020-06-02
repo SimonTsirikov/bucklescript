@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Unix = require "./unix";
 
@@ -326,6 +326,7 @@ tcflow = Unix.tcflow;
 
 setsid = Unix.setsid;
 
+exports = {}
 exports.Unix_error = Unix_error;
 exports.error_message = error_message;
 exports.handle_unix_error = handle_unix_error;

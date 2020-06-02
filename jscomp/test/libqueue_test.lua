@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 List = require "../../lib/js/list";
 Curry = require "../../lib/js/curry";
@@ -7,7 +7,7 @@ Caml_obj = require "../../lib/js/caml_obj";
 Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 function to_list(q) do
-  return List.rev(Queue.fold((function (l, x) do
+  return List.rev(Queue.fold((function(l, x) do
                     return --[[ :: ]]{
                             x,
                             l
@@ -813,7 +813,7 @@ i_7 = do
   contents: 1
 end;
 
-Queue.iter((function (j) do
+Queue.iter((function(j) do
         if (i_7.contents ~= j) then do
           error({
             Caml_builtin_exceptions.assert_failure,
@@ -1383,6 +1383,7 @@ end
 
 console.log("OK");
 
+exports = {}
 exports.Q = Q;
 exports.does_raise = does_raise;
 --[[ q Not a pure module ]]

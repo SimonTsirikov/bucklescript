@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Curry = require "../../lib/js/curry";
 
@@ -46,6 +46,7 @@ function foo5(x) do
   end end 
 end end
 
+exports = {}
 exports.foo = foo;
 exports.foo2 = foo2;
 exports.foo3 = foo3;

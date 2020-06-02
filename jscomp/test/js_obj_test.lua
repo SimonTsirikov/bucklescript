@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Block = require "../../lib/js/block";
@@ -22,15 +22,15 @@ class_tables = --[[ Cons ]]{
 
 suites_000 = --[[ tuple ]]{
   "caml_obj",
-  (function (param) do
+  (function(param) do
       if (not class_tables[0]) then do
         __class = CamlinternalOO.create_table({"say"});
         env = CamlinternalOO.new_variable(__class, "");
         say = CamlinternalOO.get_method_label(__class, "say");
-        CamlinternalOO.set_method(__class, say, (function (self$1, x) do
+        CamlinternalOO.set_method(__class, say, (function(self$1, x) do
                 return 1 + x | 0;
               end end));
-        env_init = function (env_1) do
+        env_init = function(env_1) do
           self = CamlinternalOO.create_object_opt(0, __class);
           self[env] = env_1;
           return self;
@@ -49,11 +49,11 @@ suites_000 = --[[ tuple ]]{
 suites_001 = --[[ :: ]]{
   --[[ tuple ]]{
     "js_obj",
-    (function (param) do
+    (function(param) do
         return --[[ Eq ]]Block.__(0, {
                   34,
                   (do
-                        say: (function (x) do
+                        say: (function(x) do
                             return x + 2 | 0;
                           end end)
                       end).say(32)
@@ -63,11 +63,11 @@ suites_001 = --[[ :: ]]{
   --[[ :: ]]{
     --[[ tuple ]]{
       "js_obj2",
-      (function (param) do
+      (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     34,
                     (do
-                          say: (function (x) do
+                          say: (function(x) do
                               return x + 2 | 0;
                             end end)
                         end).say(32)
@@ -77,7 +77,7 @@ suites_001 = --[[ :: ]]{
     --[[ :: ]]{
       --[[ tuple ]]{
         "empty",
-        (function (param) do
+        (function(param) do
             return --[[ Eq ]]Block.__(0, {
                       0,
                       #Object.keys({ })
@@ -87,7 +87,7 @@ suites_001 = --[[ :: ]]{
       --[[ :: ]]{
         --[[ tuple ]]{
           "assign",
-          (function (param) do
+          (function(param) do
               return --[[ Eq ]]Block.__(0, {
                         do
                           a: 1
@@ -111,6 +111,7 @@ suites = --[[ :: ]]{
 
 Mt.from_pair_suites("Js_obj_test", suites);
 
+exports = {}
 exports.f = f;
 exports.f_js = f_js;
 exports.suites = suites;

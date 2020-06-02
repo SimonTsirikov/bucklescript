@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Belt_List = require "../../lib/js/belt_List";
@@ -112,11 +112,11 @@ v = do
   data: Belt_internalSetInt.fromArray(xs_1)
 end;
 
-bs = Belt_Array.map(Array_data_util.randomRange(500, 1499), (function (x) do
+bs = Belt_Array.map(Array_data_util.randomRange(500, 1499), (function(x) do
         return Belt_MutableSetInt.removeCheck(v, x);
       end end));
 
-indeedRemoved = Belt_Array.reduce(bs, 0, (function (acc, x) do
+indeedRemoved = Belt_Array.reduce(bs, 0, (function(acc, x) do
         if (x) then do
           return acc + 1 | 0;
         end else do
@@ -128,11 +128,11 @@ eq("File \"bs_mutable_set_test.ml\", line 65, characters 5-12", indeedRemoved, 5
 
 eq("File \"bs_mutable_set_test.ml\", line 66, characters 5-12", Belt_internalAVLset.size(v.data), 501);
 
-cs = Belt_Array.map(Array_data_util.randomRange(500, 2000), (function (x) do
+cs = Belt_Array.map(Array_data_util.randomRange(500, 2000), (function(x) do
         return Belt_MutableSetInt.addCheck(v, x);
       end end));
 
-indeedAded = Belt_Array.reduce(cs, 0, (function (acc, x) do
+indeedAded = Belt_Array.reduce(cs, 0, (function(acc, x) do
         if (x) then do
           return acc + 1 | 0;
         end else do
@@ -156,13 +156,13 @@ eq("File \"bs_mutable_set_test.ml\", line 74, characters 5-12", Belt_internalAVL
 
 eq("File \"bs_mutable_set_test.ml\", line 75, characters 5-12", Belt_internalAVLset.maxUndefined(v.data), 2000);
 
-eq("File \"bs_mutable_set_test.ml\", line 76, characters 5-12", Belt_MutableSetInt.reduce(v, 0, (function (x, y) do
+eq("File \"bs_mutable_set_test.ml\", line 76, characters 5-12", Belt_MutableSetInt.reduce(v, 0, (function(x, y) do
             return x + y | 0;
           end end)), 1876250);
 
-b("File \"bs_mutable_set_test.ml\", line 77, characters 4-11", Belt_List.eq(Belt_internalAVLset.toList(v.data), Belt_List.makeBy(1501, (function (i) do
+b("File \"bs_mutable_set_test.ml\", line 77, characters 4-11", Belt_List.eq(Belt_internalAVLset.toList(v.data), Belt_List.makeBy(1501, (function(i) do
                 return i + 500 | 0;
-              end end)), (function (x, y) do
+              end end)), (function(x, y) do
             return x == y;
           end end)));
 
@@ -184,11 +184,11 @@ aa = match_1[0];
 
 b("File \"bs_mutable_set_test.ml\", line 83, characters 4-11", match[1]);
 
-b("File \"bs_mutable_set_test.ml\", line 84, characters 4-11", Belt_Array.eq(Belt_internalAVLset.toArray(aa.data), Array_data_util.range(500, 999), (function (x, y) do
+b("File \"bs_mutable_set_test.ml\", line 84, characters 4-11", Belt_Array.eq(Belt_internalAVLset.toArray(aa.data), Array_data_util.range(500, 999), (function(x, y) do
             return x == y;
           end end)));
 
-b("File \"bs_mutable_set_test.ml\", line 85, characters 4-11", Belt_Array.eq(Belt_internalAVLset.toArray(bb.data), Array_data_util.range(1001, 2000), (function (prim, prim_1) do
+b("File \"bs_mutable_set_test.ml\", line 85, characters 4-11", Belt_Array.eq(Belt_internalAVLset.toArray(bb.data), Array_data_util.range(1001, 2000), (function(prim, prim_1) do
             return prim == prim_1;
           end end)));
 
@@ -212,11 +212,11 @@ aa_1 = match_3[0];
 
 b("File \"bs_mutable_set_test.ml\", line 92, characters 4-11", not match_2[1]);
 
-b("File \"bs_mutable_set_test.ml\", line 93, characters 4-11", Belt_Array.eq(Belt_internalAVLset.toArray(aa_1.data), Array_data_util.range(500, 999), (function (prim, prim_1) do
+b("File \"bs_mutable_set_test.ml\", line 93, characters 4-11", Belt_Array.eq(Belt_internalAVLset.toArray(aa_1.data), Array_data_util.range(500, 999), (function(prim, prim_1) do
             return prim == prim_1;
           end end)));
 
-b("File \"bs_mutable_set_test.ml\", line 94, characters 4-11", Belt_Array.eq(Belt_internalAVLset.toArray(bb_1.data), Array_data_util.range(1001, 2000), (function (prim, prim_1) do
+b("File \"bs_mutable_set_test.ml\", line 94, characters 4-11", Belt_Array.eq(Belt_internalAVLset.toArray(bb_1.data), Array_data_util.range(1001, 2000), (function(prim, prim_1) do
             return prim == prim_1;
           end end)));
 
@@ -377,15 +377,15 @@ a0 = do
   data: Belt_internalSetInt.fromArray(xs_24)
 end;
 
-a1 = Belt_MutableSetInt.keep(a0, (function (x) do
+a1 = Belt_MutableSetInt.keep(a0, (function(x) do
         return x % 2 == 0;
       end end));
 
-a2 = Belt_MutableSetInt.keep(a0, (function (x) do
+a2 = Belt_MutableSetInt.keep(a0, (function(x) do
         return x % 2 ~= 0;
       end end));
 
-match_4 = Belt_MutableSetInt.partition(a0, (function (x) do
+match_4 = Belt_MutableSetInt.partition(a0, (function(x) do
         return x % 2 == 0;
       end end));
 
@@ -412,7 +412,7 @@ Belt_List.forEach(--[[ :: ]]{
           }
         }
       }
-    }, (function (x) do
+    }, (function(x) do
         return Belt_internalAVLset.checkInvariantInternal(x.data);
       end end));
 
@@ -426,7 +426,7 @@ end
 
 Belt_internalAVLset.checkInvariantInternal(v_1.data);
 
-b("File \"bs_mutable_set_test.ml\", line 178, characters 4-11", Belt_Range.every(0, 100000, (function (i) do
+b("File \"bs_mutable_set_test.ml\", line 178, characters 4-11", Belt_Range.every(0, 100000, (function(i) do
             return Belt_internalSetInt.has(v_1.data, i);
           end end)));
 
@@ -470,7 +470,7 @@ eq("File \"bs_mutable_set_test.ml\", line 206, characters 5-12", Belt_internalAV
 
 b("File \"bs_mutable_set_test.ml\", line 207, characters 4-11", Belt_MutableSetInt.isEmpty(v_3));
 
-xs_25 = Belt_Array.makeBy(30, (function (i) do
+xs_25 = Belt_Array.makeBy(30, (function(i) do
         return i;
       end end));
 
@@ -503,7 +503,7 @@ function id(loc, x) do
     data: Belt_internalAVLset.fromSortedArrayUnsafe(x)
   end;
   Belt_internalAVLset.checkInvariantInternal(u.data);
-  return b(loc, Belt_Array.every2(Belt_internalAVLset.toArray(u.data), x, (function (prim, prim_1) do
+  return b(loc, Belt_Array.every2(Belt_internalAVLset.toArray(u.data), x, (function(prim, prim_1) do
                     return prim == prim_1;
                   end end)));
 end end
@@ -597,15 +597,15 @@ v_5 = do
   data: Belt_internalSetInt.fromArray(xs_26)
 end;
 
-copyV = Belt_MutableSetInt.keep(v_5, (function (x) do
+copyV = Belt_MutableSetInt.keep(v_5, (function(x) do
         return x % 8 == 0;
       end end));
 
-match_5 = Belt_MutableSetInt.partition(v_5, (function (x) do
+match_5 = Belt_MutableSetInt.partition(v_5, (function(x) do
         return x % 8 == 0;
       end end));
 
-cc_1 = Belt_MutableSetInt.keep(v_5, (function (x) do
+cc_1 = Belt_MutableSetInt.keep(v_5, (function(x) do
         return x % 8 ~= 0;
       end end));
 
@@ -615,7 +615,7 @@ end
 
 eq("File \"bs_mutable_set_test.ml\", line 250, characters 5-12", Belt_internalAVLset.size(copyV.data), 126);
 
-eq("File \"bs_mutable_set_test.ml\", line 251, characters 5-12", Belt_internalAVLset.toArray(copyV.data), Belt_Array.makeBy(126, (function (i) do
+eq("File \"bs_mutable_set_test.ml\", line 251, characters 5-12", Belt_internalAVLset.toArray(copyV.data), Belt_Array.makeBy(126, (function(i) do
             return (i << 3);
           end end)));
 
@@ -647,7 +647,7 @@ b("File \"bs_mutable_set_test.ml\", line 260, characters 4-11", Belt_MutableSetI
           data: Belt_internalSetInt.fromArray(xs_29)
         end));
 
-xs_30 = Belt_Array.map(Array_data_util.randomRange(0, 1000), (function (x) do
+xs_30 = Belt_Array.map(Array_data_util.randomRange(0, 1000), (function(x) do
         return (x << 1);
       end end));
 
@@ -659,7 +659,7 @@ match_8 = Belt_MutableSetInt.split(d, 1001);
 
 match_9 = match_8[0];
 
-xs_31 = Belt_Array.makeBy(501, (function (x) do
+xs_31 = Belt_Array.makeBy(501, (function(x) do
         return (x << 1);
       end end));
 
@@ -667,7 +667,7 @@ b("File \"bs_mutable_set_test.ml\", line 263, characters 4-11", Belt_MutableSetI
           data: Belt_internalSetInt.fromArray(xs_31)
         end));
 
-xs_32 = Belt_Array.makeBy(500, (function (x) do
+xs_32 = Belt_Array.makeBy(500, (function(x) do
         return 1002 + (x << 1) | 0;
       end end));
 
@@ -842,6 +842,7 @@ f = Belt_MutableSetInt.fromArray;
 
 $eq$tilde = Belt_MutableSetInt.eq;
 
+exports = {}
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;

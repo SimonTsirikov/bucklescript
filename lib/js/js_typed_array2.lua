@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 
 __ArrayBuffer = { };
@@ -23,6 +23,7 @@ __Float64Array = { };
 
 __DataView = { };
 
+exports = {}
 exports.__ArrayBuffer = __ArrayBuffer;
 exports.__Int8Array = __Int8Array;
 exports.__Uint8Array = __Uint8Array;

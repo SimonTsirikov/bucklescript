@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Curry = require "./curry";
 Caml_obj = require "./caml_obj";
@@ -307,7 +307,7 @@ end end
 Bottom = Caml_exceptions.create("Array.Bottom");
 
 function sort(cmp, a) do
-  maxson = function (l, i) do
+  maxson = function(l, i) do
     i31 = ((i + i | 0) + i | 0) + 1 | 0;
     x = i31;
     if ((i31 + 2 | 0) < l) then do
@@ -331,7 +331,7 @@ function sort(cmp, a) do
       })
     end end  end  end 
   end end;
-  trickle = function (l, i, e) do
+  trickle = function(l, i, e) do
     xpcall(function() do
       l_1 = l;
       _i = i;
@@ -356,7 +356,7 @@ function sort(cmp, a) do
       end end 
     end end)
   end end;
-  bubble = function (l, i) do
+  bubble = function(l, i) do
     xpcall(function() do
       l_1 = l;
       _i = i;
@@ -376,7 +376,7 @@ function sort(cmp, a) do
       end end 
     end end)
   end end;
-  trickleup = function (_i, e) do
+  trickleup = function(_i, e) do
     while(true) do
       i = _i;
       father = (i - 1 | 0) / 3 | 0;
@@ -423,7 +423,7 @@ function sort(cmp, a) do
 end end
 
 function stable_sort(cmp, a) do
-  merge = function (src1ofs, src1len, src2, src2ofs, src2len, dst, dstofs) do
+  merge = function(src1ofs, src1len, src2, src2ofs, src2len, dst, dstofs) do
     src1r = src1ofs + src1len | 0;
     src2r = src2ofs + src2len | 0;
     _i1 = src1ofs;
@@ -462,7 +462,7 @@ function stable_sort(cmp, a) do
       end end 
     end;
   end end;
-  isortto = function (srcofs, dst, dstofs, len) do
+  isortto = function(srcofs, dst, dstofs, len) do
     for i = 0 , len - 1 | 0 , 1 do
       e = Caml_array.caml_array_get(a, srcofs + i | 0);
       j = (dstofs + i | 0) - 1 | 0;
@@ -474,7 +474,7 @@ function stable_sort(cmp, a) do
     end
     return --[[ () ]]0;
   end end;
-  sortto = function (srcofs, dst, dstofs, len) do
+  sortto = function(srcofs, dst, dstofs, len) do
     if (len <= 5) then do
       return isortto(srcofs, dst, dstofs, len);
     end else do
@@ -504,6 +504,7 @@ concat = Caml_array.caml_array_concat;
 
 fast_sort = stable_sort;
 
+exports = {}
 exports.make_float = make_float;
 exports.init = init;
 exports.make_matrix = make_matrix;

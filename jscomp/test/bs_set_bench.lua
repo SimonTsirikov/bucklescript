@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Belt_SetInt = require "../../lib/js/belt_SetInt";
 Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
@@ -54,6 +54,7 @@ count = 1000000;
 
 N = --[[ alias ]]0;
 
+exports = {}
 exports.count = count;
 exports.N = N;
 exports.bench = bench;

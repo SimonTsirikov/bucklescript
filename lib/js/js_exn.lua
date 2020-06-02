@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Caml_js_exceptions = require "./caml_js_exceptions";
 
@@ -32,6 +32,7 @@ end end
 
 __Error_1 = Caml_js_exceptions.__Error;
 
+exports = {}
 exports.__Error = __Error_1;
 exports.raiseError = raiseError;
 exports.raiseEvalError = raiseEvalError;

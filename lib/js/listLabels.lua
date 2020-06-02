@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 List = require "./list";
 
@@ -106,6 +106,7 @@ sort_uniq = List.sort_uniq;
 
 merge = List.merge;
 
+exports = {}
 exports.length = length;
 exports.hd = hd;
 exports.compare_lengths = compare_lengths;

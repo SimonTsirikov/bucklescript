@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Belt_Id = require "../../lib/js/belt_Id";
@@ -43,7 +43,7 @@ function emptyMap(param) do
 end end
 
 function mergeInter(s1, s2) do
-  m = Belt_Map.merge(s1, s2, (function (k, v1, v2) do
+  m = Belt_Map.merge(s1, s2, (function(k, v1, v2) do
           if (v1 ~= undefined and v2 ~= undefined) then do
             return --[[ () ]]0;
           end
@@ -54,7 +54,7 @@ function mergeInter(s1, s2) do
 end end
 
 function mergeUnion(s1, s2) do
-  m = Belt_Map.merge(s1, s2, (function (k, v1, v2) do
+  m = Belt_Map.merge(s1, s2, (function(k, v1, v2) do
           if (v1 ~= undefined or v2 ~= undefined) then do
             return --[[ () ]]0;
           end
@@ -65,7 +65,7 @@ function mergeUnion(s1, s2) do
 end end
 
 function mergeDiff(s1, s2) do
-  m = Belt_Map.merge(s1, s2, (function (k, v1, v2) do
+  m = Belt_Map.merge(s1, s2, (function(k, v1, v2) do
           if (v1 ~= undefined and v2 == undefined) then do
             return --[[ () ]]0;
           end
@@ -76,7 +76,7 @@ function mergeDiff(s1, s2) do
 end end
 
 function randomRange(i, j) do
-  return Belt_Array.map(Array_data_util.randomRange(i, j), (function (x) do
+  return Belt_Array.map(Array_data_util.randomRange(i, j), (function(x) do
                 return --[[ tuple ]]{
                         x,
                         x
@@ -116,7 +116,7 @@ a1 = Belt_Map.set(a0, 3, 33);
 
 a2 = Belt_Map.remove(a1, 3);
 
-a3 = Belt_Map.update(a2, 3, (function (k) do
+a3 = Belt_Map.update(a2, 3, (function(k) do
         if (k ~= undefined) then do
           return k + 1 | 0;
         end else do
@@ -124,7 +124,7 @@ a3 = Belt_Map.update(a2, 3, (function (k) do
         end end 
       end end));
 
-a4 = Belt_Map.update(a2, 3, (function (k) do
+a4 = Belt_Map.update(a2, 3, (function(k) do
         if (k ~= undefined) then do
           return k + 1 | 0;
         end
@@ -185,10 +185,10 @@ eq("File \"bs_poly_map_test.ml\", line 90, characters 5-12", Belt_Map.get(u1_1, 
 eq("File \"bs_poly_map_test.ml\", line 91, characters 5-12", Belt_Map.get(u0_1, 3), 3);
 
 function acc(m, is) do
-  return Belt_Array.reduce(is, m, (function (a, i) do
+  return Belt_Array.reduce(is, m, (function(a, i) do
                 m = a;
                 i_1 = i;
-                return Belt_Map.update(m, i_1, (function (n) do
+                return Belt_Map.update(m, i_1, (function(n) do
                               if (n ~= undefined) then do
                                 return n + 1 | 0;
                               end else do
@@ -205,14 +205,14 @@ end;
 
 m1 = acc(m, Belt_Array.concat(Array_data_util.randomRange(0, 20), Array_data_util.randomRange(10, 30)));
 
-x_8 = Belt_Array.makeBy(31, (function (i) do
+x_8 = Belt_Array.makeBy(31, (function(i) do
         return --[[ tuple ]]{
                 i,
                 i >= 10 and i <= 20 and 2 or 1
               };
       end end));
 
-b("File \"bs_poly_map_test.ml\", line 103, characters 4-11", Belt_Map.eq(m1, Belt_Map.fromArray(x_8, Icmp), (function (x, y) do
+b("File \"bs_poly_map_test.ml\", line 103, characters 4-11", Belt_Map.eq(m1, Belt_Map.fromArray(x_8, Icmp), (function(x, y) do
             return x == y;
           end end)));
 
@@ -221,14 +221,14 @@ v0 = do
   data: Belt_MapDict.empty
 end;
 
-v1 = Belt_Map.mergeMany(v0, Belt_Array.map(Array_data_util.randomRange(0, 10000), (function (x) do
+v1 = Belt_Map.mergeMany(v0, Belt_Array.map(Array_data_util.randomRange(0, 10000), (function(x) do
             return --[[ tuple ]]{
                     x,
                     x
                   };
           end end)));
 
-x_9 = Belt_Array.map(Array_data_util.randomRange(0, 10000), (function (x) do
+x_9 = Belt_Array.map(Array_data_util.randomRange(0, 10000), (function(x) do
         return --[[ tuple ]]{
                 x,
                 x
@@ -237,7 +237,7 @@ x_9 = Belt_Array.map(Array_data_util.randomRange(0, 10000), (function (x) do
 
 v2 = Belt_Map.fromArray(x_9, Icmp);
 
-b("File \"bs_poly_map_test.ml\", line 117, characters 4-11", Belt_Map.eq(v1, v2, (function (x, y) do
+b("File \"bs_poly_map_test.ml\", line 117, characters 4-11", Belt_Map.eq(v1, v2, (function(x, y) do
             return x == y;
           end end)));
 
@@ -287,15 +287,15 @@ b("File \"bs_poly_map_test.ml\", line 130, characters 4-11", Belt_MapDict.isEmpt
 
 b("File \"bs_poly_map_test.ml\", line 131, characters 4-11", pres ~= undefined and pres == 5000 or false);
 
-b("File \"bs_poly_map_test.ml\", line 132, characters 4-11", Belt_Array.eq(Belt_MapDict.keysToArray(match_1[0].data), Belt_Array.makeBy(5000, (function (i) do
+b("File \"bs_poly_map_test.ml\", line 132, characters 4-11", Belt_Array.eq(Belt_MapDict.keysToArray(match_1[0].data), Belt_Array.makeBy(5000, (function(i) do
                 return i;
-              end end)), (function (prim, prim_1) do
+              end end)), (function(prim, prim_1) do
             return prim == prim_1;
           end end)));
 
-b("File \"bs_poly_map_test.ml\", line 133, characters 4-11", Belt_Array.eq(Belt_MapDict.keysToArray(match_1[1].data), Belt_Array.makeBy(5000, (function (i) do
+b("File \"bs_poly_map_test.ml\", line 133, characters 4-11", Belt_Array.eq(Belt_MapDict.keysToArray(match_1[1].data), Belt_Array.makeBy(5000, (function(i) do
                 return 5001 + i | 0;
-              end end)), (function (prim, prim_1) do
+              end end)), (function(prim, prim_1) do
             return prim == prim_1;
           end end)));
 
@@ -307,15 +307,15 @@ match_6 = match_5[0];
 
 b("File \"bs_poly_map_test.ml\", line 137, characters 4-11", match_5[1] == undefined);
 
-b("File \"bs_poly_map_test.ml\", line 138, characters 4-11", Belt_Array.eq(Belt_MapDict.keysToArray(match_6[0].data), Belt_Array.makeBy(5000, (function (i) do
+b("File \"bs_poly_map_test.ml\", line 138, characters 4-11", Belt_Array.eq(Belt_MapDict.keysToArray(match_6[0].data), Belt_Array.makeBy(5000, (function(i) do
                 return i;
-              end end)), (function (prim, prim_1) do
+              end end)), (function(prim, prim_1) do
             return prim == prim_1;
           end end)));
 
-b("File \"bs_poly_map_test.ml\", line 139, characters 4-11", Belt_Array.eq(Belt_MapDict.keysToArray(match_6[1].data), Belt_Array.makeBy(5000, (function (i) do
+b("File \"bs_poly_map_test.ml\", line 139, characters 4-11", Belt_Array.eq(Belt_MapDict.keysToArray(match_6[1].data), Belt_Array.makeBy(5000, (function(i) do
                 return 5001 + i | 0;
-              end end)), (function (prim, prim_1) do
+              end end)), (function(prim, prim_1) do
             return prim == prim_1;
           end end)));
 
@@ -329,6 +329,7 @@ A = --[[ alias ]]0;
 
 I = --[[ alias ]]0;
 
+exports = {}
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;

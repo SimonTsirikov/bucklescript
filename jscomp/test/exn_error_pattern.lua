@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Caml_exceptions = require "../../lib/js/caml_exceptions";
@@ -77,6 +77,7 @@ eq("File \"exn_error_pattern.ml\", line 38, characters 5-12", f(tmp), undefined)
 
 Mt.from_pair_suites("Exn_error_pattern", suites.contents);
 
+exports = {}
 exports.f = f;
 exports.A = A;
 exports.B = B;

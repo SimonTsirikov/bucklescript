@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Curry = require "../../lib/js/curry";
 
@@ -91,6 +91,7 @@ end end
 
 b = fib;
 
+exports = {}
 exports.fib = fib;
 exports.fib2 = fib2;
 exports.b = b;

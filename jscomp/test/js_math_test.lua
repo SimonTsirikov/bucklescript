@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Block = require "../../lib/js/block";
@@ -6,7 +6,7 @@ Js_math = require "../../lib/js/js_math";
 
 suites_000 = --[[ tuple ]]{
   "_E",
-  (function (param) do
+  (function(param) do
       return --[[ ApproxThreshold ]]Block.__(6, {
                 0.001,
                 2.718,
@@ -18,7 +18,7 @@ suites_000 = --[[ tuple ]]{
 suites_001 = --[[ :: ]]{
   --[[ tuple ]]{
     "_LN2",
-    (function (param) do
+    (function(param) do
         return --[[ ApproxThreshold ]]Block.__(6, {
                   0.001,
                   0.693,
@@ -29,7 +29,7 @@ suites_001 = --[[ :: ]]{
   --[[ :: ]]{
     --[[ tuple ]]{
       "_LN10",
-      (function (param) do
+      (function(param) do
           return --[[ ApproxThreshold ]]Block.__(6, {
                     0.001,
                     2.303,
@@ -40,7 +40,7 @@ suites_001 = --[[ :: ]]{
     --[[ :: ]]{
       --[[ tuple ]]{
         "_LOG2E",
-        (function (param) do
+        (function(param) do
             return --[[ ApproxThreshold ]]Block.__(6, {
                       0.001,
                       1.443,
@@ -51,7 +51,7 @@ suites_001 = --[[ :: ]]{
       --[[ :: ]]{
         --[[ tuple ]]{
           "_LOG10E",
-          (function (param) do
+          (function(param) do
               return --[[ ApproxThreshold ]]Block.__(6, {
                         0.001,
                         0.434,
@@ -62,7 +62,7 @@ suites_001 = --[[ :: ]]{
         --[[ :: ]]{
           --[[ tuple ]]{
             "_PI",
-            (function (param) do
+            (function(param) do
                 return --[[ ApproxThreshold ]]Block.__(6, {
                           0.00001,
                           3.14159,
@@ -73,7 +73,7 @@ suites_001 = --[[ :: ]]{
           --[[ :: ]]{
             --[[ tuple ]]{
               "_SQRT1_2",
-              (function (param) do
+              (function(param) do
                   return --[[ ApproxThreshold ]]Block.__(6, {
                             0.001,
                             0.707,
@@ -84,7 +84,7 @@ suites_001 = --[[ :: ]]{
             --[[ :: ]]{
               --[[ tuple ]]{
                 "_SQRT2",
-                (function (param) do
+                (function(param) do
                     return --[[ ApproxThreshold ]]Block.__(6, {
                               0.001,
                               1.414,
@@ -95,7 +95,7 @@ suites_001 = --[[ :: ]]{
               --[[ :: ]]{
                 --[[ tuple ]]{
                   "abs_int",
-                  (function (param) do
+                  (function(param) do
                       return --[[ Eq ]]Block.__(0, {
                                 4,
                                 Math.abs(-4)
@@ -105,7 +105,7 @@ suites_001 = --[[ :: ]]{
                 --[[ :: ]]{
                   --[[ tuple ]]{
                     "abs_float",
-                    (function (param) do
+                    (function(param) do
                         return --[[ Eq ]]Block.__(0, {
                                   1.2,
                                   Math.abs(-1.2)
@@ -115,7 +115,7 @@ suites_001 = --[[ :: ]]{
                   --[[ :: ]]{
                     --[[ tuple ]]{
                       "acos",
-                      (function (param) do
+                      (function(param) do
                           return --[[ ApproxThreshold ]]Block.__(6, {
                                     0.001,
                                     1.159,
@@ -126,7 +126,7 @@ suites_001 = --[[ :: ]]{
                     --[[ :: ]]{
                       --[[ tuple ]]{
                         "acosh",
-                        (function (param) do
+                        (function(param) do
                             return --[[ ApproxThreshold ]]Block.__(6, {
                                       0.001,
                                       0.622,
@@ -137,7 +137,7 @@ suites_001 = --[[ :: ]]{
                       --[[ :: ]]{
                         --[[ tuple ]]{
                           "asin",
-                          (function (param) do
+                          (function(param) do
                               return --[[ ApproxThreshold ]]Block.__(6, {
                                         0.001,
                                         0.411,
@@ -148,7 +148,7 @@ suites_001 = --[[ :: ]]{
                         --[[ :: ]]{
                           --[[ tuple ]]{
                             "asinh",
-                            (function (param) do
+                            (function(param) do
                                 return --[[ ApproxThreshold ]]Block.__(6, {
                                           0.001,
                                           0.390,
@@ -159,7 +159,7 @@ suites_001 = --[[ :: ]]{
                           --[[ :: ]]{
                             --[[ tuple ]]{
                               "atan",
-                              (function (param) do
+                              (function(param) do
                                   return --[[ ApproxThreshold ]]Block.__(6, {
                                             0.001,
                                             0.380,
@@ -170,7 +170,7 @@ suites_001 = --[[ :: ]]{
                             --[[ :: ]]{
                               --[[ tuple ]]{
                                 "atanh",
-                                (function (param) do
+                                (function(param) do
                                     return --[[ ApproxThreshold ]]Block.__(6, {
                                               0.001,
                                               0.423,
@@ -181,7 +181,7 @@ suites_001 = --[[ :: ]]{
                               --[[ :: ]]{
                                 --[[ tuple ]]{
                                   "atan2",
-                                  (function (param) do
+                                  (function(param) do
                                       return --[[ ApproxThreshold ]]Block.__(6, {
                                                 0.001,
                                                 0.588,
@@ -192,7 +192,7 @@ suites_001 = --[[ :: ]]{
                                 --[[ :: ]]{
                                   --[[ tuple ]]{
                                     "cbrt",
-                                    (function (param) do
+                                    (function(param) do
                                         return --[[ Eq ]]Block.__(0, {
                                                   2,
                                                   Math.cbrt(8)
@@ -202,7 +202,7 @@ suites_001 = --[[ :: ]]{
                                   --[[ :: ]]{
                                     --[[ tuple ]]{
                                       "unsafe_ceil_int",
-                                      (function (param) do
+                                      (function(param) do
                                           return --[[ Eq ]]Block.__(0, {
                                                     4,
                                                     Math.ceil(3.2)
@@ -212,7 +212,7 @@ suites_001 = --[[ :: ]]{
                                     --[[ :: ]]{
                                       --[[ tuple ]]{
                                         "ceil_int",
-                                        (function (param) do
+                                        (function(param) do
                                             return --[[ Eq ]]Block.__(0, {
                                                       4,
                                                       Js_math.ceil_int(3.2)
@@ -222,7 +222,7 @@ suites_001 = --[[ :: ]]{
                                       --[[ :: ]]{
                                         --[[ tuple ]]{
                                           "ceil_float",
-                                          (function (param) do
+                                          (function(param) do
                                               return --[[ Eq ]]Block.__(0, {
                                                         4,
                                                         Math.ceil(3.2)
@@ -232,7 +232,7 @@ suites_001 = --[[ :: ]]{
                                         --[[ :: ]]{
                                           --[[ tuple ]]{
                                             "cos",
-                                            (function (param) do
+                                            (function(param) do
                                                 return --[[ ApproxThreshold ]]Block.__(6, {
                                                           0.001,
                                                           0.921,
@@ -243,7 +243,7 @@ suites_001 = --[[ :: ]]{
                                           --[[ :: ]]{
                                             --[[ tuple ]]{
                                               "cosh",
-                                              (function (param) do
+                                              (function(param) do
                                                   return --[[ ApproxThreshold ]]Block.__(6, {
                                                             0.001,
                                                             1.081,
@@ -254,7 +254,7 @@ suites_001 = --[[ :: ]]{
                                             --[[ :: ]]{
                                               --[[ tuple ]]{
                                                 "exp",
-                                                (function (param) do
+                                                (function(param) do
                                                     return --[[ ApproxThreshold ]]Block.__(6, {
                                                               0.001,
                                                               1.491,
@@ -265,7 +265,7 @@ suites_001 = --[[ :: ]]{
                                               --[[ :: ]]{
                                                 --[[ tuple ]]{
                                                   "expm1",
-                                                  (function (param) do
+                                                  (function(param) do
                                                       return --[[ ApproxThreshold ]]Block.__(6, {
                                                                 0.001,
                                                                 0.491,
@@ -276,7 +276,7 @@ suites_001 = --[[ :: ]]{
                                                 --[[ :: ]]{
                                                   --[[ tuple ]]{
                                                     "unsafe_floor_int",
-                                                    (function (param) do
+                                                    (function(param) do
                                                         return --[[ Eq ]]Block.__(0, {
                                                                   3,
                                                                   Math.floor(3.2)
@@ -286,7 +286,7 @@ suites_001 = --[[ :: ]]{
                                                   --[[ :: ]]{
                                                     --[[ tuple ]]{
                                                       "floor_int",
-                                                      (function (param) do
+                                                      (function(param) do
                                                           return --[[ Eq ]]Block.__(0, {
                                                                     3,
                                                                     Js_math.floor_int(3.2)
@@ -296,7 +296,7 @@ suites_001 = --[[ :: ]]{
                                                     --[[ :: ]]{
                                                       --[[ tuple ]]{
                                                         "floor_float",
-                                                        (function (param) do
+                                                        (function(param) do
                                                             return --[[ Eq ]]Block.__(0, {
                                                                       3,
                                                                       Math.floor(3.2)
@@ -306,7 +306,7 @@ suites_001 = --[[ :: ]]{
                                                       --[[ :: ]]{
                                                         --[[ tuple ]]{
                                                           "fround",
-                                                          (function (param) do
+                                                          (function(param) do
                                                               return --[[ Approx ]]Block.__(5, {
                                                                         3.2,
                                                                         Math.fround(3.2)
@@ -316,7 +316,7 @@ suites_001 = --[[ :: ]]{
                                                         --[[ :: ]]{
                                                           --[[ tuple ]]{
                                                             "hypot",
-                                                            (function (param) do
+                                                            (function(param) do
                                                                 return --[[ ApproxThreshold ]]Block.__(6, {
                                                                           0.001,
                                                                           0.721,
@@ -327,7 +327,7 @@ suites_001 = --[[ :: ]]{
                                                           --[[ :: ]]{
                                                             --[[ tuple ]]{
                                                               "hypotMany",
-                                                              (function (param) do
+                                                              (function(param) do
                                                                   return --[[ ApproxThreshold ]]Block.__(6, {
                                                                             0.001,
                                                                             1.077,
@@ -338,7 +338,7 @@ suites_001 = --[[ :: ]]{
                                                             --[[ :: ]]{
                                                               --[[ tuple ]]{
                                                                 "imul",
-                                                                (function (param) do
+                                                                (function(param) do
                                                                     return --[[ Eq ]]Block.__(0, {
                                                                               8,
                                                                               Math.imul(4, 2)
@@ -348,7 +348,7 @@ suites_001 = --[[ :: ]]{
                                                               --[[ :: ]]{
                                                                 --[[ tuple ]]{
                                                                   "log",
-                                                                  (function (param) do
+                                                                  (function(param) do
                                                                       return --[[ ApproxThreshold ]]Block.__(6, {
                                                                                 0.001,
                                                                                 -0.916,
@@ -359,7 +359,7 @@ suites_001 = --[[ :: ]]{
                                                                 --[[ :: ]]{
                                                                   --[[ tuple ]]{
                                                                     "log1p",
-                                                                    (function (param) do
+                                                                    (function(param) do
                                                                         return --[[ ApproxThreshold ]]Block.__(6, {
                                                                                   0.001,
                                                                                   0.336,
@@ -370,7 +370,7 @@ suites_001 = --[[ :: ]]{
                                                                   --[[ :: ]]{
                                                                     --[[ tuple ]]{
                                                                       "log10",
-                                                                      (function (param) do
+                                                                      (function(param) do
                                                                           return --[[ ApproxThreshold ]]Block.__(6, {
                                                                                     0.001,
                                                                                     -0.397,
@@ -381,7 +381,7 @@ suites_001 = --[[ :: ]]{
                                                                     --[[ :: ]]{
                                                                       --[[ tuple ]]{
                                                                         "log2",
-                                                                        (function (param) do
+                                                                        (function(param) do
                                                                             return --[[ ApproxThreshold ]]Block.__(6, {
                                                                                       0.001,
                                                                                       -1.321,
@@ -392,7 +392,7 @@ suites_001 = --[[ :: ]]{
                                                                       --[[ :: ]]{
                                                                         --[[ tuple ]]{
                                                                           "max_int",
-                                                                          (function (param) do
+                                                                          (function(param) do
                                                                               return --[[ Eq ]]Block.__(0, {
                                                                                         4,
                                                                                         Math.max(2, 4)
@@ -402,7 +402,7 @@ suites_001 = --[[ :: ]]{
                                                                         --[[ :: ]]{
                                                                           --[[ tuple ]]{
                                                                             "maxMany_int",
-                                                                            (function (param) do
+                                                                            (function(param) do
                                                                                 return --[[ Eq ]]Block.__(0, {
                                                                                           4,
                                                                                           Math.max(2, 4, 3)
@@ -412,7 +412,7 @@ suites_001 = --[[ :: ]]{
                                                                           --[[ :: ]]{
                                                                             --[[ tuple ]]{
                                                                               "max_float",
-                                                                              (function (param) do
+                                                                              (function(param) do
                                                                                   return --[[ Eq ]]Block.__(0, {
                                                                                             4.2,
                                                                                             Math.max(2.7, 4.2)
@@ -422,7 +422,7 @@ suites_001 = --[[ :: ]]{
                                                                             --[[ :: ]]{
                                                                               --[[ tuple ]]{
                                                                                 "maxMany_float",
-                                                                                (function (param) do
+                                                                                (function(param) do
                                                                                     return --[[ Eq ]]Block.__(0, {
                                                                                               4.2,
                                                                                               Math.max(2.7, 4.2, 3.9)
@@ -432,7 +432,7 @@ suites_001 = --[[ :: ]]{
                                                                               --[[ :: ]]{
                                                                                 --[[ tuple ]]{
                                                                                   "min_int",
-                                                                                  (function (param) do
+                                                                                  (function(param) do
                                                                                       return --[[ Eq ]]Block.__(0, {
                                                                                                 2,
                                                                                                 Math.min(2, 4)
@@ -442,7 +442,7 @@ suites_001 = --[[ :: ]]{
                                                                                 --[[ :: ]]{
                                                                                   --[[ tuple ]]{
                                                                                     "minMany_int",
-                                                                                    (function (param) do
+                                                                                    (function(param) do
                                                                                         return --[[ Eq ]]Block.__(0, {
                                                                                                   2,
                                                                                                   Math.min(2, 4, 3)
@@ -452,7 +452,7 @@ suites_001 = --[[ :: ]]{
                                                                                   --[[ :: ]]{
                                                                                     --[[ tuple ]]{
                                                                                       "min_float",
-                                                                                      (function (param) do
+                                                                                      (function(param) do
                                                                                           return --[[ Eq ]]Block.__(0, {
                                                                                                     2.7,
                                                                                                     Math.min(2.7, 4.2)
@@ -462,7 +462,7 @@ suites_001 = --[[ :: ]]{
                                                                                     --[[ :: ]]{
                                                                                       --[[ tuple ]]{
                                                                                         "minMany_float",
-                                                                                        (function (param) do
+                                                                                        (function(param) do
                                                                                             return --[[ Eq ]]Block.__(0, {
                                                                                                       2.7,
                                                                                                       Math.min(2.7, 4.2, 3.9)
@@ -472,7 +472,7 @@ suites_001 = --[[ :: ]]{
                                                                                       --[[ :: ]]{
                                                                                         --[[ tuple ]]{
                                                                                           "random",
-                                                                                          (function (param) do
+                                                                                          (function(param) do
                                                                                               a = Math.random();
                                                                                               return --[[ Ok ]]Block.__(4, {a >= 0 and a < 1});
                                                                                             end end)
@@ -480,7 +480,7 @@ suites_001 = --[[ :: ]]{
                                                                                         --[[ :: ]]{
                                                                                           --[[ tuple ]]{
                                                                                             "random_int",
-                                                                                            (function (param) do
+                                                                                            (function(param) do
                                                                                                 a = Js_math.random_int(1, 3);
                                                                                                 return --[[ Ok ]]Block.__(4, {a >= 1 and a < 3});
                                                                                               end end)
@@ -488,7 +488,7 @@ suites_001 = --[[ :: ]]{
                                                                                           --[[ :: ]]{
                                                                                             --[[ tuple ]]{
                                                                                               "unsafe_round",
-                                                                                              (function (param) do
+                                                                                              (function(param) do
                                                                                                   return --[[ Eq ]]Block.__(0, {
                                                                                                             3,
                                                                                                             Math.round(3.2)
@@ -498,7 +498,7 @@ suites_001 = --[[ :: ]]{
                                                                                             --[[ :: ]]{
                                                                                               --[[ tuple ]]{
                                                                                                 "round",
-                                                                                                (function (param) do
+                                                                                                (function(param) do
                                                                                                     return --[[ Eq ]]Block.__(0, {
                                                                                                               3,
                                                                                                               Math.round(3.2)
@@ -508,7 +508,7 @@ suites_001 = --[[ :: ]]{
                                                                                               --[[ :: ]]{
                                                                                                 --[[ tuple ]]{
                                                                                                   "sign_int",
-                                                                                                  (function (param) do
+                                                                                                  (function(param) do
                                                                                                       return --[[ Eq ]]Block.__(0, {
                                                                                                                 -1,
                                                                                                                 Math.sign(-4)
@@ -518,7 +518,7 @@ suites_001 = --[[ :: ]]{
                                                                                                 --[[ :: ]]{
                                                                                                   --[[ tuple ]]{
                                                                                                     "sign_float",
-                                                                                                    (function (param) do
+                                                                                                    (function(param) do
                                                                                                         return --[[ Eq ]]Block.__(0, {
                                                                                                                   -1,
                                                                                                                   Math.sign(-4.2)
@@ -528,7 +528,7 @@ suites_001 = --[[ :: ]]{
                                                                                                   --[[ :: ]]{
                                                                                                     --[[ tuple ]]{
                                                                                                       "sign_float -0",
-                                                                                                      (function (param) do
+                                                                                                      (function(param) do
                                                                                                           return --[[ Eq ]]Block.__(0, {
                                                                                                                     -0,
                                                                                                                     Math.sign(-0)
@@ -538,7 +538,7 @@ suites_001 = --[[ :: ]]{
                                                                                                     --[[ :: ]]{
                                                                                                       --[[ tuple ]]{
                                                                                                         "sin",
-                                                                                                        (function (param) do
+                                                                                                        (function(param) do
                                                                                                             return --[[ ApproxThreshold ]]Block.__(6, {
                                                                                                                       0.001,
                                                                                                                       0.389,
@@ -549,7 +549,7 @@ suites_001 = --[[ :: ]]{
                                                                                                       --[[ :: ]]{
                                                                                                         --[[ tuple ]]{
                                                                                                           "sinh",
-                                                                                                          (function (param) do
+                                                                                                          (function(param) do
                                                                                                               return --[[ ApproxThreshold ]]Block.__(6, {
                                                                                                                         0.001,
                                                                                                                         0.410,
@@ -560,7 +560,7 @@ suites_001 = --[[ :: ]]{
                                                                                                         --[[ :: ]]{
                                                                                                           --[[ tuple ]]{
                                                                                                             "sqrt",
-                                                                                                            (function (param) do
+                                                                                                            (function(param) do
                                                                                                                 return --[[ ApproxThreshold ]]Block.__(6, {
                                                                                                                           0.001,
                                                                                                                           0.632,
@@ -571,7 +571,7 @@ suites_001 = --[[ :: ]]{
                                                                                                           --[[ :: ]]{
                                                                                                             --[[ tuple ]]{
                                                                                                               "tan",
-                                                                                                              (function (param) do
+                                                                                                              (function(param) do
                                                                                                                   return --[[ ApproxThreshold ]]Block.__(6, {
                                                                                                                             0.001,
                                                                                                                             0.422,
@@ -582,7 +582,7 @@ suites_001 = --[[ :: ]]{
                                                                                                             --[[ :: ]]{
                                                                                                               --[[ tuple ]]{
                                                                                                                 "tanh",
-                                                                                                                (function (param) do
+                                                                                                                (function(param) do
                                                                                                                     return --[[ ApproxThreshold ]]Block.__(6, {
                                                                                                                               0.001,
                                                                                                                               0.379,
@@ -593,7 +593,7 @@ suites_001 = --[[ :: ]]{
                                                                                                               --[[ :: ]]{
                                                                                                                 --[[ tuple ]]{
                                                                                                                   "unsafe_trunc",
-                                                                                                                  (function (param) do
+                                                                                                                  (function(param) do
                                                                                                                       return --[[ Eq ]]Block.__(0, {
                                                                                                                                 4,
                                                                                                                                 Math.trunc(4.2156)
@@ -603,7 +603,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                 --[[ :: ]]{
                                                                                                                   --[[ tuple ]]{
                                                                                                                     "trunc",
-                                                                                                                    (function (param) do
+                                                                                                                    (function(param) do
                                                                                                                         return --[[ Eq ]]Block.__(0, {
                                                                                                                                   4,
                                                                                                                                   Math.trunc(4.2156)
@@ -676,5 +676,6 @@ suites = --[[ :: ]]{
 
 Mt.from_pair_suites("Js_math_test", suites);
 
+exports = {}
 exports.suites = suites;
 --[[  Not a pure module ]]

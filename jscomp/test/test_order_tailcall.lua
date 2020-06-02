@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 
 function f(_x, _y) do
@@ -100,6 +100,7 @@ function f8(_x, _y) do
   end;
 end end
 
+exports = {}
 exports.f = f;
 exports.f1 = f1;
 exports.f2 = f2;

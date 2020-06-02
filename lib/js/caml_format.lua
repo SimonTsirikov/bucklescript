@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Caml_int32 = require "./caml_int32";
 Caml_int64 = require "./caml_int64";
@@ -28,15 +28,14 @@ end end
 function int_of_string_base(param) do
   local ___conditional___=(param);
   do
-     if ___conditional___ = 0--[[ Oct ]] then do
-        return 8;end end end 
-     if ___conditional___ = 1--[[ Hex ]] then do
-        return 16;end end end 
-     if ___conditional___ = 2--[[ Dec ]] then do
-        return 10;end end end 
-     if ___conditional___ = 3--[[ Bin ]] then do
-        return 2;end end end 
-     do
+     if ___conditional___ == 0--[[ Oct ]] then do
+        return 8; end end 
+     if ___conditional___ == 1--[[ Hex ]] then do
+        return 16; end end 
+     if ___conditional___ == 2--[[ Dec ]] then do
+        return 10; end end 
+     if ___conditional___ == 3--[[ Bin ]] then do
+        return 2; end end 
     
   end
 end end
@@ -48,16 +47,14 @@ function parse_sign_and_base(s) do
   match = s.charCodeAt(i);
   local ___conditional___=(match);
   do
-     if ___conditional___ = 43 then do
-        i = i + 1 | 0;end else 
-     if ___conditional___ = 44
-     or ___conditional___ = 45 then do
+     if ___conditional___ == 43 then do
+        i = i + 1 | 0; end else 
+     if ___conditional___ == 44
+     or ___conditional___ == 45 then do
         sign = -1;
-        i = i + 1 | 0;end else 
-     do end end end
-    else do
-      end end
-      
+        i = i + 1 | 0; end else 
+     end end end end
+    
   end
   if (s[i] == "0") then do
     match_1 = s.charCodeAt(i + 1 | 0);
@@ -66,22 +63,22 @@ function parse_sign_and_base(s) do
         if (match_1 < 121) then do
           local ___conditional___=(match_1 - 111 | 0);
           do
-             if ___conditional___ = 0 then do
+             if ___conditional___ == 0 then do
                 base = --[[ Oct ]]0;
-                i = i + 2 | 0;end else 
-             if ___conditional___ = 6 then do
-                i = i + 2 | 0;end else 
-             if ___conditional___ = 1
-             or ___conditional___ = 2
-             or ___conditional___ = 3
-             or ___conditional___ = 4
-             or ___conditional___ = 5
-             or ___conditional___ = 7
-             or ___conditional___ = 8
-             or ___conditional___ = 9 then do
+                i = i + 2 | 0; end else 
+             if ___conditional___ == 6 then do
+                i = i + 2 | 0; end else 
+             if ___conditional___ == 1
+             or ___conditional___ == 2
+             or ___conditional___ == 3
+             or ___conditional___ == 4
+             or ___conditional___ == 5
+             or ___conditional___ == 7
+             or ___conditional___ == 8
+             or ___conditional___ == 9 then do
                 base = --[[ Hex ]]1;
-                i = i + 2 | 0;end else 
-             do end end end end
+                i = i + 2 | 0; end else 
+             end end end end end end
             
           end
         end
@@ -95,22 +92,22 @@ function parse_sign_and_base(s) do
       if (match_1 >= 79) then do
         local ___conditional___=(match_1 - 79 | 0);
         do
-           if ___conditional___ = 0 then do
+           if ___conditional___ == 0 then do
               base = --[[ Oct ]]0;
-              i = i + 2 | 0;end else 
-           if ___conditional___ = 6 then do
-              i = i + 2 | 0;end else 
-           if ___conditional___ = 1
-           or ___conditional___ = 2
-           or ___conditional___ = 3
-           or ___conditional___ = 4
-           or ___conditional___ = 5
-           or ___conditional___ = 7
-           or ___conditional___ = 8
-           or ___conditional___ = 9 then do
+              i = i + 2 | 0; end else 
+           if ___conditional___ == 6 then do
+              i = i + 2 | 0; end else 
+           if ___conditional___ == 1
+           or ___conditional___ == 2
+           or ___conditional___ == 3
+           or ___conditional___ == 4
+           or ___conditional___ == 5
+           or ___conditional___ == 7
+           or ___conditional___ == 8
+           or ___conditional___ == 9 then do
               base = --[[ Hex ]]1;
-              i = i + 2 | 0;end else 
-           do end end end end
+              i = i + 2 | 0; end else 
+           end end end end end end
           
         end
       end
@@ -143,7 +140,7 @@ function caml_int_of_string(s) do
     })
   end
    end 
-  aux = function (_acc, _k) do
+  aux = function(_acc, _k) do
     while(true) do
       k = _k;
       acc = _acc;
@@ -199,27 +196,27 @@ function caml_int64_of_string(s) do
   threshold;
   local ___conditional___=(hbase);
   do
-     if ___conditional___ = 0--[[ Oct ]] then do
+     if ___conditional___ == 0--[[ Oct ]] then do
         threshold = --[[ int64 ]]{
           --[[ hi ]]536870911,
           --[[ lo ]]4294967295
-        };end else 
-     if ___conditional___ = 1--[[ Hex ]] then do
+        }; end else 
+     if ___conditional___ == 1--[[ Hex ]] then do
         threshold = --[[ int64 ]]{
           --[[ hi ]]268435455,
           --[[ lo ]]4294967295
-        };end else 
-     if ___conditional___ = 2--[[ Dec ]] then do
+        }; end else 
+     if ___conditional___ == 2--[[ Dec ]] then do
         threshold = --[[ int64 ]]{
           --[[ hi ]]429496729,
           --[[ lo ]]2576980377
-        };end else 
-     if ___conditional___ = 3--[[ Bin ]] then do
+        }; end else 
+     if ___conditional___ == 3--[[ Bin ]] then do
         threshold = --[[ int64 ]]{
           --[[ hi ]]2147483647,
           --[[ lo ]]4294967295
-        };end else 
-     do end end end end end
+        }; end else 
+     end end end end end end end end
     
   end
   len = #s;
@@ -235,7 +232,7 @@ function caml_int64_of_string(s) do
     })
   end
    end 
-  aux = function (_acc, _k) do
+  aux = function(_acc, _k) do
     while(true) do
       k = _k;
       acc = _acc;
@@ -287,13 +284,12 @@ end end
 function int_of_base(param) do
   local ___conditional___=(param);
   do
-     if ___conditional___ = 0--[[ Oct ]] then do
-        return 8;end end end 
-     if ___conditional___ = 1--[[ Hex ]] then do
-        return 16;end end end 
-     if ___conditional___ = 2--[[ Dec ]] then do
-        return 10;end end end 
-     do
+     if ___conditional___ == 0--[[ Oct ]] then do
+        return 8; end end 
+     if ___conditional___ == 1--[[ Hex ]] then do
+        return 16; end end 
+     if ___conditional___ == 2--[[ Dec ]] then do
+        return 10; end end 
     
   end
 end end
@@ -343,56 +339,55 @@ function parse_format(fmt) do
           end else do
             local ___conditional___=(c - 88 | 0);
             do
-               if ___conditional___ = 0 then do
+               if ___conditional___ == 0 then do
                   f.base = --[[ Hex ]]1;
                   f.uppercase = true;
                   _i = i + 1 | 0;
-                  ::continue:: ;end end end 
-               if ___conditional___ = 13
-               or ___conditional___ = 14
-               or ___conditional___ = 15 then do
-                  exit = 5;end else 
-               if ___conditional___ = 12
-               or ___conditional___ = 17 then do
-                  exit = 4;end else 
-               if ___conditional___ = 23 then do
+                  ::continue:: ; end end 
+               if ___conditional___ == 13
+               or ___conditional___ == 14
+               or ___conditional___ == 15 then do
+                  exit = 5; end else 
+               if ___conditional___ == 12
+               or ___conditional___ == 17 then do
+                  exit = 4; end else 
+               if ___conditional___ == 23 then do
                   f.base = --[[ Oct ]]0;
                   _i = i + 1 | 0;
-                  ::continue:: ;end end end 
-               if ___conditional___ = 29 then do
+                  ::continue:: ; end end end end end end 
+               if ___conditional___ == 29 then do
                   f.base = --[[ Dec ]]2;
                   _i = i + 1 | 0;
-                  ::continue:: ;end end end 
-               if ___conditional___ = 1
-               or ___conditional___ = 2
-               or ___conditional___ = 3
-               or ___conditional___ = 4
-               or ___conditional___ = 5
-               or ___conditional___ = 6
-               or ___conditional___ = 7
-               or ___conditional___ = 8
-               or ___conditional___ = 9
-               or ___conditional___ = 10
-               or ___conditional___ = 11
-               or ___conditional___ = 16
-               or ___conditional___ = 18
-               or ___conditional___ = 19
-               or ___conditional___ = 20
-               or ___conditional___ = 21
-               or ___conditional___ = 22
-               or ___conditional___ = 24
-               or ___conditional___ = 25
-               or ___conditional___ = 26
-               or ___conditional___ = 27
-               or ___conditional___ = 28
-               or ___conditional___ = 30
-               or ___conditional___ = 31 then do
-                  exit = 1;end else 
-               if ___conditional___ = 32 then do
+                  ::continue:: ; end end 
+               if ___conditional___ == 1
+               or ___conditional___ == 2
+               or ___conditional___ == 3
+               or ___conditional___ == 4
+               or ___conditional___ == 5
+               or ___conditional___ == 6
+               or ___conditional___ == 7
+               or ___conditional___ == 8
+               or ___conditional___ == 9
+               or ___conditional___ == 10
+               or ___conditional___ == 11
+               or ___conditional___ == 16
+               or ___conditional___ == 18
+               or ___conditional___ == 19
+               or ___conditional___ == 20
+               or ___conditional___ == 21
+               or ___conditional___ == 22
+               or ___conditional___ == 24
+               or ___conditional___ == 25
+               or ___conditional___ == 26
+               or ___conditional___ == 27
+               or ___conditional___ == 28
+               or ___conditional___ == 30
+               or ___conditional___ == 31 then do
+                  exit = 1; end else 
+               if ___conditional___ == 32 then do
                   f.base = --[[ Hex ]]1;
                   _i = i + 1 | 0;
-                  ::continue:: ;end end end 
-               do
+                  ::continue:: ; end end end end 
               
             end
           end end 
@@ -408,18 +403,18 @@ function parse_format(fmt) do
       end else do
         local ___conditional___=(c);
         do
-           if ___conditional___ = 35 then do
+           if ___conditional___ == 35 then do
               f.alternate = true;
               _i = i + 1 | 0;
-              ::continue:: ;end end end 
-           if ___conditional___ = 32
-           or ___conditional___ = 43 then do
-              exit = 2;end else 
-           if ___conditional___ = 45 then do
+              ::continue:: ; end end 
+           if ___conditional___ == 32
+           or ___conditional___ == 43 then do
+              exit = 2; end else 
+           if ___conditional___ == 45 then do
               f.justify = "-";
               _i = i + 1 | 0;
-              ::continue:: ;end end end 
-           if ___conditional___ = 46 then do
+              ::continue:: ; end end end end 
+           if ___conditional___ == 46 then do
               f.prec = 0;
               j = i + 1 | 0;
               while((function(j)do
@@ -427,55 +422,53 @@ function parse_format(fmt) do
                     w = fmt.charCodeAt(j) - --[[ "0" ]]48 | 0;
                     return w >= 0 and w <= 9;
                   end end
-                  end(j))()) do
+                  end end)(j)()) do
                 f.prec = (Caml_int32.imul(f.prec, 10) + fmt.charCodeAt(j) | 0) - --[[ "0" ]]48 | 0;
                 j = j + 1 | 0;
               end;
               _i = j;
-              ::continue:: ;end end end 
-           if ___conditional___ = 33
-           or ___conditional___ = 34
-           or ___conditional___ = 36
-           or ___conditional___ = 37
-           or ___conditional___ = 38
-           or ___conditional___ = 39
-           or ___conditional___ = 40
-           or ___conditional___ = 41
-           or ___conditional___ = 42
-           or ___conditional___ = 44
-           or ___conditional___ = 47 then do
-              exit = 1;end else 
-           if ___conditional___ = 48 then do
+              ::continue:: ; end end 
+           if ___conditional___ == 33
+           or ___conditional___ == 34
+           or ___conditional___ == 36
+           or ___conditional___ == 37
+           or ___conditional___ == 38
+           or ___conditional___ == 39
+           or ___conditional___ == 40
+           or ___conditional___ == 41
+           or ___conditional___ == 42
+           or ___conditional___ == 44
+           or ___conditional___ == 47 then do
+              exit = 1; end else 
+           if ___conditional___ == 48 then do
               f.filter = "0";
               _i = i + 1 | 0;
-              ::continue:: ;end end end 
-           if ___conditional___ = 49
-           or ___conditional___ = 50
-           or ___conditional___ = 51
-           or ___conditional___ = 52
-           or ___conditional___ = 53
-           or ___conditional___ = 54
-           or ___conditional___ = 55
-           or ___conditional___ = 56
-           or ___conditional___ = 57 then do
-              exit = 3;end else 
-           do
-          else do
-            exit = 1;
-            end end
+              ::continue:: ; end end end end 
+           if ___conditional___ == 49
+           or ___conditional___ == 50
+           or ___conditional___ == 51
+           or ___conditional___ == 52
+           or ___conditional___ == 53
+           or ___conditional___ == 54
+           or ___conditional___ == 55
+           or ___conditional___ == 56
+           or ___conditional___ == 57 then do
+              exit = 3; end else 
+           end end
+          exit = 1;
             
         end
       end end 
       local ___conditional___=(exit);
       do
-         if ___conditional___ = 1 then do
+         if ___conditional___ == 1 then do
             _i = i + 1 | 0;
-            ::continue:: ;end end end 
-         if ___conditional___ = 2 then do
+            ::continue:: ; end end 
+         if ___conditional___ == 2 then do
             f.signstyle = String.fromCharCode(c);
             _i = i + 1 | 0;
-            ::continue:: ;end end end 
-         if ___conditional___ = 3 then do
+            ::continue:: ; end end 
+         if ___conditional___ == 3 then do
             f.width = 0;
             j_1 = i;
             while((function(j_1)do
@@ -483,23 +476,22 @@ function parse_format(fmt) do
                   w = fmt.charCodeAt(j_1) - --[[ "0" ]]48 | 0;
                   return w >= 0 and w <= 9;
                 end end
-                end(j_1))()) do
+                end end)(j_1)()) do
               f.width = (Caml_int32.imul(f.width, 10) + fmt.charCodeAt(j_1) | 0) - --[[ "0" ]]48 | 0;
               j_1 = j_1 + 1 | 0;
             end;
             _i = j_1;
-            ::continue:: ;end end end 
-         if ___conditional___ = 4 then do
+            ::continue:: ; end end 
+         if ___conditional___ == 4 then do
             f.signedconv = true;
             f.base = --[[ Dec ]]2;
             _i = i + 1 | 0;
-            ::continue:: ;end end end 
-         if ___conditional___ = 5 then do
+            ::continue:: ; end end 
+         if ___conditional___ == 5 then do
             f.signedconv = true;
             f.conv = String.fromCharCode(c);
             _i = i + 1 | 0;
-            ::continue:: ;end end end 
-         do
+            ::continue:: ; end end 
         
       end
     end end 
@@ -604,7 +596,7 @@ function caml_int64_format(fmt, x) do
   match = f.base;
   local ___conditional___=(match);
   do
-     if ___conditional___ = 0--[[ Oct ]] then do
+     if ___conditional___ == 0--[[ Oct ]] then do
         wbase = --[[ int64 ]]{
           --[[ hi ]]0,
           --[[ lo ]]8
@@ -645,10 +637,10 @@ function caml_int64_format(fmt, x) do
             modulus_1 = match_4[1];
             s = String.fromCharCode(cvtbl.charCodeAt(Caml_int64.to_int32(modulus_1))) .. s;
           end;
-        end end end else 
-     if ___conditional___ = 1--[[ Hex ]] then do
-        s = Caml_int64.to_hex(x_1) .. s;end else 
-     if ___conditional___ = 2--[[ Dec ]] then do
+        end end  end else 
+     if ___conditional___ == 1--[[ Hex ]] then do
+        s = Caml_int64.to_hex(x_1) .. s; end else 
+     if ___conditional___ == 2--[[ Dec ]] then do
         wbase_1 = --[[ int64 ]]{
           --[[ hi ]]0,
           --[[ lo ]]10
@@ -693,8 +685,8 @@ function caml_int64_format(fmt, x) do
             modulus_3 = match_9[1];
             s = String.fromCharCode(cvtbl_1.charCodeAt(Caml_int64.to_int32(modulus_3))) .. s;
           end;
-        end end end else 
-     do end end end end
+        end end  end else 
+     end end end end end end
     
   end
   if (f.prec >= 0) then do
@@ -721,16 +713,16 @@ function caml_format_float(fmt, x) do
     match = f.conv;
     local ___conditional___=(match);
     do
-       if ___conditional___ = "e" then do
+       if ___conditional___ == "e" then do
           s = x_1.toExponential(prec);
           i = #s;
           if (s[i - 3 | 0] == "e") then do
             s = s.slice(0, i - 1 | 0) .. ("0" .. s.slice(i - 1 | 0));
           end
-           end end else 
-       if ___conditional___ = "f" then do
-          s = x_1.toFixed(prec);end else 
-       if ___conditional___ = "g" then do
+           end  end else 
+       if ___conditional___ == "f" then do
+          s = x_1.toFixed(prec); end else 
+       if ___conditional___ == "g" then do
           prec_1 = prec ~= 0 and prec or 1;
           s = x_1.toExponential(prec_1 - 1 | 0);
           j = s.indexOf("e");
@@ -756,7 +748,7 @@ function caml_format_float(fmt, x) do
               p = p - (exp + 1 | 0) | 0;
               s = x_1.toFixed(p);
             end else do
-              while((function () do
+              while((function() do
                       s = x_1.toFixed(p);
                       return #s > (prec_1 + 1 | 0);
                     end end)()) do
@@ -775,11 +767,9 @@ function caml_format_float(fmt, x) do
               s = s.slice(0, k + 1 | 0);
             end
              end 
-          end end end else 
-       do end end end end
-      else do
-        end end
-        
+          end end  end else 
+       end end end end end end
+      
     end
   end else do
     s = "inf";
@@ -875,6 +865,7 @@ caml_int32_of_string = caml_int_of_string;
 
 caml_nativeint_of_string = caml_int_of_string;
 
+exports = {}
 exports.caml_format_float = caml_format_float;
 exports.caml_hexstring_of_float = caml_hexstring_of_float;
 exports.caml_format_int = caml_format_int;

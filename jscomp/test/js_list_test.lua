@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Block = require "../../lib/js/block";
@@ -19,7 +19,7 @@ function eq(loc, x, y) do
   suites.contents = --[[ :: ]]{
     --[[ tuple ]]{
       loc .. (" id " .. String(test_id.contents)),
-      (function (param) do
+      (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     x,
                     y
@@ -81,7 +81,7 @@ eq("File \"js_list_test.ml\", line 11, characters 7-14", Js_list.flatten(--[[ ::
       }
     });
 
-eq("File \"js_list_test.ml\", line 14, characters 7-14", Js_list.filterMap((function (x) do
+eq("File \"js_list_test.ml\", line 14, characters 7-14", Js_list.filterMap((function(x) do
             if (x % 2 == 0) then do
               return x;
             end
@@ -118,7 +118,7 @@ eq("File \"js_list_test.ml\", line 14, characters 7-14", Js_list.filterMap((func
       }
     });
 
-eq("File \"js_list_test.ml\", line 17, characters 7-14", Js_list.filterMap((function (x) do
+eq("File \"js_list_test.ml\", line 17, characters 7-14", Js_list.filterMap((function(x) do
             if (x % 2 == 0) then do
               return x;
             end
@@ -152,7 +152,7 @@ eq("File \"js_list_test.ml\", line 17, characters 7-14", Js_list.filterMap((func
       }
     });
 
-eq("File \"js_list_test.ml\", line 20, characters 7-14", Js_list.countBy((function (x) do
+eq("File \"js_list_test.ml\", line 20, characters 7-14", Js_list.countBy((function(x) do
             return x % 2 == 0;
           end end), --[[ :: ]]{
           1,
@@ -180,22 +180,22 @@ end end
 
 v = Js_vector.toList(Js_vector.init(100000, f));
 
-eq("File \"js_list_test.ml\", line 23, characters 7-14", Js_list.countBy((function (x) do
+eq("File \"js_list_test.ml\", line 23, characters 7-14", Js_list.countBy((function(x) do
             return x % 2 == 0;
           end end), v), 50000);
 
-vv = Js_list.foldRight((function (x, y) do
+vv = Js_list.foldRight((function(x, y) do
         return --[[ :: ]]{
                 x,
                 y
               };
       end end), v, --[[ [] ]]0);
 
-eq("File \"js_list_test.ml\", line 27, characters 7-14", true, Js_list.equal((function (x, y) do
+eq("File \"js_list_test.ml\", line 27, characters 7-14", true, Js_list.equal((function(x, y) do
             return x == y;
           end end), v, vv));
 
-vvv = Js_list.filter((function (x) do
+vvv = Js_list.filter((function(x) do
         return x % 10 == 0;
       end end), vv);
 
@@ -205,12 +205,13 @@ function f_1(x) do
   return Caml_int32.imul(x, 10);
 end end
 
-eq("File \"js_list_test.ml\", line 32, characters 7-14", true, Js_list.equal((function (x, y) do
+eq("File \"js_list_test.ml\", line 32, characters 7-14", true, Js_list.equal((function(x, y) do
             return x == y;
           end end), vvv, Js_vector.toList(Js_vector.init(10000, f_1))));
 
 Mt.from_pair_suites("Js_list_test", suites.contents);
 
+exports = {}
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;

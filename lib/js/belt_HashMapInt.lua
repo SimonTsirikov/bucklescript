@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Caml_option = require "./caml_option";
 Caml_hash_primitive = require "./caml_hash_primitive";
@@ -260,6 +260,7 @@ getBucketHistogram = Belt_internalBuckets.getBucketHistogram;
 
 logStats = Belt_internalBuckets.logStats;
 
+exports = {}
 exports.make = make;
 exports.clear = clear;
 exports.isEmpty = isEmpty;

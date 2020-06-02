@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Curry = require "./curry";
 Caml_option = require "./caml_option";
@@ -279,6 +279,7 @@ function fromArray(arr) do
   return q;
 end end
 
+exports = {}
 exports.make = make;
 exports.clear = clear;
 exports.isEmpty = isEmpty;

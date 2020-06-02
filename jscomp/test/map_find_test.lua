@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 List = require "../../lib/js/list";
@@ -146,7 +146,7 @@ function find(x, _param) do
   end;
 end end
 
-m = List.fold_left((function (acc, param) do
+m = List.fold_left((function(acc, param) do
         return add(param[0], param[1], acc);
       end end), --[[ Empty ]]0, --[[ :: ]]{
       --[[ tuple ]]{
@@ -314,7 +314,7 @@ function find_1(x, _param) do
   end;
 end end
 
-s = List.fold_left((function (acc, param) do
+s = List.fold_left((function(acc, param) do
         return add_1(param[0], param[1], acc);
       end end), --[[ Empty ]]0, --[[ :: ]]{
       --[[ tuple ]]{
@@ -345,7 +345,7 @@ s = List.fold_left((function (acc, param) do
 Mt.from_pair_suites("Map_find_test", --[[ :: ]]{
       --[[ tuple ]]{
         "int",
-        (function (param) do
+        (function(param) do
             return --[[ Eq ]]Block.__(0, {
                       find(10, m),
                       --[[ "a" ]]97
@@ -355,7 +355,7 @@ Mt.from_pair_suites("Map_find_test", --[[ :: ]]{
       --[[ :: ]]{
         --[[ tuple ]]{
           "string",
-          (function (param) do
+          (function(param) do
               return --[[ Eq ]]Block.__(0, {
                         find_1("10", s),
                         --[[ "a" ]]97
@@ -366,4 +366,5 @@ Mt.from_pair_suites("Map_find_test", --[[ :: ]]{
       }
     });
 
+exports = {}
 --[[ m Not a pure module ]]

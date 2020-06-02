@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 
 a10 = "hello world";
@@ -17,6 +17,7 @@ a15 = a10;
 
 b15 = 111;
 
+exports = {}
 exports.a15 = a15;
 exports.b15 = b15;
 exports.a21 = a21;

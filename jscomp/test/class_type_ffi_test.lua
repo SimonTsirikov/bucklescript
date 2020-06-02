@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Curry = require "../../lib/js/curry";
 
@@ -49,7 +49,7 @@ function off2(o, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12) do
 end end
 
 function mk_f(param) do
-  return (function (a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12) do
+  return (function(a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12) do
       return Curry.app(a0, {
                   a1,
                   a2,
@@ -69,7 +69,7 @@ end end
 
 function omk_f(param) do
   return do
-          huge_methdo: (function (a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12) do
+          huge_methdo: (function(a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12) do
               return Curry.app(a0, {
                           a1,
                           a2,
@@ -88,6 +88,7 @@ function omk_f(param) do
         end;
 end end
 
+exports = {}
 exports.sum_float_array = sum_float_array;
 exports.sum_int_array = sum_int_array;
 exports.sum_poly = sum_poly;

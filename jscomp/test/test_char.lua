@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
@@ -37,6 +37,7 @@ function compare(c1, c2) do
   return c1 - c2 | 0;
 end end
 
+exports = {}
 exports.f = f;
 exports.chr = chr;
 exports.lowercase = lowercase;

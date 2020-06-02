@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Immutable = require "immut";
 Belt_Array = require "../../lib/js/belt_Array";
@@ -23,7 +23,7 @@ function should(b) do
   end end 
 end end
 
-shuffledDataAdd = Belt_Array.makeByAndShuffle(1000001, (function (i) do
+shuffledDataAdd = Belt_Array.makeByAndShuffle(1000001, (function(i) do
         return --[[ tuple ]]{
                 i,
                 i
@@ -64,6 +64,7 @@ count = 1000000;
 
 M = --[[ alias ]]0;
 
+exports = {}
 exports.A = A;
 exports.empty = empty;
 exports.fromArray = fromArray;

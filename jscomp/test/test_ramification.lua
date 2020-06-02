@@ -1,24 +1,22 @@
-console.log = print;
+console = {log = print};
 
 
 function ff(x) do
   a;
   local ___conditional___=(x);
   do
-     if ___conditional___ = "0"
-     or ___conditional___ = "1"
-     or ___conditional___ = "2" then do
-        a = 3;end else 
-     if ___conditional___ = "3" then do
-        a = 4;end else 
-     if ___conditional___ = "4" then do
-        a = 6;end else 
-     if ___conditional___ = "7" then do
-        a = 7;end else 
-     do end end end end end
-    else do
-      a = 8;
-      end end
+     if ___conditional___ == "0"
+     or ___conditional___ == "1"
+     or ___conditional___ == "2" then do
+        a = 3; end else 
+     if ___conditional___ == "3" then do
+        a = 4; end else 
+     if ___conditional___ == "4" then do
+        a = 6; end else 
+     if ___conditional___ == "7" then do
+        a = 7; end else 
+     end end end end end end end end
+    a = 8;
       
   end
   return a + 3 | 0;
@@ -52,6 +50,7 @@ function f3(x) do
   return y + 32 | 0;
 end end
 
+exports = {}
 exports.ff = ff;
 exports.f = f;
 exports.f2 = f2;

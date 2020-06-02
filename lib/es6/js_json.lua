@@ -27,23 +27,22 @@ end end
 function test(x, v) do
   local ___conditional___=(v);
   do
-     if ___conditional___ = 0--[[ String ]] then do
-        return typeof x == "string";end end end 
-     if ___conditional___ = 1--[[ Number ]] then do
-        return typeof x == "number";end end end 
-     if ___conditional___ = 2--[[ Object ]] then do
+     if ___conditional___ == 0--[[ String ]] then do
+        return typeof x == "string"; end end 
+     if ___conditional___ == 1--[[ Number ]] then do
+        return typeof x == "number"; end end 
+     if ___conditional___ == 2--[[ Object ]] then do
         if (x ~= nil and typeof x == "object") then do
           return not Array.isArray(x);
         end else do
           return false;
-        end end end end end 
-     if ___conditional___ = 3--[[ Array ]] then do
-        return Array.isArray(x);end end end 
-     if ___conditional___ = 4--[[ Boolean ]] then do
-        return typeof x == "boolean";end end end 
-     if ___conditional___ = 5--[[ Null ]] then do
-        return x == nil;end end end 
-     do
+        end end  end end 
+     if ___conditional___ == 3--[[ Array ]] then do
+        return Array.isArray(x); end end 
+     if ___conditional___ == 4--[[ Boolean ]] then do
+        return typeof x == "boolean"; end end 
+     if ___conditional___ == 5--[[ Null ]] then do
+        return x == nil; end end 
     
   end
 end end

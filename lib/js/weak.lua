@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Sys = require "./sys";
 __Array = require "./array";
@@ -28,10 +28,10 @@ end end
 
 function Make(H) do
   emptybucket = Caml_weak.caml_weak_create(0);
-  get_index = function (t, h) do
+  get_index = function(t, h) do
     return (h & Pervasives.max_int) % #t.table;
   end end;
-  create = function (sz) do
+  create = function(sz) do
     sz_1 = sz < 7 and 7 or sz;
     sz_2 = sz_1 > Sys.max_array_length and Sys.max_array_length or sz_1;
     return do
@@ -42,7 +42,7 @@ function Make(H) do
             rover: 0
           end;
   end end;
-  clear = function (t) do
+  clear = function(t) do
     for i = 0 , #t.table - 1 | 0 , 1 do
       Caml_array.caml_array_set(t.table, i, emptybucket);
       Caml_array.caml_array_set(t.hashes, i, {});
@@ -51,8 +51,8 @@ function Make(H) do
     t.oversize = 0;
     return --[[ () ]]0;
   end end;
-  fold = function (f, t, init) do
-    return __Array.fold_right((function (param, param_1) do
+  fold = function(f, t, init) do
+    return __Array.fold_right((function(param, param_1) do
                   _i = 0;
                   b = param;
                   _accu = param_1;
@@ -75,8 +75,8 @@ function Make(H) do
                   end;
                 end end), t.table, init);
   end end;
-  iter = function (f, t) do
-    return __Array.iter((function (param) do
+  iter = function(f, t) do
+    return __Array.iter((function(param) do
                   _i = 0;
                   b = param;
                   while(true) do
@@ -97,8 +97,8 @@ function Make(H) do
                   end;
                 end end), t.table);
   end end;
-  iter_weak = function (f, t) do
-    return __Array.iteri((function (param, param_1) do
+  iter_weak = function(f, t) do
+    return __Array.iteri((function(param, param_1) do
                   _i = 0;
                   j = param;
                   b = param_1;
@@ -117,7 +117,7 @@ function Make(H) do
                   end;
                 end end), t.table);
   end end;
-  count_bucket = function (_i, b, _accu) do
+  count_bucket = function(_i, b, _accu) do
     while(true) do
       accu = _accu;
       i = _i;
@@ -132,25 +132,25 @@ function Make(H) do
       end end 
     end;
   end end;
-  count = function (t) do
-    return __Array.fold_right((function (param, param_1) do
+  count = function(t) do
+    return __Array.fold_right((function(param, param_1) do
                   return count_bucket(0, param, param_1);
                 end end), t.table, 0);
   end end;
-  next_sz = function (n) do
+  next_sz = function(n) do
     return Caml_primitive.caml_int_min((Caml_int32.imul(3, n) / 2 | 0) + 3 | 0, Sys.max_array_length);
   end end;
-  prev_sz = function (n) do
+  prev_sz = function(n) do
     return (((n - 3 | 0) << 1) + 2 | 0) / 3 | 0;
   end end;
-  test_shrink_bucket = function (t) do
+  test_shrink_bucket = function(t) do
     bucket = Caml_array.caml_array_get(t.table, t.rover);
     hbucket = Caml_array.caml_array_get(t.hashes, t.rover);
     len = #bucket;
     prev_len = prev_sz(len);
     live = count_bucket(0, bucket, 0);
     if (live <= prev_len) then do
-      loop = function (_i, _j) do
+      loop = function(_i, _j) do
         while(true) do
           j = _j;
           i = _i;
@@ -190,7 +190,7 @@ function Make(H) do
     t.rover = (t.rover + 1 | 0) % #t.table;
     return --[[ () ]]0;
   end end;
-  add_aux = function (t, setter, d, h, index) do
+  add_aux = function(t, setter, d, h, index) do
     bucket = Caml_array.caml_array_get(t.table, index);
     hashes = Caml_array.caml_array_get(t.hashes, index);
     sz = #bucket;
@@ -229,13 +229,13 @@ function Make(H) do
             newt = create(newlen);
             add_weak = (function(newt)do
             return function add_weak(ob, oh, oi) do
-              setter = function (nb, ni, param) do
+              setter = function(nb, ni, param) do
                 return Caml_weak.caml_weak_blit(ob, oi, nb, ni, 1);
               end end;
               h = Caml_array.caml_array_get(oh, oi);
               return add_aux(newt, setter, undefined, h, get_index(newt, h));
             end end
-            end(newt));
+            end end)(newt);
             iter_weak(add_weak, t_1);
             t_1.table = newt.table;
             t_1.hashes = newt.hashes;
@@ -260,11 +260,11 @@ function Make(H) do
       end end  end 
     end;
   end end;
-  add = function (t, d) do
+  add = function(t, d) do
     h = Curry._1(H.hash, d);
     return add_aux(t, Caml_weak.caml_weak_set, Caml_option.some(d), h, get_index(t, h));
   end end;
-  find_or = function (t, d, ifnotfound) do
+  find_or = function(t, d, ifnotfound) do
     h = Curry._1(H.hash, d);
     index = get_index(t, h);
     bucket = Caml_array.caml_array_get(t.table, index);
@@ -300,18 +300,18 @@ function Make(H) do
       end end  end 
     end;
   end end;
-  merge = function (t, d) do
-    return find_or(t, d, (function (h, index) do
+  merge = function(t, d) do
+    return find_or(t, d, (function(h, index) do
                   add_aux(t, Caml_weak.caml_weak_set, Caml_option.some(d), h, index);
                   return d;
                 end end));
   end end;
-  find = function (t, d) do
-    return find_or(t, d, (function (_h, _index) do
+  find = function(t, d) do
+    return find_or(t, d, (function(_h, _index) do
                   error(Caml_builtin_exceptions.not_found)
                 end end));
   end end;
-  find_opt = function (t, d) do
+  find_opt = function(t, d) do
     h = Curry._1(H.hash, d);
     index = get_index(t, h);
     bucket = Caml_array.caml_array_get(t.table, index);
@@ -347,7 +347,7 @@ function Make(H) do
       end end  end 
     end;
   end end;
-  find_shadow = function (t, d, iffound, ifnotfound) do
+  find_shadow = function(t, d, iffound, ifnotfound) do
     h = Curry._1(H.hash, d);
     index = get_index(t, h);
     bucket = Caml_array.caml_array_get(t.table, index);
@@ -377,17 +377,17 @@ function Make(H) do
       end end  end 
     end;
   end end;
-  remove = function (t, d) do
-    return find_shadow(t, d, (function (w, i) do
+  remove = function(t, d) do
+    return find_shadow(t, d, (function(w, i) do
                   return Caml_weak.caml_weak_set(w, i, undefined);
                 end end), --[[ () ]]0);
   end end;
-  mem = function (t, d) do
-    return find_shadow(t, d, (function (_w, _i) do
+  mem = function(t, d) do
+    return find_shadow(t, d, (function(_w, _i) do
                   return true;
                 end end), false);
   end end;
-  find_all = function (t, d) do
+  find_all = function(t, d) do
     h = Curry._1(H.hash, d);
     index = get_index(t, h);
     bucket = Caml_array.caml_array_get(t.table, index);
@@ -430,13 +430,13 @@ function Make(H) do
       end end  end 
     end;
   end end;
-  stats = function (t) do
+  stats = function(t) do
     len = #t.table;
-    lens = __Array.map((function (prim) do
+    lens = __Array.map((function(prim) do
             return #prim;
           end end), t.table);
     __Array.sort(Caml_primitive.caml_int_compare, lens);
-    totlen = __Array.fold_left((function (prim, prim_1) do
+    totlen = __Array.fold_left((function(prim, prim_1) do
             return prim + prim_1 | 0;
           end end), 0, lens);
     return --[[ tuple ]]{
@@ -481,6 +481,7 @@ check = Caml_weak.caml_weak_check;
 
 blit = Caml_weak.caml_weak_blit;
 
+exports = {}
 exports.create = create;
 exports.length = length;
 exports.set = set;

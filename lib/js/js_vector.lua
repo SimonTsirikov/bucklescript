@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 
 function filterInPlace(p, a) do
@@ -123,6 +123,7 @@ function append(x, a) do
   return a.concat({x});
 end end
 
+exports = {}
 exports.filterInPlace = filterInPlace;
 exports.empty = empty;
 exports.pushBack = pushBack;

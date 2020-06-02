@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Block = require "../../lib/js/block";
@@ -39,14 +39,14 @@ function generic_basename(is_dir_sep, current_dir_name, name) do
 end end
 
 function basename(param) do
-  return generic_basename((function (s, i) do
+  return generic_basename((function(s, i) do
                 return Caml_string.get(s, i) == --[[ "/" ]]47;
               end end), Filename.current_dir_name, param);
 end end
 
 suites_000 = --[[ tuple ]]{
   "basename",
-  (function (param) do
+  (function(param) do
       return --[[ Eq ]]Block.__(0, {
                 basename("b/c/a.b"),
                 "a.b"
@@ -61,6 +61,7 @@ suites = --[[ :: ]]{
 
 Mt.from_pair_suites("Inline_regression_test", suites);
 
+exports = {}
 exports.generic_basename = generic_basename;
 exports.basename = basename;
 exports.suites = suites;

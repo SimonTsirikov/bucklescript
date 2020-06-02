@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Obj = require "../../lib/js/obj";
 Sys = require "../../lib/js/sys";
@@ -3141,7 +3141,7 @@ function get_method_label(table, name) do
 end end
 
 function get_method_labels(table, names) do
-  return __Array.map((function (param) do
+  return __Array.map((function(param) do
                 return get_method_label(table, param);
               end end), names);
 end end
@@ -3186,10 +3186,10 @@ function narrow(table, vars, virt_meths, concr_meths) do
   vars_1 = to_list(vars);
   virt_meths_1 = to_list(virt_meths);
   concr_meths_1 = to_list(concr_meths);
-  virt_meth_labs = List.map((function (param) do
+  virt_meth_labs = List.map((function(param) do
           return get_method_label(table, param);
         end end), virt_meths_1);
-  concr_meth_labs = List.map((function (param) do
+  concr_meth_labs = List.map((function(param) do
           return get_method_label(table, param);
         end end), concr_meths_1);
   table.previous_states = --[[ :: ]]{
@@ -3203,7 +3203,7 @@ function narrow(table, vars, virt_meths, concr_meths) do
     },
     table.previous_states
   };
-  table.vars = fold((function (lab, info, tvars) do
+  table.vars = fold((function(lab, info, tvars) do
           if (List.mem(lab, vars_1)) then do
             return add(lab, info, tvars);
           end else do
@@ -3216,7 +3216,7 @@ function narrow(table, vars, virt_meths, concr_meths) do
   by_label = do
     contents: --[[ Empty ]]0
   end;
-  List.iter2((function (met, label) do
+  List.iter2((function(met, label) do
           by_name.contents = add_1(met, label, by_name.contents);
           tmp;
           xpcall(function() do
@@ -3231,14 +3231,14 @@ function narrow(table, vars, virt_meths, concr_meths) do
           by_label.contents = add_2(label, tmp, by_label.contents);
           return --[[ () ]]0;
         end end), concr_meths_1, concr_meth_labs);
-  List.iter2((function (met, label) do
+  List.iter2((function(met, label) do
           by_name.contents = add_1(met, label, by_name.contents);
           by_label.contents = add_2(label, false, by_label.contents);
           return --[[ () ]]0;
         end end), virt_meths_1, virt_meth_labs);
   table.methods_by_name = by_name.contents;
   table.methods_by_label = by_label.contents;
-  table.hidden_meths = List.fold_right((function (met, hm) do
+  table.hidden_meths = List.fold_right((function(met, hm) do
           if (List.mem(met[0], virt_meth_labs)) then do
             return hm;
           end else do
@@ -3255,12 +3255,12 @@ function widen(table) do
   match = List.hd(table.previous_states);
   virt_meths = match[4];
   table.previous_states = List.tl(table.previous_states);
-  table.vars = List.fold_left((function (s, v) do
+  table.vars = List.fold_left((function(s, v) do
           return add(v, find(v, table.vars), s);
         end end), match[3], match[5]);
   table.methods_by_name = match[0];
   table.methods_by_label = match[1];
-  table.hidden_meths = List.fold_right((function (met, hm) do
+  table.hidden_meths = List.fold_right((function(met, hm) do
           if (List.mem(met[0], virt_meths)) then do
             return hm;
           end else do
@@ -3338,7 +3338,7 @@ function get_variable(table, name) do
 end end
 
 function get_variables(table, names) do
-  return __Array.map((function (param) do
+  return __Array.map((function(param) do
                 return get_variable(table, param);
               end end), names);
 end end
@@ -3357,7 +3357,7 @@ function create_table(public_methods) do
   end else do
     tags = __Array.map(public_method_label, public_methods);
     table = new_table(tags);
-    __Array.iteri((function (i, met) do
+    __Array.iteri((function(i, met) do
             lab = (i << 1) + 2 | 0;
             table.methods_by_name = add_1(met, lab, table.methods_by_name);
             table.methods_by_label = add_2(lab, true, table.methods_by_label);
@@ -3381,11 +3381,11 @@ function inherits(cla, vals, virt_meths, concr_meths, param, top) do
   return Caml_array.caml_array_concat(--[[ :: ]]{
               {init},
               --[[ :: ]]{
-                __Array.map((function (param) do
+                __Array.map((function(param) do
                         return get_variable(cla, param);
                       end end), to_array(vals)),
                 --[[ :: ]]{
-                  __Array.map((function (nm) do
+                  __Array.map((function(nm) do
                           return get_method(cla, get_method_label(cla, nm));
                         end end), to_array(concr_meths)),
                   --[[ [] ]]0
@@ -3416,7 +3416,7 @@ function make_class_store(pub_meths, class_init, init_table) do
 end end
 
 function dummy_class(loc) do
-  undef = function (param) do
+  undef = function(param) do
     error({
       Caml_builtin_exceptions.undefined_recursive_module,
       loc
@@ -3544,148 +3544,148 @@ function lookup_tables(root, keys) do
 end end
 
 function get_const(x) do
-  return (function (obj) do
+  return (function(obj) do
       return x;
     end end);
 end end
 
 function get_var(n) do
-  return (function (obj) do
+  return (function(obj) do
       return obj[n];
     end end);
 end end
 
 function get_env(e, n) do
-  return (function (obj) do
+  return (function(obj) do
       return obj[e][n];
     end end);
 end end
 
 function get_meth(n) do
-  return (function (obj) do
+  return (function(obj) do
       return Curry._1(obj[0][n], obj);
     end end);
 end end
 
 function set_var(n) do
-  return (function (obj, x) do
+  return (function(obj, x) do
       obj[n] = x;
       return --[[ () ]]0;
     end end);
 end end
 
 function app_const(f, x) do
-  return (function (obj) do
+  return (function(obj) do
       return Curry._1(f, x);
     end end);
 end end
 
 function app_var(f, n) do
-  return (function (obj) do
+  return (function(obj) do
       return Curry._1(f, obj[n]);
     end end);
 end end
 
 function app_env(f, e, n) do
-  return (function (obj) do
+  return (function(obj) do
       return Curry._1(f, obj[e][n]);
     end end);
 end end
 
 function app_meth(f, n) do
-  return (function (obj) do
+  return (function(obj) do
       return Curry._1(f, Curry._1(obj[0][n], obj));
     end end);
 end end
 
 function app_const_const(f, x, y) do
-  return (function (obj) do
+  return (function(obj) do
       return Curry._2(f, x, y);
     end end);
 end end
 
 function app_const_var(f, x, n) do
-  return (function (obj) do
+  return (function(obj) do
       return Curry._2(f, x, obj[n]);
     end end);
 end end
 
 function app_const_meth(f, x, n) do
-  return (function (obj) do
+  return (function(obj) do
       return Curry._2(f, x, Curry._1(obj[0][n], obj));
     end end);
 end end
 
 function app_var_const(f, n, x) do
-  return (function (obj) do
+  return (function(obj) do
       return Curry._2(f, obj[n], x);
     end end);
 end end
 
 function app_meth_const(f, n, x) do
-  return (function (obj) do
+  return (function(obj) do
       return Curry._2(f, Curry._1(obj[0][n], obj), x);
     end end);
 end end
 
 function app_const_env(f, x, e, n) do
-  return (function (obj) do
+  return (function(obj) do
       return Curry._2(f, x, obj[e][n]);
     end end);
 end end
 
 function app_env_const(f, e, n, x) do
-  return (function (obj) do
+  return (function(obj) do
       return Curry._2(f, obj[e][n], x);
     end end);
 end end
 
 function meth_app_const(n, x) do
-  return (function (obj) do
+  return (function(obj) do
       return Curry._2(obj[0][n], obj, x);
     end end);
 end end
 
 function meth_app_var(n, m) do
-  return (function (obj) do
+  return (function(obj) do
       return Curry._2(obj[0][n], obj, obj[m]);
     end end);
 end end
 
 function meth_app_env(n, e, m) do
-  return (function (obj) do
+  return (function(obj) do
       return Curry._2(obj[0][n], obj, obj[e][m]);
     end end);
 end end
 
 function meth_app_meth(n, m) do
-  return (function (obj) do
+  return (function(obj) do
       return Curry._2(obj[0][n], obj, Curry._1(obj[0][m], obj));
     end end);
 end end
 
 function send_const(m, x, c) do
-  return (function (obj) do
+  return (function(obj) do
       return Curry._1(Curry._3(Caml_oo.caml_get_public_method, x, m, 1), x);
     end end);
 end end
 
 function send_var(m, n, c) do
-  return (function (obj) do
+  return (function(obj) do
       tmp = obj[n];
       return Curry._1(Curry._3(Caml_oo.caml_get_public_method, tmp, m, 2), tmp);
     end end);
 end end
 
 function send_env(m, e, n, c) do
-  return (function (obj) do
+  return (function(obj) do
       tmp = obj[e][n];
       return Curry._1(Curry._3(Caml_oo.caml_get_public_method, tmp, m, 3), tmp);
     end end);
 end end
 
 function send_meth(m, n, c) do
-  return (function (obj) do
+  return (function(obj) do
       tmp = Curry._1(obj[0][n], obj);
       return Curry._1(Curry._3(Caml_oo.caml_get_public_method, tmp, m, 4), tmp);
     end end);
@@ -3699,7 +3699,7 @@ function new_cache(table) do
 end end
 
 function method_impl(table, i, arr) do
-  next = function (param) do
+  next = function(param) do
     i.contents = i.contents + 1 | 0;
     return Caml_array.caml_array_get(arr, i.contents);
   end end;
@@ -3707,123 +3707,122 @@ function method_impl(table, i, arr) do
   if (typeof clo == "number") then do
     local ___conditional___=(clo);
     do
-       if ___conditional___ = 0--[[ GetConst ]] then do
+       if ___conditional___ == 0--[[ GetConst ]] then do
           x = next(--[[ () ]]0);
-          return (function (obj) do
+          return (function(obj) do
               return x;
-            end end);end end end 
-       if ___conditional___ = 1--[[ GetVar ]] then do
+            end end); end end 
+       if ___conditional___ == 1--[[ GetVar ]] then do
           n = next(--[[ () ]]0);
-          return (function (obj) do
+          return (function(obj) do
               return obj[n];
-            end end);end end end 
-       if ___conditional___ = 2--[[ GetEnv ]] then do
+            end end); end end 
+       if ___conditional___ == 2--[[ GetEnv ]] then do
           e = next(--[[ () ]]0);
           n_1 = next(--[[ () ]]0);
-          return get_env(e, n_1);end end end 
-       if ___conditional___ = 3--[[ GetMeth ]] then do
-          return get_meth(next(--[[ () ]]0));end end end 
-       if ___conditional___ = 4--[[ SetVar ]] then do
+          return get_env(e, n_1); end end 
+       if ___conditional___ == 3--[[ GetMeth ]] then do
+          return get_meth(next(--[[ () ]]0)); end end 
+       if ___conditional___ == 4--[[ SetVar ]] then do
           n_2 = next(--[[ () ]]0);
-          return (function (obj, x) do
+          return (function(obj, x) do
               obj[n_2] = x;
               return --[[ () ]]0;
-            end end);end end end 
-       if ___conditional___ = 5--[[ AppConst ]] then do
+            end end); end end 
+       if ___conditional___ == 5--[[ AppConst ]] then do
           f = next(--[[ () ]]0);
           x_1 = next(--[[ () ]]0);
-          return (function (obj) do
+          return (function(obj) do
               return Curry._1(f, x_1);
-            end end);end end end 
-       if ___conditional___ = 6--[[ AppVar ]] then do
+            end end); end end 
+       if ___conditional___ == 6--[[ AppVar ]] then do
           f_1 = next(--[[ () ]]0);
           n_3 = next(--[[ () ]]0);
-          return (function (obj) do
+          return (function(obj) do
               return Curry._1(f_1, obj[n_3]);
-            end end);end end end 
-       if ___conditional___ = 7--[[ AppEnv ]] then do
+            end end); end end 
+       if ___conditional___ == 7--[[ AppEnv ]] then do
           f_2 = next(--[[ () ]]0);
           e_1 = next(--[[ () ]]0);
           n_4 = next(--[[ () ]]0);
-          return app_env(f_2, e_1, n_4);end end end 
-       if ___conditional___ = 8--[[ AppMeth ]] then do
+          return app_env(f_2, e_1, n_4); end end 
+       if ___conditional___ == 8--[[ AppMeth ]] then do
           f_3 = next(--[[ () ]]0);
           n_5 = next(--[[ () ]]0);
-          return app_meth(f_3, n_5);end end end 
-       if ___conditional___ = 9--[[ AppConstConst ]] then do
+          return app_meth(f_3, n_5); end end 
+       if ___conditional___ == 9--[[ AppConstConst ]] then do
           f_4 = next(--[[ () ]]0);
           x_2 = next(--[[ () ]]0);
           y = next(--[[ () ]]0);
-          return (function (obj) do
+          return (function(obj) do
               return Curry._2(f_4, x_2, y);
-            end end);end end end 
-       if ___conditional___ = 10--[[ AppConstVar ]] then do
+            end end); end end 
+       if ___conditional___ == 10--[[ AppConstVar ]] then do
           f_5 = next(--[[ () ]]0);
           x_3 = next(--[[ () ]]0);
           n_6 = next(--[[ () ]]0);
-          return app_const_var(f_5, x_3, n_6);end end end 
-       if ___conditional___ = 11--[[ AppConstEnv ]] then do
+          return app_const_var(f_5, x_3, n_6); end end 
+       if ___conditional___ == 11--[[ AppConstEnv ]] then do
           f_6 = next(--[[ () ]]0);
           x_4 = next(--[[ () ]]0);
           e_2 = next(--[[ () ]]0);
           n_7 = next(--[[ () ]]0);
-          return app_const_env(f_6, x_4, e_2, n_7);end end end 
-       if ___conditional___ = 12--[[ AppConstMeth ]] then do
+          return app_const_env(f_6, x_4, e_2, n_7); end end 
+       if ___conditional___ == 12--[[ AppConstMeth ]] then do
           f_7 = next(--[[ () ]]0);
           x_5 = next(--[[ () ]]0);
           n_8 = next(--[[ () ]]0);
-          return app_const_meth(f_7, x_5, n_8);end end end 
-       if ___conditional___ = 13--[[ AppVarConst ]] then do
+          return app_const_meth(f_7, x_5, n_8); end end 
+       if ___conditional___ == 13--[[ AppVarConst ]] then do
           f_8 = next(--[[ () ]]0);
           n_9 = next(--[[ () ]]0);
           x_6 = next(--[[ () ]]0);
-          return app_var_const(f_8, n_9, x_6);end end end 
-       if ___conditional___ = 14--[[ AppEnvConst ]] then do
+          return app_var_const(f_8, n_9, x_6); end end 
+       if ___conditional___ == 14--[[ AppEnvConst ]] then do
           f_9 = next(--[[ () ]]0);
           e_3 = next(--[[ () ]]0);
           n_10 = next(--[[ () ]]0);
           x_7 = next(--[[ () ]]0);
-          return app_env_const(f_9, e_3, n_10, x_7);end end end 
-       if ___conditional___ = 15--[[ AppMethConst ]] then do
+          return app_env_const(f_9, e_3, n_10, x_7); end end 
+       if ___conditional___ == 15--[[ AppMethConst ]] then do
           f_10 = next(--[[ () ]]0);
           n_11 = next(--[[ () ]]0);
           x_8 = next(--[[ () ]]0);
-          return app_meth_const(f_10, n_11, x_8);end end end 
-       if ___conditional___ = 16--[[ MethAppConst ]] then do
+          return app_meth_const(f_10, n_11, x_8); end end 
+       if ___conditional___ == 16--[[ MethAppConst ]] then do
           n_12 = next(--[[ () ]]0);
           x_9 = next(--[[ () ]]0);
-          return meth_app_const(n_12, x_9);end end end 
-       if ___conditional___ = 17--[[ MethAppVar ]] then do
+          return meth_app_const(n_12, x_9); end end 
+       if ___conditional___ == 17--[[ MethAppVar ]] then do
           n_13 = next(--[[ () ]]0);
           m = next(--[[ () ]]0);
-          return meth_app_var(n_13, m);end end end 
-       if ___conditional___ = 18--[[ MethAppEnv ]] then do
+          return meth_app_var(n_13, m); end end 
+       if ___conditional___ == 18--[[ MethAppEnv ]] then do
           n_14 = next(--[[ () ]]0);
           e_4 = next(--[[ () ]]0);
           m_1 = next(--[[ () ]]0);
-          return meth_app_env(n_14, e_4, m_1);end end end 
-       if ___conditional___ = 19--[[ MethAppMeth ]] then do
+          return meth_app_env(n_14, e_4, m_1); end end 
+       if ___conditional___ == 19--[[ MethAppMeth ]] then do
           n_15 = next(--[[ () ]]0);
           m_2 = next(--[[ () ]]0);
-          return meth_app_meth(n_15, m_2);end end end 
-       if ___conditional___ = 20--[[ SendConst ]] then do
+          return meth_app_meth(n_15, m_2); end end 
+       if ___conditional___ == 20--[[ SendConst ]] then do
           m_3 = next(--[[ () ]]0);
           x_10 = next(--[[ () ]]0);
-          return send_const(m_3, x_10, new_cache(table));end end end 
-       if ___conditional___ = 21--[[ SendVar ]] then do
+          return send_const(m_3, x_10, new_cache(table)); end end 
+       if ___conditional___ == 21--[[ SendVar ]] then do
           m_4 = next(--[[ () ]]0);
           n_16 = next(--[[ () ]]0);
-          return send_var(m_4, n_16, new_cache(table));end end end 
-       if ___conditional___ = 22--[[ SendEnv ]] then do
+          return send_var(m_4, n_16, new_cache(table)); end end 
+       if ___conditional___ == 22--[[ SendEnv ]] then do
           m_5 = next(--[[ () ]]0);
           e_5 = next(--[[ () ]]0);
           n_17 = next(--[[ () ]]0);
-          return send_env(m_5, e_5, n_17, new_cache(table));end end end 
-       if ___conditional___ = 23--[[ SendMeth ]] then do
+          return send_env(m_5, e_5, n_17, new_cache(table)); end end 
+       if ___conditional___ == 23--[[ SendMeth ]] then do
           m_6 = next(--[[ () ]]0);
           n_18 = next(--[[ () ]]0);
-          return send_meth(m_6, n_18, new_cache(table));end end end 
-       do
+          return send_meth(m_6, n_18, new_cache(table)); end end 
       
     end
   end else do
@@ -3857,6 +3856,7 @@ initial_object_size = 2;
 
 dummy_item = --[[ () ]]0;
 
+exports = {}
 exports.copy = copy;
 exports.params = params;
 exports.step = step;

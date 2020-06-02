@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Caml_array = require "./caml_array";
 Caml_builtin_exceptions = require "./caml_builtin_exceptions";
@@ -11,7 +11,7 @@ function caml_get_public_method(obj, tag, cacheid) do
   if (meths[offs] == tag) then do
     return meths[offs - 1 | 0];
   end else do
-    aux = function (_i) do
+    aux = function(_i) do
       while(true) do
         i = _i;
         if (i < 3) then do
@@ -38,5 +38,6 @@ function caml_get_public_method(obj, tag, cacheid) do
   end end 
 end end
 
+exports = {}
 exports.caml_get_public_method = caml_get_public_method;
 --[[ No side effect ]]

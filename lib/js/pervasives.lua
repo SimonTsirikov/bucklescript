@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Curry = require "./curry";
 Caml_io = require "./caml_io";
@@ -80,17 +80,14 @@ end end
 function bool_of_string(param) do
   local ___conditional___=(param);
   do
-     if ___conditional___ = "false" then do
-        return false;end end end 
-     if ___conditional___ = "true" then do
-        return true;end end end 
-     do
-    else do
-      error({
+     if ___conditional___ == "false" then do
+        return false; end end 
+     if ___conditional___ == "true" then do
+        return true; end end 
+    error({
         Caml_builtin_exceptions.invalid_argument,
         "bool_of_string"
       })
-      end end
       
   end
 end end
@@ -98,14 +95,11 @@ end end
 function bool_of_string_opt(param) do
   local ___conditional___=(param);
   do
-     if ___conditional___ = "false" then do
-        return false;end end end 
-     if ___conditional___ = "true" then do
-        return true;end end end 
-     do
-    else do
-      return ;
-      end end
+     if ___conditional___ == "false" then do
+        return false; end end 
+     if ___conditional___ == "true" then do
+        return true; end end 
+    return ;
       
   end
 end end
@@ -369,7 +363,7 @@ function really_input_string(ic, len) do
 end end
 
 function input_line(chan) do
-  build_result = function (buf, _pos, _param) do
+  build_result = function(buf, _pos, _param) do
     while(true) do
       param = _param;
       pos = _pos;
@@ -385,7 +379,7 @@ function input_line(chan) do
       end end 
     end;
   end end;
-  scan = function (_accu, _len) do
+  scan = function(_accu, _len) do
     while(true) do
       len = _len;
       accu = _accu;
@@ -520,7 +514,7 @@ end;
 
 function at_exit(f) do
   g = exit_function.contents;
-  exit_function.contents = (function (param) do
+  exit_function.contents = (function(param) do
       Curry._1(f, --[[ () ]]0);
       return Curry._1(g, --[[ () ]]0);
     end end);
@@ -643,6 +637,7 @@ LargeFile = do
   in_channel_length: LargeFile_in_channel_length
 end;
 
+exports = {}
 exports.invalid_arg = invalid_arg;
 exports.failwith = failwith;
 exports.Exit = Exit;

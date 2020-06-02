@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 
 getGlobalThis = (function(){
@@ -24,6 +24,7 @@ register = (function(s,fn){
   return 0
 });
 
+exports = {}
 exports.getGlobalThis = getGlobalThis;
 exports.resolve = resolve;
 exports.register = register;

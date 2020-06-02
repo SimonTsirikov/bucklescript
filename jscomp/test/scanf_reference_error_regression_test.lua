@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 List = require "../../lib/js/list";
@@ -29,7 +29,7 @@ function scan_rest(ib, accu) do
                       --[[ End_of_format ]]0
                     }),
                   "%[]]"
-                }), (function (param) do
+                }), (function(param) do
                 if (param == "]") then do
                   return accu;
                 end else do
@@ -49,7 +49,7 @@ function scan_rest(ib, accu) do
                                         })
                                     }),
                                   " %i "
-                                }), (function (i) do
+                                }), (function(i) do
                                 ib_2 = ib_1;
                                 accu_2 = --[[ :: ]]{
                                   i,
@@ -62,16 +62,14 @@ function scan_rest(ib, accu) do
                                                     --[[ End_of_format ]]0
                                                   }),
                                                 "%1[];]"
-                                              }), (function (param) do
+                                              }), (function(param) do
                                               local ___conditional___=(param);
                                               do
-                                                 if ___conditional___ = ";" then do
-                                                    return scan_rest(ib_2, accu_2);end end end 
-                                                 if ___conditional___ = "]" then do
-                                                    return accu_2;end end end 
-                                                 do
-                                                else do
-                                                  s = Printf.sprintf(--[[ Format ]]{
+                                                 if ___conditional___ == ";" then do
+                                                    return scan_rest(ib_2, accu_2); end end 
+                                                 if ___conditional___ == "]" then do
+                                                    return accu_2; end end 
+                                                s = Printf.sprintf(--[[ Format ]]{
                                                         --[[ String_literal ]]Block.__(11, {
                                                             "scan_int_list",
                                                             --[[ End_of_format ]]0
@@ -82,7 +80,6 @@ function scan_rest(ib, accu) do
                                                     Caml_builtin_exceptions.failure,
                                                     s
                                                   })
-                                                  end end
                                                   
                                               end
                                             end end));
@@ -109,4 +106,5 @@ eq("File \"scanf_reference_error_regression_test.ml\", line 36, characters 5-12"
 
 Mt.from_pair_suites("Scanf_reference_error_regression_test", suites.contents);
 
+exports = {}
 --[[  Not a pure module ]]

@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 
 function uux_this(x, y) do
@@ -12,7 +12,7 @@ function even(x) do
 end
 
 function bark(param) do
-  return (function (x, y) do
+  return (function(x, y) do
       o = this ;
       console.log(--[[ tuple ]]{
             o.length,
@@ -26,7 +26,7 @@ function bark(param) do
 end end
 
 js_obj = do
-  bark: (function (x, y) do
+  bark: (function(x, y) do
       o = this ;
       console.log(o);
       return x + y | 0; end
@@ -34,12 +34,12 @@ js_obj = do
 end;
 
 function f(x) do
-  x.onload = (function () do
+  x.onload = (function() do
       o = this ;
       console.log(o);
       return --[[ () ]]0; end
     end);
-  return x.addEventListener("onload", (function () do
+  return x.addEventListener("onload", (function() do
                 o = this ;
                 console.log(o.response);
                 return --[[ () ]]0; end
@@ -50,6 +50,7 @@ function u(x) do
   return x; end
 end
 
+exports = {}
 exports.uux_this = uux_this;
 exports.even = even;
 exports.bark = bark;

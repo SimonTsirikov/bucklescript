@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Hashtbl = require "../../lib/js/hashtbl";
 Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
@@ -31,6 +31,7 @@ bench(--[[ () ]]0);
 
 count = 1000000;
 
+exports = {}
 exports.count = count;
 exports.bench = bench;
 --[[  Not a pure module ]]

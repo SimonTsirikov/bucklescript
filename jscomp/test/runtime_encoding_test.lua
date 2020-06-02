@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 
 v = {
@@ -6,5 +6,6 @@ v = {
   1
 };
 
+exports = {}
 exports.v = v;
 --[[ No side effect ]]

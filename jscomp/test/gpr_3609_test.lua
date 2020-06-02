@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 
 function func(state) do
@@ -9,5 +9,6 @@ function func(state) do
   end end 
 end end
 
+exports = {}
 exports.func = func;
 --[[ No side effect ]]

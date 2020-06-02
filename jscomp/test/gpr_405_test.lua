@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Curry = require "../../lib/js/curry";
 Hashtbl = require "../../lib/js/hashtbl";
@@ -11,7 +11,7 @@ function Make(funarg) do
         equal: __let.equal,
         hash: __let.hash
       end);
-  find_default = function (htbl, x) do
+  find_default = function(htbl, x) do
     xpcall(function() do
       return Curry._2(H.find, htbl, x);
     end end,function(exn) do
@@ -22,7 +22,7 @@ function Make(funarg) do
       end end 
     end end)
   end end;
-  min_cutset = function (gr, first_node) do
+  min_cutset = function(gr, first_node) do
     n_labels = Curry._1(H.create, 97);
     l_labels = Curry._1(H.create, 97);
     already_processed = Curry._1(H.create, 97);
@@ -33,7 +33,7 @@ function Make(funarg) do
     counter = do
       contents: 1
     end;
-    step2 = function (top, rest_of_stack) do
+    step2 = function(top, rest_of_stack) do
       if (find_default(already_processed, top)) then do
         error({
           Caml_builtin_exceptions.assert_failure,
@@ -122,5 +122,6 @@ function Make(funarg) do
         end;
 end end
 
+exports = {}
 exports.Make = Make;
 --[[ No side effect ]]

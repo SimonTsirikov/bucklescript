@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Caml_obj = require "../../lib/js/caml_obj";
@@ -119,6 +119,7 @@ b("File \"equal_box_test.ml\", line 69, characters 4-11", not Caml_obj.caml_equa
 
 Mt.from_pair_suites("File \"equal_box_test.ml\", line 74, characters 23-30", suites.contents);
 
+exports = {}
 exports.aa = aa;
 exports.bb = bb;
 exports.cc = cc;

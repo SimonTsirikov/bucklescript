@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 
 v = do
@@ -21,7 +21,7 @@ x = do
   contents: 3
 end;
 
-while((function () do
+while((function() do
         y = 3;
         console.log(String(x.contents));
         y = y + 1 | 0;
@@ -31,6 +31,7 @@ while((function () do
   console.log(String(3));
 end;
 
+exports = {}
 exports.v = v;
 exports.fib = fib;
 exports.x = x;

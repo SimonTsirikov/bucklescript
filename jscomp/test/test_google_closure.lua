@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 __Array = require "../../lib/js/array";
 Caml_array = require "../../lib/js/caml_array";
@@ -8,7 +8,7 @@ function f(a, b, param) do
 end end
 
 function f2(a) do
-  return (function (param) do
+  return (function(param) do
       return a + 1 | 0;
     end end);
 end end
@@ -17,7 +17,7 @@ a = String(3);
 
 b = 101;
 
-arr = __Array.init(2, (function (param) do
+arr = __Array.init(2, (function(param) do
         return 0;
       end end));
 
@@ -33,6 +33,7 @@ console.log(--[[ tuple ]]{
 
 c = arr;
 
+exports = {}
 exports.f = f;
 exports.f2 = f2;
 exports.a = a;

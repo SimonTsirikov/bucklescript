@@ -1,10 +1,10 @@
-console.log = print;
+console = {log = print};
 
 
 function f(param) do
   n = 0;
-  while((function () do
-          fib = function (n) do
+  while((function() do
+          fib = function(n) do
             if (n == 0 or n == 1) then do
               return 1;
             end else do
@@ -20,7 +20,7 @@ function f(param) do
 end end
 
 function ff(param) do
-  while((function () do
+  while((function() do
           b = 9;
           return (3 + b | 0) > 10;
         end end)()) do
@@ -29,6 +29,7 @@ function ff(param) do
   return --[[ () ]]0;
 end end
 
+exports = {}
 exports.f = f;
 exports.ff = ff;
 --[[ No side effect ]]

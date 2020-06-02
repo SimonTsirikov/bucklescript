@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Block = require "../../lib/js/block";
@@ -17,7 +17,7 @@ function __throw(loc, x) do
   suites.contents = --[[ :: ]]{
     --[[ tuple ]]{
       loc .. (" id " .. String(test_id.contents)),
-      (function (param) do
+      (function(param) do
           return --[[ ThrowAny ]]Block.__(7, {x});
         end end)
     },
@@ -75,23 +75,24 @@ function cFromJs(param) do
   return Js_mapperRt.revSearchAssert(3, jsMapperConstantArray_1, param);
 end end
 
-__throw("File \"ast_mapper_defensive_test.ml\", line 28, characters 16-23", (function (param) do
+__throw("File \"ast_mapper_defensive_test.ml\", line 28, characters 16-23", (function(param) do
         aFromJs(3);
         return --[[ () ]]0;
       end end));
 
-__throw("File \"ast_mapper_defensive_test.ml\", line 29, characters 15-22", (function (param) do
+__throw("File \"ast_mapper_defensive_test.ml\", line 29, characters 15-22", (function(param) do
         bFromJs(2);
         return --[[ () ]]0;
       end end));
 
-__throw("File \"ast_mapper_defensive_test.ml\", line 30, characters 15-22", (function (param) do
+__throw("File \"ast_mapper_defensive_test.ml\", line 30, characters 15-22", (function(param) do
         cFromJs(33);
         return --[[ () ]]0;
       end end));
 
 Mt.from_pair_suites("Ast_mapper_defensive_test", suites.contents);
 
+exports = {}
 exports.suites = suites;
 exports.test_id = test_id;
 exports.__throw = __throw;

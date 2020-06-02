@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 
 function binarySearch(upper, id, array) do
@@ -116,6 +116,7 @@ function fromIntAssert(len, xs, __enum) do
   end;
 end end
 
+exports = {}
 exports.binarySearch = binarySearch;
 exports.revSearch = revSearch;
 exports.revSearchAssert = revSearchAssert;

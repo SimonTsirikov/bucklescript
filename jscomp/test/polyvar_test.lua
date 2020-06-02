@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 
 ff = "B";
@@ -9,4 +9,5 @@ console.log(--[[ tuple ]]{
       "A"
     });
 
+exports = {}
 --[[  Not a pure module ]]

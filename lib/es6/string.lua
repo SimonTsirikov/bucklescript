@@ -125,7 +125,7 @@ function trim(s) do
 end end
 
 function escaped(s) do
-  needs_escape = function (_i) do
+  needs_escape = function(_i) do
     while(true) do
       i = _i;
       if (i >= #s) then do

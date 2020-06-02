@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Curry = require "./curry";
 Caml_option = require "./caml_option";
@@ -122,6 +122,7 @@ function dynamicPopIter(s, f) do
   return dynamicPopIterU(s, Curry.__1(f));
 end end
 
+exports = {}
 exports.make = make;
 exports.clear = clear;
 exports.copy = copy;

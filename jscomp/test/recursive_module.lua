@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Lazy = require "../../lib/js/lazy";
@@ -24,7 +24,7 @@ function eq(loc, x, y) do
 end end
 
 Xx = do
-  f: (function (prim, prim_1) do
+  f: (function(prim, prim_1) do
       return Caml_external_polyfill.resolve("hfiehi")(prim, prim_1);
     end end)
 end;
@@ -61,7 +61,7 @@ Intb = Caml_module.init_mod(--[[ tuple ]]{
             "a"
           }}}));
 
-a = Caml_obj.caml_lazy_make((function (param) do
+a = Caml_obj.caml_lazy_make((function(param) do
         return CamlinternalLazy.force(Intb.a);
       end end));
 
@@ -72,7 +72,7 @@ Caml_module.update_mod(--[[ Module ]]Block.__(0, {{--[[ tuple ]]{
       a: a
     end);
 
-a_1 = Caml_obj.caml_lazy_make((function (param) do
+a_1 = Caml_obj.caml_lazy_make((function(param) do
         return CamlinternalLazy.force(Inta.a) + 1 | 0;
       end end));
 
@@ -115,7 +115,7 @@ Intb_1 = Caml_module.init_mod(--[[ tuple ]]{
             "a"
           }}}));
 
-a_2 = Caml_obj.caml_lazy_make((function (param) do
+a_2 = Caml_obj.caml_lazy_make((function(param) do
         return CamlinternalLazy.force(Intb_1.a) + 1 | 0;
       end end));
 
@@ -162,6 +162,7 @@ Int32 = --[[ () ]]0;
 
 uuu = Xx.f;
 
+exports = {}
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;

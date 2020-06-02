@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Block = require "../../lib/js/block";
 Curry = require "../../lib/js/curry";
@@ -61,7 +61,7 @@ function Test4($star) do
 end end
 
 function Test5($star) do
-  f = function (x) do
+  f = function(x) do
     return Caml_option.some(x);
   end end;
   Caml_option_1 = { };
@@ -73,7 +73,7 @@ end end
 
 function Test6($star) do
   Caml_option_1 = { };
-  f = function (x) do
+  f = function(x) do
     return Caml_option.some(x);
   end end;
   return do
@@ -91,7 +91,7 @@ end end
 
 function Test8($star) do
   Curry_1 = { };
-  f = function (x) do
+  f = function(x) do
     return Curry._1(x, 1);
   end end;
   return do
@@ -101,7 +101,7 @@ function Test8($star) do
 end end
 
 function Test9($star) do
-  f = function (x) do
+  f = function(x) do
     return Curry._1(x, 1);
   end end;
   Curry_1 = { };
@@ -120,6 +120,7 @@ end end
 
 x = 3;
 
+exports = {}
 exports.eq_A = eq_A;
 exports.Test = Test;
 exports.Test2 = Test2;

@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Caml_option = require "../../lib/js/caml_option";
@@ -28,6 +28,7 @@ end end
 
 Mt.from_pair_suites("gpr_3566_drive_test.ml", suites.contents);
 
+exports = {}
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;

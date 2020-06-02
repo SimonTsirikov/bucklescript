@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Block = require "../../lib/js/block";
@@ -23,7 +23,7 @@ function eq(loc, x, y) do
   suites.contents = --[[ :: ]]{
     --[[ tuple ]]{
       loc .. (" id " .. String(test_id.contents)),
-      (function (param) do
+      (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     x,
                     y
@@ -37,14 +37,14 @@ end end
 
 function fib_init(__class) do
   calc = CamlinternalOO.get_method_label(__class, "calc");
-  CamlinternalOO.set_method(__class, calc, (function (self$1, x) do
+  CamlinternalOO.set_method(__class, calc, (function(self$1, x) do
           if (x == 0 or x == 1) then do
             return 1;
           end else do
             return Curry._2(self$1[0][calc], self$1, x - 1 | 0) + Curry._2(self$1[0][calc], self$1, x - 2 | 0) | 0;
           end end 
         end end));
-  return (function (env, self) do
+  return (function(env, self) do
       return CamlinternalOO.create_object_opt(self, __class);
     end end);
 end end
@@ -58,7 +58,7 @@ function memo_fib_init(__class) do
   inh = CamlinternalOO.inherits(__class, 0, 0, shared, fib, true);
   obj_init = inh[0];
   calc_1 = inh[1];
-  CamlinternalOO.set_method(__class, calc, (function (self$2, x) do
+  CamlinternalOO.set_method(__class, calc, (function(self$2, x) do
           xpcall(function() do
             return Hashtbl.find(self$2[cache], x);
           end end,function(exn) do
@@ -71,7 +71,7 @@ function memo_fib_init(__class) do
             end end 
           end end)
         end end));
-  return (function (env, self) do
+  return (function(env, self) do
       self_1 = CamlinternalOO.create_object_opt(self, __class);
       self_1[cache] = Hashtbl.create(undefined, 31);
       Curry._1(obj_init, self_1);
@@ -87,6 +87,7 @@ eq("File \"class_fib_open_recursion_test.ml\", line 33, characters 5-12", Caml_o
 
 Mt.from_pair_suites("Class_fib_open_recursion_test", suites.contents);
 
+exports = {}
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;

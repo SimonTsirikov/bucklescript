@@ -1,10 +1,10 @@
-console.log = print;
+console = {log = print};
 
 
 u = do
   x: 3,
   y: 32,
-  bark: (function (__this, x, y) do
+  bark: (function(__this, x, y) do
       console.log(--[[ tuple ]]{
             __this.length,
             __this.x,
@@ -25,7 +25,7 @@ end
 js_obj = do
   x: 3,
   y: 32,
-  bark: (function (x, y) do
+  bark: (function(x, y) do
       o = this ;
       console.log(--[[ tuple ]]{
             o.length,
@@ -39,6 +39,7 @@ js_obj = do
   length: 32
 end;
 
+exports = {}
 exports.js_obj = js_obj;
 exports.uux_this = uux_this;
 --[[  Not a pure module ]]

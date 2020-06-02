@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
@@ -11,5 +11,6 @@ error({
   }
 })
 
+exports = {}
 exports.coordinates = coordinates;
 --[[  Not a pure module ]]

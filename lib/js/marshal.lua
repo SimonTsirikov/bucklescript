@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Caml_bytes = require "./caml_bytes";
 Caml_external_polyfill = require "./caml_external_polyfill";
@@ -63,6 +63,7 @@ end end
 
 header_size = 20;
 
+exports = {}
 exports.to_channel = to_channel;
 exports.to_buffer = to_buffer;
 exports.from_channel = from_channel;

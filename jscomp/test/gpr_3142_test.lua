@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Js_mapperRt = require "../../lib/js/js_mapperRt";
@@ -66,6 +66,7 @@ v = tToJs;
 
 u = tFromJs;
 
+exports = {}
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;

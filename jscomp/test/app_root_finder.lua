@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Fs = require "";
 Path = require "";
@@ -30,6 +30,7 @@ if (match ~= undefined) then do
 end
  end 
 
+exports = {}
 exports.package_json = package_json;
 exports.find_package_json = find_package_json;
 --[[ match Not a pure module ]]

@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 
 function test(x, y) do
@@ -19,6 +19,7 @@ function f(x, y) do
         };
 end end
 
+exports = {}
 exports.test = test;
 exports.f = f;
 --[[ No side effect ]]

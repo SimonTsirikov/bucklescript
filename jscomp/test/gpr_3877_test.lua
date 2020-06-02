@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 
 switcher = -299;
@@ -17,5 +17,6 @@ end end  end
 
 httpResponseCode = 201;
 
+exports = {}
 exports.httpResponseCode = httpResponseCode;
 --[[  Not a pure module ]]

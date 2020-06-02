@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 __Array = require "./array";
 
@@ -58,6 +58,7 @@ fast_sort = __Array.fast_sort;
 
 Floatarray = __Array.Floatarray;
 
+exports = {}
 exports.init = init;
 exports.make_matrix = make_matrix;
 exports.create_matrix = create_matrix;

@@ -1,12 +1,12 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Block = require "../../lib/js/block";
 
 suites_000 = --[[ tuple ]]{
   "setTimeout/clearTimeout sanity check",
-  (function (param) do
-      handle = setTimeout((function (param) do
+  (function(param) do
+      handle = setTimeout((function(param) do
               return --[[ () ]]0;
             end end), 0);
       clearTimeout(handle);
@@ -17,8 +17,8 @@ suites_000 = --[[ tuple ]]{
 suites_001 = --[[ :: ]]{
   --[[ tuple ]]{
     "setInerval/clearInterval sanity check",
-    (function (param) do
-        handle = setInterval((function (param) do
+    (function(param) do
+        handle = setInterval((function(param) do
                 return --[[ () ]]0;
               end end), 0);
         clearInterval(handle);
@@ -28,7 +28,7 @@ suites_001 = --[[ :: ]]{
   --[[ :: ]]{
     --[[ tuple ]]{
       "encodeURI",
-      (function (param) do
+      (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     encodeURI("[-=-]"),
                     "%5B-=-%5D"
@@ -38,7 +38,7 @@ suites_001 = --[[ :: ]]{
     --[[ :: ]]{
       --[[ tuple ]]{
         "decodeURI",
-        (function (param) do
+        (function(param) do
             return --[[ Eq ]]Block.__(0, {
                       decodeURI("%5B-=-%5D"),
                       "[-=-]"
@@ -48,7 +48,7 @@ suites_001 = --[[ :: ]]{
       --[[ :: ]]{
         --[[ tuple ]]{
           "encodeURIComponent",
-          (function (param) do
+          (function(param) do
               return --[[ Eq ]]Block.__(0, {
                         encodeURIComponent("[-=-]"),
                         "%5B-%3D-%5D"
@@ -58,7 +58,7 @@ suites_001 = --[[ :: ]]{
         --[[ :: ]]{
           --[[ tuple ]]{
             "decodeURIComponent",
-            (function (param) do
+            (function(param) do
                 return --[[ Eq ]]Block.__(0, {
                           decodeURIComponent("%5B-%3D-%5D"),
                           "[-=-]"
@@ -79,5 +79,6 @@ suites = --[[ :: ]]{
 
 Mt.from_pair_suites("Js_global_test", suites);
 
+exports = {}
 exports.suites = suites;
 --[[  Not a pure module ]]

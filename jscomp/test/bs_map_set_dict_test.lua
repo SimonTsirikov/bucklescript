@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Belt_Id = require "../../lib/js/belt_Id";
@@ -36,7 +36,7 @@ m0 = do
   data: Belt_MapDict.empty
 end;
 
-I2 = Belt_Id.comparable((function (x, y) do
+I2 = Belt_Id.comparable((function(x, y) do
         return Caml_primitive.caml_int_compare(y, x);
       end end));
 
@@ -95,12 +95,12 @@ function f(param) do
 end end
 
 function $eq$tilde(a, b) do
-  return (function (param) do
+  return (function(param) do
       return Belt_Map.eq(a, b, param);
     end end);
 end end
 
-u0 = f(Belt_Array.map(Array_data_util.randomRange(0, 39), (function (x) do
+u0 = f(Belt_Array.map(Array_data_util.randomRange(0, 39), (function(x) do
             return --[[ tuple ]]{
                     x,
                     x
@@ -109,12 +109,12 @@ u0 = f(Belt_Array.map(Array_data_util.randomRange(0, 39), (function (x) do
 
 u1 = Belt_Map.set(u0, 39, 120);
 
-b("File \"bs_map_set_dict_test.ml\", line 77, characters 4-11", Belt_Array.every2(Belt_MapDict.toArray(u0.data), Belt_Array.map(Array_data_util.range(0, 39), (function (x) do
+b("File \"bs_map_set_dict_test.ml\", line 77, characters 4-11", Belt_Array.every2(Belt_MapDict.toArray(u0.data), Belt_Array.map(Array_data_util.range(0, 39), (function(x) do
                 return --[[ tuple ]]{
                         x,
                         x
                       };
-              end end)), (function (param, param_1) do
+              end end)), (function(param, param_1) do
             if (param[0] == param_1[0]) then do
               return param[1] == param_1[1];
             end else do
@@ -122,12 +122,12 @@ b("File \"bs_map_set_dict_test.ml\", line 77, characters 4-11", Belt_Array.every
             end end 
           end end)));
 
-b("File \"bs_map_set_dict_test.ml\", line 82, characters 4-11", Belt_List.every2(Belt_MapDict.toList(u0.data), Belt_List.fromArray(Belt_Array.map(Array_data_util.range(0, 39), (function (x) do
+b("File \"bs_map_set_dict_test.ml\", line 82, characters 4-11", Belt_List.every2(Belt_MapDict.toList(u0.data), Belt_List.fromArray(Belt_Array.map(Array_data_util.range(0, 39), (function(x) do
                     return --[[ tuple ]]{
                             x,
                             x
                           };
-                  end end))), (function (param, param_1) do
+                  end end))), (function(param, param_1) do
             if (param[0] == param_1[0]) then do
               return param[1] == param_1[1];
             end else do
@@ -139,14 +139,14 @@ eq("File \"bs_map_set_dict_test.ml\", line 87, characters 5-12", Belt_Map.get(u0
 
 eq("File \"bs_map_set_dict_test.ml\", line 88, characters 5-12", Belt_Map.get(u1, 39), 120);
 
-u = f(Belt_Array.makeByAndShuffle(10000, (function (x) do
+u = f(Belt_Array.makeByAndShuffle(10000, (function(x) do
             return --[[ tuple ]]{
                     x,
                     x
                   };
           end end)));
 
-eq("File \"bs_map_set_dict_test.ml\", line 94, characters 4-11", Belt_Array.makeBy(10000, (function (x) do
+eq("File \"bs_map_set_dict_test.ml\", line 94, characters 4-11", Belt_Array.makeBy(10000, (function(x) do
             return --[[ tuple ]]{
                     x,
                     x
@@ -175,6 +175,7 @@ ISet = --[[ alias ]]0;
 
 S0 = --[[ alias ]]0;
 
+exports = {}
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;

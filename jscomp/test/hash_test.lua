@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Char = require "../../lib/js/char";
@@ -17,12 +17,12 @@ test_id = do
 end;
 
 function eq(f) do
-  return (function (param, param_1) do
+  return (function(param, param_1) do
       return Mt_global.collect_eq(test_id, suites, f, param, param_1);
     end end);
 end end
 
-test_strings = __Array.init(32, (function (i) do
+test_strings = __Array.init(32, (function(i) do
         c = Char.chr(i);
         return Caml_bytes.bytes_to_string(Bytes.make(i, c));
       end end));
@@ -172,6 +172,7 @@ Mt_global.collect_eq(test_id, suites, "File \"hash_test.ml\", line 39, character
 
 Mt.from_pair_suites("Hash_test", suites.contents);
 
+exports = {}
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;

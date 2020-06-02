@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 
 console.log("list");
@@ -24,4 +24,5 @@ console.log(--[[ tuple ]]{
       "A"
     });
 
+exports = {}
 --[[  Not a pure module ]]

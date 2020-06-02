@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 List = require "../../lib/js/list";
 Curry = require "../../lib/js/curry";
@@ -586,7 +586,7 @@ function find(p, _param) do
 end end
 
 function find_all(p) do
-  return (function (param) do
+  return (function(param) do
       _accu = --[[ [] ]]0;
       _param = param;
       while(true) do
@@ -744,7 +744,7 @@ function chop(_k, _l) do
 end end
 
 function stable_sort(cmp, l) do
-  sort = function (n, l) do
+  sort = function(n, l) do
     if (n ~= 2) then do
       if (n == 3 and l) then do
         match = l[1];
@@ -894,7 +894,7 @@ function stable_sort(cmp, l) do
       end end 
     end;
   end end;
-  rev_sort = function (n, l) do
+  rev_sort = function(n, l) do
     if (n ~= 2) then do
       if (n == 3 and l) then do
         match = l[1];
@@ -1053,7 +1053,7 @@ function stable_sort(cmp, l) do
 end end
 
 function sort_uniq(cmp, l) do
-  sort = function (n, l) do
+  sort = function(n, l) do
     if (n ~= 2) then do
       if (n == 3 and l) then do
         match = l[1];
@@ -1287,7 +1287,7 @@ function sort_uniq(cmp, l) do
       end end 
     end;
   end end;
-  rev_sort = function (n, l) do
+  rev_sort = function(n, l) do
     if (n ~= 2) then do
       if (n == 3 and l) then do
         match = l[1];
@@ -1541,6 +1541,7 @@ sort = stable_sort;
 
 fast_sort = stable_sort;
 
+exports = {}
 exports.u = u;
 exports.length_aux = length_aux;
 exports.length = length;

@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 
 one = do
@@ -154,6 +154,7 @@ i = do
   im: 1.0
 end;
 
+exports = {}
 exports.zero = zero;
 exports.one = one;
 exports.i = i;

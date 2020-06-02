@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Curry = require "./curry";
 Caml_oo = require "./caml_oo";
@@ -40,6 +40,7 @@ function js8(label, cacheid, a0, a1, a2, a3, a4, a5, a6, a7) do
   return Curry._8(Caml_oo.caml_get_public_method(a0, label, cacheid), a0, a1, a2, a3, a4, a5, a6, a7);
 end end
 
+exports = {}
 exports.js = js;
 exports.js1 = js1;
 exports.js2 = js2;

@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Curry = require "../../lib/js/curry";
 Caml_option = require "../../lib/js/caml_option";
@@ -1018,6 +1018,7 @@ function assertion_test(param) do
   return --[[ () ]]0;
 end end
 
+exports = {}
 exports.IntMap = IntMap;
 exports.assertion_test = assertion_test;
 --[[ No side effect ]]

@@ -50,7 +50,7 @@ end;
 function from_function(f) do
   partial_arg = Caml_bytes.caml_create_bytes(512);
   return do
-          refill_buff: (function (param) do
+          refill_buff: (function(param) do
               read_fun = f;
               aux_buffer = partial_arg;
               lexbuf = param;
@@ -107,14 +107,14 @@ function from_function(f) do
 end end
 
 function from_channel(ic) do
-  return from_function((function (buf, n) do
+  return from_function((function(buf, n) do
                 return Pervasives.input(ic, buf, 0, n);
               end end));
 end end
 
 function from_string(s) do
   return do
-          refill_buff: (function (lexbuf) do
+          refill_buff: (function(lexbuf) do
               lexbuf.lex_eof_reached = true;
               return --[[ () ]]0;
             end end),

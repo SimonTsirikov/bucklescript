@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 __Array = require "../../lib/js/array";
@@ -6,7 +6,7 @@ Block = require "../../lib/js/block";
 Caml_array = require "../../lib/js/caml_array";
 
 function f(param) do
-  f_1 = function (_acc, _n) do
+  f_1 = function(_acc, _n) do
     while(true) do
       n = _n;
       acc = _acc;
@@ -28,7 +28,7 @@ end end
 
 suites_000 = --[[ tuple ]]{
   "acc",
-  (function (param) do
+  (function(param) do
       return --[[ Eq ]]Block.__(0, {
                 f(--[[ () ]]0),
                 {
@@ -50,7 +50,7 @@ suites_000 = --[[ tuple ]]{
 suites_001 = --[[ :: ]]{
   --[[ tuple ]]{
     "array_to_list",
-    (function (param) do
+    (function(param) do
         return --[[ Eq ]]Block.__(0, {
                   --[[ :: ]]{
                     1,
@@ -80,6 +80,7 @@ suites = --[[ :: ]]{
 
 Mt.from_pair_suites("Tailcall_inline_test", suites);
 
+exports = {}
 exports.f = f;
 exports.suites = suites;
 --[[  Not a pure module ]]

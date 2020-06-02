@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Curry = require "./curry";
 Caml_builtin_exceptions = require "./caml_builtin_exceptions";
@@ -28,7 +28,7 @@ function merge(order, l1, l2) do
 end end
 
 function list(order, l) do
-  initlist = function (param) do
+  initlist = function(param) do
     if (param) then do
       match = param[1];
       e = param[0];
@@ -63,7 +63,7 @@ function list(order, l) do
       return --[[ [] ]]0;
     end end 
   end end;
-  merge2 = function (x) do
+  merge2 = function(x) do
     if (x) then do
       match = x[1];
       if (match) then do
@@ -102,7 +102,7 @@ function swap(arr, i, j) do
 end end
 
 function array(cmp, arr) do
-  qsort = function (_lo, _hi) do
+  qsort = function(_lo, _hi) do
     while(true) do
       hi = _hi;
       lo = _lo;
@@ -175,6 +175,7 @@ function array(cmp, arr) do
   return --[[ () ]]0;
 end end
 
+exports = {}
 exports.list = list;
 exports.array = array;
 exports.merge = merge;

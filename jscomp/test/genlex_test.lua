@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 List = require "../../lib/js/list";
@@ -56,7 +56,7 @@ end end
 
 suites_000 = --[[ tuple ]]{
   "lexer_stream_genlex",
-  (function (param) do
+  (function(param) do
       return --[[ Eq ]]Block.__(0, {
                 --[[ :: ]]{
                   --[[ Int ]]Block.__(2, {3}),
@@ -92,6 +92,7 @@ suites = --[[ :: ]]{
 
 Mt.from_pair_suites("Genlex_test", suites);
 
+exports = {}
 exports.lexer = lexer;
 exports.to_list = to_list;
 exports.suites = suites;

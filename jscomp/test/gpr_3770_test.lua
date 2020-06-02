@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 
 function show(param) do
@@ -10,5 +10,6 @@ function show(param) do
   return String(a) .. String(param[1]);
 end end
 
+exports = {}
 exports.show = show;
 --[[ No side effect ]]

@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 List = require "../../lib/js/list";
@@ -23,7 +23,7 @@ function eq(loc, x, y) do
   suites.contents = --[[ :: ]]{
     --[[ tuple ]]{
       loc .. (" id " .. String(test_id.contents)),
-      (function (param) do
+      (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     x,
                     y
@@ -101,7 +101,7 @@ eq("File \"format_test.ml\", line 62, characters 5-12", (1 + 4095 / 4096) * 8, 1
 eq("File \"format_test.ml\", line 65, characters 5-12", (1 + 65535 / 65536) * 8, 15.9998779296875);
 
 function f(loc, ls) do
-  return List.iter((function (param) do
+  return List.iter((function(param) do
                 return eq(loc, Caml_format.caml_float_of_string(param[0]), param[1]);
               end end), ls);
 end end
@@ -139,7 +139,7 @@ function sl(f) do
 end end
 
 function aux_list(loc, ls) do
-  return List.iter((function (param) do
+  return List.iter((function(param) do
                 return eq(loc, sl(param[0]), param[1]);
               end end), ls);
 end end
@@ -225,7 +225,7 @@ function scan_float(loc, s, expect) do
                       --[[ End_of_format ]]0
                     }),
                   "%h"
-                }), (function (result) do
+                }), (function(result) do
                 return eq(loc, result, expect);
               end end));
 end end
@@ -234,12 +234,13 @@ scan_float("File \"format_test.ml\", line 118, characters 13-20", "0x3f.p1", 126
 
 scan_float("File \"format_test.ml\", line 119, characters 13-20", "0x1.3333333333333p-2", 0.3);
 
-List.iter((function (param) do
+List.iter((function(param) do
         return scan_float("File \"format_test.ml\", line 121, characters 13-20", param[1], param[0]);
       end end), literals);
 
 Mt.from_pair_suites("Format_test", suites.contents);
 
+exports = {}
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;

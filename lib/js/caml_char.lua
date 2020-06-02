@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 
 function caml_is_printable(c) do
@@ -9,5 +9,6 @@ function caml_is_printable(c) do
   end end 
 end end
 
+exports = {}
 exports.caml_is_printable = caml_is_printable;
 --[[ No side effect ]]

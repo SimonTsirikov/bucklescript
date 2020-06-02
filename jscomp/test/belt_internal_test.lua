@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 
 function treeHeight(n) do
@@ -27,6 +27,7 @@ function copy(n) do
   end end 
 end end
 
+exports = {}
 exports.treeHeight = treeHeight;
 exports.copy = copy;
 --[[ No side effect ]]

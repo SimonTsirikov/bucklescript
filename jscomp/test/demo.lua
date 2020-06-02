@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 UI = require "";
 Curry = require "../../lib/js/curry";
@@ -23,8 +23,8 @@ data = {
 function ui_layout(compile, lookup, appContext) do
   init = Curry._1(compile, "bid  - ask");
   computeFunction = do
-    contents: (function (env) do
-        return Curry._1(init, (function (key) do
+    contents: (function(env) do
+        return Curry._1(init, (function(key) do
                       return Curry._2(lookup, env, key);
                     end end));
       end end)
@@ -46,7 +46,7 @@ function ui_layout(compile, lookup, appContext) do
   stackPanel.addChild(grid);
   stackPanel.addChild(inputCode);
   stackPanel.addChild(button);
-  mk_titleRow = function (text) do
+  mk_titleRow = function(text) do
     return do
             label: do
               text: text
@@ -89,11 +89,11 @@ function ui_layout(compile, lookup, appContext) do
   inputCode.minHeight = 100;
   button.text = "update formula";
   button.minHeight = 20;
-  button.on("click", (function (_event) do
+  button.on("click", (function(_event) do
           xpcall(function() do
             hot_function = Curry._1(compile, inputCode.text);
-            computeFunction.contents = (function (env) do
-                return Curry._1(hot_function, (function (key) do
+            computeFunction.contents = (function(env) do
+                return Curry._1(hot_function, (function(key) do
                               return Curry._2(lookup, env, key);
                             end end));
               end end);
@@ -102,8 +102,8 @@ function ui_layout(compile, lookup, appContext) do
             return --[[ () ]]0;
           end end)
         end end));
-  Runtime.setInterval((function () do
-          grid.dataSource = Array.prototype.map.call(data, (function (param) do
+  Runtime.setInterval((function() do
+          grid.dataSource = Array.prototype.map.call(data, (function(param) do
                   price = param.price;
                   bid = price + 20 * Math.random();
                   ask = price + 20 * Math.random();
@@ -123,6 +123,7 @@ function ui_layout(compile, lookup, appContext) do
   return hw1;
 end end
 
+exports = {}
 exports.data = data;
 exports.ui_layout = ui_layout;
 --[[ @ui Not a pure module ]]

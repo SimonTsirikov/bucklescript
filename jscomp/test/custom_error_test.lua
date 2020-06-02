@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Js_exn = require "../../lib/js/js_exn";
 Caml_option = require "../../lib/js/caml_option";
@@ -63,6 +63,7 @@ function example2(param) do
   end end)
 end end
 
+exports = {}
 exports.test_js_error = test_js_error;
 exports.test_js_error2 = test_js_error2;
 exports.example1 = example1;

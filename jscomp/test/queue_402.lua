@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Curry = require "../../lib/js/curry";
 Caml_obj = require "../../lib/js/caml_obj";
@@ -78,7 +78,7 @@ function copy(q) do
           content: tail.content,
           next: tail$prime
         end);
-    copy_1 = function (_prev, _cell) do
+    copy_1 = function(_prev, _cell) do
       while(true) do
         cell = _cell;
         prev = _prev;
@@ -180,6 +180,7 @@ top = peek;
 
 pop = take;
 
+exports = {}
 exports.Empty = Empty;
 exports.create = create;
 exports.clear = clear;

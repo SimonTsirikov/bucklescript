@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 
 function make(f) do
@@ -9,6 +9,7 @@ function from(t) do
   return t;
 end end
 
+exports = {}
 exports.make = make;
 exports.from = from;
 --[[ No side effect ]]

@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 __Array = require "../../lib/js/array";
 Curry = require "../../lib/js/curry";
@@ -23,7 +23,7 @@ function for_3(x) do
   v = do
     contents: 0
   end;
-  arr = __Array.map((function (param, param_1) do
+  arr = __Array.map((function(param, param_1) do
           return --[[ () ]]0;
         end end), x);
   for i = 0 , #x , 1 do
@@ -33,9 +33,9 @@ function for_3(x) do
           v.contents = v.contents + j | 0;
           return --[[ () ]]0;
         end end
-        end(j)));
+        end end)(j));
   end
-  __Array.iter((function (x) do
+  __Array.iter((function(x) do
           return Curry._1(x, --[[ () ]]0);
         end end), arr);
   return v.contents;
@@ -45,7 +45,7 @@ function for_4(x) do
   v = do
     contents: 0
   end;
-  arr = __Array.map((function (param, param_1) do
+  arr = __Array.map((function(param, param_1) do
           return --[[ () ]]0;
         end end), x);
   for i = 0 , #x , 1 do
@@ -56,9 +56,9 @@ function for_4(x) do
           v.contents = v.contents + k | 0;
           return --[[ () ]]0;
         end end
-        end(k)));
+        end end)(k));
   end
-  __Array.iter((function (x) do
+  __Array.iter((function(x) do
           return Curry._1(x, --[[ () ]]0);
         end end), arr);
   return v.contents;
@@ -68,7 +68,7 @@ function for_5(x, u) do
   v = do
     contents: 0
   end;
-  arr = __Array.map((function (param, param_1) do
+  arr = __Array.map((function(param, param_1) do
           return --[[ () ]]0;
         end end), x);
   for i = 0 , #x , 1 do
@@ -78,9 +78,9 @@ function for_5(x, u) do
           v.contents = v.contents + k | 0;
           return --[[ () ]]0;
         end end
-        end(k)));
+        end end)(k));
   end
-  __Array.iter((function (x) do
+  __Array.iter((function(x) do
           return Curry._1(x, --[[ () ]]0);
         end end), arr);
   return v.contents;
@@ -90,7 +90,7 @@ function for_6(x, u) do
   v = do
     contents: 0
   end;
-  arr = __Array.map((function (param, param_1) do
+  arr = __Array.map((function(param, param_1) do
           return --[[ () ]]0;
         end end), x);
   v4 = do
@@ -105,7 +105,7 @@ function for_6(x, u) do
     v2 = do
       contents: 0
     end;
-    (function(v2)do
+    (function(v2) do
     for i = 0 , #x , 1 do
       k = Caml_int32.imul((u << 1), u);
       h = (v5.contents << 1);
@@ -115,16 +115,17 @@ function for_6(x, u) do
             v.contents = (((((v.contents + k | 0) + v2.contents | 0) + u | 0) + v4.contents | 0) + v5.contents | 0) + h | 0;
             return --[[ () ]]0;
           end end
-          end(k,h)));
+          end end)(k,h));
     end
     end(v2));
   end
-  __Array.iter((function (x) do
+  __Array.iter((function(x) do
           return Curry._1(x, --[[ () ]]0);
         end end), arr);
   return v.contents;
 end end
 
+exports = {}
 exports.for_ = for_;
 exports.for_2 = for_2;
 exports.for_3 = for_3;

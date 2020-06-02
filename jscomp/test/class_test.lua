@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Block = require "../../lib/js/block";
@@ -20,16 +20,16 @@ function point_init(__class) do
   x = ids[2];
   CamlinternalOO.set_methods(__class, {
         get_x,
-        (function (self$1) do
+        (function(self$1) do
             return self$1[x];
           end end),
         move,
-        (function (self$1, d) do
+        (function(self$1, d) do
             self$1[x] = self$1[x] + d | 0;
             return --[[ () ]]0;
           end end)
       });
-  return (function (env, self) do
+  return (function(env, self) do
       self_1 = CamlinternalOO.create_object_opt(self, __class);
       self_1[x] = 0;
       return self_1;
@@ -57,16 +57,16 @@ function point2_init(__class) do
   x = ids[2];
   CamlinternalOO.set_methods(__class, {
         get_x,
-        (function (self$2) do
+        (function(self$2) do
             return self$2[x];
           end end),
         move,
-        (function (self$2, d) do
+        (function(self$2, d) do
             self$2[x] = self$2[x] + d | 0;
             return --[[ () ]]0;
           end end)
       });
-  return (function (env, self) do
+  return (function(env, self) do
       self_1 = CamlinternalOO.create_object_opt(self, __class);
       x0.contents = x0.contents + 1 | 0;
       self_1[x] = x0.contents;
@@ -86,7 +86,7 @@ two = Caml_oo_curry.js1(291546447, 5, tmp_1);
 
 u = do
   x: 3,
-  getX: (function () do
+  getX: (function() do
       self = this ;
       return self.x; end
     end)
@@ -95,7 +95,7 @@ end;
 Mt.from_pair_suites("Class_test", --[[ :: ]]{
       --[[ tuple ]]{
         "File \"class_test.ml\", line 38, characters 4-11",
-        (function (param) do
+        (function(param) do
             return --[[ Eq ]]Block.__(0, {
                       zero,
                       0
@@ -105,7 +105,7 @@ Mt.from_pair_suites("Class_test", --[[ :: ]]{
       --[[ :: ]]{
         --[[ tuple ]]{
           "File \"class_test.ml\", line 39, characters 4-11",
-          (function (param) do
+          (function(param) do
               return --[[ Eq ]]Block.__(0, {
                         three,
                         3
@@ -115,7 +115,7 @@ Mt.from_pair_suites("Class_test", --[[ :: ]]{
         --[[ :: ]]{
           --[[ tuple ]]{
             "File \"class_test.ml\", line 40, characters 4-11",
-            (function (param) do
+            (function(param) do
                 return --[[ Eq ]]Block.__(0, {
                           one,
                           1
@@ -125,7 +125,7 @@ Mt.from_pair_suites("Class_test", --[[ :: ]]{
           --[[ :: ]]{
             --[[ tuple ]]{
               "File \"class_test.ml\", line 41, characters 4-11",
-              (function (param) do
+              (function(param) do
                   return --[[ Eq ]]Block.__(0, {
                             two,
                             2
@@ -138,6 +138,7 @@ Mt.from_pair_suites("Class_test", --[[ :: ]]{
       }
     });
 
+exports = {}
 exports.point = point;
 exports.p = p;
 exports.zero = zero;

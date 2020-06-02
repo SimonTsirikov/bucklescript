@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Block = require "../../lib/js/block";
 Curry = require "../../lib/js/curry";
@@ -17,14 +17,13 @@ function foo(param) do
   end else do
     local ___conditional___=(param.tag | 0);
     do
-       if ___conditional___ = 0--[[ B ]] then do
-          return param[0];end end end 
-       if ___conditional___ = 1--[[ C ]] then do
-          return param[0] + param[1] | 0;end end end 
-       if ___conditional___ = 2--[[ D ]] then do
+       if ___conditional___ == 0--[[ B ]] then do
+          return param[0]; end end 
+       if ___conditional___ == 1--[[ C ]] then do
+          return param[0] + param[1] | 0; end end 
+       if ___conditional___ == 2--[[ D ]] then do
           match = param[0];
-          return match[0] + match[1] | 0;end end end 
-       do
+          return match[0] + match[1] | 0; end end 
       
     end
   end end 
@@ -49,16 +48,13 @@ end end
 function switchNum(param) do
   local ___conditional___=(param);
   do
-     if ___conditional___ = 0 then do
-        return "0";end end end 
-     if ___conditional___ = 1 then do
-        return "1";end end end 
-     if ___conditional___ = 2 then do
-        return "2";end end end 
-     do
-    else do
-      return "_";
-      end end
+     if ___conditional___ == 0 then do
+        return "0"; end end 
+     if ___conditional___ == 1 then do
+        return "1"; end end 
+     if ___conditional___ == 2 then do
+        return "2"; end end 
+    return "_";
       
   end
 end end
@@ -73,7 +69,7 @@ Path = do
 end;
 
 function Make(M) do
-  find = function (x) do
+  find = function(x) do
     return --[[ () ]]0;
   end end;
   return do
@@ -96,12 +92,11 @@ function rollback_path(subst, p) do
     if (exn == Caml_builtin_exceptions.not_found) then do
       local ___conditional___=(p.tag | 0);
       do
-         if ___conditional___ = 1--[[ Pdot ]] then do
-            return "Pdot";end end end 
-         if ___conditional___ = 0--[[ Pident ]]
-         or ___conditional___ = 2--[[ Papply ]] then do
-            return "Pident | Papply";end end end 
-         do
+         if ___conditional___ == 1--[[ Pdot ]] then do
+            return "Pdot"; end end 
+         if ___conditional___ == 0--[[ Pident ]]
+         or ___conditional___ == 2--[[ Papply ]] then do
+            return "Pident | Papply"; end end 
         
       end
     end else do
@@ -158,6 +153,7 @@ d = --[[ D ]]Block.__(2, {--[[ tuple ]]{
       2
     }});
 
+exports = {}
 exports.a1 = a1;
 exports.a2 = a2;
 exports.b = b;

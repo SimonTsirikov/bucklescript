@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 
 a = do
@@ -15,5 +15,6 @@ a = do
   }
 end;
 
+exports = {}
 exports.a = a;
 --[[ No side effect ]]

@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 List = require "../../lib/js/list";
 Block = require "../../lib/js/block";
@@ -95,13 +95,13 @@ function string_of_rank(param) do
 end end
 
 function find_ticker_by_name(all_tickers, ticker) do
-  return List.find((function (param) do
+  return List.find((function(param) do
                 return param.ticker_name == ticker;
               end end), all_tickers);
 end end
 
 function print_all_composite(all_tickers) do
-  return List.iter((function (param) do
+  return List.iter((function(param) do
                 if (param.type_) then do
                   console.log(param.ticker_name);
                   return --[[ () ]]0;
@@ -1114,8 +1114,8 @@ Ticker_map = do
 end;
 
 function compute_update_sequences(all_tickers) do
-  List.fold_left((function (counter, ticker) do
-          loop = function (counter, ticker) do
+  List.fold_left((function(counter, ticker) do
+          loop = function(counter, ticker) do
             rank = ticker.rank;
             if (typeof rank == "number" and rank == 0) then do
               ticker.rank = --[[ Visited ]]1;
@@ -1138,9 +1138,9 @@ function compute_update_sequences(all_tickers) do
           end end;
           return loop(counter, ticker);
         end end), 0, all_tickers);
-  map = List.fold_left((function (map, ticker) do
+  map = List.fold_left((function(map, ticker) do
           if (ticker.type_) then do
-            loop = function (_up, _map, _ticker) do
+            loop = function(_up, _map, _ticker) do
               while(true) do
                 ticker = _ticker;
                 map = _map;
@@ -1174,8 +1174,8 @@ function compute_update_sequences(all_tickers) do
                       }, map);
           end end 
         end end), --[[ Empty ]]0, List.rev(all_tickers));
-  return fold((function (k, l, map) do
-                l_1 = List.sort_uniq((function (lhs, rhs) do
+  return fold((function(k, l, map) do
+                l_1 = List.sort_uniq((function(lhs, rhs) do
                         match = lhs.rank;
                         if (typeof match == "number") then do
                           error({
@@ -1200,7 +1200,7 @@ end end
 
 function process_quote(ticker_map, new_ticker, new_value) do
   update_sequence = find(new_ticker, ticker_map);
-  return List.iter((function (ticker) do
+  return List.iter((function(ticker) do
                 match = ticker.type_;
                 if (match) then do
                   match_1 = match[0];
@@ -1229,7 +1229,7 @@ function process_quote(ticker_map, new_ticker, new_value) do
 end end
 
 function process_input_line(ticker_map, all_tickers, line) do
-  make_binary_op = function (ticker_name, lhs, rhs, op) do
+  make_binary_op = function(ticker_name, lhs, rhs, op) do
     lhs_1 = find_ticker_by_name(all_tickers, lhs);
     rhs_1 = find_ticker_by_name(all_tickers, rhs);
     return do
@@ -1247,7 +1247,7 @@ function process_input_line(ticker_map, all_tickers, line) do
   if (tokens) then do
     local ___conditional___=(tokens[0]);
     do
-       if ___conditional___ = "Q" then do
+       if ___conditional___ == "Q" then do
           match = tokens[1];
           if (match) then do
             match_1 = match[1];
@@ -1277,8 +1277,8 @@ function process_input_line(ticker_map, all_tickers, line) do
               Caml_builtin_exceptions.failure,
               "Invalid input line"
             })
-          end end end end end 
-       if ___conditional___ = "R" then do
+          end end  end end 
+       if ___conditional___ == "R" then do
           match_2 = tokens[1];
           if (match_2) then do
             match_3 = match_2[1];
@@ -1286,7 +1286,7 @@ function process_input_line(ticker_map, all_tickers, line) do
               ticker_name = match_2[0];
               local ___conditional___=(match_3[0]);
               do
-                 if ___conditional___ = "+" then do
+                 if ___conditional___ == "+" then do
                     match_4 = match_3[1];
                     if (match_4) then do
                       match_5 = match_4[1];
@@ -1316,8 +1316,8 @@ function process_input_line(ticker_map, all_tickers, line) do
                         Caml_builtin_exceptions.failure,
                         "Invalid input line"
                       })
-                    end end end end end 
-                 if ___conditional___ = "-" then do
+                    end end  end end 
+                 if ___conditional___ == "-" then do
                     match_6 = match_3[1];
                     if (match_6) then do
                       match_7 = match_6[1];
@@ -1347,8 +1347,8 @@ function process_input_line(ticker_map, all_tickers, line) do
                         Caml_builtin_exceptions.failure,
                         "Invalid input line"
                       })
-                    end end end end end 
-                 if ___conditional___ = "S" then do
+                    end end  end end 
+                 if ___conditional___ == "S" then do
                     if (match_3[1]) then do
                       error({
                         Caml_builtin_exceptions.failure,
@@ -1367,14 +1367,11 @@ function process_input_line(ticker_map, all_tickers, line) do
                               all_tickers
                             },
                             ticker_map
-                          };end end end 
-                 do
-                else do
-                  error({
+                          }; end end 
+                error({
                     Caml_builtin_exceptions.failure,
                     "Invalid input line"
                   })
-                  end end
                   
               end
             end else do
@@ -1388,14 +1385,11 @@ function process_input_line(ticker_map, all_tickers, line) do
               Caml_builtin_exceptions.failure,
               "Invalid input line"
             })
-          end end end end end 
-       do
-      else do
-        error({
+          end end  end end 
+      error({
           Caml_builtin_exceptions.failure,
           "Invalid input line"
         })
-        end end
         
     end
   end else do
@@ -1450,6 +1444,7 @@ lines = --[[ :: ]]{
   }
 };
 
+exports = {}
 exports.Util = Util;
 exports.string_of_rank = string_of_rank;
 exports.find_ticker_by_name = find_ticker_by_name;

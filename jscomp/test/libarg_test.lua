@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Arg = require "../../lib/js/arg";
@@ -17,7 +17,7 @@ accum = do
 end;
 
 function record(fmt) do
-  return Printf.kprintf((function (s) do
+  return Printf.kprintf((function(s) do
                 accum.contents = --[[ :: ]]{
                   s,
                   accum.contents
@@ -431,7 +431,7 @@ function test(argv) do
     }
   };
   if (Caml_obj.caml_notequal(result, reference)) then do
-    f = function (x, y) do
+    f = function(x, y) do
       return Curry._3(Printf.printf(--[[ Format ]]{
                       --[[ String ]]Block.__(2, {
                           --[[ Lit_padding ]]Block.__(0, {
@@ -476,6 +476,7 @@ Mt.from_pair_suites("Libarg_test", --[[ [] ]]0);
 
 suites = --[[ [] ]]0;
 
+exports = {}
 exports.current = current;
 exports.accum = accum;
 exports.record = record;

@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 List = require "../../lib/js/list";
@@ -11,7 +11,7 @@ end end
 Mt.from_pair_suites("Es6_module_test", --[[ :: ]]{
       --[[ tuple ]]{
         "list_length",
-        (function (param) do
+        (function(param) do
             return --[[ Eq ]]Block.__(0, {
                       List.length(--[[ :: ]]{
                             1,
@@ -27,7 +27,7 @@ Mt.from_pair_suites("Es6_module_test", --[[ :: ]]{
       --[[ :: ]]{
         --[[ tuple ]]{
           "length",
-          (function (param) do
+          (function(param) do
               return --[[ Eq ]]Block.__(0, {
                         3,
                         3
@@ -38,5 +38,6 @@ Mt.from_pair_suites("Es6_module_test", --[[ :: ]]{
       }
     });
 
+exports = {}
 exports.length = length;
 --[[  Not a pure module ]]

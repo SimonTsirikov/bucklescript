@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 
 function f(param) do
@@ -18,6 +18,7 @@ b = match[1];
 
 c = match[2];
 
+exports = {}
 exports.f = f;
 exports.a = a;
 exports.b = b;

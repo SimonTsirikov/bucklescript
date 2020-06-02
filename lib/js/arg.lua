@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Sys = require "./sys";
 List = require "./list";
@@ -56,7 +56,7 @@ end end
 
 function make_symlist(prefix, sep, suffix, l) do
   if (l) then do
-    return List.fold_left((function (x, y) do
+    return List.fold_left((function(x, y) do
                   return x .. (sep .. y);
                 end end), prefix .. l[0], l[1]) .. suffix;
   end else do
@@ -122,7 +122,7 @@ function usage_b(buf, speclist, errmsg) do
               }),
             "%s\n"
           }), errmsg);
-  return List.iter((function (param) do
+  return List.iter((function(param) do
                 buf_1 = buf;
                 param_1 = param;
                 doc = param_1[2];
@@ -240,20 +240,19 @@ end end
 
 function parse_and_expand_argv_dynamic_aux(allow_expand, current, argv, speclist, anonfun, errmsg) do
   initpos = current.contents;
-  convert_error = function (error) do
+  convert_error = function(error) do
     b = __Buffer.create(200);
     progname = initpos < #argv.contents and Caml_array.caml_array_get(argv.contents, initpos) or "(?)";
     local ___conditional___=(error.tag | 0);
     do
-       if ___conditional___ = 0--[[ Unknown ]] then do
+       if ___conditional___ == 0--[[ Unknown ]] then do
           s = error[0];
           local ___conditional___=(s);
           do
-             if ___conditional___ = "--help"
-             or ___conditional___ = "-help"
-             do end
-            else do
-              Curry._2(Printf.bprintf(b, --[[ Format ]]{
+             if ___conditional___ == "--help"
+             or ___conditional___ == "-help"
+             end
+            Curry._2(Printf.bprintf(b, --[[ Format ]]{
                         --[[ String ]]Block.__(2, {
                             --[[ No_padding ]]0,
                             --[[ String_literal ]]Block.__(11, {
@@ -269,10 +268,9 @@ function parse_and_expand_argv_dynamic_aux(allow_expand, current, argv, speclist
                           }),
                         "%s: unknown option '%s'.\n"
                       }), progname, s);
-              end end
               
-          endend else 
-       if ___conditional___ = 1--[[ Wrong ]] then do
+          end end else 
+       if ___conditional___ == 1--[[ Wrong ]] then do
           Curry._4(Printf.bprintf(b, --[[ Format ]]{
                     --[[ String ]]Block.__(2, {
                         --[[ No_padding ]]0,
@@ -300,8 +298,8 @@ function parse_and_expand_argv_dynamic_aux(allow_expand, current, argv, speclist
                           })
                       }),
                     "%s: wrong argument '%s'; option '%s' expects %s.\n"
-                  }), progname, error[1], error[0], error[2]);end else 
-       if ___conditional___ = 2--[[ Missing ]] then do
+                  }), progname, error[1], error[0], error[2]); end else 
+       if ___conditional___ == 2--[[ Missing ]] then do
           Curry._2(Printf.bprintf(b, --[[ Format ]]{
                     --[[ String ]]Block.__(2, {
                         --[[ No_padding ]]0,
@@ -317,8 +315,8 @@ function parse_and_expand_argv_dynamic_aux(allow_expand, current, argv, speclist
                           })
                       }),
                     "%s: option '%s' needs an argument.\n"
-                  }), progname, error[0]);end else 
-       if ___conditional___ = 3--[[ Message ]] then do
+                  }), progname, error[0]); end else 
+       if ___conditional___ == 3--[[ Message ]] then do
           Curry._2(Printf.bprintf(b, --[[ Format ]]{
                     --[[ String ]]Block.__(2, {
                         --[[ No_padding ]]0,
@@ -334,8 +332,8 @@ function parse_and_expand_argv_dynamic_aux(allow_expand, current, argv, speclist
                           })
                       }),
                     "%s: %s.\n"
-                  }), progname, error[0]);end else 
-       do end end end end end
+                  }), progname, error[0]); end else 
+       end end end end end end end end
       
     end
     usage_b(b, speclist.contents, errmsg);
@@ -400,7 +398,7 @@ function parse_and_expand_argv_dynamic_aux(allow_expand, current, argv, speclist
             return --[[ () ]]0;
           end end 
         end end
-        end(s,follow));
+        end end)(s,follow);
         get_arg = (function(s,follow)do
         return function get_arg(param) do
           if (follow ~= undefined) then do
@@ -414,7 +412,7 @@ function parse_and_expand_argv_dynamic_aux(allow_expand, current, argv, speclist
             })
           end end  end 
         end end
-        end(s,follow));
+        end end)(s,follow);
         consume_arg = (function(follow)do
         return function consume_arg(param) do
           if (follow ~= undefined) then do
@@ -424,14 +422,14 @@ function parse_and_expand_argv_dynamic_aux(allow_expand, current, argv, speclist
             return --[[ () ]]0;
           end end 
         end end
-        end(follow));
+        end end)(follow);
         treat_action = (function(s)do
         return function treat_action(param) do
           local ___conditional___=(param.tag | 0);
           do
-             if ___conditional___ = 0--[[ Unit ]] then do
-                return Curry._1(param[0], --[[ () ]]0);end end end 
-             if ___conditional___ = 1--[[ Bool ]] then do
+             if ___conditional___ == 0--[[ Unit ]] then do
+                return Curry._1(param[0], --[[ () ]]0); end end 
+             if ___conditional___ == 1--[[ Bool ]] then do
                 arg = get_arg(--[[ () ]]0);
                 match = bool_of_string_opt(arg);
                 if (match ~= undefined) then do
@@ -446,23 +444,23 @@ function parse_and_expand_argv_dynamic_aux(allow_expand, current, argv, speclist
                       })
                   })
                 end end 
-                return consume_arg(--[[ () ]]0);end end end 
-             if ___conditional___ = 2--[[ Set ]] then do
+                return consume_arg(--[[ () ]]0); end end 
+             if ___conditional___ == 2--[[ Set ]] then do
                 no_arg(--[[ () ]]0);
                 param[0].contents = true;
-                return --[[ () ]]0;end end end 
-             if ___conditional___ = 3--[[ Clear ]] then do
+                return --[[ () ]]0; end end 
+             if ___conditional___ == 3--[[ Clear ]] then do
                 no_arg(--[[ () ]]0);
                 param[0].contents = false;
-                return --[[ () ]]0;end end end 
-             if ___conditional___ = 4--[[ String ]] then do
+                return --[[ () ]]0; end end 
+             if ___conditional___ == 4--[[ String ]] then do
                 arg_1 = get_arg(--[[ () ]]0);
                 Curry._1(param[0], arg_1);
-                return consume_arg(--[[ () ]]0);end end end 
-             if ___conditional___ = 5--[[ Set_string ]] then do
+                return consume_arg(--[[ () ]]0); end end 
+             if ___conditional___ == 5--[[ Set_string ]] then do
                 param[0].contents = get_arg(--[[ () ]]0);
-                return consume_arg(--[[ () ]]0);end end end 
-             if ___conditional___ = 6--[[ Int ]] then do
+                return consume_arg(--[[ () ]]0); end end 
+             if ___conditional___ == 6--[[ Int ]] then do
                 arg_2 = get_arg(--[[ () ]]0);
                 match_1 = int_of_string_opt(arg_2);
                 if (match_1 ~= undefined) then do
@@ -477,8 +475,8 @@ function parse_and_expand_argv_dynamic_aux(allow_expand, current, argv, speclist
                       })
                   })
                 end end 
-                return consume_arg(--[[ () ]]0);end end end 
-             if ___conditional___ = 7--[[ Set_int ]] then do
+                return consume_arg(--[[ () ]]0); end end 
+             if ___conditional___ == 7--[[ Set_int ]] then do
                 arg_3 = get_arg(--[[ () ]]0);
                 match_2 = int_of_string_opt(arg_3);
                 if (match_2 ~= undefined) then do
@@ -493,8 +491,8 @@ function parse_and_expand_argv_dynamic_aux(allow_expand, current, argv, speclist
                       })
                   })
                 end end 
-                return consume_arg(--[[ () ]]0);end end end 
-             if ___conditional___ = 8--[[ Float ]] then do
+                return consume_arg(--[[ () ]]0); end end 
+             if ___conditional___ == 8--[[ Float ]] then do
                 arg_4 = get_arg(--[[ () ]]0);
                 match_3 = float_of_string_opt(arg_4);
                 if (match_3 ~= undefined) then do
@@ -509,8 +507,8 @@ function parse_and_expand_argv_dynamic_aux(allow_expand, current, argv, speclist
                       })
                   })
                 end end 
-                return consume_arg(--[[ () ]]0);end end end 
-             if ___conditional___ = 9--[[ Set_float ]] then do
+                return consume_arg(--[[ () ]]0); end end 
+             if ___conditional___ == 9--[[ Set_float ]] then do
                 arg_5 = get_arg(--[[ () ]]0);
                 match_4 = float_of_string_opt(arg_5);
                 if (match_4 ~= undefined) then do
@@ -525,10 +523,10 @@ function parse_and_expand_argv_dynamic_aux(allow_expand, current, argv, speclist
                       })
                   })
                 end end 
-                return consume_arg(--[[ () ]]0);end end end 
-             if ___conditional___ = 10--[[ Tuple ]] then do
-                return List.iter(treat_action, param[0]);end end end 
-             if ___conditional___ = 11--[[ Symbol ]] then do
+                return consume_arg(--[[ () ]]0); end end 
+             if ___conditional___ == 10--[[ Tuple ]] then do
+                return List.iter(treat_action, param[0]); end end 
+             if ___conditional___ == 11--[[ Symbol ]] then do
                 symb = param[0];
                 arg_6 = get_arg(--[[ () ]]0);
                 if (List.mem(arg_6, symb)) then do
@@ -543,15 +541,15 @@ function parse_and_expand_argv_dynamic_aux(allow_expand, current, argv, speclist
                         "one of: " .. make_symlist("", " ", "", symb)
                       })
                   })
-                end end end end end 
-             if ___conditional___ = 12--[[ Rest ]] then do
+                end end  end end 
+             if ___conditional___ == 12--[[ Rest ]] then do
                 f = param[0];
                 while(current.contents < (#argv.contents - 1 | 0)) do
                   Curry._1(f, Caml_array.caml_array_get(argv.contents, current.contents + 1 | 0));
                   consume_arg(--[[ () ]]0);
                 end;
-                return --[[ () ]]0;end end end 
-             if ___conditional___ = 13--[[ Expand ]] then do
+                return --[[ () ]]0; end end 
+             if ___conditional___ == 13--[[ Expand ]] then do
                 if (not allow_expand) then do
                   error({
                     Caml_builtin_exceptions.invalid_argument,
@@ -574,12 +572,11 @@ function parse_and_expand_argv_dynamic_aux(allow_expand, current, argv, speclist
                         }
                       }
                     });
-                return --[[ () ]]0;end end end 
-             do
+                return --[[ () ]]0; end end 
             
           end
         end end
-        end(s));
+        end end)(s);
         treat_action(match[0]);
       end else do
         Curry._1(anonfun, s);
@@ -717,7 +714,7 @@ end end
 
 function second_word(s) do
   len = #s;
-  loop = function (_n) do
+  loop = function(_n) do
     while(true) do
       n = _n;
       if (n >= len) then do
@@ -771,7 +768,7 @@ function replace_leading_tab(s) do
   seen = do
     contents: false
   end;
-  return __String.map((function (c) do
+  return __String.map((function(c) do
                 if (c ~= 9 or seen.contents) then do
                   return c;
                 end else do
@@ -786,7 +783,7 @@ function align(limitOpt, speclist) do
   completed = add_help(speclist);
   len = List.fold_left(max_arg_len, 0, completed);
   len_1 = len < limit and len or limit;
-  return List.map((function (param) do
+  return List.map((function(param) do
                 len_2 = len_1;
                 ksd = param;
                 spec = ksd[1];
@@ -843,7 +840,7 @@ function read_aux(trim, sep, file) do
   words = do
     contents: --[[ [] ]]0
   end;
-  stash = function (param) do
+  stash = function(param) do
     word = __Buffer.contents(buf);
     word_1 = trim and trim_cr(word) or word;
     words.contents = --[[ :: ]]{
@@ -853,7 +850,7 @@ function read_aux(trim, sep, file) do
     buf.position = 0;
     return --[[ () ]]0;
   end end;
-  read = function (param) do
+  read = function(param) do
     xpcall(function() do
       c = Caml_external_polyfill.resolve("caml_ml_input_char")(ic);
       if (c == sep) then do
@@ -890,7 +887,7 @@ end end
 
 function write_aux(sep, file, args) do
   oc = Pervasives.open_out_bin(file);
-  __Array.iter((function (s) do
+  __Array.iter((function(s) do
           return Curry._2(Printf.fprintf(oc, --[[ Format ]]{
                           --[[ String ]]Block.__(2, {
                               --[[ No_padding ]]0,
@@ -911,6 +908,7 @@ function write_arg0(param, param_1) do
   return write_aux(--[[ "\000" ]]0, param, param_1);
 end end
 
+exports = {}
 exports.parse = parse;
 exports.parse_dynamic = parse_dynamic;
 exports.parse_argv = parse_argv;

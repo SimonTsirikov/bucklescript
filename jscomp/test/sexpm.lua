@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Sys = require "../../lib/js/sys";
 Char = require "../../lib/js/char";
@@ -55,19 +55,18 @@ function _must_escape(s) do
         if (c >= 32) then do
           local ___conditional___=(c - 32 | 0);
           do
-             if ___conditional___ = 1
-             or ___conditional___ = 3
-             or ___conditional___ = 4
-             or ___conditional___ = 5
-             or ___conditional___ = 6
-             or ___conditional___ = 7 then do
-                exit = 1;end else 
-             if ___conditional___ = 0
-             or ___conditional___ = 2
-             or ___conditional___ = 8
-             or ___conditional___ = 9 then do
-                error(Pervasives.Exit)end end end 
-             do end
+             if ___conditional___ == 1
+             or ___conditional___ == 3
+             or ___conditional___ == 4
+             or ___conditional___ == 5
+             or ___conditional___ == 6
+             or ___conditional___ == 7 then do
+                exit = 1; end else 
+             if ___conditional___ == 0
+             or ___conditional___ == 2
+             or ___conditional___ == 8
+             or ___conditional___ == 9 then do
+                error(Pervasives.Exit) end end end end 
             
           end
         end else do
@@ -101,7 +100,7 @@ function to_buf(b, t) do
     if (l) then do
       if (l[1]) then do
         __Buffer.add_char(b, --[[ "(" ]]40);
-        List.iteri((function (i, t$prime) do
+        List.iteri((function(i, t$prime) do
                 if (i > 0) then do
                   __Buffer.add_char(b, --[[ " " ]]32);
                 end
@@ -173,7 +172,7 @@ function print(fmt, t) do
                 }),
               "@[<hov1>("
             });
-        List.iteri((function (i, t$prime) do
+        List.iteri((function(i, t$prime) do
                 if (i > 0) then do
                   Format.fprintf(fmt, --[[ Format ]]{
                         --[[ Formatting_lit ]]Block.__(17, {
@@ -255,7 +254,7 @@ function print_noindent(fmt, t) do
     if (l) then do
       if (l[1]) then do
         Format.pp_print_char(fmt, --[[ "(" ]]40);
-        List.iteri((function (i, t$prime) do
+        List.iteri((function(i, t$prime) do
                 if (i > 0) then do
                   Format.pp_print_char(fmt, --[[ " " ]]32);
                 end
@@ -308,8 +307,8 @@ end end
 
 function to_file_seq(filename, seq) do
   filename_1 = filename;
-  f = function (oc) do
-    return Curry._1(seq, (function (t) do
+  f = function(oc) do
+    return Curry._1(seq, (function(t) do
                   to_chan(oc, t);
                   return Caml_io.caml_ml_output_char(oc, --[[ "\n" ]]10);
                 end end));
@@ -328,7 +327,7 @@ function to_file_seq(filename, seq) do
 end end
 
 function to_file(filename, t) do
-  return to_file_seq(filename, (function (k) do
+  return to_file_seq(filename, (function(k) do
                 return Curry._1(k, t);
               end end));
 end end
@@ -427,7 +426,7 @@ function _error(t, msg) do
               }),
             "at %d, %d: "
           }), t.line, t.col);
-  return Printf.kbprintf((function (b) do
+  return Printf.kbprintf((function(b) do
                 msg$prime = __Buffer.contents(b);
                 return --[[ `Error ]]{
                         106380200,
@@ -449,7 +448,7 @@ end end
 function expr(k, t) do
   while(true) do
     if (t.i == t.len) then do
-      return _refill(t, (function (param) do
+      return _refill(t, (function(param) do
                     return expr(k, param);
                   end end), _error_eof);
     end else do
@@ -483,7 +482,7 @@ function expr_starting_with(c, k, t) do
       end
        end 
     end else do
-      return skip_comment((function (param, param_1) do
+      return skip_comment((function(param, param_1) do
                     return expr(k, t);
                   end end), t);
     end end 
@@ -491,7 +490,7 @@ function expr_starting_with(c, k, t) do
     if (c >= 32) then do
       local ___conditional___=(c - 32 | 0);
       do
-         if ___conditional___ = 0 then do
+         if ___conditional___ == 0 then do
             error({
               Caml_builtin_exceptions.assert_failure,
               --[[ tuple ]]{
@@ -499,26 +498,25 @@ function expr_starting_with(c, k, t) do
                 183,
                 27
               }
-            })end end end 
-         if ___conditional___ = 2 then do
-            return quoted(k, t);end end end 
-         if ___conditional___ = 1
-         or ___conditional___ = 3
-         or ___conditional___ = 4
-         or ___conditional___ = 5
-         or ___conditional___ = 6
-         or ___conditional___ = 7
-         or ___conditional___ = 8 then do
-            return expr_list(--[[ [] ]]0, k, t);end end end 
-         if ___conditional___ = 9 then do
+            }) end end 
+         if ___conditional___ == 2 then do
+            return quoted(k, t); end end 
+         if ___conditional___ == 1
+         or ___conditional___ == 3
+         or ___conditional___ == 4
+         or ___conditional___ == 5
+         or ___conditional___ == 6
+         or ___conditional___ == 7
+         or ___conditional___ == 8 then do
+            return expr_list(--[[ [] ]]0, k, t); end end 
+         if ___conditional___ == 9 then do
             return _error(t, --[[ Format ]]{
                         --[[ String_literal ]]Block.__(11, {
                             "unexpected ')'",
                             --[[ End_of_format ]]0
                           }),
                         "unexpected ')'"
-                      });end end end 
-         do
+                      }); end end 
         
       end
     end
@@ -541,7 +539,7 @@ end end
 function expr_list(acc, k, t) do
   while(true) do
     if (t.i == t.len) then do
-      return _refill(t, (function (param) do
+      return _refill(t, (function(param) do
                     return expr_list(acc, k, param);
                   end end), _error_eof);
     end else do
@@ -559,7 +557,7 @@ function expr_list(acc, k, t) do
         ::continue:: ;
       end
        end  end 
-      return expr_starting_with(c, (function (last, e) do
+      return expr_starting_with(c, (function(last, e) do
                     if (last ~= undefined) then do
                       match = last;
                       if (match ~= 40) then do
@@ -578,7 +576,7 @@ function expr_list(acc, k, t) do
                                     });
                         end end 
                       end else do
-                        return expr_list(--[[ [] ]]0, (function (param, l) do
+                        return expr_list(--[[ [] ]]0, (function(param, l) do
                                       return expr_list(--[[ :: ]]{
                                                   l,
                                                   acc
@@ -608,9 +606,9 @@ end end
 function atom(k, t) do
   while(true) do
     if (t.i == t.len) then do
-      return _refill(t, (function (param) do
+      return _refill(t, (function(param) do
                     return atom(k, param);
-                  end end), (function (param) do
+                  end end), (function(param) do
                     return _return_atom(undefined, k, param);
                   end end));
     end else do
@@ -636,19 +634,18 @@ function atom(k, t) do
         if (c >= 32) then do
           local ___conditional___=(c - 32 | 0);
           do
-             if ___conditional___ = 0 then do
-                exit = 2;end else 
-             if ___conditional___ = 1 then do
-                exit = 1;end else 
-             if ___conditional___ = 2 then do
+             if ___conditional___ == 0 then do
+                exit = 2; end else 
+             if ___conditional___ == 1 then do
+                exit = 1; end else 
+             if ___conditional___ == 2 then do
                 return _error(t, --[[ Format ]]{
                             --[[ String_literal ]]Block.__(11, {
                                 "unexpected '\"' in the middle of an atom",
                                 --[[ End_of_format ]]0
                               }),
                             "unexpected '\"' in the middle of an atom"
-                          });end end end 
-             do end end
+                          }); end end end end end end 
             
           end
         end else do
@@ -659,12 +656,11 @@ function atom(k, t) do
       end end  end 
       local ___conditional___=(exit);
       do
-         if ___conditional___ = 1 then do
+         if ___conditional___ == 1 then do
             __Buffer.add_char(t.atom, c);
-            ::continue:: ;end end end 
-         if ___conditional___ = 2 then do
-            return _return_atom(c, k, t);end end end 
-         do
+            ::continue:: ; end end 
+         if ___conditional___ == 2 then do
+            return _return_atom(c, k, t); end end 
         
       end
     end end 
@@ -674,7 +670,7 @@ end end
 function quoted(k, t) do
   while(true) do
     if (t.i == t.len) then do
-      return _refill(t, (function (param) do
+      return _refill(t, (function(param) do
                     return quoted(k, param);
                   end end), _error_eof);
     end else do
@@ -684,7 +680,7 @@ function quoted(k, t) do
           __Buffer.add_char(t.atom, c);
           ::continue:: ;
         end else do
-          return escaped((function (c) do
+          return escaped((function(c) do
                         __Buffer.add_char(t.atom, c);
                         return quoted(k, t);
                       end end), t);
@@ -698,7 +694,7 @@ end end
 
 function escaped(k, t) do
   if (t.i == t.len) then do
-    return _refill(t, (function (param) do
+    return _refill(t, (function(param) do
                   return escaped(k, param);
                 end end), _error_eof);
   end else do
@@ -707,37 +703,36 @@ function escaped(k, t) do
       if (c < 117) then do
         local ___conditional___=(c - 92 | 0);
         do
-           if ___conditional___ = 0 then do
-              return Curry._1(k, --[[ "\\" ]]92);end end end 
-           if ___conditional___ = 6 then do
-              return Curry._1(k, --[[ "\b" ]]8);end end end 
-           if ___conditional___ = 18 then do
-              return Curry._1(k, --[[ "\n" ]]10);end end end 
-           if ___conditional___ = 22 then do
-              return Curry._1(k, --[[ "\r" ]]13);end end end 
-           if ___conditional___ = 1
-           or ___conditional___ = 2
-           or ___conditional___ = 3
-           or ___conditional___ = 4
-           or ___conditional___ = 5
-           or ___conditional___ = 7
-           or ___conditional___ = 8
-           or ___conditional___ = 9
-           or ___conditional___ = 10
-           or ___conditional___ = 11
-           or ___conditional___ = 12
-           or ___conditional___ = 13
-           or ___conditional___ = 14
-           or ___conditional___ = 15
-           or ___conditional___ = 16
-           or ___conditional___ = 17
-           or ___conditional___ = 19
-           or ___conditional___ = 20
-           or ___conditional___ = 21
-           or ___conditional___ = 23
-           or ___conditional___ = 24 then do
-              return Curry._1(k, --[[ "\t" ]]9);end end end 
-           do
+           if ___conditional___ == 0 then do
+              return Curry._1(k, --[[ "\\" ]]92); end end 
+           if ___conditional___ == 6 then do
+              return Curry._1(k, --[[ "\b" ]]8); end end 
+           if ___conditional___ == 18 then do
+              return Curry._1(k, --[[ "\n" ]]10); end end 
+           if ___conditional___ == 22 then do
+              return Curry._1(k, --[[ "\r" ]]13); end end 
+           if ___conditional___ == 1
+           or ___conditional___ == 2
+           or ___conditional___ == 3
+           or ___conditional___ == 4
+           or ___conditional___ == 5
+           or ___conditional___ == 7
+           or ___conditional___ == 8
+           or ___conditional___ == 9
+           or ___conditional___ == 10
+           or ___conditional___ == 11
+           or ___conditional___ == 12
+           or ___conditional___ == 13
+           or ___conditional___ == 14
+           or ___conditional___ == 15
+           or ___conditional___ == 16
+           or ___conditional___ == 17
+           or ___conditional___ == 19
+           or ___conditional___ == 20
+           or ___conditional___ == 21
+           or ___conditional___ == 23
+           or ___conditional___ == 24 then do
+              return Curry._1(k, --[[ "\t" ]]9); end end 
           
         end
       end
@@ -747,7 +742,7 @@ function escaped(k, t) do
     end
      end  end 
     if (_is_digit(c)) then do
-      return read2int(c - --[[ "0" ]]48 | 0, (function (n) do
+      return read2int(c - --[[ "0" ]]48 | 0, (function(n) do
                     return Curry._1(k, Char.chr(n));
                   end end), t);
     end else do
@@ -767,7 +762,7 @@ end end
 
 function read2int(i, k, t) do
   if (t.i == t.len) then do
-    return _refill(t, (function (param) do
+    return _refill(t, (function(param) do
                   return read2int(i, k, param);
                 end end), _error_eof);
   end else do
@@ -791,7 +786,7 @@ end end
 
 function read1int(i, k, t) do
   if (t.i == t.len) then do
-    return _refill(t, (function (param) do
+    return _refill(t, (function(param) do
                   return read1int(i, k, param);
                 end end), _error_eof);
   end else do
@@ -816,7 +811,7 @@ end end
 function skip_comment(k, t) do
   while(true) do
     if (t.i == t.len) then do
-      return _refill(t, (function (param) do
+      return _refill(t, (function(param) do
                     return skip_comment(k, param);
                   end end), _error_eof);
     end else do
@@ -833,9 +828,9 @@ end end
 function expr_or_end(k, t) do
   while(true) do
     if (t.i == t.len) then do
-      return _refill(t, (function (param) do
+      return _refill(t, (function(param) do
                     return expr_or_end(k, param);
-                  end end), (function (param) do
+                  end end), (function(param) do
                     return --[[ End ]]3455931;
                   end end));
     end else do
@@ -856,7 +851,7 @@ function expr_or_end(k, t) do
 end end
 
 function next(t) do
-  return expr_or_end((function (param, x) do
+  return expr_or_end((function(param, x) do
                 return --[[ `Ok ]]{
                         17724,
                         x
@@ -869,7 +864,7 @@ function parse_string(s) do
   stop = do
     contents: false
   end;
-  refill = function (bytes, i, _len) do
+  refill = function(bytes, i, _len) do
     if (stop.contents) then do
       return 0;
     end else do
@@ -891,7 +886,7 @@ function parse_string(s) do
 end end
 
 function parse_chan(bufsize, ic) do
-  d = make(bufsize, (function (param, param_1, param_2) do
+  d = make(bufsize, (function(param, param_1, param_2) do
           return Pervasives.input(ic, param, param_1, param_2);
         end end));
   res = next(d);
@@ -906,10 +901,10 @@ function parse_chan(bufsize, ic) do
 end end
 
 function parse_chan_gen(bufsize, ic) do
-  d = make(bufsize, (function (param, param_1, param_2) do
+  d = make(bufsize, (function(param, param_1, param_2) do
           return Pervasives.input(ic, param, param_1, param_2);
         end end));
-  return (function (param) do
+  return (function(param) do
       e = next(d);
       if (typeof e == "number") then do
         return ;
@@ -920,7 +915,7 @@ function parse_chan_gen(bufsize, ic) do
 end end
 
 function parse_chan_list(bufsize, ic) do
-  d = make(bufsize, (function (param, param_1, param_2) do
+  d = make(bufsize, (function(param, param_1, param_2) do
           return Pervasives.input(ic, param, param_1, param_2);
         end end));
   _acc = --[[ [] ]]0;
@@ -945,20 +940,20 @@ function parse_chan_list(bufsize, ic) do
 end end
 
 function parse_file(filename) do
-  return _with_in(filename, (function (ic) do
+  return _with_in(filename, (function(ic) do
                 return parse_chan(undefined, ic);
               end end));
 end end
 
 function parse_file_list(filename) do
-  return _with_in(filename, (function (ic) do
+  return _with_in(filename, (function(ic) do
                 return parse_chan_list(undefined, ic);
               end end));
 end end
 
 function MakeDecode(funarg) do
   $great$great$eq = funarg.$great$great$eq;
-  make = function (bufsizeOpt, refill) do
+  make = function(bufsizeOpt, refill) do
     bufsize = bufsizeOpt ~= undefined and bufsizeOpt or 1024;
     bufsize_1 = Caml_primitive.caml_int_min(bufsize > 16 and bufsize or 16, Sys.max_string_length);
     return do
@@ -971,15 +966,15 @@ function MakeDecode(funarg) do
             col: 1
           end;
   end end;
-  _is_digit = function (c) do
+  _is_digit = function(c) do
     if (--[[ "0" ]]48 <= c) then do
       return c <= --[[ "9" ]]57;
     end else do
       return false;
     end end 
   end end;
-  _refill = function (t, k_succ, k_fail) do
-    return Curry._2($great$great$eq, Curry._3(t.refill, t.buf, 0, #t.buf), (function (n) do
+  _refill = function(t, k_succ, k_fail) do
+    return Curry._2($great$great$eq, Curry._3(t.refill, t.buf, 0, #t.buf), (function(n) do
                   t.i = 0;
                   t.len = n;
                   if (n == 0) then do
@@ -989,7 +984,7 @@ function MakeDecode(funarg) do
                   end end 
                 end end));
   end end;
-  _get = function (t) do
+  _get = function(t) do
     if (t.i >= t.len) then do
       error({
         Caml_builtin_exceptions.assert_failure,
@@ -1011,7 +1006,7 @@ function MakeDecode(funarg) do
     end end 
     return c;
   end end;
-  _error = function (t, msg) do
+  _error = function(t, msg) do
     b = __Buffer.create(32);
     Curry._2(Printf.bprintf(b, --[[ Format ]]{
               --[[ String_literal ]]Block.__(11, {
@@ -1036,7 +1031,7 @@ function MakeDecode(funarg) do
                 }),
               "at %d, %d: "
             }), t.line, t.col);
-    return Printf.kbprintf((function (b) do
+    return Printf.kbprintf((function(b) do
                   msg$prime = __Buffer.contents(b);
                   return Curry._1(funarg.__return, --[[ `Error ]]{
                               106380200,
@@ -1044,7 +1039,7 @@ function MakeDecode(funarg) do
                             });
                 end end), b, msg);
   end end;
-  _error_eof = function (t) do
+  _error_eof = function(t) do
     return _error(t, --[[ Format ]]{
                 --[[ String_literal ]]Block.__(11, {
                     "unexpected end of input",
@@ -1053,10 +1048,10 @@ function MakeDecode(funarg) do
                 "unexpected end of input"
               });
   end end;
-  expr = function (k, t) do
+  expr = function(k, t) do
     while(true) do
       if (t.i == t.len) then do
-        return _refill(t, (function (param) do
+        return _refill(t, (function(param) do
                       return expr(k, param);
                     end end), _error_eof);
       end else do
@@ -1075,7 +1070,7 @@ function MakeDecode(funarg) do
       end end 
     end;
   end end;
-  expr_starting_with = function (c, k, t) do
+  expr_starting_with = function(c, k, t) do
     if (c >= 42) then do
       if (c ~= 59) then do
         if (c == 92) then do
@@ -1089,7 +1084,7 @@ function MakeDecode(funarg) do
         end
          end 
       end else do
-        return skip_comment((function (param, param_1) do
+        return skip_comment((function(param, param_1) do
                       return expr(k, t);
                     end end), t);
       end end 
@@ -1097,7 +1092,7 @@ function MakeDecode(funarg) do
       if (c >= 32) then do
         local ___conditional___=(c - 32 | 0);
         do
-           if ___conditional___ = 0 then do
+           if ___conditional___ == 0 then do
               error({
                 Caml_builtin_exceptions.assert_failure,
                 --[[ tuple ]]{
@@ -1105,26 +1100,25 @@ function MakeDecode(funarg) do
                   183,
                   27
                 }
-              })end end end 
-           if ___conditional___ = 2 then do
-              return quoted(k, t);end end end 
-           if ___conditional___ = 1
-           or ___conditional___ = 3
-           or ___conditional___ = 4
-           or ___conditional___ = 5
-           or ___conditional___ = 6
-           or ___conditional___ = 7
-           or ___conditional___ = 8 then do
-              return expr_list(--[[ [] ]]0, k, t);end end end 
-           if ___conditional___ = 9 then do
+              }) end end 
+           if ___conditional___ == 2 then do
+              return quoted(k, t); end end 
+           if ___conditional___ == 1
+           or ___conditional___ == 3
+           or ___conditional___ == 4
+           or ___conditional___ == 5
+           or ___conditional___ == 6
+           or ___conditional___ == 7
+           or ___conditional___ == 8 then do
+              return expr_list(--[[ [] ]]0, k, t); end end 
+           if ___conditional___ == 9 then do
               return _error(t, --[[ Format ]]{
                           --[[ String_literal ]]Block.__(11, {
                               "unexpected ')'",
                               --[[ End_of_format ]]0
                             }),
                           "unexpected ')'"
-                        });end end end 
-           do
+                        }); end end 
           
         end
       end
@@ -1143,10 +1137,10 @@ function MakeDecode(funarg) do
     __Buffer.add_char(t.atom, c);
     return atom(k, t);
   end end;
-  expr_list = function (acc, k, t) do
+  expr_list = function(acc, k, t) do
     while(true) do
       if (t.i == t.len) then do
-        return _refill(t, (function (param) do
+        return _refill(t, (function(param) do
                       return expr_list(acc, k, param);
                     end end), _error_eof);
       end else do
@@ -1164,7 +1158,7 @@ function MakeDecode(funarg) do
           ::continue:: ;
         end
          end  end 
-        return expr_starting_with(c, (function (last, e) do
+        return expr_starting_with(c, (function(last, e) do
                       if (last ~= undefined) then do
                         match = last;
                         if (match ~= 40) then do
@@ -1183,7 +1177,7 @@ function MakeDecode(funarg) do
                                       });
                           end end 
                         end else do
-                          return expr_list(--[[ [] ]]0, (function (param, l) do
+                          return expr_list(--[[ [] ]]0, (function(param, l) do
                                         return expr_list(--[[ :: ]]{
                                                     l,
                                                     acc
@@ -1200,7 +1194,7 @@ function MakeDecode(funarg) do
       end end 
     end;
   end end;
-  _return_atom = function (last, k, t) do
+  _return_atom = function(last, k, t) do
     s = __Buffer.contents(t.atom);
     t.atom.position = 0;
     return Curry._2(k, last, --[[ `Atom ]]{
@@ -1208,12 +1202,12 @@ function MakeDecode(funarg) do
                 s
               });
   end end;
-  atom = function (k, t) do
+  atom = function(k, t) do
     while(true) do
       if (t.i == t.len) then do
-        return _refill(t, (function (param) do
+        return _refill(t, (function(param) do
                       return atom(k, param);
-                    end end), (function (param) do
+                    end end), (function(param) do
                       return _return_atom(undefined, k, param);
                     end end));
       end else do
@@ -1239,19 +1233,18 @@ function MakeDecode(funarg) do
           if (c >= 32) then do
             local ___conditional___=(c - 32 | 0);
             do
-               if ___conditional___ = 0 then do
-                  exit = 2;end else 
-               if ___conditional___ = 1 then do
-                  exit = 1;end else 
-               if ___conditional___ = 2 then do
+               if ___conditional___ == 0 then do
+                  exit = 2; end else 
+               if ___conditional___ == 1 then do
+                  exit = 1; end else 
+               if ___conditional___ == 2 then do
                   return _error(t, --[[ Format ]]{
                               --[[ String_literal ]]Block.__(11, {
                                   "unexpected '\"' in the middle of an atom",
                                   --[[ End_of_format ]]0
                                 }),
                               "unexpected '\"' in the middle of an atom"
-                            });end end end 
-               do end end
+                            }); end end end end end end 
               
             end
           end else do
@@ -1262,21 +1255,20 @@ function MakeDecode(funarg) do
         end end  end 
         local ___conditional___=(exit);
         do
-           if ___conditional___ = 1 then do
+           if ___conditional___ == 1 then do
               __Buffer.add_char(t.atom, c);
-              ::continue:: ;end end end 
-           if ___conditional___ = 2 then do
-              return _return_atom(c, k, t);end end end 
-           do
+              ::continue:: ; end end 
+           if ___conditional___ == 2 then do
+              return _return_atom(c, k, t); end end 
           
         end
       end end 
     end;
   end end;
-  quoted = function (k, t) do
+  quoted = function(k, t) do
     while(true) do
       if (t.i == t.len) then do
-        return _refill(t, (function (param) do
+        return _refill(t, (function(param) do
                       return quoted(k, param);
                     end end), _error_eof);
       end else do
@@ -1286,7 +1278,7 @@ function MakeDecode(funarg) do
             __Buffer.add_char(t.atom, c);
             ::continue:: ;
           end else do
-            return escaped((function (c) do
+            return escaped((function(c) do
                           __Buffer.add_char(t.atom, c);
                           return quoted(k, t);
                         end end), t);
@@ -1297,9 +1289,9 @@ function MakeDecode(funarg) do
       end end 
     end;
   end end;
-  escaped = function (k, t) do
+  escaped = function(k, t) do
     if (t.i == t.len) then do
-      return _refill(t, (function (param) do
+      return _refill(t, (function(param) do
                     return escaped(k, param);
                   end end), _error_eof);
     end else do
@@ -1308,37 +1300,36 @@ function MakeDecode(funarg) do
         if (c < 117) then do
           local ___conditional___=(c - 92 | 0);
           do
-             if ___conditional___ = 0 then do
-                return Curry._1(k, --[[ "\\" ]]92);end end end 
-             if ___conditional___ = 6 then do
-                return Curry._1(k, --[[ "\b" ]]8);end end end 
-             if ___conditional___ = 18 then do
-                return Curry._1(k, --[[ "\n" ]]10);end end end 
-             if ___conditional___ = 22 then do
-                return Curry._1(k, --[[ "\r" ]]13);end end end 
-             if ___conditional___ = 1
-             or ___conditional___ = 2
-             or ___conditional___ = 3
-             or ___conditional___ = 4
-             or ___conditional___ = 5
-             or ___conditional___ = 7
-             or ___conditional___ = 8
-             or ___conditional___ = 9
-             or ___conditional___ = 10
-             or ___conditional___ = 11
-             or ___conditional___ = 12
-             or ___conditional___ = 13
-             or ___conditional___ = 14
-             or ___conditional___ = 15
-             or ___conditional___ = 16
-             or ___conditional___ = 17
-             or ___conditional___ = 19
-             or ___conditional___ = 20
-             or ___conditional___ = 21
-             or ___conditional___ = 23
-             or ___conditional___ = 24 then do
-                return Curry._1(k, --[[ "\t" ]]9);end end end 
-             do
+             if ___conditional___ == 0 then do
+                return Curry._1(k, --[[ "\\" ]]92); end end 
+             if ___conditional___ == 6 then do
+                return Curry._1(k, --[[ "\b" ]]8); end end 
+             if ___conditional___ == 18 then do
+                return Curry._1(k, --[[ "\n" ]]10); end end 
+             if ___conditional___ == 22 then do
+                return Curry._1(k, --[[ "\r" ]]13); end end 
+             if ___conditional___ == 1
+             or ___conditional___ == 2
+             or ___conditional___ == 3
+             or ___conditional___ == 4
+             or ___conditional___ == 5
+             or ___conditional___ == 7
+             or ___conditional___ == 8
+             or ___conditional___ == 9
+             or ___conditional___ == 10
+             or ___conditional___ == 11
+             or ___conditional___ == 12
+             or ___conditional___ == 13
+             or ___conditional___ == 14
+             or ___conditional___ == 15
+             or ___conditional___ == 16
+             or ___conditional___ == 17
+             or ___conditional___ == 19
+             or ___conditional___ == 20
+             or ___conditional___ == 21
+             or ___conditional___ == 23
+             or ___conditional___ == 24 then do
+                return Curry._1(k, --[[ "\t" ]]9); end end 
             
           end
         end
@@ -1348,7 +1339,7 @@ function MakeDecode(funarg) do
       end
        end  end 
       if (_is_digit(c)) then do
-        return read2int(c - --[[ "0" ]]48 | 0, (function (n) do
+        return read2int(c - --[[ "0" ]]48 | 0, (function(n) do
                       return Curry._1(k, Char.chr(n));
                     end end), t);
       end else do
@@ -1365,9 +1356,9 @@ function MakeDecode(funarg) do
       end end 
     end end 
   end end;
-  read2int = function (i, k, t) do
+  read2int = function(i, k, t) do
     if (t.i == t.len) then do
-      return _refill(t, (function (param) do
+      return _refill(t, (function(param) do
                     return read2int(i, k, param);
                   end end), _error_eof);
     end else do
@@ -1388,9 +1379,9 @@ function MakeDecode(funarg) do
       end end 
     end end 
   end end;
-  read1int = function (i, k, t) do
+  read1int = function(i, k, t) do
     if (t.i == t.len) then do
-      return _refill(t, (function (param) do
+      return _refill(t, (function(param) do
                     return read1int(i, k, param);
                   end end), _error_eof);
     end else do
@@ -1411,10 +1402,10 @@ function MakeDecode(funarg) do
       end end 
     end end 
   end end;
-  skip_comment = function (k, t) do
+  skip_comment = function(k, t) do
     while(true) do
       if (t.i == t.len) then do
-        return _refill(t, (function (param) do
+        return _refill(t, (function(param) do
                       return skip_comment(k, param);
                     end end), _error_eof);
       end else do
@@ -1427,12 +1418,12 @@ function MakeDecode(funarg) do
       end end 
     end;
   end end;
-  expr_or_end = function (k, t) do
+  expr_or_end = function(k, t) do
     while(true) do
       if (t.i == t.len) then do
-        return _refill(t, (function (param) do
+        return _refill(t, (function(param) do
                       return expr_or_end(k, param);
-                    end end), (function (param) do
+                    end end), (function(param) do
                       return Curry._1(funarg.__return, --[[ End ]]3455931);
                     end end));
       end else do
@@ -1451,8 +1442,8 @@ function MakeDecode(funarg) do
       end end 
     end;
   end end;
-  next = function (t) do
-    return expr_or_end((function (param, x) do
+  next = function(t) do
+    return expr_or_end((function(param, x) do
                   return Curry._1(funarg.__return, --[[ `Ok ]]{
                               17724,
                               x
@@ -1470,6 +1461,7 @@ D = do
   next: next
 end;
 
+exports = {}
 exports.to_buf = to_buf;
 exports.to_string = to_string;
 exports.to_file = to_file;

@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Caml_int32 = require "../../lib/js/caml_int32";
 
@@ -15,6 +15,7 @@ end end
 
 even = odd;
 
+exports = {}
 exports.odd = odd;
 exports.even = even;
 --[[ No side effect ]]

@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 
 v1 = do
@@ -8,5 +8,6 @@ v1 = do
   timeZoneName: "short"
 end;
 
+exports = {}
 exports.v1 = v1;
 --[[ No side effect ]]

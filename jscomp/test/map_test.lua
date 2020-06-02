@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 List = require "../../lib/js/list";
@@ -352,14 +352,14 @@ function find(x, _param) do
 end end
 
 function of_list(kvs) do
-  return List.fold_left((function (acc, param) do
+  return List.fold_left((function(acc, param) do
                 return add(param[0], param[1], acc);
               end end), --[[ Empty ]]0, kvs);
 end end
 
 int_map_suites_000 = --[[ tuple ]]{
   "add",
-  (function (param) do
+  (function(param) do
       v = of_list(--[[ :: ]]{
             --[[ tuple ]]{
               1,
@@ -389,7 +389,7 @@ int_map_suites_000 = --[[ tuple ]]{
 int_map_suites_001 = --[[ :: ]]{
   --[[ tuple ]]{
     "equal",
-    (function (param) do
+    (function(param) do
         v = of_list(--[[ :: ]]{
               --[[ tuple ]]{
                 1,
@@ -437,7 +437,7 @@ int_map_suites_001 = --[[ :: ]]{
   --[[ :: ]]{
     --[[ tuple ]]{
       "equal2",
-      (function (param) do
+      (function(param) do
           v = of_list(--[[ :: ]]{
                 --[[ tuple ]]{
                   1,
@@ -478,7 +478,7 @@ int_map_suites_001 = --[[ :: ]]{
               });
           return --[[ Eq ]]Block.__(0, {
                     true,
-                    equal((function (x, y) do
+                    equal((function(x, y) do
                             return x == y;
                           end end), u, v)
                   });
@@ -487,7 +487,7 @@ int_map_suites_001 = --[[ :: ]]{
     --[[ :: ]]{
       --[[ tuple ]]{
         "iteration",
-        (function (param) do
+        (function(param) do
             m = --[[ Empty ]]0;
             for i = 0 , 10000 , 1 do
               m = add_1(String(i), String(i), m);
@@ -517,4 +517,5 @@ int_map_suites = --[[ :: ]]{
 
 Mt.from_pair_suites("Map_test", int_map_suites);
 
+exports = {}
 --[[  Not a pure module ]]

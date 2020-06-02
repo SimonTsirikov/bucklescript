@@ -2,7 +2,7 @@
  * copyright 
 */
 // hello
-console.log = print;
+console = {log = print};
 
 List = require "../../lib/js/list";
 
@@ -24,6 +24,7 @@ end end
 
 hh = List.length;
 
+exports = {}
 exports.x0 = x0;
 exports.x2 = x2;
 exports.x3 = x3;

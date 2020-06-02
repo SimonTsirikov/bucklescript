@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Block = require "../../lib/js/block";
@@ -55,13 +55,13 @@ function fold_left(f, x, a) do
 end end
 
 function f2(param) do
-  arr = init(30000000, (function (i) do
+  arr = init(30000000, (function(i) do
           return i;
         end end));
-  b = map((function (i) do
+  b = map((function(i) do
           return i + i - 1;
         end end), arr);
-  v = fold_left((function (prim, prim_1) do
+  v = fold_left((function(prim, prim_1) do
           return prim + prim_1;
         end end), 0, b);
   console.log(Pervasives.string_of_float(v));
@@ -83,7 +83,7 @@ function eq(loc, x, y) do
   suites.contents = --[[ :: ]]{
     --[[ tuple ]]{
       loc .. (" id " .. String(test_id.contents)),
-      (function (param) do
+      (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     x,
                     y
@@ -123,7 +123,7 @@ function f(x) do
   partial_arg = 2;
   v.contents = v.contents + 1 | 0;
   partial_arg_1 = 1;
-  return (function (param, param_1) do
+  return (function(param, param_1) do
       return add5(x, partial_arg_1, partial_arg, param, param_1);
     end end);
 end end
@@ -133,7 +133,7 @@ function g(x) do
   partial_arg = 2;
   v.contents = v.contents + 1 | 0;
   partial_arg_1 = 1;
-  u = function (param, param_1) do
+  u = function(param, param_1) do
     return add5(x, partial_arg_1, partial_arg, param, param_1);
   end end;
   all_v.contents = --[[ :: ]]{
@@ -181,6 +181,7 @@ eq("File \"earger_curry_test.ml\", line 122, characters 7-14", all_v.contents, -
 
 Mt.from_pair_suites("Earger_curry_test", suites.contents);
 
+exports = {}
 exports.map = map;
 exports.init = init;
 exports.fold_left = fold_left;

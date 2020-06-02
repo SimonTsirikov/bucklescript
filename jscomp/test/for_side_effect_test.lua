@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Block = require "../../lib/js/block";
@@ -22,7 +22,7 @@ end end
 
 suites_000 = --[[ tuple ]]{
   "for_order",
-  (function (param) do
+  (function(param) do
       return --[[ Eq ]]Block.__(0, {
                 10,
                 test2(--[[ () ]]0)
@@ -37,6 +37,7 @@ suites = --[[ :: ]]{
 
 Mt.from_pair_suites("For_side_effect_test", suites);
 
+exports = {}
 exports.tst = tst;
 exports.test2 = test2;
 exports.suites = suites;

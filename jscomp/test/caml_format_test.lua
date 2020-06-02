@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 __Array = require "../../lib/js/array";
@@ -84,13 +84,13 @@ of_string = {
 };
 
 function from_float_of_string(xs) do
-  return __Array.mapi((function (i, param) do
+  return __Array.mapi((function(i, param) do
                 return Pervasives.string_of_float;
               end end), xs);
 end end
 
 function from_of_string(xs) do
-  return __Array.to_list(__Array.mapi((function (i, param) do
+  return __Array.to_list(__Array.mapi((function(i, param) do
                     b = param[1];
                     a = param[0];
                     return --[[ tuple ]]{
@@ -104,7 +104,7 @@ function from_of_string(xs) do
                                         }),
                                       "of_string %L"
                                     }), i),
-                            (function (param) do
+                            (function(param) do
                                 return --[[ Eq ]]Block.__(0, {
                                           Caml_format.caml_int_of_string(b),
                                           a
@@ -185,7 +185,7 @@ pairs_1 = {
 suites = Pervasives.$at(from_of_string(of_string), Pervasives.$at(--[[ :: ]]{
           --[[ tuple ]]{
             "isnan_of_string",
-            (function (param) do
+            (function(param) do
                 return --[[ Eq ]]Block.__(0, {
                           true,
                           Pervasives.classify_float(Caml_format.caml_float_of_string("nan")) == --[[ FP_nan ]]4
@@ -193,7 +193,7 @@ suites = Pervasives.$at(from_of_string(of_string), Pervasives.$at(--[[ :: ]]{
               end end)
           },
           --[[ [] ]]0
-        }, Pervasives.$at(__Array.to_list(__Array.mapi((function (i, param) do
+        }, Pervasives.$at(__Array.to_list(__Array.mapi((function(i, param) do
                         b = param[1];
                         a = param[0];
                         return --[[ tuple ]]{
@@ -209,7 +209,7 @@ suites = Pervasives.$at(from_of_string(of_string), Pervasives.$at(--[[ :: ]]{
                                             }),
                                           "infinity_of_string %d"
                                         }), i),
-                                (function (param) do
+                                (function(param) do
                                     return --[[ Eq ]]Block.__(0, {
                                               a,
                                               Pervasives.classify_float(Caml_format.caml_float_of_string(b))
@@ -219,8 +219,8 @@ suites = Pervasives.$at(from_of_string(of_string), Pervasives.$at(--[[ :: ]]{
                       end end), pairs)), Pervasives.$at(--[[ :: ]]{
                   --[[ tuple ]]{
                     "throw",
-                    (function (param) do
-                        return --[[ ThrowAny ]]Block.__(7, {(function (param) do
+                    (function(param) do
+                        return --[[ ThrowAny ]]Block.__(7, {(function(param) do
                                       Caml_format.caml_float_of_string("");
                                       return --[[ () ]]0;
                                     end end)});
@@ -229,7 +229,7 @@ suites = Pervasives.$at(from_of_string(of_string), Pervasives.$at(--[[ :: ]]{
                   --[[ :: ]]{
                     --[[ tuple ]]{
                       "format_int",
-                      (function (param) do
+                      (function(param) do
                           return --[[ Eq ]]Block.__(0, {
                                     "                              33",
                                     Caml_format.caml_format_int("%32d", 33)
@@ -238,7 +238,7 @@ suites = Pervasives.$at(from_of_string(of_string), Pervasives.$at(--[[ :: ]]{
                     },
                     --[[ [] ]]0
                   }
-                }, __Array.to_list(__Array.mapi((function (i, param) do
+                }, __Array.to_list(__Array.mapi((function(i, param) do
                             b = param[1];
                             a = param[0];
                             return --[[ tuple ]]{
@@ -254,7 +254,7 @@ suites = Pervasives.$at(from_of_string(of_string), Pervasives.$at(--[[ :: ]]{
                                                 }),
                                               "normal_float_of_string %d"
                                             }), i),
-                                    (function (param) do
+                                    (function(param) do
                                         return --[[ Eq ]]Block.__(0, {
                                                   a,
                                                   Caml_format.caml_float_of_string(b)
@@ -269,7 +269,7 @@ end end
 
 formatter_suites_000 = --[[ tuple ]]{
   "fmt_concat",
-  (function (param) do
+  (function(param) do
       return --[[ Eq ]]Block.__(0, {
                 Curry._6(Format.asprintf(Pervasives.$caret$caret(--[[ Format ]]{
                               --[[ String ]]Block.__(2, {
@@ -326,7 +326,7 @@ formatter_suites_000 = --[[ tuple ]]{
 formatter_suites_001 = --[[ :: ]]{
   --[[ tuple ]]{
     "fmt_gen",
-    (function (param) do
+    (function(param) do
         return --[[ Eq ]]Block.__(0, {
                   Curry._8(Format.asprintf(Pervasives.$caret$caret(--[[ Format ]]{
                                 --[[ String ]]Block.__(2, {
@@ -377,7 +377,7 @@ formatter_suites_001 = --[[ :: ]]{
                                       })
                                   }),
                                 "%S %03d %L %a"
-                              })), "32", 33, 33, "a", 33, 3, (function (param, param_1) do
+                              })), "32", 33, 33, "a", 33, 3, (function(param, param_1) do
                           return Format.pp_print_list(undefined, Format.pp_print_int, param, param_1);
                         end end), --[[ :: ]]{
                         1,
@@ -396,7 +396,7 @@ formatter_suites_001 = --[[ :: ]]{
   --[[ :: ]]{
     --[[ tuple ]]{
       "long_fmt",
-      (function (param) do
+      (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     Curry.app(Format.asprintf(--[[ Format ]]{
                               --[[ Int ]]Block.__(4, {
@@ -690,7 +690,7 @@ formatter_suites_001 = --[[ :: ]]{
     --[[ :: ]]{
       --[[ tuple ]]{
         "long_fmt_2",
-        (function (param) do
+        (function(param) do
             return --[[ Eq ]]Block.__(0, {
                       Curry.app(Format.asprintf(--[[ Format ]]{
                                 --[[ Formatting_gen ]]Block.__(18, {
@@ -1024,7 +1024,7 @@ formatter_suites_001 = --[[ :: ]]{
       --[[ :: ]]{
         --[[ tuple ]]{
           "width_1",
-          (function (param) do
+          (function(param) do
               return --[[ Eq ]]Block.__(0, {
                         Curry._1(Format.asprintf(--[[ Format ]]{
                                   --[[ Int ]]Block.__(4, {
@@ -1045,7 +1045,7 @@ formatter_suites_001 = --[[ :: ]]{
         --[[ :: ]]{
           --[[ tuple ]]{
             "width_2",
-            (function (param) do
+            (function(param) do
                 return --[[ Eq ]]Block.__(0, {
                           Curry._1(Format.asprintf(--[[ Format ]]{
                                     --[[ Float ]]Block.__(8, {
@@ -1066,7 +1066,7 @@ formatter_suites_001 = --[[ :: ]]{
           --[[ :: ]]{
             --[[ tuple ]]{
               "alternate_1",
-              (function (param) do
+              (function(param) do
                   return --[[ Eq ]]Block.__(0, {
                             Curry._1(Format.asprintf(--[[ Format ]]{
                                       --[[ Int ]]Block.__(4, {
@@ -1087,7 +1087,7 @@ formatter_suites_001 = --[[ :: ]]{
             --[[ :: ]]{
               --[[ tuple ]]{
                 "alternate_2",
-                (function (param) do
+                (function(param) do
                     return --[[ Eq ]]Block.__(0, {
                               Curry._1(Format.asprintf(--[[ Format ]]{
                                         --[[ Int ]]Block.__(4, {
@@ -1108,7 +1108,7 @@ formatter_suites_001 = --[[ :: ]]{
               --[[ :: ]]{
                 --[[ tuple ]]{
                   "alternate_3",
-                  (function (param) do
+                  (function(param) do
                       return --[[ Eq ]]Block.__(0, {
                                 --[[ tuple ]]{
                                   Curry._1(Format.asprintf(--[[ Format ]]{
@@ -1140,7 +1140,7 @@ formatter_suites_001 = --[[ :: ]]{
                 --[[ :: ]]{
                   --[[ tuple ]]{
                     "justify_0",
-                    (function (param) do
+                    (function(param) do
                         return --[[ Eq ]]Block.__(0, {
                                   Caml_format.caml_format_int("%-8d", 32),
                                   "32      "
@@ -1150,7 +1150,7 @@ formatter_suites_001 = --[[ :: ]]{
                   --[[ :: ]]{
                     --[[ tuple ]]{
                       "sign_p",
-                      (function (param) do
+                      (function(param) do
                           return --[[ Eq ]]Block.__(0, {
                                     Curry._1(Format.asprintf(--[[ Format ]]{
                                               --[[ Int ]]Block.__(4, {
@@ -1171,7 +1171,7 @@ formatter_suites_001 = --[[ :: ]]{
                     --[[ :: ]]{
                       --[[ tuple ]]{
                         "sign_2p",
-                        (function (param) do
+                        (function(param) do
                             return --[[ Eq ]]Block.__(0, {
                                       Curry._1(Format.asprintf(--[[ Format ]]{
                                                 --[[ Int ]]Block.__(4, {
@@ -1192,7 +1192,7 @@ formatter_suites_001 = --[[ :: ]]{
                       --[[ :: ]]{
                         --[[ tuple ]]{
                           "sign_3p",
-                          (function (param) do
+                          (function(param) do
                               return --[[ Eq ]]Block.__(0, {
                                         Curry._1(Format.asprintf(--[[ Format ]]{
                                                   --[[ Int32 ]]Block.__(5, {
@@ -1210,7 +1210,7 @@ formatter_suites_001 = --[[ :: ]]{
                         --[[ :: ]]{
                           --[[ tuple ]]{
                             "sign_4p",
-                            (function (param) do
+                            (function(param) do
                                 return --[[ Eq ]]Block.__(0, {
                                           Curry._1(Format.asprintf(--[[ Format ]]{
                                                     --[[ Int32 ]]Block.__(5, {
@@ -1228,7 +1228,7 @@ formatter_suites_001 = --[[ :: ]]{
                           --[[ :: ]]{
                             --[[ tuple ]]{
                               "width_3",
-                              (function (param) do
+                              (function(param) do
                                   return --[[ Eq ]]Block.__(0, {
                                             Caml_format.caml_format_int("%032d", 32),
                                             "00000000000000000000000000000032"
@@ -1238,7 +1238,7 @@ formatter_suites_001 = --[[ :: ]]{
                             --[[ :: ]]{
                               --[[ tuple ]]{
                                 "prec_1",
-                                (function (param) do
+                                (function(param) do
                                     return --[[ Eq ]]Block.__(0, {
                                               Curry._1(Format.asprintf(--[[ Format ]]{
                                                         --[[ Int ]]Block.__(4, {
@@ -1256,7 +1256,7 @@ formatter_suites_001 = --[[ :: ]]{
                               --[[ :: ]]{
                                 --[[ tuple ]]{
                                   "prec_2",
-                                  (function (param) do
+                                  (function(param) do
                                       return --[[ Eq ]]Block.__(0, {
                                                 Caml_format.caml_format_int("%.10d", 32),
                                                 "0000000032"
@@ -1266,7 +1266,7 @@ formatter_suites_001 = --[[ :: ]]{
                                 --[[ :: ]]{
                                   --[[ tuple ]]{
                                     "prec_3",
-                                    (function (param) do
+                                    (function(param) do
                                         return --[[ Eq ]]Block.__(0, {
                                                   Caml_format.caml_format_int("%.d", 32),
                                                   "32"
@@ -1276,7 +1276,7 @@ formatter_suites_001 = --[[ :: ]]{
                                   --[[ :: ]]{
                                     --[[ tuple ]]{
                                       "prec_4",
-                                      (function (param) do
+                                      (function(param) do
                                           return --[[ Eq ]]Block.__(0, {
                                                     Caml_format.caml_format_int("%.d", 32),
                                                     "32"
@@ -1439,14 +1439,14 @@ end end
 function pr_exp0(ppf, lam) do
   local ___conditional___=(lam.tag | 0);
   do
-     if ___conditional___ = 1--[[ Var ]] then do
+     if ___conditional___ == 1--[[ Var ]] then do
         return Curry._2(Format.fprintf(ppf, --[[ Format ]]{
                         --[[ Alpha ]]Block.__(15, {--[[ End_of_format ]]0}),
                         "%a"
-                      }), ident, lam[0]);end end end 
-     if ___conditional___ = 0--[[ Lambda ]]
-     or ___conditional___ = 2--[[ Apply ]]
-     do
+                      }), ident, lam[0]); end end 
+     if ___conditional___ == 0--[[ Lambda ]]
+     or ___conditional___ == 2--[[ Apply ]]
+     end
     
   end
   return Curry._2(Format.fprintf(ppf, --[[ Format ]]{
@@ -1495,10 +1495,10 @@ end end
 function pr_other_applications(ppf, f) do
   local ___conditional___=(f.tag | 0);
   do
-     if ___conditional___ = 0--[[ Lambda ]]
-     or ___conditional___ = 1--[[ Var ]] then do
-        return pr_exp0(ppf, f);end end end 
-     if ___conditional___ = 2--[[ Apply ]] then do
+     if ___conditional___ == 0--[[ Lambda ]]
+     or ___conditional___ == 1--[[ Var ]] then do
+        return pr_exp0(ppf, f); end end 
+     if ___conditional___ == 2--[[ Apply ]] then do
         return Curry._4(Format.fprintf(ppf, --[[ Format ]]{
                         --[[ Alpha ]]Block.__(15, {--[[ Formatting_lit ]]Block.__(17, {
                                 --[[ Break ]]Block.__(0, {
@@ -1509,8 +1509,7 @@ function pr_other_applications(ppf, f) do
                                 --[[ Alpha ]]Block.__(15, {--[[ End_of_format ]]0})
                               })}),
                         "%a@ %a"
-                      }), pr_app, f[0], pr_exp0, f[1]);end end end 
-     do
+                      }), pr_app, f[0], pr_exp0, f[1]); end end 
     
   end
 end end
@@ -1518,7 +1517,7 @@ end end
 function pr_lambda(ppf, e) do
   local ___conditional___=(e.tag | 0);
   do
-     if ___conditional___ = 0--[[ Lambda ]] then do
+     if ___conditional___ == 0--[[ Lambda ]] then do
         return Curry._8(Format.fprintf(ppf, --[[ Format ]]{
                         --[[ Formatting_gen ]]Block.__(18, {
                             --[[ Open_box ]]Block.__(1, {--[[ Format ]]{
@@ -1541,11 +1540,10 @@ function pr_lambda(ppf, e) do
                                           })})})})
                           }),
                         "@[<1>%a%a%a@ %a@]"
-                      }), kwd, "\\", ident, e[0], kwd, ".", pr_lambda, e[1]);end end end 
-     if ___conditional___ = 1--[[ Var ]]
-     or ___conditional___ = 2--[[ Apply ]] then do
-        return pr_app(ppf, e);end end end 
-     do
+                      }), kwd, "\\", ident, e[0], kwd, ".", pr_lambda, e[1]); end end 
+     if ___conditional___ == 1--[[ Var ]]
+     or ___conditional___ == 2--[[ Apply ]] then do
+        return pr_app(ppf, e); end end 
     
   end
 end end
@@ -1603,7 +1601,7 @@ lambda_suites = {
 };
 
 function from_lambda_pairs(p) do
-  return __Array.to_list(__Array.mapi((function (i, param) do
+  return __Array.to_list(__Array.mapi((function(i, param) do
                     b = param[1];
                     a = param[0];
                     return --[[ tuple ]]{
@@ -1619,7 +1617,7 @@ function from_lambda_pairs(p) do
                                         }),
                                       "lambda_print %d"
                                     }), i),
-                            (function (param) do
+                            (function(param) do
                                 return --[[ Eq ]]Block.__(0, {
                                           Curry._1(string_of_lambda, a),
                                           b
@@ -1631,9 +1629,9 @@ end end
 
 ksprintf_suites_000 = --[[ tuple ]]{
   "ksprintf",
-  (function (param) do
-      f = function (fmt) do
-        return Format.ksprintf((function (x) do
+  (function(param) do
+      f = function(fmt) do
+        return Format.ksprintf((function(x) do
                       return x .. x;
                     end end), fmt);
       end end;
@@ -1662,7 +1660,7 @@ ksprintf_suites_000 = --[[ tuple ]]{
 ksprintf_suites_001 = --[[ :: ]]{
   --[[ tuple ]]{
     "sprintf",
-    (function (param) do
+    (function(param) do
         return --[[ Eq ]]Block.__(0, {
                   Curry._2(Format.sprintf(--[[ Format ]]{
                             --[[ String ]]Block.__(2, {
@@ -1691,7 +1689,7 @@ ksprintf_suites = --[[ :: ]]{
 
 int64_suites_000 = --[[ tuple ]]{
   "i32_simple",
-  (function (param) do
+  (function(param) do
       return --[[ Eq ]]Block.__(0, {
                 Curry._1(Format.asprintf(--[[ Format ]]{
                           --[[ Nativeint ]]Block.__(6, {
@@ -1710,7 +1708,7 @@ int64_suites_000 = --[[ tuple ]]{
 int64_suites_001 = --[[ :: ]]{
   --[[ tuple ]]{
     "i32_simple1",
-    (function (param) do
+    (function(param) do
         return --[[ Eq ]]Block.__(0, {
                   Curry._1(Format.asprintf(--[[ Format ]]{
                             --[[ Nativeint ]]Block.__(6, {
@@ -1728,7 +1726,7 @@ int64_suites_001 = --[[ :: ]]{
   --[[ :: ]]{
     --[[ tuple ]]{
       "i64_simple",
-      (function (param) do
+      (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     Curry._1(Format.asprintf(--[[ Format ]]{
                               --[[ Int64 ]]Block.__(7, {
@@ -1749,7 +1747,7 @@ int64_suites_001 = --[[ :: ]]{
     --[[ :: ]]{
       --[[ tuple ]]{
         "i64_simple2",
-        (function (param) do
+        (function(param) do
             return --[[ Eq ]]Block.__(0, {
                       Curry._1(Format.asprintf(--[[ Format ]]{
                                 --[[ Int64 ]]Block.__(7, {
@@ -1770,7 +1768,7 @@ int64_suites_001 = --[[ :: ]]{
       --[[ :: ]]{
         --[[ tuple ]]{
           "i64_simple3",
-          (function (param) do
+          (function(param) do
               return --[[ Eq ]]Block.__(0, {
                         Curry._1(Format.asprintf(--[[ Format ]]{
                                   --[[ Int64 ]]Block.__(7, {
@@ -1791,7 +1789,7 @@ int64_suites_001 = --[[ :: ]]{
         --[[ :: ]]{
           --[[ tuple ]]{
             "i64_simple4",
-            (function (param) do
+            (function(param) do
                 return --[[ Eq ]]Block.__(0, {
                           Curry._1(Format.asprintf(--[[ Format ]]{
                                     --[[ Int64 ]]Block.__(7, {
@@ -1812,7 +1810,7 @@ int64_suites_001 = --[[ :: ]]{
           --[[ :: ]]{
             --[[ tuple ]]{
               "i64_simple5",
-              (function (param) do
+              (function(param) do
                   return --[[ Eq ]]Block.__(0, {
                             Curry._1(Format.asprintf(--[[ Format ]]{
                                       --[[ Int64 ]]Block.__(7, {
@@ -1833,7 +1831,7 @@ int64_suites_001 = --[[ :: ]]{
             --[[ :: ]]{
               --[[ tuple ]]{
                 "i64_simple6",
-                (function (param) do
+                (function(param) do
                     return --[[ Eq ]]Block.__(0, {
                               Curry._2(Format.asprintf(--[[ Format ]]{
                                         --[[ Int64 ]]Block.__(7, {
@@ -1854,7 +1852,7 @@ int64_suites_001 = --[[ :: ]]{
               --[[ :: ]]{
                 --[[ tuple ]]{
                   "i64_simple7",
-                  (function (param) do
+                  (function(param) do
                       return --[[ Eq ]]Block.__(0, {
                                 Caml_format.caml_int64_format("%d", --[[ int64 ]]{
                                       --[[ hi ]]0,
@@ -1867,7 +1865,7 @@ int64_suites_001 = --[[ :: ]]{
                 --[[ :: ]]{
                   --[[ tuple ]]{
                     "i64_simple8",
-                    (function (param) do
+                    (function(param) do
                         return --[[ Eq ]]Block.__(0, {
                                   Curry._2(Format.asprintf(--[[ Format ]]{
                                             --[[ Int64 ]]Block.__(7, {
@@ -1899,7 +1897,7 @@ int64_suites_001 = --[[ :: ]]{
                   --[[ :: ]]{
                     --[[ tuple ]]{
                       "i64_simple9",
-                      (function (param) do
+                      (function(param) do
                           return --[[ Eq ]]Block.__(0, {
                                     Curry._2(Format.asprintf(--[[ Format ]]{
                                               --[[ Int64 ]]Block.__(7, {
@@ -1931,7 +1929,7 @@ int64_suites_001 = --[[ :: ]]{
                     --[[ :: ]]{
                       --[[ tuple ]]{
                         "i64_simple10",
-                        (function (param) do
+                        (function(param) do
                             return --[[ Eq ]]Block.__(0, {
                                       Curry._1(Format.asprintf(--[[ Format ]]{
                                                 --[[ Int64 ]]Block.__(7, {
@@ -1949,7 +1947,7 @@ int64_suites_001 = --[[ :: ]]{
                       --[[ :: ]]{
                         --[[ tuple ]]{
                           "i64_simple15",
-                          (function (param) do
+                          (function(param) do
                               return --[[ Eq ]]Block.__(0, {
                                         Curry._1(Format.asprintf(--[[ Format ]]{
                                                   --[[ Int64 ]]Block.__(7, {
@@ -1970,7 +1968,7 @@ int64_suites_001 = --[[ :: ]]{
                         --[[ :: ]]{
                           --[[ tuple ]]{
                             "i64_simple16",
-                            (function (param) do
+                            (function(param) do
                                 return --[[ Eq ]]Block.__(0, {
                                           Curry._1(Format.asprintf(--[[ Format ]]{
                                                     --[[ Int64 ]]Block.__(7, {
@@ -1991,7 +1989,7 @@ int64_suites_001 = --[[ :: ]]{
                           --[[ :: ]]{
                             --[[ tuple ]]{
                               "i64_simple14",
-                              (function (param) do
+                              (function(param) do
                                   return --[[ Eq ]]Block.__(0, {
                                             Curry._1(Format.asprintf(--[[ Format ]]{
                                                       --[[ Int64 ]]Block.__(7, {
@@ -2012,7 +2010,7 @@ int64_suites_001 = --[[ :: ]]{
                             --[[ :: ]]{
                               --[[ tuple ]]{
                                 "i64_simple17",
-                                (function (param) do
+                                (function(param) do
                                     return --[[ Eq ]]Block.__(0, {
                                               Curry._1(Format.asprintf(--[[ Format ]]{
                                                         --[[ Int64 ]]Block.__(7, {
@@ -2033,7 +2031,7 @@ int64_suites_001 = --[[ :: ]]{
                               --[[ :: ]]{
                                 --[[ tuple ]]{
                                   "i64_simple11",
-                                  (function (param) do
+                                  (function(param) do
                                       return --[[ Eq ]]Block.__(0, {
                                                 Curry._1(Format.asprintf(--[[ Format ]]{
                                                           --[[ Int64 ]]Block.__(7, {
@@ -2051,7 +2049,7 @@ int64_suites_001 = --[[ :: ]]{
                                 --[[ :: ]]{
                                   --[[ tuple ]]{
                                     "i64_simple12",
-                                    (function (param) do
+                                    (function(param) do
                                         return --[[ Eq ]]Block.__(0, {
                                                   Curry._1(Format.asprintf(--[[ Format ]]{
                                                             --[[ Int64 ]]Block.__(7, {
@@ -2069,7 +2067,7 @@ int64_suites_001 = --[[ :: ]]{
                                   --[[ :: ]]{
                                     --[[ tuple ]]{
                                       "i64_simple17",
-                                      (function (param) do
+                                      (function(param) do
                                           return --[[ Eq ]]Block.__(0, {
                                                     Curry._1(Format.asprintf(--[[ Format ]]{
                                                               --[[ Int64 ]]Block.__(7, {
@@ -2090,7 +2088,7 @@ int64_suites_001 = --[[ :: ]]{
                                     --[[ :: ]]{
                                       --[[ tuple ]]{
                                         "i64_simple21",
-                                        (function (param) do
+                                        (function(param) do
                                             return --[[ Eq ]]Block.__(0, {
                                                       Curry._1(Format.asprintf(--[[ Format ]]{
                                                                 --[[ Int64 ]]Block.__(7, {
@@ -2111,7 +2109,7 @@ int64_suites_001 = --[[ :: ]]{
                                       --[[ :: ]]{
                                         --[[ tuple ]]{
                                           "i64_simple19",
-                                          (function (param) do
+                                          (function(param) do
                                               return --[[ Eq ]]Block.__(0, {
                                                         Curry._1(Format.asprintf(--[[ Format ]]{
                                                                   --[[ Int64 ]]Block.__(7, {
@@ -2129,7 +2127,7 @@ int64_suites_001 = --[[ :: ]]{
                                         --[[ :: ]]{
                                           --[[ tuple ]]{
                                             "i64_simple13",
-                                            (function (param) do
+                                            (function(param) do
                                                 return --[[ Eq ]]Block.__(0, {
                                                           Curry._1(Format.asprintf(--[[ Format ]]{
                                                                     --[[ Int64 ]]Block.__(7, {
@@ -2150,7 +2148,7 @@ int64_suites_001 = --[[ :: ]]{
                                           --[[ :: ]]{
                                             --[[ tuple ]]{
                                               "i64_simple20",
-                                              (function (param) do
+                                              (function(param) do
                                                   return --[[ Eq ]]Block.__(0, {
                                                             Curry._1(Format.asprintf(--[[ Format ]]{
                                                                       --[[ Int64 ]]Block.__(7, {
@@ -2174,7 +2172,7 @@ int64_suites_001 = --[[ :: ]]{
                                             --[[ :: ]]{
                                               --[[ tuple ]]{
                                                 "i64_simple21",
-                                                (function (param) do
+                                                (function(param) do
                                                     return --[[ Eq ]]Block.__(0, {
                                                               Curry._1(Format.asprintf(--[[ Format ]]{
                                                                         --[[ Int64 ]]Block.__(7, {
@@ -2195,7 +2193,7 @@ int64_suites_001 = --[[ :: ]]{
                                               --[[ :: ]]{
                                                 --[[ tuple ]]{
                                                   "missing_neline",
-                                                  (function (param) do
+                                                  (function(param) do
                                                       return --[[ Eq ]]Block.__(0, {
                                                                 Curry._1(Format.asprintf(--[[ Format ]]{
                                                                           --[[ Int64 ]]Block.__(7, {
@@ -2219,7 +2217,7 @@ int64_suites_001 = --[[ :: ]]{
                                                 --[[ :: ]]{
                                                   --[[ tuple ]]{
                                                     "missing_newline2",
-                                                    (function (param) do
+                                                    (function(param) do
                                                         buf = __Buffer.create(30);
                                                         return --[[ Eq ]]Block.__(0, {
                                                                   (Curry._1(Printf.bprintf(buf, --[[ Format ]]{
@@ -2339,7 +2337,7 @@ of_string_data = {
   }
 };
 
-Mt.from_pair_suites("Caml_format_test", Pervasives.$at(suites, Pervasives.$at(formatter_suites, Pervasives.$at(from_lambda_pairs(lambda_suites), Pervasives.$at(ksprintf_suites, Pervasives.$at(__Array.to_list(__Array.mapi((function (i, param) do
+Mt.from_pair_suites("Caml_format_test", Pervasives.$at(suites, Pervasives.$at(formatter_suites, Pervasives.$at(from_lambda_pairs(lambda_suites), Pervasives.$at(ksprintf_suites, Pervasives.$at(__Array.to_list(__Array.mapi((function(i, param) do
                                     str_result = param[2];
                                     f = param[1];
                                     fmt = param[0];
@@ -2356,14 +2354,14 @@ Mt.from_pair_suites("Caml_format_test", Pervasives.$at(suites, Pervasives.$at(fo
                                                         }),
                                                       "float_format %d"
                                                     }), i),
-                                            (function (param) do
+                                            (function(param) do
                                                 return --[[ Eq ]]Block.__(0, {
                                                           Caml_format.caml_format_float(fmt, f),
                                                           str_result
                                                         });
                                               end end)
                                           };
-                                  end end), float_data)), Pervasives.$at(int64_suites, __Array.to_list(__Array.mapi((function (i, param) do
+                                  end end), float_data)), Pervasives.$at(int64_suites, __Array.to_list(__Array.mapi((function(i, param) do
                                         b = param[1];
                                         a = param[0];
                                         return --[[ tuple ]]{
@@ -2382,7 +2380,7 @@ Mt.from_pair_suites("Caml_format_test", Pervasives.$at(suites, Pervasives.$at(fo
                                                             }),
                                                           "int64_of_string %d "
                                                         }), i),
-                                                (function (param) do
+                                                (function(param) do
                                                     return --[[ Eq ]]Block.__(0, {
                                                               Caml_format.caml_int64_of_string(b),
                                                               a
@@ -2408,6 +2406,7 @@ hhh = --[[ int64 ]]{
   --[[ lo ]]0
 };
 
+exports = {}
 exports.of_string = of_string;
 exports.from_float_of_string = from_float_of_string;
 exports.from_of_string = from_of_string;

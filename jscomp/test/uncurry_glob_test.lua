@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Caml_utils = require "../../lib/js/caml_utils";
 
@@ -25,6 +25,7 @@ function u(h) do
   return $plus$great(3, h);
 end end
 
+exports = {}
 exports.v = v;
 exports.M = M;
 exports.f = f;

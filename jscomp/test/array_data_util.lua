@@ -1,15 +1,15 @@
-console.log = print;
+console = {log = print};
 
 Belt_Array = require "../../lib/js/belt_Array";
 
 function range(i, j) do
-  return Belt_Array.makeBy((j - i | 0) + 1 | 0, (function (k) do
+  return Belt_Array.makeBy((j - i | 0) + 1 | 0, (function(k) do
                 return k + i | 0;
               end end));
 end end
 
 function randomRange(i, j) do
-  v = Belt_Array.makeBy((j - i | 0) + 1 | 0, (function (k) do
+  v = Belt_Array.makeBy((j - i | 0) + 1 | 0, (function(k) do
           return k + i | 0;
         end end));
   Belt_Array.shuffleInPlace(v);
@@ -18,6 +18,7 @@ end end
 
 A = --[[ alias ]]0;
 
+exports = {}
 exports.A = A;
 exports.range = range;
 exports.randomRange = randomRange;

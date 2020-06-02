@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 List = require "../../lib/js/list";
@@ -852,7 +852,7 @@ tests_64 = {
   }
 };
 
-suites_16 = List.map((function (param) do
+suites_16 = List.map((function(param) do
         b = param[1];
         a = param[0];
         return --[[ tuple ]]{
@@ -868,7 +868,7 @@ suites_16 = List.map((function (param) do
                             }),
                           "swap16 %d"
                         }), a),
-                (function (param) do
+                (function(param) do
                     return --[[ Eq ]]Block.__(0, {
                               Caml_int32.caml_bswap16(a),
                               b
@@ -877,7 +877,7 @@ suites_16 = List.map((function (param) do
               };
       end end), __Array.to_list(tests_16));
 
-suites_32 = List.map((function (param) do
+suites_32 = List.map((function(param) do
         b = param[1];
         a = param[0];
         return --[[ tuple ]]{
@@ -893,7 +893,7 @@ suites_32 = List.map((function (param) do
                             }),
                           "swap32 %d"
                         }), a),
-                (function (param) do
+                (function(param) do
                     return --[[ Eq ]]Block.__(0, {
                               Caml_int32.caml_int32_bswap(a),
                               b
@@ -902,7 +902,7 @@ suites_32 = List.map((function (param) do
               };
       end end), __Array.to_list(tests_32));
 
-suites_64 = List.map((function (param) do
+suites_64 = List.map((function(param) do
         b = param[1];
         a = param[0];
         return --[[ tuple ]]{
@@ -918,7 +918,7 @@ suites_64 = List.map((function (param) do
                             }),
                           "swap64 %d"
                         }), Caml_int64.to_int32(a)),
-                (function (param) do
+                (function(param) do
                     return --[[ Eq ]]Block.__(0, {
                               Caml_int64.swap(a),
                               b
@@ -988,7 +988,7 @@ d32 = --[[ tuple ]]{
 function f(s, param) do
   swap = param[1];
   x = param[0];
-  return __Array.to_list(__Array.mapi((function (i, param) do
+  return __Array.to_list(__Array.mapi((function(i, param) do
                     b = param[1];
                     a = param[0];
                     return --[[ tuple ]]{
@@ -1007,7 +1007,7 @@ function f(s, param) do
                                         }),
                                       "%s %i"
                                     }), s, i),
-                            (function (param) do
+                            (function(param) do
                                 return --[[ Eq ]]Block.__(0, {
                                           Curry._1(Format.asprintf(x), Curry._1(swap, a)),
                                           b
@@ -1019,6 +1019,7 @@ end end
 
 Mt.from_pair_suites("Swap_test", Pervasives.$at(suites_16, Pervasives.$at(suites_32, Pervasives.$at(suites_64, Pervasives.$at(f("d16", d16), f("d32", d32))))));
 
+exports = {}
 exports.tests_16 = tests_16;
 exports.tests_32 = tests_32;
 exports.tests_64 = tests_64;

@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Curry = require "../../lib/js/curry";
 
@@ -39,6 +39,7 @@ v1 = --[[ `A ]]{
   --[[ B ]]66
 };
 
+exports = {}
 exports.hi = hi;
 exports.v0 = v0;
 exports.v1 = v1;

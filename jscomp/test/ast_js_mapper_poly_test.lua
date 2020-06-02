@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 __Array = require "../../lib/js/array";
@@ -18,7 +18,7 @@ function eq(loc, x, y) do
   suites.contents = --[[ :: ]]{
     --[[ tuple ]]{
       loc .. (" id " .. String(test_id.contents)),
-      (function (param) do
+      (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     x,
                     y
@@ -121,15 +121,14 @@ end end
 function s(param) do
   local ___conditional___=(param);
   do
-     if ___conditional___ = 0--[[ A0 ]] then do
-        return "A0";end end end 
-     if ___conditional___ = 1--[[ A1 ]] then do
-        return "A1";end end end 
-     if ___conditional___ = 2--[[ A2 ]] then do
-        return "A2";end end end 
-     if ___conditional___ = 3--[[ A3 ]] then do
-        return "A3";end end end 
-     do
+     if ___conditional___ == 0--[[ A0 ]] then do
+        return "A0"; end end 
+     if ___conditional___ == 1--[[ A1 ]] then do
+        return "A1"; end end 
+     if ___conditional___ == 2--[[ A2 ]] then do
+        return "A2"; end end 
+     if ___conditional___ == 3--[[ A3 ]] then do
+        return "A3"; end end 
     
   end
 end end
@@ -251,7 +250,7 @@ eq("File \"ast_js_mapper_poly_test.ml\", line 89, characters 5-12", __Array.map(
         }), __Array.append(__Array.append({
               undefined,
               undefined
-            }, __Array.map((function (x) do
+            }, __Array.map((function(x) do
                     return x;
                   end end), {
                   --[[ C0 ]]0,
@@ -266,6 +265,7 @@ Mt.from_pair_suites("Ast_js_mapper_poly_test", suites.contents);
 
 $plus$great = __Array.append;
 
+exports = {}
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;

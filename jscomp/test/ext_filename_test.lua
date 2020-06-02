@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Sys = require "../../lib/js/sys";
 List = require "../../lib/js/list";
@@ -26,7 +26,7 @@ node_parent = "..";
 
 node_current = ".";
 
-cwd = Caml_obj.caml_lazy_make((function (param) do
+cwd = Caml_obj.caml_lazy_make((function(param) do
         return Caml_sys.caml_sys_getcwd(--[[ () ]]0);
       end end));
 
@@ -41,7 +41,7 @@ end end
 function absolute_path(s) do
   s_1 = s;
   s_2 = Curry._1(Filename.is_relative, s_1) and Filename.concat(CamlinternalLazy.force(cwd), s_1) or s_1;
-  aux = function (_s) do
+  aux = function(_s) do
     while(true) do
       s = _s;
       base = Curry._1(Filename.basename, s);
@@ -113,7 +113,7 @@ function relative_path(file_or_dir_1, file_or_dir_2) do
   relevant_dir2 = file_or_dir_2[0] >= 781515420 and Curry._1(Filename.dirname, file_or_dir_2[1]) or file_or_dir_2[1];
   dir1 = Ext_string_test.split(undefined, relevant_dir1, os_path_separator_char);
   dir2 = Ext_string_test.split(undefined, relevant_dir2, os_path_separator_char);
-  go = function (_dir1, _dir2) do
+  go = function(_dir1, _dir2) do
     while(true) do
       dir2 = _dir2;
       dir1 = _dir1;
@@ -123,7 +123,7 @@ function relative_path(file_or_dir_1, file_or_dir_2) do
         ::continue:: ;
       end
        end 
-      return Pervasives.$at(List.map((function (param) do
+      return Pervasives.$at(List.map((function(param) do
                         return node_parent;
                       end end), dir2), dir1);
     end;
@@ -144,7 +144,7 @@ function node_relative_path(node_modules_shorten, file1, dep_file) do
   v = Ext_string_test.find(undefined, Test_literals.node_modules, file2);
   len = #file2;
   if (node_modules_shorten and v >= 0) then do
-    skip = function (_i) do
+    skip = function(_i) do
       while(true) do
         i = _i;
         if (i >= len) then do
@@ -220,7 +220,7 @@ function find_package_json_dir(cwd) do
   return find_root_filename(cwd, Test_literals.bsconfig_json);
 end end
 
-package_dir = Caml_obj.caml_lazy_make((function (param) do
+package_dir = Caml_obj.caml_lazy_make((function(param) do
         cwd_1 = CamlinternalLazy.force(cwd);
         return find_root_filename(cwd_1, Test_literals.bsconfig_json);
       end end));
@@ -296,13 +296,13 @@ function rel_normalized_absolute_path(from, to_) do
             _xss = xs;
             ::continue:: ;
           end else do
-            start = List.fold_left((function (acc, param) do
+            start = List.fold_left((function(acc, param) do
                     return Filename.concat(acc, Ext_string_test.parent_dir_lit);
                   end end), Ext_string_test.parent_dir_lit, xs);
             return List.fold_left(Filename.concat, start, yss);
           end end 
         end else do
-          return List.fold_left((function (acc, param) do
+          return List.fold_left((function(acc, param) do
                         return Filename.concat(acc, Ext_string_test.parent_dir_lit);
                       end end), Ext_string_test.parent_dir_lit, xs);
         end end 
@@ -316,14 +316,14 @@ function rel_normalized_absolute_path(from, to_) do
 end end
 
 function normalize_absolute_path(x) do
-  drop_if_exist = function (xs) do
+  drop_if_exist = function(xs) do
     if (xs) then do
       return xs[1];
     end else do
       return --[[ [] ]]0;
     end end 
   end end;
-  normalize_list = function (_acc, _paths) do
+  normalize_list = function(_acc, _paths) do
     while(true) do
       paths = _paths;
       acc = _acc;
@@ -382,7 +382,7 @@ end end
 simple_convert_node_path_to_os_path;
 
 if (Sys.unix) then do
-  simple_convert_node_path_to_os_path = (function (x) do
+  simple_convert_node_path_to_os_path = (function(x) do
       return x;
     end end);
 end else if (Sys.win32 or false) then do
@@ -397,6 +397,7 @@ end end  end
 
 $slash$slash = Filename.concat;
 
+exports = {}
 exports.node_sep = node_sep;
 exports.node_parent = node_parent;
 exports.node_current = node_current;

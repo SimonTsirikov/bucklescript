@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 List = require "../../lib/js/list";
@@ -33,11 +33,11 @@ v1 = --[[ A1 ]]Block.__(1, {--[[ more : :: ]]{
 
 function f(x) do
   if (x.tag) then do
-    return List.fold_left((function (prim, prim_1) do
+    return List.fold_left((function(prim, prim_1) do
                   return prim + prim_1 | 0;
                 end end), 0, x[--[[ more ]]0]);
   end else do
-    return List.fold_left((function (prim, prim_1) do
+    return List.fold_left((function(prim, prim_1) do
                   return prim + prim_1 | 0;
                 end end), x[--[[ lbl ]]0], x[--[[ more ]]1]);
   end end 
@@ -196,6 +196,7 @@ vvv = --[[ A0 ]]{
   --[[ more : [] ]]0
 };
 
+exports = {}
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;

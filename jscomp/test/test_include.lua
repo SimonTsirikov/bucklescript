@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 List = require "../../lib/js/list";
 __String = require "../../lib/js/string";
@@ -144,6 +144,7 @@ sort_uniq = List.sort_uniq;
 
 merge = List.merge;
 
+exports = {}
 exports.N = N;
 exports.v = v;
 exports.Make = Make;

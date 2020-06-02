@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Curry = require "../../lib/js/curry";
 
@@ -10,7 +10,7 @@ end;
 v.tl = v;
 
 f = do
-  k: (function (x, y) do
+  k: (function(x, y) do
       return x == y;
     end end),
   y: "x"
@@ -49,6 +49,7 @@ function fx(v) do
   return v.x;
 end end
 
+exports = {}
 exports.f = f;
 exports.uf = uf;
 exports.uf1 = uf1;

@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Block = require "../../lib/js/block";
@@ -16,7 +16,7 @@ function eq(loc, x, y) do
   suites.contents = --[[ :: ]]{
     --[[ tuple ]]{
       loc .. (" id " .. String(test_id.contents)),
-      (function (param) do
+      (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     x,
                     y
@@ -54,4 +54,5 @@ eq("File \"gpr_459_test.ml\", line 28, characters 5-12", --[[ tuple ]]{
 
 Mt.from_pair_suites("Gpr_459_test", suites.contents);
 
+exports = {}
 --[[ hh Not a pure module ]]

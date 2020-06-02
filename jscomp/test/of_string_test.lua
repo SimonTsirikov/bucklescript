@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Block = require "../../lib/js/block";
@@ -6,7 +6,7 @@ Pervasives = require "../../lib/js/pervasives";
 
 suites_000 = --[[ tuple ]]{
   "string_of_float_1",
-  (function (param) do
+  (function(param) do
       return --[[ Eq ]]Block.__(0, {
                 "10.",
                 Pervasives.string_of_float(10)
@@ -17,7 +17,7 @@ suites_000 = --[[ tuple ]]{
 suites_001 = --[[ :: ]]{
   --[[ tuple ]]{
     "string_of_int",
-    (function (param) do
+    (function(param) do
         return --[[ Eq ]]Block.__(0, {
                   "10",
                   String(10)
@@ -27,7 +27,7 @@ suites_001 = --[[ :: ]]{
   --[[ :: ]]{
     --[[ tuple ]]{
       "valid_float_lexem",
-      (function (param) do
+      (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     "10.",
                     Pervasives.valid_float_lexem("10")
@@ -45,5 +45,6 @@ suites = --[[ :: ]]{
 
 Mt.from_pair_suites("Of_string_test", suites);
 
+exports = {}
 exports.suites = suites;
 --[[  Not a pure module ]]

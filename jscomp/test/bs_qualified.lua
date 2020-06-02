@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 ZZ = require "";
 Z = require "";
@@ -46,6 +46,7 @@ function f3(x) do
   return GlMatrix.mat4.create();
 end end
 
+exports = {}
 exports.f = f;
 exports.f2 = f2;
 exports.f3 = f3;

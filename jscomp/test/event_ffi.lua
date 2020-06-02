@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 List = require "../../lib/js/list";
 Curry = require "../../lib/js/curry";
@@ -13,7 +13,7 @@ function h00(x) do
 end end
 
 function h1(x) do
-  return (function (param) do
+  return (function(param) do
       return x(param);
     end end);
 end end
@@ -23,7 +23,7 @@ function h10(x) do
 end end
 
 function h30(x) do
-  return (function (param) do
+  return (function(param) do
       return x(3, 3, param);
     end end);
 end end
@@ -37,7 +37,7 @@ function h34(x) do
 end end
 
 function ocaml_run(param, param_1) do
-  return (function (x, y, z) do
+  return (function(x, y, z) do
               return (x + y | 0) + z | 0;
             end end)(1, param, param_1);
 end end
@@ -48,7 +48,7 @@ function a0() do
 end end
 
 function a1(param) do
-  return (function (x) do
+  return (function(x) do
       return x;
     end end);
 end end
@@ -63,7 +63,7 @@ end end
 
 function a4(x, y, z, param) do
   u = (Caml_int32.imul(x, x) + Caml_int32.imul(y, y) | 0) + Caml_int32.imul(z, z) | 0;
-  return (function (d) do
+  return (function(d) do
               return u + d | 0;
             end end)(param);
 end end
@@ -74,7 +74,7 @@ function a44(x, y, z, d) do
 end end
 
 function b44(param) do
-  return (function (x, y, z, d) do
+  return (function(x, y, z, d) do
       return --[[ tuple ]]{
               x,
               y,
@@ -85,7 +85,7 @@ function b44(param) do
 end end
 
 function xx(param) do
-  return (function (param) do
+  return (function(param) do
       console.log(3);
       return --[[ () ]]0;
     end end);
@@ -93,6 +93,7 @@ end end
 
 test_as = List.map;
 
+exports = {}
 exports.h0 = h0;
 exports.h00 = h00;
 exports.h1 = h1;

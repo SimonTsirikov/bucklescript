@@ -1,11 +1,11 @@
-console.log = print;
+console = {log = print};
 
 Fs = require "";
 
 function test(path) do
   Fs.watch(path, do
             recursive: true
-          end).on("change", (function (__event, string_buffer) do
+          end).on("change", (function(__event, string_buffer) do
             console.log(--[[ tuple ]]{
                   __event,
                   string_buffer
@@ -15,5 +15,6 @@ function test(path) do
   return --[[ () ]]0;
 end end
 
+exports = {}
 exports.test = test;
 --[[ fs Not a pure module ]]

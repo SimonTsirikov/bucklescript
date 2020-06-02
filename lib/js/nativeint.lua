@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Caml_format = require "./caml_format";
 Caml_primitive = require "./caml_primitive";
@@ -60,6 +60,7 @@ max_int = 9007199254740991;
 
 min_int = -9007199254740991;
 
+exports = {}
 exports.zero = zero;
 exports.one = one;
 exports.minus_one = minus_one;

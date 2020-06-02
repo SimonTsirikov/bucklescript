@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Caml_builtin_exceptions = require "./caml_builtin_exceptions";
 
@@ -32,6 +32,7 @@ imul = (Math.imul || function (x,y) {
 
 caml_nativeint_bswap = caml_int32_bswap;
 
+exports = {}
 exports.div = div;
 exports.mod_ = mod_;
 exports.caml_bswap16 = caml_bswap16;

@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Block = require "../../lib/js/block";
@@ -6,7 +6,7 @@ Ext_list_test = require "./ext_list_test";
 
 suites_000 = --[[ tuple ]]{
   "drop",
-  (function (param) do
+  (function(param) do
       return --[[ Eq ]]Block.__(0, {
                 Ext_list_test.drop(3, --[[ :: ]]{
                       0,
@@ -26,7 +26,7 @@ suites_000 = --[[ tuple ]]{
 suites_001 = --[[ :: ]]{
   --[[ tuple ]]{
     "drop1",
-    (function (param) do
+    (function(param) do
         return --[[ Eq ]]Block.__(0, {
                   Ext_list_test.drop(2, --[[ :: ]]{
                         0,
@@ -48,7 +48,7 @@ suites_001 = --[[ :: ]]{
   --[[ :: ]]{
     --[[ tuple ]]{
       "flat_map",
-      (function (param) do
+      (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     --[[ :: ]]{
                       0,
@@ -66,7 +66,7 @@ suites_001 = --[[ :: ]]{
                         }
                       }
                     },
-                    Ext_list_test.flat_map((function (x) do
+                    Ext_list_test.flat_map((function(x) do
                             if (x % 2 == 0) then do
                               return --[[ :: ]]{
                                       0,
@@ -108,5 +108,6 @@ suites = --[[ :: ]]{
 
 Mt.from_pair_suites("A_list_test", suites);
 
+exports = {}
 exports.suites = suites;
 --[[  Not a pure module ]]

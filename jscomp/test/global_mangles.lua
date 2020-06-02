@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 
 ____dirname = 1;
@@ -29,6 +29,7 @@ __setInterval = 13;
 
 __setTimeout = 14;
 
+exports = {}
 exports.____dirname = ____dirname;
 exports.____filename = ____filename;
 exports.__clearImmediate = __clearImmediate;

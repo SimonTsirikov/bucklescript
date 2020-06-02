@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Belt_MutableSetInt = require "../../lib/js/belt_MutableSetInt";
 
@@ -14,6 +14,7 @@ Belt_MutableSetInt.remove(mySet, 1);
 
 a = 3;
 
+exports = {}
 exports.mySet = mySet;
 exports.a = a;
 --[[  Not a pure module ]]

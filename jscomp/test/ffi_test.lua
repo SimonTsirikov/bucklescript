@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 
 function u(param) do
@@ -29,6 +29,7 @@ c = nil;
 
 d = undefined;
 
+exports = {}
 exports.u = u;
 exports.a = a;
 exports.b = b;

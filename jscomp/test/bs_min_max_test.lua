@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Caml_obj = require "../../lib/js/caml_obj";
@@ -94,6 +94,7 @@ b("File \"bs_min_max_test.ml\", line 38, characters 4-11", true);
 
 Mt.from_pair_suites("Bs_min_max_test", suites.contents);
 
+exports = {}
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;

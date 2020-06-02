@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Block = require "./block";
 
@@ -158,6 +158,7 @@ end end
 
 __ = Block.__;
 
+exports = {}
 exports.__ = __;
 exports.variant = variant;
 exports.simpleVariant = simpleVariant;

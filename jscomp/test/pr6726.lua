@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 
 function get_uint8(str, off) do
@@ -28,6 +28,7 @@ Test = do
   v: v
 end;
 
+exports = {}
 exports.ExtUnixAll = ExtUnixAll;
 exports.ExtUnix = ExtUnix;
 exports.Test = Test;

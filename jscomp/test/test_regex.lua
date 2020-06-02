@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 
 v = /b/ig;
@@ -7,6 +7,7 @@ r = /Bucklescript是一个程序语言/;
 
 c = v;
 
+exports = {}
 exports.v = v;
 exports.r = r;
 exports.c = c;

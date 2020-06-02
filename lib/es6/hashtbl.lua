@@ -42,7 +42,7 @@ function is_randomized(param) do
   return randomized.contents;
 end end
 
-prng = Caml_obj.caml_lazy_make((function (param) do
+prng = Caml_obj.caml_lazy_make((function(param) do
         return Random.State.make_self_init(--[[ () ]]0);
       end end));
 
@@ -95,7 +95,7 @@ function copy_bucketlist(param) do
     key = param[--[[ key ]]0];
     data = param[--[[ data ]]1];
     next = param[--[[ next ]]2];
-    loop = function (_prec, _param) do
+    loop = function(_prec, _param) do
       while(true) do
         param = _param;
         prec = _prec;
@@ -162,7 +162,7 @@ function resize(indexfun, h) do
     ndata_tail = Caml_array.caml_make_vect(nsize, --[[ Empty ]]0);
     inplace = h.initial_size >= 0;
     h.data = ndata;
-    insert_bucket = function (_cell) do
+    insert_bucket = function(_cell) do
       while(true) do
         cell = _cell;
         if (cell) then do
@@ -363,7 +363,7 @@ function find_opt(h, key) do
 end end
 
 function find_all(h, key) do
-  find_in_bucket = function (_param) do
+  find_in_bucket = function(_param) do
     while(true) do
       param = _param;
       if (param) then do
@@ -447,7 +447,7 @@ function mem(h, key) do
 end end
 
 function iter(f, h) do
-  do_bucket = function (_param) do
+  do_bucket = function(_param) do
     while(true) do
       param = _param;
       if (param) then do
@@ -543,7 +543,7 @@ function filter_map_inplace(f, h) do
 end end
 
 function fold(f, h, init) do
-  do_bucket = function (_b, _accu) do
+  do_bucket = function(_b, _accu) do
     while(true) do
       accu = _accu;
       b = _b;
@@ -601,11 +601,11 @@ function bucket_length(_accu, _param) do
 end end
 
 function stats(h) do
-  mbl = __Array.fold_left((function (m, b) do
+  mbl = __Array.fold_left((function(m, b) do
           return Caml_primitive.caml_int_max(m, bucket_length(0, b));
         end end), 0, h.data);
   histo = Caml_array.caml_make_vect(mbl + 1 | 0, 0);
-  __Array.iter((function (b) do
+  __Array.iter((function(b) do
           l = bucket_length(0, b);
           return Caml_array.caml_array_set(histo, l, Caml_array.caml_array_get(histo, l) + 1 | 0);
         end end), h.data);
@@ -618,10 +618,10 @@ function stats(h) do
 end end
 
 function MakeSeeded(H) do
-  key_index = function (h, key) do
+  key_index = function(h, key) do
     return Curry._2(H.hash, h.seed, key) & (#h.data - 1 | 0);
   end end;
-  add = function (h, key, data) do
+  add = function(h, key, data) do
     i = key_index(h, key);
     bucket = --[[ Cons ]]{
       --[[ key ]]key,
@@ -636,7 +636,7 @@ function MakeSeeded(H) do
       return 0;
     end end 
   end end;
-  remove = function (h, key) do
+  remove = function(h, key) do
     i = key_index(h, key);
     h_1 = h;
     i_1 = i;
@@ -667,7 +667,7 @@ function MakeSeeded(H) do
       end end 
     end;
   end end;
-  find = function (h, key) do
+  find = function(h, key) do
     match = Caml_array.caml_array_get(h.data, key_index(h, key));
     if (match) then do
       k1 = match[--[[ key ]]0];
@@ -717,7 +717,7 @@ function MakeSeeded(H) do
       error(Caml_builtin_exceptions.not_found)
     end end 
   end end;
-  find_opt = function (h, key) do
+  find_opt = function(h, key) do
     match = Caml_array.caml_array_get(h.data, key_index(h, key));
     if (match) then do
       k1 = match[--[[ key ]]0];
@@ -766,8 +766,8 @@ function MakeSeeded(H) do
     end
      end 
   end end;
-  find_all = function (h, key) do
-    find_in_bucket = function (_param) do
+  find_all = function(h, key) do
+    find_in_bucket = function(_param) do
       while(true) do
         param = _param;
         if (param) then do
@@ -790,7 +790,7 @@ function MakeSeeded(H) do
     end end;
     return find_in_bucket(Caml_array.caml_array_get(h.data, key_index(h, key)));
   end end;
-  replace_bucket = function (key, data, _param) do
+  replace_bucket = function(key, data, _param) do
     while(true) do
       param = _param;
       if (param) then do
@@ -809,7 +809,7 @@ function MakeSeeded(H) do
       end end 
     end;
   end end;
-  replace = function (h, key, data) do
+  replace = function(h, key, data) do
     i = key_index(h, key);
     l = Caml_array.caml_array_get(h.data, i);
     if (replace_bucket(key, data, l)) then do
@@ -828,7 +828,7 @@ function MakeSeeded(H) do
       return 0;
     end end 
   end end;
-  mem = function (h, key) do
+  mem = function(h, key) do
     _param = Caml_array.caml_array_get(h.data, key_index(h, key));
     while(true) do
       param = _param;
@@ -868,10 +868,10 @@ end end
 
 function Make(H) do
   equal = H.equal;
-  key_index = function (h, key) do
+  key_index = function(h, key) do
     return Curry._1(H.hash, key) & (#h.data - 1 | 0);
   end end;
-  add = function (h, key, data) do
+  add = function(h, key, data) do
     i = key_index(h, key);
     bucket = --[[ Cons ]]{
       --[[ key ]]key,
@@ -886,7 +886,7 @@ function Make(H) do
       return 0;
     end end 
   end end;
-  remove = function (h, key) do
+  remove = function(h, key) do
     i = key_index(h, key);
     h_1 = h;
     i_1 = i;
@@ -917,7 +917,7 @@ function Make(H) do
       end end 
     end;
   end end;
-  find = function (h, key) do
+  find = function(h, key) do
     match = Caml_array.caml_array_get(h.data, key_index(h, key));
     if (match) then do
       k1 = match[--[[ key ]]0];
@@ -967,7 +967,7 @@ function Make(H) do
       error(Caml_builtin_exceptions.not_found)
     end end 
   end end;
-  find_opt = function (h, key) do
+  find_opt = function(h, key) do
     match = Caml_array.caml_array_get(h.data, key_index(h, key));
     if (match) then do
       k1 = match[--[[ key ]]0];
@@ -1016,8 +1016,8 @@ function Make(H) do
     end
      end 
   end end;
-  find_all = function (h, key) do
-    find_in_bucket = function (_param) do
+  find_all = function(h, key) do
+    find_in_bucket = function(_param) do
       while(true) do
         param = _param;
         if (param) then do
@@ -1040,7 +1040,7 @@ function Make(H) do
     end end;
     return find_in_bucket(Caml_array.caml_array_get(h.data, key_index(h, key)));
   end end;
-  replace_bucket = function (key, data, _param) do
+  replace_bucket = function(key, data, _param) do
     while(true) do
       param = _param;
       if (param) then do
@@ -1059,7 +1059,7 @@ function Make(H) do
       end end 
     end;
   end end;
-  replace = function (h, key, data) do
+  replace = function(h, key, data) do
     i = key_index(h, key);
     l = Caml_array.caml_array_get(h.data, i);
     if (replace_bucket(key, data, l)) then do
@@ -1078,7 +1078,7 @@ function Make(H) do
       return 0;
     end end 
   end end;
-  mem = function (h, key) do
+  mem = function(h, key) do
     _param = Caml_array.caml_array_get(h.data, key_index(h, key));
     while(true) do
       param = _param;
@@ -1096,7 +1096,7 @@ function Make(H) do
       end end 
     end;
   end end;
-  create_1 = function (sz) do
+  create_1 = function(sz) do
     return create(false, sz);
   end end;
   return do

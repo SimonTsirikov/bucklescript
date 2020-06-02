@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Block = require "../../lib/js/block";
@@ -39,7 +39,7 @@ end end
 
 suites_000 = --[[ tuple ]]{
   "eq_with",
-  (function (param) do
+  (function(param) do
       return --[[ Eq ]]Block.__(0, {
                 v,
                 u_v
@@ -64,6 +64,7 @@ uv = do
   extends: 0
 end;
 
+exports = {}
 exports.v = v;
 exports.uv = uv;
 exports.u_v = u_v;

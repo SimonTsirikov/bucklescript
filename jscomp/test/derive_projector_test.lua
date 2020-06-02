@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Block = require "../../lib/js/block";
 
@@ -80,6 +80,7 @@ d_empty = --[[ D_empty ]]0;
 
 hei = --[[ Hei ]]0;
 
+exports = {}
 exports.u_x = u_x;
 exports.b_x = b_x;
 exports.c_x = c_x;

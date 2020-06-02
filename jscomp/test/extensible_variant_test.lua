@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Block = require "../../lib/js/block";
@@ -36,7 +36,7 @@ end end
 
 suites_000 = --[[ tuple ]]{
   "test_int",
-  (function (param) do
+  (function(param) do
       return --[[ Eq ]]Block.__(0, {
                 3,
                 to_int({
@@ -51,7 +51,7 @@ suites_000 = --[[ tuple ]]{
 suites_001 = --[[ :: ]]{
   --[[ tuple ]]{
     "test_int2",
-    (function (param) do
+    (function(param) do
         return --[[ Eq ]]Block.__(0, {
                   0,
                   to_int({
@@ -65,7 +65,7 @@ suites_001 = --[[ :: ]]{
   --[[ :: ]]{
     --[[ tuple ]]{
       "test_string",
-      (function (param) do
+      (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     -1,
                     to_int({
@@ -86,6 +86,7 @@ suites = --[[ :: ]]{
 
 Mt.from_pair_suites("Extensible_variant_test", suites);
 
+exports = {}
 exports.Str = Str;
 exports.N = N;
 exports.Int = Int_1;

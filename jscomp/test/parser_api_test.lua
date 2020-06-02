@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Parser_api = require "./parser_api";
@@ -72,7 +72,7 @@ if (match) then do
                                     match_29 = match_28.txt;
                                     local ___conditional___=(match_29.tag | 0);
                                     do
-                                       if ___conditional___ = 0--[[ Lident ]] then do
+                                       if ___conditional___ == 0--[[ Lident ]] then do
                                           if (match_29[0] == "|>") then do
                                             match_30 = match_28.loc;
                                             match_31 = match_30.loc_start;
@@ -100,7 +100,7 @@ if (match) then do
                                                             match_43 = match_42.txt;
                                                             local ___conditional___=(match_43.tag | 0);
                                                             do
-                                                               if ___conditional___ = 0--[[ Lident ]] then do
+                                                               if ___conditional___ == 0--[[ Lident ]] then do
                                                                   if (match_43[0] == "|>") then do
                                                                     match_44 = match_42.loc;
                                                                     match_45 = match_44.loc_start;
@@ -125,7 +125,7 @@ if (match) then do
                                                                                   match_55 = match_54.txt;
                                                                                   local ___conditional___=(match_55.tag | 0);
                                                                                   do
-                                                                                     if ___conditional___ = 0--[[ Lident ]] then do
+                                                                                     if ___conditional___ == 0--[[ Lident ]] then do
                                                                                         if (match_55[0] == "str") then do
                                                                                           match_56 = match_54.loc;
                                                                                           match_57 = match_56.loc_start;
@@ -150,11 +150,11 @@ if (match) then do
                                                                                                         match_67 = match_66.txt;
                                                                                                         local ___conditional___=(match_67.tag | 0);
                                                                                                         do
-                                                                                                           if ___conditional___ = 1--[[ Ldot ]] then do
+                                                                                                           if ___conditional___ == 1--[[ Ldot ]] then do
                                                                                                               match_68 = match_67[0];
                                                                                                               local ___conditional___=(match_68.tag | 0);
                                                                                                               do
-                                                                                                                 if ___conditional___ = 0--[[ Lident ]] then do
+                                                                                                                 if ___conditional___ == 0--[[ Lident ]] then do
                                                                                                                     if (match_68[0] == "Lexing" and match_67[1] == "from_string") then do
                                                                                                                       match_69 = match_66.loc;
                                                                                                                       match_70 = match_69.loc_start;
@@ -184,11 +184,11 @@ if (match) then do
                                                                                                                                         match_83 = match_82.txt;
                                                                                                                                         local ___conditional___=(match_83.tag | 0);
                                                                                                                                         do
-                                                                                                                                           if ___conditional___ = 1--[[ Ldot ]] then do
+                                                                                                                                           if ___conditional___ == 1--[[ Ldot ]] then do
                                                                                                                                               match_84 = match_83[0];
                                                                                                                                               local ___conditional___=(match_84.tag | 0);
                                                                                                                                               do
-                                                                                                                                                 if ___conditional___ = 0--[[ Lident ]] then do
+                                                                                                                                                 if ___conditional___ == 0--[[ Lident ]] then do
                                                                                                                                                     if (match_84[0] == "Parse" and match_83[1] == "implementation") then do
                                                                                                                                                       match_85 = match_82.loc;
                                                                                                                                                       match_86 = match_85.loc_start;
@@ -248,17 +248,17 @@ if (match) then do
                                                                                                                                                       end end 
                                                                                                                                                     end else do
                                                                                                                                                       eq("File \"parser_api_test.ml\", line 211, characters 12-19", true, false);
-                                                                                                                                                    end end end else 
-                                                                                                                                                 if ___conditional___ = 1--[[ Ldot ]]
-                                                                                                                                                 or ___conditional___ = 2--[[ Lapply ]] then do
-                                                                                                                                                    eq("File \"parser_api_test.ml\", line 211, characters 12-19", true, false);end else 
-                                                                                                                                                 do end end end
+                                                                                                                                                    end end  end else 
+                                                                                                                                                 if ___conditional___ == 1--[[ Ldot ]]
+                                                                                                                                                 or ___conditional___ == 2--[[ Lapply ]] then do
+                                                                                                                                                    eq("File \"parser_api_test.ml\", line 211, characters 12-19", true, false); end else 
+                                                                                                                                                 end end end end
                                                                                                                                                 
-                                                                                                                                              endend else 
-                                                                                                                                           if ___conditional___ = 0--[[ Lident ]]
-                                                                                                                                           or ___conditional___ = 2--[[ Lapply ]] then do
-                                                                                                                                              eq("File \"parser_api_test.ml\", line 211, characters 12-19", true, false);end else 
-                                                                                                                                           do end end end
+                                                                                                                                              end end else 
+                                                                                                                                           if ___conditional___ == 0--[[ Lident ]]
+                                                                                                                                           or ___conditional___ == 2--[[ Lapply ]] then do
+                                                                                                                                              eq("File \"parser_api_test.ml\", line 211, characters 12-19", true, false); end else 
+                                                                                                                                           end end end end
                                                                                                                                           
                                                                                                                                         end
                                                                                                                                       end end 
@@ -288,17 +288,17 @@ if (match) then do
                                                                                                                       end end 
                                                                                                                     end else do
                                                                                                                       eq("File \"parser_api_test.ml\", line 211, characters 12-19", true, false);
-                                                                                                                    end end end else 
-                                                                                                                 if ___conditional___ = 1--[[ Ldot ]]
-                                                                                                                 or ___conditional___ = 2--[[ Lapply ]] then do
-                                                                                                                    eq("File \"parser_api_test.ml\", line 211, characters 12-19", true, false);end else 
-                                                                                                                 do end end end
+                                                                                                                    end end  end else 
+                                                                                                                 if ___conditional___ == 1--[[ Ldot ]]
+                                                                                                                 or ___conditional___ == 2--[[ Lapply ]] then do
+                                                                                                                    eq("File \"parser_api_test.ml\", line 211, characters 12-19", true, false); end else 
+                                                                                                                 end end end end
                                                                                                                 
-                                                                                                              endend else 
-                                                                                                           if ___conditional___ = 0--[[ Lident ]]
-                                                                                                           or ___conditional___ = 2--[[ Lapply ]] then do
-                                                                                                              eq("File \"parser_api_test.ml\", line 211, characters 12-19", true, false);end else 
-                                                                                                           do end end end
+                                                                                                              end end else 
+                                                                                                           if ___conditional___ == 0--[[ Lident ]]
+                                                                                                           or ___conditional___ == 2--[[ Lapply ]] then do
+                                                                                                              eq("File \"parser_api_test.ml\", line 211, characters 12-19", true, false); end else 
+                                                                                                           end end end end
                                                                                                           
                                                                                                         end
                                                                                                       end end 
@@ -322,11 +322,11 @@ if (match) then do
                                                                                           end end 
                                                                                         end else do
                                                                                           eq("File \"parser_api_test.ml\", line 211, characters 12-19", true, false);
-                                                                                        end end end else 
-                                                                                     if ___conditional___ = 1--[[ Ldot ]]
-                                                                                     or ___conditional___ = 2--[[ Lapply ]] then do
-                                                                                        eq("File \"parser_api_test.ml\", line 211, characters 12-19", true, false);end else 
-                                                                                     do end end end
+                                                                                        end end  end else 
+                                                                                     if ___conditional___ == 1--[[ Ldot ]]
+                                                                                     or ___conditional___ == 2--[[ Lapply ]] then do
+                                                                                        eq("File \"parser_api_test.ml\", line 211, characters 12-19", true, false); end else 
+                                                                                     end end end end
                                                                                     
                                                                                   end
                                                                                 end end 
@@ -350,11 +350,11 @@ if (match) then do
                                                                     end end 
                                                                   end else do
                                                                     eq("File \"parser_api_test.ml\", line 211, characters 12-19", true, false);
-                                                                  end end end else 
-                                                               if ___conditional___ = 1--[[ Ldot ]]
-                                                               or ___conditional___ = 2--[[ Lapply ]] then do
-                                                                  eq("File \"parser_api_test.ml\", line 211, characters 12-19", true, false);end else 
-                                                               do end end end
+                                                                  end end  end else 
+                                                               if ___conditional___ == 1--[[ Ldot ]]
+                                                               or ___conditional___ == 2--[[ Lapply ]] then do
+                                                                  eq("File \"parser_api_test.ml\", line 211, characters 12-19", true, false); end else 
+                                                               end end end end
                                                               
                                                             end
                                                           end end 
@@ -381,11 +381,11 @@ if (match) then do
                                             end end 
                                           end else do
                                             eq("File \"parser_api_test.ml\", line 211, characters 12-19", true, false);
-                                          end end end else 
-                                       if ___conditional___ = 1--[[ Ldot ]]
-                                       or ___conditional___ = 2--[[ Lapply ]] then do
-                                          eq("File \"parser_api_test.ml\", line 211, characters 12-19", true, false);end else 
-                                       do end end end
+                                          end end  end else 
+                                       if ___conditional___ == 1--[[ Ldot ]]
+                                       or ___conditional___ == 2--[[ Lapply ]] then do
+                                          eq("File \"parser_api_test.ml\", line 211, characters 12-19", true, false); end else 
+                                       end end end end
                                       
                                     end
                                   end end 
@@ -443,6 +443,7 @@ lex = Parser_api.from_string;
 
 parse = Parser_api.implementation;
 
+exports = {}
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;

@@ -1,7 +1,7 @@
-console.log = print;
+console = {log = print};
 
 
-function sum (a,b)do 
+function sum(a,b)do 
   return a + b
 end;
 
@@ -15,7 +15,7 @@ b = f(1);
 
 c = f(2);
 
-function forIn (o,foo)do
+function forIn(o,foo)do
   for (var i in o){
     foo(o)
   }
@@ -32,7 +32,7 @@ end;
 
 forIn(do
       x: 3
-    end, (function (x) do
+    end, (function(x) do
         console.log(x);
         return --[[ () ]]0;
       end end));
@@ -40,15 +40,16 @@ forIn(do
 forIn(do
       x: 3,
       y: 3
-    end, (function (x) do
+    end, (function(x) do
         console.log(x);
         return --[[ () ]]0;
       end end));
 
-function f3 ()doreturn trueend;
+function f3()doreturn trueend;
 
 bbbb = f3();
 
+exports = {}
 exports.sum = sum;
 exports.v = v;
 exports.f = f;

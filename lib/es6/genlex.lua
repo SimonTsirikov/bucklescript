@@ -47,10 +47,10 @@ end end
 
 function make_lexer(keywords) do
   kwd_table = Hashtbl.create(undefined, 17);
-  List.iter((function (s) do
+  List.iter((function(s) do
           return Hashtbl.add(kwd_table, s, --[[ Kwd ]]Block.__(0, {s}));
         end end), keywords);
-  ident_or_keyword = function (id) do
+  ident_or_keyword = function(id) do
     xpcall(function() do
       return Hashtbl.find(kwd_table, id);
     end end,function(exn) do
@@ -61,7 +61,7 @@ function make_lexer(keywords) do
       end end 
     end end)
   end end;
-  keyword_or_error = function (c) do
+  keyword_or_error = function(c) do
     s = Caml_bytes.bytes_to_string(Bytes.make(1, c));
     xpcall(function() do
       return Hashtbl.find(kwd_table, s);
@@ -76,7 +76,7 @@ function make_lexer(keywords) do
       error(exn)
     end end)
   end end;
-  next_token = function (strm__) do
+  next_token = function(strm__) do
     while(true) do
       match = Stream.peek(strm__);
       if (match ~= undefined) then do
@@ -90,19 +90,19 @@ function make_lexer(keywords) do
             end else do
               local ___conditional___=(switcher + 65 | 0);
               do
-                 if ___conditional___ = 9
-                 or ___conditional___ = 10
-                 or ___conditional___ = 12
-                 or ___conditional___ = 13
-                 or ___conditional___ = 26
-                 or ___conditional___ = 32 then do
+                 if ___conditional___ == 9
+                 or ___conditional___ == 10
+                 or ___conditional___ == 12
+                 or ___conditional___ == 13
+                 or ___conditional___ == 26
+                 or ___conditional___ == 32 then do
                     Stream.junk(strm__);
-                    ::continue:: ;end end end 
-                 if ___conditional___ = 34 then do
+                    ::continue:: ; end end 
+                 if ___conditional___ == 34 then do
                     Stream.junk(strm__);
                     reset_buffer(--[[ () ]]0);
-                    return --[[ String ]]Block.__(4, {string(strm__)});end end end 
-                 if ___conditional___ = 39 then do
+                    return --[[ String ]]Block.__(4, {string(strm__)}); end end 
+                 if ___conditional___ == 39 then do
                     Stream.junk(strm__);
                     c_1;
                     xpcall(function() do
@@ -133,8 +133,8 @@ function make_lexer(keywords) do
                         Stream.__Error,
                         ""
                       })
-                    end end end end end 
-                 if ___conditional___ = 40 then do
+                    end end  end end 
+                 if ___conditional___ == 40 then do
                     Stream.junk(strm__);
                     strm___1 = strm__;
                     match_2 = Stream.peek(strm___1);
@@ -144,8 +144,8 @@ function make_lexer(keywords) do
                       return next_token(strm___1);
                     end else do
                       return keyword_or_error(--[[ "(" ]]40);
-                    end end end end end 
-                 if ___conditional___ = 45 then do
+                    end end  end end 
+                 if ___conditional___ == 45 then do
                     Stream.junk(strm__);
                     strm___2 = strm__;
                     match_3 = Stream.peek(strm___2);
@@ -166,85 +166,83 @@ function make_lexer(keywords) do
                       reset_buffer(--[[ () ]]0);
                       store(--[[ "-" ]]45);
                       return ident2(strm___2);
-                    end end end end end 
-                 if ___conditional___ = 48
-                 or ___conditional___ = 49
-                 or ___conditional___ = 50
-                 or ___conditional___ = 51
-                 or ___conditional___ = 52
-                 or ___conditional___ = 53
-                 or ___conditional___ = 54
-                 or ___conditional___ = 55
-                 or ___conditional___ = 56
-                 or ___conditional___ = 57 then do
-                    exit = 4;end else 
-                 if ___conditional___ = 0
-                 or ___conditional___ = 1
-                 or ___conditional___ = 2
-                 or ___conditional___ = 3
-                 or ___conditional___ = 4
-                 or ___conditional___ = 5
-                 or ___conditional___ = 6
-                 or ___conditional___ = 7
-                 or ___conditional___ = 8
-                 or ___conditional___ = 11
-                 or ___conditional___ = 14
-                 or ___conditional___ = 15
-                 or ___conditional___ = 16
-                 or ___conditional___ = 17
-                 or ___conditional___ = 18
-                 or ___conditional___ = 19
-                 or ___conditional___ = 20
-                 or ___conditional___ = 21
-                 or ___conditional___ = 22
-                 or ___conditional___ = 23
-                 or ___conditional___ = 24
-                 or ___conditional___ = 25
-                 or ___conditional___ = 27
-                 or ___conditional___ = 28
-                 or ___conditional___ = 29
-                 or ___conditional___ = 30
-                 or ___conditional___ = 31
-                 or ___conditional___ = 41
-                 or ___conditional___ = 44
-                 or ___conditional___ = 46
-                 or ___conditional___ = 59 then do
-                    exit = 1;end else 
-                 if ___conditional___ = 33
-                 or ___conditional___ = 35
-                 or ___conditional___ = 36
-                 or ___conditional___ = 37
-                 or ___conditional___ = 38
-                 or ___conditional___ = 42
-                 or ___conditional___ = 43
-                 or ___conditional___ = 47
-                 or ___conditional___ = 58
-                 or ___conditional___ = 60
-                 or ___conditional___ = 61
-                 or ___conditional___ = 62
-                 or ___conditional___ = 63
-                 or ___conditional___ = 64 then do
-                    exit = 3;end else 
-                 do
+                    end end  end end 
+                 if ___conditional___ == 48
+                 or ___conditional___ == 49
+                 or ___conditional___ == 50
+                 or ___conditional___ == 51
+                 or ___conditional___ == 52
+                 or ___conditional___ == 53
+                 or ___conditional___ == 54
+                 or ___conditional___ == 55
+                 or ___conditional___ == 56
+                 or ___conditional___ == 57 then do
+                    exit = 4; end else 
+                 if ___conditional___ == 0
+                 or ___conditional___ == 1
+                 or ___conditional___ == 2
+                 or ___conditional___ == 3
+                 or ___conditional___ == 4
+                 or ___conditional___ == 5
+                 or ___conditional___ == 6
+                 or ___conditional___ == 7
+                 or ___conditional___ == 8
+                 or ___conditional___ == 11
+                 or ___conditional___ == 14
+                 or ___conditional___ == 15
+                 or ___conditional___ == 16
+                 or ___conditional___ == 17
+                 or ___conditional___ == 18
+                 or ___conditional___ == 19
+                 or ___conditional___ == 20
+                 or ___conditional___ == 21
+                 or ___conditional___ == 22
+                 or ___conditional___ == 23
+                 or ___conditional___ == 24
+                 or ___conditional___ == 25
+                 or ___conditional___ == 27
+                 or ___conditional___ == 28
+                 or ___conditional___ == 29
+                 or ___conditional___ == 30
+                 or ___conditional___ == 31
+                 or ___conditional___ == 41
+                 or ___conditional___ == 44
+                 or ___conditional___ == 46
+                 or ___conditional___ == 59 then do
+                    exit = 1; end else 
+                 if ___conditional___ == 33
+                 or ___conditional___ == 35
+                 or ___conditional___ == 36
+                 or ___conditional___ == 37
+                 or ___conditional___ == 38
+                 or ___conditional___ == 42
+                 or ___conditional___ == 43
+                 or ___conditional___ == 47
+                 or ___conditional___ == 58
+                 or ___conditional___ == 60
+                 or ___conditional___ == 61
+                 or ___conditional___ == 62
+                 or ___conditional___ == 63
+                 or ___conditional___ == 64 then do
+                    exit = 3; end else 
+                 end end end end end end
                 
               end
             end end 
           end else do
             local ___conditional___=(switcher);
             do
-               if ___conditional___ = 27
-               or ___conditional___ = 29 then do
-                  exit = 3;end else 
-               if ___conditional___ = 30 then do
-                  exit = 2;end else 
-               if ___conditional___ = 26
-               or ___conditional___ = 28
-               or ___conditional___ = 31 then do
-                  exit = 1;end else 
-               do end end end end
-              else do
-                exit = 2;
-                end end
+               if ___conditional___ == 27
+               or ___conditional___ == 29 then do
+                  exit = 3; end else 
+               if ___conditional___ == 30 then do
+                  exit = 2; end else 
+               if ___conditional___ == 26
+               or ___conditional___ == 28
+               or ___conditional___ == 31 then do
+                  exit = 1; end else 
+               end end end end end end
+              exit = 2;
                 
             end
           end end 
@@ -257,10 +255,10 @@ function make_lexer(keywords) do
         end end 
         local ___conditional___=(exit);
         do
-           if ___conditional___ = 1 then do
+           if ___conditional___ == 1 then do
               Stream.junk(strm__);
-              return keyword_or_error(c);end end end 
-           if ___conditional___ = 2 then do
+              return keyword_or_error(c); end end 
+           if ___conditional___ == 2 then do
               Stream.junk(strm__);
               reset_buffer(--[[ () ]]0);
               store(c);
@@ -295,18 +293,17 @@ function make_lexer(keywords) do
                 end else do
                   return ident_or_keyword(get_string(--[[ () ]]0));
                 end end 
-              end;end end end 
-           if ___conditional___ = 3 then do
+              end; end end 
+           if ___conditional___ == 3 then do
               Stream.junk(strm__);
               reset_buffer(--[[ () ]]0);
               store(c);
-              return ident2(strm__);end end end 
-           if ___conditional___ = 4 then do
+              return ident2(strm__); end end 
+           if ___conditional___ == 4 then do
               Stream.junk(strm__);
               reset_buffer(--[[ () ]]0);
               store(c);
-              return number(strm__);end end end 
-           do
+              return number(strm__); end end 
           
         end
       end else do
@@ -314,7 +311,7 @@ function make_lexer(keywords) do
       end end 
     end;
   end end;
-  ident2 = function (strm__) do
+  ident2 = function(strm__) do
     while(true) do
       match = Stream.peek(strm__);
       if (match ~= undefined) then do
@@ -338,40 +335,40 @@ function make_lexer(keywords) do
         end else if (c >= 33) then do
           local ___conditional___=(c - 33 | 0);
           do
-             if ___conditional___ = 1
-             or ___conditional___ = 6
-             or ___conditional___ = 7
-             or ___conditional___ = 8
-             or ___conditional___ = 11
-             or ___conditional___ = 13
-             or ___conditional___ = 15
-             or ___conditional___ = 16
-             or ___conditional___ = 17
-             or ___conditional___ = 18
-             or ___conditional___ = 19
-             or ___conditional___ = 20
-             or ___conditional___ = 21
-             or ___conditional___ = 22
-             or ___conditional___ = 23
-             or ___conditional___ = 24
-             or ___conditional___ = 26 then do
-                return ident_or_keyword(get_string(--[[ () ]]0));end end end 
-             if ___conditional___ = 0
-             or ___conditional___ = 2
-             or ___conditional___ = 3
-             or ___conditional___ = 4
-             or ___conditional___ = 5
-             or ___conditional___ = 9
-             or ___conditional___ = 10
-             or ___conditional___ = 12
-             or ___conditional___ = 14
-             or ___conditional___ = 25
-             or ___conditional___ = 27
-             or ___conditional___ = 28
-             or ___conditional___ = 29
-             or ___conditional___ = 30
-             or ___conditional___ = 31
-             do
+             if ___conditional___ == 1
+             or ___conditional___ == 6
+             or ___conditional___ == 7
+             or ___conditional___ == 8
+             or ___conditional___ == 11
+             or ___conditional___ == 13
+             or ___conditional___ == 15
+             or ___conditional___ == 16
+             or ___conditional___ == 17
+             or ___conditional___ == 18
+             or ___conditional___ == 19
+             or ___conditional___ == 20
+             or ___conditional___ == 21
+             or ___conditional___ == 22
+             or ___conditional___ == 23
+             or ___conditional___ == 24
+             or ___conditional___ == 26 then do
+                return ident_or_keyword(get_string(--[[ () ]]0)); end end 
+             if ___conditional___ == 0
+             or ___conditional___ == 2
+             or ___conditional___ == 3
+             or ___conditional___ == 4
+             or ___conditional___ == 5
+             or ___conditional___ == 9
+             or ___conditional___ == 10
+             or ___conditional___ == 12
+             or ___conditional___ == 14
+             or ___conditional___ == 25
+             or ___conditional___ == 27
+             or ___conditional___ == 28
+             or ___conditional___ == 29
+             or ___conditional___ == 30
+             or ___conditional___ == 31
+             end
             
           end
         end else do
@@ -385,7 +382,7 @@ function make_lexer(keywords) do
       end end 
     end;
   end end;
-  number = function (strm__) do
+  number = function(strm__) do
     while(true) do
       match = Stream.peek(strm__);
       if (match ~= undefined) then do
@@ -436,7 +433,7 @@ function make_lexer(keywords) do
       return --[[ Int ]]Block.__(2, {Caml_format.caml_int_of_string(get_string(--[[ () ]]0))});
     end;
   end end;
-  exponent_part = function (strm__) do
+  exponent_part = function(strm__) do
     match = Stream.peek(strm__);
     if (match ~= undefined) then do
       c = match;
@@ -451,7 +448,7 @@ function make_lexer(keywords) do
       return end_exponent_part(strm__);
     end end 
   end end;
-  end_exponent_part = function (strm__) do
+  end_exponent_part = function(strm__) do
     while(true) do
       match = Stream.peek(strm__);
       if (match ~= undefined) then do
@@ -468,7 +465,7 @@ function make_lexer(keywords) do
       end end 
     end;
   end end;
-  string = function (strm__) do
+  string = function(strm__) do
     while(true) do
       match = Stream.peek(strm__);
       if (match ~= undefined) then do
@@ -503,7 +500,7 @@ function make_lexer(keywords) do
       end end 
     end;
   end end;
-  __char = function (strm__) do
+  __char = function(strm__) do
     match = Stream.peek(strm__);
     if (match ~= undefined) then do
       c = match;
@@ -528,33 +525,30 @@ function make_lexer(keywords) do
       error(Stream.Failure)
     end end 
   end end;
-  __escape = function (strm__) do
+  __escape = function(strm__) do
     match = Stream.peek(strm__);
     if (match ~= undefined) then do
       c1 = match;
       if (c1 >= 58) then do
         local ___conditional___=(c1);
         do
-           if ___conditional___ = 110 then do
+           if ___conditional___ == 110 then do
               Stream.junk(strm__);
-              return --[[ "\n" ]]10;end end end 
-           if ___conditional___ = 114 then do
+              return --[[ "\n" ]]10; end end 
+           if ___conditional___ == 114 then do
               Stream.junk(strm__);
-              return --[[ "\r" ]]13;end end end 
-           if ___conditional___ = 111
-           or ___conditional___ = 112
-           or ___conditional___ = 113
-           or ___conditional___ = 115 then do
+              return --[[ "\r" ]]13; end end 
+           if ___conditional___ == 111
+           or ___conditional___ == 112
+           or ___conditional___ == 113
+           or ___conditional___ == 115 then do
               Stream.junk(strm__);
-              return c1;end end end 
-           if ___conditional___ = 116 then do
+              return c1; end end 
+           if ___conditional___ == 116 then do
               Stream.junk(strm__);
-              return --[[ "\t" ]]9;end end end 
-           do
-          else do
-            Stream.junk(strm__);
+              return --[[ "\t" ]]9; end end 
+          Stream.junk(strm__);
             return c1;
-            end end
             
         end
       end else do
@@ -603,13 +597,13 @@ function make_lexer(keywords) do
       error(Stream.Failure)
     end end 
   end end;
-  comment = function (strm__) do
+  comment = function(strm__) do
     while(true) do
       match = Stream.peek(strm__);
       if (match ~= undefined) then do
         local ___conditional___=(match);
         do
-           if ___conditional___ = 40 then do
+           if ___conditional___ == 40 then do
               Stream.junk(strm__);
               strm___1 = strm__;
               match_1 = Stream.peek(strm___1);
@@ -624,11 +618,11 @@ function make_lexer(keywords) do
                 end end 
               end else do
                 error(Stream.Failure)
-              end end end end end 
-           if ___conditional___ = 41 then do
+              end end  end end 
+           if ___conditional___ == 41 then do
               Stream.junk(strm__);
-              ::continue:: ;end end end 
-           if ___conditional___ = 42 then do
+              ::continue:: ; end end 
+           if ___conditional___ == 42 then do
               Stream.junk(strm__);
               strm___2 = strm__;
               while(true) do
@@ -648,12 +642,9 @@ function make_lexer(keywords) do
                 end else do
                   error(Stream.Failure)
                 end end 
-              end;end end end 
-           do
-          else do
-            Stream.junk(strm__);
+              end; end end 
+          Stream.junk(strm__);
             ::continue:: ;
-            end end
             
         end
       end else do
@@ -661,8 +652,8 @@ function make_lexer(keywords) do
       end end 
     end;
   end end;
-  return (function (input) do
-      return Stream.from((function (_count) do
+  return (function(input) do
+      return Stream.from((function(_count) do
                     return next_token(input);
                   end end));
     end end);

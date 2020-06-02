@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 
 out_of_memory = --[[ tuple ]]{
@@ -85,6 +85,7 @@ assert_failure.tag = 248;
 
 undefined_recursive_module.tag = 248;
 
+exports = {}
 exports.out_of_memory = out_of_memory;
 exports.sys_error = sys_error;
 exports.failure = failure;

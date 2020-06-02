@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Js_vector = require "./js_vector";
 Caml_option = require "./caml_option";
@@ -174,7 +174,7 @@ function tailLoop(f, _acc, _param) do
 end end
 
 function foldRight(f, l, init) do
-  loop = function (n, param) do
+  loop = function(n, param) do
     if (param) then do
       t = param[1];
       h = param[0];
@@ -324,6 +324,7 @@ function equal(cmp, _xs, _ys) do
   end;
 end end
 
+exports = {}
 exports.length = length;
 exports.cons = cons;
 exports.isEmpty = isEmpty;

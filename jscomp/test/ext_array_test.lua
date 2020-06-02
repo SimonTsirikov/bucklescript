@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 List = require "../../lib/js/list";
 __Array = require "../../lib/js/array";
@@ -120,7 +120,7 @@ function range(from, to_) do
     })
   end
    end 
-  return __Array.init((to_ - from | 0) + 1 | 0, (function (i) do
+  return __Array.init((to_ - from | 0) + 1 | 0, (function(i) do
                 return i + from | 0;
               end end));
 end end
@@ -134,7 +134,7 @@ function map2i(f, a, b) do
     })
   end
    end 
-  return __Array.mapi((function (i, a) do
+  return __Array.mapi((function(i, a) do
                 return Curry._3(f, i, a, b[i]);
               end end), a);
 end end
@@ -296,6 +296,7 @@ function for_all2_no_exn(p, xs, ys) do
   end end 
 end end
 
+exports = {}
 exports.reverse_range = reverse_range;
 exports.reverse_in_place = reverse_in_place;
 exports.reverse = reverse;

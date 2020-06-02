@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Js_mapperRt = require "../../lib/js/js_mapperRt";
 
@@ -23,6 +23,7 @@ end end
 
 console.log(orientationToJs(--[[ Horizontal ]]208994564));
 
+exports = {}
 exports.orientationToJs = orientationToJs;
 exports.orientationFromJs = orientationFromJs;
 --[[  Not a pure module ]]

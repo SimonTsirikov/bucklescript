@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 __Array = require "../../lib/js/array";
@@ -47,7 +47,7 @@ b = Float_array.small_float_array(12);
 c = Float_array.longer_float_array(34);
 
 function print_array(a) do
-  __Array.iter((function (f) do
+  __Array.iter((function(f) do
           print_float(f);
           return print_newline(--[[ () ]]0);
         end end), a);
@@ -74,6 +74,7 @@ eq("File \"tfloat_record_test.ml\", line 43, characters 5-12", __Buffer.contents
 
 Mt.from_pair_suites("Tfloat_record_test", suites.contents);
 
+exports = {}
 exports.buf = buf;
 exports.fmt = fmt;
 exports.print_float = print_float;

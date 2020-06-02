@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Block = require "../../lib/js/block";
@@ -18,7 +18,7 @@ function eq(loc, x, y) do
   suites.contents = --[[ :: ]]{
     --[[ tuple ]]{
       loc .. (" id " .. String(test_id.contents)),
-      (function (param) do
+      (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     x,
                     y
@@ -40,8 +40,8 @@ end end
 
 add(--[[ tuple ]]{
       "File \"div_by_zero_test.ml\", line 14, characters 7-14",
-      (function (param) do
-          return --[[ ThrowAny ]]Block.__(7, {(function (param) do
+      (function(param) do
+          return --[[ ThrowAny ]]Block.__(7, {(function(param) do
                         Caml_int32.div(3, 0);
                         return --[[ () ]]0;
                       end end)});
@@ -50,8 +50,8 @@ add(--[[ tuple ]]{
 
 add(--[[ tuple ]]{
       "File \"div_by_zero_test.ml\", line 15, characters 7-14",
-      (function (param) do
-          return --[[ ThrowAny ]]Block.__(7, {(function (param) do
+      (function(param) do
+          return --[[ ThrowAny ]]Block.__(7, {(function(param) do
                         Caml_int32.mod_(3, 0);
                         return --[[ () ]]0;
                       end end)});
@@ -60,8 +60,8 @@ add(--[[ tuple ]]{
 
 add(--[[ tuple ]]{
       "File \"div_by_zero_test.ml\", line 16, characters 7-14",
-      (function (param) do
-          return --[[ ThrowAny ]]Block.__(7, {(function (param) do
+      (function(param) do
+          return --[[ ThrowAny ]]Block.__(7, {(function(param) do
                         Caml_int32.div(3, 0);
                         return --[[ () ]]0;
                       end end)});
@@ -70,8 +70,8 @@ add(--[[ tuple ]]{
 
 add(--[[ tuple ]]{
       "File \"div_by_zero_test.ml\", line 17, characters 7-14",
-      (function (param) do
-          return --[[ ThrowAny ]]Block.__(7, {(function (param) do
+      (function(param) do
+          return --[[ ThrowAny ]]Block.__(7, {(function(param) do
                         Caml_int32.mod_(3, 0);
                         return --[[ () ]]0;
                       end end)});
@@ -80,8 +80,8 @@ add(--[[ tuple ]]{
 
 add(--[[ tuple ]]{
       "File \"div_by_zero_test.ml\", line 18, characters 7-14",
-      (function (param) do
-          return --[[ ThrowAny ]]Block.__(7, {(function (param) do
+      (function(param) do
+          return --[[ ThrowAny ]]Block.__(7, {(function(param) do
                         Caml_int64.div(--[[ int64 ]]{
                               --[[ hi ]]0,
                               --[[ lo ]]3
@@ -96,8 +96,8 @@ add(--[[ tuple ]]{
 
 add(--[[ tuple ]]{
       "File \"div_by_zero_test.ml\", line 19, characters 7-14",
-      (function (param) do
-          return --[[ ThrowAny ]]Block.__(7, {(function (param) do
+      (function(param) do
+          return --[[ ThrowAny ]]Block.__(7, {(function(param) do
                         Caml_int64.mod_(--[[ int64 ]]{
                               --[[ hi ]]0,
                               --[[ lo ]]3
@@ -116,6 +116,7 @@ end end
 
 Mt.from_pair_suites("Div_by_zero_test", suites.contents);
 
+exports = {}
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;

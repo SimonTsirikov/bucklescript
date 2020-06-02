@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Block = require "../../lib/js/block";
@@ -55,6 +55,7 @@ end end
 
 Mt.from_pair_suites("File \"record_extension_test.ml\", line 43, characters 22-29", suites.contents);
 
+exports = {}
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;

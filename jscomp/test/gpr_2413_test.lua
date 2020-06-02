@@ -1,11 +1,11 @@
-console.log = print;
+console = {log = print};
 
 Caml_int32 = require "../../lib/js/caml_int32";
 
 function f(param) do
   local ___conditional___=(param.tag | 0);
   do
-     if ___conditional___ = 0--[[ A ]] then do
+     if ___conditional___ == 0--[[ A ]] then do
         match = param[0];
         if (match.tag) then do
           a = match[0];
@@ -13,10 +13,10 @@ function f(param) do
         end else do
           a_1 = match[0];
           return a_1 + a_1 | 0;
-        end end end end end 
-     if ___conditional___ = 1--[[ B ]]
-     or ___conditional___ = 2--[[ C ]]
-     do
+        end end  end end 
+     if ___conditional___ == 1--[[ B ]]
+     or ___conditional___ == 2--[[ C ]]
+     end
     
   end
   a_2 = param[0][0];
@@ -33,6 +33,7 @@ function ff(c) do
   end end 
 end end
 
+exports = {}
 exports.f = f;
 exports.ff = ff;
 --[[ No side effect ]]

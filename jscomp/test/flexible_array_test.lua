@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 __Array = require "../../lib/js/array";
 Block = require "../../lib/js/block";
@@ -261,10 +261,10 @@ function sort(s) do
     return s;
   end else do
     head = get(s, 0);
-    larger = sort(filter_from(1, (function (x) do
+    larger = sort(filter_from(1, (function(x) do
                 return Caml_obj.caml_greaterthan(x, head);
               end end), s));
-    smaller = sort(filter_from(1, (function (x) do
+    smaller = sort(filter_from(1, (function(x) do
                 return Caml_obj.caml_lessequal(x, head);
               end end), s));
     return append(smaller, push_front(larger, head));
@@ -330,11 +330,11 @@ if (not Caml_obj.caml_equal(x, of_array({
 end
  end 
 
-v = __Array.init(500, (function (i) do
+v = __Array.init(500, (function(i) do
         return 500 - i | 0;
       end end));
 
-y = __Array.init(500, (function (i) do
+y = __Array.init(500, (function(i) do
         return i + 1 | 0;
       end end));
 
@@ -342,6 +342,7 @@ x_1 = sort(of_array(v));
 
 Caml_obj.caml_equal(x_1, of_array(y));
 
+exports = {}
 exports.sub = sub;
 exports.update = update;
 exports.__delete = __delete;

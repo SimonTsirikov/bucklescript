@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Block = require "../../lib/js/block";
@@ -17,7 +17,7 @@ function eq(loc, x, y) do
   suites.contents = --[[ :: ]]{
     --[[ tuple ]]{
       loc .. (" id " .. String(test_id.contents)),
-      (function (param) do
+      (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     x,
                     y
@@ -44,12 +44,13 @@ eq("File \"key_word_property_plus_test.ml\", line 10, characters 5-12", {
         12,
         13,
         14
-      }.reduce((function (prim, prim_1) do
+      }.reduce((function(prim, prim_1) do
             return prim + prim_1 | 0;
           end end), 0), ((((((((((((Global_mangles.____dirname + Global_mangles.____filename | 0) + Global_mangles.__clearImmediate | 0) + Global_mangles.__clearInterval | 0) + Global_mangles.__clearTimeout | 0) + Global_mangles.__console | 0) + Global_mangles.__exports | 0) + Global_mangles.__global | 0) + Global_mangles._module | 0) + Global_mangles.__process | 0) + Global_mangles.__require | 0) + Global_mangles.__setImmediate | 0) + Global_mangles.__setInterval | 0) + Global_mangles.__setTimeout | 0);
 
 Mt.from_pair_suites("Key_word_property_plus_test", suites.contents);
 
+exports = {}
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;

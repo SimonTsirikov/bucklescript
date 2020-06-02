@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 List = require "../../lib/js/list";
 Pervasives = require "../../lib/js/pervasives";
@@ -221,6 +221,7 @@ end end
 
 f = Pervasives.$at;
 
+exports = {}
 exports.Pervasives = Pervasives_1;
 exports.f = f;
 exports.a0 = a0;

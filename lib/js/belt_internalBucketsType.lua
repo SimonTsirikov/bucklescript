@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 
 function power_2_above(_x, n) do
@@ -39,6 +39,7 @@ end end
 
 emptyOpt = undefined;
 
+exports = {}
 exports.emptyOpt = emptyOpt;
 exports.make = make;
 exports.clear = clear;

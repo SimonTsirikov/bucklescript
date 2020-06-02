@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Block = require "../../lib/js/block";
@@ -8,7 +8,7 @@ v = (Number.EPSILON?Number.EPSILON:2.220446049250313e-16);
 
 suites_000 = --[[ tuple ]]{
   "epsilon",
-  (function (param) do
+  (function(param) do
       return --[[ Eq ]]Block.__(0, {
                 Pervasives.epsilon_float,
                 v
@@ -19,7 +19,7 @@ suites_000 = --[[ tuple ]]{
 suites_001 = --[[ :: ]]{
   --[[ tuple ]]{
     "raw_epsilon",
-    (function (param) do
+    (function(param) do
         return --[[ Eq ]]Block.__(0, {
                   2.220446049250313e-16,
                   v
@@ -36,6 +36,7 @@ suites = --[[ :: ]]{
 
 Mt.from_pair_suites("Epsilon_test", suites);
 
+exports = {}
 exports.v = v;
 exports.suites = suites;
 --[[ v Not a pure module ]]

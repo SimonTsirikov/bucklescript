@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 List = require "../../lib/js/list";
 __Array = require "../../lib/js/array";
@@ -282,7 +282,7 @@ function of_list(l) do
 end end
 
 function of_array(l) do
-  return __Array.fold_left((function (acc, x) do
+  return __Array.fold_left((function(acc, x) do
                 return add(x, acc);
               end end), --[[ Empty ]]0, l);
 end end
@@ -326,6 +326,7 @@ of_sorted_list = Set_gen.of_sorted_list;
 
 of_sorted_array = Set_gen.of_sorted_array;
 
+exports = {}
 exports.compare_elt = compare_elt;
 exports.empty = empty;
 exports.is_empty = is_empty;

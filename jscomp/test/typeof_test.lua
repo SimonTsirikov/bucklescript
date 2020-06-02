@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Block = require "../../lib/js/block";
@@ -9,31 +9,25 @@ function string_or_number(x) do
   if (typeof ty == "number") then do
     local ___conditional___=(ty);
     do
-       if ___conditional___ = 0--[[ JSFalse ]]
-       or ___conditional___ = 1--[[ JSTrue ]] then do
-          return false;end end end 
-       do
-      else do
-        return false;
-        end end
+       if ___conditional___ == 0--[[ JSFalse ]]
+       or ___conditional___ == 1--[[ JSTrue ]] then do
+          return false; end end 
+      return false;
         
     end
   end else do
     local ___conditional___=(ty.tag | 0);
     do
-       if ___conditional___ = 0--[[ JSNumber ]] then do
+       if ___conditional___ == 0--[[ JSNumber ]] then do
           console.log(ty[0] + 3);
-          return true;end end end 
-       if ___conditional___ = 1--[[ JSString ]] then do
+          return true; end end 
+       if ___conditional___ == 1--[[ JSString ]] then do
           console.log(ty[0] .. "hei");
-          return true;end end end 
-       if ___conditional___ = 2--[[ JSFunction ]] then do
+          return true; end end 
+       if ___conditional___ == 2--[[ JSFunction ]] then do
           console.log("Function");
-          return false;end end end 
-       do
-      else do
-        return false;
-        end end
+          return false; end end 
+      return false;
         
     end
   end end 
@@ -41,7 +35,7 @@ end end
 
 suites_000 = --[[ tuple ]]{
   "int_type",
-  (function (param) do
+  (function(param) do
       return --[[ Eq ]]Block.__(0, {
                 "number",
                 "number"
@@ -52,7 +46,7 @@ suites_000 = --[[ tuple ]]{
 suites_001 = --[[ :: ]]{
   --[[ tuple ]]{
     "string_type",
-    (function (param) do
+    (function(param) do
         return --[[ Eq ]]Block.__(0, {
                   "string",
                   "string"
@@ -62,7 +56,7 @@ suites_001 = --[[ :: ]]{
   --[[ :: ]]{
     --[[ tuple ]]{
       "number_gadt_test",
-      (function (param) do
+      (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     Js_types.test(3, --[[ Number ]]3),
                     true
@@ -72,7 +66,7 @@ suites_001 = --[[ :: ]]{
     --[[ :: ]]{
       --[[ tuple ]]{
         "boolean_gadt_test",
-        (function (param) do
+        (function(param) do
             return --[[ Eq ]]Block.__(0, {
                       Js_types.test(true, --[[ Boolean ]]2),
                       true
@@ -82,7 +76,7 @@ suites_001 = --[[ :: ]]{
       --[[ :: ]]{
         --[[ tuple ]]{
           "undefined_gadt_test",
-          (function (param) do
+          (function(param) do
               return --[[ Eq ]]Block.__(0, {
                         Js_types.test(undefined, --[[ Undefined ]]0),
                         true
@@ -92,7 +86,7 @@ suites_001 = --[[ :: ]]{
         --[[ :: ]]{
           --[[ tuple ]]{
             "string_on_number1",
-            (function (param) do
+            (function(param) do
                 return --[[ Eq ]]Block.__(0, {
                           string_or_number("xx"),
                           true
@@ -102,7 +96,7 @@ suites_001 = --[[ :: ]]{
           --[[ :: ]]{
             --[[ tuple ]]{
               "string_on_number2",
-              (function (param) do
+              (function(param) do
                   return --[[ Eq ]]Block.__(0, {
                             string_or_number(3.02),
                             true
@@ -112,9 +106,9 @@ suites_001 = --[[ :: ]]{
             --[[ :: ]]{
               --[[ tuple ]]{
                 "string_on_number3",
-                (function (param) do
+                (function(param) do
                     return --[[ Eq ]]Block.__(0, {
-                              string_or_number((function (x) do
+                              string_or_number((function(x) do
                                       return x;
                                     end end)),
                               false
@@ -124,7 +118,7 @@ suites_001 = --[[ :: ]]{
               --[[ :: ]]{
                 --[[ tuple ]]{
                   "string_gadt_test",
-                  (function (param) do
+                  (function(param) do
                       return --[[ Eq ]]Block.__(0, {
                                 Js_types.test("3", --[[ String ]]4),
                                 true
@@ -134,7 +128,7 @@ suites_001 = --[[ :: ]]{
                 --[[ :: ]]{
                   --[[ tuple ]]{
                     "string_gadt_test_neg",
-                    (function (param) do
+                    (function(param) do
                         return --[[ Eq ]]Block.__(0, {
                                   Js_types.test(3, --[[ String ]]4),
                                   false
@@ -144,9 +138,9 @@ suites_001 = --[[ :: ]]{
                   --[[ :: ]]{
                     --[[ tuple ]]{
                       "function_gadt_test",
-                      (function (param) do
+                      (function(param) do
                           return --[[ Eq ]]Block.__(0, {
-                                    Js_types.test((function (x) do
+                                    Js_types.test((function(x) do
                                             return x;
                                           end end), --[[ Function ]]5),
                                     true
@@ -156,7 +150,7 @@ suites_001 = --[[ :: ]]{
                     --[[ :: ]]{
                       --[[ tuple ]]{
                         "object_gadt_test",
-                        (function (param) do
+                        (function(param) do
                             return --[[ Eq ]]Block.__(0, {
                                       Js_types.test(do
                                             x: 3
@@ -185,6 +179,7 @@ suites = --[[ :: ]]{
 
 Mt.from_pair_suites("Typeof_test", suites);
 
+exports = {}
 exports.string_or_number = string_or_number;
 exports.suites = suites;
 --[[  Not a pure module ]]

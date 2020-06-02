@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 
 f = do
@@ -16,6 +16,7 @@ function ff(x) do
   return --[[ () ]]0;
 end end
 
+exports = {}
 exports.f = f;
 exports.ff = ff;
 --[[  Not a pure module ]]

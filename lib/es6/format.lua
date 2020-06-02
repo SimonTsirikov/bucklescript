@@ -111,11 +111,11 @@ function format_pp_token(state, size, param) do
   if (typeof param == "number") then do
     local ___conditional___=(param);
     do
-       if ___conditional___ = 0--[[ Pp_stab ]] then do
+       if ___conditional___ == 0--[[ Pp_stab ]] then do
           match = state.pp_tbox_stack;
           if (match) then do
             tabs = match[0][0];
-            add_tab = function (n, ls) do
+            add_tab = function(n, ls) do
               if (ls) then do
                 x = ls[0];
                 if (Caml_obj.caml_lessthan(n, x)) then do
@@ -140,31 +140,31 @@ function format_pp_token(state, size, param) do
             return --[[ () ]]0;
           end else do
             return --[[ () ]]0;
-          end end end end end 
-       if ___conditional___ = 1--[[ Pp_end ]] then do
+          end end  end end 
+       if ___conditional___ == 1--[[ Pp_end ]] then do
           match_1 = state.pp_format_stack;
           if (match_1) then do
             state.pp_format_stack = match_1[1];
             return --[[ () ]]0;
           end else do
             return --[[ () ]]0;
-          end end end end end 
-       if ___conditional___ = 2--[[ Pp_tend ]] then do
+          end end  end end 
+       if ___conditional___ == 2--[[ Pp_tend ]] then do
           match_2 = state.pp_tbox_stack;
           if (match_2) then do
             state.pp_tbox_stack = match_2[1];
             return --[[ () ]]0;
           end else do
             return --[[ () ]]0;
-          end end end end end 
-       if ___conditional___ = 3--[[ Pp_newline ]] then do
+          end end  end end 
+       if ___conditional___ == 3--[[ Pp_newline ]] then do
           match_3 = state.pp_format_stack;
           if (match_3) then do
             return break_new_line(state, 0, match_3[0][1]);
           end else do
             return Curry._1(state.pp_out_newline, --[[ () ]]0);
-          end end end end end 
-       if ___conditional___ = 4--[[ Pp_if_newline ]] then do
+          end end  end end 
+       if ___conditional___ == 4--[[ Pp_if_newline ]] then do
           if (state.pp_current_indent ~= (state.pp_margin - state.pp_space_left | 0)) then do
             state_1 = state;
             match_4 = take_queue(state_1.pp_queue);
@@ -174,8 +174,8 @@ function format_pp_token(state, size, param) do
             return --[[ () ]]0;
           end else do
             return 0;
-          end end end end end 
-       if ___conditional___ = 5--[[ Pp_close_tag ]] then do
+          end end  end end 
+       if ___conditional___ == 5--[[ Pp_close_tag ]] then do
           match_5 = state.pp_mark_stack;
           if (match_5) then do
             marker = Curry._1(state.pp_mark_close_tag, match_5[0]);
@@ -184,19 +184,18 @@ function format_pp_token(state, size, param) do
             return --[[ () ]]0;
           end else do
             return --[[ () ]]0;
-          end end end end end 
-       do
+          end end  end end 
       
     end
   end else do
     local ___conditional___=(param.tag | 0);
     do
-       if ___conditional___ = 0--[[ Pp_text ]] then do
+       if ___conditional___ == 0--[[ Pp_text ]] then do
           state.pp_space_left = state.pp_space_left - size | 0;
           pp_output_string(state, param[0]);
           state.pp_is_new_line = false;
-          return --[[ () ]]0;end end end 
-       if ___conditional___ = 1--[[ Pp_break ]] then do
+          return --[[ () ]]0; end end 
+       if ___conditional___ == 1--[[ Pp_break ]] then do
           off = param[1];
           n = param[0];
           match_6 = state.pp_format_stack;
@@ -205,36 +204,35 @@ function format_pp_token(state, size, param) do
             width = match_7[1];
             local ___conditional___=(match_7[0]);
             do
-               if ___conditional___ = 1--[[ Pp_vbox ]]
-               or ___conditional___ = 2--[[ Pp_hvbox ]] then do
-                  return break_new_line(state, off, width);end end end 
-               if ___conditional___ = 3--[[ Pp_hovbox ]] then do
+               if ___conditional___ == 1--[[ Pp_vbox ]]
+               or ___conditional___ == 2--[[ Pp_hvbox ]] then do
+                  return break_new_line(state, off, width); end end 
+               if ___conditional___ == 3--[[ Pp_hovbox ]] then do
                   if (size > state.pp_space_left) then do
                     return break_new_line(state, off, width);
                   end else do
                     return break_same_line(state, n);
-                  end end end end end 
-               if ___conditional___ = 4--[[ Pp_box ]] then do
+                  end end  end end 
+               if ___conditional___ == 4--[[ Pp_box ]] then do
                   if (state.pp_is_new_line or not (size > state.pp_space_left or state.pp_current_indent > ((state.pp_margin - width | 0) + off | 0))) then do
                     return break_same_line(state, n);
                   end else do
                     return break_new_line(state, off, width);
-                  end end end end end 
-               if ___conditional___ = 0--[[ Pp_hbox ]]
-               or ___conditional___ = 5--[[ Pp_fits ]] then do
-                  return break_same_line(state, n);end end end 
-               do
+                  end end  end end 
+               if ___conditional___ == 0--[[ Pp_hbox ]]
+               or ___conditional___ == 5--[[ Pp_fits ]] then do
+                  return break_same_line(state, n); end end 
               
             end
           end else do
             return --[[ () ]]0;
-          end end end end end 
-       if ___conditional___ = 2--[[ Pp_tbreak ]] then do
+          end end  end end 
+       if ___conditional___ == 2--[[ Pp_tbreak ]] then do
           insertion_point = state.pp_margin - state.pp_space_left | 0;
           match_8 = state.pp_tbox_stack;
           if (match_8) then do
             tabs_1 = match_8[0][0];
-            find = function (n, _param) do
+            find = function(n, _param) do
               while(true) do
                 param = _param;
                 if (param) then do
@@ -273,8 +271,8 @@ function format_pp_token(state, size, param) do
             end end 
           end else do
             return --[[ () ]]0;
-          end end end end end 
-       if ___conditional___ = 3--[[ Pp_begin ]] then do
+          end end  end end 
+       if ___conditional___ == 3--[[ Pp_begin ]] then do
           ty = param[1];
           insertion_point_1 = state.pp_margin - state.pp_space_left | 0;
           if (insertion_point_1 > state.pp_max_indent) then do
@@ -292,14 +290,14 @@ function format_pp_token(state, size, param) do
             },
             state.pp_format_stack
           };
-          return --[[ () ]]0;end end end 
-       if ___conditional___ = 4--[[ Pp_tbegin ]] then do
+          return --[[ () ]]0; end end 
+       if ___conditional___ == 4--[[ Pp_tbegin ]] then do
           state.pp_tbox_stack = --[[ :: ]]{
             param[0],
             state.pp_tbox_stack
           };
-          return --[[ () ]]0;end end end 
-       if ___conditional___ = 5--[[ Pp_open_tag ]] then do
+          return --[[ () ]]0; end end 
+       if ___conditional___ == 5--[[ Pp_open_tag ]] then do
           tag_name = param[0];
           marker_1 = Curry._1(state.pp_mark_open_tag, tag_name);
           pp_output_string(state, marker_1);
@@ -307,8 +305,7 @@ function format_pp_token(state, size, param) do
             tag_name,
             state.pp_mark_stack
           };
-          return --[[ () ]]0;end end end 
-       do
+          return --[[ () ]]0; end end 
       
     end
   end end 
@@ -384,20 +381,17 @@ function set_size(state, ty) do
       end else do
         local ___conditional___=(tmp.tag | 0);
         do
-           if ___conditional___ = 1--[[ Pp_break ]]
-           or ___conditional___ = 2--[[ Pp_tbreak ]]
-           or ___conditional___ = 3--[[ Pp_begin ]] then do
+           if ___conditional___ == 1--[[ Pp_break ]]
+           or ___conditional___ == 2--[[ Pp_tbreak ]]
+           or ___conditional___ == 3--[[ Pp_begin ]] then do
               if (ty) then do
                 return 0;
               end else do
                 queue_elem.elem_size = state.pp_right_total + size | 0;
                 state.pp_scan_stack = t;
                 return --[[ () ]]0;
-              end end end end end 
-           do
-          else do
-            return --[[ () ]]0;
-            end end
+              end end  end end 
+          return --[[ () ]]0;
             
         end
       end end 
@@ -569,7 +563,7 @@ function pp_rinit(state) do
 end end
 
 function clear_tag_stack(state) do
-  return List.iter((function (param) do
+  return List.iter((function(param) do
                 return pp_close_tag(state, --[[ () ]]0);
               end end), state.pp_tag_stack);
 end end
@@ -882,19 +876,19 @@ function display_blanks(state, _n) do
 end end
 
 function pp_set_formatter_out_channel(state, oc) do
-  state.pp_out_string = (function (param, param_1, param_2) do
+  state.pp_out_string = (function(param, param_1, param_2) do
       return Pervasives.output_substring(oc, param, param_1, param_2);
     end end);
-  state.pp_out_flush = (function (param) do
+  state.pp_out_flush = (function(param) do
       return Caml_io.caml_ml_flush(oc);
     end end);
-  state.pp_out_newline = (function (param) do
+  state.pp_out_newline = (function(param) do
       return display_newline(state, param);
     end end);
-  state.pp_out_spaces = (function (param) do
+  state.pp_out_spaces = (function(param) do
       return display_blanks(state, param);
     end end);
-  state.pp_out_indent = (function (param) do
+  state.pp_out_indent = (function(param) do
       return display_blanks(state, param);
     end end);
   return --[[ () ]]0;
@@ -975,37 +969,37 @@ function formatter_of_out_functions(out_funs) do
 end end
 
 function make_formatter(output, flush) do
-  ppf = pp_make_formatter(output, flush, (function (prim) do
+  ppf = pp_make_formatter(output, flush, (function(prim) do
           return --[[ () ]]0;
-        end end), (function (prim) do
+        end end), (function(prim) do
           return --[[ () ]]0;
-        end end), (function (prim) do
+        end end), (function(prim) do
           return --[[ () ]]0;
         end end));
-  ppf.pp_out_newline = (function (param) do
+  ppf.pp_out_newline = (function(param) do
       return display_newline(ppf, param);
     end end);
-  ppf.pp_out_spaces = (function (param) do
+  ppf.pp_out_spaces = (function(param) do
       return display_blanks(ppf, param);
     end end);
-  ppf.pp_out_indent = (function (param) do
+  ppf.pp_out_indent = (function(param) do
       return display_blanks(ppf, param);
     end end);
   return ppf;
 end end
 
 function formatter_of_out_channel(oc) do
-  return make_formatter((function (param, param_1, param_2) do
+  return make_formatter((function(param, param_1, param_2) do
                 return Pervasives.output_substring(oc, param, param_1, param_2);
-              end end), (function (param) do
+              end end), (function(param) do
                 return Caml_io.caml_ml_flush(oc);
               end end));
 end end
 
 function formatter_of_buffer(b) do
-  return make_formatter((function (param, param_1, param_2) do
+  return make_formatter((function(param, param_1, param_2) do
                 return __Buffer.add_substring(b, param, param_1, param_2);
-              end end), (function (prim) do
+              end end), (function(prim) do
                 return --[[ () ]]0;
               end end));
 end end
@@ -1059,23 +1053,23 @@ function add_symbolic_output_item(sob, item) do
 end end
 
 function formatter_of_symbolic_output_buffer(sob) do
-  f = function (param, param_1, param_2) do
+  f = function(param, param_1, param_2) do
     sob_1 = sob;
     s = param;
     i = param_1;
     n = param_2;
     return add_symbolic_output_item(sob_1, --[[ Output_string ]]Block.__(0, {__String.sub(s, i, n)}));
   end end;
-  g = function (param) do
+  g = function(param) do
     return add_symbolic_output_item(sob, --[[ Output_flush ]]0);
   end end;
-  h = function (param) do
+  h = function(param) do
     return add_symbolic_output_item(sob, --[[ Output_newline ]]1);
   end end;
-  i = function (param) do
+  i = function(param) do
     return add_symbolic_output_item(sob, --[[ Output_spaces ]]Block.__(1, {param}));
   end end;
-  j = function (param) do
+  j = function(param) do
     return add_symbolic_output_item(sob, --[[ Output_indent ]]Block.__(2, {param}));
   end end;
   return pp_make_formatter(f, g, h, i, j);
@@ -1303,7 +1297,7 @@ function pp_print_text(ppf, s) do
   right = do
     contents: 0
   end;
-  flush = function (param) do
+  flush = function(param) do
     pp_print_string(ppf, __String.sub(s, left.contents, right.contents - left.contents | 0));
     right.contents = right.contents + 1 | 0;
     left.contents = right.contents;
@@ -1347,34 +1341,32 @@ function output_formatting_lit(ppf, fmting_lit) do
   if (typeof fmting_lit == "number") then do
     local ___conditional___=(fmting_lit);
     do
-       if ___conditional___ = 0--[[ Close_box ]] then do
-          return pp_close_box(ppf, --[[ () ]]0);end end end 
-       if ___conditional___ = 1--[[ Close_tag ]] then do
-          return pp_close_tag(ppf, --[[ () ]]0);end end end 
-       if ___conditional___ = 2--[[ FFlush ]] then do
-          return pp_print_flush(ppf, --[[ () ]]0);end end end 
-       if ___conditional___ = 3--[[ Force_newline ]] then do
-          return pp_force_newline(ppf, --[[ () ]]0);end end end 
-       if ___conditional___ = 4--[[ Flush_newline ]] then do
-          return pp_print_newline(ppf, --[[ () ]]0);end end end 
-       if ___conditional___ = 5--[[ Escaped_at ]] then do
-          return pp_print_char(ppf, --[[ "@" ]]64);end end end 
-       if ___conditional___ = 6--[[ Escaped_percent ]] then do
-          return pp_print_char(ppf, --[[ "%" ]]37);end end end 
-       do
+       if ___conditional___ == 0--[[ Close_box ]] then do
+          return pp_close_box(ppf, --[[ () ]]0); end end 
+       if ___conditional___ == 1--[[ Close_tag ]] then do
+          return pp_close_tag(ppf, --[[ () ]]0); end end 
+       if ___conditional___ == 2--[[ FFlush ]] then do
+          return pp_print_flush(ppf, --[[ () ]]0); end end 
+       if ___conditional___ == 3--[[ Force_newline ]] then do
+          return pp_force_newline(ppf, --[[ () ]]0); end end 
+       if ___conditional___ == 4--[[ Flush_newline ]] then do
+          return pp_print_newline(ppf, --[[ () ]]0); end end 
+       if ___conditional___ == 5--[[ Escaped_at ]] then do
+          return pp_print_char(ppf, --[[ "@" ]]64); end end 
+       if ___conditional___ == 6--[[ Escaped_percent ]] then do
+          return pp_print_char(ppf, --[[ "%" ]]37); end end 
       
     end
   end else do
     local ___conditional___=(fmting_lit.tag | 0);
     do
-       if ___conditional___ = 0--[[ Break ]] then do
-          return pp_print_break(ppf, fmting_lit[1], fmting_lit[2]);end end end 
-       if ___conditional___ = 1--[[ Magic_size ]] then do
-          return --[[ () ]]0;end end end 
-       if ___conditional___ = 2--[[ Scan_indic ]] then do
+       if ___conditional___ == 0--[[ Break ]] then do
+          return pp_print_break(ppf, fmting_lit[1], fmting_lit[2]); end end 
+       if ___conditional___ == 1--[[ Magic_size ]] then do
+          return --[[ () ]]0; end end 
+       if ___conditional___ == 2--[[ Scan_indic ]] then do
           pp_print_char(ppf, --[[ "@" ]]64);
-          return pp_print_char(ppf, fmting_lit[0]);end end end 
-       do
+          return pp_print_char(ppf, fmting_lit[0]); end end 
       
     end
   end end 
@@ -1393,10 +1385,10 @@ function output_acc(ppf, acc) do
   end else do
     local ___conditional___=(acc.tag | 0);
     do
-       if ___conditional___ = 0--[[ Acc_formatting_lit ]] then do
+       if ___conditional___ == 0--[[ Acc_formatting_lit ]] then do
           output_acc(ppf, acc[0]);
-          return output_formatting_lit(ppf, acc[1]);end end end 
-       if ___conditional___ = 1--[[ Acc_formatting_gen ]] then do
+          return output_formatting_lit(ppf, acc[1]); end end 
+       if ___conditional___ == 1--[[ Acc_formatting_gen ]] then do
           match = acc[1];
           p_2 = acc[0];
           output_acc(ppf, p_2);
@@ -1405,8 +1397,8 @@ function output_acc(ppf, acc) do
             return pp_open_box_gen(ppf, match_1[0], match_1[1]);
           end else do
             return pp_open_tag(ppf, compute_tag(output_acc, match[0]));
-          end end end end end 
-       if ___conditional___ = 2--[[ Acc_string_literal ]] then do
+          end end  end end 
+       if ___conditional___ == 2--[[ Acc_string_literal ]] then do
           p_3 = acc[0];
           if (typeof p_3 ~= "number" and not p_3.tag) then do
             match_2 = p_3[1];
@@ -1420,8 +1412,8 @@ function output_acc(ppf, acc) do
           end
            end 
           output_acc(ppf, p_3);
-          return pp_print_string(ppf, acc[1]);end end end 
-       if ___conditional___ = 3--[[ Acc_char_literal ]] then do
+          return pp_print_string(ppf, acc[1]); end end 
+       if ___conditional___ == 3--[[ Acc_char_literal ]] then do
           p_4 = acc[0];
           if (typeof p_4 ~= "number" and not p_4.tag) then do
             match_3 = p_4[1];
@@ -1435,8 +1427,8 @@ function output_acc(ppf, acc) do
           end
            end 
           output_acc(ppf, p_4);
-          return pp_print_char(ppf, acc[1]);end end end 
-       if ___conditional___ = 4--[[ Acc_data_string ]] then do
+          return pp_print_char(ppf, acc[1]); end end 
+       if ___conditional___ == 4--[[ Acc_data_string ]] then do
           p_5 = acc[0];
           if (typeof p_5 ~= "number" and not p_5.tag) then do
             match_4 = p_5[1];
@@ -1450,8 +1442,8 @@ function output_acc(ppf, acc) do
           end
            end 
           output_acc(ppf, p_5);
-          return pp_print_string(ppf, acc[1]);end end end 
-       if ___conditional___ = 5--[[ Acc_data_char ]] then do
+          return pp_print_string(ppf, acc[1]); end end 
+       if ___conditional___ == 5--[[ Acc_data_char ]] then do
           p_6 = acc[0];
           if (typeof p_6 ~= "number" and not p_6.tag) then do
             match_5 = p_6[1];
@@ -1465,32 +1457,30 @@ function output_acc(ppf, acc) do
           end
            end 
           output_acc(ppf, p_6);
-          return pp_print_char(ppf, acc[1]);end end end 
-       if ___conditional___ = 6--[[ Acc_delay ]] then do
+          return pp_print_char(ppf, acc[1]); end end 
+       if ___conditional___ == 6--[[ Acc_delay ]] then do
           output_acc(ppf, acc[0]);
-          return Curry._1(acc[1], ppf);end end end 
-       if ___conditional___ = 7--[[ Acc_flush ]] then do
+          return Curry._1(acc[1], ppf); end end 
+       if ___conditional___ == 7--[[ Acc_flush ]] then do
           output_acc(ppf, acc[0]);
-          return pp_print_flush(ppf, --[[ () ]]0);end end end 
-       if ___conditional___ = 8--[[ Acc_invalid_arg ]] then do
+          return pp_print_flush(ppf, --[[ () ]]0); end end 
+       if ___conditional___ == 8--[[ Acc_invalid_arg ]] then do
           output_acc(ppf, acc[0]);
           error({
             Caml_builtin_exceptions.invalid_argument,
             acc[1]
-          })end end end 
-       do
+          }) end end 
       
     end
   end end 
   local ___conditional___=(exit);
   do
-     if ___conditional___ = 1 then do
+     if ___conditional___ == 1 then do
         output_acc(ppf, p);
-        return pp_print_as_size(ppf, size, s);end end end 
-     if ___conditional___ = 2 then do
+        return pp_print_as_size(ppf, size, s); end end 
+     if ___conditional___ == 2 then do
         output_acc(ppf, p_1);
-        return pp_print_as_size(ppf, size_1, Caml_bytes.bytes_to_string(Bytes.make(1, c)));end end end 
-     do
+        return pp_print_as_size(ppf, size_1, Caml_bytes.bytes_to_string(Bytes.make(1, c))); end end 
     
   end
 end end
@@ -1508,10 +1498,10 @@ function strput_acc(ppf, acc) do
   end else do
     local ___conditional___=(acc.tag | 0);
     do
-       if ___conditional___ = 0--[[ Acc_formatting_lit ]] then do
+       if ___conditional___ == 0--[[ Acc_formatting_lit ]] then do
           strput_acc(ppf, acc[0]);
-          return output_formatting_lit(ppf, acc[1]);end end end 
-       if ___conditional___ = 1--[[ Acc_formatting_gen ]] then do
+          return output_formatting_lit(ppf, acc[1]); end end 
+       if ___conditional___ == 1--[[ Acc_formatting_gen ]] then do
           match = acc[1];
           p_2 = acc[0];
           strput_acc(ppf, p_2);
@@ -1520,8 +1510,8 @@ function strput_acc(ppf, acc) do
             return pp_open_box_gen(ppf, match_1[0], match_1[1]);
           end else do
             return pp_open_tag(ppf, compute_tag(strput_acc, match[0]));
-          end end end end end 
-       if ___conditional___ = 2--[[ Acc_string_literal ]] then do
+          end end  end end 
+       if ___conditional___ == 2--[[ Acc_string_literal ]] then do
           p_3 = acc[0];
           if (typeof p_3 ~= "number" and not p_3.tag) then do
             match_2 = p_3[1];
@@ -1535,8 +1525,8 @@ function strput_acc(ppf, acc) do
           end
            end 
           strput_acc(ppf, p_3);
-          return pp_print_string(ppf, acc[1]);end end end 
-       if ___conditional___ = 3--[[ Acc_char_literal ]] then do
+          return pp_print_string(ppf, acc[1]); end end 
+       if ___conditional___ == 3--[[ Acc_char_literal ]] then do
           p_4 = acc[0];
           if (typeof p_4 ~= "number" and not p_4.tag) then do
             match_3 = p_4[1];
@@ -1550,8 +1540,8 @@ function strput_acc(ppf, acc) do
           end
            end 
           strput_acc(ppf, p_4);
-          return pp_print_char(ppf, acc[1]);end end end 
-       if ___conditional___ = 4--[[ Acc_data_string ]] then do
+          return pp_print_char(ppf, acc[1]); end end 
+       if ___conditional___ == 4--[[ Acc_data_string ]] then do
           p_5 = acc[0];
           if (typeof p_5 ~= "number" and not p_5.tag) then do
             match_4 = p_5[1];
@@ -1565,8 +1555,8 @@ function strput_acc(ppf, acc) do
           end
            end 
           strput_acc(ppf, p_5);
-          return pp_print_string(ppf, acc[1]);end end end 
-       if ___conditional___ = 5--[[ Acc_data_char ]] then do
+          return pp_print_string(ppf, acc[1]); end end 
+       if ___conditional___ == 5--[[ Acc_data_char ]] then do
           p_6 = acc[0];
           if (typeof p_6 ~= "number" and not p_6.tag) then do
             match_5 = p_6[1];
@@ -1580,8 +1570,8 @@ function strput_acc(ppf, acc) do
           end
            end 
           strput_acc(ppf, p_6);
-          return pp_print_char(ppf, acc[1]);end end end 
-       if ___conditional___ = 6--[[ Acc_delay ]] then do
+          return pp_print_char(ppf, acc[1]); end end 
+       if ___conditional___ == 6--[[ Acc_delay ]] then do
           p_7 = acc[0];
           if (typeof p_7 ~= "number" and not p_7.tag) then do
             match_6 = p_7[1];
@@ -1593,35 +1583,33 @@ function strput_acc(ppf, acc) do
           end
            end 
           strput_acc(ppf, p_7);
-          return pp_print_string(ppf, Curry._1(acc[1], --[[ () ]]0));end end end 
-       if ___conditional___ = 7--[[ Acc_flush ]] then do
+          return pp_print_string(ppf, Curry._1(acc[1], --[[ () ]]0)); end end 
+       if ___conditional___ == 7--[[ Acc_flush ]] then do
           strput_acc(ppf, acc[0]);
-          return pp_print_flush(ppf, --[[ () ]]0);end end end 
-       if ___conditional___ = 8--[[ Acc_invalid_arg ]] then do
+          return pp_print_flush(ppf, --[[ () ]]0); end end 
+       if ___conditional___ == 8--[[ Acc_invalid_arg ]] then do
           strput_acc(ppf, acc[0]);
           error({
             Caml_builtin_exceptions.invalid_argument,
             acc[1]
-          })end end end 
-       do
+          }) end end 
       
     end
   end end 
   local ___conditional___=(exit);
   do
-     if ___conditional___ = 1 then do
+     if ___conditional___ == 1 then do
         strput_acc(ppf, p);
-        return pp_print_as_size(ppf, size, s);end end end 
-     if ___conditional___ = 2 then do
+        return pp_print_as_size(ppf, size, s); end end 
+     if ___conditional___ == 2 then do
         strput_acc(ppf, p_1);
-        return pp_print_as_size(ppf, size_1, Caml_bytes.bytes_to_string(Bytes.make(1, c)));end end end 
-     do
+        return pp_print_as_size(ppf, size_1, Caml_bytes.bytes_to_string(Bytes.make(1, c))); end end 
     
   end
 end end
 
 function kfprintf(k, ppf, param) do
-  return CamlinternalFormat.make_printf((function (ppf, acc) do
+  return CamlinternalFormat.make_printf((function(ppf, acc) do
                 output_acc(ppf, acc);
                 return Curry._1(k, ppf);
               end end), ppf, --[[ End_of_acc ]]0, param[0]);
@@ -1632,13 +1620,13 @@ function ikfprintf(k, ppf, param) do
 end end
 
 function fprintf(ppf, fmt) do
-  return kfprintf((function (prim) do
+  return kfprintf((function(prim) do
                 return --[[ () ]]0;
               end end), ppf, fmt);
 end end
 
 function ifprintf(ppf, fmt) do
-  return ikfprintf((function (prim) do
+  return ikfprintf((function(prim) do
                 return --[[ () ]]0;
               end end), ppf, fmt);
 end end
@@ -1654,7 +1642,7 @@ end end
 function ksprintf(k, param) do
   b = __Buffer.create(512);
   ppf = formatter_of_buffer(b);
-  k_1 = function (param, acc) do
+  k_1 = function(param, acc) do
     strput_acc(ppf, acc);
     return Curry._1(k, flush_buffer_formatter(b, ppf));
   end end;
@@ -1662,7 +1650,7 @@ function ksprintf(k, param) do
 end end
 
 function sprintf(fmt) do
-  return ksprintf((function (s) do
+  return ksprintf((function(s) do
                 return s;
               end end), fmt);
 end end
@@ -1670,7 +1658,7 @@ end end
 function kasprintf(k, param) do
   b = __Buffer.create(512);
   ppf = formatter_of_buffer(b);
-  k_1 = function (ppf, acc) do
+  k_1 = function(ppf, acc) do
     output_acc(ppf, acc);
     return Curry._1(k, flush_buffer_formatter(b, ppf));
   end end;
@@ -1678,7 +1666,7 @@ function kasprintf(k, param) do
 end end
 
 function asprintf(fmt) do
-  return kasprintf((function (s) do
+  return kasprintf((function(s) do
                 return s;
               end end), fmt);
 end end
@@ -1710,7 +1698,7 @@ function get_all_formatter_output_functions(param) do
 end end
 
 function bprintf(b, param) do
-  k = function (ppf, acc) do
+  k = function(ppf, acc) do
     output_acc(ppf, acc);
     return pp_flush_queue(ppf, false);
   end end;

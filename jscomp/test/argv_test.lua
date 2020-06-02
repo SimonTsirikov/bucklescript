@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Arg = require "../../lib/js/arg";
 Block = require "../../lib/js/block";
@@ -39,6 +39,7 @@ arg_spec = --[[ :: ]]{
 
 Arg.parse(arg_spec, anno_fun, usage_msg);
 
+exports = {}
 exports.anno_fun = anno_fun;
 exports.usage_msg = usage_msg;
 exports.compile = compile;

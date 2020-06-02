@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Caml_array = require "../../lib/js/caml_array";
 
@@ -46,6 +46,7 @@ function f(x) do
   return --[[ () ]]0;
 end end
 
+exports = {}
 exports.g = g;
 exports.ff = ff;
 exports.fff = fff;

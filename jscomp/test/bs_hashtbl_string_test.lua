@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Belt_Id = require "../../lib/js/belt_Id";
 Hashtbl = require "../../lib/js/hashtbl";
@@ -16,7 +16,7 @@ function hash_string(s) do
   return Caml_hash_primitive.caml_hash_final_mix(Caml_hash_primitive.caml_hash_mix_string(0, s));
 end end
 
-function hashString (str)do 
+function hashString(str)do 
                                               var hash = 5381,
                                               i    = str.length | 0;
 
@@ -27,21 +27,21 @@ function hashString (str)do
                                               
                                             end;
 
-__String = Belt_Id.hashable(Hashtbl.hash, (function (x, y) do
+__String = Belt_Id.hashable(Hashtbl.hash, (function(x, y) do
         return x == y;
       end end));
 
-String1 = Belt_Id.hashable(hashString, (function (x, y) do
+String1 = Belt_Id.hashable(hashString, (function(x, y) do
         return x == y;
       end end));
 
-String2 = Belt_Id.hashable((function (x) do
+String2 = Belt_Id.hashable((function(x) do
         return Caml_hash_primitive.caml_hash_final_mix(Caml_hash_primitive.caml_hash_mix_string(0, x));
-      end end), (function (x, y) do
+      end end), (function(x, y) do
         return x == y;
       end end));
 
-Int = Belt_Id.hashable(Hashtbl.hash, (function (x, y) do
+Int = Belt_Id.hashable(Hashtbl.hash, (function(x, y) do
         return x == y;
       end end));
 
@@ -317,6 +317,7 @@ HI = --[[ alias ]]0;
 
 S = --[[ alias ]]0;
 
+exports = {}
 exports.hash_string = hash_string;
 exports.hashString = hashString;
 exports.__String = __String;

@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Curry = require "../../lib/js/curry";
 Caml_js_exceptions = require "../../lib/js/caml_js_exceptions";
@@ -118,6 +118,7 @@ u1 = "bad character decimal encoding \\";
 
 v = "bad character decimal encoding \\%c%c%c";
 
+exports = {}
 exports.ff = ff;
 exports.u = u;
 exports.u1 = u1;

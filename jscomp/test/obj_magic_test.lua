@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Obj = require "../../lib/js/obj";
@@ -12,7 +12,7 @@ end end
 
 suites_000 = --[[ tuple ]]{
   "is_block_test1",
-  (function (param) do
+  (function(param) do
       return --[[ Eq ]]Block.__(0, {
                 false,
                 false
@@ -23,7 +23,7 @@ suites_000 = --[[ tuple ]]{
 suites_001 = --[[ :: ]]{
   --[[ tuple ]]{
     "is_block_test2",
-    (function (param) do
+    (function(param) do
         return --[[ Eq ]]Block.__(0, {
                   true,
                   typeof --[[ :: ]]{
@@ -36,7 +36,7 @@ suites_001 = --[[ :: ]]{
   --[[ :: ]]{
     --[[ tuple ]]{
       "is_block_test3",
-      (function (param) do
+      (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     true,
                     true
@@ -46,7 +46,7 @@ suites_001 = --[[ :: ]]{
     --[[ :: ]]{
       --[[ tuple ]]{
         "is_block_test4",
-        (function (param) do
+        (function(param) do
             return --[[ Eq ]]Block.__(0, {
                       false,
                       false
@@ -65,6 +65,7 @@ suites = --[[ :: ]]{
 
 Mt.from_pair_suites("Obj_magic_test", suites);
 
+exports = {}
 exports.empty_backtrace = empty_backtrace;
 exports.is_block = is_block;
 exports.suites = suites;

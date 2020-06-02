@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 __Array = require "../../lib/js/array";
 Curry = require "../../lib/js/curry";
@@ -9,7 +9,7 @@ v = do
   contents: 0
 end;
 
-arr = Caml_array.caml_make_vect(10, (function (param) do
+arr = Caml_array.caml_make_vect(10, (function(param) do
         return --[[ () ]]0;
       end end));
 
@@ -22,7 +22,7 @@ function f(param) do
           v.contents = v.contents + j | 0;
           return --[[ () ]]0;
         end end
-        end(j)));
+        end end)(j));
     n = n + 1 | 0;
   end;
   return --[[ () ]]0;
@@ -30,7 +30,7 @@ end end
 
 f(--[[ () ]]0);
 
-__Array.iter((function (x) do
+__Array.iter((function(x) do
         return Curry._1(x, --[[ () ]]0);
       end end), arr);
 
@@ -50,6 +50,7 @@ end
 
 count = 10;
 
+exports = {}
 exports.v = v;
 exports.count = count;
 exports.arr = arr;

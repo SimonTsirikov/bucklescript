@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Caml_sys = require "./caml_sys";
 Caml_exceptions = require "./caml_exceptions";
@@ -117,6 +117,7 @@ sigxfsz = -28;
 
 ocaml_version = "4.06.2+BS";
 
+exports = {}
 exports.argv = argv;
 exports.executable_name = executable_name;
 exports.getenv_opt = getenv_opt;

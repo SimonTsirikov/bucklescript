@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Block = require "../../lib/js/block";
@@ -18,19 +18,19 @@ suites = do
 end;
 
 function eq(f) do
-  return (function (param, param_1) do
+  return (function(param, param_1) do
       return Mt_global.collect_eq(id, suites, f, param, param_1);
     end end);
 end end
 
 function neq(f) do
-  return (function (param, param_1) do
+  return (function(param, param_1) do
       return Mt_global.collect_neq(id, suites, f, param, param_1);
     end end);
 end end
 
 function approx(f) do
-  return (function (param, param_1) do
+  return (function(param, param_1) do
       return Mt_global.collect_approx(id, suites, f, param, param_1);
     end end);
 end end
@@ -128,6 +128,7 @@ Curry._5(Printf.printf(--[[ Format ]]{
 
 Mt.from_pair_suites("Random_test", suites.contents);
 
+exports = {}
 exports.id = id;
 exports.suites = suites;
 exports.eq = eq;

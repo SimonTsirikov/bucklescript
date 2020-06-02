@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Block = require "../../lib/js/block";
@@ -27,7 +27,7 @@ function g(a) do
   regression(a, Pervasives.failwith);
   Curry._2(regression2, 3, 2);
   regression3(3, 2);
-  regression4(3, (function (x) do
+  regression4(3, (function(x) do
           return x;
         end end));
   return --[[ () ]]0;
@@ -56,7 +56,7 @@ v = $$test(1, 2);
 Mt.from_pair_suites("Unsafe_ppx_test", --[[ :: ]]{
       --[[ tuple ]]{
         "unsafe_max",
-        (function (param) do
+        (function(param) do
             return --[[ Eq ]]Block.__(0, {
                       2,
                       max(1, 2)
@@ -66,7 +66,7 @@ Mt.from_pair_suites("Unsafe_ppx_test", --[[ :: ]]{
       --[[ :: ]]{
         --[[ tuple ]]{
           "unsafe_test",
-          (function (param) do
+          (function(param) do
               return --[[ Eq ]]Block.__(0, {
                         3,
                         v
@@ -76,7 +76,7 @@ Mt.from_pair_suites("Unsafe_ppx_test", --[[ :: ]]{
         --[[ :: ]]{
           --[[ tuple ]]{
             "unsafe_max2",
-            (function (param) do
+            (function(param) do
                 return --[[ Eq ]]Block.__(0, {
                           2,
                           Math.max(1, 2)
@@ -86,7 +86,7 @@ Mt.from_pair_suites("Unsafe_ppx_test", --[[ :: ]]{
           --[[ :: ]]{
             --[[ tuple ]]{
               "ffi_keys",
-              (function (param) do
+              (function(param) do
                   return --[[ Eq ]]Block.__(0, {
                             {"a"},
                             Ffi_js_test.keys(({a : 3}))
@@ -99,6 +99,7 @@ Mt.from_pair_suites("Unsafe_ppx_test", --[[ :: ]]{
       }
     });
 
+exports = {}
 exports.x = x;
 exports.max = max;
 exports.regression3 = regression3;

@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 __Array = require "../../lib/js/array";
 Curry = require "../../lib/js/curry";
@@ -47,6 +47,7 @@ ghh = Curry._2(MoreLabels.Hashtbl.create, undefined, 30);
 
 hh = 1;
 
+exports = {}
 exports.XX = XX;
 exports.u = u;
 exports.hh = hh;

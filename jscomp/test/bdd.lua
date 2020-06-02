@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Caml_array = require "../../lib/js/caml_array";
 Caml_int32 = require "../../lib/js/caml_int32";
@@ -55,7 +55,7 @@ function resize(newSize) do
   arr = htab.contents;
   newSz_1 = newSize - 1 | 0;
   newArr = Caml_array.caml_make_vect(newSize, --[[ [] ]]0);
-  copyBucket = function (_bucket) do
+  copyBucket = function(_bucket) do
     while(true) do
       bucket = _bucket;
       if (bucket) then do
@@ -248,13 +248,13 @@ function and2(n1, n2) do
         f;
         local ___conditional___=(match);
         do
-           if ___conditional___ = 0--[[ LESS ]] then do
-              f = mkNode(and2(l1, n2), v1, and2(r1, n2));end else 
-           if ___conditional___ = 1--[[ EQUAL ]] then do
-              f = mkNode(and2(l1, l2), v1, and2(r1, r2));end else 
-           if ___conditional___ = 2--[[ GREATER ]] then do
-              f = mkNode(and2(n1, l2), v2, and2(n1, r2));end else 
-           do end end end end
+           if ___conditional___ == 0--[[ LESS ]] then do
+              f = mkNode(and2(l1, n2), v1, and2(r1, n2)); end else 
+           if ___conditional___ == 1--[[ EQUAL ]] then do
+              f = mkNode(and2(l1, l2), v1, and2(r1, r2)); end else 
+           if ___conditional___ == 2--[[ GREATER ]] then do
+              f = mkNode(and2(n1, l2), v2, and2(n1, r2)); end else 
+           end end end end end end
           
         end
         Caml_array.caml_array_set(andslot1, h, i1);
@@ -297,13 +297,13 @@ function xor(n1, n2) do
         f;
         local ___conditional___=(match);
         do
-           if ___conditional___ = 0--[[ LESS ]] then do
-              f = mkNode(xor(l1, n2), v1, xor(r1, n2));end else 
-           if ___conditional___ = 1--[[ EQUAL ]] then do
-              f = mkNode(xor(l1, l2), v1, xor(r1, r2));end else 
-           if ___conditional___ = 2--[[ GREATER ]] then do
-              f = mkNode(xor(n1, l2), v2, xor(n1, r2));end else 
-           do end end end end
+           if ___conditional___ == 0--[[ LESS ]] then do
+              f = mkNode(xor(l1, n2), v1, xor(r1, n2)); end else 
+           if ___conditional___ == 1--[[ EQUAL ]] then do
+              f = mkNode(xor(l1, l2), v1, xor(r1, r2)); end else 
+           if ___conditional___ == 2--[[ GREATER ]] then do
+              f = mkNode(xor(n1, l2), v2, xor(n1, r2)); end else 
+           end end end end end end
           
         end
         Caml_array.caml_array_set(andslot1, h, i1);
@@ -316,14 +316,14 @@ function xor(n1, n2) do
 end end
 
 function hwb(n) do
-  h = function (i, j) do
+  h = function(i, j) do
     if (i == j) then do
       return mkNode(--[[ Zero ]]1, i, --[[ One ]]0);
     end else do
       return xor(and2(not(mkNode(--[[ Zero ]]1, j, --[[ One ]]0)), h(i, j - 1 | 0)), and2(mkNode(--[[ Zero ]]1, j, --[[ One ]]0), g(i, j - 1 | 0)));
     end end 
   end end;
-  g = function (i, j) do
+  g = function(i, j) do
     if (i == j) then do
       return mkNode(--[[ Zero ]]1, i, --[[ One ]]0);
     end else do
@@ -405,6 +405,7 @@ one = --[[ One ]]0;
 
 cacheSize = 1999;
 
+exports = {}
 exports.__eval = __eval;
 exports.getId = getId;
 exports.initSize_1 = initSize_1;

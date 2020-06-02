@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 
 N = do
@@ -15,6 +15,7 @@ g = 3;
 
 gg = 4;
 
+exports = {}
 exports.N = N;
 exports.v = v;
 exports.u = u;

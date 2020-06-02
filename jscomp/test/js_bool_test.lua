@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Block = require "../../lib/js/block";
@@ -33,7 +33,7 @@ v = true;
 
 suites_000 = --[[ tuple ]]{
   "caml_bool_eq_caml_bool",
-  (function (param) do
+  (function(param) do
       return --[[ Eq ]]Block.__(0, {
                 u,
                 true
@@ -44,7 +44,7 @@ suites_000 = --[[ tuple ]]{
 suites_001 = --[[ :: ]]{
   --[[ tuple ]]{
     "js_bool_eq_js_bool",
-    (function (param) do
+    (function(param) do
         return --[[ Eq ]]Block.__(0, {
                   v,
                   true
@@ -54,7 +54,7 @@ suites_001 = --[[ :: ]]{
   --[[ :: ]]{
     --[[ tuple ]]{
       "js_bool_neq_acml_bool",
-      (function (param) do
+      (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     true,
                     true == true
@@ -131,6 +131,7 @@ Mt.from_pair_suites("Js_bool_test", suites);
 
 f3 = true;
 
+exports = {}
 exports.f = f;
 exports.f2 = f2;
 exports.f4 = f4;

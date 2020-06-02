@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 
 function f(point) do
@@ -7,5 +7,6 @@ function f(point) do
   return Math.pow(x * x + y * y, 2);
 end end
 
+exports = {}
 exports.f = f;
 --[[ No side effect ]]

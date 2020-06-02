@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Caml_exceptions = require "../../lib/js/caml_exceptions";
 
@@ -19,5 +19,6 @@ N = do
   f: f
 end;
 
+exports = {}
 exports.N = N;
 --[[ f Not a pure module ]]

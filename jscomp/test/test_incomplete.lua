@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
@@ -28,17 +28,17 @@ end end
 function f3(x) do
   local ___conditional___=(x.tag | 0);
   do
-     if ___conditional___ = 0--[[ A ]]
-     or ___conditional___ = 2--[[ C ]] then do
-        return x[0] + 1 | 0;end end end 
-     if ___conditional___ = 1--[[ B ]]
-     or ___conditional___ = 3--[[ D ]] then do
-        return x[0] + 2 | 0;end end end 
-     do
+     if ___conditional___ == 0--[[ A ]]
+     or ___conditional___ == 2--[[ C ]] then do
+        return x[0] + 1 | 0; end end 
+     if ___conditional___ == 1--[[ B ]]
+     or ___conditional___ == 3--[[ D ]] then do
+        return x[0] + 2 | 0; end end 
     
   end
 end end
 
+exports = {}
 exports.f = f;
 exports.f2 = f2;
 exports.f3 = f3;

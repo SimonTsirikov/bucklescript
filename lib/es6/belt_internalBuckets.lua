@@ -123,7 +123,7 @@ function reduce(h, init, f) do
 end end
 
 function getMaxBucketLength(h) do
-  return Belt_Array.reduceU(h.buckets, 0, (function (m, b) do
+  return Belt_Array.reduceU(h.buckets, 0, (function(m, b) do
                 len = bucketLength(0, b);
                 if (m > len) then do
                   return m;
@@ -135,10 +135,10 @@ end end
 
 function getBucketHistogram(h) do
   mbl = getMaxBucketLength(h);
-  histo = Belt_Array.makeByU(mbl + 1 | 0, (function (param) do
+  histo = Belt_Array.makeByU(mbl + 1 | 0, (function(param) do
           return 0;
         end end));
-  Belt_Array.forEachU(h.buckets, (function (b) do
+  Belt_Array.forEachU(h.buckets, (function(b) do
           l = bucketLength(0, b);
           histo[l] = histo[l] + 1 | 0;
           return --[[ () ]]0;
@@ -259,19 +259,19 @@ function linear(h, f) do
 end end
 
 function keysToArray(h) do
-  return linear(h, (function (x) do
+  return linear(h, (function(x) do
                 return x.key;
               end end));
 end end
 
 function valuesToArray(h) do
-  return linear(h, (function (x) do
+  return linear(h, (function(x) do
                 return x.value;
               end end));
 end end
 
 function toArray(h) do
-  return linear(h, (function (x) do
+  return linear(h, (function(x) do
                 return --[[ tuple ]]{
                         x.key,
                         x.value

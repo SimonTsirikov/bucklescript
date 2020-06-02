@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Bytes = require "../../lib/js/bytes";
 
@@ -53,6 +53,7 @@ function next_power(v) do
   return v_6 + 1 | 0;
 end end
 
+exports = {}
 exports.gray_encode = gray_encode;
 exports.gray_decode = gray_decode;
 exports.bool_string = bool_string;

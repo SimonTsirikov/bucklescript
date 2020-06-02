@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Block = require "../../lib/js/block";
@@ -21,7 +21,7 @@ function eq(loc, x, y) do
   suites.contents = --[[ :: ]]{
     --[[ tuple ]]{
       loc .. (" id " .. String(test_id.contents)),
-      (function (param) do
+      (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     x,
                     y
@@ -78,7 +78,7 @@ xpcall(function() do
   exit = 1;
 end end,function(raw_e) do
   e = Caml_js_exceptions.internalToOCamlException(raw_e);
-  eq("File \"promise_catch_test.ml\", line 36, characters 7-14", true, Js_option.isSomeValue((function (xxx, y) do
+  eq("File \"promise_catch_test.ml\", line 36, characters 7-14", true, Js_option.isSomeValue((function(xxx, y) do
               return xxx == y;
             end end), 2, myHandler(e)));
 end end)
@@ -97,6 +97,7 @@ end
 
 Mt.from_pair_suites("Promise_catch_test", suites.contents);
 
+exports = {}
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;

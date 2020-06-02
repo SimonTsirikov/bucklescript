@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Belt_internalAVLset = require "./belt_internalAVLset";
 Belt_SortArrayString = require "./belt_SortArrayString";
@@ -199,6 +199,7 @@ N = --[[ alias ]]0;
 
 A = --[[ alias ]]0;
 
+exports = {}
 exports.S = S;
 exports.N = N;
 exports.A = A;

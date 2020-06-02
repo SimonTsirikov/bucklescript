@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Block = require "../../lib/js/block";
 Caml_module = require "../../lib/js/caml_module";
@@ -16,7 +16,7 @@ Caml_module.update_mod(--[[ Module ]]Block.__(0, {{--[[ tuple ]]{
             --[[ Function ]]0,
             "add"
           }}}), Point, do
-      add: (function (prim, prim_1) do
+      add: (function(prim, prim_1) do
           return prim.add(prim_1);
         end end)
     end);
@@ -25,6 +25,7 @@ CRS = --[[ () ]]0;
 
 Layer = --[[ () ]]0;
 
+exports = {}
 exports.CRS = CRS;
 exports.Layer = Layer;
 exports.Point = Point;

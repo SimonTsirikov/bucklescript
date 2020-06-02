@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Arg = require "../../lib/js/arg";
 Obj = require "../../lib/js/obj";
@@ -33,7 +33,7 @@ function with_file_as_chan(filename, f) do
 end end
 
 function with_file_as_pp(filename, f) do
-  return __finally(Pervasives.open_out_bin(filename), Pervasives.close_out, (function (chan) do
+  return __finally(Pervasives.open_out_bin(filename), Pervasives.close_out, (function(chan) do
                 fmt = Format.formatter_of_out_channel(chan);
                 v = Curry._1(f, fmt);
                 Format.pp_print_flush(fmt, --[[ () ]]0);
@@ -71,7 +71,7 @@ function is_pos_pow(n) do
 end end
 
 function failwithf(loc, fmt) do
-  return Format.ksprintf((function (s) do
+  return Format.ksprintf((function(s) do
                 s_1 = loc .. s;
                 error({
                   Caml_builtin_exceptions.failure,
@@ -85,7 +85,7 @@ function invalid_argf(fmt) do
 end end
 
 function bad_argf(fmt) do
-  return Format.ksprintf((function (x) do
+  return Format.ksprintf((function(x) do
                 error({
                   Arg.Bad,
                   x
@@ -97,7 +97,7 @@ function dump(r) do
   if (typeof r == "number") then do
     return String(r);
   end else do
-    get_fields = function (_acc, _n) do
+    get_fields = function(_acc, _n) do
       while(true) do
         n = _n;
         acc = _acc;
@@ -114,7 +114,7 @@ function dump(r) do
         end end 
       end;
     end end;
-    is_list = function (_r) do
+    is_list = function(_r) do
       while(true) do
         r = _r;
         if (typeof r == "number") then do
@@ -131,7 +131,7 @@ function dump(r) do
         end end 
       end;
     end end;
-    get_list = function (r) do
+    get_list = function(r) do
       if (typeof r == "number") then do
         return --[[ [] ]]0;
       end else do
@@ -268,6 +268,7 @@ function hash_variant(s) do
   end end 
 end end
 
+exports = {}
 exports.__finally = __finally;
 exports.with_file_as_chan = with_file_as_chan;
 exports.with_file_as_pp = with_file_as_pp;

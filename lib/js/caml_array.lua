@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Caml_builtin_exceptions = require "./caml_builtin_exceptions";
 
@@ -115,6 +115,7 @@ function caml_array_dup(prim) do
   return prim.slice(0);
 end end
 
+exports = {}
 exports.caml_array_dup = caml_array_dup;
 exports.caml_array_sub = caml_array_sub;
 exports.caml_array_concat = caml_array_concat;

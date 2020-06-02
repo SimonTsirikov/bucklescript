@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Curry = require "../../lib/js/curry";
 
@@ -14,16 +14,13 @@ function fxx(v) do
   match = Curry._1(v, --[[ () ]]0);
   local ___conditional___=(match);
   do
-     if ___conditional___ = 1 then do
-        return --[[ "a" ]]97;end end end 
-     if ___conditional___ = 2 then do
-        return --[[ "b" ]]98;end end end 
-     if ___conditional___ = 3 then do
-        return --[[ "c" ]]99;end end end 
-     do
-    else do
-      return --[[ "d" ]]100;
-      end end
+     if ___conditional___ == 1 then do
+        return --[[ "a" ]]97; end end 
+     if ___conditional___ == 2 then do
+        return --[[ "b" ]]98; end end 
+     if ___conditional___ == 3 then do
+        return --[[ "c" ]]99; end end 
+    return --[[ "d" ]]100;
       
   end
 end end
@@ -44,6 +41,7 @@ function fxxx3(v) do
   end end 
 end end
 
+exports = {}
 exports.f = f;
 exports.fxx = fxx;
 exports.fxxx2 = fxxx2;

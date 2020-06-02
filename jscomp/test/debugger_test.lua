@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 
 function f(x, y) do
@@ -27,6 +27,7 @@ function exterme_g(param) do
   return 3;
 end end
 
+exports = {}
 exports.f = f;
 exports.g = g;
 exports.exterme_g = exterme_g;

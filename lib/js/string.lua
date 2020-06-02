@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Bytes = require "./bytes";
 Curry = require "./curry";
@@ -125,7 +125,7 @@ function trim(s) do
 end end
 
 function escaped(s) do
-  needs_escape = function (_i) do
+  needs_escape = function(_i) do
     while(true) do
       i = _i;
       if (i >= #s) then do
@@ -388,6 +388,7 @@ function equal(prim, prim_1) do
   return prim == prim_1;
 end end
 
+exports = {}
 exports.make = make;
 exports.init = init;
 exports.copy = copy;

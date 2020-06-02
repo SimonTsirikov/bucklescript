@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
@@ -17,15 +17,13 @@ end end
 function ff(x) do
   local ___conditional___=(x);
   do
-     if ___conditional___ = "a" then do
-        return --[[ a ]]97;end end end 
-     if ___conditional___ = "b" then do
-        return --[[ b ]]98;end end end 
-     if ___conditional___ = "c" then do
-        return --[[ c ]]99;end end end 
-     do
-    else do
-      error({
+     if ___conditional___ == "a" then do
+        return --[[ a ]]97; end end 
+     if ___conditional___ == "b" then do
+        return --[[ b ]]98; end end 
+     if ___conditional___ == "c" then do
+        return --[[ c ]]99; end end 
+    error({
         Caml_builtin_exceptions.assert_failure,
         --[[ tuple ]]{
           "bb.ml",
@@ -33,7 +31,6 @@ function ff(x) do
           9
         }
       })
-      end end
       
   end
 end end
@@ -42,15 +39,14 @@ function test(x) do
   match;
   local ___conditional___=(x);
   do
-     if ___conditional___ = "a" then do
-        match = --[[ a ]]97;end else 
-     if ___conditional___ = "b" then do
-        match = --[[ b ]]98;end else 
-     if ___conditional___ = "c" then do
-        match = --[[ c ]]99;end else 
-     do end end end end
-    else do
-      error({
+     if ___conditional___ == "a" then do
+        match = --[[ a ]]97; end else 
+     if ___conditional___ == "b" then do
+        match = --[[ b ]]98; end else 
+     if ___conditional___ == "c" then do
+        match = --[[ c ]]99; end else 
+     end end end end end end
+    error({
         Caml_builtin_exceptions.assert_failure,
         --[[ tuple ]]{
           "bb.ml",
@@ -58,7 +54,6 @@ function test(x) do
           13
         }
       })
-      end end
       
   end
   if (match ~= 98) then do
@@ -80,6 +75,7 @@ d = f(--[[ b ]]98);
 
 e = f(--[[ c ]]99);
 
+exports = {}
 exports.f = f;
 exports.ff = ff;
 exports.test = test;

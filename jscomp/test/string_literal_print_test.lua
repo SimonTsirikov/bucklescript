@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Block = require "../../lib/js/block";
@@ -10,7 +10,7 @@ js_zero_to_255 = "\x00\x01\x02\x03\x04\x05\x06\x07\x08\x09\x0a\x0b\x0c\x0d\x0e\x
 Mt.from_pair_suites("String_literal_print_test", --[[ :: ]]{
       --[[ tuple ]]{
         "test_string_print",
-        (function (param) do
+        (function(param) do
             return --[[ Eq ]]Block.__(0, {
                       js_zero_to_255,
                       zero_to_255
@@ -30,6 +30,7 @@ x = "W";
 
 wth_quote = "'\"'\"";
 
+exports = {}
 exports.f = f;
 exports.u = u;
 exports.h = h;

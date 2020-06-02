@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 List = require "../../lib/js/list";
 Block = require "../../lib/js/block";
@@ -27,7 +27,7 @@ tscanf_data_file_lines = --[[ :: ]]{
 };
 
 function create_tscanf_data(ob, lines) do
-  add_line = function (param) do
+  add_line = function(param) do
     __Buffer.add_string(ob, Curry._1(Printf.sprintf(--[[ Format ]]{
                   --[[ Caml_string ]]Block.__(3, {
                       --[[ No_padding ]]0,
@@ -82,7 +82,7 @@ function get_lines(fname) do
                       })
                   }),
                 " %S -> %S; "
-              }), (function (x, y) do
+              }), (function(x, y) do
               l.contents = --[[ :: ]]{
                 --[[ tuple ]]{
                   x,
@@ -142,7 +142,7 @@ function get_lines(fname) do
 end end
 
 function add_digest_ib(ob, ib) do
-  scan_line = function (ib, f) do
+  scan_line = function(ib, f) do
     return Curry._1(Scanf.bscanf(ib, --[[ Format ]]{
                     --[[ Scan_char_set ]]Block.__(20, {
                         undefined,
@@ -155,7 +155,7 @@ function add_digest_ib(ob, ib) do
                     "%[^\n\r]\n"
                   }), f);
   end end;
-  output_line_digest = function (s) do
+  output_line_digest = function(s) do
     __Buffer.add_string(ob, s);
     __Buffer.add_char(ob, --[[ "#" ]]35);
     s_1 = Digest.to_hex(Digest.string(s));
@@ -198,6 +198,7 @@ function test55(param) do
   return digest_file(tscanf_data_file) == tscanf_data_file_lines_digest;
 end end
 
+exports = {}
 exports.tscanf_data_file = tscanf_data_file;
 exports.tscanf_data_file_lines = tscanf_data_file_lines;
 exports.create_tscanf_data = create_tscanf_data;

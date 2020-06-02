@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 
 React = do
@@ -13,6 +13,7 @@ Foo = do
   make: make
 end;
 
+exports = {}
 exports.React = React;
 exports.Foo = Foo;
 --[[ No side effect ]]

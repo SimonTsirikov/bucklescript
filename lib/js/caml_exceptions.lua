@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 
 id = do
@@ -41,6 +41,7 @@ function caml_is_extension(e) do
   end end  end 
 end end
 
+exports = {}
 exports.caml_set_oo_id = caml_set_oo_id;
 exports.caml_fresh_oo_id = caml_fresh_oo_id;
 exports.create = create;

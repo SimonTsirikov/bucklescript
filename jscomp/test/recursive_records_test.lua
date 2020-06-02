@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 List = require "../../lib/js/list";
@@ -108,6 +108,7 @@ eq("File \"recursive_records_test.ml\", line 77, characters 5-12", (List.hd(rec_
 
 Mt.from_pair_suites("recursive_records_test.ml", suites.contents);
 
+exports = {}
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;

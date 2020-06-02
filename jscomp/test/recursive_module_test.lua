@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Block = require "../../lib/js/block";
@@ -19,7 +19,7 @@ function eq(loc, x, y) do
   suites.contents = --[[ :: ]]{
     --[[ tuple ]]{
       loc .. (" id " .. String(test_id.contents)),
-      (function (param) do
+      (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     x,
                     y
@@ -88,8 +88,8 @@ eq("File \"recursive_module_test.ml\", line 30, characters 5-12", 120, Curry._1(
 
 add(--[[ tuple ]]{
       "File \"recursive_module_test.ml\", line 34, characters 7-14",
-      (function (param) do
-          return --[[ ThrowAny ]]Block.__(7, {(function (param) do
+      (function(param) do
+          return --[[ ThrowAny ]]Block.__(7, {(function(param) do
                         Curry._1(Int3.u, 3);
                         return --[[ () ]]0;
                       end end)});
@@ -98,6 +98,7 @@ add(--[[ tuple ]]{
 
 Mt.from_pair_suites("Recursive_module_test", suites.contents);
 
+exports = {}
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;

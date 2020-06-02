@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Caml_option = require "./caml_option";
 Belt_internalBuckets = require "./belt_internalBuckets";
@@ -276,6 +276,7 @@ getBucketHistogram = Belt_internalBuckets.getBucketHistogram;
 
 logStats = Belt_internalBuckets.logStats;
 
+exports = {}
 exports.Int = Int;
 exports.__String = __String;
 exports.make = make;

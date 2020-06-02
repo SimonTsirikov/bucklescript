@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Curry = require "../../lib/js/curry";
 Js_exn = require "../../lib/js/js_exn";
@@ -75,6 +75,7 @@ function test_js_error3(param) do
   end end)
 end end
 
+exports = {}
 exports.f = f;
 exports.assert_f = assert_f;
 exports.hh = hh;

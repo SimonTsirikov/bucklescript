@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 X = require "";
 
@@ -10,6 +10,7 @@ hhh = X.vv;
 
 hhhh = X.vvvv;
 
+exports = {}
 exports.h = h;
 exports.hh = hh;
 exports.hhh = hhh;

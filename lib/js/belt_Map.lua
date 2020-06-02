@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Curry = require "./curry";
 Belt_MapDict = require "./belt_MapDict";
@@ -313,6 +313,7 @@ __String = --[[ alias ]]0;
 
 Dict = --[[ alias ]]0;
 
+exports = {}
 exports.Int = Int;
 exports.__String = __String;
 exports.Dict = Dict;

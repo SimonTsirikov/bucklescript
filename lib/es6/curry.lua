@@ -21,7 +21,7 @@ function app(_f, _args) do
       return function (x) do
         return app(f, args.concat({x}));
       end end
-      end(f,args));
+      end end)(f,args);
     end end  end 
   end;
 end end
@@ -29,36 +29,33 @@ end end
 function curry_1(o, a0, arity) do
   local ___conditional___=(arity);
   do
-     if ___conditional___ = 1 then do
-        return o(a0);end end end 
-     if ___conditional___ = 2 then do
-        return (function (param) do
+     if ___conditional___ == 1 then do
+        return o(a0); end end 
+     if ___conditional___ == 2 then do
+        return (function(param) do
             return o(a0, param);
-          end end);end end end 
-     if ___conditional___ = 3 then do
-        return (function (param, param_1) do
+          end end); end end 
+     if ___conditional___ == 3 then do
+        return (function(param, param_1) do
             return o(a0, param, param_1);
-          end end);end end end 
-     if ___conditional___ = 4 then do
-        return (function (param, param_1, param_2) do
+          end end); end end 
+     if ___conditional___ == 4 then do
+        return (function(param, param_1, param_2) do
             return o(a0, param, param_1, param_2);
-          end end);end end end 
-     if ___conditional___ = 5 then do
-        return (function (param, param_1, param_2, param_3) do
+          end end); end end 
+     if ___conditional___ == 5 then do
+        return (function(param, param_1, param_2, param_3) do
             return o(a0, param, param_1, param_2, param_3);
-          end end);end end end 
-     if ___conditional___ = 6 then do
-        return (function (param, param_1, param_2, param_3, param_4) do
+          end end); end end 
+     if ___conditional___ == 6 then do
+        return (function(param, param_1, param_2, param_3, param_4) do
             return o(a0, param, param_1, param_2, param_3, param_4);
-          end end);end end end 
-     if ___conditional___ = 7 then do
-        return (function (param, param_1, param_2, param_3, param_4, param_5) do
+          end end); end end 
+     if ___conditional___ == 7 then do
+        return (function(param, param_1, param_2, param_3, param_4, param_5) do
             return o(a0, param, param_1, param_2, param_3, param_4, param_5);
-          end end);end end end 
-     do
-    else do
-      return app(o, {a0});
-      end end
+          end end); end end 
+    return app(o, {a0});
       
   end
 end end
@@ -77,7 +74,7 @@ function __1(o) do
   if (arity == 1) then do
     return o;
   end else do
-    return (function (a0) do
+    return (function(a0) do
         return _1(o, a0);
       end end);
   end end 
@@ -86,37 +83,34 @@ end end
 function curry_2(o, a0, a1, arity) do
   local ___conditional___=(arity);
   do
-     if ___conditional___ = 1 then do
-        return app(o(a0), {a1});end end end 
-     if ___conditional___ = 2 then do
-        return o(a0, a1);end end end 
-     if ___conditional___ = 3 then do
-        return (function (param) do
+     if ___conditional___ == 1 then do
+        return app(o(a0), {a1}); end end 
+     if ___conditional___ == 2 then do
+        return o(a0, a1); end end 
+     if ___conditional___ == 3 then do
+        return (function(param) do
             return o(a0, a1, param);
-          end end);end end end 
-     if ___conditional___ = 4 then do
-        return (function (param, param_1) do
+          end end); end end 
+     if ___conditional___ == 4 then do
+        return (function(param, param_1) do
             return o(a0, a1, param, param_1);
-          end end);end end end 
-     if ___conditional___ = 5 then do
-        return (function (param, param_1, param_2) do
+          end end); end end 
+     if ___conditional___ == 5 then do
+        return (function(param, param_1, param_2) do
             return o(a0, a1, param, param_1, param_2);
-          end end);end end end 
-     if ___conditional___ = 6 then do
-        return (function (param, param_1, param_2, param_3) do
+          end end); end end 
+     if ___conditional___ == 6 then do
+        return (function(param, param_1, param_2, param_3) do
             return o(a0, a1, param, param_1, param_2, param_3);
-          end end);end end end 
-     if ___conditional___ = 7 then do
-        return (function (param, param_1, param_2, param_3, param_4) do
+          end end); end end 
+     if ___conditional___ == 7 then do
+        return (function(param, param_1, param_2, param_3, param_4) do
             return o(a0, a1, param, param_1, param_2, param_3, param_4);
-          end end);end end end 
-     do
-    else do
-      return app(o, {
+          end end); end end 
+    return app(o, {
                   a0,
                   a1
                 });
-      end end
       
   end
 end end
@@ -135,7 +129,7 @@ function __2(o) do
   if (arity == 2) then do
     return o;
   end else do
-    return (function (a0, a1) do
+    return (function(a0, a1) do
         return _2(o, a0, a1);
       end end);
   end end 
@@ -144,39 +138,36 @@ end end
 function curry_3(o, a0, a1, a2, arity) do
   local ___conditional___=(arity);
   do
-     if ___conditional___ = 1 then do
+     if ___conditional___ == 1 then do
         return app(o(a0), {
                     a1,
                     a2
-                  });end end end 
-     if ___conditional___ = 2 then do
-        return app(o(a0, a1), {a2});end end end 
-     if ___conditional___ = 3 then do
-        return o(a0, a1, a2);end end end 
-     if ___conditional___ = 4 then do
-        return (function (param) do
+                  }); end end 
+     if ___conditional___ == 2 then do
+        return app(o(a0, a1), {a2}); end end 
+     if ___conditional___ == 3 then do
+        return o(a0, a1, a2); end end 
+     if ___conditional___ == 4 then do
+        return (function(param) do
             return o(a0, a1, a2, param);
-          end end);end end end 
-     if ___conditional___ = 5 then do
-        return (function (param, param_1) do
+          end end); end end 
+     if ___conditional___ == 5 then do
+        return (function(param, param_1) do
             return o(a0, a1, a2, param, param_1);
-          end end);end end end 
-     if ___conditional___ = 6 then do
-        return (function (param, param_1, param_2) do
+          end end); end end 
+     if ___conditional___ == 6 then do
+        return (function(param, param_1, param_2) do
             return o(a0, a1, a2, param, param_1, param_2);
-          end end);end end end 
-     if ___conditional___ = 7 then do
-        return (function (param, param_1, param_2, param_3) do
+          end end); end end 
+     if ___conditional___ == 7 then do
+        return (function(param, param_1, param_2, param_3) do
             return o(a0, a1, a2, param, param_1, param_2, param_3);
-          end end);end end end 
-     do
-    else do
-      return app(o, {
+          end end); end end 
+    return app(o, {
                   a0,
                   a1,
                   a2
                 });
-      end end
       
   end
 end end
@@ -195,7 +186,7 @@ function __3(o) do
   if (arity == 3) then do
     return o;
   end else do
-    return (function (a0, a1, a2) do
+    return (function(a0, a1, a2) do
         return _3(o, a0, a1, a2);
       end end);
   end end 
@@ -204,42 +195,39 @@ end end
 function curry_4(o, a0, a1, a2, a3, arity) do
   local ___conditional___=(arity);
   do
-     if ___conditional___ = 1 then do
+     if ___conditional___ == 1 then do
         return app(o(a0), {
                     a1,
                     a2,
                     a3
-                  });end end end 
-     if ___conditional___ = 2 then do
+                  }); end end 
+     if ___conditional___ == 2 then do
         return app(o(a0, a1), {
                     a2,
                     a3
-                  });end end end 
-     if ___conditional___ = 3 then do
-        return app(o(a0, a1, a2), {a3});end end end 
-     if ___conditional___ = 4 then do
-        return o(a0, a1, a2, a3);end end end 
-     if ___conditional___ = 5 then do
-        return (function (param) do
+                  }); end end 
+     if ___conditional___ == 3 then do
+        return app(o(a0, a1, a2), {a3}); end end 
+     if ___conditional___ == 4 then do
+        return o(a0, a1, a2, a3); end end 
+     if ___conditional___ == 5 then do
+        return (function(param) do
             return o(a0, a1, a2, a3, param);
-          end end);end end end 
-     if ___conditional___ = 6 then do
-        return (function (param, param_1) do
+          end end); end end 
+     if ___conditional___ == 6 then do
+        return (function(param, param_1) do
             return o(a0, a1, a2, a3, param, param_1);
-          end end);end end end 
-     if ___conditional___ = 7 then do
-        return (function (param, param_1, param_2) do
+          end end); end end 
+     if ___conditional___ == 7 then do
+        return (function(param, param_1, param_2) do
             return o(a0, a1, a2, a3, param, param_1, param_2);
-          end end);end end end 
-     do
-    else do
-      return app(o, {
+          end end); end end 
+    return app(o, {
                   a0,
                   a1,
                   a2,
                   a3
                 });
-      end end
       
   end
 end end
@@ -258,7 +246,7 @@ function __4(o) do
   if (arity == 4) then do
     return o;
   end else do
-    return (function (a0, a1, a2, a3) do
+    return (function(a0, a1, a2, a3) do
         return _4(o, a0, a1, a2, a3);
       end end);
   end end 
@@ -267,46 +255,43 @@ end end
 function curry_5(o, a0, a1, a2, a3, a4, arity) do
   local ___conditional___=(arity);
   do
-     if ___conditional___ = 1 then do
+     if ___conditional___ == 1 then do
         return app(o(a0), {
                     a1,
                     a2,
                     a3,
                     a4
-                  });end end end 
-     if ___conditional___ = 2 then do
+                  }); end end 
+     if ___conditional___ == 2 then do
         return app(o(a0, a1), {
                     a2,
                     a3,
                     a4
-                  });end end end 
-     if ___conditional___ = 3 then do
+                  }); end end 
+     if ___conditional___ == 3 then do
         return app(o(a0, a1, a2), {
                     a3,
                     a4
-                  });end end end 
-     if ___conditional___ = 4 then do
-        return app(o(a0, a1, a2, a3), {a4});end end end 
-     if ___conditional___ = 5 then do
-        return o(a0, a1, a2, a3, a4);end end end 
-     if ___conditional___ = 6 then do
-        return (function (param) do
+                  }); end end 
+     if ___conditional___ == 4 then do
+        return app(o(a0, a1, a2, a3), {a4}); end end 
+     if ___conditional___ == 5 then do
+        return o(a0, a1, a2, a3, a4); end end 
+     if ___conditional___ == 6 then do
+        return (function(param) do
             return o(a0, a1, a2, a3, a4, param);
-          end end);end end end 
-     if ___conditional___ = 7 then do
-        return (function (param, param_1) do
+          end end); end end 
+     if ___conditional___ == 7 then do
+        return (function(param, param_1) do
             return o(a0, a1, a2, a3, a4, param, param_1);
-          end end);end end end 
-     do
-    else do
-      return app(o, {
+          end end); end end 
+    return app(o, {
                   a0,
                   a1,
                   a2,
                   a3,
                   a4
                 });
-      end end
       
   end
 end end
@@ -325,7 +310,7 @@ function __5(o) do
   if (arity == 5) then do
     return o;
   end else do
-    return (function (a0, a1, a2, a3, a4) do
+    return (function(a0, a1, a2, a3, a4) do
         return _5(o, a0, a1, a2, a3, a4);
       end end);
   end end 
@@ -334,43 +319,41 @@ end end
 function curry_6(o, a0, a1, a2, a3, a4, a5, arity) do
   local ___conditional___=(arity);
   do
-     if ___conditional___ = 1 then do
+     if ___conditional___ == 1 then do
         return app(o(a0), {
                     a1,
                     a2,
                     a3,
                     a4,
                     a5
-                  });end end end 
-     if ___conditional___ = 2 then do
+                  }); end end 
+     if ___conditional___ == 2 then do
         return app(o(a0, a1), {
                     a2,
                     a3,
                     a4,
                     a5
-                  });end end end 
-     if ___conditional___ = 3 then do
+                  }); end end 
+     if ___conditional___ == 3 then do
         return app(o(a0, a1, a2), {
                     a3,
                     a4,
                     a5
-                  });end end end 
-     if ___conditional___ = 4 then do
+                  }); end end 
+     if ___conditional___ == 4 then do
         return app(o(a0, a1, a2, a3), {
                     a4,
                     a5
-                  });end end end 
-     if ___conditional___ = 5 then do
-        return app(o(a0, a1, a2, a3, a4), {a5});end end end 
-     if ___conditional___ = 6 then do
-        return o(a0, a1, a2, a3, a4, a5);end end end 
-     if ___conditional___ = 7 then do
-        return (function (param) do
+                  }); end end 
+     if ___conditional___ == 5 then do
+        return app(o(a0, a1, a2, a3, a4), {a5}); end end 
+     if ___conditional___ == 6 then do
+        return o(a0, a1, a2, a3, a4, a5); end end 
+     if ___conditional___ == 7 then do
+        return (function(param) do
             return o(a0, a1, a2, a3, a4, a5, param);
-          end end);end end end 
-     do
-    else do
-      return app(o, {
+          end end); end end 
+    return app(o, {
                   a0,
                   a1,
                   a2,
@@ -378,7 +361,6 @@ function curry_6(o, a0, a1, a2, a3, a4, a5, arity) do
                   a4,
                   a5
                 });
-      end end
       
   end
 end end
@@ -397,7 +379,7 @@ function __6(o) do
   if (arity == 6) then do
     return o;
   end else do
-    return (function (a0, a1, a2, a3, a4, a5) do
+    return (function(a0, a1, a2, a3, a4, a5) do
         return _6(o, a0, a1, a2, a3, a4, a5);
       end end);
   end end 
@@ -406,7 +388,7 @@ end end
 function curry_7(o, a0, a1, a2, a3, a4, a5, a6, arity) do
   local ___conditional___=(arity);
   do
-     if ___conditional___ = 1 then do
+     if ___conditional___ == 1 then do
         return app(o(a0), {
                     a1,
                     a2,
@@ -414,40 +396,38 @@ function curry_7(o, a0, a1, a2, a3, a4, a5, a6, arity) do
                     a4,
                     a5,
                     a6
-                  });end end end 
-     if ___conditional___ = 2 then do
+                  }); end end 
+     if ___conditional___ == 2 then do
         return app(o(a0, a1), {
                     a2,
                     a3,
                     a4,
                     a5,
                     a6
-                  });end end end 
-     if ___conditional___ = 3 then do
+                  }); end end 
+     if ___conditional___ == 3 then do
         return app(o(a0, a1, a2), {
                     a3,
                     a4,
                     a5,
                     a6
-                  });end end end 
-     if ___conditional___ = 4 then do
+                  }); end end 
+     if ___conditional___ == 4 then do
         return app(o(a0, a1, a2, a3), {
                     a4,
                     a5,
                     a6
-                  });end end end 
-     if ___conditional___ = 5 then do
+                  }); end end 
+     if ___conditional___ == 5 then do
         return app(o(a0, a1, a2, a3, a4), {
                     a5,
                     a6
-                  });end end end 
-     if ___conditional___ = 6 then do
-        return app(o(a0, a1, a2, a3, a4, a5), {a6});end end end 
-     if ___conditional___ = 7 then do
-        return o(a0, a1, a2, a3, a4, a5, a6);end end end 
-     do
-    else do
-      return app(o, {
+                  }); end end 
+     if ___conditional___ == 6 then do
+        return app(o(a0, a1, a2, a3, a4, a5), {a6}); end end 
+     if ___conditional___ == 7 then do
+        return o(a0, a1, a2, a3, a4, a5, a6); end end 
+    return app(o, {
                   a0,
                   a1,
                   a2,
@@ -456,7 +436,6 @@ function curry_7(o, a0, a1, a2, a3, a4, a5, a6, arity) do
                   a5,
                   a6
                 });
-      end end
       
   end
 end end
@@ -475,7 +454,7 @@ function __7(o) do
   if (arity == 7) then do
     return o;
   end else do
-    return (function (a0, a1, a2, a3, a4, a5, a6) do
+    return (function(a0, a1, a2, a3, a4, a5, a6) do
         return _7(o, a0, a1, a2, a3, a4, a5, a6);
       end end);
   end end 
@@ -484,7 +463,7 @@ end end
 function curry_8(o, a0, a1, a2, a3, a4, a5, a6, a7, arity) do
   local ___conditional___=(arity);
   do
-     if ___conditional___ = 1 then do
+     if ___conditional___ == 1 then do
         return app(o(a0), {
                     a1,
                     a2,
@@ -493,8 +472,8 @@ function curry_8(o, a0, a1, a2, a3, a4, a5, a6, a7, arity) do
                     a5,
                     a6,
                     a7
-                  });end end end 
-     if ___conditional___ = 2 then do
+                  }); end end 
+     if ___conditional___ == 2 then do
         return app(o(a0, a1), {
                     a2,
                     a3,
@@ -502,38 +481,36 @@ function curry_8(o, a0, a1, a2, a3, a4, a5, a6, a7, arity) do
                     a5,
                     a6,
                     a7
-                  });end end end 
-     if ___conditional___ = 3 then do
+                  }); end end 
+     if ___conditional___ == 3 then do
         return app(o(a0, a1, a2), {
                     a3,
                     a4,
                     a5,
                     a6,
                     a7
-                  });end end end 
-     if ___conditional___ = 4 then do
+                  }); end end 
+     if ___conditional___ == 4 then do
         return app(o(a0, a1, a2, a3), {
                     a4,
                     a5,
                     a6,
                     a7
-                  });end end end 
-     if ___conditional___ = 5 then do
+                  }); end end 
+     if ___conditional___ == 5 then do
         return app(o(a0, a1, a2, a3, a4), {
                     a5,
                     a6,
                     a7
-                  });end end end 
-     if ___conditional___ = 6 then do
+                  }); end end 
+     if ___conditional___ == 6 then do
         return app(o(a0, a1, a2, a3, a4, a5), {
                     a6,
                     a7
-                  });end end end 
-     if ___conditional___ = 7 then do
-        return app(o(a0, a1, a2, a3, a4, a5, a6), {a7});end end end 
-     do
-    else do
-      return app(o, {
+                  }); end end 
+     if ___conditional___ == 7 then do
+        return app(o(a0, a1, a2, a3, a4, a5, a6), {a7}); end end 
+    return app(o, {
                   a0,
                   a1,
                   a2,
@@ -543,7 +520,6 @@ function curry_8(o, a0, a1, a2, a3, a4, a5, a6, a7, arity) do
                   a6,
                   a7
                 });
-      end end
       
   end
 end end
@@ -562,7 +538,7 @@ function __8(o) do
   if (arity == 8) then do
     return o;
   end else do
-    return (function (a0, a1, a2, a3, a4, a5, a6, a7) do
+    return (function(a0, a1, a2, a3, a4, a5, a6, a7) do
         return _8(o, a0, a1, a2, a3, a4, a5, a6, a7);
       end end);
   end end 

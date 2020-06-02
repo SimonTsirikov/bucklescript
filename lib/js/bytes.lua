@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Char = require "./char";
 Curry = require "./curry";
@@ -298,52 +298,52 @@ function escaped(s) do
       end else do
         local ___conditional___=(c);
         do
-           if ___conditional___ = 8 then do
+           if ___conditional___ == 8 then do
               s$prime[n] = --[[ "\\" ]]92;
               n = n + 1 | 0;
-              s$prime[n] = --[[ "b" ]]98;end else 
-           if ___conditional___ = 9 then do
+              s$prime[n] = --[[ "b" ]]98; end else 
+           if ___conditional___ == 9 then do
               s$prime[n] = --[[ "\\" ]]92;
               n = n + 1 | 0;
-              s$prime[n] = --[[ "t" ]]116;end else 
-           if ___conditional___ = 10 then do
+              s$prime[n] = --[[ "t" ]]116; end else 
+           if ___conditional___ == 10 then do
               s$prime[n] = --[[ "\\" ]]92;
               n = n + 1 | 0;
-              s$prime[n] = --[[ "n" ]]110;end else 
-           if ___conditional___ = 0
-           or ___conditional___ = 1
-           or ___conditional___ = 2
-           or ___conditional___ = 3
-           or ___conditional___ = 4
-           or ___conditional___ = 5
-           or ___conditional___ = 6
-           or ___conditional___ = 7
-           or ___conditional___ = 11
-           or ___conditional___ = 12 then do
-              exit = 1;end else 
-           if ___conditional___ = 13 then do
+              s$prime[n] = --[[ "n" ]]110; end else 
+           if ___conditional___ == 0
+           or ___conditional___ == 1
+           or ___conditional___ == 2
+           or ___conditional___ == 3
+           or ___conditional___ == 4
+           or ___conditional___ == 5
+           or ___conditional___ == 6
+           or ___conditional___ == 7
+           or ___conditional___ == 11
+           or ___conditional___ == 12 then do
+              exit = 1; end else 
+           if ___conditional___ == 13 then do
               s$prime[n] = --[[ "\\" ]]92;
               n = n + 1 | 0;
-              s$prime[n] = --[[ "r" ]]114;end else 
-           do end end end end end end
+              s$prime[n] = --[[ "r" ]]114; end else 
+           end end end end end end end end end end
           
         end
       end end  end  end 
       local ___conditional___=(exit);
       do
-         if ___conditional___ = 1 then do
+         if ___conditional___ == 1 then do
             s$prime[n] = --[[ "\\" ]]92;
             n = n + 1 | 0;
             s$prime[n] = 48 + (c / 100 | 0) | 0;
             n = n + 1 | 0;
             s$prime[n] = 48 + (c / 10 | 0) % 10 | 0;
             n = n + 1 | 0;
-            s$prime[n] = 48 + c % 10 | 0;end else 
-         if ___conditional___ = 2 then do
+            s$prime[n] = 48 + c % 10 | 0; end else 
+         if ___conditional___ == 2 then do
             s$prime[n] = --[[ "\\" ]]92;
             n = n + 1 | 0;
-            s$prime[n] = c;end else 
-         do end end end
+            s$prime[n] = c; end else 
+         end end end end
         
       end
       n = n + 1 | 0;
@@ -595,6 +595,7 @@ unsafe_to_string = Caml_bytes.bytes_to_string;
 
 unsafe_of_string = Caml_bytes.bytes_of_string;
 
+exports = {}
 exports.make = make;
 exports.init = init;
 exports.empty = empty;

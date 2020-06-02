@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Vscode = require "vs";
 SomeEs6Module = require "some-es6-mo";
@@ -42,6 +42,7 @@ end end
 
 __case = 3;
 
+exports = {}
 exports.__default = __default;
 exports.default = __default;
 exports.__esModule = true;

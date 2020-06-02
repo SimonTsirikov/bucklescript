@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Caml_exceptions = require "../../lib/js/caml_exceptions";
 
@@ -38,6 +38,7 @@ short_int_v = {1};
 
 empty = {};
 
+exports = {}
 exports.Custom_inline = Custom_inline;
 exports.v = v;
 exports.vv = vv;

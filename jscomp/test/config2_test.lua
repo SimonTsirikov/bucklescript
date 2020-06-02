@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 
 function test_v(x) do
@@ -10,6 +10,7 @@ function test_vv(h) do
   return hey(1, 2);
 end end
 
+exports = {}
 exports.test_v = test_v;
 exports.test_vv = test_vv;
 --[[ No side effect ]]

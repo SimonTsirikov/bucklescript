@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Caml_option = require "./caml_option";
 Caml_exceptions = require "./caml_exceptions";
@@ -23,6 +23,7 @@ function caml_as_js_exn(exn) do
    end 
 end end
 
+exports = {}
 exports.__Error = __Error;
 exports.internalToOCamlException = internalToOCamlException;
 exports.caml_as_js_exn = caml_as_js_exn;

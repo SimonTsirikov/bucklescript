@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Caml_bytes = require "../../lib/js/caml_bytes";
 Caml_string = require "../../lib/js/caml_string";
@@ -25,6 +25,7 @@ end end
 
 u_c = --[[ "g" ]]103;
 
+exports = {}
 exports.v = v;
 exports.u_a = u_a;
 exports.u_b = u_b;

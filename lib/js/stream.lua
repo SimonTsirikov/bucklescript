@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 List = require "./list";
 Block = require "./block";
@@ -46,9 +46,9 @@ function get_data(count, _d) do
     end else do
       local ___conditional___=(d.tag | 0);
       do
-         if ___conditional___ = 0--[[ Scons ]] then do
-            return d;end end end 
-         if ___conditional___ = 1--[[ Sapp ]] then do
+         if ___conditional___ == 0--[[ Scons ]] then do
+            return d; end end 
+         if ___conditional___ == 1--[[ Sapp ]] then do
             d2 = d[1];
             match = get_data(count, d[0]);
             if (typeof match == "number") then do
@@ -71,11 +71,11 @@ function get_data(count, _d) do
                             d2
                           })
                       });
-            end end  end end end end 
-         if ___conditional___ = 2--[[ Slazy ]] then do
+            end end  end  end end 
+         if ___conditional___ == 2--[[ Slazy ]] then do
             _d = CamlinternalLazy.force(d[0]);
-            ::continue:: ;end end end 
-         if ___conditional___ = 3--[[ Sgen ]] then do
+            ::continue:: ; end end 
+         if ___conditional___ == 3--[[ Sgen ]] then do
             g = d[0];
             match_1 = g.curr;
             if (match_1 ~= undefined) then do
@@ -100,8 +100,8 @@ function get_data(count, _d) do
                 g.curr = Caml_option.some(undefined);
                 return --[[ Sempty ]]0;
               end end 
-            end end end end end 
-         if ___conditional___ = 4--[[ Sbuffio ]] then do
+            end end  end end 
+         if ___conditional___ == 4--[[ Sbuffio ]] then do
             b = d[0];
             if (b.ind >= b.len) then do
               fill_buff(b);
@@ -116,8 +116,7 @@ function get_data(count, _d) do
                         r,
                         d
                       });
-            end end end end end 
-         do
+            end end  end end 
         
       end
     end end 
@@ -132,9 +131,9 @@ function peek_data(s) do
     end else do
       local ___conditional___=(match.tag | 0);
       do
-         if ___conditional___ = 0--[[ Scons ]] then do
-            return Caml_option.some(match[0]);end end end 
-         if ___conditional___ = 1--[[ Sapp ]] then do
+         if ___conditional___ == 0--[[ Scons ]] then do
+            return Caml_option.some(match[0]); end end 
+         if ___conditional___ == 1--[[ Sapp ]] then do
             d = get_data(s.count, s.data);
             if (typeof d == "number") then do
               return ;
@@ -150,11 +149,11 @@ function peek_data(s) do
             end else do
               s.data = d;
               return Caml_option.some(d[0]);
-            end end  end end end end 
-         if ___conditional___ = 2--[[ Slazy ]] then do
+            end end  end  end end 
+         if ___conditional___ == 2--[[ Slazy ]] then do
             s.data = CamlinternalLazy.force(match[0]);
-            ::continue:: ;end end end 
-         if ___conditional___ = 3--[[ Sgen ]] then do
+            ::continue:: ; end end 
+         if ___conditional___ == 3--[[ Sgen ]] then do
             g = match[0];
             match_1 = g.curr;
             if (match_1 ~= undefined) then do
@@ -163,8 +162,8 @@ function peek_data(s) do
               x = Curry._1(g.func, s.count);
               g.curr = Caml_option.some(x);
               return x;
-            end end end end end 
-         if ___conditional___ = 4--[[ Sbuffio ]] then do
+            end end  end end 
+         if ___conditional___ == 4--[[ Sbuffio ]] then do
             b = match[0];
             if (b.ind >= b.len) then do
               fill_buff(b);
@@ -175,8 +174,7 @@ function peek_data(s) do
               return ;
             end else do
               return b.buff[b.ind];
-            end end end end end 
-         do
+            end end  end end 
         
       end
     end end 
@@ -196,11 +194,11 @@ function junk_data(s) do
     if (typeof match ~= "number") then do
       local ___conditional___=(match.tag | 0);
       do
-         if ___conditional___ = 0--[[ Scons ]] then do
+         if ___conditional___ == 0--[[ Scons ]] then do
             s.count = s.count + 1 | 0;
             s.data = match[1];
-            return --[[ () ]]0;end end end 
-         if ___conditional___ = 3--[[ Sgen ]] then do
+            return --[[ () ]]0; end end 
+         if ___conditional___ == 3--[[ Sgen ]] then do
             g = match[0];
             match_1 = g.curr;
             if (match_1 ~= undefined) then do
@@ -208,16 +206,13 @@ function junk_data(s) do
               g.curr = undefined;
               return --[[ () ]]0;
             end
-             end end else 
-         if ___conditional___ = 4--[[ Sbuffio ]] then do
+             end  end else 
+         if ___conditional___ == 4--[[ Sbuffio ]] then do
             b = match[0];
             s.count = s.count + 1 | 0;
             b.ind = b.ind + 1 | 0;
-            return --[[ () ]]0;end end end 
-         do
-        else do
-          end end
-          
+            return --[[ () ]]0; end end end end 
+        
       end
     end
      end 
@@ -332,7 +327,7 @@ end end
 function of_list(l) do
   return do
           count: 0,
-          data: List.fold_right((function (x, l) do
+          data: List.fold_right((function(x, l) do
                   return --[[ Scons ]]Block.__(0, {
                             x,
                             l
@@ -345,7 +340,7 @@ function of_string(s) do
   count = do
     contents: 0
   end;
-  return from((function (param) do
+  return from((function(param) do
                 c = count.contents;
                 if (c < #s) then do
                   count.contents = count.contents + 1 | 0;
@@ -359,7 +354,7 @@ function of_bytes(s) do
   count = do
     contents: 0
   end;
-  return from((function (param) do
+  return from((function(param) do
                 c = count.contents;
                 if (c < #s) then do
                   count.contents = count.contents + 1 | 0;
@@ -414,7 +409,7 @@ end end
 function lapp(f, s) do
   return do
           count: 0,
-          data: --[[ Slazy ]]Block.__(2, {Caml_obj.caml_lazy_make((function (param) do
+          data: --[[ Slazy ]]Block.__(2, {Caml_obj.caml_lazy_make((function(param) do
                       return --[[ Sapp ]]Block.__(1, {
                                 data(Curry._1(f, --[[ () ]]0)),
                                 data(s)
@@ -426,7 +421,7 @@ end end
 function lcons(f, s) do
   return do
           count: 0,
-          data: --[[ Slazy ]]Block.__(2, {Caml_obj.caml_lazy_make((function (param) do
+          data: --[[ Slazy ]]Block.__(2, {Caml_obj.caml_lazy_make((function(param) do
                       return --[[ Scons ]]Block.__(0, {
                                 Curry._1(f, --[[ () ]]0),
                                 data(s)
@@ -438,7 +433,7 @@ end end
 function lsing(f) do
   return do
           count: 0,
-          data: --[[ Slazy ]]Block.__(2, {Caml_obj.caml_lazy_make((function (param) do
+          data: --[[ Slazy ]]Block.__(2, {Caml_obj.caml_lazy_make((function(param) do
                       return --[[ Scons ]]Block.__(0, {
                                 Curry._1(f, --[[ () ]]0),
                                 --[[ Sempty ]]0
@@ -450,7 +445,7 @@ end end
 function slazy(f) do
   return do
           count: 0,
-          data: --[[ Slazy ]]Block.__(2, {Caml_obj.caml_lazy_make((function (param) do
+          data: --[[ Slazy ]]Block.__(2, {Caml_obj.caml_lazy_make((function(param) do
                       return data(Curry._1(f, --[[ () ]]0));
                     end end))})
         end;
@@ -462,25 +457,24 @@ function dump_data(f, param) do
   end else do
     local ___conditional___=(param.tag | 0);
     do
-       if ___conditional___ = 0--[[ Scons ]] then do
+       if ___conditional___ == 0--[[ Scons ]] then do
           Pervasives.print_string("Scons (");
           Curry._1(f, param[0]);
           Pervasives.print_string(", ");
           dump_data(f, param[1]);
-          return Pervasives.print_string(")");end end end 
-       if ___conditional___ = 1--[[ Sapp ]] then do
+          return Pervasives.print_string(")"); end end 
+       if ___conditional___ == 1--[[ Sapp ]] then do
           Pervasives.print_string("Sapp (");
           dump_data(f, param[0]);
           Pervasives.print_string(", ");
           dump_data(f, param[1]);
-          return Pervasives.print_string(")");end end end 
-       if ___conditional___ = 2--[[ Slazy ]] then do
-          return Pervasives.print_string("Slazy");end end end 
-       if ___conditional___ = 3--[[ Sgen ]] then do
-          return Pervasives.print_string("Sgen");end end end 
-       if ___conditional___ = 4--[[ Sbuffio ]] then do
-          return Pervasives.print_string("Sbuffio");end end end 
-       do
+          return Pervasives.print_string(")"); end end 
+       if ___conditional___ == 2--[[ Slazy ]] then do
+          return Pervasives.print_string("Slazy"); end end 
+       if ___conditional___ == 3--[[ Sgen ]] then do
+          return Pervasives.print_string("Sgen"); end end 
+       if ___conditional___ == 4--[[ Sbuffio ]] then do
+          return Pervasives.print_string("Sbuffio"); end end 
       
     end
   end end 
@@ -497,6 +491,7 @@ end end
 
 sempty = undefined;
 
+exports = {}
 exports.Failure = Failure;
 exports.__Error = __Error;
 exports.from = from;

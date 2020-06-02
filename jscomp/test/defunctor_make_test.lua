@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Caml_primitive = require "../../lib/js/caml_primitive";
 Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
@@ -166,6 +166,7 @@ v3 = add_1(3, "a", v0);
 
 console.log(v3);
 
+exports = {}
 exports.Comparable = Comparable;
 exports.height = height;
 exports.create = create;

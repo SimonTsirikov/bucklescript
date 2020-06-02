@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Curry = require "../../lib/js/curry";
 
@@ -16,7 +16,7 @@ function __return(param) do
 end end
 
 function Make(U) do
-  h = function (x, x_1) do
+  h = function(x, x_1) do
     console.log(f(x_1, x_1));
     return Curry._2(U.say, x_1, x_1);
   end end;
@@ -25,6 +25,7 @@ function Make(U) do
         end;
 end end
 
+exports = {}
 exports.v = v;
 exports.f = f;
 exports.__return = __return;

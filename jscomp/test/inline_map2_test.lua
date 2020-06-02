@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 List = require "../../lib/js/list";
@@ -9,14 +9,14 @@ Caml_primitive = require "../../lib/js/caml_primitive";
 Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 function Make(Ord) do
-  height = function (param) do
+  height = function(param) do
     if (param) then do
       return param[4];
     end else do
       return 0;
     end end 
   end end;
-  create = function (l, x, d, r) do
+  create = function(l, x, d, r) do
     hl = height(l);
     hr = height(r);
     return --[[ Node ]]{
@@ -27,7 +27,7 @@ function Make(Ord) do
             hl >= hr and hl + 1 | 0 or hr + 1 | 0
           };
   end end;
-  singleton = function (x, d) do
+  singleton = function(x, d) do
     return --[[ Node ]]{
             --[[ Empty ]]0,
             x,
@@ -36,7 +36,7 @@ function Make(Ord) do
             1
           };
   end end;
-  bal = function (l, x, d, r) do
+  bal = function(l, x, d, r) do
     hl = l and l[4] or 0;
     hr = r and r[4] or 0;
     if (hl > (hr + 2 | 0)) then do
@@ -93,14 +93,14 @@ function Make(Ord) do
             };
     end end  end 
   end end;
-  is_empty = function (param) do
+  is_empty = function(param) do
     if (param) then do
       return false;
     end else do
       return true;
     end end 
   end end;
-  add = function (x, data, param) do
+  add = function(x, data, param) do
     if (param) then do
       r = param[3];
       d = param[2];
@@ -130,7 +130,7 @@ function Make(Ord) do
             };
     end end 
   end end;
-  find = function (x, _param) do
+  find = function(x, _param) do
     while(true) do
       param = _param;
       if (param) then do
@@ -146,7 +146,7 @@ function Make(Ord) do
       end end 
     end;
   end end;
-  mem = function (x, _param) do
+  mem = function(x, _param) do
     while(true) do
       param = _param;
       if (param) then do
@@ -162,7 +162,7 @@ function Make(Ord) do
       end end 
     end;
   end end;
-  min_binding = function (_param) do
+  min_binding = function(_param) do
     while(true) do
       param = _param;
       if (param) then do
@@ -181,7 +181,7 @@ function Make(Ord) do
       end end 
     end;
   end end;
-  max_binding = function (_param) do
+  max_binding = function(_param) do
     while(true) do
       param = _param;
       if (param) then do
@@ -200,7 +200,7 @@ function Make(Ord) do
       end end 
     end;
   end end;
-  remove_min_binding = function (param) do
+  remove_min_binding = function(param) do
     if (param) then do
       l = param[0];
       if (l) then do
@@ -215,7 +215,7 @@ function Make(Ord) do
       })
     end end 
   end end;
-  remove = function (x, param) do
+  remove = function(x, param) do
     if (param) then do
       r = param[3];
       d = param[2];
@@ -244,7 +244,7 @@ function Make(Ord) do
       return --[[ Empty ]]0;
     end end 
   end end;
-  iter = function (f, _param) do
+  iter = function(f, _param) do
     while(true) do
       param = _param;
       if (param) then do
@@ -257,7 +257,7 @@ function Make(Ord) do
       end end 
     end;
   end end;
-  map = function (f, param) do
+  map = function(f, param) do
     if (param) then do
       l$prime = map(f, param[0]);
       d$prime = Curry._1(f, param[2]);
@@ -273,7 +273,7 @@ function Make(Ord) do
       return --[[ Empty ]]0;
     end end 
   end end;
-  mapi = function (f, param) do
+  mapi = function(f, param) do
     if (param) then do
       v = param[1];
       l$prime = mapi(f, param[0]);
@@ -290,7 +290,7 @@ function Make(Ord) do
       return --[[ Empty ]]0;
     end end 
   end end;
-  fold = function (f, _m, _accu) do
+  fold = function(f, _m, _accu) do
     while(true) do
       accu = _accu;
       m = _m;
@@ -303,7 +303,7 @@ function Make(Ord) do
       end end 
     end;
   end end;
-  for_all = function (p, _param) do
+  for_all = function(p, _param) do
     while(true) do
       param = _param;
       if (param) then do
@@ -318,7 +318,7 @@ function Make(Ord) do
       end end 
     end;
   end end;
-  exists = function (p, _param) do
+  exists = function(p, _param) do
     while(true) do
       param = _param;
       if (param) then do
@@ -333,21 +333,21 @@ function Make(Ord) do
       end end 
     end;
   end end;
-  add_min_binding = function (k, v, param) do
+  add_min_binding = function(k, v, param) do
     if (param) then do
       return bal(add_min_binding(k, v, param[0]), param[1], param[2], param[3]);
     end else do
       return singleton(k, v);
     end end 
   end end;
-  add_max_binding = function (k, v, param) do
+  add_max_binding = function(k, v, param) do
     if (param) then do
       return bal(param[0], param[1], param[2], add_max_binding(k, v, param[3]));
     end else do
       return singleton(k, v);
     end end 
   end end;
-  join = function (l, v, d, r) do
+  join = function(l, v, d, r) do
     if (l) then do
       if (r) then do
         rh = r[4];
@@ -366,7 +366,7 @@ function Make(Ord) do
       return add_min_binding(v, d, r);
     end end 
   end end;
-  concat = function (t1, t2) do
+  concat = function(t1, t2) do
     if (t1) then do
       if (t2) then do
         match = min_binding(t2);
@@ -378,14 +378,14 @@ function Make(Ord) do
       return t2;
     end end 
   end end;
-  concat_or_join = function (t1, v, d, t2) do
+  concat_or_join = function(t1, v, d, t2) do
     if (d ~= undefined) then do
       return join(t1, v, Caml_option.valFromOption(d), t2);
     end else do
       return concat(t1, t2);
     end end 
   end end;
-  split = function (x, param) do
+  split = function(x, param) do
     if (param) then do
       r = param[3];
       d = param[2];
@@ -421,7 +421,7 @@ function Make(Ord) do
             };
     end end 
   end end;
-  merge = function (f, s1, s2) do
+  merge = function(f, s1, s2) do
     if (s1) then do
       v1 = s1[1];
       if (s1[4] >= height(s2)) then do
@@ -448,7 +448,7 @@ function Make(Ord) do
       })
     end end 
   end end;
-  filter = function (p, param) do
+  filter = function(p, param) do
     if (param) then do
       d = param[2];
       v = param[1];
@@ -464,7 +464,7 @@ function Make(Ord) do
       return --[[ Empty ]]0;
     end end 
   end end;
-  partition = function (p, param) do
+  partition = function(p, param) do
     if (param) then do
       d = param[2];
       v = param[1];
@@ -493,7 +493,7 @@ function Make(Ord) do
             };
     end end 
   end end;
-  cons_enum = function (_m, _e) do
+  cons_enum = function(_m, _e) do
     while(true) do
       e = _e;
       m = _m;
@@ -511,7 +511,7 @@ function Make(Ord) do
       end end 
     end;
   end end;
-  compare = function (cmp, m1, m2) do
+  compare = function(cmp, m1, m2) do
     _e1 = cons_enum(m1, --[[ End ]]0);
     _e2 = cons_enum(m2, --[[ End ]]0);
     while(true) do
@@ -542,7 +542,7 @@ function Make(Ord) do
       end end  end 
     end;
   end end;
-  equal = function (cmp, m1, m2) do
+  equal = function(cmp, m1, m2) do
     _e1 = cons_enum(m1, --[[ End ]]0);
     _e2 = cons_enum(m2, --[[ End ]]0);
     while(true) do
@@ -563,14 +563,14 @@ function Make(Ord) do
       end end  end 
     end;
   end end;
-  cardinal = function (param) do
+  cardinal = function(param) do
     if (param) then do
       return (cardinal(param[0]) + 1 | 0) + cardinal(param[3]) | 0;
     end else do
       return 0;
     end end 
   end end;
-  bindings_aux = function (_accu, _param) do
+  bindings_aux = function(_accu, _param) do
     while(true) do
       param = _param;
       accu = _accu;
@@ -589,7 +589,7 @@ function Make(Ord) do
       end end 
     end;
   end end;
-  bindings = function (s) do
+  bindings = function(s) do
     return bindings_aux(--[[ [] ]]0, s);
   end end;
   return do
@@ -1285,7 +1285,7 @@ IntMap = do
   choose: min_binding
 end;
 
-m = List.fold_left((function (acc, param) do
+m = List.fold_left((function(acc, param) do
         return add(param[0], param[1], acc);
       end end), --[[ Empty ]]0, --[[ :: ]]{
       --[[ tuple ]]{
@@ -1967,7 +1967,7 @@ SMap = do
   choose: min_binding_1
 end;
 
-s = List.fold_left((function (acc, param) do
+s = List.fold_left((function(acc, param) do
         return add_1(param[0], param[1], acc);
       end end), --[[ Empty ]]0, --[[ :: ]]{
       --[[ tuple ]]{
@@ -1998,7 +1998,7 @@ s = List.fold_left((function (acc, param) do
 Mt.from_pair_suites("Inline_map2_test", --[[ :: ]]{
       --[[ tuple ]]{
         "assertion1",
-        (function (param) do
+        (function(param) do
             return --[[ Eq ]]Block.__(0, {
                       find(10, m),
                       --[[ "a" ]]97
@@ -2008,7 +2008,7 @@ Mt.from_pair_suites("Inline_map2_test", --[[ :: ]]{
       --[[ :: ]]{
         --[[ tuple ]]{
           "assertion2",
-          (function (param) do
+          (function(param) do
               return --[[ Eq ]]Block.__(0, {
                         find_1("10", s),
                         --[[ "a" ]]97
@@ -2021,6 +2021,7 @@ Mt.from_pair_suites("Inline_map2_test", --[[ :: ]]{
 
 empty = --[[ Empty ]]0;
 
+exports = {}
 exports.Make = Make;
 exports.IntMap = IntMap;
 exports.empty = empty;

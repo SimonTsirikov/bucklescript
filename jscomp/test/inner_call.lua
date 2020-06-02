@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Inner_define = require "./inner_define";
 
@@ -13,5 +13,6 @@ function f(x) do
         };
 end end
 
+exports = {}
 exports.f = f;
 --[[  Not a pure module ]]

@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 __Array = require "../../lib/js/array";
 
@@ -80,6 +80,7 @@ Floatarray = __Array.Floatarray;
 
 a = 3;
 
+exports = {}
 exports.make_float = make_float;
 exports.init = init;
 exports.make_matrix = make_matrix;

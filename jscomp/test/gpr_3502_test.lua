@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 
 function toString(param) do
@@ -20,6 +20,7 @@ shortName = "a";
 
 name_1 = 2;
 
+exports = {}
 exports.Language = Language;
 exports.language = language;
 exports.shortName = shortName;

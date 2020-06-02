@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Caml_oo_curry = require "../../lib/js/caml_oo_curry";
 CamlinternalOO = require "../../lib/js/camlinternalOO";
@@ -30,19 +30,19 @@ hello = ids[3];
 
 CamlinternalOO.set_methods(__class, {
       hi,
-      (function (self$1, v, z) do
+      (function(self$1, v, z) do
           return v + z | 0;
         end end),
       id1,
-      (function (self$1) do
+      (function(self$1) do
           return 3;
         end end),
       id2,
-      (function (self$1) do
+      (function(self$1) do
           return 4;
         end end),
       hello,
-      (function (self$1, v) do
+      (function(self$1, v) do
           return v;
         end end)
     });
@@ -55,7 +55,7 @@ __class_1 = CamlinternalOO.create_table({"id"});
 
 id = CamlinternalOO.get_method_label(__class_1, "id");
 
-CamlinternalOO.set_method(__class_1, id, (function (self$2) do
+CamlinternalOO.set_method(__class_1, id, (function(self$2) do
         return "uu";
       end end));
 
@@ -67,7 +67,7 @@ __class_2 = CamlinternalOO.create_table(shared);
 
 add = CamlinternalOO.get_method_label(__class_2, "add");
 
-CamlinternalOO.set_method(__class_2, add, (function (self$3, x, y) do
+CamlinternalOO.set_method(__class_2, add, (function(self$3, x, y) do
         return x + y | 0;
       end end));
 
@@ -79,7 +79,7 @@ __class_3 = CamlinternalOO.create_table(shared);
 
 add_1 = CamlinternalOO.get_method_label(__class_3, "add");
 
-CamlinternalOO.set_method(__class_3, add_1, (function (self$4, x, y) do
+CamlinternalOO.set_method(__class_3, add_1, (function(self$4, x, y) do
         return x + y | 0;
       end end));
 
@@ -168,6 +168,7 @@ function test(param) do
   end end 
 end end
 
+exports = {}
 exports.u = u;
 exports.uu = uu;
 exports.uuu = uuu;

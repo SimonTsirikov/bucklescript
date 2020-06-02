@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 
@@ -42,6 +42,7 @@ Mt.from_pair_suites("unboxed_attribute_test.ml", suites.contents);
 
 v0 = 3;
 
+exports = {}
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;

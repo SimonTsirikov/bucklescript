@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Curry = require "../../lib/js/curry";
 Caml_primitive = require "../../lib/js/caml_primitive";
@@ -14,7 +14,7 @@ end end
 
 function f3(param) do
   lhs = param.rank;
-  return (function (param) do
+  return (function(param) do
       rhs = param.rank;
       if (typeof lhs == "number") then do
         error({
@@ -44,7 +44,7 @@ end end
 
 function f4(param) do
   lhs = param.rank;
-  return (function (param) do
+  return (function(param) do
       rhs = param.rank;
       if (typeof lhs == "number") then do
         error({
@@ -87,6 +87,7 @@ v = Curry._1(match[1], --[[ () ]]0);
 
 console.log(v);
 
+exports = {}
 exports.f = f;
 exports.f2 = f2;
 exports.f3 = f3;

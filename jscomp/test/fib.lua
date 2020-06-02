@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 
 function fib(n) do
@@ -39,6 +39,7 @@ function fib3(n) do
   return a;
 end end
 
+exports = {}
 exports.fib = fib;
 exports.fib2 = fib2;
 exports.fib3 = fib3;

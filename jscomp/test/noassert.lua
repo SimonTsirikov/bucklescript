@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
@@ -17,6 +17,7 @@ function h(param) do
   return 0;
 end end
 
+exports = {}
 exports.f = f;
 exports.h = h;
 --[[ No side effect ]]

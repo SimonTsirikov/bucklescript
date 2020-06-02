@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 List = require "../../lib/js/list";
 Curry = require "../../lib/js/curry";
@@ -43,21 +43,21 @@ end end
 
 function g(x, y) do
   u = x + y | 0;
-  return (function (z) do
+  return (function(z) do
       return u + z | 0;
     end end);
 end end
 
 function g1(x, y) do
   u = x + y | 0;
-  return (function (xx, yy) do
+  return (function(xx, yy) do
       return (xx + yy | 0) + u | 0;
     end end);
 end end
 
 u = 8;
 
-x = (function (z) do
+x = (function(z) do
       return u + z | 0;
     end end)(6);
 
@@ -73,6 +73,7 @@ nil = --[[ Nil ]]0;
 
 len = List.length;
 
+exports = {}
 exports.fib = fib;
 exports.nil = nil;
 exports.cons = cons;

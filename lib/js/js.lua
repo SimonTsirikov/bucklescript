@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 
 Internal = { };
@@ -59,6 +59,7 @@ Vector = --[[ alias ]]0;
 
 Console = --[[ alias ]]0;
 
+exports = {}
 exports.MapperRt = MapperRt;
 exports.Internal = Internal;
 exports.Null = Null;

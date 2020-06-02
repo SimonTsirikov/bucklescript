@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Bytes = require "../../lib/js/bytes";
 Caml_char = require "../../lib/js/caml_char";
@@ -48,34 +48,34 @@ function escaped(s) do
         end else do
           local ___conditional___=(switcher + 34 | 0);
           do
-             if ___conditional___ = 8 then do
+             if ___conditional___ == 8 then do
                 s$prime[n] = --[[ "\\" ]]92;
                 n = n + 1 | 0;
-                s$prime[n] = --[[ "b" ]]98;end else 
-             if ___conditional___ = 9 then do
+                s$prime[n] = --[[ "b" ]]98; end else 
+             if ___conditional___ == 9 then do
                 s$prime[n] = --[[ "\\" ]]92;
                 n = n + 1 | 0;
-                s$prime[n] = --[[ "t" ]]116;end else 
-             if ___conditional___ = 10 then do
+                s$prime[n] = --[[ "t" ]]116; end else 
+             if ___conditional___ == 10 then do
                 s$prime[n] = --[[ "\\" ]]92;
                 n = n + 1 | 0;
-                s$prime[n] = --[[ "n" ]]110;end else 
-             if ___conditional___ = 0
-             or ___conditional___ = 1
-             or ___conditional___ = 2
-             or ___conditional___ = 3
-             or ___conditional___ = 4
-             or ___conditional___ = 5
-             or ___conditional___ = 6
-             or ___conditional___ = 7
-             or ___conditional___ = 11
-             or ___conditional___ = 12 then do
-                exit_1 = 1;end else 
-             if ___conditional___ = 13 then do
+                s$prime[n] = --[[ "n" ]]110; end else 
+             if ___conditional___ == 0
+             or ___conditional___ == 1
+             or ___conditional___ == 2
+             or ___conditional___ == 3
+             or ___conditional___ == 4
+             or ___conditional___ == 5
+             or ___conditional___ == 6
+             or ___conditional___ == 7
+             or ___conditional___ == 11
+             or ___conditional___ == 12 then do
+                exit_1 = 1; end else 
+             if ___conditional___ == 13 then do
                 s$prime[n] = --[[ "\\" ]]92;
                 n = n + 1 | 0;
-                s$prime[n] = --[[ "r" ]]114;end else 
-             do end end end end end end
+                s$prime[n] = --[[ "r" ]]114; end else 
+             end end end end end end end end end end
             
           end
         end end 
@@ -106,5 +106,6 @@ function escaped(s) do
   end end 
 end end
 
+exports = {}
 exports.escaped = escaped;
 --[[ No side effect ]]

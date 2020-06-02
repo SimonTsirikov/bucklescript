@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Block = require "../../lib/js/block";
 Caml_int32 = require "../../lib/js/caml_int32";
@@ -21,7 +21,7 @@ function $plus$colon(_f, _g) do
      end 
     local ___conditional___=(g.tag | 0);
     do
-       if ___conditional___ = 0--[[ Int ]] then do
+       if ___conditional___ == 0--[[ Int ]] then do
           if (g[0] ~= 0) then do
             return --[[ Add ]]Block.__(2, {
                       f,
@@ -29,18 +29,17 @@ function $plus$colon(_f, _g) do
                     });
           end else do
             return f;
-          end end end end end 
-       if ___conditional___ = 2--[[ Add ]] then do
+          end end  end end 
+       if ___conditional___ == 2--[[ Add ]] then do
           _g = g[1];
           _f = $plus$colon(f, g[0]);
-          ::continue:: ;end end end 
-       if ___conditional___ = 1--[[ Var ]]
-       or ___conditional___ = 3--[[ Mul ]] then do
+          ::continue:: ; end end 
+       if ___conditional___ == 1--[[ Var ]]
+       or ___conditional___ == 3--[[ Mul ]] then do
           return --[[ Add ]]Block.__(2, {
                     f,
                     g
-                  });end end end 
-       do
+                  }); end end 
       
     end
   end;
@@ -80,7 +79,7 @@ function $star$colon(_f, _g) do
      end 
     local ___conditional___=(g.tag | 0);
     do
-       if ___conditional___ = 0--[[ Int ]] then do
+       if ___conditional___ == 0--[[ Int ]] then do
           if (g[0] ~= 1) then do
             return --[[ Mul ]]Block.__(3, {
                       f,
@@ -88,18 +87,17 @@ function $star$colon(_f, _g) do
                     });
           end else do
             return f;
-          end end end end end 
-       if ___conditional___ = 1--[[ Var ]]
-       or ___conditional___ = 2--[[ Add ]] then do
+          end end  end end 
+       if ___conditional___ == 1--[[ Var ]]
+       or ___conditional___ == 2--[[ Add ]] then do
           return --[[ Mul ]]Block.__(3, {
                     f,
                     g
-                  });end end end 
-       if ___conditional___ = 3--[[ Mul ]] then do
+                  }); end end 
+       if ___conditional___ == 3--[[ Mul ]] then do
           _g = g[1];
           _f = $star$colon(f, g[0]);
-          ::continue:: ;end end end 
-       do
+          ::continue:: ; end end 
       
     end
   end;
@@ -108,18 +106,18 @@ end end
 function simplify(f) do
   local ___conditional___=(f.tag | 0);
   do
-     if ___conditional___ = 0--[[ Int ]]
-     or ___conditional___ = 1--[[ Var ]] then do
-        return f;end end end 
-     if ___conditional___ = 2--[[ Add ]] then do
-        return $plus$colon(simplify(f[0]), simplify(f[1]));end end end 
-     if ___conditional___ = 3--[[ Mul ]] then do
-        return $star$colon(simplify(f[0]), simplify(f[1]));end end end 
-     do
+     if ___conditional___ == 0--[[ Int ]]
+     or ___conditional___ == 1--[[ Var ]] then do
+        return f; end end 
+     if ___conditional___ == 2--[[ Add ]] then do
+        return $plus$colon(simplify(f[0]), simplify(f[1])); end end 
+     if ___conditional___ == 3--[[ Mul ]] then do
+        return $star$colon(simplify(f[0]), simplify(f[1])); end end 
     
   end
 end end
 
+exports = {}
 exports.$plus$colon = $plus$colon;
 exports.$star$colon = $star$colon;
 exports.simplify = simplify;

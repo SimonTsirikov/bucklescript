@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Fs = require "";
@@ -17,7 +17,7 @@ function eq(loc, x, y) do
   suites.contents = --[[ :: ]]{
     --[[ tuple ]]{
       loc .. (" id " .. String(test_id.contents)),
-      (function (param) do
+      (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     x,
                     y
@@ -86,11 +86,11 @@ hey_string("on_closed");
 hey_string("in");
 
 function register(readline) do
-  readline.on("line", (function (s) do
+  readline.on("line", (function(s) do
           console.log(s);
           return --[[ () ]]0;
         end end));
-  readline.on("close", (function () do
+  readline.on("close", (function() do
           console.log("finished");
           return --[[ () ]]0;
         end end));
@@ -106,14 +106,13 @@ function read_1(name) do
 end end
 
 function test(readline, x) do
-  readline.on((function () do
+  readline.on((function() do
             local ___conditional___=(x[0]);
             do
-               if ___conditional___ = -944564236 then do
-                  return "line";end end end 
-               if ___conditional___ = -933029960 then do
-                  return "close";end end end 
-               do
+               if ___conditional___ == -944564236 then do
+                  return "line"; end end 
+               if ___conditional___ == -933029960 then do
+                  return "close"; end end 
               
             end
           end end)(), x[1]);
@@ -138,14 +137,13 @@ eq("File \"poly_variant_test.ml\", line 143, characters 5-12", 3, p_is_int_test(
 Mt.from_pair_suites("Poly_variant_test", suites.contents);
 
 function on2(prim, prim_1) do
-  prim.on2((function () do
+  prim.on2((function() do
             local ___conditional___=(prim_1[0]);
             do
-               if ___conditional___ = -944564236 then do
-                  return "line";end end end 
-               if ___conditional___ = -933029960 then do
-                  return "close";end end end 
-               do
+               if ___conditional___ == -944564236 then do
+                  return "line"; end end 
+               if ___conditional___ == -933029960 then do
+                  return "close"; end end 
               
             end
           end end)(), prim_1[1]);
@@ -154,6 +152,7 @@ end end
 
 readN = read_1;
 
+exports = {}
 exports.uu = uu;
 exports.vv = vv;
 exports.register = register;

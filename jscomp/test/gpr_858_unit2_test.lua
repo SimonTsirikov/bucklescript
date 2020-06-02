@@ -1,10 +1,10 @@
-console.log = print;
+console = {log = print};
 
 Curry = require "../../lib/js/curry";
 Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 delayed = do
-  contents: (function (param) do
+  contents: (function(param) do
       return --[[ () ]]0;
     end end)
 end;
@@ -14,7 +14,7 @@ for i = 1 , 2 , 1 do
   return function f(n, j) do
     if (j ~= 0) then do
       prev = delayed.contents;
-      delayed.contents = (function (param) do
+      delayed.contents = (function(param) do
           Curry._1(prev, --[[ () ]]0);
           return f(((n + 1 | 0) + i | 0) - i | 0, j - 1 | 0);
         end end);
@@ -32,10 +32,11 @@ for i = 1 , 2 , 1 do
       })
     end end  end 
   end end
-  end(i));
+  end end)(i);
   f(0, i);
 end
 
 Curry._1(delayed.contents, --[[ () ]]0);
 
+exports = {}
 --[[  Not a pure module ]]

@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Belt_Array = require "./belt_Array";
 
@@ -384,6 +384,7 @@ function binarySearch(sorted, key) do
   end end 
 end end
 
+exports = {}
 exports.strictlySortedLength = strictlySortedLength;
 exports.isSorted = isSorted;
 exports.stableSortInPlace = stableSortInPlace;

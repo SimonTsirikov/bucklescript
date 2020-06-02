@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Caml_option = require "../../lib/js/caml_option";
 Js_undefined = require "../../lib/js/js_undefined";
@@ -41,7 +41,7 @@ function inOrder3(v) do
     Belt_MutableStack.push(s, v_1);
     current = v_1.left;
   end;
-  Belt_MutableStack.dynamicPopIter(s, (function (popped) do
+  Belt_MutableStack.dynamicPopIter(s, (function(popped) do
           Belt_MutableQueue.add(q, popped.value);
           current = popped.right;
           while(current ~= undefined) do
@@ -110,6 +110,7 @@ S = --[[ alias ]]0;
 
 Q = --[[ alias ]]0;
 
+exports = {}
 exports.S = S;
 exports.Q = Q;
 exports.inOrder = inOrder;

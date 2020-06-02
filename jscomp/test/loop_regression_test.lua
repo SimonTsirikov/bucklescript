@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Block = require "../../lib/js/block";
@@ -24,7 +24,7 @@ end end
 
 suites_000 = --[[ tuple ]]{
   "sum",
-  (function (param) do
+  (function(param) do
       return --[[ Eq ]]Block.__(0, {
                 55,
                 f(--[[ () ]]0)
@@ -39,6 +39,7 @@ suites = --[[ :: ]]{
 
 Mt.from_pair_suites("Loop_regression_test", suites);
 
+exports = {}
 exports.f = f;
 exports.suites = suites;
 --[[  Not a pure module ]]

@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Curry = require "../../lib/js/curry";
 Caml_io = require "../../lib/js/caml_io";
@@ -120,17 +120,14 @@ end end
 function bool_of_string(param) do
   local ___conditional___=(param);
   do
-     if ___conditional___ = "false" then do
-        return false;end end end 
-     if ___conditional___ = "true" then do
-        return true;end end end 
-     do
-    else do
-      error({
+     if ___conditional___ == "false" then do
+        return false; end end 
+     if ___conditional___ == "true" then do
+        return true; end end 
+    error({
         Caml_builtin_exceptions.invalid_argument,
         "bool_of_string"
       })
-      end end
       
   end
 end end
@@ -364,7 +361,7 @@ function really_input_string(ic, len) do
 end end
 
 function input_line(chan) do
-  build_result = function (buf, _pos, _param) do
+  build_result = function(buf, _pos, _param) do
     while(true) do
       param = _param;
       pos = _pos;
@@ -520,7 +517,7 @@ end;
 
 function at_exit(f) do
   g = exit_function[0];
-  exit_function[0] = (function (param) do
+  exit_function[0] = (function(param) do
       Curry._1(f, --[[ () ]]0);
       return Curry._1(g, --[[ () ]]0);
     end end);
@@ -538,6 +535,7 @@ end end
 
 max_int = 2147483647;
 
+exports = {}
 exports.failwith = failwith;
 exports.invalid_arg = invalid_arg;
 exports.Exit = Exit;

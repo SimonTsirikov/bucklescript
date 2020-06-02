@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 
 f = do
@@ -67,6 +67,7 @@ f_record = do
   end
 end;
 
+exports = {}
 exports.f_record = f_record;
 exports.f = f;
 exports.f2 = f2;

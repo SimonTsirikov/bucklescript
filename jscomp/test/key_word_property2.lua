@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Export_keyword = require "./export_keyword";
 
@@ -22,6 +22,7 @@ __window = Export_keyword.__window;
 
 __switch = Export_keyword.__switch;
 
+exports = {}
 exports.test2 = test2;
 exports.test = test;
 exports.__case = __case;

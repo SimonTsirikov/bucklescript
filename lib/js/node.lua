@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 
 function test(x) do
@@ -27,6 +27,7 @@ __Buffer = --[[ alias ]]0;
 
 Child_process = --[[ alias ]]0;
 
+exports = {}
 exports.Path = Path;
 exports.Fs = Fs;
 exports.Process = Process;

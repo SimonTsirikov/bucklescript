@@ -108,10 +108,10 @@ function fields(x) do
   match = #x;
   local ___conditional___=(match);
   do
-     if ___conditional___ = 0
-     or ___conditional___ = 1 then do
-        return "";end end end 
-     if ___conditional___ = 2 then do
+     if ___conditional___ == 0
+     or ___conditional___ == 1 then do
+        return ""; end end 
+     if ___conditional___ == 2 then do
         return Curry._1(Printf.sprintf(--[[ Format ]]{
                         --[[ Char_literal ]]Block.__(12, {
                             --[[ "(" ]]40,
@@ -124,10 +124,8 @@ function fields(x) do
                               })
                           }),
                         "(%s)"
-                      }), field(x, 1));end end end 
-     do
-    else do
-      return Curry._2(Printf.sprintf(--[[ Format ]]{
+                      }), field(x, 1)); end end 
+    return Curry._2(Printf.sprintf(--[[ Format ]]{
                       --[[ Char_literal ]]Block.__(12, {
                           --[[ "(" ]]40,
                           --[[ String ]]Block.__(2, {
@@ -143,7 +141,6 @@ function fields(x) do
                         }),
                       "(%s%s)"
                     }), field(x, 1), other_fields(x, 2));
-      end end
       
   end
 end end
@@ -257,7 +254,7 @@ function convert_raw_backtrace(bt) do
 end end
 
 function format_backtrace_slot(pos, slot) do
-  info = function (is_raise) do
+  info = function(is_raise) do
     if (is_raise) then do
       if (pos == 0) then do
         return "Raised at";
@@ -425,14 +422,14 @@ function backtrace_slots(raw_backtrace) do
   match = convert_raw_backtrace(raw_backtrace);
   if (match ~= undefined) then do
     backtrace = match;
-    usable_slot = function (param) do
+    usable_slot = function(param) do
       if (param.tag) then do
         return false;
       end else do
         return true;
       end end 
     end end;
-    exists_usable = function (_i) do
+    exists_usable = function(_i) do
       while(true) do
         i = _i;
         if (i ~= -1) then do

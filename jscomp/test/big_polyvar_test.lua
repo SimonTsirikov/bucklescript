@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Js_mapperRt = require "../../lib/js/js_mapperRt";
 Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
@@ -8438,6 +8438,7 @@ if (not eq(tFromJs("xx"), undefined)) then do
 end
  end 
 
+exports = {}
 exports.tToJs = tToJs;
 exports.tFromJs = tFromJs;
 exports.eq = eq;

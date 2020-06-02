@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Block = require "../../lib/js/block";
@@ -13,7 +13,7 @@ end end
 
 suites_000 = --[[ tuple ]]{
   "empty",
-  (function (param) do
+  (function(param) do
       return --[[ Eq ]]Block.__(0, {
                 {},
                 Object.keys({ })
@@ -24,7 +24,7 @@ suites_000 = --[[ tuple ]]{
 suites_001 = --[[ :: ]]{
   --[[ tuple ]]{
     "get",
-    (function (param) do
+    (function(param) do
         return --[[ Eq ]]Block.__(0, {
                   43,
                   Js_dict.get(do
@@ -37,7 +37,7 @@ suites_001 = --[[ :: ]]{
   --[[ :: ]]{
     --[[ tuple ]]{
       "get - property not in object",
-      (function (param) do
+      (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     undefined,
                     Js_dict.get(do
@@ -50,7 +50,7 @@ suites_001 = --[[ :: ]]{
     --[[ :: ]]{
       --[[ tuple ]]{
         "unsafe_get",
-        (function (param) do
+        (function(param) do
             return --[[ Eq ]]Block.__(0, {
                       43,
                       (do
@@ -63,7 +63,7 @@ suites_001 = --[[ :: ]]{
       --[[ :: ]]{
         --[[ tuple ]]{
           "set",
-          (function (param) do
+          (function(param) do
               o = do
                 foo: 43,
                 bar: 86
@@ -78,7 +78,7 @@ suites_001 = --[[ :: ]]{
         --[[ :: ]]{
           --[[ tuple ]]{
             "keys",
-            (function (param) do
+            (function(param) do
                 return --[[ Eq ]]Block.__(0, {
                           {
                             "foo",
@@ -94,7 +94,7 @@ suites_001 = --[[ :: ]]{
           --[[ :: ]]{
             --[[ tuple ]]{
               "entries",
-              (function (param) do
+              (function(param) do
                   return --[[ Eq ]]Block.__(0, {
                             {
                               --[[ tuple ]]{
@@ -116,7 +116,7 @@ suites_001 = --[[ :: ]]{
             --[[ :: ]]{
               --[[ tuple ]]{
                 "values",
-                (function (param) do
+                (function(param) do
                     return --[[ Eq ]]Block.__(0, {
                               {
                                 43,
@@ -132,7 +132,7 @@ suites_001 = --[[ :: ]]{
               --[[ :: ]]{
                 --[[ tuple ]]{
                   "fromList - []",
-                  (function (param) do
+                  (function(param) do
                       return --[[ Eq ]]Block.__(0, {
                                 { },
                                 Js_dict.fromList(--[[ [] ]]0)
@@ -142,7 +142,7 @@ suites_001 = --[[ :: ]]{
                 --[[ :: ]]{
                   --[[ tuple ]]{
                     "fromList",
-                    (function (param) do
+                    (function(param) do
                         return --[[ Eq ]]Block.__(0, {
                                   {
                                     --[[ tuple ]]{
@@ -173,7 +173,7 @@ suites_001 = --[[ :: ]]{
                   --[[ :: ]]{
                     --[[ tuple ]]{
                       "fromArray - []",
-                      (function (param) do
+                      (function(param) do
                           return --[[ Eq ]]Block.__(0, {
                                     { },
                                     Js_dict.fromArray({})
@@ -183,7 +183,7 @@ suites_001 = --[[ :: ]]{
                     --[[ :: ]]{
                       --[[ tuple ]]{
                         "fromArray",
-                        (function (param) do
+                        (function(param) do
                             return --[[ Eq ]]Block.__(0, {
                                       {
                                         --[[ tuple ]]{
@@ -211,13 +211,13 @@ suites_001 = --[[ :: ]]{
                       --[[ :: ]]{
                         --[[ tuple ]]{
                           "map",
-                          (function (param) do
+                          (function(param) do
                               return --[[ Eq ]]Block.__(0, {
                                         do
                                           foo: "43",
                                           bar: "86"
                                         end,
-                                        Js_dict.map((function (i) do
+                                        Js_dict.map((function(i) do
                                                 return String(i);
                                               end end), do
                                               foo: 43,
@@ -247,6 +247,7 @@ suites = --[[ :: ]]{
 
 Mt.from_pair_suites("Js_dict_test", suites);
 
+exports = {}
 exports.obj = obj;
 exports.suites = suites;
 --[[  Not a pure module ]]

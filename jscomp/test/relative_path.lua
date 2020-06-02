@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 FileJs = require "./Fil";
 
@@ -10,6 +10,7 @@ end end
 
 bar = foo;
 
+exports = {}
 exports.foo = foo;
 exports.foo2 = foo2;
 exports.bar = bar;

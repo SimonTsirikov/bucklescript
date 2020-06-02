@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Js_dict = require "../../lib/js/js_dict";
@@ -42,6 +42,7 @@ Mt.from_pair_suites("Gpr_3154_test", suites.contents);
 
 J = --[[ alias ]]0;
 
+exports = {}
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;

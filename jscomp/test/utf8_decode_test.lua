@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 List = require "../../lib/js/list";
@@ -44,7 +44,7 @@ function classify(chr) do
 end end
 
 function utf8_decode(strm) do
-  return Stream.slazy((function (param) do
+  return Stream.slazy((function(param) do
                 match = Stream.peek(strm);
                 if (match ~= undefined) then do
                   Stream.junk(strm);
@@ -57,15 +57,15 @@ function utf8_decode(strm) do
                   end else do
                     local ___conditional___=(match_1.tag | 0);
                     do
-                       if ___conditional___ = 0--[[ Single ]] then do
-                          return Stream.icons(match_1[0], utf8_decode(strm));end end end 
-                       if ___conditional___ = 1--[[ Cont ]] then do
+                       if ___conditional___ == 0--[[ Single ]] then do
+                          return Stream.icons(match_1[0], utf8_decode(strm)); end end 
+                       if ___conditional___ == 1--[[ Cont ]] then do
                           error({
                             Stream.__Error,
                             "Unexpected continuation byte"
-                          })end end end 
-                       if ___conditional___ = 2--[[ Leading ]] then do
-                          follow = function (strm, _n, _c) do
+                          }) end end 
+                       if ___conditional___ == 2--[[ Leading ]] then do
+                          follow = function(strm, _n, _c) do
                             while(true) do
                               c = _c;
                               n = _n;
@@ -91,8 +91,7 @@ function utf8_decode(strm) do
                               end end 
                             end;
                           end end;
-                          return Stream.icons(follow(strm, match_1[0], match_1[1]), utf8_decode(strm));end end end 
-                       do
+                          return Stream.icons(follow(strm, match_1[0], match_1[1]), utf8_decode(strm)); end end 
                       
                     end
                   end end 
@@ -105,7 +104,7 @@ function to_list(xs) do
   v = do
     contents: --[[ [] ]]0
   end;
-  Stream.iter((function (x) do
+  Stream.iter((function(x) do
           v.contents = --[[ :: ]]{
             x,
             v.contents
@@ -130,17 +129,17 @@ function decode(bytes, offset) do
   end else do
     local ___conditional___=(match.tag | 0);
     do
-       if ___conditional___ = 0--[[ Single ]] then do
+       if ___conditional___ == 0--[[ Single ]] then do
           return --[[ tuple ]]{
                   match[0],
                   offset_1 + 1 | 0
-                };end end end 
-       if ___conditional___ = 1--[[ Cont ]] then do
+                }; end end 
+       if ___conditional___ == 1--[[ Cont ]] then do
           error({
             Caml_builtin_exceptions.invalid_argument,
             "decode"
-          })end end end 
-       if ___conditional___ = 2--[[ Leading ]] then do
+          }) end end 
+       if ___conditional___ == 2--[[ Leading ]] then do
           _n = match[0];
           _c = match[1];
           _offset = offset_1 + 1 | 0;
@@ -172,8 +171,7 @@ function decode(bytes, offset) do
                 })
               end end  end 
             end end 
-          end;end end end 
-       do
+          end; end end 
       
     end
   end end 
@@ -218,7 +216,7 @@ function eq(loc, param) do
   suites.contents = --[[ :: ]]{
     --[[ tuple ]]{
       loc .. (" id " .. String(test_id.contents)),
-      (function (param) do
+      (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     x,
                     y
@@ -230,10 +228,10 @@ function eq(loc, param) do
   return --[[ () ]]0;
 end end
 
-List.iter((function (param) do
+List.iter((function(param) do
         return eq("File \"utf8_decode_test.ml\", line 107, characters 7-14", --[[ tuple ]]{
                     true,
-                    eq_list((function (prim, prim_1) do
+                    eq_list((function(prim, prim_1) do
                             return prim == prim_1;
                           end end), to_list(utf8_decode(Stream.of_string(param[0]))), param[1])
                   });
@@ -370,6 +368,7 @@ List.iter((function (param) do
 
 Mt.from_pair_suites("Utf8_decode_test", suites.contents);
 
+exports = {}
 exports.classify = classify;
 exports.utf8_decode = utf8_decode;
 exports.to_list = to_list;

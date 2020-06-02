@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 
 function f(x) do
@@ -6,7 +6,7 @@ function f(x) do
 end end
 
 function M(S) do
-  f = function (x) do
+  f = function(x) do
     return x;
   end end;
   return do
@@ -18,6 +18,7 @@ function fff(param, param_1) do
   return 3;
 end end
 
+exports = {}
 exports.f = f;
 exports.M = M;
 exports.fff = fff;

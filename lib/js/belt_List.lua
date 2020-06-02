@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Curry = require "./curry";
 Belt_Array = require "./belt_Array";
@@ -1461,6 +1461,7 @@ filter = keep;
 
 filterWithIndex = keepWithIndex;
 
+exports = {}
 exports.length = length;
 exports.size = size;
 exports.head = head;

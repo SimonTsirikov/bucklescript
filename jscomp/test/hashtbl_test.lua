@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 List = require "../../lib/js/list";
@@ -10,7 +10,7 @@ MoreLabels = require "../../lib/js/moreLabels";
 Caml_primitive = require "../../lib/js/caml_primitive";
 
 function to_list(tbl) do
-  return Hashtbl.fold((function (k, v, acc) do
+  return Hashtbl.fold((function(k, v, acc) do
                 return --[[ :: ]]{
                         --[[ tuple ]]{
                           k,
@@ -25,7 +25,7 @@ function f(param) do
   tbl = Hashtbl.create(undefined, 17);
   Hashtbl.add(tbl, 1, --[[ "1" ]]49);
   Hashtbl.add(tbl, 2, --[[ "2" ]]50);
-  return List.sort((function (param, param_1) do
+  return List.sort((function(param, param_1) do
                 return Caml_primitive.caml_int_compare(param[0], param_1[0]);
               end end), to_list(tbl));
 end end
@@ -39,14 +39,14 @@ function g(count) do
     Hashtbl.replace(tbl, (i_1 << 1), String(i_1));
   end
   v = to_list(tbl);
-  return __Array.of_list(List.sort((function (param, param_1) do
+  return __Array.of_list(List.sort((function(param, param_1) do
                     return Caml_primitive.caml_int_compare(param[0], param_1[0]);
                   end end), v));
 end end
 
 suites_000 = --[[ tuple ]]{
   "simple",
-  (function (param) do
+  (function(param) do
       return --[[ Eq ]]Block.__(0, {
                 --[[ :: ]]{
                   --[[ tuple ]]{
@@ -69,9 +69,9 @@ suites_000 = --[[ tuple ]]{
 suites_001 = --[[ :: ]]{
   --[[ tuple ]]{
     "more_iterations",
-    (function (param) do
+    (function(param) do
         return --[[ Eq ]]Block.__(0, {
-                  __Array.init(1001, (function (i) do
+                  __Array.init(1001, (function(i) do
                           return --[[ tuple ]]{
                                   (i << 1),
                                   String(i)
@@ -84,7 +84,7 @@ suites_001 = --[[ :: ]]{
   --[[ :: ]]{
     --[[ tuple ]]{
       "More_labels_regressionfix_374",
-      (function (param) do
+      (function(param) do
           tbl = Curry._2(MoreLabels.Hashtbl.create, undefined, 30);
           Hashtbl.add(tbl, 3, 3);
           return --[[ Eq ]]Block.__(0, {
@@ -104,6 +104,7 @@ suites = --[[ :: ]]{
 
 Mt.from_pair_suites("Hashtbl_test", suites);
 
+exports = {}
 exports.to_list = to_list;
 exports.f = f;
 exports.g = g;

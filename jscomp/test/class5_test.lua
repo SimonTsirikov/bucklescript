@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 List = require "../../lib/js/list";
@@ -33,7 +33,7 @@ function eq(loc, x, y) do
   suites.contents = --[[ :: ]]{
     --[[ tuple ]]{
       loc .. (" id " .. String(test_id.contents)),
-      (function (param) do
+      (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     x,
                     y
@@ -58,20 +58,20 @@ function printable_point_init(__class) do
   x = ids[3];
   CamlinternalOO.set_methods(__class, {
         get_x,
-        (function (self$1) do
+        (function(self$1) do
             return self$1[x];
           end end),
         move,
-        (function (self$1, d) do
+        (function(self$1, d) do
             self$1[x] = self$1[x] + d | 0;
             return --[[ () ]]0;
           end end),
         print,
-        (function (self$1) do
+        (function(self$1) do
             return String(Curry._1(self$1[0][get_x], self$1));
           end end)
       });
-  return (function (env, self, x_init_1) do
+  return (function(env, self, x_init_1) do
       self_1 = CamlinternalOO.create_object_opt(self, __class);
       self_1[x_init] = x_init_1;
       self_1[x] = x_init_1;
@@ -95,7 +95,7 @@ function printable_colored_point_init(__class) do
   print = ids[0];
   color = ids[1];
   c_1 = ids[2];
-  CamlinternalOO.set_method(__class, color, (function (self$2) do
+  CamlinternalOO.set_method(__class, color, (function(self$2) do
           return self$2[c_1];
         end end));
   inh = CamlinternalOO.inherits(__class, shared_1, 0, {
@@ -105,10 +105,10 @@ function printable_colored_point_init(__class) do
       }, printable_point, true);
   obj_init = inh[0];
   print_1 = inh[4];
-  CamlinternalOO.set_method(__class, print, (function (self$2) do
+  CamlinternalOO.set_method(__class, print, (function(self$2) do
           return "(" .. (Curry._1(print_1, self$2) .. (", " .. (Curry._1(self$2[0][color], self$2) .. ")")));
         end end));
-  return (function (env, self, y_1, c_2) do
+  return (function(env, self, y_1, c_2) do
       self_1 = CamlinternalOO.create_object_opt(self, __class);
       self_1[c] = c_2;
       self_1[y] = y_1;
@@ -140,16 +140,16 @@ function ref_init(__class) do
   x = ids[2];
   CamlinternalOO.set_methods(__class, {
         get,
-        (function (self$3) do
+        (function(self$3) do
             return self$3[x];
           end end),
         set,
-        (function (self$3, y) do
+        (function(self$3, y) do
             self$3[x] = y;
             return --[[ () ]]0;
           end end)
       });
-  return (function (env, self, x_init_1) do
+  return (function(env, self, x_init_1) do
       self_1 = CamlinternalOO.create_object_opt(self, __class);
       self_1[x_init] = x_init_1;
       self_1[x] = x_init_1;
@@ -177,15 +177,15 @@ function intlist_init(__class) do
   empty = ids[1];
   CamlinternalOO.set_methods(__class, {
         empty,
-        (function (self$4) do
+        (function(self$4) do
             return self$4[l] == --[[ [] ]]0;
           end end),
         fold,
-        (function (self$4, f, accu) do
+        (function(self$4, f, accu) do
             return List.fold_left(f, accu, self$4[l]);
           end end)
       });
-  return (function (env, self, l_1) do
+  return (function(env, self, l_1) do
       self_1 = CamlinternalOO.create_object_opt(self, __class);
       self_1[l] = l_1;
       return self_1;
@@ -205,7 +205,7 @@ l = Curry._2(intlist[0], 0, --[[ :: ]]{
       }
     });
 
-eq("File \"class5_test.ml\", line 54, characters 5-12", 6, Caml_oo_curry.js3(-1010803711, 4, l, (function (x, y) do
+eq("File \"class5_test.ml\", line 54, characters 5-12", 6, Caml_oo_curry.js3(-1010803711, 4, l, (function(x, y) do
             return x + y | 0;
           end end), 0));
 
@@ -216,15 +216,15 @@ function intlist2_init(__class) do
   empty = ids[1];
   CamlinternalOO.set_methods(__class, {
         empty,
-        (function (self$5) do
+        (function(self$5) do
             return self$5[l] == --[[ [] ]]0;
           end end),
         fold,
-        (function (self$5, f, accu) do
+        (function(self$5, f, accu) do
             return List.fold_left(f, accu, self$5[l]);
           end end)
       });
-  return (function (env, self, l_1) do
+  return (function(env, self, l_1) do
       self_1 = CamlinternalOO.create_object_opt(self, __class);
       self_1[l] = l_1;
       return self_1;
@@ -248,10 +248,10 @@ eq("File \"class5_test.ml\", line 67, characters 5-12", --[[ tuple ]]{
       6,
       "1 2 3 "
     }, --[[ tuple ]]{
-      Caml_oo_curry.js3(-1010803711, 5, l_1, (function (x, y) do
+      Caml_oo_curry.js3(-1010803711, 5, l_1, (function(x, y) do
               return x + y | 0;
             end end), 0),
-      Caml_oo_curry.js3(-1010803711, 6, l_1, (function (s, x) do
+      Caml_oo_curry.js3(-1010803711, 6, l_1, (function(s, x) do
               return s .. (String(x) .. " ");
             end end), "")
     });
@@ -264,16 +264,16 @@ function point_init(__class) do
   x = ids[2];
   CamlinternalOO.set_methods(__class, {
         get_x,
-        (function (self$6) do
+        (function(self$6) do
             return self$6[x];
           end end),
         move,
-        (function (self$6, d) do
+        (function(self$6, d) do
             self$6[x] = self$6[x] + d | 0;
             return --[[ () ]]0;
           end end)
       });
-  return (function (env, self, x_init_1) do
+  return (function(env, self, x_init_1) do
       self_1 = CamlinternalOO.create_object_opt(self, __class);
       self_1[x_init] = x_init_1;
       self_1[x] = x_init_1;
@@ -292,10 +292,10 @@ function distance_point_init(__class) do
       }, point, true);
   obj_init = inh[0];
   x_1 = inh[1];
-  CamlinternalOO.set_method(__class, distance, (function (self$7, other) do
+  CamlinternalOO.set_method(__class, distance, (function(self$7, other) do
           return Pervasives.abs(Caml_oo_curry.js1(291546447, 7, other) - self$7[x_1] | 0);
         end end));
-  return (function (env, self, x_2) do
+  return (function(env, self, x_2) do
       self_1 = CamlinternalOO.create_object_opt(self, __class);
       self_1[x] = x_2;
       Curry._2(obj_init, self_1, x_2);
@@ -325,6 +325,7 @@ eq("File \"class5_test.ml\", line 94, characters 5-12", --[[ tuple ]]{
 
 Mt.from_pair_suites("Class5_test", suites.contents);
 
+exports = {}
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;

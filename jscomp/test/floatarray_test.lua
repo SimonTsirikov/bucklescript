@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Caml_array = require "../../lib/js/caml_array";
@@ -37,6 +37,7 @@ Mt.from_pair_suites("Floatarray_test", suites.contents);
 
 K = --[[ alias ]]0;
 
+exports = {}
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;

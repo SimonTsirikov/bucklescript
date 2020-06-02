@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Block = require "../../lib/js/block";
@@ -18,7 +18,7 @@ function eq(loc, param) do
   suites.contents = --[[ :: ]]{
     --[[ tuple ]]{
       loc .. (" id " .. String(test_id.contents)),
-      (function (param) do
+      (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     x,
                     y
@@ -33,7 +33,7 @@ end end
 v5 = do
   x: 3,
   y: 3,
-  setY: (function (v) do
+  setY: (function(v) do
       self = this ;
       self.y = 2;
       return --[[ tuple ]]{
@@ -41,19 +41,19 @@ v5 = do
               v
             }; end
     end),
-  say: (function () do
+  say: (function() do
       self = this ;
       return self.x + self.y | 0; end
     end),
-  hihi: (function (u) do
+  hihi: (function(u) do
       self = this ;
       return self.x + self.say() | 0; end
     end),
-  bark: (function () do
+  bark: (function() do
       console.log("bark");
       return --[[ () ]]0; end
     end),
-  xz: (function () do
+  xz: (function() do
       return 3; end
     end)
 end;
@@ -61,35 +61,35 @@ end;
 v = do
   x: 3,
   y: 0,
-  reset: (function () do
+  reset: (function() do
       self = this ;
       self.y = 0;
       return --[[ () ]]0; end
     end),
-  incr: (function () do
+  incr: (function() do
       self = this ;
       self.y = self.y + 1 | 0;
       return --[[ () ]]0; end
     end),
-  getY: (function () do
+  getY: (function() do
       self = this ;
       return self.y; end
     end),
-  say: (function () do
+  say: (function() do
       self = this ;
       return self.x + self.y | 0; end
     end)
 end;
 
 u = do
-  incr: (function () do
+  incr: (function() do
       console.log("hey");
       return --[[ () ]]0; end
     end),
-  getY: (function () do
+  getY: (function() do
       return 3; end
     end),
-  say: (function () do
+  say: (function() do
       return 7; end
     end)
 end;
@@ -108,12 +108,12 @@ z = do
   x: do
     contents: 3
   end,
-  setX: (function (x) do
+  setX: (function(x) do
       self = this ;
       self.x.contents = x;
       return --[[ () ]]0; end
     end),
-  getX: (function () do
+  getX: (function() do
       self = this ;
       return self.x.contents; end
     end)
@@ -121,19 +121,19 @@ end;
 
 eventObj = do
   events: {},
-  empty: (function () do
+  empty: (function() do
       self = this ;
       a = self.events;
       a.splice(0);
       return --[[ () ]]0; end
     end),
-  push: (function (a) do
+  push: (function(a) do
       self = this ;
       xs = self.events;
       xs.push(a);
       return --[[ () ]]0; end
     end),
-  needRebuild: (function () do
+  needRebuild: (function() do
       self = this ;
       return #self.events ~= 0; end
     end)
@@ -145,12 +145,12 @@ end end
 
 zz = do
   x: 3,
-  setX: (function (x) do
+  setX: (function(x) do
       self = this ;
       self.x = x;
       return --[[ () ]]0; end
     end),
-  getX: (function () do
+  getX: (function() do
       self = this ;
       return self.x; end
     end)
@@ -215,6 +215,7 @@ eq("File \"ppx_this_obj_field.ml\", line 103, characters 5-12", --[[ tuple ]]{
 
 Mt.from_pair_suites("Ppx_this_obj_field", suites.contents);
 
+exports = {}
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;

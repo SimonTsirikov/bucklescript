@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Block = require "../../lib/js/block";
@@ -10,7 +10,7 @@ v = "gso";
 
 suites_000 = --[[ tuple ]]{
   "equal",
-  (function (param) do
+  (function(param) do
       return --[[ Eq ]]Block.__(0, {
                 --[[ tuple ]]{
                   Caml_bytes.get(Bytes.make(3, --[[ "a" ]]97), 0),
@@ -27,7 +27,7 @@ suites_000 = --[[ tuple ]]{
 suites_001 = --[[ :: ]]{
   --[[ tuple ]]{
     "equal2",
-    (function (param) do
+    (function(param) do
         u = Bytes.make(3, --[[ "a" ]]97);
         u[0] = --[[ "b" ]]98;
         return --[[ Eq ]]Block.__(0, {
@@ -45,7 +45,7 @@ suites_001 = --[[ :: ]]{
   --[[ :: ]]{
     --[[ tuple ]]{
       "buffer",
-      (function (param) do
+      (function(param) do
           v = __Buffer.create(30);
           for i = 0 , 10 , 1 do
             __Buffer.add_string(v, String(i));
@@ -67,6 +67,7 @@ suites = --[[ :: ]]{
 
 Mt.from_pair_suites("Buffer_test", suites);
 
+exports = {}
 exports.v = v;
 exports.suites = suites;
 --[[  Not a pure module ]]

@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Block = require "../../lib/js/block";
@@ -35,7 +35,7 @@ eq("File \"scanf_test.ml\", line 6, characters 5-12", --[[ tuple ]]{
                       })
                   }),
                 "%d %d"
-              }), (function (x, y) do
+              }), (function(x, y) do
               return x + y | 0;
             end end)),
       63
@@ -50,7 +50,7 @@ eq("File \"scanf_test.ml\", line 7, characters 5-12", --[[ tuple ]]{
                     --[[ End_of_format ]]0
                   }),
                 "%Lu"
-              }), (function (i) do
+              }), (function(i) do
               return i;
             end end)),
       --[[ int64 ]]{
@@ -61,6 +61,7 @@ eq("File \"scanf_test.ml\", line 7, characters 5-12", --[[ tuple ]]{
 
 Mt.from_pair_suites("Scanf_test", suites.contents);
 
+exports = {}
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;

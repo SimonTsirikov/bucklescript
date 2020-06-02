@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Block = require "../../lib/js/block";
@@ -20,7 +20,7 @@ end end
 
 suites_000 = --[[ tuple ]]{
   "const",
-  (function (param) do
+  (function(param) do
       return --[[ Eq ]]Block.__(0, {
                 1,
                 1
@@ -31,7 +31,7 @@ suites_000 = --[[ tuple ]]{
 suites_001 = --[[ :: ]]{
   --[[ tuple ]]{
     "other",
-    (function (param) do
+    (function(param) do
         return --[[ Eq ]]Block.__(0, {
                   3,
                   3
@@ -50,6 +50,7 @@ Mt.from_pair_suites("Module_parameter_test", suites);
 
 v0 = 1;
 
+exports = {}
 exports.u = u;
 exports.N = N;
 exports.v0 = v0;

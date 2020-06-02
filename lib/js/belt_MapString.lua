@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Curry = require "./curry";
 Caml_option = require "./caml_option";
@@ -265,6 +265,7 @@ mapWithKeyU = Belt_internalAVLtree.mapWithKeyU;
 
 mapWithKey = Belt_internalAVLtree.mapWithKey;
 
+exports = {}
 exports.empty = empty;
 exports.isEmpty = isEmpty;
 exports.has = has;

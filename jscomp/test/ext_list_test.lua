@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 List = require "../../lib/js/list";
 __Array = require "../../lib/js/array";
@@ -32,7 +32,7 @@ function excludes(p, l) do
   excluded = do
     contents: false
   end;
-  aux = function (_accu, _param) do
+  aux = function(_accu, _param) do
     while(true) do
       param = _param;
       accu = _accu;
@@ -74,7 +74,7 @@ function exclude_with_fact(p, l) do
   excluded = do
     contents: undefined
   end;
-  aux = function (_accu, _param) do
+  aux = function(_accu, _param) do
     while(true) do
       param = _param;
       accu = _accu;
@@ -112,7 +112,7 @@ function exclude_with_fact2(p1, p2, l) do
   excluded2 = do
     contents: undefined
   end;
-  aux = function (_accu, _param) do
+  aux = function(_accu, _param) do
     while(true) do
       param = _param;
       accu = _accu;
@@ -169,7 +169,7 @@ function same_length(_xs, _ys) do
 end end
 
 function filter_mapi(f, xs) do
-  aux = function (_i, _xs) do
+  aux = function(_i, _xs) do
     while(true) do
       xs = _xs;
       i = _i;
@@ -231,7 +231,7 @@ function filter_map2(f, _xs, _ys) do
 end end
 
 function filter_map2i(f, xs, ys) do
-  aux = function (_i, _xs, _ys) do
+  aux = function(_i, _xs, _ys) do
     while(true) do
       ys = _ys;
       xs = _xs;
@@ -654,7 +654,7 @@ function for_all_opt(p, _param) do
 end end
 
 function fold(f, l, init) do
-  return List.fold_left((function (acc, i) do
+  return List.fold_left((function(acc, i) do
                 return Curry._2(f, i, init);
               end end), init, l);
 end end
@@ -784,7 +784,7 @@ end end
 function reduce_from_right(fn, lst) do
   match = List.rev(lst);
   if (match) then do
-    return List.fold_left((function (x, y) do
+    return List.fold_left((function(x, y) do
                   return Curry._2(fn, y, x);
                 end end), match[0], match[1]);
   end else do
@@ -963,6 +963,7 @@ function assoc_by_int(def, k, _lst) do
   end;
 end end
 
+exports = {}
 exports.filter_map = filter_map;
 exports.excludes = excludes;
 exports.exclude_with_fact = exclude_with_fact;

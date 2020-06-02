@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 List = require "../../lib/js/list";
 Curry = require "../../lib/js/curry";
@@ -437,15 +437,15 @@ function partition(p, param) do
 end end
 
 function of_sorted_list(l) do
-  sub = function (n, l) do
+  sub = function(n, l) do
     local ___conditional___=(n);
     do
-       if ___conditional___ = 0 then do
+       if ___conditional___ == 0 then do
           return --[[ tuple ]]{
                   --[[ Empty ]]0,
                   l
-                };end end end 
-       if ___conditional___ = 1 then do
+                }; end end 
+       if ___conditional___ == 1 then do
           if (l) then do
             return --[[ tuple ]]{
                     --[[ Node ]]{
@@ -457,8 +457,8 @@ function of_sorted_list(l) do
                     l[1]
                   };
           end
-           end end else 
-       if ___conditional___ = 2 then do
+           end  end else 
+       if ___conditional___ == 2 then do
           if (l) then do
             match = l[1];
             if (match) then do
@@ -479,8 +479,8 @@ function of_sorted_list(l) do
             end
              end 
           end
-           end end else 
-       if ___conditional___ = 3 then do
+           end  end else 
+       if ___conditional___ == 3 then do
           if (l) then do
             match_1 = l[1];
             if (match_1) then do
@@ -510,11 +510,9 @@ function of_sorted_list(l) do
             end
              end 
           end
-           end end else 
-       do end end end
-      else do
-        end end
-        
+           end  end else 
+       end end end end end end
+      
     end
     nl = n / 2 | 0;
     match_3 = sub(nl, l);
@@ -540,7 +538,7 @@ function of_sorted_list(l) do
 end end
 
 function of_sorted_array(l) do
-  sub = function (start, n, l) do
+  sub = function(start, n, l) do
     if (n == 0) then do
       return --[[ Empty ]]0;
     end else if (n == 1) then do
@@ -598,7 +596,7 @@ function of_sorted_array(l) do
 end end
 
 function is_ordered(cmp, tree) do
-  is_ordered_min_max = function (tree) do
+  is_ordered_min_max = function(tree) do
     if (tree) then do
       r = tree[2];
       v = tree[1];
@@ -712,6 +710,7 @@ empty = --[[ Empty ]]0;
 
 choose = min_elt;
 
+exports = {}
 exports.cons_enum = cons_enum;
 exports.height = height;
 exports.min_elt = min_elt;

@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Curry = require "../../lib/js/curry";
@@ -64,7 +64,7 @@ function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
 end end
 
-compilerBug("x", undefined, true, (function (param) do
+compilerBug("x", undefined, true, (function(param) do
         return true;
       end end));
 
@@ -72,6 +72,7 @@ eq("File \"gpr_3875_test.ml\", line 36, characters 5-12", result.contents, "Some
 
 Mt.from_pair_suites("gpr_3875_test.ml", suites.contents);
 
+exports = {}
 exports.result = result;
 exports.Xx = Xx;
 exports.compilerBug = compilerBug;

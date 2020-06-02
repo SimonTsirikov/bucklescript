@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Block = require "./block";
 Curry = require "./curry";
@@ -107,6 +107,7 @@ function cmp(a, b, f) do
   return cmpU(a, b, Curry.__2(f));
 end end
 
+exports = {}
 exports.getExn = getExn;
 exports.mapWithDefaultU = mapWithDefaultU;
 exports.mapWithDefault = mapWithDefault;

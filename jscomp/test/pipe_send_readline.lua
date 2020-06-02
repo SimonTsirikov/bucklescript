@@ -1,11 +1,11 @@
-console.log = print;
+console = {log = print};
 
 
 function u(rl) do
-  return rl.on("line", (function (x) do
+  return rl.on("line", (function(x) do
                   console.log(x);
                   return --[[ () ]]0;
-                end end)).on("close", (function () do
+                end end)).on("close", (function() do
                 console.log("finished");
                 return --[[ () ]]0;
               end end));
@@ -19,6 +19,7 @@ function yy(h) do
   return h.send("x");
 end end
 
+exports = {}
 exports.u = u;
 exports.xx = xx;
 exports.yy = yy;

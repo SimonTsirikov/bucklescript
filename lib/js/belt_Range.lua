@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Curry = require "./curry";
 
@@ -101,6 +101,7 @@ function someBy(s, f, step, p) do
   return someByU(s, f, step, Curry.__1(p));
 end end
 
+exports = {}
 exports.forEachU = forEachU;
 exports.forEach = forEach;
 exports.everyU = everyU;

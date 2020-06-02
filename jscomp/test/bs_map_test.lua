@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Block = require "../../lib/js/block";
@@ -19,7 +19,7 @@ function eq(loc, x, y) do
   suites.contents = --[[ :: ]]{
     --[[ tuple ]]{
       loc .. (" id " .. String(test_id.contents)),
-      (function (param) do
+      (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     x,
                     y
@@ -36,7 +36,7 @@ function b(loc, v) do
   suites.contents = --[[ :: ]]{
     --[[ tuple ]]{
       loc .. (" id " .. String(test_id.contents)),
-      (function (param) do
+      (function(param) do
           return --[[ Ok ]]Block.__(4, {v});
         end end)
     },
@@ -53,7 +53,7 @@ function emptyMap(param) do
   return Belt_MapInt.empty;
 end end
 
-v = Belt_Array.makeByAndShuffle(1000000, (function (i) do
+v = Belt_Array.makeByAndShuffle(1000000, (function(i) do
         return --[[ tuple ]]{
                 i,
                 i
@@ -66,7 +66,7 @@ Belt_MapInt.checkInvariantInternal(u);
 
 firstHalf = Belt_Array.slice(v, 0, 2000);
 
-xx = Belt_Array.reduce(firstHalf, u, (function (acc, param) do
+xx = Belt_Array.reduce(firstHalf, u, (function(acc, param) do
         return Belt_MapInt.remove(acc, param[0]);
       end end));
 
@@ -82,6 +82,7 @@ N = --[[ alias ]]0;
 
 A = --[[ alias ]]0;
 
+exports = {}
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;

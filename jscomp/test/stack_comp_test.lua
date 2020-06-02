@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 List = require "../../lib/js/list";
@@ -30,7 +30,7 @@ function to_list(s) do
   l = do
     contents: --[[ [] ]]0
   end;
-  List.iter((function (x) do
+  List.iter((function(x) do
           l.contents = --[[ :: ]]{
             x,
             l.contents
@@ -356,7 +356,7 @@ i_7 = do
   contents: 1
 end;
 
-List.iter((function (j) do
+List.iter((function(j) do
         assert_("File \"stack_comp_test.ml\", line 112, characters 27-34", i_7.contents == j);
         i_7.contents = i_7.contents + 1 | 0;
         return --[[ () ]]0;
@@ -442,6 +442,7 @@ assert_("File \"stack_comp_test.ml\", line 129, characters 45-52", Caml_obj.caml
 
 Mt.from_pair_suites("Stack_comp_test", suites.contents);
 
+exports = {}
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;

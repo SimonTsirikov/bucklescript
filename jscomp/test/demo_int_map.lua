@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
@@ -155,4 +155,5 @@ end end
 
 test(--[[ () ]]0);
 
+exports = {}
 --[[  Not a pure module ]]

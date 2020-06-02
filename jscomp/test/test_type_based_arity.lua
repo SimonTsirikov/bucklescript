@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Curry = require "../../lib/js/curry";
 
@@ -71,6 +71,7 @@ function f14(h, g, x) do
   return Curry._2(h, g, x);
 end end
 
+exports = {}
 exports.f0 = f0;
 exports.f1 = f1;
 exports.X = X;

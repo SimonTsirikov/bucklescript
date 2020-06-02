@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 List = require "../../lib/js/list";
@@ -12,9 +12,9 @@ function f(H) do
   tbl = Curry._1(H.create, 17);
   Curry._3(H.add, tbl, 1, --[[ "1" ]]49);
   Curry._3(H.add, tbl, 2, --[[ "2" ]]50);
-  return List.sort((function (param, param_1) do
+  return List.sort((function(param, param_1) do
                 return Caml_primitive.caml_int_compare(param[0], param_1[0]);
-              end end), Curry._3(H.fold, (function (k, v, acc) do
+              end end), Curry._3(H.fold, (function(k, v, acc) do
                     return --[[ :: ]]{
                             --[[ tuple ]]{
                               k,
@@ -33,7 +33,7 @@ function g(H, count) do
   for i_1 = 0 , count , 1 do
     Curry._3(H.replace, tbl, (i_1 << 1), String(i_1));
   end
-  v = Curry._3(H.fold, (function (k, v, acc) do
+  v = Curry._3(H.fold, (function(k, v, acc) do
           return --[[ :: ]]{
                   --[[ tuple ]]{
                     k,
@@ -42,7 +42,7 @@ function g(H, count) do
                   acc
                 };
         end end), tbl, --[[ [] ]]0);
-  return __Array.of_list(List.sort((function (param, param_1) do
+  return __Array.of_list(List.sort((function(param, param_1) do
                     return Caml_primitive.caml_int_compare(param[0], param_1[0]);
                   end end), v));
 end end
@@ -60,7 +60,7 @@ Int_hash = Hashtbl.Make(do
 
 suites_000 = --[[ tuple ]]{
   "simple",
-  (function (param) do
+  (function(param) do
       return --[[ Eq ]]Block.__(0, {
                 --[[ :: ]]{
                   --[[ tuple ]]{
@@ -83,9 +83,9 @@ suites_000 = --[[ tuple ]]{
 suites_001 = --[[ :: ]]{
   --[[ tuple ]]{
     "more_iterations",
-    (function (param) do
+    (function(param) do
         return --[[ Eq ]]Block.__(0, {
-                  __Array.init(1001, (function (i) do
+                  __Array.init(1001, (function(i) do
                           return --[[ tuple ]]{
                                   (i << 1),
                                   String(i)
@@ -105,6 +105,7 @@ suites = --[[ :: ]]{
 
 Mt.from_pair_suites("Int_hashtbl_test", suites);
 
+exports = {}
 exports.f = f;
 exports.g = g;
 exports.Int_hash = Int_hash;

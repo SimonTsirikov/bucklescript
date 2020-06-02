@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Block = require "../../lib/js/block";
@@ -29,7 +29,7 @@ function neq(loc, x, y) do
   suites.contents = --[[ :: ]]{
     --[[ tuple ]]{
       loc .. (" id " .. String(test_id.contents)),
-      (function (param) do
+      (function(param) do
           return --[[ Neq ]]Block.__(1, {
                     x,
                     y
@@ -87,6 +87,7 @@ Mt.from_pair_suites("File \"bs_int_test.ml\", line 45, characters 23-30", suites
 
 I = --[[ alias ]]0;
 
+exports = {}
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;

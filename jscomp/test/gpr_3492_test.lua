@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 
@@ -22,13 +22,14 @@ function fn(param) do
   return 1;
 end end
 
-eq("File \"gpr_3492_test.ml\", line 14, characters 6-13", foo((function () do
+eq("File \"gpr_3492_test.ml\", line 14, characters 6-13", foo((function() do
             console.log("hi");
             return 1;
           end end)), 1);
 
 Mt.from_pair_suites("gpr_3492_test.ml", suites.contents);
 
+exports = {}
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;

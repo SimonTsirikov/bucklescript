@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 List = require "../../lib/js/list";
@@ -29,7 +29,7 @@ end end
 
 suites_000 = --[[ tuple ]]{
   "push_test",
-  (function (param) do
+  (function(param) do
       return --[[ Eq ]]Block.__(0, {
                 --[[ :: ]]{
                   1,
@@ -53,6 +53,7 @@ suites = --[[ :: ]]{
 
 Mt.from_pair_suites("Stack_test", suites);
 
+exports = {}
 exports.to_list = to_list;
 exports.v = v;
 exports.suites = suites;

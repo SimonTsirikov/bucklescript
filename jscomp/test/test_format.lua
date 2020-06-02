@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Block = require "../../lib/js/block";
 Curry = require "../../lib/js/curry";
@@ -14,4 +14,5 @@ Curry._1(Format.fprintf(Format.std_formatter, --[[ Format ]]{
           "%d"
         }), 3);
 
+exports = {}
 --[[  Not a pure module ]]

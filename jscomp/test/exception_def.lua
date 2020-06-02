@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Printexc = require "../../lib/js/printexc";
 Caml_exceptions = require "../../lib/js/caml_exceptions";
@@ -33,7 +33,7 @@ v = {
   v_001
 };
 
-Printexc.register_printer((function (param) do
+Printexc.register_printer((function(param) do
         if (param[0] == A) then do
           return "A";
         end
@@ -44,6 +44,7 @@ a = 3;
 
 u = Bx;
 
+exports = {}
 exports.A = A;
 exports.U = U;
 exports.H = H;

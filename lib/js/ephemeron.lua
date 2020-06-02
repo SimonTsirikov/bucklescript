@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Obj = require "./obj";
 Sys = require "./sys";
@@ -67,14 +67,14 @@ function blit_data(t1, t2) do
 end end
 
 function MakeSeeded(H) do
-  create = function (k, d) do
+  create = function(k, d) do
     c = Obj.Ephemeron.create(1);
     Obj.Ephemeron.set_data(c, d);
     set_key(c, k);
     return c;
   end end;
   hash = H.hash;
-  equal = function (c, k) do
+  equal = function(c, k) do
     match = Obj.Ephemeron.get_key(c, 0);
     if (match ~= undefined) then do
       if (Curry._2(H.equal, k, Caml_option.valFromOption(match))) then do
@@ -86,12 +86,12 @@ function MakeSeeded(H) do
       return --[[ EDead ]]2;
     end end 
   end end;
-  set_key_data = function (c, k, d) do
+  set_key_data = function(c, k, d) do
     Obj.Ephemeron.unset_data(c);
     set_key(c, k);
     return Obj.Ephemeron.set_data(c, d);
   end end;
-  power_2_above = function (_x, n) do
+  power_2_above = function(_x, n) do
     while(true) do
       x = _x;
       if (x >= n or (x << 1) > Sys.max_array_length) then do
@@ -102,10 +102,10 @@ function MakeSeeded(H) do
       end end 
     end;
   end end;
-  prng = Caml_obj.caml_lazy_make((function (param) do
+  prng = Caml_obj.caml_lazy_make((function(param) do
           return Random.State.make_self_init(--[[ () ]]0);
         end end));
-  create_1 = function (randomOpt, initial_size) do
+  create_1 = function(randomOpt, initial_size) do
     random = randomOpt ~= undefined and randomOpt or Hashtbl.is_randomized(--[[ () ]]0);
     s = power_2_above(16, initial_size);
     seed = random and Random.State.bits(CamlinternalLazy.force(prng)) or 0;
@@ -116,7 +116,7 @@ function MakeSeeded(H) do
             initial_size: s
           end;
   end end;
-  clear = function (h) do
+  clear = function(h) do
     h.size = 0;
     len = #h.data;
     for i = 0 , len - 1 | 0 , 1 do
@@ -124,7 +124,7 @@ function MakeSeeded(H) do
     end
     return --[[ () ]]0;
   end end;
-  reset = function (h) do
+  reset = function(h) do
     len = #h.data;
     if (len == h.initial_size) then do
       return clear(h);
@@ -134,7 +134,7 @@ function MakeSeeded(H) do
       return --[[ () ]]0;
     end end 
   end end;
-  copy = function (h) do
+  copy = function(h) do
     return do
             size: h.size,
             data: __Array.copy(h.data),
@@ -142,11 +142,11 @@ function MakeSeeded(H) do
             initial_size: h.initial_size
           end;
   end end;
-  key_index = function (h, hkey) do
+  key_index = function(h, hkey) do
     return hkey & (#h.data - 1 | 0);
   end end;
-  clean = function (h) do
-    do_bucket = function (_param) do
+  clean = function(h) do
+    do_bucket = function(_param) do
       while(true) do
         param = _param;
         if (param) then do
@@ -174,7 +174,7 @@ function MakeSeeded(H) do
     end
     return --[[ () ]]0;
   end end;
-  resize = function (h) do
+  resize = function(h) do
     odata = h.data;
     osize = #odata;
     nsize = (osize << 1);
@@ -182,7 +182,7 @@ function MakeSeeded(H) do
     if (nsize < Sys.max_array_length and h.size >= (osize >>> 1)) then do
       ndata = Caml_array.caml_make_vect(nsize, --[[ Empty ]]0);
       h.data = ndata;
-      insert_bucket = function (param) do
+      insert_bucket = function(param) do
         if (param) then do
           hkey = param[0];
           insert_bucket(param[2]);
@@ -204,7 +204,7 @@ function MakeSeeded(H) do
       return 0;
     end end 
   end end;
-  add = function (h, key, info) do
+  add = function(h, key, info) do
     hkey = Curry._2(hash, h.seed, key);
     i = key_index(h, hkey);
     container = create(key, info);
@@ -222,9 +222,9 @@ function MakeSeeded(H) do
       return 0;
     end end 
   end end;
-  remove = function (h, key) do
+  remove = function(h, key) do
     hkey = Curry._2(hash, h.seed, key);
-    remove_bucket = function (_param) do
+    remove_bucket = function(_param) do
       while(true) do
         param = _param;
         if (param) then do
@@ -235,20 +235,19 @@ function MakeSeeded(H) do
             match = equal(c, key);
             local ___conditional___=(match);
             do
-               if ___conditional___ = 0--[[ ETrue ]] then do
+               if ___conditional___ == 0--[[ ETrue ]] then do
                   h.size = h.size - 1 | 0;
-                  return next;end end end 
-               if ___conditional___ = 1--[[ EFalse ]] then do
+                  return next; end end 
+               if ___conditional___ == 1--[[ EFalse ]] then do
                   return --[[ Cons ]]{
                           hk,
                           c,
                           remove_bucket(next)
-                        };end end end 
-               if ___conditional___ = 2--[[ EDead ]] then do
+                        }; end end 
+               if ___conditional___ == 2--[[ EDead ]] then do
                   h.size = h.size - 1 | 0;
                   _param = next;
-                  ::continue:: ;end end end 
-               do
+                  ::continue:: ; end end 
               
             end
           end else do
@@ -266,7 +265,7 @@ function MakeSeeded(H) do
     i = key_index(h, hkey);
     return Caml_array.caml_array_set(h.data, i, remove_bucket(Caml_array.caml_array_get(h.data, i)));
   end end;
-  find = function (h, key) do
+  find = function(h, key) do
     hkey = Curry._2(hash, h.seed, key);
     key_1 = key;
     hkey_1 = hkey;
@@ -299,7 +298,7 @@ function MakeSeeded(H) do
       end end 
     end;
   end end;
-  find_opt = function (h, key) do
+  find_opt = function(h, key) do
     hkey = Curry._2(hash, h.seed, key);
     key_1 = key;
     hkey_1 = hkey;
@@ -332,9 +331,9 @@ function MakeSeeded(H) do
       end end 
     end;
   end end;
-  find_all = function (h, key) do
+  find_all = function(h, key) do
     hkey = Curry._2(hash, h.seed, key);
-    find_in_bucket = function (_param) do
+    find_in_bucket = function(_param) do
       while(true) do
         param = _param;
         if (param) then do
@@ -368,7 +367,7 @@ function MakeSeeded(H) do
     end end;
     return find_in_bucket(Caml_array.caml_array_get(h.data, key_index(h, hkey)));
   end end;
-  replace = function (h, key, info) do
+  replace = function(h, key, info) do
     hkey = Curry._2(hash, h.seed, key);
     i = key_index(h, hkey);
     l = Caml_array.caml_array_get(h.data, i);
@@ -414,7 +413,7 @@ function MakeSeeded(H) do
       end end 
     end end)
   end end;
-  mem = function (h, key) do
+  mem = function(h, key) do
     hkey = Curry._2(hash, h.seed, key);
     _param = Caml_array.caml_array_get(h.data, key_index(h, hkey));
     while(true) do
@@ -438,8 +437,8 @@ function MakeSeeded(H) do
       end end 
     end;
   end end;
-  iter = function (f, h) do
-    do_bucket = function (_param) do
+  iter = function(f, h) do
+    do_bucket = function(_param) do
       while(true) do
         param = _param;
         if (param) then do
@@ -466,8 +465,8 @@ function MakeSeeded(H) do
     end
     return --[[ () ]]0;
   end end;
-  fold = function (f, h, init) do
-    do_bucket = function (_b, _accu) do
+  fold = function(f, h, init) do
+    do_bucket = function(_b, _accu) do
       while(true) do
         accu = _accu;
         b = _b;
@@ -491,8 +490,8 @@ function MakeSeeded(H) do
     end
     return accu;
   end end;
-  filter_map_inplace = function (f, h) do
-    do_bucket = function (_param) do
+  filter_map_inplace = function(f, h) do
+    do_bucket = function(_param) do
       while(true) do
         param = _param;
         if (param) then do
@@ -534,10 +533,10 @@ function MakeSeeded(H) do
     end
     return --[[ () ]]0;
   end end;
-  length = function (h) do
+  length = function(h) do
     return h.size;
   end end;
-  bucket_length = function (_accu, _param) do
+  bucket_length = function(_accu, _param) do
     while(true) do
       param = _param;
       accu = _accu;
@@ -550,12 +549,12 @@ function MakeSeeded(H) do
       end end 
     end;
   end end;
-  stats = function (h) do
-    mbl = __Array.fold_left((function (m, b) do
+  stats = function(h) do
+    mbl = __Array.fold_left((function(m, b) do
             return Caml_primitive.caml_int_max(m, bucket_length(0, b));
           end end), 0, h.data);
     histo = Caml_array.caml_make_vect(mbl + 1 | 0, 0);
-    __Array.iter((function (b) do
+    __Array.iter((function(b) do
             l = bucket_length(0, b);
             return Caml_array.caml_array_set(histo, l, Caml_array.caml_array_get(histo, l) + 1 | 0);
           end end), h.data);
@@ -566,7 +565,7 @@ function MakeSeeded(H) do
             bucket_histogram: histo
           end;
   end end;
-  bucket_length_alive = function (_accu, _param) do
+  bucket_length_alive = function(_accu, _param) do
     while(true) do
       param = _param;
       accu = _accu;
@@ -585,15 +584,15 @@ function MakeSeeded(H) do
       end end 
     end;
   end end;
-  stats_alive = function (h) do
+  stats_alive = function(h) do
     size = do
       contents: 0
     end;
-    mbl = __Array.fold_left((function (m, b) do
+    mbl = __Array.fold_left((function(m, b) do
             return Caml_primitive.caml_int_max(m, bucket_length_alive(0, b));
           end end), 0, h.data);
     histo = Caml_array.caml_make_vect(mbl + 1 | 0, 0);
-    __Array.iter((function (b) do
+    __Array.iter((function(b) do
             l = bucket_length_alive(0, b);
             size.contents = size.contents + l | 0;
             return Caml_array.caml_array_set(histo, l, Caml_array.caml_array_get(histo, l) + 1 | 0);
@@ -629,16 +628,16 @@ end end
 
 function Make(H) do
   equal = H.equal;
-  hash = function (_seed, x) do
+  hash = function(_seed, x) do
     return Curry._1(H.hash, x);
   end end;
-  create = function (k, d) do
+  create = function(k, d) do
     c = Obj.Ephemeron.create(1);
     Obj.Ephemeron.set_data(c, d);
     set_key(c, k);
     return c;
   end end;
-  equal_1 = function (c, k) do
+  equal_1 = function(c, k) do
     match = Obj.Ephemeron.get_key(c, 0);
     if (match ~= undefined) then do
       if (Curry._2(equal, k, Caml_option.valFromOption(match))) then do
@@ -650,12 +649,12 @@ function Make(H) do
       return --[[ EDead ]]2;
     end end 
   end end;
-  set_key_data = function (c, k, d) do
+  set_key_data = function(c, k, d) do
     Obj.Ephemeron.unset_data(c);
     set_key(c, k);
     return Obj.Ephemeron.set_data(c, d);
   end end;
-  power_2_above = function (_x, n) do
+  power_2_above = function(_x, n) do
     while(true) do
       x = _x;
       if (x >= n or (x << 1) > Sys.max_array_length) then do
@@ -666,10 +665,10 @@ function Make(H) do
       end end 
     end;
   end end;
-  prng = Caml_obj.caml_lazy_make((function (param) do
+  prng = Caml_obj.caml_lazy_make((function(param) do
           return Random.State.make_self_init(--[[ () ]]0);
         end end));
-  clear = function (h) do
+  clear = function(h) do
     h.size = 0;
     len = #h.data;
     for i = 0 , len - 1 | 0 , 1 do
@@ -677,7 +676,7 @@ function Make(H) do
     end
     return --[[ () ]]0;
   end end;
-  reset = function (h) do
+  reset = function(h) do
     len = #h.data;
     if (len == h.initial_size) then do
       return clear(h);
@@ -687,7 +686,7 @@ function Make(H) do
       return --[[ () ]]0;
     end end 
   end end;
-  copy = function (h) do
+  copy = function(h) do
     return do
             size: h.size,
             data: __Array.copy(h.data),
@@ -695,11 +694,11 @@ function Make(H) do
             initial_size: h.initial_size
           end;
   end end;
-  key_index = function (h, hkey) do
+  key_index = function(h, hkey) do
     return hkey & (#h.data - 1 | 0);
   end end;
-  clean = function (h) do
-    do_bucket = function (_param) do
+  clean = function(h) do
+    do_bucket = function(_param) do
       while(true) do
         param = _param;
         if (param) then do
@@ -727,7 +726,7 @@ function Make(H) do
     end
     return --[[ () ]]0;
   end end;
-  resize = function (h) do
+  resize = function(h) do
     odata = h.data;
     osize = #odata;
     nsize = (osize << 1);
@@ -735,7 +734,7 @@ function Make(H) do
     if (nsize < Sys.max_array_length and h.size >= (osize >>> 1)) then do
       ndata = Caml_array.caml_make_vect(nsize, --[[ Empty ]]0);
       h.data = ndata;
-      insert_bucket = function (param) do
+      insert_bucket = function(param) do
         if (param) then do
           hkey = param[0];
           insert_bucket(param[2]);
@@ -757,7 +756,7 @@ function Make(H) do
       return 0;
     end end 
   end end;
-  add = function (h, key, info) do
+  add = function(h, key, info) do
     hkey = hash(h.seed, key);
     i = key_index(h, hkey);
     container = create(key, info);
@@ -775,9 +774,9 @@ function Make(H) do
       return 0;
     end end 
   end end;
-  remove = function (h, key) do
+  remove = function(h, key) do
     hkey = hash(h.seed, key);
-    remove_bucket = function (_param) do
+    remove_bucket = function(_param) do
       while(true) do
         param = _param;
         if (param) then do
@@ -788,20 +787,19 @@ function Make(H) do
             match = equal_1(c, key);
             local ___conditional___=(match);
             do
-               if ___conditional___ = 0--[[ ETrue ]] then do
+               if ___conditional___ == 0--[[ ETrue ]] then do
                   h.size = h.size - 1 | 0;
-                  return next;end end end 
-               if ___conditional___ = 1--[[ EFalse ]] then do
+                  return next; end end 
+               if ___conditional___ == 1--[[ EFalse ]] then do
                   return --[[ Cons ]]{
                           hk,
                           c,
                           remove_bucket(next)
-                        };end end end 
-               if ___conditional___ = 2--[[ EDead ]] then do
+                        }; end end 
+               if ___conditional___ == 2--[[ EDead ]] then do
                   h.size = h.size - 1 | 0;
                   _param = next;
-                  ::continue:: ;end end end 
-               do
+                  ::continue:: ; end end 
               
             end
           end else do
@@ -819,7 +817,7 @@ function Make(H) do
     i = key_index(h, hkey);
     return Caml_array.caml_array_set(h.data, i, remove_bucket(Caml_array.caml_array_get(h.data, i)));
   end end;
-  find = function (h, key) do
+  find = function(h, key) do
     hkey = hash(h.seed, key);
     key_1 = key;
     hkey_1 = hkey;
@@ -852,7 +850,7 @@ function Make(H) do
       end end 
     end;
   end end;
-  find_opt = function (h, key) do
+  find_opt = function(h, key) do
     hkey = hash(h.seed, key);
     key_1 = key;
     hkey_1 = hkey;
@@ -885,9 +883,9 @@ function Make(H) do
       end end 
     end;
   end end;
-  find_all = function (h, key) do
+  find_all = function(h, key) do
     hkey = hash(h.seed, key);
-    find_in_bucket = function (_param) do
+    find_in_bucket = function(_param) do
       while(true) do
         param = _param;
         if (param) then do
@@ -921,7 +919,7 @@ function Make(H) do
     end end;
     return find_in_bucket(Caml_array.caml_array_get(h.data, key_index(h, hkey)));
   end end;
-  replace = function (h, key, info) do
+  replace = function(h, key, info) do
     hkey = hash(h.seed, key);
     i = key_index(h, hkey);
     l = Caml_array.caml_array_get(h.data, i);
@@ -967,7 +965,7 @@ function Make(H) do
       end end 
     end end)
   end end;
-  mem = function (h, key) do
+  mem = function(h, key) do
     hkey = hash(h.seed, key);
     _param = Caml_array.caml_array_get(h.data, key_index(h, hkey));
     while(true) do
@@ -991,8 +989,8 @@ function Make(H) do
       end end 
     end;
   end end;
-  iter = function (f, h) do
-    do_bucket = function (_param) do
+  iter = function(f, h) do
+    do_bucket = function(_param) do
       while(true) do
         param = _param;
         if (param) then do
@@ -1019,8 +1017,8 @@ function Make(H) do
     end
     return --[[ () ]]0;
   end end;
-  fold = function (f, h, init) do
-    do_bucket = function (_b, _accu) do
+  fold = function(f, h, init) do
+    do_bucket = function(_b, _accu) do
       while(true) do
         accu = _accu;
         b = _b;
@@ -1044,8 +1042,8 @@ function Make(H) do
     end
     return accu;
   end end;
-  filter_map_inplace = function (f, h) do
-    do_bucket = function (_param) do
+  filter_map_inplace = function(f, h) do
+    do_bucket = function(_param) do
       while(true) do
         param = _param;
         if (param) then do
@@ -1087,10 +1085,10 @@ function Make(H) do
     end
     return --[[ () ]]0;
   end end;
-  length = function (h) do
+  length = function(h) do
     return h.size;
   end end;
-  bucket_length = function (_accu, _param) do
+  bucket_length = function(_accu, _param) do
     while(true) do
       param = _param;
       accu = _accu;
@@ -1103,12 +1101,12 @@ function Make(H) do
       end end 
     end;
   end end;
-  stats = function (h) do
-    mbl = __Array.fold_left((function (m, b) do
+  stats = function(h) do
+    mbl = __Array.fold_left((function(m, b) do
             return Caml_primitive.caml_int_max(m, bucket_length(0, b));
           end end), 0, h.data);
     histo = Caml_array.caml_make_vect(mbl + 1 | 0, 0);
-    __Array.iter((function (b) do
+    __Array.iter((function(b) do
             l = bucket_length(0, b);
             return Caml_array.caml_array_set(histo, l, Caml_array.caml_array_get(histo, l) + 1 | 0);
           end end), h.data);
@@ -1119,7 +1117,7 @@ function Make(H) do
             bucket_histogram: histo
           end;
   end end;
-  bucket_length_alive = function (_accu, _param) do
+  bucket_length_alive = function(_accu, _param) do
     while(true) do
       param = _param;
       accu = _accu;
@@ -1138,15 +1136,15 @@ function Make(H) do
       end end 
     end;
   end end;
-  stats_alive = function (h) do
+  stats_alive = function(h) do
     size = do
       contents: 0
     end;
-    mbl = __Array.fold_left((function (m, b) do
+    mbl = __Array.fold_left((function(m, b) do
             return Caml_primitive.caml_int_max(m, bucket_length_alive(0, b));
           end end), 0, h.data);
     histo = Caml_array.caml_make_vect(mbl + 1 | 0, 0);
-    __Array.iter((function (b) do
+    __Array.iter((function(b) do
             l = bucket_length_alive(0, b);
             size.contents = size.contents + l | 0;
             return Caml_array.caml_array_set(histo, l, Caml_array.caml_array_get(histo, l) + 1 | 0);
@@ -1158,7 +1156,7 @@ function Make(H) do
             bucket_histogram: histo
           end;
   end end;
-  create_1 = function (sz) do
+  create_1 = function(sz) do
     randomOpt = false;
     initial_size = sz;
     random = randomOpt ~= undefined and randomOpt or Hashtbl.is_randomized(--[[ () ]]0);
@@ -1274,17 +1272,17 @@ function blit_data_1(t1, t2) do
 end end
 
 function MakeSeeded_1(H1, H2) do
-  create = function (param, d) do
+  create = function(param, d) do
     c = Obj.Ephemeron.create(2);
     Obj.Ephemeron.set_data(c, d);
     set_key1(c, param[0]);
     set_key2(c, param[1]);
     return c;
   end end;
-  hash = function (seed, param) do
+  hash = function(seed, param) do
     return Curry._2(H1.hash, seed, param[0]) + Caml_int32.imul(Curry._2(H2.hash, seed, param[1]), 65599) | 0;
   end end;
-  equal = function (c, param) do
+  equal = function(c, param) do
     match = Obj.Ephemeron.get_key(c, 0);
     match_1 = Obj.Ephemeron.get_key(c, 1);
     if (match ~= undefined and match_1 ~= undefined) then do
@@ -1297,7 +1295,7 @@ function MakeSeeded_1(H1, H2) do
       return --[[ EDead ]]2;
     end end 
   end end;
-  get_key = function (c) do
+  get_key = function(c) do
     match = Obj.Ephemeron.get_key(c, 0);
     match_1 = Obj.Ephemeron.get_key(c, 1);
     if (match ~= undefined and match_1 ~= undefined) then do
@@ -1308,20 +1306,20 @@ function MakeSeeded_1(H1, H2) do
     end
      end 
   end end;
-  set_key_data = function (c, param, d) do
+  set_key_data = function(c, param, d) do
     Obj.Ephemeron.unset_data(c);
     set_key1(c, param[0]);
     set_key2(c, param[1]);
     return Obj.Ephemeron.set_data(c, d);
   end end;
-  check_key = function (c) do
+  check_key = function(c) do
     if (Obj.Ephemeron.check_key(c, 0)) then do
       return Obj.Ephemeron.check_key(c, 1);
     end else do
       return false;
     end end 
   end end;
-  power_2_above = function (_x, n) do
+  power_2_above = function(_x, n) do
     while(true) do
       x = _x;
       if (x >= n or (x << 1) > Sys.max_array_length) then do
@@ -1332,10 +1330,10 @@ function MakeSeeded_1(H1, H2) do
       end end 
     end;
   end end;
-  prng = Caml_obj.caml_lazy_make((function (param) do
+  prng = Caml_obj.caml_lazy_make((function(param) do
           return Random.State.make_self_init(--[[ () ]]0);
         end end));
-  create_1 = function (randomOpt, initial_size) do
+  create_1 = function(randomOpt, initial_size) do
     random = randomOpt ~= undefined and randomOpt or Hashtbl.is_randomized(--[[ () ]]0);
     s = power_2_above(16, initial_size);
     seed = random and Random.State.bits(CamlinternalLazy.force(prng)) or 0;
@@ -1346,7 +1344,7 @@ function MakeSeeded_1(H1, H2) do
             initial_size: s
           end;
   end end;
-  clear = function (h) do
+  clear = function(h) do
     h.size = 0;
     len = #h.data;
     for i = 0 , len - 1 | 0 , 1 do
@@ -1354,7 +1352,7 @@ function MakeSeeded_1(H1, H2) do
     end
     return --[[ () ]]0;
   end end;
-  reset = function (h) do
+  reset = function(h) do
     len = #h.data;
     if (len == h.initial_size) then do
       return clear(h);
@@ -1364,7 +1362,7 @@ function MakeSeeded_1(H1, H2) do
       return --[[ () ]]0;
     end end 
   end end;
-  copy = function (h) do
+  copy = function(h) do
     return do
             size: h.size,
             data: __Array.copy(h.data),
@@ -1372,11 +1370,11 @@ function MakeSeeded_1(H1, H2) do
             initial_size: h.initial_size
           end;
   end end;
-  key_index = function (h, hkey) do
+  key_index = function(h, hkey) do
     return hkey & (#h.data - 1 | 0);
   end end;
-  clean = function (h) do
-    do_bucket = function (_param) do
+  clean = function(h) do
+    do_bucket = function(_param) do
       while(true) do
         param = _param;
         if (param) then do
@@ -1404,7 +1402,7 @@ function MakeSeeded_1(H1, H2) do
     end
     return --[[ () ]]0;
   end end;
-  resize = function (h) do
+  resize = function(h) do
     odata = h.data;
     osize = #odata;
     nsize = (osize << 1);
@@ -1412,7 +1410,7 @@ function MakeSeeded_1(H1, H2) do
     if (nsize < Sys.max_array_length and h.size >= (osize >>> 1)) then do
       ndata = Caml_array.caml_make_vect(nsize, --[[ Empty ]]0);
       h.data = ndata;
-      insert_bucket = function (param) do
+      insert_bucket = function(param) do
         if (param) then do
           hkey = param[0];
           insert_bucket(param[2]);
@@ -1434,7 +1432,7 @@ function MakeSeeded_1(H1, H2) do
       return 0;
     end end 
   end end;
-  add = function (h, key, info) do
+  add = function(h, key, info) do
     hkey = hash(h.seed, key);
     i = key_index(h, hkey);
     container = create(key, info);
@@ -1452,9 +1450,9 @@ function MakeSeeded_1(H1, H2) do
       return 0;
     end end 
   end end;
-  remove = function (h, key) do
+  remove = function(h, key) do
     hkey = hash(h.seed, key);
-    remove_bucket = function (_param) do
+    remove_bucket = function(_param) do
       while(true) do
         param = _param;
         if (param) then do
@@ -1465,20 +1463,19 @@ function MakeSeeded_1(H1, H2) do
             match = equal(c, key);
             local ___conditional___=(match);
             do
-               if ___conditional___ = 0--[[ ETrue ]] then do
+               if ___conditional___ == 0--[[ ETrue ]] then do
                   h.size = h.size - 1 | 0;
-                  return next;end end end 
-               if ___conditional___ = 1--[[ EFalse ]] then do
+                  return next; end end 
+               if ___conditional___ == 1--[[ EFalse ]] then do
                   return --[[ Cons ]]{
                           hk,
                           c,
                           remove_bucket(next)
-                        };end end end 
-               if ___conditional___ = 2--[[ EDead ]] then do
+                        }; end end 
+               if ___conditional___ == 2--[[ EDead ]] then do
                   h.size = h.size - 1 | 0;
                   _param = next;
-                  ::continue:: ;end end end 
-               do
+                  ::continue:: ; end end 
               
             end
           end else do
@@ -1496,7 +1493,7 @@ function MakeSeeded_1(H1, H2) do
     i = key_index(h, hkey);
     return Caml_array.caml_array_set(h.data, i, remove_bucket(Caml_array.caml_array_get(h.data, i)));
   end end;
-  find = function (h, key) do
+  find = function(h, key) do
     hkey = hash(h.seed, key);
     key_1 = key;
     hkey_1 = hkey;
@@ -1529,7 +1526,7 @@ function MakeSeeded_1(H1, H2) do
       end end 
     end;
   end end;
-  find_opt = function (h, key) do
+  find_opt = function(h, key) do
     hkey = hash(h.seed, key);
     key_1 = key;
     hkey_1 = hkey;
@@ -1562,9 +1559,9 @@ function MakeSeeded_1(H1, H2) do
       end end 
     end;
   end end;
-  find_all = function (h, key) do
+  find_all = function(h, key) do
     hkey = hash(h.seed, key);
-    find_in_bucket = function (_param) do
+    find_in_bucket = function(_param) do
       while(true) do
         param = _param;
         if (param) then do
@@ -1598,7 +1595,7 @@ function MakeSeeded_1(H1, H2) do
     end end;
     return find_in_bucket(Caml_array.caml_array_get(h.data, key_index(h, hkey)));
   end end;
-  replace = function (h, key, info) do
+  replace = function(h, key, info) do
     hkey = hash(h.seed, key);
     i = key_index(h, hkey);
     l = Caml_array.caml_array_get(h.data, i);
@@ -1644,7 +1641,7 @@ function MakeSeeded_1(H1, H2) do
       end end 
     end end)
   end end;
-  mem = function (h, key) do
+  mem = function(h, key) do
     hkey = hash(h.seed, key);
     _param = Caml_array.caml_array_get(h.data, key_index(h, hkey));
     while(true) do
@@ -1668,8 +1665,8 @@ function MakeSeeded_1(H1, H2) do
       end end 
     end;
   end end;
-  iter = function (f, h) do
-    do_bucket = function (_param) do
+  iter = function(f, h) do
+    do_bucket = function(_param) do
       while(true) do
         param = _param;
         if (param) then do
@@ -1696,8 +1693,8 @@ function MakeSeeded_1(H1, H2) do
     end
     return --[[ () ]]0;
   end end;
-  fold = function (f, h, init) do
-    do_bucket = function (_b, _accu) do
+  fold = function(f, h, init) do
+    do_bucket = function(_b, _accu) do
       while(true) do
         accu = _accu;
         b = _b;
@@ -1721,8 +1718,8 @@ function MakeSeeded_1(H1, H2) do
     end
     return accu;
   end end;
-  filter_map_inplace = function (f, h) do
-    do_bucket = function (_param) do
+  filter_map_inplace = function(f, h) do
+    do_bucket = function(_param) do
       while(true) do
         param = _param;
         if (param) then do
@@ -1764,10 +1761,10 @@ function MakeSeeded_1(H1, H2) do
     end
     return --[[ () ]]0;
   end end;
-  length = function (h) do
+  length = function(h) do
     return h.size;
   end end;
-  bucket_length = function (_accu, _param) do
+  bucket_length = function(_accu, _param) do
     while(true) do
       param = _param;
       accu = _accu;
@@ -1780,12 +1777,12 @@ function MakeSeeded_1(H1, H2) do
       end end 
     end;
   end end;
-  stats = function (h) do
-    mbl = __Array.fold_left((function (m, b) do
+  stats = function(h) do
+    mbl = __Array.fold_left((function(m, b) do
             return Caml_primitive.caml_int_max(m, bucket_length(0, b));
           end end), 0, h.data);
     histo = Caml_array.caml_make_vect(mbl + 1 | 0, 0);
-    __Array.iter((function (b) do
+    __Array.iter((function(b) do
             l = bucket_length(0, b);
             return Caml_array.caml_array_set(histo, l, Caml_array.caml_array_get(histo, l) + 1 | 0);
           end end), h.data);
@@ -1796,7 +1793,7 @@ function MakeSeeded_1(H1, H2) do
             bucket_histogram: histo
           end;
   end end;
-  bucket_length_alive = function (_accu, _param) do
+  bucket_length_alive = function(_accu, _param) do
     while(true) do
       param = _param;
       accu = _accu;
@@ -1815,15 +1812,15 @@ function MakeSeeded_1(H1, H2) do
       end end 
     end;
   end end;
-  stats_alive = function (h) do
+  stats_alive = function(h) do
     size = do
       contents: 0
     end;
-    mbl = __Array.fold_left((function (m, b) do
+    mbl = __Array.fold_left((function(m, b) do
             return Caml_primitive.caml_int_max(m, bucket_length_alive(0, b));
           end end), 0, h.data);
     histo = Caml_array.caml_make_vect(mbl + 1 | 0, 0);
-    __Array.iter((function (b) do
+    __Array.iter((function(b) do
             l = bucket_length_alive(0, b);
             size.contents = size.contents + l | 0;
             return Caml_array.caml_array_set(histo, l, Caml_array.caml_array_get(histo, l) + 1 | 0);
@@ -1858,25 +1855,25 @@ function MakeSeeded_1(H1, H2) do
 end end
 
 function Make_1(H1, H2) do
-  hash = function (_seed, x) do
+  hash = function(_seed, x) do
     return Curry._1(H1.hash, x);
   end end;
   partial_arg_equal = H1.equal;
-  hash_1 = function (_seed, x) do
+  hash_1 = function(_seed, x) do
     return Curry._1(H2.hash, x);
   end end;
-  include = (function (param) do
-        create = function (param, d) do
+  include = (function(param) do
+        create = function(param, d) do
           c = Obj.Ephemeron.create(2);
           Obj.Ephemeron.set_data(c, d);
           set_key1(c, param[0]);
           set_key2(c, param[1]);
           return c;
         end end;
-        hash_2 = function (seed, param_1) do
+        hash_2 = function(seed, param_1) do
           return Curry._2(hash, seed, param_1[0]) + Caml_int32.imul(Curry._2(param.hash, seed, param_1[1]), 65599) | 0;
         end end;
-        equal = function (c, param_1) do
+        equal = function(c, param_1) do
           match = Obj.Ephemeron.get_key(c, 0);
           match_1 = Obj.Ephemeron.get_key(c, 1);
           if (match ~= undefined and match_1 ~= undefined) then do
@@ -1889,7 +1886,7 @@ function Make_1(H1, H2) do
             return --[[ EDead ]]2;
           end end 
         end end;
-        get_key = function (c) do
+        get_key = function(c) do
           match = Obj.Ephemeron.get_key(c, 0);
           match_1 = Obj.Ephemeron.get_key(c, 1);
           if (match ~= undefined and match_1 ~= undefined) then do
@@ -1900,20 +1897,20 @@ function Make_1(H1, H2) do
           end
            end 
         end end;
-        set_key_data = function (c, param, d) do
+        set_key_data = function(c, param, d) do
           Obj.Ephemeron.unset_data(c);
           set_key1(c, param[0]);
           set_key2(c, param[1]);
           return Obj.Ephemeron.set_data(c, d);
         end end;
-        check_key = function (c) do
+        check_key = function(c) do
           if (Obj.Ephemeron.check_key(c, 0)) then do
             return Obj.Ephemeron.check_key(c, 1);
           end else do
             return false;
           end end 
         end end;
-        power_2_above = function (_x, n) do
+        power_2_above = function(_x, n) do
           while(true) do
             x = _x;
             if (x >= n or (x << 1) > Sys.max_array_length) then do
@@ -1924,10 +1921,10 @@ function Make_1(H1, H2) do
             end end 
           end;
         end end;
-        prng = Caml_obj.caml_lazy_make((function (param) do
+        prng = Caml_obj.caml_lazy_make((function(param) do
                 return Random.State.make_self_init(--[[ () ]]0);
               end end));
-        create_1 = function (randomOpt, initial_size) do
+        create_1 = function(randomOpt, initial_size) do
           random = randomOpt ~= undefined and randomOpt or Hashtbl.is_randomized(--[[ () ]]0);
           s = power_2_above(16, initial_size);
           seed = random and Random.State.bits(CamlinternalLazy.force(prng)) or 0;
@@ -1938,7 +1935,7 @@ function Make_1(H1, H2) do
                   initial_size: s
                 end;
         end end;
-        clear = function (h) do
+        clear = function(h) do
           h.size = 0;
           len = #h.data;
           for i = 0 , len - 1 | 0 , 1 do
@@ -1946,7 +1943,7 @@ function Make_1(H1, H2) do
           end
           return --[[ () ]]0;
         end end;
-        reset = function (h) do
+        reset = function(h) do
           len = #h.data;
           if (len == h.initial_size) then do
             return clear(h);
@@ -1956,7 +1953,7 @@ function Make_1(H1, H2) do
             return --[[ () ]]0;
           end end 
         end end;
-        copy = function (h) do
+        copy = function(h) do
           return do
                   size: h.size,
                   data: __Array.copy(h.data),
@@ -1964,11 +1961,11 @@ function Make_1(H1, H2) do
                   initial_size: h.initial_size
                 end;
         end end;
-        key_index = function (h, hkey) do
+        key_index = function(h, hkey) do
           return hkey & (#h.data - 1 | 0);
         end end;
-        clean = function (h) do
-          do_bucket = function (_param) do
+        clean = function(h) do
+          do_bucket = function(_param) do
             while(true) do
               param = _param;
               if (param) then do
@@ -1996,7 +1993,7 @@ function Make_1(H1, H2) do
           end
           return --[[ () ]]0;
         end end;
-        resize = function (h) do
+        resize = function(h) do
           odata = h.data;
           osize = #odata;
           nsize = (osize << 1);
@@ -2004,7 +2001,7 @@ function Make_1(H1, H2) do
           if (nsize < Sys.max_array_length and h.size >= (osize >>> 1)) then do
             ndata = Caml_array.caml_make_vect(nsize, --[[ Empty ]]0);
             h.data = ndata;
-            insert_bucket = function (param) do
+            insert_bucket = function(param) do
               if (param) then do
                 hkey = param[0];
                 insert_bucket(param[2]);
@@ -2026,7 +2023,7 @@ function Make_1(H1, H2) do
             return 0;
           end end 
         end end;
-        add = function (h, key, info) do
+        add = function(h, key, info) do
           hkey = Curry._2(hash_2, h.seed, key);
           i = key_index(h, hkey);
           container = Curry._2(create, key, info);
@@ -2044,9 +2041,9 @@ function Make_1(H1, H2) do
             return 0;
           end end 
         end end;
-        remove = function (h, key) do
+        remove = function(h, key) do
           hkey = Curry._2(hash_2, h.seed, key);
-          remove_bucket = function (_param) do
+          remove_bucket = function(_param) do
             while(true) do
               param = _param;
               if (param) then do
@@ -2057,20 +2054,19 @@ function Make_1(H1, H2) do
                   match = Curry._2(equal, c, key);
                   local ___conditional___=(match);
                   do
-                     if ___conditional___ = 0--[[ ETrue ]] then do
+                     if ___conditional___ == 0--[[ ETrue ]] then do
                         h.size = h.size - 1 | 0;
-                        return next;end end end 
-                     if ___conditional___ = 1--[[ EFalse ]] then do
+                        return next; end end 
+                     if ___conditional___ == 1--[[ EFalse ]] then do
                         return --[[ Cons ]]{
                                 hk,
                                 c,
                                 remove_bucket(next)
-                              };end end end 
-                     if ___conditional___ = 2--[[ EDead ]] then do
+                              }; end end 
+                     if ___conditional___ == 2--[[ EDead ]] then do
                         h.size = h.size - 1 | 0;
                         _param = next;
-                        ::continue:: ;end end end 
-                     do
+                        ::continue:: ; end end 
                     
                   end
                 end else do
@@ -2088,7 +2084,7 @@ function Make_1(H1, H2) do
           i = key_index(h, hkey);
           return Caml_array.caml_array_set(h.data, i, remove_bucket(Caml_array.caml_array_get(h.data, i)));
         end end;
-        find = function (h, key) do
+        find = function(h, key) do
           hkey = Curry._2(hash_2, h.seed, key);
           key_1 = key;
           hkey_1 = hkey;
@@ -2121,7 +2117,7 @@ function Make_1(H1, H2) do
             end end 
           end;
         end end;
-        find_opt = function (h, key) do
+        find_opt = function(h, key) do
           hkey = Curry._2(hash_2, h.seed, key);
           key_1 = key;
           hkey_1 = hkey;
@@ -2154,9 +2150,9 @@ function Make_1(H1, H2) do
             end end 
           end;
         end end;
-        find_all = function (h, key) do
+        find_all = function(h, key) do
           hkey = Curry._2(hash_2, h.seed, key);
-          find_in_bucket = function (_param) do
+          find_in_bucket = function(_param) do
             while(true) do
               param = _param;
               if (param) then do
@@ -2190,7 +2186,7 @@ function Make_1(H1, H2) do
           end end;
           return find_in_bucket(Caml_array.caml_array_get(h.data, key_index(h, hkey)));
         end end;
-        replace = function (h, key, info) do
+        replace = function(h, key, info) do
           hkey = Curry._2(hash_2, h.seed, key);
           i = key_index(h, hkey);
           l = Caml_array.caml_array_get(h.data, i);
@@ -2236,7 +2232,7 @@ function Make_1(H1, H2) do
             end end 
           end end)
         end end;
-        mem = function (h, key) do
+        mem = function(h, key) do
           hkey = Curry._2(hash_2, h.seed, key);
           _param = Caml_array.caml_array_get(h.data, key_index(h, hkey));
           while(true) do
@@ -2260,8 +2256,8 @@ function Make_1(H1, H2) do
             end end 
           end;
         end end;
-        iter = function (f, h) do
-          do_bucket = function (_param) do
+        iter = function(f, h) do
+          do_bucket = function(_param) do
             while(true) do
               param = _param;
               if (param) then do
@@ -2288,8 +2284,8 @@ function Make_1(H1, H2) do
           end
           return --[[ () ]]0;
         end end;
-        fold = function (f, h, init) do
-          do_bucket = function (_b, _accu) do
+        fold = function(f, h, init) do
+          do_bucket = function(_b, _accu) do
             while(true) do
               accu = _accu;
               b = _b;
@@ -2313,8 +2309,8 @@ function Make_1(H1, H2) do
           end
           return accu;
         end end;
-        filter_map_inplace = function (f, h) do
-          do_bucket = function (_param) do
+        filter_map_inplace = function(f, h) do
+          do_bucket = function(_param) do
             while(true) do
               param = _param;
               if (param) then do
@@ -2356,10 +2352,10 @@ function Make_1(H1, H2) do
           end
           return --[[ () ]]0;
         end end;
-        length = function (h) do
+        length = function(h) do
           return h.size;
         end end;
-        bucket_length = function (_accu, _param) do
+        bucket_length = function(_accu, _param) do
           while(true) do
             param = _param;
             accu = _accu;
@@ -2372,12 +2368,12 @@ function Make_1(H1, H2) do
             end end 
           end;
         end end;
-        stats = function (h) do
-          mbl = __Array.fold_left((function (m, b) do
+        stats = function(h) do
+          mbl = __Array.fold_left((function(m, b) do
                   return Caml_primitive.caml_int_max(m, bucket_length(0, b));
                 end end), 0, h.data);
           histo = Caml_array.caml_make_vect(mbl + 1 | 0, 0);
-          __Array.iter((function (b) do
+          __Array.iter((function(b) do
                   l = bucket_length(0, b);
                   return Caml_array.caml_array_set(histo, l, Caml_array.caml_array_get(histo, l) + 1 | 0);
                 end end), h.data);
@@ -2388,7 +2384,7 @@ function Make_1(H1, H2) do
                   bucket_histogram: histo
                 end;
         end end;
-        bucket_length_alive = function (_accu, _param) do
+        bucket_length_alive = function(_accu, _param) do
           while(true) do
             param = _param;
             accu = _accu;
@@ -2407,15 +2403,15 @@ function Make_1(H1, H2) do
             end end 
           end;
         end end;
-        stats_alive = function (h) do
+        stats_alive = function(h) do
           size = do
             contents: 0
           end;
-          mbl = __Array.fold_left((function (m, b) do
+          mbl = __Array.fold_left((function(m, b) do
                   return Caml_primitive.caml_int_max(m, bucket_length_alive(0, b));
                 end end), 0, h.data);
           histo = Caml_array.caml_make_vect(mbl + 1 | 0, 0);
-          __Array.iter((function (b) do
+          __Array.iter((function(b) do
                   l = bucket_length_alive(0, b);
                   size.contents = size.contents + l | 0;
                   return Caml_array.caml_array_set(histo, l, Caml_array.caml_array_get(histo, l) + 1 | 0);
@@ -2452,7 +2448,7 @@ function Make_1(H1, H2) do
         hash: hash_1
       end);
   create = include.create;
-  create_1 = function (sz) do
+  create_1 = function(sz) do
     return Curry._2(create, false, sz);
   end end;
   return do
@@ -2530,7 +2526,7 @@ function blit_data_2(t1, t2) do
 end end
 
 function MakeSeeded_2(H) do
-  create = function (k, d) do
+  create = function(k, d) do
     c = Obj.Ephemeron.create(#k);
     Obj.Ephemeron.set_data(c, d);
     for i = 0 , #k - 1 | 0 , 1 do
@@ -2538,14 +2534,14 @@ function MakeSeeded_2(H) do
     end
     return c;
   end end;
-  hash = function (seed, k) do
+  hash = function(seed, k) do
     h = 0;
     for i = 0 , #k - 1 | 0 , 1 do
       h = Caml_int32.imul(Curry._2(H.hash, seed, Caml_array.caml_array_get(k, i)), 65599) + h | 0;
     end
     return h;
   end end;
-  equal = function (c, k) do
+  equal = function(c, k) do
     len = #k;
     len$prime = Obj.Ephemeron.length(c);
     if (len ~= len$prime) then do
@@ -2574,7 +2570,7 @@ function MakeSeeded_2(H) do
       end;
     end end 
   end end;
-  get_key = function (c) do
+  get_key = function(c) do
     len = Obj.Ephemeron.length(c);
     if (len == 0) then do
       return {};
@@ -2604,14 +2600,14 @@ function MakeSeeded_2(H) do
       end end 
     end end 
   end end;
-  set_key_data = function (c, k, d) do
+  set_key_data = function(c, k, d) do
     Obj.Ephemeron.unset_data(c);
     for i = 0 , #k - 1 | 0 , 1 do
       set_key_1(c, i, Caml_array.caml_array_get(k, i));
     end
     return Obj.Ephemeron.set_data(c, d);
   end end;
-  check_key = function (c) do
+  check_key = function(c) do
     c_1 = c;
     _i = Obj.Ephemeron.length(c) - 1 | 0;
     while(true) do
@@ -2626,7 +2622,7 @@ function MakeSeeded_2(H) do
       end end  end 
     end;
   end end;
-  power_2_above = function (_x, n) do
+  power_2_above = function(_x, n) do
     while(true) do
       x = _x;
       if (x >= n or (x << 1) > Sys.max_array_length) then do
@@ -2637,10 +2633,10 @@ function MakeSeeded_2(H) do
       end end 
     end;
   end end;
-  prng = Caml_obj.caml_lazy_make((function (param) do
+  prng = Caml_obj.caml_lazy_make((function(param) do
           return Random.State.make_self_init(--[[ () ]]0);
         end end));
-  create_1 = function (randomOpt, initial_size) do
+  create_1 = function(randomOpt, initial_size) do
     random = randomOpt ~= undefined and randomOpt or Hashtbl.is_randomized(--[[ () ]]0);
     s = power_2_above(16, initial_size);
     seed = random and Random.State.bits(CamlinternalLazy.force(prng)) or 0;
@@ -2651,7 +2647,7 @@ function MakeSeeded_2(H) do
             initial_size: s
           end;
   end end;
-  clear = function (h) do
+  clear = function(h) do
     h.size = 0;
     len = #h.data;
     for i = 0 , len - 1 | 0 , 1 do
@@ -2659,7 +2655,7 @@ function MakeSeeded_2(H) do
     end
     return --[[ () ]]0;
   end end;
-  reset = function (h) do
+  reset = function(h) do
     len = #h.data;
     if (len == h.initial_size) then do
       return clear(h);
@@ -2669,7 +2665,7 @@ function MakeSeeded_2(H) do
       return --[[ () ]]0;
     end end 
   end end;
-  copy = function (h) do
+  copy = function(h) do
     return do
             size: h.size,
             data: __Array.copy(h.data),
@@ -2677,11 +2673,11 @@ function MakeSeeded_2(H) do
             initial_size: h.initial_size
           end;
   end end;
-  key_index = function (h, hkey) do
+  key_index = function(h, hkey) do
     return hkey & (#h.data - 1 | 0);
   end end;
-  clean = function (h) do
-    do_bucket = function (_param) do
+  clean = function(h) do
+    do_bucket = function(_param) do
       while(true) do
         param = _param;
         if (param) then do
@@ -2709,7 +2705,7 @@ function MakeSeeded_2(H) do
     end
     return --[[ () ]]0;
   end end;
-  resize = function (h) do
+  resize = function(h) do
     odata = h.data;
     osize = #odata;
     nsize = (osize << 1);
@@ -2717,7 +2713,7 @@ function MakeSeeded_2(H) do
     if (nsize < Sys.max_array_length and h.size >= (osize >>> 1)) then do
       ndata = Caml_array.caml_make_vect(nsize, --[[ Empty ]]0);
       h.data = ndata;
-      insert_bucket = function (param) do
+      insert_bucket = function(param) do
         if (param) then do
           hkey = param[0];
           insert_bucket(param[2]);
@@ -2739,7 +2735,7 @@ function MakeSeeded_2(H) do
       return 0;
     end end 
   end end;
-  add = function (h, key, info) do
+  add = function(h, key, info) do
     hkey = hash(h.seed, key);
     i = key_index(h, hkey);
     container = create(key, info);
@@ -2757,9 +2753,9 @@ function MakeSeeded_2(H) do
       return 0;
     end end 
   end end;
-  remove = function (h, key) do
+  remove = function(h, key) do
     hkey = hash(h.seed, key);
-    remove_bucket = function (_param) do
+    remove_bucket = function(_param) do
       while(true) do
         param = _param;
         if (param) then do
@@ -2770,20 +2766,19 @@ function MakeSeeded_2(H) do
             match = equal(c, key);
             local ___conditional___=(match);
             do
-               if ___conditional___ = 0--[[ ETrue ]] then do
+               if ___conditional___ == 0--[[ ETrue ]] then do
                   h.size = h.size - 1 | 0;
-                  return next;end end end 
-               if ___conditional___ = 1--[[ EFalse ]] then do
+                  return next; end end 
+               if ___conditional___ == 1--[[ EFalse ]] then do
                   return --[[ Cons ]]{
                           hk,
                           c,
                           remove_bucket(next)
-                        };end end end 
-               if ___conditional___ = 2--[[ EDead ]] then do
+                        }; end end 
+               if ___conditional___ == 2--[[ EDead ]] then do
                   h.size = h.size - 1 | 0;
                   _param = next;
-                  ::continue:: ;end end end 
-               do
+                  ::continue:: ; end end 
               
             end
           end else do
@@ -2801,7 +2796,7 @@ function MakeSeeded_2(H) do
     i = key_index(h, hkey);
     return Caml_array.caml_array_set(h.data, i, remove_bucket(Caml_array.caml_array_get(h.data, i)));
   end end;
-  find = function (h, key) do
+  find = function(h, key) do
     hkey = hash(h.seed, key);
     key_1 = key;
     hkey_1 = hkey;
@@ -2834,7 +2829,7 @@ function MakeSeeded_2(H) do
       end end 
     end;
   end end;
-  find_opt = function (h, key) do
+  find_opt = function(h, key) do
     hkey = hash(h.seed, key);
     key_1 = key;
     hkey_1 = hkey;
@@ -2867,9 +2862,9 @@ function MakeSeeded_2(H) do
       end end 
     end;
   end end;
-  find_all = function (h, key) do
+  find_all = function(h, key) do
     hkey = hash(h.seed, key);
-    find_in_bucket = function (_param) do
+    find_in_bucket = function(_param) do
       while(true) do
         param = _param;
         if (param) then do
@@ -2903,7 +2898,7 @@ function MakeSeeded_2(H) do
     end end;
     return find_in_bucket(Caml_array.caml_array_get(h.data, key_index(h, hkey)));
   end end;
-  replace = function (h, key, info) do
+  replace = function(h, key, info) do
     hkey = hash(h.seed, key);
     i = key_index(h, hkey);
     l = Caml_array.caml_array_get(h.data, i);
@@ -2949,7 +2944,7 @@ function MakeSeeded_2(H) do
       end end 
     end end)
   end end;
-  mem = function (h, key) do
+  mem = function(h, key) do
     hkey = hash(h.seed, key);
     _param = Caml_array.caml_array_get(h.data, key_index(h, hkey));
     while(true) do
@@ -2973,8 +2968,8 @@ function MakeSeeded_2(H) do
       end end 
     end;
   end end;
-  iter = function (f, h) do
-    do_bucket = function (_param) do
+  iter = function(f, h) do
+    do_bucket = function(_param) do
       while(true) do
         param = _param;
         if (param) then do
@@ -3001,8 +2996,8 @@ function MakeSeeded_2(H) do
     end
     return --[[ () ]]0;
   end end;
-  fold = function (f, h, init) do
-    do_bucket = function (_b, _accu) do
+  fold = function(f, h, init) do
+    do_bucket = function(_b, _accu) do
       while(true) do
         accu = _accu;
         b = _b;
@@ -3026,8 +3021,8 @@ function MakeSeeded_2(H) do
     end
     return accu;
   end end;
-  filter_map_inplace = function (f, h) do
-    do_bucket = function (_param) do
+  filter_map_inplace = function(f, h) do
+    do_bucket = function(_param) do
       while(true) do
         param = _param;
         if (param) then do
@@ -3069,10 +3064,10 @@ function MakeSeeded_2(H) do
     end
     return --[[ () ]]0;
   end end;
-  length = function (h) do
+  length = function(h) do
     return h.size;
   end end;
-  bucket_length = function (_accu, _param) do
+  bucket_length = function(_accu, _param) do
     while(true) do
       param = _param;
       accu = _accu;
@@ -3085,12 +3080,12 @@ function MakeSeeded_2(H) do
       end end 
     end;
   end end;
-  stats = function (h) do
-    mbl = __Array.fold_left((function (m, b) do
+  stats = function(h) do
+    mbl = __Array.fold_left((function(m, b) do
             return Caml_primitive.caml_int_max(m, bucket_length(0, b));
           end end), 0, h.data);
     histo = Caml_array.caml_make_vect(mbl + 1 | 0, 0);
-    __Array.iter((function (b) do
+    __Array.iter((function(b) do
             l = bucket_length(0, b);
             return Caml_array.caml_array_set(histo, l, Caml_array.caml_array_get(histo, l) + 1 | 0);
           end end), h.data);
@@ -3101,7 +3096,7 @@ function MakeSeeded_2(H) do
             bucket_histogram: histo
           end;
   end end;
-  bucket_length_alive = function (_accu, _param) do
+  bucket_length_alive = function(_accu, _param) do
     while(true) do
       param = _param;
       accu = _accu;
@@ -3120,15 +3115,15 @@ function MakeSeeded_2(H) do
       end end 
     end;
   end end;
-  stats_alive = function (h) do
+  stats_alive = function(h) do
     size = do
       contents: 0
     end;
-    mbl = __Array.fold_left((function (m, b) do
+    mbl = __Array.fold_left((function(m, b) do
             return Caml_primitive.caml_int_max(m, bucket_length_alive(0, b));
           end end), 0, h.data);
     histo = Caml_array.caml_make_vect(mbl + 1 | 0, 0);
-    __Array.iter((function (b) do
+    __Array.iter((function(b) do
             l = bucket_length_alive(0, b);
             size.contents = size.contents + l | 0;
             return Caml_array.caml_array_set(histo, l, Caml_array.caml_array_get(histo, l) + 1 | 0);
@@ -3164,7 +3159,7 @@ end end
 
 function Make_2(H) do
   equal = H.equal;
-  create = function (k, d) do
+  create = function(k, d) do
     c = Obj.Ephemeron.create(#k);
     Obj.Ephemeron.set_data(c, d);
     for i = 0 , #k - 1 | 0 , 1 do
@@ -3172,14 +3167,14 @@ function Make_2(H) do
     end
     return c;
   end end;
-  hash = function (seed, k) do
+  hash = function(seed, k) do
     h = 0;
     for i = 0 , #k - 1 | 0 , 1 do
       h = Caml_int32.imul(Curry._1(H.hash, Caml_array.caml_array_get(k, i)), 65599) + h | 0;
     end
     return h;
   end end;
-  equal_1 = function (c, k) do
+  equal_1 = function(c, k) do
     len = #k;
     len$prime = Obj.Ephemeron.length(c);
     if (len ~= len$prime) then do
@@ -3208,7 +3203,7 @@ function Make_2(H) do
       end;
     end end 
   end end;
-  get_key = function (c) do
+  get_key = function(c) do
     len = Obj.Ephemeron.length(c);
     if (len == 0) then do
       return {};
@@ -3238,14 +3233,14 @@ function Make_2(H) do
       end end 
     end end 
   end end;
-  set_key_data = function (c, k, d) do
+  set_key_data = function(c, k, d) do
     Obj.Ephemeron.unset_data(c);
     for i = 0 , #k - 1 | 0 , 1 do
       set_key_1(c, i, Caml_array.caml_array_get(k, i));
     end
     return Obj.Ephemeron.set_data(c, d);
   end end;
-  check_key = function (c) do
+  check_key = function(c) do
     c_1 = c;
     _i = Obj.Ephemeron.length(c) - 1 | 0;
     while(true) do
@@ -3260,7 +3255,7 @@ function Make_2(H) do
       end end  end 
     end;
   end end;
-  power_2_above = function (_x, n) do
+  power_2_above = function(_x, n) do
     while(true) do
       x = _x;
       if (x >= n or (x << 1) > Sys.max_array_length) then do
@@ -3271,10 +3266,10 @@ function Make_2(H) do
       end end 
     end;
   end end;
-  prng = Caml_obj.caml_lazy_make((function (param) do
+  prng = Caml_obj.caml_lazy_make((function(param) do
           return Random.State.make_self_init(--[[ () ]]0);
         end end));
-  clear = function (h) do
+  clear = function(h) do
     h.size = 0;
     len = #h.data;
     for i = 0 , len - 1 | 0 , 1 do
@@ -3282,7 +3277,7 @@ function Make_2(H) do
     end
     return --[[ () ]]0;
   end end;
-  reset = function (h) do
+  reset = function(h) do
     len = #h.data;
     if (len == h.initial_size) then do
       return clear(h);
@@ -3292,7 +3287,7 @@ function Make_2(H) do
       return --[[ () ]]0;
     end end 
   end end;
-  copy = function (h) do
+  copy = function(h) do
     return do
             size: h.size,
             data: __Array.copy(h.data),
@@ -3300,11 +3295,11 @@ function Make_2(H) do
             initial_size: h.initial_size
           end;
   end end;
-  key_index = function (h, hkey) do
+  key_index = function(h, hkey) do
     return hkey & (#h.data - 1 | 0);
   end end;
-  clean = function (h) do
-    do_bucket = function (_param) do
+  clean = function(h) do
+    do_bucket = function(_param) do
       while(true) do
         param = _param;
         if (param) then do
@@ -3332,7 +3327,7 @@ function Make_2(H) do
     end
     return --[[ () ]]0;
   end end;
-  resize = function (h) do
+  resize = function(h) do
     odata = h.data;
     osize = #odata;
     nsize = (osize << 1);
@@ -3340,7 +3335,7 @@ function Make_2(H) do
     if (nsize < Sys.max_array_length and h.size >= (osize >>> 1)) then do
       ndata = Caml_array.caml_make_vect(nsize, --[[ Empty ]]0);
       h.data = ndata;
-      insert_bucket = function (param) do
+      insert_bucket = function(param) do
         if (param) then do
           hkey = param[0];
           insert_bucket(param[2]);
@@ -3362,7 +3357,7 @@ function Make_2(H) do
       return 0;
     end end 
   end end;
-  add = function (h, key, info) do
+  add = function(h, key, info) do
     hkey = hash(h.seed, key);
     i = key_index(h, hkey);
     container = create(key, info);
@@ -3380,9 +3375,9 @@ function Make_2(H) do
       return 0;
     end end 
   end end;
-  remove = function (h, key) do
+  remove = function(h, key) do
     hkey = hash(h.seed, key);
-    remove_bucket = function (_param) do
+    remove_bucket = function(_param) do
       while(true) do
         param = _param;
         if (param) then do
@@ -3393,20 +3388,19 @@ function Make_2(H) do
             match = equal_1(c, key);
             local ___conditional___=(match);
             do
-               if ___conditional___ = 0--[[ ETrue ]] then do
+               if ___conditional___ == 0--[[ ETrue ]] then do
                   h.size = h.size - 1 | 0;
-                  return next;end end end 
-               if ___conditional___ = 1--[[ EFalse ]] then do
+                  return next; end end 
+               if ___conditional___ == 1--[[ EFalse ]] then do
                   return --[[ Cons ]]{
                           hk,
                           c,
                           remove_bucket(next)
-                        };end end end 
-               if ___conditional___ = 2--[[ EDead ]] then do
+                        }; end end 
+               if ___conditional___ == 2--[[ EDead ]] then do
                   h.size = h.size - 1 | 0;
                   _param = next;
-                  ::continue:: ;end end end 
-               do
+                  ::continue:: ; end end 
               
             end
           end else do
@@ -3424,7 +3418,7 @@ function Make_2(H) do
     i = key_index(h, hkey);
     return Caml_array.caml_array_set(h.data, i, remove_bucket(Caml_array.caml_array_get(h.data, i)));
   end end;
-  find = function (h, key) do
+  find = function(h, key) do
     hkey = hash(h.seed, key);
     key_1 = key;
     hkey_1 = hkey;
@@ -3457,7 +3451,7 @@ function Make_2(H) do
       end end 
     end;
   end end;
-  find_opt = function (h, key) do
+  find_opt = function(h, key) do
     hkey = hash(h.seed, key);
     key_1 = key;
     hkey_1 = hkey;
@@ -3490,9 +3484,9 @@ function Make_2(H) do
       end end 
     end;
   end end;
-  find_all = function (h, key) do
+  find_all = function(h, key) do
     hkey = hash(h.seed, key);
-    find_in_bucket = function (_param) do
+    find_in_bucket = function(_param) do
       while(true) do
         param = _param;
         if (param) then do
@@ -3526,7 +3520,7 @@ function Make_2(H) do
     end end;
     return find_in_bucket(Caml_array.caml_array_get(h.data, key_index(h, hkey)));
   end end;
-  replace = function (h, key, info) do
+  replace = function(h, key, info) do
     hkey = hash(h.seed, key);
     i = key_index(h, hkey);
     l = Caml_array.caml_array_get(h.data, i);
@@ -3572,7 +3566,7 @@ function Make_2(H) do
       end end 
     end end)
   end end;
-  mem = function (h, key) do
+  mem = function(h, key) do
     hkey = hash(h.seed, key);
     _param = Caml_array.caml_array_get(h.data, key_index(h, hkey));
     while(true) do
@@ -3596,8 +3590,8 @@ function Make_2(H) do
       end end 
     end;
   end end;
-  iter = function (f, h) do
-    do_bucket = function (_param) do
+  iter = function(f, h) do
+    do_bucket = function(_param) do
       while(true) do
         param = _param;
         if (param) then do
@@ -3624,8 +3618,8 @@ function Make_2(H) do
     end
     return --[[ () ]]0;
   end end;
-  fold = function (f, h, init) do
-    do_bucket = function (_b, _accu) do
+  fold = function(f, h, init) do
+    do_bucket = function(_b, _accu) do
       while(true) do
         accu = _accu;
         b = _b;
@@ -3649,8 +3643,8 @@ function Make_2(H) do
     end
     return accu;
   end end;
-  filter_map_inplace = function (f, h) do
-    do_bucket = function (_param) do
+  filter_map_inplace = function(f, h) do
+    do_bucket = function(_param) do
       while(true) do
         param = _param;
         if (param) then do
@@ -3692,10 +3686,10 @@ function Make_2(H) do
     end
     return --[[ () ]]0;
   end end;
-  length = function (h) do
+  length = function(h) do
     return h.size;
   end end;
-  bucket_length = function (_accu, _param) do
+  bucket_length = function(_accu, _param) do
     while(true) do
       param = _param;
       accu = _accu;
@@ -3708,12 +3702,12 @@ function Make_2(H) do
       end end 
     end;
   end end;
-  stats = function (h) do
-    mbl = __Array.fold_left((function (m, b) do
+  stats = function(h) do
+    mbl = __Array.fold_left((function(m, b) do
             return Caml_primitive.caml_int_max(m, bucket_length(0, b));
           end end), 0, h.data);
     histo = Caml_array.caml_make_vect(mbl + 1 | 0, 0);
-    __Array.iter((function (b) do
+    __Array.iter((function(b) do
             l = bucket_length(0, b);
             return Caml_array.caml_array_set(histo, l, Caml_array.caml_array_get(histo, l) + 1 | 0);
           end end), h.data);
@@ -3724,7 +3718,7 @@ function Make_2(H) do
             bucket_histogram: histo
           end;
   end end;
-  bucket_length_alive = function (_accu, _param) do
+  bucket_length_alive = function(_accu, _param) do
     while(true) do
       param = _param;
       accu = _accu;
@@ -3743,15 +3737,15 @@ function Make_2(H) do
       end end 
     end;
   end end;
-  stats_alive = function (h) do
+  stats_alive = function(h) do
     size = do
       contents: 0
     end;
-    mbl = __Array.fold_left((function (m, b) do
+    mbl = __Array.fold_left((function(m, b) do
             return Caml_primitive.caml_int_max(m, bucket_length_alive(0, b));
           end end), 0, h.data);
     histo = Caml_array.caml_make_vect(mbl + 1 | 0, 0);
-    __Array.iter((function (b) do
+    __Array.iter((function(b) do
             l = bucket_length_alive(0, b);
             size.contents = size.contents + l | 0;
             return Caml_array.caml_array_set(histo, l, Caml_array.caml_array_get(histo, l) + 1 | 0);
@@ -3763,7 +3757,7 @@ function Make_2(H) do
             bucket_histogram: histo
           end;
   end end;
-  create_1 = function (sz) do
+  create_1 = function(sz) do
     randomOpt = false;
     initial_size = sz;
     random = randomOpt ~= undefined and randomOpt or Hashtbl.is_randomized(--[[ () ]]0);
@@ -3860,7 +3854,7 @@ Kn = do
 end;
 
 GenHashTable = do
-  MakeSeeded: (function (funarg) do
+  MakeSeeded: (function(funarg) do
       H = do
         create: funarg.create,
         hash: funarg.hash,
@@ -3870,7 +3864,7 @@ GenHashTable = do
         set_key_data: funarg.set_key_data,
         check_key: funarg.check_key
       end;
-      power_2_above = function (_x, n) do
+      power_2_above = function(_x, n) do
         while(true) do
           x = _x;
           if (x >= n or (x << 1) > Sys.max_array_length) then do
@@ -3881,10 +3875,10 @@ GenHashTable = do
           end end 
         end;
       end end;
-      prng = Caml_obj.caml_lazy_make((function (param) do
+      prng = Caml_obj.caml_lazy_make((function(param) do
               return Random.State.make_self_init(--[[ () ]]0);
             end end));
-      create = function (randomOpt, initial_size) do
+      create = function(randomOpt, initial_size) do
         random = randomOpt ~= undefined and randomOpt or Hashtbl.is_randomized(--[[ () ]]0);
         s = power_2_above(16, initial_size);
         seed = random and Random.State.bits(CamlinternalLazy.force(prng)) or 0;
@@ -3895,7 +3889,7 @@ GenHashTable = do
                 initial_size: s
               end;
       end end;
-      clear = function (h) do
+      clear = function(h) do
         h.size = 0;
         len = #h.data;
         for i = 0 , len - 1 | 0 , 1 do
@@ -3903,7 +3897,7 @@ GenHashTable = do
         end
         return --[[ () ]]0;
       end end;
-      reset = function (h) do
+      reset = function(h) do
         len = #h.data;
         if (len == h.initial_size) then do
           return clear(h);
@@ -3913,7 +3907,7 @@ GenHashTable = do
           return --[[ () ]]0;
         end end 
       end end;
-      copy = function (h) do
+      copy = function(h) do
         return do
                 size: h.size,
                 data: __Array.copy(h.data),
@@ -3921,11 +3915,11 @@ GenHashTable = do
                 initial_size: h.initial_size
               end;
       end end;
-      key_index = function (h, hkey) do
+      key_index = function(h, hkey) do
         return hkey & (#h.data - 1 | 0);
       end end;
-      clean = function (h) do
-        do_bucket = function (_param) do
+      clean = function(h) do
+        do_bucket = function(_param) do
           while(true) do
             param = _param;
             if (param) then do
@@ -3953,7 +3947,7 @@ GenHashTable = do
         end
         return --[[ () ]]0;
       end end;
-      resize = function (h) do
+      resize = function(h) do
         odata = h.data;
         osize = #odata;
         nsize = (osize << 1);
@@ -3961,7 +3955,7 @@ GenHashTable = do
         if (nsize < Sys.max_array_length and h.size >= (osize >>> 1)) then do
           ndata = Caml_array.caml_make_vect(nsize, --[[ Empty ]]0);
           h.data = ndata;
-          insert_bucket = function (param) do
+          insert_bucket = function(param) do
             if (param) then do
               hkey = param[0];
               insert_bucket(param[2]);
@@ -3983,7 +3977,7 @@ GenHashTable = do
           return 0;
         end end 
       end end;
-      add = function (h, key, info) do
+      add = function(h, key, info) do
         hkey = Curry._2(H.hash, h.seed, key);
         i = key_index(h, hkey);
         container = Curry._2(H.create, key, info);
@@ -4001,9 +3995,9 @@ GenHashTable = do
           return 0;
         end end 
       end end;
-      remove = function (h, key) do
+      remove = function(h, key) do
         hkey = Curry._2(H.hash, h.seed, key);
-        remove_bucket = function (_param) do
+        remove_bucket = function(_param) do
           while(true) do
             param = _param;
             if (param) then do
@@ -4014,20 +4008,19 @@ GenHashTable = do
                 match = Curry._2(H.equal, c, key);
                 local ___conditional___=(match);
                 do
-                   if ___conditional___ = 0--[[ ETrue ]] then do
+                   if ___conditional___ == 0--[[ ETrue ]] then do
                       h.size = h.size - 1 | 0;
-                      return next;end end end 
-                   if ___conditional___ = 1--[[ EFalse ]] then do
+                      return next; end end 
+                   if ___conditional___ == 1--[[ EFalse ]] then do
                       return --[[ Cons ]]{
                               hk,
                               c,
                               remove_bucket(next)
-                            };end end end 
-                   if ___conditional___ = 2--[[ EDead ]] then do
+                            }; end end 
+                   if ___conditional___ == 2--[[ EDead ]] then do
                       h.size = h.size - 1 | 0;
                       _param = next;
-                      ::continue:: ;end end end 
-                   do
+                      ::continue:: ; end end 
                   
                 end
               end else do
@@ -4045,7 +4038,7 @@ GenHashTable = do
         i = key_index(h, hkey);
         return Caml_array.caml_array_set(h.data, i, remove_bucket(Caml_array.caml_array_get(h.data, i)));
       end end;
-      find = function (h, key) do
+      find = function(h, key) do
         hkey = Curry._2(H.hash, h.seed, key);
         key_1 = key;
         hkey_1 = hkey;
@@ -4078,7 +4071,7 @@ GenHashTable = do
           end end 
         end;
       end end;
-      find_opt = function (h, key) do
+      find_opt = function(h, key) do
         hkey = Curry._2(H.hash, h.seed, key);
         key_1 = key;
         hkey_1 = hkey;
@@ -4111,9 +4104,9 @@ GenHashTable = do
           end end 
         end;
       end end;
-      find_all = function (h, key) do
+      find_all = function(h, key) do
         hkey = Curry._2(H.hash, h.seed, key);
-        find_in_bucket = function (_param) do
+        find_in_bucket = function(_param) do
           while(true) do
             param = _param;
             if (param) then do
@@ -4147,7 +4140,7 @@ GenHashTable = do
         end end;
         return find_in_bucket(Caml_array.caml_array_get(h.data, key_index(h, hkey)));
       end end;
-      replace = function (h, key, info) do
+      replace = function(h, key, info) do
         hkey = Curry._2(H.hash, h.seed, key);
         i = key_index(h, hkey);
         l = Caml_array.caml_array_get(h.data, i);
@@ -4193,7 +4186,7 @@ GenHashTable = do
           end end 
         end end)
       end end;
-      mem = function (h, key) do
+      mem = function(h, key) do
         hkey = Curry._2(H.hash, h.seed, key);
         _param = Caml_array.caml_array_get(h.data, key_index(h, hkey));
         while(true) do
@@ -4217,8 +4210,8 @@ GenHashTable = do
           end end 
         end;
       end end;
-      iter = function (f, h) do
-        do_bucket = function (_param) do
+      iter = function(f, h) do
+        do_bucket = function(_param) do
           while(true) do
             param = _param;
             if (param) then do
@@ -4245,8 +4238,8 @@ GenHashTable = do
         end
         return --[[ () ]]0;
       end end;
-      fold = function (f, h, init) do
-        do_bucket = function (_b, _accu) do
+      fold = function(f, h, init) do
+        do_bucket = function(_b, _accu) do
           while(true) do
             accu = _accu;
             b = _b;
@@ -4270,8 +4263,8 @@ GenHashTable = do
         end
         return accu;
       end end;
-      filter_map_inplace = function (f, h) do
-        do_bucket = function (_param) do
+      filter_map_inplace = function(f, h) do
+        do_bucket = function(_param) do
           while(true) do
             param = _param;
             if (param) then do
@@ -4313,10 +4306,10 @@ GenHashTable = do
         end
         return --[[ () ]]0;
       end end;
-      length = function (h) do
+      length = function(h) do
         return h.size;
       end end;
-      bucket_length = function (_accu, _param) do
+      bucket_length = function(_accu, _param) do
         while(true) do
           param = _param;
           accu = _accu;
@@ -4329,12 +4322,12 @@ GenHashTable = do
           end end 
         end;
       end end;
-      stats = function (h) do
-        mbl = __Array.fold_left((function (m, b) do
+      stats = function(h) do
+        mbl = __Array.fold_left((function(m, b) do
                 return Caml_primitive.caml_int_max(m, bucket_length(0, b));
               end end), 0, h.data);
         histo = Caml_array.caml_make_vect(mbl + 1 | 0, 0);
-        __Array.iter((function (b) do
+        __Array.iter((function(b) do
                 l = bucket_length(0, b);
                 return Caml_array.caml_array_set(histo, l, Caml_array.caml_array_get(histo, l) + 1 | 0);
               end end), h.data);
@@ -4345,7 +4338,7 @@ GenHashTable = do
                 bucket_histogram: histo
               end;
       end end;
-      bucket_length_alive = function (_accu, _param) do
+      bucket_length_alive = function(_accu, _param) do
         while(true) do
           param = _param;
           accu = _accu;
@@ -4364,15 +4357,15 @@ GenHashTable = do
           end end 
         end;
       end end;
-      stats_alive = function (h) do
+      stats_alive = function(h) do
         size = do
           contents: 0
         end;
-        mbl = __Array.fold_left((function (m, b) do
+        mbl = __Array.fold_left((function(m, b) do
                 return Caml_primitive.caml_int_max(m, bucket_length_alive(0, b));
               end end), 0, h.data);
         histo = Caml_array.caml_make_vect(mbl + 1 | 0, 0);
-        __Array.iter((function (b) do
+        __Array.iter((function(b) do
                 l = bucket_length_alive(0, b);
                 size.contents = size.contents + l | 0;
                 return Caml_array.caml_array_set(histo, l, Caml_array.caml_array_get(histo, l) + 1 | 0);
@@ -4407,6 +4400,7 @@ GenHashTable = do
     end end)
 end;
 
+exports = {}
 exports.K1 = K1;
 exports.K2 = K2;
 exports.Kn = Kn;

@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Block = require "../../lib/js/block";
@@ -18,7 +18,7 @@ function eq(loc, x, y) do
   suites.contents = --[[ :: ]]{
     --[[ tuple ]]{
       loc .. (" id " .. String(test_id.contents)),
-      (function (param) do
+      (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     x,
                     y
@@ -35,8 +35,8 @@ function foo(f) do
   return --[[ () ]]0;
 end end
 
-foo((function (param) do
-        return (function (param_1) do
+foo((function(param) do
+        return (function(param_1) do
             return Gpr_1423_nav.busted(param, "a2", param_1);
           end end);
       end end));
@@ -45,14 +45,15 @@ function foo2(f) do
   return Curry._2(f, "a1", --[[ () ]]0);
 end end
 
-eq("File \"gpr_1423_app_test.ml\", line 18, characters 7-14", Curry._1((function (param) do
-              return (function (param_1) do
+eq("File \"gpr_1423_app_test.ml\", line 18, characters 7-14", Curry._1((function(param) do
+              return (function(param_1) do
                   return Gpr_1423_nav.busted(param, "a2", param_1);
                 end end);
             end end)("a1"), --[[ () ]]0), "a1a2");
 
 Mt.from_pair_suites("Gpr_1423_app_test", suites.contents);
 
+exports = {}
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;

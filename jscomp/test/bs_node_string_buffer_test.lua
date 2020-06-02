@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 __Node = require "../../lib/js/node";
 
@@ -23,5 +23,6 @@ f("xx");
 
 f((Buffer.from ('xx')));
 
+exports = {}
 exports.f = f;
 --[[  Not a pure module ]]

@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Block = require "../../lib/js/block";
@@ -27,7 +27,7 @@ function eq(loc, param) do
   suites.contents = --[[ :: ]]{
     --[[ tuple ]]{
       loc .. (" id " .. String(test_id.contents)),
-      (function (param) do
+      (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     x,
                     y
@@ -82,7 +82,7 @@ same_type = --[[ tuple ]]{
 };
 
 v_obj = do
-  hi: (function () do
+  hi: (function() do
       console.log("hei");
       return --[[ () ]]0; end
     end)
@@ -179,6 +179,7 @@ end end
 
 Mt.from_pair_suites("Ffi_js_test", suites.contents);
 
+exports = {}
 exports.keys = keys;
 exports.suites = suites;
 exports.test_id = test_id;

@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Block = require "../../lib/js/block";
@@ -25,7 +25,7 @@ function add_test(loc, test) do
 end end
 
 function eq(loc, x, y) do
-  return add_test(loc, (function (param) do
+  return add_test(loc, (function(param) do
                 return --[[ Eq ]]Block.__(0, {
                           x,
                           y
@@ -45,6 +45,7 @@ eq("File \"js_cast_test.ml\", line 21, characters 12-19", 123456789, 123456789.0
 
 Mt.from_pair_suites("Js_cast_test", suites.contents);
 
+exports = {}
 exports.suites = suites;
 exports.add_test = add_test;
 exports.eq = eq;

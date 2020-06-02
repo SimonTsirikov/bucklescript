@@ -75,46 +75,41 @@ function caml_compare(_a, _b) do
       b_type = typeof b;
       local ___conditional___=(a_type);
       do
-         if ___conditional___ = "boolean" then do
+         if ___conditional___ == "boolean" then do
             if (b_type == "boolean") then do
               return Caml_primitive.caml_bool_compare(a, b);
             end
-             end end else 
-         if ___conditional___ = "function" then do
+             end  end else 
+         if ___conditional___ == "function" then do
             if (b_type == "function") then do
               error({
                 Caml_builtin_exceptions.invalid_argument,
                 "compare: functional value"
               })
             end
-             end end else 
-         if ___conditional___ = "number" then do
+             end  end else 
+         if ___conditional___ == "number" then do
             if (b_type == "number") then do
               return Caml_primitive.caml_int_compare(a, b);
             end
-             end end else 
-         if ___conditional___ = "string" then do
+             end  end else 
+         if ___conditional___ == "string" then do
             if (b_type == "string") then do
               return Caml_primitive.caml_string_compare(a, b);
             end else do
               return 1;
-            end end end end end 
-         if ___conditional___ = "undefined" then do
-            return -1;end end end 
-         do end end
-        else do
-          end end
-          
+            end end  end end end end end end end end 
+         if ___conditional___ == "undefined" then do
+            return -1; end end 
+        
       end
       local ___conditional___=(b_type);
       do
-         if ___conditional___ = "string" then do
-            return -1;end end end 
-         if ___conditional___ = "undefined" then do
-            return 1;end end end 
-         do
-        else do
-          if (a_type == "boolean") then do
+         if ___conditional___ == "string" then do
+            return -1; end end 
+         if ___conditional___ == "undefined" then do
+            return 1; end end 
+        if (a_type == "boolean") then do
             return 1;
           end else if (b_type == "boolean") then do
             return -1;
@@ -211,7 +206,7 @@ function caml_compare(_a, _b) do
                     min_key_rhs = do
                       contents: undefined
                     end;
-                    do_key = function (param, key) do
+                    do_key = function(param, key) do
                       min_key = param[2];
                       b = param[1];
                       if (not b.hasOwnProperty(key) or caml_compare(param[0][key], b[key]) > 0) then do
@@ -235,7 +230,7 @@ function caml_compare(_a, _b) do
                     return function do_key_a(param) do
                       return do_key(partial_arg, param);
                     end end
-                    end(partial_arg));
+                    end end)(partial_arg);
                     partial_arg_1 = --[[ tuple ]]{
                       b_2,
                       a_2,
@@ -245,7 +240,7 @@ function caml_compare(_a, _b) do
                     return function do_key_b(param) do
                       return do_key(partial_arg_1, param);
                     end end
-                    end(partial_arg_1));
+                    end end)(partial_arg_1);
                     for_in(a_2, do_key_a);
                     for_in(b_2, do_key_b);
                     match = min_key_lhs.contents;
@@ -304,7 +299,6 @@ function caml_compare(_a, _b) do
               end end 
             end end  end  end  end 
           end end  end  end  end  end  end  end  end 
-          end end
           
       end
     end end 
@@ -392,7 +386,7 @@ function caml_equal(_a, _b) do
                       return --[[ () ]]0;
                     end end 
                   end end
-                  end(b_2,result));
+                  end end)(b_2,result);
                   do_key_b = (function(a_2,b_2,result)do
                   return function do_key_b(key) do
                     if (not a_2.hasOwnProperty(key) or not caml_equal(b_2[key], a_2[key])) then do
@@ -402,7 +396,7 @@ function caml_equal(_a, _b) do
                       return 0;
                     end end 
                   end end
-                  end(a_2,b_2,result));
+                  end end)(a_2,b_2,result);
                   for_in(a_2, do_key_a);
                   if (result.contents) then do
                     for_in(b_2, do_key_b);

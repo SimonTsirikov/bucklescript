@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Format = require "../../lib/js/format";
 Caml_exceptions = require "../../lib/js/caml_exceptions";
@@ -102,6 +102,7 @@ v3 = --[[ `C ]]{
 
 fmt = Format.std_formatter;
 
+exports = {}
 exports.v = v;
 exports.u = u;
 exports.h = h;

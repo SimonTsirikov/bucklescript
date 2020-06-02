@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Sys = require "./sys";
 __Array = require "./array";
@@ -10,26 +10,25 @@ Caml_builtin_exceptions = require "./caml_builtin_exceptions";
 function kind_size_in_bytes(param) do
   local ___conditional___=(param);
   do
-     if ___conditional___ = 4--[[ Int16_signed ]]
-     or ___conditional___ = 5--[[ Int16_unsigned ]] then do
-        return 2;end end end 
-     if ___conditional___ = 0--[[ Float32 ]]
-     or ___conditional___ = 6--[[ Int32 ]] then do
-        return 4;end end end 
-     if ___conditional___ = 8--[[ Int ]]
-     or ___conditional___ = 9--[[ Nativeint ]] then do
-        return Sys.word_size / 8 | 0;end end end 
-     if ___conditional___ = 1--[[ Float64 ]]
-     or ___conditional___ = 7--[[ Int64 ]]
-     or ___conditional___ = 10--[[ Complex32 ]] then do
-        return 8;end end end 
-     if ___conditional___ = 11--[[ Complex64 ]] then do
-        return 16;end end end 
-     if ___conditional___ = 2--[[ Int8_signed ]]
-     or ___conditional___ = 3--[[ Int8_unsigned ]]
-     or ___conditional___ = 12--[[ Char ]] then do
-        return 1;end end end 
-     do
+     if ___conditional___ == 4--[[ Int16_signed ]]
+     or ___conditional___ == 5--[[ Int16_unsigned ]] then do
+        return 2; end end 
+     if ___conditional___ == 0--[[ Float32 ]]
+     or ___conditional___ == 6--[[ Int32 ]] then do
+        return 4; end end 
+     if ___conditional___ == 8--[[ Int ]]
+     or ___conditional___ == 9--[[ Nativeint ]] then do
+        return Sys.word_size / 8 | 0; end end 
+     if ___conditional___ == 1--[[ Float64 ]]
+     or ___conditional___ == 7--[[ Int64 ]]
+     or ___conditional___ == 10--[[ Complex32 ]] then do
+        return 8; end end 
+     if ___conditional___ == 11--[[ Complex64 ]] then do
+        return 16; end end 
+     if ___conditional___ == 2--[[ Int8_signed ]]
+     or ___conditional___ == 3--[[ Int8_unsigned ]]
+     or ___conditional___ == 12--[[ Char ]] then do
+        return 1; end end 
     
   end
 end end
@@ -71,7 +70,7 @@ end end
 
 function set(arr) do
   partial_arg = {};
-  return (function (param) do
+  return (function(param) do
       return Caml_external_polyfill.resolve("caml_ba_set_generic")(arr, partial_arg, param);
     end end);
 end end
@@ -390,6 +389,7 @@ function reshape(prim, prim_1) do
   return Caml_external_polyfill.resolve("caml_ba_reshape")(prim, prim_1);
 end end
 
+exports = {}
 exports.float32 = float32;
 exports.float64 = float64;
 exports.complex32 = complex32;

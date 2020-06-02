@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Caml_format = require "./caml_format";
 Caml_primitive = require "./caml_primitive";
@@ -114,6 +114,7 @@ function to_int(prim) do
   return prim;
 end end
 
+exports = {}
 exports.min = min;
 exports.max = max;
 exports.bom = bom;

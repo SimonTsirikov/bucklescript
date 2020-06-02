@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Block = require "../../lib/js/block";
 
@@ -17,5 +17,6 @@ function f(param) do
         };
 end end
 
+exports = {}
 exports.f = f;
 --[[ No side effect ]]

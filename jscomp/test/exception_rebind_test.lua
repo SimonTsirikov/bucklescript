@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Exception_def = require "./exception_def";
 Caml_exceptions = require "../../lib/js/caml_exceptions";
@@ -17,6 +17,7 @@ A0 = Caml_exceptions.create("Exception_rebind_test.A0");
 
 H = Exception_def.A;
 
+exports = {}
 exports.A = A;
 exports.B = B;
 exports.H = H;

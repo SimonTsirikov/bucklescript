@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Belt_internalSetBuckets = require "./belt_internalSetBuckets";
 Belt_internalBucketsType = require "./belt_internalBucketsType";
@@ -214,6 +214,7 @@ toArray = Belt_internalSetBuckets.toArray;
 
 getBucketHistogram = Belt_internalSetBuckets.getBucketHistogram;
 
+exports = {}
 exports.Int = Int;
 exports.__String = __String;
 exports.make = make;

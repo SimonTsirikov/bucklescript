@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Sys = require "./sys";
 Block = require "./block";
@@ -221,7 +221,7 @@ function quote_1(s) do
   l = #s;
   b = __Buffer.create(l + 20 | 0);
   __Buffer.add_char(b, --[[ "\"" ]]34);
-  loop = function (_i) do
+  loop = function(_i) do
     while(true) do
       i = _i;
       if (i == l) then do
@@ -263,7 +263,7 @@ function quote_1(s) do
       end end 
     end;
   end end;
-  add_bs = function (n) do
+  add_bs = function(n) do
     for _j = 1 , n , 1 do
       __Buffer.add_char(b, --[[ "\\" ]]92);
     end
@@ -274,7 +274,7 @@ function quote_1(s) do
 end end
 
 function has_drive(s) do
-  is_letter = function (param) do
+  is_letter = function(param) do
     if (param >= 91) then do
       return not (param > 122 or param < 97);
     end else do
@@ -327,7 +327,7 @@ match;
 
 local ___conditional___=(Sys.os_type);
 do
-   if ___conditional___ = "Cygwin" then do
+   if ___conditional___ == "Cygwin" then do
       match = --[[ tuple ]]{
         current_dir_name_2,
         "..",
@@ -340,8 +340,8 @@ do
         quote,
         basename_2,
         dirname_2
-      };end else 
-   if ___conditional___ = "Win32" then do
+      }; end else 
+   if ___conditional___ == "Win32" then do
       match = --[[ tuple ]]{
         current_dir_name_1,
         "..",
@@ -354,10 +354,9 @@ do
         quote_1,
         basename_1,
         dirname_1
-      };end else 
-   do end end end
-  else do
-    match = --[[ tuple ]]{
+      }; end else 
+   end end end end
+  match = --[[ tuple ]]{
       current_dir_name,
       "..",
       "/",
@@ -370,7 +369,6 @@ do
       basename,
       dirname
     };
-    end end
     
 end
 
@@ -458,7 +456,7 @@ function remove_extension(name) do
   end end 
 end end
 
-prng = Caml_obj.caml_lazy_make((function (param) do
+prng = Caml_obj.caml_lazy_make((function(param) do
         return Random.State.make_self_init(--[[ () ]]0);
       end end));
 
@@ -588,6 +586,7 @@ dirname_3 = match[10];
 
 quote_2 = match[8];
 
+exports = {}
 exports.current_dir_name = current_dir_name_3;
 exports.parent_dir_name = parent_dir_name;
 exports.dir_sep = dir_sep;

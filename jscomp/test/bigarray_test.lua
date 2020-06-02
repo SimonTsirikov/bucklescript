@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Caml_int32 = require "../../lib/js/caml_int32";
 Caml_external_polyfill = require "../../lib/js/caml_external_polyfill";
@@ -37,6 +37,7 @@ end end
 
 BA1 = --[[ alias ]]0;
 
+exports = {}
 exports.BA1 = BA1;
 exports.sum = sum;
 exports.init = init;

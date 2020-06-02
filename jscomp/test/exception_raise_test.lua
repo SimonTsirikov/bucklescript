@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 List = require "../../lib/js/list";
@@ -126,7 +126,7 @@ suites = do
   contents: --[[ :: ]]{
     --[[ tuple ]]{
       "File \"exception_raise_test.ml\", line 114, characters 4-11",
-      (function (param) do
+      (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     --[[ tuple ]]{
                       f,
@@ -146,7 +146,7 @@ suites = do
     --[[ :: ]]{
       --[[ tuple ]]{
         "File \"exception_raise_test.ml\", line 116, characters 4-11",
-        (function (param) do
+        (function(param) do
             if (a1[0] == Js_exn.__Error) then do
               return --[[ Eq ]]Block.__(0, {
                         a1[1],
@@ -178,7 +178,7 @@ function eq(loc, x, y) do
 end end
 
 xpcall(function() do
-  (function (_)dothrow 2end(--[[ () ]]0));
+  (function(_)dothrow 2end(--[[ () ]]0));
 end end,function(raw_e_2) do
   e = Caml_js_exceptions.internalToOCamlException(raw_e_2);
   eq("File \"exception_raise_test.ml\", line 131, characters 7-14", Caml_js_exceptions.caml_as_js_exn(e) ~= undefined, true);
@@ -218,10 +218,11 @@ function input_lines(ic, _acc) do
   end;
 end end
 
-eq("File \"exception_raise_test.ml\", line 150, characters 5-12", function (a,b,c,_)doreturn a + b + c end(1, 2, 3, 4), 6);
+eq("File \"exception_raise_test.ml\", line 150, characters 5-12", function(a,b,c,_)doreturn a + b + c end(1, 2, 3, 4), 6);
 
 Mt.from_pair_suites("Exception_raise_test", suites.contents);
 
+exports = {}
 exports.Local = Local;
 exports.B = B;
 exports.C = C;

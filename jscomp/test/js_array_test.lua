@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Block = require "../../lib/js/block";
@@ -7,7 +7,7 @@ Caml_option = require "../../lib/js/caml_option";
 
 suites_000 = --[[ tuple ]]{
   "File \"js_array_test.ml\", line 3, characters 4-11",
-  (function (param) do
+  (function(param) do
       x = {
         1,
         2,
@@ -20,7 +20,7 @@ suites_000 = --[[ tuple ]]{
                   2,
                   4
                 },
-                (Js_vector.filterInPlace((function (x) do
+                (Js_vector.filterInPlace((function(x) do
                           return x % 2 == 0;
                         end end), x), x)
               });
@@ -30,7 +30,7 @@ suites_000 = --[[ tuple ]]{
 suites_001 = --[[ :: ]]{
   --[[ tuple ]]{
     "File \"js_array_test.ml\", line 11, characters 4-11",
-    (function (param) do
+    (function(param) do
         x = {
           1,
           2,
@@ -40,7 +40,7 @@ suites_001 = --[[ :: ]]{
         };
         return --[[ Eq ]]Block.__(0, {
                   true,
-                  (Js_vector.filterInPlace((function (x) do
+                  (Js_vector.filterInPlace((function(x) do
                             return x > 10;
                           end end), x), #x == 0)
                 });
@@ -49,7 +49,7 @@ suites_001 = --[[ :: ]]{
   --[[ :: ]]{
     --[[ tuple ]]{
       "isArray_array",
-      (function (param) do
+      (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     true,
                     Array.isArray({})
@@ -59,7 +59,7 @@ suites_001 = --[[ :: ]]{
     --[[ :: ]]{
       --[[ tuple ]]{
         "isArray_int",
-        (function (param) do
+        (function(param) do
             return --[[ Eq ]]Block.__(0, {
                       false,
                       Array.isArray(34)
@@ -69,7 +69,7 @@ suites_001 = --[[ :: ]]{
       --[[ :: ]]{
         --[[ tuple ]]{
           "length",
-          (function (param) do
+          (function(param) do
               return --[[ Eq ]]Block.__(0, {
                         3,
                         {
@@ -83,7 +83,7 @@ suites_001 = --[[ :: ]]{
         --[[ :: ]]{
           --[[ tuple ]]{
             "copyWithin",
-            (function (param) do
+            (function(param) do
                 return --[[ Eq ]]Block.__(0, {
                           {
                             1,
@@ -105,7 +105,7 @@ suites_001 = --[[ :: ]]{
           --[[ :: ]]{
             --[[ tuple ]]{
               "copyWithinFrom",
-              (function (param) do
+              (function(param) do
                   return --[[ Eq ]]Block.__(0, {
                             {
                               4,
@@ -127,7 +127,7 @@ suites_001 = --[[ :: ]]{
             --[[ :: ]]{
               --[[ tuple ]]{
                 "copyWithinFromRange",
-                (function (param) do
+                (function(param) do
                     return --[[ Eq ]]Block.__(0, {
                               {
                                 4,
@@ -149,7 +149,7 @@ suites_001 = --[[ :: ]]{
               --[[ :: ]]{
                 --[[ tuple ]]{
                   "fillInPlace",
-                  (function (param) do
+                  (function(param) do
                       return --[[ Eq ]]Block.__(0, {
                                 {
                                   4,
@@ -167,7 +167,7 @@ suites_001 = --[[ :: ]]{
                 --[[ :: ]]{
                   --[[ tuple ]]{
                     "fillFromInPlace",
-                    (function (param) do
+                    (function(param) do
                         return --[[ Eq ]]Block.__(0, {
                                   {
                                     1,
@@ -185,7 +185,7 @@ suites_001 = --[[ :: ]]{
                   --[[ :: ]]{
                     --[[ tuple ]]{
                       "fillRangeInPlace",
-                      (function (param) do
+                      (function(param) do
                           return --[[ Eq ]]Block.__(0, {
                                     {
                                       1,
@@ -203,7 +203,7 @@ suites_001 = --[[ :: ]]{
                     --[[ :: ]]{
                       --[[ tuple ]]{
                         "pop",
-                        (function (param) do
+                        (function(param) do
                             return --[[ Eq ]]Block.__(0, {
                                       3,
                                       Caml_option.undefined_to_opt({
@@ -217,7 +217,7 @@ suites_001 = --[[ :: ]]{
                       --[[ :: ]]{
                         --[[ tuple ]]{
                           "pop - empty array",
-                          (function (param) do
+                          (function(param) do
                               return --[[ Eq ]]Block.__(0, {
                                         undefined,
                                         Caml_option.undefined_to_opt({}.pop())
@@ -227,7 +227,7 @@ suites_001 = --[[ :: ]]{
                         --[[ :: ]]{
                           --[[ tuple ]]{
                             "push",
-                            (function (param) do
+                            (function(param) do
                                 return --[[ Eq ]]Block.__(0, {
                                           4,
                                           {
@@ -241,7 +241,7 @@ suites_001 = --[[ :: ]]{
                           --[[ :: ]]{
                             --[[ tuple ]]{
                               "pushMany",
-                              (function (param) do
+                              (function(param) do
                                   return --[[ Eq ]]Block.__(0, {
                                             5,
                                             {
@@ -255,7 +255,7 @@ suites_001 = --[[ :: ]]{
                             --[[ :: ]]{
                               --[[ tuple ]]{
                                 "reverseInPlace",
-                                (function (param) do
+                                (function(param) do
                                     return --[[ Eq ]]Block.__(0, {
                                               {
                                                 3,
@@ -273,7 +273,7 @@ suites_001 = --[[ :: ]]{
                               --[[ :: ]]{
                                 --[[ tuple ]]{
                                   "shift",
-                                  (function (param) do
+                                  (function(param) do
                                       return --[[ Eq ]]Block.__(0, {
                                                 1,
                                                 Caml_option.undefined_to_opt({
@@ -287,7 +287,7 @@ suites_001 = --[[ :: ]]{
                                 --[[ :: ]]{
                                   --[[ tuple ]]{
                                     "shift - empty array",
-                                    (function (param) do
+                                    (function(param) do
                                         return --[[ Eq ]]Block.__(0, {
                                                   undefined,
                                                   Caml_option.undefined_to_opt({}.shift())
@@ -297,7 +297,7 @@ suites_001 = --[[ :: ]]{
                                   --[[ :: ]]{
                                     --[[ tuple ]]{
                                       "sortInPlace",
-                                      (function (param) do
+                                      (function(param) do
                                           return --[[ Eq ]]Block.__(0, {
                                                     {
                                                       1,
@@ -315,7 +315,7 @@ suites_001 = --[[ :: ]]{
                                     --[[ :: ]]{
                                       --[[ tuple ]]{
                                         "sortInPlaceWith",
-                                        (function (param) do
+                                        (function(param) do
                                             return --[[ Eq ]]Block.__(0, {
                                                       {
                                                         3,
@@ -326,7 +326,7 @@ suites_001 = --[[ :: ]]{
                                                           3,
                                                           1,
                                                           2
-                                                        }.sort((function (a, b) do
+                                                        }.sort((function(a, b) do
                                                               return b - a | 0;
                                                             end end))
                                                     });
@@ -335,7 +335,7 @@ suites_001 = --[[ :: ]]{
                                       --[[ :: ]]{
                                         --[[ tuple ]]{
                                           "spliceInPlace",
-                                          (function (param) do
+                                          (function(param) do
                                               arr = {
                                                 1,
                                                 2,
@@ -364,7 +364,7 @@ suites_001 = --[[ :: ]]{
                                         --[[ :: ]]{
                                           --[[ tuple ]]{
                                             "removeFromInPlace",
-                                            (function (param) do
+                                            (function(param) do
                                                 arr = {
                                                   1,
                                                   2,
@@ -393,7 +393,7 @@ suites_001 = --[[ :: ]]{
                                           --[[ :: ]]{
                                             --[[ tuple ]]{
                                               "removeCountInPlace",
-                                              (function (param) do
+                                              (function(param) do
                                                   arr = {
                                                     1,
                                                     2,
@@ -420,7 +420,7 @@ suites_001 = --[[ :: ]]{
                                             --[[ :: ]]{
                                               --[[ tuple ]]{
                                                 "unshift",
-                                                (function (param) do
+                                                (function(param) do
                                                     return --[[ Eq ]]Block.__(0, {
                                                               4,
                                                               {
@@ -434,7 +434,7 @@ suites_001 = --[[ :: ]]{
                                               --[[ :: ]]{
                                                 --[[ tuple ]]{
                                                   "unshiftMany",
-                                                  (function (param) do
+                                                  (function(param) do
                                                       return --[[ Eq ]]Block.__(0, {
                                                                 5,
                                                                 {
@@ -448,7 +448,7 @@ suites_001 = --[[ :: ]]{
                                                 --[[ :: ]]{
                                                   --[[ tuple ]]{
                                                     "append",
-                                                    (function (param) do
+                                                    (function(param) do
                                                         return --[[ Eq ]]Block.__(0, {
                                                                   {
                                                                     1,
@@ -467,7 +467,7 @@ suites_001 = --[[ :: ]]{
                                                   --[[ :: ]]{
                                                     --[[ tuple ]]{
                                                       "concat",
-                                                      (function (param) do
+                                                      (function(param) do
                                                           return --[[ Eq ]]Block.__(0, {
                                                                     {
                                                                       1,
@@ -490,7 +490,7 @@ suites_001 = --[[ :: ]]{
                                                     --[[ :: ]]{
                                                       --[[ tuple ]]{
                                                         "concatMany",
-                                                        (function (param) do
+                                                        (function(param) do
                                                             return --[[ Eq ]]Block.__(0, {
                                                                       {
                                                                         1,
@@ -518,7 +518,7 @@ suites_001 = --[[ :: ]]{
                                                       --[[ :: ]]{
                                                         --[[ tuple ]]{
                                                           "includes",
-                                                          (function (param) do
+                                                          (function(param) do
                                                               return --[[ Eq ]]Block.__(0, {
                                                                         true,
                                                                         {
@@ -532,7 +532,7 @@ suites_001 = --[[ :: ]]{
                                                         --[[ :: ]]{
                                                           --[[ tuple ]]{
                                                             "indexOf",
-                                                            (function (param) do
+                                                            (function(param) do
                                                                 return --[[ Eq ]]Block.__(0, {
                                                                           1,
                                                                           {
@@ -546,7 +546,7 @@ suites_001 = --[[ :: ]]{
                                                           --[[ :: ]]{
                                                             --[[ tuple ]]{
                                                               "indexOfFrom",
-                                                              (function (param) do
+                                                              (function(param) do
                                                                   return --[[ Eq ]]Block.__(0, {
                                                                             3,
                                                                             {
@@ -561,7 +561,7 @@ suites_001 = --[[ :: ]]{
                                                             --[[ :: ]]{
                                                               --[[ tuple ]]{
                                                                 "join",
-                                                                (function (param) do
+                                                                (function(param) do
                                                                     return --[[ Eq ]]Block.__(0, {
                                                                               "1,2,3",
                                                                               {
@@ -575,7 +575,7 @@ suites_001 = --[[ :: ]]{
                                                               --[[ :: ]]{
                                                                 --[[ tuple ]]{
                                                                   "joinWith",
-                                                                  (function (param) do
+                                                                  (function(param) do
                                                                       return --[[ Eq ]]Block.__(0, {
                                                                                 "1;2;3",
                                                                                 {
@@ -589,7 +589,7 @@ suites_001 = --[[ :: ]]{
                                                                 --[[ :: ]]{
                                                                   --[[ tuple ]]{
                                                                     "lastIndexOf",
-                                                                    (function (param) do
+                                                                    (function(param) do
                                                                         return --[[ Eq ]]Block.__(0, {
                                                                                   1,
                                                                                   {
@@ -603,7 +603,7 @@ suites_001 = --[[ :: ]]{
                                                                   --[[ :: ]]{
                                                                     --[[ tuple ]]{
                                                                       "lastIndexOfFrom",
-                                                                      (function (param) do
+                                                                      (function(param) do
                                                                           return --[[ Eq ]]Block.__(0, {
                                                                                     1,
                                                                                     {
@@ -618,7 +618,7 @@ suites_001 = --[[ :: ]]{
                                                                     --[[ :: ]]{
                                                                       --[[ tuple ]]{
                                                                         "slice",
-                                                                        (function (param) do
+                                                                        (function(param) do
                                                                             return --[[ Eq ]]Block.__(0, {
                                                                                       {
                                                                                         2,
@@ -637,7 +637,7 @@ suites_001 = --[[ :: ]]{
                                                                       --[[ :: ]]{
                                                                         --[[ tuple ]]{
                                                                           "copy",
-                                                                          (function (param) do
+                                                                          (function(param) do
                                                                               return --[[ Eq ]]Block.__(0, {
                                                                                         {
                                                                                           1,
@@ -659,7 +659,7 @@ suites_001 = --[[ :: ]]{
                                                                         --[[ :: ]]{
                                                                           --[[ tuple ]]{
                                                                             "sliceFrom",
-                                                                            (function (param) do
+                                                                            (function(param) do
                                                                                 return --[[ Eq ]]Block.__(0, {
                                                                                           {
                                                                                             3,
@@ -679,7 +679,7 @@ suites_001 = --[[ :: ]]{
                                                                           --[[ :: ]]{
                                                                             --[[ tuple ]]{
                                                                               "toString",
-                                                                              (function (param) do
+                                                                              (function(param) do
                                                                                   return --[[ Eq ]]Block.__(0, {
                                                                                             "1,2,3",
                                                                                             {
@@ -693,7 +693,7 @@ suites_001 = --[[ :: ]]{
                                                                             --[[ :: ]]{
                                                                               --[[ tuple ]]{
                                                                                 "toLocaleString",
-                                                                                (function (param) do
+                                                                                (function(param) do
                                                                                     return --[[ Eq ]]Block.__(0, {
                                                                                               "1,2,3",
                                                                                               {
@@ -707,14 +707,14 @@ suites_001 = --[[ :: ]]{
                                                                               --[[ :: ]]{
                                                                                 --[[ tuple ]]{
                                                                                   "every",
-                                                                                  (function (param) do
+                                                                                  (function(param) do
                                                                                       return --[[ Eq ]]Block.__(0, {
                                                                                                 true,
                                                                                                 {
                                                                                                     1,
                                                                                                     2,
                                                                                                     3
-                                                                                                  }.every((function (n) do
+                                                                                                  }.every((function(n) do
                                                                                                         return n > 0;
                                                                                                       end end))
                                                                                               });
@@ -723,14 +723,14 @@ suites_001 = --[[ :: ]]{
                                                                                 --[[ :: ]]{
                                                                                   --[[ tuple ]]{
                                                                                     "everyi",
-                                                                                    (function (param) do
+                                                                                    (function(param) do
                                                                                         return --[[ Eq ]]Block.__(0, {
                                                                                                   false,
                                                                                                   {
                                                                                                       1,
                                                                                                       2,
                                                                                                       3
-                                                                                                    }.every((function (param, i) do
+                                                                                                    }.every((function(param, i) do
                                                                                                           return i > 0;
                                                                                                         end end))
                                                                                                 });
@@ -739,7 +739,7 @@ suites_001 = --[[ :: ]]{
                                                                                   --[[ :: ]]{
                                                                                     --[[ tuple ]]{
                                                                                       "filter",
-                                                                                      (function (param) do
+                                                                                      (function(param) do
                                                                                           return --[[ Eq ]]Block.__(0, {
                                                                                                     {
                                                                                                       2,
@@ -750,7 +750,7 @@ suites_001 = --[[ :: ]]{
                                                                                                         2,
                                                                                                         3,
                                                                                                         4
-                                                                                                      }.filter((function (n) do
+                                                                                                      }.filter((function(n) do
                                                                                                             return n % 2 == 0;
                                                                                                           end end))
                                                                                                   });
@@ -759,7 +759,7 @@ suites_001 = --[[ :: ]]{
                                                                                     --[[ :: ]]{
                                                                                       --[[ tuple ]]{
                                                                                         "filteri",
-                                                                                        (function (param) do
+                                                                                        (function(param) do
                                                                                             return --[[ Eq ]]Block.__(0, {
                                                                                                       {
                                                                                                         1,
@@ -770,7 +770,7 @@ suites_001 = --[[ :: ]]{
                                                                                                           2,
                                                                                                           3,
                                                                                                           4
-                                                                                                        }.filter((function (param, i) do
+                                                                                                        }.filter((function(param, i) do
                                                                                                               return i % 2 == 0;
                                                                                                             end end))
                                                                                                     });
@@ -779,7 +779,7 @@ suites_001 = --[[ :: ]]{
                                                                                       --[[ :: ]]{
                                                                                         --[[ tuple ]]{
                                                                                           "find",
-                                                                                          (function (param) do
+                                                                                          (function(param) do
                                                                                               return --[[ Eq ]]Block.__(0, {
                                                                                                         2,
                                                                                                         Caml_option.undefined_to_opt({
@@ -787,7 +787,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                 2,
                                                                                                                 3,
                                                                                                                 4
-                                                                                                              }.find((function (n) do
+                                                                                                              }.find((function(n) do
                                                                                                                     return n % 2 == 0;
                                                                                                                   end end)))
                                                                                                       });
@@ -796,7 +796,7 @@ suites_001 = --[[ :: ]]{
                                                                                         --[[ :: ]]{
                                                                                           --[[ tuple ]]{
                                                                                             "find - no match",
-                                                                                            (function (param) do
+                                                                                            (function(param) do
                                                                                                 return --[[ Eq ]]Block.__(0, {
                                                                                                           undefined,
                                                                                                           Caml_option.undefined_to_opt({
@@ -804,7 +804,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                   2,
                                                                                                                   3,
                                                                                                                   4
-                                                                                                                }.find((function (n) do
+                                                                                                                }.find((function(n) do
                                                                                                                       return n % 2 == 5;
                                                                                                                     end end)))
                                                                                                         });
@@ -813,7 +813,7 @@ suites_001 = --[[ :: ]]{
                                                                                           --[[ :: ]]{
                                                                                             --[[ tuple ]]{
                                                                                               "findi",
-                                                                                              (function (param) do
+                                                                                              (function(param) do
                                                                                                   return --[[ Eq ]]Block.__(0, {
                                                                                                             1,
                                                                                                             Caml_option.undefined_to_opt({
@@ -821,7 +821,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                     2,
                                                                                                                     3,
                                                                                                                     4
-                                                                                                                  }.find((function (param, i) do
+                                                                                                                  }.find((function(param, i) do
                                                                                                                         return i % 2 == 0;
                                                                                                                       end end)))
                                                                                                           });
@@ -830,7 +830,7 @@ suites_001 = --[[ :: ]]{
                                                                                             --[[ :: ]]{
                                                                                               --[[ tuple ]]{
                                                                                                 "findi - no match",
-                                                                                                (function (param) do
+                                                                                                (function(param) do
                                                                                                     return --[[ Eq ]]Block.__(0, {
                                                                                                               undefined,
                                                                                                               Caml_option.undefined_to_opt({
@@ -838,7 +838,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                       2,
                                                                                                                       3,
                                                                                                                       4
-                                                                                                                    }.find((function (param, i) do
+                                                                                                                    }.find((function(param, i) do
                                                                                                                           return i % 2 == 5;
                                                                                                                         end end)))
                                                                                                             });
@@ -847,7 +847,7 @@ suites_001 = --[[ :: ]]{
                                                                                               --[[ :: ]]{
                                                                                                 --[[ tuple ]]{
                                                                                                   "findIndex",
-                                                                                                  (function (param) do
+                                                                                                  (function(param) do
                                                                                                       return --[[ Eq ]]Block.__(0, {
                                                                                                                 1,
                                                                                                                 {
@@ -855,7 +855,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                     2,
                                                                                                                     3,
                                                                                                                     4
-                                                                                                                  }.findIndex((function (n) do
+                                                                                                                  }.findIndex((function(n) do
                                                                                                                         return n % 2 == 0;
                                                                                                                       end end))
                                                                                                               });
@@ -864,7 +864,7 @@ suites_001 = --[[ :: ]]{
                                                                                                 --[[ :: ]]{
                                                                                                   --[[ tuple ]]{
                                                                                                     "findIndexi",
-                                                                                                    (function (param) do
+                                                                                                    (function(param) do
                                                                                                         return --[[ Eq ]]Block.__(0, {
                                                                                                                   0,
                                                                                                                   {
@@ -872,7 +872,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                       2,
                                                                                                                       3,
                                                                                                                       4
-                                                                                                                    }.findIndex((function (param, i) do
+                                                                                                                    }.findIndex((function(param, i) do
                                                                                                                           return i % 2 == 0;
                                                                                                                         end end))
                                                                                                                 });
@@ -881,7 +881,7 @@ suites_001 = --[[ :: ]]{
                                                                                                   --[[ :: ]]{
                                                                                                     --[[ tuple ]]{
                                                                                                       "forEach",
-                                                                                                      (function (param) do
+                                                                                                      (function(param) do
                                                                                                           sum = do
                                                                                                             contents: 0
                                                                                                           end;
@@ -889,7 +889,7 @@ suites_001 = --[[ :: ]]{
                                                                                                               1,
                                                                                                               2,
                                                                                                               3
-                                                                                                            }.forEach((function (n) do
+                                                                                                            }.forEach((function(n) do
                                                                                                                   sum.contents = sum.contents + n | 0;
                                                                                                                   return --[[ () ]]0;
                                                                                                                 end end));
@@ -902,7 +902,7 @@ suites_001 = --[[ :: ]]{
                                                                                                     --[[ :: ]]{
                                                                                                       --[[ tuple ]]{
                                                                                                         "forEachi",
-                                                                                                        (function (param) do
+                                                                                                        (function(param) do
                                                                                                             sum = do
                                                                                                               contents: 0
                                                                                                             end;
@@ -910,7 +910,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                 1,
                                                                                                                 2,
                                                                                                                 3
-                                                                                                              }.forEach((function (param, i) do
+                                                                                                              }.forEach((function(param, i) do
                                                                                                                     sum.contents = sum.contents + i | 0;
                                                                                                                     return --[[ () ]]0;
                                                                                                                   end end));
@@ -923,7 +923,7 @@ suites_001 = --[[ :: ]]{
                                                                                                       --[[ :: ]]{
                                                                                                         --[[ tuple ]]{
                                                                                                           "map",
-                                                                                                          (function (param) do
+                                                                                                          (function(param) do
                                                                                                               return --[[ Eq ]]Block.__(0, {
                                                                                                                         {
                                                                                                                           2,
@@ -936,7 +936,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                             2,
                                                                                                                             3,
                                                                                                                             4
-                                                                                                                          }.map((function (n) do
+                                                                                                                          }.map((function(n) do
                                                                                                                                 return (n << 1);
                                                                                                                               end end))
                                                                                                                       });
@@ -945,7 +945,7 @@ suites_001 = --[[ :: ]]{
                                                                                                         --[[ :: ]]{
                                                                                                           --[[ tuple ]]{
                                                                                                             "map",
-                                                                                                            (function (param) do
+                                                                                                            (function(param) do
                                                                                                                 return --[[ Eq ]]Block.__(0, {
                                                                                                                           {
                                                                                                                             0,
@@ -958,7 +958,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                               2,
                                                                                                                               3,
                                                                                                                               4
-                                                                                                                            }.map((function (param, i) do
+                                                                                                                            }.map((function(param, i) do
                                                                                                                                   return (i << 1);
                                                                                                                                 end end))
                                                                                                                         });
@@ -967,7 +967,7 @@ suites_001 = --[[ :: ]]{
                                                                                                           --[[ :: ]]{
                                                                                                             --[[ tuple ]]{
                                                                                                               "reduce",
-                                                                                                              (function (param) do
+                                                                                                              (function(param) do
                                                                                                                   return --[[ Eq ]]Block.__(0, {
                                                                                                                             -10,
                                                                                                                             {
@@ -975,7 +975,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                                 2,
                                                                                                                                 3,
                                                                                                                                 4
-                                                                                                                              }.reduce((function (acc, n) do
+                                                                                                                              }.reduce((function(acc, n) do
                                                                                                                                     return acc - n | 0;
                                                                                                                                   end end), 0)
                                                                                                                           });
@@ -984,7 +984,7 @@ suites_001 = --[[ :: ]]{
                                                                                                             --[[ :: ]]{
                                                                                                               --[[ tuple ]]{
                                                                                                                 "reducei",
-                                                                                                                (function (param) do
+                                                                                                                (function(param) do
                                                                                                                     return --[[ Eq ]]Block.__(0, {
                                                                                                                               -6,
                                                                                                                               {
@@ -992,7 +992,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                                   2,
                                                                                                                                   3,
                                                                                                                                   4
-                                                                                                                                }.reduce((function (acc, param, i) do
+                                                                                                                                }.reduce((function(acc, param, i) do
                                                                                                                                       return acc - i | 0;
                                                                                                                                     end end), 0)
                                                                                                                             });
@@ -1001,7 +1001,7 @@ suites_001 = --[[ :: ]]{
                                                                                                               --[[ :: ]]{
                                                                                                                 --[[ tuple ]]{
                                                                                                                   "reduceRight",
-                                                                                                                  (function (param) do
+                                                                                                                  (function(param) do
                                                                                                                       return --[[ Eq ]]Block.__(0, {
                                                                                                                                 -10,
                                                                                                                                 {
@@ -1009,7 +1009,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                                     2,
                                                                                                                                     3,
                                                                                                                                     4
-                                                                                                                                  }.reduceRight((function (acc, n) do
+                                                                                                                                  }.reduceRight((function(acc, n) do
                                                                                                                                         return acc - n | 0;
                                                                                                                                       end end), 0)
                                                                                                                               });
@@ -1018,7 +1018,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                 --[[ :: ]]{
                                                                                                                   --[[ tuple ]]{
                                                                                                                     "reduceRighti",
-                                                                                                                    (function (param) do
+                                                                                                                    (function(param) do
                                                                                                                         return --[[ Eq ]]Block.__(0, {
                                                                                                                                   -6,
                                                                                                                                   {
@@ -1026,7 +1026,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                                       2,
                                                                                                                                       3,
                                                                                                                                       4
-                                                                                                                                    }.reduceRight((function (acc, param, i) do
+                                                                                                                                    }.reduceRight((function(acc, param, i) do
                                                                                                                                           return acc - i | 0;
                                                                                                                                         end end), 0)
                                                                                                                                 });
@@ -1035,7 +1035,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                   --[[ :: ]]{
                                                                                                                     --[[ tuple ]]{
                                                                                                                       "some",
-                                                                                                                      (function (param) do
+                                                                                                                      (function(param) do
                                                                                                                           return --[[ Eq ]]Block.__(0, {
                                                                                                                                     false,
                                                                                                                                     {
@@ -1043,7 +1043,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                                         2,
                                                                                                                                         3,
                                                                                                                                         4
-                                                                                                                                      }.some((function (n) do
+                                                                                                                                      }.some((function(n) do
                                                                                                                                             return n <= 0;
                                                                                                                                           end end))
                                                                                                                                   });
@@ -1052,7 +1052,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                     --[[ :: ]]{
                                                                                                                       --[[ tuple ]]{
                                                                                                                         "somei",
-                                                                                                                        (function (param) do
+                                                                                                                        (function(param) do
                                                                                                                             return --[[ Eq ]]Block.__(0, {
                                                                                                                                       true,
                                                                                                                                       {
@@ -1060,7 +1060,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                                           2,
                                                                                                                                           3,
                                                                                                                                           4
-                                                                                                                                        }.some((function (param, i) do
+                                                                                                                                        }.some((function(param, i) do
                                                                                                                                               return i <= 0;
                                                                                                                                             end end))
                                                                                                                                     });
@@ -1134,5 +1134,6 @@ suites = --[[ :: ]]{
 
 Mt.from_pair_suites("Js_array_test", suites);
 
+exports = {}
 exports.suites = suites;
 --[[  Not a pure module ]]

@@ -433,12 +433,10 @@ and  pp_function is_method
              (* see # 1692, add a paren for annoymous function for safety  *)
              P.paren_group f 1  (fun _ ->
                  P.string f L.function_;
-                 P.space f ;
                  param_body ())                
            | Name_non_top x  ->
              ignore (pp_var_assign inner_cxt f x : cxt ); 
              P.string f L.function_;
-             P.space f ;
              param_body ();
              semi f 
            | Name_top x  ->
@@ -471,8 +469,10 @@ and  pp_function is_method
                | No_name  -> ()
                | Name_non_top x | Name_top x -> ignore (Ext_pp_scope.ident inner_cxt f x));
               param_body ());
-          pp_paren_params inner_cxt f lexical;     
+          P.space f;
+          P.string f L.end_;
           P.string f L.rparen;
+          pp_paren_params inner_cxt f lexical; 
           match name with
           | No_name -> () (* expression *)
           | _ -> semi f (* has binding, a statement *)  in
@@ -504,10 +504,11 @@ and pp_one_case_clause : 'a .
               P.space f;
               P.string f L.conditional;
               P.space f;
-              P.string f L.eq;
+              P.string f "==";
               P.space f;
               pp_cond  f switch_case; 
               pp_comment_option f comment);
+          let depth = if mult then depth else depth + 1 in
           P.group f 1 (fun _ ->
               let (cxt, mult) =
                 match switch_body with
@@ -519,6 +520,7 @@ and pp_one_case_clause : 'a .
                   P.string f L.do_;
                   P.newline f ;
                   let cxt_ = statement_list false cxt f switch_body in
+                  P.space f;
                   P.string f L.end_;
                   (cxt_, false)
               in (if mult then
@@ -533,12 +535,14 @@ and pp_one_case_clause : 'a .
                  end
               else
                 begin
+                  (for _ = depth downto 1 do
+                    begin
+                      P.space f;
+                      P.string f L.end_;
+                    end
+                  done);
                   P.space f;
-                  P.string f L.end_;
-                  P.space f;
-                  P.string f L.end_;
-                  P.space f;
-                  depth - 1
+                  0
                 end
               in
               (cxt, depth, mult) ))))
@@ -550,9 +554,7 @@ and loop_case_clauses  :  'a . cxt ->
   P.t -> (P.t -> 'a -> unit) -> 'a J.case_clause list -> cxt
   = fun  cxt  f pp_cond cases ->
     let (cxt, depth, _) = Ext_list.fold_left cases (cxt, 0, false) (fun acc x -> pp_one_case_clause acc f pp_cond x) in
-      P.space f;
-      P.string f L.do_;
-      (for _ = depth downto 0 do
+      (for _ = depth downto 1 do
         begin
           P.space f;
           P.string f L.end_;
@@ -675,8 +677,7 @@ and expression_desc cxt ~(level:int) f x : cxt  =
     Js_dump_string.pp_string 0  f  s;
     cxt
   | Raw_js_function (s,params) ->   
-    P.string f L.function_; 
-    P.space f ; 
+    P.string f L.function_;
     pp_js_function_params_body f s params;
     cxt 
   | Raw_js_code {code = s; code_info = info} ->
@@ -1037,8 +1038,7 @@ and variable_declaration top cxt f
       | Raw_js_function(s,params), true ->     
         P.string f L.function_;             
         P.space f ; 
-        let acxt = Ext_pp_scope.ident cxt f name in 
-        P.space f ; 
+        let acxt = Ext_pp_scope.ident cxt f name in  
         pp_js_function_params_body f s params;
         semi f;
         acxt 
@@ -1214,6 +1214,7 @@ and statement_desc top cxt f (s : J.statement_desc) : cxt =
            P.string f L.lparen;
            P.string f L.function_;               
            pp_paren_params inner_cxt f lexical; 
+           P.space f;
            let cxt = P.brace_vgroup f 0  (fun _ -> action inner_cxt) in               
            pp_paren_params inner_cxt f lexical; 
            P.string f L.rparen;
@@ -1259,15 +1260,7 @@ and statement_desc top cxt f (s : J.statement_desc) : cxt =
         | None -> cxt
         | Some def ->
           P.group f 1  (fun _ ->
-              P.string f L.else_;
-              P.space f;
-              P.string f L.do_;
-              P.newline f;
               let cxt_ = statement_list  false cxt  f def in
-              P.newline f;
-              P.string f L.end_;
-              P.space f;
-              P.string f L.end_;
               P.newline f;
               cxt_))
 
@@ -1285,15 +1278,7 @@ and statement_desc top cxt f (s : J.statement_desc) : cxt =
         | None -> cxt
         | Some def ->
           P.group f 1  (fun _ ->
-              P.string f L.else_;
-              P.space f;
-              P.string f L.do_;
-              P.newline f;
               let cxt_ = statement_list  false cxt  f def in
-              P.newline f;
-              P.string f L.end_;
-              P.space f;
-              P.string f L.end_;
               P.newline f;
               cxt_))
   | Throw e ->

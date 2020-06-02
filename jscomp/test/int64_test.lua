@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 __Array = require "../../lib/js/array";
@@ -40,7 +40,7 @@ end end
 
 generic_compare = Caml_obj.caml_compare;
 
-shift_left_tests_000 = __Array.map((function (i) do
+shift_left_tests_000 = __Array.map((function(i) do
         return Caml_int64.lsl_(--[[ int64 ]]{
                     --[[ hi ]]0,
                     --[[ lo ]]1
@@ -311,7 +311,7 @@ shift_left_tests = --[[ tuple ]]{
   shift_left_tests_001
 };
 
-shift_right_tests_000 = __Array.map((function (i) do
+shift_right_tests_000 = __Array.map((function(i) do
         return Caml_int64.asr_(--[[ int64 ]]{
                     --[[ hi ]]-2147483648,
                     --[[ lo ]]0
@@ -582,7 +582,7 @@ shift_right_tests = --[[ tuple ]]{
   shift_right_tests_001
 };
 
-shift_right_logical_suites_000 = __Array.map((function (i) do
+shift_right_logical_suites_000 = __Array.map((function(i) do
         return Caml_int64.lsr_(--[[ int64 ]]{
                     --[[ hi ]]-2147483648,
                     --[[ lo ]]0
@@ -886,7 +886,7 @@ end end
 suites = Pervasives.$at(--[[ :: ]]{
       --[[ tuple ]]{
         "add_one",
-        (function (param) do
+        (function(param) do
             return --[[ Eq ]]Block.__(0, {
                       v,
                       --[[ int64 ]]{
@@ -899,7 +899,7 @@ suites = Pervasives.$at(--[[ :: ]]{
       --[[ :: ]]{
         --[[ tuple ]]{
           "add_2",
-          (function (param) do
+          (function(param) do
               return --[[ Eq ]]Block.__(0, {
                         --[[ int64 ]]{
                           --[[ hi ]]0,
@@ -912,7 +912,7 @@ suites = Pervasives.$at(--[[ :: ]]{
         --[[ :: ]]{
           --[[ tuple ]]{
             "add_3",
-            (function (param) do
+            (function(param) do
                 return --[[ Eq ]]Block.__(0, {
                           --[[ int64 ]]{
                             --[[ hi ]]0,
@@ -928,7 +928,7 @@ suites = Pervasives.$at(--[[ :: ]]{
           --[[ :: ]]{
             --[[ tuple ]]{
               "add_4",
-              (function (param) do
+              (function(param) do
                   return commutative_add(--[[ int64 ]]{
                               --[[ hi ]]-1,
                               --[[ lo ]]4294967294
@@ -944,7 +944,7 @@ suites = Pervasives.$at(--[[ :: ]]{
             --[[ :: ]]{
               --[[ tuple ]]{
                 "add_5",
-                (function (param) do
+                (function(param) do
                     return commutative_add(--[[ int64 ]]{
                                 --[[ hi ]]-1,
                                 --[[ lo ]]4294967293
@@ -960,7 +960,7 @@ suites = Pervasives.$at(--[[ :: ]]{
               --[[ :: ]]{
                 --[[ tuple ]]{
                   "add_6",
-                  (function (param) do
+                  (function(param) do
                       return commutative_add(--[[ int64 ]]{
                                   --[[ hi ]]0,
                                   --[[ lo ]]4
@@ -976,7 +976,7 @@ suites = Pervasives.$at(--[[ :: ]]{
                 --[[ :: ]]{
                   --[[ tuple ]]{
                     "add_7",
-                    (function (param) do
+                    (function(param) do
                         return commutative_add(--[[ int64 ]]{
                                     --[[ hi ]]1,
                                     --[[ lo ]]0
@@ -992,7 +992,7 @@ suites = Pervasives.$at(--[[ :: ]]{
                   --[[ :: ]]{
                     --[[ tuple ]]{
                       "add_8",
-                      (function (param) do
+                      (function(param) do
                           return commutative_add(--[[ int64 ]]{
                                       --[[ hi ]]1,
                                       --[[ lo ]]0
@@ -1008,7 +1008,7 @@ suites = Pervasives.$at(--[[ :: ]]{
                     --[[ :: ]]{
                       --[[ tuple ]]{
                         "add_9",
-                        (function (param) do
+                        (function(param) do
                             return commutative_add(--[[ int64 ]]{
                                         --[[ hi ]]0,
                                         --[[ lo ]]4294967295
@@ -1024,7 +1024,7 @@ suites = Pervasives.$at(--[[ :: ]]{
                       --[[ :: ]]{
                         --[[ tuple ]]{
                           "add_10",
-                          (function (param) do
+                          (function(param) do
                               return commutative_add(--[[ int64 ]]{
                                           --[[ hi ]]0,
                                           --[[ lo ]]2147483648
@@ -1040,7 +1040,7 @@ suites = Pervasives.$at(--[[ :: ]]{
                         --[[ :: ]]{
                           --[[ tuple ]]{
                             "add_11",
-                            (function (param) do
+                            (function(param) do
                                 return commutative_add(--[[ int64 ]]{
                                             --[[ hi ]]0,
                                             --[[ lo ]]4294967295
@@ -1056,7 +1056,7 @@ suites = Pervasives.$at(--[[ :: ]]{
                           --[[ :: ]]{
                             --[[ tuple ]]{
                               "to_int32",
-                              (function (param) do
+                              (function(param) do
                                   return --[[ Eq ]]Block.__(0, {
                                             3,
                                             Caml_int64.to_int32(--[[ int64 ]]{
@@ -1069,7 +1069,7 @@ suites = Pervasives.$at(--[[ :: ]]{
                             --[[ :: ]]{
                               --[[ tuple ]]{
                                 "to_int",
-                                (function (param) do
+                                (function(param) do
                                     return --[[ Eq ]]Block.__(0, {
                                               3,
                                               Caml_int64.to_int32(--[[ int64 ]]{
@@ -1082,7 +1082,7 @@ suites = Pervasives.$at(--[[ :: ]]{
                               --[[ :: ]]{
                                 --[[ tuple ]]{
                                   "of_int",
-                                  (function (param) do
+                                  (function(param) do
                                       return --[[ Eq ]]Block.__(0, {
                                                 --[[ int64 ]]{
                                                   --[[ hi ]]0,
@@ -1098,7 +1098,7 @@ suites = Pervasives.$at(--[[ :: ]]{
                                 --[[ :: ]]{
                                   --[[ tuple ]]{
                                     "lognot",
-                                    (function (param) do
+                                    (function(param) do
                                         return --[[ Eq ]]Block.__(0, {
                                                   --[[ int64 ]]{
                                                     --[[ hi ]]-1,
@@ -1114,7 +1114,7 @@ suites = Pervasives.$at(--[[ :: ]]{
                                   --[[ :: ]]{
                                     --[[ tuple ]]{
                                       "neg",
-                                      (function (param) do
+                                      (function(param) do
                                           return --[[ Eq ]]Block.__(0, {
                                                     --[[ int64 ]]{
                                                       --[[ hi ]]-1,
@@ -1130,7 +1130,7 @@ suites = Pervasives.$at(--[[ :: ]]{
                                     --[[ :: ]]{
                                       --[[ tuple ]]{
                                         "sub1",
-                                        (function (param) do
+                                        (function(param) do
                                             return --[[ Eq ]]Block.__(0, {
                                                       --[[ int64 ]]{
                                                         --[[ hi ]]0,
@@ -1146,7 +1146,7 @@ suites = Pervasives.$at(--[[ :: ]]{
                                       --[[ :: ]]{
                                         --[[ tuple ]]{
                                           "xor1",
-                                          (function (param) do
+                                          (function(param) do
                                               return --[[ Eq ]]Block.__(0, {
                                                         --[[ tuple ]]{
                                                           --[[ int64 ]]{
@@ -1174,7 +1174,7 @@ suites = Pervasives.$at(--[[ :: ]]{
                                         --[[ :: ]]{
                                           --[[ tuple ]]{
                                             "or",
-                                            (function (param) do
+                                            (function(param) do
                                                 return --[[ Eq ]]Block.__(0, {
                                                           --[[ int64 ]]{
                                                             --[[ hi ]]0,
@@ -1190,7 +1190,7 @@ suites = Pervasives.$at(--[[ :: ]]{
                                           --[[ :: ]]{
                                             --[[ tuple ]]{
                                               "and",
-                                              (function (param) do
+                                              (function(param) do
                                                   return --[[ Eq ]]Block.__(0, {
                                                             --[[ int64 ]]{
                                                               --[[ hi ]]0,
@@ -1206,14 +1206,14 @@ suites = Pervasives.$at(--[[ :: ]]{
                                             --[[ :: ]]{
                                               --[[ tuple ]]{
                                                 "lsl",
-                                                (function (param) do
+                                                (function(param) do
                                                     return --[[ Eq ]]Block.__(0, {
-                                                              __Array.map((function (x) do
+                                                              __Array.map((function(x) do
                                                                       return Caml_int64.lsl_(--[[ int64 ]]{
                                                                                   --[[ hi ]]0,
                                                                                   --[[ lo ]]1
                                                                                 }, x);
-                                                                    end end), __Array.init(64, (function (i) do
+                                                                    end end), __Array.init(64, (function(i) do
                                                                           return i;
                                                                         end end))),
                                                               {
@@ -1480,14 +1480,14 @@ suites = Pervasives.$at(--[[ :: ]]{
                                               --[[ :: ]]{
                                                 --[[ tuple ]]{
                                                   "lsr",
-                                                  (function (param) do
+                                                  (function(param) do
                                                       return --[[ Eq ]]Block.__(0, {
-                                                                __Array.map((function (x) do
+                                                                __Array.map((function(x) do
                                                                         return Caml_int64.lsr_(--[[ int64 ]]{
                                                                                     --[[ hi ]]-1,
                                                                                     --[[ lo ]]4294967295
                                                                                   }, x);
-                                                                      end end), __Array.init(64, (function (i) do
+                                                                      end end), __Array.init(64, (function(i) do
                                                                             return i;
                                                                           end end))),
                                                                 {
@@ -1754,14 +1754,14 @@ suites = Pervasives.$at(--[[ :: ]]{
                                                 --[[ :: ]]{
                                                   --[[ tuple ]]{
                                                     "asr",
-                                                    (function (param) do
+                                                    (function(param) do
                                                         return --[[ Eq ]]Block.__(0, {
-                                                                  __Array.map((function (x) do
+                                                                  __Array.map((function(x) do
                                                                           return Caml_int64.asr_(--[[ int64 ]]{
                                                                                       --[[ hi ]]-1,
                                                                                       --[[ lo ]]4294967295
                                                                                     }, x);
-                                                                        end end), __Array.init(64, (function (i) do
+                                                                        end end), __Array.init(64, (function(i) do
                                                                               return i;
                                                                             end end))),
                                                                   {
@@ -2028,7 +2028,7 @@ suites = Pervasives.$at(--[[ :: ]]{
                                                   --[[ :: ]]{
                                                     --[[ tuple ]]{
                                                       "mul simple",
-                                                      (function (param) do
+                                                      (function(param) do
                                                           return --[[ Eq ]]Block.__(0, {
                                                                     --[[ int64 ]]{
                                                                       --[[ hi ]]0,
@@ -2044,7 +2044,7 @@ suites = Pervasives.$at(--[[ :: ]]{
                                                     --[[ :: ]]{
                                                       --[[ tuple ]]{
                                                         "of_int32",
-                                                        (function (param) do
+                                                        (function(param) do
                                                             return --[[ Eq ]]Block.__(0, {
                                                                       __Array.map(Caml_int64.of_int32, {
                                                                             0,
@@ -2066,7 +2066,7 @@ suites = Pervasives.$at(--[[ :: ]]{
                                                       --[[ :: ]]{
                                                         --[[ tuple ]]{
                                                           "of_int32_singleton",
-                                                          (function (param) do
+                                                          (function(param) do
                                                               return --[[ Eq ]]Block.__(0, {
                                                                         --[[ int64 ]]{
                                                                           --[[ hi ]]-1,
@@ -2082,7 +2082,7 @@ suites = Pervasives.$at(--[[ :: ]]{
                                                         --[[ :: ]]{
                                                           --[[ tuple ]]{
                                                             "File \"int64_test.ml\", line 132, characters 4-11",
-                                                            (function (param) do
+                                                            (function(param) do
                                                                 return --[[ Eq ]]Block.__(0, {
                                                                           --[[ int64 ]]{
                                                                             --[[ hi ]]0,
@@ -2098,7 +2098,7 @@ suites = Pervasives.$at(--[[ :: ]]{
                                                           --[[ :: ]]{
                                                             --[[ tuple ]]{
                                                               "to_int32",
-                                                              (function (param) do
+                                                              (function(param) do
                                                                   return --[[ Eq ]]Block.__(0, {
                                                                             __Array.map(Caml_int64.to_int32, {
                                                                                   --[[ int64 ]]{
@@ -2120,7 +2120,7 @@ suites = Pervasives.$at(--[[ :: ]]{
                                                             --[[ :: ]]{
                                                               --[[ tuple ]]{
                                                                 "discard_sign",
-                                                                (function (param) do
+                                                                (function(param) do
                                                                     return --[[ Eq ]]Block.__(0, {
                                                                               Caml_int64.discard_sign(--[[ int64 ]]{
                                                                                     --[[ hi ]]-1,
@@ -2136,7 +2136,7 @@ suites = Pervasives.$at(--[[ :: ]]{
                                                               --[[ :: ]]{
                                                                 --[[ tuple ]]{
                                                                   "div_mod",
-                                                                  (function (param) do
+                                                                  (function(param) do
                                                                       return --[[ Eq ]]Block.__(0, {
                                                                                 Caml_int64.div_mod(--[[ int64 ]]{
                                                                                       --[[ hi ]]0,
@@ -2161,7 +2161,7 @@ suites = Pervasives.$at(--[[ :: ]]{
                                                                 --[[ :: ]]{
                                                                   --[[ tuple ]]{
                                                                     "to_hex",
-                                                                    (function (param) do
+                                                                    (function(param) do
                                                                         return --[[ Eq ]]Block.__(0, {
                                                                                   Caml_int64.to_hex(--[[ int64 ]]{
                                                                                         --[[ hi ]]-1,
@@ -2174,7 +2174,7 @@ suites = Pervasives.$at(--[[ :: ]]{
                                                                   --[[ :: ]]{
                                                                     --[[ tuple ]]{
                                                                       "generic_compare",
-                                                                      (function (param) do
+                                                                      (function(param) do
                                                                           return --[[ Eq ]]Block.__(0, {
                                                                                     Caml_obj.caml_compare(--[[ int64 ]]{
                                                                                           --[[ hi ]]1,
@@ -2190,7 +2190,7 @@ suites = Pervasives.$at(--[[ :: ]]{
                                                                     --[[ :: ]]{
                                                                       --[[ tuple ]]{
                                                                         "test_compier_literal",
-                                                                        (function (param) do
+                                                                        (function(param) do
                                                                             return --[[ Eq ]]Block.__(0, {
                                                                                       --[[ int64 ]]{
                                                                                         --[[ hi ]]0,
@@ -2206,7 +2206,7 @@ suites = Pervasives.$at(--[[ :: ]]{
                                                                       --[[ :: ]]{
                                                                         --[[ tuple ]]{
                                                                           "generic_compare2",
-                                                                          (function (param) do
+                                                                          (function(param) do
                                                                               return --[[ Eq ]]Block.__(0, {
                                                                                         Caml_obj.caml_compare(--[[ int64 ]]{
                                                                                               --[[ hi ]]0,
@@ -2222,7 +2222,7 @@ suites = Pervasives.$at(--[[ :: ]]{
                                                                         --[[ :: ]]{
                                                                           --[[ tuple ]]{
                                                                             "shift_left",
-                                                                            (function (param) do
+                                                                            (function(param) do
                                                                                 return --[[ Eq ]]Block.__(0, {
                                                                                           --[[ int64 ]]{
                                                                                             --[[ hi ]]0,
@@ -2238,7 +2238,7 @@ suites = Pervasives.$at(--[[ :: ]]{
                                                                           --[[ :: ]]{
                                                                             --[[ tuple ]]{
                                                                               "shift_right",
-                                                                              (function (param) do
+                                                                              (function(param) do
                                                                                   return --[[ Eq ]]Block.__(0, {
                                                                                             4294967295,
                                                                                             4294967295
@@ -2248,7 +2248,7 @@ suites = Pervasives.$at(--[[ :: ]]{
                                                                             --[[ :: ]]{
                                                                               --[[ tuple ]]{
                                                                                 "fib_int64",
-                                                                                (function (param) do
+                                                                                (function(param) do
                                                                                     return --[[ Eq ]]Block.__(0, {
                                                                                               fib(1000, --[[ int64 ]]{
                                                                                                     --[[ hi ]]0,
@@ -2267,7 +2267,7 @@ suites = Pervasives.$at(--[[ :: ]]{
                                                                               --[[ :: ]]{
                                                                                 --[[ tuple ]]{
                                                                                   "fac_int64",
-                                                                                  (function (param) do
+                                                                                  (function(param) do
                                                                                       return --[[ Eq ]]Block.__(0, {
                                                                                                 fac(30, --[[ int64 ]]{
                                                                                                       --[[ hi ]]0,
@@ -2318,7 +2318,7 @@ suites = Pervasives.$at(--[[ :: ]]{
           }
         }
       }
-    }, Pervasives.$at(__Array.to_list(Ext_array_test.map2i((function (i, a, b) do
+    }, Pervasives.$at(__Array.to_list(Ext_array_test.map2i((function(i, a, b) do
                     return --[[ tuple ]]{
                             Curry._1(Format.asprintf(--[[ Format ]]{
                                       --[[ String_literal ]]Block.__(11, {
@@ -2332,14 +2332,14 @@ suites = Pervasives.$at(--[[ :: ]]{
                                         }),
                                       "shift_left_cases %d"
                                     }), i),
-                            (function (param) do
+                            (function(param) do
                                 return --[[ Eq ]]Block.__(0, {
                                           a,
                                           b
                                         });
                               end end)
                           };
-                  end end), shift_left_tests_000, shift_left_tests_001)), Pervasives.$at(__Array.to_list(Ext_array_test.map2i((function (i, a, b) do
+                  end end), shift_left_tests_000, shift_left_tests_001)), Pervasives.$at(__Array.to_list(Ext_array_test.map2i((function(i, a, b) do
                         return --[[ tuple ]]{
                                 Curry._1(Format.asprintf(--[[ Format ]]{
                                           --[[ String_literal ]]Block.__(11, {
@@ -2353,14 +2353,14 @@ suites = Pervasives.$at(--[[ :: ]]{
                                             }),
                                           "shift_right_cases %d"
                                         }), i),
-                                (function (param) do
+                                (function(param) do
                                     return --[[ Eq ]]Block.__(0, {
                                               a,
                                               b
                                             });
                                   end end)
                               };
-                      end end), shift_right_tests_000, shift_right_tests_001)), __Array.to_list(Ext_array_test.map2i((function (i, a, b) do
+                      end end), shift_right_tests_000, shift_right_tests_001)), __Array.to_list(Ext_array_test.map2i((function(i, a, b) do
                         return --[[ tuple ]]{
                                 Curry._1(Format.asprintf(--[[ Format ]]{
                                           --[[ String_literal ]]Block.__(11, {
@@ -2374,7 +2374,7 @@ suites = Pervasives.$at(--[[ :: ]]{
                                             }),
                                           "shift_right_logical_cases %d"
                                         }), i),
-                                (function (param) do
+                                (function(param) do
                                     return --[[ Eq ]]Block.__(0, {
                                               a,
                                               b
@@ -2442,6 +2442,7 @@ id("File \"int64_test.ml\", line 194, characters 5-12", --[[ int64 ]]{
 
 Mt.from_pair_suites("Int64_test", suites_1.contents);
 
+exports = {}
 exports.f = f;
 exports.v = v;
 exports.h = h;

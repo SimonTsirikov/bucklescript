@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 
 x = (do
@@ -23,6 +23,7 @@ console.log((do
           "5": 3
         end).tag | 0);
 
+exports = {}
 exports.x = x;
 exports.zz = zz;
 --[[ x Not a pure module ]]

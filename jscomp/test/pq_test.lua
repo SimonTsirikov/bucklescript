@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Caml_exceptions = require "../../lib/js/caml_exceptions";
 
@@ -89,5 +89,6 @@ PrioQueue = do
   extract: extract
 end;
 
+exports = {}
 exports.PrioQueue = PrioQueue;
 --[[ No side effect ]]

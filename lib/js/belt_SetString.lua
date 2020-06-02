@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Belt_internalAVLset = require "./belt_internalAVLset";
 Belt_internalSetString = require "./belt_internalSetString";
@@ -321,6 +321,7 @@ getExn = Belt_internalSetString.getExn;
 
 checkInvariantInternal = Belt_internalAVLset.checkInvariantInternal;
 
+exports = {}
 exports.empty = empty;
 exports.fromArray = fromArray;
 exports.fromSortedArrayUnsafe = fromSortedArrayUnsafe;

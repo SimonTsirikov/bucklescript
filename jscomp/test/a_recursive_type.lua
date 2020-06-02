@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Curry = require "../../lib/js/curry";
 
@@ -12,6 +12,7 @@ x = --[[ A ]]{g};
 
 non_terminate = g(x);
 
+exports = {}
 exports.loop = loop;
 exports.non_terminate = non_terminate;
 --[[ loop Not a pure module ]]

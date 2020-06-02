@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Bytes = require "./bytes";
 Curry = require "./curry";
@@ -502,6 +502,7 @@ function truncate(b, len) do
   return --[[ () ]]0;
 end end
 
+exports = {}
 exports.create = create;
 exports.contents = contents;
 exports.to_bytes = to_bytes;

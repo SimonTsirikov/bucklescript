@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 
 function f(x) do
@@ -34,6 +34,7 @@ function f4(param) do
   return (((param.EXACT_MAPPING_TO_JS_LABEL + param.EXACT_2 | 0) + param.z.hello | 0) << 1);
 end end
 
+exports = {}
 exports.f = f;
 exports.set = set;
 exports.f1 = f1;

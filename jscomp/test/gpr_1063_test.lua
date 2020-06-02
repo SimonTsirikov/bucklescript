@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 
 function bla(foo, bar, baz) do
@@ -21,6 +21,7 @@ function bla5(foo, x, y) do
   return foo.method1(x, y);
 end end
 
+exports = {}
 exports.bla = bla;
 exports.bla2 = bla2;
 exports.bla3 = bla3;

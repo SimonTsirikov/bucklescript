@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Curry = require "../../lib/js/curry";
 
@@ -32,6 +32,7 @@ function f(x) do
   return --[[ () ]]0;
 end end
 
+exports = {}
 exports.test_hi = test_hi;
 exports.test_hi__2 = test_hi__2;
 exports.test_cb = test_cb;

@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
@@ -33,6 +33,7 @@ a = match[0];
 
 x = 1;
 
+exports = {}
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;

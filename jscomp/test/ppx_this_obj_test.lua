@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Block = require "../../lib/js/block";
@@ -18,7 +18,7 @@ function eq(loc, param) do
   suites.contents = --[[ :: ]]{
     --[[ tuple ]]{
       loc .. (" id " .. String(test_id.contents)),
-      (function (param) do
+      (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     x,
                     y
@@ -31,58 +31,58 @@ function eq(loc, param) do
 end end
 
 v = do
-  x: (function () do
+  x: (function() do
       return 3; end
     end),
-  say: (function (x) do
+  say: (function(x) do
       self = this ;
       return x * self.x(); end
     end),
-  hi: (function (x, y) do
+  hi: (function(x, y) do
       self = this ;
       return self.say(x) + y; end
     end)
 end;
 
 v2 = do
-  hi: (function (x, y) do
+  hi: (function(x, y) do
       self = this ;
       return self.say(x) + y; end
     end),
-  say: (function (x) do
+  say: (function(x) do
       self = this ;
       return x * self.x(); end
     end),
-  x: (function () do
+  x: (function() do
       return 3; end
     end)
 end;
 
 v3 = do
-  hi: (function (x, y) do
+  hi: (function(x, y) do
       self = this ;
       u = do
         x: x
       end;
       return self.say(u.x) + y + x; end
     end),
-  say: (function (x) do
+  say: (function(x) do
       self = this ;
       return x * self.x(); end
     end),
-  x: (function () do
+  x: (function() do
       return 3; end
     end)
 end;
 
 v4 = do
-  hi: (function (x, y) do
+  hi: (function(x, y) do
       return x + y; end
     end),
-  say: (function (x) do
+  say: (function(x) do
       return x; end
     end),
-  x: (function () do
+  x: (function() do
       return 1; end
     end)
 end;
@@ -106,6 +106,7 @@ eq("File \"ppx_this_obj_test.ml\", line 60, characters 5-12", --[[ tuple ]]{
 
 Mt.from_pair_suites("Ppx_this_obj_test", suites.contents);
 
+exports = {}
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;

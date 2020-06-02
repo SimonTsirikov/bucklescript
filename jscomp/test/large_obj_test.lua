@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Curry = require "../../lib/js/curry";
 Caml_int32 = require "../../lib/js/caml_int32";
@@ -401,83 +401,83 @@ field99 = ids[119];
 
 CamlinternalOO.set_methods(__class, {
       get0,
-      (function (self$1) do
+      (function(self$1) do
           return self$1[field0] + 0 | 0;
         end end),
       get1,
-      (function (self$1) do
+      (function(self$1) do
           return self$1[field1] + 1 | 0;
         end end),
       get2,
-      (function (self$1) do
+      (function(self$1) do
           return self$1[field2] + 2 | 0;
         end end),
       get3,
-      (function (self$1) do
+      (function(self$1) do
           return self$1[field3] + 3 | 0;
         end end),
       get4,
-      (function (self$1) do
+      (function(self$1) do
           return self$1[field4] + 4 | 0;
         end end),
       get5,
-      (function (self$1) do
+      (function(self$1) do
           return self$1[field5] + 5 | 0;
         end end),
       get6,
-      (function (self$1) do
+      (function(self$1) do
           return self$1[field6] + 6 | 0;
         end end),
       get7,
-      (function (self$1) do
+      (function(self$1) do
           return self$1[field7] + 7 | 0;
         end end),
       get8,
-      (function (self$1) do
+      (function(self$1) do
           return self$1[field8] + 8 | 0;
         end end),
       get9,
-      (function (self$1) do
+      (function(self$1) do
           return self$1[field9] + 9 | 0;
         end end),
       get10,
-      (function (self$1) do
+      (function(self$1) do
           return self$1[field10] + 10 | 0;
         end end),
       get11,
-      (function (self$1) do
+      (function(self$1) do
           return self$1[field11] + 11 | 0;
         end end),
       get12,
-      (function (self$1) do
+      (function(self$1) do
           return self$1[field12] + 12 | 0;
         end end),
       get13,
-      (function (self$1) do
+      (function(self$1) do
           return self$1[field13] + 13 | 0;
         end end),
       get14,
-      (function (self$1) do
+      (function(self$1) do
           return self$1[field14] + 14 | 0;
         end end),
       get15,
-      (function (self$1) do
+      (function(self$1) do
           return self$1[field15] + 15 | 0;
         end end),
       get16,
-      (function (self$1) do
+      (function(self$1) do
           return self$1[field16] + 16 | 0;
         end end),
       get17,
-      (function (self$1) do
+      (function(self$1) do
           return self$1[field17] + 17 | 0;
         end end),
       get18,
-      (function (self$1) do
+      (function(self$1) do
           return self$1[field18] + 18 | 0;
         end end),
       get19,
-      (function (self$1) do
+      (function(self$1) do
           return self$1[field19] + 19 | 0;
         end end)
     });
@@ -728,87 +728,87 @@ function raw_class_init(__class) do
   field99 = ids[119];
   CamlinternalOO.set_methods(__class, {
         get0,
-        (function (self$2) do
+        (function(self$2) do
             return self$2[field0] + 0 | 0;
           end end),
         get1,
-        (function (self$2) do
+        (function(self$2) do
             return self$2[field1] + 1 | 0;
           end end),
         get2,
-        (function (self$2) do
+        (function(self$2) do
             return self$2[field2] + 2 | 0;
           end end),
         get3,
-        (function (self$2) do
+        (function(self$2) do
             return self$2[field3] + 3 | 0;
           end end),
         get4,
-        (function (self$2) do
+        (function(self$2) do
             return self$2[field4] + 4 | 0;
           end end),
         get5,
-        (function (self$2) do
+        (function(self$2) do
             return self$2[field5] + 5 | 0;
           end end),
         get6,
-        (function (self$2) do
+        (function(self$2) do
             return self$2[field6] + 6 | 0;
           end end),
         get7,
-        (function (self$2) do
+        (function(self$2) do
             return self$2[field7] + 7 | 0;
           end end),
         get8,
-        (function (self$2) do
+        (function(self$2) do
             return self$2[field8] + 8 | 0;
           end end),
         get9,
-        (function (self$2) do
+        (function(self$2) do
             return self$2[field9] + 9 | 0;
           end end),
         get10,
-        (function (self$2) do
+        (function(self$2) do
             return self$2[field10] + 10 | 0;
           end end),
         get11,
-        (function (self$2) do
+        (function(self$2) do
             return self$2[field11] + 11 | 0;
           end end),
         get12,
-        (function (self$2) do
+        (function(self$2) do
             return self$2[field12] + 12 | 0;
           end end),
         get13,
-        (function (self$2) do
+        (function(self$2) do
             return self$2[field13] + 13 | 0;
           end end),
         get14,
-        (function (self$2) do
+        (function(self$2) do
             return self$2[field14] + 14 | 0;
           end end),
         get15,
-        (function (self$2) do
+        (function(self$2) do
             return self$2[field15] + 15 | 0;
           end end),
         get16,
-        (function (self$2) do
+        (function(self$2) do
             return self$2[field16] + 16 | 0;
           end end),
         get17,
-        (function (self$2) do
+        (function(self$2) do
             return self$2[field17] + 17 | 0;
           end end),
         get18,
-        (function (self$2) do
+        (function(self$2) do
             return self$2[field18] + 18 | 0;
           end end),
         get19,
-        (function (self$2) do
+        (function(self$2) do
             return self$2[field19] + 19 | 0;
           end end)
       });
-  return (function (env, self, value_1) do
+  return (function(env, self, value_1) do
       self_1 = CamlinternalOO.create_object_opt(self, __class);
       self_1[value] = value_1;
       self_1[field0] = 0;
@@ -931,6 +931,7 @@ if (Caml_oo_curry.js1(291536121, 2, v) ~= 56) then do
 end
  end 
 
+exports = {}
 exports.raw_object = raw_object;
 exports.raw_class = raw_class;
 exports.v = v;

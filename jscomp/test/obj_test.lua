@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Block = require "../../lib/js/block";
@@ -26,11 +26,11 @@ hello = ids[1];
 
 CamlinternalOO.set_methods(__class, {
       hi,
-      (function (self$1, x, y) do
+      (function(self$1, x, y) do
           return x + y | 0;
         end end),
       hello,
-      (function (self$1, z) do
+      (function(self$1, z) do
           return Curry._3(self$1[0][hi], self$1, 10, z);
         end end)
     });
@@ -55,11 +55,11 @@ x = ids_1[1];
 
 CamlinternalOO.set_methods(__class_1, {
       x,
-      (function (self$2) do
+      (function(self$2) do
           return 3;
         end end),
       y,
-      (function (self$2) do
+      (function(self$2) do
           return 32;
         end end)
     });
@@ -92,19 +92,19 @@ hello_1 = ids_2[3];
 
 CamlinternalOO.set_methods(__class_2, {
       hi_1,
-      (function (self$3, v, z) do
+      (function(self$3, v, z) do
           return v + z | 0;
         end end),
       id1,
-      (function (self$3) do
+      (function(self$3) do
           return 3;
         end end),
       id2,
-      (function (self$3) do
+      (function(self$3) do
           return 4;
         end end),
       hello_1,
-      (function (self$3, v) do
+      (function(self$3, v) do
           return v;
         end end)
     });
@@ -117,7 +117,7 @@ __class_3 = CamlinternalOO.create_table({"id"});
 
 id = CamlinternalOO.get_method_label(__class_3, "id");
 
-CamlinternalOO.set_method(__class_3, id, (function (self$4) do
+CamlinternalOO.set_method(__class_3, id, (function(self$4) do
         return "uu";
       end end));
 
@@ -129,7 +129,7 @@ __class_4 = CamlinternalOO.create_table({"add"});
 
 add = CamlinternalOO.get_method_label(__class_4, "add");
 
-CamlinternalOO.set_method(__class_4, add, (function (self$5, x, y) do
+CamlinternalOO.set_method(__class_4, add, (function(self$5, x, y) do
         return x + y | 0;
       end end));
 
@@ -147,11 +147,11 @@ add_1 = ids_3[1];
 
 CamlinternalOO.set_methods(__class_5, {
       add_1,
-      (function (self$6, x, y) do
+      (function(self$6, x, y) do
           return x + y | 0;
         end end),
       hi_2,
-      (function (self$6, x) do
+      (function(self$6, x) do
           return Curry._3(self$6[0][add_1], self$6, x, 32);
         end end)
     });
@@ -162,7 +162,7 @@ vvvv = CamlinternalOO.create_object_opt(0, __class_5);
 
 suites_000 = --[[ tuple ]]{
   "single_obj",
-  (function (param) do
+  (function(param) do
       return --[[ Eq ]]Block.__(0, {
                 {
                   3,
@@ -179,7 +179,7 @@ suites_000 = --[[ tuple ]]{
 suites_001 = --[[ :: ]]{
   --[[ tuple ]]{
     "single_obj_cache",
-    (function (param) do
+    (function(param) do
         return --[[ Eq ]]Block.__(0, {
                   {
                     3,
@@ -195,7 +195,7 @@ suites_001 = --[[ :: ]]{
   --[[ :: ]]{
     --[[ tuple ]]{
       "self_obj",
-      (function (param) do
+      (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     13,
                     Caml_oo_curry.js2(616641298, 5, vv, 3)
@@ -205,7 +205,7 @@ suites_001 = --[[ :: ]]{
     --[[ :: ]]{
       --[[ tuple ]]{
         "uu_id",
-        (function (param) do
+        (function(param) do
             return --[[ Eq ]]Block.__(0, {
                       "uu",
                       Caml_oo_curry.js1(23515, 6, uu)
@@ -215,7 +215,7 @@ suites_001 = --[[ :: ]]{
       --[[ :: ]]{
         --[[ tuple ]]{
           "uu_add",
-          (function (param) do
+          (function(param) do
               return --[[ Eq ]]Block.__(0, {
                         Caml_oo_curry.js3(4846113, 7, uuu, 1, 20),
                         21
@@ -225,7 +225,7 @@ suites_001 = --[[ :: ]]{
         --[[ :: ]]{
           --[[ tuple ]]{
             "v_add",
-            (function (param) do
+            (function(param) do
                 return --[[ Eq ]]Block.__(0, {
                           Caml_oo_curry.js3(4846113, 8, vvvv, 3, 7),
                           10
@@ -235,7 +235,7 @@ suites_001 = --[[ :: ]]{
           --[[ :: ]]{
             --[[ tuple ]]{
               "u_id1",
-              (function (param) do
+              (function(param) do
                   return --[[ Eq ]]Block.__(0, {
                             Caml_oo_curry.js1(5243894, 9, u),
                             3
@@ -245,7 +245,7 @@ suites_001 = --[[ :: ]]{
             --[[ :: ]]{
               --[[ tuple ]]{
                 "u_id2",
-                (function (param) do
+                (function(param) do
                     return --[[ Eq ]]Block.__(0, {
                               Caml_oo_curry.js1(5243895, 10, u),
                               4
@@ -255,7 +255,7 @@ suites_001 = --[[ :: ]]{
               --[[ :: ]]{
                 --[[ tuple ]]{
                   "u hi",
-                  (function (param) do
+                  (function(param) do
                       return --[[ Eq ]]Block.__(0, {
                                 Caml_oo_curry.js3(23297, 11, u, 1, 2),
                                 3
@@ -265,7 +265,7 @@ suites_001 = --[[ :: ]]{
                 --[[ :: ]]{
                   --[[ tuple ]]{
                     "u hello",
-                    (function (param) do
+                    (function(param) do
                         return --[[ Eq ]]Block.__(0, {
                                   Caml_oo_curry.js2(616641298, 12, u, 32),
                                   32
@@ -275,7 +275,7 @@ suites_001 = --[[ :: ]]{
                   --[[ :: ]]{
                     --[[ tuple ]]{
                       "v hi",
-                      (function (param) do
+                      (function(param) do
                           return --[[ Eq ]]Block.__(0, {
                                     Caml_oo_curry.js2(23297, 13, vvvv, 31),
                                     63
@@ -285,7 +285,7 @@ suites_001 = --[[ :: ]]{
                     --[[ :: ]]{
                       --[[ tuple ]]{
                         "uuu add",
-                        (function (param) do
+                        (function(param) do
                             return --[[ Eq ]]Block.__(0, {
                                       Caml_oo_curry.js3(4846113, 14, uuu, 3, 4),
                                       7
@@ -295,7 +295,7 @@ suites_001 = --[[ :: ]]{
                       --[[ :: ]]{
                         --[[ tuple ]]{
                           "v x",
-                          (function (param) do
+                          (function(param) do
                               return --[[ Eq ]]Block.__(0, {
                                         Caml_oo_curry.js1(120, 15, v),
                                         3
@@ -323,6 +323,7 @@ suites = --[[ :: ]]{
 
 Mt.from_pair_suites("Obj_test", suites);
 
+exports = {}
 exports.vv = vv;
 exports.v = v;
 exports.u = u;

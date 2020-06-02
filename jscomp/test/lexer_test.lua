@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 List = require "../../lib/js/list";
@@ -37,7 +37,7 @@ function from_tokens(lst) do
   l = do
     contents: lst
   end;
-  return (function (param) do
+  return (function(param) do
       match = l.contents;
       if (match) then do
         l.contents = match[1];
@@ -50,7 +50,7 @@ end end
 
 lexer_suites_000 = --[[ tuple ]]{
   "arith_token",
-  (function (param) do
+  (function(param) do
       return --[[ Eq ]]Block.__(0, {
                 get_tokens(Arith_lexer.lexeme, "x + 3 + 4 + y"),
                 --[[ :: ]]{
@@ -82,7 +82,7 @@ lexer_suites_000 = --[[ tuple ]]{
 lexer_suites_001 = --[[ :: ]]{
   --[[ tuple ]]{
     "simple token",
-    (function (param) do
+    (function(param) do
         return --[[ Eq ]]Block.__(0, {
                   Arith_lexer.lexeme(Lexing.from_string("10")),
                   --[[ NUMERAL ]]Block.__(0, {10})
@@ -92,11 +92,11 @@ lexer_suites_001 = --[[ :: ]]{
   --[[ :: ]]{
     --[[ tuple ]]{
       "number_lexer",
-      (function (param) do
+      (function(param) do
           v = do
             contents: --[[ [] ]]0
           end;
-          add = function (t) do
+          add = function(t) do
             v.contents = --[[ :: ]]{
               t,
               v.contents
@@ -164,7 +164,7 @@ lexer_suites_001 = --[[ :: ]]{
     --[[ :: ]]{
       --[[ tuple ]]{
         "simple number",
-        (function (param) do
+        (function(param) do
             return --[[ Eq ]]Block.__(0, {
                       Arith_syntax.str(Arith_parser.toplevel(Arith_lexer.lexeme, Lexing.from_string("10"))),
                       "10."
@@ -174,7 +174,7 @@ lexer_suites_001 = --[[ :: ]]{
       --[[ :: ]]{
         --[[ tuple ]]{
           "arith",
-          (function (param) do
+          (function(param) do
               return --[[ Eq ]]Block.__(0, {
                         Arith_syntax.str(Arith_parser.toplevel(Arith_lexer.lexeme, Lexing.from_string("x + 3 + 4 + y"))),
                         "x+3.+4.+y"
@@ -194,6 +194,7 @@ lexer_suites = --[[ :: ]]{
 
 Mt.from_pair_suites("Lexer_test", lexer_suites);
 
+exports = {}
 exports.get_tokens = get_tokens;
 exports.f = f;
 exports.from_tokens = from_tokens;

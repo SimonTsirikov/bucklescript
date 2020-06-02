@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Rbset = require "./rbset";
 Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
@@ -54,6 +54,7 @@ count = 1000000;
 
 V = --[[ alias ]]0;
 
+exports = {}
 exports.count = count;
 exports.V = V;
 exports.bench = bench;

@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Caml_obj = require "../../lib/js/caml_obj";
 
@@ -12,6 +12,7 @@ end end
 
 v = Caml_obj.caml_compare;
 
+exports = {}
 exports.min_int = min_int;
 exports.say = say;
 exports.v = v;

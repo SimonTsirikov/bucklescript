@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Curry = require "../../lib/js/curry";
 Caml_exceptions = require "../../lib/js/caml_exceptions";
@@ -54,6 +54,7 @@ a = 1;
 
 b = 2;
 
+exports = {}
 exports.a = a;
 exports.b = b;
 exports.x = x;

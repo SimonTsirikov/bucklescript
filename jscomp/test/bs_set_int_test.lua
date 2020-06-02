@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 List = require "../../lib/js/list";
@@ -54,13 +54,13 @@ u = Belt_SetInt.intersect(Belt_SetInt.fromArray({
 b("File \"bs_set_int_test.ml\", line 23, characters 4-11", Belt_SetInt.eq(Belt_SetInt.fromArray({3}), u));
 
 function range(i, j) do
-  return __Array.init((j - i | 0) + 1 | 0, (function (k) do
+  return __Array.init((j - i | 0) + 1 | 0, (function(k) do
                 return k + i | 0;
               end end));
 end end
 
 function revRange(i, j) do
-  return __Array.of_list(List.rev(__Array.to_list(__Array.init((j - i | 0) + 1 | 0, (function (k) do
+  return __Array.of_list(List.rev(__Array.to_list(__Array.init((j - i | 0) + 1 | 0, (function(k) do
                             return k + i | 0;
                           end end)))));
 end end
@@ -71,7 +71,7 @@ i = range(100, 1500);
 
 b("File \"bs_set_int_test.ml\", line 36, characters 4-11", Belt_SetInt.eq(Belt_SetInt.fromArray(i), v));
 
-match = Belt_SetInt.partition(v, (function (x) do
+match = Belt_SetInt.partition(v, (function(x) do
         return x % 3 == 0;
       end end));
 
@@ -161,9 +161,9 @@ function approx(loc, x, y) do
   return b(loc, x == y);
 end end
 
-eq("File \"bs_set_int_test.ml\", line 74, characters 5-12", Belt_SetInt.reduce(v_1, 0, (function (x, y) do
+eq("File \"bs_set_int_test.ml\", line 74, characters 5-12", Belt_SetInt.reduce(v_1, 0, (function(x, y) do
             return x + y | 0;
-          end end)), Belt_Array.reduce(ss, 0, (function (prim, prim_1) do
+          end end)), Belt_Array.reduce(ss, 0, (function(prim, prim_1) do
             return prim + prim_1 | 0;
           end end)));
 
@@ -215,7 +215,7 @@ v_10 = Belt_SetInt.remove(v_9, 1);
 
 b("File \"bs_set_int_test.ml\", line 95, characters 4-11", Belt_SetInt.isEmpty(v_10));
 
-v_11 = Belt_Array.makeByAndShuffle(1000000, (function (i) do
+v_11 = Belt_Array.makeByAndShuffle(1000000, (function(i) do
         return i;
       end end));
 
@@ -340,11 +340,11 @@ v3 = Belt_SetInt.removeMany(v2, {
       2001
     });
 
-us = Belt_Array.map(Array_data_util.randomRange(1000, 3000), (function (x) do
+us = Belt_Array.map(Array_data_util.randomRange(1000, 3000), (function(x) do
         return Belt_SetInt.has(v_12, x);
       end end));
 
-counted = Belt_Array.reduce(us, 0, (function (acc, x) do
+counted = Belt_Array.reduce(us, 0, (function(acc, x) do
         if (x) then do
           return acc + 1 | 0;
         end else do
@@ -380,6 +380,7 @@ A = --[[ alias ]]0;
 
 ofA = Belt_SetInt.fromArray;
 
+exports = {}
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;

@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Bytes = require "./bytes";
 
@@ -88,6 +88,7 @@ unsafe_to_string = Bytes.unsafe_to_string;
 
 unsafe_of_string = Bytes.unsafe_of_string;
 
+exports = {}
 exports.make = make;
 exports.init = init;
 exports.empty = empty;

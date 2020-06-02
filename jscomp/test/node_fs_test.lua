@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Fs = require "";
 
@@ -9,4 +9,5 @@ if (match ~= undefined) then do
 end
  end 
 
+exports = {}
 --[[ match Not a pure module ]]

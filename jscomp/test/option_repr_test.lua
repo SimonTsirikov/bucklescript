@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Caml_obj = require "../../lib/js/caml_obj";
@@ -103,11 +103,11 @@ function f12(x) do
   return x;
 end end
 
-length_8_id = Belt_List.makeBy(8, (function (x) do
+length_8_id = Belt_List.makeBy(8, (function(x) do
         return x;
       end end));
 
-length_10_id = Belt_List.makeBy(10, (function (x) do
+length_10_id = Belt_List.makeBy(10, (function(x) do
         return x;
       end end));
 
@@ -169,7 +169,7 @@ function neqx(a, b) do
 end end
 
 function all_true(xs) do
-  return Belt_List.every(xs, (function (x) do
+  return Belt_List.every(xs, (function(x) do
                 return x;
               end end));
 end end
@@ -181,7 +181,7 @@ xs = --[[ :: ]]{
   --[[ [] ]]0
 };
 
-b("File \"option_repr_test.ml\", line 121, characters 5-12", Belt_List.every(xs, (function (x) do
+b("File \"option_repr_test.ml\", line 121, characters 5-12", Belt_List.every(xs, (function(x) do
             return x;
           end end)));
 
@@ -204,7 +204,7 @@ xs_001 = --[[ :: ]]{
               --[[ :: ]]{
                 ltx(undefined, nil),
                 --[[ :: ]]{
-                  ltx(undefined, (function (x) do
+                  ltx(undefined, (function(x) do
                           return x;
                         end end)),
                   --[[ :: ]]{
@@ -226,7 +226,7 @@ xs_1 = --[[ :: ]]{
   xs_001
 };
 
-b("File \"option_repr_test.ml\", line 127, characters 5-12", Belt_List.every(xs_1, (function (x) do
+b("File \"option_repr_test.ml\", line 127, characters 5-12", Belt_List.every(xs_1, (function(x) do
             return x;
           end end)));
 
@@ -251,7 +251,7 @@ xs_2 = --[[ :: ]]{
   xs_001_1
 };
 
-b("File \"option_repr_test.ml\", line 143, characters 5-12", Belt_List.every(xs_2, (function (x) do
+b("File \"option_repr_test.ml\", line 143, characters 5-12", Belt_List.every(xs_2, (function(x) do
             return x;
           end end)));
 
@@ -280,6 +280,7 @@ N = --[[ alias ]]0;
 
 none_arg = undefined;
 
+exports = {}
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;

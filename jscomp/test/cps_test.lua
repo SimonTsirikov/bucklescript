@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 __Array = require "../../lib/js/array";
@@ -10,7 +10,7 @@ function test(param) do
   v = do
     contents: 0
   end;
-  f = function (_n, _acc) do
+  f = function(_n, _acc) do
     while(true) do
       acc = _acc;
       n = _n;
@@ -22,13 +22,13 @@ function test(param) do
           v.contents = v.contents + n | 0;
           return Curry._1(acc, --[[ () ]]0);
         end end
-        end(n,acc));
+        end end)(n,acc);
         _n = n - 1 | 0;
         ::continue:: ;
       end end 
     end;
   end end;
-  f(10, (function (param) do
+  f(10, (function(param) do
           return --[[ () ]]0;
         end end));
   return v.contents;
@@ -38,7 +38,7 @@ function test_closure(param) do
   v = do
     contents: 0
   end;
-  arr = Caml_array.caml_make_vect(6, (function (x) do
+  arr = Caml_array.caml_make_vect(6, (function(x) do
           return x;
         end end));
   for i = 0 , 5 , 1 do
@@ -46,9 +46,9 @@ function test_closure(param) do
         return function (param) do
           return i;
         end end
-        end(i)));
+        end end)(i));
   end
-  __Array.iter((function (i) do
+  __Array.iter((function(i) do
           v.contents = v.contents + Curry._1(i, 0) | 0;
           return --[[ () ]]0;
         end end), arr);
@@ -59,7 +59,7 @@ function test_closure2(param) do
   v = do
     contents: 0
   end;
-  arr = Caml_array.caml_make_vect(6, (function (x) do
+  arr = Caml_array.caml_make_vect(6, (function(x) do
           return x;
         end end));
   for i = 0 , 5 , 1 do
@@ -68,9 +68,9 @@ function test_closure2(param) do
         return function (param) do
           return j;
         end end
-        end(j)));
+        end end)(j));
   end
-  __Array.iter((function (i) do
+  __Array.iter((function(i) do
           v.contents = v.contents + Curry._1(i, 0) | 0;
           return --[[ () ]]0;
         end end), arr);
@@ -80,7 +80,7 @@ end end
 Mt.from_pair_suites("Cps_test", --[[ :: ]]{
       --[[ tuple ]]{
         "cps_test_sum",
-        (function (param) do
+        (function(param) do
             return --[[ Eq ]]Block.__(0, {
                       55,
                       test(--[[ () ]]0)
@@ -90,7 +90,7 @@ Mt.from_pair_suites("Cps_test", --[[ :: ]]{
       --[[ :: ]]{
         --[[ tuple ]]{
           "cps_test_closure",
-          (function (param) do
+          (function(param) do
               return --[[ Eq ]]Block.__(0, {
                         15,
                         test_closure(--[[ () ]]0)
@@ -100,7 +100,7 @@ Mt.from_pair_suites("Cps_test", --[[ :: ]]{
         --[[ :: ]]{
           --[[ tuple ]]{
             "cps_test_closure2",
-            (function (param) do
+            (function(param) do
                 return --[[ Eq ]]Block.__(0, {
                           30,
                           test_closure2(--[[ () ]]0)
@@ -112,6 +112,7 @@ Mt.from_pair_suites("Cps_test", --[[ :: ]]{
       }
     });
 
+exports = {}
 exports.test = test;
 exports.test_closure = test_closure;
 exports.test_closure2 = test_closure2;

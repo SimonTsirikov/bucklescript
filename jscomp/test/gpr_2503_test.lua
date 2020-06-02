@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Caml_option = require "../../lib/js/caml_option";
@@ -22,14 +22,13 @@ end end
 function makeWrapper(foo, param) do
   tmp = { };
   if (foo ~= undefined) then do
-    tmp.foo = (function () do
+    tmp.foo = (function() do
           local ___conditional___=(Caml_option.valFromOption(foo));
           do
-             if ___conditional___ = 97 then do
-                return "a";end end end 
-             if ___conditional___ = 98 then do
-                return "b";end end end 
-             do
+             if ___conditional___ == 97 then do
+                return "a"; end end 
+             if ___conditional___ == 98 then do
+                return "b"; end end 
             
           end
         end end)();
@@ -41,14 +40,13 @@ end end
 
 function makeWrapper2(foo, param) do
   console.log(do
-        foo: (function () do
+        foo: (function() do
               local ___conditional___=(foo);
               do
-                 if ___conditional___ = 97 then do
-                    return "a";end end end 
-                 if ___conditional___ = 98 then do
-                    return "b";end end end 
-                 do
+                 if ___conditional___ == 97 then do
+                    return "a"; end end 
+                 if ___conditional___ == 98 then do
+                    return "b"; end end 
                 
               end
             end end)()
@@ -62,14 +60,13 @@ function makeWrapper3(foo, param) do
   console.log(2);
   tmp = { };
   if (foo ~= undefined) then do
-    tmp.foo = (function () do
+    tmp.foo = (function() do
           local ___conditional___=(Caml_option.valFromOption(foo));
           do
-             if ___conditional___ = 97 then do
-                return "a";end end end 
-             if ___conditional___ = 98 then do
-                return "b";end end end 
-             do
+             if ___conditional___ == 97 then do
+                return "a"; end end 
+             if ___conditional___ == 98 then do
+                return "b"; end end 
             
           end
         end end)();
@@ -85,14 +82,13 @@ function makeWrapper4(foo, param) do
       foo > 10 and --[[ b ]]98 or --[[ a ]]97
     );
   if (tmp_1 ~= undefined) then do
-    tmp.foo = (function () do
+    tmp.foo = (function() do
           local ___conditional___=(Caml_option.valFromOption(tmp_1));
           do
-             if ___conditional___ = 97 then do
-                return "a";end end end 
-             if ___conditional___ = 98 then do
-                return "b";end end end 
-             do
+             if ___conditional___ == 97 then do
+                return "a"; end end 
+             if ___conditional___ == 98 then do
+                return "b"; end end 
             
           end
         end end)();
@@ -113,6 +109,7 @@ b("File \"gpr_2503_test.ml\", line 43, characters 5-12", undefined == makeWrappe
 
 Mt.from_pair_suites("Gpr_2503_test", suites.contents);
 
+exports = {}
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;

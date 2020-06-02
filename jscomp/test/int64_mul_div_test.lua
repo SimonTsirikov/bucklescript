@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 List = require "../../lib/js/list";
@@ -308,7 +308,7 @@ pairs = {
 };
 
 function from_pairs(prefix, pairs) do
-  return __Array.to_list(__Array.mapi((function (i, param) do
+  return __Array.to_list(__Array.mapi((function(i, param) do
                     b = param[2];
                     a = param[1];
                     result = param[0];
@@ -328,7 +328,7 @@ function from_pairs(prefix, pairs) do
                                         }),
                                       "%s_%d"
                                     }), prefix, i),
-                            (function (param) do
+                            (function(param) do
                                 return commutative_mul(result, a, b);
                               end end)
                           };
@@ -1585,7 +1585,7 @@ simple_divs = {
 };
 
 function from(xs) do
-  return List.mapi((function (i, param) do
+  return List.mapi((function(i, param) do
                 d = param[3];
                 c = param[2];
                 b = param[1];
@@ -1601,7 +1601,7 @@ function from(xs) do
                                     }),
                                   "small_divs %L"
                                 }), i),
-                        (function (param) do
+                        (function(param) do
                             return --[[ Eq ]]Block.__(0, {
                                       --[[ tuple ]]{
                                         c,
@@ -1662,7 +1662,7 @@ int64_compare_tests = {
 };
 
 function from_compare(xs) do
-  return List.mapi((function (i, param) do
+  return List.mapi((function(i, param) do
                 c = param[2];
                 b = param[1];
                 a = param[0];
@@ -1677,7 +1677,7 @@ function from_compare(xs) do
                                     }),
                                   "int64_compare %L"
                                 }), i),
-                        (function (param) do
+                        (function(param) do
                             return --[[ Eq ]]Block.__(0, {
                                       c,
                                       Caml_int64.compare(a, b)
@@ -1688,7 +1688,7 @@ function from_compare(xs) do
 end end
 
 function from_to_string(xs) do
-  return List.mapi((function (i, param) do
+  return List.mapi((function(i, param) do
                 str_a = param[1];
                 a = param[0];
                 return --[[ tuple ]]{
@@ -1702,7 +1702,7 @@ function from_to_string(xs) do
                                     }),
                                   "to_string %L"
                                 }), i),
-                        (function (param) do
+                        (function(param) do
                             return --[[ Eq ]]Block.__(0, {
                                       str_a,
                                       Caml_format.caml_int64_format("%d", a)
@@ -1712,7 +1712,7 @@ function from_to_string(xs) do
               end end), __Array.to_list(xs));
 end end
 
-Mt.from_pair_suites("Int64_mul_div_test", Pervasives.$at(from_pairs("random", pairs), Pervasives.$at(from_pairs("small", small_pairs), Pervasives.$at(List.mapi((function (i, param) do
+Mt.from_pair_suites("Int64_mul_div_test", Pervasives.$at(from_pairs("random", pairs), Pervasives.$at(from_pairs("small", small_pairs), Pervasives.$at(List.mapi((function(i, param) do
                         f = param[1];
                         i64 = param[0];
                         return --[[ tuple ]]{
@@ -1728,14 +1728,14 @@ Mt.from_pair_suites("Int64_mul_div_test", Pervasives.$at(from_pairs("random", pa
                                             }),
                                           "to_float_%d"
                                         }), i),
-                                (function (param) do
+                                (function(param) do
                                     return --[[ Eq ]]Block.__(0, {
                                               Caml_int64.to_float(i64),
                                               f
                                             });
                                   end end)
                               };
-                      end end), __Array.to_list(to_floats)), Pervasives.$at(List.mapi((function (i, param) do
+                      end end), __Array.to_list(to_floats)), Pervasives.$at(List.mapi((function(i, param) do
                             i64 = param[1];
                             f = param[0];
                             return --[[ tuple ]]{
@@ -1751,7 +1751,7 @@ Mt.from_pair_suites("Int64_mul_div_test", Pervasives.$at(from_pairs("random", pa
                                                 }),
                                               "of_float_%d"
                                             }), i),
-                                    (function (param) do
+                                    (function(param) do
                                         return --[[ Eq ]]Block.__(0, {
                                                   Caml_int64.of_float(f),
                                                   i64
@@ -1761,9 +1761,9 @@ Mt.from_pair_suites("Int64_mul_div_test", Pervasives.$at(from_pairs("random", pa
                           end end), __Array.to_list(of_float_pairs)), Pervasives.$at(--[[ :: ]]{
                           --[[ tuple ]]{
                             "compare_check_complete",
-                            (function (param) do
+                            (function(param) do
                                 return --[[ Eq ]]Block.__(0, {
-                                          __Array.map((function (param) do
+                                          __Array.map((function(param) do
                                                   return true;
                                                 end end), check_complete_compare),
                                           check_complete_compare
@@ -1774,7 +1774,7 @@ Mt.from_pair_suites("Int64_mul_div_test", Pervasives.$at(from_pairs("random", pa
                         }, Pervasives.$at(from(simple_divs), Pervasives.$at(from_compare(int64_compare_tests), --[[ :: ]]{
                                   --[[ tuple ]]{
                                     "div_rem_0",
-                                    (function (param) do
+                                    (function(param) do
                                         return --[[ Eq ]]Block.__(0, {
                                                   --[[ int64 ]]{
                                                     --[[ hi ]]0,
@@ -1790,7 +1790,7 @@ Mt.from_pair_suites("Int64_mul_div_test", Pervasives.$at(from_pairs("random", pa
                                   --[[ :: ]]{
                                     --[[ tuple ]]{
                                       "div_rem_1",
-                                      (function (param) do
+                                      (function(param) do
                                           return --[[ Eq ]]Block.__(0, {
                                                     --[[ int64 ]]{
                                                       --[[ hi ]]-1,
@@ -1806,7 +1806,7 @@ Mt.from_pair_suites("Int64_mul_div_test", Pervasives.$at(from_pairs("random", pa
                                     --[[ :: ]]{
                                       --[[ tuple ]]{
                                         "File \"int64_mul_div_test.ml\", line 214, characters 5-12",
-                                        (function (param) do
+                                        (function(param) do
                                             return --[[ Eq ]]Block.__(0, {
                                                       Caml_int64.to_float(Int64.max_int),
                                                       9.22337203685477581e+18
@@ -1818,6 +1818,7 @@ Mt.from_pair_suites("Int64_mul_div_test", Pervasives.$at(from_pairs("random", pa
                                   }
                                 }))))))));
 
+exports = {}
 exports.commutative_mul = commutative_mul;
 exports.pairs = pairs;
 exports.from_pairs = from_pairs;

@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Obj = require "./obj";
 Curry = require "./curry";
@@ -20,7 +20,7 @@ function force_lazy_block(blk) do
     Caml_obj.caml_obj_set_tag(blk, Obj.forward_tag);
     return result;
   end end,function(e) do
-    blk[0] = (function (param) do
+    blk[0] = (function(param) do
         error(e)
       end end);
     error(e)
@@ -58,6 +58,7 @@ function force_val(lzv) do
   end end  end 
 end end
 
+exports = {}
 exports.Undefined = Undefined;
 exports.force_lazy_block = force_lazy_block;
 exports.force_val_lazy_block = force_val_lazy_block;

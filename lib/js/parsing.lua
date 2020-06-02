@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 __Array = require "./array";
 Curry = require "./curry";
@@ -58,7 +58,7 @@ function clear_parser(param) do
 end end
 
 current_lookahead_fun = do
-  contents: (function (param) do
+  contents: (function(param) do
       return false;
     end end)
 end;
@@ -83,26 +83,26 @@ function yyparse(tables, start, lexer, lexbuf) do
       match = Caml_parser.caml_parse_engine(tables, env, cmd, arg);
       local ___conditional___=(match);
       do
-         if ___conditional___ = 0--[[ Read_token ]] then do
+         if ___conditional___ == 0--[[ Read_token ]] then do
             t = Curry._1(lexer, lexbuf);
             env.symb_start = lexbuf.lex_start_p;
             env.symb_end = lexbuf.lex_curr_p;
             _arg = t;
             _cmd = --[[ Token_read ]]1;
-            ::continue:: ;end end end 
-         if ___conditional___ = 1--[[ Raise_parse_error ]] then do
-            error(Parse_error)end end end 
-         if ___conditional___ = 2--[[ Grow_stacks_1 ]] then do
+            ::continue:: ; end end 
+         if ___conditional___ == 1--[[ Raise_parse_error ]] then do
+            error(Parse_error) end end 
+         if ___conditional___ == 2--[[ Grow_stacks_1 ]] then do
             grow_stacks(--[[ () ]]0);
             _arg = --[[ () ]]0;
             _cmd = --[[ Stacks_grown_1 ]]2;
-            ::continue:: ;end end end 
-         if ___conditional___ = 3--[[ Grow_stacks_2 ]] then do
+            ::continue:: ; end end 
+         if ___conditional___ == 3--[[ Grow_stacks_2 ]] then do
             grow_stacks(--[[ () ]]0);
             _arg = --[[ () ]]0;
             _cmd = --[[ Stacks_grown_2 ]]3;
-            ::continue:: ;end end end 
-         if ___conditional___ = 4--[[ Compute_semantic_action ]] then do
+            ::continue:: ; end end 
+         if ___conditional___ == 4--[[ Compute_semantic_action ]] then do
             match_1;
             xpcall(function() do
               match_1 = --[[ tuple ]]{
@@ -121,13 +121,12 @@ function yyparse(tables, start, lexer, lexbuf) do
             end end)
             _arg = match_1[1];
             _cmd = match_1[0];
-            ::continue:: ;end end end 
-         if ___conditional___ = 5--[[ Call_error_function ]] then do
+            ::continue:: ; end end 
+         if ___conditional___ == 5--[[ Call_error_function ]] then do
             Curry._1(tables.error_function, "syntax error");
             _arg = --[[ () ]]0;
             _cmd = --[[ Error_detected ]]5;
-            ::continue:: ;end end end 
-         do
+            ::continue:: ; end end 
         
       end
     end;
@@ -144,7 +143,7 @@ function yyparse(tables, start, lexer, lexbuf) do
     if (exn_1[0] == YYexit) then do
       return exn_1[1];
     end else do
-      current_lookahead_fun.contents = (function (tok) do
+      current_lookahead_fun.contents = (function(tok) do
           if (typeof tok ~= "number") then do
             return Caml_array.caml_array_get(tables.transl_block, tok.tag | 0) == curr_char;
           end else do
@@ -217,6 +216,7 @@ end end
 
 set_trace = Caml_parser.caml_set_parser_trace;
 
+exports = {}
 exports.symbol_start = symbol_start;
 exports.symbol_end = symbol_end;
 exports.rhs_start = rhs_start;

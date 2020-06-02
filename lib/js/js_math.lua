@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Js_int = require "./js_int";
 
@@ -38,6 +38,7 @@ ceil = ceil_int;
 
 floor = floor_int;
 
+exports = {}
 exports.unsafe_ceil = unsafe_ceil;
 exports.ceil_int = ceil_int;
 exports.ceil = ceil;

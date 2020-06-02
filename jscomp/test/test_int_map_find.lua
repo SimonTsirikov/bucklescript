@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 List = require "../../lib/js/list";
 Caml_primitive = require "../../lib/js/caml_primitive";
@@ -127,7 +127,7 @@ function add(x, data, m) do
   end end 
 end end
 
-List.fold_left((function (acc, param) do
+List.fold_left((function(acc, param) do
         return add(param[0], param[1], acc);
       end end), --[[ Empty ]]0, --[[ :: ]]{
       --[[ tuple ]]{
@@ -155,4 +155,5 @@ List.fold_left((function (acc, param) do
       }
     });
 
+exports = {}
 --[[  Not a pure module ]]

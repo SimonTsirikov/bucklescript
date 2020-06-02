@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 List = require "../../lib/js/list";
 __Array = require "../../lib/js/array";
@@ -11,7 +11,7 @@ function for_3(x) do
   v = do
     contents: 0
   end;
-  arr = __Array.map((function (param, param_1) do
+  arr = __Array.map((function(param, param_1) do
           return --[[ () ]]0;
         end end), x);
   for i = 0 , #x - 1 | 0 , 1 do
@@ -21,9 +21,9 @@ function for_3(x) do
           v.contents = v.contents + j | 0;
           return --[[ () ]]0;
         end end
-        end(j)));
+        end end)(j));
   end
-  __Array.iter((function (x) do
+  __Array.iter((function(x) do
           return Curry._1(x, --[[ () ]]0);
         end end), arr);
   return v.contents;
@@ -33,7 +33,7 @@ function for_4(x) do
   v = do
     contents: 0
   end;
-  arr = __Array.map((function (param, param_1) do
+  arr = __Array.map((function(param, param_1) do
           return --[[ () ]]0;
         end end), x);
   for i = 0 , #x - 1 | 0 , 1 do
@@ -44,9 +44,9 @@ function for_4(x) do
           v.contents = v.contents + k | 0;
           return --[[ () ]]0;
         end end
-        end(k)));
+        end end)(k));
   end
-  __Array.iter((function (x) do
+  __Array.iter((function(x) do
           return Curry._1(x, --[[ () ]]0);
         end end), arr);
   return v.contents;
@@ -56,7 +56,7 @@ function for_5(x, u) do
   v = do
     contents: 0
   end;
-  arr = __Array.map((function (param, param_1) do
+  arr = __Array.map((function(param, param_1) do
           return --[[ () ]]0;
         end end), x);
   for i = 0 , #x - 1 | 0 , 1 do
@@ -66,9 +66,9 @@ function for_5(x, u) do
           v.contents = v.contents + k | 0;
           return --[[ () ]]0;
         end end
-        end(k)));
+        end end)(k));
   end
-  __Array.iter((function (x) do
+  __Array.iter((function(x) do
           return Curry._1(x, --[[ () ]]0);
         end end), arr);
   return v.contents;
@@ -78,7 +78,7 @@ function for_6(x, u) do
   v = do
     contents: 0
   end;
-  arr = __Array.map((function (param, param_1) do
+  arr = __Array.map((function(param, param_1) do
           return --[[ () ]]0;
         end end), x);
   v4 = do
@@ -94,7 +94,7 @@ function for_6(x, u) do
     v2 = do
       contents: 0
     end;
-    (function(v2)do
+    (function(v2) do
     for i = 0 , #x - 1 | 0 , 1 do
       k = Caml_int32.imul((u << 1), u);
       h = (v5.contents << 1);
@@ -104,12 +104,12 @@ function for_6(x, u) do
             v.contents = (((((v.contents + k | 0) + v2.contents | 0) + v4.contents | 0) + v5.contents | 0) + h | 0) + u | 0;
             return --[[ () ]]0;
           end end
-          end(k,h)));
+          end end)(k,h));
     end
     end(v2));
     inspect_3 = v2.contents;
   end
-  __Array.iter((function (x) do
+  __Array.iter((function(x) do
           return Curry._1(x, --[[ () ]]0);
         end end), arr);
   return {
@@ -124,22 +124,22 @@ function for_7(param) do
   v = do
     contents: 0
   end;
-  arr = Caml_array.caml_make_vect(21, (function (param) do
+  arr = Caml_array.caml_make_vect(21, (function(param) do
           return --[[ () ]]0;
         end end));
   for i = 0 , 6 , 1 do
-    (function(i)do
+    (function(i) do
     for j = 0 , 2 , 1 do
       Caml_array.caml_array_set(arr, Caml_int32.imul(i, 3) + j | 0, (function(j)do
           return function (param) do
             v.contents = (v.contents + i | 0) + j | 0;
             return --[[ () ]]0;
           end end
-          end(j)));
+          end end)(j));
     end
     end(i));
   end
-  __Array.iter((function (f) do
+  __Array.iter((function(f) do
           return Curry._1(f, --[[ () ]]0);
         end end), arr);
   return v.contents;
@@ -149,12 +149,12 @@ function for_8(param) do
   v = do
     contents: 0
   end;
-  arr = Caml_array.caml_make_vect(21, (function (param) do
+  arr = Caml_array.caml_make_vect(21, (function(param) do
           return --[[ () ]]0;
         end end));
   for i = 0 , 6 , 1 do
     k = (i << 1);
-    (function(i,k)do
+    (function(i,k) do
     for j = 0 , 2 , 1 do
       h = i + j | 0;
       Caml_array.caml_array_set(arr, Caml_int32.imul(i, 3) + j | 0, (function(j,h)do
@@ -162,11 +162,11 @@ function for_8(param) do
             v.contents = (((v.contents + i | 0) + j | 0) + h | 0) + k | 0;
             return --[[ () ]]0;
           end end
-          end(j,h)));
+          end end)(j,h));
     end
     end(i,k));
   end
-  __Array.iter((function (f) do
+  __Array.iter((function(f) do
           return Curry._1(f, --[[ () ]]0);
         end end), arr);
   return v.contents;
@@ -176,7 +176,7 @@ function for_9(param) do
   v = do
     contents: --[[ [] ]]0
   end;
-  collect = function (x) do
+  collect = function(x) do
     v.contents = --[[ :: ]]{
       x,
       v.contents
@@ -189,10 +189,10 @@ function for_9(param) do
   vv2 = do
     contents: 0
   end;
-  arr = Caml_array.caml_make_vect(4, (function (param) do
+  arr = Caml_array.caml_make_vect(4, (function(param) do
           return --[[ () ]]0;
         end end));
-  arr2 = Caml_array.caml_make_vect(2, (function (param) do
+  arr2 = Caml_array.caml_make_vect(2, (function(param) do
           return --[[ () ]]0;
         end end));
   for i = 0 , 1 , 1 do
@@ -200,11 +200,11 @@ function for_9(param) do
       contents: 0
     end;
     v_1.contents = v_1.contents + i | 0;
-    (function(v_1)do
+    (function(v_1) do
     for j = 0 , 1 , 1 do
       v_1.contents = v_1.contents + 1 | 0;
       collect(v_1.contents);
-      Caml_array.caml_array_set(arr, (i << 1) + j | 0, (function (param) do
+      Caml_array.caml_array_set(arr, (i << 1) + j | 0, (function(param) do
               vv.contents = vv.contents + v_1.contents | 0;
               return --[[ () ]]0;
             end end));
@@ -215,12 +215,12 @@ function for_9(param) do
           vv2.contents = vv2.contents + v_1.contents | 0;
           return --[[ () ]]0;
         end end
-        end(v_1)));
+        end end)(v_1));
   end
-  __Array.iter((function (f) do
+  __Array.iter((function(f) do
           return Curry._1(f, --[[ () ]]0);
         end end), arr);
-  __Array.iter((function (f) do
+  __Array.iter((function(f) do
           return Curry._1(f, --[[ () ]]0);
         end end), arr2);
   return {--[[ tuple ]]{
@@ -232,7 +232,7 @@ end end
 
 suites_000 = --[[ tuple ]]{
   "for_loop_test_3",
-  (function (param) do
+  (function(param) do
       return --[[ Eq ]]Block.__(0, {
                 90,
                 for_3(Caml_array.caml_make_vect(10, 2))
@@ -243,7 +243,7 @@ suites_000 = --[[ tuple ]]{
 suites_001 = --[[ :: ]]{
   --[[ tuple ]]{
     "for_loop_test_4",
-    (function (param) do
+    (function(param) do
         return --[[ Eq ]]Block.__(0, {
                   180,
                   for_4(Caml_array.caml_make_vect(10, 2))
@@ -253,7 +253,7 @@ suites_001 = --[[ :: ]]{
   --[[ :: ]]{
     --[[ tuple ]]{
       "for_loop_test_5",
-      (function (param) do
+      (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     2420,
                     for_5(Caml_array.caml_make_vect(10, 2), 11)
@@ -263,7 +263,7 @@ suites_001 = --[[ :: ]]{
     --[[ :: ]]{
       --[[ tuple ]]{
         "for_loop_test_6",
-        (function (param) do
+        (function(param) do
             return --[[ Eq ]]Block.__(0, {
                       {
                         30,
@@ -278,7 +278,7 @@ suites_001 = --[[ :: ]]{
       --[[ :: ]]{
         --[[ tuple ]]{
           "for_loop_test_7",
-          (function (param) do
+          (function(param) do
               return --[[ Eq ]]Block.__(0, {
                         84,
                         for_7(--[[ () ]]0)
@@ -288,7 +288,7 @@ suites_001 = --[[ :: ]]{
         --[[ :: ]]{
           --[[ tuple ]]{
             "for_loop_test_8",
-            (function (param) do
+            (function(param) do
                 return --[[ Eq ]]Block.__(0, {
                           294,
                           for_8(--[[ () ]]0)
@@ -298,7 +298,7 @@ suites_001 = --[[ :: ]]{
           --[[ :: ]]{
             --[[ tuple ]]{
               "for_loop_test_9",
-              (function (param) do
+              (function(param) do
                   return --[[ Eq ]]Block.__(0, {
                             {--[[ tuple ]]{
                                 10,
@@ -327,6 +327,7 @@ suites = --[[ :: ]]{
   suites_001
 };
 
+exports = {}
 exports.for_3 = for_3;
 exports.for_4 = for_4;
 exports.for_5 = for_5;

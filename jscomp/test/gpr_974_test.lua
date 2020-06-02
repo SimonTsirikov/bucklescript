@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Caml_obj = require "../../lib/js/caml_obj";
 Caml_option = require "../../lib/js/caml_option";
@@ -40,4 +40,5 @@ if (not Caml_obj.caml_equal(Caml_option.null_to_opt(""), "")) then do
 end
  end 
 
+exports = {}
 --[[  Not a pure module ]]

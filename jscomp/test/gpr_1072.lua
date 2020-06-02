@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 
 u = do
@@ -171,6 +171,7 @@ again4(undefined, (side_effect.contents = side_effect.contents - 1 | 0, --[[ () 
 
 again4((side_effect.contents = side_effect.contents + 1 | 0, --[[ () ]]0), --[[ () ]]0, 174);
 
+exports = {}
 exports.u = u;
 exports.v_ice_cream3 = v_ice_cream3;
 exports.v_ice_cream4 = v_ice_cream4;

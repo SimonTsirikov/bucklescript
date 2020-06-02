@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Caml_int32 = require "../../lib/js/caml_int32";
 
@@ -17,4 +17,5 @@ for k = 1 , 10 , 1 do
   end
 end
 
+exports = {}
 --[[  Not a pure module ]]

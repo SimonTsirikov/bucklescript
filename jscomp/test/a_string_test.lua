@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 List = require "../../lib/js/list";
@@ -7,7 +7,7 @@ Ext_string_test = require "./ext_string_test";
 
 suites_000 = --[[ tuple ]]{
   "split",
-  (function (param) do
+  (function(param) do
       return --[[ Eq ]]Block.__(0, {
                 Ext_string_test.split(true, "hihi", --[[ "i" ]]105),
                 --[[ :: ]]{
@@ -27,7 +27,7 @@ suites_000 = --[[ tuple ]]{
 suites_001 = --[[ :: ]]{
   --[[ tuple ]]{
     "split_non_empty",
-    (function (param) do
+    (function(param) do
         return --[[ Eq ]]Block.__(0, {
                   Ext_string_test.split(undefined, "hihi", --[[ "i" ]]105),
                   --[[ :: ]]{
@@ -43,7 +43,7 @@ suites_001 = --[[ :: ]]{
   --[[ :: ]]{
     --[[ tuple ]]{
       "split_empty",
-      (function (param) do
+      (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     Ext_string_test.split(true, "", --[[ "i" ]]105),
                     --[[ [] ]]0
@@ -53,7 +53,7 @@ suites_001 = --[[ :: ]]{
     --[[ :: ]]{
       --[[ tuple ]]{
         "split_normal",
-        (function (param) do
+        (function(param) do
             return --[[ Eq ]]Block.__(0, {
                       Ext_string_test.split(true, "h i i", --[[ " " ]]32),
                       --[[ :: ]]{
@@ -72,11 +72,11 @@ suites_001 = --[[ :: ]]{
       --[[ :: ]]{
         --[[ tuple ]]{
           "split_by",
-          (function (param) do
+          (function(param) do
               return --[[ Eq ]]Block.__(0, {
-                        List.filter((function (s) do
+                        List.filter((function(s) do
                                   return s ~= "";
-                                end end))(Ext_string_test.split_by(undefined, (function (x) do
+                                end end))(Ext_string_test.split_by(undefined, (function(x) do
                                     if (x == --[[ " " ]]32) then do
                                       return true;
                                     end else do
@@ -116,6 +116,7 @@ split = Ext_string_test.split;
 
 split_by = Ext_string_test.split_by;
 
+exports = {}
 exports.split = split;
 exports.split_by = split_by;
 exports.suites = suites;

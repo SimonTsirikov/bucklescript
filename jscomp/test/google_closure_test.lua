@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Block = require "../../lib/js/block";
@@ -7,7 +7,7 @@ Test_google_closure = require "./test_google_closure";
 Mt.from_pair_suites("Closure", --[[ :: ]]{
       --[[ tuple ]]{
         "partial",
-        (function (param) do
+        (function(param) do
             return --[[ Eq ]]Block.__(0, {
                       --[[ tuple ]]{
                         Test_google_closure.a,
@@ -28,4 +28,5 @@ Mt.from_pair_suites("Closure", --[[ :: ]]{
       --[[ [] ]]0
     });
 
+exports = {}
 --[[  Not a pure module ]]

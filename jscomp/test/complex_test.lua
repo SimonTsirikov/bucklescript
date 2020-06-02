@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Block = require "../../lib/js/block";
@@ -6,7 +6,7 @@ Complex = require "../../lib/js/complex";
 
 suites_000 = --[[ tuple ]]{
   "basic_add",
-  (function (param) do
+  (function(param) do
       return --[[ Eq ]]Block.__(0, {
                 do
                   re: 2,
@@ -24,5 +24,6 @@ suites = --[[ :: ]]{
 
 Mt.from_pair_suites("Complex_test", suites);
 
+exports = {}
 exports.suites = suites;
 --[[  Not a pure module ]]

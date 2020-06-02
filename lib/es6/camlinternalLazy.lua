@@ -20,7 +20,7 @@ function force_lazy_block(blk) do
     Caml_obj.caml_obj_set_tag(blk, Obj.forward_tag);
     return result;
   end end,function(e) do
-    blk[0] = (function (param) do
+    blk[0] = (function(param) do
         error(e)
       end end);
     error(e)

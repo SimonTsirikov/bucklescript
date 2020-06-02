@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 List = require "./list";
 Curry = require "./curry";
@@ -6,14 +6,14 @@ Caml_option = require "./caml_option";
 Caml_builtin_exceptions = require "./caml_builtin_exceptions";
 
 function Make(funarg) do
-  height = function (param) do
+  height = function(param) do
     if (param) then do
       return param[--[[ h ]]3];
     end else do
       return 0;
     end end 
   end end;
-  create = function (l, v, r) do
+  create = function(l, v, r) do
     hl = l and l[--[[ h ]]3] or 0;
     hr = r and r[--[[ h ]]3] or 0;
     return --[[ Node ]]{
@@ -23,7 +23,7 @@ function Make(funarg) do
             --[[ h ]]hl >= hr and hl + 1 | 0 or hr + 1 | 0
           };
   end end;
-  bal = function (l, v, r) do
+  bal = function(l, v, r) do
     hl = l and l[--[[ h ]]3] or 0;
     hr = r and r[--[[ h ]]3] or 0;
     if (hl > (hr + 2 | 0)) then do
@@ -77,7 +77,7 @@ function Make(funarg) do
             };
     end end  end 
   end end;
-  add = function (x, t) do
+  add = function(x, t) do
     if (t) then do
       r = t[--[[ r ]]2];
       v = t[--[[ v ]]1];
@@ -109,7 +109,7 @@ function Make(funarg) do
             };
     end end 
   end end;
-  singleton = function (x) do
+  singleton = function(x) do
     return --[[ Node ]]{
             --[[ l : Empty ]]0,
             --[[ v ]]x,
@@ -117,21 +117,21 @@ function Make(funarg) do
             --[[ h ]]1
           };
   end end;
-  add_min_element = function (x, param) do
+  add_min_element = function(x, param) do
     if (param) then do
       return bal(add_min_element(x, param[--[[ l ]]0]), param[--[[ v ]]1], param[--[[ r ]]2]);
     end else do
       return singleton(x);
     end end 
   end end;
-  add_max_element = function (x, param) do
+  add_max_element = function(x, param) do
     if (param) then do
       return bal(param[--[[ l ]]0], param[--[[ v ]]1], add_max_element(x, param[--[[ r ]]2]));
     end else do
       return singleton(x);
     end end 
   end end;
-  join = function (l, v, r) do
+  join = function(l, v, r) do
     if (l) then do
       if (r) then do
         rh = r[--[[ h ]]3];
@@ -150,7 +150,7 @@ function Make(funarg) do
       return add_min_element(v, r);
     end end 
   end end;
-  min_elt = function (_param) do
+  min_elt = function(_param) do
     while(true) do
       param = _param;
       if (param) then do
@@ -166,7 +166,7 @@ function Make(funarg) do
       end end 
     end;
   end end;
-  min_elt_opt = function (_param) do
+  min_elt_opt = function(_param) do
     while(true) do
       param = _param;
       if (param) then do
@@ -182,7 +182,7 @@ function Make(funarg) do
       end end 
     end;
   end end;
-  max_elt = function (_param) do
+  max_elt = function(_param) do
     while(true) do
       param = _param;
       if (param) then do
@@ -198,7 +198,7 @@ function Make(funarg) do
       end end 
     end;
   end end;
-  max_elt_opt = function (_param) do
+  max_elt_opt = function(_param) do
     while(true) do
       param = _param;
       if (param) then do
@@ -214,7 +214,7 @@ function Make(funarg) do
       end end 
     end;
   end end;
-  remove_min_elt = function (param) do
+  remove_min_elt = function(param) do
     if (param) then do
       l = param[--[[ l ]]0];
       if (l) then do
@@ -229,7 +229,7 @@ function Make(funarg) do
       })
     end end 
   end end;
-  concat = function (t1, t2) do
+  concat = function(t1, t2) do
     if (t1) then do
       if (t2) then do
         return join(t1, min_elt(t2), remove_min_elt(t2));
@@ -240,7 +240,7 @@ function Make(funarg) do
       return t2;
     end end 
   end end;
-  split = function (x, param) do
+  split = function(x, param) do
     if (param) then do
       r = param[--[[ r ]]2];
       v = param[--[[ v ]]1];
@@ -275,14 +275,14 @@ function Make(funarg) do
             };
     end end 
   end end;
-  is_empty = function (param) do
+  is_empty = function(param) do
     if (param) then do
       return false;
     end else do
       return true;
     end end 
   end end;
-  mem = function (x, _param) do
+  mem = function(x, _param) do
     while(true) do
       param = _param;
       if (param) then do
@@ -298,7 +298,7 @@ function Make(funarg) do
       end end 
     end;
   end end;
-  remove = function (x, t) do
+  remove = function(x, t) do
     if (t) then do
       r = t[--[[ r ]]2];
       v = t[--[[ v ]]1];
@@ -335,7 +335,7 @@ function Make(funarg) do
       return --[[ Empty ]]0;
     end end 
   end end;
-  union = function (s1, s2) do
+  union = function(s1, s2) do
     if (s1) then do
       if (s2) then do
         h2 = s2[--[[ h ]]3];
@@ -362,7 +362,7 @@ function Make(funarg) do
       return s2;
     end end 
   end end;
-  inter = function (s1, s2) do
+  inter = function(s1, s2) do
     if (s1 and s2) then do
       r1 = s1[--[[ r ]]2];
       v1 = s1[--[[ v ]]1];
@@ -378,7 +378,7 @@ function Make(funarg) do
       return --[[ Empty ]]0;
     end end 
   end end;
-  diff = function (s1, s2) do
+  diff = function(s1, s2) do
     if (s1) then do
       if (s2) then do
         r1 = s1[--[[ r ]]2];
@@ -398,7 +398,7 @@ function Make(funarg) do
       return --[[ Empty ]]0;
     end end 
   end end;
-  cons_enum = function (_s, _e) do
+  cons_enum = function(_s, _e) do
     while(true) do
       e = _e;
       s = _s;
@@ -415,7 +415,7 @@ function Make(funarg) do
       end end 
     end;
   end end;
-  compare = function (s1, s2) do
+  compare = function(s1, s2) do
     _e1 = cons_enum(s1, --[[ End ]]0);
     _e2 = cons_enum(s2, --[[ End ]]0);
     while(true) do
@@ -441,10 +441,10 @@ function Make(funarg) do
       end end  end 
     end;
   end end;
-  equal = function (s1, s2) do
+  equal = function(s1, s2) do
     return compare(s1, s2) == 0;
   end end;
-  subset = function (_s1, _s2) do
+  subset = function(_s1, _s2) do
     while(true) do
       s2 = _s2;
       s1 = _s1;
@@ -495,7 +495,7 @@ function Make(funarg) do
       end end 
     end;
   end end;
-  iter = function (f, _param) do
+  iter = function(f, _param) do
     while(true) do
       param = _param;
       if (param) then do
@@ -508,7 +508,7 @@ function Make(funarg) do
       end end 
     end;
   end end;
-  fold = function (f, _s, _accu) do
+  fold = function(f, _s, _accu) do
     while(true) do
       accu = _accu;
       s = _s;
@@ -521,7 +521,7 @@ function Make(funarg) do
       end end 
     end;
   end end;
-  for_all = function (p, _param) do
+  for_all = function(p, _param) do
     while(true) do
       param = _param;
       if (param) then do
@@ -536,7 +536,7 @@ function Make(funarg) do
       end end 
     end;
   end end;
-  exists = function (p, _param) do
+  exists = function(p, _param) do
     while(true) do
       param = _param;
       if (param) then do
@@ -551,7 +551,7 @@ function Make(funarg) do
       end end 
     end;
   end end;
-  filter = function (p, t) do
+  filter = function(p, t) do
     if (t) then do
       r = t[--[[ r ]]2];
       v = t[--[[ v ]]1];
@@ -572,7 +572,7 @@ function Make(funarg) do
       return --[[ Empty ]]0;
     end end 
   end end;
-  partition = function (p, param) do
+  partition = function(p, param) do
     if (param) then do
       v = param[--[[ v ]]1];
       match = partition(p, param[--[[ l ]]0]);
@@ -600,14 +600,14 @@ function Make(funarg) do
             };
     end end 
   end end;
-  cardinal = function (param) do
+  cardinal = function(param) do
     if (param) then do
       return (cardinal(param[--[[ l ]]0]) + 1 | 0) + cardinal(param[--[[ r ]]2]) | 0;
     end else do
       return 0;
     end end 
   end end;
-  elements_aux = function (_accu, _param) do
+  elements_aux = function(_accu, _param) do
     while(true) do
       param = _param;
       accu = _accu;
@@ -623,10 +623,10 @@ function Make(funarg) do
       end end 
     end;
   end end;
-  elements = function (s) do
+  elements = function(s) do
     return elements_aux(--[[ [] ]]0, s);
   end end;
-  find = function (x, _param) do
+  find = function(x, _param) do
     while(true) do
       param = _param;
       if (param) then do
@@ -643,7 +643,7 @@ function Make(funarg) do
       end end 
     end;
   end end;
-  find_first = function (f, _param) do
+  find_first = function(f, _param) do
     while(true) do
       param = _param;
       if (param) then do
@@ -678,7 +678,7 @@ function Make(funarg) do
       end end 
     end;
   end end;
-  find_first_opt = function (f, _param) do
+  find_first_opt = function(f, _param) do
     while(true) do
       param = _param;
       if (param) then do
@@ -713,7 +713,7 @@ function Make(funarg) do
       end end 
     end;
   end end;
-  find_last = function (f, _param) do
+  find_last = function(f, _param) do
     while(true) do
       param = _param;
       if (param) then do
@@ -748,7 +748,7 @@ function Make(funarg) do
       end end 
     end;
   end end;
-  find_last_opt = function (f, _param) do
+  find_last_opt = function(f, _param) do
     while(true) do
       param = _param;
       if (param) then do
@@ -783,7 +783,7 @@ function Make(funarg) do
       end end 
     end;
   end end;
-  find_opt = function (x, _param) do
+  find_opt = function(x, _param) do
     while(true) do
       param = _param;
       if (param) then do
@@ -800,7 +800,7 @@ function Make(funarg) do
       end end 
     end;
   end end;
-  map = function (f, t) do
+  map = function(f, t) do
     if (t) then do
       r = t[--[[ r ]]2];
       v = t[--[[ v ]]1];
@@ -824,7 +824,7 @@ function Make(funarg) do
       return --[[ Empty ]]0;
     end end 
   end end;
-  of_list = function (l) do
+  of_list = function(l) do
     if (l) then do
       match = l[1];
       x0 = l[0];
@@ -840,15 +840,15 @@ function Make(funarg) do
             if (match_3) then do
               if (match_3[1]) then do
                 l_1 = List.sort_uniq(funarg.compare, l);
-                sub = function (n, l) do
+                sub = function(n, l) do
                   local ___conditional___=(n);
                   do
-                     if ___conditional___ = 0 then do
+                     if ___conditional___ == 0 then do
                         return --[[ tuple ]]{
                                 --[[ Empty ]]0,
                                 l
-                              };end end end 
-                     if ___conditional___ = 1 then do
+                              }; end end 
+                     if ___conditional___ == 1 then do
                         if (l) then do
                           return --[[ tuple ]]{
                                   --[[ Node ]]{
@@ -860,8 +860,8 @@ function Make(funarg) do
                                   l[1]
                                 };
                         end
-                         end end else 
-                     if ___conditional___ = 2 then do
+                         end  end else 
+                     if ___conditional___ == 2 then do
                         if (l) then do
                           match = l[1];
                           if (match) then do
@@ -882,8 +882,8 @@ function Make(funarg) do
                           end
                            end 
                         end
-                         end end else 
-                     if ___conditional___ = 3 then do
+                         end  end else 
+                     if ___conditional___ == 3 then do
                         if (l) then do
                           match_1 = l[1];
                           if (match_1) then do
@@ -913,11 +913,9 @@ function Make(funarg) do
                           end
                            end 
                         end
-                         end end else 
-                     do end end end
-                    else do
-                      end end
-                      
+                         end  end else 
+                     end end end end end end
+                    
                   end
                   nl = n / 2 | 0;
                   match_3 = sub(nl, l);
@@ -998,5 +996,6 @@ function Make(funarg) do
         end;
 end end
 
+exports = {}
 exports.Make = Make;
 --[[ No side effect ]]

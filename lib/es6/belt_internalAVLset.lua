@@ -485,11 +485,11 @@ end end
 function fromSortedArrayRevAux(arr, off, len) do
   local ___conditional___=(len);
   do
-     if ___conditional___ = 0 then do
-        return nil;end end end 
-     if ___conditional___ = 1 then do
-        return singleton(arr[off]);end end end 
-     if ___conditional___ = 2 then do
+     if ___conditional___ == 0 then do
+        return nil; end end 
+     if ___conditional___ == 1 then do
+        return singleton(arr[off]); end end 
+     if ___conditional___ == 2 then do
         x0 = arr[off];
         x1 = arr[off - 1 | 0];
         return do
@@ -497,8 +497,8 @@ function fromSortedArrayRevAux(arr, off, len) do
                 height: 2,
                 left: singleton(x0),
                 right: nil
-              end;end end end 
-     if ___conditional___ = 3 then do
+              end; end end 
+     if ___conditional___ == 3 then do
         x0_1 = arr[off];
         x1_1 = arr[off - 1 | 0];
         x2 = arr[off - 2 | 0];
@@ -507,15 +507,12 @@ function fromSortedArrayRevAux(arr, off, len) do
                 height: 2,
                 left: singleton(x0_1),
                 right: singleton(x2)
-              end;end end end 
-     do
-    else do
-      nl = len / 2 | 0;
+              end; end end 
+    nl = len / 2 | 0;
       left = fromSortedArrayRevAux(arr, off, nl);
       mid = arr[off - nl | 0];
       right = fromSortedArrayRevAux(arr, (off - nl | 0) - 1 | 0, (len - nl | 0) - 1 | 0);
       return create(left, mid, right);
-      end end
       
   end
 end end
@@ -523,11 +520,11 @@ end end
 function fromSortedArrayAux(arr, off, len) do
   local ___conditional___=(len);
   do
-     if ___conditional___ = 0 then do
-        return nil;end end end 
-     if ___conditional___ = 1 then do
-        return singleton(arr[off]);end end end 
-     if ___conditional___ = 2 then do
+     if ___conditional___ == 0 then do
+        return nil; end end 
+     if ___conditional___ == 1 then do
+        return singleton(arr[off]); end end 
+     if ___conditional___ == 2 then do
         x0 = arr[off];
         x1 = arr[off + 1 | 0];
         return do
@@ -535,8 +532,8 @@ function fromSortedArrayAux(arr, off, len) do
                 height: 2,
                 left: singleton(x0),
                 right: nil
-              end;end end end 
-     if ___conditional___ = 3 then do
+              end; end end 
+     if ___conditional___ == 3 then do
         x0_1 = arr[off];
         x1_1 = arr[off + 1 | 0];
         x2 = arr[off + 2 | 0];
@@ -545,15 +542,12 @@ function fromSortedArrayAux(arr, off, len) do
                 height: 2,
                 left: singleton(x0_1),
                 right: singleton(x2)
-              end;end end end 
-     do
-    else do
-      nl = len / 2 | 0;
+              end; end end 
+    nl = len / 2 | 0;
       left = fromSortedArrayAux(arr, off, nl);
       mid = arr[off + nl | 0];
       right = fromSortedArrayAux(arr, (off + nl | 0) + 1 | 0, (len - nl | 0) - 1 | 0);
       return create(left, mid, right);
-      end end
       
   end
 end end
@@ -892,7 +886,7 @@ function fromArray(xs, cmp) do
   if (len == 0) then do
     return nil;
   end else do
-    next = Belt_SortArray.strictlySortedLengthU(xs, (function (x, y) do
+    next = Belt_SortArray.strictlySortedLengthU(xs, (function(x, y) do
             return cmp(x, y) < 0;
           end end));
     result;

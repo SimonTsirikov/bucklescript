@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 
 function u(x, y) do
@@ -14,13 +14,14 @@ end end
 hh = max2(1, 2);
 
 function f(x) do
-  des(x, (function () do
+  des(x, (function() do
           console.log("hei");
           return --[[ () ]]0;
         end end));
   return --[[ () ]]0;
 end end
 
+exports = {}
 exports.u = u;
 exports.h = h;
 exports.max2 = max2;

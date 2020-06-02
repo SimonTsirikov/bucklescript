@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Curry = require "../../lib/js/curry";
 Belt_Array = require "../../lib/js/belt_Array";
@@ -81,7 +81,7 @@ function f8(a) do
 end end
 
 function hi(x) do
-  return Belt_Array.map(x, (function (x) do
+  return Belt_Array.map(x, (function(x) do
                 return x + 1 | 0;
               end end));
 end end
@@ -91,6 +91,7 @@ with_poly = --[[ `Foo ]]{
   1
 };
 
+exports = {}
 exports.t0 = t0;
 exports.t1 = t1;
 exports.t2 = t2;

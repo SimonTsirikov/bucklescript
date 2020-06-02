@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 
 v = --[[ int64 ]]{
@@ -6,5 +6,6 @@ v = --[[ int64 ]]{
   --[[ lo ]]0
 };
 
+exports = {}
 exports.v = v;
 --[[ No side effect ]]

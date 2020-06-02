@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Curry = require "../../lib/js/curry";
 Submodule = require "./submodule";
@@ -13,6 +13,7 @@ a3 = Curry._2(Submodule.A0.A1.A2.A3.a3, 1, 2);
 
 a4 = Curry._2(Submodule.A0.A1.A2.A3.A4.a4, 1, 2);
 
+exports = {}
 exports.a0 = a0;
 exports.a1 = a1;
 exports.a2 = a2;

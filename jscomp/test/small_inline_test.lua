@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Curry = require "../../lib/js/curry";
 
@@ -54,6 +54,7 @@ function fff(_x, _y) do
   end;
 end end
 
+exports = {}
 exports.$pipe$great = $pipe$great;
 exports.hello1 = hello1;
 exports.hello2 = hello2;

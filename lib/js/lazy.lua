@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Obj = require "./obj";
 Block = require "./block";
@@ -34,6 +34,7 @@ lazy_from_val = from_val;
 
 lazy_is_val = is_val;
 
+exports = {}
 exports.Undefined = Undefined;
 exports.force_val = force_val;
 exports.from_fun = from_fun;

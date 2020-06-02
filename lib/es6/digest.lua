@@ -82,7 +82,7 @@ function from_hex(s) do
     })
   end
    end 
-  digit = function (c) do
+  digit = function(c) do
     if (c >= 65) then do
       if (c >= 97) then do
         if (c >= 103) then do
@@ -114,7 +114,7 @@ function from_hex(s) do
       return c - --[[ "0" ]]48 | 0;
     end end 
   end end;
-  __byte = function (i) do
+  __byte = function(i) do
     return (digit(Caml_string.get(s, i)) << 4) + digit(Caml_string.get(s, i + 1 | 0)) | 0;
   end end;
   result = Caml_bytes.caml_create_bytes(16);

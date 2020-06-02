@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 
 function height(param) do
@@ -195,6 +195,7 @@ if (match) then do
 end
  end 
 
+exports = {}
 exports.height = height;
 exports.create = create;
 exports.bal = bal;

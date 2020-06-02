@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 __String = require "./string";
 
@@ -72,6 +72,7 @@ equal = __String.equal;
 
 split_on_char = __String.split_on_char;
 
+exports = {}
 exports.make = make;
 exports.init = init;
 exports.copy = copy;

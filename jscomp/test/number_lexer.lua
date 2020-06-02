@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Curry = require "../../lib/js/curry";
 Lexing = require "../../lib/js/lexing";
@@ -28,52 +28,49 @@ function __ocaml_lex_token_rec(l, lexbuf, ___ocaml_lex_state) do
     __ocaml_lex_state_1 = Lexing.engine(__ocaml_lex_tables, __ocaml_lex_state, lexbuf);
     local ___conditional___=(__ocaml_lex_state_1);
     do
-       if ___conditional___ = 0 then do
+       if ___conditional___ == 0 then do
           Curry._1(l, "new line");
           ___ocaml_lex_state = 0;
-          ::continue:: ;end end end 
-       if ___conditional___ = 1 then do
+          ::continue:: ; end end 
+       if ___conditional___ == 1 then do
           Curry._1(l, "number");
           Curry._1(l, Lexing.lexeme(lexbuf));
           ___ocaml_lex_state = 0;
-          ::continue:: ;end end end 
-       if ___conditional___ = 2 then do
+          ::continue:: ; end end 
+       if ___conditional___ == 2 then do
           Curry._1(l, "ident");
           Curry._1(l, Lexing.lexeme(lexbuf));
           ___ocaml_lex_state = 0;
-          ::continue:: ;end end end 
-       if ___conditional___ = 3 then do
+          ::continue:: ; end end 
+       if ___conditional___ == 3 then do
           Curry._1(l, "+");
           ___ocaml_lex_state = 0;
-          ::continue:: ;end end end 
-       if ___conditional___ = 4 then do
+          ::continue:: ; end end 
+       if ___conditional___ == 4 then do
           Curry._1(l, "-");
           ___ocaml_lex_state = 0;
-          ::continue:: ;end end end 
-       if ___conditional___ = 5 then do
+          ::continue:: ; end end 
+       if ___conditional___ == 5 then do
           Curry._1(l, "*");
           ___ocaml_lex_state = 0;
-          ::continue:: ;end end end 
-       if ___conditional___ = 6 then do
+          ::continue:: ; end end 
+       if ___conditional___ == 6 then do
           Curry._1(l, "/");
           ___ocaml_lex_state = 0;
-          ::continue:: ;end end end 
-       if ___conditional___ = 7 then do
+          ::continue:: ; end end 
+       if ___conditional___ == 7 then do
           Curry._1(l, "(");
           ___ocaml_lex_state = 0;
-          ::continue:: ;end end end 
-       if ___conditional___ = 8 then do
+          ::continue:: ; end end 
+       if ___conditional___ == 8 then do
           Curry._1(l, ")");
           ___ocaml_lex_state = 0;
-          ::continue:: ;end end end 
-       if ___conditional___ = 9 then do
-          return Curry._1(l, "eof");end end end 
-       do
-      else do
-        Curry._1(lexbuf.refill_buff, lexbuf);
+          ::continue:: ; end end 
+       if ___conditional___ == 9 then do
+          return Curry._1(l, "eof"); end end 
+      Curry._1(lexbuf.refill_buff, lexbuf);
         ___ocaml_lex_state = __ocaml_lex_state_1;
         ::continue:: ;
-        end end
         
     end
   end;
@@ -83,6 +80,7 @@ function token(l, lexbuf) do
   return __ocaml_lex_token_rec(l, lexbuf, 0);
 end end
 
+exports = {}
 exports.l = l;
 exports.__ocaml_lex_tables = __ocaml_lex_tables;
 exports.token = token;

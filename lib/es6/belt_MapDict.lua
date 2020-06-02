@@ -243,12 +243,12 @@ function mergeU(s1, s2, f, cmp) do
         return Belt_internalAVLtree.concatOrJoin(newLeft_1, v2, newD_1, newRight_1);
       end end 
     end else do
-      return Belt_internalAVLtree.keepMapU(s1, (function (k, v) do
+      return Belt_internalAVLtree.keepMapU(s1, (function(k, v) do
                     return f(k, Caml_option.some(v), undefined);
                   end end));
     end end 
   end else if (s2 ~= nil) then do
-    return Belt_internalAVLtree.keepMapU(s2, (function (k, v) do
+    return Belt_internalAVLtree.keepMapU(s2, (function(k, v) do
                   return f(k, undefined, Caml_option.some(v));
                 end end));
   end else do

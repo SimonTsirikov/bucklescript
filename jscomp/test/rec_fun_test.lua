@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Block = require "../../lib/js/block";
@@ -18,7 +18,7 @@ function eq(loc, x, y) do
   suites.contents = --[[ :: ]]{
     --[[ tuple ]]{
       loc .. (" id " .. String(test_id.contents)),
-      (function (param) do
+      (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     x,
                     y
@@ -36,7 +36,7 @@ end;
 
 function g(param) do
   v = { };
-  next = function (i, b) do
+  next = function(i, b) do
     called.contents = called.contents + 1 | 0;
     if (b) then do
       Curry._2(v.contents, i, false);
@@ -71,6 +71,7 @@ eq("File \"rec_fun_test.ml\", line 27, characters 6-13", called.contents, 2);
 
 Mt.from_pair_suites("Rec_fun_test", suites.contents);
 
+exports = {}
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;

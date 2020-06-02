@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Block = require "../../lib/js/block";
@@ -6,7 +6,7 @@ Caml_option = require "../../lib/js/caml_option";
 
 suites_000 = --[[ tuple ]]{
   "make",
-  (function (param) do
+  (function(param) do
       return --[[ Eq ]]Block.__(0, {
                 "null",
                 String(nil).concat("")
@@ -17,7 +17,7 @@ suites_000 = --[[ tuple ]]{
 suites_001 = --[[ :: ]]{
   --[[ tuple ]]{
     "fromCharCode",
-    (function (param) do
+    (function(param) do
         return --[[ Eq ]]Block.__(0, {
                   "a",
                   String.fromCharCode(97)
@@ -27,7 +27,7 @@ suites_001 = --[[ :: ]]{
   --[[ :: ]]{
     --[[ tuple ]]{
       "fromCharCodeMany",
-      (function (param) do
+      (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     "az",
                     String.fromCharCode(97, 122)
@@ -37,7 +37,7 @@ suites_001 = --[[ :: ]]{
     --[[ :: ]]{
       --[[ tuple ]]{
         "fromCodePoint",
-        (function (param) do
+        (function(param) do
             return --[[ Eq ]]Block.__(0, {
                       "a",
                       String.fromCodePoint(97)
@@ -47,7 +47,7 @@ suites_001 = --[[ :: ]]{
       --[[ :: ]]{
         --[[ tuple ]]{
           "fromCodePointMany",
-          (function (param) do
+          (function(param) do
               return --[[ Eq ]]Block.__(0, {
                         "az",
                         String.fromCodePoint(97, 122)
@@ -57,7 +57,7 @@ suites_001 = --[[ :: ]]{
         --[[ :: ]]{
           --[[ tuple ]]{
             "length",
-            (function (param) do
+            (function(param) do
                 return --[[ Eq ]]Block.__(0, {
                           3,
                           "foo".length
@@ -67,7 +67,7 @@ suites_001 = --[[ :: ]]{
           --[[ :: ]]{
             --[[ tuple ]]{
               "get",
-              (function (param) do
+              (function(param) do
                   return --[[ Eq ]]Block.__(0, {
                             "a",
                             "foobar"[4]
@@ -77,7 +77,7 @@ suites_001 = --[[ :: ]]{
             --[[ :: ]]{
               --[[ tuple ]]{
                 "charAt",
-                (function (param) do
+                (function(param) do
                     return --[[ Eq ]]Block.__(0, {
                               "a",
                               "foobar".charAt(4)
@@ -87,7 +87,7 @@ suites_001 = --[[ :: ]]{
               --[[ :: ]]{
                 --[[ tuple ]]{
                   "charCodeAt",
-                  (function (param) do
+                  (function(param) do
                       return --[[ Eq ]]Block.__(0, {
                                 97,
                                 "foobar".charCodeAt(4)
@@ -97,7 +97,7 @@ suites_001 = --[[ :: ]]{
                 --[[ :: ]]{
                   --[[ tuple ]]{
                     "codePointAt",
-                    (function (param) do
+                    (function(param) do
                         return --[[ Eq ]]Block.__(0, {
                                   97,
                                   "foobar".codePointAt(4)
@@ -107,7 +107,7 @@ suites_001 = --[[ :: ]]{
                   --[[ :: ]]{
                     --[[ tuple ]]{
                       "codePointAt - out of bounds",
-                      (function (param) do
+                      (function(param) do
                           return --[[ Eq ]]Block.__(0, {
                                     undefined,
                                     "foobar".codePointAt(98)
@@ -117,7 +117,7 @@ suites_001 = --[[ :: ]]{
                     --[[ :: ]]{
                       --[[ tuple ]]{
                         "concat",
-                        (function (param) do
+                        (function(param) do
                             return --[[ Eq ]]Block.__(0, {
                                       "foobar",
                                       "foo".concat("bar")
@@ -127,7 +127,7 @@ suites_001 = --[[ :: ]]{
                       --[[ :: ]]{
                         --[[ tuple ]]{
                           "concatMany",
-                          (function (param) do
+                          (function(param) do
                               return --[[ Eq ]]Block.__(0, {
                                         "foobarbaz",
                                         "foo".concat("bar", "baz")
@@ -137,7 +137,7 @@ suites_001 = --[[ :: ]]{
                         --[[ :: ]]{
                           --[[ tuple ]]{
                             "endsWith",
-                            (function (param) do
+                            (function(param) do
                                 return --[[ Eq ]]Block.__(0, {
                                           true,
                                           "foobar".endsWith("bar")
@@ -147,7 +147,7 @@ suites_001 = --[[ :: ]]{
                           --[[ :: ]]{
                             --[[ tuple ]]{
                               "endsWithFrom",
-                              (function (param) do
+                              (function(param) do
                                   return --[[ Eq ]]Block.__(0, {
                                             false,
                                             "foobar".endsWith("bar", 1)
@@ -157,7 +157,7 @@ suites_001 = --[[ :: ]]{
                             --[[ :: ]]{
                               --[[ tuple ]]{
                                 "includes",
-                                (function (param) do
+                                (function(param) do
                                     return --[[ Eq ]]Block.__(0, {
                                               true,
                                               "foobarbaz".includes("bar")
@@ -167,7 +167,7 @@ suites_001 = --[[ :: ]]{
                               --[[ :: ]]{
                                 --[[ tuple ]]{
                                   "includesFrom",
-                                  (function (param) do
+                                  (function(param) do
                                       return --[[ Eq ]]Block.__(0, {
                                                 false,
                                                 "foobarbaz".includes("bar", 4)
@@ -177,7 +177,7 @@ suites_001 = --[[ :: ]]{
                                 --[[ :: ]]{
                                   --[[ tuple ]]{
                                     "indexOf",
-                                    (function (param) do
+                                    (function(param) do
                                         return --[[ Eq ]]Block.__(0, {
                                                   3,
                                                   "foobarbaz".indexOf("bar")
@@ -187,7 +187,7 @@ suites_001 = --[[ :: ]]{
                                   --[[ :: ]]{
                                     --[[ tuple ]]{
                                       "indexOfFrom",
-                                      (function (param) do
+                                      (function(param) do
                                           return --[[ Eq ]]Block.__(0, {
                                                     -1,
                                                     "foobarbaz".indexOf("bar", 4)
@@ -197,7 +197,7 @@ suites_001 = --[[ :: ]]{
                                     --[[ :: ]]{
                                       --[[ tuple ]]{
                                         "lastIndexOf",
-                                        (function (param) do
+                                        (function(param) do
                                             return --[[ Eq ]]Block.__(0, {
                                                       3,
                                                       "foobarbaz".lastIndexOf("bar")
@@ -207,7 +207,7 @@ suites_001 = --[[ :: ]]{
                                       --[[ :: ]]{
                                         --[[ tuple ]]{
                                           "lastIndexOfFrom",
-                                          (function (param) do
+                                          (function(param) do
                                               return --[[ Eq ]]Block.__(0, {
                                                         3,
                                                         "foobarbaz".lastIndexOf("bar", 4)
@@ -217,7 +217,7 @@ suites_001 = --[[ :: ]]{
                                         --[[ :: ]]{
                                           --[[ tuple ]]{
                                             "localeCompare",
-                                            (function (param) do
+                                            (function(param) do
                                                 return --[[ Eq ]]Block.__(0, {
                                                           0,
                                                           "foo".localeCompare("foo")
@@ -227,7 +227,7 @@ suites_001 = --[[ :: ]]{
                                           --[[ :: ]]{
                                             --[[ tuple ]]{
                                               "match",
-                                              (function (param) do
+                                              (function(param) do
                                                   return --[[ Eq ]]Block.__(0, {
                                                             {
                                                               "na",
@@ -240,7 +240,7 @@ suites_001 = --[[ :: ]]{
                                             --[[ :: ]]{
                                               --[[ tuple ]]{
                                                 "match - no match",
-                                                (function (param) do
+                                                (function(param) do
                                                     return --[[ Eq ]]Block.__(0, {
                                                               undefined,
                                                               Caml_option.null_to_opt("banana".match(/nanana+/g))
@@ -250,7 +250,7 @@ suites_001 = --[[ :: ]]{
                                               --[[ :: ]]{
                                                 --[[ tuple ]]{
                                                   "normalize",
-                                                  (function (param) do
+                                                  (function(param) do
                                                       return --[[ Eq ]]Block.__(0, {
                                                                 "foo",
                                                                 "foo".normalize()
@@ -260,7 +260,7 @@ suites_001 = --[[ :: ]]{
                                                 --[[ :: ]]{
                                                   --[[ tuple ]]{
                                                     "normalizeByForm",
-                                                    (function (param) do
+                                                    (function(param) do
                                                         return --[[ Eq ]]Block.__(0, {
                                                                   "foo",
                                                                   "foo".normalize("NFKD")
@@ -270,7 +270,7 @@ suites_001 = --[[ :: ]]{
                                                   --[[ :: ]]{
                                                     --[[ tuple ]]{
                                                       "repeat",
-                                                      (function (param) do
+                                                      (function(param) do
                                                           return --[[ Eq ]]Block.__(0, {
                                                                     "foofoofoo",
                                                                     "foo".repeat(3)
@@ -280,7 +280,7 @@ suites_001 = --[[ :: ]]{
                                                     --[[ :: ]]{
                                                       --[[ tuple ]]{
                                                         "replace",
-                                                        (function (param) do
+                                                        (function(param) do
                                                             return --[[ Eq ]]Block.__(0, {
                                                                       "fooBORKbaz",
                                                                       "foobarbaz".replace("bar", "BORK")
@@ -290,7 +290,7 @@ suites_001 = --[[ :: ]]{
                                                       --[[ :: ]]{
                                                         --[[ tuple ]]{
                                                           "replaceByRe",
-                                                          (function (param) do
+                                                          (function(param) do
                                                               return --[[ Eq ]]Block.__(0, {
                                                                         "fooBORKBORK",
                                                                         "foobarbaz".replace(/ba./g, "BORK")
@@ -300,8 +300,8 @@ suites_001 = --[[ :: ]]{
                                                         --[[ :: ]]{
                                                           --[[ tuple ]]{
                                                             "unsafeReplaceBy0",
-                                                            (function (param) do
-                                                                replace = function (whole, offset, s) do
+                                                            (function(param) do
+                                                                replace = function(whole, offset, s) do
                                                                   if (whole == "bar") then do
                                                                     return "BORK";
                                                                   end else do
@@ -317,8 +317,8 @@ suites_001 = --[[ :: ]]{
                                                           --[[ :: ]]{
                                                             --[[ tuple ]]{
                                                               "unsafeReplaceBy1",
-                                                              (function (param) do
-                                                                  replace = function (whole, p1, offset, s) do
+                                                              (function(param) do
+                                                                  replace = function(whole, p1, offset, s) do
                                                                     if (whole == "bar") then do
                                                                       return "BORK";
                                                                     end else do
@@ -334,8 +334,8 @@ suites_001 = --[[ :: ]]{
                                                             --[[ :: ]]{
                                                               --[[ tuple ]]{
                                                                 "unsafeReplaceBy2",
-                                                                (function (param) do
-                                                                    replace = function (whole, p1, p2, offset, s) do
+                                                                (function(param) do
+                                                                    replace = function(whole, p1, p2, offset, s) do
                                                                       if (whole == "bar") then do
                                                                         return "BORK";
                                                                       end else do
@@ -351,8 +351,8 @@ suites_001 = --[[ :: ]]{
                                                               --[[ :: ]]{
                                                                 --[[ tuple ]]{
                                                                   "unsafeReplaceBy3",
-                                                                  (function (param) do
-                                                                      replace = function (whole, p1, p2, p3, offset, s) do
+                                                                  (function(param) do
+                                                                      replace = function(whole, p1, p2, p3, offset, s) do
                                                                         if (whole == "bar") then do
                                                                           return "BORK";
                                                                         end else do
@@ -368,7 +368,7 @@ suites_001 = --[[ :: ]]{
                                                                 --[[ :: ]]{
                                                                   --[[ tuple ]]{
                                                                     "search",
-                                                                    (function (param) do
+                                                                    (function(param) do
                                                                         return --[[ Eq ]]Block.__(0, {
                                                                                   3,
                                                                                   "foobarbaz".search(/ba./g)
@@ -378,7 +378,7 @@ suites_001 = --[[ :: ]]{
                                                                   --[[ :: ]]{
                                                                     --[[ tuple ]]{
                                                                       "slice",
-                                                                      (function (param) do
+                                                                      (function(param) do
                                                                           return --[[ Eq ]]Block.__(0, {
                                                                                     "bar",
                                                                                     "foobarbaz".slice(3, 6)
@@ -388,7 +388,7 @@ suites_001 = --[[ :: ]]{
                                                                     --[[ :: ]]{
                                                                       --[[ tuple ]]{
                                                                         "sliceToEnd",
-                                                                        (function (param) do
+                                                                        (function(param) do
                                                                             return --[[ Eq ]]Block.__(0, {
                                                                                       "barbaz",
                                                                                       "foobarbaz".slice(3)
@@ -398,7 +398,7 @@ suites_001 = --[[ :: ]]{
                                                                       --[[ :: ]]{
                                                                         --[[ tuple ]]{
                                                                           "split",
-                                                                          (function (param) do
+                                                                          (function(param) do
                                                                               return --[[ Eq ]]Block.__(0, {
                                                                                         {
                                                                                           "foo",
@@ -412,7 +412,7 @@ suites_001 = --[[ :: ]]{
                                                                         --[[ :: ]]{
                                                                           --[[ tuple ]]{
                                                                             "splitAtMost",
-                                                                            (function (param) do
+                                                                            (function(param) do
                                                                                 return --[[ Eq ]]Block.__(0, {
                                                                                           {
                                                                                             "foo",
@@ -425,7 +425,7 @@ suites_001 = --[[ :: ]]{
                                                                           --[[ :: ]]{
                                                                             --[[ tuple ]]{
                                                                               "splitByRe",
-                                                                              (function (param) do
+                                                                              (function(param) do
                                                                                   return --[[ Eq ]]Block.__(0, {
                                                                                             {
                                                                                               "a",
@@ -443,7 +443,7 @@ suites_001 = --[[ :: ]]{
                                                                             --[[ :: ]]{
                                                                               --[[ tuple ]]{
                                                                                 "splitByReAtMost",
-                                                                                (function (param) do
+                                                                                (function(param) do
                                                                                     return --[[ Eq ]]Block.__(0, {
                                                                                               {
                                                                                                 "a",
@@ -457,7 +457,7 @@ suites_001 = --[[ :: ]]{
                                                                               --[[ :: ]]{
                                                                                 --[[ tuple ]]{
                                                                                   "startsWith",
-                                                                                  (function (param) do
+                                                                                  (function(param) do
                                                                                       return --[[ Eq ]]Block.__(0, {
                                                                                                 true,
                                                                                                 "foobarbaz".startsWith("foo")
@@ -467,7 +467,7 @@ suites_001 = --[[ :: ]]{
                                                                                 --[[ :: ]]{
                                                                                   --[[ tuple ]]{
                                                                                     "startsWithFrom",
-                                                                                    (function (param) do
+                                                                                    (function(param) do
                                                                                         return --[[ Eq ]]Block.__(0, {
                                                                                                   false,
                                                                                                   "foobarbaz".startsWith("foo", 1)
@@ -477,7 +477,7 @@ suites_001 = --[[ :: ]]{
                                                                                   --[[ :: ]]{
                                                                                     --[[ tuple ]]{
                                                                                       "substr",
-                                                                                      (function (param) do
+                                                                                      (function(param) do
                                                                                           return --[[ Eq ]]Block.__(0, {
                                                                                                     "barbaz",
                                                                                                     "foobarbaz".substr(3)
@@ -487,7 +487,7 @@ suites_001 = --[[ :: ]]{
                                                                                     --[[ :: ]]{
                                                                                       --[[ tuple ]]{
                                                                                         "substrAtMost",
-                                                                                        (function (param) do
+                                                                                        (function(param) do
                                                                                             return --[[ Eq ]]Block.__(0, {
                                                                                                       "bar",
                                                                                                       "foobarbaz".substr(3, 3)
@@ -497,7 +497,7 @@ suites_001 = --[[ :: ]]{
                                                                                       --[[ :: ]]{
                                                                                         --[[ tuple ]]{
                                                                                           "substring",
-                                                                                          (function (param) do
+                                                                                          (function(param) do
                                                                                               return --[[ Eq ]]Block.__(0, {
                                                                                                         "bar",
                                                                                                         "foobarbaz".substring(3, 6)
@@ -507,7 +507,7 @@ suites_001 = --[[ :: ]]{
                                                                                         --[[ :: ]]{
                                                                                           --[[ tuple ]]{
                                                                                             "substringToEnd",
-                                                                                            (function (param) do
+                                                                                            (function(param) do
                                                                                                 return --[[ Eq ]]Block.__(0, {
                                                                                                           "barbaz",
                                                                                                           "foobarbaz".substring(3)
@@ -517,7 +517,7 @@ suites_001 = --[[ :: ]]{
                                                                                           --[[ :: ]]{
                                                                                             --[[ tuple ]]{
                                                                                               "toLowerCase",
-                                                                                              (function (param) do
+                                                                                              (function(param) do
                                                                                                   return --[[ Eq ]]Block.__(0, {
                                                                                                             "bork",
                                                                                                             "BORK".toLowerCase()
@@ -527,7 +527,7 @@ suites_001 = --[[ :: ]]{
                                                                                             --[[ :: ]]{
                                                                                               --[[ tuple ]]{
                                                                                                 "toLocaleLowerCase",
-                                                                                                (function (param) do
+                                                                                                (function(param) do
                                                                                                     return --[[ Eq ]]Block.__(0, {
                                                                                                               "bork",
                                                                                                               "BORK".toLocaleLowerCase()
@@ -537,7 +537,7 @@ suites_001 = --[[ :: ]]{
                                                                                               --[[ :: ]]{
                                                                                                 --[[ tuple ]]{
                                                                                                   "toUpperCase",
-                                                                                                  (function (param) do
+                                                                                                  (function(param) do
                                                                                                       return --[[ Eq ]]Block.__(0, {
                                                                                                                 "FUBAR",
                                                                                                                 "fubar".toUpperCase()
@@ -547,7 +547,7 @@ suites_001 = --[[ :: ]]{
                                                                                                 --[[ :: ]]{
                                                                                                   --[[ tuple ]]{
                                                                                                     "toLocaleUpperCase",
-                                                                                                    (function (param) do
+                                                                                                    (function(param) do
                                                                                                         return --[[ Eq ]]Block.__(0, {
                                                                                                                   "FUBAR",
                                                                                                                   "fubar".toLocaleUpperCase()
@@ -557,7 +557,7 @@ suites_001 = --[[ :: ]]{
                                                                                                   --[[ :: ]]{
                                                                                                     --[[ tuple ]]{
                                                                                                       "trim",
-                                                                                                      (function (param) do
+                                                                                                      (function(param) do
                                                                                                           return --[[ Eq ]]Block.__(0, {
                                                                                                                     "foo",
                                                                                                                     "  foo  ".trim()
@@ -567,7 +567,7 @@ suites_001 = --[[ :: ]]{
                                                                                                     --[[ :: ]]{
                                                                                                       --[[ tuple ]]{
                                                                                                         "anchor",
-                                                                                                        (function (param) do
+                                                                                                        (function(param) do
                                                                                                             return --[[ Eq ]]Block.__(0, {
                                                                                                                       "<a name=\"bar\">foo</a>",
                                                                                                                       "foo".anchor("bar")
@@ -577,7 +577,7 @@ suites_001 = --[[ :: ]]{
                                                                                                       --[[ :: ]]{
                                                                                                         --[[ tuple ]]{
                                                                                                           "link",
-                                                                                                          (function (param) do
+                                                                                                          (function(param) do
                                                                                                               return --[[ Eq ]]Block.__(0, {
                                                                                                                         "<a href=\"https://reason.ml\">foo</a>",
                                                                                                                         "foo".link("https://reason.ml")
@@ -587,7 +587,7 @@ suites_001 = --[[ :: ]]{
                                                                                                         --[[ :: ]]{
                                                                                                           --[[ tuple ]]{
                                                                                                             "File \"js_string_test.ml\", line 211, characters 4-11",
-                                                                                                            (function (param) do
+                                                                                                            (function(param) do
                                                                                                                 return --[[ Ok ]]Block.__(4, {"ab".includes("a")});
                                                                                                               end end)
                                                                                                           },
@@ -653,5 +653,6 @@ suites = --[[ :: ]]{
 
 Mt.from_pair_suites("Js_string_test", suites);
 
+exports = {}
 exports.suites = suites;
 --[[  Not a pure module ]]

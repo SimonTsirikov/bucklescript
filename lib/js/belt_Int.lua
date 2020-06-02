@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 
 function fromString(i) do
@@ -10,5 +10,6 @@ function fromString(i) do
   end end 
 end end
 
+exports = {}
 exports.fromString = fromString;
 --[[ No side effect ]]

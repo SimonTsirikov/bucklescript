@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Caml_exceptions = require "../../lib/js/caml_exceptions";
@@ -51,6 +51,7 @@ v = 32;
 
 max_array_length = 2147483647;
 
+exports = {}
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;

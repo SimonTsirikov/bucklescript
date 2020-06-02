@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 
 function f(x) do
@@ -17,6 +17,7 @@ c = g(--[[ () ]]0);
 
 d = g(--[[ () ]]0);
 
+exports = {}
 exports.f = f;
 exports.a = a;
 exports.b = b;

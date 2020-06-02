@@ -1,10 +1,10 @@
-console.log = print;
+console = {log = print};
 
 Curry = require "./curry";
 
 stdout = do
   buffer: "",
-  output: (function (param, s) do
+  output: (function(param, s) do
       v = #s - 1 | 0;
       if (((typeof process !== "undefined") && process.stdout && process.stdout.write)) then do
         return process.stdout.write(s);
@@ -20,7 +20,7 @@ end;
 
 stderr = do
   buffer: "",
-  output: (function (param, s) do
+  output: (function(param, s) do
       v = #s - 1 | 0;
       if (s[v] == "\n") then do
         console.log(s.slice(0, v));
@@ -76,6 +76,7 @@ end end
 
 stdin = undefined;
 
+exports = {}
 exports.stdin = stdin;
 exports.stdout = stdout;
 exports.stderr = stderr;

@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Belt_Array = require "../../lib/js/belt_Array";
@@ -32,7 +32,7 @@ function sum2(h) do
   v = do
     contents: 0
   end;
-  Belt_HashSetInt.forEach(h, (function (x) do
+  Belt_HashSetInt.forEach(h, (function(x) do
           v.contents = v.contents + x | 0;
           return --[[ () ]]0;
         end end));
@@ -117,6 +117,7 @@ A = --[[ alias ]]0;
 
 SI = --[[ alias ]]0;
 
+exports = {}
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;

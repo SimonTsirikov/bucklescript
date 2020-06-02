@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Caml_weak = require "../../lib/js/caml_weak";
@@ -21,6 +21,7 @@ eq("File \"gpr_2789_test.ml\", line 9, characters 5-12", 1, #Caml_weak.caml_weak
 
 Mt.from_pair_suites("Gpr_2789_test", suites.contents);
 
+exports = {}
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;

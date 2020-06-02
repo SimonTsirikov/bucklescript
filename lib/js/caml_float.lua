@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 
 caml_int32_float_of_bits = (function(x){
@@ -123,6 +123,7 @@ function caml_log10_float(x) do
   return Math.LOG10E * Math.log(x);
 end end
 
+exports = {}
 exports.caml_int32_float_of_bits = caml_int32_float_of_bits;
 exports.caml_int32_bits_of_float = caml_int32_bits_of_float;
 exports.caml_modf_float = caml_modf_float;

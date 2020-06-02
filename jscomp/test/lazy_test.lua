@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Lazy = require "../../lib/js/lazy";
@@ -12,7 +12,7 @@ u = do
   contents: 3
 end;
 
-v = Caml_obj.caml_lazy_make((function (param) do
+v = Caml_obj.caml_lazy_make((function(param) do
         u.contents = 32;
         return --[[ () ]]0;
       end end));
@@ -54,12 +54,12 @@ s = do
   contents: undefined
 end;
 
-set_true = Caml_obj.caml_lazy_make((function (param) do
+set_true = Caml_obj.caml_lazy_make((function(param) do
         s.contents = 1;
         return --[[ () ]]0;
       end end));
 
-set_false = Caml_obj.caml_lazy_make((function (param) do
+set_false = Caml_obj.caml_lazy_make((function(param) do
         s.contents = undefined;
         return --[[ () ]]0;
       end end));
@@ -85,7 +85,7 @@ u_v = do
   contents: 0
 end;
 
-u_1 = Caml_obj.caml_lazy_make((function (param) do
+u_1 = Caml_obj.caml_lazy_make((function(param) do
         u_v.contents = 2;
         return --[[ () ]]0;
       end end));
@@ -94,31 +94,31 @@ CamlinternalLazy.force(u_1);
 
 exotic = CamlinternalLazy.force;
 
-l_from_fun = Lazy.from_fun((function (param) do
+l_from_fun = Lazy.from_fun((function(param) do
         return 3;
       end end));
 
-forward_test = Caml_obj.caml_lazy_make((function (param) do
+forward_test = Caml_obj.caml_lazy_make((function(param) do
         u = 3;
         u = u + 1 | 0;
         return u;
       end end));
 
-f005 = Caml_obj.caml_lazy_make((function (param) do
+f005 = Caml_obj.caml_lazy_make((function(param) do
         return 6;
       end end));
 
-f006 = Caml_obj.caml_lazy_make((function (param) do
-        return (function (param) do
+f006 = Caml_obj.caml_lazy_make((function(param) do
+        return (function(param) do
             return 3;
           end end);
       end end));
 
-f007 = Caml_obj.caml_lazy_make((function (param) do
+f007 = Caml_obj.caml_lazy_make((function(param) do
         error(Caml_builtin_exceptions.not_found)
       end end));
 
-f008 = Caml_obj.caml_lazy_make((function (param) do
+f008 = Caml_obj.caml_lazy_make((function(param) do
         console.log("hi");
         error(Caml_builtin_exceptions.not_found)
       end end));
@@ -126,7 +126,7 @@ f008 = Caml_obj.caml_lazy_make((function (param) do
 Mt.from_pair_suites("Lazy_test", --[[ :: ]]{
       --[[ tuple ]]{
         "simple",
-        (function (param) do
+        (function(param) do
             return --[[ Eq ]]Block.__(0, {
                       lazy_test(--[[ () ]]0),
                       --[[ tuple ]]{
@@ -139,7 +139,7 @@ Mt.from_pair_suites("Lazy_test", --[[ :: ]]{
       --[[ :: ]]{
         --[[ tuple ]]{
           "lazy_match",
-          (function (param) do
+          (function(param) do
               return --[[ Eq ]]Block.__(0, {
                         h,
                         2
@@ -149,7 +149,7 @@ Mt.from_pair_suites("Lazy_test", --[[ :: ]]{
         --[[ :: ]]{
           --[[ tuple ]]{
             "lazy_force",
-            (function (param) do
+            (function(param) do
                 return --[[ Eq ]]Block.__(0, {
                           u_v.contents,
                           2
@@ -159,7 +159,7 @@ Mt.from_pair_suites("Lazy_test", --[[ :: ]]{
           --[[ :: ]]{
             --[[ tuple ]]{
               "lazy_from_fun",
-              (function (param) do
+              (function(param) do
                   return --[[ Eq ]]Block.__(0, {
                             CamlinternalLazy.force(l_from_fun),
                             3
@@ -169,7 +169,7 @@ Mt.from_pair_suites("Lazy_test", --[[ :: ]]{
             --[[ :: ]]{
               --[[ tuple ]]{
                 "lazy_from_val",
-                (function (param) do
+                (function(param) do
                     return --[[ Eq ]]Block.__(0, {
                               CamlinternalLazy.force(Lazy.from_val(3)),
                               3
@@ -179,7 +179,7 @@ Mt.from_pair_suites("Lazy_test", --[[ :: ]]{
               --[[ :: ]]{
                 --[[ tuple ]]{
                   "lazy_from_val2",
-                  (function (param) do
+                  (function(param) do
                       return --[[ Eq ]]Block.__(0, {
                                 CamlinternalLazy.force(CamlinternalLazy.force(Lazy.from_val(3))),
                                 3
@@ -189,7 +189,7 @@ Mt.from_pair_suites("Lazy_test", --[[ :: ]]{
                 --[[ :: ]]{
                   --[[ tuple ]]{
                     "lazy_from_val3",
-                    (function (param) do
+                    (function(param) do
                         debugger;
                         return --[[ Eq ]]Block.__(0, {
                                   CamlinternalLazy.force(CamlinternalLazy.force(Lazy.from_val(forward_test))),
@@ -206,6 +206,7 @@ Mt.from_pair_suites("Lazy_test", --[[ :: ]]{
       }
     });
 
+exports = {}
 exports.v = v;
 exports.lazy_test = lazy_test;
 exports.f = f;

@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 __Array = require "../../lib/js/array";
 Block = require "../../lib/js/block";
@@ -51,6 +51,7 @@ Curry._1(PA.print, {
       2
     });
 
+exports = {}
 exports.PA = PA;
 exports.P = P;
 --[[ PA Not a pure module ]]

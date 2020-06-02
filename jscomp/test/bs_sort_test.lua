@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Belt_Array = require "../../lib/js/belt_Array";
@@ -91,13 +91,13 @@ eq("File \"bs_sort_test.ml\", line 48, characters 5-12", diffs(Array_data_util.r
       2
     });
 
-b("File \"bs_sort_test.ml\", line 50, characters 4-11", Belt_Range.every(0, 200, (function (i) do
+b("File \"bs_sort_test.ml\", line 50, characters 4-11", Belt_Range.every(0, 200, (function(i) do
             v = Array_data_util.randomRange(0, i);
             Belt_SortArray.stableSortInPlaceBy(v, cmp);
             return Belt_SortArray.isSorted(v, cmp);
           end end)));
 
-b("File \"bs_sort_test.ml\", line 56, characters 4-11", Belt_Range.every(0, 200, (function (i) do
+b("File \"bs_sort_test.ml\", line 56, characters 4-11", Belt_Range.every(0, 200, (function(i) do
             v = Array_data_util.randomRange(0, i);
             Belt_SortArray.stableSortInPlaceBy(v, cmp);
             return Belt_SortArray.isSorted(v, cmp);
@@ -162,7 +162,7 @@ u_1 = {
   }
 };
 
-eq("File \"bs_sort_test.ml\", line 90, characters 5-12", Belt_SortArray.stableSortBy(u_1, (function (param, param_1) do
+eq("File \"bs_sort_test.ml\", line 90, characters 5-12", Belt_SortArray.stableSortBy(u_1, (function(param, param_1) do
             return param[0] - param_1[0] | 0;
           end end)), {
       --[[ tuple ]]{
@@ -198,7 +198,7 @@ u_2 = {
   }
 };
 
-eq("File \"bs_sort_test.ml\", line 96, characters 5-12", Belt_SortArray.stableSortBy(u_2, (function (param, param_1) do
+eq("File \"bs_sort_test.ml\", line 96, characters 5-12", Belt_SortArray.stableSortBy(u_2, (function(param, param_1) do
             return param[0] - param_1[0] | 0;
           end end)), {
       --[[ tuple ]]{
@@ -246,7 +246,7 @@ u_3 = {
   }
 };
 
-eq("File \"bs_sort_test.ml\", line 102, characters 5-12", Belt_SortArray.stableSortBy(u_3, (function (param, param_1) do
+eq("File \"bs_sort_test.ml\", line 102, characters 5-12", Belt_SortArray.stableSortBy(u_3, (function(param, param_1) do
             return param[0] - param_1[0] | 0;
           end end)), {
       --[[ tuple ]]{
@@ -334,11 +334,11 @@ eq("File \"bs_sort_test.ml\", line 116, characters 5-12", Belt_SortArray.binaryS
 
 aa = Array_data_util.range(0, 1000);
 
-b("File \"bs_sort_test.ml\", line 118, characters 4-11", Belt_Range.every(0, 1000, (function (i) do
+b("File \"bs_sort_test.ml\", line 118, characters 4-11", Belt_Range.every(0, 1000, (function(i) do
             return Belt_SortArray.binarySearchBy(aa, i, cmp) == i;
           end end)));
 
-cc = Belt_Array.map(Array_data_util.range(0, 2000), (function (x) do
+cc = Belt_Array.map(Array_data_util.range(0, 2000), (function(x) do
         return (x << 1);
       end end));
 
@@ -350,7 +350,7 @@ eq("File \"bs_sort_test.ml\", line 125, characters 5-12", Belt_SortArray.binaryS
 
 eq("File \"bs_sort_test.ml\", line 127, characters 5-12", Belt_SortArray.binarySearchBy(cc, 1, cmp) ^ -1, 1);
 
-b("File \"bs_sort_test.ml\", line 128, characters 4-11", Belt_Range.every(0, 1999, (function (i) do
+b("File \"bs_sort_test.ml\", line 128, characters 4-11", Belt_Range.every(0, 1999, (function(i) do
             return (Belt_SortArray.binarySearchBy(cc, (i << 1) + 1 | 0, cmp) ^ -1) == (i + 1 | 0);
           end end)));
 
@@ -421,6 +421,7 @@ A = --[[ alias ]]0;
 
 SI = --[[ alias ]]0;
 
+exports = {}
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;

@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
@@ -94,14 +94,14 @@ function balance_left(l, x, r) do
   end end 
   local ___conditional___=(exit);
   do
-     if ___conditional___ = 1 then do
+     if ___conditional___ == 1 then do
         return --[[ Node ]]{
                 --[[ Black ]]0,
                 l,
                 x,
                 r
-              };end end end 
-     if ___conditional___ = 2 then do
+              }; end end 
+     if ___conditional___ == 2 then do
         return --[[ Node ]]{
                 --[[ Red ]]1,
                 --[[ Node ]]{
@@ -117,8 +117,7 @@ function balance_left(l, x, r) do
                   z,
                   d
                 }
-              };end end end 
-     do
+              }; end end 
     
   end
 end end
@@ -168,14 +167,14 @@ function balance_right(l, x, r) do
   end end 
   local ___conditional___=(exit);
   do
-     if ___conditional___ = 1 then do
+     if ___conditional___ == 1 then do
         return --[[ Node ]]{
                 --[[ Black ]]0,
                 l,
                 x,
                 r
-              };end end end 
-     if ___conditional___ = 2 then do
+              }; end end 
+     if ___conditional___ == 2 then do
         return --[[ Node ]]{
                 --[[ Red ]]1,
                 --[[ Node ]]{
@@ -191,8 +190,7 @@ function balance_right(l, x, r) do
                   z,
                   d
                 }
-              };end end end 
-     do
+              }; end end 
     
   end
 end end
@@ -688,6 +686,7 @@ end end
 
 empty = --[[ Empty ]]0;
 
+exports = {}
 exports.blackify = blackify;
 exports.empty = empty;
 exports.is_empty = is_empty;

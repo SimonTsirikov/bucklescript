@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 
 __Array = --[[ alias ]]0;
@@ -9,6 +9,7 @@ List = --[[ alias ]]0;
 
 __String = --[[ alias ]]0;
 
+exports = {}
 exports.__Array = __Array;
 exports.Bytes = Bytes;
 exports.List = List;

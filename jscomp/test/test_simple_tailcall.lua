@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 
 function tailcall(x) do
@@ -34,6 +34,7 @@ function length(_acc, _x) do
   end;
 end end
 
+exports = {}
 exports.tailcall = tailcall;
 exports.non_length = non_length;
 exports.length = length;

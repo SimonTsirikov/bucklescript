@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Belt_MapInt = require "../../lib/js/belt_MapInt";
 
@@ -28,6 +28,7 @@ test(--[[ () ]]0);
 
 M = --[[ alias ]]0;
 
+exports = {}
 exports.should = should;
 exports.M = M;
 exports.test = test;

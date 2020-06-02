@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Block = require "../../lib/js/block";
@@ -16,7 +16,7 @@ function eq(loc, x, y) do
   suites.contents = --[[ :: ]]{
     --[[ tuple ]]{
       loc .. (" id " .. String(test_id.contents)),
-      (function (param) do
+      (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     x,
                     y
@@ -38,7 +38,7 @@ xs = do
   contents: --[[ [] ]]0
 end;
 
-hi((function () do
+hi((function() do
         xs.contents = --[[ :: ]]{
           --[[ () ]]0,
           xs.contents
@@ -46,7 +46,7 @@ hi((function () do
         return --[[ () ]]0;
       end end));
 
-hi((function () do
+hi((function() do
         xs.contents = --[[ :: ]]{
           --[[ () ]]0,
           xs.contents
@@ -66,7 +66,7 @@ eq("File \"bs_auto_uncurry_test.ml\", line 33, characters 7-14", {
         1,
         2,
         3
-      }.map((function (x) do
+      }.map((function(x) do
             return x + 1 | 0;
           end end)), {
       2,
@@ -78,7 +78,7 @@ eq("File \"bs_auto_uncurry_test.ml\", line 36, characters 7-14", {
         1,
         2,
         3
-      }.map((function (x) do
+      }.map((function(x) do
             return x + 1 | 0;
           end end)), {
       2,
@@ -90,7 +90,7 @@ eq("File \"bs_auto_uncurry_test.ml\", line 40, characters 7-14", {
         1,
         2,
         3
-      }.reduce((function (prim, prim_1) do
+      }.reduce((function(prim, prim_1) do
             return prim + prim_1 | 0;
           end end), 0), 6);
 
@@ -98,7 +98,7 @@ eq("File \"bs_auto_uncurry_test.ml\", line 44, characters 7-14", {
         1,
         2,
         3
-      }.reduce((function (x, y, i) do
+      }.reduce((function(x, y, i) do
             return (x + y | 0) + i | 0;
           end end), 0), 9);
 
@@ -106,7 +106,7 @@ eq("File \"bs_auto_uncurry_test.ml\", line 48, characters 7-14", {
         1,
         2,
         3
-      }.some((function (x) do
+      }.some((function(x) do
             return x < 1;
           end end)), false);
 
@@ -114,12 +114,13 @@ eq("File \"bs_auto_uncurry_test.ml\", line 52, characters 7-14", {
         1,
         2,
         3
-      }.every((function (x) do
+      }.every((function(x) do
             return x > 0;
           end end)), true);
 
 Mt.from_pair_suites("Bs_auto_uncurry_test", suites.contents);
 
+exports = {}
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;

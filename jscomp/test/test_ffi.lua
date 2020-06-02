@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 
 function v(u) do
@@ -6,5 +6,6 @@ function v(u) do
   return u;
 end end
 
+exports = {}
 exports.v = v;
 --[[ No side effect ]]

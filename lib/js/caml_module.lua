@@ -1,32 +1,31 @@
-console.log = print;
+console = {log = print};
 
 Caml_obj = require "./caml_obj";
 Caml_builtin_exceptions = require "./caml_builtin_exceptions";
 
 function init_mod(loc, shape) do
-  undef_module = function (param) do
+  undef_module = function(param) do
     error({
       Caml_builtin_exceptions.undefined_recursive_module,
       loc
     })
   end end;
-  loop = function (shape, struct_, idx) do
+  loop = function(shape, struct_, idx) do
     if (typeof shape == "number") then do
       local ___conditional___=(shape);
       do
-         if ___conditional___ = 0--[[ Function ]]
-         or ___conditional___ = 1--[[ Lazy ]] then do
+         if ___conditional___ == 0--[[ Function ]]
+         or ___conditional___ == 1--[[ Lazy ]] then do
             struct_[idx] = undef_module;
-            return --[[ () ]]0;end end end 
-         if ___conditional___ = 2--[[ Class ]] then do
+            return --[[ () ]]0; end end 
+         if ___conditional___ == 2--[[ Class ]] then do
             struct_[idx] = --[[ tuple ]]{
               undef_module,
               undef_module,
               undef_module,
               0
             };
-            return --[[ () ]]0;end end end 
-         do
+            return --[[ () ]]0; end end 
         
       end
     end else if (shape.tag) then do
@@ -51,17 +50,16 @@ function init_mod(loc, shape) do
 end end
 
 function update_mod(shape, o, n) do
-  aux = function (shape, o, n, parent, i) do
+  aux = function(shape, o, n, parent, i) do
     if (typeof shape == "number") then do
       local ___conditional___=(shape);
       do
-         if ___conditional___ = 0--[[ Function ]] then do
+         if ___conditional___ == 0--[[ Function ]] then do
             parent[i] = n;
-            return --[[ () ]]0;end end end 
-         if ___conditional___ = 1--[[ Lazy ]]
-         or ___conditional___ = 2--[[ Class ]] then do
-            return Caml_obj.caml_update_dummy(o, n);end end end 
-         do
+            return --[[ () ]]0; end end 
+         if ___conditional___ == 1--[[ Lazy ]]
+         or ___conditional___ == 2--[[ Class ]] then do
+            return Caml_obj.caml_update_dummy(o, n); end end 
         
       end
     end else if (shape.tag) then do
@@ -105,6 +103,7 @@ function update_mod(shape, o, n) do
   end end  end 
 end end
 
+exports = {}
 exports.init_mod = init_mod;
 exports.update_mod = update_mod;
 --[[ No side effect ]]

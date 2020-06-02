@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 List = require "../../lib/js/list";
 List_1 = require "";
@@ -38,19 +38,19 @@ B = { };
 
 function f(param) do
   return --[[ tuple ]]{
-          (function (prim) do
+          (function(prim) do
               List_3.ff();
               return --[[ () ]]0;
             end end),
-          (function (prim) do
+          (function(prim) do
               List_3.ff2();
               return --[[ () ]]0;
             end end),
-          (function (prim) do
+          (function(prim) do
               List_2.ff();
               return --[[ () ]]0;
             end end),
-          (function (prim) do
+          (function(prim) do
               List_2.ff2();
               return --[[ () ]]0;
             end end)
@@ -73,6 +73,7 @@ function ff(prim) do
   return Local.ff();
 end end
 
+exports = {}
 exports.WebpackConfig = WebpackConfig;
 exports.WebpackDevMiddlewareConfig = WebpackDevMiddlewareConfig;
 exports.configX = configX;

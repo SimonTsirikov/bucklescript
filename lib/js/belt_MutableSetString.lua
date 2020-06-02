@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Curry = require "./curry";
 Belt_internalAVLset = require "./belt_internalAVLset";
@@ -477,6 +477,7 @@ function copy(d) do
         end;
 end end
 
+exports = {}
 exports.make = make;
 exports.fromArray = fromArray;
 exports.fromSortedArrayUnsafe = fromSortedArrayUnsafe;

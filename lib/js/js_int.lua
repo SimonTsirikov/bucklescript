@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 
 function equal(x, y) do
@@ -9,6 +9,7 @@ max = 2147483647;
 
 min = -2147483648;
 
+exports = {}
 exports.equal = equal;
 exports.max = max;
 exports.min = min;

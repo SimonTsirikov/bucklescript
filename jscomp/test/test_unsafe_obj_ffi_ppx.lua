@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 
 function f(x) do
@@ -20,6 +20,7 @@ function g(x) do
   return x.method2(3, 3);
 end end
 
+exports = {}
 exports.f = f;
 exports.h = h;
 exports.chain = chain;

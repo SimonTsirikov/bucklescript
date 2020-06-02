@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Curry = require "../../lib/js/curry";
 Caml_array = require "../../lib/js/caml_array";
@@ -98,6 +98,7 @@ xx = --[[ tuple ]]{
   0
 };
 
+exports = {}
 exports.a0 = a0;
 exports.a1 = a1;
 exports.a2 = a2;

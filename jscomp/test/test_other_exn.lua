@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 
 function Make($star) do
@@ -9,6 +9,7 @@ U = { };
 
 V = { };
 
+exports = {}
 exports.Make = Make;
 exports.U = U;
 exports.V = V;

@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Block = require "../../lib/js/block";
@@ -9,9 +9,9 @@ Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 function_equal_test;
 
 xpcall(function() do
-  function_equal_test = Caml_obj.caml_equal((function (x) do
+  function_equal_test = Caml_obj.caml_equal((function(x) do
           return x + 1 | 0;
-        end end), (function (x) do
+        end end), (function(x) do
           return x + 2 | 0;
         end end));
 end end,function(raw_exn) do
@@ -23,7 +23,7 @@ suites = do
   contents: --[[ :: ]]{
     --[[ tuple ]]{
       "File \"caml_compare_test.ml\", line 9, characters 4-11",
-      (function (param) do
+      (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     true,
                     Caml_obj.caml_lessthan(undefined, 1)
@@ -33,7 +33,7 @@ suites = do
     --[[ :: ]]{
       --[[ tuple ]]{
         "option2",
-        (function (param) do
+        (function(param) do
             return --[[ Eq ]]Block.__(0, {
                       true,
                       Caml_obj.caml_lessthan(1, 2)
@@ -43,7 +43,7 @@ suites = do
       --[[ :: ]]{
         --[[ tuple ]]{
           "File \"caml_compare_test.ml\", line 11, characters 4-11",
-          (function (param) do
+          (function(param) do
               return --[[ Eq ]]Block.__(0, {
                         true,
                         Caml_obj.caml_greaterthan(--[[ :: ]]{
@@ -56,7 +56,7 @@ suites = do
         --[[ :: ]]{
           --[[ tuple ]]{
             "listeq",
-            (function (param) do
+            (function(param) do
                 return --[[ Eq ]]Block.__(0, {
                           true,
                           Caml_obj.caml_equal(--[[ :: ]]{
@@ -84,7 +84,7 @@ suites = do
           --[[ :: ]]{
             --[[ tuple ]]{
               "listneq",
-              (function (param) do
+              (function(param) do
                   return --[[ Eq ]]Block.__(0, {
                             true,
                             Caml_obj.caml_greaterthan(--[[ :: ]]{
@@ -112,7 +112,7 @@ suites = do
             --[[ :: ]]{
               --[[ tuple ]]{
                 "custom_u",
-                (function (param) do
+                (function(param) do
                     return --[[ Eq ]]Block.__(0, {
                               true,
                               Caml_obj.caml_greaterthan(--[[ tuple ]]{
@@ -136,7 +136,7 @@ suites = do
               --[[ :: ]]{
                 --[[ tuple ]]{
                   "custom_u2",
-                  (function (param) do
+                  (function(param) do
                       return --[[ Eq ]]Block.__(0, {
                                 true,
                                 Caml_obj.caml_equal(--[[ tuple ]]{
@@ -160,7 +160,7 @@ suites = do
                 --[[ :: ]]{
                   --[[ tuple ]]{
                     "function",
-                    (function (param) do
+                    (function(param) do
                         return --[[ Eq ]]Block.__(0, {
                                   true,
                                   function_equal_test
@@ -170,7 +170,7 @@ suites = do
                   --[[ :: ]]{
                     --[[ tuple ]]{
                       "File \"caml_compare_test.ml\", line 17, characters 4-11",
-                      (function (param) do
+                      (function(param) do
                           return --[[ Eq ]]Block.__(0, {
                                     true,
                                     Caml_obj.caml_lessthan(undefined, 1)
@@ -180,7 +180,7 @@ suites = do
                     --[[ :: ]]{
                       --[[ tuple ]]{
                         "File \"caml_compare_test.ml\", line 28, characters 4-11",
-                        (function (param) do
+                        (function(param) do
                             return --[[ Eq ]]Block.__(0, {
                                       true,
                                       Caml_obj.caml_lessthan(undefined, {
@@ -193,7 +193,7 @@ suites = do
                       --[[ :: ]]{
                         --[[ tuple ]]{
                           "File \"caml_compare_test.ml\", line 31, characters 4-11",
-                          (function (param) do
+                          (function(param) do
                               return --[[ Eq ]]Block.__(0, {
                                         true,
                                         Caml_obj.caml_greaterthan({
@@ -206,7 +206,7 @@ suites = do
                         --[[ :: ]]{
                           --[[ tuple ]]{
                             "File \"caml_compare_test.ml\", line 34, characters 4-11",
-                            (function (param) do
+                            (function(param) do
                                 return --[[ Eq ]]Block.__(0, {
                                           true,
                                           Caml_obj.caml_lessthan(--[[ :: ]]{
@@ -273,7 +273,7 @@ suites = do
                           --[[ :: ]]{
                             --[[ tuple ]]{
                               "File \"caml_compare_test.ml\", line 37, characters 4-11",
-                              (function (param) do
+                              (function(param) do
                                   return --[[ Eq ]]Block.__(0, {
                                             true,
                                             Caml_obj.caml_lessthan(--[[ :: ]]{
@@ -292,7 +292,7 @@ suites = do
                             --[[ :: ]]{
                               --[[ tuple ]]{
                                 "File \"caml_compare_test.ml\", line 40, characters 4-11",
-                                (function (param) do
+                                (function(param) do
                                     return --[[ Eq ]]Block.__(0, {
                                               true,
                                               Caml_obj.caml_lessthan(--[[ [] ]]0, --[[ :: ]]{
@@ -305,7 +305,7 @@ suites = do
                               --[[ :: ]]{
                                 --[[ tuple ]]{
                                   "File \"caml_compare_test.ml\", line 43, characters 4-11",
-                                  (function (param) do
+                                  (function(param) do
                                       return --[[ Eq ]]Block.__(0, {
                                                 true,
                                                 Caml_obj.caml_greaterthan(--[[ :: ]]{
@@ -372,7 +372,7 @@ suites = do
                                 --[[ :: ]]{
                                   --[[ tuple ]]{
                                     "File \"caml_compare_test.ml\", line 47, characters 4-11",
-                                    (function (param) do
+                                    (function(param) do
                                         return --[[ Eq ]]Block.__(0, {
                                                   false,
                                                   false
@@ -382,7 +382,7 @@ suites = do
                                   --[[ :: ]]{
                                     --[[ tuple ]]{
                                       "File \"caml_compare_test.ml\", line 50, characters 4-11",
-                                      (function (param) do
+                                      (function(param) do
                                           return --[[ Eq ]]Block.__(0, {
                                                     false,
                                                     false
@@ -392,7 +392,7 @@ suites = do
                                     --[[ :: ]]{
                                       --[[ tuple ]]{
                                         "File \"caml_compare_test.ml\", line 53, characters 4-11",
-                                        (function (param) do
+                                        (function(param) do
                                             return --[[ Eq ]]Block.__(0, {
                                                       false,
                                                       Caml_obj.caml_equal(--[[ :: ]]{
@@ -459,7 +459,7 @@ suites = do
                                       --[[ :: ]]{
                                         --[[ tuple ]]{
                                           "File \"caml_compare_test.ml\", line 56, characters 4-11",
-                                          (function (param) do
+                                          (function(param) do
                                               return --[[ Eq ]]Block.__(0, {
                                                         false,
                                                         Caml_obj.caml_equal(--[[ :: ]]{
@@ -526,7 +526,7 @@ suites = do
                                         --[[ :: ]]{
                                           --[[ tuple ]]{
                                             "cmp_id",
-                                            (function (param) do
+                                            (function(param) do
                                                 return --[[ Eq ]]Block.__(0, {
                                                           Caml_obj.caml_compare(do
                                                                 x: 1,
@@ -542,7 +542,7 @@ suites = do
                                           --[[ :: ]]{
                                             --[[ tuple ]]{
                                               "cmp_val",
-                                              (function (param) do
+                                              (function(param) do
                                                   return --[[ Eq ]]Block.__(0, {
                                                             Caml_obj.caml_compare(do
                                                                   x: 1
@@ -556,7 +556,7 @@ suites = do
                                             --[[ :: ]]{
                                               --[[ tuple ]]{
                                                 "cmp_val2",
-                                                (function (param) do
+                                                (function(param) do
                                                     return --[[ Eq ]]Block.__(0, {
                                                               Caml_obj.caml_compare(do
                                                                     x: 2
@@ -570,7 +570,7 @@ suites = do
                                               --[[ :: ]]{
                                                 --[[ tuple ]]{
                                                   "cmp_empty",
-                                                  (function (param) do
+                                                  (function(param) do
                                                       return --[[ Eq ]]Block.__(0, {
                                                                 Caml_obj.caml_compare(({}), ({})),
                                                                 0
@@ -580,7 +580,7 @@ suites = do
                                                 --[[ :: ]]{
                                                   --[[ tuple ]]{
                                                     "cmp_empty2",
-                                                    (function (param) do
+                                                    (function(param) do
                                                         return --[[ Eq ]]Block.__(0, {
                                                                   Caml_obj.caml_compare(({}), ({x:1})),
                                                                   -1
@@ -590,7 +590,7 @@ suites = do
                                                   --[[ :: ]]{
                                                     --[[ tuple ]]{
                                                       "cmp_swap",
-                                                      (function (param) do
+                                                      (function(param) do
                                                           return --[[ Eq ]]Block.__(0, {
                                                                     Caml_obj.caml_compare(do
                                                                           x: 1,
@@ -606,7 +606,7 @@ suites = do
                                                     --[[ :: ]]{
                                                       --[[ tuple ]]{
                                                         "cmp_size",
-                                                        (function (param) do
+                                                        (function(param) do
                                                             return --[[ Eq ]]Block.__(0, {
                                                                       Caml_obj.caml_compare(({x:1}), ({x:1, y:2})),
                                                                       -1
@@ -616,7 +616,7 @@ suites = do
                                                       --[[ :: ]]{
                                                         --[[ tuple ]]{
                                                           "cmp_size2",
-                                                          (function (param) do
+                                                          (function(param) do
                                                               return --[[ Eq ]]Block.__(0, {
                                                                         Caml_obj.caml_compare(({x:1, y:2}), ({x:1})),
                                                                         1
@@ -626,7 +626,7 @@ suites = do
                                                         --[[ :: ]]{
                                                           --[[ tuple ]]{
                                                             "cmp_order",
-                                                            (function (param) do
+                                                            (function(param) do
                                                                 return --[[ Eq ]]Block.__(0, {
                                                                           Caml_obj.caml_compare(do
                                                                                 x: 0,
@@ -642,7 +642,7 @@ suites = do
                                                           --[[ :: ]]{
                                                             --[[ tuple ]]{
                                                               "cmp_order2",
-                                                              (function (param) do
+                                                              (function(param) do
                                                                   return --[[ Eq ]]Block.__(0, {
                                                                             Caml_obj.caml_compare(do
                                                                                   x: 1,
@@ -658,7 +658,7 @@ suites = do
                                                             --[[ :: ]]{
                                                               --[[ tuple ]]{
                                                                 "cmp_in_list",
-                                                                (function (param) do
+                                                                (function(param) do
                                                                     return --[[ Eq ]]Block.__(0, {
                                                                               Caml_obj.caml_compare(--[[ :: ]]{
                                                                                     do
@@ -678,7 +678,7 @@ suites = do
                                                               --[[ :: ]]{
                                                                 --[[ tuple ]]{
                                                                   "cmp_in_list2",
-                                                                  (function (param) do
+                                                                  (function(param) do
                                                                       return --[[ Eq ]]Block.__(0, {
                                                                                 Caml_obj.caml_compare(--[[ :: ]]{
                                                                                       do
@@ -698,7 +698,7 @@ suites = do
                                                                 --[[ :: ]]{
                                                                   --[[ tuple ]]{
                                                                     "cmp_with_list",
-                                                                    (function (param) do
+                                                                    (function(param) do
                                                                         return --[[ Eq ]]Block.__(0, {
                                                                                   Caml_obj.caml_compare(do
                                                                                         x: --[[ :: ]]{
@@ -718,7 +718,7 @@ suites = do
                                                                   --[[ :: ]]{
                                                                     --[[ tuple ]]{
                                                                       "cmp_with_list2",
-                                                                      (function (param) do
+                                                                      (function(param) do
                                                                           return --[[ Eq ]]Block.__(0, {
                                                                                     Caml_obj.caml_compare(do
                                                                                           x: --[[ :: ]]{
@@ -738,7 +738,7 @@ suites = do
                                                                     --[[ :: ]]{
                                                                       --[[ tuple ]]{
                                                                         "eq_id",
-                                                                        (function (param) do
+                                                                        (function(param) do
                                                                             return --[[ Ok ]]Block.__(4, {Caml_obj.caml_equal(do
                                                                                             x: 1,
                                                                                             y: 2
@@ -751,7 +751,7 @@ suites = do
                                                                       --[[ :: ]]{
                                                                         --[[ tuple ]]{
                                                                           "eq_val",
-                                                                          (function (param) do
+                                                                          (function(param) do
                                                                               return --[[ Eq ]]Block.__(0, {
                                                                                         Caml_obj.caml_equal(do
                                                                                               x: 1
@@ -765,7 +765,7 @@ suites = do
                                                                         --[[ :: ]]{
                                                                           --[[ tuple ]]{
                                                                             "eq_val2",
-                                                                            (function (param) do
+                                                                            (function(param) do
                                                                                 return --[[ Eq ]]Block.__(0, {
                                                                                           Caml_obj.caml_equal(do
                                                                                                 x: 2
@@ -779,7 +779,7 @@ suites = do
                                                                           --[[ :: ]]{
                                                                             --[[ tuple ]]{
                                                                               "eq_empty",
-                                                                              (function (param) do
+                                                                              (function(param) do
                                                                                   return --[[ Eq ]]Block.__(0, {
                                                                                             Caml_obj.caml_equal(({}), ({})),
                                                                                             true
@@ -789,7 +789,7 @@ suites = do
                                                                             --[[ :: ]]{
                                                                               --[[ tuple ]]{
                                                                                 "eq_empty2",
-                                                                                (function (param) do
+                                                                                (function(param) do
                                                                                     return --[[ Eq ]]Block.__(0, {
                                                                                               Caml_obj.caml_equal(({}), ({x:1})),
                                                                                               false
@@ -799,7 +799,7 @@ suites = do
                                                                               --[[ :: ]]{
                                                                                 --[[ tuple ]]{
                                                                                   "eq_swap",
-                                                                                  (function (param) do
+                                                                                  (function(param) do
                                                                                       return --[[ Ok ]]Block.__(4, {Caml_obj.caml_equal(do
                                                                                                       x: 1,
                                                                                                       y: 2
@@ -812,7 +812,7 @@ suites = do
                                                                                 --[[ :: ]]{
                                                                                   --[[ tuple ]]{
                                                                                     "eq_size",
-                                                                                    (function (param) do
+                                                                                    (function(param) do
                                                                                         return --[[ Eq ]]Block.__(0, {
                                                                                                   Caml_obj.caml_equal(({x:1}), ({x:1, y:2})),
                                                                                                   false
@@ -822,7 +822,7 @@ suites = do
                                                                                   --[[ :: ]]{
                                                                                     --[[ tuple ]]{
                                                                                       "eq_size2",
-                                                                                      (function (param) do
+                                                                                      (function(param) do
                                                                                           return --[[ Eq ]]Block.__(0, {
                                                                                                     Caml_obj.caml_equal(({x:1, y:2}), ({x:1})),
                                                                                                     false
@@ -832,7 +832,7 @@ suites = do
                                                                                     --[[ :: ]]{
                                                                                       --[[ tuple ]]{
                                                                                         "eq_in_list",
-                                                                                        (function (param) do
+                                                                                        (function(param) do
                                                                                             return --[[ Eq ]]Block.__(0, {
                                                                                                       Caml_obj.caml_equal(--[[ :: ]]{
                                                                                                             do
@@ -852,7 +852,7 @@ suites = do
                                                                                       --[[ :: ]]{
                                                                                         --[[ tuple ]]{
                                                                                           "eq_in_list2",
-                                                                                          (function (param) do
+                                                                                          (function(param) do
                                                                                               return --[[ Eq ]]Block.__(0, {
                                                                                                         Caml_obj.caml_equal(--[[ :: ]]{
                                                                                                               do
@@ -872,7 +872,7 @@ suites = do
                                                                                         --[[ :: ]]{
                                                                                           --[[ tuple ]]{
                                                                                             "eq_with_list",
-                                                                                            (function (param) do
+                                                                                            (function(param) do
                                                                                                 return --[[ Eq ]]Block.__(0, {
                                                                                                           Caml_obj.caml_equal(do
                                                                                                                 x: --[[ :: ]]{
@@ -892,7 +892,7 @@ suites = do
                                                                                           --[[ :: ]]{
                                                                                             --[[ tuple ]]{
                                                                                               "eq_with_list2",
-                                                                                              (function (param) do
+                                                                                              (function(param) do
                                                                                                   return --[[ Eq ]]Block.__(0, {
                                                                                                             Caml_obj.caml_equal(do
                                                                                                                   x: --[[ :: ]]{
@@ -912,7 +912,7 @@ suites = do
                                                                                             --[[ :: ]]{
                                                                                               --[[ tuple ]]{
                                                                                                 "File \"caml_compare_test.ml\", line 87, characters 4-11",
-                                                                                                (function (param) do
+                                                                                                (function(param) do
                                                                                                     return --[[ Eq ]]Block.__(0, {
                                                                                                               Caml_obj.caml_compare(nil, --[[ :: ]]{
                                                                                                                     3,
@@ -925,7 +925,7 @@ suites = do
                                                                                               --[[ :: ]]{
                                                                                                 --[[ tuple ]]{
                                                                                                   "File \"caml_compare_test.ml\", line 90, characters 4-11",
-                                                                                                  (function (param) do
+                                                                                                  (function(param) do
                                                                                                       return --[[ Eq ]]Block.__(0, {
                                                                                                                 Caml_obj.caml_compare(--[[ :: ]]{
                                                                                                                       3,
@@ -938,7 +938,7 @@ suites = do
                                                                                                 --[[ :: ]]{
                                                                                                   --[[ tuple ]]{
                                                                                                     "File \"caml_compare_test.ml\", line 93, characters 4-11",
-                                                                                                    (function (param) do
+                                                                                                    (function(param) do
                                                                                                         return --[[ Eq ]]Block.__(0, {
                                                                                                                   Caml_obj.caml_compare(nil, 0),
                                                                                                                   -1
@@ -948,7 +948,7 @@ suites = do
                                                                                                   --[[ :: ]]{
                                                                                                     --[[ tuple ]]{
                                                                                                       "File \"caml_compare_test.ml\", line 96, characters 4-11",
-                                                                                                      (function (param) do
+                                                                                                      (function(param) do
                                                                                                           return --[[ Eq ]]Block.__(0, {
                                                                                                                     Caml_obj.caml_compare(0, nil),
                                                                                                                     1
@@ -958,7 +958,7 @@ suites = do
                                                                                                     --[[ :: ]]{
                                                                                                       --[[ tuple ]]{
                                                                                                         "File \"caml_compare_test.ml\", line 99, characters 4-11",
-                                                                                                        (function (param) do
+                                                                                                        (function(param) do
                                                                                                             return --[[ Eq ]]Block.__(0, {
                                                                                                                       Caml_obj.caml_compare(undefined, 0),
                                                                                                                       -1
@@ -968,7 +968,7 @@ suites = do
                                                                                                       --[[ :: ]]{
                                                                                                         --[[ tuple ]]{
                                                                                                           "File \"caml_compare_test.ml\", line 102, characters 4-11",
-                                                                                                          (function (param) do
+                                                                                                          (function(param) do
                                                                                                               return --[[ Eq ]]Block.__(0, {
                                                                                                                         Caml_obj.caml_compare(0, undefined),
                                                                                                                         1
@@ -1058,6 +1058,7 @@ eq("File \"caml_compare_test.ml\", line 116, characters 6-13", false, Caml_obj.c
 
 Mt.from_pair_suites("Caml_compare_test", suites.contents);
 
+exports = {}
 exports.function_equal_test = function_equal_test;
 exports.suites = suites;
 exports.test_id = test_id;

@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 List = require "../../lib/js/list";
@@ -9,7 +9,7 @@ Caml_bytes = require "../../lib/js/caml_bytes";
 
 suites_000 = --[[ tuple ]]{
   "caml_is_printable",
-  (function (param) do
+  (function(param) do
       return --[[ Eq ]]Block.__(0, {
                 Caml_char.caml_is_printable(--[[ "a" ]]97),
                 true
@@ -20,14 +20,14 @@ suites_000 = --[[ tuple ]]{
 suites_001 = --[[ :: ]]{
   --[[ tuple ]]{
     "caml_string_of_bytes",
-    (function (param) do
-        match = List.split(List.map((function (x) do
+    (function(param) do
+        match = List.split(List.map((function(x) do
                     len = x;
                     b = Caml_bytes.caml_create_bytes(1000);
                     Caml_bytes.caml_fill_bytes(b, 0, len, --[[ "c" ]]99);
                     return --[[ tuple ]]{
                             Caml_bytes.bytes_to_string(b),
-                            Caml_bytes.bytes_to_string(Bytes.init(len, (function (param) do
+                            Caml_bytes.bytes_to_string(Bytes.init(len, (function(param) do
                                         return --[[ "c" ]]99;
                                       end end)))
                           };
@@ -73,6 +73,7 @@ S = --[[ alias ]]0;
 
 B = --[[ alias ]]0;
 
+exports = {}
 exports.S = S;
 exports.B = B;
 exports.suites = suites;

@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 
 function map(f, param) do
@@ -13,5 +13,6 @@ function map(f, param) do
   end end 
 end end
 
+exports = {}
 exports.map = map;
 --[[ No side effect ]]

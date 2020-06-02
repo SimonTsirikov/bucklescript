@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 
 v1 = do
@@ -11,19 +11,19 @@ v2 = do
   v: 2
 end;
 
-process.on("exit", (function (exit_code) do
+process.on("exit", (function(exit_code) do
         return String(exit_code);
       end end));
 
-process.on(1, (function (param) do
+process.on(1, (function(param) do
         return --[[ () ]]0;
       end end));
 
-process.on((function (i) do
+process.on((function(i) do
         return String(i);
       end end), "exit");
 
-process.on((function (i) do
+process.on((function(i) do
         return String(i);
       end end), 1);
 
@@ -46,13 +46,13 @@ function f(x) do
   return --[[ () ]]0;
 end end
 
-process.on("exit", (function (exit_code) do
+process.on("exit", (function(exit_code) do
         console.log("error code: " .. String(exit_code));
         return --[[ () ]]0;
       end end));
 
 function register(p) do
-  p.on("exit", (function (i) do
+  p.on("exit", (function(i) do
           console.log(i);
           return --[[ () ]]0;
         end end));
@@ -64,6 +64,7 @@ config = do
   cwd: "."
 end;
 
+exports = {}
 exports.v1 = v1;
 exports.v2 = v2;
 exports.f = f;

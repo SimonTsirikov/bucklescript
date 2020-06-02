@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 
 N = { };
@@ -13,6 +13,7 @@ h = "hello";
 
 hh = "hellohello";
 
+exports = {}
 exports.x = x;
 exports.N = N;
 exports.N1 = N1;

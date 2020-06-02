@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Block = require "../../lib/js/block";
@@ -56,7 +56,7 @@ suites_000 = --[[ tuple ]]{
 suites_001 = --[[ :: ]]{
   --[[ tuple ]]{
     "avoid_mutable_inline_test",
-    (function (param) do
+    (function(param) do
         Caml_array.caml_array_set(c, 0, 3);
         Caml_array.caml_array_set(c, 1, 4);
         return --[[ Eq ]]Block.__(0, {
@@ -91,6 +91,7 @@ v = --[[ tuple ]]{
   5
 };
 
+exports = {}
 exports.a = a;
 exports.b = b;
 exports.c = c;

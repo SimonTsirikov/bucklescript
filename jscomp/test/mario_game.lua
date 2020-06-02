@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 List = require "../../lib/js/list";
 Block = require "../../lib/js/block";
@@ -47,7 +47,7 @@ function make_enemy(param) do
   dir = param[1];
   local ___conditional___=(param[0]);
   do
-     if ___conditional___ = 0--[[ Goomba ]] then do
+     if ___conditional___ == 0--[[ Goomba ]] then do
         return setup_sprite(undefined, --[[ tuple ]]{
                     1,
                     1
@@ -60,8 +60,8 @@ function make_enemy(param) do
                   }, --[[ tuple ]]{
                     0,
                     128
-                  });end end end 
-     if ___conditional___ = 1--[[ GKoopa ]] then do
+                  }); end end 
+     if ___conditional___ == 1--[[ GKoopa ]] then do
         if (dir) then do
           return setup_sprite(undefined, --[[ tuple ]]{
                       1,
@@ -90,8 +90,8 @@ function make_enemy(param) do
                       0,
                       69
                     });
-        end end end end end 
-     if ___conditional___ = 2--[[ RKoopa ]] then do
+        end end  end end 
+     if ___conditional___ == 2--[[ RKoopa ]] then do
         if (dir) then do
           return setup_sprite(undefined, --[[ tuple ]]{
                       1,
@@ -120,8 +120,8 @@ function make_enemy(param) do
                       0,
                       5
                     });
-        end end end end end 
-     if ___conditional___ = 3--[[ GKoopaShell ]] then do
+        end end  end end 
+     if ___conditional___ == 3--[[ GKoopaShell ]] then do
         return setup_sprite(undefined, --[[ tuple ]]{
                     2,
                     2
@@ -134,8 +134,8 @@ function make_enemy(param) do
                   }, --[[ tuple ]]{
                     0,
                     96
-                  });end end end 
-     if ___conditional___ = 4--[[ RKoopaShell ]] then do
+                  }); end end 
+     if ___conditional___ == 4--[[ RKoopaShell ]] then do
         return setup_sprite(undefined, --[[ tuple ]]{
                     2,
                     2
@@ -148,8 +148,7 @@ function make_enemy(param) do
                   }, --[[ tuple ]]{
                     0,
                     32
-                  });end end end 
-     do
+                  }); end end 
     
   end
 end end
@@ -157,95 +156,94 @@ end end
 function make_particle(param) do
   local ___conditional___=(param);
   do
-     if ___conditional___ = 0--[[ GoombaSquish ]] then do
+     if ___conditional___ == 0--[[ GoombaSquish ]] then do
         return setup_sprite(undefined, undefined, undefined, "enemies.png", 1, 0, --[[ tuple ]]{
                     16,
                     16
                   }, --[[ tuple ]]{
                     0,
                     144
-                  });end end end 
-     if ___conditional___ = 1--[[ BrickChunkL ]] then do
+                  }); end end 
+     if ___conditional___ == 1--[[ BrickChunkL ]] then do
         return setup_sprite(undefined, undefined, undefined, "chunks.png", 1, 0, --[[ tuple ]]{
                     8,
                     8
                   }, --[[ tuple ]]{
                     0,
                     0
-                  });end end end 
-     if ___conditional___ = 2--[[ BrickChunkR ]] then do
+                  }); end end 
+     if ___conditional___ == 2--[[ BrickChunkR ]] then do
         return setup_sprite(undefined, undefined, undefined, "chunks.png", 1, 0, --[[ tuple ]]{
                     8,
                     8
                   }, --[[ tuple ]]{
                     8,
                     0
-                  });end end end 
-     if ___conditional___ = 3--[[ Score100 ]] then do
+                  }); end end 
+     if ___conditional___ == 3--[[ Score100 ]] then do
         return setup_sprite(undefined, undefined, undefined, "score.png", 1, 0, --[[ tuple ]]{
                     12,
                     8
                   }, --[[ tuple ]]{
                     0,
                     0
-                  });end end end 
-     if ___conditional___ = 4--[[ Score200 ]] then do
+                  }); end end 
+     if ___conditional___ == 4--[[ Score200 ]] then do
         return setup_sprite(undefined, undefined, undefined, "score.png", 1, 0, --[[ tuple ]]{
                     12,
                     9
                   }, --[[ tuple ]]{
                     0,
                     9
-                  });end end end 
-     if ___conditional___ = 5--[[ Score400 ]] then do
+                  }); end end 
+     if ___conditional___ == 5--[[ Score400 ]] then do
         return setup_sprite(undefined, undefined, undefined, "score.png", 1, 0, --[[ tuple ]]{
                     12,
                     9
                   }, --[[ tuple ]]{
                     0,
                     18
-                  });end end end 
-     if ___conditional___ = 6--[[ Score800 ]] then do
+                  }); end end 
+     if ___conditional___ == 6--[[ Score800 ]] then do
         return setup_sprite(undefined, undefined, undefined, "score.png", 1, 0, --[[ tuple ]]{
                     12,
                     9
                   }, --[[ tuple ]]{
                     0,
                     27
-                  });end end end 
-     if ___conditional___ = 7--[[ Score1000 ]] then do
+                  }); end end 
+     if ___conditional___ == 7--[[ Score1000 ]] then do
         return setup_sprite(undefined, undefined, undefined, "score.png", 1, 0, --[[ tuple ]]{
                     14,
                     9
                   }, --[[ tuple ]]{
                     13,
                     0
-                  });end end end 
-     if ___conditional___ = 8--[[ Score2000 ]] then do
+                  }); end end 
+     if ___conditional___ == 8--[[ Score2000 ]] then do
         return setup_sprite(undefined, undefined, undefined, "score.png", 1, 0, --[[ tuple ]]{
                     14,
                     9
                   }, --[[ tuple ]]{
                     13,
                     9
-                  });end end end 
-     if ___conditional___ = 9--[[ Score4000 ]] then do
+                  }); end end 
+     if ___conditional___ == 9--[[ Score4000 ]] then do
         return setup_sprite(undefined, undefined, undefined, "score.png", 1, 0, --[[ tuple ]]{
                     14,
                     9
                   }, --[[ tuple ]]{
                     13,
                     18
-                  });end end end 
-     if ___conditional___ = 10--[[ Score8000 ]] then do
+                  }); end end 
+     if ___conditional___ == 10--[[ Score8000 ]] then do
         return setup_sprite(undefined, undefined, undefined, "score.png", 1, 0, --[[ tuple ]]{
                     14,
                     9
                   }, --[[ tuple ]]{
                     13,
                     27
-                  });end end end 
-     do
+                  }); end end 
     
   end
 end end
@@ -253,7 +251,7 @@ end end
 function make_type(typ, dir) do
   local ___conditional___=(typ.tag | 0);
   do
-     if ___conditional___ = 0--[[ SPlayer ]] then do
+     if ___conditional___ == 0--[[ SPlayer ]] then do
         pt = typ[0];
         spr_type = --[[ tuple ]]{
           typ[1],
@@ -265,7 +263,7 @@ function make_type(typ, dir) do
           if (param[1]) then do
             local ___conditional___=(typ_1);
             do
-               if ___conditional___ = 0--[[ Standing ]] then do
+               if ___conditional___ == 0--[[ Standing ]] then do
                   return setup_sprite(undefined, --[[ tuple ]]{
                               1,
                               1
@@ -278,8 +276,8 @@ function make_type(typ, dir) do
                             }, --[[ tuple ]]{
                               0,
                               32
-                            });end end end 
-               if ___conditional___ = 1--[[ Jumping ]] then do
+                            }); end end 
+               if ___conditional___ == 1--[[ Jumping ]] then do
                   return setup_sprite(undefined, --[[ tuple ]]{
                               2,
                               1
@@ -292,8 +290,8 @@ function make_type(typ, dir) do
                             }, --[[ tuple ]]{
                               16,
                               48
-                            });end end end 
-               if ___conditional___ = 2--[[ Running ]] then do
+                            }); end end 
+               if ___conditional___ == 2--[[ Running ]] then do
                   return setup_sprite(undefined, --[[ tuple ]]{
                               2,
                               1
@@ -306,8 +304,8 @@ function make_type(typ, dir) do
                             }, --[[ tuple ]]{
                               16,
                               32
-                            });end end end 
-               if ___conditional___ = 3--[[ Crouching ]] then do
+                            }); end end 
+               if ___conditional___ == 3--[[ Crouching ]] then do
                   return setup_sprite(undefined, --[[ tuple ]]{
                               1,
                               5
@@ -320,14 +318,13 @@ function make_type(typ, dir) do
                             }, --[[ tuple ]]{
                               0,
                               64
-                            });end end end 
-               do
+                            }); end end 
               
             end
           end else do
             local ___conditional___=(typ_1);
             do
-               if ___conditional___ = 0--[[ Standing ]] then do
+               if ___conditional___ == 0--[[ Standing ]] then do
                   return setup_sprite(undefined, --[[ tuple ]]{
                               3,
                               1
@@ -340,8 +337,8 @@ function make_type(typ, dir) do
                             }, --[[ tuple ]]{
                               0,
                               0
-                            });end end end 
-               if ___conditional___ = 1--[[ Jumping ]] then do
+                            }); end end 
+               if ___conditional___ == 1--[[ Jumping ]] then do
                   return setup_sprite(undefined, --[[ tuple ]]{
                               2,
                               1
@@ -354,8 +351,8 @@ function make_type(typ, dir) do
                             }, --[[ tuple ]]{
                               16,
                               16
-                            });end end end 
-               if ___conditional___ = 2--[[ Running ]] then do
+                            }); end end 
+               if ___conditional___ == 2--[[ Running ]] then do
                   return setup_sprite(undefined, --[[ tuple ]]{
                               2,
                               1
@@ -368,8 +365,8 @@ function make_type(typ, dir) do
                             }, --[[ tuple ]]{
                               16,
                               0
-                            });end end end 
-               if ___conditional___ = 3--[[ Crouching ]] then do
+                            }); end end 
+               if ___conditional___ == 3--[[ Crouching ]] then do
                   return setup_sprite(undefined, --[[ tuple ]]{
                               1,
                               5
@@ -382,8 +379,7 @@ function make_type(typ, dir) do
                             }, --[[ tuple ]]{
                               0,
                               64
-                            });end end end 
-               do
+                            }); end end 
               
             end
           end end 
@@ -393,7 +389,7 @@ function make_type(typ, dir) do
           if (param_1[1]) then do
             local ___conditional___=(typ_2);
             do
-               if ___conditional___ = 0--[[ Standing ]] then do
+               if ___conditional___ == 0--[[ Standing ]] then do
                   return setup_sprite(undefined, --[[ tuple ]]{
                               1,
                               1
@@ -406,8 +402,8 @@ function make_type(typ, dir) do
                             }, --[[ tuple ]]{
                               16,
                               69
-                            });end end end 
-               if ___conditional___ = 1--[[ Jumping ]] then do
+                            }); end end 
+               if ___conditional___ == 1--[[ Jumping ]] then do
                   return setup_sprite(undefined, --[[ tuple ]]{
                               2,
                               1
@@ -420,8 +416,8 @@ function make_type(typ, dir) do
                             }, --[[ tuple ]]{
                               48,
                               70
-                            });end end end 
-               if ___conditional___ = 2--[[ Running ]] then do
+                            }); end end 
+               if ___conditional___ == 2--[[ Running ]] then do
                   return setup_sprite(undefined, --[[ tuple ]]{
                               2,
                               1
@@ -434,8 +430,8 @@ function make_type(typ, dir) do
                             }, --[[ tuple ]]{
                               0,
                               101
-                            });end end end 
-               if ___conditional___ = 3--[[ Crouching ]] then do
+                            }); end end 
+               if ___conditional___ == 3--[[ Crouching ]] then do
                   return setup_sprite(undefined, --[[ tuple ]]{
                               2,
                               10
@@ -448,14 +444,13 @@ function make_type(typ, dir) do
                             }, --[[ tuple ]]{
                               32,
                               69
-                            });end end end 
-               do
+                            }); end end 
               
             end
           end else do
             local ___conditional___=(typ_2);
             do
-               if ___conditional___ = 0--[[ Standing ]] then do
+               if ___conditional___ == 0--[[ Standing ]] then do
                   return setup_sprite(undefined, --[[ tuple ]]{
                               2,
                               1
@@ -468,8 +463,8 @@ function make_type(typ, dir) do
                             }, --[[ tuple ]]{
                               16,
                               5
-                            });end end end 
-               if ___conditional___ = 1--[[ Jumping ]] then do
+                            }); end end 
+               if ___conditional___ == 1--[[ Jumping ]] then do
                   return setup_sprite(undefined, --[[ tuple ]]{
                               2,
                               1
@@ -482,8 +477,8 @@ function make_type(typ, dir) do
                             }, --[[ tuple ]]{
                               48,
                               6
-                            });end end end 
-               if ___conditional___ = 2--[[ Running ]] then do
+                            }); end end 
+               if ___conditional___ == 2--[[ Running ]] then do
                   return setup_sprite(undefined, --[[ tuple ]]{
                               2,
                               1
@@ -496,8 +491,8 @@ function make_type(typ, dir) do
                             }, --[[ tuple ]]{
                               0,
                               37
-                            });end end end 
-               if ___conditional___ = 3--[[ Crouching ]] then do
+                            }); end end 
+               if ___conditional___ == 3--[[ Crouching ]] then do
                   return setup_sprite(undefined, --[[ tuple ]]{
                               2,
                               10
@@ -510,22 +505,21 @@ function make_type(typ, dir) do
                             }, --[[ tuple ]]{
                               32,
                               5
-                            });end end end 
-               do
+                            }); end end 
               
             end
           end end 
-        end end end end end 
-     if ___conditional___ = 1--[[ SEnemy ]] then do
+        end end  end end 
+     if ___conditional___ == 1--[[ SEnemy ]] then do
         return make_enemy(--[[ tuple ]]{
                     typ[0],
                     dir
-                  });end end end 
-     if ___conditional___ = 2--[[ SItem ]] then do
+                  }); end end 
+     if ___conditional___ == 2--[[ SItem ]] then do
         param_2 = typ[0];
         local ___conditional___=(param_2);
         do
-           if ___conditional___ = 0--[[ Mushroom ]] then do
+           if ___conditional___ == 0--[[ Mushroom ]] then do
               return setup_sprite(undefined, --[[ tuple ]]{
                           2,
                           0
@@ -538,24 +532,24 @@ function make_type(typ, dir) do
                         }, --[[ tuple ]]{
                           0,
                           0
-                        });end end end 
-           if ___conditional___ = 1--[[ FireFlower ]] then do
+                        }); end end 
+           if ___conditional___ == 1--[[ FireFlower ]] then do
               return setup_sprite(undefined, undefined, undefined, "items.png", 1, 0, --[[ tuple ]]{
                           16,
                           16
                         }, --[[ tuple ]]{
                           0,
                           188
-                        });end end end 
-           if ___conditional___ = 2--[[ Star ]] then do
+                        }); end end 
+           if ___conditional___ == 2--[[ Star ]] then do
               return setup_sprite(undefined, undefined, undefined, "items.png", 1, 0, --[[ tuple ]]{
                           16,
                           16
                         }, --[[ tuple ]]{
                           16,
                           48
-                        });end end end 
-           if ___conditional___ = 3--[[ Coin ]] then do
+                        }); end end 
+           if ___conditional___ == 3--[[ Coin ]] then do
               return setup_sprite(undefined, --[[ tuple ]]{
                           3,
                           0
@@ -568,64 +562,62 @@ function make_type(typ, dir) do
                         }, --[[ tuple ]]{
                           0,
                           80
-                        });end end end 
-           do
+                        }); end end 
           
-        endend end end 
-     if ___conditional___ = 3--[[ SBlock ]] then do
+        end end end 
+     if ___conditional___ == 3--[[ SBlock ]] then do
         param_3 = typ[0];
         if (typeof param_3 == "number") then do
           local ___conditional___=(param_3);
           do
-             if ___conditional___ = 0--[[ QBlockUsed ]] then do
+             if ___conditional___ == 0--[[ QBlockUsed ]] then do
                 return setup_sprite(undefined, undefined, undefined, "blocks.png", 1, 0, --[[ tuple ]]{
                             16,
                             16
                           }, --[[ tuple ]]{
                             0,
                             32
-                          });end end end 
-             if ___conditional___ = 1--[[ Brick ]] then do
+                          }); end end 
+             if ___conditional___ == 1--[[ Brick ]] then do
                 return setup_sprite(undefined, undefined, undefined, "blocks.png", 5, 10, --[[ tuple ]]{
                             16,
                             16
                           }, --[[ tuple ]]{
                             0,
                             0
-                          });end end end 
-             if ___conditional___ = 2--[[ UnBBlock ]] then do
+                          }); end end 
+             if ___conditional___ == 2--[[ UnBBlock ]] then do
                 return setup_sprite(undefined, undefined, undefined, "blocks.png", 1, 0, --[[ tuple ]]{
                             16,
                             16
                           }, --[[ tuple ]]{
                             0,
                             48
-                          });end end end 
-             if ___conditional___ = 3--[[ Cloud ]] then do
+                          }); end end 
+             if ___conditional___ == 3--[[ Cloud ]] then do
                 return setup_sprite(undefined, undefined, undefined, "blocks.png", 1, 0, --[[ tuple ]]{
                             16,
                             16
                           }, --[[ tuple ]]{
                             0,
                             64
-                          });end end end 
-             if ___conditional___ = 4--[[ Panel ]] then do
+                          }); end end 
+             if ___conditional___ == 4--[[ Panel ]] then do
                 return setup_sprite(undefined, undefined, undefined, "panel.png", 3, 15, --[[ tuple ]]{
                             26,
                             26
                           }, --[[ tuple ]]{
                             0,
                             0
-                          });end end end 
-             if ___conditional___ = 5--[[ Ground ]] then do
+                          }); end end 
+             if ___conditional___ == 5--[[ Ground ]] then do
                 return setup_sprite(undefined, undefined, undefined, "ground.png", 1, 0, --[[ tuple ]]{
                             16,
                             16
                           }, --[[ tuple ]]{
                             0,
                             32
-                          });end end end 
-             do
+                          }); end end 
             
           end
         end else do
@@ -636,8 +628,7 @@ function make_type(typ, dir) do
                       0,
                       16
                     });
-        end end end end end 
-     do
+        end end  end end 
     
   end
 end end
@@ -842,25 +833,24 @@ end end
 function make_type_2(param) do
   local ___conditional___=(param.tag | 0);
   do
-     if ___conditional___ = 0--[[ SPlayer ]] then do
-        return setup_obj(undefined, 2.8, --[[ () ]]0);end end end 
-     if ___conditional___ = 1--[[ SEnemy ]] then do
+     if ___conditional___ == 0--[[ SPlayer ]] then do
+        return setup_obj(undefined, 2.8, --[[ () ]]0); end end 
+     if ___conditional___ == 1--[[ SEnemy ]] then do
         param_1 = param[0];
         if (param_1 >= 3) then do
           return setup_obj(undefined, 3, --[[ () ]]0);
         end else do
           return setup_obj(undefined, undefined, --[[ () ]]0);
-        end end end end end 
-     if ___conditional___ = 2--[[ SItem ]] then do
+        end end  end end 
+     if ___conditional___ == 2--[[ SItem ]] then do
         param_2 = param[0];
         if (param_2 >= 3) then do
           return setup_obj(false, undefined, --[[ () ]]0);
         end else do
           return setup_obj(undefined, undefined, --[[ () ]]0);
-        end end end end end 
-     if ___conditional___ = 3--[[ SBlock ]] then do
-        return setup_obj(false, undefined, --[[ () ]]0);end end end 
-     do
+        end end  end end 
+     if ___conditional___ == 3--[[ SBlock ]] then do
+        return setup_obj(false, undefined, --[[ () ]]0); end end 
     
   end
 end end
@@ -911,32 +901,31 @@ function spawn(spawnable, context, param) do
   spr = match[0];
   local ___conditional___=(spawnable.tag | 0);
   do
-     if ___conditional___ = 0--[[ SPlayer ]] then do
+     if ___conditional___ == 0--[[ SPlayer ]] then do
         return --[[ Player ]]Block.__(0, {
                   spawnable[0],
                   spr,
                   obj
-                });end end end 
-     if ___conditional___ = 1--[[ SEnemy ]] then do
+                }); end end 
+     if ___conditional___ == 1--[[ SEnemy ]] then do
         set_vel_to_speed(obj);
         return --[[ Enemy ]]Block.__(1, {
                   spawnable[0],
                   spr,
                   obj
-                });end end end 
-     if ___conditional___ = 2--[[ SItem ]] then do
+                }); end end 
+     if ___conditional___ == 2--[[ SItem ]] then do
         return --[[ Item ]]Block.__(2, {
                   spawnable[0],
                   spr,
                   obj
-                });end end end 
-     if ___conditional___ = 3--[[ SBlock ]] then do
+                }); end end 
+     if ___conditional___ == 3--[[ SBlock ]] then do
         return --[[ Block ]]Block.__(3, {
                   spawnable[0],
                   spr,
                   obj
-                });end end end 
-     do
+                }); end end 
     
   end
 end end
@@ -983,13 +972,13 @@ function update_player(player, keys, context) do
   prev_jumping = player.jumping;
   prev_dir = player.dir;
   prev_vx = Math.abs(player.vel.x);
-  List.iter((function (param) do
+  List.iter((function(param) do
           player_1 = player;
           controls = param;
           lr_acc = player_1.vel.x * 0.2;
           local ___conditional___=(controls);
           do
-             if ___conditional___ = 0--[[ CLeft ]] then do
+             if ___conditional___ == 0--[[ CLeft ]] then do
                 if (player_1.crouch) then do
                   return 0;
                 end else do
@@ -999,8 +988,8 @@ function update_player(player, keys, context) do
                    end 
                   player_1.dir = --[[ Left ]]0;
                   return --[[ () ]]0;
-                end end end end end 
-             if ___conditional___ = 1--[[ CRight ]] then do
+                end end  end end 
+             if ___conditional___ == 1--[[ CRight ]] then do
                 if (player_1.crouch) then do
                   return 0;
                 end else do
@@ -1010,8 +999,8 @@ function update_player(player, keys, context) do
                    end 
                   player_1.dir = --[[ Right ]]1;
                   return --[[ () ]]0;
-                end end end end end 
-             if ___conditional___ = 2--[[ CUp ]] then do
+                end end  end end 
+             if ___conditional___ == 2--[[ CUp ]] then do
                 if (not player_1.jumping and player_1.grounded) then do
                   player_1.jumping = true;
                   player_1.grounded = false;
@@ -1019,15 +1008,14 @@ function update_player(player, keys, context) do
                   return --[[ () ]]0;
                 end else do
                   return 0;
-                end end end end end 
-             if ___conditional___ = 3--[[ CDown ]] then do
+                end end  end end 
+             if ___conditional___ == 3--[[ CDown ]] then do
                 if (not player_1.jumping and player_1.grounded) then do
                   player_1.crouch = true;
                   return --[[ () ]]0;
                 end else do
                   return 0;
-                end end end end end 
-             do
+                end end  end end 
             
           end
         end end), keys);
@@ -1153,10 +1141,10 @@ end end
 function evolve_enemy(player_dir, typ, spr, obj, context) do
   local ___conditional___=(typ);
   do
-     if ___conditional___ = 0--[[ Goomba ]] then do
+     if ___conditional___ == 0--[[ Goomba ]] then do
         obj.kill = true;
-        return ;end end end 
-     if ___conditional___ = 1--[[ GKoopa ]] then do
+        return ; end end 
+     if ___conditional___ == 1--[[ GKoopa ]] then do
         match = make_2(undefined, obj.dir, --[[ SEnemy ]]Block.__(1, {--[[ GKoopaShell ]]3}), context, --[[ tuple ]]{
               obj.pos.x,
               obj.pos.y
@@ -1168,8 +1156,8 @@ function evolve_enemy(player_dir, typ, spr, obj, context) do
                   --[[ GKoopaShell ]]3,
                   new_spr,
                   new_obj
-                });end end end 
-     if ___conditional___ = 2--[[ RKoopa ]] then do
+                }); end end 
+     if ___conditional___ == 2--[[ RKoopa ]] then do
         match_1 = make_2(undefined, obj.dir, --[[ SEnemy ]]Block.__(1, {--[[ RKoopaShell ]]4}), context, --[[ tuple ]]{
               obj.pos.x,
               obj.pos.y
@@ -1181,10 +1169,10 @@ function evolve_enemy(player_dir, typ, spr, obj, context) do
                   --[[ RKoopaShell ]]4,
                   new_spr_1,
                   new_obj_1
-                });end end end 
-     if ___conditional___ = 3--[[ GKoopaShell ]]
-     or ___conditional___ = 4--[[ RKoopaShell ]]
-     do
+                }); end end 
+     if ___conditional___ == 3--[[ GKoopaShell ]]
+     or ___conditional___ == 4--[[ RKoopaShell ]]
+     end
     
   end
   obj.dir = player_dir;
@@ -1268,25 +1256,25 @@ function col_bypass(c1, c2) do
   ctypes;
   local ___conditional___=(c1.tag | 0);
   do
-     if ___conditional___ = 0--[[ Player ]] then do
-        ctypes = c2.tag == --[[ Enemy ]]1 and c1[2].invuln > 0 or false;end else 
-     if ___conditional___ = 1--[[ Enemy ]] then do
-        ctypes = c2.tag == --[[ Item ]]2 and true or false;end else 
-     if ___conditional___ = 2--[[ Item ]] then do
+     if ___conditional___ == 0--[[ Player ]] then do
+        ctypes = c2.tag == --[[ Enemy ]]1 and c1[2].invuln > 0 or false; end else 
+     if ___conditional___ == 1--[[ Enemy ]] then do
+        ctypes = c2.tag == --[[ Item ]]2 and true or false; end else 
+     if ___conditional___ == 2--[[ Item ]] then do
         local ___conditional___=(c2.tag | 0);
         do
-           if ___conditional___ = 1--[[ Enemy ]]
-           or ___conditional___ = 2--[[ Item ]] then do
-              ctypes = true;end else 
-           if ___conditional___ = 0--[[ Player ]]
-           or ___conditional___ = 3--[[ Block ]] then do
-              ctypes = false;end else 
-           do end end end
+           if ___conditional___ == 1--[[ Enemy ]]
+           or ___conditional___ == 2--[[ Item ]] then do
+              ctypes = true; end else 
+           if ___conditional___ == 0--[[ Player ]]
+           or ___conditional___ == 3--[[ Block ]] then do
+              ctypes = false; end else 
+           end end end end
           
-        endend else 
-     if ___conditional___ = 3--[[ Block ]] then do
-        ctypes = false;end else 
-     do end end end end end
+        end end else 
+     if ___conditional___ == 3--[[ Block ]] then do
+        ctypes = false; end else 
+     end end end end end end end end
     
   end
   if (o1.kill or o2.kill) then do
@@ -1334,9 +1322,9 @@ end end
 function kill(collid, ctx) do
   local ___conditional___=(collid.tag | 0);
   do
-     if ___conditional___ = 0--[[ Player ]] then do
-        return --[[ [] ]]0;end end end 
-     if ___conditional___ = 1--[[ Enemy ]] then do
+     if ___conditional___ == 0--[[ Player ]] then do
+        return --[[ [] ]]0; end end 
+     if ___conditional___ == 1--[[ Enemy ]] then do
         o = collid[2];
         pos_000 = o.pos.x;
         pos_001 = o.pos.y;
@@ -1352,8 +1340,8 @@ function kill(collid, ctx) do
             make_1(undefined, undefined, --[[ GoombaSquish ]]0, pos, ctx),
             --[[ [] ]]0
           };
-        return Pervasives.$at(score, remains);end end end 
-     if ___conditional___ = 2--[[ Item ]] then do
+        return Pervasives.$at(score, remains); end end 
+     if ___conditional___ == 2--[[ Item ]] then do
         o_1 = collid[2];
         if (collid[0] ~= 0) then do
           return --[[ [] ]]0;
@@ -1365,8 +1353,8 @@ function kill(collid, ctx) do
                       }, ctx),
                   --[[ [] ]]0
                 };
-        end end end end end 
-     if ___conditional___ = 3--[[ Block ]] then do
+        end end  end end 
+     if ___conditional___ == 3--[[ Block ]] then do
         o_2 = collid[2];
         t = collid[0];
         if (typeof t == "number" and t == 1) then do
@@ -1419,8 +1407,7 @@ function kill(collid, ctx) do
                 };
         end else do
           return --[[ [] ]]0;
-        end end end end end 
-     do
+        end end  end end 
     
   end
 end end
@@ -1659,17 +1646,17 @@ function process_collision(dir, c1, c2, state) do
   o2_2;
   local ___conditional___=(c1.tag | 0);
   do
-     if ___conditional___ = 0--[[ Player ]] then do
+     if ___conditional___ == 0--[[ Player ]] then do
         o1_3 = c1[2];
         s1_2 = c1[1];
         local ___conditional___=(c2.tag | 0);
         do
-           if ___conditional___ = 0--[[ Player ]] then do
+           if ___conditional___ == 0--[[ Player ]] then do
               return --[[ tuple ]]{
                       undefined,
                       undefined
-                    };end end end 
-           if ___conditional___ = 1--[[ Enemy ]] then do
+                    }; end end 
+           if ___conditional___ == 1--[[ Enemy ]] then do
               o2_3 = c2[2];
               s2_2 = c2[1];
               typ_1 = c2[0];
@@ -1687,13 +1674,13 @@ function process_collision(dir, c1, c2, state) do
                 s2 = s2_2;
                 o2 = o2_3;
                 exit = 1;
-              end end end else 
-           if ___conditional___ = 2--[[ Item ]] then do
+              end end  end else 
+           if ___conditional___ == 2--[[ Item ]] then do
               o1_2 = o1_3;
               t2_1 = c2[0];
               o2_2 = c2[2];
-              exit = 3;end else 
-           if ___conditional___ = 3--[[ Block ]] then do
+              exit = 3; end else 
+           if ___conditional___ == 3--[[ Block ]] then do
               o2_4 = c2[2];
               t = c2[0];
               if (dir ~= 0) then do
@@ -1756,17 +1743,17 @@ function process_collision(dir, c1, c2, state) do
                         spawned_item,
                         updated_block
                       };
-              end end  end end else 
-           do end end end
+              end end  end  end else 
+           end end end end end end
           
-        endend else 
-     if ___conditional___ = 1--[[ Enemy ]] then do
+        end end else 
+     if ___conditional___ == 1--[[ Enemy ]] then do
         o1_4 = c1[2];
         s1_3 = c1[1];
         t1 = c1[0];
         local ___conditional___=(c2.tag | 0);
         do
-           if ___conditional___ = 0--[[ Player ]] then do
+           if ___conditional___ == 0--[[ Player ]] then do
               o1_5 = c2[2];
               s1_4 = c2[1];
               if (dir ~= 0) then do
@@ -1783,8 +1770,8 @@ function process_collision(dir, c1, c2, state) do
                 s2 = s1_3;
                 o2 = o1_4;
                 exit = 1;
-              end end end else 
-           if ___conditional___ = 1--[[ Enemy ]] then do
+              end end  end else 
+           if ___conditional___ == 1--[[ Enemy ]] then do
               t1_1 = t1;
               s1_5 = s1_3;
               o1_6 = o1_4;
@@ -1851,13 +1838,13 @@ function process_collision(dir, c1, c2, state) do
                         undefined,
                         undefined
                       };
-              end end end end end 
-           if ___conditional___ = 2--[[ Item ]] then do
+              end end  end end end end 
+           if ___conditional___ == 2--[[ Item ]] then do
               return --[[ tuple ]]{
                       undefined,
                       undefined
-                    };end end end 
-           if ___conditional___ = 3--[[ Block ]] then do
+                    }; end end 
+           if ___conditional___ == 3--[[ Block ]] then do
               o2_6 = c2[2];
               t2_3 = c2[0];
               if (dir >= 2) then do
@@ -1899,26 +1886,25 @@ function process_collision(dir, c1, c2, state) do
                         undefined,
                         undefined
                       };
-              end end end end end 
-           do
+              end end  end end 
           
-        endend else 
-     if ___conditional___ = 2--[[ Item ]] then do
+        end end else 
+     if ___conditional___ == 2--[[ Item ]] then do
         o2_7 = c1[2];
         local ___conditional___=(c2.tag | 0);
         do
-           if ___conditional___ = 0--[[ Player ]] then do
+           if ___conditional___ == 0--[[ Player ]] then do
               o1_2 = c2[2];
               t2_1 = c1[0];
               o2_2 = o2_7;
-              exit = 3;end else 
-           if ___conditional___ = 1--[[ Enemy ]]
-           or ___conditional___ = 2--[[ Item ]] then do
+              exit = 3; end else 
+           if ___conditional___ == 1--[[ Enemy ]]
+           or ___conditional___ == 2--[[ Item ]] then do
               return --[[ tuple ]]{
                       undefined,
                       undefined
-                    };end end end 
-           if ___conditional___ = 3--[[ Block ]] then do
+                    }; end end end end 
+           if ___conditional___ == 3--[[ Block ]] then do
               if (dir >= 2) then do
                 reverse_left_right(o2_7);
                 return --[[ tuple ]]{
@@ -1931,21 +1917,19 @@ function process_collision(dir, c1, c2, state) do
                         undefined,
                         undefined
                       };
-              end end end end end 
-           do
+              end end  end end 
           
-        endend else 
-     if ___conditional___ = 3--[[ Block ]] then do
+        end end else 
+     if ___conditional___ == 3--[[ Block ]] then do
         return --[[ tuple ]]{
                 undefined,
                 undefined
-              };end end end 
-     do end end end
+              }; end end end end end end end end 
     
   end
   local ___conditional___=(exit);
   do
-     if ___conditional___ = 1 then do
+     if ___conditional___ == 1 then do
         o1_7 = o1;
         typ_2 = typ;
         s2_4 = s2;
@@ -1983,8 +1967,8 @@ function process_collision(dir, c1, c2, state) do
                     evolve_enemy(o1_7.dir, typ_2, s2_4, o2_8, context_1)
                   };
           end end 
-        end end end end end 
-     if ___conditional___ = 2 then do
+        end end  end end 
+     if ___conditional___ == 2 then do
         o1_8 = o1_1;
         t2_4 = t2;
         s2_5 = s2_1;
@@ -2003,8 +1987,8 @@ function process_collision(dir, c1, c2, state) do
                   undefined,
                   undefined
                 };
-        end end end end end 
-     if ___conditional___ = 3 then do
+        end end  end end 
+     if ___conditional___ == 3 then do
         if (t2_1 ~= 0) then do
           if (t2_1 >= 3) then do
             state.coins = state.coins + 1 | 0;
@@ -2036,15 +2020,14 @@ function process_collision(dir, c1, c2, state) do
                   undefined,
                   undefined
                 };
-        end end end end end 
-     do
+        end end  end end 
     
   end
 end end
 
 function broad_phase(collid, all_collids, state) do
   obj = collid[2];
-  return List.filter((function (c) do
+  return List.filter((function(c) do
                   if (in_viewport(state.vpt, obj.pos) or is_player(collid)) then do
                     return true;
                   end else do
@@ -2175,7 +2158,7 @@ function translate_keys(param) do
     ctrls_000,
     ctrls_001
   };
-  return List.fold_left((function (a, x) do
+  return List.fold_left((function(a, x) do
                 if (x[0]) then do
                   return --[[ :: ]]{
                           x[1],
@@ -2245,7 +2228,7 @@ function update_loop(canvas, param, map_dim) do
     game_over: false
   end;
   state.ctx.scale(1, 1);
-  update_helper = function (time, state, player, objs, parts) do
+  update_helper = function(time, state, player, objs, parts) do
     if (state.game_over == true) then do
       return game_win(state.ctx);
     end else do
@@ -2271,11 +2254,11 @@ function update_loop(canvas, param, map_dim) do
           multiplier: state.multiplier,
           game_over: state.game_over
         end;
-        List.iter((function (obj) do
+        List.iter((function(obj) do
                 run_update_collid(state_1, obj, objs);
                 return --[[ () ]]0;
               end end), objs);
-        List.iter((function (part) do
+        List.iter((function(part) do
                 state_2 = state_1;
                 part_1 = part;
                 __process(part_1);
@@ -2297,7 +2280,7 @@ function update_loop(canvas, param, map_dim) do
               end end), parts);
         fps(canvas, fps_1);
         hud(canvas, state_1.score, state_1.coins);
-        requestAnimationFrame((function (t) do
+        requestAnimationFrame((function(t) do
                 return update_helper(t, state_1, player_1, collid_objs.contents, particles.contents);
               end end));
         return --[[ () ]]0;
@@ -2312,56 +2295,54 @@ function keydown(evt) do
   if (match >= 41) then do
     local ___conditional___=(match);
     do
-       if ___conditional___ = 65 then do
-          pressed_keys.left = true;end else 
-       if ___conditional___ = 66 then do
-          pressed_keys.bbox = (pressed_keys.bbox + 1 | 0) % 2;end else 
-       if ___conditional___ = 68 then do
-          pressed_keys.right = true;end else 
-       if ___conditional___ = 83 then do
-          pressed_keys.down = true;end else 
-       if ___conditional___ = 67
-       or ___conditional___ = 69
-       or ___conditional___ = 70
-       or ___conditional___ = 71
-       or ___conditional___ = 72
-       or ___conditional___ = 73
-       or ___conditional___ = 74
-       or ___conditional___ = 75
-       or ___conditional___ = 76
-       or ___conditional___ = 77
-       or ___conditional___ = 78
-       or ___conditional___ = 79
-       or ___conditional___ = 80
-       or ___conditional___ = 81
-       or ___conditional___ = 82
-       or ___conditional___ = 84
-       or ___conditional___ = 85
-       or ___conditional___ = 86
-       or ___conditional___ = 87 then do
-          pressed_keys.up = true;end else 
-       do end end end end end end
-      else do
-        end end
-        
+       if ___conditional___ == 65 then do
+          pressed_keys.left = true; end else 
+       if ___conditional___ == 66 then do
+          pressed_keys.bbox = (pressed_keys.bbox + 1 | 0) % 2; end else 
+       if ___conditional___ == 68 then do
+          pressed_keys.right = true; end else 
+       if ___conditional___ == 83 then do
+          pressed_keys.down = true; end else 
+       if ___conditional___ == 67
+       or ___conditional___ == 69
+       or ___conditional___ == 70
+       or ___conditional___ == 71
+       or ___conditional___ == 72
+       or ___conditional___ == 73
+       or ___conditional___ == 74
+       or ___conditional___ == 75
+       or ___conditional___ == 76
+       or ___conditional___ == 77
+       or ___conditional___ == 78
+       or ___conditional___ == 79
+       or ___conditional___ == 80
+       or ___conditional___ == 81
+       or ___conditional___ == 82
+       or ___conditional___ == 84
+       or ___conditional___ == 85
+       or ___conditional___ == 86
+       or ___conditional___ == 87 then do
+          pressed_keys.up = true; end else 
+       end end end end end end end end end end
+      
     end
   end else if (match >= 32) then do
     local ___conditional___=(match - 32 | 0);
     do
-       if ___conditional___ = 1
-       or ___conditional___ = 2
-       or ___conditional___ = 3
-       or ___conditional___ = 4
-       or ___conditional___ = 5 then do
-          pressed_keys.left = true;end else 
-       if ___conditional___ = 0
-       or ___conditional___ = 6 then do
-          pressed_keys.up = true;end else 
-       if ___conditional___ = 7 then do
-          pressed_keys.right = true;end else 
-       if ___conditional___ = 8 then do
-          pressed_keys.down = true;end else 
-       do end end end end end
+       if ___conditional___ == 1
+       or ___conditional___ == 2
+       or ___conditional___ == 3
+       or ___conditional___ == 4
+       or ___conditional___ == 5 then do
+          pressed_keys.left = true; end else 
+       if ___conditional___ == 0
+       or ___conditional___ == 6 then do
+          pressed_keys.up = true; end else 
+       if ___conditional___ == 7 then do
+          pressed_keys.right = true; end else 
+       if ___conditional___ == 8 then do
+          pressed_keys.down = true; end else 
+       end end end end end end end end
       
     end
   end
@@ -2393,20 +2374,20 @@ function keyup(evt) do
   end else if (match >= 32) then do
     local ___conditional___=(match - 32 | 0);
     do
-       if ___conditional___ = 1
-       or ___conditional___ = 2
-       or ___conditional___ = 3
-       or ___conditional___ = 4
-       or ___conditional___ = 5 then do
-          pressed_keys.left = false;end else 
-       if ___conditional___ = 0
-       or ___conditional___ = 6 then do
-          pressed_keys.up = false;end else 
-       if ___conditional___ = 7 then do
-          pressed_keys.right = false;end else 
-       if ___conditional___ = 8 then do
-          pressed_keys.down = false;end else 
-       do end end end end end
+       if ___conditional___ == 1
+       or ___conditional___ == 2
+       or ___conditional___ == 3
+       or ___conditional___ == 4
+       or ___conditional___ == 5 then do
+          pressed_keys.left = false; end else 
+       if ___conditional___ == 0
+       or ___conditional___ == 6 then do
+          pressed_keys.up = false; end else 
+       if ___conditional___ == 7 then do
+          pressed_keys.right = false; end else 
+       if ___conditional___ == 8 then do
+          pressed_keys.down = false; end else 
+       end end end end end end end end
       
     end
   end
@@ -2457,19 +2438,16 @@ end end
 function choose_enemy_typ(typ) do
   local ___conditional___=(typ);
   do
-     if ___conditional___ = 0 then do
-        return --[[ RKoopa ]]2;end end end 
-     if ___conditional___ = 1 then do
-        return --[[ GKoopa ]]1;end end end 
-     if ___conditional___ = 2 then do
-        return --[[ Goomba ]]0;end end end 
-     do
-    else do
-      error({
+     if ___conditional___ == 0 then do
+        return --[[ RKoopa ]]2; end end 
+     if ___conditional___ == 1 then do
+        return --[[ GKoopa ]]1; end end 
+     if ___conditional___ == 2 then do
+        return --[[ Goomba ]]0; end end 
+    error({
         Caml_builtin_exceptions.failure,
         "Shouldn't reach here"
       })
-      end end
       
   end
 end end
@@ -2477,23 +2455,20 @@ end end
 function choose_sblock_typ(typ) do
   local ___conditional___=(typ);
   do
-     if ___conditional___ = 0 then do
-        return --[[ Brick ]]1;end end end 
-     if ___conditional___ = 1 then do
-        return --[[ UnBBlock ]]2;end end end 
-     if ___conditional___ = 2 then do
-        return --[[ Cloud ]]3;end end end 
-     if ___conditional___ = 3 then do
-        return --[[ QBlock ]]{--[[ Mushroom ]]0};end end end 
-     if ___conditional___ = 4 then do
-        return --[[ Ground ]]5;end end end 
-     do
-    else do
-      error({
+     if ___conditional___ == 0 then do
+        return --[[ Brick ]]1; end end 
+     if ___conditional___ == 1 then do
+        return --[[ UnBBlock ]]2; end end 
+     if ___conditional___ == 2 then do
+        return --[[ Cloud ]]3; end end 
+     if ___conditional___ == 3 then do
+        return --[[ QBlock ]]{--[[ Mushroom ]]0}; end end 
+     if ___conditional___ == 4 then do
+        return --[[ Ground ]]5; end end 
+    error({
         Caml_builtin_exceptions.failure,
         "Shouldn't reach here"
       })
-      end end
       
   end
 end end
@@ -2601,7 +2576,7 @@ function choose_block_pattern(blockw, blockh, cbx, cby, prob) do
     middle_block = life_block_chance == 0 and 3 or stair_typ;
     local ___conditional___=(prob);
     do
-       if ___conditional___ = 0 then do
+       if ___conditional___ == 0 then do
           if (blockw - cbx > 2) then do
             return --[[ :: ]]{
                     --[[ tuple ]]{
@@ -2662,15 +2637,15 @@ function choose_block_pattern(blockw, blockh, cbx, cby, prob) do
                     },
                     --[[ [] ]]0
                   };
-          end end  end end end end 
-       if ___conditional___ = 1 then do
+          end end  end  end end 
+       if ___conditional___ == 1 then do
           num_clouds = Random.__int(5) + 5 | 0;
           if (cby < 5) then do
             return generate_clouds(cbx, cby, 2, num_clouds);
           end else do
             return --[[ [] ]]0;
-          end end end end end 
-       if ___conditional___ = 2 then do
+          end end  end end 
+       if ___conditional___ == 2 then do
           if (blockh - cby == 1) then do
             cbx_1 = cbx;
             cby_1 = cby;
@@ -2779,8 +2754,8 @@ function choose_block_pattern(blockw, blockh, cbx, cby, prob) do
             return Pervasives.$at(four, Pervasives.$at(three, Pervasives.$at(two, one)));
           end else do
             return --[[ [] ]]0;
-          end end end end end 
-       if ___conditional___ = 3 then do
+          end end  end end 
+       if ___conditional___ == 3 then do
           if (stair_typ == 0 and blockh - cby > 3) then do
             cbx_2 = cbx;
             cby_2 = cby;
@@ -2946,8 +2921,8 @@ function choose_block_pattern(blockw, blockh, cbx, cby, prob) do
                     },
                     --[[ [] ]]0
                   };
-          end end  end end end end 
-       if ___conditional___ = 4 then do
+          end end  end  end end 
+       if ___conditional___ == 4 then do
           if (cby + 3 - blockh == 2) then do
             return --[[ :: ]]{
                     --[[ tuple ]]{
@@ -3008,8 +2983,8 @@ function choose_block_pattern(blockw, blockh, cbx, cby, prob) do
                       }
                     }
                   };
-          end end  end end end end 
-       if ___conditional___ = 5 then do
+          end end  end  end end 
+       if ___conditional___ == 5 then do
           return --[[ :: ]]{
                   --[[ tuple ]]{
                     3,
@@ -3019,14 +2994,11 @@ function choose_block_pattern(blockw, blockh, cbx, cby, prob) do
                     }
                   },
                   --[[ [] ]]0
-                };end end end 
-       do
-      else do
-        error({
+                }; end end 
+      error({
           Caml_builtin_exceptions.failure,
           "Shouldn't reach here"
         })
-        end end
         
     end
   end end 
@@ -3329,11 +3301,11 @@ function inc_counter(param) do
 end end
 
 function preload(param) do
-  return List.map((function (img_src) do
+  return List.map((function(img_src) do
                 img_src_1 = "sprites/" .. img_src;
                 img = document.createElement("img");
                 img.src = img_src_1;
-                img.addEventListener("load", (function (ev) do
+                img.addEventListener("load", (function(ev) do
                         inc_counter(--[[ () ]]0);
                         return true;
                       end end), true);
@@ -3353,7 +3325,7 @@ function preload(param) do
             });
 end end
 
-window.onload = (function (param) do
+window.onload = (function(param) do
     preload(--[[ () ]]0);
     return true;
   end end);
@@ -3370,6 +3342,7 @@ Main = do
   preload: preload
 end;
 
+exports = {}
 exports.Actors = Actors;
 exports.Dom_html = Dom_html;
 exports.Sprite = Sprite;

@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Block = require "../../lib/js/block";
 Curry = require "../../lib/js/curry";
@@ -86,6 +86,7 @@ function add_help(speclist) do
   return Pervasives.$at(speclist, Pervasives.$at(add1, add2));
 end end
 
+exports = {}
 exports.Bad = Bad;
 exports.Help = Help;
 exports.Stop = Stop;

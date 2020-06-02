@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Curry = require "../../lib/js/curry";
@@ -24,9 +24,9 @@ end end
 
 eq("File \"gpr_3536_test.ml\", line 29, characters 12-19", 5, 5);
 
-eq("File \"gpr_3536_test.ml\", line 32, characters 6-13", xx(3, (function (prim, prim_1) do
+eq("File \"gpr_3536_test.ml\", line 32, characters 6-13", xx(3, (function(prim, prim_1) do
             return prim - prim_1 | 0;
-          end end), 2, (function (prim, prim_1) do
+          end end), 2, (function(prim, prim_1) do
             return prim + prim_1 | 0;
           end end), 4, Caml_int32.imul, 3), 11);
 
@@ -36,6 +36,7 @@ v = 5;
 
 u = --[[ Some ]]{3};
 
+exports = {}
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;

@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Caml_option = require "../../lib/js/caml_option";
 Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
@@ -41,7 +41,7 @@ end end
 
 function f_escaped_1(xs, i) do
   x = xs[i];
-  return (function (param) do
+  return (function(param) do
       if (x ~= undefined) then do
         return x;
       end else do
@@ -87,6 +87,7 @@ function f_null_undefined(xs, i) do
   end end 
 end end
 
+exports = {}
 exports.test = test;
 exports.f_undefined = f_undefined;
 exports.f_escaped_not = f_escaped_not;

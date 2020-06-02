@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 __Array = require "../../lib/js/array";
 Caml_array = require "../../lib/js/caml_array";
@@ -43,6 +43,7 @@ u = Caml_array.caml_array_concat(--[[ :: ]]{
 
 hh = __Array.blit;
 
+exports = {}
 exports.v = v;
 exports.h = h;
 exports.hh = hh;

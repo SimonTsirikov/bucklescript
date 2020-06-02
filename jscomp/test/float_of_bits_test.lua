@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 List = require "../../lib/js/list";
@@ -27,7 +27,7 @@ int32_pairs = {
 };
 
 function from_pairs(pair) do
-  return List.concat(__Array.to_list(__Array.mapi((function (i, param) do
+  return List.concat(__Array.to_list(__Array.mapi((function(i, param) do
                         f = param[1];
                         i32 = param[0];
                         return --[[ :: ]]{
@@ -44,7 +44,7 @@ function from_pairs(pair) do
                                               }),
                                             "int32_float_of_bits %d"
                                           }), i),
-                                  (function (param) do
+                                  (function(param) do
                                       return --[[ Eq ]]Block.__(0, {
                                                 Caml_float.caml_int32_float_of_bits(i32),
                                                 f
@@ -65,7 +65,7 @@ function from_pairs(pair) do
                                                 }),
                                               "int32_bits_of_float %d"
                                             }), i),
-                                    (function (param) do
+                                    (function(param) do
                                         return --[[ Eq ]]Block.__(0, {
                                                   Caml_float.caml_int32_bits_of_float(f),
                                                   i32
@@ -81,7 +81,7 @@ end end
 suites = Pervasives.$at(--[[ :: ]]{
       --[[ tuple ]]{
         "one",
-        (function (param) do
+        (function(param) do
             return --[[ Eq ]]Block.__(0, {
                       Caml_int64.bits_of_float(1.0),
                       one_float
@@ -91,7 +91,7 @@ suites = Pervasives.$at(--[[ :: ]]{
       --[[ :: ]]{
         --[[ tuple ]]{
           "two",
-          (function (param) do
+          (function(param) do
               return --[[ Eq ]]Block.__(0, {
                         Caml_int64.float_of_bits(one_float),
                         1.0
@@ -104,6 +104,7 @@ suites = Pervasives.$at(--[[ :: ]]{
 
 Mt.from_pair_suites("Float_of_bits_test", suites);
 
+exports = {}
 exports.one_float = one_float;
 exports.int32_pairs = int32_pairs;
 exports.from_pairs = from_pairs;

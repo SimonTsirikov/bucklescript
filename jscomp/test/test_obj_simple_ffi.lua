@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Caml_option = require "../../lib/js/caml_option";
 
@@ -44,6 +44,7 @@ function f(x) do
   return x;
 end end
 
+exports = {}
 exports.v = v;
 exports.v2 = v2;
 exports.v3 = v3;

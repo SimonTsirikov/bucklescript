@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Curry = require "./curry";
 
@@ -58,6 +58,7 @@ function hashable(hash, eq) do
         end;
 end end
 
+exports = {}
 exports.MakeComparableU = MakeComparableU;
 exports.MakeComparable = MakeComparable;
 exports.comparableU = comparableU;

@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 __Array = require "../../lib/js/array";
@@ -20,13 +20,13 @@ suites = do
 end;
 
 function eq(loc) do
-  return (function (param, param_1) do
+  return (function(param, param_1) do
       return Mt_global.collect_eq(test_id, suites, loc, param, param_1);
     end end);
 end end
 
 function approx(loc) do
-  return (function (param, param_1) do
+  return (function(param, param_1) do
       return Mt_global.collect_approx(test_id, suites, loc, param, param_1);
     end end);
 end end
@@ -123,7 +123,7 @@ results = __Array.append({
     });
 
 function from_pairs(ps) do
-  return __Array.to_list(__Array.mapi((function (i, param) do
+  return __Array.to_list(__Array.mapi((function(i, param) do
                     b = param[1];
                     a = param[0];
                     return --[[ tuple ]]{
@@ -139,7 +139,7 @@ function from_pairs(ps) do
                                         }),
                                       "pair %d"
                                     }), i),
-                            (function (param) do
+                            (function(param) do
                                 return --[[ Approx ]]Block.__(5, {
                                           a,
                                           b
@@ -184,7 +184,7 @@ param_3 = {
   1
 };
 
-param_4 = __Array.map((function (x) do
+param_4 = __Array.map((function(x) do
         if (x > 0) then do
           return 1;
         end else if (x < 0) then do
@@ -192,7 +192,7 @@ param_4 = __Array.map((function (x) do
         end else do
           return 0;
         end end  end 
-      end end), __Array.map((function (param) do
+      end end), __Array.map((function(param) do
             return Caml_primitive.caml_float_compare(param[0], param[1]);
           end end), {
           --[[ tuple ]]{
@@ -244,7 +244,7 @@ a = match_4[0];
 Mt.from_pair_suites("Float_test", Pervasives.$at(--[[ :: ]]{
           --[[ tuple ]]{
             "mod_float",
-            (function (param) do
+            (function(param) do
                 return --[[ Approx ]]Block.__(5, {
                           3.2 % 0.5,
                           0.200000000000000178
@@ -254,7 +254,7 @@ Mt.from_pair_suites("Float_test", Pervasives.$at(--[[ :: ]]{
           --[[ :: ]]{
             --[[ tuple ]]{
               "modf_float1",
-              (function (param) do
+              (function(param) do
                   return --[[ Approx ]]Block.__(5, {
                             a,
                             0.299999999999997158
@@ -264,7 +264,7 @@ Mt.from_pair_suites("Float_test", Pervasives.$at(--[[ :: ]]{
             --[[ :: ]]{
               --[[ tuple ]]{
                 "modf_float2",
-                (function (param) do
+                (function(param) do
                     return --[[ Approx ]]Block.__(5, {
                               b,
                               32
@@ -274,7 +274,7 @@ Mt.from_pair_suites("Float_test", Pervasives.$at(--[[ :: ]]{
               --[[ :: ]]{
                 --[[ tuple ]]{
                   "int_of_float",
-                  (function (param) do
+                  (function(param) do
                       return --[[ Eq ]]Block.__(0, {
                                 3,
                                 3
@@ -287,6 +287,7 @@ Mt.from_pair_suites("Float_test", Pervasives.$at(--[[ :: ]]{
           }
         }, Pervasives.$at(from_pairs(results), suites.contents)));
 
+exports = {}
 exports.test_id = test_id;
 exports.suites = suites;
 exports.eq = eq;

@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 
@@ -29,6 +29,7 @@ eq("File \"test_case_opt_collision.ml\", line 17, characters 6-13", f(4, 2), 8);
 
 Mt.from_pair_suites("test_case_opt_collision.ml", suites.contents);
 
+exports = {}
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;

@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Curry = require "./curry";
 Caml_option = require "./caml_option";
@@ -325,6 +325,7 @@ function getExn(d, x) do
   return Belt_internalMapInt.getExn(d.data, x);
 end end
 
+exports = {}
 exports.make = make;
 exports.clear = clear;
 exports.isEmpty = isEmpty;

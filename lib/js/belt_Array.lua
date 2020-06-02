@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Curry = require "./curry";
 Js_math = require "./js_math";
@@ -667,6 +667,7 @@ function unzip(a) do
         };
 end end
 
+exports = {}
 exports.get = get;
 exports.getExn = getExn;
 exports.set = set;

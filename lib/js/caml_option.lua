@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 
 undefinedHeader = {};
@@ -80,6 +80,7 @@ function option_get_unwrap(x) do
   end end 
 end end
 
+exports = {}
 exports.nullable_to_opt = nullable_to_opt;
 exports.undefined_to_opt = undefined_to_opt;
 exports.null_to_opt = null_to_opt;

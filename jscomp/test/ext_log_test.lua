@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Block = require "../../lib/js/block";
 Curry = require "../../lib/js/curry";
@@ -136,6 +136,7 @@ function iinfo(b, str, f) do
                     }, f)), str);
 end end
 
+exports = {}
 exports.err = err;
 exports.ierr = ierr;
 exports.warn = warn;

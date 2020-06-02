@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Curry = require "../../lib/js/curry";
@@ -686,7 +686,7 @@ i_7 = do
   contents: 1
 end;
 
-Belt_MutableQueue.forEach(q_5, (function (j) do
+Belt_MutableQueue.forEach(q_5, (function(j) do
         if (i_7.contents ~= j) then do
           error({
             Caml_builtin_exceptions.assert_failure,
@@ -1167,9 +1167,9 @@ if (not Caml_obj.caml_equal(Belt_MutableQueue.toArray(q2_4), v)) then do
 end
  end 
 
-if (Belt_MutableQueue.reduce(q2_4, 0, (function (x, y) do
+if (Belt_MutableQueue.reduce(q2_4, 0, (function(x, y) do
           return x - y | 0;
-        end end)) ~= Belt_Array.reduce(v, 0, (function (x, y) do
+        end end)) ~= Belt_Array.reduce(v, 0, (function(x, y) do
           return x - y | 0;
         end end))) then do
   error({
@@ -1192,7 +1192,7 @@ q_6 = Belt_MutableQueue.fromArray({
       4
     });
 
-q1_5 = Belt_MutableQueue.map(q_6, (function (x) do
+q1_5 = Belt_MutableQueue.map(q_6, (function(x) do
         return x - 1 | 0;
       end end));
 
@@ -1207,7 +1207,7 @@ q_7 = Belt_MutableQueue.fromArray({});
 
 b("File \"bs_queue_test.ml\", line 155, characters 4-11", q_7.length == 0);
 
-q_8 = Belt_MutableQueue.map(Belt_MutableQueue.fromArray({}), (function (x) do
+q_8 = Belt_MutableQueue.map(Belt_MutableQueue.fromArray({}), (function(x) do
         return x + 1 | 0;
       end end));
 
@@ -1217,6 +1217,7 @@ Mt.from_pair_suites("Bs_queue_test", suites.contents);
 
 Q = --[[ alias ]]0;
 
+exports = {}
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;

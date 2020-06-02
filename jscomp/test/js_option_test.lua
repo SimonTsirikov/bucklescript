@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Block = require "../../lib/js/block";
@@ -10,7 +10,7 @@ end end
 
 option_suites_000 = --[[ tuple ]]{
   "option_isSome_Some",
-  (function (param) do
+  (function(param) do
       return --[[ Eq ]]Block.__(0, {
                 true,
                 true
@@ -21,7 +21,7 @@ option_suites_000 = --[[ tuple ]]{
 option_suites_001 = --[[ :: ]]{
   --[[ tuple ]]{
     "option_isSome_None",
-    (function (param) do
+    (function(param) do
         return --[[ Eq ]]Block.__(0, {
                   false,
                   false
@@ -31,7 +31,7 @@ option_suites_001 = --[[ :: ]]{
   --[[ :: ]]{
     --[[ tuple ]]{
       "option_isNone_Some",
-      (function (param) do
+      (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     false,
                     false
@@ -41,7 +41,7 @@ option_suites_001 = --[[ :: ]]{
     --[[ :: ]]{
       --[[ tuple ]]{
         "option_isNone_None",
-        (function (param) do
+        (function(param) do
             return --[[ Eq ]]Block.__(0, {
                       true,
                       true
@@ -51,7 +51,7 @@ option_suites_001 = --[[ :: ]]{
       --[[ :: ]]{
         --[[ tuple ]]{
           "option_isSomeValue_Eq",
-          (function (param) do
+          (function(param) do
               return --[[ Eq ]]Block.__(0, {
                         true,
                         Js_option.isSomeValue(simpleEq, 2, 2)
@@ -61,7 +61,7 @@ option_suites_001 = --[[ :: ]]{
         --[[ :: ]]{
           --[[ tuple ]]{
             "option_isSomeValue_Diff",
-            (function (param) do
+            (function(param) do
                 return --[[ Eq ]]Block.__(0, {
                           false,
                           Js_option.isSomeValue(simpleEq, 1, 2)
@@ -71,7 +71,7 @@ option_suites_001 = --[[ :: ]]{
           --[[ :: ]]{
             --[[ tuple ]]{
               "option_isSomeValue_DiffNone",
-              (function (param) do
+              (function(param) do
                   return --[[ Eq ]]Block.__(0, {
                             false,
                             Js_option.isSomeValue(simpleEq, 1, undefined)
@@ -81,7 +81,7 @@ option_suites_001 = --[[ :: ]]{
             --[[ :: ]]{
               --[[ tuple ]]{
                 "option_getExn_Some",
-                (function (param) do
+                (function(param) do
                     return --[[ Eq ]]Block.__(0, {
                               2,
                               Js_option.getExn(2)
@@ -91,7 +91,7 @@ option_suites_001 = --[[ :: ]]{
               --[[ :: ]]{
                 --[[ tuple ]]{
                   "option_equal_Eq",
-                  (function (param) do
+                  (function(param) do
                       return --[[ Eq ]]Block.__(0, {
                                 true,
                                 Js_option.equal(simpleEq, 2, 2)
@@ -101,7 +101,7 @@ option_suites_001 = --[[ :: ]]{
                 --[[ :: ]]{
                   --[[ tuple ]]{
                     "option_equal_Diff",
-                    (function (param) do
+                    (function(param) do
                         return --[[ Eq ]]Block.__(0, {
                                   false,
                                   Js_option.equal(simpleEq, 1, 2)
@@ -111,7 +111,7 @@ option_suites_001 = --[[ :: ]]{
                   --[[ :: ]]{
                     --[[ tuple ]]{
                       "option_equal_DiffNone",
-                      (function (param) do
+                      (function(param) do
                           return --[[ Eq ]]Block.__(0, {
                                     false,
                                     Js_option.equal(simpleEq, 1, undefined)
@@ -121,10 +121,10 @@ option_suites_001 = --[[ :: ]]{
                     --[[ :: ]]{
                       --[[ tuple ]]{
                         "option_andThen_SomeSome",
-                        (function (param) do
+                        (function(param) do
                             return --[[ Eq ]]Block.__(0, {
                                       true,
-                                      Js_option.isSomeValue(simpleEq, 3, Js_option.andThen((function (a) do
+                                      Js_option.isSomeValue(simpleEq, 3, Js_option.andThen((function(a) do
                                                   return a + 1 | 0;
                                                 end end), 2))
                                     });
@@ -133,10 +133,10 @@ option_suites_001 = --[[ :: ]]{
                       --[[ :: ]]{
                         --[[ tuple ]]{
                           "option_andThen_SomeNone",
-                          (function (param) do
+                          (function(param) do
                               return --[[ Eq ]]Block.__(0, {
                                         false,
-                                        Js_option.isSomeValue(simpleEq, 3, Js_option.andThen((function (param) do
+                                        Js_option.isSomeValue(simpleEq, 3, Js_option.andThen((function(param) do
                                                     return ;
                                                   end end), 2))
                                       });
@@ -145,10 +145,10 @@ option_suites_001 = --[[ :: ]]{
                         --[[ :: ]]{
                           --[[ tuple ]]{
                             "option_map_Some",
-                            (function (param) do
+                            (function(param) do
                                 return --[[ Eq ]]Block.__(0, {
                                           true,
-                                          Js_option.isSomeValue(simpleEq, 3, Js_option.map((function (a) do
+                                          Js_option.isSomeValue(simpleEq, 3, Js_option.map((function(a) do
                                                       return a + 1 | 0;
                                                     end end), 2))
                                         });
@@ -157,10 +157,10 @@ option_suites_001 = --[[ :: ]]{
                           --[[ :: ]]{
                             --[[ tuple ]]{
                               "option_map_None",
-                              (function (param) do
+                              (function(param) do
                                   return --[[ Eq ]]Block.__(0, {
                                             undefined,
-                                            Js_option.map((function (a) do
+                                            Js_option.map((function(a) do
                                                     return a + 1 | 0;
                                                   end end), undefined)
                                           });
@@ -169,7 +169,7 @@ option_suites_001 = --[[ :: ]]{
                             --[[ :: ]]{
                               --[[ tuple ]]{
                                 "option_default_Some",
-                                (function (param) do
+                                (function(param) do
                                     return --[[ Eq ]]Block.__(0, {
                                               2,
                                               Js_option.getWithDefault(3, 2)
@@ -179,7 +179,7 @@ option_suites_001 = --[[ :: ]]{
                               --[[ :: ]]{
                                 --[[ tuple ]]{
                                   "option_default_None",
-                                  (function (param) do
+                                  (function(param) do
                                       return --[[ Eq ]]Block.__(0, {
                                                 3,
                                                 Js_option.getWithDefault(3, undefined)
@@ -189,10 +189,10 @@ option_suites_001 = --[[ :: ]]{
                                 --[[ :: ]]{
                                   --[[ tuple ]]{
                                     "option_filter_Pass",
-                                    (function (param) do
+                                    (function(param) do
                                         return --[[ Eq ]]Block.__(0, {
                                                   true,
-                                                  Js_option.isSomeValue(simpleEq, 2, Js_option.filter((function (a) do
+                                                  Js_option.isSomeValue(simpleEq, 2, Js_option.filter((function(a) do
                                                               return a % 2 == 0;
                                                             end end), 2))
                                                 });
@@ -201,10 +201,10 @@ option_suites_001 = --[[ :: ]]{
                                   --[[ :: ]]{
                                     --[[ tuple ]]{
                                       "option_filter_Reject",
-                                      (function (param) do
+                                      (function(param) do
                                           return --[[ Eq ]]Block.__(0, {
                                                     undefined,
-                                                    Js_option.filter((function (a) do
+                                                    Js_option.filter((function(a) do
                                                             return a % 3 == 0;
                                                           end end), 2)
                                                   });
@@ -213,10 +213,10 @@ option_suites_001 = --[[ :: ]]{
                                     --[[ :: ]]{
                                       --[[ tuple ]]{
                                         "option_filter_None",
-                                        (function (param) do
+                                        (function(param) do
                                             return --[[ Eq ]]Block.__(0, {
                                                       undefined,
-                                                      Js_option.filter((function (a) do
+                                                      Js_option.filter((function(a) do
                                                               return a % 3 == 0;
                                                             end end), undefined)
                                                     });
@@ -225,7 +225,7 @@ option_suites_001 = --[[ :: ]]{
                                       --[[ :: ]]{
                                         --[[ tuple ]]{
                                           "option_firstSome_First",
-                                          (function (param) do
+                                          (function(param) do
                                               return --[[ Eq ]]Block.__(0, {
                                                         true,
                                                         Js_option.isSomeValue(simpleEq, 3, Js_option.firstSome(3, 2))
@@ -235,7 +235,7 @@ option_suites_001 = --[[ :: ]]{
                                         --[[ :: ]]{
                                           --[[ tuple ]]{
                                             "option_firstSome_First",
-                                            (function (param) do
+                                            (function(param) do
                                                 return --[[ Eq ]]Block.__(0, {
                                                           true,
                                                           Js_option.isSomeValue(simpleEq, 2, Js_option.firstSome(undefined, 2))
@@ -245,7 +245,7 @@ option_suites_001 = --[[ :: ]]{
                                           --[[ :: ]]{
                                             --[[ tuple ]]{
                                               "option_firstSome_None",
-                                              (function (param) do
+                                              (function(param) do
                                                   return --[[ Eq ]]Block.__(0, {
                                                             undefined,
                                                             Js_option.firstSome(undefined, undefined)
@@ -283,6 +283,7 @@ option_suites = --[[ :: ]]{
 
 Mt.from_pair_suites("Js_option_test", option_suites);
 
+exports = {}
 exports.simpleEq = simpleEq;
 exports.option_suites = option_suites;
 --[[  Not a pure module ]]

@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 List = require "../../lib/js/list";
 Stack = require "../../lib/js/stack";
@@ -249,6 +249,7 @@ ff = List.length;
 
 fff = Pervasives.$at;
 
+exports = {}
 exports.List = List_1;
 exports.U = U;
 exports.f = f;

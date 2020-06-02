@@ -128,7 +128,7 @@ function from_string(s) do
     contents: 0
   end;
   len = #s;
-  next = function (param) do
+  next = function(param) do
     if (i.contents >= len) then do
       error(Caml_builtin_exceptions.end_of_file)
     end
@@ -169,7 +169,7 @@ function from_ic(scan_close_ic, iname, ic) do
   eof = do
     contents: false
   end;
-  next = function (param) do
+  next = function(param) do
     if (i.contents < lim.contents) then do
       c = Caml_bytes.get(buf, i.contents);
       i.contents = i.contents + 1 | 0;
@@ -379,13 +379,11 @@ function token_bool(ib) do
   s = token(ib);
   local ___conditional___=(s);
   do
-     if ___conditional___ = "false" then do
-        return false;end end end 
-     if ___conditional___ = "true" then do
-        return true;end end end 
-     do
-    else do
-      s_1 = Curry._1(Printf.sprintf(--[[ Format ]]{
+     if ___conditional___ == "false" then do
+        return false; end end 
+     if ___conditional___ == "true" then do
+        return true; end end 
+    s_1 = Curry._1(Printf.sprintf(--[[ Format ]]{
                 --[[ String_literal ]]Block.__(11, {
                     "invalid boolean '",
                     --[[ String ]]Block.__(2, {
@@ -402,7 +400,6 @@ function token_bool(ib) do
         Scan_failure,
         s_1
       })
-      end end
       
   end
 end end
@@ -410,49 +407,46 @@ end end
 function integer_conversion_of_char(param) do
   local ___conditional___=(param);
   do
-     if ___conditional___ = 98 then do
-        return --[[ B_conversion ]]0;end end end 
-     if ___conditional___ = 100 then do
-        return --[[ D_conversion ]]1;end end end 
-     if ___conditional___ = 105 then do
-        return --[[ I_conversion ]]2;end end end 
-     if ___conditional___ = 111 then do
-        return --[[ O_conversion ]]3;end end end 
-     if ___conditional___ = 117 then do
-        return --[[ U_conversion ]]4;end end end 
-     if ___conditional___ = 89
-     or ___conditional___ = 90
-     or ___conditional___ = 91
-     or ___conditional___ = 92
-     or ___conditional___ = 93
-     or ___conditional___ = 94
-     or ___conditional___ = 95
-     or ___conditional___ = 96
-     or ___conditional___ = 97
-     or ___conditional___ = 99
-     or ___conditional___ = 101
-     or ___conditional___ = 102
-     or ___conditional___ = 103
-     or ___conditional___ = 104
-     or ___conditional___ = 106
-     or ___conditional___ = 107
-     or ___conditional___ = 108
-     or ___conditional___ = 109
-     or ___conditional___ = 110
-     or ___conditional___ = 112
-     or ___conditional___ = 113
-     or ___conditional___ = 114
-     or ___conditional___ = 115
-     or ___conditional___ = 116
-     or ___conditional___ = 118
-     or ___conditional___ = 119
-     or ___conditional___ = 88
-     or ___conditional___ = 120 then do
-        return --[[ X_conversion ]]5;end end end 
-     do
-    else do
-      end end
-      
+     if ___conditional___ == 98 then do
+        return --[[ B_conversion ]]0; end end 
+     if ___conditional___ == 100 then do
+        return --[[ D_conversion ]]1; end end 
+     if ___conditional___ == 105 then do
+        return --[[ I_conversion ]]2; end end 
+     if ___conditional___ == 111 then do
+        return --[[ O_conversion ]]3; end end 
+     if ___conditional___ == 117 then do
+        return --[[ U_conversion ]]4; end end 
+     if ___conditional___ == 89
+     or ___conditional___ == 90
+     or ___conditional___ == 91
+     or ___conditional___ == 92
+     or ___conditional___ == 93
+     or ___conditional___ == 94
+     or ___conditional___ == 95
+     or ___conditional___ == 96
+     or ___conditional___ == 97
+     or ___conditional___ == 99
+     or ___conditional___ == 101
+     or ___conditional___ == 102
+     or ___conditional___ == 103
+     or ___conditional___ == 104
+     or ___conditional___ == 106
+     or ___conditional___ == 107
+     or ___conditional___ == 108
+     or ___conditional___ == 109
+     or ___conditional___ == 110
+     or ___conditional___ == 112
+     or ___conditional___ == 113
+     or ___conditional___ == 114
+     or ___conditional___ == 115
+     or ___conditional___ == 116
+     or ___conditional___ == 118
+     or ___conditional___ == 119
+     or ___conditional___ == 88
+     or ___conditional___ == 120 then do
+        return --[[ X_conversion ]]5; end end 
+    
   end
   error({
     Caml_builtin_exceptions.assert_failure,
@@ -468,18 +462,18 @@ function token_int_literal(conv, ib) do
   tok;
   local ___conditional___=(conv);
   do
-     if ___conditional___ = 0--[[ B_conversion ]] then do
-        tok = "0b" .. token(ib);end else 
-     if ___conditional___ = 1--[[ D_conversion ]]
-     or ___conditional___ = 2--[[ I_conversion ]] then do
-        tok = token(ib);end else 
-     if ___conditional___ = 3--[[ O_conversion ]] then do
-        tok = "0o" .. token(ib);end else 
-     if ___conditional___ = 4--[[ U_conversion ]] then do
-        tok = "0u" .. token(ib);end else 
-     if ___conditional___ = 5--[[ X_conversion ]] then do
-        tok = "0x" .. token(ib);end else 
-     do end end end end end end
+     if ___conditional___ == 0--[[ B_conversion ]] then do
+        tok = "0b" .. token(ib); end else 
+     if ___conditional___ == 1--[[ D_conversion ]]
+     or ___conditional___ == 2--[[ I_conversion ]] then do
+        tok = token(ib); end else 
+     if ___conditional___ == 3--[[ O_conversion ]] then do
+        tok = "0o" .. token(ib); end else 
+     if ___conditional___ == 4--[[ U_conversion ]] then do
+        tok = "0u" .. token(ib); end else 
+     if ___conditional___ == 5--[[ X_conversion ]] then do
+        tok = "0x" .. token(ib); end else 
+     end end end end end end end end end end
     
   end
   l = #tok;
@@ -653,11 +647,11 @@ end end
 function scan_int_conversion(conv, width, ib) do
   local ___conditional___=(conv);
   do
-     if ___conditional___ = 0--[[ B_conversion ]] then do
-        return scan_binary_int(width, ib);end end end 
-     if ___conditional___ = 1--[[ D_conversion ]] then do
-        return scan_optionally_signed_decimal_int(width, ib);end end end 
-     if ___conditional___ = 2--[[ I_conversion ]] then do
+     if ___conditional___ == 0--[[ B_conversion ]] then do
+        return scan_binary_int(width, ib); end end 
+     if ___conditional___ == 1--[[ D_conversion ]] then do
+        return scan_optionally_signed_decimal_int(width, ib); end end 
+     if ___conditional___ == 2--[[ I_conversion ]] then do
         width_1 = width;
         ib_1 = ib;
         width_2 = scan_sign(width_1, ib_1);
@@ -694,14 +688,13 @@ function scan_int_conversion(conv, width, ib) do
               return scan_hexadecimal_int(store_char(width_4, ib_2, c_1), ib_2);
             end end  end  end 
           end end 
-        end end end end end 
-     if ___conditional___ = 3--[[ O_conversion ]] then do
-        return scan_octal_int(width, ib);end end end 
-     if ___conditional___ = 4--[[ U_conversion ]] then do
-        return scan_decimal_digit_plus(width, ib);end end end 
-     if ___conditional___ = 5--[[ X_conversion ]] then do
-        return scan_hexadecimal_int(width, ib);end end end 
-     do
+        end end  end end 
+     if ___conditional___ == 3--[[ O_conversion ]] then do
+        return scan_octal_int(width, ib); end end 
+     if ___conditional___ == 4--[[ U_conversion ]] then do
+        return scan_decimal_digit_plus(width, ib); end end 
+     if ___conditional___ == 5--[[ X_conversion ]] then do
+        return scan_hexadecimal_int(width, ib); end end 
     
   end
 end end
@@ -769,7 +762,7 @@ function scan_float(width, precision, ib) do
 end end
 
 function check_case_insensitive_string(width, ib, error, str) do
-  lowercase = function (c) do
+  lowercase = function(c) do
     if (c > 90 or c < 65) then do
       return c;
     end else do
@@ -1139,18 +1132,17 @@ function char_for_backslash(c) do
     end else do
       local ___conditional___=(c - 110 | 0);
       do
-         if ___conditional___ = 0 then do
-            return --[[ "\n" ]]10;end end end 
-         if ___conditional___ = 4 then do
-            return --[[ "\r" ]]13;end end end 
-         if ___conditional___ = 1
-         or ___conditional___ = 2
-         or ___conditional___ = 3
-         or ___conditional___ = 5 then do
-            return c;end end end 
-         if ___conditional___ = 6 then do
-            return --[[ "\t" ]]9;end end end 
-         do
+         if ___conditional___ == 0 then do
+            return --[[ "\n" ]]10; end end 
+         if ___conditional___ == 4 then do
+            return --[[ "\r" ]]13; end end 
+         if ___conditional___ == 1
+         or ___conditional___ == 2
+         or ___conditional___ == 3
+         or ___conditional___ == 5 then do
+            return c; end end 
+         if ___conditional___ == 6 then do
+            return --[[ "\t" ]]9; end end 
         
       end
     end end 
@@ -1245,37 +1237,37 @@ function scan_backslash_char(width, ib) do
     if (c >= 58) then do
       local ___conditional___=(c);
       do
-         if ___conditional___ = 92
-         or ___conditional___ = 98
-         or ___conditional___ = 110
-         or ___conditional___ = 114
-         or ___conditional___ = 116
-         or ___conditional___ = 93
-         or ___conditional___ = 94
-         or ___conditional___ = 95
-         or ___conditional___ = 96
-         or ___conditional___ = 97
-         or ___conditional___ = 99
-         or ___conditional___ = 100
-         or ___conditional___ = 101
-         or ___conditional___ = 102
-         or ___conditional___ = 103
-         or ___conditional___ = 104
-         or ___conditional___ = 105
-         or ___conditional___ = 106
-         or ___conditional___ = 107
-         or ___conditional___ = 108
-         or ___conditional___ = 109
-         or ___conditional___ = 111
-         or ___conditional___ = 112
-         or ___conditional___ = 113
-         or ___conditional___ = 115
-         or ___conditional___ = 117
-         or ___conditional___ = 118
-         or ___conditional___ = 119 then do
-            return bad_input_escape(c);end end end 
-         if ___conditional___ = 120 then do
-            get_digit = function (param) do
+         if ___conditional___ == 92
+         or ___conditional___ == 98
+         or ___conditional___ == 110
+         or ___conditional___ == 114
+         or ___conditional___ == 116
+         or ___conditional___ == 93
+         or ___conditional___ == 94
+         or ___conditional___ == 95
+         or ___conditional___ == 96
+         or ___conditional___ == 97
+         or ___conditional___ == 99
+         or ___conditional___ == 100
+         or ___conditional___ == 101
+         or ___conditional___ == 102
+         or ___conditional___ == 103
+         or ___conditional___ == 104
+         or ___conditional___ == 105
+         or ___conditional___ == 106
+         or ___conditional___ == 107
+         or ___conditional___ == 108
+         or ___conditional___ == 109
+         or ___conditional___ == 111
+         or ___conditional___ == 112
+         or ___conditional___ == 113
+         or ___conditional___ == 115
+         or ___conditional___ == 117
+         or ___conditional___ == 118
+         or ___conditional___ == 119 then do
+            return bad_input_escape(c); end end 
+         if ___conditional___ == 120 then do
+            get_digit = function(param) do
               c = next_char(ib);
               switcher = c - 48 | 0;
               if (switcher > 22 or switcher < 0) then do
@@ -1292,15 +1284,12 @@ function scan_backslash_char(width, ib) do
             end end;
             c1 = get_digit(--[[ () ]]0);
             c2 = get_digit(--[[ () ]]0);
-            return store_char(width - 2 | 0, ib, char_for_hexadecimal_code(c1, c2));end end end 
-         do
-        else do
-          return bad_input_escape(c);
-          end end
+            return store_char(width - 2 | 0, ib, char_for_hexadecimal_code(c1, c2)); end end 
+        return bad_input_escape(c);
           
       end
     end else if (c >= 48) then do
-      get_digit_1 = function (param) do
+      get_digit_1 = function(param) do
         c = next_char(ib);
         if (c > 57 or c < 48) then do
           return bad_input_escape(c);
@@ -1322,7 +1311,7 @@ function scan_backslash_char(width, ib) do
 end end
 
 function scan_caml_char(width, ib) do
-  find_stop = function (width) do
+  find_stop = function(width) do
     c = check_next_char("a Char", width, ib);
     if (c ~= 39) then do
       s = character_mismatch_err(--[[ "'" ]]39, c);
@@ -1354,7 +1343,7 @@ function scan_caml_char(width, ib) do
 end end
 
 function scan_caml_string(width, ib) do
-  find_stop = function (_width) do
+  find_stop = function(_width) do
     while(true) do
       width = _width;
       c = check_next_char("a String", width, ib);
@@ -1386,7 +1375,7 @@ function scan_caml_string(width, ib) do
       end end 
     end;
   end end;
-  skip_spaces = function (_width) do
+  skip_spaces = function(_width) do
     while(true) do
       width = _width;
       match = check_next_char("a String", width, ib);
@@ -1412,7 +1401,7 @@ function scan_caml_string(width, ib) do
 end end
 
 function scan_chars_in_char_set(char_set, scan_indic, width, ib) do
-  scan_chars = function (_i, stp) do
+  scan_chars = function(_i, stp) do
     while(true) do
       i = _i;
       c = peek_char(ib);
@@ -1483,13 +1472,12 @@ end end
 function get_counter(ib, counter) do
   local ___conditional___=(counter);
   do
-     if ___conditional___ = 0--[[ Line_counter ]] then do
-        return ib.ic_line_count;end end end 
-     if ___conditional___ = 1--[[ Char_counter ]] then do
-        return char_count(ib);end end end 
-     if ___conditional___ = 2--[[ Token_counter ]] then do
-        return ib.ic_token_count;end end end 
-     do
+     if ___conditional___ == 0--[[ Line_counter ]] then do
+        return ib.ic_line_count; end end 
+     if ___conditional___ == 1--[[ Char_counter ]] then do
+        return char_count(ib); end end 
+     if ___conditional___ == 2--[[ Token_counter ]] then do
+        return ib.ic_token_count; end end 
     
   end
 end end
@@ -1527,23 +1515,23 @@ function take_format_readers(k, _fmt) do
     end else do
       local ___conditional___=(fmt.tag | 0);
       do
-         if ___conditional___ = 4--[[ Int ]]
-         or ___conditional___ = 5--[[ Int32 ]]
-         or ___conditional___ = 6--[[ Nativeint ]]
-         or ___conditional___ = 7--[[ Int64 ]]
-         or ___conditional___ = 8--[[ Float ]] then do
+         if ___conditional___ == 4--[[ Int ]]
+         or ___conditional___ == 5--[[ Int32 ]]
+         or ___conditional___ == 6--[[ Nativeint ]]
+         or ___conditional___ == 7--[[ Int64 ]]
+         or ___conditional___ == 8--[[ Float ]] then do
             _fmt = fmt[3];
-            ::continue:: ;end end end 
-         if ___conditional___ = 14--[[ Format_subst ]] then do
-            return take_fmtty_format_readers(k, CamlinternalFormatBasics.erase_rel(CamlinternalFormat.symm(fmt[1])), fmt[2]);end end end 
-         if ___conditional___ = 18--[[ Formatting_gen ]] then do
+            ::continue:: ; end end 
+         if ___conditional___ == 14--[[ Format_subst ]] then do
+            return take_fmtty_format_readers(k, CamlinternalFormatBasics.erase_rel(CamlinternalFormat.symm(fmt[1])), fmt[2]); end end 
+         if ___conditional___ == 18--[[ Formatting_gen ]] then do
             _fmt = CamlinternalFormatBasics.concat_fmt(fmt[0][0][0], fmt[1]);
-            ::continue:: ;end end end 
-         if ___conditional___ = 19--[[ Reader ]] then do
+            ::continue:: ; end end 
+         if ___conditional___ == 19--[[ Reader ]] then do
             fmt_rest = fmt[0];
             return (function(fmt_rest)do
             return function (reader) do
-              new_k = function (readers_rest) do
+              new_k = function(readers_rest) do
                 return Curry._1(k, --[[ Cons ]]{
                             reader,
                             readers_rest
@@ -1551,16 +1539,16 @@ function take_format_readers(k, _fmt) do
               end end;
               return take_format_readers(new_k, fmt_rest);
             end end
-            end(fmt_rest));end end end 
-         if ___conditional___ = 0--[[ Char ]]
-         or ___conditional___ = 1--[[ Caml_char ]]
-         or ___conditional___ = 10--[[ Flush ]]
-         or ___conditional___ = 15--[[ Alpha ]]
-         or ___conditional___ = 16--[[ Theta ]]
-         or ___conditional___ = 22--[[ Scan_next_char ]] then do
+            end end)(fmt_rest); end end 
+         if ___conditional___ == 0--[[ Char ]]
+         or ___conditional___ == 1--[[ Caml_char ]]
+         or ___conditional___ == 10--[[ Flush ]]
+         or ___conditional___ == 15--[[ Alpha ]]
+         or ___conditional___ == 16--[[ Theta ]]
+         or ___conditional___ == 22--[[ Scan_next_char ]] then do
             _fmt = fmt[0];
-            ::continue:: ;end end end 
-         if ___conditional___ = 23--[[ Ignored_param ]] then do
+            ::continue:: ; end end 
+         if ___conditional___ == 23--[[ Ignored_param ]] then do
             k_1 = k;
             ign = fmt[0];
             fmt_1 = fmt[1];
@@ -1568,7 +1556,7 @@ function take_format_readers(k, _fmt) do
               if (ign == --[[ Ignored_reader ]]2) then do
                 return (function(k_1,fmt_1)do
                 return function (reader) do
-                  new_k = function (readers_rest) do
+                  new_k = function(readers_rest) do
                     return Curry._1(k_1, --[[ Cons ]]{
                                 reader,
                                 readers_rest
@@ -1576,7 +1564,7 @@ function take_format_readers(k, _fmt) do
                   end end;
                   return take_format_readers(new_k, fmt_1);
                 end end
-                end(k_1,fmt_1));
+                end end)(k_1,fmt_1);
               end else do
                 return take_format_readers(k_1, fmt_1);
               end end 
@@ -1584,17 +1572,14 @@ function take_format_readers(k, _fmt) do
               return take_fmtty_format_readers(k_1, ign[1], fmt_1);
             end else do
               return take_format_readers(k_1, fmt_1);
-            end end  end end end end 
-         if ___conditional___ = 13--[[ Format_arg ]]
-         or ___conditional___ = 20--[[ Scan_char_set ]]
-         or ___conditional___ = 24--[[ Custom ]] then do
+            end end  end  end end 
+         if ___conditional___ == 13--[[ Format_arg ]]
+         or ___conditional___ == 20--[[ Scan_char_set ]]
+         or ___conditional___ == 24--[[ Custom ]] then do
             _fmt = fmt[2];
-            ::continue:: ;end end end 
-         do
-        else do
-          _fmt = fmt[1];
+            ::continue:: ; end end 
+        _fmt = fmt[1];
           ::continue:: ;
-          end end
           
       end
     end end 
@@ -1609,18 +1594,18 @@ function take_fmtty_format_readers(k, _fmtty, fmt) do
     end else do
       local ___conditional___=(fmtty.tag | 0);
       do
-         if ___conditional___ = 8--[[ Format_arg_ty ]] then do
+         if ___conditional___ == 8--[[ Format_arg_ty ]] then do
             _fmtty = fmtty[1];
-            ::continue:: ;end end end 
-         if ___conditional___ = 9--[[ Format_subst_ty ]] then do
+            ::continue:: ; end end 
+         if ___conditional___ == 9--[[ Format_subst_ty ]] then do
             ty = CamlinternalFormat.trans(CamlinternalFormat.symm(fmtty[0]), fmtty[1]);
             _fmtty = CamlinternalFormatBasics.concat_fmtty(ty, fmtty[2]);
-            ::continue:: ;end end end 
-         if ___conditional___ = 13--[[ Reader_ty ]] then do
+            ::continue:: ; end end 
+         if ___conditional___ == 13--[[ Reader_ty ]] then do
             fmt_rest = fmtty[0];
             return (function(fmt_rest)do
             return function (reader) do
-              new_k = function (readers_rest) do
+              new_k = function(readers_rest) do
                 return Curry._1(k, --[[ Cons ]]{
                             reader,
                             readers_rest
@@ -1628,12 +1613,12 @@ function take_fmtty_format_readers(k, _fmtty, fmt) do
               end end;
               return take_fmtty_format_readers(new_k, fmt_rest, fmt);
             end end
-            end(fmt_rest));end end end 
-         if ___conditional___ = 14--[[ Ignored_reader_ty ]] then do
+            end end)(fmt_rest); end end 
+         if ___conditional___ == 14--[[ Ignored_reader_ty ]] then do
             fmt_rest_1 = fmtty[0];
             return (function(fmt_rest_1)do
             return function (reader) do
-              new_k = function (readers_rest) do
+              new_k = function(readers_rest) do
                 return Curry._1(k, --[[ Cons ]]{
                             reader,
                             readers_rest
@@ -1641,12 +1626,9 @@ function take_fmtty_format_readers(k, _fmtty, fmt) do
               end end;
               return take_fmtty_format_readers(new_k, fmt_rest_1, fmt);
             end end
-            end(fmt_rest_1));end end end 
-         do
-        else do
-          _fmtty = fmtty[0];
+            end end)(fmt_rest_1); end end 
+        _fmtty = fmtty[0];
           ::continue:: ;
-          end end
           
       end
     end end 
@@ -1661,119 +1643,116 @@ function make_scanf(ib, _fmt, readers) do
     end else do
       local ___conditional___=(fmt.tag | 0);
       do
-         if ___conditional___ = 0--[[ Char ]] then do
+         if ___conditional___ == 0--[[ Char ]] then do
             scan_char(0, ib);
             c = Caml_string.get(token(ib), 0);
             return --[[ Cons ]]{
                     c,
                     make_scanf(ib, fmt[0], readers)
-                  };end end end 
-         if ___conditional___ = 1--[[ Caml_char ]] then do
+                  }; end end 
+         if ___conditional___ == 1--[[ Caml_char ]] then do
             scan_caml_char(0, ib);
             c_1 = Caml_string.get(token(ib), 0);
             return --[[ Cons ]]{
                     c_1,
                     make_scanf(ib, fmt[0], readers)
-                  };end end end 
-         if ___conditional___ = 2--[[ String ]] then do
+                  }; end end 
+         if ___conditional___ == 2--[[ String ]] then do
             rest = fmt[1];
             pad = fmt[0];
             if (typeof rest ~= "number") then do
               local ___conditional___=(rest.tag | 0);
               do
-                 if ___conditional___ = 17--[[ Formatting_lit ]] then do
+                 if ___conditional___ == 17--[[ Formatting_lit ]] then do
                     match = stopper_of_formatting_lit(rest[0]);
                     stp = match[0];
                     scan = (function(stp)do
                     return function scan(width, param, ib) do
                       return scan_string(stp, width, ib);
                     end end
-                    end(stp));
+                    end end)(stp);
                     str_rest_000 = match[1];
                     str_rest_001 = rest[1];
                     str_rest = --[[ String_literal ]]Block.__(11, {
                         str_rest_000,
                         str_rest_001
                       });
-                    return pad_prec_scanf(ib, str_rest, readers, pad, --[[ No_precision ]]0, scan, token);end end end 
-                 if ___conditional___ = 18--[[ Formatting_gen ]] then do
+                    return pad_prec_scanf(ib, str_rest, readers, pad, --[[ No_precision ]]0, scan, token); end end 
+                 if ___conditional___ == 18--[[ Formatting_gen ]] then do
                     match_1 = rest[0];
                     if (match_1.tag) then do
-                      scan_1 = function (width, param, ib) do
+                      scan_1 = function(width, param, ib) do
                         return scan_string(--[[ "[" ]]91, width, ib);
                       end end;
                       return pad_prec_scanf(ib, CamlinternalFormatBasics.concat_fmt(match_1[0][0], rest[1]), readers, pad, --[[ No_precision ]]0, scan_1, token);
                     end else do
-                      scan_2 = function (width, param, ib) do
+                      scan_2 = function(width, param, ib) do
                         return scan_string(--[[ "{" ]]123, width, ib);
                       end end;
                       return pad_prec_scanf(ib, CamlinternalFormatBasics.concat_fmt(match_1[0][0], rest[1]), readers, pad, --[[ No_precision ]]0, scan_2, token);
-                    end end end end end 
-                 do
-                else do
-                  end end
-                  
+                    end end  end end 
+                
               end
             end
              end 
-            scan_3 = function (width, param, ib) do
+            scan_3 = function(width, param, ib) do
               return scan_string(undefined, width, ib);
             end end;
-            return pad_prec_scanf(ib, rest, readers, pad, --[[ No_precision ]]0, scan_3, token);end end end 
-         if ___conditional___ = 3--[[ Caml_string ]] then do
-            scan_4 = function (width, param, ib) do
+            return pad_prec_scanf(ib, rest, readers, pad, --[[ No_precision ]]0, scan_3, token); end end 
+         if ___conditional___ == 3--[[ Caml_string ]] then do
+            scan_4 = function(width, param, ib) do
               return scan_caml_string(width, ib);
             end end;
-            return pad_prec_scanf(ib, fmt[1], readers, fmt[0], --[[ No_precision ]]0, scan_4, token);end end end 
-         if ___conditional___ = 4--[[ Int ]] then do
+            return pad_prec_scanf(ib, fmt[1], readers, fmt[0], --[[ No_precision ]]0, scan_4, token); end end 
+         if ___conditional___ == 4--[[ Int ]] then do
             c_2 = integer_conversion_of_char(CamlinternalFormat.char_of_iconv(fmt[0]));
             scan_5 = (function(c_2)do
             return function scan_5(width, param, ib) do
               return scan_int_conversion(c_2, width, ib);
             end end
-            end(c_2));
+            end end)(c_2);
             return pad_prec_scanf(ib, fmt[3], readers, fmt[1], fmt[2], scan_5, (function(c_2)do
                       return function (param) do
                         return Caml_format.caml_int_of_string(token_int_literal(c_2, param));
                       end end
-                      end(c_2)));end end end 
-         if ___conditional___ = 5--[[ Int32 ]] then do
+                      end end)(c_2)); end end 
+         if ___conditional___ == 5--[[ Int32 ]] then do
             c_3 = integer_conversion_of_char(CamlinternalFormat.char_of_iconv(fmt[0]));
             scan_6 = (function(c_3)do
             return function scan_6(width, param, ib) do
               return scan_int_conversion(c_3, width, ib);
             end end
-            end(c_3));
+            end end)(c_3);
             return pad_prec_scanf(ib, fmt[3], readers, fmt[1], fmt[2], scan_6, (function(c_3)do
                       return function (param) do
                         return Caml_format.caml_int32_of_string(token_int_literal(c_3, param));
                       end end
-                      end(c_3)));end end end 
-         if ___conditional___ = 6--[[ Nativeint ]] then do
+                      end end)(c_3)); end end 
+         if ___conditional___ == 6--[[ Nativeint ]] then do
             c_4 = integer_conversion_of_char(CamlinternalFormat.char_of_iconv(fmt[0]));
             scan_7 = (function(c_4)do
             return function scan_7(width, param, ib) do
               return scan_int_conversion(c_4, width, ib);
             end end
-            end(c_4));
+            end end)(c_4);
             return pad_prec_scanf(ib, fmt[3], readers, fmt[1], fmt[2], scan_7, (function(c_4)do
                       return function (param) do
                         return Caml_format.caml_nativeint_of_string(token_int_literal(c_4, param));
                       end end
-                      end(c_4)));end end end 
-         if ___conditional___ = 7--[[ Int64 ]] then do
+                      end end)(c_4)); end end 
+         if ___conditional___ == 7--[[ Int64 ]] then do
             c_5 = integer_conversion_of_char(CamlinternalFormat.char_of_iconv(fmt[0]));
             scan_8 = (function(c_5)do
             return function scan_8(width, param, ib) do
               return scan_int_conversion(c_5, width, ib);
             end end
-            end(c_5));
+            end end)(c_5);
             return pad_prec_scanf(ib, fmt[3], readers, fmt[1], fmt[2], scan_8, (function(c_5)do
                       return function (param) do
                         return Caml_format.caml_int64_of_string(token_int_literal(c_5, param));
                       end end
-                      end(c_5)));end end end 
-         if ___conditional___ = 8--[[ Float ]] then do
+                      end end)(c_5)); end end 
+         if ___conditional___ == 8--[[ Float ]] then do
             match_2 = fmt[0];
             if (match_2 ~= 15) then do
               if (match_2 >= 16) then do
@@ -1783,9 +1762,9 @@ function make_scanf(ib, _fmt, readers) do
               end end 
             end else do
               return pad_prec_scanf(ib, fmt[3], readers, fmt[1], fmt[2], scan_caml_float, token_float);
-            end end end end end 
-         if ___conditional___ = 9--[[ Bool ]] then do
-            scan_9 = function (param, param_1, ib) do
+            end end  end end 
+         if ___conditional___ == 9--[[ Bool ]] then do
+            scan_9 = function(param, param_1, ib) do
               ib_1 = ib;
               c = checked_peek_char(ib_1);
               m;
@@ -1813,8 +1792,8 @@ function make_scanf(ib, _fmt, readers) do
               end end 
               return scan_string(undefined, m, ib_1);
             end end;
-            return pad_prec_scanf(ib, fmt[1], readers, fmt[0], --[[ No_precision ]]0, scan_9, token_bool);end end end 
-         if ___conditional___ = 10--[[ Flush ]] then do
+            return pad_prec_scanf(ib, fmt[1], readers, fmt[0], --[[ No_precision ]]0, scan_9, token_bool); end end 
+         if ___conditional___ == 10--[[ Flush ]] then do
             if (end_of_input(ib)) then do
               _fmt = fmt[0];
               ::continue:: ;
@@ -1823,18 +1802,18 @@ function make_scanf(ib, _fmt, readers) do
                 Scan_failure,
                 "end of input not found"
               })
-            end end end end end 
-         if ___conditional___ = 11--[[ String_literal ]] then do
-            __String.iter((function (param) do
+            end end  end end 
+         if ___conditional___ == 11--[[ String_literal ]] then do
+            __String.iter((function(param) do
                     return check_char(ib, param);
                   end end), fmt[0]);
             _fmt = fmt[1];
-            ::continue:: ;end end end 
-         if ___conditional___ = 12--[[ Char_literal ]] then do
+            ::continue:: ; end end 
+         if ___conditional___ == 12--[[ Char_literal ]] then do
             check_char(ib, fmt[0]);
             _fmt = fmt[1];
-            ::continue:: ;end end end 
-         if ___conditional___ = 13--[[ Format_arg ]] then do
+            ::continue:: ; end end 
+         if ___conditional___ == 13--[[ Format_arg ]] then do
             scan_caml_string(width_of_pad_opt(fmt[0]), ib);
             s = token(ib);
             fmt_1;
@@ -1854,8 +1833,8 @@ function make_scanf(ib, _fmt, readers) do
             return --[[ Cons ]]{
                     fmt_1,
                     make_scanf(ib, fmt[2], readers)
-                  };end end end 
-         if ___conditional___ = 14--[[ Format_subst ]] then do
+                  }; end end 
+         if ___conditional___ == 14--[[ Format_subst ]] then do
             fmtty = fmt[1];
             scan_caml_string(width_of_pad_opt(fmt[0]), ib);
             s_1 = token(ib);
@@ -1884,24 +1863,24 @@ function make_scanf(ib, _fmt, readers) do
                       s_1
                     },
                     make_scanf(ib, CamlinternalFormatBasics.concat_fmt(match_3[1], fmt[2]), readers)
-                  };end end end 
-         if ___conditional___ = 15--[[ Alpha ]] then do
+                  }; end end 
+         if ___conditional___ == 15--[[ Alpha ]] then do
             error({
               Caml_builtin_exceptions.invalid_argument,
               "scanf: bad conversion \"%a\""
-            })end end end 
-         if ___conditional___ = 16--[[ Theta ]] then do
+            }) end end 
+         if ___conditional___ == 16--[[ Theta ]] then do
             error({
               Caml_builtin_exceptions.invalid_argument,
               "scanf: bad conversion \"%t\""
-            })end end end 
-         if ___conditional___ = 17--[[ Formatting_lit ]] then do
-            __String.iter((function (param) do
+            }) end end 
+         if ___conditional___ == 17--[[ Formatting_lit ]] then do
+            __String.iter((function(param) do
                     return check_char(ib, param);
                   end end), CamlinternalFormat.string_of_formatting_lit(fmt[0]));
             _fmt = fmt[1];
-            ::continue:: ;end end end 
-         if ___conditional___ = 18--[[ Formatting_gen ]] then do
+            ::continue:: ; end end 
+         if ___conditional___ == 18--[[ Formatting_gen ]] then do
             match_6 = fmt[0];
             check_char(ib, --[[ "@" ]]64);
             if (match_6.tag) then do
@@ -1912,8 +1891,8 @@ function make_scanf(ib, _fmt, readers) do
               check_char(ib, --[[ "{" ]]123);
               _fmt = CamlinternalFormatBasics.concat_fmt(match_6[0][0], fmt[1]);
               ::continue:: ;
-            end end end end end 
-         if ___conditional___ = 19--[[ Reader ]] then do
+            end end  end end 
+         if ___conditional___ == 19--[[ Reader ]] then do
             if (readers) then do
               x = Curry._1(readers[0], ib);
               return --[[ Cons ]]{
@@ -1925,8 +1904,8 @@ function make_scanf(ib, _fmt, readers) do
                 Caml_builtin_exceptions.invalid_argument,
                 "scanf: missing reader"
               })
-            end end end end end 
-         if ___conditional___ = 20--[[ Scan_char_set ]] then do
+            end end  end end 
+         if ___conditional___ == 20--[[ Scan_char_set ]] then do
             rest_1 = fmt[2];
             char_set = fmt[1];
             width_opt = fmt[0];
@@ -1953,20 +1932,20 @@ function make_scanf(ib, _fmt, readers) do
             return --[[ Cons ]]{
                     s_3,
                     make_scanf(ib, rest_1, readers)
-                  };end end end 
-         if ___conditional___ = 21--[[ Scan_get_counter ]] then do
+                  }; end end 
+         if ___conditional___ == 21--[[ Scan_get_counter ]] then do
             count = get_counter(ib, fmt[0]);
             return --[[ Cons ]]{
                     count,
                     make_scanf(ib, fmt[1], readers)
-                  };end end end 
-         if ___conditional___ = 22--[[ Scan_next_char ]] then do
+                  }; end end 
+         if ___conditional___ == 22--[[ Scan_next_char ]] then do
             c_6 = checked_peek_char(ib);
             return --[[ Cons ]]{
                     c_6,
                     make_scanf(ib, fmt[0], readers)
-                  };end end end 
-         if ___conditional___ = 23--[[ Ignored_param ]] then do
+                  }; end end 
+         if ___conditional___ == 23--[[ Ignored_param ]] then do
             match_8 = CamlinternalFormat.param_format_of_ignored_format(fmt[0], fmt[1]);
             match_9 = make_scanf(ib, match_8[0], readers);
             if (match_9) then do
@@ -1980,13 +1959,12 @@ function make_scanf(ib, _fmt, readers) do
                   13
                 }
               })
-            end end end end end 
-         if ___conditional___ = 24--[[ Custom ]] then do
+            end end  end end 
+         if ___conditional___ == 24--[[ Custom ]] then do
             error({
               Caml_builtin_exceptions.invalid_argument,
               "scanf: bad conversion \"%?\" (custom converter)"
-            })end end end 
-         do
+            }) end end 
         
       end
     end end 
@@ -2057,7 +2035,7 @@ end end
 function kscanf(ib, ef, param) do
   str = param[1];
   fmt = param[0];
-  k = function (readers, f) do
+  k = function(readers, f) do
     __Buffer.reset(ib.ic_token_buffer);
     match;
     xpcall(function() do
@@ -2154,7 +2132,7 @@ function string_to_String(s) do
 end end
 
 function format_from_string(s, fmt) do
-  return sscanf_format(string_to_String(s), fmt, (function (x) do
+  return sscanf_format(string_to_String(s), fmt, (function(x) do
                 return x;
               end end));
 end end
@@ -2166,7 +2144,7 @@ function unescaped(s) do
                       --[[ Flush ]]Block.__(10, {--[[ End_of_format ]]0})
                     }),
                   "%S%!"
-                }), (function (x) do
+                }), (function(x) do
                 return x;
               end end));
 end end

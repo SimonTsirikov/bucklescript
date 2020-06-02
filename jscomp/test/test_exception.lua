@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Test_common = require "./test_common";
 Caml_exceptions = require "../../lib/js/caml_exceptions";
@@ -39,6 +39,7 @@ Nullary = Caml_exceptions.create("Test_exception.Nullary");
 
 a = Nullary;
 
+exports = {}
 exports.Local = Local;
 exports.f = f;
 exports.g = g;

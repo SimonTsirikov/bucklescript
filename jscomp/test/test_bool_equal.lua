@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
@@ -132,6 +132,7 @@ function f8(x) do
   return 1;
 end end
 
+exports = {}
 exports.bool_equal = bool_equal;
 exports.assertions = assertions;
 exports.f0 = f0;

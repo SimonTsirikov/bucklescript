@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 
 function hi2(xx, yy, zz) do
@@ -65,6 +65,7 @@ a2 = "Hello \$";
 
 a4 = "";
 
+exports = {}
 exports.hi2 = hi2;
 exports.hi = hi;
 exports.b = b;

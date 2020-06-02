@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Curry = require "../../lib/js/curry";
 Caml_splice_call = require "../../lib/js/caml_splice_call";
@@ -12,7 +12,7 @@ xbs = Array.prototype.map.call({
       2,
       3,
       5
-    }, (function (x) do
+    }, (function(x) do
         return x + 1 | 0;
       end end));
 
@@ -29,27 +29,27 @@ xs = Array.prototype.map.call({
       1,
       1,
       2
-    }, (function (x) do
-        return (function (y) do
+    }, (function(x) do
+        return (function(y) do
             return (y + x | 0) + 1 | 0;
           end end);
       end end));
 
 function f_0(param) do
-  return hi((function () do
+  return hi((function() do
                 return --[[ () ]]0;
               end end));
 end end
 
 function f_01(param) do
-  return hi((function () do
+  return hi((function() do
                 console.log("x");
                 return --[[ () ]]0;
               end end));
 end end
 
 function f_02(xs) do
-  return hi((function () do
+  return hi((function() do
                 xs.contents = --[[ () ]]0;
                 console.log("x");
                 return --[[ () ]]0;
@@ -57,7 +57,7 @@ function f_02(xs) do
 end end
 
 function f_03(xs, u) do
-  return hi((function () do
+  return hi((function() do
                 return Curry._1(u, --[[ () ]]0);
               end end));
 end end
@@ -80,25 +80,25 @@ function add3(x, y, z) do
 end end
 
 function h2(x) do
-  return ff(x, (function (prim, prim_1) do
+  return ff(x, (function(prim, prim_1) do
                 return prim + prim_1 | 0;
               end end));
 end end
 
 function h3(x) do
-  return ff(x, (function (param, param_1) do
+  return ff(x, (function(param, param_1) do
                 return add3(1, param, param_1);
               end end));
 end end
 
 function h4(x) do
-  return ff1(x, 3, (function (param, param_1) do
+  return ff1(x, 3, (function(param, param_1) do
                 return add3(1, param, param_1);
               end end));
 end end
 
 function h5(x) do
-  return ff2(x, "3", (function (param, param_1) do
+  return ff2(x, "3", (function(param, param_1) do
                 return add3(2, param, param_1);
               end end));
 end end
@@ -124,7 +124,7 @@ end end
 f_unit_magic = unit_magic(--[[ () ]]0);
 
 function hh(xs) do
-  return (function (param) do
+  return (function(param) do
       Caml_splice_call.spliceApply(f_0002, {
             xs,
             param
@@ -133,6 +133,7 @@ function hh(xs) do
     end end);
 end end
 
+exports = {}
 exports.Curry = Curry_1;
 exports.Block = Block;
 exports.xbs = xbs;

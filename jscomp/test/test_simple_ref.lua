@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Curry = require "../../lib/js/curry";
 
@@ -29,6 +29,7 @@ end end
 
 u = h;
 
+exports = {}
 exports.u = u;
 exports.gen = gen;
 exports.not_real_escape = not_real_escape;

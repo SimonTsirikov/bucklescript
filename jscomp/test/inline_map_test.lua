@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 List = require "../../lib/js/list";
@@ -132,7 +132,7 @@ function find(x, _param) do
   end;
 end end
 
-m = List.fold_left((function (acc, param) do
+m = List.fold_left((function(acc, param) do
         return add(param[0], param[1], acc);
       end end), --[[ Empty ]]0, --[[ :: ]]{
       --[[ tuple ]]{
@@ -163,7 +163,7 @@ m = List.fold_left((function (acc, param) do
 Mt.from_pair_suites("Inline_map_test", --[[ :: ]]{
       --[[ tuple ]]{
         "find",
-        (function (param) do
+        (function(param) do
             return --[[ Eq ]]Block.__(0, {
                       find(10, m),
                       --[[ "a" ]]97
@@ -173,4 +173,5 @@ Mt.from_pair_suites("Inline_map_test", --[[ :: ]]{
       --[[ [] ]]0
     });
 
+exports = {}
 --[[ m Not a pure module ]]

@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Block = require "../../lib/js/block";
@@ -12,9 +12,9 @@ end end
 Mt.from_pair_suites("Print_alpha_test", --[[ :: ]]{
       --[[ tuple ]]{
         "File \"print_alpha_test.ml\", line 15, characters 4-11",
-        (function (param) do
+        (function(param) do
             return --[[ Eq ]]Block.__(0, {
-                      f((function (prim, prim_1) do
+                      f((function(prim, prim_1) do
                                 return prim + prim_1 | 0;
                               end end), --[[ () ]]0)(1, 2),
                       3
@@ -24,5 +24,6 @@ Mt.from_pair_suites("Print_alpha_test", --[[ :: ]]{
       --[[ [] ]]0
     });
 
+exports = {}
 exports.f = f;
 --[[  Not a pure module ]]

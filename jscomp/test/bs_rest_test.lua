@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 
 function x(v){return [v]}
@@ -14,6 +14,7 @@ u = xxx(3);
 
 xx = xxx("3");
 
+exports = {}
 exports.v = v;
 exports.xxx = xxx;
 exports.u = u;

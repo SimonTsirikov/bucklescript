@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 List = require "../../lib/js/list";
 Pervasives = require "../../lib/js/pervasives";
@@ -145,6 +145,7 @@ end;
 
 v = Pervasives.$at;
 
+exports = {}
 exports.Pervasives = Pervasives_1;
 exports.v = v;
 --[[ No side effect ]]

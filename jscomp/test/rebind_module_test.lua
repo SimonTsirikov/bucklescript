@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Rebind_module = require "./rebind_module";
 
@@ -10,5 +10,6 @@ function x(v) do
   end end 
 end end
 
+exports = {}
 exports.x = x;
 --[[ No side effect ]]

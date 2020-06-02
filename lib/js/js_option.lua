@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Caml_option = require "./caml_option";
 
@@ -88,6 +88,7 @@ end end
 
 __default = getWithDefault;
 
+exports = {}
 exports.some = some;
 exports.isSome = isSome;
 exports.isSomeValue = isSomeValue;

@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 __Array = require "../../lib/js/array";
@@ -19,7 +19,7 @@ function f(x) do
         };
 end end
 
-shift_right_logical_tests_000 = __Array.map((function (x) do
+shift_right_logical_tests_000 = __Array.map((function(x) do
         return (-1 >>> x) | 0;
       end end), Ext_array_test.range(0, 31));
 
@@ -63,7 +63,7 @@ shift_right_logical_tests = --[[ tuple ]]{
   shift_right_logical_tests_001
 };
 
-shift_right_tests_000 = __Array.map((function (x) do
+shift_right_tests_000 = __Array.map((function(x) do
         return (Int32.min_int >> x);
       end end), Ext_array_test.range(0, 31));
 
@@ -107,7 +107,7 @@ shift_right_tests = --[[ tuple ]]{
   shift_right_tests_001
 };
 
-shift_left_tests_000 = __Array.map((function (x) do
+shift_left_tests_000 = __Array.map((function(x) do
         return (1 << x);
       end end), Ext_array_test.range(0, 31));
 
@@ -157,7 +157,7 @@ suites = do
   contents: Pervasives.$at(--[[ :: ]]{
         --[[ tuple ]]{
           "File \"int32_test.ml\", line 31, characters 2-9",
-          (function (param) do
+          (function(param) do
               return --[[ Eq ]]Block.__(0, {
                         1,
                         1
@@ -167,7 +167,7 @@ suites = do
         --[[ :: ]]{
           --[[ tuple ]]{
             "File \"int32_test.ml\", line 32, characters 2-9",
-            (function (param) do
+            (function(param) do
                 return --[[ Eq ]]Block.__(0, {
                           -2147483647,
                           -2147483647
@@ -176,7 +176,7 @@ suites = do
           },
           --[[ [] ]]0
         }
-      }, Pervasives.$at(__Array.to_list(Ext_array_test.map2i((function (i, a, b) do
+      }, Pervasives.$at(__Array.to_list(Ext_array_test.map2i((function(i, a, b) do
                       return --[[ tuple ]]{
                               Curry._1(Format.asprintf(--[[ Format ]]{
                                         --[[ String_literal ]]Block.__(11, {
@@ -190,14 +190,14 @@ suites = do
                                           }),
                                         "shift_right_logical_cases %d"
                                       }), i),
-                              (function (param) do
+                              (function(param) do
                                   return --[[ Eq ]]Block.__(0, {
                                             a,
                                             b
                                           });
                                 end end)
                             };
-                    end end), shift_right_logical_tests_000, shift_right_logical_tests_001)), Pervasives.$at(__Array.to_list(Ext_array_test.map2i((function (i, a, b) do
+                    end end), shift_right_logical_tests_000, shift_right_logical_tests_001)), Pervasives.$at(__Array.to_list(Ext_array_test.map2i((function(i, a, b) do
                           return --[[ tuple ]]{
                                   Curry._1(Format.asprintf(--[[ Format ]]{
                                             --[[ String_literal ]]Block.__(11, {
@@ -211,14 +211,14 @@ suites = do
                                               }),
                                             "shift_right_cases %d"
                                           }), i),
-                                  (function (param) do
+                                  (function(param) do
                                       return --[[ Eq ]]Block.__(0, {
                                                 a,
                                                 b
                                               });
                                     end end)
                                 };
-                        end end), shift_right_tests_000, shift_right_tests_001)), __Array.to_list(Ext_array_test.map2i((function (i, a, b) do
+                        end end), shift_right_tests_000, shift_right_tests_001)), __Array.to_list(Ext_array_test.map2i((function(i, a, b) do
                           return --[[ tuple ]]{
                                   Curry._1(Format.asprintf(--[[ Format ]]{
                                             --[[ String_literal ]]Block.__(11, {
@@ -232,7 +232,7 @@ suites = do
                                               }),
                                             "shift_left_cases %d"
                                           }), i),
-                                  (function (param) do
+                                  (function(param) do
                                       return --[[ Eq ]]Block.__(0, {
                                                 a,
                                                 b
@@ -258,6 +258,7 @@ Mt.from_pair_suites("Int32_test", suites.contents);
 
 test_div = 30;
 
+exports = {}
 exports.f = f;
 exports.shift_right_logical_tests = shift_right_logical_tests;
 exports.shift_right_tests = shift_right_tests;

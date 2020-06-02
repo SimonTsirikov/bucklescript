@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 
 console.log(2);
@@ -65,6 +65,7 @@ v4 = a4(1, 2);
 
 v0 = 4;
 
+exports = {}
 exports.A0 = A0;
 exports.v0 = v0;
 exports.v1 = v1;

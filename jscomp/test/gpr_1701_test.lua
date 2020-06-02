@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 List = require "../../lib/js/list";
 Pervasives = require "../../lib/js/pervasives";
@@ -74,7 +74,7 @@ function read_lines2(inc) do
 end end
 
 function read_lines3(inc) do
-  loop = function (acc) do
+  loop = function(acc) do
     xpcall(function() do
       l = Pervasives.input_line(inc);
       return loop(--[[ :: ]]{
@@ -100,6 +100,7 @@ function fff(f, x) do
   end end)
 end end
 
+exports = {}
 exports.Foo = Foo;
 exports.test = test;
 exports.read_lines = read_lines;

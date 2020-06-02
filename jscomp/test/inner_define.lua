@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 
 function add(x, y) do
@@ -40,6 +40,7 @@ N1 = do
   f3: f3_1
 end;
 
+exports = {}
 exports.N = N;
 exports.N0 = N0;
 exports.N1 = N1;

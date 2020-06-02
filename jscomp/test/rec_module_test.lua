@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 List = require "../../lib/js/list";
@@ -1031,15 +1031,15 @@ function of_list(l) do
           if (match_3) then do
             if (match_3[1]) then do
               l_1 = List.sort_uniq(AAA.compare, l);
-              sub = function (n, l) do
+              sub = function(n, l) do
                 local ___conditional___=(n);
                 do
-                   if ___conditional___ = 0 then do
+                   if ___conditional___ == 0 then do
                       return --[[ tuple ]]{
                               --[[ Empty ]]0,
                               l
-                            };end end end 
-                   if ___conditional___ = 1 then do
+                            }; end end 
+                   if ___conditional___ == 1 then do
                       if (l) then do
                         return --[[ tuple ]]{
                                 --[[ Node ]]{
@@ -1051,8 +1051,8 @@ function of_list(l) do
                                 l[1]
                               };
                       end
-                       end end else 
-                   if ___conditional___ = 2 then do
+                       end  end else 
+                   if ___conditional___ == 2 then do
                       if (l) then do
                         match = l[1];
                         if (match) then do
@@ -1073,8 +1073,8 @@ function of_list(l) do
                         end
                          end 
                       end
-                       end end else 
-                   if ___conditional___ = 3 then do
+                       end  end else 
+                   if ___conditional___ == 3 then do
                       if (l) then do
                         match_1 = l[1];
                         if (match_1) then do
@@ -1104,11 +1104,9 @@ function of_list(l) do
                         end
                          end 
                       end
-                       end end else 
-                   do end end end
-                  else do
-                    end end
-                    
+                       end  end else 
+                   end end end end end end
+                  
                 end
                 nl = n / 2 | 0;
                 match_3 = sub(nl, l);
@@ -1212,7 +1210,7 @@ Caml_module.update_mod(--[[ Module ]]Block.__(0, {{--[[ tuple ]]{
 
 suites_000 = --[[ tuple ]]{
   "test1",
-  (function (param) do
+  (function(param) do
       return --[[ Eq ]]Block.__(0, {
                 --[[ tuple ]]{
                   true,
@@ -1233,7 +1231,7 @@ suites_000 = --[[ tuple ]]{
 suites_001 = --[[ :: ]]{
   --[[ tuple ]]{
     "test2",
-    (function (param) do
+    (function(param) do
         return --[[ Eq ]]Block.__(0, {
                   Curry._1(BB.y, --[[ () ]]0),
                   32
@@ -1243,7 +1241,7 @@ suites_001 = --[[ :: ]]{
   --[[ :: ]]{
     --[[ tuple ]]{
       "test3",
-      (function (param) do
+      (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     Curry._1(AA.x, --[[ () ]]0),
                     35
@@ -1253,7 +1251,7 @@ suites_001 = --[[ :: ]]{
     --[[ :: ]]{
       --[[ tuple ]]{
         "test4",
-        (function (param) do
+        (function(param) do
             return --[[ Eq ]]Block.__(0, {
                       true,
                       Curry._1(A.even, 2)
@@ -1263,7 +1261,7 @@ suites_001 = --[[ :: ]]{
       --[[ :: ]]{
         --[[ tuple ]]{
           "test4",
-          (function (param) do
+          (function(param) do
               return --[[ Eq ]]Block.__(0, {
                         true,
                         Curry._1(AA.even, 4)
@@ -1273,7 +1271,7 @@ suites_001 = --[[ :: ]]{
         --[[ :: ]]{
           --[[ tuple ]]{
             "test5",
-            (function (param) do
+            (function(param) do
                 return --[[ Eq ]]Block.__(0, {
                           false,
                           Curry._1(B.odd, 2)
@@ -1283,7 +1281,7 @@ suites_001 = --[[ :: ]]{
           --[[ :: ]]{
             --[[ tuple ]]{
               "test6",
-              (function (param) do
+              (function(param) do
                   return --[[ Eq ]]Block.__(0, {
                             2,
                             cardinal(of_list(--[[ :: ]]{
@@ -1318,6 +1316,7 @@ Even = --[[ () ]]0;
 
 Odd = --[[ () ]]0;
 
+exports = {}
 exports.A = A;
 exports.B = B;
 exports.AA = AA;

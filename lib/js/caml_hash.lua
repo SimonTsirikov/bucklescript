@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Caml_hash_primitive = require "./caml_hash_primitive";
 Caml_builtin_exceptions = require "./caml_builtin_exceptions";
@@ -101,5 +101,6 @@ function caml_hash(count, _limit, seed, obj) do
   end end  end 
 end end
 
+exports = {}
 exports.caml_hash = caml_hash;
 --[[ No side effect ]]

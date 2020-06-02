@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 
 function M($star) do
@@ -11,6 +11,7 @@ V = do
   v: 3
 end;
 
+exports = {}
 exports.M = M;
 exports.V = V;
 --[[ No side effect ]]

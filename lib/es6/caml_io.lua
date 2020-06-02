@@ -4,7 +4,7 @@ import * as Curry from "./curry.lua";
 
 stdout = do
   buffer: "",
-  output: (function (param, s) do
+  output: (function(param, s) do
       v = #s - 1 | 0;
       if (((typeof process !== "undefined") && process.stdout && process.stdout.write)) then do
         return process.stdout.write(s);
@@ -20,7 +20,7 @@ end;
 
 stderr = do
   buffer: "",
-  output: (function (param, s) do
+  output: (function(param, s) do
       v = #s - 1 | 0;
       if (s[v] == "\n") then do
         console.log(s.slice(0, v));

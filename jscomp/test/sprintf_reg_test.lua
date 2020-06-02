@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Block = require "../../lib/js/block";
@@ -77,6 +77,7 @@ eq("File \"sprintf_reg_test.ml\", line 14, characters 5-12", --[[ tuple ]]{
 
 Mt.from_pair_suites("Sprintf_reg_test", suites.contents);
 
+exports = {}
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;

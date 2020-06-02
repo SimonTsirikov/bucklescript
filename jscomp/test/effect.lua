@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 
 console.log("hello");
@@ -11,6 +11,7 @@ b = 4;
 
 c = 3;
 
+exports = {}
 exports.a = a;
 exports.b = b;
 exports.c = c;

@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 C = require "";
 C_1 = require "";
@@ -14,7 +14,7 @@ doc.getElementById("haha");
 console.log(32);
 
 ReactDom.render(React.createClass(do
-          render: (function (param) do
+          render: (function(param) do
               return React.DOM.div(do
                           alt: "pic"
                         end, React.DOM.h1(undefined, "hello react"), React.DOM.h2(undefined, "type safe!"), React.DOM.h3(undefined, "type safe!"));
@@ -38,6 +38,7 @@ v = --[[ () ]]0;
 
 u = 33;
 
+exports = {}
 exports.v = v;
 exports.u = u;
 exports.f = f;

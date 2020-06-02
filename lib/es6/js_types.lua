@@ -30,23 +30,22 @@ end end
 function test(x, v) do
   local ___conditional___=(v);
   do
-     if ___conditional___ = 0--[[ Undefined ]] then do
-        return typeof x == "undefined";end end end 
-     if ___conditional___ = 1--[[ Null ]] then do
-        return x == nil;end end end 
-     if ___conditional___ = 2--[[ Boolean ]] then do
-        return typeof x == "boolean";end end end 
-     if ___conditional___ = 3--[[ Number ]] then do
-        return typeof x == "number";end end end 
-     if ___conditional___ = 4--[[ String ]] then do
-        return typeof x == "string";end end end 
-     if ___conditional___ = 5--[[ Function ]] then do
-        return typeof x == "function";end end end 
-     if ___conditional___ = 6--[[ Object ]] then do
-        return typeof x == "object";end end end 
-     if ___conditional___ = 7--[[ Symbol ]] then do
-        return typeof x == "symbol";end end end 
-     do
+     if ___conditional___ == 0--[[ Undefined ]] then do
+        return typeof x == "undefined"; end end 
+     if ___conditional___ == 1--[[ Null ]] then do
+        return x == nil; end end 
+     if ___conditional___ == 2--[[ Boolean ]] then do
+        return typeof x == "boolean"; end end 
+     if ___conditional___ == 3--[[ Number ]] then do
+        return typeof x == "number"; end end 
+     if ___conditional___ == 4--[[ String ]] then do
+        return typeof x == "string"; end end 
+     if ___conditional___ == 5--[[ Function ]] then do
+        return typeof x == "function"; end end 
+     if ___conditional___ == 6--[[ Object ]] then do
+        return typeof x == "object"; end end 
+     if ___conditional___ == 7--[[ Symbol ]] then do
+        return typeof x == "symbol"; end end 
     
   end
 end end

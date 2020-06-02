@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Block = require "../../lib/js/block";
@@ -7,7 +7,7 @@ Caml_option = require "../../lib/js/caml_option";
 
 suites_000 = --[[ tuple ]]{
   "captures",
-  (function (param) do
+  (function(param) do
       re = /(\d+)-(?:(\d+))?/g;
       match = re.exec("3-");
       if (match ~= nil) then do
@@ -32,8 +32,8 @@ suites_000 = --[[ tuple ]]{
 suites_001 = --[[ :: ]]{
   --[[ tuple ]]{
     "fromString",
-    (function (param) do
-        contentOf = function (tag, xmlString) do
+    (function(param) do
+        contentOf = function(tag, xmlString) do
           param = new RegExp("<" .. (tag .. (">(.*?)<\\/" .. (tag .. ">")))).exec(xmlString);
           if (param ~= nil) then do
             return Caml_option.nullable_to_opt(Caml_array.caml_array_get(param, 1));
@@ -49,7 +49,7 @@ suites_001 = --[[ :: ]]{
   --[[ :: ]]{
     --[[ tuple ]]{
       "exec_literal",
-      (function (param) do
+      (function(param) do
           match = /[^.]+/.exec("http://xxx.domain.com");
           if (match ~= nil) then do
             return --[[ Eq ]]Block.__(0, {
@@ -64,7 +64,7 @@ suites_001 = --[[ :: ]]{
     --[[ :: ]]{
       --[[ tuple ]]{
         "exec_no_match",
-        (function (param) do
+        (function(param) do
             match = /https:\/\/(.*)/.exec("http://xxx.domain.com");
             if (match ~= nil) then do
               return --[[ FailWith ]]Block.__(9, {"regex should not match"});
@@ -76,7 +76,7 @@ suites_001 = --[[ :: ]]{
       --[[ :: ]]{
         --[[ tuple ]]{
           "test_str",
-          (function (param) do
+          (function(param) do
               res = new RegExp("foo").test("#foo#");
               return --[[ Eq ]]Block.__(0, {
                         true,
@@ -87,7 +87,7 @@ suites_001 = --[[ :: ]]{
         --[[ :: ]]{
           --[[ tuple ]]{
             "fromStringWithFlags",
-            (function (param) do
+            (function(param) do
                 res = new RegExp("foo", "g");
                 return --[[ Eq ]]Block.__(0, {
                           true,
@@ -98,7 +98,7 @@ suites_001 = --[[ :: ]]{
           --[[ :: ]]{
             --[[ tuple ]]{
               "result_index",
-              (function (param) do
+              (function(param) do
                   match = new RegExp("zbar").exec("foobarbazbar");
                   if (match ~= nil) then do
                     return --[[ Eq ]]Block.__(0, {
@@ -113,7 +113,7 @@ suites_001 = --[[ :: ]]{
             --[[ :: ]]{
               --[[ tuple ]]{
                 "result_input",
-                (function (param) do
+                (function(param) do
                     input = "foobar";
                     match = /foo/g.exec(input);
                     if (match ~= nil) then do
@@ -129,7 +129,7 @@ suites_001 = --[[ :: ]]{
               --[[ :: ]]{
                 --[[ tuple ]]{
                   "t_flags",
-                  (function (param) do
+                  (function(param) do
                       return --[[ Eq ]]Block.__(0, {
                                 "gi",
                                 /./ig.flags
@@ -139,7 +139,7 @@ suites_001 = --[[ :: ]]{
                 --[[ :: ]]{
                   --[[ tuple ]]{
                     "t_global",
-                    (function (param) do
+                    (function(param) do
                         return --[[ Eq ]]Block.__(0, {
                                   true,
                                   /./ig.global
@@ -149,7 +149,7 @@ suites_001 = --[[ :: ]]{
                   --[[ :: ]]{
                     --[[ tuple ]]{
                       "t_ignoreCase",
-                      (function (param) do
+                      (function(param) do
                           return --[[ Eq ]]Block.__(0, {
                                     true,
                                     /./ig.ignoreCase
@@ -159,7 +159,7 @@ suites_001 = --[[ :: ]]{
                     --[[ :: ]]{
                       --[[ tuple ]]{
                         "t_lastIndex",
-                        (function (param) do
+                        (function(param) do
                             re = /na/g;
                             re.exec("banana");
                             return --[[ Eq ]]Block.__(0, {
@@ -171,7 +171,7 @@ suites_001 = --[[ :: ]]{
                       --[[ :: ]]{
                         --[[ tuple ]]{
                           "t_setLastIndex",
-                          (function (param) do
+                          (function(param) do
                               re = /na/g;
                               before = re.lastIndex;
                               re.lastIndex = 42;
@@ -191,7 +191,7 @@ suites_001 = --[[ :: ]]{
                         --[[ :: ]]{
                           --[[ tuple ]]{
                             "t_multiline",
-                            (function (param) do
+                            (function(param) do
                                 return --[[ Eq ]]Block.__(0, {
                                           false,
                                           /./ig.multiline
@@ -201,7 +201,7 @@ suites_001 = --[[ :: ]]{
                           --[[ :: ]]{
                             --[[ tuple ]]{
                               "t_source",
-                              (function (param) do
+                              (function(param) do
                                   return --[[ Eq ]]Block.__(0, {
                                             "f.+o",
                                             /f.+o/ig.source
@@ -211,7 +211,7 @@ suites_001 = --[[ :: ]]{
                             --[[ :: ]]{
                               --[[ tuple ]]{
                                 "t_sticky",
-                                (function (param) do
+                                (function(param) do
                                     return --[[ Eq ]]Block.__(0, {
                                               true,
                                               /./yg.sticky
@@ -221,7 +221,7 @@ suites_001 = --[[ :: ]]{
                               --[[ :: ]]{
                                 --[[ tuple ]]{
                                   "t_unicode",
-                                  (function (param) do
+                                  (function(param) do
                                       return --[[ Eq ]]Block.__(0, {
                                                 false,
                                                 /./yg.unicode
@@ -253,5 +253,6 @@ suites = --[[ :: ]]{
 
 Mt.from_pair_suites("Js_re_test", suites);
 
+exports = {}
 exports.suites = suites;
 --[[  Not a pure module ]]

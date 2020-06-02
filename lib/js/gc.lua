@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Block = require "./block";
 Curry = require "./curry";
@@ -352,6 +352,7 @@ finalise = Caml_gc.caml_final_register;
 
 finalise_release = Caml_gc.caml_final_release;
 
+exports = {}
 exports.stat = stat;
 exports.quick_stat = quick_stat;
 exports.get = get;

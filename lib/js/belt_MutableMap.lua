@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Curry = require "./curry";
 Caml_option = require "./caml_option";
@@ -359,6 +359,7 @@ Int = --[[ alias ]]0;
 
 __String = --[[ alias ]]0;
 
+exports = {}
 exports.Int = Int;
 exports.__String = __String;
 exports.make = make;

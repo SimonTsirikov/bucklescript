@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Foo_class = require "xx/foo_c";
 
@@ -10,6 +10,7 @@ function v(param) do
   return Foo_class.ff(3);
 end end
 
+exports = {}
 exports.f = f;
 exports.v = v;
 --[[ xx/foo_class Not a pure module ]]

@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Caml_option = require "../../lib/js/caml_option";
 
@@ -64,6 +64,7 @@ match = u["xx-yy"];
 
 v_1 = match ~= undefined and match or 0;
 
+exports = {}
 exports.b = b;
 exports.c = c;
 exports.ff = ff;

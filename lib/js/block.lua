@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 
 function __(tag, block) do
@@ -6,5 +6,6 @@ function __(tag, block) do
   return block;
 end end
 
+exports = {}
 exports.__ = __;
 --[[ No side effect ]]

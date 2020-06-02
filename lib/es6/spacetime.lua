@@ -18,13 +18,13 @@ function create(path) do
 end end
 
 function save_event(time, t, event_name) do
-  return if_spacetime_enabled((function (param) do
+  return if_spacetime_enabled((function(param) do
                 return Caml_external_polyfill.resolve("caml_spacetime_only_works_for_native_code")(time, t.channel, event_name);
               end end));
 end end
 
 function save_and_close(time, t) do
-  return if_spacetime_enabled((function (param) do
+  return if_spacetime_enabled((function(param) do
                 if (t.closed) then do
                   error({
                     Caml_builtin_exceptions.failure,
@@ -50,7 +50,7 @@ end;
 function take(time, param) do
   channel = param.channel;
   closed = param.closed;
-  return if_spacetime_enabled((function (param) do
+  return if_spacetime_enabled((function(param) do
                 if (closed) then do
                   error({
                     Caml_builtin_exceptions.failure,
@@ -68,7 +68,7 @@ Snapshot = do
 end;
 
 function save_event_for_automatic_snapshots(event_name) do
-  return if_spacetime_enabled((function (param) do
+  return if_spacetime_enabled((function(param) do
                 return Caml_external_polyfill.resolve("caml_spacetime_only_works_for_native_code")(event_name);
               end end));
 end end

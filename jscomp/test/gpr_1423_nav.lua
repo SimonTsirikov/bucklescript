@@ -1,9 +1,10 @@
-console.log = print;
+console = {log = print};
 
 
 function busted(a1, a2, param) do
   return a1 .. a2;
 end end
 
+exports = {}
 exports.busted = busted;
 --[[ No side effect ]]

@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 
 function f(x) do
@@ -9,5 +9,6 @@ function f(x) do
   end end 
 end end
 
+exports = {}
 exports.f = f;
 --[[ No side effect ]]

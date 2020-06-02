@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Caml_int32 = require "./caml_int32";
 Caml_utils = require "./caml_utils";
@@ -497,7 +497,7 @@ end end
 function to_hex(x) do
   x_lo = x[--[[ lo ]]1];
   x_hi = x[--[[ hi ]]0];
-  aux = function (v) do
+  aux = function(v) do
     return (v >>> 0).toString(16);
   end end;
   if (x_hi == 0 and x_lo == 0) then do
@@ -549,6 +549,7 @@ function get64(s, i) do
         };
 end end
 
+exports = {}
 exports.min_int = min_int;
 exports.max_int = max_int;
 exports.one = one;

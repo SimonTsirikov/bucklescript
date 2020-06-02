@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 List = require "../../lib/js/list";
@@ -58,7 +58,7 @@ three = do
 end;
 
 v = do
-  contents: (function (param) do
+  contents: (function(param) do
       error({
         Caml_builtin_exceptions.assert_failure,
         --[[ tuple ]]{
@@ -73,19 +73,16 @@ end;
 function fib(n) do
   local ___conditional___=(n);
   do
-     if ___conditional___ = 0 then do
-        return four.contents;end end end 
-     if ___conditional___ = 1 then do
-        return 1;end end end 
-     if ___conditional___ = 2 then do
-        return three.contents;end end end 
-     if ___conditional___ = 3 then do
+     if ___conditional___ == 0 then do
+        return four.contents; end end 
+     if ___conditional___ == 1 then do
+        return 1; end end 
+     if ___conditional___ == 2 then do
+        return three.contents; end end 
+     if ___conditional___ == 3 then do
         v.contents = CamlinternalLazy.force(fib);
-        return 1;end end end 
-     do
-    else do
-      return fib(n - 1 | 0) + fib(n - 2 | 0) | 0;
-      end end
+        return 1; end end 
+    return fib(n - 1 | 0) + fib(n - 2 | 0) | 0;
       
   end
 end end
@@ -211,21 +208,21 @@ rec_variant_a = {};
 
 Caml_obj.caml_update_dummy(rec_variant_b, --[[ B ]]Block.__(0, {
         "gho",
-        (function (param) do
+        (function(param) do
             return rec_variant_a;
           end end)
       }));
 
 Caml_obj.caml_update_dummy(rec_variant_a, --[[ A ]]Block.__(1, {
         3,
-        (function (param) do
+        (function(param) do
             return rec_variant_b;
           end end)
       }));
 
 suites_000 = --[[ tuple ]]{
   "hd",
-  (function (param) do
+  (function(param) do
       return --[[ Eq ]]Block.__(0, {
                 1,
                 List.hd(List.tl(x))
@@ -236,7 +233,7 @@ suites_000 = --[[ tuple ]]{
 suites_001 = --[[ :: ]]{
   --[[ tuple ]]{
     "mutual",
-    (function (param) do
+    (function(param) do
         tmp;
         if (a) then do
           match = a[1];
@@ -271,7 +268,7 @@ suites_001 = --[[ :: ]]{
   --[[ :: ]]{
     --[[ tuple ]]{
       "rec_sum",
-      (function (param) do
+      (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     55,
                     sum(0, 10)
@@ -281,7 +278,7 @@ suites_001 = --[[ :: ]]{
     --[[ :: ]]{
       --[[ tuple ]]{
         "File \"rec_value_test.ml\", line 111, characters 2-9",
-        (function (param) do
+        (function(param) do
             return --[[ Eq ]]Block.__(0, {
                       --[[ :: ]]{
                         1,
@@ -297,7 +294,7 @@ suites_001 = --[[ :: ]]{
       --[[ :: ]]{
         --[[ tuple ]]{
           "File \"rec_value_test.ml\", line 114, characters 2-9",
-          (function (param) do
+          (function(param) do
               return --[[ Eq ]]Block.__(0, {
                         --[[ :: ]]{
                           2,
@@ -313,7 +310,7 @@ suites_001 = --[[ :: ]]{
         --[[ :: ]]{
           --[[ tuple ]]{
             "File \"rec_value_test.ml\", line 117, characters 2-9",
-            (function (param) do
+            (function(param) do
                 return --[[ Eq ]]Block.__(0, {
                           --[[ :: ]]{
                             1,
@@ -332,7 +329,7 @@ suites_001 = --[[ :: ]]{
           --[[ :: ]]{
             --[[ tuple ]]{
               "File \"rec_value_test.ml\", line 120, characters 2-9",
-              (function (param) do
+              (function(param) do
                   return --[[ Eq ]]Block.__(0, {
                             --[[ :: ]]{
                               1,
@@ -354,7 +351,7 @@ suites_001 = --[[ :: ]]{
             --[[ :: ]]{
               --[[ tuple ]]{
                 "File \"rec_value_test.ml\", line 123, characters 2-9",
-                (function (param) do
+                (function(param) do
                     return --[[ Eq ]]Block.__(0, {
                               --[[ :: ]]{
                                 2,
@@ -370,7 +367,7 @@ suites_001 = --[[ :: ]]{
               --[[ :: ]]{
                 --[[ tuple ]]{
                   "File \"rec_value_test.ml\", line 126, characters 2-9",
-                  (function (param) do
+                  (function(param) do
                       return --[[ Eq ]]Block.__(0, {
                                 3,
                                 3
@@ -380,7 +377,7 @@ suites_001 = --[[ :: ]]{
                 --[[ :: ]]{
                   --[[ tuple ]]{
                     "File \"rec_value_test.ml\", line 129, characters 2-9",
-                    (function (param) do
+                    (function(param) do
                         if (rec_variant_b.tag) then do
                           error({
                             Caml_builtin_exceptions.assert_failure,
@@ -401,7 +398,7 @@ suites_001 = --[[ :: ]]{
                   --[[ :: ]]{
                     --[[ tuple ]]{
                       "File \"rec_value_test.ml\", line 134, characters 2-9",
-                      (function (param) do
+                      (function(param) do
                           if (rec_variant_a.tag) then do
                             return --[[ Eq ]]Block.__(0, {
                                       Curry._1(rec_variant_a[1], --[[ () ]]0),
@@ -455,6 +452,7 @@ Mt.from_pair_suites("Rec_value_test", suites);
 
 v_1 = 3;
 
+exports = {}
 exports.x = x;
 exports.a = a;
 exports.b = b;

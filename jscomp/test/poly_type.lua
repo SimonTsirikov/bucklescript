@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 
 function f(x) do
@@ -6,5 +6,6 @@ function f(x) do
   return x.pushState(undefined, "x");
 end end
 
+exports = {}
 exports.f = f;
 --[[ No side effect ]]

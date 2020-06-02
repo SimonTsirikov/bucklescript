@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Caml_obj = require "./caml_obj";
 Caml_array = require "./caml_array";
@@ -35,6 +35,7 @@ end end
 
 caml_weak_blit = Caml_array.caml_array_blit;
 
+exports = {}
 exports.caml_weak_create = caml_weak_create;
 exports.caml_weak_set = caml_weak_set;
 exports.caml_weak_get = caml_weak_get;

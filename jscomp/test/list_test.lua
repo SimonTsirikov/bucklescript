@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 List = require "../../lib/js/list";
@@ -8,7 +8,7 @@ Caml_primitive = require "../../lib/js/caml_primitive";
 
 list_suites_000 = --[[ tuple ]]{
   "length",
-  (function (param) do
+  (function(param) do
       return --[[ Eq ]]Block.__(0, {
                 1,
                 List.length(--[[ :: ]]{
@@ -28,7 +28,7 @@ list_suites_000 = --[[ tuple ]]{
 list_suites_001 = --[[ :: ]]{
   --[[ tuple ]]{
     "length2",
-    (function (param) do
+    (function(param) do
         return --[[ Eq ]]Block.__(0, {
                   5,
                   List.length(--[[ :: ]]{
@@ -53,10 +53,10 @@ list_suites_001 = --[[ :: ]]{
   --[[ :: ]]{
     --[[ tuple ]]{
       "long_length",
-      (function (param) do
+      (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     30000,
-                    List.length(__Array.to_list(__Array.init(30000, (function (param) do
+                    List.length(__Array.to_list(__Array.init(30000, (function(param) do
                                     return 0;
                                   end end))))
                   });
@@ -65,7 +65,7 @@ list_suites_001 = --[[ :: ]]{
     --[[ :: ]]{
       --[[ tuple ]]{
         "sort",
-        (function (param) do
+        (function(param) do
             return --[[ Eq ]]Block.__(0, {
                       List.sort(Caml_primitive.caml_int_compare, --[[ :: ]]{
                             4,
@@ -108,5 +108,6 @@ list_suites = --[[ :: ]]{
 
 Mt.from_pair_suites("List_test", list_suites);
 
+exports = {}
 exports.list_suites = list_suites;
 --[[  Not a pure module ]]

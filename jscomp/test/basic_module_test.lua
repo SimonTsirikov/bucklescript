@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Curry = require "../../lib/js/curry";
@@ -32,4 +32,5 @@ eq("File \"basic_module_test.ml\", line 39, characters 12-19", count.contents, 1
 
 Mt.from_pair_suites("Basic_module_test", suites.contents);
 
+exports = {}
 --[[  Not a pure module ]]

@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
@@ -261,5 +261,6 @@ function f(children) do
   end end 
 end end
 
+exports = {}
 exports.f = f;
 --[[ No side effect ]]

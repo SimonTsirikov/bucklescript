@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Caml_int64 = require "./caml_int64";
 Caml_format = require "./caml_format";
@@ -85,6 +85,7 @@ min_int = --[[ int64 ]]{
   --[[ lo ]]0
 };
 
+exports = {}
 exports.zero = zero;
 exports.one = one;
 exports.minus_one = minus_one;

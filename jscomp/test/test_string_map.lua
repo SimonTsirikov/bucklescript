@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Curry = require "../../lib/js/curry";
 Caml_primitive = require "../../lib/js/caml_primitive";
@@ -155,13 +155,13 @@ function assertion_test(param) do
   m = do
     contents: --[[ Empty ]]0
   end;
-  timing("building", (function (param) do
+  timing("building", (function(param) do
           for i = 0 , 1000000 , 1 do
             m.contents = add(String(i), String(i), m.contents);
           end
           return --[[ () ]]0;
         end end));
-  return timing("querying", (function (param) do
+  return timing("querying", (function(param) do
                 for i = 0 , 1000000 , 1 do
                   find(String(i), m.contents);
                 end
@@ -169,5 +169,6 @@ function assertion_test(param) do
               end end));
 end end
 
+exports = {}
 exports.assertion_test = assertion_test;
 --[[ No side effect ]]

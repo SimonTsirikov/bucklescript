@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 __Buffer = require "../../lib/js/buffer";
 
@@ -8,6 +8,7 @@ function bar(str) do
   return Buffer.from(str);
 end end
 
+exports = {}
 exports.foo = foo;
 exports.bar = bar;
 --[[ No side effect ]]

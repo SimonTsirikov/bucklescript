@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Js_math = require "../../lib/js/js_math";
 Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
@@ -47,4 +47,5 @@ end else do
   })
 end end 
 
+exports = {}
 --[[  Not a pure module ]]

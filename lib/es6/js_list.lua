@@ -174,7 +174,7 @@ function tailLoop(f, _acc, _param) do
 end end
 
 function foldRight(f, l, init) do
-  loop = function (n, param) do
+  loop = function(n, param) do
     if (param) then do
       t = param[1];
       h = param[0];

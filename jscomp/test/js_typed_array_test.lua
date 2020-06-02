@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 __Array = require "../../lib/js/array";
@@ -14,7 +14,7 @@ function via(make, f, arr) do
 end end
 
 function viaInt8(f, arr) do
-  return (function (param, param_1) do
+  return (function(param, param_1) do
       return Array.from(Curry._1(param, new Int8Array(param_1)));
     end end);
 end end
@@ -27,7 +27,7 @@ x = new Int8Array({
 
 suites_000 = --[[ tuple ]]{
   "array_buffer - make",
-  (function (param) do
+  (function(param) do
       return --[[ Eq ]]Block.__(0, {
                 5,
                 new ArrayBuffer(5).byteLength
@@ -38,7 +38,7 @@ suites_000 = --[[ tuple ]]{
 suites_001 = --[[ :: ]]{
   --[[ tuple ]]{
     "array_buffer - byteLength",
-    (function (param) do
+    (function(param) do
         return --[[ Eq ]]Block.__(0, {
                   5,
                   new ArrayBuffer(5).byteLength
@@ -48,7 +48,7 @@ suites_001 = --[[ :: ]]{
   --[[ :: ]]{
     --[[ tuple ]]{
       "array_buffer - slice",
-      (function (param) do
+      (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     2,
                     new ArrayBuffer(5).slice(2, 4).byteLength
@@ -58,7 +58,7 @@ suites_001 = --[[ :: ]]{
     --[[ :: ]]{
       --[[ tuple ]]{
         "array_buffer - sliceFrom",
-        (function (param) do
+        (function(param) do
             return --[[ Eq ]]Block.__(0, {
                       3,
                       new ArrayBuffer(5).slice(2).byteLength
@@ -68,7 +68,7 @@ suites_001 = --[[ :: ]]{
       --[[ :: ]]{
         --[[ tuple ]]{
           "typed_array - unsafe_get",
-          (function (param) do
+          (function(param) do
               return --[[ Eq ]]Block.__(0, {
                         4,
                         new Int8Array({
@@ -84,7 +84,7 @@ suites_001 = --[[ :: ]]{
         --[[ :: ]]{
           --[[ tuple ]]{
             "typed_array - unsafe_set",
-            (function (param) do
+            (function(param) do
                 a = new Int8Array({
                       1,
                       2,
@@ -102,7 +102,7 @@ suites_001 = --[[ :: ]]{
           --[[ :: ]]{
             --[[ tuple ]]{
               "typed_array - buffer",
-              (function (param) do
+              (function(param) do
                   return --[[ Eq ]]Block.__(0, {
                             new Int8Array({
                                   3,
@@ -122,7 +122,7 @@ suites_001 = --[[ :: ]]{
             --[[ :: ]]{
               --[[ tuple ]]{
                 "typed_array - byteLength",
-                (function (param) do
+                (function(param) do
                     return --[[ Eq ]]Block.__(0, {
                               10,
                               new Int16Array({
@@ -138,7 +138,7 @@ suites_001 = --[[ :: ]]{
               --[[ :: ]]{
                 --[[ tuple ]]{
                   "typed_array - byteOffset",
-                  (function (param) do
+                  (function(param) do
                       return --[[ Eq ]]Block.__(0, {
                                 0,
                                 new Int8Array({
@@ -154,8 +154,8 @@ suites_001 = --[[ :: ]]{
                 --[[ :: ]]{
                   --[[ tuple ]]{
                     "typed_array - setArray",
-                    (function (param) do
-                        f = function (a) do
+                    (function(param) do
+                        f = function(a) do
                           a.set({
                                 9,
                                 8,
@@ -184,8 +184,8 @@ suites_001 = --[[ :: ]]{
                   --[[ :: ]]{
                     --[[ tuple ]]{
                       "typed_array - setArrayOffset",
-                      (function (param) do
-                          f = function (a) do
+                      (function(param) do
+                          f = function(a) do
                             a.set({
                                   9,
                                   8,
@@ -214,7 +214,7 @@ suites_001 = --[[ :: ]]{
                     --[[ :: ]]{
                       --[[ tuple ]]{
                         "typed_array - length",
-                        (function (param) do
+                        (function(param) do
                             return --[[ Eq ]]Block.__(0, {
                                       5,
                                       new Int8Array({
@@ -230,7 +230,7 @@ suites_001 = --[[ :: ]]{
                       --[[ :: ]]{
                         --[[ tuple ]]{
                           "typed_array - copyWithin",
-                          (function (param) do
+                          (function(param) do
                               return --[[ Eq ]]Block.__(0, {
                                         new Int8Array({
                                               1,
@@ -252,7 +252,7 @@ suites_001 = --[[ :: ]]{
                         --[[ :: ]]{
                           --[[ tuple ]]{
                             "typed_array - copyWithinFrom",
-                            (function (param) do
+                            (function(param) do
                                 return --[[ Eq ]]Block.__(0, {
                                           new Int8Array({
                                                 4,
@@ -274,7 +274,7 @@ suites_001 = --[[ :: ]]{
                           --[[ :: ]]{
                             --[[ tuple ]]{
                               "typed_array - copyWithinFromRange",
-                              (function (param) do
+                              (function(param) do
                                   return --[[ Eq ]]Block.__(0, {
                                             new Int8Array({
                                                   4,
@@ -296,7 +296,7 @@ suites_001 = --[[ :: ]]{
                             --[[ :: ]]{
                               --[[ tuple ]]{
                                 "typed_array - fillInPlace",
-                                (function (param) do
+                                (function(param) do
                                     return --[[ Eq ]]Block.__(0, {
                                               new Int8Array({
                                                     4,
@@ -314,7 +314,7 @@ suites_001 = --[[ :: ]]{
                               --[[ :: ]]{
                                 --[[ tuple ]]{
                                   "typed_array - fillFromInPlace",
-                                  (function (param) do
+                                  (function(param) do
                                       return --[[ Eq ]]Block.__(0, {
                                                 new Int8Array({
                                                       1,
@@ -332,7 +332,7 @@ suites_001 = --[[ :: ]]{
                                 --[[ :: ]]{
                                   --[[ tuple ]]{
                                     "typed_array - fillRangeInPlace",
-                                    (function (param) do
+                                    (function(param) do
                                         return --[[ Eq ]]Block.__(0, {
                                                   new Int8Array({
                                                         1,
@@ -350,7 +350,7 @@ suites_001 = --[[ :: ]]{
                                   --[[ :: ]]{
                                     --[[ tuple ]]{
                                       "typed_array - reverseInPlace",
-                                      (function (param) do
+                                      (function(param) do
                                           return --[[ Eq ]]Block.__(0, {
                                                     new Int8Array({
                                                           3,
@@ -368,7 +368,7 @@ suites_001 = --[[ :: ]]{
                                     --[[ :: ]]{
                                       --[[ tuple ]]{
                                         "typed_array - sortInPlace",
-                                        (function (param) do
+                                        (function(param) do
                                             return --[[ Eq ]]Block.__(0, {
                                                       new Int8Array({
                                                             1,
@@ -386,7 +386,7 @@ suites_001 = --[[ :: ]]{
                                       --[[ :: ]]{
                                         --[[ tuple ]]{
                                           "typed_array - sortInPlaceWith",
-                                          (function (param) do
+                                          (function(param) do
                                               return --[[ Eq ]]Block.__(0, {
                                                         new Int8Array({
                                                               3,
@@ -397,7 +397,7 @@ suites_001 = --[[ :: ]]{
                                                                 3,
                                                                 1,
                                                                 2
-                                                              }).sort((function (a, b) do
+                                                              }).sort((function(a, b) do
                                                                 return b - a | 0;
                                                               end end))
                                                       });
@@ -406,7 +406,7 @@ suites_001 = --[[ :: ]]{
                                         --[[ :: ]]{
                                           --[[ tuple ]]{
                                             "typed_array - includes",
-                                            (function (param) do
+                                            (function(param) do
                                                 return --[[ Eq ]]Block.__(0, {
                                                           true,
                                                           new Int8Array({
@@ -420,7 +420,7 @@ suites_001 = --[[ :: ]]{
                                           --[[ :: ]]{
                                             --[[ tuple ]]{
                                               "typed_array - indexOf",
-                                              (function (param) do
+                                              (function(param) do
                                                   return --[[ Eq ]]Block.__(0, {
                                                             1,
                                                             new Int8Array({
@@ -434,7 +434,7 @@ suites_001 = --[[ :: ]]{
                                             --[[ :: ]]{
                                               --[[ tuple ]]{
                                                 "typed_array - indexOfFrom",
-                                                (function (param) do
+                                                (function(param) do
                                                     return --[[ Eq ]]Block.__(0, {
                                                               3,
                                                               new Int8Array({
@@ -449,7 +449,7 @@ suites_001 = --[[ :: ]]{
                                               --[[ :: ]]{
                                                 --[[ tuple ]]{
                                                   "typed_array - join",
-                                                  (function (param) do
+                                                  (function(param) do
                                                       return --[[ Eq ]]Block.__(0, {
                                                                 "1,2,3",
                                                                 new Int8Array({
@@ -463,7 +463,7 @@ suites_001 = --[[ :: ]]{
                                                 --[[ :: ]]{
                                                   --[[ tuple ]]{
                                                     "typed_array - joinWith",
-                                                    (function (param) do
+                                                    (function(param) do
                                                         return --[[ Eq ]]Block.__(0, {
                                                                   "1;2;3",
                                                                   new Int8Array({
@@ -477,7 +477,7 @@ suites_001 = --[[ :: ]]{
                                                   --[[ :: ]]{
                                                     --[[ tuple ]]{
                                                       "typed_array - lastIndexOf",
-                                                      (function (param) do
+                                                      (function(param) do
                                                           return --[[ Eq ]]Block.__(0, {
                                                                     1,
                                                                     new Int8Array({
@@ -491,7 +491,7 @@ suites_001 = --[[ :: ]]{
                                                     --[[ :: ]]{
                                                       --[[ tuple ]]{
                                                         "typed_array - lastIndexOfFrom",
-                                                        (function (param) do
+                                                        (function(param) do
                                                             return --[[ Eq ]]Block.__(0, {
                                                                       1,
                                                                       new Int8Array({
@@ -506,7 +506,7 @@ suites_001 = --[[ :: ]]{
                                                       --[[ :: ]]{
                                                         --[[ tuple ]]{
                                                           "typed_array - slice",
-                                                          (function (param) do
+                                                          (function(param) do
                                                               return --[[ Eq ]]Block.__(0, {
                                                                         new Int8Array({
                                                                               2,
@@ -525,7 +525,7 @@ suites_001 = --[[ :: ]]{
                                                         --[[ :: ]]{
                                                           --[[ tuple ]]{
                                                             "typed_array - copy",
-                                                            (function (param) do
+                                                            (function(param) do
                                                                 return --[[ Eq ]]Block.__(0, {
                                                                           new Int8Array({
                                                                                 1,
@@ -547,7 +547,7 @@ suites_001 = --[[ :: ]]{
                                                           --[[ :: ]]{
                                                             --[[ tuple ]]{
                                                               "typed_array - sliceFrom",
-                                                              (function (param) do
+                                                              (function(param) do
                                                                   return --[[ Eq ]]Block.__(0, {
                                                                             new Int8Array({
                                                                                   3,
@@ -567,7 +567,7 @@ suites_001 = --[[ :: ]]{
                                                             --[[ :: ]]{
                                                               --[[ tuple ]]{
                                                                 "typed_array - subarray",
-                                                                (function (param) do
+                                                                (function(param) do
                                                                     return --[[ Eq ]]Block.__(0, {
                                                                               new Int8Array({
                                                                                     2,
@@ -586,7 +586,7 @@ suites_001 = --[[ :: ]]{
                                                               --[[ :: ]]{
                                                                 --[[ tuple ]]{
                                                                   "typed_array - subarrayFrom",
-                                                                  (function (param) do
+                                                                  (function(param) do
                                                                       return --[[ Eq ]]Block.__(0, {
                                                                                 new Int8Array({
                                                                                       3,
@@ -606,7 +606,7 @@ suites_001 = --[[ :: ]]{
                                                                 --[[ :: ]]{
                                                                   --[[ tuple ]]{
                                                                     "typed_array - toString",
-                                                                    (function (param) do
+                                                                    (function(param) do
                                                                         return --[[ Eq ]]Block.__(0, {
                                                                                   "1,2,3",
                                                                                   new Int8Array({
@@ -620,7 +620,7 @@ suites_001 = --[[ :: ]]{
                                                                   --[[ :: ]]{
                                                                     --[[ tuple ]]{
                                                                       "typed_array - toLocaleString",
-                                                                      (function (param) do
+                                                                      (function(param) do
                                                                           return --[[ Eq ]]Block.__(0, {
                                                                                     "1,2,3",
                                                                                     new Int8Array({
@@ -634,14 +634,14 @@ suites_001 = --[[ :: ]]{
                                                                     --[[ :: ]]{
                                                                       --[[ tuple ]]{
                                                                         "typed_array - every",
-                                                                        (function (param) do
+                                                                        (function(param) do
                                                                             return --[[ Eq ]]Block.__(0, {
                                                                                       true,
                                                                                       new Int8Array({
                                                                                               1,
                                                                                               2,
                                                                                               3
-                                                                                            }).every((function (n) do
+                                                                                            }).every((function(n) do
                                                                                               return n > 0;
                                                                                             end end))
                                                                                     });
@@ -650,14 +650,14 @@ suites_001 = --[[ :: ]]{
                                                                       --[[ :: ]]{
                                                                         --[[ tuple ]]{
                                                                           "typed_array - everyi",
-                                                                          (function (param) do
+                                                                          (function(param) do
                                                                               return --[[ Eq ]]Block.__(0, {
                                                                                         false,
                                                                                         new Int8Array({
                                                                                                 1,
                                                                                                 2,
                                                                                                 3
-                                                                                              }).every((function (param, i) do
+                                                                                              }).every((function(param, i) do
                                                                                                 return i > 0;
                                                                                               end end))
                                                                                       });
@@ -666,7 +666,7 @@ suites_001 = --[[ :: ]]{
                                                                         --[[ :: ]]{
                                                                           --[[ tuple ]]{
                                                                             "typed_array - filter",
-                                                                            (function (param) do
+                                                                            (function(param) do
                                                                                 return --[[ Eq ]]Block.__(0, {
                                                                                           new Int8Array({
                                                                                                 2,
@@ -677,7 +677,7 @@ suites_001 = --[[ :: ]]{
                                                                                                   2,
                                                                                                   3,
                                                                                                   4
-                                                                                                }).filter((function (n) do
+                                                                                                }).filter((function(n) do
                                                                                                   return n % 2 == 0;
                                                                                                 end end))
                                                                                         });
@@ -686,7 +686,7 @@ suites_001 = --[[ :: ]]{
                                                                           --[[ :: ]]{
                                                                             --[[ tuple ]]{
                                                                               "typed_array - filteri",
-                                                                              (function (param) do
+                                                                              (function(param) do
                                                                                   return --[[ Eq ]]Block.__(0, {
                                                                                             new Int8Array({
                                                                                                   1,
@@ -697,7 +697,7 @@ suites_001 = --[[ :: ]]{
                                                                                                     2,
                                                                                                     3,
                                                                                                     4
-                                                                                                  }).filter((function (param, i) do
+                                                                                                  }).filter((function(param, i) do
                                                                                                     return i % 2 == 0;
                                                                                                   end end))
                                                                                           });
@@ -706,7 +706,7 @@ suites_001 = --[[ :: ]]{
                                                                             --[[ :: ]]{
                                                                               --[[ tuple ]]{
                                                                                 "typed_array - find",
-                                                                                (function (param) do
+                                                                                (function(param) do
                                                                                     return --[[ Eq ]]Block.__(0, {
                                                                                               2,
                                                                                               new Int8Array({
@@ -714,7 +714,7 @@ suites_001 = --[[ :: ]]{
                                                                                                       2,
                                                                                                       3,
                                                                                                       4
-                                                                                                    }).find((function (n) do
+                                                                                                    }).find((function(n) do
                                                                                                       return n % 2 == 0;
                                                                                                     end end))
                                                                                             });
@@ -723,7 +723,7 @@ suites_001 = --[[ :: ]]{
                                                                               --[[ :: ]]{
                                                                                 --[[ tuple ]]{
                                                                                   "typed_array - findi",
-                                                                                  (function (param) do
+                                                                                  (function(param) do
                                                                                       return --[[ Eq ]]Block.__(0, {
                                                                                                 1,
                                                                                                 new Int8Array({
@@ -731,7 +731,7 @@ suites_001 = --[[ :: ]]{
                                                                                                         2,
                                                                                                         3,
                                                                                                         4
-                                                                                                      }).find((function (param, i) do
+                                                                                                      }).find((function(param, i) do
                                                                                                         return i % 2 == 0;
                                                                                                       end end))
                                                                                               });
@@ -740,7 +740,7 @@ suites_001 = --[[ :: ]]{
                                                                                 --[[ :: ]]{
                                                                                   --[[ tuple ]]{
                                                                                     "typed_array - findIndex",
-                                                                                    (function (param) do
+                                                                                    (function(param) do
                                                                                         return --[[ Eq ]]Block.__(0, {
                                                                                                   1,
                                                                                                   new Int8Array({
@@ -748,7 +748,7 @@ suites_001 = --[[ :: ]]{
                                                                                                           2,
                                                                                                           3,
                                                                                                           4
-                                                                                                        }).findIndex((function (n) do
+                                                                                                        }).findIndex((function(n) do
                                                                                                           return n % 2 == 0;
                                                                                                         end end))
                                                                                                 });
@@ -757,7 +757,7 @@ suites_001 = --[[ :: ]]{
                                                                                   --[[ :: ]]{
                                                                                     --[[ tuple ]]{
                                                                                       "typed_array - findIndexi",
-                                                                                      (function (param) do
+                                                                                      (function(param) do
                                                                                           return --[[ Eq ]]Block.__(0, {
                                                                                                     0,
                                                                                                     new Int8Array({
@@ -765,7 +765,7 @@ suites_001 = --[[ :: ]]{
                                                                                                             2,
                                                                                                             3,
                                                                                                             4
-                                                                                                          }).findIndex((function (param, i) do
+                                                                                                          }).findIndex((function(param, i) do
                                                                                                             return i % 2 == 0;
                                                                                                           end end))
                                                                                                   });
@@ -774,7 +774,7 @@ suites_001 = --[[ :: ]]{
                                                                                     --[[ :: ]]{
                                                                                       --[[ tuple ]]{
                                                                                         "typed_array - forEach",
-                                                                                        (function (param) do
+                                                                                        (function(param) do
                                                                                             sum = do
                                                                                               contents: 0
                                                                                             end;
@@ -782,7 +782,7 @@ suites_001 = --[[ :: ]]{
                                                                                                     1,
                                                                                                     2,
                                                                                                     3
-                                                                                                  }).forEach((function (n) do
+                                                                                                  }).forEach((function(n) do
                                                                                                     sum.contents = sum.contents + n | 0;
                                                                                                     return --[[ () ]]0;
                                                                                                   end end));
@@ -795,7 +795,7 @@ suites_001 = --[[ :: ]]{
                                                                                       --[[ :: ]]{
                                                                                         --[[ tuple ]]{
                                                                                           "typed_array - forEachi",
-                                                                                          (function (param) do
+                                                                                          (function(param) do
                                                                                               sum = do
                                                                                                 contents: 0
                                                                                               end;
@@ -803,7 +803,7 @@ suites_001 = --[[ :: ]]{
                                                                                                       1,
                                                                                                       2,
                                                                                                       3
-                                                                                                    }).forEach((function (param, i) do
+                                                                                                    }).forEach((function(param, i) do
                                                                                                       sum.contents = sum.contents + i | 0;
                                                                                                       return --[[ () ]]0;
                                                                                                     end end));
@@ -816,7 +816,7 @@ suites_001 = --[[ :: ]]{
                                                                                         --[[ :: ]]{
                                                                                           --[[ tuple ]]{
                                                                                             "typed_array - map",
-                                                                                            (function (param) do
+                                                                                            (function(param) do
                                                                                                 return --[[ Eq ]]Block.__(0, {
                                                                                                           new Int8Array({
                                                                                                                 2,
@@ -829,7 +829,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                   2,
                                                                                                                   3,
                                                                                                                   4
-                                                                                                                }).map((function (n) do
+                                                                                                                }).map((function(n) do
                                                                                                                   return (n << 1);
                                                                                                                 end end))
                                                                                                         });
@@ -838,7 +838,7 @@ suites_001 = --[[ :: ]]{
                                                                                           --[[ :: ]]{
                                                                                             --[[ tuple ]]{
                                                                                               "typed_array - map",
-                                                                                              (function (param) do
+                                                                                              (function(param) do
                                                                                                   return --[[ Eq ]]Block.__(0, {
                                                                                                             new Int8Array({
                                                                                                                   0,
@@ -851,7 +851,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                     2,
                                                                                                                     3,
                                                                                                                     4
-                                                                                                                  }).map((function (param, i) do
+                                                                                                                  }).map((function(param, i) do
                                                                                                                     return (i << 1);
                                                                                                                   end end))
                                                                                                           });
@@ -860,7 +860,7 @@ suites_001 = --[[ :: ]]{
                                                                                             --[[ :: ]]{
                                                                                               --[[ tuple ]]{
                                                                                                 "typed_array - reduce",
-                                                                                                (function (param) do
+                                                                                                (function(param) do
                                                                                                     return --[[ Eq ]]Block.__(0, {
                                                                                                               -10,
                                                                                                               new Int8Array({
@@ -868,7 +868,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                       2,
                                                                                                                       3,
                                                                                                                       4
-                                                                                                                    }).reduce((function (acc, n) do
+                                                                                                                    }).reduce((function(acc, n) do
                                                                                                                       return acc - n | 0;
                                                                                                                     end end), 0)
                                                                                                             });
@@ -877,7 +877,7 @@ suites_001 = --[[ :: ]]{
                                                                                               --[[ :: ]]{
                                                                                                 --[[ tuple ]]{
                                                                                                   "typed_array - reducei",
-                                                                                                  (function (param) do
+                                                                                                  (function(param) do
                                                                                                       return --[[ Eq ]]Block.__(0, {
                                                                                                                 -6,
                                                                                                                 new Int8Array({
@@ -885,7 +885,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                         2,
                                                                                                                         3,
                                                                                                                         4
-                                                                                                                      }).reduce((function (acc, param, i) do
+                                                                                                                      }).reduce((function(acc, param, i) do
                                                                                                                         return acc - i | 0;
                                                                                                                       end end), 0)
                                                                                                               });
@@ -894,7 +894,7 @@ suites_001 = --[[ :: ]]{
                                                                                                 --[[ :: ]]{
                                                                                                   --[[ tuple ]]{
                                                                                                     "typed_array - reduceRight",
-                                                                                                    (function (param) do
+                                                                                                    (function(param) do
                                                                                                         return --[[ Eq ]]Block.__(0, {
                                                                                                                   -10,
                                                                                                                   new Int8Array({
@@ -902,7 +902,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                           2,
                                                                                                                           3,
                                                                                                                           4
-                                                                                                                        }).reduceRight((function (acc, n) do
+                                                                                                                        }).reduceRight((function(acc, n) do
                                                                                                                           return acc - n | 0;
                                                                                                                         end end), 0)
                                                                                                                 });
@@ -911,7 +911,7 @@ suites_001 = --[[ :: ]]{
                                                                                                   --[[ :: ]]{
                                                                                                     --[[ tuple ]]{
                                                                                                       "typed_array - reduceRighti",
-                                                                                                      (function (param) do
+                                                                                                      (function(param) do
                                                                                                           return --[[ Eq ]]Block.__(0, {
                                                                                                                     -6,
                                                                                                                     new Int8Array({
@@ -919,7 +919,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                             2,
                                                                                                                             3,
                                                                                                                             4
-                                                                                                                          }).reduceRight((function (acc, param, i) do
+                                                                                                                          }).reduceRight((function(acc, param, i) do
                                                                                                                             return acc - i | 0;
                                                                                                                           end end), 0)
                                                                                                                   });
@@ -928,7 +928,7 @@ suites_001 = --[[ :: ]]{
                                                                                                     --[[ :: ]]{
                                                                                                       --[[ tuple ]]{
                                                                                                         "typed_array - some",
-                                                                                                        (function (param) do
+                                                                                                        (function(param) do
                                                                                                             return --[[ Eq ]]Block.__(0, {
                                                                                                                       false,
                                                                                                                       new Int8Array({
@@ -936,7 +936,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                               2,
                                                                                                                               3,
                                                                                                                               4
-                                                                                                                            }).some((function (n) do
+                                                                                                                            }).some((function(n) do
                                                                                                                               return n <= 0;
                                                                                                                             end end))
                                                                                                                     });
@@ -945,7 +945,7 @@ suites_001 = --[[ :: ]]{
                                                                                                       --[[ :: ]]{
                                                                                                         --[[ tuple ]]{
                                                                                                           "typed_array - somei",
-                                                                                                          (function (param) do
+                                                                                                          (function(param) do
                                                                                                               return --[[ Eq ]]Block.__(0, {
                                                                                                                         true,
                                                                                                                         new Int8Array({
@@ -953,7 +953,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                                 2,
                                                                                                                                 3,
                                                                                                                                 4
-                                                                                                                              }).some((function (param, i) do
+                                                                                                                              }).some((function(param, i) do
                                                                                                                                 return i <= 0;
                                                                                                                               end end))
                                                                                                                       });
@@ -962,7 +962,7 @@ suites_001 = --[[ :: ]]{
                                                                                                         --[[ :: ]]{
                                                                                                           --[[ tuple ]]{
                                                                                                             "int8_array - _BYTES_PER_ELEMENT",
-                                                                                                            (function (param) do
+                                                                                                            (function(param) do
                                                                                                                 return --[[ Eq ]]Block.__(0, {
                                                                                                                           1,
                                                                                                                           Int8Array.BYTES_PER_ELEMENT
@@ -972,7 +972,7 @@ suites_001 = --[[ :: ]]{
                                                                                                           --[[ :: ]]{
                                                                                                             --[[ tuple ]]{
                                                                                                               "int8_array - make",
-                                                                                                              (function (param) do
+                                                                                                              (function(param) do
                                                                                                                   return --[[ Eq ]]Block.__(0, {
                                                                                                                             3,
                                                                                                                             new Int8Array({
@@ -986,7 +986,7 @@ suites_001 = --[[ :: ]]{
                                                                                                             --[[ :: ]]{
                                                                                                               --[[ tuple ]]{
                                                                                                                 "int8_array - fromBuffer",
-                                                                                                                (function (param) do
+                                                                                                                (function(param) do
                                                                                                                     return --[[ Eq ]]Block.__(0, {
                                                                                                                               32,
                                                                                                                               new Int8Array(new ArrayBuffer(32)).byteLength
@@ -996,7 +996,7 @@ suites_001 = --[[ :: ]]{
                                                                                                               --[[ :: ]]{
                                                                                                                 --[[ tuple ]]{
                                                                                                                   "int8_array - fromBufferOffset",
-                                                                                                                  (function (param) do
+                                                                                                                  (function(param) do
                                                                                                                       buffer = new ArrayBuffer(32);
                                                                                                                       return --[[ Eq ]]Block.__(0, {
                                                                                                                                 24,
@@ -1007,7 +1007,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                 --[[ :: ]]{
                                                                                                                   --[[ tuple ]]{
                                                                                                                     "int8_array - fromBufferRange",
-                                                                                                                    (function (param) do
+                                                                                                                    (function(param) do
                                                                                                                         buffer = new ArrayBuffer(32);
                                                                                                                         return --[[ Eq ]]Block.__(0, {
                                                                                                                                   2,
@@ -1018,7 +1018,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                   --[[ :: ]]{
                                                                                                                     --[[ tuple ]]{
                                                                                                                       "int8_array - fromLength",
-                                                                                                                      (function (param) do
+                                                                                                                      (function(param) do
                                                                                                                           return --[[ Eq ]]Block.__(0, {
                                                                                                                                     3,
                                                                                                                                     new Int8Array(3).byteLength
@@ -1028,7 +1028,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                     --[[ :: ]]{
                                                                                                                       --[[ tuple ]]{
                                                                                                                         "int8_array - unsafe_set - typed_array sanity check",
-                                                                                                                        (function (param) do
+                                                                                                                        (function(param) do
                                                                                                                             a = new Int8Array({
                                                                                                                                   1,
                                                                                                                                   2,
@@ -1046,7 +1046,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                       --[[ :: ]]{
                                                                                                                         --[[ tuple ]]{
                                                                                                                           "uint8_array - _BYTES_PER_ELEMENT",
-                                                                                                                          (function (param) do
+                                                                                                                          (function(param) do
                                                                                                                               return --[[ Eq ]]Block.__(0, {
                                                                                                                                         1,
                                                                                                                                         Uint8Array.BYTES_PER_ELEMENT
@@ -1056,7 +1056,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                         --[[ :: ]]{
                                                                                                                           --[[ tuple ]]{
                                                                                                                             "uint8_array - make",
-                                                                                                                            (function (param) do
+                                                                                                                            (function(param) do
                                                                                                                                 return --[[ Eq ]]Block.__(0, {
                                                                                                                                           3,
                                                                                                                                           new Uint8Array({
@@ -1070,7 +1070,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                           --[[ :: ]]{
                                                                                                                             --[[ tuple ]]{
                                                                                                                               "uint8_array - fromBuffer",
-                                                                                                                              (function (param) do
+                                                                                                                              (function(param) do
                                                                                                                                   return --[[ Eq ]]Block.__(0, {
                                                                                                                                             32,
                                                                                                                                             new Uint8Array(new ArrayBuffer(32)).byteLength
@@ -1080,7 +1080,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                             --[[ :: ]]{
                                                                                                                               --[[ tuple ]]{
                                                                                                                                 "uint8_array - fromBufferOffset",
-                                                                                                                                (function (param) do
+                                                                                                                                (function(param) do
                                                                                                                                     buffer = new ArrayBuffer(32);
                                                                                                                                     return --[[ Eq ]]Block.__(0, {
                                                                                                                                               24,
@@ -1091,7 +1091,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                               --[[ :: ]]{
                                                                                                                                 --[[ tuple ]]{
                                                                                                                                   "uint8_array - fromBufferRange",
-                                                                                                                                  (function (param) do
+                                                                                                                                  (function(param) do
                                                                                                                                       buffer = new ArrayBuffer(32);
                                                                                                                                       return --[[ Eq ]]Block.__(0, {
                                                                                                                                                 2,
@@ -1102,7 +1102,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                                 --[[ :: ]]{
                                                                                                                                   --[[ tuple ]]{
                                                                                                                                     "uint8_array - fromLength",
-                                                                                                                                    (function (param) do
+                                                                                                                                    (function(param) do
                                                                                                                                         return --[[ Eq ]]Block.__(0, {
                                                                                                                                                   3,
                                                                                                                                                   new Uint8Array(3).byteLength
@@ -1112,7 +1112,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                                   --[[ :: ]]{
                                                                                                                                     --[[ tuple ]]{
                                                                                                                                       "uint8_array - unsafe_set - typed_array sanity check",
-                                                                                                                                      (function (param) do
+                                                                                                                                      (function(param) do
                                                                                                                                           a = new Uint8Array({
                                                                                                                                                 1,
                                                                                                                                                 2,
@@ -1130,7 +1130,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                                     --[[ :: ]]{
                                                                                                                                       --[[ tuple ]]{
                                                                                                                                         "uint8clamped_array - _BYTES_PER_ELEMENT",
-                                                                                                                                        (function (param) do
+                                                                                                                                        (function(param) do
                                                                                                                                             return --[[ Eq ]]Block.__(0, {
                                                                                                                                                       1,
                                                                                                                                                       Uint8ClampedArray.BYTES_PER_ELEMENT
@@ -1140,7 +1140,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                                       --[[ :: ]]{
                                                                                                                                         --[[ tuple ]]{
                                                                                                                                           "uint8clamped_array - make",
-                                                                                                                                          (function (param) do
+                                                                                                                                          (function(param) do
                                                                                                                                               return --[[ Eq ]]Block.__(0, {
                                                                                                                                                         3,
                                                                                                                                                         new Uint8ClampedArray({
@@ -1154,7 +1154,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                                         --[[ :: ]]{
                                                                                                                                           --[[ tuple ]]{
                                                                                                                                             "uint8clamped_array - fromBuffer",
-                                                                                                                                            (function (param) do
+                                                                                                                                            (function(param) do
                                                                                                                                                 return --[[ Eq ]]Block.__(0, {
                                                                                                                                                           32,
                                                                                                                                                           new Uint8ClampedArray(new ArrayBuffer(32)).byteLength
@@ -1164,7 +1164,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                                           --[[ :: ]]{
                                                                                                                                             --[[ tuple ]]{
                                                                                                                                               "uint8clamped_array - fromBufferOffset",
-                                                                                                                                              (function (param) do
+                                                                                                                                              (function(param) do
                                                                                                                                                   buffer = new ArrayBuffer(32);
                                                                                                                                                   return --[[ Eq ]]Block.__(0, {
                                                                                                                                                             24,
@@ -1175,7 +1175,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                                             --[[ :: ]]{
                                                                                                                                               --[[ tuple ]]{
                                                                                                                                                 "uint8clamped_array - fromBufferRange",
-                                                                                                                                                (function (param) do
+                                                                                                                                                (function(param) do
                                                                                                                                                     buffer = new ArrayBuffer(32);
                                                                                                                                                     return --[[ Eq ]]Block.__(0, {
                                                                                                                                                               2,
@@ -1186,7 +1186,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                                               --[[ :: ]]{
                                                                                                                                                 --[[ tuple ]]{
                                                                                                                                                   "uint8clamped_array - fromLength",
-                                                                                                                                                  (function (param) do
+                                                                                                                                                  (function(param) do
                                                                                                                                                       return --[[ Eq ]]Block.__(0, {
                                                                                                                                                                 3,
                                                                                                                                                                 new Uint8ClampedArray(3).byteLength
@@ -1196,7 +1196,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                                                 --[[ :: ]]{
                                                                                                                                                   --[[ tuple ]]{
                                                                                                                                                     "uint8clamped_array - unsafe_set - typed_array sanity check",
-                                                                                                                                                    (function (param) do
+                                                                                                                                                    (function(param) do
                                                                                                                                                         a = new Uint8ClampedArray({
                                                                                                                                                               1,
                                                                                                                                                               2,
@@ -1214,7 +1214,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                                                   --[[ :: ]]{
                                                                                                                                                     --[[ tuple ]]{
                                                                                                                                                       "int16_array - _BYTES_PER_ELEMENT",
-                                                                                                                                                      (function (param) do
+                                                                                                                                                      (function(param) do
                                                                                                                                                           return --[[ Eq ]]Block.__(0, {
                                                                                                                                                                     2,
                                                                                                                                                                     Int16Array.BYTES_PER_ELEMENT
@@ -1224,7 +1224,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                                                     --[[ :: ]]{
                                                                                                                                                       --[[ tuple ]]{
                                                                                                                                                         "int16_array - make",
-                                                                                                                                                        (function (param) do
+                                                                                                                                                        (function(param) do
                                                                                                                                                             return --[[ Eq ]]Block.__(0, {
                                                                                                                                                                       6,
                                                                                                                                                                       new Int16Array({
@@ -1238,7 +1238,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                                                       --[[ :: ]]{
                                                                                                                                                         --[[ tuple ]]{
                                                                                                                                                           "int16_array - fromBuffer",
-                                                                                                                                                          (function (param) do
+                                                                                                                                                          (function(param) do
                                                                                                                                                               return --[[ Eq ]]Block.__(0, {
                                                                                                                                                                         32,
                                                                                                                                                                         new Int16Array(new ArrayBuffer(32)).byteLength
@@ -1248,7 +1248,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                                                         --[[ :: ]]{
                                                                                                                                                           --[[ tuple ]]{
                                                                                                                                                             "int16_array - fromBufferOffset",
-                                                                                                                                                            (function (param) do
+                                                                                                                                                            (function(param) do
                                                                                                                                                                 buffer = new ArrayBuffer(32);
                                                                                                                                                                 return --[[ Eq ]]Block.__(0, {
                                                                                                                                                                           24,
@@ -1259,7 +1259,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                                                           --[[ :: ]]{
                                                                                                                                                             --[[ tuple ]]{
                                                                                                                                                               "int16_array - fromBufferRange",
-                                                                                                                                                              (function (param) do
+                                                                                                                                                              (function(param) do
                                                                                                                                                                   buffer = new ArrayBuffer(32);
                                                                                                                                                                   return --[[ Eq ]]Block.__(0, {
                                                                                                                                                                             4,
@@ -1270,7 +1270,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                                                             --[[ :: ]]{
                                                                                                                                                               --[[ tuple ]]{
                                                                                                                                                                 "int16_array - fromLength",
-                                                                                                                                                                (function (param) do
+                                                                                                                                                                (function(param) do
                                                                                                                                                                     return --[[ Eq ]]Block.__(0, {
                                                                                                                                                                               6,
                                                                                                                                                                               new Int16Array(3).byteLength
@@ -1280,7 +1280,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                                                               --[[ :: ]]{
                                                                                                                                                                 --[[ tuple ]]{
                                                                                                                                                                   "int16_array - unsafe_set - typed_array sanity check",
-                                                                                                                                                                  (function (param) do
+                                                                                                                                                                  (function(param) do
                                                                                                                                                                       a = new Int16Array({
                                                                                                                                                                             1,
                                                                                                                                                                             2,
@@ -1298,7 +1298,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                                                                 --[[ :: ]]{
                                                                                                                                                                   --[[ tuple ]]{
                                                                                                                                                                     "uint16_array - _BYTES_PER_ELEMENT",
-                                                                                                                                                                    (function (param) do
+                                                                                                                                                                    (function(param) do
                                                                                                                                                                         return --[[ Eq ]]Block.__(0, {
                                                                                                                                                                                   2,
                                                                                                                                                                                   Uint16Array.BYTES_PER_ELEMENT
@@ -1308,7 +1308,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                                                                   --[[ :: ]]{
                                                                                                                                                                     --[[ tuple ]]{
                                                                                                                                                                       "uint16_array - make",
-                                                                                                                                                                      (function (param) do
+                                                                                                                                                                      (function(param) do
                                                                                                                                                                           return --[[ Eq ]]Block.__(0, {
                                                                                                                                                                                     6,
                                                                                                                                                                                     new Uint16Array({
@@ -1322,7 +1322,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                                                                     --[[ :: ]]{
                                                                                                                                                                       --[[ tuple ]]{
                                                                                                                                                                         "uint16_array - fromBuffer",
-                                                                                                                                                                        (function (param) do
+                                                                                                                                                                        (function(param) do
                                                                                                                                                                             return --[[ Eq ]]Block.__(0, {
                                                                                                                                                                                       32,
                                                                                                                                                                                       new Uint16Array(new ArrayBuffer(32)).byteLength
@@ -1332,7 +1332,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                                                                       --[[ :: ]]{
                                                                                                                                                                         --[[ tuple ]]{
                                                                                                                                                                           "uint16_array - fromBufferOffset",
-                                                                                                                                                                          (function (param) do
+                                                                                                                                                                          (function(param) do
                                                                                                                                                                               buffer = new ArrayBuffer(32);
                                                                                                                                                                               return --[[ Eq ]]Block.__(0, {
                                                                                                                                                                                         24,
@@ -1343,7 +1343,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                                                                         --[[ :: ]]{
                                                                                                                                                                           --[[ tuple ]]{
                                                                                                                                                                             "uint16_array - fromBufferRange",
-                                                                                                                                                                            (function (param) do
+                                                                                                                                                                            (function(param) do
                                                                                                                                                                                 buffer = new ArrayBuffer(32);
                                                                                                                                                                                 return --[[ Eq ]]Block.__(0, {
                                                                                                                                                                                           4,
@@ -1354,7 +1354,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                                                                           --[[ :: ]]{
                                                                                                                                                                             --[[ tuple ]]{
                                                                                                                                                                               "uint16_array - fromLength",
-                                                                                                                                                                              (function (param) do
+                                                                                                                                                                              (function(param) do
                                                                                                                                                                                   return --[[ Eq ]]Block.__(0, {
                                                                                                                                                                                             6,
                                                                                                                                                                                             new Uint16Array(3).byteLength
@@ -1364,7 +1364,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                                                                             --[[ :: ]]{
                                                                                                                                                                               --[[ tuple ]]{
                                                                                                                                                                                 "uint16_array - unsafe_set - typed_array sanity check",
-                                                                                                                                                                                (function (param) do
+                                                                                                                                                                                (function(param) do
                                                                                                                                                                                     a = new Uint16Array({
                                                                                                                                                                                           1,
                                                                                                                                                                                           2,
@@ -1382,7 +1382,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                                                                               --[[ :: ]]{
                                                                                                                                                                                 --[[ tuple ]]{
                                                                                                                                                                                   "int32_array - _BYTES_PER_ELEMENT",
-                                                                                                                                                                                  (function (param) do
+                                                                                                                                                                                  (function(param) do
                                                                                                                                                                                       return --[[ Eq ]]Block.__(0, {
                                                                                                                                                                                                 4,
                                                                                                                                                                                                 Int32Array.BYTES_PER_ELEMENT
@@ -1392,10 +1392,10 @@ suites_001 = --[[ :: ]]{
                                                                                                                                                                                 --[[ :: ]]{
                                                                                                                                                                                   --[[ tuple ]]{
                                                                                                                                                                                     "int32_array - make",
-                                                                                                                                                                                    (function (param) do
+                                                                                                                                                                                    (function(param) do
                                                                                                                                                                                         return --[[ Eq ]]Block.__(0, {
                                                                                                                                                                                                   12,
-                                                                                                                                                                                                  new Int32Array(__Array.map((function (prim) do
+                                                                                                                                                                                                  new Int32Array(__Array.map((function(prim) do
                                                                                                                                                                                                               return prim;
                                                                                                                                                                                                             end end), {
                                                                                                                                                                                                             1,
@@ -1408,7 +1408,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                                                                                   --[[ :: ]]{
                                                                                                                                                                                     --[[ tuple ]]{
                                                                                                                                                                                       "int32_array - fromBuffer",
-                                                                                                                                                                                      (function (param) do
+                                                                                                                                                                                      (function(param) do
                                                                                                                                                                                           return --[[ Eq ]]Block.__(0, {
                                                                                                                                                                                                     32,
                                                                                                                                                                                                     new Int32Array(new ArrayBuffer(32)).byteLength
@@ -1418,7 +1418,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                                                                                     --[[ :: ]]{
                                                                                                                                                                                       --[[ tuple ]]{
                                                                                                                                                                                         "int32_array - fromBufferOffset",
-                                                                                                                                                                                        (function (param) do
+                                                                                                                                                                                        (function(param) do
                                                                                                                                                                                             buffer = new ArrayBuffer(32);
                                                                                                                                                                                             return --[[ Eq ]]Block.__(0, {
                                                                                                                                                                                                       24,
@@ -1429,7 +1429,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                                                                                       --[[ :: ]]{
                                                                                                                                                                                         --[[ tuple ]]{
                                                                                                                                                                                           "int32_array - fromBufferRange",
-                                                                                                                                                                                          (function (param) do
+                                                                                                                                                                                          (function(param) do
                                                                                                                                                                                               buffer = new ArrayBuffer(32);
                                                                                                                                                                                               return --[[ Eq ]]Block.__(0, {
                                                                                                                                                                                                         8,
@@ -1440,7 +1440,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                                                                                         --[[ :: ]]{
                                                                                                                                                                                           --[[ tuple ]]{
                                                                                                                                                                                             "int32_array - fromLength",
-                                                                                                                                                                                            (function (param) do
+                                                                                                                                                                                            (function(param) do
                                                                                                                                                                                                 return --[[ Eq ]]Block.__(0, {
                                                                                                                                                                                                           12,
                                                                                                                                                                                                           new Int32Array(3).byteLength
@@ -1450,8 +1450,8 @@ suites_001 = --[[ :: ]]{
                                                                                                                                                                                           --[[ :: ]]{
                                                                                                                                                                                             --[[ tuple ]]{
                                                                                                                                                                                               "int32_array - unsafe_set - typed_array sanity check",
-                                                                                                                                                                                              (function (param) do
-                                                                                                                                                                                                  a = new Int32Array(__Array.map((function (prim) do
+                                                                                                                                                                                              (function(param) do
+                                                                                                                                                                                                  a = new Int32Array(__Array.map((function(prim) do
                                                                                                                                                                                                               return prim;
                                                                                                                                                                                                             end end), {
                                                                                                                                                                                                             1,
@@ -1470,7 +1470,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                                                                                             --[[ :: ]]{
                                                                                                                                                                                               --[[ tuple ]]{
                                                                                                                                                                                                 "uint32_array - _BYTES_PER_ELEMENT",
-                                                                                                                                                                                                (function (param) do
+                                                                                                                                                                                                (function(param) do
                                                                                                                                                                                                     return --[[ Eq ]]Block.__(0, {
                                                                                                                                                                                                               4,
                                                                                                                                                                                                               Uint32Array.BYTES_PER_ELEMENT
@@ -1480,7 +1480,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                                                                                               --[[ :: ]]{
                                                                                                                                                                                                 --[[ tuple ]]{
                                                                                                                                                                                                   "uint32_array - make",
-                                                                                                                                                                                                  (function (param) do
+                                                                                                                                                                                                  (function(param) do
                                                                                                                                                                                                       return --[[ Eq ]]Block.__(0, {
                                                                                                                                                                                                                 12,
                                                                                                                                                                                                                 new Uint32Array({
@@ -1494,7 +1494,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                                                                                                 --[[ :: ]]{
                                                                                                                                                                                                   --[[ tuple ]]{
                                                                                                                                                                                                     "uint32_array - fromBuffer",
-                                                                                                                                                                                                    (function (param) do
+                                                                                                                                                                                                    (function(param) do
                                                                                                                                                                                                         return --[[ Eq ]]Block.__(0, {
                                                                                                                                                                                                                   32,
                                                                                                                                                                                                                   new Uint32Array(new ArrayBuffer(32)).byteLength
@@ -1504,7 +1504,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                                                                                                   --[[ :: ]]{
                                                                                                                                                                                                     --[[ tuple ]]{
                                                                                                                                                                                                       "uint32_array - fromBufferOffset",
-                                                                                                                                                                                                      (function (param) do
+                                                                                                                                                                                                      (function(param) do
                                                                                                                                                                                                           buffer = new ArrayBuffer(32);
                                                                                                                                                                                                           return --[[ Eq ]]Block.__(0, {
                                                                                                                                                                                                                     24,
@@ -1515,7 +1515,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                                                                                                     --[[ :: ]]{
                                                                                                                                                                                                       --[[ tuple ]]{
                                                                                                                                                                                                         "uint32_array - fromBufferRange",
-                                                                                                                                                                                                        (function (param) do
+                                                                                                                                                                                                        (function(param) do
                                                                                                                                                                                                             buffer = new ArrayBuffer(32);
                                                                                                                                                                                                             return --[[ Eq ]]Block.__(0, {
                                                                                                                                                                                                                       8,
@@ -1526,7 +1526,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                                                                                                       --[[ :: ]]{
                                                                                                                                                                                                         --[[ tuple ]]{
                                                                                                                                                                                                           "uint32_array - fromLength",
-                                                                                                                                                                                                          (function (param) do
+                                                                                                                                                                                                          (function(param) do
                                                                                                                                                                                                               return --[[ Eq ]]Block.__(0, {
                                                                                                                                                                                                                         12,
                                                                                                                                                                                                                         new Uint32Array(3).byteLength
@@ -1536,7 +1536,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                                                                                                         --[[ :: ]]{
                                                                                                                                                                                                           --[[ tuple ]]{
                                                                                                                                                                                                             "uint32_array - unsafe_set - typed_array sanity check",
-                                                                                                                                                                                                            (function (param) do
+                                                                                                                                                                                                            (function(param) do
                                                                                                                                                                                                                 a = new Uint32Array({
                                                                                                                                                                                                                       1,
                                                                                                                                                                                                                       2,
@@ -1554,7 +1554,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                                                                                                           --[[ :: ]]{
                                                                                                                                                                                                             --[[ tuple ]]{
                                                                                                                                                                                                               "float32_array - _BYTES_PER_ELEMENT",
-                                                                                                                                                                                                              (function (param) do
+                                                                                                                                                                                                              (function(param) do
                                                                                                                                                                                                                   return --[[ Eq ]]Block.__(0, {
                                                                                                                                                                                                                             4,
                                                                                                                                                                                                                             Float32Array.BYTES_PER_ELEMENT
@@ -1564,7 +1564,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                                                                                                             --[[ :: ]]{
                                                                                                                                                                                                               --[[ tuple ]]{
                                                                                                                                                                                                                 "float32_array - make",
-                                                                                                                                                                                                                (function (param) do
+                                                                                                                                                                                                                (function(param) do
                                                                                                                                                                                                                     return --[[ Eq ]]Block.__(0, {
                                                                                                                                                                                                                               12,
                                                                                                                                                                                                                               new Float32Array({
@@ -1578,7 +1578,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                                                                                                               --[[ :: ]]{
                                                                                                                                                                                                                 --[[ tuple ]]{
                                                                                                                                                                                                                   "float32_array - fromBuffer",
-                                                                                                                                                                                                                  (function (param) do
+                                                                                                                                                                                                                  (function(param) do
                                                                                                                                                                                                                       return --[[ Eq ]]Block.__(0, {
                                                                                                                                                                                                                                 32,
                                                                                                                                                                                                                                 new Float32Array(new ArrayBuffer(32)).byteLength
@@ -1588,7 +1588,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                                                                                                                 --[[ :: ]]{
                                                                                                                                                                                                                   --[[ tuple ]]{
                                                                                                                                                                                                                     "float32_array - fromBufferOffset",
-                                                                                                                                                                                                                    (function (param) do
+                                                                                                                                                                                                                    (function(param) do
                                                                                                                                                                                                                         buffer = new ArrayBuffer(32);
                                                                                                                                                                                                                         return --[[ Eq ]]Block.__(0, {
                                                                                                                                                                                                                                   24,
@@ -1599,7 +1599,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                                                                                                                   --[[ :: ]]{
                                                                                                                                                                                                                     --[[ tuple ]]{
                                                                                                                                                                                                                       "float32_array - fromBufferRange",
-                                                                                                                                                                                                                      (function (param) do
+                                                                                                                                                                                                                      (function(param) do
                                                                                                                                                                                                                           buffer = new ArrayBuffer(32);
                                                                                                                                                                                                                           return --[[ Eq ]]Block.__(0, {
                                                                                                                                                                                                                                     8,
@@ -1610,7 +1610,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                                                                                                                     --[[ :: ]]{
                                                                                                                                                                                                                       --[[ tuple ]]{
                                                                                                                                                                                                                         "float32_array - fromLength",
-                                                                                                                                                                                                                        (function (param) do
+                                                                                                                                                                                                                        (function(param) do
                                                                                                                                                                                                                             return --[[ Eq ]]Block.__(0, {
                                                                                                                                                                                                                                       12,
                                                                                                                                                                                                                                       new Float32Array(3).byteLength
@@ -1620,7 +1620,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                                                                                                                       --[[ :: ]]{
                                                                                                                                                                                                                         --[[ tuple ]]{
                                                                                                                                                                                                                           "float32_array - unsafe_set - typed_array sanity check",
-                                                                                                                                                                                                                          (function (param) do
+                                                                                                                                                                                                                          (function(param) do
                                                                                                                                                                                                                               a = new Float32Array({
                                                                                                                                                                                                                                     1,
                                                                                                                                                                                                                                     2,
@@ -1638,7 +1638,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                                                                                                                         --[[ :: ]]{
                                                                                                                                                                                                                           --[[ tuple ]]{
                                                                                                                                                                                                                             "float64_array - _BYTES_PER_ELEMENT",
-                                                                                                                                                                                                                            (function (param) do
+                                                                                                                                                                                                                            (function(param) do
                                                                                                                                                                                                                                 return --[[ Eq ]]Block.__(0, {
                                                                                                                                                                                                                                           8,
                                                                                                                                                                                                                                           Float64Array.BYTES_PER_ELEMENT
@@ -1648,7 +1648,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                                                                                                                           --[[ :: ]]{
                                                                                                                                                                                                                             --[[ tuple ]]{
                                                                                                                                                                                                                               "float64_array - make",
-                                                                                                                                                                                                                              (function (param) do
+                                                                                                                                                                                                                              (function(param) do
                                                                                                                                                                                                                                   return --[[ Eq ]]Block.__(0, {
                                                                                                                                                                                                                                             24,
                                                                                                                                                                                                                                             new Float64Array({
@@ -1662,7 +1662,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                                                                                                                             --[[ :: ]]{
                                                                                                                                                                                                                               --[[ tuple ]]{
                                                                                                                                                                                                                                 "float64_array - fromBuffer",
-                                                                                                                                                                                                                                (function (param) do
+                                                                                                                                                                                                                                (function(param) do
                                                                                                                                                                                                                                     return --[[ Eq ]]Block.__(0, {
                                                                                                                                                                                                                                               32,
                                                                                                                                                                                                                                               new Float64Array(new ArrayBuffer(32)).byteLength
@@ -1672,7 +1672,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                                                                                                                               --[[ :: ]]{
                                                                                                                                                                                                                                 --[[ tuple ]]{
                                                                                                                                                                                                                                   "float64_array - fromBufferOffset",
-                                                                                                                                                                                                                                  (function (param) do
+                                                                                                                                                                                                                                  (function(param) do
                                                                                                                                                                                                                                       buffer = new ArrayBuffer(32);
                                                                                                                                                                                                                                       return --[[ Eq ]]Block.__(0, {
                                                                                                                                                                                                                                                 24,
@@ -1683,7 +1683,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                                                                                                                                 --[[ :: ]]{
                                                                                                                                                                                                                                   --[[ tuple ]]{
                                                                                                                                                                                                                                     "float64_array - fromBufferRange",
-                                                                                                                                                                                                                                    (function (param) do
+                                                                                                                                                                                                                                    (function(param) do
                                                                                                                                                                                                                                         buffer = new ArrayBuffer(32);
                                                                                                                                                                                                                                         return --[[ Eq ]]Block.__(0, {
                                                                                                                                                                                                                                                   16,
@@ -1694,7 +1694,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                                                                                                                                   --[[ :: ]]{
                                                                                                                                                                                                                                     --[[ tuple ]]{
                                                                                                                                                                                                                                       "float64_array - fromLength",
-                                                                                                                                                                                                                                      (function (param) do
+                                                                                                                                                                                                                                      (function(param) do
                                                                                                                                                                                                                                           return --[[ Eq ]]Block.__(0, {
                                                                                                                                                                                                                                                     24,
                                                                                                                                                                                                                                                     new Float64Array(3).byteLength
@@ -1704,7 +1704,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                                                                                                                                     --[[ :: ]]{
                                                                                                                                                                                                                                       --[[ tuple ]]{
                                                                                                                                                                                                                                         "float64_array - unsafe_set - typed_array sanity check",
-                                                                                                                                                                                                                                        (function (param) do
+                                                                                                                                                                                                                                        (function(param) do
                                                                                                                                                                                                                                             a = new Float64Array({
                                                                                                                                                                                                                                                   1,
                                                                                                                                                                                                                                                   2,
@@ -1722,7 +1722,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                                                                                                                                       --[[ :: ]]{
                                                                                                                                                                                                                                         --[[ tuple ]]{
                                                                                                                                                                                                                                           "DataView - make, byteLength",
-                                                                                                                                                                                                                                          (function (param) do
+                                                                                                                                                                                                                                          (function(param) do
                                                                                                                                                                                                                                               return --[[ Eq ]]Block.__(0, {
                                                                                                                                                                                                                                                         32,
                                                                                                                                                                                                                                                         new DataView(new ArrayBuffer(32)).byteLength
@@ -1732,7 +1732,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                                                                                                                                         --[[ :: ]]{
                                                                                                                                                                                                                                           --[[ tuple ]]{
                                                                                                                                                                                                                                             "DataView - fromBuffer",
-                                                                                                                                                                                                                                            (function (param) do
+                                                                                                                                                                                                                                            (function(param) do
                                                                                                                                                                                                                                                 return --[[ Eq ]]Block.__(0, {
                                                                                                                                                                                                                                                           32,
                                                                                                                                                                                                                                                           new DataView(new ArrayBuffer(32)).byteLength
@@ -1742,7 +1742,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                                                                                                                                           --[[ :: ]]{
                                                                                                                                                                                                                                             --[[ tuple ]]{
                                                                                                                                                                                                                                               "DataView - fromBufferOffset",
-                                                                                                                                                                                                                                              (function (param) do
+                                                                                                                                                                                                                                              (function(param) do
                                                                                                                                                                                                                                                   buffer = new ArrayBuffer(32);
                                                                                                                                                                                                                                                   return --[[ Eq ]]Block.__(0, {
                                                                                                                                                                                                                                                             24,
@@ -1753,7 +1753,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                                                                                                                                             --[[ :: ]]{
                                                                                                                                                                                                                                               --[[ tuple ]]{
                                                                                                                                                                                                                                                 "DataView - fromBufferRange",
-                                                                                                                                                                                                                                                (function (param) do
+                                                                                                                                                                                                                                                (function(param) do
                                                                                                                                                                                                                                                     buffer = new ArrayBuffer(32);
                                                                                                                                                                                                                                                     return --[[ Eq ]]Block.__(0, {
                                                                                                                                                                                                                                                               4,
@@ -1764,7 +1764,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                                                                                                                                               --[[ :: ]]{
                                                                                                                                                                                                                                                 --[[ tuple ]]{
                                                                                                                                                                                                                                                   "DataView - buffer",
-                                                                                                                                                                                                                                                  (function (param) do
+                                                                                                                                                                                                                                                  (function(param) do
                                                                                                                                                                                                                                                       buffer = new ArrayBuffer(32);
                                                                                                                                                                                                                                                       return --[[ Eq ]]Block.__(0, {
                                                                                                                                                                                                                                                                 buffer,
@@ -1775,7 +1775,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                                                                                                                                                 --[[ :: ]]{
                                                                                                                                                                                                                                                   --[[ tuple ]]{
                                                                                                                                                                                                                                                     "DataView - byteOffset",
-                                                                                                                                                                                                                                                    (function (param) do
+                                                                                                                                                                                                                                                    (function(param) do
                                                                                                                                                                                                                                                         buffer = new ArrayBuffer(32);
                                                                                                                                                                                                                                                         return --[[ Eq ]]Block.__(0, {
                                                                                                                                                                                                                                                                   8,
@@ -1786,7 +1786,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                                                                                                                                                   --[[ :: ]]{
                                                                                                                                                                                                                                                     --[[ tuple ]]{
                                                                                                                                                                                                                                                       "DataView - setInt8, getInt8",
-                                                                                                                                                                                                                                                      (function (param) do
+                                                                                                                                                                                                                                                      (function(param) do
                                                                                                                                                                                                                                                           buffer = new ArrayBuffer(8);
                                                                                                                                                                                                                                                           view = new DataView(buffer);
                                                                                                                                                                                                                                                           view.setInt8(0, 1);
@@ -1799,7 +1799,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                                                                                                                                                     --[[ :: ]]{
                                                                                                                                                                                                                                                       --[[ tuple ]]{
                                                                                                                                                                                                                                                         "DataView - setUint8, getUint8",
-                                                                                                                                                                                                                                                        (function (param) do
+                                                                                                                                                                                                                                                        (function(param) do
                                                                                                                                                                                                                                                             buffer = new ArrayBuffer(8);
                                                                                                                                                                                                                                                             view = new DataView(buffer);
                                                                                                                                                                                                                                                             view.setUint8(0, 128);
@@ -1812,7 +1812,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                                                                                                                                                       --[[ :: ]]{
                                                                                                                                                                                                                                                         --[[ tuple ]]{
                                                                                                                                                                                                                                                           "DataView - setInt16, getInt16",
-                                                                                                                                                                                                                                                          (function (param) do
+                                                                                                                                                                                                                                                          (function(param) do
                                                                                                                                                                                                                                                               buffer = new ArrayBuffer(8);
                                                                                                                                                                                                                                                               view = new DataView(buffer);
                                                                                                                                                                                                                                                               view.setInt16(0, 257);
@@ -1825,7 +1825,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                                                                                                                                                         --[[ :: ]]{
                                                                                                                                                                                                                                                           --[[ tuple ]]{
                                                                                                                                                                                                                                                             "DataView - getInt16LittleEndian",
-                                                                                                                                                                                                                                                            (function (param) do
+                                                                                                                                                                                                                                                            (function(param) do
                                                                                                                                                                                                                                                                 buffer = new ArrayBuffer(8);
                                                                                                                                                                                                                                                                 view = new DataView(buffer);
                                                                                                                                                                                                                                                                 view.setInt16(0, 25000, 1);
@@ -1838,7 +1838,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                                                                                                                                                           --[[ :: ]]{
                                                                                                                                                                                                                                                             --[[ tuple ]]{
                                                                                                                                                                                                                                                               "DataView - setInt16LittleEndian",
-                                                                                                                                                                                                                                                              (function (param) do
+                                                                                                                                                                                                                                                              (function(param) do
                                                                                                                                                                                                                                                                   buffer = new ArrayBuffer(8);
                                                                                                                                                                                                                                                                   view = new DataView(buffer);
                                                                                                                                                                                                                                                                   view.setInt16(0, 25000, 1);
@@ -1851,7 +1851,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                                                                                                                                                             --[[ :: ]]{
                                                                                                                                                                                                                                                               --[[ tuple ]]{
                                                                                                                                                                                                                                                                 "DataView - setUint16, getUint16",
-                                                                                                                                                                                                                                                                (function (param) do
+                                                                                                                                                                                                                                                                (function(param) do
                                                                                                                                                                                                                                                                     buffer = new ArrayBuffer(8);
                                                                                                                                                                                                                                                                     view = new DataView(buffer);
                                                                                                                                                                                                                                                                     view.setUint16(0, 32768);
@@ -1864,7 +1864,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                                                                                                                                                               --[[ :: ]]{
                                                                                                                                                                                                                                                                 --[[ tuple ]]{
                                                                                                                                                                                                                                                                   "DataView - getUint16LittleEndian",
-                                                                                                                                                                                                                                                                  (function (param) do
+                                                                                                                                                                                                                                                                  (function(param) do
                                                                                                                                                                                                                                                                       buffer = new ArrayBuffer(8);
                                                                                                                                                                                                                                                                       view = new DataView(buffer);
                                                                                                                                                                                                                                                                       view.setUint16(0, 32768, 1);
@@ -1877,7 +1877,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                                                                                                                                                                 --[[ :: ]]{
                                                                                                                                                                                                                                                                   --[[ tuple ]]{
                                                                                                                                                                                                                                                                     "DataView - setUint16LittleEndian",
-                                                                                                                                                                                                                                                                    (function (param) do
+                                                                                                                                                                                                                                                                    (function(param) do
                                                                                                                                                                                                                                                                         buffer = new ArrayBuffer(8);
                                                                                                                                                                                                                                                                         view = new DataView(buffer);
                                                                                                                                                                                                                                                                         view.setUint16(0, 32768, 1);
@@ -1890,7 +1890,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                                                                                                                                                                   --[[ :: ]]{
                                                                                                                                                                                                                                                                     --[[ tuple ]]{
                                                                                                                                                                                                                                                                       "DataView - setInt32, getInt32",
-                                                                                                                                                                                                                                                                      (function (param) do
+                                                                                                                                                                                                                                                                      (function(param) do
                                                                                                                                                                                                                                                                           buffer = new ArrayBuffer(8);
                                                                                                                                                                                                                                                                           view = new DataView(buffer);
                                                                                                                                                                                                                                                                           view.setInt32(0, 65537);
@@ -1903,7 +1903,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                                                                                                                                                                     --[[ :: ]]{
                                                                                                                                                                                                                                                                       --[[ tuple ]]{
                                                                                                                                                                                                                                                                         "DataView - getInt32LittleEndian",
-                                                                                                                                                                                                                                                                        (function (param) do
+                                                                                                                                                                                                                                                                        (function(param) do
                                                                                                                                                                                                                                                                             buffer = new ArrayBuffer(8);
                                                                                                                                                                                                                                                                             view = new DataView(buffer);
                                                                                                                                                                                                                                                                             view.setInt32(0, 65537, 1);
@@ -1916,7 +1916,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                                                                                                                                                                       --[[ :: ]]{
                                                                                                                                                                                                                                                                         --[[ tuple ]]{
                                                                                                                                                                                                                                                                           "DataView - setInt32LittleEndian",
-                                                                                                                                                                                                                                                                          (function (param) do
+                                                                                                                                                                                                                                                                          (function(param) do
                                                                                                                                                                                                                                                                               buffer = new ArrayBuffer(8);
                                                                                                                                                                                                                                                                               view = new DataView(buffer);
                                                                                                                                                                                                                                                                               view.setInt32(0, 65537, 1);
@@ -1929,7 +1929,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                                                                                                                                                                         --[[ :: ]]{
                                                                                                                                                                                                                                                                           --[[ tuple ]]{
                                                                                                                                                                                                                                                                             "DataView - setUint32, getUint32",
-                                                                                                                                                                                                                                                                            (function (param) do
+                                                                                                                                                                                                                                                                            (function(param) do
                                                                                                                                                                                                                                                                                 buffer = new ArrayBuffer(8);
                                                                                                                                                                                                                                                                                 view = new DataView(buffer);
                                                                                                                                                                                                                                                                                 view.setUint32(0, 65537);
@@ -1942,7 +1942,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                                                                                                                                                                           --[[ :: ]]{
                                                                                                                                                                                                                                                                             --[[ tuple ]]{
                                                                                                                                                                                                                                                                               "DataView - getUint32LittleEndian",
-                                                                                                                                                                                                                                                                              (function (param) do
+                                                                                                                                                                                                                                                                              (function(param) do
                                                                                                                                                                                                                                                                                   buffer = new ArrayBuffer(8);
                                                                                                                                                                                                                                                                                   view = new DataView(buffer);
                                                                                                                                                                                                                                                                                   view.setUint32(0, 65537, 1);
@@ -1955,7 +1955,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                                                                                                                                                                             --[[ :: ]]{
                                                                                                                                                                                                                                                                               --[[ tuple ]]{
                                                                                                                                                                                                                                                                                 "DataView - setUint32LittleEndian",
-                                                                                                                                                                                                                                                                                (function (param) do
+                                                                                                                                                                                                                                                                                (function(param) do
                                                                                                                                                                                                                                                                                     buffer = new ArrayBuffer(8);
                                                                                                                                                                                                                                                                                     view = new DataView(buffer);
                                                                                                                                                                                                                                                                                     view.setUint32(0, 65537, 1);
@@ -1968,7 +1968,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                                                                                                                                                                               --[[ :: ]]{
                                                                                                                                                                                                                                                                                 --[[ tuple ]]{
                                                                                                                                                                                                                                                                                   "DataView - setFloat32, getFloat32",
-                                                                                                                                                                                                                                                                                  (function (param) do
+                                                                                                                                                                                                                                                                                  (function(param) do
                                                                                                                                                                                                                                                                                       buffer = new ArrayBuffer(8);
                                                                                                                                                                                                                                                                                       view = new DataView(buffer);
                                                                                                                                                                                                                                                                                       view.setFloat32(0, 65537.0);
@@ -1981,7 +1981,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                                                                                                                                                                                 --[[ :: ]]{
                                                                                                                                                                                                                                                                                   --[[ tuple ]]{
                                                                                                                                                                                                                                                                                     "DataView - getFloat32LittleEndian",
-                                                                                                                                                                                                                                                                                    (function (param) do
+                                                                                                                                                                                                                                                                                    (function(param) do
                                                                                                                                                                                                                                                                                         buffer = new ArrayBuffer(8);
                                                                                                                                                                                                                                                                                         view = new DataView(buffer);
                                                                                                                                                                                                                                                                                         view.setFloat32(0, 65537.0, 1);
@@ -1994,7 +1994,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                                                                                                                                                                                   --[[ :: ]]{
                                                                                                                                                                                                                                                                                     --[[ tuple ]]{
                                                                                                                                                                                                                                                                                       "DataView - setFloat32LittleEndian",
-                                                                                                                                                                                                                                                                                      (function (param) do
+                                                                                                                                                                                                                                                                                      (function(param) do
                                                                                                                                                                                                                                                                                           buffer = new ArrayBuffer(8);
                                                                                                                                                                                                                                                                                           view = new DataView(buffer);
                                                                                                                                                                                                                                                                                           view.setFloat32(0, 1.0, 1);
@@ -2007,7 +2007,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                                                                                                                                                                                     --[[ :: ]]{
                                                                                                                                                                                                                                                                                       --[[ tuple ]]{
                                                                                                                                                                                                                                                                                         "DataView - setFloat64, getFloat64",
-                                                                                                                                                                                                                                                                                        (function (param) do
+                                                                                                                                                                                                                                                                                        (function(param) do
                                                                                                                                                                                                                                                                                             buffer = new ArrayBuffer(8);
                                                                                                                                                                                                                                                                                             view = new DataView(buffer);
                                                                                                                                                                                                                                                                                             view.setFloat64(0, 1e200);
@@ -2020,7 +2020,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                                                                                                                                                                                       --[[ :: ]]{
                                                                                                                                                                                                                                                                                         --[[ tuple ]]{
                                                                                                                                                                                                                                                                                           "DataView - getFloat64LittleEndian",
-                                                                                                                                                                                                                                                                                          (function (param) do
+                                                                                                                                                                                                                                                                                          (function(param) do
                                                                                                                                                                                                                                                                                               buffer = new ArrayBuffer(8);
                                                                                                                                                                                                                                                                                               view = new DataView(buffer);
                                                                                                                                                                                                                                                                                               view.setFloat64(0, 1e200, 1);
@@ -2033,7 +2033,7 @@ suites_001 = --[[ :: ]]{
                                                                                                                                                                                                                                                                                         --[[ :: ]]{
                                                                                                                                                                                                                                                                                           --[[ tuple ]]{
                                                                                                                                                                                                                                                                                             "DataView - setFloat64LittleEndian",
-                                                                                                                                                                                                                                                                                            (function (param) do
+                                                                                                                                                                                                                                                                                            (function(param) do
                                                                                                                                                                                                                                                                                                 buffer = new ArrayBuffer(8);
                                                                                                                                                                                                                                                                                                 view = new DataView(buffer);
                                                                                                                                                                                                                                                                                                 view.setFloat64(0, 1.0, 1);
@@ -2193,6 +2193,7 @@ suites = --[[ :: ]]{
 
 Mt.from_pair_suites("Js_typed_array_test", suites);
 
+exports = {}
 exports.mkI8 = mkI8;
 exports.via = via;
 exports.viaInt8 = viaInt8;

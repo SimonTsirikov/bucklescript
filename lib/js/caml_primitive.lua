@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 
 function caml_int_compare(x, y) do
@@ -209,6 +209,7 @@ caml_nativeint_compare = caml_int_compare;
 
 caml_int32_compare = caml_int_compare;
 
+exports = {}
 exports.caml_bytes_compare = caml_bytes_compare;
 exports.caml_bytes_equal = caml_bytes_equal;
 exports.caml_int_compare = caml_int_compare;

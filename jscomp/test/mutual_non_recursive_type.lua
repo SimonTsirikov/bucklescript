@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 
 function f(x) do
@@ -11,6 +11,7 @@ end;
 
 v = --[[ H ]]{--[[ OT ]]0};
 
+exports = {}
 exports.U = U;
 exports.v = v;
 --[[ No side effect ]]

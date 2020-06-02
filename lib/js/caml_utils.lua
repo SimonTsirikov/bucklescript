@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 
 repeat = (function(count,self){
@@ -28,5 +28,6 @@ repeat = (function(count,self){
     return rpt;
 });
 
+exports = {}
 exports.repeat = repeat;
 --[[ No side effect ]]

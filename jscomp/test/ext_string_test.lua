@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 List = require "../../lib/js/list";
 Bytes = require "../../lib/js/bytes";
@@ -56,7 +56,7 @@ end end
 function trim(s) do
   i = 0;
   j = #s;
-  while((function () do
+  while((function() do
           tmp = false;
           if (i < j) then do
             u = s.charCodeAt(i);
@@ -68,7 +68,7 @@ function trim(s) do
     i = i + 1 | 0;
   end;
   k = j - 1 | 0;
-  while((function () do
+  while((function() do
           tmp = false;
           if (k >= i) then do
             u = s.charCodeAt(k);
@@ -86,14 +86,14 @@ function split(keep_empty, str, on) do
   if (str == "") then do
     return --[[ [] ]]0;
   end else do
-    return split_by(keep_empty, (function (x) do
+    return split_by(keep_empty, (function(x) do
                   return x == on;
                 end end), str);
   end end 
 end end
 
 function quick_split_by_ws(str) do
-  return split_by(false, (function (x) do
+  return split_by(false, (function(x) do
                 if (x == --[[ "\t" ]]9 or x == --[[ "\n" ]]10) then do
                   return true;
                 end else do
@@ -153,7 +153,7 @@ function ends_with_then_chop(s, beg) do
 end end
 
 function check_any_suffix_case(s, suffixes) do
-  return List.exists((function (x) do
+  return List.exists((function(x) do
                 return ends_with(s, x);
               end end), suffixes);
 end end
@@ -177,7 +177,7 @@ function check_any_suffix_case_then_chop(s, suffixes) do
 end end
 
 function escaped(s) do
-  needs_escape = function (_i) do
+  needs_escape = function(_i) do
     while(true) do
       i = _i;
       if (i >= #s) then do
@@ -413,7 +413,7 @@ function unsafe_concat_with_length(len, sep, l) do
     pos = do
       contents: hd_len
     end;
-    List.iter((function (s) do
+    List.iter((function(s) do
             s_len = #s;
             Caml_bytes.caml_blit_string(sep, 0, r, pos.contents, sep_len);
             pos.contents = pos.contents + sep_len | 0;
@@ -474,7 +474,7 @@ function is_valid_module_file(s) do
       return false;
     end
      end  end 
-    return unsafe_for_all_range(s, 1, len - 1 | 0, (function (x) do
+    return unsafe_for_all_range(s, 1, len - 1 | 0, (function(x) do
                   if (x >= 65) then do
                     switcher = x - 91 | 0;
                     if (switcher > 5 or switcher < 0) then do
@@ -506,7 +506,7 @@ function is_valid_npm_package_name(s) do
       return false;
     end
      end  end 
-    return unsafe_for_all_range(s, 1, len - 1 | 0, (function (x) do
+    return unsafe_for_all_range(s, 1, len - 1 | 0, (function(x) do
                   if (x >= 58) then do
                     if (x >= 97) then do
                       return x < 123;
@@ -602,7 +602,7 @@ function replace_slash_backward(x) do
   if (unsafe_no_char(x, --[[ "/" ]]47, 0, len - 1 | 0)) then do
     return x;
   end else do
-    return __String.map((function (x) do
+    return __String.map((function(x) do
                   if (x ~= 47) then do
                     return x;
                   end else do
@@ -617,7 +617,7 @@ function replace_backward_slash(x) do
   if (unsafe_no_char(x, --[[ "\\" ]]92, 0, len - 1 | 0)) then do
     return x;
   end else do
-    return __String.map((function (x) do
+    return __String.map((function(x) do
                   if (x ~= 92) then do
                     return x;
                   end else do
@@ -731,6 +731,7 @@ parent_dir_lit = "..";
 
 current_dir_lit = ".";
 
+exports = {}
 exports.split_by = split_by;
 exports.trim = trim;
 exports.split = split;

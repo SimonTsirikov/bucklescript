@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Test_bool_equal = require "./test_bool_equal";
@@ -11,4 +11,5 @@ Mt.from_suites("boolean", --[[ :: ]]{
       --[[ [] ]]0
     });
 
+exports = {}
 --[[  Not a pure module ]]

@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Caml_external_polyfill = require "../../lib/js/caml_external_polyfill";
@@ -26,6 +26,7 @@ eq("File \"external_polyfill_test.ml\", line 19, characters 5-12", h, 12);
 
 Mt.from_pair_suites("External_polyfill_test", suites.contents);
 
+exports = {}
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;

@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Mt = require "./mt";
 Block = require "../../lib/js/block";
@@ -24,7 +24,7 @@ function eq(loc, x, y) do
   suites.contents = --[[ :: ]]{
     --[[ tuple ]]{
       loc .. (" id " .. String(test_id.contents)),
-      (function (param) do
+      (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     x,
                     y
@@ -54,6 +54,7 @@ version = -1;
 
 ocaml_veriosn = "unknown";
 
+exports = {}
 exports.b = b;
 exports.buffer_size = buffer_size;
 exports.vv = vv;

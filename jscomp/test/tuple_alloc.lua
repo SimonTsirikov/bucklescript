@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Curry = require "../../lib/js/curry";
 
@@ -43,11 +43,12 @@ function kf(cb, v) do
 end end
 
 function ikf(v) do
-  return kf((function (prim) do
+  return kf((function(prim) do
                 return --[[ () ]]0;
               end end), v);
 end end
 
+exports = {}
 exports.v = v;
 exports.reset = reset;
 exports.incr = incr;

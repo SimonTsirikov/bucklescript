@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 List = require "../../lib/js/list";
 Curry = require "../../lib/js/curry";
@@ -62,7 +62,7 @@ graph = --[[ :: ]]{
 };
 
 function nexts(x, g) do
-  return List.fold_left((function (acc, param) do
+  return List.fold_left((function(acc, param) do
                 if (param[0] == x) then do
                   return --[[ :: ]]{
                           param[1],
@@ -174,7 +174,7 @@ end
  end 
 
 function dfs2(nodes, graph, visited) do
-  aux = function (_nodes, graph, _visited) do
+  aux = function(_nodes, graph, _visited) do
     while(true) do
       visited = _visited;
       nodes = _nodes;
@@ -276,7 +276,7 @@ function dfs3(nodes, graph) do
   visited = do
     contents: --[[ [] ]]0
   end;
-  aux = function (node, graph) do
+  aux = function(node, graph) do
     if (List.mem(node, visited.contents)) then do
       return 0;
     end else do
@@ -284,12 +284,12 @@ function dfs3(nodes, graph) do
         node,
         visited.contents
       };
-      return List.iter((function (x) do
+      return List.iter((function(x) do
                     return aux(x, graph);
                   end end), nexts(node, graph));
     end end 
   end end;
-  List.iter((function (node) do
+  List.iter((function(node) do
           return aux(node, graph);
         end end), nodes);
   return List.rev(visited.contents);
@@ -409,7 +409,7 @@ function unsafe_topsort(graph) do
   visited = do
     contents: --[[ [] ]]0
   end;
-  sort_node = function (node) do
+  sort_node = function(node) do
     if (List.mem(node, visited.contents)) then do
       return 0;
     end else do
@@ -422,7 +422,7 @@ function unsafe_topsort(graph) do
       return --[[ () ]]0;
     end end 
   end end;
-  List.iter((function (param) do
+  List.iter((function(param) do
           return sort_node(param[0]);
         end end), graph);
   return visited.contents;
@@ -1333,15 +1333,15 @@ function of_list(l) do
           if (match_3) then do
             if (match_3[1]) then do
               l_1 = List.sort_uniq(__String.compare, l);
-              sub = function (n, l) do
+              sub = function(n, l) do
                 local ___conditional___=(n);
                 do
-                   if ___conditional___ = 0 then do
+                   if ___conditional___ == 0 then do
                       return --[[ tuple ]]{
                               --[[ Empty ]]0,
                               l
-                            };end end end 
-                   if ___conditional___ = 1 then do
+                            }; end end 
+                   if ___conditional___ == 1 then do
                       if (l) then do
                         return --[[ tuple ]]{
                                 --[[ Node ]]{
@@ -1353,8 +1353,8 @@ function of_list(l) do
                                 l[1]
                               };
                       end
-                       end end else 
-                   if ___conditional___ = 2 then do
+                       end  end else 
+                   if ___conditional___ == 2 then do
                       if (l) then do
                         match = l[1];
                         if (match) then do
@@ -1375,8 +1375,8 @@ function of_list(l) do
                         end
                          end 
                       end
-                       end end else 
-                   if ___conditional___ = 3 then do
+                       end  end else 
+                   if ___conditional___ == 3 then do
                       if (l) then do
                         match_1 = l[1];
                         if (match_1) then do
@@ -1406,11 +1406,9 @@ function of_list(l) do
                         end
                          end 
                       end
-                       end end else 
-                   do end end end
-                  else do
-                    end end
-                    
+                       end  end else 
+                   end end end end end end
+                  
                 end
                 nl = n / 2 | 0;
                 match_3 = sub(nl, l);
@@ -1501,7 +1499,7 @@ function pathsort(graph) do
     --[[ Empty ]]0,
     --[[ [] ]]0
   };
-  $plus$great = function (node, param) do
+  $plus$great = function(node, param) do
     stack = param[1];
     set = param[0];
     if (mem(node, set)) then do
@@ -1522,12 +1520,12 @@ function pathsort(graph) do
             }
           };
   end end;
-  sort_nodes = function (path, nodes) do
-    return List.iter((function (node) do
+  sort_nodes = function(path, nodes) do
+    return List.iter((function(node) do
                   return sort_node(path, node);
                 end end), nodes);
   end end;
-  sort_node = function (path, node) do
+  sort_node = function(path, node) do
     if (List.mem(node, visited.contents)) then do
       return 0;
     end else do
@@ -1539,7 +1537,7 @@ function pathsort(graph) do
       return --[[ () ]]0;
     end end 
   end end;
-  List.iter((function (param) do
+  List.iter((function(param) do
           return sort_node(empty_path, param[0]);
         end end), graph);
   return visited.contents;
@@ -1631,6 +1629,7 @@ end end,function(raw_exn) do
    end 
 end end)
 
+exports = {}
 exports.graph = graph;
 exports.nexts = nexts;
 exports.dfs1 = dfs1;

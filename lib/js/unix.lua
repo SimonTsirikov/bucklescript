@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Sys = require "./sys";
 List = require "./list";
@@ -31,150 +31,150 @@ Callback.register_exception("Unix.Unix_error", {
       ""
     });
 
-Printexc.register_printer((function (param) do
+Printexc.register_printer((function(param) do
         if (param[0] == Unix_error) then do
           e = param[1];
           msg;
           if (typeof e == "number") then do
             local ___conditional___=(e);
             do
-               if ___conditional___ = 0--[[ E2BIG ]] then do
-                  msg = "E2BIG";end else 
-               if ___conditional___ = 1--[[ EACCES ]] then do
-                  msg = "EACCES";end else 
-               if ___conditional___ = 2--[[ EAGAIN ]] then do
-                  msg = "EAGAIN";end else 
-               if ___conditional___ = 3--[[ EBADF ]] then do
-                  msg = "EBADF";end else 
-               if ___conditional___ = 4--[[ EBUSY ]] then do
-                  msg = "EBUSY";end else 
-               if ___conditional___ = 5--[[ ECHILD ]] then do
-                  msg = "ECHILD";end else 
-               if ___conditional___ = 6--[[ EDEADLK ]] then do
-                  msg = "EDEADLK";end else 
-               if ___conditional___ = 7--[[ EDOM ]] then do
-                  msg = "EDOM";end else 
-               if ___conditional___ = 8--[[ EEXIST ]] then do
-                  msg = "EEXIST";end else 
-               if ___conditional___ = 9--[[ EFAULT ]] then do
-                  msg = "EFAULT";end else 
-               if ___conditional___ = 10--[[ EFBIG ]] then do
-                  msg = "EFBIG";end else 
-               if ___conditional___ = 11--[[ EINTR ]] then do
-                  msg = "EINTR";end else 
-               if ___conditional___ = 12--[[ EINVAL ]] then do
-                  msg = "EINVAL";end else 
-               if ___conditional___ = 13--[[ EIO ]] then do
-                  msg = "EIO";end else 
-               if ___conditional___ = 14--[[ EISDIR ]] then do
-                  msg = "EISDIR";end else 
-               if ___conditional___ = 15--[[ EMFILE ]] then do
-                  msg = "EMFILE";end else 
-               if ___conditional___ = 16--[[ EMLINK ]] then do
-                  msg = "EMLINK";end else 
-               if ___conditional___ = 17--[[ ENAMETOOLONG ]] then do
-                  msg = "ENAMETOOLONG";end else 
-               if ___conditional___ = 18--[[ ENFILE ]] then do
-                  msg = "ENFILE";end else 
-               if ___conditional___ = 19--[[ ENODEV ]] then do
-                  msg = "ENODEV";end else 
-               if ___conditional___ = 20--[[ ENOENT ]] then do
-                  msg = "ENOENT";end else 
-               if ___conditional___ = 21--[[ ENOEXEC ]] then do
-                  msg = "ENOEXEC";end else 
-               if ___conditional___ = 22--[[ ENOLCK ]] then do
-                  msg = "ENOLCK";end else 
-               if ___conditional___ = 23--[[ ENOMEM ]] then do
-                  msg = "ENOMEM";end else 
-               if ___conditional___ = 24--[[ ENOSPC ]] then do
-                  msg = "ENOSPC";end else 
-               if ___conditional___ = 25--[[ ENOSYS ]] then do
-                  msg = "ENOSYS";end else 
-               if ___conditional___ = 26--[[ ENOTDIR ]] then do
-                  msg = "ENOTDIR";end else 
-               if ___conditional___ = 27--[[ ENOTEMPTY ]] then do
-                  msg = "ENOTEMPTY";end else 
-               if ___conditional___ = 28--[[ ENOTTY ]] then do
-                  msg = "ENOTTY";end else 
-               if ___conditional___ = 29--[[ ENXIO ]] then do
-                  msg = "ENXIO";end else 
-               if ___conditional___ = 30--[[ EPERM ]] then do
-                  msg = "EPERM";end else 
-               if ___conditional___ = 31--[[ EPIPE ]] then do
-                  msg = "EPIPE";end else 
-               if ___conditional___ = 32--[[ ERANGE ]] then do
-                  msg = "ERANGE";end else 
-               if ___conditional___ = 33--[[ EROFS ]] then do
-                  msg = "EROFS";end else 
-               if ___conditional___ = 34--[[ ESPIPE ]] then do
-                  msg = "ESPIPE";end else 
-               if ___conditional___ = 35--[[ ESRCH ]] then do
-                  msg = "ESRCH";end else 
-               if ___conditional___ = 36--[[ EXDEV ]] then do
-                  msg = "EXDEV";end else 
-               if ___conditional___ = 37--[[ EWOULDBLOCK ]] then do
-                  msg = "EWOULDBLOCK";end else 
-               if ___conditional___ = 38--[[ EINPROGRESS ]] then do
-                  msg = "EINPROGRESS";end else 
-               if ___conditional___ = 39--[[ EALREADY ]] then do
-                  msg = "EALREADY";end else 
-               if ___conditional___ = 40--[[ ENOTSOCK ]] then do
-                  msg = "ENOTSOCK";end else 
-               if ___conditional___ = 41--[[ EDESTADDRREQ ]] then do
-                  msg = "EDESTADDRREQ";end else 
-               if ___conditional___ = 42--[[ EMSGSIZE ]] then do
-                  msg = "EMSGSIZE";end else 
-               if ___conditional___ = 43--[[ EPROTOTYPE ]] then do
-                  msg = "EPROTOTYPE";end else 
-               if ___conditional___ = 44--[[ ENOPROTOOPT ]] then do
-                  msg = "ENOPROTOOPT";end else 
-               if ___conditional___ = 45--[[ EPROTONOSUPPORT ]] then do
-                  msg = "EPROTONOSUPPORT";end else 
-               if ___conditional___ = 46--[[ ESOCKTNOSUPPORT ]] then do
-                  msg = "ESOCKTNOSUPPORT";end else 
-               if ___conditional___ = 47--[[ EOPNOTSUPP ]] then do
-                  msg = "EOPNOTSUPP";end else 
-               if ___conditional___ = 48--[[ EPFNOSUPPORT ]] then do
-                  msg = "EPFNOSUPPORT";end else 
-               if ___conditional___ = 49--[[ EAFNOSUPPORT ]] then do
-                  msg = "EAFNOSUPPORT";end else 
-               if ___conditional___ = 50--[[ EADDRINUSE ]] then do
-                  msg = "EADDRINUSE";end else 
-               if ___conditional___ = 51--[[ EADDRNOTAVAIL ]] then do
-                  msg = "EADDRNOTAVAIL";end else 
-               if ___conditional___ = 52--[[ ENETDOWN ]] then do
-                  msg = "ENETDOWN";end else 
-               if ___conditional___ = 53--[[ ENETUNREACH ]] then do
-                  msg = "ENETUNREACH";end else 
-               if ___conditional___ = 54--[[ ENETRESET ]] then do
-                  msg = "ENETRESET";end else 
-               if ___conditional___ = 55--[[ ECONNABORTED ]] then do
-                  msg = "ECONNABORTED";end else 
-               if ___conditional___ = 56--[[ ECONNRESET ]] then do
-                  msg = "ECONNRESET";end else 
-               if ___conditional___ = 57--[[ ENOBUFS ]] then do
-                  msg = "ENOBUFS";end else 
-               if ___conditional___ = 58--[[ EISCONN ]] then do
-                  msg = "EISCONN";end else 
-               if ___conditional___ = 59--[[ ENOTCONN ]] then do
-                  msg = "ENOTCONN";end else 
-               if ___conditional___ = 60--[[ ESHUTDOWN ]] then do
-                  msg = "ESHUTDOWN";end else 
-               if ___conditional___ = 61--[[ ETOOMANYREFS ]] then do
-                  msg = "ETOOMANYREFS";end else 
-               if ___conditional___ = 62--[[ ETIMEDOUT ]] then do
-                  msg = "ETIMEDOUT";end else 
-               if ___conditional___ = 63--[[ ECONNREFUSED ]] then do
-                  msg = "ECONNREFUSED";end else 
-               if ___conditional___ = 64--[[ EHOSTDOWN ]] then do
-                  msg = "EHOSTDOWN";end else 
-               if ___conditional___ = 65--[[ EHOSTUNREACH ]] then do
-                  msg = "EHOSTUNREACH";end else 
-               if ___conditional___ = 66--[[ ELOOP ]] then do
-                  msg = "ELOOP";end else 
-               if ___conditional___ = 67--[[ EOVERFLOW ]] then do
-                  msg = "EOVERFLOW";end else 
-               do end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end
+               if ___conditional___ == 0--[[ E2BIG ]] then do
+                  msg = "E2BIG"; end else 
+               if ___conditional___ == 1--[[ EACCES ]] then do
+                  msg = "EACCES"; end else 
+               if ___conditional___ == 2--[[ EAGAIN ]] then do
+                  msg = "EAGAIN"; end else 
+               if ___conditional___ == 3--[[ EBADF ]] then do
+                  msg = "EBADF"; end else 
+               if ___conditional___ == 4--[[ EBUSY ]] then do
+                  msg = "EBUSY"; end else 
+               if ___conditional___ == 5--[[ ECHILD ]] then do
+                  msg = "ECHILD"; end else 
+               if ___conditional___ == 6--[[ EDEADLK ]] then do
+                  msg = "EDEADLK"; end else 
+               if ___conditional___ == 7--[[ EDOM ]] then do
+                  msg = "EDOM"; end else 
+               if ___conditional___ == 8--[[ EEXIST ]] then do
+                  msg = "EEXIST"; end else 
+               if ___conditional___ == 9--[[ EFAULT ]] then do
+                  msg = "EFAULT"; end else 
+               if ___conditional___ == 10--[[ EFBIG ]] then do
+                  msg = "EFBIG"; end else 
+               if ___conditional___ == 11--[[ EINTR ]] then do
+                  msg = "EINTR"; end else 
+               if ___conditional___ == 12--[[ EINVAL ]] then do
+                  msg = "EINVAL"; end else 
+               if ___conditional___ == 13--[[ EIO ]] then do
+                  msg = "EIO"; end else 
+               if ___conditional___ == 14--[[ EISDIR ]] then do
+                  msg = "EISDIR"; end else 
+               if ___conditional___ == 15--[[ EMFILE ]] then do
+                  msg = "EMFILE"; end else 
+               if ___conditional___ == 16--[[ EMLINK ]] then do
+                  msg = "EMLINK"; end else 
+               if ___conditional___ == 17--[[ ENAMETOOLONG ]] then do
+                  msg = "ENAMETOOLONG"; end else 
+               if ___conditional___ == 18--[[ ENFILE ]] then do
+                  msg = "ENFILE"; end else 
+               if ___conditional___ == 19--[[ ENODEV ]] then do
+                  msg = "ENODEV"; end else 
+               if ___conditional___ == 20--[[ ENOENT ]] then do
+                  msg = "ENOENT"; end else 
+               if ___conditional___ == 21--[[ ENOEXEC ]] then do
+                  msg = "ENOEXEC"; end else 
+               if ___conditional___ == 22--[[ ENOLCK ]] then do
+                  msg = "ENOLCK"; end else 
+               if ___conditional___ == 23--[[ ENOMEM ]] then do
+                  msg = "ENOMEM"; end else 
+               if ___conditional___ == 24--[[ ENOSPC ]] then do
+                  msg = "ENOSPC"; end else 
+               if ___conditional___ == 25--[[ ENOSYS ]] then do
+                  msg = "ENOSYS"; end else 
+               if ___conditional___ == 26--[[ ENOTDIR ]] then do
+                  msg = "ENOTDIR"; end else 
+               if ___conditional___ == 27--[[ ENOTEMPTY ]] then do
+                  msg = "ENOTEMPTY"; end else 
+               if ___conditional___ == 28--[[ ENOTTY ]] then do
+                  msg = "ENOTTY"; end else 
+               if ___conditional___ == 29--[[ ENXIO ]] then do
+                  msg = "ENXIO"; end else 
+               if ___conditional___ == 30--[[ EPERM ]] then do
+                  msg = "EPERM"; end else 
+               if ___conditional___ == 31--[[ EPIPE ]] then do
+                  msg = "EPIPE"; end else 
+               if ___conditional___ == 32--[[ ERANGE ]] then do
+                  msg = "ERANGE"; end else 
+               if ___conditional___ == 33--[[ EROFS ]] then do
+                  msg = "EROFS"; end else 
+               if ___conditional___ == 34--[[ ESPIPE ]] then do
+                  msg = "ESPIPE"; end else 
+               if ___conditional___ == 35--[[ ESRCH ]] then do
+                  msg = "ESRCH"; end else 
+               if ___conditional___ == 36--[[ EXDEV ]] then do
+                  msg = "EXDEV"; end else 
+               if ___conditional___ == 37--[[ EWOULDBLOCK ]] then do
+                  msg = "EWOULDBLOCK"; end else 
+               if ___conditional___ == 38--[[ EINPROGRESS ]] then do
+                  msg = "EINPROGRESS"; end else 
+               if ___conditional___ == 39--[[ EALREADY ]] then do
+                  msg = "EALREADY"; end else 
+               if ___conditional___ == 40--[[ ENOTSOCK ]] then do
+                  msg = "ENOTSOCK"; end else 
+               if ___conditional___ == 41--[[ EDESTADDRREQ ]] then do
+                  msg = "EDESTADDRREQ"; end else 
+               if ___conditional___ == 42--[[ EMSGSIZE ]] then do
+                  msg = "EMSGSIZE"; end else 
+               if ___conditional___ == 43--[[ EPROTOTYPE ]] then do
+                  msg = "EPROTOTYPE"; end else 
+               if ___conditional___ == 44--[[ ENOPROTOOPT ]] then do
+                  msg = "ENOPROTOOPT"; end else 
+               if ___conditional___ == 45--[[ EPROTONOSUPPORT ]] then do
+                  msg = "EPROTONOSUPPORT"; end else 
+               if ___conditional___ == 46--[[ ESOCKTNOSUPPORT ]] then do
+                  msg = "ESOCKTNOSUPPORT"; end else 
+               if ___conditional___ == 47--[[ EOPNOTSUPP ]] then do
+                  msg = "EOPNOTSUPP"; end else 
+               if ___conditional___ == 48--[[ EPFNOSUPPORT ]] then do
+                  msg = "EPFNOSUPPORT"; end else 
+               if ___conditional___ == 49--[[ EAFNOSUPPORT ]] then do
+                  msg = "EAFNOSUPPORT"; end else 
+               if ___conditional___ == 50--[[ EADDRINUSE ]] then do
+                  msg = "EADDRINUSE"; end else 
+               if ___conditional___ == 51--[[ EADDRNOTAVAIL ]] then do
+                  msg = "EADDRNOTAVAIL"; end else 
+               if ___conditional___ == 52--[[ ENETDOWN ]] then do
+                  msg = "ENETDOWN"; end else 
+               if ___conditional___ == 53--[[ ENETUNREACH ]] then do
+                  msg = "ENETUNREACH"; end else 
+               if ___conditional___ == 54--[[ ENETRESET ]] then do
+                  msg = "ENETRESET"; end else 
+               if ___conditional___ == 55--[[ ECONNABORTED ]] then do
+                  msg = "ECONNABORTED"; end else 
+               if ___conditional___ == 56--[[ ECONNRESET ]] then do
+                  msg = "ECONNRESET"; end else 
+               if ___conditional___ == 57--[[ ENOBUFS ]] then do
+                  msg = "ENOBUFS"; end else 
+               if ___conditional___ == 58--[[ EISCONN ]] then do
+                  msg = "EISCONN"; end else 
+               if ___conditional___ == 59--[[ ENOTCONN ]] then do
+                  msg = "ENOTCONN"; end else 
+               if ___conditional___ == 60--[[ ESHUTDOWN ]] then do
+                  msg = "ESHUTDOWN"; end else 
+               if ___conditional___ == 61--[[ ETOOMANYREFS ]] then do
+                  msg = "ETOOMANYREFS"; end else 
+               if ___conditional___ == 62--[[ ETIMEDOUT ]] then do
+                  msg = "ETIMEDOUT"; end else 
+               if ___conditional___ == 63--[[ ECONNREFUSED ]] then do
+                  msg = "ECONNREFUSED"; end else 
+               if ___conditional___ == 64--[[ EHOSTDOWN ]] then do
+                  msg = "EHOSTDOWN"; end else 
+               if ___conditional___ == 65--[[ EHOSTUNREACH ]] then do
+                  msg = "EHOSTUNREACH"; end else 
+               if ___conditional___ == 66--[[ ELOOP ]] then do
+                  msg = "ELOOP"; end else 
+               if ___conditional___ == 67--[[ EOVERFLOW ]] then do
+                  msg = "EOVERFLOW"; end else 
+               end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end
               
             end
           end else do
@@ -261,7 +261,7 @@ function execvpe(name, args, env) do
         name_1 = name;
         args_1 = args;
         env_1 = env;
-        exec = function (file) do
+        exec = function(file) do
           xpcall(function() do
             return Caml_external_polyfill.resolve("unix_execve")(file, args_1, env_1);
           end end,function(raw_exn) do
@@ -324,40 +324,39 @@ function execvpe(name, args, env) do
                        end 
                       local ___conditional___=(switcher + 62 | 0);
                       do
-                         if ___conditional___ = 1--[[ EACCES ]] then do
+                         if ___conditional___ == 1--[[ EACCES ]] then do
                             _param = rem;
                             _eacces = true;
-                            ::continue:: ;end end end 
-                         if ___conditional___ = 0--[[ E2BIG ]]
-                         or ___conditional___ = 2--[[ EAGAIN ]]
-                         or ___conditional___ = 3--[[ EBADF ]]
-                         or ___conditional___ = 4--[[ EBUSY ]]
-                         or ___conditional___ = 5--[[ ECHILD ]]
-                         or ___conditional___ = 6--[[ EDEADLK ]]
-                         or ___conditional___ = 7--[[ EDOM ]]
-                         or ___conditional___ = 8--[[ EEXIST ]]
-                         or ___conditional___ = 9--[[ EFAULT ]]
-                         or ___conditional___ = 10--[[ EFBIG ]]
-                         or ___conditional___ = 11--[[ EINTR ]]
-                         or ___conditional___ = 12--[[ EINVAL ]]
-                         or ___conditional___ = 13--[[ EIO ]]
-                         or ___conditional___ = 15--[[ EMFILE ]]
-                         or ___conditional___ = 16--[[ EMLINK ]]
-                         or ___conditional___ = 18--[[ ENFILE ]]
-                         or ___conditional___ = 21--[[ ENOEXEC ]]
-                         or ___conditional___ = 22--[[ ENOLCK ]]
-                         or ___conditional___ = 23--[[ ENOMEM ]]
-                         or ___conditional___ = 24--[[ ENOSPC ]]
-                         or ___conditional___ = 25--[[ ENOSYS ]] then do
-                            error(exn_2)end end end 
-                         if ___conditional___ = 14--[[ EISDIR ]]
-                         or ___conditional___ = 17--[[ ENAMETOOLONG ]]
-                         or ___conditional___ = 19--[[ ENODEV ]]
-                         or ___conditional___ = 20--[[ ENOENT ]]
-                         or ___conditional___ = 26--[[ ENOTDIR ]] then do
+                            ::continue:: ; end end 
+                         if ___conditional___ == 0--[[ E2BIG ]]
+                         or ___conditional___ == 2--[[ EAGAIN ]]
+                         or ___conditional___ == 3--[[ EBADF ]]
+                         or ___conditional___ == 4--[[ EBUSY ]]
+                         or ___conditional___ == 5--[[ ECHILD ]]
+                         or ___conditional___ == 6--[[ EDEADLK ]]
+                         or ___conditional___ == 7--[[ EDOM ]]
+                         or ___conditional___ == 8--[[ EEXIST ]]
+                         or ___conditional___ == 9--[[ EFAULT ]]
+                         or ___conditional___ == 10--[[ EFBIG ]]
+                         or ___conditional___ == 11--[[ EINTR ]]
+                         or ___conditional___ == 12--[[ EINVAL ]]
+                         or ___conditional___ == 13--[[ EIO ]]
+                         or ___conditional___ == 15--[[ EMFILE ]]
+                         or ___conditional___ == 16--[[ EMLINK ]]
+                         or ___conditional___ == 18--[[ ENFILE ]]
+                         or ___conditional___ == 21--[[ ENOEXEC ]]
+                         or ___conditional___ == 22--[[ ENOLCK ]]
+                         or ___conditional___ == 23--[[ ENOMEM ]]
+                         or ___conditional___ == 24--[[ ENOSPC ]]
+                         or ___conditional___ == 25--[[ ENOSYS ]] then do
+                            error(exn_2) end end 
+                         if ___conditional___ == 14--[[ EISDIR ]]
+                         or ___conditional___ == 17--[[ ENAMETOOLONG ]]
+                         or ___conditional___ == 19--[[ ENODEV ]]
+                         or ___conditional___ == 20--[[ ENOENT ]]
+                         or ___conditional___ == 26--[[ ENOTDIR ]] then do
                             _param = rem;
-                            ::continue:: ;end end end 
-                         do
+                            ::continue:: ; end end 
                         
                       end
                     end else if (switcher > 3 or switcher < 1) then do
@@ -605,7 +604,7 @@ function getaddrinfo(node, service, opts) do
       opt_passive = do
         contents: false
       end;
-      List.iter((function (param) do
+      List.iter((function(param) do
               if (typeof param == "number") then do
                 if (param == --[[ AI_PASSIVE ]]2) then do
                   opt_passive.contents = true;
@@ -616,21 +615,18 @@ function getaddrinfo(node, service, opts) do
               end else do
                 local ___conditional___=(param.tag | 0);
                 do
-                   if ___conditional___ = 1--[[ AI_SOCKTYPE ]] then do
+                   if ___conditional___ == 1--[[ AI_SOCKTYPE ]] then do
                       opt_socktype.contents = param[0];
-                      return --[[ () ]]0;end end end 
-                   if ___conditional___ = 2--[[ AI_PROTOCOL ]] then do
+                      return --[[ () ]]0; end end 
+                   if ___conditional___ == 2--[[ AI_PROTOCOL ]] then do
                       opt_protocol.contents = param[0];
-                      return --[[ () ]]0;end end end 
-                   do
-                  else do
-                    return --[[ () ]]0;
-                    end end
+                      return --[[ () ]]0; end end 
+                  return --[[ () ]]0;
                     
                 end
               end end 
             end end), opts_1);
-      get_port = function (ty, kind) do
+      get_port = function(ty, kind) do
         if (service_1 == "") then do
           return --[[ :: ]]{
                   --[[ tuple ]]{
@@ -719,7 +715,7 @@ function getaddrinfo(node, service, opts) do
           if (exn_1[0] == Caml_builtin_exceptions.failure) then do
             xpcall(function() do
               he = Caml_external_polyfill.resolve("unix_gethostbyname")(node_1);
-              addresses = List.map((function (a) do
+              addresses = List.map((function(a) do
                       return --[[ tuple ]]{
                               a,
                               he.h_name
@@ -737,10 +733,10 @@ function getaddrinfo(node, service, opts) do
           end end 
         end end)
       end end 
-      return List.flatten(List.map((function (param) do
+      return List.flatten(List.map((function(param) do
                         port = param[1];
                         ty = param[0];
-                        return List.map((function (param) do
+                        return List.map((function(param) do
                                       return do
                                               ai_family: --[[ PF_INET ]]1,
                                               ai_socktype: ty,
@@ -1715,6 +1711,7 @@ function setsid(prim) do
   return Caml_external_polyfill.resolve("unix_setsid")(prim);
 end end
 
+exports = {}
 exports.Unix_error = Unix_error;
 exports.error_message = error_message;
 exports.handle_unix_error = handle_unix_error;

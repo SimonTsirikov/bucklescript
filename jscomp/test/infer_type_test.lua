@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 
 hh = do
@@ -23,6 +23,7 @@ u = v.hi;
 
 uu = v.width;
 
+exports = {}
 exports.hh = hh;
 exports.v = v;
 exports.vv = vv;

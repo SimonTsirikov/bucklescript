@@ -5,14 +5,14 @@ import * as Caml_option from "./caml_option.lua";
 import * as Caml_builtin_exceptions from "./caml_builtin_exceptions.lua";
 
 function Make(funarg) do
-  height = function (param) do
+  height = function(param) do
     if (param) then do
       return param[--[[ h ]]4];
     end else do
       return 0;
     end end 
   end end;
-  create = function (l, x, d, r) do
+  create = function(l, x, d, r) do
     hl = height(l);
     hr = height(r);
     return --[[ Node ]]{
@@ -23,7 +23,7 @@ function Make(funarg) do
             --[[ h ]]hl >= hr and hl + 1 | 0 or hr + 1 | 0
           };
   end end;
-  singleton = function (x, d) do
+  singleton = function(x, d) do
     return --[[ Node ]]{
             --[[ l : Empty ]]0,
             --[[ v ]]x,
@@ -32,7 +32,7 @@ function Make(funarg) do
             --[[ h ]]1
           };
   end end;
-  bal = function (l, x, d, r) do
+  bal = function(l, x, d, r) do
     hl = l and l[--[[ h ]]4] or 0;
     hr = r and r[--[[ h ]]4] or 0;
     if (hl > (hr + 2 | 0)) then do
@@ -89,14 +89,14 @@ function Make(funarg) do
             };
     end end  end 
   end end;
-  is_empty = function (param) do
+  is_empty = function(param) do
     if (param) then do
       return false;
     end else do
       return true;
     end end 
   end end;
-  add = function (x, data, m) do
+  add = function(x, data, m) do
     if (m) then do
       r = m[--[[ r ]]3];
       d = m[--[[ d ]]2];
@@ -140,7 +140,7 @@ function Make(funarg) do
             };
     end end 
   end end;
-  find = function (x, _param) do
+  find = function(x, _param) do
     while(true) do
       param = _param;
       if (param) then do
@@ -156,7 +156,7 @@ function Make(funarg) do
       end end 
     end;
   end end;
-  find_first = function (f, _param) do
+  find_first = function(f, _param) do
     while(true) do
       param = _param;
       if (param) then do
@@ -197,7 +197,7 @@ function Make(funarg) do
       end end 
     end;
   end end;
-  find_first_opt = function (f, _param) do
+  find_first_opt = function(f, _param) do
     while(true) do
       param = _param;
       if (param) then do
@@ -238,7 +238,7 @@ function Make(funarg) do
       end end 
     end;
   end end;
-  find_last = function (f, _param) do
+  find_last = function(f, _param) do
     while(true) do
       param = _param;
       if (param) then do
@@ -279,7 +279,7 @@ function Make(funarg) do
       end end 
     end;
   end end;
-  find_last_opt = function (f, _param) do
+  find_last_opt = function(f, _param) do
     while(true) do
       param = _param;
       if (param) then do
@@ -320,7 +320,7 @@ function Make(funarg) do
       end end 
     end;
   end end;
-  find_opt = function (x, _param) do
+  find_opt = function(x, _param) do
     while(true) do
       param = _param;
       if (param) then do
@@ -336,7 +336,7 @@ function Make(funarg) do
       end end 
     end;
   end end;
-  mem = function (x, _param) do
+  mem = function(x, _param) do
     while(true) do
       param = _param;
       if (param) then do
@@ -352,7 +352,7 @@ function Make(funarg) do
       end end 
     end;
   end end;
-  min_binding = function (_param) do
+  min_binding = function(_param) do
     while(true) do
       param = _param;
       if (param) then do
@@ -371,7 +371,7 @@ function Make(funarg) do
       end end 
     end;
   end end;
-  min_binding_opt = function (_param) do
+  min_binding_opt = function(_param) do
     while(true) do
       param = _param;
       if (param) then do
@@ -390,7 +390,7 @@ function Make(funarg) do
       end end 
     end;
   end end;
-  max_binding = function (_param) do
+  max_binding = function(_param) do
     while(true) do
       param = _param;
       if (param) then do
@@ -409,7 +409,7 @@ function Make(funarg) do
       end end 
     end;
   end end;
-  max_binding_opt = function (_param) do
+  max_binding_opt = function(_param) do
     while(true) do
       param = _param;
       if (param) then do
@@ -428,7 +428,7 @@ function Make(funarg) do
       end end 
     end;
   end end;
-  remove_min_binding = function (param) do
+  remove_min_binding = function(param) do
     if (param) then do
       l = param[--[[ l ]]0];
       if (l) then do
@@ -443,7 +443,7 @@ function Make(funarg) do
       })
     end end 
   end end;
-  merge = function (t1, t2) do
+  merge = function(t1, t2) do
     if (t1) then do
       if (t2) then do
         match = min_binding(t2);
@@ -455,7 +455,7 @@ function Make(funarg) do
       return t2;
     end end 
   end end;
-  remove = function (x, m) do
+  remove = function(x, m) do
     if (m) then do
       r = m[--[[ r ]]3];
       d = m[--[[ d ]]2];
@@ -483,7 +483,7 @@ function Make(funarg) do
       return --[[ Empty ]]0;
     end end 
   end end;
-  update = function (x, f, m) do
+  update = function(x, f, m) do
     if (m) then do
       r = m[--[[ r ]]3];
       d = m[--[[ d ]]2];
@@ -538,7 +538,7 @@ function Make(funarg) do
       end end 
     end end 
   end end;
-  iter = function (f, _param) do
+  iter = function(f, _param) do
     while(true) do
       param = _param;
       if (param) then do
@@ -551,7 +551,7 @@ function Make(funarg) do
       end end 
     end;
   end end;
-  map = function (f, param) do
+  map = function(f, param) do
     if (param) then do
       l$prime = map(f, param[--[[ l ]]0]);
       d$prime = Curry._1(f, param[--[[ d ]]2]);
@@ -567,7 +567,7 @@ function Make(funarg) do
       return --[[ Empty ]]0;
     end end 
   end end;
-  mapi = function (f, param) do
+  mapi = function(f, param) do
     if (param) then do
       v = param[--[[ v ]]1];
       l$prime = mapi(f, param[--[[ l ]]0]);
@@ -584,7 +584,7 @@ function Make(funarg) do
       return --[[ Empty ]]0;
     end end 
   end end;
-  fold = function (f, _m, _accu) do
+  fold = function(f, _m, _accu) do
     while(true) do
       accu = _accu;
       m = _m;
@@ -597,7 +597,7 @@ function Make(funarg) do
       end end 
     end;
   end end;
-  for_all = function (p, _param) do
+  for_all = function(p, _param) do
     while(true) do
       param = _param;
       if (param) then do
@@ -612,7 +612,7 @@ function Make(funarg) do
       end end 
     end;
   end end;
-  exists = function (p, _param) do
+  exists = function(p, _param) do
     while(true) do
       param = _param;
       if (param) then do
@@ -627,21 +627,21 @@ function Make(funarg) do
       end end 
     end;
   end end;
-  add_min_binding = function (k, x, param) do
+  add_min_binding = function(k, x, param) do
     if (param) then do
       return bal(add_min_binding(k, x, param[--[[ l ]]0]), param[--[[ v ]]1], param[--[[ d ]]2], param[--[[ r ]]3]);
     end else do
       return singleton(k, x);
     end end 
   end end;
-  add_max_binding = function (k, x, param) do
+  add_max_binding = function(k, x, param) do
     if (param) then do
       return bal(param[--[[ l ]]0], param[--[[ v ]]1], param[--[[ d ]]2], add_max_binding(k, x, param[--[[ r ]]3]));
     end else do
       return singleton(k, x);
     end end 
   end end;
-  join = function (l, v, d, r) do
+  join = function(l, v, d, r) do
     if (l) then do
       if (r) then do
         rh = r[--[[ h ]]4];
@@ -660,7 +660,7 @@ function Make(funarg) do
       return add_min_binding(v, d, r);
     end end 
   end end;
-  concat = function (t1, t2) do
+  concat = function(t1, t2) do
     if (t1) then do
       if (t2) then do
         match = min_binding(t2);
@@ -672,14 +672,14 @@ function Make(funarg) do
       return t2;
     end end 
   end end;
-  concat_or_join = function (t1, v, d, t2) do
+  concat_or_join = function(t1, v, d, t2) do
     if (d ~= undefined) then do
       return join(t1, v, Caml_option.valFromOption(d), t2);
     end else do
       return concat(t1, t2);
     end end 
   end end;
-  split = function (x, param) do
+  split = function(x, param) do
     if (param) then do
       r = param[--[[ r ]]3];
       d = param[--[[ d ]]2];
@@ -715,7 +715,7 @@ function Make(funarg) do
             };
     end end 
   end end;
-  merge_1 = function (f, s1, s2) do
+  merge_1 = function(f, s1, s2) do
     if (s1) then do
       v1 = s1[--[[ v ]]1];
       if (s1[--[[ h ]]4] >= height(s2)) then do
@@ -742,7 +742,7 @@ function Make(funarg) do
       })
     end end 
   end end;
-  union = function (f, s1, s2) do
+  union = function(f, s1, s2) do
     if (s1) then do
       if (s2) then do
         d2 = s2[--[[ d ]]2];
@@ -777,7 +777,7 @@ function Make(funarg) do
       return s2;
     end end 
   end end;
-  filter = function (p, m) do
+  filter = function(p, m) do
     if (m) then do
       r = m[--[[ r ]]3];
       d = m[--[[ d ]]2];
@@ -799,7 +799,7 @@ function Make(funarg) do
       return --[[ Empty ]]0;
     end end 
   end end;
-  partition = function (p, param) do
+  partition = function(p, param) do
     if (param) then do
       d = param[--[[ d ]]2];
       v = param[--[[ v ]]1];
@@ -828,7 +828,7 @@ function Make(funarg) do
             };
     end end 
   end end;
-  cons_enum = function (_m, _e) do
+  cons_enum = function(_m, _e) do
     while(true) do
       e = _e;
       m = _m;
@@ -846,7 +846,7 @@ function Make(funarg) do
       end end 
     end;
   end end;
-  compare = function (cmp, m1, m2) do
+  compare = function(cmp, m1, m2) do
     _e1 = cons_enum(m1, --[[ End ]]0);
     _e2 = cons_enum(m2, --[[ End ]]0);
     while(true) do
@@ -877,7 +877,7 @@ function Make(funarg) do
       end end  end 
     end;
   end end;
-  equal = function (cmp, m1, m2) do
+  equal = function(cmp, m1, m2) do
     _e1 = cons_enum(m1, --[[ End ]]0);
     _e2 = cons_enum(m2, --[[ End ]]0);
     while(true) do
@@ -898,14 +898,14 @@ function Make(funarg) do
       end end  end 
     end;
   end end;
-  cardinal = function (param) do
+  cardinal = function(param) do
     if (param) then do
       return (cardinal(param[--[[ l ]]0]) + 1 | 0) + cardinal(param[--[[ r ]]3]) | 0;
     end else do
       return 0;
     end end 
   end end;
-  bindings_aux = function (_accu, _param) do
+  bindings_aux = function(_accu, _param) do
     while(true) do
       param = _param;
       accu = _accu;
@@ -924,7 +924,7 @@ function Make(funarg) do
       end end 
     end;
   end end;
-  bindings = function (s) do
+  bindings = function(s) do
     return bindings_aux(--[[ [] ]]0, s);
   end end;
   return do

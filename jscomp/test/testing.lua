@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Block = require "../../lib/js/block";
 Curry = require "../../lib/js/curry";
@@ -119,16 +119,16 @@ function test_raises_exc_p(pred, f, x) do
 end end
 
 function test_raises_some_exc(f) do
-  return (function (param) do
-      return test_raises_exc_p((function (param) do
+  return (function(param) do
+      return test_raises_exc_p((function(param) do
                     return true;
                   end end), f, param);
     end end);
 end end
 
 function test_raises_this_exc(exc) do
-  return (function (param, param_1) do
-      return test_raises_exc_p((function (x) do
+  return (function(param, param_1) do
+      return test_raises_exc_p((function(x) do
                     return Caml_obj.caml_equal(x, exc);
                   end end), param, param_1);
     end end);
@@ -138,7 +138,7 @@ function failure_test(f, x, s) do
   s_1 = s;
   f_1 = f;
   x_1 = x;
-  return test_raises_exc_p((function (x) do
+  return test_raises_exc_p((function(x) do
                 return Caml_obj.caml_equal(x, {
                             Caml_builtin_exceptions.failure,
                             s_1
@@ -147,11 +147,12 @@ function failure_test(f, x, s) do
 end end
 
 function scan_failure_test(f, x) do
-  return test_raises_exc_p((function (param) do
+  return test_raises_exc_p((function(param) do
                 return param[0] == Scanf.Scan_failure;
               end end), f, x);
 end end
 
+exports = {}
 exports.test = test;
 exports.failure_test = failure_test;
 exports.test_raises_some_exc = test_raises_some_exc;

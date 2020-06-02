@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 
 v = 0;
@@ -13,5 +13,6 @@ end end
 
 h = unuse_v;
 
+exports = {}
 exports.h = h;
 --[[  Not a pure module ]]

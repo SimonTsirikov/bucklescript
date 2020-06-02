@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Js_mapperRt = require "../../lib/js/js_mapperRt";
 
@@ -99,6 +99,7 @@ end end
 
 bToJs(--[[ b0 ]]21902);
 
+exports = {}
 exports.tToJs = tToJs;
 exports.tFromJs = tFromJs;
 exports.searchForSureExists = searchForSureExists;

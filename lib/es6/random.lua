@@ -19,10 +19,10 @@ function assign(st1, st2) do
 end end
 
 function full_init(s, seed) do
-  combine = function (accu, x) do
+  combine = function(accu, x) do
     return Digest.string(accu .. String(x));
   end end;
-  extract = function (d) do
+  extract = function(d) do
     return ((Caml_string.get(d, 0) + (Caml_string.get(d, 1) << 8) | 0) + (Caml_string.get(d, 2) << 16) | 0) + (Caml_string.get(d, 3) << 24) | 0;
   end end;
   seed_1 = #seed == 0 and {0} or seed;
@@ -148,7 +148,7 @@ function int64(s, bound) do
   end;
 end end
 
-nativeint = Nativeint.size == 32 and int32 or (function (s, bound) do
+nativeint = Nativeint.size == 32 and int32 or (function(s, bound) do
       return Caml_int64.to_int32(int64(s, Caml_int64.of_int32(bound)));
     end end);
 

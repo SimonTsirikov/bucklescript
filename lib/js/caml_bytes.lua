@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Caml_builtin_exceptions = require "./caml_builtin_exceptions";
 
@@ -140,6 +140,7 @@ function bytes_of_string(s) do
   return res;
 end end
 
+exports = {}
 exports.caml_create_bytes = caml_create_bytes;
 exports.caml_fill_bytes = caml_fill_bytes;
 exports.get = get;

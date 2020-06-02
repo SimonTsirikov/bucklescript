@@ -1,4 +1,4 @@
-console.log = print;
+console = {log = print};
 
 Caml_builtin_exceptions = require "./caml_builtin_exceptions";
 
@@ -285,6 +285,7 @@ function caml_new_lex_engine(tbl, i, buf) do
             });
 end end
 
+exports = {}
 exports.caml_lex_engine = caml_lex_engine;
 exports.caml_new_lex_engine = caml_new_lex_engine;
 --[[  Not a pure module ]]
