@@ -15,28 +15,28 @@ end;
 
 function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = --[[ :: ]][
-    --[[ tuple ]][
+  suites.contents = --[[ :: ]]{
+    --[[ tuple ]]{
       loc .. (" id " .. String(test_id.contents)),
       (function (param) do
-          return --[[ Eq ]]Block.__(0, [
+          return --[[ Eq ]]Block.__(0, {
                     x,
                     y
-                  ]);
+                  });
         end end)
-    ],
+    },
     suites.contents
-  ];
+  };
   return --[[ () ]]0;
 end end
 
 y;
 
 try do
-  throw [
+  throw {
         Caml_builtin_exceptions.failure,
         "boo"
-      ];
+      };
 end
 catch (raw_exn)do
   exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
@@ -52,10 +52,10 @@ x;
 exit = 0;
 
 try do
-  throw [
+  throw {
         Caml_builtin_exceptions.failure,
         "boo"
-      ];
+      };
 end
 catch (raw_exn$1)do
   exn$1 = Caml_js_exceptions.internalToOCamlException(raw_exn$1);

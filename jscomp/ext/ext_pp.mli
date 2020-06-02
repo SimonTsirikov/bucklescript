@@ -61,6 +61,8 @@ val paren : t -> (unit -> 'a) -> 'a
 
 val brace : t -> (unit -> 'a) -> 'a
 
+val curlybrace : t -> (unit -> 'a) -> 'a
+
 val paren_group : t -> int -> (unit -> 'a) -> 'a
 
 val cond_paren_group :
@@ -75,6 +77,10 @@ val paren_vgroup : t -> int -> (unit -> 'a) -> 'a
 val brace_group : t -> int -> (unit -> 'a) -> 'a
 
 val brace_vgroup : t -> int -> (unit -> 'a) -> 'a
+
+val curlybrace_group : t -> int -> (unit -> 'a) -> 'a
+
+val curlybrace_vgroup : t -> int -> (unit -> 'a) -> 'a
 
 val bracket_group : t -> int -> (unit -> 'a) -> 'a
 

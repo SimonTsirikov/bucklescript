@@ -21,18 +21,18 @@ function t3(x, f) do
 end end
 
 function f(a, b, c) do
-  return --[[ tuple ]][
+  return --[[ tuple ]]{
           Curry._1(b, a),
           Curry._1(c, a)
-        ];
+        };
 end end
 
 function f1(a, b, c, d) do
   __ocaml_internal_obj = Curry._1(a, b);
-  return --[[ tuple ]][
+  return --[[ tuple ]]{
           Curry._1(c, __ocaml_internal_obj),
           Curry._1(d, __ocaml_internal_obj)
-        ];
+        };
 end end
 
 function f2(a, b, c, d) do
@@ -51,10 +51,10 @@ function f3(a, b, c, d, e) do
 end end
 
 function f4(a, b, c) do
-  return --[[ tuple ]][
+  return --[[ tuple ]]{
           Curry._2(b, a, c),
           Curry._2(b, a, c)
-        ];
+        };
 end end
 
 function f5(a, b, c, d) do
@@ -69,11 +69,11 @@ function f6(a) do
 end end
 
 function f7(a) do
-  return --[[ tuple ]][
+  return --[[ tuple ]]{
           Caml_option.some(a),
           Caml_option.some(a),
           Caml_option.some(a)
-        ];
+        };
 end end
 
 function f8(a) do
@@ -86,10 +86,10 @@ function hi(x) do
               end end));
 end end
 
-with_poly = --[[ `Foo ]][
+with_poly = --[[ `Foo ]]{
   3505894,
   1
-];
+};
 
 exports.t0 = t0;
 exports.t1 = t1;

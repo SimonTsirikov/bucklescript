@@ -14,10 +14,10 @@ Caml_builtin_exceptions = require "./caml_builtin_exceptions.lua";
 
 function fill(ar, ofs, len, x) do
   if (ofs < 0 or len < 0 or (ofs + len | 0) > #ar) then do
-    throw [
+    throw {
           Caml_builtin_exceptions.invalid_argument,
           "Weak.fill"
-        ];
+        };
   end
    end 
   for i = ofs , (ofs + len | 0) - 1 | 0 , 1 do
@@ -36,7 +36,7 @@ function Make(H) do
     sz$2 = sz$1 > Sys.max_array_length and Sys.max_array_length or sz$1;
     return do
             table: Caml_array.caml_make_vect(sz$2, emptybucket),
-            hashes: Caml_array.caml_make_vect(sz$2, []),
+            hashes: Caml_array.caml_make_vect(sz$2, {}),
             limit: 7,
             oversize: 0,
             rover: 0
@@ -45,7 +45,7 @@ function Make(H) do
   clear = function (t) do
     for i = 0 , #t.table - 1 | 0 , 1 do
       Caml_array.caml_array_set(t.table, i, emptybucket);
-      Caml_array.caml_array_set(t.hashes, i, []);
+      Caml_array.caml_array_set(t.hashes, i, {});
     end
     t.limit = 7;
     t.oversize = 0;
@@ -176,7 +176,7 @@ function Make(H) do
       loop(0, #bucket - 1 | 0);
       if (prev_len == 0) then do
         Caml_array.caml_array_set(t.table, t.rover, emptybucket);
-        Caml_array.caml_array_set(t.hashes, t.rover, []);
+        Caml_array.caml_array_set(t.hashes, t.rover, {});
       end else do
         Caml_obj.caml_obj_truncate(bucket, prev_len + 0 | 0);
         Caml_obj.caml_obj_truncate(hbucket, prev_len);
@@ -200,10 +200,10 @@ function Make(H) do
       if (i >= sz) then do
         newsz = Caml_primitive.caml_int_min((Caml_int32.imul(3, sz) / 2 | 0) + 3 | 0, Sys.max_array_length - 0 | 0);
         if (newsz <= sz) then do
-          throw [
+          throw {
                 Caml_builtin_exceptions.failure,
                 "Weak.Make: hash bucket cannot grow more"
-              ];
+              };
         end
          end 
         newbucket = Caml_weak.caml_weak_create(newsz);
@@ -406,10 +406,10 @@ function Make(H) do
           if (Curry._2(H.equal, Caml_option.valFromOption(match), d)) then do
             match$1 = Caml_weak.caml_weak_get(bucket, i);
             if (match$1 ~= undefined) then do
-              _accu = --[[ :: ]][
+              _accu = --[[ :: ]]{
                 Caml_option.valFromOption(match$1),
                 accu
-              ];
+              };
               _i = i + 1 | 0;
               continue ;
             end else do
@@ -439,14 +439,14 @@ function Make(H) do
     totlen = __Array.fold_left((function (prim, prim$1) do
             return prim + prim$1 | 0;
           end end), 0, lens);
-    return --[[ tuple ]][
+    return --[[ tuple ]]{
             len,
             count(t),
             totlen,
             Caml_array.caml_array_get(lens, 0),
             Caml_array.caml_array_get(lens, len / 2 | 0),
             Caml_array.caml_array_get(lens, len - 1 | 0)
-          ];
+          };
   end end;
   return do
           create: create,

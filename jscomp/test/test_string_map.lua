@@ -15,13 +15,13 @@ end end
 function create(l, x, d, r) do
   hl = height(l);
   hr = height(r);
-  return --[[ Node ]][
+  return --[[ Node ]]{
           --[[ l ]]l,
           --[[ v ]]x,
           --[[ d ]]d,
           --[[ r ]]r,
           --[[ h ]]hl >= hr and hl + 1 | 0 or hr + 1 | 0
-        ];
+        };
 end end
 
 function bal(l, x, d, r) do
@@ -38,16 +38,16 @@ function bal(l, x, d, r) do
       end else if (lr) then do
         return create(create(ll, lv, ld, lr[--[[ l ]]0]), lr[--[[ v ]]1], lr[--[[ d ]]2], create(lr[--[[ r ]]3], x, d, r));
       end else do
-        throw [
+        throw {
               Caml_builtin_exceptions.invalid_argument,
               "Map.bal"
-            ];
+            };
       end end  end 
     end else do
-      throw [
+      throw {
             Caml_builtin_exceptions.invalid_argument,
             "Map.bal"
-          ];
+          };
     end end 
   end else if (hr > (hl + 2 | 0)) then do
     if (r) then do
@@ -60,25 +60,25 @@ function bal(l, x, d, r) do
       end else if (rl) then do
         return create(create(l, x, d, rl[--[[ l ]]0]), rl[--[[ v ]]1], rl[--[[ d ]]2], create(rl[--[[ r ]]3], rv, rd, rr));
       end else do
-        throw [
+        throw {
               Caml_builtin_exceptions.invalid_argument,
               "Map.bal"
-            ];
+            };
       end end  end 
     end else do
-      throw [
+      throw {
             Caml_builtin_exceptions.invalid_argument,
             "Map.bal"
-          ];
+          };
     end end 
   end else do
-    return --[[ Node ]][
+    return --[[ Node ]]{
             --[[ l ]]l,
             --[[ v ]]x,
             --[[ d ]]d,
             --[[ r ]]r,
             --[[ h ]]hl >= hr and hl + 1 | 0 or hr + 1 | 0
-          ];
+          };
   end end  end 
 end end
 
@@ -93,13 +93,13 @@ function add(x, data, m) do
       if (d == data) then do
         return m;
       end else do
-        return --[[ Node ]][
+        return --[[ Node ]]{
                 --[[ l ]]l,
                 --[[ v ]]x,
                 --[[ d ]]data,
                 --[[ r ]]r,
                 --[[ h ]]m[--[[ h ]]4]
-              ];
+              };
       end end 
     end else if (c < 0) then do
       ll = add(x, data, l);
@@ -117,13 +117,13 @@ function add(x, data, m) do
       end end 
     end end  end 
   end else do
-    return --[[ Node ]][
+    return --[[ Node ]]{
             --[[ l : Empty ]]0,
             --[[ v ]]x,
             --[[ d ]]data,
             --[[ r : Empty ]]0,
             --[[ h ]]1
-          ];
+          };
   end end 
 end end
 

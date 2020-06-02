@@ -18,13 +18,13 @@ end end
 function create(l, x, d, r) do
   hl = height(l);
   hr = height(r);
-  return --[[ Node ]][
+  return --[[ Node ]]{
           --[[ l ]]l,
           --[[ v ]]x,
           --[[ d ]]d,
           --[[ r ]]r,
           --[[ h ]]hl >= hr and hl + 1 | 0 or hr + 1 | 0
-        ];
+        };
 end end
 
 function bal(l, x, d, r) do
@@ -41,16 +41,16 @@ function bal(l, x, d, r) do
       end else if (lr) then do
         return create(create(ll, lv, ld, lr[--[[ l ]]0]), lr[--[[ v ]]1], lr[--[[ d ]]2], create(lr[--[[ r ]]3], x, d, r));
       end else do
-        throw [
+        throw {
               Caml_builtin_exceptions.invalid_argument,
               "Map.bal"
-            ];
+            };
       end end  end 
     end else do
-      throw [
+      throw {
             Caml_builtin_exceptions.invalid_argument,
             "Map.bal"
-          ];
+          };
     end end 
   end else if (hr > (hl + 2 | 0)) then do
     if (r) then do
@@ -63,25 +63,25 @@ function bal(l, x, d, r) do
       end else if (rl) then do
         return create(create(l, x, d, rl[--[[ l ]]0]), rl[--[[ v ]]1], rl[--[[ d ]]2], create(rl[--[[ r ]]3], rv, rd, rr));
       end else do
-        throw [
+        throw {
               Caml_builtin_exceptions.invalid_argument,
               "Map.bal"
-            ];
+            };
       end end  end 
     end else do
-      throw [
+      throw {
             Caml_builtin_exceptions.invalid_argument,
             "Map.bal"
-          ];
+          };
     end end 
   end else do
-    return --[[ Node ]][
+    return --[[ Node ]]{
             --[[ l ]]l,
             --[[ v ]]x,
             --[[ d ]]d,
             --[[ r ]]r,
             --[[ h ]]hl >= hr and hl + 1 | 0 or hr + 1 | 0
-          ];
+          };
   end end  end 
 end end
 
@@ -96,13 +96,13 @@ function add(x, data, m) do
       if (d == data) then do
         return m;
       end else do
-        return --[[ Node ]][
+        return --[[ Node ]]{
                 --[[ l ]]l,
                 --[[ v ]]x,
                 --[[ d ]]data,
                 --[[ r ]]r,
                 --[[ h ]]m[--[[ h ]]4]
-              ];
+              };
       end end 
     end else if (c < 0) then do
       ll = add(x, data, l);
@@ -120,13 +120,13 @@ function add(x, data, m) do
       end end 
     end end  end 
   end else do
-    return --[[ Node ]][
+    return --[[ Node ]]{
             --[[ l : Empty ]]0,
             --[[ v ]]x,
             --[[ d ]]data,
             --[[ r : Empty ]]0,
             --[[ h ]]1
-          ];
+          };
   end end 
 end end
 
@@ -135,12 +135,12 @@ function cons_enum(_m, _e) do
     e = _e;
     m = _m;
     if (m) then do
-      _e = --[[ More ]][
+      _e = --[[ More ]]{
         m[--[[ v ]]1],
         m[--[[ d ]]2],
         m[--[[ r ]]3],
         e
-      ];
+      };
       _m = m[--[[ l ]]0];
       continue ;
     end else do
@@ -222,13 +222,13 @@ end end
 function create$1(l, x, d, r) do
   hl = height$1(l);
   hr = height$1(r);
-  return --[[ Node ]][
+  return --[[ Node ]]{
           --[[ l ]]l,
           --[[ v ]]x,
           --[[ d ]]d,
           --[[ r ]]r,
           --[[ h ]]hl >= hr and hl + 1 | 0 or hr + 1 | 0
-        ];
+        };
 end end
 
 function bal$1(l, x, d, r) do
@@ -245,16 +245,16 @@ function bal$1(l, x, d, r) do
       end else if (lr) then do
         return create$1(create$1(ll, lv, ld, lr[--[[ l ]]0]), lr[--[[ v ]]1], lr[--[[ d ]]2], create$1(lr[--[[ r ]]3], x, d, r));
       end else do
-        throw [
+        throw {
               Caml_builtin_exceptions.invalid_argument,
               "Map.bal"
-            ];
+            };
       end end  end 
     end else do
-      throw [
+      throw {
             Caml_builtin_exceptions.invalid_argument,
             "Map.bal"
-          ];
+          };
     end end 
   end else if (hr > (hl + 2 | 0)) then do
     if (r) then do
@@ -267,25 +267,25 @@ function bal$1(l, x, d, r) do
       end else if (rl) then do
         return create$1(create$1(l, x, d, rl[--[[ l ]]0]), rl[--[[ v ]]1], rl[--[[ d ]]2], create$1(rl[--[[ r ]]3], rv, rd, rr));
       end else do
-        throw [
+        throw {
               Caml_builtin_exceptions.invalid_argument,
               "Map.bal"
-            ];
+            };
       end end  end 
     end else do
-      throw [
+      throw {
             Caml_builtin_exceptions.invalid_argument,
             "Map.bal"
-          ];
+          };
     end end 
   end else do
-    return --[[ Node ]][
+    return --[[ Node ]]{
             --[[ l ]]l,
             --[[ v ]]x,
             --[[ d ]]d,
             --[[ r ]]r,
             --[[ h ]]hl >= hr and hl + 1 | 0 or hr + 1 | 0
-          ];
+          };
   end end  end 
 end end
 
@@ -300,13 +300,13 @@ function add$1(x, data, m) do
       if (d == data) then do
         return m;
       end else do
-        return --[[ Node ]][
+        return --[[ Node ]]{
                 --[[ l ]]l,
                 --[[ v ]]x,
                 --[[ d ]]data,
                 --[[ r ]]r,
                 --[[ h ]]m[--[[ h ]]4]
-              ];
+              };
       end end 
     end else if (c < 0) then do
       ll = add$1(x, data, l);
@@ -324,13 +324,13 @@ function add$1(x, data, m) do
       end end 
     end end  end 
   end else do
-    return --[[ Node ]][
+    return --[[ Node ]]{
             --[[ l : Empty ]]0,
             --[[ v ]]x,
             --[[ d ]]data,
             --[[ r : Empty ]]0,
             --[[ h ]]1
-          ];
+          };
   end end 
 end end
 
@@ -357,135 +357,135 @@ function of_list(kvs) do
               end end), --[[ Empty ]]0, kvs);
 end end
 
-int_map_suites_000 = --[[ tuple ]][
+int_map_suites_000 = --[[ tuple ]]{
   "add",
   (function (param) do
-      v = of_list(--[[ :: ]][
-            --[[ tuple ]][
+      v = of_list(--[[ :: ]]{
+            --[[ tuple ]]{
               1,
               --[[ "1" ]]49
-            ],
-            --[[ :: ]][
-              --[[ tuple ]][
+            },
+            --[[ :: ]]{
+              --[[ tuple ]]{
                 2,
                 --[[ "3" ]]51
-              ],
-              --[[ :: ]][
-                --[[ tuple ]][
+              },
+              --[[ :: ]]{
+                --[[ tuple ]]{
                   3,
                   --[[ "4" ]]52
-                ],
+                },
                 --[[ [] ]]0
-              ]
-            ]
-          ]);
-      return --[[ Eq ]]Block.__(0, [
+              }
+            }
+          });
+      return --[[ Eq ]]Block.__(0, {
                 cardinal(v),
                 3
-              ]);
+              });
     end end)
-];
+};
 
-int_map_suites_001 = --[[ :: ]][
-  --[[ tuple ]][
+int_map_suites_001 = --[[ :: ]]{
+  --[[ tuple ]]{
     "equal",
     (function (param) do
-        v = of_list(--[[ :: ]][
-              --[[ tuple ]][
+        v = of_list(--[[ :: ]]{
+              --[[ tuple ]]{
                 1,
                 --[[ "1" ]]49
-              ],
-              --[[ :: ]][
-                --[[ tuple ]][
+              },
+              --[[ :: ]]{
+                --[[ tuple ]]{
                   2,
                   --[[ "3" ]]51
-                ],
-                --[[ :: ]][
-                  --[[ tuple ]][
+                },
+                --[[ :: ]]{
+                  --[[ tuple ]]{
                     3,
                     --[[ "4" ]]52
-                  ],
+                  },
                   --[[ [] ]]0
-                ]
-              ]
-            ]);
-        u = of_list(--[[ :: ]][
-              --[[ tuple ]][
+                }
+              }
+            });
+        u = of_list(--[[ :: ]]{
+              --[[ tuple ]]{
                 2,
                 --[[ "3" ]]51
-              ],
-              --[[ :: ]][
-                --[[ tuple ]][
+              },
+              --[[ :: ]]{
+                --[[ tuple ]]{
                   3,
                   --[[ "4" ]]52
-                ],
-                --[[ :: ]][
-                  --[[ tuple ]][
+                },
+                --[[ :: ]]{
+                  --[[ tuple ]]{
                     1,
                     --[[ "1" ]]49
-                  ],
+                  },
                   --[[ [] ]]0
-                ]
-              ]
-            ]);
-        return --[[ Eq ]]Block.__(0, [
+                }
+              }
+            });
+        return --[[ Eq ]]Block.__(0, {
                   compare(Caml_primitive.caml_int_compare, u, v),
                   0
-                ]);
+                });
       end end)
-  ],
-  --[[ :: ]][
-    --[[ tuple ]][
+  },
+  --[[ :: ]]{
+    --[[ tuple ]]{
       "equal2",
       (function (param) do
-          v = of_list(--[[ :: ]][
-                --[[ tuple ]][
+          v = of_list(--[[ :: ]]{
+                --[[ tuple ]]{
                   1,
                   --[[ "1" ]]49
-                ],
-                --[[ :: ]][
-                  --[[ tuple ]][
+                },
+                --[[ :: ]]{
+                  --[[ tuple ]]{
                     2,
                     --[[ "3" ]]51
-                  ],
-                  --[[ :: ]][
-                    --[[ tuple ]][
+                  },
+                  --[[ :: ]]{
+                    --[[ tuple ]]{
                       3,
                       --[[ "4" ]]52
-                    ],
+                    },
                     --[[ [] ]]0
-                  ]
-                ]
-              ]);
-          u = of_list(--[[ :: ]][
-                --[[ tuple ]][
+                  }
+                }
+              });
+          u = of_list(--[[ :: ]]{
+                --[[ tuple ]]{
                   2,
                   --[[ "3" ]]51
-                ],
-                --[[ :: ]][
-                  --[[ tuple ]][
+                },
+                --[[ :: ]]{
+                  --[[ tuple ]]{
                     3,
                     --[[ "4" ]]52
-                  ],
-                  --[[ :: ]][
-                    --[[ tuple ]][
+                  },
+                  --[[ :: ]]{
+                    --[[ tuple ]]{
                       1,
                       --[[ "1" ]]49
-                    ],
+                    },
                     --[[ [] ]]0
-                  ]
-                ]
-              ]);
-          return --[[ Eq ]]Block.__(0, [
+                  }
+                }
+              });
+          return --[[ Eq ]]Block.__(0, {
                     true,
                     equal((function (x, y) do
                             return x == y;
                           end end), u, v)
-                  ]);
+                  });
         end end)
-    ],
-    --[[ :: ]][
-      --[[ tuple ]][
+    },
+    --[[ :: ]]{
+      --[[ tuple ]]{
         "iteration",
         (function (param) do
             m = --[[ Empty ]]0;
@@ -499,21 +499,21 @@ int_map_suites_001 = --[[ :: ]][
               end
                end 
             end
-            return --[[ Eq ]]Block.__(0, [
+            return --[[ Eq ]]Block.__(0, {
                       v,
                       -1
-                    ]);
+                    });
           end end)
-      ],
+      },
       --[[ [] ]]0
-    ]
-  ]
-];
+    }
+  }
+};
 
-int_map_suites = --[[ :: ]][
+int_map_suites = --[[ :: ]]{
   int_map_suites_000,
   int_map_suites_001
-];
+};
 
 Mt.from_pair_suites("Map_test", int_map_suites);
 

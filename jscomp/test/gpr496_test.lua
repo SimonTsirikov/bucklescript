@@ -15,22 +15,22 @@ end;
 
 function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = --[[ :: ]][
-    --[[ tuple ]][
+  suites.contents = --[[ :: ]]{
+    --[[ tuple ]]{
       loc .. (" id " .. String(test_id.contents)),
       (function (param) do
-          return --[[ Eq ]]Block.__(0, [
+          return --[[ Eq ]]Block.__(0, {
                     x,
                     y
-                  ]);
+                  });
         end end)
-    ],
+    },
     suites.contents
-  ];
+  };
   return --[[ () ]]0;
 end end
 
-expected = --[[ tuple ]][
+expected = --[[ tuple ]]{
   false,
   false,
   true,
@@ -39,9 +39,9 @@ expected = --[[ tuple ]][
   1,
   0,
   0
-];
+};
 
-expected2 = --[[ tuple ]][
+expected2 = --[[ tuple ]]{
   false,
   false,
   true,
@@ -50,9 +50,9 @@ expected2 = --[[ tuple ]][
   1,
   0,
   0
-];
+};
 
-u = --[[ tuple ]][
+u = --[[ tuple ]]{
   false,
   false,
   true,
@@ -61,7 +61,7 @@ u = --[[ tuple ]][
   1,
   0,
   0
-];
+};
 
 eq("File \"gpr496_test.ml\", line 42, characters 12-19", expected, u);
 

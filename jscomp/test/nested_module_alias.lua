@@ -3,10 +3,10 @@
 List = require "../../lib/js/list.lua";
 
 function v(x) do
-  return --[[ tuple ]][
+  return --[[ tuple ]]{
           List.length(x),
           List.length(x)
-        ];
+        };
 end end
 
 L = --[[ alias ]]0;

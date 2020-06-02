@@ -18,14 +18,14 @@ function f_undefined(xs, i) do
   if (match ~= undefined) then do
     return match;
   end else do
-    throw [
+    throw {
           Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]][
+          --[[ tuple ]]{
             "return_check.ml",
             31,
             14
-          ]
-        ];
+          }
+        };
   end end 
 end end
 
@@ -60,28 +60,28 @@ function f_null(xs, i) do
   if (match ~= null) then do
     return match;
   end else do
-    throw [
+    throw {
           Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]][
+          --[[ tuple ]]{
             "return_check.ml",
             59,
             14
-          ]
-        ];
+          }
+        };
   end end 
 end end
 
 function f_null_undefined(xs, i) do
   match = xs[i];
   if (match == null) then do
-    throw [
+    throw {
           Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]][
+          --[[ tuple ]]{
             "return_check.ml",
             68,
             14
-          ]
-        ];
+          }
+        };
   end else do
     return match;
   end end 

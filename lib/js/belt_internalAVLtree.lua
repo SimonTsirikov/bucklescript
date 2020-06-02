@@ -180,10 +180,10 @@ function minKV0Aux(_n) do
       _n = match;
       continue ;
     end else do
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               n.key,
               n.value
-            ];
+            };
     end end 
   end;
 end end
@@ -210,10 +210,10 @@ function maxKV0Aux(_n) do
       _n = match;
       continue ;
     end else do
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               n.key,
               n.value
-            ];
+            };
     end end 
   end;
 end end
@@ -255,10 +255,10 @@ function stackAllLeft(_v, _s) do
     s = _s;
     v = _v;
     if (v ~= null) then do
-      _s = --[[ :: ]][
+      _s = --[[ :: ]]{
         v,
         s
-      ];
+      };
       _v = v.left;
       continue ;
     end else do
@@ -277,10 +277,10 @@ function findFirstByU(n, p) do
       d = n.value;
       pvd = p(v, d);
       if (pvd) then do
-        return --[[ tuple ]][
+        return --[[ tuple ]]{
                 v,
                 d
-              ];
+              };
       end else do
         right = findFirstByU(n.right, p);
         if (right ~= undefined) then do
@@ -546,21 +546,21 @@ function partitionSharedU(n, p) do
     rf = match$1[1];
     rt = match$1[0];
     if (pvd) then do
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               join(lt, key, value, rt),
               concat(lf, rf)
-            ];
+            };
     end else do
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               concat(lt, rt),
               join(lf, key, value, rf)
-            ];
+            };
     end end 
   end else do
-    return --[[ tuple ]][
+    return --[[ tuple ]]{
             null,
             null
-          ];
+          };
   end end 
 end end
 
@@ -593,13 +593,13 @@ function toListAux(_n, _accu) do
       r = n.right;
       k = n.key;
       v = n.value;
-      _accu = --[[ :: ]][
-        --[[ tuple ]][
+      _accu = --[[ :: ]]{
+        --[[ tuple ]]{
           k,
           v
-        ],
+        },
         toListAux(r, accu)
-      ];
+      };
       _n = l;
       continue ;
     end else do
@@ -679,10 +679,10 @@ function fillArray(_n, _i, arr) do
     v = n.key;
     r = n.right;
     next = l ~= null and fillArray(l, i, arr) or i;
-    arr[next] = --[[ tuple ]][
+    arr[next] = --[[ tuple ]]{
       v,
       n.value
-    ];
+    };
     rnext = next + 1 | 0;
     if (r ~= null) then do
       _i = rnext;
@@ -701,7 +701,7 @@ function toArray(n) do
     fillArray(n, 0, v);
     return v;
   end else do
-    return [];
+    return {};
   end end 
 end end
 
@@ -712,7 +712,7 @@ function keysToArray(n) do
     fillArrayKey(n, 0, v);
     return v;
   end else do
-    return [];
+    return {};
   end end 
 end end
 
@@ -723,7 +723,7 @@ function valuesToArray(n) do
     fillArrayValue(n, 0, v);
     return v;
   end else do
-    return [];
+    return {};
   end end 
 end end
 

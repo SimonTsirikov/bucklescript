@@ -18,18 +18,18 @@ end;
 
 function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = --[[ :: ]][
-    --[[ tuple ]][
+  suites.contents = --[[ :: ]]{
+    --[[ tuple ]]{
       loc .. (" id " .. String(test_id.contents)),
       (function (param) do
-          return --[[ Eq ]]Block.__(0, [
+          return --[[ Eq ]]Block.__(0, {
                     x,
                     y
-                  ]);
+                  });
         end end)
-    ],
+    },
     suites.contents
-  ];
+  };
   return --[[ () ]]0;
 end end
 
@@ -37,22 +37,22 @@ function assert_bool(b) do
   if (b) then do
     return --[[ () ]]0;
   end else do
-    throw [
+    throw {
           Caml_builtin_exceptions.invalid_argument,
           "Assertion Failure."
-        ];
+        };
   end end 
 end end
 
 function fail(param) do
-  throw [
+  throw {
         Caml_builtin_exceptions.assert_failure,
-        --[[ tuple ]][
+        --[[ tuple ]]{
           "js_promise_basic_test.ml",
           19,
           2
-        ]
-      ];
+        }
+      };
 end end
 
 function thenTest(param) do
@@ -78,14 +78,14 @@ function assertIsNotFound(x) do
   if (match ~= undefined) then do
     return h;
   end else do
-    throw [
+    throw {
           Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]][
+          --[[ tuple ]]{
             "js_promise_basic_test.ml",
             36,
             9
-          ]
-        ];
+          }
+        };
   end end 
 end end
 
@@ -139,14 +139,14 @@ function orElseRejectedRejectTest(param) do
                 if (match ~= undefined) then do
                   return h;
                 end else do
-                  throw [
+                  throw {
                         Caml_builtin_exceptions.assert_failure,
-                        --[[ tuple ]][
+                        --[[ tuple ]]{
                           "js_promise_basic_test.ml",
                           77,
                           18
-                        ]
-                      ];
+                        }
+                      };
                 end end 
               end end));
 end end
@@ -179,11 +179,11 @@ function allResolvedTest(param) do
   p1 = Promise.resolve(1);
   p2 = Promise.resolve(2);
   p3 = Promise.resolve(3);
-  promises = [
+  promises = {
     p1,
     p2,
     p3
-  ];
+  };
   return Promise.all(promises).then((function (resolved) do
                 assert_bool(Caml_array.caml_array_get(resolved, 0) == 1);
                 assert_bool(Caml_array.caml_array_get(resolved, 1) == 2);
@@ -196,11 +196,11 @@ function allRejectTest(param) do
   p1 = Promise.resolve(1);
   p2 = Promise.resolve(3);
   p3 = Promise.reject(Caml_builtin_exceptions.not_found);
-  promises = [
+  promises = {
     p1,
     p2,
     p3
-  ];
+  };
   return Promise.all(promises).then(fail).catch((function (error) do
                 assert_bool(error == Caml_builtin_exceptions.not_found);
                 return h;
@@ -211,11 +211,11 @@ function raceTest(param) do
   p1 = Promise.resolve("first");
   p2 = Promise.resolve("second");
   p3 = Promise.resolve("third");
-  promises = [
+  promises = {
     p1,
     p2,
     p3
-  ];
+  };
   return Promise.race(promises).then((function (resolved) do
                   return h;
                 end end)).catch(fail);
@@ -269,17 +269,17 @@ createPromiseRejectTest(--[[ () ]]0);
 
 createPromiseFulfillTest(--[[ () ]]0);
 
-Promise.all(--[[ tuple ]][
+Promise.all(--[[ tuple ]]{
         Promise.resolve(2),
         Promise.resolve(3)
-      ]).then((function (param) do
-        eq("File \"js_promise_basic_test.ml\", line 169, characters 7-14", --[[ tuple ]][
+      }).then((function (param) do
+        eq("File \"js_promise_basic_test.ml\", line 169, characters 7-14", --[[ tuple ]]{
               param[0],
               param[1]
-            ], --[[ tuple ]][
+            }, --[[ tuple ]]{
               2,
               3
-            ]);
+            });
         return Promise.resolve(--[[ () ]]0);
       end end));
 
@@ -299,29 +299,29 @@ function re(prim) do
   return Promise.resolve(prim);
 end end
 
-Mt.from_promise_suites("Js_promise_basic_test", --[[ :: ]][
-      --[[ tuple ]][
+Mt.from_promise_suites("Js_promise_basic_test", --[[ :: ]]{
+      --[[ tuple ]]{
         "File \"js_promise_basic_test.ml\", line 187, characters 4-11",
         twop.then((function (x) do
-                return Promise.resolve(--[[ Eq ]]Block.__(0, [
+                return Promise.resolve(--[[ Eq ]]Block.__(0, {
                               x,
                               2
-                            ]));
+                            }));
               end end))
-      ],
-      --[[ :: ]][
-        --[[ tuple ]][
+      },
+      --[[ :: ]]{
+        --[[ tuple ]]{
           "File \"js_promise_basic_test.ml\", line 190, characters 4-11",
           twop.then((function (x) do
-                  return Promise.resolve(--[[ Neq ]]Block.__(1, [
+                  return Promise.resolve(--[[ Neq ]]Block.__(1, {
                                 x,
                                 3
-                              ]));
+                              }));
                 end end))
-        ],
+        },
         --[[ [] ]]0
-      ]
-    ]);
+      }
+    });
 
 exports.suites = suites;
 exports.test_id = test_id;

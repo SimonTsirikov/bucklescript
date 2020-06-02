@@ -25,10 +25,10 @@ function split_by(keep_emptyOpt, is_delim, str) do
       if (last_pos == 0 and not keep_empty) then do
         return acc;
       end else do
-        return --[[ :: ]][
+        return --[[ :: ]]{
                 __String.sub(str, 0, last_pos),
                 acc
-              ];
+              };
       end end 
     end else if (Curry._1(is_delim, Caml_string.get(str, pos))) then do
       new_len = (last_pos - pos | 0) - 1 | 0;
@@ -36,10 +36,10 @@ function split_by(keep_emptyOpt, is_delim, str) do
         v = __String.sub(str, pos + 1 | 0, new_len);
         _pos = pos - 1 | 0;
         _last_pos = pos;
-        _acc = --[[ :: ]][
+        _acc = --[[ :: ]]{
           v,
           acc
-        ];
+        };
         continue ;
       end else do
         _pos = pos - 1 | 0;
@@ -229,10 +229,10 @@ end end
 function for_all_range(s, start, finish, p) do
   len = #s;
   if (start < 0 or finish >= len) then do
-    throw [
+    throw {
           Caml_builtin_exceptions.invalid_argument,
           "Ext_string_test.for_all_range"
-        ];
+        };
   end
    end 
   return unsafe_for_all_range(s, start, finish, p);
@@ -307,10 +307,10 @@ end end
 function non_overlap_count(sub, s) do
   sub_len = #sub;
   if (#sub == 0) then do
-    throw [
+    throw {
           Caml_builtin_exceptions.invalid_argument,
           "Ext_string_test.non_overlap_count"
-        ];
+        };
   end
    end 
   _acc = 0;
@@ -355,10 +355,10 @@ function tail_from(s, x) do
   len = #s;
   if (x > len) then do
     s$1 = "Ext_string_test.tail_from " .. (s .. (" : " .. String(x)));
-    throw [
+    throw {
           Caml_builtin_exceptions.invalid_argument,
           s$1
-        ];
+        };
   end else do
     return __String.sub(s, x, len - x | 0);
   end end 
@@ -527,19 +527,19 @@ function is_valid_npm_package_name(s) do
 end end
 
 function is_valid_source_name(name) do
-  match = check_any_suffix_case_then_chop(name, --[[ :: ]][
+  match = check_any_suffix_case_then_chop(name, --[[ :: ]]{
         ".ml",
-        --[[ :: ]][
+        --[[ :: ]]{
           ".re",
-          --[[ :: ]][
+          --[[ :: ]]{
             ".mli",
-            --[[ :: ]][
+            --[[ :: ]]{
               ".rei",
               --[[ [] ]]0
-            ]
-          ]
-        ]
-      ]);
+            }
+          }
+        }
+      });
   if (match ~= undefined) then do
     if (is_valid_module_file(match)) then do
       return --[[ Good ]]0;
@@ -582,10 +582,10 @@ end end
 function no_char(x, ch, i, len) do
   str_len = #x;
   if (i < 0 or i >= str_len or len >= str_len) then do
-    throw [
+    throw {
           Caml_builtin_exceptions.invalid_argument,
           "Ext_string_test.no_char"
-        ];
+        };
   end
    end 
   return unsafe_no_char(x, ch, i, len);
@@ -715,12 +715,12 @@ function inter3(a, b, c) do
 end end
 
 function inter4(a, b, c, d) do
-  return concat_array(single_space, [
+  return concat_array(single_space, {
               a,
               b,
               c,
               d
-            ]);
+            });
 end end
 
 check_suffix_case = ends_with;

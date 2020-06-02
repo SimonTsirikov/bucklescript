@@ -52,14 +52,14 @@ function compare(context, state, _a, _b) do
              if ___conditional___ = 2--[[ Sum ]] then do
                 exit$2 = 4;end else 
              if ___conditional___ = 4--[[ Frac ]] then do
-                throw [
+                throw {
                       Caml_builtin_exceptions.assert_failure,
-                      --[[ tuple ]][
+                      --[[ tuple ]]{
                         "gpr_1698_test.ml",
                         45,
                         10
-                      ]
-                    ];end end end 
+                      }
+                    };end end end 
              if ___conditional___ = 3--[[ Pow ]]
              or ___conditional___ = 5--[[ Gcd ]] then do
                 exit = 1;end else 
@@ -76,14 +76,14 @@ function compare(context, state, _a, _b) do
           local ___conditional___=(b.tag | 0);
           do
              if ___conditional___ = 0--[[ Val ]] then do
-                throw [
+                throw {
                       Caml_builtin_exceptions.assert_failure,
-                      --[[ tuple ]][
+                      --[[ tuple ]]{
                         "gpr_1698_test.ml",
                         45,
                         10
-                      ]
-                    ];end end end 
+                      }
+                    };end end end 
              if ___conditional___ = 1--[[ Neg ]] then do
                 exit$3 = 5;end else 
              if ___conditional___ = 2--[[ Sum ]] then do
@@ -187,15 +187,15 @@ function compare(context, state, _a, _b) do
   end;
 end end
 
-a = --[[ Sum ]]Block.__(2, [--[[ :: ]][
-      --[[ Val ]]Block.__(0, [--[[ Symbol ]]Block.__(1, ["a"])]),
-      --[[ :: ]][
-        --[[ Val ]]Block.__(0, [--[[ Natural ]]Block.__(0, [2])]),
+a = --[[ Sum ]]Block.__(2, {--[[ :: ]]{
+      --[[ Val ]]Block.__(0, {--[[ Symbol ]]Block.__(1, {"a"})}),
+      --[[ :: ]]{
+        --[[ Val ]]Block.__(0, {--[[ Natural ]]Block.__(0, {2})}),
         --[[ [] ]]0
-      ]
-    ]]);
+      }
+    }});
 
-b = --[[ Val ]]Block.__(0, [--[[ Symbol ]]Block.__(1, ["x"])]);
+b = --[[ Val ]]Block.__(0, {--[[ Symbol ]]Block.__(1, {"x"})});
 
 console.log(compare(--[[ InSum ]]0, do
           complex: true

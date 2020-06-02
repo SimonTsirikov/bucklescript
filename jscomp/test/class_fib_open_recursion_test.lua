@@ -8,7 +8,7 @@ Caml_oo_curry = require "../../lib/js/caml_oo_curry.lua";
 CamlinternalOO = require "../../lib/js/camlinternalOO.lua";
 Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
 
-shared = ["calc"];
+shared = {"calc"};
 
 suites = do
   contents: --[[ [] ]]0
@@ -20,18 +20,18 @@ end;
 
 function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = --[[ :: ]][
-    --[[ tuple ]][
+  suites.contents = --[[ :: ]]{
+    --[[ tuple ]]{
       loc .. (" id " .. String(test_id.contents)),
       (function (param) do
-          return --[[ Eq ]]Block.__(0, [
+          return --[[ Eq ]]Block.__(0, {
                     x,
                     y
-                  ]);
+                  });
         end end)
-    ],
+    },
     suites.contents
-  ];
+  };
   return --[[ () ]]0;
 end end
 
@@ -52,7 +52,7 @@ end end
 fib = CamlinternalOO.make_class(shared, fib_init);
 
 function memo_fib_init(__class) do
-  ids = CamlinternalOO.new_methods_variables(__class, shared, ["cache"]);
+  ids = CamlinternalOO.new_methods_variables(__class, shared, {"cache"});
   calc = ids[0];
   cache = ids[1];
   inh = CamlinternalOO.inherits(__class, 0, 0, shared, fib, true);

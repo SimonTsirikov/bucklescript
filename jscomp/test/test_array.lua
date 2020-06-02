@@ -9,37 +9,37 @@ Caml_array.caml_make_float_vect(30);
 
 h = __Array.sub(v, 0, 2);
 
-hhh = __Array.append([
+hhh = __Array.append({
       1,
       2,
       3,
       4
-    ], [
+    }, {
       1,
       2,
       3,
       5
-    ]);
+    });
 
-u = Caml_array.caml_array_concat(--[[ :: ]][
-      [
+u = Caml_array.caml_array_concat(--[[ :: ]]{
+      {
         1,
         2
-      ],
-      --[[ :: ]][
-        [
+      },
+      --[[ :: ]]{
+        {
           2,
           3
-        ],
-        --[[ :: ]][
-          [
+        },
+        --[[ :: ]]{
+          {
             3,
             4
-          ],
+          },
           --[[ [] ]]0
-        ]
-      ]
-    ]);
+        }
+      }
+    });
 
 hh = __Array.blit;
 

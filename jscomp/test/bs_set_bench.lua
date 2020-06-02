@@ -13,14 +13,14 @@ function bench(param) do
   console.time("test/bs_set_bench.ml 11");
   for i$1 = 0 , 1000000 , 1 do
     if (not Belt_SetInt.has(data, i$1)) then do
-      throw [
+      throw {
             Caml_builtin_exceptions.assert_failure,
-            --[[ tuple ]][
+            --[[ tuple ]]{
               "bs_set_bench.ml",
               12,
               4
-            ]
-          ];
+            }
+          };
     end
      end 
   end
@@ -33,14 +33,14 @@ function bench(param) do
   if (Belt_SetInt.size(data) == 0) then do
     return 0;
   end else do
-    throw [
+    throw {
           Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]][
+          --[[ tuple ]]{
             "bs_set_bench.ml",
             17,
             2
-          ]
-        ];
+          }
+        };
   end end 
 end end
 

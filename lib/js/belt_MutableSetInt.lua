@@ -309,29 +309,29 @@ function split(d, key) do
   len = #arr;
   if (i < 0) then do
     next = (-i | 0) - 1 | 0;
-    return --[[ tuple ]][
-            --[[ tuple ]][
+    return --[[ tuple ]]{
+            --[[ tuple ]]{
               do
                 data: Belt_internalAVLset.fromSortedArrayAux(arr, 0, next)
               end,
               do
                 data: Belt_internalAVLset.fromSortedArrayAux(arr, next, len - next | 0)
               end
-            ],
+            },
             false
-          ];
+          };
   end else do
-    return --[[ tuple ]][
-            --[[ tuple ]][
+    return --[[ tuple ]]{
+            --[[ tuple ]]{
               do
                 data: Belt_internalAVLset.fromSortedArrayAux(arr, 0, i)
               end,
               do
                 data: Belt_internalAVLset.fromSortedArrayAux(arr, i + 1 | 0, (len - i | 0) - 1 | 0)
               end
-            ],
+            },
             true
-          ];
+          };
   end end 
 end end
 
@@ -347,14 +347,14 @@ end end
 
 function partitionU(d, p) do
   match = Belt_internalAVLset.partitionCopyU(d.data, p);
-  return --[[ tuple ]][
+  return --[[ tuple ]]{
           do
             data: match[0]
           end,
           do
             data: match[1]
           end
-        ];
+        };
 end end
 
 function partition(d, p) do

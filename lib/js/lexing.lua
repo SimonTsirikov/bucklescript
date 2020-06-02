@@ -62,10 +62,10 @@ function from_function(f) do
                 end else do
                   newlen = (#lexbuf.lex_buffer << 1);
                   if (((lexbuf.lex_buffer_len - lexbuf.lex_start_pos | 0) + n | 0) > newlen) then do
-                    throw [
+                    throw {
                           Caml_builtin_exceptions.failure,
                           "Lexing.lex_refill: cannot grow buffer"
-                        ];
+                        };
                   end
                    end 
                   newbuf = Caml_bytes.caml_create_bytes(newlen);
@@ -100,7 +100,7 @@ function from_function(f) do
           lex_last_pos: 0,
           lex_last_action: 0,
           lex_eof_reached: false,
-          lex_mem: [],
+          lex_mem: {},
           lex_start_p: zero_pos,
           lex_curr_p: zero_pos
         end;
@@ -126,7 +126,7 @@ function from_string(s) do
           lex_last_pos: 0,
           lex_last_action: 0,
           lex_eof_reached: true,
-          lex_mem: [],
+          lex_mem: {},
           lex_start_p: zero_pos,
           lex_curr_p: zero_pos
         end;

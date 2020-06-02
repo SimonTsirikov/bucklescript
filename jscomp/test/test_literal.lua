@@ -4,39 +4,39 @@ Caml_exceptions = require "../../lib/js/caml_exceptions.lua";
 
 Custom_inline = Caml_exceptions.create("Test_literal.Custom_inline");
 
-v = [
+v = {
   Custom_inline,
   1,
   2
-];
+};
 
-vv = [
+vv = {
   1,
   2,
   3
-];
+};
 
-long_v = [
+long_v = {
   1,
   2,
   3,
   4,
   5,
   6
-];
+};
 
-long_int_v = [
+long_int_v = {
   1,
   2,
   3,
   4,
   5,
   6
-];
+};
 
-short_int_v = [1];
+short_int_v = {1};
 
-empty = [];
+empty = {};
 
 exports.Custom_inline = Custom_inline;
 exports.v = v;

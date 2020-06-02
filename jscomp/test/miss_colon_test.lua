@@ -15,7 +15,7 @@ function $plus$colon(_f, _g) do
         end
          end 
       end else do
-        return --[[ Int ]]Block.__(0, [n + g[0] | 0]);
+        return --[[ Int ]]Block.__(0, {n + g[0] | 0});
       end end 
     end
      end 
@@ -23,10 +23,10 @@ function $plus$colon(_f, _g) do
     do
        if ___conditional___ = 0--[[ Int ]] then do
           if (g[0] ~= 0) then do
-            return --[[ Add ]]Block.__(2, [
+            return --[[ Add ]]Block.__(2, {
                       f,
                       g
-                    ]);
+                    });
           end else do
             return f;
           end end end end end 
@@ -36,10 +36,10 @@ function $plus$colon(_f, _g) do
           continue ;end end end 
        if ___conditional___ = 1--[[ Var ]]
        or ___conditional___ = 3--[[ Mul ]] then do
-          return --[[ Add ]]Block.__(2, [
+          return --[[ Add ]]Block.__(2, {
                     f,
                     g
-                  ]);end end end 
+                  });end end end 
        do
       
     end
@@ -60,17 +60,17 @@ function $star$colon(_f, _g) do
         if (n ~= 0) then do
           exit$1 = 3;
         end else do
-          return --[[ Int ]]Block.__(0, [0]);
+          return --[[ Int ]]Block.__(0, {0});
         end end 
       end else do
-        return --[[ Int ]]Block.__(0, [Caml_int32.imul(n, g[0])]);
+        return --[[ Int ]]Block.__(0, {Caml_int32.imul(n, g[0])});
       end end 
     end end 
     if (exit$1 == 3) then do
       if (g.tag or g[0] ~= 0) then do
         exit = 2;
       end else do
-        return --[[ Int ]]Block.__(0, [0]);
+        return --[[ Int ]]Block.__(0, {0});
       end end 
     end
      end 
@@ -82,19 +82,19 @@ function $star$colon(_f, _g) do
     do
        if ___conditional___ = 0--[[ Int ]] then do
           if (g[0] ~= 1) then do
-            return --[[ Mul ]]Block.__(3, [
+            return --[[ Mul ]]Block.__(3, {
                       f,
                       g
-                    ]);
+                    });
           end else do
             return f;
           end end end end end 
        if ___conditional___ = 1--[[ Var ]]
        or ___conditional___ = 2--[[ Add ]] then do
-          return --[[ Mul ]]Block.__(3, [
+          return --[[ Mul ]]Block.__(3, {
                     f,
                     g
-                  ]);end end end 
+                  });end end end 
        if ___conditional___ = 3--[[ Mul ]] then do
           _g = g[1];
           _f = $star$colon(f, g[0]);

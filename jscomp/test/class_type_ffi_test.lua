@@ -50,7 +50,7 @@ end end
 
 function mk_f(param) do
   return (function (a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12) do
-      return Curry.app(a0, [
+      return Curry.app(a0, {
                   a1,
                   a2,
                   a3,
@@ -63,14 +63,14 @@ function mk_f(param) do
                   a10,
                   a11,
                   a12
-                ]);
+                });
     end end);
 end end
 
 function omk_f(param) do
   return do
           huge_methdo: (function (a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12) do
-              return Curry.app(a0, [
+              return Curry.app(a0, {
                           a1,
                           a2,
                           a3,
@@ -83,7 +83,7 @@ function omk_f(param) do
                           a10,
                           a11,
                           a12
-                        ]); end
+                        }); end
             end)
         end;
 end end

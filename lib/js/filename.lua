@@ -292,15 +292,15 @@ end end
 
 function drive_and_path(s) do
   if (has_drive(s)) then do
-    return --[[ tuple ]][
+    return --[[ tuple ]]{
             __String.sub(s, 0, 2),
             __String.sub(s, 2, #s - 2 | 0)
-          ];
+          };
   end else do
-    return --[[ tuple ]][
+    return --[[ tuple ]]{
             "",
             s
-          ];
+          };
   end end 
 end end
 
@@ -330,7 +330,7 @@ match;
 local ___conditional___=(Sys.os_type);
 do
    if ___conditional___ = "Cygwin" then do
-      match = --[[ tuple ]][
+      match = --[[ tuple ]]{
         current_dir_name$2,
         "..",
         "/",
@@ -342,9 +342,9 @@ do
         quote,
         basename$2,
         dirname$2
-      ];end else 
+      };end else 
    if ___conditional___ = "Win32" then do
-      match = --[[ tuple ]][
+      match = --[[ tuple ]]{
         current_dir_name$1,
         "..",
         "\\",
@@ -356,10 +356,10 @@ do
         quote$1,
         basename$1,
         dirname$1
-      ];end else 
+      };end else 
    do end end end
   else do
-    match = --[[ tuple ]][
+    match = --[[ tuple ]]{
       current_dir_name,
       "..",
       "/",
@@ -371,7 +371,7 @@ do
       quote,
       basename,
       dirname
-    ];
+    };
     end end
     
 end
@@ -394,10 +394,10 @@ end end
 function chop_suffix(name, suff) do
   n = #name - #suff | 0;
   if (n < 0) then do
-    throw [
+    throw {
           Caml_builtin_exceptions.invalid_argument,
           "Filename.chop_suffix"
-        ];
+        };
   end
    end 
   return __String.sub(name, 0, n);
@@ -442,10 +442,10 @@ end end
 function chop_extension(name) do
   l = extension_len(name);
   if (l == 0) then do
-    throw [
+    throw {
           Caml_builtin_exceptions.invalid_argument,
           "Filename.chop_extension"
-        ];
+        };
   end
    end 
   return __String.sub(name, 0, #name - l | 0);
@@ -466,24 +466,24 @@ prng = Caml_obj.caml_lazy_make((function (param) do
 
 function temp_file_name(temp_dir, prefix, suffix) do
   rnd = Random.State.bits(CamlinternalLazy.force(prng)) & 16777215;
-  return concat(temp_dir, Curry._3(Printf.sprintf(--[[ Format ]][
-                      --[[ String ]]Block.__(2, [
+  return concat(temp_dir, Curry._3(Printf.sprintf(--[[ Format ]]{
+                      --[[ String ]]Block.__(2, {
                           --[[ No_padding ]]0,
-                          --[[ Int ]]Block.__(4, [
+                          --[[ Int ]]Block.__(4, {
                               --[[ Int_x ]]6,
-                              --[[ Lit_padding ]]Block.__(0, [
+                              --[[ Lit_padding ]]Block.__(0, {
                                   --[[ Zeros ]]2,
                                   6
-                                ]),
+                                }),
                               --[[ No_precision ]]0,
-                              --[[ String ]]Block.__(2, [
+                              --[[ String ]]Block.__(2, {
                                   --[[ No_padding ]]0,
                                   --[[ End_of_format ]]0
-                                ])
-                            ])
-                        ]),
+                                })
+                            })
+                        }),
                       "%s%06x%s"
-                    ]), prefix, rnd, suffix));
+                    }), prefix, rnd, suffix));
 end end
 
 current_temp_dir_name = do
@@ -506,16 +506,16 @@ function temp_file(temp_dirOpt, prefix, suffix) do
     counter = _counter;
     name = temp_file_name(temp_dir, prefix, suffix);
     try do
-      Caml_external_polyfill.resolve("caml_sys_close")(Caml_external_polyfill.resolve("caml_sys_open")(name, --[[ :: ]][
+      Caml_external_polyfill.resolve("caml_sys_close")(Caml_external_polyfill.resolve("caml_sys_open")(name, --[[ :: ]]{
                 --[[ Open_wronly ]]1,
-                --[[ :: ]][
+                --[[ :: ]]{
                   --[[ Open_creat ]]3,
-                  --[[ :: ]][
+                  --[[ :: ]]{
                     --[[ Open_excl ]]5,
                     --[[ [] ]]0
-                  ]
-                ]
-              ], 384));
+                  }
+                }
+              }, 384));
       return name;
     end
     catch (raw_e)do
@@ -535,10 +535,10 @@ function temp_file(temp_dirOpt, prefix, suffix) do
 end end
 
 function open_temp_file(modeOpt, permsOpt, temp_dirOpt, prefix, suffix) do
-  mode = modeOpt ~= undefined and modeOpt or --[[ :: ]][
+  mode = modeOpt ~= undefined and modeOpt or --[[ :: ]]{
       --[[ Open_text ]]7,
       --[[ [] ]]0
-    ];
+    };
   perms = permsOpt ~= undefined and permsOpt or 384;
   temp_dir = temp_dirOpt ~= undefined and temp_dirOpt or current_temp_dir_name.contents;
   _counter = 0;
@@ -546,19 +546,19 @@ function open_temp_file(modeOpt, permsOpt, temp_dirOpt, prefix, suffix) do
     counter = _counter;
     name = temp_file_name(temp_dir, prefix, suffix);
     try do
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               name,
-              Pervasives.open_out_gen(--[[ :: ]][
+              Pervasives.open_out_gen(--[[ :: ]]{
                     --[[ Open_wronly ]]1,
-                    --[[ :: ]][
+                    --[[ :: ]]{
                       --[[ Open_creat ]]3,
-                      --[[ :: ]][
+                      --[[ :: ]]{
                         --[[ Open_excl ]]5,
                         mode
-                      ]
-                    ]
-                  ], perms, name)
-            ];
+                      }
+                    }
+                  }, perms, name)
+            };
     end
     catch (raw_e)do
       e = Caml_js_exceptions.internalToOCamlException(raw_e);

@@ -15,18 +15,18 @@ end;
 
 function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = --[[ :: ]][
-    --[[ tuple ]][
+  suites.contents = --[[ :: ]]{
+    --[[ tuple ]]{
       loc .. (" id " .. String(test_id.contents)),
       (function (param) do
-          return --[[ Eq ]]Block.__(0, [
+          return --[[ Eq ]]Block.__(0, {
                     x,
                     y
-                  ]);
+                  });
         end end)
-    ],
+    },
     suites.contents
-  ];
+  };
   return --[[ () ]]0;
 end end
 
@@ -38,16 +38,16 @@ end end
 
 h = f(--[[ [] ]]0);
 
-a = Curry._1(h.length, --[[ :: ]][
+a = Curry._1(h.length, --[[ :: ]]{
       1,
-      --[[ :: ]][
+      --[[ :: ]]{
         2,
-        --[[ :: ]][
+        --[[ :: ]]{
           3,
           --[[ [] ]]0
-        ]
-      ]
-    ]);
+        }
+      }
+    });
 
 eq("File \"module_alias_test.ml\", line 30, characters 6-13", a, 3);
 

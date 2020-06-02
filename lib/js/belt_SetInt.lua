@@ -96,34 +96,34 @@ function splitAuxNoPivot(n, x) do
   v = n.value;
   r = n.right;
   if (x == v) then do
-    return --[[ tuple ]][
+    return --[[ tuple ]]{
             l,
             r
-          ];
+          };
   end else if (x < v) then do
     if (l ~= null) then do
       match = splitAuxNoPivot(l, x);
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               match[0],
               Belt_internalAVLset.joinShared(match[1], v, r)
-            ];
+            };
     end else do
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               null,
               n
-            ];
+            };
     end end 
   end else if (r ~= null) then do
     match$1 = splitAuxNoPivot(r, x);
-    return --[[ tuple ]][
+    return --[[ tuple ]]{
             Belt_internalAVLset.joinShared(l, v, match$1[0]),
             match$1[1]
-          ];
+          };
   end else do
-    return --[[ tuple ]][
+    return --[[ tuple ]]{
             n,
             null
-          ];
+          };
   end end  end  end 
 end end
 
@@ -133,34 +133,34 @@ function splitAuxPivot(n, x, pres) do
   r = n.right;
   if (x == v) then do
     pres.contents = true;
-    return --[[ tuple ]][
+    return --[[ tuple ]]{
             l,
             r
-          ];
+          };
   end else if (x < v) then do
     if (l ~= null) then do
       match = splitAuxPivot(l, x, pres);
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               match[0],
               Belt_internalAVLset.joinShared(match[1], v, r)
-            ];
+            };
     end else do
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               null,
               n
-            ];
+            };
     end end 
   end else if (r ~= null) then do
     match$1 = splitAuxPivot(r, x, pres);
-    return --[[ tuple ]][
+    return --[[ tuple ]]{
             Belt_internalAVLset.joinShared(l, v, match$1[0]),
             match$1[1]
-          ];
+          };
   end else do
-    return --[[ tuple ]][
+    return --[[ tuple ]]{
             n,
             null
-          ];
+          };
   end end  end  end 
 end end
 
@@ -170,18 +170,18 @@ function split(t, x) do
       contents: false
     end;
     v = splitAuxPivot(t, x, pres);
-    return --[[ tuple ]][
+    return --[[ tuple ]]{
             v,
             pres.contents
-          ];
+          };
   end else do
-    return --[[ tuple ]][
-            --[[ tuple ]][
+    return --[[ tuple ]]{
+            --[[ tuple ]]{
               null,
               null
-            ],
+            },
             false
-          ];
+          };
   end end 
 end end
 

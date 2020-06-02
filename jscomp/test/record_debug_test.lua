@@ -27,16 +27,16 @@ A = Caml_exceptions.create("Record_debug_test.A");
 
 B = Caml_exceptions.create("Record_debug_test.B");
 
-v0 = [
+v0 = {
   A,
   3
-];
+};
 
-v1 = [
+v1 = {
   B,
   3,
   2
-];
+};
 
 N = do
   a: 0,
@@ -55,50 +55,50 @@ end;
 
 console.log(" hei " .. (String(v) .. " "));
 
-a = --[[ tuple ]][
+a = --[[ tuple ]]{
   1,
   2,
   2,
   4,
   3
-];
+};
 
-c = [
+c = {
   1,
   2,
   3,
   4,
   5
-];
+};
 
 console.log(" " .. (String(Format.std_formatter) .. (" " .. (String(a) .. (" " .. (String(c) .. " "))))));
 
-h = --[[ :: ]][
+h = --[[ :: ]]{
   1,
-  --[[ :: ]][
+  --[[ :: ]]{
     2,
-    --[[ :: ]][
+    --[[ :: ]]{
       3,
-      --[[ :: ]][
+      --[[ :: ]]{
         4,
         --[[ [] ]]0
-      ]
-    ]
-  ]
-];
+      }
+    }
+  }
+};
 
-v2 = --[[ `C ]][
+v2 = --[[ `C ]]{
   67,
   2
-];
+};
 
-v3 = --[[ `C ]][
+v3 = --[[ `C ]]{
   67,
-  --[[ tuple ]][
+  --[[ tuple ]]{
     2,
     3
-  ]
-];
+  }
+};
 
 fmt = Format.std_formatter;
 

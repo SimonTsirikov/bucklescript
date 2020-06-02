@@ -12,18 +12,18 @@ function fib(n) do
 end end
 
 function cons(x, y) do
-  return --[[ Cons ]][
+  return --[[ Cons ]]{
           x,
           y
-        ];
+        };
 end end
 
 function map(f, param) do
   if (param) then do
-    return --[[ Cons ]][
+    return --[[ Cons ]]{
             Curry._1(f, param[0]),
             map(f, param[1])
-          ];
+          };
   end else do
     return --[[ Nil ]]0;
   end end 

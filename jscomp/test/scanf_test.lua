@@ -18,46 +18,46 @@ function eq(f, param) do
   return Mt_global.collect_eq(test_id, suites, f, param[0], param[1]);
 end end
 
-eq("File \"scanf_test.ml\", line 6, characters 5-12", --[[ tuple ]][
-      Curry._1(Scanf.sscanf("32 31", --[[ Format ]][
-                --[[ Int ]]Block.__(4, [
+eq("File \"scanf_test.ml\", line 6, characters 5-12", --[[ tuple ]]{
+      Curry._1(Scanf.sscanf("32 31", --[[ Format ]]{
+                --[[ Int ]]Block.__(4, {
                     --[[ Int_d ]]0,
                     --[[ No_padding ]]0,
                     --[[ No_precision ]]0,
-                    --[[ Char_literal ]]Block.__(12, [
+                    --[[ Char_literal ]]Block.__(12, {
                         --[[ " " ]]32,
-                        --[[ Int ]]Block.__(4, [
+                        --[[ Int ]]Block.__(4, {
                             --[[ Int_d ]]0,
                             --[[ No_padding ]]0,
                             --[[ No_precision ]]0,
                             --[[ End_of_format ]]0
-                          ])
-                      ])
-                  ]),
+                          })
+                      })
+                  }),
                 "%d %d"
-              ]), (function (x, y) do
+              }), (function (x, y) do
               return x + y | 0;
             end end)),
       63
-    ]);
+    });
 
-eq("File \"scanf_test.ml\", line 7, characters 5-12", --[[ tuple ]][
-      Curry._1(Scanf.sscanf("12306459064359371967", --[[ Format ]][
-                --[[ Int64 ]]Block.__(7, [
+eq("File \"scanf_test.ml\", line 7, characters 5-12", --[[ tuple ]]{
+      Curry._1(Scanf.sscanf("12306459064359371967", --[[ Format ]]{
+                --[[ Int64 ]]Block.__(7, {
                     --[[ Int_u ]]12,
                     --[[ No_padding ]]0,
                     --[[ No_precision ]]0,
                     --[[ End_of_format ]]0
-                  ]),
+                  }),
                 "%Lu"
-              ]), (function (i) do
+              }), (function (i) do
               return i;
             end end)),
-      --[[ int64 ]][
+      --[[ int64 ]]{
         --[[ hi ]]-1429646511,
         --[[ lo ]]235324607
-      ]
-    ]);
+      }
+    });
 
 Mt.from_pair_suites("Scanf_test", suites.contents);
 

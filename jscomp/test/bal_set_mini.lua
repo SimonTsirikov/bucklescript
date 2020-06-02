@@ -12,12 +12,12 @@ end end
 function create(l, v, r) do
   hl = height(l);
   hr = height(r);
-  return --[[ Node ]][
+  return --[[ Node ]]{
           l,
           v,
           r,
           hl >= hr and hl + 1 | 0 or hr + 1 | 0
-        ];
+        };
 end end
 
 function bal(l, v, r) do
@@ -54,12 +54,12 @@ function bal(l, v, r) do
       return --[[ Empty ]]0;
     end end 
   end else do
-    return --[[ Node ]][
+    return --[[ Node ]]{
             l,
             v,
             r,
             hl >= hr and hl + 1 | 0 or hr + 1 | 0
-          ];
+          };
   end end  end 
 end end
 
@@ -87,12 +87,12 @@ function add(x, t) do
       return bal(l, v, add(x, r));
     end end  end 
   end else do
-    return --[[ Node ]][
+    return --[[ Node ]]{
             --[[ Empty ]]0,
             x,
             --[[ Empty ]]0,
             1
-          ];
+          };
   end end 
 end end
 

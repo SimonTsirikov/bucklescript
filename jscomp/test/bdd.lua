@@ -61,21 +61,21 @@ function resize(newSize) do
       if (bucket) then do
         n = bucket[0];
         if (typeof n == "number") then do
-          throw [
+          throw {
                 Caml_builtin_exceptions.assert_failure,
-                --[[ tuple ]][
+                --[[ tuple ]]{
                   "bdd.ml",
                   54,
                   27
-                ]
-              ];
+                }
+              };
         end
          end 
         ind = hashVal(getId(n[0]), getId(n[3]), n[1]) & newSz_1;
-        Caml_array.caml_array_set(newArr, ind, --[[ :: ]][
+        Caml_array.caml_array_set(newArr, ind, --[[ :: ]]{
               n,
               Caml_array.caml_array_get(newArr, ind)
-            ]);
+            });
         _bucket = bucket[1];
         continue ;
       end else do
@@ -93,19 +93,19 @@ end end
 
 function insert(idl, idh, v, ind, bucket, newNode) do
   if (n_items.contents <= sz_1.contents) then do
-    Caml_array.caml_array_set(htab.contents, ind, --[[ :: ]][
+    Caml_array.caml_array_set(htab.contents, ind, --[[ :: ]]{
           newNode,
           bucket
-        ]);
+        });
     n_items.contents = n_items.contents + 1 | 0;
     return --[[ () ]]0;
   end else do
     resize((sz_1.contents + sz_1.contents | 0) + 2 | 0);
     ind$1 = hashVal(idl, idh, v) & sz_1.contents;
-    return Caml_array.caml_array_set(htab.contents, ind$1, --[[ :: ]][
+    return Caml_array.caml_array_set(htab.contents, ind$1, --[[ :: ]]{
                 newNode,
                 Caml_array.caml_array_get(htab.contents, ind$1)
-              ]);
+              });
   end end 
 end end
 
@@ -131,14 +131,14 @@ function mkNode(low, v, high) do
       if (b) then do
         n = b[0];
         if (typeof n == "number") then do
-          throw [
+          throw {
                 Caml_builtin_exceptions.assert_failure,
-                --[[ tuple ]][
+                --[[ tuple ]]{
                   "bdd.ml",
                   99,
                   31
-                ]
-              ];
+                }
+              };
         end
          end 
         if (v == n[1] and idl == getId(n[0]) and idh == getId(n[3])) then do
@@ -149,12 +149,12 @@ function mkNode(low, v, high) do
         end end 
       end else do
         n_002 = (nodeC.contents = nodeC.contents + 1 | 0, nodeC.contents);
-        n$1 = --[[ Node ]][
+        n$1 = --[[ Node ]]{
           low,
           v,
           n_002,
           high
-        ];
+        };
         insert(getId(low), getId(high), v, ind, bucket, n$1);
         return n$1;
       end end 
@@ -384,14 +384,14 @@ function main(param) do
   if (succeeded) then do
     return 0;
   end else do
-    throw [
+    throw {
           Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]][
+          --[[ tuple ]]{
             "bdd.ml",
             233,
             2
-          ]
-        ];
+          }
+        };
   end end 
 end end
 

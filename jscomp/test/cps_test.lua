@@ -77,40 +77,40 @@ function test_closure2(param) do
   return v.contents;
 end end
 
-Mt.from_pair_suites("Cps_test", --[[ :: ]][
-      --[[ tuple ]][
+Mt.from_pair_suites("Cps_test", --[[ :: ]]{
+      --[[ tuple ]]{
         "cps_test_sum",
         (function (param) do
-            return --[[ Eq ]]Block.__(0, [
+            return --[[ Eq ]]Block.__(0, {
                       55,
                       test(--[[ () ]]0)
-                    ]);
+                    });
           end end)
-      ],
-      --[[ :: ]][
-        --[[ tuple ]][
+      },
+      --[[ :: ]]{
+        --[[ tuple ]]{
           "cps_test_closure",
           (function (param) do
-              return --[[ Eq ]]Block.__(0, [
+              return --[[ Eq ]]Block.__(0, {
                         15,
                         test_closure(--[[ () ]]0)
-                      ]);
+                      });
             end end)
-        ],
-        --[[ :: ]][
-          --[[ tuple ]][
+        },
+        --[[ :: ]]{
+          --[[ tuple ]]{
             "cps_test_closure2",
             (function (param) do
-                return --[[ Eq ]]Block.__(0, [
+                return --[[ Eq ]]Block.__(0, {
                           30,
                           test_closure2(--[[ () ]]0)
-                        ]);
+                        });
               end end)
-          ],
+          },
           --[[ [] ]]0
-        ]
-      ]
-    ]);
+        }
+      }
+    });
 
 exports.test = test;
 exports.test_closure = test_closure;

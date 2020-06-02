@@ -9,9 +9,9 @@ function classify(x) do
   end else if (x == null) then do
     return --[[ JSNull ]]2;
   end else if (ty == "number") then do
-    return --[[ JSNumber ]]Block.__(0, [x]);
+    return --[[ JSNumber ]]Block.__(0, {x});
   end else if (ty == "string") then do
-    return --[[ JSString ]]Block.__(1, [x]);
+    return --[[ JSString ]]Block.__(1, {x});
   end else if (ty == "boolean") then do
     if (x == true) then do
       return --[[ JSTrue ]]1;
@@ -19,11 +19,11 @@ function classify(x) do
       return --[[ JSFalse ]]0;
     end end 
   end else if (ty == "function") then do
-    return --[[ JSFunction ]]Block.__(2, [x]);
+    return --[[ JSFunction ]]Block.__(2, {x});
   end else if (ty == "object") then do
-    return --[[ JSObject ]]Block.__(3, [x]);
+    return --[[ JSObject ]]Block.__(3, {x});
   end else do
-    return --[[ JSSymbol ]]Block.__(4, [x]);
+    return --[[ JSSymbol ]]Block.__(4, {x});
   end end  end  end  end  end  end  end 
 end end
 

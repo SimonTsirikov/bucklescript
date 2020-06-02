@@ -7,10 +7,10 @@ Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
 Local = Caml_exceptions.create("Test_exception.Local");
 
 function f(param) do
-  throw [
+  throw {
         Local,
         3
-      ];
+      };
 end end
 
 function g(param) do
@@ -18,10 +18,10 @@ function g(param) do
 end end
 
 function h(param) do
-  throw [
+  throw {
         Test_common.U,
         3
-      ];
+      };
 end end
 
 function x(param) do
@@ -29,10 +29,10 @@ function x(param) do
 end end
 
 function xx(param) do
-  throw [
+  throw {
         Caml_builtin_exceptions.invalid_argument,
         "x"
-      ];
+      };
 end end
 
 Nullary = Caml_exceptions.create("Test_exception.Nullary");

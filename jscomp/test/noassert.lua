@@ -3,14 +3,14 @@
 Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
 
 function f(param) do
-  throw [
+  throw {
         Caml_builtin_exceptions.assert_failure,
-        --[[ tuple ]][
+        --[[ tuple ]]{
           "noassert.ml",
           5,
           11
-        ]
-      ];
+        }
+      };
 end end
 
 function h(param) do

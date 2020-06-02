@@ -15,9 +15,9 @@ end end
 
 function Test($star) do
   console.log("no inline");
-  u = --[[ A ]]Block.__(0, [3]);
+  u = --[[ A ]]Block.__(0, {3});
   Block$1 = { };
-  b = eq_A(--[[ A ]]Block.__(0, [3]), u);
+  b = eq_A(--[[ A ]]Block.__(0, {3}), u);
   return do
           u: u,
           Block: Block$1,
@@ -29,7 +29,7 @@ end end
 function Test2($star) do
   console.log("no inline");
   Block$1 = { };
-  b = eq_A(--[[ A ]]Block.__(0, [3]), --[[ A ]]Block.__(0, [3]));
+  b = eq_A(--[[ A ]]Block.__(0, {3}), --[[ A ]]Block.__(0, {3}));
   return do
           Block: Block$1,
           y: 32,
@@ -38,7 +38,7 @@ function Test2($star) do
 end end
 
 function f(i, y) do
-  x = --[[ A ]]Block.__(0, [i]);
+  x = --[[ A ]]Block.__(0, {i});
   return eq_A(x, y);
 end end
 

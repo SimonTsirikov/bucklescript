@@ -2,12 +2,12 @@
 
 
 function f(x, y) do
-  return --[[ tuple ]][
+  return --[[ tuple ]]{
           x < y,
           x <= y,
           x > y,
           x >= y
-        ];
+        };
 end end
 
 function ff(x, y) do

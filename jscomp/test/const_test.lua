@@ -11,7 +11,7 @@ function ff(x) do
 end end
 
 function fff(x) do
-  match = --[[ A ]]Block.__(0, [x]);
+  match = --[[ A ]]Block.__(0, {x});
   local ___conditional___=(match.tag | 0);
   do
      if ___conditional___ = 0--[[ A ]] then do

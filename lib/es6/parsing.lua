@@ -105,17 +105,17 @@ function yyparse(tables, start, lexer, lexbuf) do
          if ___conditional___ = 4--[[ Compute_semantic_action ]] then do
             match$1;
             try do
-              match$1 = --[[ tuple ]][
+              match$1 = --[[ tuple ]]{
                 --[[ Semantic_action_computed ]]4,
                 Curry._1(Caml_array.caml_array_get(tables.actions, env.rule_number), env)
-              ];
+              };
             end
             catch (exn)do
               if (exn == Parse_error) then do
-                match$1 = --[[ tuple ]][
+                match$1 = --[[ tuple ]]{
                   --[[ Error_detected ]]5,
                   --[[ () ]]0
-                ];
+                };
               end else do
                 throw exn;
               end end 

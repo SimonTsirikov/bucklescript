@@ -1,22 +1,22 @@
 --[['use strict';]]
 
 
-undefinedHeader = [];
+undefinedHeader = {};
 
 function some(x) do
   if (x == undefined) then do
-    block = --[[ tuple ]][
+    block = --[[ tuple ]]{
       undefinedHeader,
       0
-    ];
+    };
     block.tag = 256;
     return block;
   end else if (x ~= null and x[0] == undefinedHeader) then do
     nid = x[1] + 1 | 0;
-    block$1 = --[[ tuple ]][
+    block$1 = --[[ tuple ]]{
       undefinedHeader,
       nid
-    ];
+    };
     block$1.tag = 256;
     return block$1;
   end else do
@@ -54,10 +54,10 @@ function valFromOption(x) do
     if (depth == 0) then do
       return ;
     end else do
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               undefinedHeader,
               depth - 1 | 0
-            ];
+            };
     end end 
   end else do
     return x;

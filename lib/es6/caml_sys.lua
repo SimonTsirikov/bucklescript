@@ -33,7 +33,7 @@ function caml_sys_time(param) do
 end end
 
 function caml_sys_random_seed(param) do
-  return [((Date.now() | 0) ^ 4294967295) * Math.random() | 0];
+  return {((Date.now() | 0) ^ 4294967295) * Math.random() | 0};
 end end
 
 function caml_sys_system_command(_cmd) do
@@ -49,22 +49,22 @@ caml_sys_getcwd = (function(param){
 
 function caml_sys_get_argv(param) do
   if (typeof process == "undefined") then do
-    return --[[ tuple ]][
+    return --[[ tuple ]]{
             "",
-            [""]
-          ];
+            {""}
+          };
   end else do
     argv = process.argv;
     if (argv == null) then do
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               "",
-              [""]
-            ];
+              {""}
+            };
     end else do
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               argv[0],
               argv
-            ];
+            };
     end end 
   end end 
 end end
@@ -78,17 +78,17 @@ function caml_sys_exit(exit_code) do
 end end
 
 function caml_sys_is_directory(_s) do
-  throw [
+  throw {
         Caml_builtin_exceptions.failure,
         "caml_sys_is_directory not implemented"
-      ];
+      };
 end end
 
 function caml_sys_file_exists(_s) do
-  throw [
+  throw {
         Caml_builtin_exceptions.failure,
         "caml_sys_file_exists not implemented"
-      ];
+      };
 end end
 
 export do

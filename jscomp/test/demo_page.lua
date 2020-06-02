@@ -22,10 +22,10 @@ end end
 
 function map(f, param) do
   if (param) then do
-    return --[[ Cons ]][
+    return --[[ Cons ]]{
             Curry._1(f, param[0]),
             map(f, param[1])
-          ];
+          };
   end else do
     return --[[ Nil ]]0;
   end end 

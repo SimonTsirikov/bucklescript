@@ -8,34 +8,34 @@ Caml_obj = require "../../lib/js/caml_obj.lua";
 CamlinternalLazy = require "../../lib/js/camlinternalLazy.lua";
 Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
 
-x = [];
+x = {};
 
 x[0] = 1;
 
 x[1] = x;
 
-a = [];
+a = {};
 
-b = [];
+b = {};
 
-c = [];
+c = {};
 
-Caml_obj.caml_update_dummy(a, --[[ :: ]][
+Caml_obj.caml_update_dummy(a, --[[ :: ]]{
       2,
       b
-    ]);
+    });
 
-Caml_obj.caml_update_dummy(b, --[[ :: ]][
+Caml_obj.caml_update_dummy(b, --[[ :: ]]{
       3,
       c
-    ]);
+    });
 
-Caml_obj.caml_update_dummy(c, --[[ :: ]][
+Caml_obj.caml_update_dummy(c, --[[ :: ]]{
       3,
       a
-    ]);
+    });
 
-xx = [];
+xx = {};
 
 xx[0] = 1;
 
@@ -59,14 +59,14 @@ end;
 
 v = do
   contents: (function (param) do
-      throw [
+      throw {
             Caml_builtin_exceptions.assert_failure,
-            --[[ tuple ]][
+            --[[ tuple ]]{
               "rec_value_test.ml",
               23,
               24
-            ]
-          ];
+            }
+          };
     end end)
 end;
 
@@ -94,15 +94,15 @@ function zs(param) do
   return List.hd(xs[0]);
 end end
 
-xs_000 = --[[ :: ]][
+xs_000 = --[[ :: ]]{
   2,
   --[[ [] ]]0
-];
+};
 
-xs = --[[ tuple ]][
+xs = --[[ tuple ]]{
   xs_000,
   zs
-];
+};
 
 function fib2(n) do
   if (n == 0 or n == 1) then do
@@ -166,75 +166,75 @@ function sum(_acc, _n) do
   end;
 end end
 
-fake_v = --[[ :: ]][
+fake_v = --[[ :: ]]{
   1,
-  --[[ :: ]][
+  --[[ :: ]]{
     2,
     --[[ [] ]]0
-  ]
-];
+  }
+};
 
-fake_y = --[[ :: ]][
+fake_y = --[[ :: ]]{
   2,
-  --[[ :: ]][
+  --[[ :: ]]{
     3,
     --[[ [] ]]0
-  ]
-];
+  }
+};
 
-fake_z = --[[ :: ]][
+fake_z = --[[ :: ]]{
   1,
   fake_y
-];
+};
 
-fake_y2 = --[[ :: ]][
+fake_y2 = --[[ :: ]]{
   2,
-  --[[ :: ]][
+  --[[ :: ]]{
     3,
     --[[ [] ]]0
-  ]
-];
+  }
+};
 
-fake_z2_001 = --[[ :: ]][
+fake_z2_001 = --[[ :: ]]{
   sum(0, 10),
   fake_y2
-];
+};
 
-fake_z2 = --[[ :: ]][
+fake_z2 = --[[ :: ]]{
   1,
   fake_z2_001
-];
+};
 
-rec_variant_b = [];
+rec_variant_b = {};
 
-rec_variant_a = [];
+rec_variant_a = {};
 
-Caml_obj.caml_update_dummy(rec_variant_b, --[[ B ]]Block.__(0, [
+Caml_obj.caml_update_dummy(rec_variant_b, --[[ B ]]Block.__(0, {
         "gho",
         (function (param) do
             return rec_variant_a;
           end end)
-      ]));
+      }));
 
-Caml_obj.caml_update_dummy(rec_variant_a, --[[ A ]]Block.__(1, [
+Caml_obj.caml_update_dummy(rec_variant_a, --[[ A ]]Block.__(1, {
         3,
         (function (param) do
             return rec_variant_b;
           end end)
-      ]));
+      }));
 
-suites_000 = --[[ tuple ]][
+suites_000 = --[[ tuple ]]{
   "hd",
   (function (param) do
-      return --[[ Eq ]]Block.__(0, [
+      return --[[ Eq ]]Block.__(0, {
                 1,
                 List.hd(List.tl(x))
-              ]);
+              });
     end end)
-];
+};
 
-suites_001 = --[[ :: ]][
-  --[[ tuple ]][
+suites_001 = --[[ :: ]]{
+  --[[ tuple ]]{
     "mutual",
     (function (param) do
         tmp;
@@ -243,198 +243,198 @@ suites_001 = --[[ :: ]][
           if (match) then do
             tmp = match[0];
           end else do
-            throw [
+            throw {
                   Caml_builtin_exceptions.assert_failure,
-                  --[[ tuple ]][
+                  --[[ tuple ]]{
                     "rec_value_test.ml",
                     108,
                     2
-                  ]
-                ];
+                  }
+                };
           end end 
         end else do
-          throw [
+          throw {
                 Caml_builtin_exceptions.assert_failure,
-                --[[ tuple ]][
+                --[[ tuple ]]{
                   "rec_value_test.ml",
                   108,
                   2
-                ]
-              ];
+                }
+              };
         end end 
-        return --[[ Eq ]]Block.__(0, [
+        return --[[ Eq ]]Block.__(0, {
                   3,
                   tmp
-                ]);
+                });
       end end)
-  ],
-  --[[ :: ]][
-    --[[ tuple ]][
+  },
+  --[[ :: ]]{
+    --[[ tuple ]]{
       "rec_sum",
       (function (param) do
-          return --[[ Eq ]]Block.__(0, [
+          return --[[ Eq ]]Block.__(0, {
                     55,
                     sum(0, 10)
-                  ]);
+                  });
         end end)
-    ],
-    --[[ :: ]][
-      --[[ tuple ]][
+    },
+    --[[ :: ]]{
+      --[[ tuple ]]{
         "File \"rec_value_test.ml\", line 111, characters 2-9",
         (function (param) do
-            return --[[ Eq ]]Block.__(0, [
-                      --[[ :: ]][
+            return --[[ Eq ]]Block.__(0, {
+                      --[[ :: ]]{
                         1,
-                        --[[ :: ]][
+                        --[[ :: ]]{
                           2,
                           --[[ [] ]]0
-                        ]
-                      ],
+                        }
+                      },
                       fake_v
-                    ]);
+                    });
           end end)
-      ],
-      --[[ :: ]][
-        --[[ tuple ]][
+      },
+      --[[ :: ]]{
+        --[[ tuple ]]{
           "File \"rec_value_test.ml\", line 114, characters 2-9",
           (function (param) do
-              return --[[ Eq ]]Block.__(0, [
-                        --[[ :: ]][
+              return --[[ Eq ]]Block.__(0, {
+                        --[[ :: ]]{
                           2,
-                          --[[ :: ]][
+                          --[[ :: ]]{
                             3,
                             --[[ [] ]]0
-                          ]
-                        ],
+                          }
+                        },
                         fake_y
-                      ]);
+                      });
             end end)
-        ],
-        --[[ :: ]][
-          --[[ tuple ]][
+        },
+        --[[ :: ]]{
+          --[[ tuple ]]{
             "File \"rec_value_test.ml\", line 117, characters 2-9",
             (function (param) do
-                return --[[ Eq ]]Block.__(0, [
-                          --[[ :: ]][
+                return --[[ Eq ]]Block.__(0, {
+                          --[[ :: ]]{
                             1,
-                            --[[ :: ]][
+                            --[[ :: ]]{
                               2,
-                              --[[ :: ]][
+                              --[[ :: ]]{
                                 3,
                                 --[[ [] ]]0
-                              ]
-                            ]
-                          ],
+                              }
+                            }
+                          },
                           fake_z
-                        ]);
+                        });
               end end)
-          ],
-          --[[ :: ]][
-            --[[ tuple ]][
+          },
+          --[[ :: ]]{
+            --[[ tuple ]]{
               "File \"rec_value_test.ml\", line 120, characters 2-9",
               (function (param) do
-                  return --[[ Eq ]]Block.__(0, [
-                            --[[ :: ]][
+                  return --[[ Eq ]]Block.__(0, {
+                            --[[ :: ]]{
                               1,
-                              --[[ :: ]][
+                              --[[ :: ]]{
                                 55,
-                                --[[ :: ]][
+                                --[[ :: ]]{
                                   2,
-                                  --[[ :: ]][
+                                  --[[ :: ]]{
                                     3,
                                     --[[ [] ]]0
-                                  ]
-                                ]
-                              ]
-                            ],
+                                  }
+                                }
+                              }
+                            },
                             fake_z2
-                          ]);
+                          });
                 end end)
-            ],
-            --[[ :: ]][
-              --[[ tuple ]][
+            },
+            --[[ :: ]]{
+              --[[ tuple ]]{
                 "File \"rec_value_test.ml\", line 123, characters 2-9",
                 (function (param) do
-                    return --[[ Eq ]]Block.__(0, [
-                              --[[ :: ]][
+                    return --[[ Eq ]]Block.__(0, {
+                              --[[ :: ]]{
                                 2,
-                                --[[ :: ]][
+                                --[[ :: ]]{
                                   3,
                                   --[[ [] ]]0
-                                ]
-                              ],
+                                }
+                              },
                               fake_y2
-                            ]);
+                            });
                   end end)
-              ],
-              --[[ :: ]][
-                --[[ tuple ]][
+              },
+              --[[ :: ]]{
+                --[[ tuple ]]{
                   "File \"rec_value_test.ml\", line 126, characters 2-9",
                   (function (param) do
-                      return --[[ Eq ]]Block.__(0, [
+                      return --[[ Eq ]]Block.__(0, {
                                 3,
                                 3
-                              ]);
+                              });
                     end end)
-                ],
-                --[[ :: ]][
-                  --[[ tuple ]][
+                },
+                --[[ :: ]]{
+                  --[[ tuple ]]{
                     "File \"rec_value_test.ml\", line 129, characters 2-9",
                     (function (param) do
                         if (rec_variant_b.tag) then do
-                          throw [
+                          throw {
                                 Caml_builtin_exceptions.assert_failure,
-                                --[[ tuple ]][
+                                --[[ tuple ]]{
                                   "rec_value_test.ml",
                                   132,
                                   11
-                                ]
-                              ];
+                                }
+                              };
                         end else do
-                          return --[[ Eq ]]Block.__(0, [
+                          return --[[ Eq ]]Block.__(0, {
                                     Curry._1(rec_variant_b[1], --[[ () ]]0),
                                     rec_variant_a
-                                  ]);
+                                  });
                         end end 
                       end end)
-                  ],
-                  --[[ :: ]][
-                    --[[ tuple ]][
+                  },
+                  --[[ :: ]]{
+                    --[[ tuple ]]{
                       "File \"rec_value_test.ml\", line 134, characters 2-9",
                       (function (param) do
                           if (rec_variant_a.tag) then do
-                            return --[[ Eq ]]Block.__(0, [
+                            return --[[ Eq ]]Block.__(0, {
                                       Curry._1(rec_variant_a[1], --[[ () ]]0),
                                       rec_variant_b
-                                    ]);
+                                    });
                           end else do
-                            throw [
+                            throw {
                                   Caml_builtin_exceptions.assert_failure,
-                                  --[[ tuple ]][
+                                  --[[ tuple ]]{
                                     "rec_value_test.ml",
                                     137,
                                     11
-                                  ]
-                                ];
+                                  }
+                                };
                           end end 
                         end end)
-                    ],
+                    },
                     --[[ [] ]]0
-                  ]
-                ]
-              ]
-            ]
-          ]
-        ]
-      ]
-    ]
-  ]
-];
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+};
 
-suites = --[[ :: ]][
+suites = --[[ :: ]]{
   suites_000,
   suites_001
-];
+};
 
 function fake_minus(n) do
   console.log(n);

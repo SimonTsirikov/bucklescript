@@ -75,10 +75,10 @@ end end
 function failwithf(loc, fmt) do
   return Format.ksprintf((function (s) do
                 s$1 = loc .. s;
-                throw [
+                throw {
                       Caml_builtin_exceptions.failure,
                       s$1
-                    ];
+                    };
               end end), fmt);
 end end
 
@@ -88,10 +88,10 @@ end end
 
 function bad_argf(fmt) do
   return Format.ksprintf((function (x) do
-                throw [
+                throw {
                       Arg.Bad,
                       x
-                    ];
+                    };
               end end), fmt);
 end end
 
@@ -106,10 +106,10 @@ function dump(r) do
         if (n ~= 0) then do
           n$1 = n - 1 | 0;
           _n = n$1;
-          _acc = --[[ :: ]][
+          _acc = --[[ :: ]]{
             r[n$1],
             acc
-          ];
+          };
           continue ;
         end else do
           return acc;
@@ -139,10 +139,10 @@ function dump(r) do
       end else do
         h = r[0];
         t = get_list(r[1]);
-        return --[[ :: ]][
+        return --[[ :: ]]{
                 h,
                 t
-              ];
+              };
       end end 
     end end;
     s = #r;
@@ -161,30 +161,30 @@ function dump(r) do
         if (fields$1) then do
           match$1 = fields$1[1];
           if (match$1) then do
-            match = --[[ tuple ]][
+            match = --[[ tuple ]]{
               fields$1[0],
               match$1[0],
               match$1[1]
-            ];
+            };
           end else do
-            throw [
+            throw {
                   Caml_builtin_exceptions.assert_failure,
-                  --[[ tuple ]][
+                  --[[ tuple ]]{
                     "ext_pervasives_test.ml",
                     118,
                     15
-                  ]
-                ];
+                  }
+                };
           end end 
         end else do
-          throw [
+          throw {
                 Caml_builtin_exceptions.assert_failure,
-                --[[ tuple ]][
+                --[[ tuple ]]{
                   "ext_pervasives_test.ml",
                   118,
                   15
-                ]
-              ];
+                }
+              };
         end end 
         return "Object #" .. (dump(match[1]) .. (" (" .. (__String.concat(", ", List.map(dump, match[2])) .. ")")));
       end else if (t == Obj.infix_tag) then do
@@ -207,26 +207,26 @@ function dump(r) do
       end else if (t == Obj.double_array_tag) then do
         return "[|" .. (__String.concat(";", __Array.to_list(__Array.map(Pervasives.string_of_float, r))) .. "|]");
       end else do
-        name = Curry._2(Printf.sprintf(--[[ Format ]][
-                  --[[ String_literal ]]Block.__(11, [
+        name = Curry._2(Printf.sprintf(--[[ Format ]]{
+                  --[[ String_literal ]]Block.__(11, {
                       "unknown: tag ",
-                      --[[ Int ]]Block.__(4, [
+                      --[[ Int ]]Block.__(4, {
                           --[[ Int_d ]]0,
                           --[[ No_padding ]]0,
                           --[[ No_precision ]]0,
-                          --[[ String_literal ]]Block.__(11, [
+                          --[[ String_literal ]]Block.__(11, {
                               " size ",
-                              --[[ Int ]]Block.__(4, [
+                              --[[ Int ]]Block.__(4, {
                                   --[[ Int_d ]]0,
                                   --[[ No_padding ]]0,
                                   --[[ No_precision ]]0,
                                   --[[ End_of_format ]]0
-                                ])
-                            ])
-                        ])
-                    ]),
+                                })
+                            })
+                        })
+                    }),
                   "unknown: tag %d size %d"
-                ]), t, s);
+                }), t, s);
         return "<" .. (name .. ">");
       end end  end  end  end  end  end  end  end  end  end  end  end 
     end else do
@@ -239,22 +239,22 @@ end end
 dump$1 = dump;
 
 function pp_any(fmt, v) do
-  return Curry._1(Format.fprintf(fmt, --[[ Format ]][
-                  --[[ Formatting_gen ]]Block.__(18, [
-                      --[[ Open_box ]]Block.__(1, [--[[ Format ]][
+  return Curry._1(Format.fprintf(fmt, --[[ Format ]]{
+                  --[[ Formatting_gen ]]Block.__(18, {
+                      --[[ Open_box ]]Block.__(1, {--[[ Format ]]{
                             --[[ End_of_format ]]0,
                             ""
-                          ]]),
-                      --[[ String ]]Block.__(2, [
+                          }}),
+                      --[[ String ]]Block.__(2, {
                           --[[ No_padding ]]0,
-                          --[[ Formatting_lit ]]Block.__(17, [
+                          --[[ Formatting_lit ]]Block.__(17, {
                               --[[ Close_box ]]0,
                               --[[ End_of_format ]]0
-                            ])
-                        ])
-                    ]),
+                            })
+                        })
+                    }),
                   "@[%s@]"
-                ]), dump$1(v));
+                }), dump$1(v));
 end end
 
 function hash_variant(s) do

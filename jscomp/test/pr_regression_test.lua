@@ -88,28 +88,28 @@ f$3((function (prim, prim$1) do
 
 d = v$3.contents;
 
-Mt.from_pair_suites("Pr_regression_test", --[[ :: ]][
-      --[[ tuple ]][
+Mt.from_pair_suites("Pr_regression_test", --[[ :: ]]{
+      --[[ tuple ]]{
         "partial",
         (function (param) do
-            return --[[ Eq ]]Block.__(0, [
-                      --[[ tuple ]][
+            return --[[ Eq ]]Block.__(0, {
+                      --[[ tuple ]]{
                         5,
                         5,
                         5,
                         5
-                      ],
-                      --[[ tuple ]][
+                      },
+                      --[[ tuple ]]{
                         a,
                         b,
                         c,
                         d
-                      ]
-                    ]);
+                      }
+                    });
           end end)
-      ],
+      },
       --[[ [] ]]0
-    ]);
+    });
 
 exports.a = a;
 exports.b = b;

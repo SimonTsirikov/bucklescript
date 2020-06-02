@@ -7,7 +7,7 @@ match = Caml_sys.caml_sys_get_argv(--[[ () ]]0);
 
 os_type = Caml_sys.os_type(--[[ () ]]0);
 
-backend_type = --[[ Other ]]["BS"];
+backend_type = --[[ Other ]]{"BS"};
 
 big_endian = false;
 

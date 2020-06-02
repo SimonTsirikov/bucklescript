@@ -41,7 +41,7 @@ XX = do
   f: f
 end;
 
-u = [__String];
+u = {__String};
 
 ghh = Curry._2(MoreLabels.Hashtbl.create, undefined, 30);
 

@@ -55,22 +55,22 @@ function get_data(count, _d) do
               _d = d2;
               continue ;
             end else if (match.tag) then do
-              throw [
+              throw {
                     Caml_builtin_exceptions.assert_failure,
-                    --[[ tuple ]][
+                    --[[ tuple ]]{
                       "stream.ml",
                       53,
                       12
-                    ]
-                  ];
+                    }
+                  };
             end else do
-              return --[[ Scons ]]Block.__(0, [
+              return --[[ Scons ]]Block.__(0, {
                         match[0],
-                        --[[ Sapp ]]Block.__(1, [
+                        --[[ Sapp ]]Block.__(1, {
                             match[1],
                             d2
-                          ])
-                      ]);
+                          })
+                      });
             end end  end end end end 
          if ___conditional___ = 2--[[ Slazy ]] then do
             _d = CamlinternalLazy.force(d[0]);
@@ -82,20 +82,20 @@ function get_data(count, _d) do
               match$2 = Caml_option.valFromOption(match$1);
               if (match$2 ~= undefined) then do
                 g.curr = undefined;
-                return --[[ Scons ]]Block.__(0, [
+                return --[[ Scons ]]Block.__(0, {
                           Caml_option.valFromOption(match$2),
                           d
-                        ]);
+                        });
               end else do
                 return --[[ Sempty ]]0;
               end end 
             end else do
               match$3 = Curry._1(g.func, count);
               if (match$3 ~= undefined) then do
-                return --[[ Scons ]]Block.__(0, [
+                return --[[ Scons ]]Block.__(0, {
                           Caml_option.valFromOption(match$3),
                           d
-                        ]);
+                        });
               end else do
                 g.curr = Caml_option.some(undefined);
                 return --[[ Sempty ]]0;
@@ -112,10 +112,10 @@ function get_data(count, _d) do
             end else do
               r = b.buff[b.ind];
               b.ind = b.ind + 1 | 0;
-              return --[[ Scons ]]Block.__(0, [
+              return --[[ Scons ]]Block.__(0, {
                         r,
                         d
-                      ]);
+                      });
             end end end end end 
          do
         
@@ -139,14 +139,14 @@ function peek_data(s) do
             if (typeof d == "number") then do
               return ;
             end else if (d.tag) then do
-              throw [
+              throw {
                     Caml_builtin_exceptions.assert_failure,
-                    --[[ tuple ]][
+                    --[[ tuple ]]{
                       "stream.ml",
                       82,
                       12
-                    ]
-                  ];
+                    }
+                  };
             end else do
               s.data = d;
               return Caml_option.some(d[0]);
@@ -240,34 +240,34 @@ end end
 
 function nget_data(n, s) do
   if (n <= 0) then do
-    return --[[ tuple ]][
+    return --[[ tuple ]]{
             --[[ [] ]]0,
             s.data,
             0
-          ];
+          };
   end else do
     match = peek_data(s);
     if (match ~= undefined) then do
       a = Caml_option.valFromOption(match);
       junk_data(s);
       match$1 = nget_data(n - 1 | 0, s);
-      return --[[ tuple ]][
-              --[[ :: ]][
+      return --[[ tuple ]]{
+              --[[ :: ]]{
                 a,
                 match$1[0]
-              ],
-              --[[ Scons ]]Block.__(0, [
+              },
+              --[[ Scons ]]Block.__(0, {
                   a,
                   match$1[1]
-                ]),
+                }),
               match$1[2] + 1 | 0
-            ];
+            };
     end else do
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               --[[ [] ]]0,
               s.data,
               0
-            ];
+            };
     end end 
   end end 
 end end
@@ -322,10 +322,10 @@ end end
 function from(f) do
   return do
           count: 0,
-          data: --[[ Sgen ]]Block.__(3, [do
+          data: --[[ Sgen ]]Block.__(3, {do
                 curr: undefined,
                 func: f
-              end])
+              end})
         end;
 end end
 
@@ -333,10 +333,10 @@ function of_list(l) do
   return do
           count: 0,
           data: List.fold_right((function (x, l) do
-                  return --[[ Scons ]]Block.__(0, [
+                  return --[[ Scons ]]Block.__(0, {
                             x,
                             l
-                          ]);
+                          });
                 end end), l, --[[ Sempty ]]0)
         end;
 end end
@@ -372,87 +372,87 @@ end end
 function of_channel(ic) do
   return do
           count: 0,
-          data: --[[ Sbuffio ]]Block.__(4, [do
+          data: --[[ Sbuffio ]]Block.__(4, {do
                 ic: ic,
                 buff: Caml_bytes.caml_create_bytes(4096),
                 len: 0,
                 ind: 0
-              end])
+              end})
         end;
 end end
 
 function iapp(i, s) do
   return do
           count: 0,
-          data: --[[ Sapp ]]Block.__(1, [
+          data: --[[ Sapp ]]Block.__(1, {
               data(i),
               data(s)
-            ])
+            })
         end;
 end end
 
 function icons(i, s) do
   return do
           count: 0,
-          data: --[[ Scons ]]Block.__(0, [
+          data: --[[ Scons ]]Block.__(0, {
               i,
               data(s)
-            ])
+            })
         end;
 end end
 
 function ising(i) do
   return do
           count: 0,
-          data: --[[ Scons ]]Block.__(0, [
+          data: --[[ Scons ]]Block.__(0, {
               i,
               --[[ Sempty ]]0
-            ])
+            })
         end;
 end end
 
 function lapp(f, s) do
   return do
           count: 0,
-          data: --[[ Slazy ]]Block.__(2, [Caml_obj.caml_lazy_make((function (param) do
-                      return --[[ Sapp ]]Block.__(1, [
+          data: --[[ Slazy ]]Block.__(2, {Caml_obj.caml_lazy_make((function (param) do
+                      return --[[ Sapp ]]Block.__(1, {
                                 data(Curry._1(f, --[[ () ]]0)),
                                 data(s)
-                              ]);
-                    end end))])
+                              });
+                    end end))})
         end;
 end end
 
 function lcons(f, s) do
   return do
           count: 0,
-          data: --[[ Slazy ]]Block.__(2, [Caml_obj.caml_lazy_make((function (param) do
-                      return --[[ Scons ]]Block.__(0, [
+          data: --[[ Slazy ]]Block.__(2, {Caml_obj.caml_lazy_make((function (param) do
+                      return --[[ Scons ]]Block.__(0, {
                                 Curry._1(f, --[[ () ]]0),
                                 data(s)
-                              ]);
-                    end end))])
+                              });
+                    end end))})
         end;
 end end
 
 function lsing(f) do
   return do
           count: 0,
-          data: --[[ Slazy ]]Block.__(2, [Caml_obj.caml_lazy_make((function (param) do
-                      return --[[ Scons ]]Block.__(0, [
+          data: --[[ Slazy ]]Block.__(2, {Caml_obj.caml_lazy_make((function (param) do
+                      return --[[ Scons ]]Block.__(0, {
                                 Curry._1(f, --[[ () ]]0),
                                 --[[ Sempty ]]0
-                              ]);
-                    end end))])
+                              });
+                    end end))})
         end;
 end end
 
 function slazy(f) do
   return do
           count: 0,
-          data: --[[ Slazy ]]Block.__(2, [Caml_obj.caml_lazy_make((function (param) do
+          data: --[[ Slazy ]]Block.__(2, {Caml_obj.caml_lazy_make((function (param) do
                       return data(Curry._1(f, --[[ () ]]0));
-                    end end))])
+                    end end))})
         end;
 end end
 

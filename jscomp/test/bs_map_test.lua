@@ -16,32 +16,32 @@ end;
 
 function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = --[[ :: ]][
-    --[[ tuple ]][
+  suites.contents = --[[ :: ]]{
+    --[[ tuple ]]{
       loc .. (" id " .. String(test_id.contents)),
       (function (param) do
-          return --[[ Eq ]]Block.__(0, [
+          return --[[ Eq ]]Block.__(0, {
                     x,
                     y
-                  ]);
+                  });
         end end)
-    ],
+    },
     suites.contents
-  ];
+  };
   return --[[ () ]]0;
 end end
 
 function b(loc, v) do
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = --[[ :: ]][
-    --[[ tuple ]][
+  suites.contents = --[[ :: ]]{
+    --[[ tuple ]]{
       loc .. (" id " .. String(test_id.contents)),
       (function (param) do
-          return --[[ Ok ]]Block.__(4, [v]);
+          return --[[ Ok ]]Block.__(4, {v});
         end end)
-    ],
+    },
     suites.contents
-  ];
+  };
   return --[[ () ]]0;
 end end
 
@@ -54,10 +54,10 @@ function emptyMap(param) do
 end end
 
 v = Belt_Array.makeByAndShuffle(1000000, (function (i) do
-        return --[[ tuple ]][
+        return --[[ tuple ]]{
                 i,
                 i
-              ];
+              };
       end end));
 
 u = Belt_MapInt.fromArray(v);

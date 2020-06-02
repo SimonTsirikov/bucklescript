@@ -193,20 +193,20 @@ function from_ic(scan_close_ic, iname, ic) do
   return create(iname, next);
 end end
 
-stdin = from_ic(scan_raise_at_end, --[[ From_file ]]Block.__(1, [
+stdin = from_ic(scan_raise_at_end, --[[ From_file ]]Block.__(1, {
         "-",
         Pervasives.stdin
-      ]), Pervasives.stdin);
+      }), Pervasives.stdin);
 
 function open_in_file(open_in, fname) do
   if (fname == "-") then do
     return stdin;
   end else do
     ic = Curry._1(open_in, fname);
-    return from_ic(scan_close_at_end, --[[ From_file ]]Block.__(1, [
+    return from_ic(scan_close_at_end, --[[ From_file ]]Block.__(1, {
                   fname,
                   ic
-                ]), ic);
+                }), ic);
   end end 
 end end
 
@@ -219,7 +219,7 @@ function open_in_bin(param) do
 end end
 
 function from_channel(ic) do
-  return from_ic(scan_raise_at_end, --[[ From_channel ]]Block.__(0, [ic]), ic);
+  return from_ic(scan_raise_at_end, --[[ From_channel ]]Block.__(0, {ic}), ic);
 end end
 
 function close_in(ib) do
@@ -243,14 +243,14 @@ function memo_from_ic(scan_close_ic, ic) do
   end
   catch (exn)do
     if (exn == Caml_builtin_exceptions.not_found) then do
-      ib = from_ic(scan_close_ic, --[[ From_channel ]]Block.__(0, [ic]), ic);
-      memo.contents = --[[ :: ]][
-        --[[ tuple ]][
+      ib = from_ic(scan_close_ic, --[[ From_channel ]]Block.__(0, {ic}), ic);
+      memo.contents = --[[ :: ]]{
+        --[[ tuple ]]{
           ic,
           ib
-        ],
+        },
         memo.contents
-      ];
+      };
       return ib;
     end else do
       throw exn;
@@ -261,57 +261,57 @@ end end
 Scan_failure = Caml_exceptions.create("Scanf.Scan_failure");
 
 function bad_input_escape(c) do
-  s = Curry._1(Printf.sprintf(--[[ Format ]][
-            --[[ String_literal ]]Block.__(11, [
+  s = Curry._1(Printf.sprintf(--[[ Format ]]{
+            --[[ String_literal ]]Block.__(11, {
                 "illegal escape character ",
-                --[[ Caml_char ]]Block.__(1, [--[[ End_of_format ]]0])
-              ]),
+                --[[ Caml_char ]]Block.__(1, {--[[ End_of_format ]]0})
+              }),
             "illegal escape character %C"
-          ]), c);
-  throw [
+          }), c);
+  throw {
         Scan_failure,
         s
-      ];
+      };
 end end
 
 function bad_token_length(message) do
-  s = Curry._1(Printf.sprintf(--[[ Format ]][
-            --[[ String_literal ]]Block.__(11, [
+  s = Curry._1(Printf.sprintf(--[[ Format ]]{
+            --[[ String_literal ]]Block.__(11, {
                 "scanning of ",
-                --[[ String ]]Block.__(2, [
+                --[[ String ]]Block.__(2, {
                     --[[ No_padding ]]0,
-                    --[[ String_literal ]]Block.__(11, [
+                    --[[ String_literal ]]Block.__(11, {
                         " failed: the specified length was too short for token",
                         --[[ End_of_format ]]0
-                      ])
-                  ])
-              ]),
+                      })
+                  })
+              }),
             "scanning of %s failed: the specified length was too short for token"
-          ]), message);
-  throw [
+          }), message);
+  throw {
         Scan_failure,
         s
-      ];
+      };
 end end
 
 function bad_hex_float(param) do
-  throw [
+  throw {
         Scan_failure,
         "not a valid float in hexadecimal notation"
-      ];
+      };
 end end
 
 function character_mismatch_err(c, ci) do
-  return Curry._2(Printf.sprintf(--[[ Format ]][
-                  --[[ String_literal ]]Block.__(11, [
+  return Curry._2(Printf.sprintf(--[[ Format ]]{
+                  --[[ String_literal ]]Block.__(11, {
                       "looking for ",
-                      --[[ Caml_char ]]Block.__(1, [--[[ String_literal ]]Block.__(11, [
+                      --[[ Caml_char ]]Block.__(1, {--[[ String_literal ]]Block.__(11, {
                               ", found ",
-                              --[[ Caml_char ]]Block.__(1, [--[[ End_of_format ]]0])
-                            ])])
-                    ]),
+                              --[[ Caml_char ]]Block.__(1, {--[[ End_of_format ]]0})
+                            })})
+                    }),
                   "looking for %C, found %C"
-                ]), c, ci);
+                }), c, ci);
 end end
 
 function check_this_char(ib, c) do
@@ -321,10 +321,10 @@ function check_this_char(ib, c) do
     return --[[ () ]]0;
   end else do
     s = character_mismatch_err(c, ci);
-    throw [
+    throw {
           Scan_failure,
           s
-        ];
+        };
   end end 
 end end
 
@@ -362,10 +362,10 @@ function check_char(ib, c) do
     if (ci ~= 10) then do
       if (ci ~= 13) then do
         s = character_mismatch_err(--[[ "\n" ]]10, ci);
-        throw [
+        throw {
               Scan_failure,
               s
-            ];
+            };
       end else do
         ib$2.ic_current_char_is_valid = false;
         return check_this_char(ib$2, --[[ "\n" ]]10);
@@ -387,23 +387,23 @@ function token_bool(ib) do
         return true;end end end 
      do
     else do
-      s$1 = Curry._1(Printf.sprintf(--[[ Format ]][
-                --[[ String_literal ]]Block.__(11, [
+      s$1 = Curry._1(Printf.sprintf(--[[ Format ]]{
+                --[[ String_literal ]]Block.__(11, {
                     "invalid boolean '",
-                    --[[ String ]]Block.__(2, [
+                    --[[ String ]]Block.__(2, {
                         --[[ No_padding ]]0,
-                        --[[ Char_literal ]]Block.__(12, [
+                        --[[ Char_literal ]]Block.__(12, {
                             --[[ "'" ]]39,
                             --[[ End_of_format ]]0
-                          ])
-                      ])
-                  ]),
+                          })
+                      })
+                  }),
                 "invalid boolean '%s'"
-              ]), s);
-      throw [
+              }), s);
+      throw {
             Scan_failure,
             s$1
-          ];
+          };
       end end
       
   end
@@ -456,14 +456,14 @@ function integer_conversion_of_char(param) do
       end end
       
   end
-  throw [
+  throw {
         Caml_builtin_exceptions.assert_failure,
-        --[[ tuple ]][
+        --[[ tuple ]]{
           "scanf.ml",
           555,
           9
-        ]
-      ];
+        }
+      };
 end end
 
 function token_int_literal(conv, ib) do
@@ -530,20 +530,20 @@ function scan_decimal_digit_plus(width, ib) do
   end else do
     c = checked_peek_char(ib);
     if (c > 57 or c < 48) then do
-      s = Curry._1(Printf.sprintf(--[[ Format ]][
-                --[[ String_literal ]]Block.__(11, [
+      s = Curry._1(Printf.sprintf(--[[ Format ]]{
+                --[[ String_literal ]]Block.__(11, {
                     "character ",
-                    --[[ Caml_char ]]Block.__(1, [--[[ String_literal ]]Block.__(11, [
+                    --[[ Caml_char ]]Block.__(1, {--[[ String_literal ]]Block.__(11, {
                             " is not a decimal digit",
                             --[[ End_of_format ]]0
-                          ])])
-                  ]),
+                          })})
+                  }),
                 "character %C is not a decimal digit"
-              ]), c);
-      throw [
+              }), c);
+      throw {
             Scan_failure,
             s
-          ];
+          };
     end else do
       width$1 = store_char(width, ib, c);
       return scan_decimal_digit_star(width$1, ib);
@@ -585,26 +585,26 @@ function scan_digit_plus(basis, digitp, width, ib) do
         end end 
       end;
     end else do
-      s = Curry._2(Printf.sprintf(--[[ Format ]][
-                --[[ String_literal ]]Block.__(11, [
+      s = Curry._2(Printf.sprintf(--[[ Format ]]{
+                --[[ String_literal ]]Block.__(11, {
                     "character ",
-                    --[[ Caml_char ]]Block.__(1, [--[[ String_literal ]]Block.__(11, [
+                    --[[ Caml_char ]]Block.__(1, {--[[ String_literal ]]Block.__(11, {
                             " is not a valid ",
-                            --[[ String ]]Block.__(2, [
+                            --[[ String ]]Block.__(2, {
                                 --[[ No_padding ]]0,
-                                --[[ String_literal ]]Block.__(11, [
+                                --[[ String_literal ]]Block.__(11, {
                                     " digit",
                                     --[[ End_of_format ]]0
-                                  ])
-                              ])
-                          ])])
-                  ]),
+                                  })
+                              })
+                          })})
+                  }),
                 "character %C is not a valid %s digit"
-              ]), c, basis);
-      throw [
+              }), c, basis);
+      throw {
             Scan_failure,
             s
-          ];
+          };
     end end 
   end end 
 end end
@@ -742,30 +742,30 @@ end end
 function scan_float(width, precision, ib) do
   width$1 = scan_integer_part(width, ib);
   if (width$1 == 0) then do
-    return --[[ tuple ]][
+    return --[[ tuple ]]{
             width$1,
             precision
-          ];
+          };
   end else do
     c = peek_char(ib);
     if (ib.ic_eof) then do
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               width$1,
               precision
-            ];
+            };
     end else if (c ~= 46) then do
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               scan_exponent_part(width$1, ib),
               precision
-            ];
+            };
     end else do
       width$2 = store_char(width$1, ib, c);
       precision$1 = width$2 < precision and width$2 or precision;
       width$3 = width$2 - (precision$1 - scan_fractional_part(precision$1, ib) | 0) | 0;
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               scan_exponent_part(width$3, ib),
               precision$1
-            ];
+            };
     end end  end 
   end end 
 end end
@@ -797,18 +797,18 @@ end end
 
 function scan_hex_float(width, precision, ib) do
   if (width == 0 or end_of_input(ib)) then do
-    throw [
+    throw {
           Scan_failure,
           "not a valid float in hexadecimal notation"
-        ];
+        };
   end
    end 
   width$1 = scan_sign(width, ib);
   if (width$1 == 0 or end_of_input(ib)) then do
-    throw [
+    throw {
           Scan_failure,
           "not a valid float in hexadecimal notation"
-        ];
+        };
   end
    end 
   c = peek_char(ib);
@@ -816,43 +816,43 @@ function scan_hex_float(width, precision, ib) do
     switcher = c - 79 | 0;
     if (switcher > 30 or switcher < 0) then do
       if (switcher >= 32) then do
-        throw [
+        throw {
               Scan_failure,
               "not a valid float in hexadecimal notation"
-            ];
+            };
       end else do
         width$2 = store_char(width$1, ib, c);
         if (width$2 == 0 or end_of_input(ib)) then do
-          throw [
+          throw {
                 Scan_failure,
                 "not a valid float in hexadecimal notation"
-              ];
+              };
         end
          end 
         return check_case_insensitive_string(width$2, ib, bad_hex_float, "an");
       end end 
     end else if (switcher ~= 26) then do
-      throw [
+      throw {
             Scan_failure,
             "not a valid float in hexadecimal notation"
-          ];
+          };
     end
      end  end 
   end else if (c ~= 48) then do
     if (c ~= 73) then do
-      throw [
+      throw {
             Scan_failure,
             "not a valid float in hexadecimal notation"
-          ];
+          };
     end
      end 
   end else do
     width$3 = store_char(width$1, ib, c);
     if (width$3 == 0 or end_of_input(ib)) then do
-      throw [
+      throw {
             Scan_failure,
             "not a valid float in hexadecimal notation"
-          ];
+          };
     end
      end 
     width$4 = check_case_insensitive_string(width$3, ib, bad_hex_float, "x");
@@ -900,10 +900,10 @@ function scan_hex_float(width, precision, ib) do
           if (exit == 2) then do
             width$8 = store_char(width$6, ib, c$2);
             if (width$8 == 0 or end_of_input(ib)) then do
-              throw [
+              throw {
                     Scan_failure,
                     "not a valid float in hexadecimal notation"
-                  ];
+                  };
             end
              end 
             return scan_optionally_signed_decimal_int(width$8, ib);
@@ -915,10 +915,10 @@ function scan_hex_float(width, precision, ib) do
   end end  end 
   width$9 = store_char(width$1, ib, c);
   if (width$9 == 0 or end_of_input(ib)) then do
-    throw [
+    throw {
           Scan_failure,
           "not a valid float in hexadecimal notation"
-        ];
+        };
   end
    end 
   return check_case_insensitive_string(width$9, ib, bad_hex_float, "nfinity");
@@ -926,28 +926,28 @@ end end
 
 function scan_caml_float_rest(width, precision, ib) do
   if (width == 0 or end_of_input(ib)) then do
-    throw [
+    throw {
           Scan_failure,
           "no dot or exponent part found in float token"
-        ];
+        };
   end
    end 
   width$1 = scan_decimal_digit_star(width, ib);
   if (width$1 == 0 or end_of_input(ib)) then do
-    throw [
+    throw {
           Scan_failure,
           "no dot or exponent part found in float token"
-        ];
+        };
   end
    end 
   c = peek_char(ib);
   switcher = c - 69 | 0;
   if (switcher > 32 or switcher < 0) then do
     if (switcher ~= -23) then do
-      throw [
+      throw {
             Scan_failure,
             "no dot or exponent part found in float token"
-          ];
+          };
     end else do
       width$2 = store_char(width$1, ib, c);
       precision$1 = width$2 < precision and width$2 or precision;
@@ -959,43 +959,43 @@ function scan_caml_float_rest(width, precision, ib) do
   end else if (switcher > 31 or switcher < 1) then do
     return scan_exponent_part(width$1, ib);
   end else do
-    throw [
+    throw {
           Scan_failure,
           "no dot or exponent part found in float token"
-        ];
+        };
   end end  end 
 end end
 
 function scan_caml_float(width, precision, ib) do
   if (width == 0 or end_of_input(ib)) then do
-    throw [
+    throw {
           Scan_failure,
           "no dot or exponent part found in float token"
-        ];
+        };
   end
    end 
   width$1 = scan_sign(width, ib);
   if (width$1 == 0 or end_of_input(ib)) then do
-    throw [
+    throw {
           Scan_failure,
           "no dot or exponent part found in float token"
-        ];
+        };
   end
    end 
   c = peek_char(ib);
   if (c >= 49) then do
     if (c >= 58) then do
-      throw [
+      throw {
             Scan_failure,
             "no dot or exponent part found in float token"
-          ];
+          };
     end else do
       width$2 = store_char(width$1, ib, c);
       if (width$2 == 0 or end_of_input(ib)) then do
-        throw [
+        throw {
               Scan_failure,
               "no dot or exponent part found in float token"
-            ];
+            };
       end
        end 
       return scan_caml_float_rest(width$2, precision, ib);
@@ -1003,10 +1003,10 @@ function scan_caml_float(width, precision, ib) do
   end else if (c >= 48) then do
     width$3 = store_char(width$1, ib, c);
     if (width$3 == 0 or end_of_input(ib)) then do
-      throw [
+      throw {
             Scan_failure,
             "no dot or exponent part found in float token"
-          ];
+          };
     end
      end 
     c$1 = peek_char(ib);
@@ -1019,18 +1019,18 @@ function scan_caml_float(width, precision, ib) do
     if (exit == 1) then do
       width$4 = store_char(width$3, ib, c$1);
       if (width$4 == 0 or end_of_input(ib)) then do
-        throw [
+        throw {
               Scan_failure,
               "no dot or exponent part found in float token"
-            ];
+            };
       end
        end 
       width$5 = scan_hexadecimal_int(width$4, ib);
       if (width$5 == 0 or end_of_input(ib)) then do
-        throw [
+        throw {
               Scan_failure,
               "no dot or exponent part found in float token"
-            ];
+            };
       end
        end 
       c$2 = peek_char(ib);
@@ -1038,10 +1038,10 @@ function scan_caml_float(width, precision, ib) do
       width$6;
       if (switcher > 32 or switcher < 0) then do
         if (switcher ~= -34) then do
-          throw [
+          throw {
                 Scan_failure,
                 "no dot or exponent part found in float token"
-              ];
+              };
         end else do
           width$7 = store_char(width$5, ib, c$2);
           if (width$7 == 0 or end_of_input(ib)) then do
@@ -1059,10 +1059,10 @@ function scan_caml_float(width, precision, ib) do
       end else if (switcher > 31 or switcher < 1) then do
         width$6 = width$5;
       end else do
-        throw [
+        throw {
               Scan_failure,
               "no dot or exponent part found in float token"
-            ];
+            };
       end end  end 
       if (width$6 == 0 or end_of_input(ib)) then do
         return width$6;
@@ -1074,10 +1074,10 @@ function scan_caml_float(width, precision, ib) do
          end 
         width$8 = store_char(width$6, ib, c$3);
         if (width$8 == 0 or end_of_input(ib)) then do
-          throw [
+          throw {
                 Scan_failure,
                 "not a valid float in hexadecimal notation"
-              ];
+              };
         end
          end 
         return scan_optionally_signed_decimal_int(width$8, ib);
@@ -1085,10 +1085,10 @@ function scan_caml_float(width, precision, ib) do
     end
      end 
   end else do
-    throw [
+    throw {
           Scan_failure,
           "no dot or exponent part found in float token"
-        ];
+        };
   end end  end 
 end end
 
@@ -1166,17 +1166,17 @@ end end
 function char_for_decimal_code(c0, c1, c2) do
   c = (Caml_int32.imul(100, c0 - --[[ "0" ]]48 | 0) + Caml_int32.imul(10, c1 - --[[ "0" ]]48 | 0) | 0) + (c2 - --[[ "0" ]]48 | 0) | 0;
   if (c < 0 or c > 255) then do
-    s = Curry._3(Printf.sprintf(--[[ Format ]][
-              --[[ String_literal ]]Block.__(11, [
+    s = Curry._3(Printf.sprintf(--[[ Format ]]{
+              --[[ String_literal ]]Block.__(11, {
                   "bad character decimal encoding \\",
-                  --[[ Char ]]Block.__(0, [--[[ Char ]]Block.__(0, [--[[ Char ]]Block.__(0, [--[[ End_of_format ]]0])])])
-                ]),
+                  --[[ Char ]]Block.__(0, {--[[ Char ]]Block.__(0, {--[[ Char ]]Block.__(0, {--[[ End_of_format ]]0})})})
+                }),
               "bad character decimal encoding \\%c%c%c"
-            ]), c0, c1, c2);
-    throw [
+            }), c0, c1, c2);
+    throw {
           Scan_failure,
           s
-        ];
+        };
   end else do
     return Pervasives.char_of_int(c);
   end end 
@@ -1195,17 +1195,17 @@ end end
 function char_for_hexadecimal_code(c1, c2) do
   c = (hexadecimal_value_of_char(c1) << 4) + hexadecimal_value_of_char(c2) | 0;
   if (c < 0 or c > 255) then do
-    s = Curry._2(Printf.sprintf(--[[ Format ]][
-              --[[ String_literal ]]Block.__(11, [
+    s = Curry._2(Printf.sprintf(--[[ Format ]]{
+              --[[ String_literal ]]Block.__(11, {
                   "bad character hexadecimal encoding \\",
-                  --[[ Char ]]Block.__(0, [--[[ Char ]]Block.__(0, [--[[ End_of_format ]]0])])
-                ]),
+                  --[[ Char ]]Block.__(0, {--[[ Char ]]Block.__(0, {--[[ End_of_format ]]0})})
+                }),
               "bad character hexadecimal encoding \\%c%c"
-            ]), c1, c2);
-    throw [
+            }), c1, c2);
+    throw {
           Scan_failure,
           s
-        ];
+        };
   end else do
     return Pervasives.char_of_int(c);
   end end 
@@ -1218,23 +1218,23 @@ function check_next_char(message, width, ib) do
     c = peek_char(ib);
     if (ib.ic_eof) then do
       message$1 = message;
-      s = Curry._1(Printf.sprintf(--[[ Format ]][
-                --[[ String_literal ]]Block.__(11, [
+      s = Curry._1(Printf.sprintf(--[[ Format ]]{
+                --[[ String_literal ]]Block.__(11, {
                     "scanning of ",
-                    --[[ String ]]Block.__(2, [
+                    --[[ String ]]Block.__(2, {
                         --[[ No_padding ]]0,
-                        --[[ String_literal ]]Block.__(11, [
+                        --[[ String_literal ]]Block.__(11, {
                             " failed: premature end of file occurred before end of token",
                             --[[ End_of_format ]]0
-                          ])
-                      ])
-                  ]),
+                          })
+                      })
+                  }),
                 "scanning of %s failed: premature end of file occurred before end of token"
-              ]), message$1);
-      throw [
+              }), message$1);
+      throw {
             Scan_failure,
             s
-          ];
+          };
     end else do
       return c;
     end end 
@@ -1328,10 +1328,10 @@ function scan_caml_char(width, ib) do
     c = check_next_char("a Char", width, ib);
     if (c ~= 39) then do
       s = character_mismatch_err(--[[ "'" ]]39, c);
-      throw [
+      throw {
             Scan_failure,
             s
-          ];
+          };
     end else do
       return ignore_char(width, ib);
     end end 
@@ -1340,10 +1340,10 @@ function scan_caml_char(width, ib) do
   c = checked_peek_char(ib);
   if (c ~= 39) then do
     s = character_mismatch_err(--[[ "'" ]]39, c);
-    throw [
+    throw {
           Scan_failure,
           s
-        ];
+        };
   end else do
     width$2 = ignore_char(width$1, ib);
     c$1 = check_next_char("a Char", width$2, ib);
@@ -1404,10 +1404,10 @@ function scan_caml_string(width, ib) do
   c = checked_peek_char(ib);
   if (c ~= 34) then do
     s = character_mismatch_err(--[[ "\"" ]]34, c);
-    throw [
+    throw {
           Scan_failure,
           s
-        ];
+        };
   end else do
     return find_stop(ignore_char(width$1, ib));
   end end 
@@ -1439,10 +1439,10 @@ function scan_chars_in_char_set(char_set, scan_indic, width, ib) do
         return --[[ () ]]0;
       end else do
         s = character_mismatch_err(c, ci);
-        throw [
+        throw {
               Scan_failure,
               s
-            ];
+            };
       end end 
     end end 
   end else do
@@ -1458,28 +1458,28 @@ function scanf_bad_input(ib, x) do
     throw x;
   end end 
   i = char_count(ib);
-  s$1 = Curry._2(Printf.sprintf(--[[ Format ]][
-            --[[ String_literal ]]Block.__(11, [
+  s$1 = Curry._2(Printf.sprintf(--[[ Format ]]{
+            --[[ String_literal ]]Block.__(11, {
                 "scanf: bad input at char number ",
-                --[[ Int ]]Block.__(4, [
+                --[[ Int ]]Block.__(4, {
                     --[[ Int_i ]]3,
                     --[[ No_padding ]]0,
                     --[[ No_precision ]]0,
-                    --[[ String_literal ]]Block.__(11, [
+                    --[[ String_literal ]]Block.__(11, {
                         ": ",
-                        --[[ String ]]Block.__(2, [
+                        --[[ String ]]Block.__(2, {
                             --[[ No_padding ]]0,
                             --[[ End_of_format ]]0
-                          ])
-                      ])
-                  ])
-              ]),
+                          })
+                      })
+                  })
+              }),
             "scanf: bad input at char number %i: %s"
-          ]), i, s);
-  throw [
+          }), i, s);
+  throw {
         Scan_failure,
         s$1
-      ];
+      };
 end end
 
 function get_counter(ib, counter) do
@@ -1506,18 +1506,18 @@ end end
 
 function stopper_of_formatting_lit(fmting) do
   if (fmting == --[[ Escaped_percent ]]6) then do
-    return --[[ tuple ]][
+    return --[[ tuple ]]{
             --[[ "%" ]]37,
             ""
-          ];
+          };
   end else do
     str = CamlinternalFormat.string_of_formatting_lit(fmting);
     stp = Caml_string.get(str, 1);
     sub_str = __String.sub(str, 2, #str - 2 | 0);
-    return --[[ tuple ]][
+    return --[[ tuple ]]{
             stp,
             sub_str
-          ];
+          };
   end end 
 end end
 
@@ -1546,10 +1546,10 @@ function take_format_readers(k, _fmt) do
             return (function(fmt_rest)do
             return function (reader) do
               new_k = function (readers_rest) do
-                return Curry._1(k, --[[ Cons ]][
+                return Curry._1(k, --[[ Cons ]]{
                             reader,
                             readers_rest
-                          ]);
+                          });
               end end;
               return take_format_readers(new_k, fmt_rest);
             end end
@@ -1571,10 +1571,10 @@ function take_format_readers(k, _fmt) do
                 return (function(k$1,fmt$1)do
                 return function (reader) do
                   new_k = function (readers_rest) do
-                    return Curry._1(k$1, --[[ Cons ]][
+                    return Curry._1(k$1, --[[ Cons ]]{
                                 reader,
                                 readers_rest
-                              ]);
+                              });
                   end end;
                   return take_format_readers(new_k, fmt$1);
                 end end
@@ -1623,10 +1623,10 @@ function take_fmtty_format_readers(k, _fmtty, fmt) do
             return (function(fmt_rest)do
             return function (reader) do
               new_k = function (readers_rest) do
-                return Curry._1(k, --[[ Cons ]][
+                return Curry._1(k, --[[ Cons ]]{
                             reader,
                             readers_rest
-                          ]);
+                          });
               end end;
               return take_fmtty_format_readers(new_k, fmt_rest, fmt);
             end end
@@ -1636,10 +1636,10 @@ function take_fmtty_format_readers(k, _fmtty, fmt) do
             return (function(fmt_rest$1)do
             return function (reader) do
               new_k = function (readers_rest) do
-                return Curry._1(k, --[[ Cons ]][
+                return Curry._1(k, --[[ Cons ]]{
                             reader,
                             readers_rest
-                          ]);
+                          });
               end end;
               return take_fmtty_format_readers(new_k, fmt_rest$1, fmt);
             end end
@@ -1666,17 +1666,17 @@ function make_scanf(ib, _fmt, readers) do
          if ___conditional___ = 0--[[ Char ]] then do
             scan_char(0, ib);
             c = Caml_string.get(token(ib), 0);
-            return --[[ Cons ]][
+            return --[[ Cons ]]{
                     c,
                     make_scanf(ib, fmt[0], readers)
-                  ];end end end 
+                  };end end end 
          if ___conditional___ = 1--[[ Caml_char ]] then do
             scan_caml_char(0, ib);
             c$1 = Caml_string.get(token(ib), 0);
-            return --[[ Cons ]][
+            return --[[ Cons ]]{
                     c$1,
                     make_scanf(ib, fmt[0], readers)
-                  ];end end end 
+                  };end end end 
          if ___conditional___ = 2--[[ String ]] then do
             rest = fmt[1];
             pad = fmt[0];
@@ -1693,10 +1693,10 @@ function make_scanf(ib, _fmt, readers) do
                     end(stp));
                     str_rest_000 = match[1];
                     str_rest_001 = rest[1];
-                    str_rest = --[[ String_literal ]]Block.__(11, [
+                    str_rest = --[[ String_literal ]]Block.__(11, {
                         str_rest_000,
                         str_rest_001
-                      ]);
+                      });
                     return pad_prec_scanf(ib, str_rest, readers, pad, --[[ No_precision ]]0, scan, token);end end end 
                  if ___conditional___ = 18--[[ Formatting_gen ]] then do
                     match$1 = rest[0];
@@ -1793,20 +1793,20 @@ function make_scanf(ib, _fmt, readers) do
               m;
               if (c ~= 102) then do
                 if (c ~= 116) then do
-                  s = Curry._1(Printf.sprintf(--[[ Format ]][
-                            --[[ String_literal ]]Block.__(11, [
+                  s = Curry._1(Printf.sprintf(--[[ Format ]]{
+                            --[[ String_literal ]]Block.__(11, {
                                 "the character ",
-                                --[[ Caml_char ]]Block.__(1, [--[[ String_literal ]]Block.__(11, [
+                                --[[ Caml_char ]]Block.__(1, {--[[ String_literal ]]Block.__(11, {
                                         " cannot start a boolean",
                                         --[[ End_of_format ]]0
-                                      ])])
-                              ]),
+                                      })})
+                              }),
                             "the character %C cannot start a boolean"
-                          ]), c);
-                  throw [
+                          }), c);
+                  throw {
                         Scan_failure,
                         s
-                      ];
+                      };
                 end else do
                   m = 4;
                 end end 
@@ -1821,10 +1821,10 @@ function make_scanf(ib, _fmt, readers) do
               _fmt = fmt[0];
               continue ;
             end else do
-              throw [
+              throw {
                     Scan_failure,
                     "end of input not found"
-                  ];
+                  };
             end end end end end 
          if ___conditional___ = 11--[[ String_literal ]] then do
             __String.iter((function (param) do
@@ -1846,18 +1846,18 @@ function make_scanf(ib, _fmt, readers) do
             catch (raw_exn)do
               exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
               if (exn[0] == Caml_builtin_exceptions.failure) then do
-                throw [
+                throw {
                       Scan_failure,
                       exn[1]
-                    ];
+                    };
               end
                end 
               throw exn;
             end
-            return --[[ Cons ]][
+            return --[[ Cons ]]{
                     fmt$1,
                     make_scanf(ib, fmt[2], readers)
-                  ];end end end 
+                  };end end end 
          if ___conditional___ = 14--[[ Format_subst ]] then do
             fmtty = fmt[1];
             scan_caml_string(width_of_pad_opt(fmt[0]), ib);
@@ -1866,39 +1866,39 @@ function make_scanf(ib, _fmt, readers) do
             try do
               match$4 = CamlinternalFormat.fmt_ebb_of_string(undefined, s$1);
               match$5 = CamlinternalFormat.fmt_ebb_of_string(undefined, s$1);
-              match$3 = --[[ tuple ]][
+              match$3 = --[[ tuple ]]{
                 CamlinternalFormat.type_format(match$4[0], CamlinternalFormatBasics.erase_rel(fmtty)),
                 CamlinternalFormat.type_format(match$5[0], CamlinternalFormatBasics.erase_rel(CamlinternalFormat.symm(fmtty)))
-              ];
+              };
             end
             catch (raw_exn$1)do
               exn$1 = Caml_js_exceptions.internalToOCamlException(raw_exn$1);
               if (exn$1[0] == Caml_builtin_exceptions.failure) then do
-                throw [
+                throw {
                       Scan_failure,
                       exn$1[1]
-                    ];
+                    };
               end
                end 
               throw exn$1;
             end
-            return --[[ Cons ]][
-                    --[[ Format ]][
+            return --[[ Cons ]]{
+                    --[[ Format ]]{
                       match$3[0],
                       s$1
-                    ],
+                    },
                     make_scanf(ib, CamlinternalFormatBasics.concat_fmt(match$3[1], fmt[2]), readers)
-                  ];end end end 
+                  };end end end 
          if ___conditional___ = 15--[[ Alpha ]] then do
-            throw [
+            throw {
                   Caml_builtin_exceptions.invalid_argument,
                   "scanf: bad conversion \"%a\""
-                ];end end end 
+                };end end end 
          if ___conditional___ = 16--[[ Theta ]] then do
-            throw [
+            throw {
                   Caml_builtin_exceptions.invalid_argument,
                   "scanf: bad conversion \"%t\""
-                ];end end end 
+                };end end end 
          if ___conditional___ = 17--[[ Formatting_lit ]] then do
             __String.iter((function (param) do
                     return check_char(ib, param);
@@ -1920,15 +1920,15 @@ function make_scanf(ib, _fmt, readers) do
          if ___conditional___ = 19--[[ Reader ]] then do
             if (readers) then do
               x = Curry._1(readers[0], ib);
-              return --[[ Cons ]][
+              return --[[ Cons ]]{
                       x,
                       make_scanf(ib, fmt[0], readers[1])
-                    ];
+                    };
             end else do
-              throw [
+              throw {
                     Caml_builtin_exceptions.invalid_argument,
                     "scanf: missing reader"
-                  ];
+                  };
             end end end end end 
          if ___conditional___ = 20--[[ Scan_char_set ]] then do
             rest$1 = fmt[2];
@@ -1941,55 +1941,55 @@ function make_scanf(ib, _fmt, readers) do
               s$2 = token(ib);
               str_rest_000$1 = match$7[1];
               str_rest_001$1 = rest$1[1];
-              str_rest$1 = --[[ String_literal ]]Block.__(11, [
+              str_rest$1 = --[[ String_literal ]]Block.__(11, {
                   str_rest_000$1,
                   str_rest_001$1
-                ]);
-              return --[[ Cons ]][
+                });
+              return --[[ Cons ]]{
                       s$2,
                       make_scanf(ib, str_rest$1, readers)
-                    ];
+                    };
             end
              end 
             width$1 = width_of_pad_opt(width_opt);
             scan_chars_in_char_set(char_set, undefined, width$1, ib);
             s$3 = token(ib);
-            return --[[ Cons ]][
+            return --[[ Cons ]]{
                     s$3,
                     make_scanf(ib, rest$1, readers)
-                  ];end end end 
+                  };end end end 
          if ___conditional___ = 21--[[ Scan_get_counter ]] then do
             count = get_counter(ib, fmt[0]);
-            return --[[ Cons ]][
+            return --[[ Cons ]]{
                     count,
                     make_scanf(ib, fmt[1], readers)
-                  ];end end end 
+                  };end end end 
          if ___conditional___ = 22--[[ Scan_next_char ]] then do
             c$6 = checked_peek_char(ib);
-            return --[[ Cons ]][
+            return --[[ Cons ]]{
                     c$6,
                     make_scanf(ib, fmt[0], readers)
-                  ];end end end 
+                  };end end end 
          if ___conditional___ = 23--[[ Ignored_param ]] then do
             match$8 = CamlinternalFormat.param_format_of_ignored_format(fmt[0], fmt[1]);
             match$9 = make_scanf(ib, match$8[0], readers);
             if (match$9) then do
               return match$9[1];
             end else do
-              throw [
+              throw {
                     Caml_builtin_exceptions.assert_failure,
-                    --[[ tuple ]][
+                    --[[ tuple ]]{
                       "scanf.ml",
                       1455,
                       13
-                    ]
-                  ];
+                    }
+                  };
             end end end end end 
          if ___conditional___ = 24--[[ Custom ]] then do
-            throw [
+            throw {
                   Caml_builtin_exceptions.invalid_argument,
                   "scanf: bad conversion \"%?\" (custom converter)"
-                ];end end end 
+                };end end end 
          do
         
       end
@@ -2001,60 +2001,60 @@ function pad_prec_scanf(ib, fmt, readers, pad, prec, scan, token) do
   if (typeof pad == "number") then do
     if (typeof prec == "number") then do
       if (prec ~= 0) then do
-        throw [
+        throw {
               Caml_builtin_exceptions.invalid_argument,
               "scanf: bad conversion \"%*\""
-            ];
+            };
       end
        end 
       Curry._3(scan, Pervasives.max_int, Pervasives.max_int, ib);
       x = Curry._1(token, ib);
-      return --[[ Cons ]][
+      return --[[ Cons ]]{
               x,
               make_scanf(ib, fmt, readers)
-            ];
+            };
     end else do
       Curry._3(scan, Pervasives.max_int, prec[0], ib);
       x$1 = Curry._1(token, ib);
-      return --[[ Cons ]][
+      return --[[ Cons ]]{
               x$1,
               make_scanf(ib, fmt, readers)
-            ];
+            };
     end end 
   end else if (pad.tag) then do
-    throw [
+    throw {
           Caml_builtin_exceptions.invalid_argument,
           "scanf: bad conversion \"%*\""
-        ];
+        };
   end else if (pad[0] ~= 0) then do
     w = pad[1];
     if (typeof prec == "number") then do
       if (prec ~= 0) then do
-        throw [
+        throw {
               Caml_builtin_exceptions.invalid_argument,
               "scanf: bad conversion \"%*\""
-            ];
+            };
       end
        end 
       Curry._3(scan, w, Pervasives.max_int, ib);
       x$2 = Curry._1(token, ib);
-      return --[[ Cons ]][
+      return --[[ Cons ]]{
               x$2,
               make_scanf(ib, fmt, readers)
-            ];
+            };
     end else do
       Curry._3(scan, w, prec[0], ib);
       x$3 = Curry._1(token, ib);
-      return --[[ Cons ]][
+      return --[[ Cons ]]{
               x$3,
               make_scanf(ib, fmt, readers)
-            ];
+            };
     end end 
   end else do
-    throw [
+    throw {
           Caml_builtin_exceptions.invalid_argument,
           "scanf: bad conversion \"%-\""
-        ];
+        };
   end end  end  end 
 end end
 
@@ -2065,18 +2065,18 @@ function kscanf(ib, ef, param) do
     __Buffer.reset(ib.ic_token_buffer);
     match;
     try do
-      match = --[[ Args ]]Block.__(0, [make_scanf(ib, fmt, readers)]);
+      match = --[[ Args ]]Block.__(0, {make_scanf(ib, fmt, readers)});
     end
     catch (raw_exc)do
       exc = Caml_js_exceptions.internalToOCamlException(raw_exc);
       if (exc[0] == Scan_failure or exc[0] == Caml_builtin_exceptions.failure or exc == Caml_builtin_exceptions.end_of_file) then do
-        match = --[[ Exc ]]Block.__(1, [exc]);
+        match = --[[ Exc ]]Block.__(1, {exc});
       end else if (exc[0] == Caml_builtin_exceptions.invalid_argument) then do
         s = exc[1] .. (" in format \"" .. (__String.escaped(str) .. "\""));
-        throw [
+        throw {
               Caml_builtin_exceptions.invalid_argument,
               s
-            ];
+            };
       end else do
         throw exc;
       end end  end 
@@ -2128,10 +2128,10 @@ function bscanf_format(ib, format, f) do
   catch (raw_exn)do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn[0] == Caml_builtin_exceptions.failure) then do
-      throw [
+      throw {
             Scan_failure,
             exn[1]
-          ];
+          };
     end
      end 
     throw exn;
@@ -2166,13 +2166,13 @@ function format_from_string(s, fmt) do
 end end
 
 function unescaped(s) do
-  return Curry._1(sscanf("\"" .. (s .. "\""), --[[ Format ]][
-                  --[[ Caml_string ]]Block.__(3, [
+  return Curry._1(sscanf("\"" .. (s .. "\""), --[[ Format ]]{
+                  --[[ Caml_string ]]Block.__(3, {
                       --[[ No_padding ]]0,
-                      --[[ Flush ]]Block.__(10, [--[[ End_of_format ]]0])
-                    ]),
+                      --[[ Flush ]]Block.__(10, {--[[ End_of_format ]]0})
+                    }),
                   "%S%!"
-                ]), (function (x) do
+                }), (function (x) do
                 return x;
               end end));
 end end

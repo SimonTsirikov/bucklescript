@@ -14,18 +14,18 @@ end;
 
 function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = --[[ :: ]][
-    --[[ tuple ]][
+  suites.contents = --[[ :: ]]{
+    --[[ tuple ]]{
       loc .. (" id " .. String(test_id.contents)),
       (function (param) do
-          return --[[ Eq ]]Block.__(0, [
+          return --[[ Eq ]]Block.__(0, {
                     x,
                     y
-                  ]);
+                  });
         end end)
-    ],
+    },
     suites.contents
-  ];
+  };
   return --[[ () ]]0;
 end end
 
@@ -57,20 +57,20 @@ v1 = do
   z: ""
 end;
 
-jsMapperConstantArray = [
-  --[[ tuple ]][
+jsMapperConstantArray = {
+  --[[ tuple ]]{
     97,
     "a"
-  ],
-  --[[ tuple ]][
+  },
+  --[[ tuple ]]{
     98,
     "b"
-  ],
-  --[[ tuple ]][
+  },
+  --[[ tuple ]]{
     99,
     "c"
-  ]
-];
+  }
+};
 
 function xToJs(param) do
   return Js_mapperRt.binarySearch(3, param, jsMapperConstantArray);
@@ -94,11 +94,11 @@ idx(--[[ b ]]98);
 
 idx(--[[ c ]]99);
 
-jsMapperConstantArray$1 = [
+jsMapperConstantArray$1 = {
   0,
   3,
   4
-];
+};
 
 function aToJs(param) do
   return jsMapperConstantArray$1[param];

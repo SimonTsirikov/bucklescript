@@ -15,17 +15,17 @@ function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
 end end
 
-match = [1];
+match = {1};
 
 if (#match ~= 1) then do
-  throw [
+  throw {
         Caml_builtin_exceptions.match_failure,
-        --[[ tuple ]][
+        --[[ tuple ]]{
           "gpr_3595_test.ml",
           9,
           4
-        ]
-      ];
+        }
+      };
 end
  end 
 

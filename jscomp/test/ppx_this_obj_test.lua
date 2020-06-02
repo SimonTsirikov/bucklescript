@@ -15,18 +15,18 @@ function eq(loc, param) do
   y = param[1];
   x = param[0];
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = --[[ :: ]][
-    --[[ tuple ]][
+  suites.contents = --[[ :: ]]{
+    --[[ tuple ]]{
       loc .. (" id " .. String(test_id.contents)),
       (function (param) do
-          return --[[ Eq ]]Block.__(0, [
+          return --[[ Eq ]]Block.__(0, {
                     x,
                     y
-                  ]);
+                  });
         end end)
-    ],
+    },
     suites.contents
-  ];
+  };
   return --[[ () ]]0;
 end end
 
@@ -87,22 +87,22 @@ v4 = do
     end)
 end;
 
-collection = [
+collection = {
   v,
   v2,
   v3,
   v4
-];
+};
 
-eq("File \"ppx_this_obj_test.ml\", line 59, characters 5-12", --[[ tuple ]][
+eq("File \"ppx_this_obj_test.ml\", line 59, characters 5-12", --[[ tuple ]]{
       11,
       v.hi(3, 2)
-    ]);
+    });
 
-eq("File \"ppx_this_obj_test.ml\", line 60, characters 5-12", --[[ tuple ]][
+eq("File \"ppx_this_obj_test.ml\", line 60, characters 5-12", --[[ tuple ]]{
       11,
       v2.hi(3, 2)
-    ]);
+    });
 
 Mt.from_pair_suites("Ppx_this_obj_test", suites.contents);
 

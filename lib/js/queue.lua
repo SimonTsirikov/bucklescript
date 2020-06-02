@@ -21,10 +21,10 @@ function clear(q) do
 end end
 
 function add(x, q) do
-  cell = --[[ Cons ]][
+  cell = --[[ Cons ]]{
     --[[ content ]]x,
     --[[ next : Nil ]]0
-  ];
+  };
   match = q.last;
   if (match) then do
     q.length = q.length + 1 | 0;
@@ -79,10 +79,10 @@ function copy(q) do
     prev = _prev;
     if (cell) then do
       next = cell[--[[ next ]]1];
-      res = --[[ Cons ]][
+      res = --[[ Cons ]]{
         --[[ content ]]cell[--[[ content ]]0],
         --[[ next : Nil ]]0
-      ];
+      };
       if (prev) then do
         prev[--[[ next ]]1] = res;
       end else do

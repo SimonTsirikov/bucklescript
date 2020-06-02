@@ -5,30 +5,30 @@ import * as Caml_utils from "./caml_utils.lua";
 import * as Caml_primitive from "./caml_primitive.lua";
 import * as Caml_builtin_exceptions from "./caml_builtin_exceptions.lua";
 
-min_int = --[[ Int64 ]][
+min_int = --[[ Int64 ]]{
   --[[ hi ]]-2147483648,
   --[[ lo ]]0
-];
+};
 
-max_int = --[[ Int64 ]][
+max_int = --[[ Int64 ]]{
   --[[ hi ]]2147483647,
   --[[ lo ]]1
-];
+};
 
-one = --[[ Int64 ]][
+one = --[[ Int64 ]]{
   --[[ hi ]]0,
   --[[ lo ]]1
-];
+};
 
-zero = --[[ Int64 ]][
+zero = --[[ Int64 ]]{
   --[[ hi ]]0,
   --[[ lo ]]0
-];
+};
 
-neg_one = --[[ Int64 ]][
+neg_one = --[[ Int64 ]]{
   --[[ hi ]]-1,
   --[[ lo ]]4294967295
-];
+};
 
 function neg_signed(x) do
   return (x & 2147483648) ~= 0;
@@ -40,19 +40,19 @@ function add(param, param$1) do
   lo = this_low_ + other_low_ & 4294967295;
   overflow = neg_signed(this_low_) and (neg_signed(other_low_) or not neg_signed(lo)) or neg_signed(other_low_) and not neg_signed(lo) and 1 or 0;
   hi = param[--[[ hi ]]0] + param$1[--[[ hi ]]0] + overflow & 4294967295;
-  return --[[ Int64 ]][
+  return --[[ Int64 ]]{
           --[[ hi ]]hi,
           --[[ lo ]](lo >>> 0)
-        ];
+        };
 end end
 
 function not(param) do
   hi = param[--[[ hi ]]0] ^ -1;
   lo = param[--[[ lo ]]1] ^ -1;
-  return --[[ Int64 ]][
+  return --[[ Int64 ]]{
           --[[ hi ]]hi,
           --[[ lo ]](lo >>> 0)
-        ];
+        };
 end end
 
 function eq(param, param$1) do
@@ -105,16 +105,16 @@ function lsl_(x, numBits) do
   end else do
     lo = x[--[[ lo ]]1];
     if (numBits >= 32) then do
-      return --[[ Int64 ]][
+      return --[[ Int64 ]]{
               --[[ hi ]](lo << (numBits - 32 | 0)),
               --[[ lo ]]0
-            ];
+            };
     end else do
       hi = (lo >>> (32 - numBits | 0)) | (x[--[[ hi ]]0] << numBits);
-      return --[[ Int64 ]][
+      return --[[ Int64 ]]{
               --[[ hi ]]hi,
               --[[ lo ]]((lo << numBits) >>> 0)
-            ];
+            };
     end end 
   end end 
 end end
@@ -126,23 +126,23 @@ function lsr_(x, numBits) do
     hi = x[--[[ hi ]]0];
     offset = numBits - 32 | 0;
     if (offset == 0) then do
-      return --[[ Int64 ]][
+      return --[[ Int64 ]]{
               --[[ hi ]]0,
               --[[ lo ]](hi >>> 0)
-            ];
+            };
     end else if (offset > 0) then do
       lo = (hi >>> offset);
-      return --[[ Int64 ]][
+      return --[[ Int64 ]]{
               --[[ hi ]]0,
               --[[ lo ]](lo >>> 0)
-            ];
+            };
     end else do
       hi$1 = (hi >>> numBits);
       lo$1 = (hi << (-offset | 0)) | (x[--[[ lo ]]1] >>> numBits);
-      return --[[ Int64 ]][
+      return --[[ Int64 ]]{
               --[[ hi ]]hi$1,
               --[[ lo ]](lo$1 >>> 0)
-            ];
+            };
     end end  end 
   end end 
 end end
@@ -155,16 +155,16 @@ function asr_(x, numBits) do
     if (numBits < 32) then do
       hi$1 = (hi >> numBits);
       lo = (hi << (32 - numBits | 0)) | (x[--[[ lo ]]1] >>> numBits);
-      return --[[ Int64 ]][
+      return --[[ Int64 ]]{
               --[[ hi ]]hi$1,
               --[[ lo ]](lo >>> 0)
-            ];
+            };
     end else do
       lo$1 = (hi >> (numBits - 32 | 0));
-      return --[[ Int64 ]][
+      return --[[ Int64 ]]{
               --[[ hi ]]hi >= 0 and 0 or -1,
               --[[ lo ]](lo$1 >>> 0)
-            ];
+            };
     end end 
   end end 
 end end
@@ -252,10 +252,10 @@ function mul(_this, _other) do
             c48 = c48 + (a48 * b00 + a32 * b16 + a16 * b32 + a00 * b48) & 65535;
             hi = c32 | (c48 << 16);
             lo$2 = c00 & 65535 | ((c16 & 65535) << 16);
-            return --[[ Int64 ]][
+            return --[[ Int64 ]]{
                     --[[ hi ]]hi,
                     --[[ lo ]](lo$2 >>> 0)
-                  ];
+                  };
           end end  end 
         end
          end 
@@ -274,31 +274,31 @@ end end
 function swap(param) do
   hi = Caml_int32.caml_int32_bswap(param[--[[ lo ]]1]);
   lo = Caml_int32.caml_int32_bswap(param[--[[ hi ]]0]);
-  return --[[ Int64 ]][
+  return --[[ Int64 ]]{
           --[[ hi ]]hi,
           --[[ lo ]](lo >>> 0)
-        ];
+        };
 end end
 
 function xor(param, param$1) do
-  return --[[ Int64 ]][
+  return --[[ Int64 ]]{
           --[[ hi ]]param[--[[ hi ]]0] ^ param$1[--[[ hi ]]0],
           --[[ lo ]]((param[--[[ lo ]]1] ^ param$1[--[[ lo ]]1]) >>> 0)
-        ];
+        };
 end end
 
 function or_(param, param$1) do
-  return --[[ Int64 ]][
+  return --[[ Int64 ]]{
           --[[ hi ]]param[--[[ hi ]]0] | param$1[--[[ hi ]]0],
           --[[ lo ]]((param[--[[ lo ]]1] | param$1[--[[ lo ]]1]) >>> 0)
-        ];
+        };
 end end
 
 function and_(param, param$1) do
-  return --[[ Int64 ]][
+  return --[[ Int64 ]]{
           --[[ hi ]]param[--[[ hi ]]0] & param$1[--[[ hi ]]0],
           --[[ lo ]]((param[--[[ lo ]]1] & param$1[--[[ lo ]]1]) >>> 0)
-        ];
+        };
 end end
 
 function ge(param, param$1) do
@@ -367,10 +367,10 @@ function of_float(x) do
   end else do
     hi = x / 4294967296 | 0;
     lo = x % 4294967296 | 0;
-    return --[[ Int64 ]][
+    return --[[ Int64 ]]{
             --[[ hi ]]hi,
             --[[ lo ]](lo >>> 0)
-          ];
+          };
   end end  end  end  end 
 end end
 
@@ -468,10 +468,10 @@ end end
 function div_mod(self, other) do
   quotient = div(self, other);
   y = mul(quotient, other);
-  return --[[ tuple ]][
+  return --[[ tuple ]]{
           quotient,
           add(self, neg(y))
-        ];
+        };
 end end
 
 function compare(param, param$1) do
@@ -484,10 +484,10 @@ function compare(param, param$1) do
 end end
 
 function of_int32(lo) do
-  return --[[ Int64 ]][
+  return --[[ Int64 ]]{
           --[[ hi ]]lo < 0 and -1 or 0,
           --[[ lo ]](lo >>> 0)
-        ];
+        };
 end end
 
 function to_int32(param) do
@@ -522,10 +522,10 @@ function to_hex(x) do
 end end
 
 function discard_sign(x) do
-  return --[[ Int64 ]][
+  return --[[ Int64 ]]{
           --[[ hi ]]2147483647 & x[--[[ hi ]]0],
           --[[ lo ]]x[--[[ lo ]]1]
-        ];
+        };
 end end
 
 function float_of_bits(param) do
@@ -534,19 +534,19 @@ end end
 
 function bits_of_float(x) do
   buf = (function(x){return new Int32Array(new Float64Array([x]).buffer)})(x);
-  return --[[ Int64 ]][
+  return --[[ Int64 ]]{
           --[[ hi ]]buf[1],
           --[[ lo ]](buf[0] >>> 0)
-        ];
+        };
 end end
 
 function get64(s, i) do
   hi = (s.charCodeAt(i + 4 | 0) << 32) | (s.charCodeAt(i + 5 | 0) << 40) | (s.charCodeAt(i + 6 | 0) << 48) | (s.charCodeAt(i + 7 | 0) << 56);
   lo = s.charCodeAt(i) | (s.charCodeAt(i + 1 | 0) << 8) | (s.charCodeAt(i + 2 | 0) << 16) | (s.charCodeAt(i + 3 | 0) << 24);
-  return --[[ Int64 ]][
+  return --[[ Int64 ]]{
           --[[ hi ]]hi,
           --[[ lo ]](lo >>> 0)
-        ];
+        };
 end end
 
 export do

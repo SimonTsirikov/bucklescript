@@ -31,10 +31,10 @@ function assoc3(x, _l) do
 end end
 
 function help_action(param) do
-  throw [
+  throw {
         Stop,
-        --[[ Unknown ]]Block.__(0, ["-help"])
-      ];
+        --[[ Unknown ]]Block.__(0, {"-help"})
+      };
 end end
 
 function v(speclist) do
@@ -54,14 +54,14 @@ function add_help(speclist) do
   end
   catch (exn)do
     if (exn == Caml_builtin_exceptions.not_found) then do
-      add1 = --[[ :: ]][
-        --[[ tuple ]][
+      add1 = --[[ :: ]]{
+        --[[ tuple ]]{
           "-help",
-          --[[ Unit ]]Block.__(0, [help_action]),
+          --[[ Unit ]]Block.__(0, {help_action}),
           " Display this list of options"
-        ],
+        },
         --[[ [] ]]0
-      ];
+      };
     end else do
       throw exn;
     end end 
@@ -73,14 +73,14 @@ function add_help(speclist) do
   end
   catch (exn$1)do
     if (exn$1 == Caml_builtin_exceptions.not_found) then do
-      add2 = --[[ :: ]][
-        --[[ tuple ]][
+      add2 = --[[ :: ]]{
+        --[[ tuple ]]{
           "--help",
-          --[[ Unit ]]Block.__(0, [help_action]),
+          --[[ Unit ]]Block.__(0, {help_action}),
           " Display this list of options"
-        ],
+        },
         --[[ [] ]]0
-      ];
+      };
     end else do
       throw exn$1;
     end end 

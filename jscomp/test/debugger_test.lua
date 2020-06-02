@@ -2,10 +2,10 @@
 
 
 function f(x, y) do
-  console.log(--[[ tuple ]][
+  console.log(--[[ tuple ]]{
         x,
         y
-      ]);
+      });
   return x + y | 0;
 end end
 

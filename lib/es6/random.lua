@@ -25,7 +25,7 @@ function full_init(s, seed) do
   extract = function (d) do
     return ((Caml_string.get(d, 0) + (Caml_string.get(d, 1) << 8) | 0) + (Caml_string.get(d, 2) << 16) | 0) + (Caml_string.get(d, 3) << 24) | 0;
   end end;
-  seed$1 = #seed == 0 and [0] or seed;
+  seed$1 = #seed == 0 and {0} or seed;
   l = #seed$1;
   for i = 0 , 54 , 1 do
     Caml_array.caml_array_set(s.st, i, i);
@@ -76,10 +76,10 @@ end end
 
 function __int(s, bound) do
   if (bound > 1073741823 or bound <= 0) then do
-    throw [
+    throw {
           Caml_builtin_exceptions.invalid_argument,
           "Random.int"
-        ];
+        };
   end
    end 
   s$1 = s;
@@ -97,10 +97,10 @@ end end
 
 function int32(s, bound) do
   if (bound <= 0) then do
-    throw [
+    throw {
           Caml_builtin_exceptions.invalid_argument,
           "Random.int32"
-        ];
+        };
   end
    end 
   s$1 = s;
@@ -119,14 +119,14 @@ function int32(s, bound) do
 end end
 
 function int64(s, bound) do
-  if (Caml_int64.le(bound, --[[ int64 ]][
+  if (Caml_int64.le(bound, --[[ int64 ]]{
           --[[ hi ]]0,
           --[[ lo ]]0
-        ])) then do
-    throw [
+        })) then do
+    throw {
           Caml_builtin_exceptions.invalid_argument,
           "Random.int64"
-        ];
+        };
   end
    end 
   s$1 = s;
@@ -137,10 +137,10 @@ function int64(s, bound) do
     b3 = Caml_int64.lsl_(Caml_int64.of_int32(bits(s$1) & 7), 60);
     r = Caml_int64.or_(b1, Caml_int64.or_(b2, b3));
     v = Caml_int64.mod_(r, n);
-    if (Caml_int64.gt(Caml_int64.sub(r, v), Caml_int64.add(Caml_int64.sub(Int64.max_int, n), --[[ int64 ]][
+    if (Caml_int64.gt(Caml_int64.sub(r, v), Caml_int64.add(Caml_int64.sub(Int64.max_int, n), --[[ int64 ]]{
                 --[[ hi ]]0,
                 --[[ lo ]]1
-              ]))) then do
+              }))) then do
       continue ;
     end else do
       return v;
@@ -167,7 +167,7 @@ function bool(s) do
 end end
 
 __default = do
-  st: [
+  st: {
     987910699,
     495797812,
     364182224,
@@ -223,7 +223,7 @@ __default = do
     652377910,
     409934019,
     801085050
-  ],
+  },
   idx: 0
 end;
 
@@ -260,7 +260,7 @@ function full_init$1(seed) do
 end end
 
 function init(seed) do
-  return full_init(__default, [seed]);
+  return full_init(__default, {seed});
 end end
 
 function self_init(param) do

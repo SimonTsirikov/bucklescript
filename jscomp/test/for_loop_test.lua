@@ -112,12 +112,12 @@ function for_6(x, u) do
   __Array.iter((function (x) do
           return Curry._1(x, --[[ () ]]0);
         end end), arr);
-  return [
+  return {
           v.contents,
           v4.contents,
           v5.contents,
           inspect_3
-        ];
+        };
 end end
 
 function for_7(param) do
@@ -177,10 +177,10 @@ function for_9(param) do
     contents: --[[ [] ]]0
   end;
   collect = function (x) do
-    v.contents = --[[ :: ]][
+    v.contents = --[[ :: ]]{
       x,
       v.contents
-    ];
+    };
     return --[[ () ]]0;
   end end;
   vv = do
@@ -223,109 +223,109 @@ function for_9(param) do
   __Array.iter((function (f) do
           return Curry._1(f, --[[ () ]]0);
         end end), arr2);
-  return [--[[ tuple ]][
+  return {--[[ tuple ]]{
             vv.contents,
             __Array.of_list(List.rev(v.contents)),
             vv2.contents
-          ]];
+          }};
 end end
 
-suites_000 = --[[ tuple ]][
+suites_000 = --[[ tuple ]]{
   "for_loop_test_3",
   (function (param) do
-      return --[[ Eq ]]Block.__(0, [
+      return --[[ Eq ]]Block.__(0, {
                 90,
                 for_3(Caml_array.caml_make_vect(10, 2))
-              ]);
+              });
     end end)
-];
+};
 
-suites_001 = --[[ :: ]][
-  --[[ tuple ]][
+suites_001 = --[[ :: ]]{
+  --[[ tuple ]]{
     "for_loop_test_4",
     (function (param) do
-        return --[[ Eq ]]Block.__(0, [
+        return --[[ Eq ]]Block.__(0, {
                   180,
                   for_4(Caml_array.caml_make_vect(10, 2))
-                ]);
+                });
       end end)
-  ],
-  --[[ :: ]][
-    --[[ tuple ]][
+  },
+  --[[ :: ]]{
+    --[[ tuple ]]{
       "for_loop_test_5",
       (function (param) do
-          return --[[ Eq ]]Block.__(0, [
+          return --[[ Eq ]]Block.__(0, {
                     2420,
                     for_5(Caml_array.caml_make_vect(10, 2), 11)
-                  ]);
+                  });
         end end)
-    ],
-    --[[ :: ]][
-      --[[ tuple ]][
+    },
+    --[[ :: ]]{
+      --[[ tuple ]]{
         "for_loop_test_6",
         (function (param) do
-            return --[[ Eq ]]Block.__(0, [
-                      [
+            return --[[ Eq ]]Block.__(0, {
+                      {
                         30,
                         1,
                         2,
                         3
-                      ],
+                      },
                       for_6(Caml_array.caml_make_vect(3, 0), 0)
-                    ]);
+                    });
           end end)
-      ],
-      --[[ :: ]][
-        --[[ tuple ]][
+      },
+      --[[ :: ]]{
+        --[[ tuple ]]{
           "for_loop_test_7",
           (function (param) do
-              return --[[ Eq ]]Block.__(0, [
+              return --[[ Eq ]]Block.__(0, {
                         84,
                         for_7(--[[ () ]]0)
-                      ]);
+                      });
             end end)
-        ],
-        --[[ :: ]][
-          --[[ tuple ]][
+        },
+        --[[ :: ]]{
+          --[[ tuple ]]{
             "for_loop_test_8",
             (function (param) do
-                return --[[ Eq ]]Block.__(0, [
+                return --[[ Eq ]]Block.__(0, {
                           294,
                           for_8(--[[ () ]]0)
-                        ]);
+                        });
               end end)
-          ],
-          --[[ :: ]][
-            --[[ tuple ]][
+          },
+          --[[ :: ]]{
+            --[[ tuple ]]{
               "for_loop_test_9",
               (function (param) do
-                  return --[[ Eq ]]Block.__(0, [
-                            [--[[ tuple ]][
+                  return --[[ Eq ]]Block.__(0, {
+                            {--[[ tuple ]]{
                                 10,
-                                [
+                                {
                                   1,
                                   2,
                                   2,
                                   3
-                                ],
+                                },
                                 5
-                              ]],
+                              }},
                             for_9(--[[ () ]]0)
-                          ]);
+                          });
                 end end)
-            ],
+            },
             --[[ [] ]]0
-          ]
-        ]
-      ]
-    ]
-  ]
-];
+          }
+        }
+      }
+    }
+  }
+};
 
-suites = --[[ :: ]][
+suites = --[[ :: ]]{
   suites_000,
   suites_001
-];
+};
 
 exports.for_3 = for_3;
 exports.for_4 = for_4;

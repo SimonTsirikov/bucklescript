@@ -18,10 +18,10 @@ end end
 
 function create(str) do
   v_001 = caml_fresh_oo_id(--[[ () ]]0);
-  v = --[[ tuple ]][
+  v = --[[ tuple ]]{
     str,
     v_001
-  ];
+  };
   v.tag = 248;
   return v;
 end end

@@ -100,14 +100,14 @@ catch (raw_exn$3)do
   if (exn$3[0] == A or exn$3[0] == Js_exn.__Error) then do
     a0 = exn$3[1];
   end else do
-    throw [
+    throw {
           Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]][
+          --[[ tuple ]]{
             "exception_raise_test.ml",
             102,
             9
-          ]
-        ];
+          }
+        };
   end end 
 end
 
@@ -130,50 +130,50 @@ catch (raw_e$1)do
 end
 
 suites = do
-  contents: --[[ :: ]][
-    --[[ tuple ]][
+  contents: --[[ :: ]]{
+    --[[ tuple ]]{
       "File \"exception_raise_test.ml\", line 114, characters 4-11",
       (function (param) do
-          return --[[ Eq ]]Block.__(0, [
-                    --[[ tuple ]][
+          return --[[ Eq ]]Block.__(0, {
+                    --[[ tuple ]]{
                       f,
                       ff,
                       fff,
                       a0
-                    ],
-                    --[[ tuple ]][
+                    },
+                    --[[ tuple ]]{
                       2,
                       2,
                       2,
                       2
-                    ]
-                  ]);
+                    }
+                  });
         end end)
-    ],
-    --[[ :: ]][
-      --[[ tuple ]][
+    },
+    --[[ :: ]]{
+      --[[ tuple ]]{
         "File \"exception_raise_test.ml\", line 116, characters 4-11",
         (function (param) do
             if (a1[0] == Js_exn.__Error) then do
-              return --[[ Eq ]]Block.__(0, [
+              return --[[ Eq ]]Block.__(0, {
                         a1[1],
                         2
-                      ]);
+                      });
             end else do
-              throw [
+              throw {
                     Caml_builtin_exceptions.assert_failure,
-                    --[[ tuple ]][
+                    --[[ tuple ]]{
                       "exception_raise_test.ml",
                       119,
                       15
-                    ]
-                  ];
+                    }
+                  };
             end end 
           end end)
-      ],
+      },
       --[[ [] ]]0
-    ]
-  ]
+    }
+  }
 end;
 
 test_id = do
@@ -221,10 +221,10 @@ function input_lines(ic, _acc) do
     catch (exn)do
       return List.rev(acc);
     end
-    _acc = --[[ :: ]][
+    _acc = --[[ :: ]]{
       line,
       acc
-    ];
+    };
     continue ;
   end;
 end end

@@ -13,23 +13,23 @@ end;
 
 function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = --[[ :: ]][
-    --[[ tuple ]][
+  suites.contents = --[[ :: ]]{
+    --[[ tuple ]]{
       loc .. (" id " .. String(test_id.contents)),
       (function (param) do
-          return --[[ Eq ]]Block.__(0, [
+          return --[[ Eq ]]Block.__(0, {
                     x,
                     y
-                  ]);
+                  });
         end end)
-    ],
+    },
     suites.contents
-  ];
+  };
   return --[[ () ]]0;
 end end
 
 function f(x) do
-  return --[[ tuple ]][
+  return --[[ tuple ]]{
           x["003"],
           x["50"],
           x["50x"],
@@ -37,7 +37,7 @@ function f(x) do
           x.__50x,
           x["50x'"],
           x["x'"]
-        ];
+        };
 end end
 
 v = f(do
@@ -50,7 +50,7 @@ v = f(do
       "x'": 6
     end);
 
-eq("File \"gpr_1943_test.ml\", line 30, characters 6-13", --[[ tuple ]][
+eq("File \"gpr_1943_test.ml\", line 30, characters 6-13", --[[ tuple ]]{
       0,
       1,
       2,
@@ -58,7 +58,7 @@ eq("File \"gpr_1943_test.ml\", line 30, characters 6-13", --[[ tuple ]][
       4,
       5,
       6
-    ], v);
+    }, v);
 
 Mt.from_pair_suites("Gpr_1943_test", suites.contents);
 

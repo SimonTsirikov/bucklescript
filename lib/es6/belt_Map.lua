@@ -67,8 +67,8 @@ function split(m, x) do
   cmp = m.cmp;
   match = Belt_MapDict.split(m.data, x, cmp);
   match$1 = match[0];
-  return --[[ tuple ]][
-          --[[ tuple ]][
+  return --[[ tuple ]]{
+          --[[ tuple ]]{
             do
               cmp: cmp,
               data: match$1[0]
@@ -77,9 +77,9 @@ function split(m, x) do
               cmp: cmp,
               data: match$1[1]
             end
-          ],
+          },
           match[1]
-        ];
+        };
 end end
 
 function mergeU(s1, s2, f) do
@@ -159,7 +159,7 @@ end end
 function partitionU(m, p) do
   cmp = m.cmp;
   match = Belt_MapDict.partitionU(m.data, p);
-  return --[[ tuple ]][
+  return --[[ tuple ]]{
           do
             cmp: cmp,
             data: match[0]
@@ -168,7 +168,7 @@ function partitionU(m, p) do
             cmp: cmp,
             data: match[1]
           end
-        ];
+        };
 end end
 
 function partition(m, p) do

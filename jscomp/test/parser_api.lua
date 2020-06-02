@@ -133,40 +133,40 @@ end
 
 function print_config(oc) do
   p = function (name, valu) do
-    return Curry._2(Printf.fprintf(oc, --[[ Format ]][
-                    --[[ String ]]Block.__(2, [
+    return Curry._2(Printf.fprintf(oc, --[[ Format ]]{
+                    --[[ String ]]Block.__(2, {
                         --[[ No_padding ]]0,
-                        --[[ String_literal ]]Block.__(11, [
+                        --[[ String_literal ]]Block.__(11, {
                             ": ",
-                            --[[ String ]]Block.__(2, [
+                            --[[ String ]]Block.__(2, {
                                 --[[ No_padding ]]0,
-                                --[[ Char_literal ]]Block.__(12, [
+                                --[[ Char_literal ]]Block.__(12, {
                                     --[[ "\n" ]]10,
                                     --[[ End_of_format ]]0
-                                  ])
-                              ])
-                          ])
-                      ]),
+                                  })
+                              })
+                          })
+                      }),
                     "%s: %s\n"
-                  ]), name, valu);
+                  }), name, valu);
   end end;
   p_bool = function (name, valu) do
-    return Curry._2(Printf.fprintf(oc, --[[ Format ]][
-                    --[[ String ]]Block.__(2, [
+    return Curry._2(Printf.fprintf(oc, --[[ Format ]]{
+                    --[[ String ]]Block.__(2, {
                         --[[ No_padding ]]0,
-                        --[[ String_literal ]]Block.__(11, [
+                        --[[ String_literal ]]Block.__(11, {
                             ": ",
-                            --[[ Bool ]]Block.__(9, [
+                            --[[ Bool ]]Block.__(9, {
                                 --[[ No_padding ]]0,
-                                --[[ Char_literal ]]Block.__(12, [
+                                --[[ Char_literal ]]Block.__(12, {
                                     --[[ "\n" ]]10,
                                     --[[ End_of_format ]]0
-                                  ])
-                              ])
-                          ])
-                      ]),
+                                  })
+                              })
+                          })
+                      }),
                     "%s: %B\n"
-                  ]), name, valu);
+                  }), name, valu);
   end end;
   p("version", Sys.ocaml_version);
   p("standard_library_default", standard_library_default);
@@ -585,10 +585,10 @@ function std_include_dir(param) do
   if (no_std_include.contents) then do
     return --[[ [] ]]0;
   end else do
-    return --[[ :: ]][
+    return --[[ :: ]]{
             standard_library,
             --[[ [] ]]0
-          ];
+          };
   end end 
 end end
 
@@ -793,10 +793,10 @@ end end
 
 function map_end(f, l1, l2) do
   if (l1) then do
-    return --[[ :: ]][
+    return --[[ :: ]]{
             Curry._1(f, l1[0]),
             map_end(f, l1[1], l2)
-          ];
+          };
   end else do
     return l2;
   end end 
@@ -805,10 +805,10 @@ end end
 function map_left_right(f, param) do
   if (param) then do
     res = Curry._1(f, param[0]);
-    return --[[ :: ]][
+    return --[[ :: ]]{
             res,
             map_left_right(f, param[1])
-          ];
+          };
   end else do
     return --[[ [] ]]0;
   end end 
@@ -838,10 +838,10 @@ function replicate_list(elem, n) do
   if (n <= 0) then do
     return --[[ [] ]]0;
   end else do
-    return --[[ :: ]][
+    return --[[ :: ]]{
             elem,
             replicate_list(elem, n - 1 | 0)
-          ];
+          };
   end end 
 end end
 
@@ -852,10 +852,10 @@ function list_remove(x, param) do
     if (Caml_obj.caml_equal(hd, x)) then do
       return tl;
     end else do
-      return --[[ :: ]][
+      return --[[ :: ]]{
               hd,
               list_remove(x, tl)
-            ];
+            };
     end end 
   end else do
     return --[[ [] ]]0;
@@ -868,28 +868,28 @@ function split_last(param) do
     x = param[0];
     if (tl) then do
       match = split_last(tl);
-      return --[[ tuple ]][
-              --[[ :: ]][
+      return --[[ tuple ]]{
+              --[[ :: ]]{
                 x,
                 match[0]
-              ],
+              },
               match[1]
-            ];
+            };
     end else do
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               --[[ [] ]]0,
               x
-            ];
+            };
     end end 
   end else do
-    throw [
+    throw {
           Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]][
+          --[[ tuple ]]{
             "misc.ml",
             54,
             10
-          ]
-        ];
+          }
+        };
   end end 
 end end
 
@@ -1193,20 +1193,20 @@ function replace_substring(before, after, str) do
       catch (exn)do
         if (exn == Caml_builtin_exceptions.not_found) then do
           suffix = __String.sub(str, curr, #str - curr | 0);
-          return List.rev(--[[ :: ]][
+          return List.rev(--[[ :: ]]{
                       suffix,
                       acc
-                    ]);
+                    });
         end else do
           throw exn;
         end end 
       end
       prefix = __String.sub(str, curr, next - curr | 0);
       _curr = next + #before | 0;
-      _acc = --[[ :: ]][
+      _acc = --[[ :: ]]{
         prefix,
         acc
-      ];
+      };
       continue ;
     end;
   end end;
@@ -1242,10 +1242,10 @@ function rev_split_words(s) do
     while(true) do
       j = _j;
       if (j >= #s) then do
-        return --[[ :: ]][
+        return --[[ :: ]]{
                 __String.sub(s, i, j - i | 0),
                 res
-              ];
+              };
       end else do
         match = Caml_string.get(s, j);
         switcher = match - 9 | 0;
@@ -1260,10 +1260,10 @@ function rev_split_words(s) do
           continue ;
         end
          end  end 
-        return split1(--[[ :: ]][
+        return split1(--[[ :: ]]{
                     __String.sub(s, i, j - i | 0),
                     res
-                  ], j + 1 | 0);
+                  }, j + 1 | 0);
       end end 
     end;
   end end;
@@ -1408,10 +1408,10 @@ function split(s, c) do
     to_rev = _to_rev;
     pos = _pos;
     if (pos == len) then do
-      return List.rev(--[[ :: ]][
+      return List.rev(--[[ :: ]]{
                   "",
                   to_rev
-                ]);
+                });
     end else do
       match;
       try do
@@ -1427,25 +1427,25 @@ function split(s, c) do
       if (match ~= undefined) then do
         pos2 = match;
         if (pos2 == pos) then do
-          _to_rev = --[[ :: ]][
+          _to_rev = --[[ :: ]]{
             "",
             to_rev
-          ];
+          };
           _pos = pos + 1 | 0;
           continue ;
         end else do
-          _to_rev = --[[ :: ]][
+          _to_rev = --[[ :: ]]{
             __String.sub(s, pos, pos2 - pos | 0),
             to_rev
-          ];
+          };
           _pos = pos2 + 1 | 0;
           continue ;
         end end 
       end else do
-        return List.rev(--[[ :: ]][
+        return List.rev(--[[ :: ]]{
                     __String.sub(s, pos, len - pos | 0),
                     to_rev
-                  ]);
+                  });
       end end 
     end end 
   end;
@@ -1453,10 +1453,10 @@ end end
 
 function cut_at(s, c) do
   pos = __String.index(s, c);
-  return --[[ tuple ]][
+  return --[[ tuple ]]{
           __String.sub(s, 0, pos),
           __String.sub(s, pos + 1 | 0, (#s - pos | 0) - 1 | 0)
-        ];
+        };
 end end
 
 function ansi_of_color(param) do
@@ -1511,24 +1511,24 @@ function ansi_of_style_l(l) do
 end end
 
 default_styles = do
-  error: --[[ :: ]][
+  error: --[[ :: ]]{
     --[[ Bold ]]0,
-    --[[ :: ]][
-      --[[ FG ]]Block.__(0, [--[[ Red ]]1]),
+    --[[ :: ]]{
+      --[[ FG ]]Block.__(0, {--[[ Red ]]1}),
       --[[ [] ]]0
-    ]
-  ],
-  warning: --[[ :: ]][
+    }
+  },
+  warning: --[[ :: ]]{
     --[[ Bold ]]0,
-    --[[ :: ]][
-      --[[ FG ]]Block.__(0, [--[[ Magenta ]]5]),
+    --[[ :: ]]{
+      --[[ FG ]]Block.__(0, {--[[ Magenta ]]5}),
       --[[ [] ]]0
-    ]
-  ],
-  loc: --[[ :: ]][
+    }
+  },
+  loc: --[[ :: ]]{
     --[[ Bold ]]0,
     --[[ [] ]]0
-  ]
+  }
 end;
 
 cur_styles = do
@@ -1548,25 +1548,25 @@ function style_of_tag(s) do
   local ___conditional___=(s);
   do
      if ___conditional___ = "dim" then do
-        return --[[ :: ]][
+        return --[[ :: ]]{
                 --[[ Dim ]]2,
                 --[[ [] ]]0
-              ];end end end 
+              };end end end 
      if ___conditional___ = "error" then do
         return cur_styles.contents.error;end end end 
      if ___conditional___ = "filename" then do
-        return --[[ :: ]][
-                --[[ FG ]]Block.__(0, [--[[ Cyan ]]6]),
+        return --[[ :: ]]{
+                --[[ FG ]]Block.__(0, {--[[ Cyan ]]6}),
                 --[[ [] ]]0
-              ];end end end 
+              };end end end 
      if ___conditional___ = "info" then do
-        return --[[ :: ]][
+        return --[[ :: ]]{
                 --[[ Bold ]]0,
-                --[[ :: ]][
-                  --[[ FG ]]Block.__(0, [--[[ Yellow ]]3]),
+                --[[ :: ]]{
+                  --[[ FG ]]Block.__(0, {--[[ Yellow ]]3}),
                   --[[ [] ]]0
-                ]
-              ];end end end 
+                }
+              };end end end 
      if ___conditional___ = "loc" then do
         return cur_styles.contents.loc;end end end 
      if ___conditional___ = "warning" then do
@@ -1612,10 +1612,10 @@ function set_color_tag_handling(ppf) do
     try do
       style_of_tag(s);
       if (color_enabled.contents) then do
-        return ansi_of_style_l(--[[ :: ]][
+        return ansi_of_style_l(--[[ :: ]]{
                     --[[ Reset ]]1,
                     --[[ [] ]]0
-                  ]);
+                  });
       end else do
         return "";
       end end 
@@ -1644,18 +1644,18 @@ first = do
   contents: true
 end;
 
-formatter_l_001 = --[[ :: ]][
+formatter_l_001 = --[[ :: ]]{
   Format.err_formatter,
-  --[[ :: ]][
+  --[[ :: ]]{
     Format.str_formatter,
     --[[ [] ]]0
-  ]
-];
+  }
+};
 
-formatter_l = --[[ :: ]][
+formatter_l = --[[ :: ]]{
   Format.std_formatter,
   formatter_l_001
-];
+};
 
 function setup(o) do
   if (first.contents) then do
@@ -1869,10 +1869,10 @@ function loop(i) do
   if (i == 0) then do
     return --[[ [] ]]0;
   end else do
-    return --[[ :: ]][
+    return --[[ :: ]]{
             i,
             loop(i - 1 | 0)
-          ];
+          };
   end end 
 end end
 
@@ -1884,92 +1884,92 @@ function letter(param) do
      if ___conditional___ = 97 then do
         return letter_all;end end end 
      if ___conditional___ = 99 then do
-        return --[[ :: ]][
+        return --[[ :: ]]{
                 1,
-                --[[ :: ]][
+                --[[ :: ]]{
                   2,
                   --[[ [] ]]0
-                ]
-              ];end end end 
+                }
+              };end end end 
      if ___conditional___ = 100 then do
-        return --[[ :: ]][
+        return --[[ :: ]]{
                 3,
                 --[[ [] ]]0
-              ];end end end 
+              };end end end 
      if ___conditional___ = 101 then do
-        return --[[ :: ]][
+        return --[[ :: ]]{
                 4,
                 --[[ [] ]]0
-              ];end end end 
+              };end end end 
      if ___conditional___ = 102 then do
-        return --[[ :: ]][
+        return --[[ :: ]]{
                 5,
                 --[[ [] ]]0
-              ];end end end 
+              };end end end 
      if ___conditional___ = 107 then do
-        return --[[ :: ]][
+        return --[[ :: ]]{
                 32,
-                --[[ :: ]][
+                --[[ :: ]]{
                   33,
-                  --[[ :: ]][
+                  --[[ :: ]]{
                     34,
-                    --[[ :: ]][
+                    --[[ :: ]]{
                       35,
-                      --[[ :: ]][
+                      --[[ :: ]]{
                         36,
-                        --[[ :: ]][
+                        --[[ :: ]]{
                           37,
-                          --[[ :: ]][
+                          --[[ :: ]]{
                             38,
-                            --[[ :: ]][
+                            --[[ :: ]]{
                               39,
                               --[[ [] ]]0
-                            ]
-                          ]
-                        ]
-                      ]
-                    ]
-                  ]
-                ]
-              ];end end end 
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              };end end end 
      if ___conditional___ = 108 then do
-        return --[[ :: ]][
+        return --[[ :: ]]{
                 6,
                 --[[ [] ]]0
-              ];end end end 
+              };end end end 
      if ___conditional___ = 109 then do
-        return --[[ :: ]][
+        return --[[ :: ]]{
                 7,
                 --[[ [] ]]0
-              ];end end end 
+              };end end end 
      if ___conditional___ = 112 then do
-        return --[[ :: ]][
+        return --[[ :: ]]{
                 8,
                 --[[ [] ]]0
-              ];end end end 
+              };end end end 
      if ___conditional___ = 114 then do
-        return --[[ :: ]][
+        return --[[ :: ]]{
                 9,
                 --[[ [] ]]0
-              ];end end end 
+              };end end end 
      if ___conditional___ = 115 then do
-        return --[[ :: ]][
+        return --[[ :: ]]{
                 10,
                 --[[ [] ]]0
-              ];end end end 
+              };end end end 
      if ___conditional___ = 117 then do
-        return --[[ :: ]][
+        return --[[ :: ]]{
                 11,
-                --[[ :: ]][
+                --[[ :: ]]{
                   12,
                   --[[ [] ]]0
-                ]
-              ];end end end 
+                }
+              };end end end 
      if ___conditional___ = 118 then do
-        return --[[ :: ]][
+        return --[[ :: ]]{
                 13,
                 --[[ [] ]]0
-              ];end end end 
+              };end end end 
      if ___conditional___ = 98
      or ___conditional___ = 103
      or ___conditional___ = 104
@@ -1982,66 +1982,66 @@ function letter(param) do
      or ___conditional___ = 119 then do
         return --[[ [] ]]0;end end end 
      if ___conditional___ = 120 then do
-        return --[[ :: ]][
+        return --[[ :: ]]{
                 14,
-                --[[ :: ]][
+                --[[ :: ]]{
                   15,
-                  --[[ :: ]][
+                  --[[ :: ]]{
                     16,
-                    --[[ :: ]][
+                    --[[ :: ]]{
                       17,
-                      --[[ :: ]][
+                      --[[ :: ]]{
                         18,
-                        --[[ :: ]][
+                        --[[ :: ]]{
                           19,
-                          --[[ :: ]][
+                          --[[ :: ]]{
                             20,
-                            --[[ :: ]][
+                            --[[ :: ]]{
                               21,
-                              --[[ :: ]][
+                              --[[ :: ]]{
                                 22,
-                                --[[ :: ]][
+                                --[[ :: ]]{
                                   23,
-                                  --[[ :: ]][
+                                  --[[ :: ]]{
                                     24,
-                                    --[[ :: ]][
+                                    --[[ :: ]]{
                                       25,
-                                      --[[ :: ]][
+                                      --[[ :: ]]{
                                         30,
                                         --[[ [] ]]0
-                                      ]
-                                    ]
-                                  ]
-                                ]
-                              ]
-                            ]
-                          ]
-                        ]
-                      ]
-                    ]
-                  ]
-                ]
-              ];end end end 
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              };end end end 
      if ___conditional___ = 121 then do
-        return --[[ :: ]][
+        return --[[ :: ]]{
                 26,
                 --[[ [] ]]0
-              ];end end end 
+              };end end end 
      if ___conditional___ = 122 then do
-        return --[[ :: ]][
+        return --[[ :: ]]{
                 27,
                 --[[ [] ]]0
-              ];end end end 
+              };end end end 
      do
     else do
-      throw [
+      throw {
             Caml_builtin_exceptions.assert_failure,
-            --[[ tuple ]][
+            --[[ tuple ]]{
               "warnings.ml",
               176,
               9
-            ]
-          ];
+            }
+          };
       end end
       
   end
@@ -2087,17 +2087,17 @@ function parse_opt(error, active, flags, s) do
       i = _i;
       n = _n;
       if (i >= #s) then do
-        return --[[ tuple ]][
+        return --[[ tuple ]]{
                 i,
                 n
-              ];
+              };
       end else do
         match = Caml_string.get(s, i);
         if (match > 57 or match < 48) then do
-          return --[[ tuple ]][
+          return --[[ tuple ]]{
                   i,
                   n
-                ];
+                };
         end else do
           _i = i + 1 | 0;
           _n = (Caml_int32.imul(10, n) + Caml_string.get(s, i) | 0) - --[[ "0" ]]48 | 0;
@@ -2114,23 +2114,23 @@ function parse_opt(error, active, flags, s) do
       match$1 = get_num(0, i$1 + 2 | 0);
       n2 = match$1[1];
       if (n2 < n1) then do
-        throw [
+        throw {
               Arg.Bad,
               "Ill-formed list of warnings"
-            ];
+            };
       end
        end 
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               match$1[0],
               n1,
               n2
-            ];
+            };
     end else do
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               i$1,
               n1,
               n1
-            ];
+            };
     end end 
   end end;
   loop = function (_i) do
@@ -2143,10 +2143,10 @@ function parse_opt(error, active, flags, s) do
         if (c >= 65) then do
           if (c >= 97) then do
             if (c >= 123) then do
-              throw [
+              throw {
                     Arg.Bad,
                     "Ill-formed list of warnings"
-                  ];
+                  };
             end
              end 
             List.iter(clear, letter(Caml_string.get(s, i)));
@@ -2154,10 +2154,10 @@ function parse_opt(error, active, flags, s) do
             continue ;
           end else do
             if (c >= 91) then do
-              throw [
+              throw {
                     Arg.Bad,
                     "Ill-formed list of warnings"
-                  ];
+                  };
             end
              end 
             List.iter(set, letter(Char.lowercase(Caml_string.get(s, i))));
@@ -2168,10 +2168,10 @@ function parse_opt(error, active, flags, s) do
           if (c >= 64) then do
             return loop_letter_num(set_all, i + 1 | 0);
           end else do
-            throw [
+            throw {
                   Arg.Bad,
                   "Ill-formed list of warnings"
-                ];
+                };
           end end 
         end else if (c >= 43) then do
           local ___conditional___=(c - 43 | 0);
@@ -2179,50 +2179,50 @@ function parse_opt(error, active, flags, s) do
              if ___conditional___ = 0 then do
                 return loop_letter_num(set, i + 1 | 0);end end end 
              if ___conditional___ = 1 then do
-                throw [
+                throw {
                       Arg.Bad,
                       "Ill-formed list of warnings"
-                    ];end end end 
+                    };end end end 
              if ___conditional___ = 2 then do
                 return loop_letter_num(clear, i + 1 | 0);end end end 
              do
             
           end
         end else do
-          throw [
+          throw {
                 Arg.Bad,
                 "Ill-formed list of warnings"
-              ];
+              };
         end end  end  end 
       end end 
     end;
   end end;
   loop_letter_num = function (myset, i) do
     if (i >= #s) then do
-      throw [
+      throw {
             Arg.Bad,
             "Ill-formed list of warnings"
-          ];
+          };
     end
      end 
     match = Caml_string.get(s, i);
     if (match >= 65) then do
       if (match >= 97) then do
         if (match >= 123) then do
-          throw [
+          throw {
                 Arg.Bad,
                 "Ill-formed list of warnings"
-              ];
+              };
         end
          end 
         List.iter(myset, letter(Caml_string.get(s, i)));
         return loop(i + 1 | 0);
       end else do
         if (match >= 91) then do
-          throw [
+          throw {
                 Arg.Bad,
                 "Ill-formed list of warnings"
-              ];
+              };
         end
          end 
         List.iter(myset, letter(Char.lowercase(Caml_string.get(s, i))));
@@ -2230,10 +2230,10 @@ function parse_opt(error, active, flags, s) do
       end end 
     end else do
       if (match > 57 or match < 48) then do
-        throw [
+        throw {
               Arg.Bad,
               "Ill-formed list of warnings"
-            ];
+            };
       end
        end 
       match$1 = get_range(i);
@@ -2324,28 +2324,28 @@ function message(param) do
             slist = match[1];
             lab = match[0];
             if (slist) then do
-              return __String.concat(" ", --[[ :: ]][
+              return __String.concat(" ", --[[ :: ]]{
                           "the following methods are overridden by the class",
-                          --[[ :: ]][
+                          --[[ :: ]]{
                             lab,
-                            --[[ :: ]][
+                            --[[ :: ]]{
                               ":\n ",
                               slist
-                            ]
-                          ]
-                        ]);
+                            }
+                          }
+                        });
             end else do
               return "the method " .. (lab .. " is overridden.");
             end end 
           end else do
-            throw [
+            throw {
                   Caml_builtin_exceptions.assert_failure,
-                  --[[ tuple ]][
+                  --[[ tuple ]]{
                     "warnings.ml",
                     283,
                     26
-                  ]
-                ];
+                  }
+                };
           end end end end end 
        if ___conditional___ = 3--[[ Partial_match ]] then do
           s$1 = param[0];
@@ -2362,28 +2362,28 @@ function message(param) do
             slist$1 = match$1[1];
             lab$1 = match$1[0];
             if (slist$1) then do
-              return __String.concat(" ", --[[ :: ]][
+              return __String.concat(" ", --[[ :: ]]{
                           "the following instance variables are overridden by the class",
-                          --[[ :: ]][
+                          --[[ :: ]]{
                             lab$1,
-                            --[[ :: ]][
+                            --[[ :: ]]{
                               ":\n ",
                               slist$1
-                            ]
-                          ]
-                        ]) .. "\nThe behaviour changed in ocaml 3.10 (previous behaviour was hiding.)";
+                            }
+                          }
+                        }) .. "\nThe behaviour changed in ocaml 3.10 (previous behaviour was hiding.)";
             end else do
               return "the instance variable " .. (lab$1 .. " is overridden.\nThe behaviour changed in ocaml 3.10 (previous behaviour was hiding.)");
             end end 
           end else do
-            throw [
+            throw {
                   Caml_builtin_exceptions.assert_failure,
-                  --[[ tuple ]][
+                  --[[ tuple ]]{
                     "warnings.ml",
                     303,
                     37
-                  ]
-                ];
+                  }
+                };
           end end end end end 
        if ___conditional___ = 6--[[ Implicit_public_methods ]] then do
           return "the following private methods were made public implicitly:\n " .. (__String.concat(" ", param[0]) .. ".");end end end 
@@ -2401,60 +2401,60 @@ function message(param) do
        or ___conditional___ = 13--[[ Unused_var_strict ]] then do
           return "unused variable " .. (param[0] .. ".");end end end 
        if ___conditional___ = 14--[[ Duplicate_definitions ]] then do
-          return Curry._4(Printf.sprintf(--[[ Format ]][
-                          --[[ String_literal ]]Block.__(11, [
+          return Curry._4(Printf.sprintf(--[[ Format ]]{
+                          --[[ String_literal ]]Block.__(11, {
                               "the ",
-                              --[[ String ]]Block.__(2, [
+                              --[[ String ]]Block.__(2, {
                                   --[[ No_padding ]]0,
-                                  --[[ Char_literal ]]Block.__(12, [
+                                  --[[ Char_literal ]]Block.__(12, {
                                       --[[ " " ]]32,
-                                      --[[ String ]]Block.__(2, [
+                                      --[[ String ]]Block.__(2, {
                                           --[[ No_padding ]]0,
-                                          --[[ String_literal ]]Block.__(11, [
+                                          --[[ String_literal ]]Block.__(11, {
                                               " is defined in both types ",
-                                              --[[ String ]]Block.__(2, [
+                                              --[[ String ]]Block.__(2, {
                                                   --[[ No_padding ]]0,
-                                                  --[[ String_literal ]]Block.__(11, [
+                                                  --[[ String_literal ]]Block.__(11, {
                                                       " and ",
-                                                      --[[ String ]]Block.__(2, [
+                                                      --[[ String ]]Block.__(2, {
                                                           --[[ No_padding ]]0,
-                                                          --[[ Char_literal ]]Block.__(12, [
+                                                          --[[ Char_literal ]]Block.__(12, {
                                                               --[[ "." ]]46,
                                                               --[[ End_of_format ]]0
-                                                            ])
-                                                        ])
-                                                    ])
-                                                ])
-                                            ])
-                                        ])
-                                    ])
-                                ])
-                            ]),
+                                                            })
+                                                        })
+                                                    })
+                                                })
+                                            })
+                                        })
+                                    })
+                                })
+                            }),
                           "the %s %s is defined in both types %s and %s."
-                        ]), param[0], param[1], param[2], param[3]);end end end 
+                        }), param[0], param[1], param[2], param[3]);end end end 
        if ___conditional___ = 15--[[ Multiple_definition ]] then do
-          return Curry._3(Printf.sprintf(--[[ Format ]][
-                          --[[ String_literal ]]Block.__(11, [
+          return Curry._3(Printf.sprintf(--[[ Format ]]{
+                          --[[ String_literal ]]Block.__(11, {
                               "files ",
-                              --[[ String ]]Block.__(2, [
+                              --[[ String ]]Block.__(2, {
                                   --[[ No_padding ]]0,
-                                  --[[ String_literal ]]Block.__(11, [
+                                  --[[ String_literal ]]Block.__(11, {
                                       " and ",
-                                      --[[ String ]]Block.__(2, [
+                                      --[[ String ]]Block.__(2, {
                                           --[[ No_padding ]]0,
-                                          --[[ String_literal ]]Block.__(11, [
+                                          --[[ String_literal ]]Block.__(11, {
                                               " both define a module named ",
-                                              --[[ String ]]Block.__(2, [
+                                              --[[ String ]]Block.__(2, {
                                                   --[[ No_padding ]]0,
                                                   --[[ End_of_format ]]0
-                                                ])
-                                            ])
-                                        ])
-                                    ])
-                                ])
-                            ]),
+                                                })
+                                            })
+                                        })
+                                    })
+                                })
+                            }),
                           "files %s and %s both define a module named %s"
-                        ]), param[1], param[2], param[0]);end end end 
+                        }), param[1], param[2], param[0]);end end end 
        if ___conditional___ = 16--[[ Unused_value_declaration ]] then do
           return "unused value " .. (param[0] .. ".");end end end 
        if ___conditional___ = 17--[[ Unused_open ]] then do
@@ -2493,14 +2493,14 @@ function message(param) do
           if (param[2]) then do
             return "this record of type " .. (ty .. (" contains fields that are \nnot visible in the current scope: " .. (__String.concat(" ", slist$2) .. ".\nThey will not be selected if the type becomes unknown.")));
           end else do
-            throw [
+            throw {
                   Caml_builtin_exceptions.assert_failure,
-                  --[[ tuple ]][
+                  --[[ tuple ]]{
                     "warnings.ml",
                     365,
                     39
-                  ]
-                ];
+                  }
+                };
           end end end else 
        if ___conditional___ = 24--[[ Ambiguous_name ]] then do
           slist$3 = param[0];
@@ -2511,111 +2511,111 @@ function message(param) do
           if (param[2]) then do
             return "these field labels belong to several types: " .. (__String.concat(" ", param[1]) .. "\nThe first one was selected. Please disambiguate if this is wrong.");
           end else do
-            throw [
+            throw {
                   Caml_builtin_exceptions.assert_failure,
-                  --[[ tuple ]][
+                  --[[ tuple ]]{
                     "warnings.ml",
                     374,
                     36
-                  ]
-                ];
+                  }
+                };
           end end end else 
        if ___conditional___ = 25--[[ Disambiguated_name ]] then do
           return "this use of " .. (param[0] .. " required disambiguation.");end end end 
        if ___conditional___ = 26--[[ Nonoptional_label ]] then do
           return "the label " .. (param[0] .. " is not optional.");end end end 
        if ___conditional___ = 27--[[ Open_shadow_identifier ]] then do
-          return Curry._2(Printf.sprintf(--[[ Format ]][
-                          --[[ String_literal ]]Block.__(11, [
+          return Curry._2(Printf.sprintf(--[[ Format ]]{
+                          --[[ String_literal ]]Block.__(11, {
                               "this open statement shadows the ",
-                              --[[ String ]]Block.__(2, [
+                              --[[ String ]]Block.__(2, {
                                   --[[ No_padding ]]0,
-                                  --[[ String_literal ]]Block.__(11, [
+                                  --[[ String_literal ]]Block.__(11, {
                                       " identifier ",
-                                      --[[ String ]]Block.__(2, [
+                                      --[[ String ]]Block.__(2, {
                                           --[[ No_padding ]]0,
-                                          --[[ String_literal ]]Block.__(11, [
+                                          --[[ String_literal ]]Block.__(11, {
                                               " (which is later used)",
                                               --[[ End_of_format ]]0
-                                            ])
-                                        ])
-                                    ])
-                                ])
-                            ]),
+                                            })
+                                        })
+                                    })
+                                })
+                            }),
                           "this open statement shadows the %s identifier %s (which is later used)"
-                        ]), param[0], param[1]);end end end 
+                        }), param[0], param[1]);end end end 
        if ___conditional___ = 28--[[ Open_shadow_label_constructor ]] then do
-          return Curry._2(Printf.sprintf(--[[ Format ]][
-                          --[[ String_literal ]]Block.__(11, [
+          return Curry._2(Printf.sprintf(--[[ Format ]]{
+                          --[[ String_literal ]]Block.__(11, {
                               "this open statement shadows the ",
-                              --[[ String ]]Block.__(2, [
+                              --[[ String ]]Block.__(2, {
                                   --[[ No_padding ]]0,
-                                  --[[ Char_literal ]]Block.__(12, [
+                                  --[[ Char_literal ]]Block.__(12, {
                                       --[[ " " ]]32,
-                                      --[[ String ]]Block.__(2, [
+                                      --[[ String ]]Block.__(2, {
                                           --[[ No_padding ]]0,
-                                          --[[ String_literal ]]Block.__(11, [
+                                          --[[ String_literal ]]Block.__(11, {
                                               " (which is later used)",
                                               --[[ End_of_format ]]0
-                                            ])
-                                        ])
-                                    ])
-                                ])
-                            ]),
+                                            })
+                                        })
+                                    })
+                                })
+                            }),
                           "this open statement shadows the %s %s (which is later used)"
-                        ]), param[0], param[1]);end end end 
+                        }), param[0], param[1]);end end end 
        if ___conditional___ = 29--[[ Bad_env_variable ]] then do
-          return Curry._2(Printf.sprintf(--[[ Format ]][
-                          --[[ String_literal ]]Block.__(11, [
+          return Curry._2(Printf.sprintf(--[[ Format ]]{
+                          --[[ String_literal ]]Block.__(11, {
                               "illegal environment variable ",
-                              --[[ String ]]Block.__(2, [
+                              --[[ String ]]Block.__(2, {
                                   --[[ No_padding ]]0,
-                                  --[[ String_literal ]]Block.__(11, [
+                                  --[[ String_literal ]]Block.__(11, {
                                       " : ",
-                                      --[[ String ]]Block.__(2, [
+                                      --[[ String ]]Block.__(2, {
                                           --[[ No_padding ]]0,
                                           --[[ End_of_format ]]0
-                                        ])
-                                    ])
-                                ])
-                            ]),
+                                        })
+                                    })
+                                })
+                            }),
                           "illegal environment variable %s : %s"
-                        ]), param[0], param[1]);end end end 
+                        }), param[0], param[1]);end end end 
        if ___conditional___ = 30--[[ Attribute_payload ]] then do
-          return Curry._2(Printf.sprintf(--[[ Format ]][
-                          --[[ String_literal ]]Block.__(11, [
+          return Curry._2(Printf.sprintf(--[[ Format ]]{
+                          --[[ String_literal ]]Block.__(11, {
                               "illegal payload for attribute '",
-                              --[[ String ]]Block.__(2, [
+                              --[[ String ]]Block.__(2, {
                                   --[[ No_padding ]]0,
-                                  --[[ String_literal ]]Block.__(11, [
+                                  --[[ String_literal ]]Block.__(11, {
                                       "'.\n",
-                                      --[[ String ]]Block.__(2, [
+                                      --[[ String ]]Block.__(2, {
                                           --[[ No_padding ]]0,
                                           --[[ End_of_format ]]0
-                                        ])
-                                    ])
-                                ])
-                            ]),
+                                        })
+                                    })
+                                })
+                            }),
                           "illegal payload for attribute '%s'.\n%s"
-                        ]), param[0], param[1]);end end end 
+                        }), param[0], param[1]);end end end 
        if ___conditional___ = 31--[[ Eliminated_optional_arguments ]] then do
           sl = param[0];
-          return Curry._2(Printf.sprintf(--[[ Format ]][
-                          --[[ String_literal ]]Block.__(11, [
+          return Curry._2(Printf.sprintf(--[[ Format ]]{
+                          --[[ String_literal ]]Block.__(11, {
                               "implicit elimination of optional argument",
-                              --[[ String ]]Block.__(2, [
+                              --[[ String ]]Block.__(2, {
                                   --[[ No_padding ]]0,
-                                  --[[ Char_literal ]]Block.__(12, [
+                                  --[[ Char_literal ]]Block.__(12, {
                                       --[[ " " ]]32,
-                                      --[[ String ]]Block.__(2, [
+                                      --[[ String ]]Block.__(2, {
                                           --[[ No_padding ]]0,
                                           --[[ End_of_format ]]0
-                                        ])
-                                    ])
-                                ])
-                            ]),
+                                        })
+                                    })
+                                })
+                            }),
                           "implicit elimination of optional argument%s %s"
-                        ]), List.length(sl) == 1 and "" or "s", __String.concat(", ", sl));end end end 
+                        }), List.length(sl) == 1 and "" or "s", __String.concat(", ", sl));end end end 
        if ___conditional___ = 32--[[ No_cmi_file ]] then do
           return "no cmi file was found in path for module " .. param[0];end end end 
        if ___conditional___ = 33--[[ Bad_docstring ]] then do
@@ -2643,21 +2643,21 @@ end;
 function print(ppf, w) do
   msg = message(w);
   num = number(w);
-  Curry._2(Format.fprintf(ppf, --[[ Format ]][
-            --[[ Int ]]Block.__(4, [
+  Curry._2(Format.fprintf(ppf, --[[ Format ]]{
+            --[[ Int ]]Block.__(4, {
                 --[[ Int_d ]]0,
                 --[[ No_padding ]]0,
                 --[[ No_precision ]]0,
-                --[[ String_literal ]]Block.__(11, [
+                --[[ String_literal ]]Block.__(11, {
                     ": ",
-                    --[[ String ]]Block.__(2, [
+                    --[[ String ]]Block.__(2, {
                         --[[ No_padding ]]0,
                         --[[ End_of_format ]]0
-                      ])
-                  ])
-              ]),
+                      })
+                  })
+              }),
             "%d: %s"
-          ]), num, msg);
+          }), num, msg);
   Format.pp_print_flush(ppf, --[[ () ]]0);
   if (Caml_array.caml_array_get(current.contents.error, num)) then do
     nerrors.contents = nerrors.contents + 1 | 0;
@@ -2670,13 +2670,13 @@ end end
 function super_print(message, ppf, w) do
   msg = Curry._1(message, w);
   num = number(w);
-  Curry._1(Format.fprintf(ppf, --[[ Format ]][
-            --[[ String ]]Block.__(2, [
+  Curry._1(Format.fprintf(ppf, --[[ Format ]]{
+            --[[ String ]]Block.__(2, {
                 --[[ No_padding ]]0,
                 --[[ End_of_format ]]0
-              ]),
+              }),
             "%s"
-          ]), msg);
+          }), msg);
   Format.pp_print_flush(ppf, --[[ () ]]0);
   if (Caml_array.caml_array_get(current.contents.error, num)) then do
     nerrors.contents = nerrors.contents + 1 | 0;
@@ -2691,10 +2691,10 @@ Errors = Caml_exceptions.create("Parser_api.Warnings.Errors");
 function check_fatal(param) do
   if (nerrors.contents > 0) then do
     e_001 = nerrors.contents;
-    e = [
+    e = {
       Errors,
       e_001
-    ];
+    };
     nerrors.contents = 0;
     throw e;
   end else do
@@ -2704,377 +2704,377 @@ end end
 
 function help_warnings(param) do
   List.iter((function (param) do
-          return Curry._2(Printf.printf(--[[ Format ]][
-                          --[[ Int ]]Block.__(4, [
+          return Curry._2(Printf.printf(--[[ Format ]]{
+                          --[[ Int ]]Block.__(4, {
                               --[[ Int_i ]]3,
-                              --[[ Lit_padding ]]Block.__(0, [
+                              --[[ Lit_padding ]]Block.__(0, {
                                   --[[ Right ]]1,
                                   3
-                                ]),
+                                }),
                               --[[ No_precision ]]0,
-                              --[[ Char_literal ]]Block.__(12, [
+                              --[[ Char_literal ]]Block.__(12, {
                                   --[[ " " ]]32,
-                                  --[[ String ]]Block.__(2, [
+                                  --[[ String ]]Block.__(2, {
                                       --[[ No_padding ]]0,
-                                      --[[ Char_literal ]]Block.__(12, [
+                                      --[[ Char_literal ]]Block.__(12, {
                                           --[[ "\n" ]]10,
                                           --[[ End_of_format ]]0
-                                        ])
-                                    ])
-                                ])
-                            ]),
+                                        })
+                                    })
+                                })
+                            }),
                           "%3i %s\n"
-                        ]), param[0], param[1]);
-        end end), --[[ :: ]][
-        --[[ tuple ]][
+                        }), param[0], param[1]);
+        end end), --[[ :: ]]{
+        --[[ tuple ]]{
           1,
           "Suspicious-looking start-of-comment mark."
-        ],
-        --[[ :: ]][
-          --[[ tuple ]][
+        },
+        --[[ :: ]]{
+          --[[ tuple ]]{
             2,
             "Suspicious-looking end-of-comment mark."
-          ],
-          --[[ :: ]][
-            --[[ tuple ]][
+          },
+          --[[ :: ]]{
+            --[[ tuple ]]{
               3,
               "Deprecated feature."
-            ],
-            --[[ :: ]][
-              --[[ tuple ]][
+            },
+            --[[ :: ]]{
+              --[[ tuple ]]{
                 4,
                 "Fragile pattern matching: matching that will remain complete even\n    if additional constructors are added to one of the variant types\n    matched."
-              ],
-              --[[ :: ]][
-                --[[ tuple ]][
+              },
+              --[[ :: ]]{
+                --[[ tuple ]]{
                   5,
                   "Partially applied function: expression whose result has function\n    type and is ignored."
-                ],
-                --[[ :: ]][
-                  --[[ tuple ]][
+                },
+                --[[ :: ]]{
+                  --[[ tuple ]]{
                     6,
                     "Label omitted in function application."
-                  ],
-                  --[[ :: ]][
-                    --[[ tuple ]][
+                  },
+                  --[[ :: ]]{
+                    --[[ tuple ]]{
                       7,
                       "Method overridden."
-                    ],
-                    --[[ :: ]][
-                      --[[ tuple ]][
+                    },
+                    --[[ :: ]]{
+                      --[[ tuple ]]{
                         8,
                         "Partial match: missing cases in pattern-matching."
-                      ],
-                      --[[ :: ]][
-                        --[[ tuple ]][
+                      },
+                      --[[ :: ]]{
+                        --[[ tuple ]]{
                           9,
                           "Missing fields in a record pattern."
-                        ],
-                        --[[ :: ]][
-                          --[[ tuple ]][
+                        },
+                        --[[ :: ]]{
+                          --[[ tuple ]]{
                             10,
                             "Expression on the left-hand side of a sequence that doesn't have type\n    \"unit\" (and that is not a function, see warning number 5)."
-                          ],
-                          --[[ :: ]][
-                            --[[ tuple ]][
+                          },
+                          --[[ :: ]]{
+                            --[[ tuple ]]{
                               11,
                               "Redundant case in a pattern matching (unused match case)."
-                            ],
-                            --[[ :: ]][
-                              --[[ tuple ]][
+                            },
+                            --[[ :: ]]{
+                              --[[ tuple ]]{
                                 12,
                                 "Redundant sub-pattern in a pattern-matching."
-                              ],
-                              --[[ :: ]][
-                                --[[ tuple ]][
+                              },
+                              --[[ :: ]]{
+                                --[[ tuple ]]{
                                   13,
                                   "Instance variable overridden."
-                                ],
-                                --[[ :: ]][
-                                  --[[ tuple ]][
+                                },
+                                --[[ :: ]]{
+                                  --[[ tuple ]]{
                                     14,
                                     "Illegal backslash escape in a string constant."
-                                  ],
-                                  --[[ :: ]][
-                                    --[[ tuple ]][
+                                  },
+                                  --[[ :: ]]{
+                                    --[[ tuple ]]{
                                       15,
                                       "Private method made public implicitly."
-                                    ],
-                                    --[[ :: ]][
-                                      --[[ tuple ]][
+                                    },
+                                    --[[ :: ]]{
+                                      --[[ tuple ]]{
                                         16,
                                         "Unerasable optional argument."
-                                      ],
-                                      --[[ :: ]][
-                                        --[[ tuple ]][
+                                      },
+                                      --[[ :: ]]{
+                                        --[[ tuple ]]{
                                           17,
                                           "Undeclared virtual method."
-                                        ],
-                                        --[[ :: ]][
-                                          --[[ tuple ]][
+                                        },
+                                        --[[ :: ]]{
+                                          --[[ tuple ]]{
                                             18,
                                             "Non-principal type."
-                                          ],
-                                          --[[ :: ]][
-                                            --[[ tuple ]][
+                                          },
+                                          --[[ :: ]]{
+                                            --[[ tuple ]]{
                                               19,
                                               "Type without principality."
-                                            ],
-                                            --[[ :: ]][
-                                              --[[ tuple ]][
+                                            },
+                                            --[[ :: ]]{
+                                              --[[ tuple ]]{
                                                 20,
                                                 "Unused function argument."
-                                              ],
-                                              --[[ :: ]][
-                                                --[[ tuple ]][
+                                              },
+                                              --[[ :: ]]{
+                                                --[[ tuple ]]{
                                                   21,
                                                   "Non-returning statement."
-                                                ],
-                                                --[[ :: ]][
-                                                  --[[ tuple ]][
+                                                },
+                                                --[[ :: ]]{
+                                                  --[[ tuple ]]{
                                                     22,
                                                     "Proprocessor warning."
-                                                  ],
-                                                  --[[ :: ]][
-                                                    --[[ tuple ]][
+                                                  },
+                                                  --[[ :: ]]{
+                                                    --[[ tuple ]]{
                                                       23,
                                                       "Useless record \"with\" clause."
-                                                    ],
-                                                    --[[ :: ]][
-                                                      --[[ tuple ]][
+                                                    },
+                                                    --[[ :: ]]{
+                                                      --[[ tuple ]]{
                                                         24,
                                                         "Bad module name: the source file name is not a valid OCaml module name."
-                                                      ],
-                                                      --[[ :: ]][
-                                                        --[[ tuple ]][
+                                                      },
+                                                      --[[ :: ]]{
+                                                        --[[ tuple ]]{
                                                           25,
                                                           "Pattern-matching with all clauses guarded.  Exhaustiveness cannot be\n    checked."
-                                                        ],
-                                                        --[[ :: ]][
-                                                          --[[ tuple ]][
+                                                        },
+                                                        --[[ :: ]]{
+                                                          --[[ tuple ]]{
                                                             26,
                                                             "Suspicious unused variable: unused variable that is bound\n    with \"let\" or \"as\", and doesn't start with an underscore (\"_\")\n    character."
-                                                          ],
-                                                          --[[ :: ]][
-                                                            --[[ tuple ]][
+                                                          },
+                                                          --[[ :: ]]{
+                                                            --[[ tuple ]]{
                                                               27,
                                                               "Innocuous unused variable: unused variable that is not bound with\n    \"let\" nor \"as\", and doesn't start with an underscore (\"_\")\n    character."
-                                                            ],
-                                                            --[[ :: ]][
-                                                              --[[ tuple ]][
+                                                            },
+                                                            --[[ :: ]]{
+                                                              --[[ tuple ]]{
                                                                 28,
                                                                 "Wildcard pattern given as argument to a constant constructor."
-                                                              ],
-                                                              --[[ :: ]][
-                                                                --[[ tuple ]][
+                                                              },
+                                                              --[[ :: ]]{
+                                                                --[[ tuple ]]{
                                                                   29,
                                                                   "Unescaped end-of-line in a string constant (non-portable code)."
-                                                                ],
-                                                                --[[ :: ]][
-                                                                  --[[ tuple ]][
+                                                                },
+                                                                --[[ :: ]]{
+                                                                  --[[ tuple ]]{
                                                                     30,
                                                                     "Two labels or constructors of the same name are defined in two\n    mutually recursive types."
-                                                                  ],
-                                                                  --[[ :: ]][
-                                                                    --[[ tuple ]][
+                                                                  },
+                                                                  --[[ :: ]]{
+                                                                    --[[ tuple ]]{
                                                                       31,
                                                                       "A module is linked twice in the same executable."
-                                                                    ],
-                                                                    --[[ :: ]][
-                                                                      --[[ tuple ]][
+                                                                    },
+                                                                    --[[ :: ]]{
+                                                                      --[[ tuple ]]{
                                                                         32,
                                                                         "Unused value declaration."
-                                                                      ],
-                                                                      --[[ :: ]][
-                                                                        --[[ tuple ]][
+                                                                      },
+                                                                      --[[ :: ]]{
+                                                                        --[[ tuple ]]{
                                                                           33,
                                                                           "Unused open statement."
-                                                                        ],
-                                                                        --[[ :: ]][
-                                                                          --[[ tuple ]][
+                                                                        },
+                                                                        --[[ :: ]]{
+                                                                          --[[ tuple ]]{
                                                                             34,
                                                                             "Unused type declaration."
-                                                                          ],
-                                                                          --[[ :: ]][
-                                                                            --[[ tuple ]][
+                                                                          },
+                                                                          --[[ :: ]]{
+                                                                            --[[ tuple ]]{
                                                                               35,
                                                                               "Unused for-loop index."
-                                                                            ],
-                                                                            --[[ :: ]][
-                                                                              --[[ tuple ]][
+                                                                            },
+                                                                            --[[ :: ]]{
+                                                                              --[[ tuple ]]{
                                                                                 36,
                                                                                 "Unused ancestor variable."
-                                                                              ],
-                                                                              --[[ :: ]][
-                                                                                --[[ tuple ]][
+                                                                              },
+                                                                              --[[ :: ]]{
+                                                                                --[[ tuple ]]{
                                                                                   37,
                                                                                   "Unused constructor."
-                                                                                ],
-                                                                                --[[ :: ]][
-                                                                                  --[[ tuple ]][
+                                                                                },
+                                                                                --[[ :: ]]{
+                                                                                  --[[ tuple ]]{
                                                                                     38,
                                                                                     "Unused extension constructor."
-                                                                                  ],
-                                                                                  --[[ :: ]][
-                                                                                    --[[ tuple ]][
+                                                                                  },
+                                                                                  --[[ :: ]]{
+                                                                                    --[[ tuple ]]{
                                                                                       39,
                                                                                       "Unused rec flag."
-                                                                                    ],
-                                                                                    --[[ :: ]][
-                                                                                      --[[ tuple ]][
+                                                                                    },
+                                                                                    --[[ :: ]]{
+                                                                                      --[[ tuple ]]{
                                                                                         40,
                                                                                         "Constructor or label name used out of scope."
-                                                                                      ],
-                                                                                      --[[ :: ]][
-                                                                                        --[[ tuple ]][
+                                                                                      },
+                                                                                      --[[ :: ]]{
+                                                                                        --[[ tuple ]]{
                                                                                           41,
                                                                                           "Ambiguous constructor or label name."
-                                                                                        ],
-                                                                                        --[[ :: ]][
-                                                                                          --[[ tuple ]][
+                                                                                        },
+                                                                                        --[[ :: ]]{
+                                                                                          --[[ tuple ]]{
                                                                                             42,
                                                                                             "Disambiguated constructor or label name."
-                                                                                          ],
-                                                                                          --[[ :: ]][
-                                                                                            --[[ tuple ]][
+                                                                                          },
+                                                                                          --[[ :: ]]{
+                                                                                            --[[ tuple ]]{
                                                                                               43,
                                                                                               "Nonoptional label applied as optional."
-                                                                                            ],
-                                                                                            --[[ :: ]][
-                                                                                              --[[ tuple ]][
+                                                                                            },
+                                                                                            --[[ :: ]]{
+                                                                                              --[[ tuple ]]{
                                                                                                 44,
                                                                                                 "Open statement shadows an already defined identifier."
-                                                                                              ],
-                                                                                              --[[ :: ]][
-                                                                                                --[[ tuple ]][
+                                                                                              },
+                                                                                              --[[ :: ]]{
+                                                                                                --[[ tuple ]]{
                                                                                                   45,
                                                                                                   "Open statement shadows an already defined label or constructor."
-                                                                                                ],
-                                                                                                --[[ :: ]][
-                                                                                                  --[[ tuple ]][
+                                                                                                },
+                                                                                                --[[ :: ]]{
+                                                                                                  --[[ tuple ]]{
                                                                                                     46,
                                                                                                     "Error in environment variable."
-                                                                                                  ],
-                                                                                                  --[[ :: ]][
-                                                                                                    --[[ tuple ]][
+                                                                                                  },
+                                                                                                  --[[ :: ]]{
+                                                                                                    --[[ tuple ]]{
                                                                                                       47,
                                                                                                       "Illegal attribute payload."
-                                                                                                    ],
-                                                                                                    --[[ :: ]][
-                                                                                                      --[[ tuple ]][
+                                                                                                    },
+                                                                                                    --[[ :: ]]{
+                                                                                                      --[[ tuple ]]{
                                                                                                         48,
                                                                                                         "Implicit elimination of optional arguments."
-                                                                                                      ],
-                                                                                                      --[[ :: ]][
-                                                                                                        --[[ tuple ]][
+                                                                                                      },
+                                                                                                      --[[ :: ]]{
+                                                                                                        --[[ tuple ]]{
                                                                                                           49,
                                                                                                           "Missing cmi file when looking up module alias."
-                                                                                                        ],
-                                                                                                        --[[ :: ]][
-                                                                                                          --[[ tuple ]][
+                                                                                                        },
+                                                                                                        --[[ :: ]]{
+                                                                                                          --[[ tuple ]]{
                                                                                                             50,
                                                                                                             "Unexpected documentation comment."
-                                                                                                          ],
-                                                                                                          --[[ :: ]][
-                                                                                                            --[[ tuple ]][
+                                                                                                          },
+                                                                                                          --[[ :: ]]{
+                                                                                                            --[[ tuple ]]{
                                                                                                               101,
                                                                                                               "Unused bs attributes"
-                                                                                                            ],
+                                                                                                            },
                                                                                                             --[[ [] ]]0
-                                                                                                          ]
-                                                                                                        ]
-                                                                                                      ]
-                                                                                                    ]
-                                                                                                  ]
-                                                                                                ]
-                                                                                              ]
-                                                                                            ]
-                                                                                          ]
-                                                                                        ]
-                                                                                      ]
-                                                                                    ]
-                                                                                  ]
-                                                                                ]
-                                                                              ]
-                                                                            ]
-                                                                          ]
-                                                                        ]
-                                                                      ]
-                                                                    ]
-                                                                  ]
-                                                                ]
-                                                              ]
-                                                            ]
-                                                          ]
-                                                        ]
-                                                      ]
-                                                    ]
-                                                  ]
-                                                ]
-                                              ]
-                                            ]
-                                          ]
-                                        ]
-                                      ]
-                                    ]
-                                  ]
-                                ]
-                              ]
-                            ]
-                          ]
-                        ]
-                      ]
-                    ]
-                  ]
-                ]
-              ]
-            ]
-          ]
-        ]
-      ]);
+                                                                                                          }
+                                                                                                        }
+                                                                                                      }
+                                                                                                    }
+                                                                                                  }
+                                                                                                }
+                                                                                              }
+                                                                                            }
+                                                                                          }
+                                                                                        }
+                                                                                      }
+                                                                                    }
+                                                                                  }
+                                                                                }
+                                                                              }
+                                                                            }
+                                                                          }
+                                                                        }
+                                                                      }
+                                                                    }
+                                                                  }
+                                                                }
+                                                              }
+                                                            }
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      });
   console.log("  A all warnings");
   for i = --[[ "b" ]]98 , --[[ "z" ]]122 , 1 do
     c = Char.chr(i);
     l = letter(c);
     if (l) then do
       if (l[1]) then do
-        Curry._2(Printf.printf(--[[ Format ]][
-                  --[[ String_literal ]]Block.__(11, [
+        Curry._2(Printf.printf(--[[ Format ]]{
+                  --[[ String_literal ]]Block.__(11, {
                       "  ",
-                      --[[ Char ]]Block.__(0, [--[[ String_literal ]]Block.__(11, [
+                      --[[ Char ]]Block.__(0, {--[[ String_literal ]]Block.__(11, {
                               " warnings ",
-                              --[[ String ]]Block.__(2, [
+                              --[[ String ]]Block.__(2, {
                                   --[[ No_padding ]]0,
-                                  --[[ String_literal ]]Block.__(11, [
+                                  --[[ String_literal ]]Block.__(11, {
                                       ".\n",
                                       --[[ End_of_format ]]0
-                                    ])
-                                ])
-                            ])])
-                    ]),
+                                    })
+                                })
+                            })})
+                    }),
                   "  %c warnings %s.\n"
-                ]), Char.uppercase(c), __String.concat(", ", List.map((function (prim) do
+                }), Char.uppercase(c), __String.concat(", ", List.map((function (prim) do
                         return String(prim);
                       end end), l)));
       end else do
-        Curry._2(Printf.printf(--[[ Format ]][
-                  --[[ String_literal ]]Block.__(11, [
+        Curry._2(Printf.printf(--[[ Format ]]{
+                  --[[ String_literal ]]Block.__(11, {
                       "  ",
-                      --[[ Char ]]Block.__(0, [--[[ String_literal ]]Block.__(11, [
+                      --[[ Char ]]Block.__(0, {--[[ String_literal ]]Block.__(11, {
                               " warning ",
-                              --[[ Int ]]Block.__(4, [
+                              --[[ Int ]]Block.__(4, {
                                   --[[ Int_i ]]3,
                                   --[[ No_padding ]]0,
                                   --[[ No_precision ]]0,
-                                  --[[ Char_literal ]]Block.__(12, [
+                                  --[[ Char_literal ]]Block.__(12, {
                                       --[[ "\n" ]]10,
                                       --[[ End_of_format ]]0
-                                    ])
-                                ])
-                            ])])
-                    ]),
+                                    })
+                                })
+                            })})
+                    }),
                   "  %c warning %i\n"
-                ]), Char.uppercase(c), l[0]);
+                }), Char.uppercase(c), l[0]);
       end end 
     end
      end 
@@ -3286,32 +3286,32 @@ function highlight_dumb(ppf, lb, loc) do
     end
      end 
   end
-  Curry._2(Format.fprintf(ppf, --[[ Format ]][
-            --[[ String_literal ]]Block.__(11, [
+  Curry._2(Format.fprintf(ppf, --[[ Format ]]{
+            --[[ String_literal ]]Block.__(11, {
                 "Characters ",
-                --[[ Int ]]Block.__(4, [
+                --[[ Int ]]Block.__(4, {
                     --[[ Int_i ]]3,
                     --[[ No_padding ]]0,
                     --[[ No_precision ]]0,
-                    --[[ Char_literal ]]Block.__(12, [
+                    --[[ Char_literal ]]Block.__(12, {
                         --[[ "-" ]]45,
-                        --[[ Int ]]Block.__(4, [
+                        --[[ Int ]]Block.__(4, {
                             --[[ Int_i ]]3,
                             --[[ No_padding ]]0,
                             --[[ No_precision ]]0,
-                            --[[ Char_literal ]]Block.__(12, [
+                            --[[ Char_literal ]]Block.__(12, {
                                 --[[ ":" ]]58,
-                                --[[ Formatting_lit ]]Block.__(17, [
+                                --[[ Formatting_lit ]]Block.__(17, {
                                     --[[ Flush_newline ]]4,
                                     --[[ End_of_format ]]0
-                                  ])
-                              ])
-                          ])
-                      ])
-                  ])
-              ]),
+                                  })
+                              })
+                          })
+                      })
+                  })
+              }),
             "Characters %i-%i:@."
-          ]), loc.loc_start.pos_cnum, loc.loc_end.pos_cnum);
+          }), loc.loc_start.pos_cnum, loc.loc_end.pos_cnum);
   Format.pp_print_string(ppf, "  ");
   line = 0;
   pos_at_bol = 0;
@@ -3341,16 +3341,16 @@ function highlight_dumb(ppf, lb, loc) do
        end 
     end else do
       if (line == line_start and line == line_end) then do
-        Format.fprintf(ppf, --[[ Format ]][
-              --[[ Formatting_lit ]]Block.__(17, [
+        Format.fprintf(ppf, --[[ Format ]]{
+              --[[ Formatting_lit ]]Block.__(17, {
                   --[[ Flush_newline ]]4,
-                  --[[ String_literal ]]Block.__(11, [
+                  --[[ String_literal ]]Block.__(11, {
                       "  ",
                       --[[ End_of_format ]]0
-                    ])
-                ]),
+                    })
+                }),
               "@.  "
-            ]);
+            });
         for _i = pos_at_bol , loc.loc_start.pos_cnum - 1 | 0 , 1 do
           Format.pp_print_char(ppf, --[[ " " ]]32);
         end
@@ -3360,13 +3360,13 @@ function highlight_dumb(ppf, lb, loc) do
       end
        end 
       if (line >= line_start and line <= line_end) then do
-        Format.fprintf(ppf, --[[ Format ]][
-              --[[ Formatting_lit ]]Block.__(17, [
+        Format.fprintf(ppf, --[[ Format ]]{
+              --[[ Formatting_lit ]]Block.__(17, {
                   --[[ Flush_newline ]]4,
                   --[[ End_of_format ]]0
-                ]),
+                }),
               "@."
-            ]);
+            });
         if (pos$1 < loc.loc_end.pos_cnum) then do
           Format.pp_print_string(ppf, "  ");
         end
@@ -3473,13 +3473,13 @@ function show_filename(file) do
 end end
 
 function print_filename(ppf, file) do
-  return Curry._1(Format.fprintf(ppf, --[[ Format ]][
-                  --[[ String ]]Block.__(2, [
+  return Curry._1(Format.fprintf(ppf, --[[ Format ]]{
+                  --[[ String ]]Block.__(2, {
                       --[[ No_padding ]]0,
                       --[[ End_of_format ]]0
-                    ]),
+                    }),
                   "%s"
-                ]), show_filename(file));
+                }), show_filename(file));
 end end
 
 function reset(param) do
@@ -3488,11 +3488,11 @@ function reset(param) do
 end end
 
 function get_pos_info(pos) do
-  return --[[ tuple ]][
+  return --[[ tuple ]]{
           pos.pos_fname,
           pos.pos_lnum,
           pos.pos_cnum - pos.pos_bol | 0
-        ];
+        };
 end end
 
 function print_loc(ppf, loc) do
@@ -3503,121 +3503,121 @@ function print_loc(ppf, loc) do
   startchar$1 = bs_vscode and startchar + 1 | 0 or startchar;
   endchar = (loc.loc_end.pos_cnum - loc.loc_start.pos_cnum | 0) + startchar$1 | 0;
   if (file == "//toplevel//") then do
-    if (highlight_locations(ppf, --[[ :: ]][
+    if (highlight_locations(ppf, --[[ :: ]]{
             loc,
             --[[ [] ]]0
-          ])) then do
+          })) then do
       return --[[ () ]]0;
     end else do
-      return Curry._2(Format.fprintf(ppf, --[[ Format ]][
-                      --[[ String_literal ]]Block.__(11, [
+      return Curry._2(Format.fprintf(ppf, --[[ Format ]]{
+                      --[[ String_literal ]]Block.__(11, {
                           "Characters ",
-                          --[[ Int ]]Block.__(4, [
+                          --[[ Int ]]Block.__(4, {
                               --[[ Int_i ]]3,
                               --[[ No_padding ]]0,
                               --[[ No_precision ]]0,
-                              --[[ Char_literal ]]Block.__(12, [
+                              --[[ Char_literal ]]Block.__(12, {
                                   --[[ "-" ]]45,
-                                  --[[ Int ]]Block.__(4, [
+                                  --[[ Int ]]Block.__(4, {
                                       --[[ Int_i ]]3,
                                       --[[ No_padding ]]0,
                                       --[[ No_precision ]]0,
                                       --[[ End_of_format ]]0
-                                    ])
-                                ])
-                            ])
-                        ]),
+                                    })
+                                })
+                            })
+                        }),
                       "Characters %i-%i"
-                    ]), loc.loc_start.pos_cnum, loc.loc_end.pos_cnum);
+                    }), loc.loc_start.pos_cnum, loc.loc_end.pos_cnum);
     end end 
   end else do
-    Curry._5(Format.fprintf(ppf, --[[ Format ]][
-              --[[ String ]]Block.__(2, [
+    Curry._5(Format.fprintf(ppf, --[[ Format ]]{
+              --[[ String ]]Block.__(2, {
                   --[[ No_padding ]]0,
-                  --[[ Formatting_gen ]]Block.__(18, [
-                      --[[ Open_tag ]]Block.__(0, [--[[ Format ]][
-                            --[[ String_literal ]]Block.__(11, [
+                  --[[ Formatting_gen ]]Block.__(18, {
+                      --[[ Open_tag ]]Block.__(0, {--[[ Format ]]{
+                            --[[ String_literal ]]Block.__(11, {
                                 "<loc>",
                                 --[[ End_of_format ]]0
-                              ]),
+                              }),
                             "<loc>"
-                          ]]),
-                      --[[ Alpha ]]Block.__(15, [--[[ String ]]Block.__(2, [
+                          }}),
+                      --[[ Alpha ]]Block.__(15, {--[[ String ]]Block.__(2, {
                               --[[ No_padding ]]0,
-                              --[[ Int ]]Block.__(4, [
+                              --[[ Int ]]Block.__(4, {
                                   --[[ Int_i ]]3,
                                   --[[ No_padding ]]0,
                                   --[[ No_precision ]]0,
                                   --[[ End_of_format ]]0
-                                ])
-                            ])])
-                    ])
-                ]),
+                                })
+                            })})
+                    })
+                }),
               "%s@{<loc>%a%s%i"
-            ]), "File \"", print_filename, file, "\", line ", match[1]);
+            }), "File \"", print_filename, file, "\", line ", match[1]);
     if (startchar$1 >= 0) then do
-      Curry._4(Format.fprintf(ppf, --[[ Format ]][
-                --[[ String ]]Block.__(2, [
+      Curry._4(Format.fprintf(ppf, --[[ Format ]]{
+                --[[ String ]]Block.__(2, {
                     --[[ No_padding ]]0,
-                    --[[ Int ]]Block.__(4, [
+                    --[[ Int ]]Block.__(4, {
                         --[[ Int_i ]]3,
                         --[[ No_padding ]]0,
                         --[[ No_precision ]]0,
-                        --[[ String ]]Block.__(2, [
+                        --[[ String ]]Block.__(2, {
                             --[[ No_padding ]]0,
-                            --[[ Int ]]Block.__(4, [
+                            --[[ Int ]]Block.__(4, {
                                 --[[ Int_i ]]3,
                                 --[[ No_padding ]]0,
                                 --[[ No_precision ]]0,
                                 --[[ End_of_format ]]0
-                              ])
-                          ])
-                      ])
-                  ]),
+                              })
+                          })
+                      })
+                  }),
                 "%s%i%s%i"
-              ]), ", characters ", startchar$1, "-", endchar);
+              }), ", characters ", startchar$1, "-", endchar);
     end
      end 
-    return Format.fprintf(ppf, --[[ Format ]][
-                --[[ Formatting_lit ]]Block.__(17, [
+    return Format.fprintf(ppf, --[[ Format ]]{
+                --[[ Formatting_lit ]]Block.__(17, {
                     --[[ Close_tag ]]1,
                     --[[ End_of_format ]]0
-                  ]),
+                  }),
                 "@}"
-              ]);
+              });
   end end 
 end end
 
 function print$1(ppf, loc) do
   Curry._1(Misc_Color.setup, color.contents);
-  if (loc.loc_start.pos_fname == "//toplevel//" and highlight_locations(ppf, --[[ :: ]][
+  if (loc.loc_start.pos_fname == "//toplevel//" and highlight_locations(ppf, --[[ :: ]]{
           loc,
           --[[ [] ]]0
-        ])) then do
+        })) then do
     return --[[ () ]]0;
   end else do
-    return Curry._3(Format.fprintf(ppf, --[[ Format ]][
-                    --[[ Formatting_gen ]]Block.__(18, [
-                        --[[ Open_tag ]]Block.__(0, [--[[ Format ]][
-                              --[[ String_literal ]]Block.__(11, [
+    return Curry._3(Format.fprintf(ppf, --[[ Format ]]{
+                    --[[ Formatting_gen ]]Block.__(18, {
+                        --[[ Open_tag ]]Block.__(0, {--[[ Format ]]{
+                              --[[ String_literal ]]Block.__(11, {
                                   "<loc>",
                                   --[[ End_of_format ]]0
-                                ]),
+                                }),
                               "<loc>"
-                            ]]),
-                        --[[ Alpha ]]Block.__(15, [--[[ Formatting_lit ]]Block.__(17, [
+                            }}),
+                        --[[ Alpha ]]Block.__(15, {--[[ Formatting_lit ]]Block.__(17, {
                                 --[[ Close_tag ]]1,
-                                --[[ String ]]Block.__(2, [
+                                --[[ String ]]Block.__(2, {
                                     --[[ No_padding ]]0,
-                                    --[[ Formatting_lit ]]Block.__(17, [
+                                    --[[ Formatting_lit ]]Block.__(17, {
                                         --[[ Flush_newline ]]4,
                                         --[[ End_of_format ]]0
-                                      ])
-                                  ])
-                              ])])
-                      ]),
+                                      })
+                                  })
+                              })})
+                      }),
                     "@{<loc>%a@}%s@."
-                  ]), print_loc, loc, ":");
+                  }), print_loc, loc, ":");
   end end 
 end end
 
@@ -3625,28 +3625,28 @@ error_prefix = "Error";
 
 function print_error_prefix(ppf, param) do
   Curry._1(Misc_Color.setup, color.contents);
-  Curry._1(Format.fprintf(ppf, --[[ Format ]][
-            --[[ Formatting_gen ]]Block.__(18, [
-                --[[ Open_tag ]]Block.__(0, [--[[ Format ]][
-                      --[[ String_literal ]]Block.__(11, [
+  Curry._1(Format.fprintf(ppf, --[[ Format ]]{
+            --[[ Formatting_gen ]]Block.__(18, {
+                --[[ Open_tag ]]Block.__(0, {--[[ Format ]]{
+                      --[[ String_literal ]]Block.__(11, {
                           "<error>",
                           --[[ End_of_format ]]0
-                        ]),
+                        }),
                       "<error>"
-                    ]]),
-                --[[ String ]]Block.__(2, [
+                    }}),
+                --[[ String ]]Block.__(2, {
                     --[[ No_padding ]]0,
-                    --[[ Formatting_lit ]]Block.__(17, [
+                    --[[ Formatting_lit ]]Block.__(17, {
                         --[[ Close_tag ]]1,
-                        --[[ Char_literal ]]Block.__(12, [
+                        --[[ Char_literal ]]Block.__(12, {
                             --[[ ":" ]]58,
                             --[[ End_of_format ]]0
-                          ])
-                      ])
-                  ])
-              ]),
+                          })
+                      })
+                  })
+              }),
             "@{<error>%s@}:"
-          ]), error_prefix);
+          }), error_prefix);
   return --[[ () ]]0;
 end end
 
@@ -3663,31 +3663,31 @@ function default_warning_printer(loc, ppf, w) do
   if (is_active(w)) then do
     Curry._1(Misc_Color.setup, color.contents);
     print$1(ppf, loc);
-    return Curry._3(Format.fprintf(ppf, --[[ Format ]][
-                    --[[ Formatting_gen ]]Block.__(18, [
-                        --[[ Open_tag ]]Block.__(0, [--[[ Format ]][
-                              --[[ String_literal ]]Block.__(11, [
+    return Curry._3(Format.fprintf(ppf, --[[ Format ]]{
+                    --[[ Formatting_gen ]]Block.__(18, {
+                        --[[ Open_tag ]]Block.__(0, {--[[ Format ]]{
+                              --[[ String_literal ]]Block.__(11, {
                                   "<warning>",
                                   --[[ End_of_format ]]0
-                                ]),
+                                }),
                               "<warning>"
-                            ]]),
-                        --[[ String ]]Block.__(2, [
+                            }}),
+                        --[[ String ]]Block.__(2, {
                             --[[ No_padding ]]0,
-                            --[[ Formatting_lit ]]Block.__(17, [
+                            --[[ Formatting_lit ]]Block.__(17, {
                                 --[[ Close_tag ]]1,
-                                --[[ Char_literal ]]Block.__(12, [
+                                --[[ Char_literal ]]Block.__(12, {
                                     --[[ " " ]]32,
-                                    --[[ Alpha ]]Block.__(15, [--[[ Formatting_lit ]]Block.__(17, [
+                                    --[[ Alpha ]]Block.__(15, {--[[ Formatting_lit ]]Block.__(17, {
                                             --[[ Flush_newline ]]4,
                                             --[[ End_of_format ]]0
-                                          ])])
-                                  ])
-                              ])
-                          ])
-                      ]),
+                                          })})
+                                  })
+                              })
+                          })
+                      }),
                     "@{<warning>%s@} %a@."
-                  ]), "Warning", print, w);
+                  }), "Warning", print, w);
   end else do
     return 0;
   end end 
@@ -3778,10 +3778,10 @@ error_of_exn = do
 end;
 
 function register_error_of_exn(f) do
-  error_of_exn.contents = --[[ :: ]][
+  error_of_exn.contents = --[[ :: ]]{
     f,
     error_of_exn.contents
-  ];
+  };
   return --[[ () ]]0;
 end end
 
@@ -3808,10 +3808,10 @@ function default_error_reporter(ppf, err) do
   highlighted;
   if (if_highlight ~= "") then do
     collect_locs = function (locs, param) do
-      return List.fold_left(collect_locs, --[[ :: ]][
+      return List.fold_left(collect_locs, --[[ :: ]]{
                   param.loc,
                   locs
-                ], param.sub);
+                }, param.sub);
     end end;
     locs = collect_locs(--[[ [] ]]0, err);
     highlighted = highlight_locations(ppf, locs);
@@ -3821,35 +3821,35 @@ function default_error_reporter(ppf, err) do
   if (highlighted) then do
     return Format.pp_print_string(ppf, if_highlight);
   end else do
-    Curry._5(Format.fprintf(ppf, --[[ Format ]][
-              --[[ Alpha ]]Block.__(15, [--[[ Alpha ]]Block.__(15, [--[[ Char_literal ]]Block.__(12, [
+    Curry._5(Format.fprintf(ppf, --[[ Format ]]{
+              --[[ Alpha ]]Block.__(15, {--[[ Alpha ]]Block.__(15, {--[[ Char_literal ]]Block.__(12, {
                           --[[ " " ]]32,
-                          --[[ String ]]Block.__(2, [
+                          --[[ String ]]Block.__(2, {
                               --[[ No_padding ]]0,
                               --[[ End_of_format ]]0
-                            ])
-                        ])])]),
+                            })
+                        })})}),
               "%a%a %s"
-            ]), print$1, err.loc, print_error_prefix, --[[ () ]]0, err.msg);
-    return List.iter(Curry._1(Format.fprintf(ppf, --[[ Format ]][
-                        --[[ Formatting_lit ]]Block.__(17, [
+            }), print$1, err.loc, print_error_prefix, --[[ () ]]0, err.msg);
+    return List.iter(Curry._1(Format.fprintf(ppf, --[[ Format ]]{
+                        --[[ Formatting_lit ]]Block.__(17, {
                             --[[ Force_newline ]]3,
-                            --[[ Formatting_gen ]]Block.__(18, [
-                                --[[ Open_box ]]Block.__(1, [--[[ Format ]][
-                                      --[[ String_literal ]]Block.__(11, [
+                            --[[ Formatting_gen ]]Block.__(18, {
+                                --[[ Open_box ]]Block.__(1, {--[[ Format ]]{
+                                      --[[ String_literal ]]Block.__(11, {
                                           "<2>",
                                           --[[ End_of_format ]]0
-                                        ]),
+                                        }),
                                       "<2>"
-                                    ]]),
-                                --[[ Alpha ]]Block.__(15, [--[[ Formatting_lit ]]Block.__(17, [
+                                    }}),
+                                --[[ Alpha ]]Block.__(15, {--[[ Formatting_lit ]]Block.__(17, {
                                         --[[ Close_box ]]0,
                                         --[[ End_of_format ]]0
-                                      ])])
-                              ])
-                          ]),
+                                      })})
+                              })
+                          }),
                         "@\n@[<2>%a@]"
-                      ]), default_error_reporter), err.sub);
+                      }), default_error_reporter), err.sub);
   end end 
 end end
 
@@ -3862,13 +3862,13 @@ function report_error(ppf, err) do
 end end
 
 function error_of_printer(loc, print, x) do
-  return Curry._2(errorf(loc, undefined, undefined, --[[ Format ]][
-                  --[[ Alpha ]]Block.__(15, [--[[ Formatting_lit ]]Block.__(17, [
+  return Curry._2(errorf(loc, undefined, undefined, --[[ Format ]]{
+                  --[[ Alpha ]]Block.__(15, {--[[ Formatting_lit ]]Block.__(17, {
                           --[[ FFlush ]]2,
                           --[[ End_of_format ]]0
-                        ])]),
+                        })}),
                   "%a@?"
-                ]), print, x);
+                }), print, x);
 end end
 
 function error_of_printer_file(print, x) do
@@ -3877,32 +3877,32 @@ end end
 
 register_error_of_exn((function (param) do
         if (param[0] == Caml_builtin_exceptions.sys_error) then do
-          return Curry._1(errorf(in_file(input_name.contents), undefined, undefined, --[[ Format ]][
-                          --[[ String_literal ]]Block.__(11, [
+          return Curry._1(errorf(in_file(input_name.contents), undefined, undefined, --[[ Format ]]{
+                          --[[ String_literal ]]Block.__(11, {
                               "I/O error: ",
-                              --[[ String ]]Block.__(2, [
+                              --[[ String ]]Block.__(2, {
                                   --[[ No_padding ]]0,
                                   --[[ End_of_format ]]0
-                                ])
-                            ]),
+                                })
+                            }),
                           "I/O error: %s"
-                        ]), param[1]);
+                        }), param[1]);
         end else if (param[0] == Errors) then do
-          return Curry._1(errorf(in_file(input_name.contents), undefined, undefined, --[[ Format ]][
-                          --[[ String_literal ]]Block.__(11, [
+          return Curry._1(errorf(in_file(input_name.contents), undefined, undefined, --[[ Format ]]{
+                          --[[ String_literal ]]Block.__(11, {
                               "Some fatal warnings were triggered (",
-                              --[[ Int ]]Block.__(4, [
+                              --[[ Int ]]Block.__(4, {
                                   --[[ Int_d ]]0,
                                   --[[ No_padding ]]0,
                                   --[[ No_precision ]]0,
-                                  --[[ String_literal ]]Block.__(11, [
+                                  --[[ String_literal ]]Block.__(11, {
                                       " occurrences)",
                                       --[[ End_of_format ]]0
-                                    ])
-                                ])
-                            ]),
+                                    })
+                                })
+                            }),
                           "Some fatal warnings were triggered (%d occurrences)"
-                        ]), param[1]);
+                        }), param[1]);
         end else do
           return ;
         end end  end 
@@ -3918,22 +3918,22 @@ function report_exception(ppf, exn) do
     try do
       match = error_of_exn$1(exn$1);
       if (match ~= undefined) then do
-        return Curry._2(Format.fprintf(ppf$1, --[[ Format ]][
-                        --[[ Formatting_gen ]]Block.__(18, [
-                            --[[ Open_box ]]Block.__(1, [--[[ Format ]][
+        return Curry._2(Format.fprintf(ppf$1, --[[ Format ]]{
+                        --[[ Formatting_gen ]]Block.__(18, {
+                            --[[ Open_box ]]Block.__(1, {--[[ Format ]]{
                                   --[[ End_of_format ]]0,
                                   ""
-                                ]]),
-                            --[[ Alpha ]]Block.__(15, [--[[ Formatting_lit ]]Block.__(17, [
+                                }}),
+                            --[[ Alpha ]]Block.__(15, {--[[ Formatting_lit ]]Block.__(17, {
                                     --[[ Close_box ]]0,
-                                    --[[ Formatting_lit ]]Block.__(17, [
+                                    --[[ Formatting_lit ]]Block.__(17, {
                                         --[[ Flush_newline ]]4,
                                         --[[ End_of_format ]]0
-                                      ])
-                                  ])])
-                          ]),
+                                      })
+                                  })})
+                          }),
                         "@[%a@]@."
-                      ]), report_error, match);
+                      }), report_error, match);
       end else do
         throw exn$1;
       end end 
@@ -3967,7 +3967,7 @@ function raise_errorf(locOpt, subOpt, if_highlightOpt) do
   partial_arg = print_phanton_error_prefix;
   return (function (param) do
       return pp_ksprintf(partial_arg, (function (msg) do
-                    throw [
+                    throw {
                           __Error,
                           do
                             loc: loc,
@@ -3975,7 +3975,7 @@ function raise_errorf(locOpt, subOpt, if_highlightOpt) do
                             sub: sub,
                             if_highlight: if_highlight
                           end
-                        ];
+                        };
                   end end), param);
     end end);
 end end
@@ -4036,16 +4036,16 @@ function flatten(lid) do
     local ___conditional___=(param.tag | 0);
     do
        if ___conditional___ = 0--[[ Lident ]] then do
-          return --[[ :: ]][
+          return --[[ :: ]]{
                   param[0],
                   accu
-                ];end end end 
+                };end end end 
        if ___conditional___ = 1--[[ Ldot ]] then do
           _param = param[0];
-          _accu = --[[ :: ]][
+          _accu = --[[ :: ]]{
             param[1],
             accu
-          ];
+          };
           continue ;end end end 
        if ___conditional___ = 2--[[ Lapply ]] then do
           return fatal_error("Longident.flat");end end end 
@@ -4072,17 +4072,17 @@ end end
 function split_at_dots(s, pos) do
   try do
     dot = __String.index_from(s, pos, --[[ "." ]]46);
-    return --[[ :: ]][
+    return --[[ :: ]]{
             __String.sub(s, pos, dot - pos | 0),
             split_at_dots(s, dot + 1 | 0)
-          ];
+          };
   end
   catch (exn)do
     if (exn == Caml_builtin_exceptions.not_found) then do
-      return --[[ :: ]][
+      return --[[ :: ]]{
               __String.sub(s, pos, #s - pos | 0),
               --[[ [] ]]0
-            ];
+            };
     end else do
       throw exn;
     end end 
@@ -4093,13 +4093,13 @@ function parse(s) do
   match = split_at_dots(s, 0);
   if (match) then do
     return List.fold_left((function (p, s) do
-                  return --[[ Ldot ]]Block.__(1, [
+                  return --[[ Ldot ]]Block.__(1, {
                             p,
                             s
-                          ]);
-                end end), --[[ Lident ]]Block.__(0, [match[0]]), match[1]);
+                          });
+                end end), --[[ Lident ]]Block.__(0, {match[0]}), match[1]);
   end else do
-    return --[[ Lident ]]Block.__(0, [""]);
+    return --[[ Lident ]]Block.__(0, {""});
   end end 
 end end
 
@@ -4116,19 +4116,19 @@ docstrings = do
 end;
 
 function warn_bad_docstrings(param) do
-  if (is_active(--[[ Bad_docstring ]]Block.__(33, [true]))) then do
+  if (is_active(--[[ Bad_docstring ]]Block.__(33, {true}))) then do
     return List.iter((function (ds) do
                   match = ds.ds_attached;
                   local ___conditional___=(match);
                   do
                      if ___conditional___ = 0--[[ Unattached ]] then do
-                        return prerr_warning(ds.ds_loc, --[[ Bad_docstring ]]Block.__(33, [true]));end end end 
+                        return prerr_warning(ds.ds_loc, --[[ Bad_docstring ]]Block.__(33, {true}));end end end 
                      if ___conditional___ = 1--[[ Info ]] then do
                         return --[[ () ]]0;end end end 
                      if ___conditional___ = 2--[[ Docs ]] then do
                         match$1 = ds.ds_associated;
                         if (match$1 >= 2) then do
-                          return prerr_warning(ds.ds_loc, --[[ Bad_docstring ]]Block.__(33, [false]));
+                          return prerr_warning(ds.ds_loc, --[[ Bad_docstring ]]Block.__(33, {false}));
                         end else do
                           return --[[ () ]]0;
                         end end end end end 
@@ -4148,10 +4148,10 @@ function docstring(body, loc) do
     ds_attached: --[[ Unattached ]]0,
     ds_associated: --[[ Zero ]]0
   end;
-  docstrings.contents = --[[ :: ]][
+  docstrings.contents = --[[ :: ]]{
     ds,
     docstrings.contents
-  ];
+  };
   return ds;
 end end
 
@@ -4174,46 +4174,46 @@ doc_loc = do
 end;
 
 function docs_attr(ds) do
-  exp_pexp_desc = --[[ Pexp_constant ]]Block.__(1, [--[[ Const_string ]]Block.__(2, [
+  exp_pexp_desc = --[[ Pexp_constant ]]Block.__(1, {--[[ Const_string ]]Block.__(2, {
           ds.ds_body,
           undefined
-        ])]);
+        })});
   exp_pexp_loc = ds.ds_loc;
   exp = do
     pexp_desc: exp_pexp_desc,
     pexp_loc: exp_pexp_loc,
     pexp_attributes: --[[ [] ]]0
   end;
-  item_pstr_desc = --[[ Pstr_eval ]]Block.__(0, [
+  item_pstr_desc = --[[ Pstr_eval ]]Block.__(0, {
       exp,
       --[[ [] ]]0
-    ]);
+    });
   item_pstr_loc = exp_pexp_loc;
   item = do
     pstr_desc: item_pstr_desc,
     pstr_loc: item_pstr_loc
   end;
-  return --[[ tuple ]][
+  return --[[ tuple ]]{
           doc_loc,
-          --[[ PStr ]]Block.__(0, [--[[ :: ]][
+          --[[ PStr ]]Block.__(0, {--[[ :: ]]{
                 item,
                 --[[ [] ]]0
-              ]])
-        ];
+              }})
+        };
 end end
 
 function add_docs_attrs(docs, attrs) do
   match = docs.docs_pre;
-  attrs$1 = match ~= undefined and --[[ :: ]][
+  attrs$1 = match ~= undefined and --[[ :: ]]{
       docs_attr(match),
       attrs
-    ] or attrs;
+    } or attrs;
   match$1 = docs.docs_post;
   if (match$1 ~= undefined) then do
-    return Pervasives.$at(attrs$1, --[[ :: ]][
+    return Pervasives.$at(attrs$1, --[[ :: ]]{
                 docs_attr(match$1),
                 --[[ [] ]]0
-              ]);
+              });
   end else do
     return attrs$1;
   end end 
@@ -4221,10 +4221,10 @@ end end
 
 function add_info_attrs(info, attrs) do
   if (info ~= undefined) then do
-    return Pervasives.$at(attrs, --[[ :: ]][
+    return Pervasives.$at(attrs, --[[ :: ]]{
                 docs_attr(info),
                 --[[ [] ]]0
-              ]);
+              });
   end else do
     return attrs;
   end end 
@@ -4236,32 +4236,32 @@ text_loc = do
 end;
 
 function text_attr(ds) do
-  exp_pexp_desc = --[[ Pexp_constant ]]Block.__(1, [--[[ Const_string ]]Block.__(2, [
+  exp_pexp_desc = --[[ Pexp_constant ]]Block.__(1, {--[[ Const_string ]]Block.__(2, {
           ds.ds_body,
           undefined
-        ])]);
+        })});
   exp_pexp_loc = ds.ds_loc;
   exp = do
     pexp_desc: exp_pexp_desc,
     pexp_loc: exp_pexp_loc,
     pexp_attributes: --[[ [] ]]0
   end;
-  item_pstr_desc = --[[ Pstr_eval ]]Block.__(0, [
+  item_pstr_desc = --[[ Pstr_eval ]]Block.__(0, {
       exp,
       --[[ [] ]]0
-    ]);
+    });
   item_pstr_loc = exp_pexp_loc;
   item = do
     pstr_desc: item_pstr_desc,
     pstr_loc: item_pstr_loc
   end;
-  return --[[ tuple ]][
+  return --[[ tuple ]]{
           text_loc,
-          --[[ PStr ]]Block.__(0, [--[[ :: ]][
+          --[[ PStr ]]Block.__(0, {--[[ :: ]]{
                 item,
                 --[[ [] ]]0
-              ]])
-        ];
+              }})
+        };
 end end
 
 function add_text_attrs(dsl, attrs) do
@@ -4300,10 +4300,10 @@ function get_docstrings(dsl) do
       if (match ~= 1) then do
         ds.ds_attached = --[[ Docs ]]2;
         _param = param[1];
-        _acc = --[[ :: ]][
+        _acc = --[[ :: ]]{
           ds,
           acc
-        ];
+        };
         continue ;
       end else do
         _param = param[1];
@@ -4658,10 +4658,10 @@ function attr(d, a) do
   return do
           ptyp_desc: d.ptyp_desc,
           ptyp_loc: d.ptyp_loc,
-          ptyp_attributes: Pervasives.$at(d.ptyp_attributes, --[[ :: ]][
+          ptyp_attributes: Pervasives.$at(d.ptyp_attributes, --[[ :: ]]{
                 a,
                 --[[ [] ]]0
-              ])
+              })
         end;
 end end
 
@@ -4670,73 +4670,73 @@ function any(loc, attrs, param) do
 end end
 
 function __var(loc, attrs, a) do
-  return mk(loc, attrs, --[[ Ptyp_var ]]Block.__(0, [a]));
+  return mk(loc, attrs, --[[ Ptyp_var ]]Block.__(0, {a}));
 end end
 
 function arrow(loc, attrs, a, b, c) do
-  return mk(loc, attrs, --[[ Ptyp_arrow ]]Block.__(1, [
+  return mk(loc, attrs, --[[ Ptyp_arrow ]]Block.__(1, {
                 a,
                 b,
                 c
-              ]));
+              }));
 end end
 
 function tuple(loc, attrs, a) do
-  return mk(loc, attrs, --[[ Ptyp_tuple ]]Block.__(2, [a]));
+  return mk(loc, attrs, --[[ Ptyp_tuple ]]Block.__(2, {a}));
 end end
 
 function constr(loc, attrs, a, b) do
-  return mk(loc, attrs, --[[ Ptyp_constr ]]Block.__(3, [
+  return mk(loc, attrs, --[[ Ptyp_constr ]]Block.__(3, {
                 a,
                 b
-              ]));
+              }));
 end end
 
 function object_(loc, attrs, a, b) do
-  return mk(loc, attrs, --[[ Ptyp_object ]]Block.__(4, [
+  return mk(loc, attrs, --[[ Ptyp_object ]]Block.__(4, {
                 a,
                 b
-              ]));
+              }));
 end end
 
 function class_(loc, attrs, a, b) do
-  return mk(loc, attrs, --[[ Ptyp_class ]]Block.__(5, [
+  return mk(loc, attrs, --[[ Ptyp_class ]]Block.__(5, {
                 a,
                 b
-              ]));
+              }));
 end end
 
 function alias(loc, attrs, a, b) do
-  return mk(loc, attrs, --[[ Ptyp_alias ]]Block.__(6, [
+  return mk(loc, attrs, --[[ Ptyp_alias ]]Block.__(6, {
                 a,
                 b
-              ]));
+              }));
 end end
 
 function variant(loc, attrs, a, b, c) do
-  return mk(loc, attrs, --[[ Ptyp_variant ]]Block.__(7, [
+  return mk(loc, attrs, --[[ Ptyp_variant ]]Block.__(7, {
                 a,
                 b,
                 c
-              ]));
+              }));
 end end
 
 function poly(loc, attrs, a, b) do
-  return mk(loc, attrs, --[[ Ptyp_poly ]]Block.__(8, [
+  return mk(loc, attrs, --[[ Ptyp_poly ]]Block.__(8, {
                 a,
                 b
-              ]));
+              }));
 end end
 
 function __package(loc, attrs, a, b) do
-  return mk(loc, attrs, --[[ Ptyp_package ]]Block.__(9, [--[[ tuple ]][
+  return mk(loc, attrs, --[[ Ptyp_package ]]Block.__(9, {--[[ tuple ]]{
                   a,
                   b
-                ]]));
+                }}));
 end end
 
 function extension(loc, attrs, a) do
-  return mk(loc, attrs, --[[ Ptyp_extension ]]Block.__(10, [a]));
+  return mk(loc, attrs, --[[ Ptyp_extension ]]Block.__(10, {a}));
 end end
 
 function force_poly(t) do
@@ -4780,10 +4780,10 @@ function attr$1(d, a) do
   return do
           ppat_desc: d.ppat_desc,
           ppat_loc: d.ppat_loc,
-          ppat_attributes: Pervasives.$at(d.ppat_attributes, --[[ :: ]][
+          ppat_attributes: Pervasives.$at(d.ppat_attributes, --[[ :: ]]{
                 a,
                 --[[ [] ]]0
-              ])
+              })
         end;
 end end
 
@@ -4792,88 +4792,88 @@ function any$1(loc, attrs, param) do
 end end
 
 function __var$1(loc, attrs, a) do
-  return mk$1(loc, attrs, --[[ Ppat_var ]]Block.__(0, [a]));
+  return mk$1(loc, attrs, --[[ Ppat_var ]]Block.__(0, {a}));
 end end
 
 function alias$1(loc, attrs, a, b) do
-  return mk$1(loc, attrs, --[[ Ppat_alias ]]Block.__(1, [
+  return mk$1(loc, attrs, --[[ Ppat_alias ]]Block.__(1, {
                 a,
                 b
-              ]));
+              }));
 end end
 
 function constant(loc, attrs, a) do
-  return mk$1(loc, attrs, --[[ Ppat_constant ]]Block.__(2, [a]));
+  return mk$1(loc, attrs, --[[ Ppat_constant ]]Block.__(2, {a}));
 end end
 
 function interval(loc, attrs, a, b) do
-  return mk$1(loc, attrs, --[[ Ppat_interval ]]Block.__(3, [
+  return mk$1(loc, attrs, --[[ Ppat_interval ]]Block.__(3, {
                 a,
                 b
-              ]));
+              }));
 end end
 
 function tuple$1(loc, attrs, a) do
-  return mk$1(loc, attrs, --[[ Ppat_tuple ]]Block.__(4, [a]));
+  return mk$1(loc, attrs, --[[ Ppat_tuple ]]Block.__(4, {a}));
 end end
 
 function construct(loc, attrs, a, b) do
-  return mk$1(loc, attrs, --[[ Ppat_construct ]]Block.__(5, [
+  return mk$1(loc, attrs, --[[ Ppat_construct ]]Block.__(5, {
                 a,
                 b
-              ]));
+              }));
 end end
 
 function variant$1(loc, attrs, a, b) do
-  return mk$1(loc, attrs, --[[ Ppat_variant ]]Block.__(6, [
+  return mk$1(loc, attrs, --[[ Ppat_variant ]]Block.__(6, {
                 a,
                 b
-              ]));
+              }));
 end end
 
 function record(loc, attrs, a, b) do
-  return mk$1(loc, attrs, --[[ Ppat_record ]]Block.__(7, [
+  return mk$1(loc, attrs, --[[ Ppat_record ]]Block.__(7, {
                 a,
                 b
-              ]));
+              }));
 end end
 
 function array(loc, attrs, a) do
-  return mk$1(loc, attrs, --[[ Ppat_array ]]Block.__(8, [a]));
+  return mk$1(loc, attrs, --[[ Ppat_array ]]Block.__(8, {a}));
 end end
 
 function or_(loc, attrs, a, b) do
-  return mk$1(loc, attrs, --[[ Ppat_or ]]Block.__(9, [
+  return mk$1(loc, attrs, --[[ Ppat_or ]]Block.__(9, {
                 a,
                 b
-              ]));
+              }));
 end end
 
 function constraint_(loc, attrs, a, b) do
-  return mk$1(loc, attrs, --[[ Ppat_constraint ]]Block.__(10, [
+  return mk$1(loc, attrs, --[[ Ppat_constraint ]]Block.__(10, {
                 a,
                 b
-              ]));
+              }));
 end end
 
 function type_(loc, attrs, a) do
-  return mk$1(loc, attrs, --[[ Ppat_type ]]Block.__(11, [a]));
+  return mk$1(loc, attrs, --[[ Ppat_type ]]Block.__(11, {a}));
 end end
 
 function lazy_(loc, attrs, a) do
-  return mk$1(loc, attrs, --[[ Ppat_lazy ]]Block.__(12, [a]));
+  return mk$1(loc, attrs, --[[ Ppat_lazy ]]Block.__(12, {a}));
 end end
 
 function unpack(loc, attrs, a) do
-  return mk$1(loc, attrs, --[[ Ppat_unpack ]]Block.__(13, [a]));
+  return mk$1(loc, attrs, --[[ Ppat_unpack ]]Block.__(13, {a}));
 end end
 
 function exception_(loc, attrs, a) do
-  return mk$1(loc, attrs, --[[ Ppat_exception ]]Block.__(14, [a]));
+  return mk$1(loc, attrs, --[[ Ppat_exception ]]Block.__(14, {a}));
 end end
 
 function extension$1(loc, attrs, a) do
-  return mk$1(loc, attrs, --[[ Ppat_extension ]]Block.__(15, [a]));
+  return mk$1(loc, attrs, --[[ Ppat_extension ]]Block.__(15, {a}));
 end end
 
 Pat = do
@@ -4912,224 +4912,224 @@ function attr$2(d, a) do
   return do
           pexp_desc: d.pexp_desc,
           pexp_loc: d.pexp_loc,
-          pexp_attributes: Pervasives.$at(d.pexp_attributes, --[[ :: ]][
+          pexp_attributes: Pervasives.$at(d.pexp_attributes, --[[ :: ]]{
                 a,
                 --[[ [] ]]0
-              ])
+              })
         end;
 end end
 
 function ident(loc, attrs, a) do
-  return mk$2(loc, attrs, --[[ Pexp_ident ]]Block.__(0, [a]));
+  return mk$2(loc, attrs, --[[ Pexp_ident ]]Block.__(0, {a}));
 end end
 
 function constant$1(loc, attrs, a) do
-  return mk$2(loc, attrs, --[[ Pexp_constant ]]Block.__(1, [a]));
+  return mk$2(loc, attrs, --[[ Pexp_constant ]]Block.__(1, {a}));
 end end
 
 function let_(loc, attrs, a, b, c) do
-  return mk$2(loc, attrs, --[[ Pexp_let ]]Block.__(2, [
+  return mk$2(loc, attrs, --[[ Pexp_let ]]Block.__(2, {
                 a,
                 b,
                 c
-              ]));
+              }));
 end end
 
 function fun_(loc, attrs, a, b, c, d) do
-  return mk$2(loc, attrs, --[[ Pexp_fun ]]Block.__(4, [
+  return mk$2(loc, attrs, --[[ Pexp_fun ]]Block.__(4, {
                 a,
                 b,
                 c,
                 d
-              ]));
+              }));
 end end
 
 function function_(loc, attrs, a) do
-  return mk$2(loc, attrs, --[[ Pexp_function ]]Block.__(3, [a]));
+  return mk$2(loc, attrs, --[[ Pexp_function ]]Block.__(3, {a}));
 end end
 
 function apply(loc, attrs, a, b) do
-  return mk$2(loc, attrs, --[[ Pexp_apply ]]Block.__(5, [
+  return mk$2(loc, attrs, --[[ Pexp_apply ]]Block.__(5, {
                 a,
                 b
-              ]));
+              }));
 end end
 
 function match_(loc, attrs, a, b) do
-  return mk$2(loc, attrs, --[[ Pexp_match ]]Block.__(6, [
+  return mk$2(loc, attrs, --[[ Pexp_match ]]Block.__(6, {
                 a,
                 b
-              ]));
+              }));
 end end
 
 function try_(loc, attrs, a, b) do
-  return mk$2(loc, attrs, --[[ Pexp_try ]]Block.__(7, [
+  return mk$2(loc, attrs, --[[ Pexp_try ]]Block.__(7, {
                 a,
                 b
-              ]));
+              }));
 end end
 
 function tuple$2(loc, attrs, a) do
-  return mk$2(loc, attrs, --[[ Pexp_tuple ]]Block.__(8, [a]));
+  return mk$2(loc, attrs, --[[ Pexp_tuple ]]Block.__(8, {a}));
 end end
 
 function construct$1(loc, attrs, a, b) do
-  return mk$2(loc, attrs, --[[ Pexp_construct ]]Block.__(9, [
+  return mk$2(loc, attrs, --[[ Pexp_construct ]]Block.__(9, {
                 a,
                 b
-              ]));
+              }));
 end end
 
 function variant$2(loc, attrs, a, b) do
-  return mk$2(loc, attrs, --[[ Pexp_variant ]]Block.__(10, [
+  return mk$2(loc, attrs, --[[ Pexp_variant ]]Block.__(10, {
                 a,
                 b
-              ]));
+              }));
 end end
 
 function record$1(loc, attrs, a, b) do
-  return mk$2(loc, attrs, --[[ Pexp_record ]]Block.__(11, [
+  return mk$2(loc, attrs, --[[ Pexp_record ]]Block.__(11, {
                 a,
                 b
-              ]));
+              }));
 end end
 
 function field(loc, attrs, a, b) do
-  return mk$2(loc, attrs, --[[ Pexp_field ]]Block.__(12, [
+  return mk$2(loc, attrs, --[[ Pexp_field ]]Block.__(12, {
                 a,
                 b
-              ]));
+              }));
 end end
 
 function setfield(loc, attrs, a, b, c) do
-  return mk$2(loc, attrs, --[[ Pexp_setfield ]]Block.__(13, [
+  return mk$2(loc, attrs, --[[ Pexp_setfield ]]Block.__(13, {
                 a,
                 b,
                 c
-              ]));
+              }));
 end end
 
 function array$1(loc, attrs, a) do
-  return mk$2(loc, attrs, --[[ Pexp_array ]]Block.__(14, [a]));
+  return mk$2(loc, attrs, --[[ Pexp_array ]]Block.__(14, {a}));
 end end
 
 function ifthenelse(loc, attrs, a, b, c) do
-  return mk$2(loc, attrs, --[[ Pexp_ifthenelse ]]Block.__(15, [
+  return mk$2(loc, attrs, --[[ Pexp_ifthenelse ]]Block.__(15, {
                 a,
                 b,
                 c
-              ]));
+              }));
 end end
 
 function sequence(loc, attrs, a, b) do
-  return mk$2(loc, attrs, --[[ Pexp_sequence ]]Block.__(16, [
+  return mk$2(loc, attrs, --[[ Pexp_sequence ]]Block.__(16, {
                 a,
                 b
-              ]));
+              }));
 end end
 
 function while_(loc, attrs, a, b) do
-  return mk$2(loc, attrs, --[[ Pexp_while ]]Block.__(17, [
+  return mk$2(loc, attrs, --[[ Pexp_while ]]Block.__(17, {
                 a,
                 b
-              ]));
+              }));
 end end
 
 function for_(loc, attrs, a, b, c, d, e) do
-  return mk$2(loc, attrs, --[[ Pexp_for ]]Block.__(18, [
+  return mk$2(loc, attrs, --[[ Pexp_for ]]Block.__(18, {
                 a,
                 b,
                 c,
                 d,
                 e
-              ]));
+              }));
 end end
 
 function constraint_$1(loc, attrs, a, b) do
-  return mk$2(loc, attrs, --[[ Pexp_constraint ]]Block.__(19, [
+  return mk$2(loc, attrs, --[[ Pexp_constraint ]]Block.__(19, {
                 a,
                 b
-              ]));
+              }));
 end end
 
 function coerce(loc, attrs, a, b, c) do
-  return mk$2(loc, attrs, --[[ Pexp_coerce ]]Block.__(20, [
+  return mk$2(loc, attrs, --[[ Pexp_coerce ]]Block.__(20, {
                 a,
                 b,
                 c
-              ]));
+              }));
 end end
 
 function send(loc, attrs, a, b) do
-  return mk$2(loc, attrs, --[[ Pexp_send ]]Block.__(21, [
+  return mk$2(loc, attrs, --[[ Pexp_send ]]Block.__(21, {
                 a,
                 b
-              ]));
+              }));
 end end
 
 function new_(loc, attrs, a) do
-  return mk$2(loc, attrs, --[[ Pexp_new ]]Block.__(22, [a]));
+  return mk$2(loc, attrs, --[[ Pexp_new ]]Block.__(22, {a}));
 end end
 
 function setinstvar(loc, attrs, a, b) do
-  return mk$2(loc, attrs, --[[ Pexp_setinstvar ]]Block.__(23, [
+  return mk$2(loc, attrs, --[[ Pexp_setinstvar ]]Block.__(23, {
                 a,
                 b
-              ]));
+              }));
 end end
 
 function override(loc, attrs, a) do
-  return mk$2(loc, attrs, --[[ Pexp_override ]]Block.__(24, [a]));
+  return mk$2(loc, attrs, --[[ Pexp_override ]]Block.__(24, {a}));
 end end
 
 function letmodule(loc, attrs, a, b, c) do
-  return mk$2(loc, attrs, --[[ Pexp_letmodule ]]Block.__(25, [
+  return mk$2(loc, attrs, --[[ Pexp_letmodule ]]Block.__(25, {
                 a,
                 b,
                 c
-              ]));
+              }));
 end end
 
 function assert_(loc, attrs, a) do
-  return mk$2(loc, attrs, --[[ Pexp_assert ]]Block.__(26, [a]));
+  return mk$2(loc, attrs, --[[ Pexp_assert ]]Block.__(26, {a}));
 end end
 
 function lazy_$1(loc, attrs, a) do
-  return mk$2(loc, attrs, --[[ Pexp_lazy ]]Block.__(27, [a]));
+  return mk$2(loc, attrs, --[[ Pexp_lazy ]]Block.__(27, {a}));
 end end
 
 function poly$1(loc, attrs, a, b) do
-  return mk$2(loc, attrs, --[[ Pexp_poly ]]Block.__(28, [
+  return mk$2(loc, attrs, --[[ Pexp_poly ]]Block.__(28, {
                 a,
                 b
-              ]));
+              }));
 end end
 
 function object_$1(loc, attrs, a) do
-  return mk$2(loc, attrs, --[[ Pexp_object ]]Block.__(29, [a]));
+  return mk$2(loc, attrs, --[[ Pexp_object ]]Block.__(29, {a}));
 end end
 
 function newtype(loc, attrs, a, b) do
-  return mk$2(loc, attrs, --[[ Pexp_newtype ]]Block.__(30, [
+  return mk$2(loc, attrs, --[[ Pexp_newtype ]]Block.__(30, {
                 a,
                 b
-              ]));
+              }));
 end end
 
 function pack(loc, attrs, a) do
-  return mk$2(loc, attrs, --[[ Pexp_pack ]]Block.__(31, [a]));
+  return mk$2(loc, attrs, --[[ Pexp_pack ]]Block.__(31, {a}));
 end end
 
 function open_(loc, attrs, a, b, c) do
-  return mk$2(loc, attrs, --[[ Pexp_open ]]Block.__(32, [
+  return mk$2(loc, attrs, --[[ Pexp_open ]]Block.__(32, {
                 a,
                 b,
                 c
-              ]));
+              }));
 end end
 
 function extension$2(loc, attrs, a) do
-  return mk$2(loc, attrs, --[[ Pexp_extension ]]Block.__(33, [a]));
+  return mk$2(loc, attrs, --[[ Pexp_extension ]]Block.__(33, {a}));
 end end
 
 function __case(lhs, guard, rhs) do
@@ -5154,46 +5154,46 @@ function attr$3(d, a) do
   return do
           pmty_desc: d.pmty_desc,
           pmty_loc: d.pmty_loc,
-          pmty_attributes: Pervasives.$at(d.pmty_attributes, --[[ :: ]][
+          pmty_attributes: Pervasives.$at(d.pmty_attributes, --[[ :: ]]{
                 a,
                 --[[ [] ]]0
-              ])
+              })
         end;
 end end
 
 function ident$1(loc, attrs, a) do
-  return mk$3(loc, attrs, --[[ Pmty_ident ]]Block.__(0, [a]));
+  return mk$3(loc, attrs, --[[ Pmty_ident ]]Block.__(0, {a}));
 end end
 
 function alias$2(loc, attrs, a) do
-  return mk$3(loc, attrs, --[[ Pmty_alias ]]Block.__(6, [a]));
+  return mk$3(loc, attrs, --[[ Pmty_alias ]]Block.__(6, {a}));
 end end
 
 function signature(loc, attrs, a) do
-  return mk$3(loc, attrs, --[[ Pmty_signature ]]Block.__(1, [a]));
+  return mk$3(loc, attrs, --[[ Pmty_signature ]]Block.__(1, {a}));
 end end
 
 function functor_(loc, attrs, a, b, c) do
-  return mk$3(loc, attrs, --[[ Pmty_functor ]]Block.__(2, [
+  return mk$3(loc, attrs, --[[ Pmty_functor ]]Block.__(2, {
                 a,
                 b,
                 c
-              ]));
+              }));
 end end
 
 function with_(loc, attrs, a, b) do
-  return mk$3(loc, attrs, --[[ Pmty_with ]]Block.__(3, [
+  return mk$3(loc, attrs, --[[ Pmty_with ]]Block.__(3, {
                 a,
                 b
-              ]));
+              }));
 end end
 
 function typeof_(loc, attrs, a) do
-  return mk$3(loc, attrs, --[[ Pmty_typeof ]]Block.__(4, [a]));
+  return mk$3(loc, attrs, --[[ Pmty_typeof ]]Block.__(4, {a}));
 end end
 
 function extension$3(loc, attrs, a) do
-  return mk$3(loc, attrs, --[[ Pmty_extension ]]Block.__(5, [a]));
+  return mk$3(loc, attrs, --[[ Pmty_extension ]]Block.__(5, {a}));
 end end
 
 Mty = do
@@ -5222,49 +5222,49 @@ function attr$4(d, a) do
   return do
           pmod_desc: d.pmod_desc,
           pmod_loc: d.pmod_loc,
-          pmod_attributes: Pervasives.$at(d.pmod_attributes, --[[ :: ]][
+          pmod_attributes: Pervasives.$at(d.pmod_attributes, --[[ :: ]]{
                 a,
                 --[[ [] ]]0
-              ])
+              })
         end;
 end end
 
 function ident$2(loc, attrs, x) do
-  return mk$4(loc, attrs, --[[ Pmod_ident ]]Block.__(0, [x]));
+  return mk$4(loc, attrs, --[[ Pmod_ident ]]Block.__(0, {x}));
 end end
 
 function structure(loc, attrs, x) do
-  return mk$4(loc, attrs, --[[ Pmod_structure ]]Block.__(1, [x]));
+  return mk$4(loc, attrs, --[[ Pmod_structure ]]Block.__(1, {x}));
 end end
 
 function functor_$1(loc, attrs, arg, arg_ty, body) do
-  return mk$4(loc, attrs, --[[ Pmod_functor ]]Block.__(2, [
+  return mk$4(loc, attrs, --[[ Pmod_functor ]]Block.__(2, {
                 arg,
                 arg_ty,
                 body
-              ]));
+              }));
 end end
 
 function apply$1(loc, attrs, m1, m2) do
-  return mk$4(loc, attrs, --[[ Pmod_apply ]]Block.__(3, [
+  return mk$4(loc, attrs, --[[ Pmod_apply ]]Block.__(3, {
                 m1,
                 m2
-              ]));
+              }));
 end end
 
 function constraint_$2(loc, attrs, m, mty) do
-  return mk$4(loc, attrs, --[[ Pmod_constraint ]]Block.__(4, [
+  return mk$4(loc, attrs, --[[ Pmod_constraint ]]Block.__(4, {
                 m,
                 mty
-              ]));
+              }));
 end end
 
 function unpack$1(loc, attrs, e) do
-  return mk$4(loc, attrs, --[[ Pmod_unpack ]]Block.__(5, [e]));
+  return mk$4(loc, attrs, --[[ Pmod_unpack ]]Block.__(5, {e}));
 end end
 
 function extension$4(loc, attrs, a) do
-  return mk$4(loc, attrs, --[[ Pmod_extension ]]Block.__(6, [a]));
+  return mk$4(loc, attrs, --[[ Pmod_extension ]]Block.__(6, {a}));
 end end
 
 Mod = do
@@ -5288,66 +5288,66 @@ function mk$5(locOpt, d) do
 end end
 
 function value(loc, a) do
-  return mk$5(loc, --[[ Psig_value ]]Block.__(0, [a]));
+  return mk$5(loc, --[[ Psig_value ]]Block.__(0, {a}));
 end end
 
 function type_$1(loc, a) do
-  return mk$5(loc, --[[ Psig_type ]]Block.__(1, [a]));
+  return mk$5(loc, --[[ Psig_type ]]Block.__(1, {a}));
 end end
 
 function type_extension(loc, a) do
-  return mk$5(loc, --[[ Psig_typext ]]Block.__(2, [a]));
+  return mk$5(loc, --[[ Psig_typext ]]Block.__(2, {a}));
 end end
 
 function exception_$1(loc, a) do
-  return mk$5(loc, --[[ Psig_exception ]]Block.__(3, [a]));
+  return mk$5(loc, --[[ Psig_exception ]]Block.__(3, {a}));
 end end
 
 function module_(loc, a) do
-  return mk$5(loc, --[[ Psig_module ]]Block.__(4, [a]));
+  return mk$5(loc, --[[ Psig_module ]]Block.__(4, {a}));
 end end
 
 function rec_module(loc, a) do
-  return mk$5(loc, --[[ Psig_recmodule ]]Block.__(5, [a]));
+  return mk$5(loc, --[[ Psig_recmodule ]]Block.__(5, {a}));
 end end
 
 function modtype(loc, a) do
-  return mk$5(loc, --[[ Psig_modtype ]]Block.__(6, [a]));
+  return mk$5(loc, --[[ Psig_modtype ]]Block.__(6, {a}));
 end end
 
 function open_$1(loc, a) do
-  return mk$5(loc, --[[ Psig_open ]]Block.__(7, [a]));
+  return mk$5(loc, --[[ Psig_open ]]Block.__(7, {a}));
 end end
 
 function include_(loc, a) do
-  return mk$5(loc, --[[ Psig_include ]]Block.__(8, [a]));
+  return mk$5(loc, --[[ Psig_include ]]Block.__(8, {a}));
 end end
 
 function class_$1(loc, a) do
-  return mk$5(loc, --[[ Psig_class ]]Block.__(9, [a]));
+  return mk$5(loc, --[[ Psig_class ]]Block.__(9, {a}));
 end end
 
 function class_type(loc, a) do
-  return mk$5(loc, --[[ Psig_class_type ]]Block.__(10, [a]));
+  return mk$5(loc, --[[ Psig_class_type ]]Block.__(10, {a}));
 end end
 
 function extension$5(loc, attrsOpt, a) do
   attrs = attrsOpt ~= undefined and attrsOpt or --[[ [] ]]0;
-  return mk$5(loc, --[[ Psig_extension ]]Block.__(12, [
+  return mk$5(loc, --[[ Psig_extension ]]Block.__(12, {
                 a,
                 attrs
-              ]));
+              }));
 end end
 
 function attribute(loc, a) do
-  return mk$5(loc, --[[ Psig_attribute ]]Block.__(11, [a]));
+  return mk$5(loc, --[[ Psig_attribute ]]Block.__(11, {a}));
 end end
 
 function text(txt) do
   return List.map((function (ds) do
                 a = text_attr(ds);
                 loc = ds.ds_loc;
-                return mk$5(loc, --[[ Psig_attribute ]]Block.__(11, [a]));
+                return mk$5(loc, --[[ Psig_attribute ]]Block.__(11, {a}));
               end end), txt);
 end end
 
@@ -5379,80 +5379,80 @@ end end
 
 function __eval(loc, attrsOpt, a) do
   attrs = attrsOpt ~= undefined and attrsOpt or --[[ [] ]]0;
-  return mk$6(loc, --[[ Pstr_eval ]]Block.__(0, [
+  return mk$6(loc, --[[ Pstr_eval ]]Block.__(0, {
                 a,
                 attrs
-              ]));
+              }));
 end end
 
 function value$1(loc, a, b) do
-  return mk$6(loc, --[[ Pstr_value ]]Block.__(1, [
+  return mk$6(loc, --[[ Pstr_value ]]Block.__(1, {
                 a,
                 b
-              ]));
+              }));
 end end
 
 function primitive(loc, a) do
-  return mk$6(loc, --[[ Pstr_primitive ]]Block.__(2, [a]));
+  return mk$6(loc, --[[ Pstr_primitive ]]Block.__(2, {a}));
 end end
 
 function type_$2(loc, a) do
-  return mk$6(loc, --[[ Pstr_type ]]Block.__(3, [a]));
+  return mk$6(loc, --[[ Pstr_type ]]Block.__(3, {a}));
 end end
 
 function type_extension$1(loc, a) do
-  return mk$6(loc, --[[ Pstr_typext ]]Block.__(4, [a]));
+  return mk$6(loc, --[[ Pstr_typext ]]Block.__(4, {a}));
 end end
 
 function exception_$2(loc, a) do
-  return mk$6(loc, --[[ Pstr_exception ]]Block.__(5, [a]));
+  return mk$6(loc, --[[ Pstr_exception ]]Block.__(5, {a}));
 end end
 
 function module_$1(loc, a) do
-  return mk$6(loc, --[[ Pstr_module ]]Block.__(6, [a]));
+  return mk$6(loc, --[[ Pstr_module ]]Block.__(6, {a}));
 end end
 
 function rec_module$1(loc, a) do
-  return mk$6(loc, --[[ Pstr_recmodule ]]Block.__(7, [a]));
+  return mk$6(loc, --[[ Pstr_recmodule ]]Block.__(7, {a}));
 end end
 
 function modtype$1(loc, a) do
-  return mk$6(loc, --[[ Pstr_modtype ]]Block.__(8, [a]));
+  return mk$6(loc, --[[ Pstr_modtype ]]Block.__(8, {a}));
 end end
 
 function open_$2(loc, a) do
-  return mk$6(loc, --[[ Pstr_open ]]Block.__(9, [a]));
+  return mk$6(loc, --[[ Pstr_open ]]Block.__(9, {a}));
 end end
 
 function class_$2(loc, a) do
-  return mk$6(loc, --[[ Pstr_class ]]Block.__(10, [a]));
+  return mk$6(loc, --[[ Pstr_class ]]Block.__(10, {a}));
 end end
 
 function class_type$1(loc, a) do
-  return mk$6(loc, --[[ Pstr_class_type ]]Block.__(11, [a]));
+  return mk$6(loc, --[[ Pstr_class_type ]]Block.__(11, {a}));
 end end
 
 function include_$1(loc, a) do
-  return mk$6(loc, --[[ Pstr_include ]]Block.__(12, [a]));
+  return mk$6(loc, --[[ Pstr_include ]]Block.__(12, {a}));
 end end
 
 function extension$6(loc, attrsOpt, a) do
   attrs = attrsOpt ~= undefined and attrsOpt or --[[ [] ]]0;
-  return mk$6(loc, --[[ Pstr_extension ]]Block.__(14, [
+  return mk$6(loc, --[[ Pstr_extension ]]Block.__(14, {
                 a,
                 attrs
-              ]));
+              }));
 end end
 
 function attribute$1(loc, a) do
-  return mk$6(loc, --[[ Pstr_attribute ]]Block.__(13, [a]));
+  return mk$6(loc, --[[ Pstr_attribute ]]Block.__(13, {a}));
 end end
 
 function text$1(txt) do
   return List.map((function (ds) do
                 a = text_attr(ds);
                 loc = ds.ds_loc;
-                return mk$6(loc, --[[ Pstr_attribute ]]Block.__(13, [a]));
+                return mk$6(loc, --[[ Pstr_attribute ]]Block.__(13, {a}));
               end end), txt);
 end end
 
@@ -5490,57 +5490,57 @@ function attr$5(d, a) do
   return do
           pcl_desc: d.pcl_desc,
           pcl_loc: d.pcl_loc,
-          pcl_attributes: Pervasives.$at(d.pcl_attributes, --[[ :: ]][
+          pcl_attributes: Pervasives.$at(d.pcl_attributes, --[[ :: ]]{
                 a,
                 --[[ [] ]]0
-              ])
+              })
         end;
 end end
 
 function constr$1(loc, attrs, a, b) do
-  return mk$7(loc, attrs, --[[ Pcl_constr ]]Block.__(0, [
+  return mk$7(loc, attrs, --[[ Pcl_constr ]]Block.__(0, {
                 a,
                 b
-              ]));
+              }));
 end end
 
 function structure$1(loc, attrs, a) do
-  return mk$7(loc, attrs, --[[ Pcl_structure ]]Block.__(1, [a]));
+  return mk$7(loc, attrs, --[[ Pcl_structure ]]Block.__(1, {a}));
 end end
 
 function fun_$1(loc, attrs, a, b, c, d) do
-  return mk$7(loc, attrs, --[[ Pcl_fun ]]Block.__(2, [
+  return mk$7(loc, attrs, --[[ Pcl_fun ]]Block.__(2, {
                 a,
                 b,
                 c,
                 d
-              ]));
+              }));
 end end
 
 function apply$2(loc, attrs, a, b) do
-  return mk$7(loc, attrs, --[[ Pcl_apply ]]Block.__(3, [
+  return mk$7(loc, attrs, --[[ Pcl_apply ]]Block.__(3, {
                 a,
                 b
-              ]));
+              }));
 end end
 
 function let_$1(loc, attrs, a, b, c) do
-  return mk$7(loc, attrs, --[[ Pcl_let ]]Block.__(4, [
+  return mk$7(loc, attrs, --[[ Pcl_let ]]Block.__(4, {
                 a,
                 b,
                 c
-              ]));
+              }));
 end end
 
 function constraint_$3(loc, attrs, a, b) do
-  return mk$7(loc, attrs, --[[ Pcl_constraint ]]Block.__(5, [
+  return mk$7(loc, attrs, --[[ Pcl_constraint ]]Block.__(5, {
                 a,
                 b
-              ]));
+              }));
 end end
 
 function extension$7(loc, attrs, a) do
-  return mk$7(loc, attrs, --[[ Pcl_extension ]]Block.__(6, [a]));
+  return mk$7(loc, attrs, --[[ Pcl_extension ]]Block.__(6, {a}));
 end end
 
 Cl = do
@@ -5569,34 +5569,34 @@ function attr$6(d, a) do
   return do
           pcty_desc: d.pcty_desc,
           pcty_loc: d.pcty_loc,
-          pcty_attributes: Pervasives.$at(d.pcty_attributes, --[[ :: ]][
+          pcty_attributes: Pervasives.$at(d.pcty_attributes, --[[ :: ]]{
                 a,
                 --[[ [] ]]0
-              ])
+              })
         end;
 end end
 
 function constr$2(loc, attrs, a, b) do
-  return mk$8(loc, attrs, --[[ Pcty_constr ]]Block.__(0, [
+  return mk$8(loc, attrs, --[[ Pcty_constr ]]Block.__(0, {
                 a,
                 b
-              ]));
+              }));
 end end
 
 function signature$1(loc, attrs, a) do
-  return mk$8(loc, attrs, --[[ Pcty_signature ]]Block.__(1, [a]));
+  return mk$8(loc, attrs, --[[ Pcty_signature ]]Block.__(1, {a}));
 end end
 
 function arrow$1(loc, attrs, a, b, c) do
-  return mk$8(loc, attrs, --[[ Pcty_arrow ]]Block.__(2, [
+  return mk$8(loc, attrs, --[[ Pcty_arrow ]]Block.__(2, {
                 a,
                 b,
                 c
-              ]));
+              }));
 end end
 
 function extension$8(loc, attrs, a) do
-  return mk$8(loc, attrs, --[[ Pcty_extension ]]Block.__(3, [a]));
+  return mk$8(loc, attrs, --[[ Pcty_extension ]]Block.__(3, {a}));
 end end
 
 Cty = do
@@ -5620,40 +5620,40 @@ function mk$9(locOpt, attrsOpt, docsOpt, d) do
 end end
 
 function inherit_(loc, attrs, a) do
-  return mk$9(loc, attrs, undefined, --[[ Pctf_inherit ]]Block.__(0, [a]));
+  return mk$9(loc, attrs, undefined, --[[ Pctf_inherit ]]Block.__(0, {a}));
 end end
 
 function val_(loc, attrs, a, b, c, d) do
-  return mk$9(loc, attrs, undefined, --[[ Pctf_val ]]Block.__(1, [--[[ tuple ]][
+  return mk$9(loc, attrs, undefined, --[[ Pctf_val ]]Block.__(1, {--[[ tuple ]]{
                   a,
                   b,
                   c,
                   d
-                ]]));
+                }}));
 end end
 
 function method_(loc, attrs, a, b, c, d) do
-  return mk$9(loc, attrs, undefined, --[[ Pctf_method ]]Block.__(2, [--[[ tuple ]][
+  return mk$9(loc, attrs, undefined, --[[ Pctf_method ]]Block.__(2, {--[[ tuple ]]{
                   a,
                   b,
                   c,
                   d
-                ]]));
+                }}));
 end end
 
 function constraint_$4(loc, attrs, a, b) do
-  return mk$9(loc, attrs, undefined, --[[ Pctf_constraint ]]Block.__(3, [--[[ tuple ]][
+  return mk$9(loc, attrs, undefined, --[[ Pctf_constraint ]]Block.__(3, {--[[ tuple ]]{
                   a,
                   b
-                ]]));
+                }}));
 end end
 
 function extension$9(loc, attrs, a) do
-  return mk$9(loc, attrs, undefined, --[[ Pctf_extension ]]Block.__(5, [a]));
+  return mk$9(loc, attrs, undefined, --[[ Pctf_extension ]]Block.__(5, {a}));
 end end
 
 function attribute$2(loc, a) do
-  return mk$9(loc, undefined, undefined, --[[ Pctf_attribute ]]Block.__(4, [a]));
+  return mk$9(loc, undefined, undefined, --[[ Pctf_attribute ]]Block.__(4, {a}));
 end end
 
 function text$2(txt) do
@@ -5666,10 +5666,10 @@ function attr$7(d, a) do
   return do
           pctf_desc: d.pctf_desc,
           pctf_loc: d.pctf_loc,
-          pctf_attributes: Pervasives.$at(d.pctf_attributes, --[[ :: ]][
+          pctf_attributes: Pervasives.$at(d.pctf_attributes, --[[ :: ]]{
                 a,
                 --[[ [] ]]0
-              ])
+              })
         end;
 end end
 
@@ -5685,46 +5685,46 @@ function mk$10(locOpt, attrsOpt, docsOpt, d) do
 end end
 
 function inherit_$1(loc, attrs, a, b, c) do
-  return mk$10(loc, attrs, undefined, --[[ Pcf_inherit ]]Block.__(0, [
+  return mk$10(loc, attrs, undefined, --[[ Pcf_inherit ]]Block.__(0, {
                 a,
                 b,
                 c
-              ]));
+              }));
 end end
 
 function val_$1(loc, attrs, a, b, c) do
-  return mk$10(loc, attrs, undefined, --[[ Pcf_val ]]Block.__(1, [--[[ tuple ]][
+  return mk$10(loc, attrs, undefined, --[[ Pcf_val ]]Block.__(1, {--[[ tuple ]]{
                   a,
                   b,
                   c
-                ]]));
+                }}));
 end end
 
 function method_$1(loc, attrs, a, b, c) do
-  return mk$10(loc, attrs, undefined, --[[ Pcf_method ]]Block.__(2, [--[[ tuple ]][
+  return mk$10(loc, attrs, undefined, --[[ Pcf_method ]]Block.__(2, {--[[ tuple ]]{
                   a,
                   b,
                   c
-                ]]));
+                }}));
 end end
 
 function constraint_$5(loc, attrs, a, b) do
-  return mk$10(loc, attrs, undefined, --[[ Pcf_constraint ]]Block.__(3, [--[[ tuple ]][
+  return mk$10(loc, attrs, undefined, --[[ Pcf_constraint ]]Block.__(3, {--[[ tuple ]]{
                   a,
                   b
-                ]]));
+                }}));
 end end
 
 function initializer_(loc, attrs, a) do
-  return mk$10(loc, attrs, undefined, --[[ Pcf_initializer ]]Block.__(4, [a]));
+  return mk$10(loc, attrs, undefined, --[[ Pcf_initializer ]]Block.__(4, {a}));
 end end
 
 function extension$10(loc, attrs, a) do
-  return mk$10(loc, attrs, undefined, --[[ Pcf_extension ]]Block.__(6, [a]));
+  return mk$10(loc, attrs, undefined, --[[ Pcf_extension ]]Block.__(6, {a}));
 end end
 
 function attribute$3(loc, a) do
-  return mk$10(loc, undefined, undefined, --[[ Pcf_attribute ]]Block.__(5, [a]));
+  return mk$10(loc, undefined, undefined, --[[ Pcf_attribute ]]Block.__(5, {a}));
 end end
 
 function text$3(txt) do
@@ -5734,24 +5734,24 @@ function text$3(txt) do
 end end
 
 function virtual_(ct) do
-  return --[[ Cfk_virtual ]]Block.__(0, [ct]);
+  return --[[ Cfk_virtual ]]Block.__(0, {ct});
 end end
 
 function concrete(o, e) do
-  return --[[ Cfk_concrete ]]Block.__(1, [
+  return --[[ Cfk_concrete ]]Block.__(1, {
             o,
             e
-          ]);
+          });
 end end
 
 function attr$8(d, a) do
   return do
           pcf_desc: d.pcf_desc,
           pcf_loc: d.pcf_loc,
-          pcf_attributes: Pervasives.$at(d.pcf_attributes, --[[ :: ]][
+          pcf_attributes: Pervasives.$at(d.pcf_attributes, --[[ :: ]]{
                 a,
                 --[[ [] ]]0
-              ])
+              })
         end;
 end end
 
@@ -5984,10 +5984,10 @@ function decl(locOpt, attrsOpt, docsOpt, infoOpt, argsOpt, res, name) do
   args = argsOpt ~= undefined and argsOpt or --[[ [] ]]0;
   return do
           pext_name: name,
-          pext_kind: --[[ Pext_decl ]]Block.__(0, [
+          pext_kind: --[[ Pext_decl ]]Block.__(0, {
               args,
               res
-            ]),
+            }),
           pext_loc: loc,
           pext_attributes: add_docs_attrs(docs, add_info_attrs(info, attrs))
         end;
@@ -6000,7 +6000,7 @@ function rebind(locOpt, attrsOpt, docsOpt, infoOpt, name, lid) do
   info = infoOpt ~= undefined and Caml_option.valFromOption(infoOpt) or undefined;
   return do
           pext_name: name,
-          pext_kind: --[[ Pext_rebind ]]Block.__(1, [lid]),
+          pext_kind: --[[ Pext_rebind ]]Block.__(1, {lid}),
           pext_loc: loc,
           pext_attributes: add_docs_attrs(docs, add_info_attrs(info, attrs))
         end;
@@ -6140,128 +6140,128 @@ function prepare_error(param) do
      if ___conditional___ = 0--[[ Unclosed ]] then do
         closing = param[3];
         opening = param[1];
-        return Curry._1(errorf(param[2], --[[ :: ]][
-                        Curry._1(errorf(param[0], undefined, undefined, --[[ Format ]][
-                                  --[[ String_literal ]]Block.__(11, [
+        return Curry._1(errorf(param[2], --[[ :: ]]{
+                        Curry._1(errorf(param[0], undefined, undefined, --[[ Format ]]{
+                                  --[[ String_literal ]]Block.__(11, {
                                       "This '",
-                                      --[[ String ]]Block.__(2, [
+                                      --[[ String ]]Block.__(2, {
                                           --[[ No_padding ]]0,
-                                          --[[ String_literal ]]Block.__(11, [
+                                          --[[ String_literal ]]Block.__(11, {
                                               "' might be unmatched",
                                               --[[ End_of_format ]]0
-                                            ])
-                                        ])
-                                    ]),
+                                            })
+                                        })
+                                    }),
                                   "This '%s' might be unmatched"
-                                ]), opening),
+                                }), opening),
                         --[[ [] ]]0
-                      ], Curry._2(Printf.sprintf(--[[ Format ]][
-                                --[[ String_literal ]]Block.__(11, [
+                      }, Curry._2(Printf.sprintf(--[[ Format ]]{
+                                --[[ String_literal ]]Block.__(11, {
                                     "Syntax error: '",
-                                    --[[ String ]]Block.__(2, [
+                                    --[[ String ]]Block.__(2, {
                                         --[[ No_padding ]]0,
-                                        --[[ String_literal ]]Block.__(11, [
+                                        --[[ String_literal ]]Block.__(11, {
                                             "' expected, the highlighted '",
-                                            --[[ String ]]Block.__(2, [
+                                            --[[ String ]]Block.__(2, {
                                                 --[[ No_padding ]]0,
-                                                --[[ String_literal ]]Block.__(11, [
+                                                --[[ String_literal ]]Block.__(11, {
                                                     "' might be unmatched",
                                                     --[[ End_of_format ]]0
-                                                  ])
-                                              ])
-                                          ])
-                                      ])
-                                  ]),
+                                                  })
+                                              })
+                                          })
+                                      })
+                                  }),
                                 "Syntax error: '%s' expected, the highlighted '%s' might be unmatched"
-                              ]), closing, opening), --[[ Format ]][
-                        --[[ String_literal ]]Block.__(11, [
+                              }), closing, opening), --[[ Format ]]{
+                        --[[ String_literal ]]Block.__(11, {
                             "Syntax error: '",
-                            --[[ String ]]Block.__(2, [
+                            --[[ String ]]Block.__(2, {
                                 --[[ No_padding ]]0,
-                                --[[ String_literal ]]Block.__(11, [
+                                --[[ String_literal ]]Block.__(11, {
                                     "' expected",
                                     --[[ End_of_format ]]0
-                                  ])
-                              ])
-                          ]),
+                                  })
+                              })
+                          }),
                         "Syntax error: '%s' expected"
-                      ]), closing);end end end 
+                      }), closing);end end end 
      if ___conditional___ = 1--[[ Expecting ]] then do
-        return Curry._1(errorf(param[0], undefined, undefined, --[[ Format ]][
-                        --[[ String_literal ]]Block.__(11, [
+        return Curry._1(errorf(param[0], undefined, undefined, --[[ Format ]]{
+                        --[[ String_literal ]]Block.__(11, {
                             "Syntax error: ",
-                            --[[ String ]]Block.__(2, [
+                            --[[ String ]]Block.__(2, {
                                 --[[ No_padding ]]0,
-                                --[[ String_literal ]]Block.__(11, [
+                                --[[ String_literal ]]Block.__(11, {
                                     " expected.",
                                     --[[ End_of_format ]]0
-                                  ])
-                              ])
-                          ]),
+                                  })
+                              })
+                          }),
                         "Syntax error: %s expected."
-                      ]), param[1]);end end end 
+                      }), param[1]);end end end 
      if ___conditional___ = 2--[[ Not_expecting ]] then do
-        return Curry._1(errorf(param[0], undefined, undefined, --[[ Format ]][
-                        --[[ String_literal ]]Block.__(11, [
+        return Curry._1(errorf(param[0], undefined, undefined, --[[ Format ]]{
+                        --[[ String_literal ]]Block.__(11, {
                             "Syntax error: ",
-                            --[[ String ]]Block.__(2, [
+                            --[[ String ]]Block.__(2, {
                                 --[[ No_padding ]]0,
-                                --[[ String_literal ]]Block.__(11, [
+                                --[[ String_literal ]]Block.__(11, {
                                     " not expected.",
                                     --[[ End_of_format ]]0
-                                  ])
-                              ])
-                          ]),
+                                  })
+                              })
+                          }),
                         "Syntax error: %s not expected."
-                      ]), param[1]);end end end 
+                      }), param[1]);end end end 
      if ___conditional___ = 3--[[ Applicative_path ]] then do
-        return errorf(param[0], undefined, undefined, --[[ Format ]][
-                    --[[ String_literal ]]Block.__(11, [
+        return errorf(param[0], undefined, undefined, --[[ Format ]]{
+                    --[[ String_literal ]]Block.__(11, {
                         "Syntax error: applicative paths of the form F(X).t are not supported when the option -no-app-func is set.",
                         --[[ End_of_format ]]0
-                      ]),
+                      }),
                     "Syntax error: applicative paths of the form F(X).t are not supported when the option -no-app-func is set."
-                  ]);end end end 
+                  });end end end 
      if ___conditional___ = 4--[[ Variable_in_scope ]] then do
         __var = param[1];
-        return Curry._2(errorf(param[0], undefined, undefined, --[[ Format ]][
-                        --[[ String_literal ]]Block.__(11, [
+        return Curry._2(errorf(param[0], undefined, undefined, --[[ Format ]]{
+                        --[[ String_literal ]]Block.__(11, {
                             "In this scoped type, variable '",
-                            --[[ String ]]Block.__(2, [
+                            --[[ String ]]Block.__(2, {
                                 --[[ No_padding ]]0,
-                                --[[ String_literal ]]Block.__(11, [
+                                --[[ String_literal ]]Block.__(11, {
                                     " is reserved for the local type ",
-                                    --[[ String ]]Block.__(2, [
+                                    --[[ String ]]Block.__(2, {
                                         --[[ No_padding ]]0,
-                                        --[[ Char_literal ]]Block.__(12, [
+                                        --[[ Char_literal ]]Block.__(12, {
                                             --[[ "." ]]46,
                                             --[[ End_of_format ]]0
-                                          ])
-                                      ])
-                                  ])
-                              ])
-                          ]),
+                                          })
+                                      })
+                                  })
+                              })
+                          }),
                         "In this scoped type, variable '%s is reserved for the local type %s."
-                      ]), __var, __var);end end end 
+                      }), __var, __var);end end end 
      if ___conditional___ = 5--[[ Other ]] then do
-        return errorf(param[0], undefined, undefined, --[[ Format ]][
-                    --[[ String_literal ]]Block.__(11, [
+        return errorf(param[0], undefined, undefined, --[[ Format ]]{
+                    --[[ String_literal ]]Block.__(11, {
                         "Syntax error",
                         --[[ End_of_format ]]0
-                      ]),
+                      }),
                     "Syntax error"
-                  ]);end end end 
+                  });end end end 
      if ___conditional___ = 6--[[ Ill_formed_ast ]] then do
-        return Curry._1(errorf(param[0], undefined, undefined, --[[ Format ]][
-                        --[[ String_literal ]]Block.__(11, [
+        return Curry._1(errorf(param[0], undefined, undefined, --[[ Format ]]{
+                        --[[ String_literal ]]Block.__(11, {
                             "broken invariant in parsetree: ",
-                            --[[ String ]]Block.__(2, [
+                            --[[ String ]]Block.__(2, {
                                 --[[ No_padding ]]0,
                                 --[[ End_of_format ]]0
-                              ])
-                          ]),
+                              })
+                          }),
                         "broken invariant in parsetree: %s"
-                      ]), param[1]);end end end 
+                      }), param[1]);end end end 
      do
     
   end
@@ -6283,13 +6283,13 @@ function location_of_error(param) do
 end end
 
 function ill_formed_ast(loc, s) do
-  throw [
+  throw {
         __Error$1,
-        --[[ Ill_formed_ast ]]Block.__(6, [
+        --[[ Ill_formed_ast ]]Block.__(6, {
             loc,
             s
-          ])
-      ];
+          })
+      };
 end end
 
 Syntaxerr = do
@@ -6353,19 +6353,19 @@ function mkoption(d) do
     loc_end: loc_loc_end,
     loc_ghost: true
   end;
-  return mk(loc, undefined, --[[ Ptyp_constr ]]Block.__(3, [
+  return mk(loc, undefined, --[[ Ptyp_constr ]]Block.__(3, {
                 do
-                  txt: --[[ Ldot ]]Block.__(1, [
-                      --[[ Lident ]]Block.__(0, ["*predef*"]),
+                  txt: --[[ Ldot ]]Block.__(1, {
+                      --[[ Lident ]]Block.__(0, {"*predef*"}),
                       "option"
-                    ]),
+                    }),
                   loc: loc
                 end,
-                --[[ :: ]][
+                --[[ :: ]]{
                   d,
                   --[[ [] ]]0
-                ]
-              ]));
+                }
+              }));
 end end
 
 function reloc_pat(x) do
@@ -6386,17 +6386,17 @@ end end
 
 function mkoperator(name, pos) do
   loc = rhs_loc(pos);
-  return Curry._3(Ast_helper_Exp.mk, loc, undefined, --[[ Pexp_ident ]]Block.__(0, [do
-                  txt: --[[ Lident ]]Block.__(0, [name]),
+  return Curry._3(Ast_helper_Exp.mk, loc, undefined, --[[ Pexp_ident ]]Block.__(0, {do
+                  txt: --[[ Lident ]]Block.__(0, {name}),
                   loc: loc
-                end]));
+                end}));
 end end
 
 function mkpatvar(name, pos) do
-  return mk$1(rhs_loc(pos), undefined, --[[ Ppat_var ]]Block.__(0, [do
+  return mk$1(rhs_loc(pos), undefined, --[[ Ppat_var ]]Block.__(0, {do
                   txt: name,
                   loc: rhs_loc(pos)
-                end]));
+                end}));
 end end
 
 function ghexp(d) do
@@ -6412,22 +6412,22 @@ function ghtyp(d) do
 end end
 
 function mkinfix(arg1, name, arg2) do
-  return mkexp(--[[ Pexp_apply ]]Block.__(5, [
+  return mkexp(--[[ Pexp_apply ]]Block.__(5, {
                 mkoperator(name, 2),
-                --[[ :: ]][
-                  --[[ tuple ]][
+                --[[ :: ]]{
+                  --[[ tuple ]]{
                     "",
                     arg1
-                  ],
-                  --[[ :: ]][
-                    --[[ tuple ]][
+                  },
+                  --[[ :: ]]{
+                    --[[ tuple ]]{
                       "",
                       arg2
-                    ],
+                    },
                     --[[ [] ]]0
-                  ]
-                ]
-              ]));
+                  }
+                }
+              }));
 end end
 
 function neg_float_string(f) do
@@ -6439,23 +6439,23 @@ function neg_float_string(f) do
 end end
 
 function mkexp_cons(consloc, args, loc) do
-  return Curry._3(Ast_helper_Exp.mk, loc, undefined, --[[ Pexp_construct ]]Block.__(9, [
+  return Curry._3(Ast_helper_Exp.mk, loc, undefined, --[[ Pexp_construct ]]Block.__(9, {
                 do
-                  txt: --[[ Lident ]]Block.__(0, ["::"]),
+                  txt: --[[ Lident ]]Block.__(0, {"::"}),
                   loc: consloc
                 end,
                 args
-              ]));
+              }));
 end end
 
 function mkpat_cons(consloc, args, loc) do
-  return mk$1(loc, undefined, --[[ Ppat_construct ]]Block.__(5, [
+  return mk$1(loc, undefined, --[[ Ppat_construct ]]Block.__(5, {
                 do
-                  txt: --[[ Lident ]]Block.__(0, ["::"]),
+                  txt: --[[ Lident ]]Block.__(0, {"::"}),
                   loc: consloc
                 end,
                 args
-              ]));
+              }));
 end end
 
 function mktailexp(nilloc, param) do
@@ -6469,13 +6469,13 @@ function mktailexp(nilloc, param) do
       loc_end: loc_loc_end,
       loc_ghost: true
     end;
-    arg = Curry._3(Ast_helper_Exp.mk, loc, undefined, --[[ Pexp_tuple ]]Block.__(8, [--[[ :: ]][
+    arg = Curry._3(Ast_helper_Exp.mk, loc, undefined, --[[ Pexp_tuple ]]Block.__(8, {--[[ :: ]]{
               e1,
-              --[[ :: ]][
+              --[[ :: ]]{
                 exp_el,
                 --[[ [] ]]0
-              ]
-            ]]));
+              }
+            }}));
     return mkexp_cons(do
                 loc_start: loc_loc_start,
                 loc_end: loc_loc_end,
@@ -6489,15 +6489,15 @@ function mktailexp(nilloc, param) do
       loc_end: loc_loc_end$1,
       loc_ghost: true
     end;
-    nil_txt = --[[ Lident ]]Block.__(0, ["[]"]);
+    nil_txt = --[[ Lident ]]Block.__(0, {"[]"});
     nil = do
       txt: nil_txt,
       loc: loc$1
     end;
-    return Curry._3(Ast_helper_Exp.mk, loc$1, undefined, --[[ Pexp_construct ]]Block.__(9, [
+    return Curry._3(Ast_helper_Exp.mk, loc$1, undefined, --[[ Pexp_construct ]]Block.__(9, {
                   nil,
                   undefined
-                ]));
+                }));
   end end 
 end end
 
@@ -6512,13 +6512,13 @@ function mktailpat(nilloc, param) do
       loc_end: loc_loc_end,
       loc_ghost: true
     end;
-    arg = mk$1(loc, undefined, --[[ Ppat_tuple ]]Block.__(4, [--[[ :: ]][
+    arg = mk$1(loc, undefined, --[[ Ppat_tuple ]]Block.__(4, {--[[ :: ]]{
               p1,
-              --[[ :: ]][
+              --[[ :: ]]{
                 pat_pl,
                 --[[ [] ]]0
-              ]
-            ]]));
+              }
+            }}));
     return mkpat_cons(do
                 loc_start: loc_loc_start,
                 loc_end: loc_loc_end,
@@ -6532,24 +6532,24 @@ function mktailpat(nilloc, param) do
       loc_end: loc_loc_end$1,
       loc_ghost: true
     end;
-    nil_txt = --[[ Lident ]]Block.__(0, ["[]"]);
+    nil_txt = --[[ Lident ]]Block.__(0, {"[]"});
     nil = do
       txt: nil_txt,
       loc: loc$1
     end;
-    return mk$1(loc$1, undefined, --[[ Ppat_construct ]]Block.__(5, [
+    return mk$1(loc$1, undefined, --[[ Ppat_construct ]]Block.__(5, {
                   nil,
                   undefined
-                ]));
+                }));
   end end 
 end end
 
 function mkstrexp(e, attrs) do
   return do
-          pstr_desc: --[[ Pstr_eval ]]Block.__(0, [
+          pstr_desc: --[[ Pstr_eval ]]Block.__(0, {
               e,
               attrs
-            ]),
+            }),
           pstr_loc: e.pexp_loc
         end;
 end end
@@ -6559,86 +6559,86 @@ function mkexp_constraint(e, param) do
   t1 = param[0];
   if (t1 ~= undefined) then do
     if (t2 ~= undefined) then do
-      return ghexp(--[[ Pexp_coerce ]]Block.__(20, [
+      return ghexp(--[[ Pexp_coerce ]]Block.__(20, {
                     e,
                     t1,
                     t2
-                  ]));
+                  }));
     end else do
-      return ghexp(--[[ Pexp_constraint ]]Block.__(19, [
+      return ghexp(--[[ Pexp_constraint ]]Block.__(19, {
                     e,
                     t1
-                  ]));
+                  }));
     end end 
   end else if (t2 ~= undefined) then do
-    return ghexp(--[[ Pexp_coerce ]]Block.__(20, [
+    return ghexp(--[[ Pexp_coerce ]]Block.__(20, {
                   e,
                   t1,
                   t2
-                ]));
+                }));
   end else do
-    throw [
+    throw {
           Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]][
+          --[[ tuple ]]{
             "parser.mly",
             153,
             18
-          ]
-        ];
+          }
+        };
   end end  end 
 end end
 
 function array_function(str, name) do
   return do
-          txt: --[[ Ldot ]]Block.__(1, [
-              --[[ Lident ]]Block.__(0, [str]),
+          txt: --[[ Ldot ]]Block.__(1, {
+              --[[ Lident ]]Block.__(0, {str}),
               fast.contents and "unsafe_" .. name or name
-            ]),
+            }),
           loc: symbol_gloc(--[[ () ]]0)
         end;
 end end
 
 function unclosed(opening_name, opening_num, closing_name, closing_num) do
-  throw [
+  throw {
         __Error$1,
-        --[[ Unclosed ]]Block.__(0, [
+        --[[ Unclosed ]]Block.__(0, {
             rhs_loc(opening_num),
             opening_name,
             rhs_loc(closing_num),
             closing_name
-          ])
-      ];
+          })
+      };
 end end
 
 function expecting(pos, nonterm) do
-  throw [
+  throw {
         __Error$1,
-        --[[ Expecting ]]Block.__(1, [
+        --[[ Expecting ]]Block.__(1, {
             rhs_loc(pos),
             nonterm
-          ])
-      ];
+          })
+      };
 end end
 
 function not_expecting(pos, nonterm) do
-  throw [
+  throw {
         __Error$1,
-        --[[ Not_expecting ]]Block.__(2, [
+        --[[ Not_expecting ]]Block.__(2, {
             rhs_loc(pos),
             nonterm
-          ])
-      ];
+          })
+      };
 end end
 
 function bigarray_function(str, name) do
   return do
-          txt: --[[ Ldot ]]Block.__(1, [
-              --[[ Ldot ]]Block.__(1, [
-                  --[[ Lident ]]Block.__(0, ["Bigarray"]),
+          txt: --[[ Ldot ]]Block.__(1, {
+              --[[ Ldot ]]Block.__(1, {
+                  --[[ Lident ]]Block.__(0, {"Bigarray"}),
                   str
-                ]),
+                }),
               name
-            ]),
+            }),
           loc: symbol_gloc(--[[ () ]]0)
         end;
 end end
@@ -6648,38 +6648,38 @@ function bigarray_untuplify(exp) do
   if (match.tag == --[[ Pexp_tuple ]]8) then do
     return match[0];
   end else do
-    return --[[ :: ]][
+    return --[[ :: ]]{
             exp,
             --[[ [] ]]0
-          ];
+          };
   end end 
 end end
 
 function exp_of_label(lbl, pos) do
-  rhs = --[[ Lident ]]Block.__(0, [last(lbl)]);
-  return mkexp(--[[ Pexp_ident ]]Block.__(0, [do
+  rhs = --[[ Lident ]]Block.__(0, {last(lbl)});
+  return mkexp(--[[ Pexp_ident ]]Block.__(0, {do
                   txt: rhs,
                   loc: rhs_loc(pos)
-                end]));
+                end}));
 end end
 
 function pat_of_label(lbl, pos) do
   rhs = last(lbl);
-  return mkpat(--[[ Ppat_var ]]Block.__(0, [do
+  return mkpat(--[[ Ppat_var ]]Block.__(0, {do
                   txt: rhs,
                   loc: rhs_loc(pos)
-                end]));
+                end}));
 end end
 
 function check_variable(vl, loc, v) do
   if (List.mem(v, vl)) then do
-    throw [
+    throw {
           __Error$1,
-          --[[ Variable_in_scope ]]Block.__(4, [
+          --[[ Variable_in_scope ]]Block.__(4, {
               loc,
               v
-            ])
-        ];
+            })
+        };
   end else do
     return 0;
   end end 
@@ -6697,15 +6697,15 @@ function varify_constructors(var_names, t) do
          if ___conditional___ = 0--[[ Ptyp_var ]] then do
             x = match[0];
             check_variable(var_names, t.ptyp_loc, x);
-            desc = --[[ Ptyp_var ]]Block.__(0, [x]);end else 
+            desc = --[[ Ptyp_var ]]Block.__(0, {x});end else 
          if ___conditional___ = 1--[[ Ptyp_arrow ]] then do
-            desc = --[[ Ptyp_arrow ]]Block.__(1, [
+            desc = --[[ Ptyp_arrow ]]Block.__(1, {
                 match[0],
                 loop(match[1]),
                 loop(match[2])
-              ]);end else 
+              });end else 
          if ___conditional___ = 2--[[ Ptyp_tuple ]] then do
-            desc = --[[ Ptyp_tuple ]]Block.__(2, [List.map(loop, match[0])]);end else 
+            desc = --[[ Ptyp_tuple ]]Block.__(2, {List.map(loop, match[0])});end else 
          if ___conditional___ = 3--[[ Ptyp_constr ]] then do
             longident = match[0];
             match$1 = longident.txt;
@@ -6718,7 +6718,7 @@ function varify_constructors(var_names, t) do
                   end else do
                     s = match$1[0];
                     if (List.mem(s, var_names)) then do
-                      desc = --[[ Ptyp_var ]]Block.__(0, [s]);
+                      desc = --[[ Ptyp_var ]]Block.__(0, {s});
                     end else do
                       exit = 1;
                     end end 
@@ -6730,68 +6730,68 @@ function varify_constructors(var_names, t) do
               
             end
             if (exit == 1) then do
-              desc = --[[ Ptyp_constr ]]Block.__(3, [
+              desc = --[[ Ptyp_constr ]]Block.__(3, {
                   longident,
                   List.map(loop, match[1])
-                ]);
+                });
             end
              end end else 
          if ___conditional___ = 4--[[ Ptyp_object ]] then do
-            desc = --[[ Ptyp_object ]]Block.__(4, [
+            desc = --[[ Ptyp_object ]]Block.__(4, {
                 List.map((function (param) do
-                        return --[[ tuple ]][
+                        return --[[ tuple ]]{
                                 param[0],
                                 param[1],
                                 loop(param[2])
-                              ];
+                              };
                       end end), match[0]),
                 match[1]
-              ]);end else 
+              });end else 
          if ___conditional___ = 5--[[ Ptyp_class ]] then do
-            desc = --[[ Ptyp_class ]]Block.__(5, [
+            desc = --[[ Ptyp_class ]]Block.__(5, {
                 match[0],
                 List.map(loop, match[1])
-              ]);end else 
+              });end else 
          if ___conditional___ = 6--[[ Ptyp_alias ]] then do
             string = match[1];
             check_variable(var_names, t.ptyp_loc, string);
-            desc = --[[ Ptyp_alias ]]Block.__(6, [
+            desc = --[[ Ptyp_alias ]]Block.__(6, {
                 loop(match[0]),
                 string
-              ]);end else 
+              });end else 
          if ___conditional___ = 7--[[ Ptyp_variant ]] then do
-            desc = --[[ Ptyp_variant ]]Block.__(7, [
+            desc = --[[ Ptyp_variant ]]Block.__(7, {
                 List.map(loop_row_field, match[0]),
                 match[1],
                 match[2]
-              ]);end else 
+              });end else 
          if ___conditional___ = 8--[[ Ptyp_poly ]] then do
             string_lst = match[0];
             partial_arg = t.ptyp_loc;
             List.iter((function (param) do
                     return check_variable(var_names, partial_arg, param);
                   end end), string_lst);
-            desc = --[[ Ptyp_poly ]]Block.__(8, [
+            desc = --[[ Ptyp_poly ]]Block.__(8, {
                 string_lst,
                 loop(match[1])
-              ]);end else 
+              });end else 
          if ___conditional___ = 9--[[ Ptyp_package ]] then do
             match$2 = match[0];
-            desc = --[[ Ptyp_package ]]Block.__(9, [--[[ tuple ]][
+            desc = --[[ Ptyp_package ]]Block.__(9, {--[[ tuple ]]{
                   match$2[0],
                   List.map((function (param) do
-                          return --[[ tuple ]][
+                          return --[[ tuple ]]{
                                   param[0],
                                   loop(param[1])
-                                ];
+                                };
                         end end), match$2[1])
-                ]]);end else 
+                }});end else 
          if ___conditional___ = 10--[[ Ptyp_extension ]] then do
             match$3 = match[0];
-            desc = --[[ Ptyp_extension ]]Block.__(10, [--[[ tuple ]][
+            desc = --[[ Ptyp_extension ]]Block.__(10, {--[[ tuple ]]{
                   match$3[0],
                   match$3[1]
-                ]]);end else 
+                }});end else 
          do end end end end end end end end end end end end
         
       end
@@ -6804,37 +6804,37 @@ function varify_constructors(var_names, t) do
   end end;
   loop_row_field = function (param) do
     if (param.tag) then do
-      return --[[ Rinherit ]]Block.__(1, [loop(param[0])]);
+      return --[[ Rinherit ]]Block.__(1, {loop(param[0])});
     end else do
-      return --[[ Rtag ]]Block.__(0, [
+      return --[[ Rtag ]]Block.__(0, {
                 param[0],
                 param[1],
                 param[2],
                 List.map(loop, param[3])
-              ]);
+              });
     end end 
   end end;
   return loop(t);
 end end
 
 function wrap_type_annotation(newtypes, core_type, body) do
-  exp = mkexp(--[[ Pexp_constraint ]]Block.__(19, [
+  exp = mkexp(--[[ Pexp_constraint ]]Block.__(19, {
           body,
           core_type
-        ]));
+        }));
   exp$1 = List.fold_right((function (newtype, exp) do
-          return mkexp(--[[ Pexp_newtype ]]Block.__(30, [
+          return mkexp(--[[ Pexp_newtype ]]Block.__(30, {
                         newtype,
                         exp
-                      ]));
+                      }));
         end end), newtypes, exp);
-  return --[[ tuple ]][
+  return --[[ tuple ]]{
           exp$1,
-          ghtyp(--[[ Ptyp_poly ]]Block.__(8, [
+          ghtyp(--[[ Ptyp_poly ]]Block.__(8, {
                   newtypes,
                   varify_constructors(newtypes, core_type)
-                ]))
-        ];
+                }))
+        };
 end end
 
 function wrap_exp_attrs(body, param) do
@@ -6848,23 +6848,23 @@ function wrap_exp_attrs(body, param) do
     pexp_attributes: body_pexp_attributes
   end;
   if (ext ~= undefined) then do
-    return ghexp(--[[ Pexp_extension ]]Block.__(33, [--[[ tuple ]][
+    return ghexp(--[[ Pexp_extension ]]Block.__(33, {--[[ tuple ]]{
                     ext,
-                    --[[ PStr ]]Block.__(0, [--[[ :: ]][
+                    --[[ PStr ]]Block.__(0, {--[[ :: ]]{
                           mkstrexp(body$1, --[[ [] ]]0),
                           --[[ [] ]]0
-                        ]])
-                  ]]));
+                        }})
+                  }}));
   end else do
     return body$1;
   end end 
 end end
 
 function text_def(pos) do
-  return --[[ :: ]][
-          --[[ Ptop_def ]]Block.__(0, [text$1(get_text(Parsing.rhs_start_pos(pos)))]),
+  return --[[ :: ]]{
+          --[[ Ptop_def ]]Block.__(0, {text$1(get_text(Parsing.rhs_start_pos(pos)))}),
           --[[ [] ]]0
-        ];
+        };
 end end
 
 function extra_text(text, pos, items) do
@@ -6890,13 +6890,13 @@ function add_nonrec(rf, attrs, pos) do
       txt: "nonrec",
       loc: name_loc
     end;
-    return --[[ :: ]][
-            --[[ tuple ]][
+    return --[[ :: ]]{
+            --[[ tuple ]]{
               name,
-              --[[ PStr ]]Block.__(0, [--[[ [] ]]0])
-            ],
+              --[[ PStr ]]Block.__(0, {--[[ [] ]]0})
+            },
             attrs
-          ];
+          };
   end end 
 end end
 
@@ -6911,7 +6911,7 @@ function mklb(param, attrs) do
         end;
 end end
 
-yytransl_const = [
+yytransl_const = {
   257,
   258,
   259,
@@ -7014,9 +7014,9 @@ yytransl_const = [
   373,
   376,
   0
-];
+};
 
-yytransl_block = [
+yytransl_block = {
   268,
   287,
   298,
@@ -7038,14 +7038,14 @@ yytransl_block = [
   374,
   375,
   0
-];
+};
 
-yyact = [
+yyact = {
   (function (param) do
-      throw [
+      throw {
             Caml_builtin_exceptions.failure,
             "parser"
-          ];
+          };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
@@ -7057,7 +7057,7 @@ yyact = [
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
-      return --[[ Ptop_def ]]Block.__(0, [extra_text(text$1, 1, _1)]);
+      return --[[ Ptop_def ]]Block.__(0, {extra_text(text$1, 1, _1)});
     end end),
   (function (__caml_parser_env) do
       return Parsing.peek_val(__caml_parser_env, 1);
@@ -7068,10 +7068,10 @@ yyact = [
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return Pervasives.$at(text$1(get_text(Parsing.rhs_start_pos(1))), --[[ :: ]][
+      return Pervasives.$at(text$1(get_text(Parsing.rhs_start_pos(1))), --[[ :: ]]{
                   mkstrexp(_1, _2),
                   --[[ [] ]]0
-                ]);
+                });
     end end),
   (function (__caml_parser_env) do
       return Parsing.peek_val(__caml_parser_env, 0);
@@ -7082,20 +7082,20 @@ yyact = [
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return Pervasives.$at(text$1(get_text(Parsing.rhs_start_pos(1))), --[[ :: ]][
+      return Pervasives.$at(text$1(get_text(Parsing.rhs_start_pos(1))), --[[ :: ]]{
                   _1,
                   _2
-                ]);
+                });
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
       pos = 1;
       items = _1;
       return extra_text((function (txt) do
-                    return --[[ :: ]][
-                            --[[ Ptop_def ]]Block.__(0, [text$1(txt)]),
+                    return --[[ :: ]]{
+                            --[[ Ptop_def ]]Block.__(0, {text$1(txt)}),
                             --[[ [] ]]0
-                          ];
+                          };
                   end end), pos, items);
     end end),
   (function (__caml_parser_env) do
@@ -7105,13 +7105,13 @@ yyact = [
       _1 = Parsing.peek_val(__caml_parser_env, 2);
       _2 = Parsing.peek_val(__caml_parser_env, 1);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return Pervasives.$at(text_def(1), --[[ :: ]][
-                  --[[ Ptop_def ]]Block.__(0, [--[[ :: ]][
+      return Pervasives.$at(text_def(1), --[[ :: ]]{
+                  --[[ Ptop_def ]]Block.__(0, {--[[ :: ]]{
                         mkstrexp(_1, _2),
                         --[[ [] ]]0
-                      ]]),
+                      }}),
                   _3
-                ]);
+                });
     end end),
   (function (__caml_parser_env) do
       return --[[ [] ]]0;
@@ -7124,53 +7124,53 @@ yyact = [
       _3 = Parsing.peek_val(__caml_parser_env, 1);
       _4 = Parsing.peek_val(__caml_parser_env, 0);
       mark_rhs_docs(2, 3);
-      return Pervasives.$at(text_def(1), Pervasives.$at(text_def(2), --[[ :: ]][
-                      --[[ Ptop_def ]]Block.__(0, [--[[ :: ]][
+      return Pervasives.$at(text_def(1), Pervasives.$at(text_def(2), --[[ :: ]]{
+                      --[[ Ptop_def ]]Block.__(0, {--[[ :: ]]{
                             mkstrexp(_2, _3),
                             --[[ [] ]]0
-                          ]]),
+                          }}),
                       _4
-                    ]));
+                    }));
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 1);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return Pervasives.$at(text_def(1), Pervasives.$at(text_def(2), --[[ :: ]][
-                      --[[ Ptop_def ]]Block.__(0, [--[[ :: ]][
+      return Pervasives.$at(text_def(1), Pervasives.$at(text_def(2), --[[ :: ]]{
+                      --[[ Ptop_def ]]Block.__(0, {--[[ :: ]]{
                             _2,
                             --[[ [] ]]0
-                          ]]),
+                          }}),
                       _3
-                    ]));
+                    }));
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 1);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
       mark_rhs_docs(2, 3);
-      return Pervasives.$at(text_def(1), Pervasives.$at(text_def(2), --[[ :: ]][
+      return Pervasives.$at(text_def(1), Pervasives.$at(text_def(2), --[[ :: ]]{
                       _2,
                       _3
-                    ]));
+                    }));
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return Pervasives.$at(text_def(1), --[[ :: ]][
-                  --[[ Ptop_def ]]Block.__(0, [--[[ :: ]][
+      return Pervasives.$at(text_def(1), --[[ :: ]]{
+                  --[[ Ptop_def ]]Block.__(0, {--[[ :: ]]{
                         _1,
                         --[[ [] ]]0
-                      ]]),
+                      }}),
                   _2
-                ]);
+                });
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
       _2 = Parsing.peek_val(__caml_parser_env, 0);
       mark_rhs_docs(1, 1);
-      return Pervasives.$at(text_def(1), --[[ :: ]][
+      return Pervasives.$at(text_def(1), --[[ :: ]]{
                   _1,
                   _2
-                ]);
+                });
     end end),
   (function (__caml_parser_env) do
       return Parsing.peek_val(__caml_parser_env, 1);
@@ -7182,24 +7182,24 @@ yyact = [
       return Parsing.peek_val(__caml_parser_env, 1);
     end end),
   (function (__caml_parser_env) do
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               do
                 txt: "*",
                 loc: rhs_loc(2)
               end,
               undefined
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 3);
       _4 = Parsing.peek_val(__caml_parser_env, 1);
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               do
                 txt: _2,
                 loc: rhs_loc(2)
               end,
               _4
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       return Parsing.peek_val(__caml_parser_env, 0);
@@ -7210,28 +7210,28 @@ yyact = [
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ :: ]][
+      return --[[ :: ]]{
               _2,
               _1
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ :: ]][
+      return --[[ :: ]]{
               _1,
               --[[ [] ]]0
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkmod(--[[ Pmod_ident ]]Block.__(0, [do
+      return mkmod(--[[ Pmod_ident ]]Block.__(0, {do
                       txt: _1,
                       loc: rhs_loc(1)
-                    end]));
+                    end}));
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 1);
-      return mkmod(--[[ Pmod_structure ]]Block.__(1, [extra_text(text$1, 2, _2)]));
+      return mkmod(--[[ Pmod_structure ]]Block.__(1, {extra_text(text$1, 2, _2)}));
     end end),
   (function (__caml_parser_env) do
       Parsing.peek_val(__caml_parser_env, 1);
@@ -7241,27 +7241,27 @@ yyact = [
       _2 = Parsing.peek_val(__caml_parser_env, 2);
       _4 = Parsing.peek_val(__caml_parser_env, 0);
       return List.fold_left((function (acc, param) do
-                    return mkmod(--[[ Pmod_functor ]]Block.__(2, [
+                    return mkmod(--[[ Pmod_functor ]]Block.__(2, {
                                   param[0],
                                   param[1],
                                   acc
-                                ]));
+                                }));
                   end end), _4, _2);
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 3);
       _3 = Parsing.peek_val(__caml_parser_env, 1);
-      return mkmod(--[[ Pmod_apply ]]Block.__(3, [
+      return mkmod(--[[ Pmod_apply ]]Block.__(3, {
                     _1,
                     _3
-                  ]));
+                  }));
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 2);
-      return mkmod(--[[ Pmod_apply ]]Block.__(3, [
+      return mkmod(--[[ Pmod_apply ]]Block.__(3, {
                     _1,
-                    mkmod(--[[ Pmod_structure ]]Block.__(1, [--[[ [] ]]0]))
-                  ]));
+                    mkmod(--[[ Pmod_structure ]]Block.__(1, {--[[ [] ]]0}))
+                  }));
     end end),
   (function (__caml_parser_env) do
       Parsing.peek_val(__caml_parser_env, 3);
@@ -7271,10 +7271,10 @@ yyact = [
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 3);
       _4 = Parsing.peek_val(__caml_parser_env, 1);
-      return mkmod(--[[ Pmod_constraint ]]Block.__(4, [
+      return mkmod(--[[ Pmod_constraint ]]Block.__(4, {
                     _2,
                     _4
-                  ]));
+                  }));
     end end),
   (function (__caml_parser_env) do
       Parsing.peek_val(__caml_parser_env, 3);
@@ -7290,34 +7290,34 @@ yyact = [
     end end),
   (function (__caml_parser_env) do
       _3 = Parsing.peek_val(__caml_parser_env, 1);
-      return mkmod(--[[ Pmod_unpack ]]Block.__(5, [_3]));
+      return mkmod(--[[ Pmod_unpack ]]Block.__(5, {_3}));
     end end),
   (function (__caml_parser_env) do
       _3 = Parsing.peek_val(__caml_parser_env, 3);
       _5 = Parsing.peek_val(__caml_parser_env, 1);
-      return mkmod(--[[ Pmod_unpack ]]Block.__(5, [ghexp(--[[ Pexp_constraint ]]Block.__(19, [
+      return mkmod(--[[ Pmod_unpack ]]Block.__(5, {ghexp(--[[ Pexp_constraint ]]Block.__(19, {
                             _3,
-                            ghtyp(--[[ Ptyp_package ]]Block.__(9, [_5]))
-                          ]))]));
+                            ghtyp(--[[ Ptyp_package ]]Block.__(9, {_5}))
+                          }))}));
     end end),
   (function (__caml_parser_env) do
       _3 = Parsing.peek_val(__caml_parser_env, 5);
       _5 = Parsing.peek_val(__caml_parser_env, 3);
       _7 = Parsing.peek_val(__caml_parser_env, 1);
-      return mkmod(--[[ Pmod_unpack ]]Block.__(5, [ghexp(--[[ Pexp_coerce ]]Block.__(20, [
+      return mkmod(--[[ Pmod_unpack ]]Block.__(5, {ghexp(--[[ Pexp_coerce ]]Block.__(20, {
                             _3,
-                            ghtyp(--[[ Ptyp_package ]]Block.__(9, [_5])),
-                            ghtyp(--[[ Ptyp_package ]]Block.__(9, [_7]))
-                          ]))]));
+                            ghtyp(--[[ Ptyp_package ]]Block.__(9, {_5})),
+                            ghtyp(--[[ Ptyp_package ]]Block.__(9, {_7}))
+                          }))}));
     end end),
   (function (__caml_parser_env) do
       _3 = Parsing.peek_val(__caml_parser_env, 3);
       _5 = Parsing.peek_val(__caml_parser_env, 1);
-      return mkmod(--[[ Pmod_unpack ]]Block.__(5, [ghexp(--[[ Pexp_coerce ]]Block.__(20, [
+      return mkmod(--[[ Pmod_unpack ]]Block.__(5, {ghexp(--[[ Pexp_coerce ]]Block.__(20, {
                             _3,
                             undefined,
-                            ghtyp(--[[ Ptyp_package ]]Block.__(9, [_5]))
-                          ]))]));
+                            ghtyp(--[[ Ptyp_package ]]Block.__(9, {_5}))
+                          }))}));
     end end),
   (function (__caml_parser_env) do
       Parsing.peek_val(__caml_parser_env, 2);
@@ -7338,17 +7338,17 @@ yyact = [
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkmod(--[[ Pmod_extension ]]Block.__(6, [_1]));
+      return mkmod(--[[ Pmod_extension ]]Block.__(6, {_1}));
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 2);
       _2 = Parsing.peek_val(__caml_parser_env, 1);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
       mark_rhs_docs(1, 2);
-      return Pervasives.$at(text$1(get_text(Parsing.rhs_start_pos(1))), --[[ :: ]][
+      return Pervasives.$at(text$1(get_text(Parsing.rhs_start_pos(1))), --[[ :: ]]{
                   mkstrexp(_1, _2),
                   _3
-                ]);
+                });
     end end),
   (function (__caml_parser_env) do
       return Parsing.peek_val(__caml_parser_env, 0);
@@ -7363,10 +7363,10 @@ yyact = [
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return Pervasives.$at(text$1(get_text(Parsing.rhs_start_pos(1))), --[[ :: ]][
+      return Pervasives.$at(text$1(get_text(Parsing.rhs_start_pos(1))), --[[ :: ]]{
                   _1,
                   _2
-                ]);
+                });
     end end),
   (function (__caml_parser_env) do
       lbs = Parsing.peek_val(__caml_parser_env, 0);
@@ -7376,14 +7376,14 @@ yyact = [
       if (bindings) then do
         lb = bindings[0];
         if (typeof lb.lb_pattern.ppat_desc == "number" and not bindings[1]) then do
-          exp = wrap_exp_attrs(lb.lb_expression, --[[ tuple ]][
+          exp = wrap_exp_attrs(lb.lb_expression, --[[ tuple ]]{
                 undefined,
                 lbs.lbs_attributes
-              ]);
-          str = mkstr(--[[ Pstr_eval ]]Block.__(0, [
+              });
+          str = mkstr(--[[ Pstr_eval ]]Block.__(0, {
                   exp,
                   lb.lb_attributes
-                ]));
+                }));
         end else do
           exit = 1;
         end end 
@@ -7392,36 +7392,36 @@ yyact = [
       end end 
       if (exit == 1) then do
         if (lbs.lbs_attributes ~= --[[ [] ]]0) then do
-          throw [
+          throw {
                 __Error$1,
-                --[[ Not_expecting ]]Block.__(2, [
+                --[[ Not_expecting ]]Block.__(2, {
                     lbs.lbs_loc,
                     "attributes"
-                  ])
-              ];
+                  })
+              };
         end
          end 
         bindings$1 = List.map((function (lb) do
                 return mk$17(lb.lb_loc, lb.lb_attributes, CamlinternalLazy.force(lb.lb_docs), CamlinternalLazy.force(lb.lb_text), lb.lb_pattern, lb.lb_expression);
               end end), bindings);
-        str = mkstr(--[[ Pstr_value ]]Block.__(1, [
+        str = mkstr(--[[ Pstr_value ]]Block.__(1, {
                 lbs.lbs_rec,
                 List.rev(bindings$1)
-              ]));
+              }));
       end
        end 
       match = lbs.lbs_extension;
       if (match ~= undefined) then do
-        d = --[[ Pstr_extension ]]Block.__(14, [
-            --[[ tuple ]][
+        d = --[[ Pstr_extension ]]Block.__(14, {
+            --[[ tuple ]]{
               match,
-              --[[ PStr ]]Block.__(0, [--[[ :: ]][
+              --[[ PStr ]]Block.__(0, {--[[ :: ]]{
                     str,
                     --[[ [] ]]0
-                  ]])
-            ],
+                  }})
+            },
             --[[ [] ]]0
-          ]);
+          });
         return mk$6(symbol_gloc(--[[ () ]]0), d);
       end else do
         return str;
@@ -7429,60 +7429,60 @@ yyact = [
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkstr(--[[ Pstr_primitive ]]Block.__(2, [_1]));
+      return mkstr(--[[ Pstr_primitive ]]Block.__(2, {_1}));
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkstr(--[[ Pstr_type ]]Block.__(3, [List.rev(_1)]));
+      return mkstr(--[[ Pstr_type ]]Block.__(3, {List.rev(_1)}));
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkstr(--[[ Pstr_typext ]]Block.__(4, [_1]));
+      return mkstr(--[[ Pstr_typext ]]Block.__(4, {_1}));
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkstr(--[[ Pstr_exception ]]Block.__(5, [_1]));
+      return mkstr(--[[ Pstr_exception ]]Block.__(5, {_1}));
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkstr(--[[ Pstr_module ]]Block.__(6, [_1]));
+      return mkstr(--[[ Pstr_module ]]Block.__(6, {_1}));
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkstr(--[[ Pstr_recmodule ]]Block.__(7, [List.rev(_1)]));
+      return mkstr(--[[ Pstr_recmodule ]]Block.__(7, {List.rev(_1)}));
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkstr(--[[ Pstr_modtype ]]Block.__(8, [_1]));
+      return mkstr(--[[ Pstr_modtype ]]Block.__(8, {_1}));
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkstr(--[[ Pstr_open ]]Block.__(9, [_1]));
+      return mkstr(--[[ Pstr_open ]]Block.__(9, {_1}));
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkstr(--[[ Pstr_class ]]Block.__(10, [List.rev(_1)]));
+      return mkstr(--[[ Pstr_class ]]Block.__(10, {List.rev(_1)}));
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkstr(--[[ Pstr_class_type ]]Block.__(11, [List.rev(_1)]));
+      return mkstr(--[[ Pstr_class_type ]]Block.__(11, {List.rev(_1)}));
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkstr(--[[ Pstr_include ]]Block.__(12, [_1]));
+      return mkstr(--[[ Pstr_include ]]Block.__(12, {_1}));
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkstr(--[[ Pstr_extension ]]Block.__(14, [
+      return mkstr(--[[ Pstr_extension ]]Block.__(14, {
                     _1,
                     add_docs_attrs(symbol_docs(--[[ () ]]0), _2)
-                  ]));
+                  }));
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
       mark_symbol_docs(--[[ () ]]0);
-      return mkstr(--[[ Pstr_attribute ]]Block.__(13, [_1]));
+      return mkstr(--[[ Pstr_attribute ]]Block.__(13, {_1}));
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 1);
@@ -7495,19 +7495,19 @@ yyact = [
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 2);
       _4 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkmod(--[[ Pmod_constraint ]]Block.__(4, [
+      return mkmod(--[[ Pmod_constraint ]]Block.__(4, {
                     _4,
                     _2
-                  ]));
+                  }));
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkmod(--[[ Pmod_functor ]]Block.__(2, [
+      return mkmod(--[[ Pmod_functor ]]Block.__(2, {
                     _1[0],
                     _1[1],
                     _2
-                  ]));
+                  }));
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 2);
@@ -7520,18 +7520,18 @@ yyact = [
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ :: ]][
+      return --[[ :: ]]{
               _1,
               --[[ [] ]]0
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ :: ]][
+      return --[[ :: ]]{
               _2,
               _1
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _3 = Parsing.peek_val(__caml_parser_env, 2);
@@ -7553,14 +7553,14 @@ yyact = [
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkmty(--[[ Pmty_ident ]]Block.__(0, [do
+      return mkmty(--[[ Pmty_ident ]]Block.__(0, {do
                       txt: _1,
                       loc: rhs_loc(1)
-                    end]));
+                    end}));
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 1);
-      return mkmty(--[[ Pmty_signature ]]Block.__(1, [extra_text(text, 2, _2)]));
+      return mkmty(--[[ Pmty_signature ]]Block.__(1, {extra_text(text, 2, _2)}));
     end end),
   (function (__caml_parser_env) do
       Parsing.peek_val(__caml_parser_env, 1);
@@ -7570,24 +7570,24 @@ yyact = [
       _2 = Parsing.peek_val(__caml_parser_env, 2);
       _4 = Parsing.peek_val(__caml_parser_env, 0);
       return List.fold_left((function (acc, param) do
-                    return mkmty(--[[ Pmty_functor ]]Block.__(2, [
+                    return mkmty(--[[ Pmty_functor ]]Block.__(2, {
                                   param[0],
                                   param[1],
                                   acc
-                                ]));
+                                }));
                   end end), _4, _2);
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkmty(--[[ Pmty_with ]]Block.__(3, [
+      return mkmty(--[[ Pmty_with ]]Block.__(3, {
                     _1,
                     List.rev(_3)
-                  ]));
+                  }));
     end end),
   (function (__caml_parser_env) do
       _4 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkmty(--[[ Pmty_typeof ]]Block.__(4, [_4]));
+      return mkmty(--[[ Pmty_typeof ]]Block.__(4, {_4}));
     end end),
   (function (__caml_parser_env) do
       return Parsing.peek_val(__caml_parser_env, 1);
@@ -7598,7 +7598,7 @@ yyact = [
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkmty(--[[ Pmty_extension ]]Block.__(5, [_1]));
+      return mkmty(--[[ Pmty_extension ]]Block.__(5, {_1}));
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
@@ -7615,75 +7615,75 @@ yyact = [
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return Pervasives.$at(text(get_text(Parsing.rhs_start_pos(1))), --[[ :: ]][
+      return Pervasives.$at(text(get_text(Parsing.rhs_start_pos(1))), --[[ :: ]]{
                   _1,
                   _2
-                ]);
+                });
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mksig(--[[ Psig_value ]]Block.__(0, [_1]));
+      return mksig(--[[ Psig_value ]]Block.__(0, {_1}));
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mksig(--[[ Psig_value ]]Block.__(0, [_1]));
+      return mksig(--[[ Psig_value ]]Block.__(0, {_1}));
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mksig(--[[ Psig_type ]]Block.__(1, [List.rev(_1)]));
+      return mksig(--[[ Psig_type ]]Block.__(1, {List.rev(_1)}));
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mksig(--[[ Psig_typext ]]Block.__(2, [_1]));
+      return mksig(--[[ Psig_typext ]]Block.__(2, {_1}));
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mksig(--[[ Psig_exception ]]Block.__(3, [_1]));
+      return mksig(--[[ Psig_exception ]]Block.__(3, {_1}));
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mksig(--[[ Psig_module ]]Block.__(4, [_1]));
+      return mksig(--[[ Psig_module ]]Block.__(4, {_1}));
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mksig(--[[ Psig_module ]]Block.__(4, [_1]));
+      return mksig(--[[ Psig_module ]]Block.__(4, {_1}));
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mksig(--[[ Psig_recmodule ]]Block.__(5, [List.rev(_1)]));
+      return mksig(--[[ Psig_recmodule ]]Block.__(5, {List.rev(_1)}));
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mksig(--[[ Psig_modtype ]]Block.__(6, [_1]));
+      return mksig(--[[ Psig_modtype ]]Block.__(6, {_1}));
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mksig(--[[ Psig_open ]]Block.__(7, [_1]));
+      return mksig(--[[ Psig_open ]]Block.__(7, {_1}));
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mksig(--[[ Psig_include ]]Block.__(8, [_1]));
+      return mksig(--[[ Psig_include ]]Block.__(8, {_1}));
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mksig(--[[ Psig_class ]]Block.__(9, [List.rev(_1)]));
+      return mksig(--[[ Psig_class ]]Block.__(9, {List.rev(_1)}));
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mksig(--[[ Psig_class_type ]]Block.__(10, [List.rev(_1)]));
+      return mksig(--[[ Psig_class_type ]]Block.__(10, {List.rev(_1)}));
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return mksig(--[[ Psig_extension ]]Block.__(12, [
+      return mksig(--[[ Psig_extension ]]Block.__(12, {
                     _1,
                     add_docs_attrs(symbol_docs(--[[ () ]]0), _2)
-                  ]));
+                  }));
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
       mark_symbol_docs(--[[ () ]]0);
-      return mksig(--[[ Psig_attribute ]]Block.__(11, [_1]));
+      return mksig(--[[ Psig_attribute ]]Block.__(11, {_1}));
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 2);
@@ -7706,25 +7706,25 @@ yyact = [
       _2 = Parsing.peek_val(__caml_parser_env, 4);
       _4 = Parsing.peek_val(__caml_parser_env, 2);
       _6 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkmty(--[[ Pmty_functor ]]Block.__(2, [
+      return mkmty(--[[ Pmty_functor ]]Block.__(2, {
                     do
                       txt: _2,
                       loc: rhs_loc(2)
                     end,
                     _4,
                     _6
-                  ]));
+                  }));
     end end),
   (function (__caml_parser_env) do
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkmty(--[[ Pmty_functor ]]Block.__(2, [
+      return mkmty(--[[ Pmty_functor ]]Block.__(2, {
                     do
                       txt: "*",
                       loc: rhs_loc(1)
                     end,
                     undefined,
                     _3
-                  ]));
+                  }));
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 2);
@@ -7749,18 +7749,18 @@ yyact = [
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ :: ]][
+      return --[[ :: ]]{
               _1,
               --[[ [] ]]0
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ :: ]][
+      return --[[ :: ]]{
               _2,
               _1
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _3 = Parsing.peek_val(__caml_parser_env, 3);
@@ -7797,18 +7797,18 @@ yyact = [
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ :: ]][
+      return --[[ :: ]]{
               _1,
               --[[ [] ]]0
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ :: ]][
+      return --[[ :: ]]{
               _2,
               _1
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 4);
@@ -7838,20 +7838,20 @@ yyact = [
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 2);
       _4 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkclass(--[[ Pcl_constraint ]]Block.__(5, [
+      return mkclass(--[[ Pcl_constraint ]]Block.__(5, {
                     _4,
                     _2
-                  ]));
+                  }));
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkclass(--[[ Pcl_fun ]]Block.__(2, [
+      return mkclass(--[[ Pcl_fun ]]Block.__(2, {
                     _1[0],
                     _1[1],
                     _1[2],
                     _2
-                  ]));
+                  }));
     end end),
   (function (__caml_parser_env) do
       return --[[ [] ]]0;
@@ -7862,22 +7862,22 @@ yyact = [
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkclass(--[[ Pcl_fun ]]Block.__(2, [
+      return mkclass(--[[ Pcl_fun ]]Block.__(2, {
                     _1[0],
                     _1[1],
                     _1[2],
                     _3
-                  ]));
+                  }));
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkclass(--[[ Pcl_fun ]]Block.__(2, [
+      return mkclass(--[[ Pcl_fun ]]Block.__(2, {
                     _1[0],
                     _1[1],
                     _1[2],
                     _2
-                  ]));
+                  }));
     end end),
   (function (__caml_parser_env) do
       return Parsing.peek_val(__caml_parser_env, 0);
@@ -7888,10 +7888,10 @@ yyact = [
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkclass(--[[ Pcl_apply ]]Block.__(3, [
+      return mkclass(--[[ Pcl_apply ]]Block.__(3, {
                     _1,
                     List.rev(_2)
-                  ]));
+                  }));
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 2);
@@ -7900,42 +7900,42 @@ yyact = [
       body = _3;
       bindings = List.map((function (lb) do
               if (lb.lb_attributes ~= --[[ [] ]]0) then do
-                throw [
+                throw {
                       __Error$1,
-                      --[[ Not_expecting ]]Block.__(2, [
+                      --[[ Not_expecting ]]Block.__(2, {
                           lb.lb_loc,
                           "item attribute"
-                        ])
-                    ];
+                        })
+                    };
               end
                end 
               return mk$17(lb.lb_loc, undefined, undefined, undefined, lb.lb_pattern, lb.lb_expression);
             end end), lbs.lbs_bindings);
       if (lbs.lbs_extension ~= undefined) then do
-        throw [
+        throw {
               __Error$1,
-              --[[ Not_expecting ]]Block.__(2, [
+              --[[ Not_expecting ]]Block.__(2, {
                   lbs.lbs_loc,
                   "extension"
-                ])
-            ];
+                })
+            };
       end
        end 
       if (lbs.lbs_attributes ~= --[[ [] ]]0) then do
-        throw [
+        throw {
               __Error$1,
-              --[[ Not_expecting ]]Block.__(2, [
+              --[[ Not_expecting ]]Block.__(2, {
                   lbs.lbs_loc,
                   "attributes"
-                ])
-            ];
+                })
+            };
       end
        end 
-      return mkclass(--[[ Pcl_let ]]Block.__(4, [
+      return mkclass(--[[ Pcl_let ]]Block.__(4, {
                     lbs.lbs_rec,
                     List.rev(bindings),
                     body
-                  ]));
+                  }));
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
@@ -7944,32 +7944,32 @@ yyact = [
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkclass(--[[ Pcl_extension ]]Block.__(6, [_1]));
+      return mkclass(--[[ Pcl_extension ]]Block.__(6, {_1}));
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 2);
       _4 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkclass(--[[ Pcl_constr ]]Block.__(0, [
+      return mkclass(--[[ Pcl_constr ]]Block.__(0, {
                     do
                       txt: _4,
                       loc: rhs_loc(4)
                     end,
                     List.rev(_2)
-                  ]));
+                  }));
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkclass(--[[ Pcl_constr ]]Block.__(0, [
+      return mkclass(--[[ Pcl_constr ]]Block.__(0, {
                     do
                       txt: _1,
                       loc: rhs_loc(1)
                     end,
                     --[[ [] ]]0
-                  ]));
+                  }));
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 1);
-      return mkclass(--[[ Pcl_structure ]]Block.__(1, [_2]));
+      return mkclass(--[[ Pcl_structure ]]Block.__(1, {_2}));
     end end),
   (function (__caml_parser_env) do
       Parsing.peek_val(__caml_parser_env, 1);
@@ -7978,10 +7978,10 @@ yyact = [
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 3);
       _4 = Parsing.peek_val(__caml_parser_env, 1);
-      return mkclass(--[[ Pcl_constraint ]]Block.__(5, [
+      return mkclass(--[[ Pcl_constraint ]]Block.__(5, {
                     _2,
                     _4
-                  ]));
+                  }));
     end end),
   (function (__caml_parser_env) do
       Parsing.peek_val(__caml_parser_env, 3);
@@ -8009,10 +8009,10 @@ yyact = [
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 3);
       _4 = Parsing.peek_val(__caml_parser_env, 1);
-      return mkpat(--[[ Ppat_constraint ]]Block.__(10, [
+      return mkpat(--[[ Ppat_constraint ]]Block.__(10, {
                     _2,
                     _4
-                  ]));
+                  }));
     end end),
   (function (__caml_parser_env) do
       return ghpat(--[[ Ppat_any ]]0);
@@ -8023,51 +8023,51 @@ yyact = [
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return Pervasives.$at(--[[ :: ]][
+      return Pervasives.$at(--[[ :: ]]{
                   _2,
                   Curry._1(Ast_helper_Cf.text, get_text(Parsing.rhs_start_pos(2)))
-                ], _1);
+                }, _1);
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 3);
       _3 = Parsing.peek_val(__caml_parser_env, 2);
       _4 = Parsing.peek_val(__caml_parser_env, 1);
       _5 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkcf(_5, symbol_docs(--[[ () ]]0), --[[ Pcf_inherit ]]Block.__(0, [
+      return mkcf(_5, symbol_docs(--[[ () ]]0), --[[ Pcf_inherit ]]Block.__(0, {
                     _2,
                     _3,
                     _4
-                  ]));
+                  }));
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 1);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkcf(_3, symbol_docs(--[[ () ]]0), --[[ Pcf_val ]]Block.__(1, [_2]));
+      return mkcf(_3, symbol_docs(--[[ () ]]0), --[[ Pcf_val ]]Block.__(1, {_2}));
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 1);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkcf(_3, symbol_docs(--[[ () ]]0), --[[ Pcf_method ]]Block.__(2, [_2]));
+      return mkcf(_3, symbol_docs(--[[ () ]]0), --[[ Pcf_method ]]Block.__(2, {_2}));
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 1);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkcf(_3, symbol_docs(--[[ () ]]0), --[[ Pcf_constraint ]]Block.__(3, [_2]));
+      return mkcf(_3, symbol_docs(--[[ () ]]0), --[[ Pcf_constraint ]]Block.__(3, {_2}));
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 1);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkcf(_3, symbol_docs(--[[ () ]]0), --[[ Pcf_initializer ]]Block.__(4, [_2]));
+      return mkcf(_3, symbol_docs(--[[ () ]]0), --[[ Pcf_initializer ]]Block.__(4, {_2}));
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkcf(_2, symbol_docs(--[[ () ]]0), --[[ Pcf_extension ]]Block.__(6, [_1]));
+      return mkcf(_2, symbol_docs(--[[ () ]]0), --[[ Pcf_extension ]]Block.__(6, {_1}));
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
       mark_symbol_docs(--[[ () ]]0);
-      return mkcf(undefined, undefined, --[[ Pcf_attribute ]]Block.__(5, [_1]));
+      return mkcf(undefined, undefined, --[[ Pcf_attribute ]]Block.__(5, {_1}));
     end end),
   (function (__caml_parser_env) do
       return Parsing.peek_val(__caml_parser_env, 0);
@@ -8083,44 +8083,44 @@ yyact = [
         throw Escape_error;
       end
        end 
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               do
                 txt: _4,
                 loc: rhs_loc(4)
               end,
               --[[ Mutable ]]1,
-              --[[ Cfk_virtual ]]Block.__(0, [_6])
-            ];
+              --[[ Cfk_virtual ]]Block.__(0, {_6})
+            };
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 3);
       _3 = Parsing.peek_val(__caml_parser_env, 2);
       _5 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               do
                 txt: _3,
                 loc: rhs_loc(3)
               end,
               _2,
-              --[[ Cfk_virtual ]]Block.__(0, [_5])
-            ];
+              --[[ Cfk_virtual ]]Block.__(0, {_5})
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 4);
       _2 = Parsing.peek_val(__caml_parser_env, 3);
       _3 = Parsing.peek_val(__caml_parser_env, 2);
       _5 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               do
                 txt: _3,
                 loc: rhs_loc(3)
               end,
               _2,
-              --[[ Cfk_concrete ]]Block.__(1, [
+              --[[ Cfk_concrete ]]Block.__(1, {
                   _1,
                   _5
-                ])
-            ];
+                })
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 5);
@@ -8129,17 +8129,17 @@ yyact = [
       _4 = Parsing.peek_val(__caml_parser_env, 2);
       _6 = Parsing.peek_val(__caml_parser_env, 0);
       e = mkexp_constraint(_6, _4);
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               do
                 txt: _3,
                 loc: rhs_loc(3)
               end,
               _2,
-              --[[ Cfk_concrete ]]Block.__(1, [
+              --[[ Cfk_concrete ]]Block.__(1, {
                   _1,
                   e
-                ])
-            ];
+                })
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 5);
@@ -8149,14 +8149,14 @@ yyact = [
         throw Escape_error;
       end
        end 
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               do
                 txt: _4,
                 loc: rhs_loc(4)
               end,
               --[[ Private ]]0,
-              --[[ Cfk_virtual ]]Block.__(0, [_6])
-            ];
+              --[[ Cfk_virtual ]]Block.__(0, {_6})
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 5);
@@ -8167,34 +8167,34 @@ yyact = [
         throw Escape_error;
       end
        end 
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               do
                 txt: _4,
                 loc: rhs_loc(4)
               end,
               _3,
-              --[[ Cfk_virtual ]]Block.__(0, [_6])
-            ];
+              --[[ Cfk_virtual ]]Block.__(0, {_6})
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 3);
       _2 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 1);
       _4 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               do
                 txt: _3,
                 loc: rhs_loc(3)
               end,
               _2,
-              --[[ Cfk_concrete ]]Block.__(1, [
+              --[[ Cfk_concrete ]]Block.__(1, {
                   _1,
-                  ghexp(--[[ Pexp_poly ]]Block.__(28, [
+                  ghexp(--[[ Pexp_poly ]]Block.__(28, {
                           _4,
                           undefined
-                        ]))
-                ])
-            ];
+                        }))
+                })
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 6);
@@ -8202,20 +8202,20 @@ yyact = [
       _3 = Parsing.peek_val(__caml_parser_env, 4);
       _5 = Parsing.peek_val(__caml_parser_env, 2);
       _7 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               do
                 txt: _3,
                 loc: rhs_loc(3)
               end,
               _2,
-              --[[ Cfk_concrete ]]Block.__(1, [
+              --[[ Cfk_concrete ]]Block.__(1, {
                   _1,
-                  ghexp(--[[ Pexp_poly ]]Block.__(28, [
+                  ghexp(--[[ Pexp_poly ]]Block.__(28, {
                           _7,
                           _5
-                        ]))
-                ])
-            ];
+                        }))
+                })
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 9);
@@ -8225,20 +8225,20 @@ yyact = [
       _8 = Parsing.peek_val(__caml_parser_env, 2);
       _10 = Parsing.peek_val(__caml_parser_env, 0);
       match = wrap_type_annotation(_6, _8, _10);
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               do
                 txt: _3,
                 loc: rhs_loc(3)
               end,
               _2,
-              --[[ Cfk_concrete ]]Block.__(1, [
+              --[[ Cfk_concrete ]]Block.__(1, {
                   _1,
-                  ghexp(--[[ Pexp_poly ]]Block.__(28, [
+                  ghexp(--[[ Pexp_poly ]]Block.__(28, {
                           match[0],
                           match[1]
-                        ]))
-                ])
-            ];
+                        }))
+                })
+            };
     end end),
   (function (__caml_parser_env) do
       return Parsing.peek_val(__caml_parser_env, 0);
@@ -8247,65 +8247,65 @@ yyact = [
       _2 = Parsing.peek_val(__caml_parser_env, 4);
       _4 = Parsing.peek_val(__caml_parser_env, 2);
       _6 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkcty(--[[ Pcty_arrow ]]Block.__(2, [
+      return mkcty(--[[ Pcty_arrow ]]Block.__(2, {
                     "?" .. _2,
                     mkoption(_4),
                     _6
-                  ]));
+                  }));
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 3);
       _2 = Parsing.peek_val(__caml_parser_env, 2);
       _4 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkcty(--[[ Pcty_arrow ]]Block.__(2, [
+      return mkcty(--[[ Pcty_arrow ]]Block.__(2, {
                     "?" .. _1,
                     mkoption(_2),
                     _4
-                  ]));
+                  }));
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 4);
       _3 = Parsing.peek_val(__caml_parser_env, 2);
       _5 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkcty(--[[ Pcty_arrow ]]Block.__(2, [
+      return mkcty(--[[ Pcty_arrow ]]Block.__(2, {
                     _1,
                     _3,
                     _5
-                  ]));
+                  }));
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkcty(--[[ Pcty_arrow ]]Block.__(2, [
+      return mkcty(--[[ Pcty_arrow ]]Block.__(2, {
                     "",
                     _1,
                     _3
-                  ]));
+                  }));
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 2);
       _4 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkcty(--[[ Pcty_constr ]]Block.__(0, [
+      return mkcty(--[[ Pcty_constr ]]Block.__(0, {
                     do
                       txt: _4,
                       loc: rhs_loc(4)
                     end,
                     List.rev(_2)
-                  ]));
+                  }));
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkcty(--[[ Pcty_constr ]]Block.__(0, [
+      return mkcty(--[[ Pcty_constr ]]Block.__(0, {
                     do
                       txt: _1,
                       loc: rhs_loc(1)
                     end,
                     --[[ [] ]]0
-                  ]));
+                  }));
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 1);
-      return mkcty(--[[ Pcty_signature ]]Block.__(1, [_2]));
+      return mkcty(--[[ Pcty_signature ]]Block.__(1, {_2}));
     end end),
   (function (__caml_parser_env) do
       Parsing.peek_val(__caml_parser_env, 1);
@@ -8318,7 +8318,7 @@ yyact = [
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkcty(--[[ Pcty_extension ]]Block.__(3, [_1]));
+      return mkcty(--[[ Pcty_extension ]]Block.__(3, {_1}));
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
@@ -8340,111 +8340,111 @@ yyact = [
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return Pervasives.$at(--[[ :: ]][
+      return Pervasives.$at(--[[ :: ]]{
                   _2,
                   Curry._1(Ast_helper_Ctf.text, get_text(Parsing.rhs_start_pos(2)))
-                ], _1);
+                }, _1);
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 1);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkctf(_3, symbol_docs(--[[ () ]]0), --[[ Pctf_inherit ]]Block.__(0, [_2]));
+      return mkctf(_3, symbol_docs(--[[ () ]]0), --[[ Pctf_inherit ]]Block.__(0, {_2}));
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 1);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkctf(_3, symbol_docs(--[[ () ]]0), --[[ Pctf_val ]]Block.__(1, [_2]));
+      return mkctf(_3, symbol_docs(--[[ () ]]0), --[[ Pctf_val ]]Block.__(1, {_2}));
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 4);
       _3 = Parsing.peek_val(__caml_parser_env, 3);
       _5 = Parsing.peek_val(__caml_parser_env, 1);
       _6 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkctf(_6, symbol_docs(--[[ () ]]0), --[[ Pctf_method ]]Block.__(2, [--[[ tuple ]][
+      return mkctf(_6, symbol_docs(--[[ () ]]0), --[[ Pctf_method ]]Block.__(2, {--[[ tuple ]]{
                       _3,
                       _2[0],
                       _2[1],
                       _5
-                    ]]));
+                    }}));
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 1);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkctf(_3, symbol_docs(--[[ () ]]0), --[[ Pctf_constraint ]]Block.__(3, [_2]));
+      return mkctf(_3, symbol_docs(--[[ () ]]0), --[[ Pctf_constraint ]]Block.__(3, {_2}));
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkctf(_2, symbol_docs(--[[ () ]]0), --[[ Pctf_extension ]]Block.__(5, [_1]));
+      return mkctf(_2, symbol_docs(--[[ () ]]0), --[[ Pctf_extension ]]Block.__(5, {_1}));
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
       mark_symbol_docs(--[[ () ]]0);
-      return mkctf(undefined, undefined, --[[ Pctf_attribute ]]Block.__(4, [_1]));
+      return mkctf(undefined, undefined, --[[ Pctf_attribute ]]Block.__(4, {_1}));
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 3);
       _3 = Parsing.peek_val(__caml_parser_env, 2);
       _5 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               _3,
               _2,
               --[[ Virtual ]]0,
               _5
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 3);
       _3 = Parsing.peek_val(__caml_parser_env, 2);
       _5 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               _3,
               --[[ Mutable ]]1,
               _2,
               _5
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               _1,
               --[[ Immutable ]]0,
               --[[ Concrete ]]1,
               _3
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               _1,
               _3,
               symbol_rloc(--[[ () ]]0)
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               _1,
               _3
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ :: ]][
+      return --[[ :: ]]{
               _1,
               --[[ [] ]]0
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ :: ]][
+      return --[[ :: ]]{
               _2,
               _1
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 5);
@@ -8470,18 +8470,18 @@ yyact = [
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ :: ]][
+      return --[[ :: ]]{
               _1,
               --[[ [] ]]0
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ :: ]][
+      return --[[ :: ]]{
               _2,
               _1
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _3 = Parsing.peek_val(__caml_parser_env, 5);
@@ -8514,86 +8514,86 @@ yyact = [
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkexp(--[[ Pexp_sequence ]]Block.__(16, [
+      return mkexp(--[[ Pexp_sequence ]]Block.__(16, {
                     _1,
                     _3
-                  ]));
+                  }));
     end end),
   (function (__caml_parser_env) do
       _3 = Parsing.peek_val(__caml_parser_env, 2);
       _4 = Parsing.peek_val(__caml_parser_env, 1);
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               "?" .. _3[0],
               _4,
               _3[1]
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               "?" .. _2[0],
               undefined,
               _2[1]
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 4);
       _3 = Parsing.peek_val(__caml_parser_env, 2);
       _4 = Parsing.peek_val(__caml_parser_env, 1);
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               "?" .. _1,
               _4,
               _3
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               "?" .. _1,
               undefined,
               _2
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _3 = Parsing.peek_val(__caml_parser_env, 1);
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               _3[0],
               undefined,
               _3[1]
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               _2[0],
               undefined,
               _2[1]
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               _1,
               undefined,
               _2
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               "",
               undefined,
               _1
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkpat(--[[ Ppat_var ]]Block.__(0, [do
+      return mkpat(--[[ Ppat_var ]]Block.__(0, {do
                       txt: _1,
                       loc: rhs_loc(1)
-                    end]));
+                    end}));
     end end),
   (function (__caml_parser_env) do
       return mkpat(--[[ Ppat_any ]]0);
@@ -8610,23 +8610,23 @@ yyact = [
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               _1[0],
-              mkpat(--[[ Ppat_constraint ]]Block.__(10, [
+              mkpat(--[[ Ppat_constraint ]]Block.__(10, {
                       _1[1],
                       _3
-                    ]))
-            ];
+                    }))
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               _1,
-              mkpat(--[[ Ppat_var ]]Block.__(0, [do
+              mkpat(--[[ Ppat_var ]]Block.__(0, {do
                         txt: _1,
                         loc: rhs_loc(1)
-                      end]))
-            ];
+                      end}))
+            };
     end end),
   (function (__caml_parser_env) do
       return Parsing.peek_val(__caml_parser_env, 0);
@@ -8634,10 +8634,10 @@ yyact = [
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkpat(--[[ Ppat_constraint ]]Block.__(10, [
+      return mkpat(--[[ Ppat_constraint ]]Block.__(10, {
                     _1,
                     _3
-                  ]));
+                  }));
     end end),
   (function (__caml_parser_env) do
       return Parsing.peek_val(__caml_parser_env, 0);
@@ -8645,10 +8645,10 @@ yyact = [
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkexp(--[[ Pexp_apply ]]Block.__(5, [
+      return mkexp(--[[ Pexp_apply ]]Block.__(5, {
                     _1,
                     List.rev(_2)
-                  ]));
+                  }));
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 2);
@@ -8657,28 +8657,28 @@ yyact = [
       body = _3;
       bindings = List.map((function (lb) do
               if (lb.lb_attributes ~= --[[ [] ]]0) then do
-                throw [
+                throw {
                       __Error$1,
-                      --[[ Not_expecting ]]Block.__(2, [
+                      --[[ Not_expecting ]]Block.__(2, {
                           lb.lb_loc,
                           "item attribute"
-                        ])
-                    ];
+                        })
+                    };
               end
                end 
               return mk$17(lb.lb_loc, undefined, undefined, undefined, lb.lb_pattern, lb.lb_expression);
             end end), lbs.lbs_bindings);
       d_000 = lbs.lbs_rec;
       d_001 = List.rev(bindings);
-      d = --[[ Pexp_let ]]Block.__(2, [
+      d = --[[ Pexp_let ]]Block.__(2, {
           d_000,
           d_001,
           body
-        ]);
-      return wrap_exp_attrs(mkexp(d), --[[ tuple ]][
+        });
+      return wrap_exp_attrs(mkexp(d), --[[ tuple ]]{
                   lbs.lbs_extension,
                   lbs.lbs_attributes
-                ]);
+                });
     end end),
   (function (__caml_parser_env) do
       _3 = Parsing.peek_val(__caml_parser_env, 4);
@@ -8689,11 +8689,11 @@ yyact = [
         txt: _4,
         loc: rhs_loc(4)
       end;
-      d = --[[ Pexp_letmodule ]]Block.__(25, [
+      d = --[[ Pexp_letmodule ]]Block.__(25, {
           d_000,
           _5,
           _7
-        ]);
+        });
       return wrap_exp_attrs(mkexp(d), _3);
     end end),
   (function (__caml_parser_env) do
@@ -8705,39 +8705,39 @@ yyact = [
         txt: _5,
         loc: rhs_loc(5)
       end;
-      d = --[[ Pexp_open ]]Block.__(32, [
+      d = --[[ Pexp_open ]]Block.__(32, {
           _3,
           d_001,
           _7
-        ]);
+        });
       return wrap_exp_attrs(mkexp(d), _4);
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 2);
       Parsing.peek_val(__caml_parser_env, 1);
       _4 = Parsing.peek_val(__caml_parser_env, 0);
-      d = --[[ Pexp_function ]]Block.__(3, [List.rev(_4)]);
+      d = --[[ Pexp_function ]]Block.__(3, {List.rev(_4)});
       return wrap_exp_attrs(mkexp(d), _2);
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 1);
       _4 = Parsing.peek_val(__caml_parser_env, 0);
-      return wrap_exp_attrs(mkexp(--[[ Pexp_fun ]]Block.__(4, [
+      return wrap_exp_attrs(mkexp(--[[ Pexp_fun ]]Block.__(4, {
                         _3[0],
                         _3[1],
                         _3[2],
                         _4
-                      ])), _2);
+                      })), _2);
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 5);
       _5 = Parsing.peek_val(__caml_parser_env, 2);
       _7 = Parsing.peek_val(__caml_parser_env, 0);
-      return wrap_exp_attrs(mkexp(--[[ Pexp_newtype ]]Block.__(30, [
+      return wrap_exp_attrs(mkexp(--[[ Pexp_newtype ]]Block.__(30, {
                         _5,
                         _7
-                      ])), _2);
+                      })), _2);
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 4);
@@ -8745,10 +8745,10 @@ yyact = [
       Parsing.peek_val(__caml_parser_env, 1);
       _6 = Parsing.peek_val(__caml_parser_env, 0);
       d_001 = List.rev(_6);
-      d = --[[ Pexp_match ]]Block.__(6, [
+      d = --[[ Pexp_match ]]Block.__(6, {
           _3,
           d_001
-        ]);
+        });
       return wrap_exp_attrs(mkexp(d), _2);
     end end),
   (function (__caml_parser_env) do
@@ -8757,10 +8757,10 @@ yyact = [
       Parsing.peek_val(__caml_parser_env, 1);
       _6 = Parsing.peek_val(__caml_parser_env, 0);
       d_001 = List.rev(_6);
-      d = --[[ Pexp_try ]]Block.__(7, [
+      d = --[[ Pexp_try ]]Block.__(7, {
           _3,
           d_001
-        ]);
+        });
       return wrap_exp_attrs(mkexp(d), _2);
     end end),
   (function (__caml_parser_env) do
@@ -8770,56 +8770,56 @@ yyact = [
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkexp(--[[ Pexp_tuple ]]Block.__(8, [List.rev(_1)]));
+      return mkexp(--[[ Pexp_tuple ]]Block.__(8, {List.rev(_1)}));
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkexp(--[[ Pexp_construct ]]Block.__(9, [
+      return mkexp(--[[ Pexp_construct ]]Block.__(9, {
                     do
                       txt: _1,
                       loc: rhs_loc(1)
                     end,
                     _2
-                  ]));
+                  }));
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkexp(--[[ Pexp_variant ]]Block.__(10, [
+      return mkexp(--[[ Pexp_variant ]]Block.__(10, {
                     _1,
                     _2
-                  ]));
+                  }));
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 5);
       _3 = Parsing.peek_val(__caml_parser_env, 4);
       _5 = Parsing.peek_val(__caml_parser_env, 2);
       _7 = Parsing.peek_val(__caml_parser_env, 0);
-      return wrap_exp_attrs(mkexp(--[[ Pexp_ifthenelse ]]Block.__(15, [
+      return wrap_exp_attrs(mkexp(--[[ Pexp_ifthenelse ]]Block.__(15, {
                         _3,
                         _5,
                         _7
-                      ])), _2);
+                      })), _2);
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 3);
       _3 = Parsing.peek_val(__caml_parser_env, 2);
       _5 = Parsing.peek_val(__caml_parser_env, 0);
-      return wrap_exp_attrs(mkexp(--[[ Pexp_ifthenelse ]]Block.__(15, [
+      return wrap_exp_attrs(mkexp(--[[ Pexp_ifthenelse ]]Block.__(15, {
                         _3,
                         _5,
                         undefined
-                      ])), _2);
+                      })), _2);
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 4);
       _3 = Parsing.peek_val(__caml_parser_env, 3);
       _5 = Parsing.peek_val(__caml_parser_env, 1);
-      return wrap_exp_attrs(mkexp(--[[ Pexp_while ]]Block.__(17, [
+      return wrap_exp_attrs(mkexp(--[[ Pexp_while ]]Block.__(17, {
                         _3,
                         _5
-                      ])), _2);
+                      })), _2);
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 8);
@@ -8828,35 +8828,35 @@ yyact = [
       _6 = Parsing.peek_val(__caml_parser_env, 4);
       _7 = Parsing.peek_val(__caml_parser_env, 3);
       _9 = Parsing.peek_val(__caml_parser_env, 1);
-      return wrap_exp_attrs(mkexp(--[[ Pexp_for ]]Block.__(18, [
+      return wrap_exp_attrs(mkexp(--[[ Pexp_for ]]Block.__(18, {
                         _3,
                         _5,
                         _7,
                         _6,
                         _9
-                      ])), _2);
+                      })), _2);
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkexp_cons(rhs_loc(2), ghexp(--[[ Pexp_tuple ]]Block.__(8, [--[[ :: ]][
+      return mkexp_cons(rhs_loc(2), ghexp(--[[ Pexp_tuple ]]Block.__(8, {--[[ :: ]]{
                           _1,
-                          --[[ :: ]][
+                          --[[ :: ]]{
                             _3,
                             --[[ [] ]]0
-                          ]
-                        ]])), symbol_rloc(--[[ () ]]0));
+                          }
+                        }})), symbol_rloc(--[[ () ]]0));
     end end),
   (function (__caml_parser_env) do
       _5 = Parsing.peek_val(__caml_parser_env, 3);
       _7 = Parsing.peek_val(__caml_parser_env, 1);
-      return mkexp_cons(rhs_loc(2), ghexp(--[[ Pexp_tuple ]]Block.__(8, [--[[ :: ]][
+      return mkexp_cons(rhs_loc(2), ghexp(--[[ Pexp_tuple ]]Block.__(8, {--[[ :: ]]{
                           _5,
-                          --[[ :: ]][
+                          --[[ :: ]]{
                             _7,
                             --[[ [] ]]0
-                          ]
-                        ]])), symbol_rloc(--[[ () ]]0));
+                          }
+                        }})), symbol_rloc(--[[ () ]]0));
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 2);
@@ -8978,13 +8978,13 @@ yyact = [
               local ___conditional___=(match$1.tag | 0);
               do
                  if ___conditional___ = 0--[[ Const_int ]] then do
-                    return mkexp(--[[ Pexp_constant ]]Block.__(1, [--[[ Const_int ]]Block.__(0, [-match$1[0] | 0])]));end end end 
+                    return mkexp(--[[ Pexp_constant ]]Block.__(1, {--[[ Const_int ]]Block.__(0, {-match$1[0] | 0})}));end end end 
                  if ___conditional___ = 4--[[ Const_int32 ]] then do
-                    return mkexp(--[[ Pexp_constant ]]Block.__(1, [--[[ Const_int32 ]]Block.__(4, [-match$1[0] | 0])]));end end end 
+                    return mkexp(--[[ Pexp_constant ]]Block.__(1, {--[[ Const_int32 ]]Block.__(4, {-match$1[0] | 0})}));end end end 
                  if ___conditional___ = 5--[[ Const_int64 ]] then do
-                    return mkexp(--[[ Pexp_constant ]]Block.__(1, [--[[ Const_int64 ]]Block.__(5, [Caml_int64.neg(match$1[0])])]));end end end 
+                    return mkexp(--[[ Pexp_constant ]]Block.__(1, {--[[ Const_int64 ]]Block.__(5, {Caml_int64.neg(match$1[0])})}));end end end 
                  if ___conditional___ = 6--[[ Const_nativeint ]] then do
-                    return mkexp(--[[ Pexp_constant ]]Block.__(1, [--[[ Const_nativeint ]]Block.__(6, [-match$1[0]])]));end end end 
+                    return mkexp(--[[ Pexp_constant ]]Block.__(1, {--[[ Const_nativeint ]]Block.__(6, {-match$1[0]})}));end end end 
                  do
                 else do
                   exit = 2;
@@ -9004,21 +9004,21 @@ yyact = [
       if (exit == 2 and match.tag == --[[ Pexp_constant ]]1) then do
         match$2 = match[0];
         if (match$2.tag == --[[ Const_float ]]3) then do
-          return mkexp(--[[ Pexp_constant ]]Block.__(1, [--[[ Const_float ]]Block.__(3, [neg_float_string(match$2[0])])]));
+          return mkexp(--[[ Pexp_constant ]]Block.__(1, {--[[ Const_float ]]Block.__(3, {neg_float_string(match$2[0])})}));
         end
          end 
       end
        end 
-      return mkexp(--[[ Pexp_apply ]]Block.__(5, [
+      return mkexp(--[[ Pexp_apply ]]Block.__(5, {
                     mkoperator("~" .. name, 1),
-                    --[[ :: ]][
-                      --[[ tuple ]][
+                    --[[ :: ]]{
+                      --[[ tuple ]]{
                         "",
                         arg
-                      ],
+                      },
                       --[[ [] ]]0
-                    ]
-                  ]));
+                    }
+                  }));
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
@@ -9057,83 +9057,83 @@ yyact = [
         return mkexp(desc);
       end
        end 
-      return mkexp(--[[ Pexp_apply ]]Block.__(5, [
+      return mkexp(--[[ Pexp_apply ]]Block.__(5, {
                     mkoperator("~" .. name, 1),
-                    --[[ :: ]][
-                      --[[ tuple ]][
+                    --[[ :: ]]{
+                      --[[ tuple ]]{
                         "",
                         arg
-                      ],
+                      },
                       --[[ [] ]]0
-                    ]
-                  ]));
+                    }
+                  }));
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 4);
       _3 = Parsing.peek_val(__caml_parser_env, 2);
       _5 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkexp(--[[ Pexp_setfield ]]Block.__(13, [
+      return mkexp(--[[ Pexp_setfield ]]Block.__(13, {
                     _1,
                     do
                       txt: _3,
                       loc: rhs_loc(3)
                     end,
                     _5
-                  ]));
+                  }));
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 6);
       _4 = Parsing.peek_val(__caml_parser_env, 3);
       _7 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkexp(--[[ Pexp_apply ]]Block.__(5, [
-                    ghexp(--[[ Pexp_ident ]]Block.__(0, [array_function("Array", "set")])),
-                    --[[ :: ]][
-                      --[[ tuple ]][
+      return mkexp(--[[ Pexp_apply ]]Block.__(5, {
+                    ghexp(--[[ Pexp_ident ]]Block.__(0, {array_function("Array", "set")})),
+                    --[[ :: ]]{
+                      --[[ tuple ]]{
                         "",
                         _1
-                      ],
-                      --[[ :: ]][
-                        --[[ tuple ]][
+                      },
+                      --[[ :: ]]{
+                        --[[ tuple ]]{
                           "",
                           _4
-                        ],
-                        --[[ :: ]][
-                          --[[ tuple ]][
+                        },
+                        --[[ :: ]]{
+                          --[[ tuple ]]{
                             "",
                             _7
-                          ],
+                          },
                           --[[ [] ]]0
-                        ]
-                      ]
-                    ]
-                  ]));
+                        }
+                      }
+                    }
+                  }));
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 6);
       _4 = Parsing.peek_val(__caml_parser_env, 3);
       _7 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkexp(--[[ Pexp_apply ]]Block.__(5, [
-                    ghexp(--[[ Pexp_ident ]]Block.__(0, [array_function("String", "set")])),
-                    --[[ :: ]][
-                      --[[ tuple ]][
+      return mkexp(--[[ Pexp_apply ]]Block.__(5, {
+                    ghexp(--[[ Pexp_ident ]]Block.__(0, {array_function("String", "set")})),
+                    --[[ :: ]]{
+                      --[[ tuple ]]{
                         "",
                         _1
-                      ],
-                      --[[ :: ]][
-                        --[[ tuple ]][
+                      },
+                      --[[ :: ]]{
+                        --[[ tuple ]]{
                           "",
                           _4
-                        ],
-                        --[[ :: ]][
-                          --[[ tuple ]][
+                        },
+                        --[[ :: ]]{
+                          --[[ tuple ]]{
                             "",
                             _7
-                          ],
+                          },
                           --[[ [] ]]0
-                        ]
-                      ]
-                    ]
-                  ]));
+                        }
+                      }
+                    }
+                  }));
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 6);
@@ -9152,146 +9152,146 @@ yyact = [
           c2 = match[0];
           if (match$1) then do
             if (not match$1[1]) then do
-              return mkexp(--[[ Pexp_apply ]]Block.__(5, [
-                            ghexp(--[[ Pexp_ident ]]Block.__(0, [bigarray_function("Array3", set)])),
-                            --[[ :: ]][
-                              --[[ tuple ]][
+              return mkexp(--[[ Pexp_apply ]]Block.__(5, {
+                            ghexp(--[[ Pexp_ident ]]Block.__(0, {bigarray_function("Array3", set)})),
+                            --[[ :: ]]{
+                              --[[ tuple ]]{
                                 "",
                                 arr
-                              ],
-                              --[[ :: ]][
-                                --[[ tuple ]][
+                              },
+                              --[[ :: ]]{
+                                --[[ tuple ]]{
                                   "",
                                   c1
-                                ],
-                                --[[ :: ]][
-                                  --[[ tuple ]][
+                                },
+                                --[[ :: ]]{
+                                  --[[ tuple ]]{
                                     "",
                                     c2
-                                  ],
-                                  --[[ :: ]][
-                                    --[[ tuple ]][
+                                  },
+                                  --[[ :: ]]{
+                                    --[[ tuple ]]{
                                       "",
                                       match$1[0]
-                                    ],
-                                    --[[ :: ]][
-                                      --[[ tuple ]][
+                                    },
+                                    --[[ :: ]]{
+                                      --[[ tuple ]]{
                                         "",
                                         newval
-                                      ],
+                                      },
                                       --[[ [] ]]0
-                                    ]
-                                  ]
-                                ]
-                              ]
-                            ]
-                          ]));
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }));
             end
              end 
           end else do
-            return mkexp(--[[ Pexp_apply ]]Block.__(5, [
-                          ghexp(--[[ Pexp_ident ]]Block.__(0, [bigarray_function("Array2", set)])),
-                          --[[ :: ]][
-                            --[[ tuple ]][
+            return mkexp(--[[ Pexp_apply ]]Block.__(5, {
+                          ghexp(--[[ Pexp_ident ]]Block.__(0, {bigarray_function("Array2", set)})),
+                          --[[ :: ]]{
+                            --[[ tuple ]]{
                               "",
                               arr
-                            ],
-                            --[[ :: ]][
-                              --[[ tuple ]][
+                            },
+                            --[[ :: ]]{
+                              --[[ tuple ]]{
                                 "",
                                 c1
-                              ],
-                              --[[ :: ]][
-                                --[[ tuple ]][
+                              },
+                              --[[ :: ]]{
+                                --[[ tuple ]]{
                                   "",
                                   c2
-                                ],
-                                --[[ :: ]][
-                                  --[[ tuple ]][
+                                },
+                                --[[ :: ]]{
+                                  --[[ tuple ]]{
                                     "",
                                     newval
-                                  ],
+                                  },
                                   --[[ [] ]]0
-                                ]
-                              ]
-                            ]
-                          ]
-                        ]));
+                                }
+                              }
+                            }
+                          }
+                        }));
           end end 
         end else do
-          return mkexp(--[[ Pexp_apply ]]Block.__(5, [
-                        ghexp(--[[ Pexp_ident ]]Block.__(0, [bigarray_function("Array1", set)])),
-                        --[[ :: ]][
-                          --[[ tuple ]][
+          return mkexp(--[[ Pexp_apply ]]Block.__(5, {
+                        ghexp(--[[ Pexp_ident ]]Block.__(0, {bigarray_function("Array1", set)})),
+                        --[[ :: ]]{
+                          --[[ tuple ]]{
                             "",
                             arr
-                          ],
-                          --[[ :: ]][
-                            --[[ tuple ]][
+                          },
+                          --[[ :: ]]{
+                            --[[ tuple ]]{
                               "",
                               c1
-                            ],
-                            --[[ :: ]][
-                              --[[ tuple ]][
+                            },
+                            --[[ :: ]]{
+                              --[[ tuple ]]{
                                 "",
                                 newval
-                              ],
+                              },
                               --[[ [] ]]0
-                            ]
-                          ]
-                        ]
-                      ]));
+                            }
+                          }
+                        }
+                      }));
         end end 
       end
        end 
-      return mkexp(--[[ Pexp_apply ]]Block.__(5, [
-                    ghexp(--[[ Pexp_ident ]]Block.__(0, [bigarray_function("Genarray", "set")])),
-                    --[[ :: ]][
-                      --[[ tuple ]][
+      return mkexp(--[[ Pexp_apply ]]Block.__(5, {
+                    ghexp(--[[ Pexp_ident ]]Block.__(0, {bigarray_function("Genarray", "set")})),
+                    --[[ :: ]]{
+                      --[[ tuple ]]{
                         "",
                         arr
-                      ],
-                      --[[ :: ]][
-                        --[[ tuple ]][
+                      },
+                      --[[ :: ]]{
+                        --[[ tuple ]]{
                           "",
-                          ghexp(--[[ Pexp_array ]]Block.__(14, [coords]))
-                        ],
-                        --[[ :: ]][
-                          --[[ tuple ]][
+                          ghexp(--[[ Pexp_array ]]Block.__(14, {coords}))
+                        },
+                        --[[ :: ]]{
+                          --[[ tuple ]]{
                             "",
                             newval
-                          ],
+                          },
                           --[[ [] ]]0
-                        ]
-                      ]
-                    ]
-                  ]));
+                        }
+                      }
+                    }
+                  }));
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkexp(--[[ Pexp_setinstvar ]]Block.__(23, [
+      return mkexp(--[[ Pexp_setinstvar ]]Block.__(23, {
                     do
                       txt: _1,
                       loc: rhs_loc(1)
                     end,
                     _3
-                  ]));
+                  }));
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 1);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return wrap_exp_attrs(mkexp(--[[ Pexp_assert ]]Block.__(26, [_3])), _2);
+      return wrap_exp_attrs(mkexp(--[[ Pexp_assert ]]Block.__(26, {_3})), _2);
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 1);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return wrap_exp_attrs(mkexp(--[[ Pexp_lazy ]]Block.__(27, [_3])), _2);
+      return wrap_exp_attrs(mkexp(--[[ Pexp_lazy ]]Block.__(27, {_3})), _2);
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 1);
-      return wrap_exp_attrs(mkexp(--[[ Pexp_object ]]Block.__(29, [_3])), _2);
+      return wrap_exp_attrs(mkexp(--[[ Pexp_object ]]Block.__(29, {_3})), _2);
     end end),
   (function (__caml_parser_env) do
       Parsing.peek_val(__caml_parser_env, 2);
@@ -9305,31 +9305,31 @@ yyact = [
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkexp(--[[ Pexp_ident ]]Block.__(0, [do
+      return mkexp(--[[ Pexp_ident ]]Block.__(0, {do
                       txt: _1,
                       loc: rhs_loc(1)
-                    end]));
+                    end}));
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkexp(--[[ Pexp_constant ]]Block.__(1, [_1]));
+      return mkexp(--[[ Pexp_constant ]]Block.__(1, {_1}));
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkexp(--[[ Pexp_construct ]]Block.__(9, [
+      return mkexp(--[[ Pexp_construct ]]Block.__(9, {
                     do
                       txt: _1,
                       loc: rhs_loc(1)
                     end,
                     undefined
-                  ]));
+                  }));
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkexp(--[[ Pexp_variant ]]Block.__(10, [
+      return mkexp(--[[ Pexp_variant ]]Block.__(10, {
                     _1,
                     undefined
-                  ]));
+                  }));
     end end),
   (function (__caml_parser_env) do
       return reloc_exp(Parsing.peek_val(__caml_parser_env, 1));
@@ -9346,13 +9346,13 @@ yyact = [
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 1);
       d_000 = do
-        txt: --[[ Lident ]]Block.__(0, ["()"]),
+        txt: --[[ Lident ]]Block.__(0, {"()"}),
         loc: symbol_rloc(--[[ () ]]0)
       end;
-      d = --[[ Pexp_construct ]]Block.__(9, [
+      d = --[[ Pexp_construct ]]Block.__(9, {
           d_000,
           undefined
-        ]);
+        });
       return wrap_exp_attrs(mkexp(d), _2);
     end end),
   (function (__caml_parser_env) do
@@ -9368,25 +9368,25 @@ yyact = [
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkexp(--[[ Pexp_field ]]Block.__(12, [
+      return mkexp(--[[ Pexp_field ]]Block.__(12, {
                     _1,
                     do
                       txt: _3,
                       loc: rhs_loc(3)
                     end
-                  ]));
+                  }));
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 4);
       _4 = Parsing.peek_val(__caml_parser_env, 1);
-      return mkexp(--[[ Pexp_open ]]Block.__(32, [
+      return mkexp(--[[ Pexp_open ]]Block.__(32, {
                     --[[ Fresh ]]1,
                     do
                       txt: _1,
                       loc: rhs_loc(1)
                     end,
                     _4
-                  ]));
+                  }));
     end end),
   (function (__caml_parser_env) do
       Parsing.peek_val(__caml_parser_env, 4);
@@ -9396,22 +9396,22 @@ yyact = [
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 4);
       _4 = Parsing.peek_val(__caml_parser_env, 1);
-      return mkexp(--[[ Pexp_apply ]]Block.__(5, [
-                    ghexp(--[[ Pexp_ident ]]Block.__(0, [array_function("Array", "get")])),
-                    --[[ :: ]][
-                      --[[ tuple ]][
+      return mkexp(--[[ Pexp_apply ]]Block.__(5, {
+                    ghexp(--[[ Pexp_ident ]]Block.__(0, {array_function("Array", "get")})),
+                    --[[ :: ]]{
+                      --[[ tuple ]]{
                         "",
                         _1
-                      ],
-                      --[[ :: ]][
-                        --[[ tuple ]][
+                      },
+                      --[[ :: ]]{
+                        --[[ tuple ]]{
                           "",
                           _4
-                        ],
+                        },
                         --[[ [] ]]0
-                      ]
-                    ]
-                  ]));
+                      }
+                    }
+                  }));
     end end),
   (function (__caml_parser_env) do
       Parsing.peek_val(__caml_parser_env, 4);
@@ -9421,22 +9421,22 @@ yyact = [
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 4);
       _4 = Parsing.peek_val(__caml_parser_env, 1);
-      return mkexp(--[[ Pexp_apply ]]Block.__(5, [
-                    ghexp(--[[ Pexp_ident ]]Block.__(0, [array_function("String", "get")])),
-                    --[[ :: ]][
-                      --[[ tuple ]][
+      return mkexp(--[[ Pexp_apply ]]Block.__(5, {
+                    ghexp(--[[ Pexp_ident ]]Block.__(0, {array_function("String", "get")})),
+                    --[[ :: ]]{
+                      --[[ tuple ]]{
                         "",
                         _1
-                      ],
-                      --[[ :: ]][
-                        --[[ tuple ]][
+                      },
+                      --[[ :: ]]{
+                        --[[ tuple ]]{
                           "",
                           _4
-                        ],
+                        },
                         --[[ [] ]]0
-                      ]
-                    ]
-                  ]));
+                      }
+                    }
+                  }));
     end end),
   (function (__caml_parser_env) do
       Parsing.peek_val(__caml_parser_env, 4);
@@ -9458,96 +9458,96 @@ yyact = [
           c2 = match[0];
           if (match$1) then do
             if (not match$1[1]) then do
-              return mkexp(--[[ Pexp_apply ]]Block.__(5, [
-                            ghexp(--[[ Pexp_ident ]]Block.__(0, [bigarray_function("Array3", get)])),
-                            --[[ :: ]][
-                              --[[ tuple ]][
+              return mkexp(--[[ Pexp_apply ]]Block.__(5, {
+                            ghexp(--[[ Pexp_ident ]]Block.__(0, {bigarray_function("Array3", get)})),
+                            --[[ :: ]]{
+                              --[[ tuple ]]{
                                 "",
                                 arr
-                              ],
-                              --[[ :: ]][
-                                --[[ tuple ]][
+                              },
+                              --[[ :: ]]{
+                                --[[ tuple ]]{
                                   "",
                                   c1
-                                ],
-                                --[[ :: ]][
-                                  --[[ tuple ]][
+                                },
+                                --[[ :: ]]{
+                                  --[[ tuple ]]{
                                     "",
                                     c2
-                                  ],
-                                  --[[ :: ]][
-                                    --[[ tuple ]][
+                                  },
+                                  --[[ :: ]]{
+                                    --[[ tuple ]]{
                                       "",
                                       match$1[0]
-                                    ],
+                                    },
                                     --[[ [] ]]0
-                                  ]
-                                ]
-                              ]
-                            ]
-                          ]));
+                                  }
+                                }
+                              }
+                            }
+                          }));
             end
              end 
           end else do
-            return mkexp(--[[ Pexp_apply ]]Block.__(5, [
-                          ghexp(--[[ Pexp_ident ]]Block.__(0, [bigarray_function("Array2", get)])),
-                          --[[ :: ]][
-                            --[[ tuple ]][
+            return mkexp(--[[ Pexp_apply ]]Block.__(5, {
+                          ghexp(--[[ Pexp_ident ]]Block.__(0, {bigarray_function("Array2", get)})),
+                          --[[ :: ]]{
+                            --[[ tuple ]]{
                               "",
                               arr
-                            ],
-                            --[[ :: ]][
-                              --[[ tuple ]][
+                            },
+                            --[[ :: ]]{
+                              --[[ tuple ]]{
                                 "",
                                 c1
-                              ],
-                              --[[ :: ]][
-                                --[[ tuple ]][
+                              },
+                              --[[ :: ]]{
+                                --[[ tuple ]]{
                                   "",
                                   c2
-                                ],
+                                },
                                 --[[ [] ]]0
-                              ]
-                            ]
-                          ]
-                        ]));
+                              }
+                            }
+                          }
+                        }));
           end end 
         end else do
-          return mkexp(--[[ Pexp_apply ]]Block.__(5, [
-                        ghexp(--[[ Pexp_ident ]]Block.__(0, [bigarray_function("Array1", get)])),
-                        --[[ :: ]][
-                          --[[ tuple ]][
+          return mkexp(--[[ Pexp_apply ]]Block.__(5, {
+                        ghexp(--[[ Pexp_ident ]]Block.__(0, {bigarray_function("Array1", get)})),
+                        --[[ :: ]]{
+                          --[[ tuple ]]{
                             "",
                             arr
-                          ],
-                          --[[ :: ]][
-                            --[[ tuple ]][
+                          },
+                          --[[ :: ]]{
+                            --[[ tuple ]]{
                               "",
                               c1
-                            ],
+                            },
                             --[[ [] ]]0
-                          ]
-                        ]
-                      ]));
+                          }
+                        }
+                      }));
         end end 
       end
        end 
-      return mkexp(--[[ Pexp_apply ]]Block.__(5, [
-                    ghexp(--[[ Pexp_ident ]]Block.__(0, [bigarray_function("Genarray", "get")])),
-                    --[[ :: ]][
-                      --[[ tuple ]][
+      return mkexp(--[[ Pexp_apply ]]Block.__(5, {
+                    ghexp(--[[ Pexp_ident ]]Block.__(0, {bigarray_function("Genarray", "get")})),
+                    --[[ :: ]]{
+                      --[[ tuple ]]{
                         "",
                         arr
-                      ],
-                      --[[ :: ]][
-                        --[[ tuple ]][
+                      },
+                      --[[ :: ]]{
+                        --[[ tuple ]]{
                           "",
-                          ghexp(--[[ Pexp_array ]]Block.__(14, [coords]))
-                        ],
+                          ghexp(--[[ Pexp_array ]]Block.__(14, {coords}))
+                        },
                         --[[ [] ]]0
-                      ]
-                    ]
-                  ]));
+                      }
+                    }
+                  }));
     end end),
   (function (__caml_parser_env) do
       Parsing.peek_val(__caml_parser_env, 4);
@@ -9556,10 +9556,10 @@ yyact = [
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 1);
-      return mkexp(--[[ Pexp_record ]]Block.__(11, [
+      return mkexp(--[[ Pexp_record ]]Block.__(11, {
                     _2[1],
                     _2[0]
-                  ]));
+                  }));
     end end),
   (function (__caml_parser_env) do
       Parsing.peek_val(__caml_parser_env, 1);
@@ -9568,18 +9568,18 @@ yyact = [
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 4);
       _4 = Parsing.peek_val(__caml_parser_env, 1);
-      rec_exp = mkexp(--[[ Pexp_record ]]Block.__(11, [
+      rec_exp = mkexp(--[[ Pexp_record ]]Block.__(11, {
               _4[1],
               _4[0]
-            ]));
-      return mkexp(--[[ Pexp_open ]]Block.__(32, [
+            }));
+      return mkexp(--[[ Pexp_open ]]Block.__(32, {
                     --[[ Fresh ]]1,
                     do
                       txt: _1,
                       loc: rhs_loc(1)
                     end,
                     rec_exp
-                  ]));
+                  }));
     end end),
   (function (__caml_parser_env) do
       Parsing.peek_val(__caml_parser_env, 4);
@@ -9589,7 +9589,7 @@ yyact = [
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 2);
       Parsing.peek_val(__caml_parser_env, 1);
-      return mkexp(--[[ Pexp_array ]]Block.__(14, [List.rev(_2)]));
+      return mkexp(--[[ Pexp_array ]]Block.__(14, {List.rev(_2)}));
     end end),
   (function (__caml_parser_env) do
       Parsing.peek_val(__caml_parser_env, 2);
@@ -9597,20 +9597,20 @@ yyact = [
       return unclosed("[|", 1, "|]", 4);
     end end),
   (function (__caml_parser_env) do
-      return mkexp(--[[ Pexp_array ]]Block.__(14, [--[[ [] ]]0]));
+      return mkexp(--[[ Pexp_array ]]Block.__(14, {--[[ [] ]]0}));
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 5);
       _4 = Parsing.peek_val(__caml_parser_env, 2);
       Parsing.peek_val(__caml_parser_env, 1);
-      return mkexp(--[[ Pexp_open ]]Block.__(32, [
+      return mkexp(--[[ Pexp_open ]]Block.__(32, {
                     --[[ Fresh ]]1,
                     do
                       txt: _1,
                       loc: rhs_loc(1)
                     end,
-                    mkexp(--[[ Pexp_array ]]Block.__(14, [List.rev(_4)]))
-                  ]));
+                    mkexp(--[[ Pexp_array ]]Block.__(14, {List.rev(_4)}))
+                  }));
     end end),
   (function (__caml_parser_env) do
       Parsing.peek_val(__caml_parser_env, 5);
@@ -9633,14 +9633,14 @@ yyact = [
       _4 = Parsing.peek_val(__caml_parser_env, 2);
       Parsing.peek_val(__caml_parser_env, 1);
       list_exp = reloc_exp(mktailexp(rhs_loc(6), List.rev(_4)));
-      return mkexp(--[[ Pexp_open ]]Block.__(32, [
+      return mkexp(--[[ Pexp_open ]]Block.__(32, {
                     --[[ Fresh ]]1,
                     do
                       txt: _1,
                       loc: rhs_loc(1)
                     end,
                     list_exp
-                  ]));
+                  }));
     end end),
   (function (__caml_parser_env) do
       Parsing.peek_val(__caml_parser_env, 5);
@@ -9651,43 +9651,43 @@ yyact = [
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkexp(--[[ Pexp_apply ]]Block.__(5, [
+      return mkexp(--[[ Pexp_apply ]]Block.__(5, {
                     mkoperator(_1, 1),
-                    --[[ :: ]][
-                      --[[ tuple ]][
+                    --[[ :: ]]{
+                      --[[ tuple ]]{
                         "",
                         _2
-                      ],
+                      },
                       --[[ [] ]]0
-                    ]
-                  ]));
+                    }
+                  }));
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkexp(--[[ Pexp_apply ]]Block.__(5, [
+      return mkexp(--[[ Pexp_apply ]]Block.__(5, {
                     mkoperator("!", 1),
-                    --[[ :: ]][
-                      --[[ tuple ]][
+                    --[[ :: ]]{
+                      --[[ tuple ]]{
                         "",
                         _2
-                      ],
+                      },
                       --[[ [] ]]0
-                    ]
-                  ]));
+                    }
+                  }));
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 1);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      d = --[[ Pexp_new ]]Block.__(22, [do
+      d = --[[ Pexp_new ]]Block.__(22, {do
             txt: _3,
             loc: rhs_loc(3)
-          end]);
+          end});
       return wrap_exp_attrs(mkexp(d), _2);
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 2);
       Parsing.peek_val(__caml_parser_env, 1);
-      return mkexp(--[[ Pexp_override ]]Block.__(24, [List.rev(_2)]));
+      return mkexp(--[[ Pexp_override ]]Block.__(24, {List.rev(_2)}));
     end end),
   (function (__caml_parser_env) do
       Parsing.peek_val(__caml_parser_env, 2);
@@ -9695,20 +9695,20 @@ yyact = [
       return unclosed("{<", 1, ">}", 4);
     end end),
   (function (__caml_parser_env) do
-      return mkexp(--[[ Pexp_override ]]Block.__(24, [--[[ [] ]]0]));
+      return mkexp(--[[ Pexp_override ]]Block.__(24, {--[[ [] ]]0}));
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 5);
       _4 = Parsing.peek_val(__caml_parser_env, 2);
       Parsing.peek_val(__caml_parser_env, 1);
-      return mkexp(--[[ Pexp_open ]]Block.__(32, [
+      return mkexp(--[[ Pexp_open ]]Block.__(32, {
                     --[[ Fresh ]]1,
                     do
                       txt: _1,
                       loc: rhs_loc(1)
                     end,
-                    mkexp(--[[ Pexp_override ]]Block.__(24, [List.rev(_4)]))
-                  ]));
+                    mkexp(--[[ Pexp_override ]]Block.__(24, {List.rev(_4)}))
+                  }));
     end end),
   (function (__caml_parser_env) do
       Parsing.peek_val(__caml_parser_env, 5);
@@ -9719,10 +9719,10 @@ yyact = [
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkexp(--[[ Pexp_send ]]Block.__(21, [
+      return mkexp(--[[ Pexp_send ]]Block.__(21, {
                     _1,
                     _3
-                  ]));
+                  }));
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 2);
@@ -9732,15 +9732,15 @@ yyact = [
     end end),
   (function (__caml_parser_env) do
       _3 = Parsing.peek_val(__caml_parser_env, 1);
-      return mkexp(--[[ Pexp_pack ]]Block.__(31, [_3]));
+      return mkexp(--[[ Pexp_pack ]]Block.__(31, {_3}));
     end end),
   (function (__caml_parser_env) do
       _3 = Parsing.peek_val(__caml_parser_env, 3);
       _5 = Parsing.peek_val(__caml_parser_env, 1);
-      return mkexp(--[[ Pexp_constraint ]]Block.__(19, [
-                    ghexp(--[[ Pexp_pack ]]Block.__(31, [_3])),
-                    ghtyp(--[[ Ptyp_package ]]Block.__(9, [_5]))
-                  ]));
+      return mkexp(--[[ Pexp_constraint ]]Block.__(19, {
+                    ghexp(--[[ Pexp_pack ]]Block.__(31, {_3})),
+                    ghtyp(--[[ Ptyp_package ]]Block.__(9, {_5}))
+                  }));
     end end),
   (function (__caml_parser_env) do
       Parsing.peek_val(__caml_parser_env, 2);
@@ -9750,17 +9750,17 @@ yyact = [
       _1 = Parsing.peek_val(__caml_parser_env, 7);
       _5 = Parsing.peek_val(__caml_parser_env, 3);
       _7 = Parsing.peek_val(__caml_parser_env, 1);
-      return mkexp(--[[ Pexp_open ]]Block.__(32, [
+      return mkexp(--[[ Pexp_open ]]Block.__(32, {
                     --[[ Fresh ]]1,
                     do
                       txt: _1,
                       loc: rhs_loc(1)
                     end,
-                    mkexp(--[[ Pexp_constraint ]]Block.__(19, [
-                            ghexp(--[[ Pexp_pack ]]Block.__(31, [_5])),
-                            ghtyp(--[[ Ptyp_package ]]Block.__(9, [_7]))
-                          ]))
-                  ]));
+                    mkexp(--[[ Pexp_constraint ]]Block.__(19, {
+                            ghexp(--[[ Pexp_pack ]]Block.__(31, {_5})),
+                            ghtyp(--[[ Ptyp_package ]]Block.__(9, {_7}))
+                          }))
+                  }));
     end end),
   (function (__caml_parser_env) do
       Parsing.peek_val(__caml_parser_env, 6);
@@ -9769,29 +9769,29 @@ yyact = [
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkexp(--[[ Pexp_extension ]]Block.__(33, [_1]));
+      return mkexp(--[[ Pexp_extension ]]Block.__(33, {_1}));
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ :: ]][
+      return --[[ :: ]]{
               _1,
               --[[ [] ]]0
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ :: ]][
+      return --[[ :: ]]{
               _2,
               _1
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               "",
               _1
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       return Parsing.peek_val(__caml_parser_env, 0);
@@ -9799,77 +9799,77 @@ yyact = [
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               _1,
               _2
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       return Parsing.peek_val(__caml_parser_env, 0);
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               "?" .. _2[0],
               _2[1]
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               "?" .. _1,
               _2
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               _1,
-              mkexp(--[[ Pexp_ident ]]Block.__(0, [do
-                        txt: --[[ Lident ]]Block.__(0, [_1]),
+              mkexp(--[[ Pexp_ident ]]Block.__(0, {do
+                        txt: --[[ Lident ]]Block.__(0, {_1}),
                         loc: rhs_loc(1)
-                      end]))
-            ];
+                      end}))
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ :: ]][
+      return --[[ :: ]]{
               _1,
               --[[ [] ]]0
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ :: ]][
+      return --[[ :: ]]{
               _1,
               _2
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               mkpatvar(_1, 1),
               _2
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 6);
       _3 = Parsing.peek_val(__caml_parser_env, 4);
       _5 = Parsing.peek_val(__caml_parser_env, 2);
       _7 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ tuple ]][
-              ghpat(--[[ Ppat_constraint ]]Block.__(10, [
+      return --[[ tuple ]]{
+              ghpat(--[[ Ppat_constraint ]]Block.__(10, {
                       mkpatvar(_1, 1),
-                      ghtyp(--[[ Ptyp_poly ]]Block.__(8, [
+                      ghtyp(--[[ Ptyp_poly ]]Block.__(8, {
                               List.rev(_3),
                               _5
-                            ]))
-                    ])),
+                            }))
+                    })),
               _7
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 7);
@@ -9877,33 +9877,33 @@ yyact = [
       _6 = Parsing.peek_val(__caml_parser_env, 2);
       _8 = Parsing.peek_val(__caml_parser_env, 0);
       match = wrap_type_annotation(_4, _6, _8);
-      return --[[ tuple ]][
-              ghpat(--[[ Ppat_constraint ]]Block.__(10, [
+      return --[[ tuple ]]{
+              ghpat(--[[ Ppat_constraint ]]Block.__(10, {
                       mkpatvar(_1, 1),
                       match[1]
-                    ])),
+                    })),
               match[0]
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               _1,
               _3
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 4);
       _3 = Parsing.peek_val(__caml_parser_env, 2);
       _5 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ tuple ]][
-              ghpat(--[[ Ppat_constraint ]]Block.__(10, [
+      return --[[ tuple ]]{
+              ghpat(--[[ Ppat_constraint ]]Block.__(10, {
                       _1,
                       _3
-                    ])),
+                    })),
               _5
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       return Parsing.peek_val(__caml_parser_env, 0);
@@ -9914,10 +9914,10 @@ yyact = [
       lbs = _1;
       lb = _2;
       return do
-              lbs_bindings: --[[ :: ]][
+              lbs_bindings: --[[ :: ]]{
                 lb,
                 lbs.lbs_bindings
-              ],
+              },
               lbs_rec: lbs.lbs_rec,
               lbs_extension: lbs.lbs_extension,
               lbs_attributes: lbs.lbs_attributes,
@@ -9933,10 +9933,10 @@ yyact = [
       rf = _3;
       lb = mklb(_4, _5);
       return do
-              lbs_bindings: --[[ :: ]][
+              lbs_bindings: --[[ :: ]]{
                 lb,
                 --[[ [] ]]0
-              ],
+              },
               lbs_rec: rf,
               lbs_extension: param[0],
               lbs_attributes: param[1],
@@ -9962,35 +9962,35 @@ yyact = [
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return ghexp(--[[ Pexp_fun ]]Block.__(4, [
+      return ghexp(--[[ Pexp_fun ]]Block.__(4, {
                     _1[0],
                     _1[1],
                     _1[2],
                     _2
-                  ]));
+                  }));
     end end),
   (function (__caml_parser_env) do
       _3 = Parsing.peek_val(__caml_parser_env, 2);
       _5 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkexp(--[[ Pexp_newtype ]]Block.__(30, [
+      return mkexp(--[[ Pexp_newtype ]]Block.__(30, {
                     _3,
                     _5
-                  ]));
+                  }));
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ :: ]][
+      return --[[ :: ]]{
               _1,
               --[[ [] ]]0
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ :: ]][
+      return --[[ :: ]]{
               _3,
               _1
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 2);
@@ -10009,163 +10009,163 @@ yyact = [
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return ghexp(--[[ Pexp_fun ]]Block.__(4, [
+      return ghexp(--[[ Pexp_fun ]]Block.__(4, {
                     _1[0],
                     _1[1],
                     _1[2],
                     _2
-                  ]));
+                  }));
     end end),
   (function (__caml_parser_env) do
       _3 = Parsing.peek_val(__caml_parser_env, 2);
       _5 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkexp(--[[ Pexp_newtype ]]Block.__(30, [
+      return mkexp(--[[ Pexp_newtype ]]Block.__(30, {
                     _3,
                     _5
-                  ]));
+                  }));
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ :: ]][
+      return --[[ :: ]]{
               _3,
               _1
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ :: ]][
+      return --[[ :: ]]{
               _3,
-              --[[ :: ]][
+              --[[ :: ]]{
                 _1,
                 --[[ [] ]]0
-              ]
-            ];
+              }
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               _1,
               _3
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               undefined,
               _1
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ :: ]][
+      return --[[ :: ]]{
               _1,
               --[[ [] ]]0
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ :: ]][
+      return --[[ :: ]]{
               _1,
               _3
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
-      return --[[ :: ]][
+      return --[[ :: ]]{
               _1,
               --[[ [] ]]0
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               do
                 txt: _1,
                 loc: rhs_loc(1)
               end,
               _3
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               do
                 txt: _1,
                 loc: rhs_loc(1)
               end,
               exp_of_label(_1, 1)
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ :: ]][
-              --[[ tuple ]][
+      return --[[ :: ]]{
+              --[[ tuple ]]{
                 do
                   txt: _1,
                   loc: rhs_loc(1)
                 end,
                 _3
-              ],
+              },
               --[[ [] ]]0
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 4);
       _3 = Parsing.peek_val(__caml_parser_env, 2);
       _5 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ :: ]][
-              --[[ tuple ]][
+      return --[[ :: ]]{
+              --[[ tuple ]]{
                 do
                   txt: _3,
                   loc: rhs_loc(3)
                 end,
                 _5
-              ],
+              },
               _1
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ :: ]][
+      return --[[ :: ]]{
               _1,
               --[[ [] ]]0
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ :: ]][
+      return --[[ :: ]]{
               _3,
               _1
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               _2,
               undefined
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 2);
       _4 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               _2,
               _4
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               undefined,
               _2
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       throw Escape_error;
@@ -10179,13 +10179,13 @@ yyact = [
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkpat(--[[ Ppat_alias ]]Block.__(1, [
+      return mkpat(--[[ Ppat_alias ]]Block.__(1, {
                     _1,
                     do
                       txt: _3,
                       loc: rhs_loc(3)
                     end
-                  ]));
+                  }));
     end end),
   (function (__caml_parser_env) do
       Parsing.peek_val(__caml_parser_env, 2);
@@ -10193,37 +10193,37 @@ yyact = [
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkpat(--[[ Ppat_tuple ]]Block.__(4, [List.rev(_1)]));
+      return mkpat(--[[ Ppat_tuple ]]Block.__(4, {List.rev(_1)}));
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkpat(--[[ Ppat_construct ]]Block.__(5, [
+      return mkpat(--[[ Ppat_construct ]]Block.__(5, {
                     do
                       txt: _1,
                       loc: rhs_loc(1)
                     end,
                     _2
-                  ]));
+                  }));
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkpat(--[[ Ppat_variant ]]Block.__(6, [
+      return mkpat(--[[ Ppat_variant ]]Block.__(6, {
                     _1,
                     _2
-                  ]));
+                  }));
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkpat_cons(rhs_loc(2), ghpat(--[[ Ppat_tuple ]]Block.__(4, [--[[ :: ]][
+      return mkpat_cons(rhs_loc(2), ghpat(--[[ Ppat_tuple ]]Block.__(4, {--[[ :: ]]{
                           _1,
-                          --[[ :: ]][
+                          --[[ :: ]]{
                             _3,
                             --[[ [] ]]0
-                          ]
-                        ]])), symbol_rloc(--[[ () ]]0));
+                          }
+                        }})), symbol_rloc(--[[ () ]]0));
     end end),
   (function (__caml_parser_env) do
       Parsing.peek_val(__caml_parser_env, 2);
@@ -10232,13 +10232,13 @@ yyact = [
   (function (__caml_parser_env) do
       _5 = Parsing.peek_val(__caml_parser_env, 3);
       _7 = Parsing.peek_val(__caml_parser_env, 1);
-      return mkpat_cons(rhs_loc(2), ghpat(--[[ Ppat_tuple ]]Block.__(4, [--[[ :: ]][
+      return mkpat_cons(rhs_loc(2), ghpat(--[[ Ppat_tuple ]]Block.__(4, {--[[ :: ]]{
                           _5,
-                          --[[ :: ]][
+                          --[[ :: ]]{
                             _7,
                             --[[ [] ]]0
-                          ]
-                        ]])), symbol_rloc(--[[ () ]]0));
+                          }
+                        }})), symbol_rloc(--[[ () ]]0));
     end end),
   (function (__caml_parser_env) do
       Parsing.peek_val(__caml_parser_env, 3);
@@ -10248,10 +10248,10 @@ yyact = [
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkpat(--[[ Ppat_or ]]Block.__(9, [
+      return mkpat(--[[ Ppat_or ]]Block.__(9, {
                     _1,
                     _3
-                  ]));
+                  }));
     end end),
   (function (__caml_parser_env) do
       Parsing.peek_val(__caml_parser_env, 2);
@@ -10259,11 +10259,11 @@ yyact = [
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkpat(--[[ Ppat_lazy ]]Block.__(12, [_2]));
+      return mkpat(--[[ Ppat_lazy ]]Block.__(12, {_2}));
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkpat(--[[ Ppat_exception ]]Block.__(14, [_2]));
+      return mkpat(--[[ Ppat_exception ]]Block.__(14, {_2}));
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
@@ -10272,10 +10272,10 @@ yyact = [
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkpat(--[[ Ppat_var ]]Block.__(0, [do
+      return mkpat(--[[ Ppat_var ]]Block.__(0, {do
                       txt: _1,
                       loc: rhs_loc(1)
-                    end]));
+                    end}));
     end end),
   (function (__caml_parser_env) do
       return Parsing.peek_val(__caml_parser_env, 0);
@@ -10285,46 +10285,46 @@ yyact = [
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkpat(--[[ Ppat_constant ]]Block.__(2, [_1]));
+      return mkpat(--[[ Ppat_constant ]]Block.__(2, {_1}));
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkpat(--[[ Ppat_interval ]]Block.__(3, [
+      return mkpat(--[[ Ppat_interval ]]Block.__(3, {
                     _1,
                     _3
-                  ]));
+                  }));
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkpat(--[[ Ppat_construct ]]Block.__(5, [
+      return mkpat(--[[ Ppat_construct ]]Block.__(5, {
                     do
                       txt: _1,
                       loc: rhs_loc(1)
                     end,
                     undefined
-                  ]));
+                  }));
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkpat(--[[ Ppat_variant ]]Block.__(6, [
+      return mkpat(--[[ Ppat_variant ]]Block.__(6, {
                     _1,
                     undefined
-                  ]));
+                  }));
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkpat(--[[ Ppat_type ]]Block.__(11, [do
+      return mkpat(--[[ Ppat_type ]]Block.__(11, {do
                       txt: _2,
                       loc: rhs_loc(2)
-                    end]));
+                    end}));
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 1);
-      return mkpat(--[[ Ppat_record ]]Block.__(7, [
+      return mkpat(--[[ Ppat_record ]]Block.__(7, {
                     _2[0],
                     _2[1]
-                  ]));
+                  }));
     end end),
   (function (__caml_parser_env) do
       Parsing.peek_val(__caml_parser_env, 1);
@@ -10343,10 +10343,10 @@ yyact = [
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 2);
       Parsing.peek_val(__caml_parser_env, 1);
-      return mkpat(--[[ Ppat_array ]]Block.__(8, [List.rev(_2)]));
+      return mkpat(--[[ Ppat_array ]]Block.__(8, {List.rev(_2)}));
     end end),
   (function (__caml_parser_env) do
-      return mkpat(--[[ Ppat_array ]]Block.__(8, [--[[ [] ]]0]));
+      return mkpat(--[[ Ppat_array ]]Block.__(8, {--[[ [] ]]0}));
     end end),
   (function (__caml_parser_env) do
       Parsing.peek_val(__caml_parser_env, 2);
@@ -10363,10 +10363,10 @@ yyact = [
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 3);
       _4 = Parsing.peek_val(__caml_parser_env, 1);
-      return mkpat(--[[ Ppat_constraint ]]Block.__(10, [
+      return mkpat(--[[ Ppat_constraint ]]Block.__(10, {
                     _2,
                     _4
-                  ]));
+                  }));
     end end),
   (function (__caml_parser_env) do
       Parsing.peek_val(__caml_parser_env, 3);
@@ -10379,21 +10379,21 @@ yyact = [
     end end),
   (function (__caml_parser_env) do
       _3 = Parsing.peek_val(__caml_parser_env, 1);
-      return mkpat(--[[ Ppat_unpack ]]Block.__(13, [do
+      return mkpat(--[[ Ppat_unpack ]]Block.__(13, {do
                       txt: _3,
                       loc: rhs_loc(3)
-                    end]));
+                    end}));
     end end),
   (function (__caml_parser_env) do
       _3 = Parsing.peek_val(__caml_parser_env, 3);
       _5 = Parsing.peek_val(__caml_parser_env, 1);
-      return mkpat(--[[ Ppat_constraint ]]Block.__(10, [
-                    mkpat(--[[ Ppat_unpack ]]Block.__(13, [do
+      return mkpat(--[[ Ppat_constraint ]]Block.__(10, {
+                    mkpat(--[[ Ppat_unpack ]]Block.__(13, {do
                               txt: _3,
                               loc: rhs_loc(3)
-                            end])),
-                    ghtyp(--[[ Ptyp_package ]]Block.__(9, [_5]))
-                  ]));
+                            end})),
+                    ghtyp(--[[ Ptyp_package ]]Block.__(9, {_5}))
+                  }));
     end end),
   (function (__caml_parser_env) do
       Parsing.peek_val(__caml_parser_env, 3);
@@ -10402,26 +10402,26 @@ yyact = [
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkpat(--[[ Ppat_extension ]]Block.__(15, [_1]));
+      return mkpat(--[[ Ppat_extension ]]Block.__(15, {_1}));
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ :: ]][
+      return --[[ :: ]]{
               _3,
               _1
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ :: ]][
+      return --[[ :: ]]{
               _3,
-              --[[ :: ]][
+              --[[ :: ]]{
                 _1,
                 --[[ [] ]]0
-              ]
-            ];
+              }
+            };
     end end),
   (function (__caml_parser_env) do
       Parsing.peek_val(__caml_parser_env, 2);
@@ -10429,81 +10429,81 @@ yyact = [
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ :: ]][
+      return --[[ :: ]]{
               _1,
               --[[ [] ]]0
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ :: ]][
+      return --[[ :: ]]{
               _3,
               _1
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ tuple ]][
-              --[[ :: ]][
+      return --[[ tuple ]]{
+              --[[ :: ]]{
                 _1,
                 --[[ [] ]]0
-              ],
+              },
               --[[ Closed ]]0
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
-      return --[[ tuple ]][
-              --[[ :: ]][
+      return --[[ tuple ]]{
+              --[[ :: ]]{
                 _1,
                 --[[ [] ]]0
-              ],
+              },
               --[[ Closed ]]0
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 3);
       Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ tuple ]][
-              --[[ :: ]][
+      return --[[ tuple ]]{
+              --[[ :: ]]{
                 _1,
                 --[[ [] ]]0
-              ],
+              },
               --[[ Open ]]1
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ tuple ]][
-              --[[ :: ]][
+      return --[[ tuple ]]{
+              --[[ :: ]]{
                 _1,
                 _3[0]
-              ],
+              },
               _3[1]
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               do
                 txt: _1,
                 loc: rhs_loc(1)
               end,
               _3
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               do
                 txt: _1,
                 loc: rhs_loc(1)
               end,
               pat_of_label(_1, 1)
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 3);
@@ -10516,18 +10516,18 @@ yyact = [
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ :: ]][
+      return --[[ :: ]]{
               _1[0],
               --[[ [] ]]0
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ :: ]][
+      return --[[ :: ]]{
               _1[0],
               _2
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 5);
@@ -10541,18 +10541,18 @@ yyact = [
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ :: ]][
+      return --[[ :: ]]{
               _1,
               --[[ [] ]]0
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ :: ]][
+      return --[[ :: ]]{
               _2,
               _1
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 5);
@@ -10580,106 +10580,106 @@ yyact = [
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ :: ]][
+      return --[[ :: ]]{
               _3,
               _1
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       return --[[ [] ]]0;
     end end),
   (function (__caml_parser_env) do
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               --[[ Ptype_abstract ]]0,
               --[[ Public ]]1,
               undefined
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               --[[ Ptype_abstract ]]0,
               --[[ Public ]]1,
               _2
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               --[[ Ptype_abstract ]]0,
               --[[ Private ]]0,
               _3
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ tuple ]][
-              --[[ Ptype_variant ]]Block.__(0, [List.rev(_2)]),
+      return --[[ tuple ]]{
+              --[[ Ptype_variant ]]Block.__(0, {List.rev(_2)}),
               --[[ Public ]]1,
               undefined
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ tuple ]][
-              --[[ Ptype_variant ]]Block.__(0, [List.rev(_3)]),
+      return --[[ tuple ]]{
+              --[[ Ptype_variant ]]Block.__(0, {List.rev(_3)}),
               --[[ Private ]]0,
               undefined
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               --[[ Ptype_open ]]1,
               --[[ Public ]]1,
               undefined
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 3);
       _4 = Parsing.peek_val(__caml_parser_env, 1);
-      return --[[ tuple ]][
-              --[[ Ptype_record ]]Block.__(1, [_4]),
+      return --[[ tuple ]]{
+              --[[ Ptype_record ]]Block.__(1, {_4}),
               _2,
               undefined
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 3);
       _4 = Parsing.peek_val(__caml_parser_env, 1);
       _5 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ tuple ]][
-              --[[ Ptype_variant ]]Block.__(0, [List.rev(_5)]),
+      return --[[ tuple ]]{
+              --[[ Ptype_variant ]]Block.__(0, {List.rev(_5)}),
               _4,
               _2
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 2);
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               --[[ Ptype_open ]]1,
               --[[ Public ]]1,
               _2
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 5);
       _4 = Parsing.peek_val(__caml_parser_env, 3);
       _6 = Parsing.peek_val(__caml_parser_env, 1);
-      return --[[ tuple ]][
-              --[[ Ptype_record ]]Block.__(1, [_6]),
+      return --[[ tuple ]]{
+              --[[ Ptype_record ]]Block.__(1, {_6}),
               _4,
               _2
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       return --[[ [] ]]0;
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ :: ]][
+      return --[[ :: ]]{
               _1,
               --[[ [] ]]0
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       return List.rev(Parsing.peek_val(__caml_parser_env, 1));
@@ -10687,29 +10687,29 @@ yyact = [
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               _2,
               _1
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ :: ]][
+      return --[[ :: ]]{
               _1,
               --[[ [] ]]0
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ :: ]][
+      return --[[ :: ]]{
               _3,
               _1
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return mktyp(--[[ Ptyp_var ]]Block.__(0, [_2]));
+      return mktyp(--[[ Ptyp_var ]]Block.__(0, {_2}));
     end end),
   (function (__caml_parser_env) do
       return mktyp(--[[ Ptyp_any ]]0);
@@ -10719,10 +10719,10 @@ yyact = [
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ :: ]][
+      return --[[ :: ]]{
               _1,
               --[[ [] ]]0
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       return List.rev(Parsing.peek_val(__caml_parser_env, 1));
@@ -10730,10 +10730,10 @@ yyact = [
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               _2,
               _1
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       return --[[ Invariant ]]2;
@@ -10746,44 +10746,44 @@ yyact = [
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return mktyp(--[[ Ptyp_var ]]Block.__(0, [_2]));
+      return mktyp(--[[ Ptyp_var ]]Block.__(0, {_2}));
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ :: ]][
+      return --[[ :: ]]{
               _1,
               --[[ [] ]]0
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ :: ]][
+      return --[[ :: ]]{
               _3,
               _1
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ :: ]][
+      return --[[ :: ]]{
               _1,
               --[[ [] ]]0
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ :: ]][
+      return --[[ :: ]]{
               _1,
               --[[ [] ]]0
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ :: ]][
+      return --[[ :: ]]{
               _2,
               _1
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 2);
@@ -10830,54 +10830,54 @@ yyact = [
                 end);
     end end),
   (function (__caml_parser_env) do
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               --[[ [] ]]0,
               undefined
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               List.rev(_2),
               undefined
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 2);
       _4 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               List.rev(_2),
               _4
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               --[[ [] ]]0,
               _2
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ :: ]][
+      return --[[ :: ]]{
               _1,
               --[[ [] ]]0
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ :: ]][
+      return --[[ :: ]]{
               _1,
               --[[ [] ]]0
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ :: ]][
+      return --[[ :: ]]{
               _1,
               _2
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 4);
@@ -10936,69 +10936,69 @@ yyact = [
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ :: ]][
+      return --[[ :: ]]{
               _1,
               --[[ [] ]]0
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ :: ]][
+      return --[[ :: ]]{
               _1,
               --[[ [] ]]0
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ :: ]][
+      return --[[ :: ]]{
               _1,
               --[[ [] ]]0
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ :: ]][
+      return --[[ :: ]]{
               _1,
               --[[ [] ]]0
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ :: ]][
+      return --[[ :: ]]{
               _2,
               _1
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ :: ]][
+      return --[[ :: ]]{
               _2,
               _1
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ :: ]][
+      return --[[ :: ]]{
               _1,
               --[[ [] ]]0
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ :: ]][
+      return --[[ :: ]]{
               _1,
               --[[ [] ]]0
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ :: ]][
+      return --[[ :: ]]{
               _2,
               _1
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 2);
@@ -11044,18 +11044,18 @@ yyact = [
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ :: ]][
+      return --[[ :: ]]{
               _1,
               --[[ [] ]]0
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ :: ]][
+      return --[[ :: ]]{
               _3,
               _1
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 4);
@@ -11064,7 +11064,7 @@ yyact = [
       _5 = Parsing.peek_val(__caml_parser_env, 1);
       _6 = Parsing.peek_val(__caml_parser_env, 0);
       rhs = last(_3);
-      return --[[ Pwith_type ]]Block.__(0, [
+      return --[[ Pwith_type ]]Block.__(0, {
                 do
                   txt: _3,
                   loc: rhs_loc(3)
@@ -11073,21 +11073,21 @@ yyact = [
                       txt: rhs,
                       loc: rhs_loc(3)
                     end)
-              ]);
+              });
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 3);
       _3 = Parsing.peek_val(__caml_parser_env, 2);
       _5 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ Pwith_typesubst ]]Block.__(2, [mk$19(symbol_rloc(--[[ () ]]0), undefined, undefined, undefined, _2, undefined, undefined, undefined, _5, do
+      return --[[ Pwith_typesubst ]]Block.__(2, {mk$19(symbol_rloc(--[[ () ]]0), undefined, undefined, undefined, _2, undefined, undefined, undefined, _5, do
                       txt: _3,
                       loc: rhs_loc(3)
-                    end)]);
+                    end)});
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 2);
       _4 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ Pwith_module ]]Block.__(1, [
+      return --[[ Pwith_module ]]Block.__(1, {
                 do
                   txt: _2,
                   loc: rhs_loc(2)
@@ -11096,12 +11096,12 @@ yyact = [
                   txt: _4,
                   loc: rhs_loc(4)
                 end
-              ]);
+              });
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 2);
       _4 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ Pwith_modsubst ]]Block.__(3, [
+      return --[[ Pwith_modsubst ]]Block.__(3, {
                 do
                   txt: _2,
                   loc: rhs_loc(2)
@@ -11110,7 +11110,7 @@ yyact = [
                   txt: _4,
                   loc: rhs_loc(4)
                 end
-              ]);
+              });
     end end),
   (function (__caml_parser_env) do
       return --[[ Public ]]1;
@@ -11120,18 +11120,18 @@ yyact = [
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ :: ]][
+      return --[[ :: ]]{
               _2,
               --[[ [] ]]0
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ :: ]][
+      return --[[ :: ]]{
               _3,
               _1
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       return Parsing.peek_val(__caml_parser_env, 0);
@@ -11139,10 +11139,10 @@ yyact = [
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return mktyp(--[[ Ptyp_poly ]]Block.__(8, [
+      return mktyp(--[[ Ptyp_poly ]]Block.__(8, {
                     List.rev(_1),
                     _3
-                  ]));
+                  }));
     end end),
   (function (__caml_parser_env) do
       return Parsing.peek_val(__caml_parser_env, 0);
@@ -11150,10 +11150,10 @@ yyact = [
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return mktyp(--[[ Ptyp_poly ]]Block.__(8, [
+      return mktyp(--[[ Ptyp_poly ]]Block.__(8, {
                     List.rev(_1),
                     _3
-                  ]));
+                  }));
     end end),
   (function (__caml_parser_env) do
       return Parsing.peek_val(__caml_parser_env, 0);
@@ -11169,10 +11169,10 @@ yyact = [
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 3);
       _4 = Parsing.peek_val(__caml_parser_env, 0);
-      return mktyp(--[[ Ptyp_alias ]]Block.__(6, [
+      return mktyp(--[[ Ptyp_alias ]]Block.__(6, {
                     _1,
                     _4
-                  ]));
+                  }));
     end end),
   (function (__caml_parser_env) do
       return Parsing.peek_val(__caml_parser_env, 0);
@@ -11181,40 +11181,40 @@ yyact = [
       _2 = Parsing.peek_val(__caml_parser_env, 4);
       _4 = Parsing.peek_val(__caml_parser_env, 2);
       _6 = Parsing.peek_val(__caml_parser_env, 0);
-      return mktyp(--[[ Ptyp_arrow ]]Block.__(1, [
+      return mktyp(--[[ Ptyp_arrow ]]Block.__(1, {
                     "?" .. _2,
                     mkoption(_4),
                     _6
-                  ]));
+                  }));
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 3);
       _2 = Parsing.peek_val(__caml_parser_env, 2);
       _4 = Parsing.peek_val(__caml_parser_env, 0);
-      return mktyp(--[[ Ptyp_arrow ]]Block.__(1, [
+      return mktyp(--[[ Ptyp_arrow ]]Block.__(1, {
                     "?" .. _1,
                     mkoption(_2),
                     _4
-                  ]));
+                  }));
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 4);
       _3 = Parsing.peek_val(__caml_parser_env, 2);
       _5 = Parsing.peek_val(__caml_parser_env, 0);
-      return mktyp(--[[ Ptyp_arrow ]]Block.__(1, [
+      return mktyp(--[[ Ptyp_arrow ]]Block.__(1, {
                     _1,
                     _3,
                     _5
-                  ]));
+                  }));
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return mktyp(--[[ Ptyp_arrow ]]Block.__(1, [
+      return mktyp(--[[ Ptyp_arrow ]]Block.__(1, {
                     "",
                     _1,
                     _3
-                  ]));
+                  }));
     end end),
   (function (__caml_parser_env) do
       return Parsing.peek_val(__caml_parser_env, 0);
@@ -11248,258 +11248,258 @@ yyact = [
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return mktyp(--[[ Ptyp_var ]]Block.__(0, [_2]));
+      return mktyp(--[[ Ptyp_var ]]Block.__(0, {_2}));
     end end),
   (function (__caml_parser_env) do
       return mktyp(--[[ Ptyp_any ]]0);
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mktyp(--[[ Ptyp_constr ]]Block.__(3, [
+      return mktyp(--[[ Ptyp_constr ]]Block.__(3, {
                     do
                       txt: _1,
                       loc: rhs_loc(1)
                     end,
                     --[[ [] ]]0
-                  ]));
+                  }));
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return mktyp(--[[ Ptyp_constr ]]Block.__(3, [
+      return mktyp(--[[ Ptyp_constr ]]Block.__(3, {
                     do
                       txt: _2,
                       loc: rhs_loc(2)
                     end,
-                    --[[ :: ]][
+                    --[[ :: ]]{
                       _1,
                       --[[ [] ]]0
-                    ]
-                  ]));
+                    }
+                  }));
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 2);
       _4 = Parsing.peek_val(__caml_parser_env, 0);
-      return mktyp(--[[ Ptyp_constr ]]Block.__(3, [
+      return mktyp(--[[ Ptyp_constr ]]Block.__(3, {
                     do
                       txt: _4,
                       loc: rhs_loc(4)
                     end,
                     List.rev(_2)
-                  ]));
+                  }));
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 1);
-      return mktyp(--[[ Ptyp_object ]]Block.__(4, [
+      return mktyp(--[[ Ptyp_object ]]Block.__(4, {
                     _2[0],
                     _2[1]
-                  ]));
+                  }));
     end end),
   (function (__caml_parser_env) do
-      return mktyp(--[[ Ptyp_object ]]Block.__(4, [
+      return mktyp(--[[ Ptyp_object ]]Block.__(4, {
                     --[[ [] ]]0,
                     --[[ Closed ]]0
-                  ]));
+                  }));
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return mktyp(--[[ Ptyp_class ]]Block.__(5, [
+      return mktyp(--[[ Ptyp_class ]]Block.__(5, {
                     do
                       txt: _2,
                       loc: rhs_loc(2)
                     end,
                     --[[ [] ]]0
-                  ]));
+                  }));
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return mktyp(--[[ Ptyp_class ]]Block.__(5, [
+      return mktyp(--[[ Ptyp_class ]]Block.__(5, {
                     do
                       txt: _3,
                       loc: rhs_loc(3)
                     end,
-                    --[[ :: ]][
+                    --[[ :: ]]{
                       _1,
                       --[[ [] ]]0
-                    ]
-                  ]));
+                    }
+                  }));
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 3);
       _5 = Parsing.peek_val(__caml_parser_env, 0);
-      return mktyp(--[[ Ptyp_class ]]Block.__(5, [
+      return mktyp(--[[ Ptyp_class ]]Block.__(5, {
                     do
                       txt: _5,
                       loc: rhs_loc(5)
                     end,
                     List.rev(_2)
-                  ]));
+                  }));
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 1);
-      return mktyp(--[[ Ptyp_variant ]]Block.__(7, [
-                    --[[ :: ]][
+      return mktyp(--[[ Ptyp_variant ]]Block.__(7, {
+                    --[[ :: ]]{
                       _2,
                       --[[ [] ]]0
-                    ],
+                    },
                     --[[ Closed ]]0,
                     undefined
-                  ]));
+                  }));
     end end),
   (function (__caml_parser_env) do
       _3 = Parsing.peek_val(__caml_parser_env, 1);
-      return mktyp(--[[ Ptyp_variant ]]Block.__(7, [
+      return mktyp(--[[ Ptyp_variant ]]Block.__(7, {
                     List.rev(_3),
                     --[[ Closed ]]0,
                     undefined
-                  ]));
+                  }));
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 3);
       _4 = Parsing.peek_val(__caml_parser_env, 1);
-      return mktyp(--[[ Ptyp_variant ]]Block.__(7, [
-                    --[[ :: ]][
+      return mktyp(--[[ Ptyp_variant ]]Block.__(7, {
+                    --[[ :: ]]{
                       _2,
                       List.rev(_4)
-                    ],
+                    },
                     --[[ Closed ]]0,
                     undefined
-                  ]));
+                  }));
     end end),
   (function (__caml_parser_env) do
       Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 1);
-      return mktyp(--[[ Ptyp_variant ]]Block.__(7, [
+      return mktyp(--[[ Ptyp_variant ]]Block.__(7, {
                     List.rev(_3),
                     --[[ Open ]]1,
                     undefined
-                  ]));
+                  }));
     end end),
   (function (__caml_parser_env) do
-      return mktyp(--[[ Ptyp_variant ]]Block.__(7, [
+      return mktyp(--[[ Ptyp_variant ]]Block.__(7, {
                     --[[ [] ]]0,
                     --[[ Open ]]1,
                     undefined
-                  ]));
+                  }));
     end end),
   (function (__caml_parser_env) do
       Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 1);
-      return mktyp(--[[ Ptyp_variant ]]Block.__(7, [
+      return mktyp(--[[ Ptyp_variant ]]Block.__(7, {
                     List.rev(_3),
                     --[[ Closed ]]0,
                     --[[ [] ]]0
-                  ]));
+                  }));
     end end),
   (function (__caml_parser_env) do
       Parsing.peek_val(__caml_parser_env, 4);
       _3 = Parsing.peek_val(__caml_parser_env, 3);
       _5 = Parsing.peek_val(__caml_parser_env, 1);
-      return mktyp(--[[ Ptyp_variant ]]Block.__(7, [
+      return mktyp(--[[ Ptyp_variant ]]Block.__(7, {
                     List.rev(_3),
                     --[[ Closed ]]0,
                     List.rev(_5)
-                  ]));
+                  }));
     end end),
   (function (__caml_parser_env) do
       _3 = Parsing.peek_val(__caml_parser_env, 1);
-      return mktyp(--[[ Ptyp_package ]]Block.__(9, [_3]));
+      return mktyp(--[[ Ptyp_package ]]Block.__(9, {_3}));
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mktyp(--[[ Ptyp_extension ]]Block.__(10, [_1]));
+      return mktyp(--[[ Ptyp_extension ]]Block.__(10, {_1}));
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               do
                 txt: _1,
                 loc: rhs_loc(1)
               end,
               --[[ [] ]]0
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               do
                 txt: _1,
                 loc: rhs_loc(1)
               end,
               _3
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 2);
       _4 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               do
                 txt: _2,
                 loc: rhs_loc(2)
               end,
               _4
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ :: ]][
+      return --[[ :: ]]{
               _1,
               --[[ [] ]]0
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ :: ]][
+      return --[[ :: ]]{
               _1,
               _3
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ :: ]][
+      return --[[ :: ]]{
               _1,
               --[[ [] ]]0
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ :: ]][
+      return --[[ :: ]]{
               _3,
               _1
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       return Parsing.peek_val(__caml_parser_env, 0);
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ Rinherit ]]Block.__(1, [_1]);
+      return --[[ Rinherit ]]Block.__(1, {_1});
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 4);
       _3 = Parsing.peek_val(__caml_parser_env, 2);
       _4 = Parsing.peek_val(__caml_parser_env, 1);
       _5 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ Rtag ]]Block.__(0, [
+      return --[[ Rtag ]]Block.__(0, {
                 _1,
                 _5,
                 _3,
                 List.rev(_4)
-              ]);
+              });
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ Rtag ]]Block.__(0, [
+      return --[[ Rtag ]]Block.__(0, {
                 _1,
                 _2,
                 true,
                 --[[ [] ]]0
-              ]);
+              });
     end end),
   (function (__caml_parser_env) do
       return true;
@@ -11509,33 +11509,33 @@ yyact = [
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ :: ]][
+      return --[[ :: ]]{
               _1,
               --[[ [] ]]0
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ :: ]][
+      return --[[ :: ]]{
               _3,
               _1
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ :: ]][
+      return --[[ :: ]]{
               _1,
               --[[ [] ]]0
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ :: ]][
+      return --[[ :: ]]{
               _2,
               _1
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       return Parsing.peek_val(__caml_parser_env, 0);
@@ -11543,10 +11543,10 @@ yyact = [
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return mktyp(--[[ Ptyp_tuple ]]Block.__(2, [--[[ :: ]][
+      return mktyp(--[[ Ptyp_tuple ]]Block.__(2, {--[[ :: ]]{
                       _1,
                       List.rev(_3)
-                    ]]));
+                    }}));
     end end),
   (function (__caml_parser_env) do
       return Parsing.peek_val(__caml_parser_env, 0);
@@ -11554,170 +11554,170 @@ yyact = [
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return mktyp(--[[ Ptyp_tuple ]]Block.__(2, [--[[ :: ]][
+      return mktyp(--[[ Ptyp_tuple ]]Block.__(2, {--[[ :: ]]{
                       _1,
                       List.rev(_3)
-                    ]]));
+                    }}));
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ :: ]][
+      return --[[ :: ]]{
               _1,
               --[[ [] ]]0
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ :: ]][
+      return --[[ :: ]]{
               _3,
               _1
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ :: ]][
+      return --[[ :: ]]{
               _1,
               --[[ [] ]]0
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ :: ]][
+      return --[[ :: ]]{
               _3,
               _1
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ :: ]][
+      return --[[ :: ]]{
               _1,
               --[[ [] ]]0
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ :: ]][
+      return --[[ :: ]]{
               _3,
               _1
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ tuple ]][
-              --[[ :: ]][
+      return --[[ tuple ]]{
+              --[[ :: ]]{
                 _1,
                 _3[0]
-              ],
+              },
               _3[1]
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
       Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ tuple ]][
-              --[[ :: ]][
+      return --[[ tuple ]]{
+              --[[ :: ]]{
                 _1,
                 --[[ [] ]]0
-              ],
+              },
               --[[ Closed ]]0
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               --[[ [] ]]0,
               --[[ Open ]]1
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 3);
       _3 = Parsing.peek_val(__caml_parser_env, 1);
       _4 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               _1,
               _4,
               _3
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       return Parsing.peek_val(__caml_parser_env, 0);
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ Const_int ]]Block.__(0, [_1]);
+      return --[[ Const_int ]]Block.__(0, {_1});
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ Const_char ]]Block.__(1, [_1]);
+      return --[[ Const_char ]]Block.__(1, {_1});
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ Const_string ]]Block.__(2, [
+      return --[[ Const_string ]]Block.__(2, {
                 _1[0],
                 _1[1]
-              ]);
+              });
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ Const_float ]]Block.__(3, [_1]);
+      return --[[ Const_float ]]Block.__(3, {_1});
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ Const_int32 ]]Block.__(4, [_1]);
+      return --[[ Const_int32 ]]Block.__(4, {_1});
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ Const_int64 ]]Block.__(5, [_1]);
+      return --[[ Const_int64 ]]Block.__(5, {_1});
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ Const_nativeint ]]Block.__(6, [_1]);
+      return --[[ Const_nativeint ]]Block.__(6, {_1});
     end end),
   (function (__caml_parser_env) do
       return Parsing.peek_val(__caml_parser_env, 0);
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ Const_int ]]Block.__(0, [-_2 | 0]);
+      return --[[ Const_int ]]Block.__(0, {-_2 | 0});
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ Const_float ]]Block.__(3, ["-" .. _2]);
+      return --[[ Const_float ]]Block.__(3, {"-" .. _2});
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ Const_int32 ]]Block.__(4, [-_2 | 0]);
+      return --[[ Const_int32 ]]Block.__(4, {-_2 | 0});
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ Const_int64 ]]Block.__(5, [Caml_int64.neg(_2)]);
+      return --[[ Const_int64 ]]Block.__(5, {Caml_int64.neg(_2)});
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ Const_nativeint ]]Block.__(6, [-_2]);
+      return --[[ Const_nativeint ]]Block.__(6, {-_2});
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ Const_int ]]Block.__(0, [_2]);
+      return --[[ Const_int ]]Block.__(0, {_2});
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ Const_float ]]Block.__(3, [_2]);
+      return --[[ Const_float ]]Block.__(3, {_2});
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ Const_int32 ]]Block.__(4, [_2]);
+      return --[[ Const_int32 ]]Block.__(4, {_2});
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ Const_int64 ]]Block.__(5, [_2]);
+      return --[[ Const_int64 ]]Block.__(5, {_2});
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ Const_nativeint ]]Block.__(6, [_2]);
+      return --[[ Const_nativeint ]]Block.__(6, {_2});
     end end),
   (function (__caml_parser_env) do
       return Parsing.peek_val(__caml_parser_env, 0);
@@ -11827,78 +11827,78 @@ yyact = [
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ Lident ]]Block.__(0, [_1]);
+      return --[[ Lident ]]Block.__(0, {_1});
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ Ldot ]]Block.__(1, [
+      return --[[ Ldot ]]Block.__(1, {
                 _1,
                 _3
-              ]);
+              });
     end end),
   (function (__caml_parser_env) do
       return Parsing.peek_val(__caml_parser_env, 0);
     end end),
   (function (__caml_parser_env) do
-      return --[[ Lident ]]Block.__(0, ["[]"]);
+      return --[[ Lident ]]Block.__(0, {"[]"});
     end end),
   (function (__caml_parser_env) do
-      return --[[ Lident ]]Block.__(0, ["()"]);
+      return --[[ Lident ]]Block.__(0, {"()"});
     end end),
   (function (__caml_parser_env) do
-      return --[[ Lident ]]Block.__(0, ["false"]);
+      return --[[ Lident ]]Block.__(0, {"false"});
     end end),
   (function (__caml_parser_env) do
-      return --[[ Lident ]]Block.__(0, ["true"]);
+      return --[[ Lident ]]Block.__(0, {"true"});
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ Lident ]]Block.__(0, [_1]);
+      return --[[ Lident ]]Block.__(0, {_1});
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ Ldot ]]Block.__(1, [
+      return --[[ Ldot ]]Block.__(1, {
                 _1,
                 _3
-              ]);
+              });
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ Lident ]]Block.__(0, [_1]);
+      return --[[ Lident ]]Block.__(0, {_1});
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ Ldot ]]Block.__(1, [
+      return --[[ Ldot ]]Block.__(1, {
                 _1,
                 _3
-              ]);
+              });
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ Lident ]]Block.__(0, [_1]);
+      return --[[ Lident ]]Block.__(0, {_1});
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ Ldot ]]Block.__(1, [
+      return --[[ Ldot ]]Block.__(1, {
                 _1,
                 _3
-              ]);
+              });
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ Lident ]]Block.__(0, [_1]);
+      return --[[ Lident ]]Block.__(0, {_1});
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ Ldot ]]Block.__(1, [
+      return --[[ Ldot ]]Block.__(1, {
                 _1,
                 _3
-              ]);
+              });
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 3);
@@ -11906,105 +11906,105 @@ yyact = [
       p1 = _1;
       p2 = _3;
       if (applicative_functors.contents) then do
-        return --[[ Lapply ]]Block.__(2, [
+        return --[[ Lapply ]]Block.__(2, {
                   p1,
                   p2
-                ]);
+                });
       end else do
-        throw [
+        throw {
               __Error$1,
-              --[[ Applicative_path ]]Block.__(3, [symbol_rloc(--[[ () ]]0)])
-            ];
+              --[[ Applicative_path ]]Block.__(3, {symbol_rloc(--[[ () ]]0)})
+            };
       end end 
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ Lident ]]Block.__(0, [_1]);
+      return --[[ Lident ]]Block.__(0, {_1});
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ Ldot ]]Block.__(1, [
+      return --[[ Ldot ]]Block.__(1, {
                 _1,
                 _3
-              ]);
+              });
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ Lident ]]Block.__(0, [_1]);
+      return --[[ Lident ]]Block.__(0, {_1});
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ Ldot ]]Block.__(1, [
+      return --[[ Ldot ]]Block.__(1, {
                 _1,
                 _3
-              ]);
+              });
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ Lident ]]Block.__(0, [_1]);
+      return --[[ Lident ]]Block.__(0, {_1});
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ Ldot ]]Block.__(1, [
+      return --[[ Ldot ]]Block.__(1, {
                 _1,
                 _3
-              ]);
+              });
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ Ptop_dir ]]Block.__(1, [
+      return --[[ Ptop_dir ]]Block.__(1, {
                 _2,
                 --[[ Pdir_none ]]0
-              ]);
+              });
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 1);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ Ptop_dir ]]Block.__(1, [
+      return --[[ Ptop_dir ]]Block.__(1, {
                 _2,
-                --[[ Pdir_string ]]Block.__(0, [_3[0]])
-              ]);
+                --[[ Pdir_string ]]Block.__(0, {_3[0]})
+              });
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 1);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ Ptop_dir ]]Block.__(1, [
+      return --[[ Ptop_dir ]]Block.__(1, {
                 _2,
-                --[[ Pdir_int ]]Block.__(1, [_3])
-              ]);
+                --[[ Pdir_int ]]Block.__(1, {_3})
+              });
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 1);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ Ptop_dir ]]Block.__(1, [
+      return --[[ Ptop_dir ]]Block.__(1, {
                 _2,
-                --[[ Pdir_ident ]]Block.__(2, [_3])
-              ]);
+                --[[ Pdir_ident ]]Block.__(2, {_3})
+              });
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 1);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ Ptop_dir ]]Block.__(1, [
+      return --[[ Ptop_dir ]]Block.__(1, {
                 _2,
-                --[[ Pdir_ident ]]Block.__(2, [_3])
-              ]);
+                --[[ Pdir_ident ]]Block.__(2, {_3})
+              });
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 1);
-      return --[[ Ptop_dir ]]Block.__(1, [
+      return --[[ Ptop_dir ]]Block.__(1, {
                 _2,
-                --[[ Pdir_bool ]]Block.__(3, [false])
-              ]);
+                --[[ Pdir_bool ]]Block.__(3, {false})
+              });
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 1);
-      return --[[ Ptop_dir ]]Block.__(1, [
+      return --[[ Ptop_dir ]]Block.__(1, {
                 _2,
-                --[[ Pdir_bool ]]Block.__(3, [true])
-              ]);
+                --[[ Pdir_bool ]]Block.__(3, {true})
+              });
     end end),
   (function (__caml_parser_env) do
       return Parsing.peek_val(__caml_parser_env, 0);
@@ -12046,34 +12046,34 @@ yyact = [
       return --[[ Virtual ]]0;
     end end),
   (function (__caml_parser_env) do
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               --[[ Public ]]1,
               --[[ Concrete ]]1
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               --[[ Private ]]0,
               --[[ Concrete ]]1
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               --[[ Public ]]1,
               --[[ Virtual ]]0
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               --[[ Private ]]0,
               --[[ Virtual ]]0
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               --[[ Private ]]0,
               --[[ Virtual ]]0
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       return --[[ Fresh ]]1;
@@ -12273,26 +12273,26 @@ yyact = [
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 1);
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               _2,
               _3
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 1);
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               _2,
               _3
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 1);
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               _2,
               _3
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       return --[[ [] ]]0;
@@ -12300,10 +12300,10 @@ yyact = [
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ :: ]][
+      return --[[ :: ]]{
               _1,
               _2
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       return --[[ [] ]]0;
@@ -12311,118 +12311,118 @@ yyact = [
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ :: ]][
+      return --[[ :: ]]{
               _1,
               _2
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               undefined,
               --[[ [] ]]0
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               undefined,
-              --[[ :: ]][
+              --[[ :: ]]{
                 _1,
                 _2
-              ]
-            ];
+              }
+            };
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 1);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               _2,
               _3
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 1);
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               _2,
               _3
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 1);
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               _2,
               _3
-            ];
+            };
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ PStr ]]Block.__(0, [_1]);
+      return --[[ PStr ]]Block.__(0, {_1});
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ PTyp ]]Block.__(1, [_2]);
+      return --[[ PTyp ]]Block.__(1, {_2});
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ PPat ]]Block.__(2, [
+      return --[[ PPat ]]Block.__(2, {
                 _2,
                 undefined
-              ]);
+              });
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 2);
       _4 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ PPat ]]Block.__(2, [
+      return --[[ PPat ]]Block.__(2, {
                 _2,
                 _4
-              ]);
+              });
     end end),
   (function (__caml_parser_env) do
-      throw [
+      throw {
             Parsing.YYexit,
             Parsing.peek_val(__caml_parser_env, 0)
-          ];
+          };
     end end),
   (function (__caml_parser_env) do
-      throw [
+      throw {
             Parsing.YYexit,
             Parsing.peek_val(__caml_parser_env, 0)
-          ];
+          };
     end end),
   (function (__caml_parser_env) do
-      throw [
+      throw {
             Parsing.YYexit,
             Parsing.peek_val(__caml_parser_env, 0)
-          ];
+          };
     end end),
   (function (__caml_parser_env) do
-      throw [
+      throw {
             Parsing.YYexit,
             Parsing.peek_val(__caml_parser_env, 0)
-          ];
+          };
     end end),
   (function (__caml_parser_env) do
-      throw [
+      throw {
             Parsing.YYexit,
             Parsing.peek_val(__caml_parser_env, 0)
-          ];
+          };
     end end),
   (function (__caml_parser_env) do
-      throw [
+      throw {
             Parsing.YYexit,
             Parsing.peek_val(__caml_parser_env, 0)
-          ];
+          };
     end end),
   (function (__caml_parser_env) do
-      throw [
+      throw {
             Parsing.YYexit,
             Parsing.peek_val(__caml_parser_env, 0)
-          ];
+          };
     end end)
-];
+};
 
 yytables = do
   actions: yyact,
@@ -12525,14 +12525,14 @@ function assert_same_type(lexbuf, x, y) do
   lhs = type_of_directive(x);
   rhs = type_of_directive(y);
   if (lhs ~= rhs) then do
-    throw [
+    throw {
           __Error$2,
-          --[[ Conditional_expr_expected_type ]]Block.__(7, [
+          --[[ Conditional_expr_expected_type ]]Block.__(7, {
               lhs,
               rhs
-            ]),
+            }),
           curr(lexbuf)
-        ];
+        };
   end
    end 
   return y;
@@ -12545,18 +12545,18 @@ function remove_directive_built_in_value(k) do
 end end
 
 function replace_directive_int(k, v) do
-  return Hashtbl.replace(directive_built_in_values, k, --[[ Dir_int ]]Block.__(2, [v]));
+  return Hashtbl.replace(directive_built_in_values, k, --[[ Dir_int ]]Block.__(2, {v}));
 end end
 
 function replace_directive_bool(k, v) do
-  return Hashtbl.replace(directive_built_in_values, k, --[[ Dir_bool ]]Block.__(0, [v]));
+  return Hashtbl.replace(directive_built_in_values, k, --[[ Dir_bool ]]Block.__(0, {v}));
 end end
 
 function replace_directive_string(k, v) do
-  return Hashtbl.replace(directive_built_in_values, k, --[[ Dir_string ]]Block.__(3, [v]));
+  return Hashtbl.replace(directive_built_in_values, k, --[[ Dir_string ]]Block.__(3, {v}));
 end end
 
-Hashtbl.replace(directive_built_in_values, "OCAML_VERSION", --[[ Dir_string ]]Block.__(3, [Sys.ocaml_version]));
+Hashtbl.replace(directive_built_in_values, "OCAML_VERSION", --[[ Dir_string ]]Block.__(3, {Sys.ocaml_version}));
 
 tmp;
 
@@ -12581,15 +12581,15 @@ if (exit == 1) then do
 end
  end 
 
-v = --[[ Dir_string ]]Block.__(3, [tmp]);
+v = --[[ Dir_string ]]Block.__(3, {tmp});
 
 Hashtbl.replace(directive_built_in_values, "OCAML_PATCH", v);
 
-Hashtbl.replace(directive_built_in_values, "OS_TYPE", --[[ Dir_string ]]Block.__(3, [Sys.os_type]));
+Hashtbl.replace(directive_built_in_values, "OS_TYPE", --[[ Dir_string ]]Block.__(3, {Sys.os_type}));
 
-Hashtbl.replace(directive_built_in_values, "BIG_ENDIAN", --[[ Dir_bool ]]Block.__(0, [Sys.big_endian]));
+Hashtbl.replace(directive_built_in_values, "BIG_ENDIAN", --[[ Dir_bool ]]Block.__(0, {Sys.big_endian}));
 
-Hashtbl.replace(directive_built_in_values, "WORD_SIZE", --[[ Dir_int ]]Block.__(2, [Sys.word_size]));
+Hashtbl.replace(directive_built_in_values, "WORD_SIZE", --[[ Dir_int ]]Block.__(2, {Sys.word_size}));
 
 function semantic_version_parse(str, start, last_index) do
   aux = function (_start, _acc, last_index) do
@@ -12599,10 +12599,10 @@ function semantic_version_parse(str, start, last_index) do
       if (start <= last_index) then do
         c = str.charCodeAt(start);
         if (c == --[[ "." ]]46) then do
-          return --[[ tuple ]][
+          return --[[ tuple ]]{
                   acc,
                   start + 1 | 0
-                ];
+                };
         end else do
           v = c - --[[ "0" ]]48 | 0;
           if (v >= 0 and v <= 9) then do
@@ -12610,17 +12610,17 @@ function semantic_version_parse(str, start, last_index) do
             _start = start + 1 | 0;
             continue ;
           end else do
-            return --[[ tuple ]][
+            return --[[ tuple ]]{
                     acc,
                     start
-                  ];
+                  };
           end end 
         end end 
       end else do
-        return --[[ tuple ]][
+        return --[[ tuple ]]{
                 acc,
                 start
-              ];
+              };
       end end 
     end;
   end end;
@@ -12629,24 +12629,24 @@ function semantic_version_parse(str, start, last_index) do
   match$2 = aux(match$1[1], 0, last_index);
   patch_end = match$2[1];
   additional = __String.sub(str, patch_end, (last_index - patch_end | 0) + 1 | 0);
-  return --[[ tuple ]][
-          --[[ tuple ]][
+  return --[[ tuple ]]{
+          --[[ tuple ]]{
             match[0],
             match$1[0],
             match$2[0]
-          ],
+          },
           additional
-        ];
+        };
 end end
 
 function semver(loc, lhs, str) do
   last_index = #str - 1 | 0;
   if (last_index < 0) then do
-    throw [
+    throw {
           __Error$2,
-          --[[ Illegal_semver ]]Block.__(6, [str]),
+          --[[ Illegal_semver ]]Block.__(6, {str}),
           loc
-        ];
+        };
   end
    end 
   v = str.charCodeAt(0);
@@ -12657,48 +12657,48 @@ function semver(loc, lhs, str) do
       if (v ~= 126) then do
         exit = 1;
       end else do
-        match = --[[ tuple ]][
+        match = --[[ tuple ]]{
           --[[ Approximate ]]-617782220,
           semantic_version_parse(str, 1, last_index)
-        ];
+        };
       end end 
     end else if (v >= 60) then do
       local ___conditional___=(v - 60 | 0);
       do
          if ___conditional___ = 0 then do
             if (last_index == 0) then do
-              throw [
+              throw {
                     __Error$2,
-                    --[[ Illegal_semver ]]Block.__(6, [str]),
+                    --[[ Illegal_semver ]]Block.__(6, {str}),
                     loc
-                  ];
+                  };
             end
              end 
-            match = str[1] == "=" and --[[ tuple ]][
+            match = str[1] == "=" and --[[ tuple ]]{
                 --[[ Le ]]17049,
                 semantic_version_parse(str, 2, last_index)
-              ] or --[[ tuple ]][
+              } or --[[ tuple ]]{
                 --[[ Lt ]]17064,
                 semantic_version_parse(str, 1, last_index)
-              ];end else 
+              };end else 
          if ___conditional___ = 1 then do
             exit = 1;end else 
          if ___conditional___ = 2 then do
             if (last_index == 0) then do
-              throw [
+              throw {
                     __Error$2,
-                    --[[ Illegal_semver ]]Block.__(6, [str]),
+                    --[[ Illegal_semver ]]Block.__(6, {str}),
                     loc
-                  ];
+                  };
             end
              end 
-            match = str[1] == "=" and --[[ tuple ]][
+            match = str[1] == "=" and --[[ tuple ]]{
                 --[[ Ge ]]15934,
                 semantic_version_parse(str, 2, last_index)
-              ] or --[[ tuple ]][
+              } or --[[ tuple ]]{
                 --[[ Gt ]]15949,
                 semantic_version_parse(str, 1, last_index)
-              ];end else 
+              };end else 
          do end end end end
         
       end
@@ -12706,16 +12706,16 @@ function semver(loc, lhs, str) do
       exit = 1;
     end end  end 
   end else do
-    match = --[[ tuple ]][
+    match = --[[ tuple ]]{
       --[[ Compatible ]]785637236,
       semantic_version_parse(str, 1, last_index)
-    ];
+    };
   end end 
   if (exit == 1) then do
-    match = --[[ tuple ]][
+    match = --[[ tuple ]]{
       --[[ Exact ]]172069535,
       semantic_version_parse(str, 0, last_index)
-    ];
+    };
   end
    end 
   version = match[1][0];
@@ -12762,13 +12762,13 @@ function pp_directive_value(fmt, x) do
        if ___conditional___ = 2--[[ Dir_int ]] then do
           return Format.pp_print_int(fmt, x[0]);end end end 
        if ___conditional___ = 3--[[ Dir_string ]] then do
-          return Curry._1(Format.fprintf(fmt, --[[ Format ]][
-                          --[[ Caml_string ]]Block.__(3, [
+          return Curry._1(Format.fprintf(fmt, --[[ Format ]]{
+                          --[[ Caml_string ]]Block.__(3, {
                               --[[ No_padding ]]0,
                               --[[ End_of_format ]]0
-                            ]),
+                            }),
                           "%S"
-                        ]), x[0]);end end end 
+                        }), x[0]);end end end 
        do
       
     end
@@ -12777,32 +12777,32 @@ end end
 
 function list_variables(fmt) do
   return Hashtbl.iter((function (s, dir_value) do
-                return Curry._3(Format.fprintf(fmt, --[[ Format ]][
-                                --[[ Formatting_gen ]]Block.__(18, [
-                                    --[[ Open_box ]]Block.__(1, [--[[ Format ]][
+                return Curry._3(Format.fprintf(fmt, --[[ Format ]]{
+                                --[[ Formatting_gen ]]Block.__(18, {
+                                    --[[ Open_box ]]Block.__(1, {--[[ Format ]]{
                                           --[[ End_of_format ]]0,
                                           ""
-                                        ]]),
-                                    --[[ String ]]Block.__(2, [
+                                        }}),
+                                    --[[ String ]]Block.__(2, {
                                         --[[ No_padding ]]0,
-                                        --[[ Formatting_lit ]]Block.__(17, [
-                                            --[[ Break ]]Block.__(0, [
+                                        --[[ Formatting_lit ]]Block.__(17, {
+                                            --[[ Break ]]Block.__(0, {
                                                 "@ ",
                                                 1,
                                                 0
-                                              ]),
-                                            --[[ Alpha ]]Block.__(15, [--[[ Formatting_lit ]]Block.__(17, [
+                                              }),
+                                            --[[ Alpha ]]Block.__(15, {--[[ Formatting_lit ]]Block.__(17, {
                                                     --[[ Close_box ]]0,
-                                                    --[[ Formatting_lit ]]Block.__(17, [
+                                                    --[[ Formatting_lit ]]Block.__(17, {
                                                         --[[ Flush_newline ]]4,
                                                         --[[ End_of_format ]]0
-                                                      ])
-                                                  ])])
-                                          ])
-                                      ])
-                                  ]),
+                                                      })
+                                                  })})
+                                          })
+                                      })
+                                  }),
                                 "@[%s@ %a@]@."
-                              ]), s, pp_directive_value, dir_value);
+                              }), s, pp_directive_value, dir_value);
               end end), directive_built_in_values);
 end end
 
@@ -12842,25 +12842,25 @@ function query(loc, str) do
       end
       catch (exn$1)do
         if (exn$1 == Caml_builtin_exceptions.not_found) then do
-          return --[[ Dir_bool ]]Block.__(0, [false]);
+          return --[[ Dir_bool ]]Block.__(0, {false});
         end else do
           throw exn$1;
         end end 
       end
       if (exit == 2) then do
         try do
-          return --[[ Dir_bool ]]Block.__(0, [Pervasives.bool_of_string(v$1)]);
+          return --[[ Dir_bool ]]Block.__(0, {Pervasives.bool_of_string(v$1)});
         end
         catch (exn$2)do
           try do
-            return --[[ Dir_int ]]Block.__(2, [Caml_format.caml_int_of_string(v$1)]);
+            return --[[ Dir_int ]]Block.__(2, {Caml_format.caml_int_of_string(v$1)});
           end
           catch (exn$3)do
             try do
-              return --[[ Dir_float ]]Block.__(1, [Caml_format.caml_float_of_string(v$1)]);
+              return --[[ Dir_float ]]Block.__(1, {Caml_format.caml_float_of_string(v$1)});
             end
             catch (exn$4)do
-              return --[[ Dir_string ]]Block.__(3, [v$1]);
+              return --[[ Dir_string ]]Block.__(3, {v$1});
             end
           end
         end
@@ -12871,7 +12871,7 @@ function query(loc, str) do
     end end 
   end
   if (typeof v == "number") then do
-    return --[[ Dir_bool ]]Block.__(0, [false]);
+    return --[[ Dir_bool ]]Block.__(0, {false});
   end else do
     return v;
   end end 
@@ -12881,18 +12881,18 @@ function define_key_value(key, v) do
   if (#key ~= 0 and Char.uppercase(Caml_string.get(key, 0)) == Caml_string.get(key, 0)) then do
     v$1;
     try do
-      v$1 = --[[ Dir_bool ]]Block.__(0, [Pervasives.bool_of_string(v)]);
+      v$1 = --[[ Dir_bool ]]Block.__(0, {Pervasives.bool_of_string(v)});
     end
     catch (exn)do
       try do
-        v$1 = --[[ Dir_int ]]Block.__(2, [Caml_format.caml_int_of_string(v)]);
+        v$1 = --[[ Dir_int ]]Block.__(2, {Caml_format.caml_int_of_string(v)});
       end
       catch (exn$1)do
         try do
-          v$1 = --[[ Dir_float ]]Block.__(1, [Caml_format.caml_float_of_string(v)]);
+          v$1 = --[[ Dir_float ]]Block.__(1, {Caml_format.caml_float_of_string(v)});
         end
         catch (exn$2)do
-          v$1 = --[[ Dir_string ]]Block.__(3, [v]);
+          v$1 = --[[ Dir_string ]]Block.__(3, {v});
         end
       end
     end
@@ -12908,16 +12908,16 @@ function value_of_token(loc, t) do
     local ___conditional___=(t);
     do
        if ___conditional___ = 29--[[ FALSE ]] then do
-          return --[[ Dir_bool ]]Block.__(0, [false]);end end end 
+          return --[[ Dir_bool ]]Block.__(0, {false});end end end 
        if ___conditional___ = 91--[[ TRUE ]] then do
-          return --[[ Dir_bool ]]Block.__(0, [true]);end end end 
+          return --[[ Dir_bool ]]Block.__(0, {true});end end end 
        do
       else do
-        throw [
+        throw {
               __Error$2,
               --[[ Unexpected_token_in_conditional ]]4,
               loc
-            ];
+            };
         end end
         
     end
@@ -12925,20 +12925,20 @@ function value_of_token(loc, t) do
     local ___conditional___=(t.tag | 0);
     do
        if ___conditional___ = 1--[[ FLOAT ]] then do
-          return --[[ Dir_float ]]Block.__(1, [Caml_format.caml_float_of_string(t[0])]);end end end 
+          return --[[ Dir_float ]]Block.__(1, {Caml_format.caml_float_of_string(t[0])});end end end 
        if ___conditional___ = 7--[[ INT ]] then do
-          return --[[ Dir_int ]]Block.__(2, [t[0]]);end end end 
+          return --[[ Dir_int ]]Block.__(2, {t[0]});end end end 
        if ___conditional___ = 16--[[ STRING ]] then do
-          return --[[ Dir_string ]]Block.__(3, [t[0][0]]);end end end 
+          return --[[ Dir_string ]]Block.__(3, {t[0][0]});end end end 
        if ___conditional___ = 17--[[ UIDENT ]] then do
           return query(loc, t[0]);end end end 
        do
       else do
-        throw [
+        throw {
               __Error$2,
               --[[ Unexpected_token_in_conditional ]]4,
               loc
-            ];
+            };
         end end
         
     end
@@ -12962,11 +12962,11 @@ function directive_parse(token_with_comments, lexbuf) do
           local ___conditional___=(t);
           do
              if ___conditional___ = 25--[[ EOF ]] then do
-                throw [
+                throw {
                       __Error$2,
                       --[[ Unterminated_if ]]2,
                       curr(lexbuf)
-                    ];end end end 
+                    };end end end 
              if ___conditional___ = 100--[[ EOL ]] then do
                 _param = --[[ () ]]0;
                 continue ;end end end 
@@ -12995,14 +12995,14 @@ function directive_parse(token_with_comments, lexbuf) do
   end end;
   push = function (e) do
     if (look_ahead.contents ~= undefined) then do
-      throw [
+      throw {
             Caml_builtin_exceptions.assert_failure,
-            --[[ tuple ]][
+            --[[ tuple ]]{
               "lexer.mll",
               312,
               4
-            ]
-          ];
+            }
+          };
     end
      end 
     look_ahead.contents = e;
@@ -13039,26 +13039,26 @@ function directive_parse(token_with_comments, lexbuf) do
                   return semver(curr_loc, lhs[0], rhs[0]);
                 end end 
                 if (exit$1 == 3) then do
-                  throw [
+                  throw {
                         __Error$2,
-                        --[[ Conditional_expr_expected_type ]]Block.__(7, [
+                        --[[ Conditional_expr_expected_type ]]Block.__(7, {
                             --[[ Dir_type_string ]]3,
                             type_of_directive(lhs)
-                          ]),
+                          }),
                         curr(lexbuf)
-                      ];
+                      };
                 end
                  end 
               end
                end 
-              throw [
+              throw {
                     __Error$2,
-                    --[[ Conditional_expr_expected_type ]]Block.__(7, [
+                    --[[ Conditional_expr_expected_type ]]Block.__(7, {
                         --[[ Dir_type_string ]]3,
                         type_of_directive(lhs)
-                      ]),
+                      }),
                     curr(lexbuf)
-                  ];
+                  };
             end else do
               return true;
             end end end else 
@@ -13110,14 +13110,14 @@ function directive_parse(token_with_comments, lexbuf) do
         exit$2 = 2;
       end end  end 
       if (exit$2 == 2) then do
-        throw [
+        throw {
               Caml_builtin_exceptions.assert_failure,
-              --[[ tuple ]][
+              --[[ tuple ]]{
                 "lexer.mll",
                 331,
                 17
-              ]
-            ];
+              }
+            };
       end
        end 
       curr_loc$1 = curr(lexbuf);
@@ -13158,30 +13158,30 @@ function directive_parse(token_with_comments, lexbuf) do
             match = token(--[[ () ]]0);
             if (typeof match == "number") then do
               if (match ~= 81) then do
-                throw [
+                throw {
                       __Error$2,
                       --[[ Unterminated_paren_in_conditional ]]1,
                       curr(lexbuf)
-                    ];
+                    };
               end
                end 
               return v;
             end else do
-              throw [
+              throw {
                     __Error$2,
                     --[[ Unterminated_paren_in_conditional ]]1,
                     curr(lexbuf)
-                  ];
+                  };
             end end end end end 
          if ___conditional___ = 91--[[ TRUE ]] then do
             return true;end end end 
          do
         else do
-          throw [
+          throw {
                 __Error$2,
                 --[[ Unexpected_token_in_conditional ]]4,
                 curr_loc
-              ];
+              };
           end end
           
       end
@@ -13190,21 +13190,21 @@ function directive_parse(token_with_comments, lexbuf) do
       do
          if ___conditional___ = 1--[[ FLOAT ]] then do
             return token_op(calc, (function (e) do
-                          throw [
+                          throw {
                                 __Error$2,
-                                --[[ Conditional_expr_expected_type ]]Block.__(7, [
+                                --[[ Conditional_expr_expected_type ]]Block.__(7, {
                                     --[[ Dir_type_bool ]]0,
                                     --[[ Dir_type_float ]]1
-                                  ]),
+                                  }),
                                 curr_loc
-                              ];
-                        end end), --[[ Dir_float ]]Block.__(1, [Caml_format.caml_float_of_string(curr_token[0])]));end end end 
+                              };
+                        end end), --[[ Dir_float ]]Block.__(1, {Caml_format.caml_float_of_string(curr_token[0])}));end end end 
          if ___conditional___ = 7--[[ INT ]] then do
             v$1 = curr_token[0];
             return token_op(calc, (function (e) do
                           push(e);
                           return v$1 ~= 0;
-                        end end), --[[ Dir_int ]]Block.__(2, [v$1]));end end end 
+                        end end), --[[ Dir_int ]]Block.__(2, {v$1}));end end end 
          if ___conditional___ = 11--[[ LIDENT ]] then do
             r = curr_token[0];
             local ___conditional___=(r);
@@ -13213,22 +13213,22 @@ function directive_parse(token_with_comments, lexbuf) do
                or ___conditional___ = "undefined"
                do end
               else do
-                throw [
+                throw {
                       __Error$2,
                       --[[ Unexpected_token_in_conditional ]]4,
                       curr_loc
-                    ];
+                    };
                 end end
                 
             end
             t = token(--[[ () ]]0);
             loc = curr(lexbuf);
             if (typeof t == "number") then do
-              throw [
+              throw {
                     __Error$2,
                     --[[ Unexpected_token_in_conditional ]]4,
                     loc
-                  ];
+                  };
             end else if (t.tag == --[[ UIDENT ]]17) then do
               s = t[0];
               if (calc) then do
@@ -13241,23 +13241,23 @@ function directive_parse(token_with_comments, lexbuf) do
                 return true;
               end end 
             end else do
-              throw [
+              throw {
                     __Error$2,
                     --[[ Unexpected_token_in_conditional ]]4,
                     loc
-                  ];
+                  };
             end end  end end else 
          if ___conditional___ = 16--[[ STRING ]] then do
             return token_op(calc, (function (e) do
-                          throw [
+                          throw {
                                 __Error$2,
-                                --[[ Conditional_expr_expected_type ]]Block.__(7, [
+                                --[[ Conditional_expr_expected_type ]]Block.__(7, {
                                     --[[ Dir_type_bool ]]0,
                                     --[[ Dir_type_string ]]3
-                                  ]),
+                                  }),
                                 curr_loc
-                              ];
-                        end end), --[[ Dir_string ]]Block.__(3, [curr_token[0][0]]));end end end 
+                              };
+                        end end), --[[ Dir_string ]]Block.__(3, {curr_token[0][0]}));end end end 
          if ___conditional___ = 17--[[ UIDENT ]] then do
             value_v = query(curr_loc, curr_token[0]);
             return token_op(calc, (function (e) do
@@ -13267,22 +13267,22 @@ function directive_parse(token_with_comments, lexbuf) do
                           end
                            end 
                           ty = type_of_directive(value_v);
-                          throw [
+                          throw {
                                 __Error$2,
-                                --[[ Conditional_expr_expected_type ]]Block.__(7, [
+                                --[[ Conditional_expr_expected_type ]]Block.__(7, {
                                     --[[ Dir_type_bool ]]0,
                                     ty
-                                  ]),
+                                  }),
                                 curr_loc
-                              ];
+                              };
                         end end), value_v);end end end 
          do
         else do
-          throw [
+          throw {
                 __Error$2,
                 --[[ Unexpected_token_in_conditional ]]4,
                 curr_loc
-              ];
+              };
           end end
           
       end
@@ -13307,20 +13307,20 @@ function directive_parse(token_with_comments, lexbuf) do
   match = token(--[[ () ]]0);
   if (typeof match == "number") then do
     if (match ~= 88) then do
-      throw [
+      throw {
             __Error$2,
             --[[ Expect_hash_then_in_conditional ]]5,
             curr(lexbuf)
-          ];
+          };
     end
      end 
     return v;
   end else do
-    throw [
+    throw {
           __Error$2,
           --[[ Expect_hash_then_in_conditional ]]5,
           curr(lexbuf)
-        ];
+        };
   end end 
 end end
 
@@ -13332,343 +13332,343 @@ function is_elif(i) do
   end end 
 end end
 
-keyword_table = create_hashtable(149, --[[ :: ]][
-      --[[ tuple ]][
+keyword_table = create_hashtable(149, --[[ :: ]]{
+      --[[ tuple ]]{
         "and",
         --[[ AND ]]2
-      ],
-      --[[ :: ]][
-        --[[ tuple ]][
+      },
+      --[[ :: ]]{
+        --[[ tuple ]]{
           "as",
           --[[ AS ]]3
-        ],
-        --[[ :: ]][
-          --[[ tuple ]][
+        },
+        --[[ :: ]]{
+          --[[ tuple ]]{
             "assert",
             --[[ ASSERT ]]4
-          ],
-          --[[ :: ]][
-            --[[ tuple ]][
+          },
+          --[[ :: ]]{
+            --[[ tuple ]]{
               "begin",
               --[[ BEGIN ]]10
-            ],
-            --[[ :: ]][
-              --[[ tuple ]][
+            },
+            --[[ :: ]]{
+              --[[ tuple ]]{
                 "class",
                 --[[ CLASS ]]11
-              ],
-              --[[ :: ]][
-                --[[ tuple ]][
+              },
+              --[[ :: ]]{
+                --[[ tuple ]]{
                   "constraint",
                   --[[ CONSTRAINT ]]17
-                ],
-                --[[ :: ]][
-                  --[[ tuple ]][
+                },
+                --[[ :: ]]{
+                  --[[ tuple ]]{
                     "do",
                     --[[ DO ]]18
-                  ],
-                  --[[ :: ]][
-                    --[[ tuple ]][
+                  },
+                  --[[ :: ]]{
+                    --[[ tuple ]]{
                       "done",
                       --[[ DONE ]]19
-                    ],
-                    --[[ :: ]][
-                      --[[ tuple ]][
+                    },
+                    --[[ :: ]]{
+                      --[[ tuple ]]{
                         "downto",
                         --[[ DOWNTO ]]22
-                      ],
-                      --[[ :: ]][
-                        --[[ tuple ]][
+                      },
+                      --[[ :: ]]{
+                        --[[ tuple ]]{
                           "else",
                           --[[ ELSE ]]23
-                        ],
-                        --[[ :: ]][
-                          --[[ tuple ]][
+                        },
+                        --[[ :: ]]{
+                          --[[ tuple ]]{
                             "end",
                             --[[ END ]]24
-                          ],
-                          --[[ :: ]][
-                            --[[ tuple ]][
+                          },
+                          --[[ :: ]]{
+                            --[[ tuple ]]{
                               "exception",
                               --[[ EXCEPTION ]]27
-                            ],
-                            --[[ :: ]][
-                              --[[ tuple ]][
+                            },
+                            --[[ :: ]]{
+                              --[[ tuple ]]{
                                 "external",
                                 --[[ EXTERNAL ]]28
-                              ],
-                              --[[ :: ]][
-                                --[[ tuple ]][
+                              },
+                              --[[ :: ]]{
+                                --[[ tuple ]]{
                                   "false",
                                   --[[ FALSE ]]29
-                                ],
-                                --[[ :: ]][
-                                  --[[ tuple ]][
+                                },
+                                --[[ :: ]]{
+                                  --[[ tuple ]]{
                                     "for",
                                     --[[ FOR ]]30
-                                  ],
-                                  --[[ :: ]][
-                                    --[[ tuple ]][
+                                  },
+                                  --[[ :: ]]{
+                                    --[[ tuple ]]{
                                       "fun",
                                       --[[ FUN ]]31
-                                    ],
-                                    --[[ :: ]][
-                                      --[[ tuple ]][
+                                    },
+                                    --[[ :: ]]{
+                                      --[[ tuple ]]{
                                         "function",
                                         --[[ FUNCTION ]]32
-                                      ],
-                                      --[[ :: ]][
-                                        --[[ tuple ]][
+                                      },
+                                      --[[ :: ]]{
+                                        --[[ tuple ]]{
                                           "functor",
                                           --[[ FUNCTOR ]]33
-                                        ],
-                                        --[[ :: ]][
-                                          --[[ tuple ]][
+                                        },
+                                        --[[ :: ]]{
+                                          --[[ tuple ]]{
                                             "if",
                                             --[[ IF ]]37
-                                          ],
-                                          --[[ :: ]][
-                                            --[[ tuple ]][
+                                          },
+                                          --[[ :: ]]{
+                                            --[[ tuple ]]{
                                               "in",
                                               --[[ IN ]]38
-                                            ],
-                                            --[[ :: ]][
-                                              --[[ tuple ]][
+                                            },
+                                            --[[ :: ]]{
+                                              --[[ tuple ]]{
                                                 "include",
                                                 --[[ INCLUDE ]]39
-                                              ],
-                                              --[[ :: ]][
-                                                --[[ tuple ]][
+                                              },
+                                              --[[ :: ]]{
+                                                --[[ tuple ]]{
                                                   "inherit",
                                                   --[[ INHERIT ]]40
-                                                ],
-                                                --[[ :: ]][
-                                                  --[[ tuple ]][
+                                                },
+                                                --[[ :: ]]{
+                                                  --[[ tuple ]]{
                                                     "initializer",
                                                     --[[ INITIALIZER ]]41
-                                                  ],
-                                                  --[[ :: ]][
-                                                    --[[ tuple ]][
+                                                  },
+                                                  --[[ :: ]]{
+                                                    --[[ tuple ]]{
                                                       "lazy",
                                                       --[[ LAZY ]]42
-                                                    ],
-                                                    --[[ :: ]][
-                                                      --[[ tuple ]][
+                                                    },
+                                                    --[[ :: ]]{
+                                                      --[[ tuple ]]{
                                                         "let",
                                                         --[[ LET ]]53
-                                                      ],
-                                                      --[[ :: ]][
-                                                        --[[ tuple ]][
+                                                      },
+                                                      --[[ :: ]]{
+                                                        --[[ tuple ]]{
                                                           "match",
                                                           --[[ MATCH ]]58
-                                                        ],
-                                                        --[[ :: ]][
-                                                          --[[ tuple ]][
+                                                        },
+                                                        --[[ :: ]]{
+                                                          --[[ tuple ]]{
                                                             "method",
                                                             --[[ METHOD ]]59
-                                                          ],
-                                                          --[[ :: ]][
-                                                            --[[ tuple ]][
+                                                          },
+                                                          --[[ :: ]]{
+                                                            --[[ tuple ]]{
                                                               "module",
                                                               --[[ MODULE ]]63
-                                                            ],
-                                                            --[[ :: ]][
-                                                              --[[ tuple ]][
+                                                            },
+                                                            --[[ :: ]]{
+                                                              --[[ tuple ]]{
                                                                 "mutable",
                                                                 --[[ MUTABLE ]]64
-                                                              ],
-                                                              --[[ :: ]][
-                                                                --[[ tuple ]][
+                                                              },
+                                                              --[[ :: ]]{
+                                                                --[[ tuple ]]{
                                                                   "new",
                                                                   --[[ NEW ]]65
-                                                                ],
-                                                                --[[ :: ]][
-                                                                  --[[ tuple ]][
+                                                                },
+                                                                --[[ :: ]]{
+                                                                  --[[ tuple ]]{
                                                                     "nonrec",
                                                                     --[[ NONREC ]]66
-                                                                  ],
-                                                                  --[[ :: ]][
-                                                                    --[[ tuple ]][
+                                                                  },
+                                                                  --[[ :: ]]{
+                                                                    --[[ tuple ]]{
                                                                       "object",
                                                                       --[[ OBJECT ]]67
-                                                                    ],
-                                                                    --[[ :: ]][
-                                                                      --[[ tuple ]][
+                                                                    },
+                                                                    --[[ :: ]]{
+                                                                      --[[ tuple ]]{
                                                                         "of",
                                                                         --[[ OF ]]68
-                                                                      ],
-                                                                      --[[ :: ]][
-                                                                        --[[ tuple ]][
+                                                                      },
+                                                                      --[[ :: ]]{
+                                                                        --[[ tuple ]]{
                                                                           "open",
                                                                           --[[ OPEN ]]69
-                                                                        ],
-                                                                        --[[ :: ]][
-                                                                          --[[ tuple ]][
+                                                                        },
+                                                                        --[[ :: ]]{
+                                                                          --[[ tuple ]]{
                                                                             "or",
                                                                             --[[ OR ]]70
-                                                                          ],
-                                                                          --[[ :: ]][
-                                                                            --[[ tuple ]][
+                                                                          },
+                                                                          --[[ :: ]]{
+                                                                            --[[ tuple ]]{
                                                                               "private",
                                                                               --[[ PRIVATE ]]75
-                                                                            ],
-                                                                            --[[ :: ]][
-                                                                              --[[ tuple ]][
+                                                                            },
+                                                                            --[[ :: ]]{
+                                                                              --[[ tuple ]]{
                                                                                 "rec",
                                                                                 --[[ REC ]]80
-                                                                              ],
-                                                                              --[[ :: ]][
-                                                                                --[[ tuple ]][
+                                                                              },
+                                                                              --[[ :: ]]{
+                                                                                --[[ tuple ]]{
                                                                                   "sig",
                                                                                   --[[ SIG ]]85
-                                                                                ],
-                                                                                --[[ :: ]][
-                                                                                  --[[ tuple ]][
+                                                                                },
+                                                                                --[[ :: ]]{
+                                                                                  --[[ tuple ]]{
                                                                                     "struct",
                                                                                     --[[ STRUCT ]]87
-                                                                                  ],
-                                                                                  --[[ :: ]][
-                                                                                    --[[ tuple ]][
+                                                                                  },
+                                                                                  --[[ :: ]]{
+                                                                                    --[[ tuple ]]{
                                                                                       "then",
                                                                                       --[[ THEN ]]88
-                                                                                    ],
-                                                                                    --[[ :: ]][
-                                                                                      --[[ tuple ]][
+                                                                                    },
+                                                                                    --[[ :: ]]{
+                                                                                      --[[ tuple ]]{
                                                                                         "to",
                                                                                         --[[ TO ]]90
-                                                                                      ],
-                                                                                      --[[ :: ]][
-                                                                                        --[[ tuple ]][
+                                                                                      },
+                                                                                      --[[ :: ]]{
+                                                                                        --[[ tuple ]]{
                                                                                           "true",
                                                                                           --[[ TRUE ]]91
-                                                                                        ],
-                                                                                        --[[ :: ]][
-                                                                                          --[[ tuple ]][
+                                                                                        },
+                                                                                        --[[ :: ]]{
+                                                                                          --[[ tuple ]]{
                                                                                             "try",
                                                                                             --[[ TRY ]]92
-                                                                                          ],
-                                                                                          --[[ :: ]][
-                                                                                            --[[ tuple ]][
+                                                                                          },
+                                                                                          --[[ :: ]]{
+                                                                                            --[[ tuple ]]{
                                                                                               "type",
                                                                                               --[[ TYPE ]]93
-                                                                                            ],
-                                                                                            --[[ :: ]][
-                                                                                              --[[ tuple ]][
+                                                                                            },
+                                                                                            --[[ :: ]]{
+                                                                                              --[[ tuple ]]{
                                                                                                 "val",
                                                                                                 --[[ VAL ]]95
-                                                                                              ],
-                                                                                              --[[ :: ]][
-                                                                                                --[[ tuple ]][
+                                                                                              },
+                                                                                              --[[ :: ]]{
+                                                                                                --[[ tuple ]]{
                                                                                                   "virtual",
                                                                                                   --[[ VIRTUAL ]]96
-                                                                                                ],
-                                                                                                --[[ :: ]][
-                                                                                                  --[[ tuple ]][
+                                                                                                },
+                                                                                                --[[ :: ]]{
+                                                                                                  --[[ tuple ]]{
                                                                                                     "when",
                                                                                                     --[[ WHEN ]]97
-                                                                                                  ],
-                                                                                                  --[[ :: ]][
-                                                                                                    --[[ tuple ]][
+                                                                                                  },
+                                                                                                  --[[ :: ]]{
+                                                                                                    --[[ tuple ]]{
                                                                                                       "while",
                                                                                                       --[[ WHILE ]]98
-                                                                                                    ],
-                                                                                                    --[[ :: ]][
-                                                                                                      --[[ tuple ]][
+                                                                                                    },
+                                                                                                    --[[ :: ]]{
+                                                                                                      --[[ tuple ]]{
                                                                                                         "with",
                                                                                                         --[[ WITH ]]99
-                                                                                                      ],
-                                                                                                      --[[ :: ]][
-                                                                                                        --[[ tuple ]][
+                                                                                                      },
+                                                                                                      --[[ :: ]]{
+                                                                                                        --[[ tuple ]]{
                                                                                                           "mod",
-                                                                                                          --[[ INFIXOP3 ]]Block.__(5, ["mod"])
-                                                                                                        ],
-                                                                                                        --[[ :: ]][
-                                                                                                          --[[ tuple ]][
+                                                                                                          --[[ INFIXOP3 ]]Block.__(5, {"mod"})
+                                                                                                        },
+                                                                                                        --[[ :: ]]{
+                                                                                                          --[[ tuple ]]{
                                                                                                             "land",
-                                                                                                            --[[ INFIXOP3 ]]Block.__(5, ["land"])
-                                                                                                          ],
-                                                                                                          --[[ :: ]][
-                                                                                                            --[[ tuple ]][
+                                                                                                            --[[ INFIXOP3 ]]Block.__(5, {"land"})
+                                                                                                          },
+                                                                                                          --[[ :: ]]{
+                                                                                                            --[[ tuple ]]{
                                                                                                               "lor",
-                                                                                                              --[[ INFIXOP3 ]]Block.__(5, ["lor"])
-                                                                                                            ],
-                                                                                                            --[[ :: ]][
-                                                                                                              --[[ tuple ]][
+                                                                                                              --[[ INFIXOP3 ]]Block.__(5, {"lor"})
+                                                                                                            },
+                                                                                                            --[[ :: ]]{
+                                                                                                              --[[ tuple ]]{
                                                                                                                 "lxor",
-                                                                                                                --[[ INFIXOP3 ]]Block.__(5, ["lxor"])
-                                                                                                              ],
-                                                                                                              --[[ :: ]][
-                                                                                                                --[[ tuple ]][
+                                                                                                                --[[ INFIXOP3 ]]Block.__(5, {"lxor"})
+                                                                                                              },
+                                                                                                              --[[ :: ]]{
+                                                                                                                --[[ tuple ]]{
                                                                                                                   "lsl",
-                                                                                                                  --[[ INFIXOP4 ]]Block.__(6, ["lsl"])
-                                                                                                                ],
-                                                                                                                --[[ :: ]][
-                                                                                                                  --[[ tuple ]][
+                                                                                                                  --[[ INFIXOP4 ]]Block.__(6, {"lsl"})
+                                                                                                                },
+                                                                                                                --[[ :: ]]{
+                                                                                                                  --[[ tuple ]]{
                                                                                                                     "lsr",
-                                                                                                                    --[[ INFIXOP4 ]]Block.__(6, ["lsr"])
-                                                                                                                  ],
-                                                                                                                  --[[ :: ]][
-                                                                                                                    --[[ tuple ]][
+                                                                                                                    --[[ INFIXOP4 ]]Block.__(6, {"lsr"})
+                                                                                                                  },
+                                                                                                                  --[[ :: ]]{
+                                                                                                                    --[[ tuple ]]{
                                                                                                                       "asr",
-                                                                                                                      --[[ INFIXOP4 ]]Block.__(6, ["asr"])
-                                                                                                                    ],
+                                                                                                                      --[[ INFIXOP4 ]]Block.__(6, {"asr"})
+                                                                                                                    },
                                                                                                                     --[[ [] ]]0
-                                                                                                                  ]
-                                                                                                                ]
-                                                                                                              ]
-                                                                                                            ]
-                                                                                                          ]
-                                                                                                        ]
-                                                                                                      ]
-                                                                                                    ]
-                                                                                                  ]
-                                                                                                ]
-                                                                                              ]
-                                                                                            ]
-                                                                                          ]
-                                                                                        ]
-                                                                                      ]
-                                                                                    ]
-                                                                                  ]
-                                                                                ]
-                                                                              ]
-                                                                            ]
-                                                                          ]
-                                                                        ]
-                                                                      ]
-                                                                    ]
-                                                                  ]
-                                                                ]
-                                                              ]
-                                                            ]
-                                                          ]
-                                                        ]
-                                                      ]
-                                                    ]
-                                                  ]
-                                                ]
-                                              ]
-                                            ]
-                                          ]
-                                        ]
-                                      ]
-                                    ]
-                                  ]
-                                ]
-                              ]
-                            ]
-                          ]
-                        ]
-                      ]
-                    ]
-                  ]
-                ]
-              ]
-            ]
-          ]
-        ]
-      ]
-    ]);
+                                                                                                                  }
+                                                                                                                }
+                                                                                                              }
+                                                                                                            }
+                                                                                                          }
+                                                                                                        }
+                                                                                                      }
+                                                                                                    }
+                                                                                                  }
+                                                                                                }
+                                                                                              }
+                                                                                            }
+                                                                                          }
+                                                                                        }
+                                                                                      }
+                                                                                    }
+                                                                                  }
+                                                                                }
+                                                                              }
+                                                                            }
+                                                                          }
+                                                                        }
+                                                                      }
+                                                                    }
+                                                                  }
+                                                                }
+                                                              }
+                                                            }
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    });
 
 initial_string_buffer = Caml_bytes.caml_create_bytes(256);
 
@@ -13745,10 +13745,10 @@ end;
 
 function with_comment_buffer(comment, lexbuf) do
   start_loc = curr(lexbuf);
-  comment_start_loc.contents = --[[ :: ]][
+  comment_start_loc.contents = --[[ :: ]]{
     start_loc,
     --[[ [] ]]0
-  ];
+  };
   reset_string_buffer(--[[ () ]]0);
   end_loc = Curry._1(comment, lexbuf);
   s = get_stored_string(--[[ () ]]0);
@@ -13761,10 +13761,10 @@ function with_comment_buffer(comment, lexbuf) do
     loc_end: loc_loc_end,
     loc_ghost: loc_loc_ghost
   end;
-  return --[[ tuple ]][
+  return --[[ tuple ]]{
           s,
           loc
-        ];
+        };
 end end
 
 function char_for_backslash(c) do
@@ -13802,11 +13802,11 @@ function char_for_decimal_code(lexbuf, i) do
     if (comment_start_loc.contents ~= --[[ [] ]]0) then do
       return --[[ "x" ]]120;
     end else do
-      throw [
+      throw {
             __Error$2,
-            --[[ Illegal_escape ]]Block.__(1, [Lexing.lexeme(lexbuf)]),
+            --[[ Illegal_escape ]]Block.__(1, {Lexing.lexeme(lexbuf)}),
             curr(lexbuf)
-          ];
+          };
     end end 
   end else do
     return Char.chr(c);
@@ -13874,11 +13874,11 @@ function get_label_name(lexbuf) do
   s = Lexing.lexeme(lexbuf);
   name = __String.sub(s, 1, #s - 2 | 0);
   if (Hashtbl.mem(keyword_table, name)) then do
-    throw [
+    throw {
           __Error$2,
-          --[[ Keyword_as_label ]]Block.__(4, [name]),
+          --[[ Keyword_as_label ]]Block.__(4, {name}),
           curr(lexbuf)
-        ];
+        };
   end
    end 
   return name;
@@ -13909,18 +13909,18 @@ comment_list = do
 end;
 
 function add_comment(com) do
-  comment_list.contents = --[[ :: ]][
+  comment_list.contents = --[[ :: ]]{
     com,
     comment_list.contents
-  ];
+  };
   return --[[ () ]]0;
 end end
 
 function add_docstring_comment(ds) do
-  return add_comment(--[[ tuple ]][
+  return add_comment(--[[ tuple ]]{
               ds.ds_body,
               ds.ds_loc
-            ]);
+            });
 end end
 
 function comments(param) do
@@ -13932,61 +13932,61 @@ function report_error$2(ppf, param) do
     local ___conditional___=(param);
     do
        if ___conditional___ = 0--[[ Unterminated_string ]] then do
-          return Format.fprintf(ppf, --[[ Format ]][
-                      --[[ String_literal ]]Block.__(11, [
+          return Format.fprintf(ppf, --[[ Format ]]{
+                      --[[ String_literal ]]Block.__(11, {
                           "String literal not terminated",
                           --[[ End_of_format ]]0
-                        ]),
+                        }),
                       "String literal not terminated"
-                    ]);end end end 
+                    });end end end 
        if ___conditional___ = 1--[[ Unterminated_paren_in_conditional ]] then do
-          return Format.fprintf(ppf, --[[ Format ]][
-                      --[[ String_literal ]]Block.__(11, [
+          return Format.fprintf(ppf, --[[ Format ]]{
+                      --[[ String_literal ]]Block.__(11, {
                           "Unterminated parens in conditional predicate",
                           --[[ End_of_format ]]0
-                        ]),
+                        }),
                       "Unterminated parens in conditional predicate"
-                    ]);end end end 
+                    });end end end 
        if ___conditional___ = 2--[[ Unterminated_if ]] then do
-          return Format.fprintf(ppf, --[[ Format ]][
-                      --[[ String_literal ]]Block.__(11, [
+          return Format.fprintf(ppf, --[[ Format ]]{
+                      --[[ String_literal ]]Block.__(11, {
                           "#if not terminated",
                           --[[ End_of_format ]]0
-                        ]),
+                        }),
                       "#if not terminated"
-                    ]);end end end 
+                    });end end end 
        if ___conditional___ = 3--[[ Unterminated_else ]] then do
-          return Format.fprintf(ppf, --[[ Format ]][
-                      --[[ String_literal ]]Block.__(11, [
+          return Format.fprintf(ppf, --[[ Format ]]{
+                      --[[ String_literal ]]Block.__(11, {
                           "#else not terminated",
                           --[[ End_of_format ]]0
-                        ]),
+                        }),
                       "#else not terminated"
-                    ]);end end end 
+                    });end end end 
        if ___conditional___ = 4--[[ Unexpected_token_in_conditional ]] then do
-          return Format.fprintf(ppf, --[[ Format ]][
-                      --[[ String_literal ]]Block.__(11, [
+          return Format.fprintf(ppf, --[[ Format ]]{
+                      --[[ String_literal ]]Block.__(11, {
                           "Unexpected token in conditional predicate",
                           --[[ End_of_format ]]0
-                        ]),
+                        }),
                       "Unexpected token in conditional predicate"
-                    ]);end end end 
+                    });end end end 
        if ___conditional___ = 5--[[ Expect_hash_then_in_conditional ]] then do
-          return Format.fprintf(ppf, --[[ Format ]][
-                      --[[ String_literal ]]Block.__(11, [
+          return Format.fprintf(ppf, --[[ Format ]]{
+                      --[[ String_literal ]]Block.__(11, {
                           "Expect `then` after conditional predicate",
                           --[[ End_of_format ]]0
-                        ]),
+                        }),
                       "Expect `then` after conditional predicate"
-                    ]);end end end 
+                    });end end end 
        if ___conditional___ = 6--[[ Unexpected_directive ]] then do
-          return Format.fprintf(ppf, --[[ Format ]][
-                      --[[ String_literal ]]Block.__(11, [
+          return Format.fprintf(ppf, --[[ Format ]]{
+                      --[[ String_literal ]]Block.__(11, {
                           "Unexpected directive",
                           --[[ End_of_format ]]0
-                        ]),
+                        }),
                       "Unexpected directive"
-                    ]);end end end 
+                    });end end end 
        do
       
     end
@@ -13994,111 +13994,111 @@ function report_error$2(ppf, param) do
     local ___conditional___=(param.tag | 0);
     do
        if ___conditional___ = 0--[[ Illegal_character ]] then do
-          return Curry._1(Format.fprintf(ppf, --[[ Format ]][
-                          --[[ String_literal ]]Block.__(11, [
+          return Curry._1(Format.fprintf(ppf, --[[ Format ]]{
+                          --[[ String_literal ]]Block.__(11, {
                               "Illegal character (",
-                              --[[ String ]]Block.__(2, [
+                              --[[ String ]]Block.__(2, {
                                   --[[ No_padding ]]0,
-                                  --[[ Char_literal ]]Block.__(12, [
+                                  --[[ Char_literal ]]Block.__(12, {
                                       --[[ ")" ]]41,
                                       --[[ End_of_format ]]0
-                                    ])
-                                ])
-                            ]),
+                                    })
+                                })
+                            }),
                           "Illegal character (%s)"
-                        ]), Char.escaped(param[0]));end end end 
+                        }), Char.escaped(param[0]));end end end 
        if ___conditional___ = 1--[[ Illegal_escape ]] then do
-          return Curry._1(Format.fprintf(ppf, --[[ Format ]][
-                          --[[ String_literal ]]Block.__(11, [
+          return Curry._1(Format.fprintf(ppf, --[[ Format ]]{
+                          --[[ String_literal ]]Block.__(11, {
                               "Illegal backslash escape in string or character (",
-                              --[[ String ]]Block.__(2, [
+                              --[[ String ]]Block.__(2, {
                                   --[[ No_padding ]]0,
-                                  --[[ Char_literal ]]Block.__(12, [
+                                  --[[ Char_literal ]]Block.__(12, {
                                       --[[ ")" ]]41,
                                       --[[ End_of_format ]]0
-                                    ])
-                                ])
-                            ]),
+                                    })
+                                })
+                            }),
                           "Illegal backslash escape in string or character (%s)"
-                        ]), param[0]);end end end 
+                        }), param[0]);end end end 
        if ___conditional___ = 2--[[ Unterminated_comment ]] then do
-          return Format.fprintf(ppf, --[[ Format ]][
-                      --[[ String_literal ]]Block.__(11, [
+          return Format.fprintf(ppf, --[[ Format ]]{
+                      --[[ String_literal ]]Block.__(11, {
                           "Comment not terminated",
                           --[[ End_of_format ]]0
-                        ]),
+                        }),
                       "Comment not terminated"
-                    ]);end end end 
+                    });end end end 
        if ___conditional___ = 3--[[ Unterminated_string_in_comment ]] then do
-          return Curry._2(Format.fprintf(ppf, --[[ Format ]][
-                          --[[ String_literal ]]Block.__(11, [
+          return Curry._2(Format.fprintf(ppf, --[[ Format ]]{
+                          --[[ String_literal ]]Block.__(11, {
                               "This comment contains an unterminated string literal",
-                              --[[ Formatting_lit ]]Block.__(17, [
+                              --[[ Formatting_lit ]]Block.__(17, {
                                   --[[ Flush_newline ]]4,
-                                  --[[ Alpha ]]Block.__(15, [--[[ String_literal ]]Block.__(11, [
+                                  --[[ Alpha ]]Block.__(15, {--[[ String_literal ]]Block.__(11, {
                                           "String literal begins here",
                                           --[[ End_of_format ]]0
-                                        ])])
-                                ])
-                            ]),
+                                        })})
+                                })
+                            }),
                           "This comment contains an unterminated string literal@.%aString literal begins here"
-                        ]), print_error, param[1]);end end end 
+                        }), print_error, param[1]);end end end 
        if ___conditional___ = 4--[[ Keyword_as_label ]] then do
-          return Curry._1(Format.fprintf(ppf, --[[ Format ]][
-                          --[[ Char_literal ]]Block.__(12, [
+          return Curry._1(Format.fprintf(ppf, --[[ Format ]]{
+                          --[[ Char_literal ]]Block.__(12, {
                               --[[ "`" ]]96,
-                              --[[ String ]]Block.__(2, [
+                              --[[ String ]]Block.__(2, {
                                   --[[ No_padding ]]0,
-                                  --[[ String_literal ]]Block.__(11, [
+                                  --[[ String_literal ]]Block.__(11, {
                                       "' is a keyword, it cannot be used as label name",
                                       --[[ End_of_format ]]0
-                                    ])
-                                ])
-                            ]),
+                                    })
+                                })
+                            }),
                           "`%s' is a keyword, it cannot be used as label name"
-                        ]), param[0]);end end end 
+                        }), param[0]);end end end 
        if ___conditional___ = 5--[[ Literal_overflow ]] then do
-          return Curry._1(Format.fprintf(ppf, --[[ Format ]][
-                          --[[ String_literal ]]Block.__(11, [
+          return Curry._1(Format.fprintf(ppf, --[[ Format ]]{
+                          --[[ String_literal ]]Block.__(11, {
                               "Integer literal exceeds the range of representable integers of type ",
-                              --[[ String ]]Block.__(2, [
+                              --[[ String ]]Block.__(2, {
                                   --[[ No_padding ]]0,
                                   --[[ End_of_format ]]0
-                                ])
-                            ]),
+                                })
+                            }),
                           "Integer literal exceeds the range of representable integers of type %s"
-                        ]), param[0]);end end end 
+                        }), param[0]);end end end 
        if ___conditional___ = 6--[[ Illegal_semver ]] then do
-          return Curry._1(Format.fprintf(ppf, --[[ Format ]][
-                          --[[ String_literal ]]Block.__(11, [
+          return Curry._1(Format.fprintf(ppf, --[[ Format ]]{
+                          --[[ String_literal ]]Block.__(11, {
                               "Illegal semantic version string ",
-                              --[[ String ]]Block.__(2, [
+                              --[[ String ]]Block.__(2, {
                                   --[[ No_padding ]]0,
                                   --[[ End_of_format ]]0
-                                ])
-                            ]),
+                                })
+                            }),
                           "Illegal semantic version string %s"
-                        ]), param[0]);end end end 
+                        }), param[0]);end end end 
        if ___conditional___ = 7--[[ Conditional_expr_expected_type ]] then do
-          return Curry._2(Format.fprintf(ppf, --[[ Format ]][
-                          --[[ String_literal ]]Block.__(11, [
+          return Curry._2(Format.fprintf(ppf, --[[ Format ]]{
+                          --[[ String_literal ]]Block.__(11, {
                               "Conditional expression type mismatch (",
-                              --[[ String ]]Block.__(2, [
+                              --[[ String ]]Block.__(2, {
                                   --[[ No_padding ]]0,
-                                  --[[ Char_literal ]]Block.__(12, [
+                                  --[[ Char_literal ]]Block.__(12, {
                                       --[[ "," ]]44,
-                                      --[[ String ]]Block.__(2, [
+                                      --[[ String ]]Block.__(2, {
                                           --[[ No_padding ]]0,
-                                          --[[ Char_literal ]]Block.__(12, [
+                                          --[[ Char_literal ]]Block.__(12, {
                                               --[[ ")" ]]41,
                                               --[[ End_of_format ]]0
-                                            ])
-                                        ])
-                                    ])
-                                ])
-                            ]),
+                                            })
+                                        })
+                                    })
+                                })
+                            }),
                           "Conditional expression type mismatch (%s,%s)"
-                        ]), string_of_type_directive(param[0]), string_of_type_directive(param[1]));end end end 
+                        }), string_of_type_directive(param[0]), string_of_type_directive(param[1]));end end end 
        do
       
     end
@@ -14137,11 +14137,11 @@ function token(lexbuf) do
     do
        if ___conditional___ = 0 then do
           if (not escaped_newlines.contents) then do
-            throw [
+            throw {
                   __Error$2,
-                  --[[ Illegal_character ]]Block.__(0, [Lexing.lexeme_char(lexbuf$1, 0)]),
+                  --[[ Illegal_character ]]Block.__(0, {Lexing.lexeme_char(lexbuf$1, 0)}),
                   curr(lexbuf$1)
-                ];
+                };
           end
            end 
           update_loc(lexbuf$1, undefined, 1, false, 0);
@@ -14156,17 +14156,17 @@ function token(lexbuf) do
        if ___conditional___ = 4 then do
           return --[[ TILDE ]]89;end end end 
        if ___conditional___ = 5 then do
-          return --[[ LABEL ]]Block.__(10, [get_label_name(lexbuf$1)]);end end end 
+          return --[[ LABEL ]]Block.__(10, {get_label_name(lexbuf$1)});end end end 
        if ___conditional___ = 6 then do
-          prerr_warning(curr(lexbuf$1), --[[ Deprecated ]]Block.__(0, ["ISO-Latin1 characters in identifiers"]));
-          return --[[ LABEL ]]Block.__(10, [get_label_name(lexbuf$1)]);end end end 
+          prerr_warning(curr(lexbuf$1), --[[ Deprecated ]]Block.__(0, {"ISO-Latin1 characters in identifiers"}));
+          return --[[ LABEL ]]Block.__(10, {get_label_name(lexbuf$1)});end end end 
        if ___conditional___ = 7 then do
           return --[[ QUESTION ]]76;end end end 
        if ___conditional___ = 8 then do
-          return --[[ OPTLABEL ]]Block.__(13, [get_label_name(lexbuf$1)]);end end end 
+          return --[[ OPTLABEL ]]Block.__(13, {get_label_name(lexbuf$1)});end end end 
        if ___conditional___ = 9 then do
-          prerr_warning(curr(lexbuf$1), --[[ Deprecated ]]Block.__(0, ["ISO-Latin1 characters in identifiers"]));
-          return --[[ OPTLABEL ]]Block.__(13, [get_label_name(lexbuf$1)]);end end end 
+          prerr_warning(curr(lexbuf$1), --[[ Deprecated ]]Block.__(0, {"ISO-Latin1 characters in identifiers"}));
+          return --[[ OPTLABEL ]]Block.__(13, {get_label_name(lexbuf$1)});end end end 
        if ___conditional___ = 10 then do
           s = Lexing.lexeme(lexbuf$1);
           try do
@@ -14174,81 +14174,81 @@ function token(lexbuf) do
           end
           catch (exn)do
             if (exn == Caml_builtin_exceptions.not_found) then do
-              return --[[ LIDENT ]]Block.__(11, [s]);
+              return --[[ LIDENT ]]Block.__(11, {s});
             end else do
               throw exn;
             end end 
           endend end end 
        if ___conditional___ = 11 then do
-          prerr_warning(curr(lexbuf$1), --[[ Deprecated ]]Block.__(0, ["ISO-Latin1 characters in identifiers"]));
-          return --[[ LIDENT ]]Block.__(11, [Lexing.lexeme(lexbuf$1)]);end end end 
+          prerr_warning(curr(lexbuf$1), --[[ Deprecated ]]Block.__(0, {"ISO-Latin1 characters in identifiers"}));
+          return --[[ LIDENT ]]Block.__(11, {Lexing.lexeme(lexbuf$1)});end end end 
        if ___conditional___ = 12 then do
-          return --[[ UIDENT ]]Block.__(17, [Lexing.lexeme(lexbuf$1)]);end end end 
+          return --[[ UIDENT ]]Block.__(17, {Lexing.lexeme(lexbuf$1)});end end end 
        if ___conditional___ = 13 then do
-          prerr_warning(curr(lexbuf$1), --[[ Deprecated ]]Block.__(0, ["ISO-Latin1 characters in identifiers"]));
-          return --[[ UIDENT ]]Block.__(17, [Lexing.lexeme(lexbuf$1)]);end end end 
+          prerr_warning(curr(lexbuf$1), --[[ Deprecated ]]Block.__(0, {"ISO-Latin1 characters in identifiers"}));
+          return --[[ UIDENT ]]Block.__(17, {Lexing.lexeme(lexbuf$1)});end end end 
        if ___conditional___ = 14 then do
           try do
-            return --[[ INT ]]Block.__(7, [cvt_int_literal(Lexing.lexeme(lexbuf$1))]);
+            return --[[ INT ]]Block.__(7, {cvt_int_literal(Lexing.lexeme(lexbuf$1))});
           end
           catch (raw_exn)do
             exn$1 = Caml_js_exceptions.internalToOCamlException(raw_exn);
             if (exn$1[0] == Caml_builtin_exceptions.failure) then do
-              throw [
+              throw {
                     __Error$2,
-                    --[[ Literal_overflow ]]Block.__(5, ["int"]),
+                    --[[ Literal_overflow ]]Block.__(5, {"int"}),
                     curr(lexbuf$1)
-                  ];
+                  };
             end
              end 
             throw exn$1;
           endend end end 
        if ___conditional___ = 15 then do
-          return --[[ FLOAT ]]Block.__(1, [remove_underscores(Lexing.lexeme(lexbuf$1))]);end end end 
+          return --[[ FLOAT ]]Block.__(1, {remove_underscores(Lexing.lexeme(lexbuf$1))});end end end 
        if ___conditional___ = 16 then do
           try do
-            return --[[ INT32 ]]Block.__(8, [cvt_int32_literal(Lexing.lexeme(lexbuf$1))]);
+            return --[[ INT32 ]]Block.__(8, {cvt_int32_literal(Lexing.lexeme(lexbuf$1))});
           end
           catch (raw_exn$1)do
             exn$2 = Caml_js_exceptions.internalToOCamlException(raw_exn$1);
             if (exn$2[0] == Caml_builtin_exceptions.failure) then do
-              throw [
+              throw {
                     __Error$2,
-                    --[[ Literal_overflow ]]Block.__(5, ["int32"]),
+                    --[[ Literal_overflow ]]Block.__(5, {"int32"}),
                     curr(lexbuf$1)
-                  ];
+                  };
             end
              end 
             throw exn$2;
           endend end end 
        if ___conditional___ = 17 then do
           try do
-            return --[[ INT64 ]]Block.__(9, [cvt_int64_literal(Lexing.lexeme(lexbuf$1))]);
+            return --[[ INT64 ]]Block.__(9, {cvt_int64_literal(Lexing.lexeme(lexbuf$1))});
           end
           catch (raw_exn$2)do
             exn$3 = Caml_js_exceptions.internalToOCamlException(raw_exn$2);
             if (exn$3[0] == Caml_builtin_exceptions.failure) then do
-              throw [
+              throw {
                     __Error$2,
-                    --[[ Literal_overflow ]]Block.__(5, ["int64"]),
+                    --[[ Literal_overflow ]]Block.__(5, {"int64"}),
                     curr(lexbuf$1)
-                  ];
+                  };
             end
              end 
             throw exn$3;
           endend end end 
        if ___conditional___ = 18 then do
           try do
-            return --[[ NATIVEINT ]]Block.__(12, [cvt_nativeint_literal(Lexing.lexeme(lexbuf$1))]);
+            return --[[ NATIVEINT ]]Block.__(12, {cvt_nativeint_literal(Lexing.lexeme(lexbuf$1))});
           end
           catch (raw_exn$3)do
             exn$4 = Caml_js_exceptions.internalToOCamlException(raw_exn$3);
             if (exn$4[0] == Caml_builtin_exceptions.failure) then do
-              throw [
+              throw {
                     __Error$2,
-                    --[[ Literal_overflow ]]Block.__(5, ["nativeint"]),
+                    --[[ Literal_overflow ]]Block.__(5, {"nativeint"}),
                     curr(lexbuf$1)
-                  ];
+                  };
             end
              end 
             throw exn$4;
@@ -14261,10 +14261,10 @@ function token(lexbuf) do
           string(lexbuf$1);
           is_in_string.contents = false;
           lexbuf$1.lex_start_p = string_start;
-          return --[[ STRING ]]Block.__(16, [--[[ tuple ]][
+          return --[[ STRING ]]Block.__(16, {--[[ tuple ]]{
                       get_stored_string(--[[ () ]]0),
                       undefined
-                    ]]);end end end 
+                    }});end end end 
        if ___conditional___ = 20 then do
           reset_string_buffer(--[[ () ]]0);
           delim = Lexing.lexeme(lexbuf$1);
@@ -14275,38 +14275,38 @@ function token(lexbuf) do
           __ocaml_lex_quoted_string_rec(delim$1, lexbuf$1, 183);
           is_in_string.contents = false;
           lexbuf$1.lex_start_p = string_start$1;
-          return --[[ STRING ]]Block.__(16, [--[[ tuple ]][
+          return --[[ STRING ]]Block.__(16, {--[[ tuple ]]{
                       get_stored_string(--[[ () ]]0),
                       delim$1
-                    ]]);end end end 
+                    }});end end end 
        if ___conditional___ = 21 then do
           update_loc(lexbuf$1, undefined, 1, false, 1);
-          return --[[ CHAR ]]Block.__(0, [Lexing.lexeme_char(lexbuf$1, 1)]);end end end 
+          return --[[ CHAR ]]Block.__(0, {Lexing.lexeme_char(lexbuf$1, 1)});end end end 
        if ___conditional___ = 22 then do
-          return --[[ CHAR ]]Block.__(0, [Lexing.lexeme_char(lexbuf$1, 1)]);end end end 
+          return --[[ CHAR ]]Block.__(0, {Lexing.lexeme_char(lexbuf$1, 1)});end end end 
        if ___conditional___ = 23 then do
-          return --[[ CHAR ]]Block.__(0, [char_for_backslash(Lexing.lexeme_char(lexbuf$1, 2))]);end end end 
+          return --[[ CHAR ]]Block.__(0, {char_for_backslash(Lexing.lexeme_char(lexbuf$1, 2))});end end end 
        if ___conditional___ = 24 then do
-          return --[[ CHAR ]]Block.__(0, [char_for_decimal_code(lexbuf$1, 2)]);end end end 
+          return --[[ CHAR ]]Block.__(0, {char_for_decimal_code(lexbuf$1, 2)});end end end 
        if ___conditional___ = 25 then do
-          return --[[ CHAR ]]Block.__(0, [char_for_hexadecimal_code(lexbuf$1, 3)]);end end end 
+          return --[[ CHAR ]]Block.__(0, {char_for_hexadecimal_code(lexbuf$1, 3)});end end end 
        if ___conditional___ = 26 then do
           l = Lexing.lexeme(lexbuf$1);
           esc = __String.sub(l, 1, #l - 1 | 0);
-          throw [
+          throw {
                 __Error$2,
-                --[[ Illegal_escape ]]Block.__(1, [esc]),
+                --[[ Illegal_escape ]]Block.__(1, {esc}),
                 curr(lexbuf$1)
-              ];end end end 
+              };end end end 
        if ___conditional___ = 27 then do
           match = with_comment_buffer(comment, lexbuf$1);
-          return --[[ COMMENT ]]Block.__(18, [--[[ tuple ]][
+          return --[[ COMMENT ]]Block.__(18, {--[[ tuple ]]{
                       match[0],
                       match[1]
-                    ]]);end end end 
+                    }});end end end 
        if ___conditional___ = 28 then do
           match$1 = with_comment_buffer(comment, lexbuf$1);
-          return --[[ DOCSTRING ]]Block.__(19, [docstring(match$1[0], match$1[1])]);end end end 
+          return --[[ DOCSTRING ]]Block.__(19, {docstring(match$1[0], match$1[1])});end end end 
        if ___conditional___ = 29 then do
           stars = Lexing.sub_lexeme(lexbuf$1, lexbuf$1.lex_start_pos, lexbuf$1.lex_curr_pos);
           match$2 = with_comment_buffer((function(stars)do
@@ -14315,26 +14315,26 @@ function token(lexbuf) do
                 return __ocaml_lex_comment_rec(lexbuf, 132);
               end end
               end(stars)), lexbuf$1);
-          return --[[ COMMENT ]]Block.__(18, [--[[ tuple ]][
+          return --[[ COMMENT ]]Block.__(18, {--[[ tuple ]]{
                       match$2[0],
                       match$2[1]
-                    ]]);end end end 
+                    }});end end end 
        if ___conditional___ = 30 then do
           if (print_warnings.contents) then do
             prerr_warning(curr(lexbuf$1), --[[ Comment_start ]]0);
           end
            end 
           match$3 = with_comment_buffer(comment, lexbuf$1);
-          return --[[ COMMENT ]]Block.__(18, [--[[ tuple ]][
+          return --[[ COMMENT ]]Block.__(18, {--[[ tuple ]]{
                       match$3[0],
                       match$3[1]
-                    ]]);end end end 
+                    }});end end end 
        if ___conditional___ = 31 then do
           stars$1 = Lexing.sub_lexeme(lexbuf$1, lexbuf$1.lex_start_pos, lexbuf$1.lex_curr_pos - 2 | 0);
-          return --[[ COMMENT ]]Block.__(18, [--[[ tuple ]][
+          return --[[ COMMENT ]]Block.__(18, {--[[ tuple ]]{
                       stars$1,
                       curr(lexbuf$1)
-                    ]]);end end end 
+                    }});end end end 
        if ___conditional___ = 32 then do
           loc = curr(lexbuf$1);
           prerr_warning(loc, --[[ Comment_not_end ]]1);
@@ -14435,7 +14435,7 @@ function token(lexbuf) do
        if ___conditional___ = 74 then do
           return --[[ BANG ]]6;end end end 
        if ___conditional___ = 75 then do
-          return --[[ INFIXOP0 ]]Block.__(2, ["!="]);end end end 
+          return --[[ INFIXOP0 ]]Block.__(2, {"!="});end end end 
        if ___conditional___ = 76 then do
           return --[[ PLUS ]]72;end end end 
        if ___conditional___ = 77 then do
@@ -14448,45 +14448,45 @@ function token(lexbuf) do
           return --[[ MINUSDOT ]]61;end end end 
        if ___conditional___ = 81
        or ___conditional___ = 82 then do
-          return --[[ PREFIXOP ]]Block.__(14, [Lexing.lexeme(lexbuf$1)]);end end end 
+          return --[[ PREFIXOP ]]Block.__(14, {Lexing.lexeme(lexbuf$1)});end end end 
        if ___conditional___ = 83 then do
-          return --[[ INFIXOP0 ]]Block.__(2, [Lexing.lexeme(lexbuf$1)]);end end end 
+          return --[[ INFIXOP0 ]]Block.__(2, {Lexing.lexeme(lexbuf$1)});end end end 
        if ___conditional___ = 84 then do
-          return --[[ INFIXOP1 ]]Block.__(3, [Lexing.lexeme(lexbuf$1)]);end end end 
+          return --[[ INFIXOP1 ]]Block.__(3, {Lexing.lexeme(lexbuf$1)});end end end 
        if ___conditional___ = 85 then do
-          return --[[ INFIXOP2 ]]Block.__(4, [Lexing.lexeme(lexbuf$1)]);end end end 
+          return --[[ INFIXOP2 ]]Block.__(4, {Lexing.lexeme(lexbuf$1)});end end end 
        if ___conditional___ = 86 then do
-          return --[[ INFIXOP4 ]]Block.__(6, [Lexing.lexeme(lexbuf$1)]);end end end 
+          return --[[ INFIXOP4 ]]Block.__(6, {Lexing.lexeme(lexbuf$1)});end end end 
        if ___conditional___ = 87 then do
           return --[[ PERCENT ]]71;end end end 
        if ___conditional___ = 88 then do
-          return --[[ INFIXOP3 ]]Block.__(5, [Lexing.lexeme(lexbuf$1)]);end end end 
+          return --[[ INFIXOP3 ]]Block.__(5, {Lexing.lexeme(lexbuf$1)});end end end 
        if ___conditional___ = 89 then do
-          return --[[ SHARPOP ]]Block.__(15, [Lexing.lexeme(lexbuf$1)]);end end end 
+          return --[[ SHARPOP ]]Block.__(15, {Lexing.lexeme(lexbuf$1)});end end end 
        if ___conditional___ = 90 then do
           if (if_then_else.contents ~= --[[ Dir_out ]]2) then do
             if (if_then_else.contents == --[[ Dir_if_true ]]0) then do
-              throw [
+              throw {
                     __Error$2,
                     --[[ Unterminated_if ]]2,
                     curr(lexbuf$1)
-                  ];
+                  };
             end
              end 
-            throw [
+            throw {
                   __Error$2,
                   --[[ Unterminated_else ]]3,
                   curr(lexbuf$1)
-                ];
+                };
           end else do
             return --[[ EOF ]]25;
           end end end end end 
        if ___conditional___ = 91 then do
-          throw [
+          throw {
                 __Error$2,
-                --[[ Illegal_character ]]Block.__(0, [Lexing.lexeme_char(lexbuf$1, 0)]),
+                --[[ Illegal_character ]]Block.__(0, {Lexing.lexeme_char(lexbuf$1, 0)}),
                 curr(lexbuf$1)
-              ];end end end 
+              };end end end 
        do
       else do
         Curry._1(lexbuf$1.refill_buff, lexbuf$1);
@@ -14546,11 +14546,11 @@ function string(lexbuf) do
           return string(lexbuf$1);end end end 
        if ___conditional___ = 7 then do
           is_in_string.contents = false;
-          throw [
+          throw {
                 __Error$2,
                 --[[ Unterminated_string ]]0,
                 string_start_loc.contents
-              ];end end end 
+              };end end end 
        if ___conditional___ = 8 then do
           store_string_char(Lexing.lexeme_char(lexbuf$1, 0));
           return string(lexbuf$1);end end end 
@@ -14572,10 +14572,10 @@ function __ocaml_lex_comment_rec(lexbuf, ___ocaml_lex_state) do
     local ___conditional___=(__ocaml_lex_state$1);
     do
        if ___conditional___ = 0 then do
-          comment_start_loc.contents = --[[ :: ]][
+          comment_start_loc.contents = --[[ :: ]]{
             curr(lexbuf),
             comment_start_loc.contents
-          ];
+          };
           store_string(Lexing.lexeme(lexbuf));
           ___ocaml_lex_state = 132;
           continue ;end end end 
@@ -14593,14 +14593,14 @@ function __ocaml_lex_comment_rec(lexbuf, ___ocaml_lex_state) do
               return curr(lexbuf);
             end end 
           end else do
-            throw [
+            throw {
                   Caml_builtin_exceptions.assert_failure,
-                  --[[ tuple ]][
+                  --[[ tuple ]]{
                     "lexer.mll",
                     992,
                     16
-                  ]
-                ];
+                  }
+                };
           end end end end end 
        if ___conditional___ = 2 then do
           string_start_loc.contents = curr(lexbuf);
@@ -14622,23 +14622,23 @@ function __ocaml_lex_comment_rec(lexbuf, ___ocaml_lex_state) do
                 if (match$2) then do
                   start = List.hd(List.rev(comment_start_loc.contents));
                   comment_start_loc.contents = --[[ [] ]]0;
-                  throw [
+                  throw {
                         __Error$2,
-                        --[[ Unterminated_string_in_comment ]]Block.__(3, [
+                        --[[ Unterminated_string_in_comment ]]Block.__(3, {
                             start,
                             exn[2]
-                          ]),
+                          }),
                         match$2[0]
-                      ];
+                      };
                 end else do
-                  throw [
+                  throw {
                         Caml_builtin_exceptions.assert_failure,
-                        --[[ tuple ]][
+                        --[[ tuple ]]{
                           "lexer.mll",
                           1006,
                           18
-                        ]
-                      ];
+                        }
+                      };
                 end end 
               end else do
                 throw exn;
@@ -14673,23 +14673,23 @@ function __ocaml_lex_comment_rec(lexbuf, ___ocaml_lex_state) do
                 if (match$4) then do
                   start$1 = List.hd(List.rev(comment_start_loc.contents));
                   comment_start_loc.contents = --[[ [] ]]0;
-                  throw [
+                  throw {
                         __Error$2,
-                        --[[ Unterminated_string_in_comment ]]Block.__(3, [
+                        --[[ Unterminated_string_in_comment ]]Block.__(3, {
                             start$1,
                             exn$1[2]
-                          ]),
+                          }),
                         match$4[0]
-                      ];
+                      };
                 end else do
-                  throw [
+                  throw {
                         Caml_builtin_exceptions.assert_failure,
-                        --[[ tuple ]][
+                        --[[ tuple ]]{
                           "lexer.mll",
                           1026,
                           18
-                        ]
-                      ];
+                        }
+                      };
                 end end 
               end else do
                 throw exn$1;
@@ -14714,20 +14714,20 @@ function __ocaml_lex_comment_rec(lexbuf, ___ocaml_lex_state) do
           if (match$5) then do
             start$2 = List.hd(List.rev(comment_start_loc.contents));
             comment_start_loc.contents = --[[ [] ]]0;
-            throw [
+            throw {
                   __Error$2,
-                  --[[ Unterminated_comment ]]Block.__(2, [start$2]),
+                  --[[ Unterminated_comment ]]Block.__(2, {start$2}),
                   match$5[0]
-                ];
+                };
           end else do
-            throw [
+            throw {
                   Caml_builtin_exceptions.assert_failure,
-                  --[[ tuple ]][
+                  --[[ tuple ]]{
                     "lexer.mll",
                     1056,
                     16
-                  ]
-                ];
+                  }
+                };
           end end end end end 
        if ___conditional___ = 11 then do
           update_loc(lexbuf, undefined, 1, false, 0);
@@ -14767,11 +14767,11 @@ function __ocaml_lex_quoted_string_rec(delim, lexbuf, ___ocaml_lex_state) do
           continue ;end end end 
        if ___conditional___ = 1 then do
           is_in_string.contents = false;
-          throw [
+          throw {
                 __Error$2,
                 --[[ Unterminated_string ]]0,
                 string_start_loc.contents
-              ];end end end 
+              };end end end 
        if ___conditional___ = 2 then do
           edelim = Lexing.lexeme(lexbuf);
           edelim$1 = __String.sub(edelim, 1, #edelim - 2 | 0);
@@ -14844,20 +14844,20 @@ function interpret_directive(lexbuf, cont, look_ahead) do
     do
        if ___conditional___ = 23--[[ ELSE ]] then do
           if (if_then_else$1 ~= 0) then do
-            throw [
+            throw {
                   __Error$2,
                   --[[ Unexpected_directive ]]6,
                   curr(lexbuf)
-                ];
+                };
           end
            end end else 
        if ___conditional___ = 24--[[ END ]] then do
           if (if_then_else$1 >= 2) then do
-            throw [
+            throw {
                   __Error$2,
                   --[[ Unexpected_directive ]]6,
                   curr(lexbuf)
-                ];
+                };
           end
            end 
           if_then_else.contents = --[[ Dir_out ]]2;
@@ -14872,11 +14872,11 @@ function interpret_directive(lexbuf, cont, look_ahead) do
               while(true) do
                 token = token_with_comments(lexbuf);
                 if (token == --[[ EOF ]]25) then do
-                  throw [
+                  throw {
                         __Error$2,
                         --[[ Unterminated_if ]]2,
                         curr(lexbuf)
-                      ];
+                      };
                 end
                  end 
                 if (token == --[[ SHARP ]]84 and at_bol(lexbuf)) then do
@@ -14892,11 +14892,11 @@ function interpret_directive(lexbuf, cont, look_ahead) do
                         return Curry._1(cont, lexbuf);
                       end end 
                     end else if (switcher == 14) then do
-                      throw [
+                      throw {
                             __Error$2,
                             --[[ Unexpected_directive ]]6,
                             curr(lexbuf)
-                          ];
+                          };
                     end
                      end  end 
                   end
@@ -14915,11 +14915,11 @@ function interpret_directive(lexbuf, cont, look_ahead) do
               end;
             end end 
           end else do
-            throw [
+            throw {
                   __Error$2,
                   --[[ Unexpected_directive ]]6,
                   curr(lexbuf)
-                ];
+                };
           end end end end end 
        do
       else do
@@ -14929,11 +14929,11 @@ function interpret_directive(lexbuf, cont, look_ahead) do
     end
   end else if (match.tag == --[[ LIDENT ]]11 and match[0] == "elif") then do
     if (if_then_else$1 ~= 0) then do
-      throw [
+      throw {
             __Error$2,
             --[[ Unexpected_directive ]]6,
             curr(lexbuf)
-          ];
+          };
     end
      end 
   end else do
@@ -14947,11 +14947,11 @@ function interpret_directive(lexbuf, cont, look_ahead) do
       else_seen = _else_seen;
       token$2 = token_with_comments(lexbuf);
       if (token$2 == --[[ EOF ]]25) then do
-        throw [
+        throw {
               __Error$2,
               --[[ Unterminated_else ]]3,
               curr(lexbuf)
-            ];
+            };
       end
        end 
       if (token$2 == --[[ SHARP ]]84 and at_bol(lexbuf)) then do
@@ -14964,32 +14964,32 @@ function interpret_directive(lexbuf, cont, look_ahead) do
               return Curry._1(cont, lexbuf);
             end else do
               if (else_seen) then do
-                throw [
+                throw {
                       __Error$2,
                       --[[ Unexpected_directive ]]6,
                       curr(lexbuf)
-                    ];
+                    };
               end
                end 
               _else_seen = true;
               continue ;
             end end 
           end else if (switcher$1 == 14) then do
-            throw [
+            throw {
                   __Error$2,
                   --[[ Unexpected_directive ]]6,
                   curr(lexbuf)
-                ];
+                };
           end
            end  end 
         end
          end 
         if (else_seen and is_elif(token$3)) then do
-          throw [
+          throw {
                 __Error$2,
                 --[[ Unexpected_directive ]]6,
                 curr(lexbuf)
-              ];
+              };
         end
          end 
         continue ;
@@ -15066,10 +15066,10 @@ function token$1(lexbuf) do
         do
            if ___conditional___ = 18--[[ COMMENT ]] then do
               match = tok[0];
-              add_comment(--[[ tuple ]][
+              add_comment(--[[ tuple ]]{
                     match[0],
                     match[1]
-                  ]);
+                  });
               lines$prime$1 = lines >= 2 and --[[ BlankLine ]]2 or --[[ NoLine ]]0;
               _lines = lines$prime$1;
               continue ;end end end 
@@ -15078,49 +15078,49 @@ function token$1(lexbuf) do
               add_docstring_comment(doc);
               docs$prime;
               if (typeof docs == "number") then do
-                docs$prime = lines >= 2 and --[[ Before ]]Block.__(1, [
+                docs$prime = lines >= 2 and --[[ Before ]]Block.__(1, {
                       --[[ [] ]]0,
                       --[[ [] ]]0,
-                      --[[ :: ]][
+                      --[[ :: ]]{
                         doc,
                         --[[ [] ]]0
-                      ]
-                    ]) or --[[ After ]]Block.__(0, [--[[ :: ]][
+                      }
+                    }) or --[[ After ]]Block.__(0, {--[[ :: ]]{
                         doc,
                         --[[ [] ]]0
-                      ]]);
+                      }});
               end else if (docs.tag) then do
                 b = docs[2];
                 f = docs[1];
                 a = docs[0];
-                docs$prime = lines >= 2 and --[[ Before ]]Block.__(1, [
+                docs$prime = lines >= 2 and --[[ Before ]]Block.__(1, {
                       a,
                       Pervasives.$at(b, f),
-                      --[[ :: ]][
+                      --[[ :: ]]{
                         doc,
                         --[[ [] ]]0
-                      ]
-                    ]) or --[[ Before ]]Block.__(1, [
+                      }
+                    }) or --[[ Before ]]Block.__(1, {
                       a,
                       f,
-                      --[[ :: ]][
+                      --[[ :: ]]{
                         doc,
                         b
-                      ]
-                    ]);
+                      }
+                    });
               end else do
                 a$1 = docs[0];
-                docs$prime = lines >= 2 and --[[ Before ]]Block.__(1, [
+                docs$prime = lines >= 2 and --[[ Before ]]Block.__(1, {
                       a$1,
                       --[[ [] ]]0,
-                      --[[ :: ]][
+                      --[[ :: ]]{
                         doc,
                         --[[ [] ]]0
-                      ]
-                    ]) or --[[ After ]]Block.__(0, [--[[ :: ]][
+                      }
+                    }) or --[[ After ]]Block.__(0, {--[[ :: ]]{
                         doc,
                         a$1
-                      ]]);
+                      }});
               end end  end 
               _docs = docs$prime;
               _lines = --[[ NoLine ]]0;
@@ -15169,13 +15169,13 @@ function filter_directive(pos, acc, lexbuf) do
           start_pos = lexbuf.lex_start_p.pos_cnum;
           return interpret_directive(lexbuf, (function(start_pos)do
                     return function (lexbuf) do
-                      return filter_directive(lexbuf.lex_curr_p.pos_cnum, --[[ :: ]][
-                                  --[[ tuple ]][
+                      return filter_directive(lexbuf.lex_curr_p.pos_cnum, --[[ :: ]]{
+                                  --[[ tuple ]]{
                                     pos,
                                     start_pos
-                                  ],
+                                  },
                                   acc
-                                ], lexbuf);
+                                }, lexbuf);
                     end end
                     end(start_pos)), (function (_token) do
                         return filter_directive(pos, acc, lexbuf);
@@ -15184,13 +15184,13 @@ function filter_directive(pos, acc, lexbuf) do
           continue ;
         end end  end 
       end else do
-        return --[[ :: ]][
-                --[[ tuple ]][
+        return --[[ :: ]]{
+                --[[ tuple ]]{
                   pos,
                   lexbuf.lex_curr_p.pos_cnum
-                ],
+                },
                 acc
-              ];
+              };
       end end 
     end else do
       continue ;
@@ -15204,10 +15204,10 @@ end end
 
 function set_preprocessor(init, preprocess) do
   escaped_newlines.contents = true;
-  preprocessor$1.contents = --[[ tuple ]][
+  preprocessor$1.contents = --[[ tuple ]]{
     init,
     preprocess
-  ];
+  };
   return --[[ () ]]0;
 end end
 
@@ -15321,10 +15321,10 @@ function wrap(parsing_fun, lexbuf) do
       maybe_skip_phrase(lexbuf);
     end
      end 
-    throw [
+    throw {
           __Error$1,
-          --[[ Other ]]Block.__(5, [loc])
-        ];
+          --[[ Other ]]Block.__(5, {loc})
+        };
   end
 end end
 

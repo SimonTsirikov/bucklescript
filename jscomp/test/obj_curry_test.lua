@@ -7,7 +7,7 @@ function f(o) do
   return Caml_oo_curry.js4(23297, 1, o, 1, 2, 3);
 end end
 
-__class = CamlinternalOO.create_table(["hi"]);
+__class = CamlinternalOO.create_table({"hi"});
 
 hi = CamlinternalOO.get_method_label(__class, "hi");
 

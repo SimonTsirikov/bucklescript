@@ -17,27 +17,27 @@ function f(v) do
   end end 
 end end
 
-v = [
+v = {
     1,
     2,
     3
-  ].map((function (param, param$1) do
+  }.map((function (param, param$1) do
         return f(param)(param$1);
       end end));
 
-vv = [
+vv = {
     1,
     2,
     3
-  ].map((function (prim, prim$1) do
+  }.map((function (prim, prim$1) do
         return prim + prim$1 | 0;
       end end));
 
-hh = [
+hh = {
     "1",
     "2",
     "3"
-  ].map((function (prim) do
+  }.map((function (prim) do
         return parseInt(prim);
       end end));
 
@@ -70,101 +70,101 @@ abc_u = abc;
 
 g();
 
-Mt.from_pair_suites("Ffi_arity_test", --[[ :: ]][
-      --[[ tuple ]][
+Mt.from_pair_suites("Ffi_arity_test", --[[ :: ]]{
+      --[[ tuple ]]{
         "File \"ffi_arity_test.ml\", line 45, characters 4-11",
         (function (param) do
-            return --[[ Eq ]]Block.__(0, [
+            return --[[ Eq ]]Block.__(0, {
                       v,
-                      [
+                      {
                         0,
                         1,
                         4
-                      ]
-                    ]);
+                      }
+                    });
           end end)
-      ],
-      --[[ :: ]][
-        --[[ tuple ]][
+      },
+      --[[ :: ]]{
+        --[[ tuple ]]{
           "File \"ffi_arity_test.ml\", line 46, characters 4-11",
           (function (param) do
-              return --[[ Eq ]]Block.__(0, [
+              return --[[ Eq ]]Block.__(0, {
                         vv,
-                        [
+                        {
                           1,
                           3,
                           5
-                        ]
-                      ]);
+                        }
+                      });
             end end)
-        ],
-        --[[ :: ]][
-          --[[ tuple ]][
+        },
+        --[[ :: ]]{
+          --[[ tuple ]]{
             "File \"ffi_arity_test.ml\", line 47, characters 4-11",
             (function (param) do
-                return --[[ Eq ]]Block.__(0, [
+                return --[[ Eq ]]Block.__(0, {
                           hh,
-                          [
+                          {
                             1,
                             2,
                             3
-                          ]
-                        ]);
+                          }
+                        });
               end end)
-          ],
-          --[[ :: ]][
-            --[[ tuple ]][
+          },
+          --[[ :: ]]{
+            --[[ tuple ]]{
               "File \"ffi_arity_test.ml\", line 48, characters 4-11",
               (function (param) do
-                  return --[[ Eq ]]Block.__(0, [
-                            [
+                  return --[[ Eq ]]Block.__(0, {
+                            {
                                   1,
                                   2,
                                   3
-                                ].map((function (x) do
+                                }.map((function (x) do
                                       return (function (y) do
                                           return x + y | 0;
                                         end end);
                                     end end)).map((function (y) do
                                     return Caml_int32.imul(Curry._1(y, 0), Curry._1(y, 1));
                                   end end)),
-                            [
+                            {
                               2,
                               6,
                               12
-                            ]
-                          ]);
+                            }
+                          });
                 end end)
-            ],
-            --[[ :: ]][
-              --[[ tuple ]][
+            },
+            --[[ :: ]]{
+              --[[ tuple ]]{
                 "File \"ffi_arity_test.ml\", line 53, characters 4-11",
                 (function (param) do
-                    return --[[ Eq ]]Block.__(0, [
-                              [
+                    return --[[ Eq ]]Block.__(0, {
+                              {
                                   1,
                                   2,
                                   3
-                                ].map((function (x, param) do
+                                }.map((function (x, param) do
                                       y = Caml_int32.imul(x, x);
                                       return (function (i) do
                                                   return y + i | 0;
                                                 end end)(param);
                                     end end)),
-                              [
+                              {
                                 1,
                                 5,
                                 11
-                              ]
-                            ]);
+                              }
+                            });
                   end end)
-              ],
+              },
               --[[ [] ]]0
-            ]
-          ]
-        ]
-      ]
-    ]);
+            }
+          }
+        }
+      }
+    });
 
 function bar(fn) do
   return Curry._1(fn, --[[ () ]]0);

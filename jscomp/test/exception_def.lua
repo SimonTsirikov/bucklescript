@@ -22,16 +22,16 @@ XXX = Caml_exceptions.create("Exception_def.XXX");
 
 Aa = Caml_builtin_exceptions.match_failure;
 
-v_001 = --[[ tuple ]][
+v_001 = --[[ tuple ]]{
   "",
   0,
   0
-];
+};
 
-v = [
+v = {
   Aa,
   v_001
-];
+};
 
 Printexc.register_printer((function (param) do
         if (param[0] == A) then do

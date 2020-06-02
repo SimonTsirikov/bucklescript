@@ -153,11 +153,11 @@ function MakeSeeded(H) do
           rest = param[2];
           c = param[1];
           if (check_key(c)) then do
-            return --[[ Cons ]][
+            return --[[ Cons ]]{
                     param[0],
                     c,
                     do_bucket(rest)
-                  ];
+                  };
           end else do
             h.size = h.size - 1 | 0;
             _param = rest;
@@ -187,11 +187,11 @@ function MakeSeeded(H) do
           hkey = param[0];
           insert_bucket(param[2]);
           nidx = key_index(h, hkey);
-          return Caml_array.caml_array_set(ndata, nidx, --[[ Cons ]][
+          return Caml_array.caml_array_set(ndata, nidx, --[[ Cons ]]{
                       hkey,
                       param[1],
                       Caml_array.caml_array_get(ndata, nidx)
-                    ]);
+                    });
         end else do
           return --[[ () ]]0;
         end end 
@@ -209,11 +209,11 @@ function MakeSeeded(H) do
     i = key_index(h, hkey);
     container = create(key, info);
     bucket_002 = Caml_array.caml_array_get(h.data, i);
-    bucket = --[[ Cons ]][
+    bucket = --[[ Cons ]]{
       hkey,
       container,
       bucket_002
-    ];
+    };
     Caml_array.caml_array_set(h.data, i, bucket);
     h.size = h.size + 1 | 0;
     if (h.size > (#h.data << 1)) then do
@@ -239,11 +239,11 @@ function MakeSeeded(H) do
                   h.size = h.size - 1 | 0;
                   return next;end end end 
                if ___conditional___ = 1--[[ EFalse ]] then do
-                  return --[[ Cons ]][
+                  return --[[ Cons ]]{
                           hk,
                           c,
                           remove_bucket(next)
-                        ];end end end 
+                        };end end end 
                if ___conditional___ = 2--[[ EDead ]] then do
                   h.size = h.size - 1 | 0;
                   _param = next;
@@ -252,11 +252,11 @@ function MakeSeeded(H) do
               
             end
           end else do
-            return --[[ Cons ]][
+            return --[[ Cons ]]{
                     hk,
                     c,
                     remove_bucket(next)
-                  ];
+                  };
           end end 
         end else do
           return --[[ Empty ]]0;
@@ -348,10 +348,10 @@ function MakeSeeded(H) do
             end else do
               match$1 = get_data(c);
               if (match$1 ~= undefined) then do
-                return --[[ :: ]][
+                return --[[ :: ]]{
                         Caml_option.valFromOption(match$1),
                         find_in_bucket(rest)
-                      ];
+                      };
               end else do
                 _param = rest;
                 continue ;
@@ -399,11 +399,11 @@ function MakeSeeded(H) do
     catch (exn)do
       if (exn == Caml_builtin_exceptions.not_found) then do
         container = create(key, info);
-        Caml_array.caml_array_set(h.data, i, --[[ Cons ]][
+        Caml_array.caml_array_set(h.data, i, --[[ Cons ]]{
               hkey,
               container,
               l
-            ]);
+            });
         h.size = h.size + 1 | 0;
         if (h.size > (#h.data << 1)) then do
           return resize(h);
@@ -507,11 +507,11 @@ function MakeSeeded(H) do
               match$2 = Curry._2(f, k, Caml_option.valFromOption(match$1));
               if (match$2 ~= undefined) then do
                 set_key_data(c, k, Caml_option.valFromOption(match$2));
-                return --[[ Cons ]][
+                return --[[ Cons ]]{
                         param[0],
                         c,
                         do_bucket(rest)
-                      ];
+                      };
               end else do
                 _param = rest;
                 continue ;
@@ -707,11 +707,11 @@ function Make(H) do
           rest = param[2];
           c = param[1];
           if (check_key(c)) then do
-            return --[[ Cons ]][
+            return --[[ Cons ]]{
                     param[0],
                     c,
                     do_bucket(rest)
-                  ];
+                  };
           end else do
             h.size = h.size - 1 | 0;
             _param = rest;
@@ -741,11 +741,11 @@ function Make(H) do
           hkey = param[0];
           insert_bucket(param[2]);
           nidx = key_index(h, hkey);
-          return Caml_array.caml_array_set(ndata, nidx, --[[ Cons ]][
+          return Caml_array.caml_array_set(ndata, nidx, --[[ Cons ]]{
                       hkey,
                       param[1],
                       Caml_array.caml_array_get(ndata, nidx)
-                    ]);
+                    });
         end else do
           return --[[ () ]]0;
         end end 
@@ -763,11 +763,11 @@ function Make(H) do
     i = key_index(h, hkey);
     container = create(key, info);
     bucket_002 = Caml_array.caml_array_get(h.data, i);
-    bucket = --[[ Cons ]][
+    bucket = --[[ Cons ]]{
       hkey,
       container,
       bucket_002
-    ];
+    };
     Caml_array.caml_array_set(h.data, i, bucket);
     h.size = h.size + 1 | 0;
     if (h.size > (#h.data << 1)) then do
@@ -793,11 +793,11 @@ function Make(H) do
                   h.size = h.size - 1 | 0;
                   return next;end end end 
                if ___conditional___ = 1--[[ EFalse ]] then do
-                  return --[[ Cons ]][
+                  return --[[ Cons ]]{
                           hk,
                           c,
                           remove_bucket(next)
-                        ];end end end 
+                        };end end end 
                if ___conditional___ = 2--[[ EDead ]] then do
                   h.size = h.size - 1 | 0;
                   _param = next;
@@ -806,11 +806,11 @@ function Make(H) do
               
             end
           end else do
-            return --[[ Cons ]][
+            return --[[ Cons ]]{
                     hk,
                     c,
                     remove_bucket(next)
-                  ];
+                  };
           end end 
         end else do
           return --[[ Empty ]]0;
@@ -902,10 +902,10 @@ function Make(H) do
             end else do
               match$1 = get_data(c);
               if (match$1 ~= undefined) then do
-                return --[[ :: ]][
+                return --[[ :: ]]{
                         Caml_option.valFromOption(match$1),
                         find_in_bucket(rest)
-                      ];
+                      };
               end else do
                 _param = rest;
                 continue ;
@@ -953,11 +953,11 @@ function Make(H) do
     catch (exn)do
       if (exn == Caml_builtin_exceptions.not_found) then do
         container = create(key, info);
-        Caml_array.caml_array_set(h.data, i, --[[ Cons ]][
+        Caml_array.caml_array_set(h.data, i, --[[ Cons ]]{
               hkey,
               container,
               l
-            ]);
+            });
         h.size = h.size + 1 | 0;
         if (h.size > (#h.data << 1)) then do
           return resize(h);
@@ -1061,11 +1061,11 @@ function Make(H) do
               match$2 = Curry._2(f, k, Caml_option.valFromOption(match$1));
               if (match$2 ~= undefined) then do
                 set_key_data(c, k, Caml_option.valFromOption(match$2));
-                return --[[ Cons ]][
+                return --[[ Cons ]]{
                         param[0],
                         c,
                         do_bucket(rest)
-                      ];
+                      };
               end else do
                 _param = rest;
                 continue ;
@@ -1303,10 +1303,10 @@ function MakeSeeded$1(H1, H2) do
     match = Obj.Ephemeron.get_key(c, 0);
     match$1 = Obj.Ephemeron.get_key(c, 1);
     if (match ~= undefined and match$1 ~= undefined) then do
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               Caml_option.valFromOption(match),
               Caml_option.valFromOption(match$1)
-            ];
+            };
     end
      end 
   end end;
@@ -1385,11 +1385,11 @@ function MakeSeeded$1(H1, H2) do
           rest = param[2];
           c = param[1];
           if (check_key(c)) then do
-            return --[[ Cons ]][
+            return --[[ Cons ]]{
                     param[0],
                     c,
                     do_bucket(rest)
-                  ];
+                  };
           end else do
             h.size = h.size - 1 | 0;
             _param = rest;
@@ -1419,11 +1419,11 @@ function MakeSeeded$1(H1, H2) do
           hkey = param[0];
           insert_bucket(param[2]);
           nidx = key_index(h, hkey);
-          return Caml_array.caml_array_set(ndata, nidx, --[[ Cons ]][
+          return Caml_array.caml_array_set(ndata, nidx, --[[ Cons ]]{
                       hkey,
                       param[1],
                       Caml_array.caml_array_get(ndata, nidx)
-                    ]);
+                    });
         end else do
           return --[[ () ]]0;
         end end 
@@ -1441,11 +1441,11 @@ function MakeSeeded$1(H1, H2) do
     i = key_index(h, hkey);
     container = create(key, info);
     bucket_002 = Caml_array.caml_array_get(h.data, i);
-    bucket = --[[ Cons ]][
+    bucket = --[[ Cons ]]{
       hkey,
       container,
       bucket_002
-    ];
+    };
     Caml_array.caml_array_set(h.data, i, bucket);
     h.size = h.size + 1 | 0;
     if (h.size > (#h.data << 1)) then do
@@ -1471,11 +1471,11 @@ function MakeSeeded$1(H1, H2) do
                   h.size = h.size - 1 | 0;
                   return next;end end end 
                if ___conditional___ = 1--[[ EFalse ]] then do
-                  return --[[ Cons ]][
+                  return --[[ Cons ]]{
                           hk,
                           c,
                           remove_bucket(next)
-                        ];end end end 
+                        };end end end 
                if ___conditional___ = 2--[[ EDead ]] then do
                   h.size = h.size - 1 | 0;
                   _param = next;
@@ -1484,11 +1484,11 @@ function MakeSeeded$1(H1, H2) do
               
             end
           end else do
-            return --[[ Cons ]][
+            return --[[ Cons ]]{
                     hk,
                     c,
                     remove_bucket(next)
-                  ];
+                  };
           end end 
         end else do
           return --[[ Empty ]]0;
@@ -1580,10 +1580,10 @@ function MakeSeeded$1(H1, H2) do
             end else do
               match$1 = get_data$1(c);
               if (match$1 ~= undefined) then do
-                return --[[ :: ]][
+                return --[[ :: ]]{
                         Caml_option.valFromOption(match$1),
                         find_in_bucket(rest)
-                      ];
+                      };
               end else do
                 _param = rest;
                 continue ;
@@ -1631,11 +1631,11 @@ function MakeSeeded$1(H1, H2) do
     catch (exn)do
       if (exn == Caml_builtin_exceptions.not_found) then do
         container = create(key, info);
-        Caml_array.caml_array_set(h.data, i, --[[ Cons ]][
+        Caml_array.caml_array_set(h.data, i, --[[ Cons ]]{
               hkey,
               container,
               l
-            ]);
+            });
         h.size = h.size + 1 | 0;
         if (h.size > (#h.data << 1)) then do
           return resize(h);
@@ -1739,11 +1739,11 @@ function MakeSeeded$1(H1, H2) do
               match$2 = Curry._2(f, k, Caml_option.valFromOption(match$1));
               if (match$2 ~= undefined) then do
                 set_key_data(c, k, Caml_option.valFromOption(match$2));
-                return --[[ Cons ]][
+                return --[[ Cons ]]{
                         param[0],
                         c,
                         do_bucket(rest)
-                      ];
+                      };
               end else do
                 _param = rest;
                 continue ;
@@ -1896,10 +1896,10 @@ function Make$1(H1, H2) do
           match = Obj.Ephemeron.get_key(c, 0);
           match$1 = Obj.Ephemeron.get_key(c, 1);
           if (match ~= undefined and match$1 ~= undefined) then do
-            return --[[ tuple ]][
+            return --[[ tuple ]]{
                     Caml_option.valFromOption(match),
                     Caml_option.valFromOption(match$1)
-                  ];
+                  };
           end
            end 
         end end;
@@ -1978,11 +1978,11 @@ function Make$1(H1, H2) do
                 rest = param[2];
                 c = param[1];
                 if (Curry._1(check_key, c)) then do
-                  return --[[ Cons ]][
+                  return --[[ Cons ]]{
                           param[0],
                           c,
                           do_bucket(rest)
-                        ];
+                        };
                 end else do
                   h.size = h.size - 1 | 0;
                   _param = rest;
@@ -2012,11 +2012,11 @@ function Make$1(H1, H2) do
                 hkey = param[0];
                 insert_bucket(param[2]);
                 nidx = key_index(h, hkey);
-                return Caml_array.caml_array_set(ndata, nidx, --[[ Cons ]][
+                return Caml_array.caml_array_set(ndata, nidx, --[[ Cons ]]{
                             hkey,
                             param[1],
                             Caml_array.caml_array_get(ndata, nidx)
-                          ]);
+                          });
               end else do
                 return --[[ () ]]0;
               end end 
@@ -2034,11 +2034,11 @@ function Make$1(H1, H2) do
           i = key_index(h, hkey);
           container = Curry._2(create, key, info);
           bucket_002 = Caml_array.caml_array_get(h.data, i);
-          bucket = --[[ Cons ]][
+          bucket = --[[ Cons ]]{
             hkey,
             container,
             bucket_002
-          ];
+          };
           Caml_array.caml_array_set(h.data, i, bucket);
           h.size = h.size + 1 | 0;
           if (h.size > (#h.data << 1)) then do
@@ -2064,11 +2064,11 @@ function Make$1(H1, H2) do
                         h.size = h.size - 1 | 0;
                         return next;end end end 
                      if ___conditional___ = 1--[[ EFalse ]] then do
-                        return --[[ Cons ]][
+                        return --[[ Cons ]]{
                                 hk,
                                 c,
                                 remove_bucket(next)
-                              ];end end end 
+                              };end end end 
                      if ___conditional___ = 2--[[ EDead ]] then do
                         h.size = h.size - 1 | 0;
                         _param = next;
@@ -2077,11 +2077,11 @@ function Make$1(H1, H2) do
                     
                   end
                 end else do
-                  return --[[ Cons ]][
+                  return --[[ Cons ]]{
                           hk,
                           c,
                           remove_bucket(next)
-                        ];
+                        };
                 end end 
               end else do
                 return --[[ Empty ]]0;
@@ -2173,10 +2173,10 @@ function Make$1(H1, H2) do
                   end else do
                     match$1 = Curry._1(get_data$1, c);
                     if (match$1 ~= undefined) then do
-                      return --[[ :: ]][
+                      return --[[ :: ]]{
                               Caml_option.valFromOption(match$1),
                               find_in_bucket(rest)
-                            ];
+                            };
                     end else do
                       _param = rest;
                       continue ;
@@ -2224,11 +2224,11 @@ function Make$1(H1, H2) do
           catch (exn)do
             if (exn == Caml_builtin_exceptions.not_found) then do
               container = Curry._2(create, key, info);
-              Caml_array.caml_array_set(h.data, i, --[[ Cons ]][
+              Caml_array.caml_array_set(h.data, i, --[[ Cons ]]{
                     hkey,
                     container,
                     l
-                  ]);
+                  });
               h.size = h.size + 1 | 0;
               if (h.size > (#h.data << 1)) then do
                 return resize(h);
@@ -2332,11 +2332,11 @@ function Make$1(H1, H2) do
                     match$2 = Curry._2(f, k, Caml_option.valFromOption(match$1));
                     if (match$2 ~= undefined) then do
                       Curry._3(set_key_data, c, k, Caml_option.valFromOption(match$2));
-                      return --[[ Cons ]][
+                      return --[[ Cons ]]{
                               param[0],
                               c,
                               do_bucket(rest)
-                            ];
+                            };
                     end else do
                       _param = rest;
                       continue ;
@@ -2581,7 +2581,7 @@ function MakeSeeded$2(H) do
   get_key = function (c) do
     len = Obj.Ephemeron.length(c);
     if (len == 0) then do
-      return [];
+      return {};
     end else do
       match = Obj.Ephemeron.get_key(c, 0);
       if (match ~= undefined) then do
@@ -2692,11 +2692,11 @@ function MakeSeeded$2(H) do
           rest = param[2];
           c = param[1];
           if (check_key(c)) then do
-            return --[[ Cons ]][
+            return --[[ Cons ]]{
                     param[0],
                     c,
                     do_bucket(rest)
-                  ];
+                  };
           end else do
             h.size = h.size - 1 | 0;
             _param = rest;
@@ -2726,11 +2726,11 @@ function MakeSeeded$2(H) do
           hkey = param[0];
           insert_bucket(param[2]);
           nidx = key_index(h, hkey);
-          return Caml_array.caml_array_set(ndata, nidx, --[[ Cons ]][
+          return Caml_array.caml_array_set(ndata, nidx, --[[ Cons ]]{
                       hkey,
                       param[1],
                       Caml_array.caml_array_get(ndata, nidx)
-                    ]);
+                    });
         end else do
           return --[[ () ]]0;
         end end 
@@ -2748,11 +2748,11 @@ function MakeSeeded$2(H) do
     i = key_index(h, hkey);
     container = create(key, info);
     bucket_002 = Caml_array.caml_array_get(h.data, i);
-    bucket = --[[ Cons ]][
+    bucket = --[[ Cons ]]{
       hkey,
       container,
       bucket_002
-    ];
+    };
     Caml_array.caml_array_set(h.data, i, bucket);
     h.size = h.size + 1 | 0;
     if (h.size > (#h.data << 1)) then do
@@ -2778,11 +2778,11 @@ function MakeSeeded$2(H) do
                   h.size = h.size - 1 | 0;
                   return next;end end end 
                if ___conditional___ = 1--[[ EFalse ]] then do
-                  return --[[ Cons ]][
+                  return --[[ Cons ]]{
                           hk,
                           c,
                           remove_bucket(next)
-                        ];end end end 
+                        };end end end 
                if ___conditional___ = 2--[[ EDead ]] then do
                   h.size = h.size - 1 | 0;
                   _param = next;
@@ -2791,11 +2791,11 @@ function MakeSeeded$2(H) do
               
             end
           end else do
-            return --[[ Cons ]][
+            return --[[ Cons ]]{
                     hk,
                     c,
                     remove_bucket(next)
-                  ];
+                  };
           end end 
         end else do
           return --[[ Empty ]]0;
@@ -2887,10 +2887,10 @@ function MakeSeeded$2(H) do
             end else do
               match$1 = get_data$2(c);
               if (match$1 ~= undefined) then do
-                return --[[ :: ]][
+                return --[[ :: ]]{
                         Caml_option.valFromOption(match$1),
                         find_in_bucket(rest)
-                      ];
+                      };
               end else do
                 _param = rest;
                 continue ;
@@ -2938,11 +2938,11 @@ function MakeSeeded$2(H) do
     catch (exn)do
       if (exn == Caml_builtin_exceptions.not_found) then do
         container = create(key, info);
-        Caml_array.caml_array_set(h.data, i, --[[ Cons ]][
+        Caml_array.caml_array_set(h.data, i, --[[ Cons ]]{
               hkey,
               container,
               l
-            ]);
+            });
         h.size = h.size + 1 | 0;
         if (h.size > (#h.data << 1)) then do
           return resize(h);
@@ -3046,11 +3046,11 @@ function MakeSeeded$2(H) do
               match$2 = Curry._2(f, k, Caml_option.valFromOption(match$1));
               if (match$2 ~= undefined) then do
                 set_key_data(c, k, Caml_option.valFromOption(match$2));
-                return --[[ Cons ]][
+                return --[[ Cons ]]{
                         param[0],
                         c,
                         do_bucket(rest)
-                      ];
+                      };
               end else do
                 _param = rest;
                 continue ;
@@ -3216,7 +3216,7 @@ function Make$2(H) do
   get_key = function (c) do
     len = Obj.Ephemeron.length(c);
     if (len == 0) then do
-      return [];
+      return {};
     end else do
       match = Obj.Ephemeron.get_key(c, 0);
       if (match ~= undefined) then do
@@ -3316,11 +3316,11 @@ function Make$2(H) do
           rest = param[2];
           c = param[1];
           if (check_key(c)) then do
-            return --[[ Cons ]][
+            return --[[ Cons ]]{
                     param[0],
                     c,
                     do_bucket(rest)
-                  ];
+                  };
           end else do
             h.size = h.size - 1 | 0;
             _param = rest;
@@ -3350,11 +3350,11 @@ function Make$2(H) do
           hkey = param[0];
           insert_bucket(param[2]);
           nidx = key_index(h, hkey);
-          return Caml_array.caml_array_set(ndata, nidx, --[[ Cons ]][
+          return Caml_array.caml_array_set(ndata, nidx, --[[ Cons ]]{
                       hkey,
                       param[1],
                       Caml_array.caml_array_get(ndata, nidx)
-                    ]);
+                    });
         end else do
           return --[[ () ]]0;
         end end 
@@ -3372,11 +3372,11 @@ function Make$2(H) do
     i = key_index(h, hkey);
     container = create(key, info);
     bucket_002 = Caml_array.caml_array_get(h.data, i);
-    bucket = --[[ Cons ]][
+    bucket = --[[ Cons ]]{
       hkey,
       container,
       bucket_002
-    ];
+    };
     Caml_array.caml_array_set(h.data, i, bucket);
     h.size = h.size + 1 | 0;
     if (h.size > (#h.data << 1)) then do
@@ -3402,11 +3402,11 @@ function Make$2(H) do
                   h.size = h.size - 1 | 0;
                   return next;end end end 
                if ___conditional___ = 1--[[ EFalse ]] then do
-                  return --[[ Cons ]][
+                  return --[[ Cons ]]{
                           hk,
                           c,
                           remove_bucket(next)
-                        ];end end end 
+                        };end end end 
                if ___conditional___ = 2--[[ EDead ]] then do
                   h.size = h.size - 1 | 0;
                   _param = next;
@@ -3415,11 +3415,11 @@ function Make$2(H) do
               
             end
           end else do
-            return --[[ Cons ]][
+            return --[[ Cons ]]{
                     hk,
                     c,
                     remove_bucket(next)
-                  ];
+                  };
           end end 
         end else do
           return --[[ Empty ]]0;
@@ -3511,10 +3511,10 @@ function Make$2(H) do
             end else do
               match$1 = get_data$2(c);
               if (match$1 ~= undefined) then do
-                return --[[ :: ]][
+                return --[[ :: ]]{
                         Caml_option.valFromOption(match$1),
                         find_in_bucket(rest)
-                      ];
+                      };
               end else do
                 _param = rest;
                 continue ;
@@ -3562,11 +3562,11 @@ function Make$2(H) do
     catch (exn)do
       if (exn == Caml_builtin_exceptions.not_found) then do
         container = create(key, info);
-        Caml_array.caml_array_set(h.data, i, --[[ Cons ]][
+        Caml_array.caml_array_set(h.data, i, --[[ Cons ]]{
               hkey,
               container,
               l
-            ]);
+            });
         h.size = h.size + 1 | 0;
         if (h.size > (#h.data << 1)) then do
           return resize(h);
@@ -3670,11 +3670,11 @@ function Make$2(H) do
               match$2 = Curry._2(f, k, Caml_option.valFromOption(match$1));
               if (match$2 ~= undefined) then do
                 set_key_data(c, k, Caml_option.valFromOption(match$2));
-                return --[[ Cons ]][
+                return --[[ Cons ]]{
                         param[0],
                         c,
                         do_bucket(rest)
-                      ];
+                      };
               end else do
                 _param = rest;
                 continue ;
@@ -3938,11 +3938,11 @@ GenHashTable = do
               rest = param[2];
               c = param[1];
               if (Curry._1(H.check_key, c)) then do
-                return --[[ Cons ]][
+                return --[[ Cons ]]{
                         param[0],
                         c,
                         do_bucket(rest)
-                      ];
+                      };
               end else do
                 h.size = h.size - 1 | 0;
                 _param = rest;
@@ -3972,11 +3972,11 @@ GenHashTable = do
               hkey = param[0];
               insert_bucket(param[2]);
               nidx = key_index(h, hkey);
-              return Caml_array.caml_array_set(ndata, nidx, --[[ Cons ]][
+              return Caml_array.caml_array_set(ndata, nidx, --[[ Cons ]]{
                           hkey,
                           param[1],
                           Caml_array.caml_array_get(ndata, nidx)
-                        ]);
+                        });
             end else do
               return --[[ () ]]0;
             end end 
@@ -3994,11 +3994,11 @@ GenHashTable = do
         i = key_index(h, hkey);
         container = Curry._2(H.create, key, info);
         bucket_002 = Caml_array.caml_array_get(h.data, i);
-        bucket = --[[ Cons ]][
+        bucket = --[[ Cons ]]{
           hkey,
           container,
           bucket_002
-        ];
+        };
         Caml_array.caml_array_set(h.data, i, bucket);
         h.size = h.size + 1 | 0;
         if (h.size > (#h.data << 1)) then do
@@ -4024,11 +4024,11 @@ GenHashTable = do
                       h.size = h.size - 1 | 0;
                       return next;end end end 
                    if ___conditional___ = 1--[[ EFalse ]] then do
-                      return --[[ Cons ]][
+                      return --[[ Cons ]]{
                               hk,
                               c,
                               remove_bucket(next)
-                            ];end end end 
+                            };end end end 
                    if ___conditional___ = 2--[[ EDead ]] then do
                       h.size = h.size - 1 | 0;
                       _param = next;
@@ -4037,11 +4037,11 @@ GenHashTable = do
                   
                 end
               end else do
-                return --[[ Cons ]][
+                return --[[ Cons ]]{
                         hk,
                         c,
                         remove_bucket(next)
-                      ];
+                      };
               end end 
             end else do
               return --[[ Empty ]]0;
@@ -4133,10 +4133,10 @@ GenHashTable = do
                 end else do
                   match$1 = Curry._1(H.get_data, c);
                   if (match$1 ~= undefined) then do
-                    return --[[ :: ]][
+                    return --[[ :: ]]{
                             Caml_option.valFromOption(match$1),
                             find_in_bucket(rest)
-                          ];
+                          };
                   end else do
                     _param = rest;
                     continue ;
@@ -4184,11 +4184,11 @@ GenHashTable = do
         catch (exn)do
           if (exn == Caml_builtin_exceptions.not_found) then do
             container = Curry._2(H.create, key, info);
-            Caml_array.caml_array_set(h.data, i, --[[ Cons ]][
+            Caml_array.caml_array_set(h.data, i, --[[ Cons ]]{
                   hkey,
                   container,
                   l
-                ]);
+                });
             h.size = h.size + 1 | 0;
             if (h.size > (#h.data << 1)) then do
               return resize(h);
@@ -4292,11 +4292,11 @@ GenHashTable = do
                   match$2 = Curry._2(f, k, Caml_option.valFromOption(match$1));
                   if (match$2 ~= undefined) then do
                     Curry._3(H.set_key_data, c, k, Caml_option.valFromOption(match$2));
-                    return --[[ Cons ]][
+                    return --[[ Cons ]]{
                             param[0],
                             c,
                             do_bucket(rest)
-                          ];
+                          };
                   end else do
                     _param = rest;
                     continue ;

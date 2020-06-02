@@ -27,7 +27,7 @@ end end
 function reverse(a) do
   b_len = #a;
   if (b_len == 0) then do
-    return [];
+    return {};
   end else do
     b = __Array.copy(a);
     for i = 0 , b_len - 1 | 0 , 1 do
@@ -56,7 +56,7 @@ function reverse_of_list(l) do
       end end 
     end;
   end else do
-    return [];
+    return {};
   end end 
 end end
 
@@ -73,10 +73,10 @@ function filter(f, a) do
       v = a[i];
       if (Curry._1(f, v)) then do
         _i = i + 1 | 0;
-        _acc = --[[ :: ]][
+        _acc = --[[ :: ]]{
           v,
           acc
-        ];
+        };
         continue ;
       end else do
         _i = i + 1 | 0;
@@ -100,10 +100,10 @@ function filter_map(f, a) do
       match = Curry._1(f, v);
       _i = i + 1 | 0;
       if (match ~= undefined) then do
-        _acc = --[[ :: ]][
+        _acc = --[[ :: ]]{
           Caml_option.valFromOption(match),
           acc
-        ];
+        };
         continue ;
       end else do
         continue ;
@@ -114,10 +114,10 @@ end end
 
 function range(from, to_) do
   if (from > to_) then do
-    throw [
+    throw {
           Caml_builtin_exceptions.invalid_argument,
           "Ext_array_test.range"
-        ];
+        };
   end
    end 
   return __Array.init((to_ - from | 0) + 1 | 0, (function (i) do
@@ -128,10 +128,10 @@ end end
 function map2i(f, a, b) do
   len = #a;
   if (len ~= #b) then do
-    throw [
+    throw {
           Caml_builtin_exceptions.invalid_argument,
           "Ext_array_test.map2i"
-        ];
+        };
   end
    end 
   return __Array.mapi((function (i, a) do
@@ -148,10 +148,10 @@ function tolist_aux(a, f, _i, _res) do
     end else do
       v = a[i];
       match = Curry._1(f, v);
-      _res = match ~= undefined and --[[ :: ]][
+      _res = match ~= undefined and --[[ :: ]]{
           Caml_option.valFromOption(match),
           res
-        ] or res;
+        } or res;
       _i = i - 1 | 0;
       continue ;
     end end 
@@ -187,7 +187,7 @@ function of_list_map(f, a) do
       end end 
     end;
   end else do
-    return [];
+    return {};
   end end 
 end end
 
@@ -210,13 +210,13 @@ function rfind_and_split(arr, cmp, v) do
   if (i < 0) then do
     return --[[ No_split ]]-226265796;
   end else do
-    return --[[ `Split ]][
+    return --[[ `Split ]]{
             345791162,
-            --[[ tuple ]][
+            --[[ tuple ]]{
               __Array.sub(arr, 0, i),
               __Array.sub(arr, i + 1 | 0, (#arr - i | 0) - 1 | 0)
-            ]
-          ];
+            }
+          };
   end end 
 end end
 
@@ -242,13 +242,13 @@ function find_and_split(arr, cmp, v) do
   if (i < 0) then do
     return --[[ No_split ]]-226265796;
   end else do
-    return --[[ `Split ]][
+    return --[[ `Split ]]{
             345791162,
-            --[[ tuple ]][
+            --[[ tuple ]]{
               __Array.sub(arr, 0, i),
               __Array.sub(arr, i + 1 | 0, (#arr - i | 0) - 1 | 0)
-            ]
-          ];
+            }
+          };
   end end 
 end end
 

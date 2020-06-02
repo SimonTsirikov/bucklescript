@@ -16,26 +16,26 @@ function caml_modf_float(x) do
     i = Math.floor(x$1);
     f = x$1 - i;
     if (neg) then do
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               -f,
               -i
-            ];
+            };
     end else do
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               f,
               i
-            ];
+            };
     end end 
   end else if (isNaN(x)) then do
-    return --[[ tuple ]][
+    return --[[ tuple ]]{
             NaN,
             NaN
-          ];
+          };
   end else do
-    return --[[ tuple ]][
+    return --[[ tuple ]]{
             1 / x,
             x
-          ];
+          };
   end end  end 
 end end
 
@@ -60,10 +60,10 @@ end end
 
 function caml_frexp_float(x) do
   if (x == 0 or not isFinite(x)) then do
-    return --[[ tuple ]][
+    return --[[ tuple ]]{
             x,
             0
-          ];
+          };
   end else do
     neg = x < 0;
     x$prime = Math.abs(x);
@@ -78,10 +78,10 @@ function caml_frexp_float(x) do
       x$prime = -x$prime;
     end
      end 
-    return --[[ tuple ]][
+    return --[[ tuple ]]{
             x$prime,
             exp | 0
-          ];
+          };
   end end 
 end end
 

@@ -17,13 +17,13 @@ end end
 function create(l, x, d, r) do
   hl = height(l);
   hr = height(r);
-  return --[[ Node ]][
+  return --[[ Node ]]{
           --[[ l ]]l,
           --[[ v ]]x,
           --[[ d ]]d,
           --[[ r ]]r,
           --[[ h ]]hl >= hr and hl + 1 | 0 or hr + 1 | 0
-        ];
+        };
 end end
 
 function bal(l, x, d, r) do
@@ -40,16 +40,16 @@ function bal(l, x, d, r) do
       end else if (lr) then do
         return create(create(ll, lv, ld, lr[--[[ l ]]0]), lr[--[[ v ]]1], lr[--[[ d ]]2], create(lr[--[[ r ]]3], x, d, r));
       end else do
-        throw [
+        throw {
               Caml_builtin_exceptions.invalid_argument,
               "Map.bal"
-            ];
+            };
       end end  end 
     end else do
-      throw [
+      throw {
             Caml_builtin_exceptions.invalid_argument,
             "Map.bal"
-          ];
+          };
     end end 
   end else if (hr > (hl + 2 | 0)) then do
     if (r) then do
@@ -62,25 +62,25 @@ function bal(l, x, d, r) do
       end else if (rl) then do
         return create(create(l, x, d, rl[--[[ l ]]0]), rl[--[[ v ]]1], rl[--[[ d ]]2], create(rl[--[[ r ]]3], rv, rd, rr));
       end else do
-        throw [
+        throw {
               Caml_builtin_exceptions.invalid_argument,
               "Map.bal"
-            ];
+            };
       end end  end 
     end else do
-      throw [
+      throw {
             Caml_builtin_exceptions.invalid_argument,
             "Map.bal"
-          ];
+          };
     end end 
   end else do
-    return --[[ Node ]][
+    return --[[ Node ]]{
             --[[ l ]]l,
             --[[ v ]]x,
             --[[ d ]]d,
             --[[ r ]]r,
             --[[ h ]]hl >= hr and hl + 1 | 0 or hr + 1 | 0
-          ];
+          };
   end end  end 
 end end
 
@@ -95,13 +95,13 @@ function add(x, data, m) do
       if (d == data) then do
         return m;
       end else do
-        return --[[ Node ]][
+        return --[[ Node ]]{
                 --[[ l ]]l,
                 --[[ v ]]x,
                 --[[ d ]]data,
                 --[[ r ]]r,
                 --[[ h ]]m[--[[ h ]]4]
-              ];
+              };
       end end 
     end else if (c < 0) then do
       ll = add(x, data, l);
@@ -119,13 +119,13 @@ function add(x, data, m) do
       end end 
     end end  end 
   end else do
-    return --[[ Node ]][
+    return --[[ Node ]]{
             --[[ l : Empty ]]0,
             --[[ v ]]x,
             --[[ d ]]data,
             --[[ r : Empty ]]0,
             --[[ h ]]1
-          ];
+          };
   end end 
 end end
 
@@ -148,31 +148,31 @@ end end
 
 m = List.fold_left((function (acc, param) do
         return add(param[0], param[1], acc);
-      end end), --[[ Empty ]]0, --[[ :: ]][
-      --[[ tuple ]][
+      end end), --[[ Empty ]]0, --[[ :: ]]{
+      --[[ tuple ]]{
         10,
         --[[ "a" ]]97
-      ],
-      --[[ :: ]][
-        --[[ tuple ]][
+      },
+      --[[ :: ]]{
+        --[[ tuple ]]{
           3,
           --[[ "b" ]]98
-        ],
-        --[[ :: ]][
-          --[[ tuple ]][
+        },
+        --[[ :: ]]{
+          --[[ tuple ]]{
             7,
             --[[ "c" ]]99
-          ],
-          --[[ :: ]][
-            --[[ tuple ]][
+          },
+          --[[ :: ]]{
+            --[[ tuple ]]{
               20,
               --[[ "d" ]]100
-            ],
+            },
             --[[ [] ]]0
-          ]
-        ]
-      ]
-    ]);
+          }
+        }
+      }
+    });
 
 function height$1(param) do
   if (param) then do
@@ -185,13 +185,13 @@ end end
 function create$1(l, x, d, r) do
   hl = height$1(l);
   hr = height$1(r);
-  return --[[ Node ]][
+  return --[[ Node ]]{
           --[[ l ]]l,
           --[[ v ]]x,
           --[[ d ]]d,
           --[[ r ]]r,
           --[[ h ]]hl >= hr and hl + 1 | 0 or hr + 1 | 0
-        ];
+        };
 end end
 
 function bal$1(l, x, d, r) do
@@ -208,16 +208,16 @@ function bal$1(l, x, d, r) do
       end else if (lr) then do
         return create$1(create$1(ll, lv, ld, lr[--[[ l ]]0]), lr[--[[ v ]]1], lr[--[[ d ]]2], create$1(lr[--[[ r ]]3], x, d, r));
       end else do
-        throw [
+        throw {
               Caml_builtin_exceptions.invalid_argument,
               "Map.bal"
-            ];
+            };
       end end  end 
     end else do
-      throw [
+      throw {
             Caml_builtin_exceptions.invalid_argument,
             "Map.bal"
-          ];
+          };
     end end 
   end else if (hr > (hl + 2 | 0)) then do
     if (r) then do
@@ -230,25 +230,25 @@ function bal$1(l, x, d, r) do
       end else if (rl) then do
         return create$1(create$1(l, x, d, rl[--[[ l ]]0]), rl[--[[ v ]]1], rl[--[[ d ]]2], create$1(rl[--[[ r ]]3], rv, rd, rr));
       end else do
-        throw [
+        throw {
               Caml_builtin_exceptions.invalid_argument,
               "Map.bal"
-            ];
+            };
       end end  end 
     end else do
-      throw [
+      throw {
             Caml_builtin_exceptions.invalid_argument,
             "Map.bal"
-          ];
+          };
     end end 
   end else do
-    return --[[ Node ]][
+    return --[[ Node ]]{
             --[[ l ]]l,
             --[[ v ]]x,
             --[[ d ]]d,
             --[[ r ]]r,
             --[[ h ]]hl >= hr and hl + 1 | 0 or hr + 1 | 0
-          ];
+          };
   end end  end 
 end end
 
@@ -263,13 +263,13 @@ function add$1(x, data, m) do
       if (d == data) then do
         return m;
       end else do
-        return --[[ Node ]][
+        return --[[ Node ]]{
                 --[[ l ]]l,
                 --[[ v ]]x,
                 --[[ d ]]data,
                 --[[ r ]]r,
                 --[[ h ]]m[--[[ h ]]4]
-              ];
+              };
       end end 
     end else if (c < 0) then do
       ll = add$1(x, data, l);
@@ -287,13 +287,13 @@ function add$1(x, data, m) do
       end end 
     end end  end 
   end else do
-    return --[[ Node ]][
+    return --[[ Node ]]{
             --[[ l : Empty ]]0,
             --[[ v ]]x,
             --[[ d ]]data,
             --[[ r : Empty ]]0,
             --[[ h ]]1
-          ];
+          };
   end end 
 end end
 
@@ -316,54 +316,54 @@ end end
 
 s = List.fold_left((function (acc, param) do
         return add$1(param[0], param[1], acc);
-      end end), --[[ Empty ]]0, --[[ :: ]][
-      --[[ tuple ]][
+      end end), --[[ Empty ]]0, --[[ :: ]]{
+      --[[ tuple ]]{
         "10",
         --[[ "a" ]]97
-      ],
-      --[[ :: ]][
-        --[[ tuple ]][
+      },
+      --[[ :: ]]{
+        --[[ tuple ]]{
           "3",
           --[[ "b" ]]98
-        ],
-        --[[ :: ]][
-          --[[ tuple ]][
+        },
+        --[[ :: ]]{
+          --[[ tuple ]]{
             "7",
             --[[ "c" ]]99
-          ],
-          --[[ :: ]][
-            --[[ tuple ]][
+          },
+          --[[ :: ]]{
+            --[[ tuple ]]{
               "20",
               --[[ "d" ]]100
-            ],
+            },
             --[[ [] ]]0
-          ]
-        ]
-      ]
-    ]);
+          }
+        }
+      }
+    });
 
-Mt.from_pair_suites("Map_find_test", --[[ :: ]][
-      --[[ tuple ]][
+Mt.from_pair_suites("Map_find_test", --[[ :: ]]{
+      --[[ tuple ]]{
         "int",
         (function (param) do
-            return --[[ Eq ]]Block.__(0, [
+            return --[[ Eq ]]Block.__(0, {
                       find(10, m),
                       --[[ "a" ]]97
-                    ]);
+                    });
           end end)
-      ],
-      --[[ :: ]][
-        --[[ tuple ]][
+      },
+      --[[ :: ]]{
+        --[[ tuple ]]{
           "string",
           (function (param) do
-              return --[[ Eq ]]Block.__(0, [
+              return --[[ Eq ]]Block.__(0, {
                         find$1("10", s),
                         --[[ "a" ]]97
-                      ]);
+                      });
             end end)
-        ],
+        },
         --[[ [] ]]0
-      ]
-    ]);
+      }
+    });
 
 --[[ m Not a pure module ]]

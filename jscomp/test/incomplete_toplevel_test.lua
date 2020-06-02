@@ -3,11 +3,11 @@
 
 function f(param) do
   console.log("no inline");
-  return --[[ tuple ]][
+  return --[[ tuple ]]{
           1,
           2,
           3
-        ];
+        };
 end end
 
 match = f(--[[ () ]]0);

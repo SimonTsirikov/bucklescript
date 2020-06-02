@@ -16,67 +16,67 @@ printers = do
   contents: --[[ [] ]]0
 end;
 
-locfmt = --[[ Format ]][
-  --[[ String_literal ]]Block.__(11, [
+locfmt = --[[ Format ]]{
+  --[[ String_literal ]]Block.__(11, {
       "File \"",
-      --[[ String ]]Block.__(2, [
+      --[[ String ]]Block.__(2, {
           --[[ No_padding ]]0,
-          --[[ String_literal ]]Block.__(11, [
+          --[[ String_literal ]]Block.__(11, {
               "\", line ",
-              --[[ Int ]]Block.__(4, [
+              --[[ Int ]]Block.__(4, {
                   --[[ Int_d ]]0,
                   --[[ No_padding ]]0,
                   --[[ No_precision ]]0,
-                  --[[ String_literal ]]Block.__(11, [
+                  --[[ String_literal ]]Block.__(11, {
                       ", characters ",
-                      --[[ Int ]]Block.__(4, [
+                      --[[ Int ]]Block.__(4, {
                           --[[ Int_d ]]0,
                           --[[ No_padding ]]0,
                           --[[ No_precision ]]0,
-                          --[[ Char_literal ]]Block.__(12, [
+                          --[[ Char_literal ]]Block.__(12, {
                               --[[ "-" ]]45,
-                              --[[ Int ]]Block.__(4, [
+                              --[[ Int ]]Block.__(4, {
                                   --[[ Int_d ]]0,
                                   --[[ No_padding ]]0,
                                   --[[ No_precision ]]0,
-                                  --[[ String_literal ]]Block.__(11, [
+                                  --[[ String_literal ]]Block.__(11, {
                                       ": ",
-                                      --[[ String ]]Block.__(2, [
+                                      --[[ String ]]Block.__(2, {
                                           --[[ No_padding ]]0,
                                           --[[ End_of_format ]]0
-                                        ])
-                                    ])
-                                ])
-                            ])
-                        ])
-                    ])
-                ])
-            ])
-        ])
-    ]),
+                                        })
+                                    })
+                                })
+                            })
+                        })
+                    })
+                })
+            })
+        })
+    }),
   "File \"%s\", line %d, characters %d-%d: %s"
-];
+};
 
 function field(x, i) do
   f = x[i];
   if (typeof f == "number") then do
-    return Curry._1(Printf.sprintf(--[[ Format ]][
-                    --[[ Int ]]Block.__(4, [
+    return Curry._1(Printf.sprintf(--[[ Format ]]{
+                    --[[ Int ]]Block.__(4, {
                         --[[ Int_d ]]0,
                         --[[ No_padding ]]0,
                         --[[ No_precision ]]0,
                         --[[ End_of_format ]]0
-                      ]),
+                      }),
                     "%d"
-                  ]), f);
+                  }), f);
   end else if ((f.tag | 0) == Obj.string_tag) then do
-    return Curry._1(Printf.sprintf(--[[ Format ]][
-                    --[[ Caml_string ]]Block.__(3, [
+    return Curry._1(Printf.sprintf(--[[ Format ]]{
+                    --[[ Caml_string ]]Block.__(3, {
                         --[[ No_padding ]]0,
                         --[[ End_of_format ]]0
-                      ]),
+                      }),
                     "%S"
-                  ]), f);
+                  }), f);
   end else if ((f.tag | 0) == Obj.double_tag) then do
     return Pervasives.string_of_float(f);
   end else do
@@ -88,19 +88,19 @@ function other_fields(x, i) do
   if (i >= #x) then do
     return "";
   end else do
-    return Curry._2(Printf.sprintf(--[[ Format ]][
-                    --[[ String_literal ]]Block.__(11, [
+    return Curry._2(Printf.sprintf(--[[ Format ]]{
+                    --[[ String_literal ]]Block.__(11, {
                         ", ",
-                        --[[ String ]]Block.__(2, [
+                        --[[ String ]]Block.__(2, {
                             --[[ No_padding ]]0,
-                            --[[ String ]]Block.__(2, [
+                            --[[ String ]]Block.__(2, {
                                 --[[ No_padding ]]0,
                                 --[[ End_of_format ]]0
-                              ])
-                          ])
-                      ]),
+                              })
+                          })
+                      }),
                     ", %s%s"
-                  ]), field(x, i), other_fields(x, i + 1 | 0));
+                  }), field(x, i), other_fields(x, i + 1 | 0));
   end end 
 end end
 
@@ -112,37 +112,37 @@ function fields(x) do
      or ___conditional___ = 1 then do
         return "";end end end 
      if ___conditional___ = 2 then do
-        return Curry._1(Printf.sprintf(--[[ Format ]][
-                        --[[ Char_literal ]]Block.__(12, [
+        return Curry._1(Printf.sprintf(--[[ Format ]]{
+                        --[[ Char_literal ]]Block.__(12, {
                             --[[ "(" ]]40,
-                            --[[ String ]]Block.__(2, [
+                            --[[ String ]]Block.__(2, {
                                 --[[ No_padding ]]0,
-                                --[[ Char_literal ]]Block.__(12, [
+                                --[[ Char_literal ]]Block.__(12, {
                                     --[[ ")" ]]41,
                                     --[[ End_of_format ]]0
-                                  ])
-                              ])
-                          ]),
+                                  })
+                              })
+                          }),
                         "(%s)"
-                      ]), field(x, 1));end end end 
+                      }), field(x, 1));end end end 
      do
     else do
-      return Curry._2(Printf.sprintf(--[[ Format ]][
-                      --[[ Char_literal ]]Block.__(12, [
+      return Curry._2(Printf.sprintf(--[[ Format ]]{
+                      --[[ Char_literal ]]Block.__(12, {
                           --[[ "(" ]]40,
-                          --[[ String ]]Block.__(2, [
+                          --[[ String ]]Block.__(2, {
                               --[[ No_padding ]]0,
-                              --[[ String ]]Block.__(2, [
+                              --[[ String ]]Block.__(2, {
                                   --[[ No_padding ]]0,
-                                  --[[ Char_literal ]]Block.__(12, [
+                                  --[[ Char_literal ]]Block.__(12, {
                                       --[[ ")" ]]41,
                                       --[[ End_of_format ]]0
-                                    ])
-                                ])
-                            ])
-                        ]),
+                                    })
+                                })
+                            })
+                        }),
                       "(%s%s)"
-                    ]), field(x, 1), other_fields(x, 2));
+                    }), field(x, 1), other_fields(x, 2));
       end end
       
   end
@@ -197,19 +197,19 @@ function print(fct, arg) do
   end
   catch (raw_x)do
     x = Caml_js_exceptions.internalToOCamlException(raw_x);
-    Curry._1(Printf.eprintf(--[[ Format ]][
-              --[[ String_literal ]]Block.__(11, [
+    Curry._1(Printf.eprintf(--[[ Format ]]{
+              --[[ String_literal ]]Block.__(11, {
                   "Uncaught exception: ",
-                  --[[ String ]]Block.__(2, [
+                  --[[ String ]]Block.__(2, {
                       --[[ No_padding ]]0,
-                      --[[ Char_literal ]]Block.__(12, [
+                      --[[ Char_literal ]]Block.__(12, {
                           --[[ "\n" ]]10,
                           --[[ End_of_format ]]0
-                        ])
-                    ])
-                ]),
+                        })
+                    })
+                }),
               "Uncaught exception: %s\n"
-            ]), to_string(x));
+            }), to_string(x));
     Caml_io.caml_ml_flush(Pervasives.stderr);
     throw x;
   end
@@ -222,28 +222,28 @@ function __catch(fct, arg) do
   catch (raw_x)do
     x = Caml_js_exceptions.internalToOCamlException(raw_x);
     Caml_io.caml_ml_flush(Pervasives.stdout);
-    Curry._1(Printf.eprintf(--[[ Format ]][
-              --[[ String_literal ]]Block.__(11, [
+    Curry._1(Printf.eprintf(--[[ Format ]]{
+              --[[ String_literal ]]Block.__(11, {
                   "Uncaught exception: ",
-                  --[[ String ]]Block.__(2, [
+                  --[[ String ]]Block.__(2, {
                       --[[ No_padding ]]0,
-                      --[[ Char_literal ]]Block.__(12, [
+                      --[[ Char_literal ]]Block.__(12, {
                           --[[ "\n" ]]10,
                           --[[ End_of_format ]]0
-                        ])
-                    ])
-                ]),
+                        })
+                    })
+                }),
               "Uncaught exception: %s\n"
-            ]), to_string(x));
+            }), to_string(x));
     return Pervasives.exit(2);
   end
 end end
 
 function convert_raw_backtrace_slot(param) do
-  throw [
+  throw {
         Caml_builtin_exceptions.failure,
         "convert_raw_backtrace_slot not implemented"
-      ];
+      };
 end end
 
 function convert_raw_backtrace(bt) do
@@ -278,61 +278,61 @@ function format_backtrace_slot(pos, slot) do
     if (slot[--[[ is_raise ]]0]) then do
       return ;
     end else do
-      return Curry._1(Printf.sprintf(--[[ Format ]][
-                      --[[ String ]]Block.__(2, [
+      return Curry._1(Printf.sprintf(--[[ Format ]]{
+                      --[[ String ]]Block.__(2, {
                           --[[ No_padding ]]0,
-                          --[[ String_literal ]]Block.__(11, [
+                          --[[ String_literal ]]Block.__(11, {
                               " unknown location",
                               --[[ End_of_format ]]0
-                            ])
-                        ]),
+                            })
+                        }),
                       "%s unknown location"
-                    ]), info(false));
+                    }), info(false));
     end end 
   end else do
-    return Curry._6(Printf.sprintf(--[[ Format ]][
-                    --[[ String ]]Block.__(2, [
+    return Curry._6(Printf.sprintf(--[[ Format ]]{
+                    --[[ String ]]Block.__(2, {
                         --[[ No_padding ]]0,
-                        --[[ String_literal ]]Block.__(11, [
+                        --[[ String_literal ]]Block.__(11, {
                             " file \"",
-                            --[[ String ]]Block.__(2, [
+                            --[[ String ]]Block.__(2, {
                                 --[[ No_padding ]]0,
-                                --[[ Char_literal ]]Block.__(12, [
+                                --[[ Char_literal ]]Block.__(12, {
                                     --[[ "\"" ]]34,
-                                    --[[ String ]]Block.__(2, [
+                                    --[[ String ]]Block.__(2, {
                                         --[[ No_padding ]]0,
-                                        --[[ String_literal ]]Block.__(11, [
+                                        --[[ String_literal ]]Block.__(11, {
                                             ", line ",
-                                            --[[ Int ]]Block.__(4, [
+                                            --[[ Int ]]Block.__(4, {
                                                 --[[ Int_d ]]0,
                                                 --[[ No_padding ]]0,
                                                 --[[ No_precision ]]0,
-                                                --[[ String_literal ]]Block.__(11, [
+                                                --[[ String_literal ]]Block.__(11, {
                                                     ", characters ",
-                                                    --[[ Int ]]Block.__(4, [
+                                                    --[[ Int ]]Block.__(4, {
                                                         --[[ Int_d ]]0,
                                                         --[[ No_padding ]]0,
                                                         --[[ No_precision ]]0,
-                                                        --[[ Char_literal ]]Block.__(12, [
+                                                        --[[ Char_literal ]]Block.__(12, {
                                                             --[[ "-" ]]45,
-                                                            --[[ Int ]]Block.__(4, [
+                                                            --[[ Int ]]Block.__(4, {
                                                                 --[[ Int_d ]]0,
                                                                 --[[ No_padding ]]0,
                                                                 --[[ No_precision ]]0,
                                                                 --[[ End_of_format ]]0
-                                                              ])
-                                                          ])
-                                                      ])
-                                                  ])
-                                              ])
-                                          ])
-                                      ])
-                                  ])
-                              ])
-                          ])
-                      ]),
+                                                              })
+                                                          })
+                                                      })
+                                                  })
+                                              })
+                                          })
+                                      })
+                                  })
+                              })
+                          })
+                      }),
                     "%s file \"%s\"%s, line %d, characters %d-%d"
-                  ]), info(slot[--[[ is_raise ]]0]), slot[--[[ filename ]]1], slot[--[[ is_inline ]]5] and " (inlined)" or "", slot[--[[ line_number ]]2], slot[--[[ start_char ]]3], slot[--[[ end_char ]]4]);
+                  }), info(slot[--[[ is_raise ]]0]), slot[--[[ filename ]]1], slot[--[[ is_inline ]]5] and " (inlined)" or "", slot[--[[ line_number ]]2], slot[--[[ start_char ]]3], slot[--[[ end_char ]]4]);
   end end 
 end end
 
@@ -344,28 +344,28 @@ function print_raw_backtrace(outchan, raw_backtrace) do
     for i = 0 , #a - 1 | 0 , 1 do
       match = format_backtrace_slot(i, Caml_array.caml_array_get(a, i));
       if (match ~= undefined) then do
-        Curry._1(Printf.fprintf(outchan$1, --[[ Format ]][
-                  --[[ String ]]Block.__(2, [
+        Curry._1(Printf.fprintf(outchan$1, --[[ Format ]]{
+                  --[[ String ]]Block.__(2, {
                       --[[ No_padding ]]0,
-                      --[[ Char_literal ]]Block.__(12, [
+                      --[[ Char_literal ]]Block.__(12, {
                           --[[ "\n" ]]10,
                           --[[ End_of_format ]]0
-                        ])
-                    ]),
+                        })
+                    }),
                   "%s\n"
-                ]), match);
+                }), match);
       end
        end 
     end
     return --[[ () ]]0;
   end else do
-    return Printf.fprintf(outchan$1, --[[ Format ]][
-                --[[ String_literal ]]Block.__(11, [
+    return Printf.fprintf(outchan$1, --[[ Format ]]{
+                --[[ String_literal ]]Block.__(11, {
                     "(Program not linked with -g, cannot print stack backtrace)\n",
                     --[[ End_of_format ]]0
-                  ]),
+                  }),
                 "(Program not linked with -g, cannot print stack backtrace)\n"
-              ]);
+              });
   end end 
 end end
 
@@ -381,16 +381,16 @@ function raw_backtrace_to_string(raw_backtrace) do
     for i = 0 , #a - 1 | 0 , 1 do
       match = format_backtrace_slot(i, Caml_array.caml_array_get(a, i));
       if (match ~= undefined) then do
-        Curry._1(Printf.bprintf(b, --[[ Format ]][
-                  --[[ String ]]Block.__(2, [
+        Curry._1(Printf.bprintf(b, --[[ Format ]]{
+                  --[[ String ]]Block.__(2, {
                       --[[ No_padding ]]0,
-                      --[[ Char_literal ]]Block.__(12, [
+                      --[[ Char_literal ]]Block.__(12, {
                           --[[ "\n" ]]10,
                           --[[ End_of_format ]]0
-                        ])
-                    ]),
+                        })
+                    }),
                   "%s\n"
-                ]), match);
+                }), match);
       end
        end 
     end
@@ -465,10 +465,10 @@ function get_backtrace(param) do
 end end
 
 function register_printer(fn) do
-  printers.contents = --[[ :: ]][
+  printers.contents = --[[ :: ]]{
     fn,
     printers.contents
-  ];
+  };
   return --[[ () ]]0;
 end end
 

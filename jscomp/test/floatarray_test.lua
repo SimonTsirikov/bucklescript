@@ -23,15 +23,15 @@ end
 
 Caml_array.caml_array_set(v, 2, 15.5);
 
-eq("File \"floatarray_test.ml\", line 17, characters 5-12", --[[ tuple ]][
+eq("File \"floatarray_test.ml\", line 17, characters 5-12", --[[ tuple ]]{
       #v,
       v[2],
       Caml_array.caml_array_get(v, 1)
-    ], --[[ tuple ]][
+    }, --[[ tuple ]]{
       5,
       15.5,
       0
-    ]);
+    });
 
 Mt.from_pair_suites("Floatarray_test", suites.contents);
 

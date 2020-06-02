@@ -2,14 +2,14 @@
 
 Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
 
-throw [
+throw {
       Caml_builtin_exceptions.match_failure,
-      --[[ tuple ]][
+      --[[ tuple ]]{
         "gpr_2474.ml",
         6,
         4
-      ]
-    ];
+      }
+    };
 
 exports.coordinates = coordinates;
 --[[  Not a pure module ]]

@@ -147,39 +147,39 @@ function splitAux(x, n) do
   d = n.value;
   r = n.right;
   if (x == v) then do
-    return --[[ tuple ]][
+    return --[[ tuple ]]{
             l,
             Caml_option.some(d),
             r
-          ];
+          };
   end else if (x < v) then do
     if (l ~= null) then do
       match = splitAux(x, l);
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               match[0],
               match[1],
               Belt_internalAVLtree.join(match[2], v, d, r)
-            ];
+            };
     end else do
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               null,
               undefined,
               n
-            ];
+            };
     end end 
   end else if (r ~= null) then do
     match$1 = splitAux(x, r);
-    return --[[ tuple ]][
+    return --[[ tuple ]]{
             Belt_internalAVLtree.join(l, v, d, match$1[0]),
             match$1[1],
             match$1[2]
-          ];
+          };
   end else do
-    return --[[ tuple ]][
+    return --[[ tuple ]]{
             n,
             undefined,
             null
-          ];
+          };
   end end  end  end 
 end end
 
@@ -187,11 +187,11 @@ function split(x, n) do
   if (n ~= null) then do
     return splitAux(x, n);
   end else do
-    return --[[ tuple ]][
+    return --[[ tuple ]]{
             null,
             undefined,
             null
-          ];
+          };
   end end 
 end end
 

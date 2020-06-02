@@ -7,12 +7,12 @@ Caml_oo_curry = require "../../lib/js/caml_oo_curry.lua";
 CamlinternalOO = require "../../lib/js/camlinternalOO.lua";
 Caml_exceptions = require "../../lib/js/caml_exceptions.lua";
 
-shared = [
+shared = {
   "leq",
   "value"
-];
+};
 
-shared$1 = ["repr"];
+shared$1 = {"repr"};
 
 suites = do
   contents: --[[ [] ]]0
@@ -33,25 +33,25 @@ function comparable_001(__class) do
     end end);
 end end
 
-comparable = --[[ class ]][
+comparable = --[[ class ]]{
   0,
   comparable_001,
   0,
   0
-];
+};
 
 function money_init(__class) do
   x = CamlinternalOO.new_variable(__class, "");
-  ids = CamlinternalOO.new_methods_variables(__class, [
+  ids = CamlinternalOO.new_methods_variables(__class, {
         "value",
         "leq"
-      ], shared$1);
+      }, shared$1);
   value = ids[0];
   leq = ids[1];
   repr = ids[2];
-  inh = CamlinternalOO.inherits(__class, 0, ["leq"], 0, comparable, true);
+  inh = CamlinternalOO.inherits(__class, 0, {"leq"}, 0, comparable, true);
   obj_init = inh[0];
-  CamlinternalOO.set_methods(__class, [
+  CamlinternalOO.set_methods(__class, {
         value,
         (function (self$2) do
             return self$2[repr];
@@ -60,7 +60,7 @@ function money_init(__class) do
         (function (self$2, p) do
             return self$2[repr] <= Caml_oo_curry.js1(834174833, 1, p);
           end end)
-      ]);
+      });
   return (function (env, self, x$1) do
       self$1 = CamlinternalOO.create_object_opt(self, __class);
       self$1[x] = x$1;
@@ -91,11 +91,11 @@ function money2_init(__class) do
     end end);
 end end
 
-money2 = CamlinternalOO.make_class([
+money2 = CamlinternalOO.make_class({
       "leq",
       "times",
       "value"
-    ], money2_init);
+    }, money2_init);
 
 function min(x, y) do
   if (Caml_oo_curry.js2(5393368, 2, x, y)) then do

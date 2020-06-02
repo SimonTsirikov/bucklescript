@@ -16,68 +16,68 @@ function eq(loc, param) do
   y = param[1];
   x = param[0];
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = --[[ :: ]][
-    --[[ tuple ]][
+  suites.contents = --[[ :: ]]{
+    --[[ tuple ]]{
       loc .. (" id " .. String(test_id.contents)),
       (function (param) do
-          return --[[ Eq ]]Block.__(0, [
+          return --[[ Eq ]]Block.__(0, {
                     x,
                     y
-                  ]);
+                  });
         end end)
-    ],
+    },
     suites.contents
-  ];
+  };
   return --[[ () ]]0;
 end end
 
-v = [
+v = {
   1,
   2,
   3,
   3
-];
+};
 
-eq("File \"array_subtle_test.ml\", line 12, characters 5-12", --[[ tuple ]][
+eq("File \"array_subtle_test.ml\", line 12, characters 5-12", --[[ tuple ]]{
       4,
       #v
-    ]);
+    });
 
-eq("File \"array_subtle_test.ml\", line 15, characters 5-12", --[[ tuple ]][
+eq("File \"array_subtle_test.ml\", line 15, characters 5-12", --[[ tuple ]]{
       5,
       v.push(3)
-    ]);
+    });
 
-eq("File \"array_subtle_test.ml\", line 16, characters 5-12", --[[ tuple ]][
+eq("File \"array_subtle_test.ml\", line 16, characters 5-12", --[[ tuple ]]{
       5,
       #v
-    ]);
+    });
 
-eq("File \"array_subtle_test.ml\", line 17, characters 5-12", --[[ tuple ]][
+eq("File \"array_subtle_test.ml\", line 17, characters 5-12", --[[ tuple ]]{
       5,
       v.length
-    ]);
+    });
 
-eq("File \"array_subtle_test.ml\", line 21, characters 5-12", --[[ tuple ]][
+eq("File \"array_subtle_test.ml\", line 21, characters 5-12", --[[ tuple ]]{
       3,
       Caml_array.caml_array_get(v, 2)
-    ]);
+    });
 
 Caml_array.caml_array_set(v, 2, 4);
 
-eq("File \"array_subtle_test.ml\", line 23, characters 5-12", --[[ tuple ]][
+eq("File \"array_subtle_test.ml\", line 23, characters 5-12", --[[ tuple ]]{
       4,
       Caml_array.caml_array_get(v, 2)
-    ]);
+    });
 
 while(v.length > 0) do
   v.pop();
 end;
 
-eq("File \"array_subtle_test.ml\", line 29, characters 5-12", --[[ tuple ]][
+eq("File \"array_subtle_test.ml\", line 29, characters 5-12", --[[ tuple ]]{
       0,
       v.length
-    ]);
+    });
 
 function f(v) do
   match = v.pop();
@@ -115,20 +115,20 @@ function fff4(x) do
   end end 
 end end
 
-eq("File \"array_subtle_test.ml\", line 51, characters 6-13", --[[ tuple ]][
-      fff3([]),
+eq("File \"array_subtle_test.ml\", line 51, characters 6-13", --[[ tuple ]]{
+      fff3({}),
       1
-    ]);
+    });
 
-eq("File \"array_subtle_test.ml\", line 52, characters 6-13", --[[ tuple ]][
-      fff4([]),
+eq("File \"array_subtle_test.ml\", line 52, characters 6-13", --[[ tuple ]]{
+      fff4({}),
       2
-    ]);
+    });
 
-eq("File \"array_subtle_test.ml\", line 53, characters 6-13", --[[ tuple ]][
-      fff4([1]),
+eq("File \"array_subtle_test.ml\", line 53, characters 6-13", --[[ tuple ]]{
+      fff4({1}),
       1
-    ]);
+    });
 
 Mt.from_pair_suites("Array_subtle_test", suites.contents);
 

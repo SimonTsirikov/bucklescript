@@ -2,19 +2,19 @@
 
 
 function small_float_array(x) do
-  return --[[ tuple ]][
-          [
+  return --[[ tuple ]]{
+          {
             1,
             2,
             3
-          ],
+          },
           x
-        ];
+        };
 end end
 
 function longer_float_array(x) do
-  return --[[ tuple ]][
-          [
+  return --[[ tuple ]]{
+          {
             1,
             2,
             3,
@@ -55,9 +55,9 @@ function longer_float_array(x) do
             8,
             9,
             0
-          ],
+          },
           x
-        ];
+        };
 end end
 
 exports.small_float_array = small_float_array;

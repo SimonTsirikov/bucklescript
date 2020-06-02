@@ -16,31 +16,31 @@ function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
 end end
 
-x = List.length(--[[ :: ]][
+x = List.length(--[[ :: ]]{
       1,
-      --[[ :: ]][
+      --[[ :: ]]{
         2,
-        --[[ :: ]][
+        --[[ :: ]]{
           3,
           --[[ [] ]]0
-        ]
-      ]
-    ]);
+        }
+      }
+    });
 
-jsMapperConstantArray = [
-  --[[ tuple ]][
+jsMapperConstantArray = {
+  --[[ tuple ]]{
     -988374136,
     "http"
-  ],
-  --[[ tuple ]][
+  },
+  --[[ tuple ]]{
     5243943,
     "idb"
-  ],
-  --[[ tuple ]][
+  },
+  --[[ tuple ]]{
     561436162,
     "leveldb"
-  ]
-];
+  }
+};
 
 function adapterToJs(param) do
   return Js_mapperRt.binarySearch(3, param, jsMapperConstantArray);

@@ -34,7 +34,7 @@ Mt.from_pair_suites("Gpr_3536_test", suites.contents);
 
 v = 5;
 
-u = --[[ Some ]][3];
+u = --[[ Some ]]{3};
 
 exports.suites = suites;
 exports.test_id = test_id;

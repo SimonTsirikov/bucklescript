@@ -15,18 +15,18 @@ function eq(loc, param) do
   y = param[1];
   x = param[0];
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = --[[ :: ]][
-    --[[ tuple ]][
+  suites.contents = --[[ :: ]]{
+    --[[ tuple ]]{
       loc .. (" id " .. String(test_id.contents)),
       (function (param) do
-          return --[[ Eq ]]Block.__(0, [
+          return --[[ Eq ]]Block.__(0, {
                     x,
                     y
-                  ]);
+                  });
         end end)
-    ],
+    },
     suites.contents
-  ];
+  };
   return --[[ () ]]0;
 end end
 
@@ -36,10 +36,10 @@ v5 = do
   setY: (function (v) do
       self = this ;
       self.y = 2;
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               self.y,
               v
-            ]; end
+            }; end
     end),
   say: (function () do
       self = this ;
@@ -94,15 +94,15 @@ u = do
     end)
 end;
 
-test_type_001 = --[[ :: ]][
+test_type_001 = --[[ :: ]]{
   v,
   --[[ [] ]]0
-];
+};
 
-test_type = --[[ :: ]][
+test_type = --[[ :: ]]{
   u,
   test_type_001
-];
+};
 
 z = do
   x: do
@@ -120,7 +120,7 @@ z = do
 end;
 
 eventObj = do
-  events: [],
+  events: {},
   empty: (function () do
       self = this ;
       a = self.events;
@@ -156,20 +156,20 @@ zz = do
     end)
 end;
 
-test_type2_001 = --[[ :: ]][
+test_type2_001 = --[[ :: ]]{
   zz,
   --[[ [] ]]0
-];
+};
 
-test_type2 = --[[ :: ]][
+test_type2 = --[[ :: ]]{
   z,
   test_type2_001
-];
+};
 
-eq("File \"ppx_this_obj_field.ml\", line 92, characters 5-12", --[[ tuple ]][
+eq("File \"ppx_this_obj_field.ml\", line 92, characters 5-12", --[[ tuple ]]{
       6,
       v5.say()
-    ]);
+    });
 
 a = v.say();
 
@@ -183,18 +183,18 @@ c = v.say();
 
 v.incr();
 
-eq("File \"ppx_this_obj_field.ml\", line 99, characters 5-12", --[[ tuple ]][
-      --[[ tuple ]][
+eq("File \"ppx_this_obj_field.ml\", line 99, characters 5-12", --[[ tuple ]]{
+      --[[ tuple ]]{
         3,
         4,
         5
-      ],
-      --[[ tuple ]][
+      },
+      --[[ tuple ]]{
         a,
         b,
         c
-      ]
-    ]);
+      }
+    });
 
 aa = z.getX();
 
@@ -202,16 +202,16 @@ z.setX(32);
 
 bb = z.getX();
 
-eq("File \"ppx_this_obj_field.ml\", line 103, characters 5-12", --[[ tuple ]][
-      --[[ tuple ]][
+eq("File \"ppx_this_obj_field.ml\", line 103, characters 5-12", --[[ tuple ]]{
+      --[[ tuple ]]{
         3,
         32
-      ],
-      --[[ tuple ]][
+      },
+      --[[ tuple ]]{
         aa,
         bb
-      ]
-    ]);
+      }
+    });
 
 Mt.from_pair_suites("Ppx_this_obj_field", suites.contents);
 

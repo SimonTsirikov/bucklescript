@@ -103,22 +103,22 @@ function copy_bucketlist(param) do
           key = param[--[[ key ]]0];
           data = param[--[[ data ]]1];
           next = param[--[[ next ]]2];
-          r = --[[ Cons ]][
+          r = --[[ Cons ]]{
             --[[ key ]]key,
             --[[ data ]]data,
             --[[ next ]]next
-          ];
+          };
           if (prec) then do
             prec[--[[ next ]]2] = r;
           end else do
-            throw [
+            throw {
                   Caml_builtin_exceptions.assert_failure,
-                  --[[ tuple ]][
+                  --[[ tuple ]]{
                     "hashtbl.ml",
                     113,
                     23
-                  ]
-                ];
+                  }
+                };
           end end 
           _param = next;
           _prec = r;
@@ -128,11 +128,11 @@ function copy_bucketlist(param) do
         end end 
       end;
     end end;
-    r = --[[ Cons ]][
+    r = --[[ Cons ]]{
       --[[ key ]]key,
       --[[ data ]]data,
       --[[ next ]]next
-    ];
+    };
     loop(r, next);
     return r;
   end else do
@@ -169,11 +169,11 @@ function resize(indexfun, h) do
           key = cell[--[[ key ]]0];
           data = cell[--[[ data ]]1];
           next = cell[--[[ next ]]2];
-          cell$1 = inplace and cell or --[[ Cons ]][
+          cell$1 = inplace and cell or --[[ Cons ]]{
               --[[ key ]]key,
               --[[ data ]]data,
               --[[ next : Empty ]]0
-            ];
+            };
           nidx = Curry._2(indexfun, h, key);
           match = Caml_array.caml_array_get(ndata_tail, nidx);
           if (match) then do
@@ -215,11 +215,11 @@ end end
 
 function add(h, key, data) do
   i = key_index(h, key);
-  bucket = --[[ Cons ]][
+  bucket = --[[ Cons ]]{
     --[[ key ]]key,
     --[[ data ]]data,
     --[[ next ]]Caml_array.caml_array_get(h.data, i)
-  ];
+  };
   Caml_array.caml_array_set(h.data, i, bucket);
   h.size = h.size + 1 | 0;
   if (h.size > (#h.data << 1)) then do
@@ -371,10 +371,10 @@ function find_all(h, key) do
         data = param[--[[ data ]]1];
         next = param[--[[ next ]]2];
         if (Caml_obj.caml_equal(k, key)) then do
-          return --[[ :: ]][
+          return --[[ :: ]]{
                   data,
                   find_in_bucket(next)
-                ];
+                };
         end else do
           _param = next;
           continue ;
@@ -411,11 +411,11 @@ function replace(h, key, data) do
   i = key_index(h, key);
   l = Caml_array.caml_array_get(h.data, i);
   if (replace_bucket(key, data, l)) then do
-    Caml_array.caml_array_set(h.data, i, --[[ Cons ]][
+    Caml_array.caml_array_set(h.data, i, --[[ Cons ]]{
           --[[ key ]]key,
           --[[ data ]]data,
           --[[ next ]]l
-        ]);
+        });
     h.size = h.size + 1 | 0;
     if (h.size > (#h.data << 1)) then do
       return resize(key_index, h);
@@ -626,11 +626,11 @@ function MakeSeeded(H) do
   end end;
   add = function (h, key, data) do
     i = key_index(h, key);
-    bucket = --[[ Cons ]][
+    bucket = --[[ Cons ]]{
       --[[ key ]]key,
       --[[ data ]]data,
       --[[ next ]]Caml_array.caml_array_get(h.data, i)
-    ];
+    };
     Caml_array.caml_array_set(h.data, i, bucket);
     h.size = h.size + 1 | 0;
     if (h.size > (#h.data << 1)) then do
@@ -778,10 +778,10 @@ function MakeSeeded(H) do
           d = param[--[[ data ]]1];
           next = param[--[[ next ]]2];
           if (Curry._2(H.equal, k, key)) then do
-            return --[[ :: ]][
+            return --[[ :: ]]{
                     d,
                     find_in_bucket(next)
-                  ];
+                  };
           end else do
             _param = next;
             continue ;
@@ -816,11 +816,11 @@ function MakeSeeded(H) do
     i = key_index(h, key);
     l = Caml_array.caml_array_get(h.data, i);
     if (replace_bucket(key, data, l)) then do
-      Caml_array.caml_array_set(h.data, i, --[[ Cons ]][
+      Caml_array.caml_array_set(h.data, i, --[[ Cons ]]{
             --[[ key ]]key,
             --[[ data ]]data,
             --[[ next ]]l
-          ]);
+          });
       h.size = h.size + 1 | 0;
       if (h.size > (#h.data << 1)) then do
         return resize(key_index, h);
@@ -876,11 +876,11 @@ function Make(H) do
   end end;
   add = function (h, key, data) do
     i = key_index(h, key);
-    bucket = --[[ Cons ]][
+    bucket = --[[ Cons ]]{
       --[[ key ]]key,
       --[[ data ]]data,
       --[[ next ]]Caml_array.caml_array_get(h.data, i)
-    ];
+    };
     Caml_array.caml_array_set(h.data, i, bucket);
     h.size = h.size + 1 | 0;
     if (h.size > (#h.data << 1)) then do
@@ -1028,10 +1028,10 @@ function Make(H) do
           d = param[--[[ data ]]1];
           next = param[--[[ next ]]2];
           if (Curry._2(equal, k, key)) then do
-            return --[[ :: ]][
+            return --[[ :: ]]{
                     d,
                     find_in_bucket(next)
-                  ];
+                  };
           end else do
             _param = next;
             continue ;
@@ -1066,11 +1066,11 @@ function Make(H) do
     i = key_index(h, key);
     l = Caml_array.caml_array_get(h.data, i);
     if (replace_bucket(key, data, l)) then do
-      Caml_array.caml_array_set(h.data, i, --[[ Cons ]][
+      Caml_array.caml_array_set(h.data, i, --[[ Cons ]]{
             --[[ key ]]key,
             --[[ data ]]data,
             --[[ next ]]l
-          ]);
+          });
       h.size = h.size + 1 | 0;
       if (h.size > (#h.data << 1)) then do
         return resize(key_index, h);

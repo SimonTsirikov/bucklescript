@@ -7,29 +7,29 @@ Curry$1 = { };
 
 Block = { };
 
-xbs = Array.prototype.map.call([
+xbs = Array.prototype.map.call({
       1,
       2,
       3,
       5
-    ], (function (x) do
+    }, (function (x) do
         return x + 1 | 0;
       end end));
 
 function f(cb) do
-  return Array.prototype.map.call([
+  return Array.prototype.map.call({
               1,
               2,
               3,
               4
-            ], Curry.__1(cb));
+            }, Curry.__1(cb));
 end end
 
-xs = Array.prototype.map.call([
+xs = Array.prototype.map.call({
       1,
       1,
       2
-    ], (function (x) do
+    }, (function (x) do
         return (function (y) do
             return (y + x | 0) + 1 | 0;
           end end);
@@ -104,10 +104,10 @@ function h5(x) do
 end end
 
 function add(x, y) do
-  console.log(--[[ tuple ]][
+  console.log(--[[ tuple ]]{
         x,
         y
-      ]);
+      });
   return x + y | 0;
 end end
 
@@ -125,10 +125,10 @@ f_unit_magic = unit_magic(--[[ () ]]0);
 
 function hh(xs) do
   return (function (param) do
-      Caml_splice_call.spliceApply(f_0002, [
+      Caml_splice_call.spliceApply(f_0002, {
             xs,
             param
-          ]);
+          });
       return --[[ () ]]0;
     end end);
 end end

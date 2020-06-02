@@ -13,17 +13,17 @@ Caml_builtin_exceptions = require "./caml_builtin_exceptions.lua";
 CamlinternalFormatBasics = require "./camlinternalFormatBasics.lua";
 
 function failwith(s) do
-  throw [
+  throw {
         Caml_builtin_exceptions.failure,
         s
-      ];
+      };
 end end
 
 function invalid_arg(s) do
-  throw [
+  throw {
         Caml_builtin_exceptions.invalid_argument,
         s
-      ];
+      };
 end end
 
 Exit = Caml_exceptions.create("Pervasives.Exit");
@@ -60,10 +60,10 @@ end end
 
 function char_of_int(n) do
   if (n < 0 or n > 255) then do
-    throw [
+    throw {
           Caml_builtin_exceptions.invalid_argument,
           "char_of_int"
-        ];
+        };
   end
    end 
   return n;
@@ -86,10 +86,10 @@ function bool_of_string(param) do
         return true;end end end 
      do
     else do
-      throw [
+      throw {
             Caml_builtin_exceptions.invalid_argument,
             "bool_of_string"
-          ];
+          };
       end end
       
   end
@@ -170,10 +170,10 @@ end end
 
 function $at(l1, l2) do
   if (l1) then do
-    return --[[ :: ]][
+    return --[[ :: ]]{
             l1[0],
             $at(l1[1], l2)
-          ];
+          };
   end else do
     return l2;
   end end 
@@ -192,35 +192,35 @@ function open_out_gen(mode, perm, name) do
 end end
 
 function open_out(name) do
-  return open_out_gen(--[[ :: ]][
+  return open_out_gen(--[[ :: ]]{
               --[[ Open_wronly ]]1,
-              --[[ :: ]][
+              --[[ :: ]]{
                 --[[ Open_creat ]]3,
-                --[[ :: ]][
+                --[[ :: ]]{
                   --[[ Open_trunc ]]4,
-                  --[[ :: ]][
+                  --[[ :: ]]{
                     --[[ Open_text ]]7,
                     --[[ [] ]]0
-                  ]
-                ]
-              ]
-            ], 438, name);
+                  }
+                }
+              }
+            }, 438, name);
 end end
 
 function open_out_bin(name) do
-  return open_out_gen(--[[ :: ]][
+  return open_out_gen(--[[ :: ]]{
               --[[ Open_wronly ]]1,
-              --[[ :: ]][
+              --[[ :: ]]{
                 --[[ Open_creat ]]3,
-                --[[ :: ]][
+                --[[ :: ]]{
                   --[[ Open_trunc ]]4,
-                  --[[ :: ]][
+                  --[[ :: ]]{
                     --[[ Open_binary ]]6,
                     --[[ [] ]]0
-                  ]
-                ]
-              ]
-            ], 438, name);
+                  }
+                }
+              }
+            }, 438, name);
 end end
 
 function flush_all(param) do
@@ -256,10 +256,10 @@ end end
 
 function output(oc, s, ofs, len) do
   if (ofs < 0 or len < 0 or ofs > (#s - len | 0)) then do
-    throw [
+    throw {
           Caml_builtin_exceptions.invalid_argument,
           "output"
-        ];
+        };
   end
    end 
   return Caml_external_polyfill.resolve("caml_ml_output_bytes")(oc, s, ofs, len);
@@ -267,10 +267,10 @@ end end
 
 function output_substring(oc, s, ofs, len) do
   if (ofs < 0 or len < 0 or ofs > (#s - len | 0)) then do
-    throw [
+    throw {
           Caml_builtin_exceptions.invalid_argument,
           "output_substring"
-        ];
+        };
   end
    end 
   return Caml_io.caml_ml_output(oc, s, ofs, len);
@@ -307,31 +307,31 @@ function open_in_gen(mode, perm, name) do
 end end
 
 function open_in(name) do
-  return open_in_gen(--[[ :: ]][
+  return open_in_gen(--[[ :: ]]{
               --[[ Open_rdonly ]]0,
-              --[[ :: ]][
+              --[[ :: ]]{
                 --[[ Open_text ]]7,
                 --[[ [] ]]0
-              ]
-            ], 0, name);
+              }
+            }, 0, name);
 end end
 
 function open_in_bin(name) do
-  return open_in_gen(--[[ :: ]][
+  return open_in_gen(--[[ :: ]]{
               --[[ Open_rdonly ]]0,
-              --[[ :: ]][
+              --[[ :: ]]{
                 --[[ Open_binary ]]6,
                 --[[ [] ]]0
-              ]
-            ], 0, name);
+              }
+            }, 0, name);
 end end
 
 function input(ic, s, ofs, len) do
   if (ofs < 0 or len < 0 or ofs > (#s - len | 0)) then do
-    throw [
+    throw {
           Caml_builtin_exceptions.invalid_argument,
           "input"
-        ];
+        };
   end
    end 
   return Caml_external_polyfill.resolve("caml_ml_input")(ic, s, ofs, len);
@@ -358,10 +358,10 @@ end end
 
 function really_input(ic, s, ofs, len) do
   if (ofs < 0 or len < 0 or ofs > (#s - len | 0)) then do
-    throw [
+    throw {
           Caml_builtin_exceptions.invalid_argument,
           "really_input"
-        ];
+        };
   end
    end 
   return unsafe_really_input(ic, s, ofs, len);
@@ -407,10 +407,10 @@ function input_line(chan) do
         Caml_external_polyfill.resolve("caml_ml_input_char")(chan);
         if (accu) then do
           len$1 = (len + n | 0) - 1 | 0;
-          return build_result(Caml_bytes.caml_create_bytes(len$1), len$1, --[[ :: ]][
+          return build_result(Caml_bytes.caml_create_bytes(len$1), len$1, --[[ :: ]]{
                       res,
                       accu
-                    ]);
+                    });
         end else do
           return res;
         end end 
@@ -418,10 +418,10 @@ function input_line(chan) do
         beg = Caml_bytes.caml_create_bytes(-n | 0);
         Caml_external_polyfill.resolve("caml_ml_input")(chan, beg, 0, -n | 0);
         _len = len - n | 0;
-        _accu = --[[ :: ]][
+        _accu = --[[ :: ]]{
           beg,
           accu
-        ];
+        };
         continue ;
       end end  end 
     end;
@@ -514,10 +514,10 @@ function string_of_format(param) do
 end end
 
 function $caret$caret(param, param$1) do
-  return --[[ Format ]][
+  return --[[ Format ]]{
           CamlinternalFormatBasics.concat_fmt(param[0], param$1[0]),
           param[1] .. ("%," .. param$1[1])
-        ];
+        };
 end end
 
 exit_function = do

@@ -15,24 +15,24 @@ function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
 end end
 
-jsMapperConstantArray = [
-  --[[ tuple ]][
+jsMapperConstantArray = {
+  --[[ tuple ]]{
     97,
     "x"
-  ],
-  --[[ tuple ]][
+  },
+  --[[ tuple ]]{
     98,
     "你"
-  ],
-  --[[ tuple ]][
+  },
+  --[[ tuple ]]{
     99,
     "我"
-  ],
-  --[[ tuple ]][
+  },
+  --[[ tuple ]]{
     117,
     "hi"
-  ]
-];
+  }
+};
 
 function tToJs(param) do
   return Js_mapperRt.binarySearch(4, param, jsMapperConstantArray);

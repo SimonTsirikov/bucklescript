@@ -25,7 +25,7 @@ function f0(x) do
   return newrecord;
 end end
 
-v1 = --[[ A0 ]][
+v1 = --[[ A0 ]]{
   --[[ x0 ]]9,
   --[[ x1 ]]9,
   --[[ x2 ]]9,
@@ -49,7 +49,7 @@ v1 = --[[ A0 ]][
   --[[ x20 ]]9,
   --[[ x21 ]]9,
   --[[ x22 ]]9
-];
+};
 
 function get_x0(x) do
   if (x) then do
@@ -70,7 +70,7 @@ end end
 
 eq("File \"large_record_duplication_test.ml\", line 129, characters 6-13", get_x0(f1(v1)), 1);
 
-v2 = --[[ A0 ]]Block.__(0, [
+v2 = --[[ A0 ]]Block.__(0, {
     --[[ x0 ]]9,
     --[[ x1 ]]9,
     --[[ x2 ]]9,
@@ -94,7 +94,7 @@ v2 = --[[ A0 ]]Block.__(0, [
     --[[ x20 ]]9,
     --[[ x21 ]]9,
     --[[ x22 ]]9
-  ]);
+  });
 
 function get_x0$1(x) do
   if (x.tag) then do
@@ -135,7 +135,7 @@ function get_x0$2(x) do
    end 
 end end
 
-v3 = [
+v3 = {
   A0,
   --[[ x0 ]]9,
   --[[ x1 ]]9,
@@ -160,7 +160,7 @@ v3 = [
   --[[ x20 ]]9,
   --[[ x21 ]]9,
   --[[ x22 ]]9
-];
+};
 
 eq("File \"large_record_duplication_test.ml\", line 260, characters 6-13", get_x0$2(f3(v3)), 1);
 

@@ -112,16 +112,16 @@ length_10_id = Belt_List.makeBy(10, (function (x) do
       end end));
 
 function f13$1(param) do
-  return Caml_obj.caml_equal(Belt_List.take(length_10_id, 8), --[[ :: ]][
+  return Caml_obj.caml_equal(Belt_List.take(length_10_id, 8), --[[ :: ]]{
               1,
-              --[[ :: ]][
+              --[[ :: ]]{
                 2,
-                --[[ :: ]][
+                --[[ :: ]]{
                   3,
                   --[[ [] ]]0
-                ]
-              ]
-            ]);
+                }
+              }
+            });
 end end
 
 b("File \"option_repr_test.ml\", line 94, characters 4-11", Caml_obj.caml_lessthan(undefined, null));
@@ -176,10 +176,10 @@ end end
 
 xs_000 = gtx(Caml_option.some(null), Caml_option.some(undefined));
 
-xs = --[[ :: ]][
+xs = --[[ :: ]]{
   xs_000,
   --[[ [] ]]0
-];
+};
 
 b("File \"option_repr_test.ml\", line 121, characters 5-12", Belt_List.every(xs, (function (x) do
             return x;
@@ -187,44 +187,44 @@ b("File \"option_repr_test.ml\", line 121, characters 5-12", Belt_List.every(xs,
 
 xs_000$1 = ltx(Caml_option.some(undefined), 3);
 
-xs_001 = --[[ :: ]][
+xs_001 = --[[ :: ]]{
   ltx(Caml_option.some(undefined), Caml_option.some(Caml_option.some(undefined))),
-  --[[ :: ]][
+  --[[ :: ]]{
     ltx(Caml_option.some(undefined), "3"),
-    --[[ :: ]][
+    --[[ :: ]]{
       ltx(Caml_option.some(undefined), true),
-      --[[ :: ]][
+      --[[ :: ]]{
         ltx(Caml_option.some(undefined), false),
-        --[[ :: ]][
+        --[[ :: ]]{
           ltx(false, true),
-          --[[ :: ]][
+          --[[ :: ]]{
             ltx(false, true),
-            --[[ :: ]][
+            --[[ :: ]]{
               ltx(undefined, Caml_option.some(undefined)),
-              --[[ :: ]][
+              --[[ :: ]]{
                 ltx(undefined, null),
-                --[[ :: ]][
+                --[[ :: ]]{
                   ltx(undefined, (function (x) do
                           return x;
                         end end)),
-                  --[[ :: ]][
+                  --[[ :: ]]{
                     ltx(null, 3),
                     --[[ [] ]]0
-                  ]
-                ]
-              ]
-            ]
-          ]
-        ]
-      ]
-    ]
-  ]
-];
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+};
 
-xs$1 = --[[ :: ]][
+xs$1 = --[[ :: ]]{
   xs_000$1,
   xs_001
-];
+};
 
 b("File \"option_repr_test.ml\", line 127, characters 5-12", Belt_List.every(xs$1, (function (x) do
             return x;
@@ -232,24 +232,24 @@ b("File \"option_repr_test.ml\", line 127, characters 5-12", Belt_List.every(xs$
 
 xs_000$2 = eqx(undefined, undefined);
 
-xs_001$1 = --[[ :: ]][
+xs_001$1 = --[[ :: ]]{
   neqx(undefined, null),
-  --[[ :: ]][
+  --[[ :: ]]{
     eqx(Caml_option.some(undefined), Caml_option.some(undefined)),
-    --[[ :: ]][
+    --[[ :: ]]{
       eqx(Caml_option.some(Caml_option.some(undefined)), Caml_option.some(Caml_option.some(undefined))),
-      --[[ :: ]][
+      --[[ :: ]]{
         neqx(Caml_option.some(Caml_option.some(Caml_option.some(undefined))), Caml_option.some(Caml_option.some(undefined))),
         --[[ [] ]]0
-      ]
-    ]
-  ]
-];
+      }
+    }
+  }
+};
 
-xs$2 = --[[ :: ]][
+xs$2 = --[[ :: ]]{
   xs_000$2,
   xs_001$1
-];
+};
 
 b("File \"option_repr_test.ml\", line 143, characters 5-12", Belt_List.every(xs$2, (function (x) do
             return x;

@@ -5,16 +5,16 @@ __Node = require "../../lib/js/node.lua";
 function f(str) do
   match = __Node.test(str);
   if (match[0]) then do
-    console.log(--[[ tuple ]][
+    console.log(--[[ tuple ]]{
           "buffer",
           Buffer.isBuffer(match[1])
-        ]);
+        });
     return --[[ () ]]0;
   end else do
-    console.log(--[[ tuple ]][
+    console.log(--[[ tuple ]]{
           "string",
           match[1]
-        ]);
+        });
     return --[[ () ]]0;
   end end 
 end end

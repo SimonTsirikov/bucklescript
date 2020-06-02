@@ -20,10 +20,10 @@ function entries(dict) do
   values = new Array(l);
   for i = 0 , l - 1 | 0 , 1 do
     key = keys[i];
-    values[i] = --[[ tuple ]][
+    values[i] = --[[ tuple ]]{
       key,
       dict[key]
-    ];
+    };
   end
   return values;
 end end

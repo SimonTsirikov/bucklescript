@@ -2,11 +2,11 @@
 
 
 function caml_gc_counters(param) do
-  return --[[ tuple ]][
+  return --[[ tuple ]]{
           0,
           0,
           0
-        ];
+        };
 end end
 
 function caml_gc_set(param) do

@@ -16,41 +16,41 @@ end;
 
 function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = --[[ :: ]][
-    --[[ tuple ]][
+  suites.contents = --[[ :: ]]{
+    --[[ tuple ]]{
       loc .. (" id " .. String(test_id.contents)),
       (function (param) do
-          return --[[ Eq ]]Block.__(0, [
+          return --[[ Eq ]]Block.__(0, {
                     x,
                     y
-                  ]);
+                  });
         end end)
-    ],
+    },
     suites.contents
-  ];
+  };
   return --[[ () ]]0;
 end end
 
-class_tables = --[[ Cons ]][
+class_tables = --[[ Cons ]]{
   0,
   0,
   0
-];
+};
 
-class_tables$1 = --[[ Cons ]][
+class_tables$1 = --[[ Cons ]]{
   0,
   0,
   0
-];
+};
 
 function step1(param) do
   if (not class_tables[0]) then do
-    __class = CamlinternalOO.create_table(["step2"]);
+    __class = CamlinternalOO.create_table({"step2"});
     env = CamlinternalOO.new_variable(__class, "");
     step2 = CamlinternalOO.get_method_label(__class, "step2");
     CamlinternalOO.set_method(__class, step2, (function (self$1) do
             if (not class_tables$1[0]) then do
-              __class = CamlinternalOO.create_table(["step3"]);
+              __class = CamlinternalOO.create_table({"step3"});
               env = CamlinternalOO.new_variable(__class, "");
               step3 = CamlinternalOO.get_method_label(__class, "step3");
               CamlinternalOO.set_method(__class, step3, (function (self$2) do

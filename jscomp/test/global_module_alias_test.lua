@@ -15,18 +15,18 @@ end;
 
 function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = --[[ :: ]][
-    --[[ tuple ]][
+  suites.contents = --[[ :: ]]{
+    --[[ tuple ]]{
       loc .. (" id " .. String(test_id.contents)),
       (function (param) do
-          return --[[ Eq ]]Block.__(0, [
+          return --[[ Eq ]]Block.__(0, {
                     x,
                     y
-                  ]);
+                  });
         end end)
-    ],
+    },
     suites.contents
-  ];
+  };
   return --[[ () ]]0;
 end end
 
@@ -51,13 +51,13 @@ function f(param) do
   return List;
 end end
 
-eq("File \"global_module_alias_test.ml\", line 51, characters 5-12", List.length(--[[ :: ]][
+eq("File \"global_module_alias_test.ml\", line 51, characters 5-12", List.length(--[[ :: ]]{
           1,
-          --[[ :: ]][
+          --[[ :: ]]{
             2,
             --[[ [] ]]0
-          ]
-        ]), 2);
+          }
+        }), 2);
 
 v.contents = v.contents + 1 | 0;
 
@@ -88,19 +88,19 @@ H = List;
 eq("File \"global_module_alias_test.ml\", line 57, characters 5-12", v.contents, 12);
 
 function g(param) do
-  return List.length(--[[ :: ]][
+  return List.length(--[[ :: ]]{
               1,
-              --[[ :: ]][
+              --[[ :: ]]{
                 2,
-                --[[ :: ]][
+                --[[ :: ]]{
                   3,
-                  --[[ :: ]][
+                  --[[ :: ]]{
                     4,
                     --[[ [] ]]0
-                  ]
-                ]
-              ]
-            ]);
+                  }
+                }
+              }
+            });
 end end
 
 function xx(param) do
@@ -114,28 +114,28 @@ eq("File \"global_module_alias_test.ml\", line 86, characters 5-12", g(--[[ () ]
 
 V = xx(--[[ () ]]0);
 
-eq("File \"global_module_alias_test.ml\", line 92, characters 5-12", Curry._1(V.length, --[[ :: ]][
+eq("File \"global_module_alias_test.ml\", line 92, characters 5-12", Curry._1(V.length, --[[ :: ]]{
           1,
-          --[[ :: ]][
+          --[[ :: ]]{
             2,
-            --[[ :: ]][
+            --[[ :: ]]{
               3,
               --[[ [] ]]0
-            ]
-          ]
-        ]), 3);
+            }
+          }
+        }), 3);
 
 eq("File \"global_module_alias_test.ml\", line 93, characters 5-12", v.contents, 15);
 
 H$1 = f(--[[ () ]]0);
 
-eq("File \"global_module_alias_test.ml\", line 95, characters 5-12", Curry._1(H$1.length, --[[ :: ]][
+eq("File \"global_module_alias_test.ml\", line 95, characters 5-12", Curry._1(H$1.length, --[[ :: ]]{
           1,
-          --[[ :: ]][
+          --[[ :: ]]{
             2,
             --[[ [] ]]0
-          ]
-        ]), 2);
+          }
+        }), 2);
 
 eq("File \"global_module_alias_test.ml\", line 96, characters 5-12", v.contents, 21);
 

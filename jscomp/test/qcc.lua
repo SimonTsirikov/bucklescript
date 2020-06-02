@@ -31,7 +31,7 @@ function bufferize(f) do
   buf = do
     contents: undefined
   end;
-  return --[[ tuple ]][
+  return --[[ tuple ]]{
           (function (param) do
               match = buf.contents;
               if (match ~= undefined) then do
@@ -43,20 +43,20 @@ function bufferize(f) do
             end end),
           (function (x) do
               if (buf.contents ~= undefined) then do
-                throw [
+                throw {
                       Caml_builtin_exceptions.assert_failure,
-                      --[[ tuple ]][
+                      --[[ tuple ]]{
                         "qcc.ml",
                         17,
                         4
-                      ]
-                    ];
+                      }
+                    };
               end
                end 
               buf.contents = Caml_option.some(x);
               return --[[ () ]]0;
             end end)
-        ];
+        };
 end end
 
 match = bufferize((function (param) do
@@ -102,14 +102,14 @@ end end
 
 function symstr(n) do
   if (n >= syms.contents) then do
-    throw [
+    throw {
           Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]][
+          --[[ tuple ]]{
             "qcc.ml",
             40,
             4
-          ]
-        ];
+          }
+        };
   end
    end 
   return Caml_array.caml_array_get(symtab, n);
@@ -213,7 +213,7 @@ function next(param) do
             n = _n;
             match$1 = peekch(--[[ () ]]0);
             if (match$1 > 57 or match$1 < 48) then do
-              return --[[ ILit ]]Block.__(1, [n]);
+              return --[[ ILit ]]Block.__(1, {n});
             end else do
               _n = (Caml_int32.imul(10, n) + Curry._1(getch, --[[ () ]]0) | 0) - 48 | 0;
               continue ;
@@ -225,13 +225,13 @@ function next(param) do
         ch = getq(--[[ () ]]0);
         qt = Curry._1(getch, --[[ () ]]0);
         if (qt ~= --[[ "'" ]]39) then do
-          throw [
+          throw {
                 Caml_builtin_exceptions.failure,
                 "syntax error"
-              ];
+              };
         end
          end 
-        return --[[ ILit ]]Block.__(1, [ch]);
+        return --[[ ILit ]]Block.__(1, {ch});
       end
        end  end 
     end else do
@@ -247,10 +247,10 @@ function next(param) do
         end else do
           Curry._1(getch, --[[ () ]]0);
           gpos.contents = e + 8 & -8;
-          return --[[ SLit ]]Block.__(2, [
+          return --[[ SLit ]]Block.__(2, {
                     (b + 232 | 0) + 4194304 | 0,
                     Bytes.to_string(Bytes.sub(glo, b, e - b | 0))
-                  ]);
+                  });
         end end 
       end;
     end end 
@@ -266,60 +266,60 @@ function next(param) do
           _n$1 = n$1 + 1 | 0;
           continue ;
         end else do
-          return --[[ Sym ]]Block.__(3, [addsym(Bytes.to_string(Bytes.sub(s, 0, n$1 + 1 | 0)))]);
+          return --[[ Sym ]]Block.__(3, {addsym(Bytes.to_string(Bytes.sub(s, 0, n$1 + 1 | 0)))});
         end end 
       end;
     end else do
       ch$2 = c;
-      _param = --[[ :: ]][
+      _param = --[[ :: ]]{
         "++",
-        --[[ :: ]][
+        --[[ :: ]]{
           "--",
-          --[[ :: ]][
+          --[[ :: ]]{
             "&&",
-            --[[ :: ]][
+            --[[ :: ]]{
               "||",
-              --[[ :: ]][
+              --[[ :: ]]{
                 "==",
-                --[[ :: ]][
+                --[[ :: ]]{
                   "<=",
-                  --[[ :: ]][
+                  --[[ :: ]]{
                     ">=",
-                    --[[ :: ]][
+                    --[[ :: ]]{
                       "!=",
-                      --[[ :: ]][
+                      --[[ :: ]]{
                         ">>",
-                        --[[ :: ]][
+                        --[[ :: ]]{
                           "<<",
                           --[[ [] ]]0
-                        ]
-                      ]
-                    ]
-                  ]
-                ]
-              ]
-            ]
-          ]
-        ]
-      ];
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      };
       while(true) do
         param$1 = _param;
         if (param$1) then do
           lop = param$1[0];
           if (Caml_string.get(lop, 0) == ch$2 and Caml_string.get(lop, 1) == peekch(--[[ () ]]0)) then do
             Curry._1(getch, --[[ () ]]0);
-            return --[[ Op ]]Block.__(0, [lop]);
+            return --[[ Op ]]Block.__(0, {lop});
           end else do
             _param = param$1[1];
             continue ;
           end end 
         end else do
-          return --[[ Op ]]Block.__(0, [Caml_bytes.bytes_to_string(Bytes.make(1, ch$2))]);
+          return --[[ Op ]]Block.__(0, {Caml_bytes.bytes_to_string(Bytes.make(1, ch$2))});
         end end 
       end;
     end end 
   end else do
-    return --[[ Op ]]Block.__(0, ["EOF!"]);
+    return --[[ Op ]]Block.__(0, {"EOF!"});
   end end 
 end end
 
@@ -367,14 +367,14 @@ end end
 
 function patch(rel, loc, n) do
   if (n >= 0) then do
-    throw [
+    throw {
           Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]][
+          --[[ tuple ]]{
             "qcc.ml",
             157,
             2
-          ]
-        ];
+          }
+        };
   end
    end 
   if (loc ~= 0) then do
@@ -382,37 +382,37 @@ function patch(rel, loc, n) do
     loc$prime = get32(loc);
     x = rel and n - (loc + 4 | 0) | 0 or n;
     if (dbg.contents) then do
-      Curry._3(Printf.eprintf(--[[ Format ]][
-                --[[ String_literal ]]Block.__(11, [
+      Curry._3(Printf.eprintf(--[[ Format ]]{
+                --[[ String_literal ]]Block.__(11, {
                     "patching at ",
-                    --[[ Int ]]Block.__(4, [
+                    --[[ Int ]]Block.__(4, {
                         --[[ Int_d ]]0,
                         --[[ No_padding ]]0,
                         --[[ No_precision ]]0,
-                        --[[ String_literal ]]Block.__(11, [
+                        --[[ String_literal ]]Block.__(11, {
                             " to ",
-                            --[[ Int ]]Block.__(4, [
+                            --[[ Int ]]Block.__(4, {
                                 --[[ Int_d ]]0,
                                 --[[ No_padding ]]0,
                                 --[[ No_precision ]]0,
-                                --[[ String_literal ]]Block.__(11, [
+                                --[[ String_literal ]]Block.__(11, {
                                     " (n=",
-                                    --[[ Int ]]Block.__(4, [
+                                    --[[ Int ]]Block.__(4, {
                                         --[[ Int_d ]]0,
                                         --[[ No_padding ]]0,
                                         --[[ No_precision ]]0,
-                                        --[[ String_literal ]]Block.__(11, [
+                                        --[[ String_literal ]]Block.__(11, {
                                             ")\n",
                                             --[[ End_of_format ]]0
-                                          ])
-                                      ])
-                                  ])
-                              ])
-                          ])
-                      ])
-                  ]),
+                                          })
+                                      })
+                                  })
+                              })
+                          })
+                      })
+                  }),
                 "patching at %d to %d (n=%d)\n"
-              ]), loc, x, n);
+              }), loc, x, n);
     end
      end 
     opos.contents = loc;
@@ -466,10 +466,10 @@ function pop(r) do
 end end
 
 lval = do
-  contents: --[[ tuple ]][
-    --[[ Mov ]]Block.__(0, [0]),
+  contents: --[[ tuple ]]{
+    --[[ Mov ]]Block.__(0, {0}),
     --[[ Int ]]0
-  ]
+  }
 end;
 
 function patchlval(param) do
@@ -487,18 +487,18 @@ function read(param) do
   if (param) then do
     out(4722614);
     le(8, 0);
-    lval.contents = --[[ tuple ]][
-      --[[ Del ]]Block.__(1, [4]),
+    lval.contents = --[[ tuple ]]{
+      --[[ Del ]]Block.__(1, {4}),
       --[[ Chr ]]1
-    ];
+    };
     return --[[ () ]]0;
   end else do
     out(18571);
     le(8, 0);
-    lval.contents = --[[ tuple ]][
-      --[[ Del ]]Block.__(1, [3]),
+    lval.contents = --[[ tuple ]]{
+      --[[ Del ]]Block.__(1, {3}),
       --[[ Int ]]0
-    ];
+    };
     return --[[ () ]]0;
   end end 
 end end
@@ -508,283 +508,283 @@ globs = Caml_array.caml_make_vect(100, do
       va: -1
     end);
 
-lvls = --[[ :: ]][
-  --[[ tuple ]][
+lvls = --[[ :: ]]{
+  --[[ tuple ]]{
     "*",
     0
-  ],
-  --[[ :: ]][
-    --[[ tuple ]][
+  },
+  --[[ :: ]]{
+    --[[ tuple ]]{
       "/",
       0
-    ],
-    --[[ :: ]][
-      --[[ tuple ]][
+    },
+    --[[ :: ]]{
+      --[[ tuple ]]{
         "%",
         0
-      ],
-      --[[ :: ]][
-        --[[ tuple ]][
+      },
+      --[[ :: ]]{
+        --[[ tuple ]]{
           "+",
           1
-        ],
-        --[[ :: ]][
-          --[[ tuple ]][
+        },
+        --[[ :: ]]{
+          --[[ tuple ]]{
             "-",
             1
-          ],
-          --[[ :: ]][
-            --[[ tuple ]][
+          },
+          --[[ :: ]]{
+            --[[ tuple ]]{
               "<<",
               2
-            ],
-            --[[ :: ]][
-              --[[ tuple ]][
+            },
+            --[[ :: ]]{
+              --[[ tuple ]]{
                 ">>",
                 2
-              ],
-              --[[ :: ]][
-                --[[ tuple ]][
+              },
+              --[[ :: ]]{
+                --[[ tuple ]]{
                   "<",
                   3
-                ],
-                --[[ :: ]][
-                  --[[ tuple ]][
+                },
+                --[[ :: ]]{
+                  --[[ tuple ]]{
                     "<=",
                     3
-                  ],
-                  --[[ :: ]][
-                    --[[ tuple ]][
+                  },
+                  --[[ :: ]]{
+                    --[[ tuple ]]{
                       ">",
                       3
-                    ],
-                    --[[ :: ]][
-                      --[[ tuple ]][
+                    },
+                    --[[ :: ]]{
+                      --[[ tuple ]]{
                         ">=",
                         3
-                      ],
-                      --[[ :: ]][
-                        --[[ tuple ]][
+                      },
+                      --[[ :: ]]{
+                        --[[ tuple ]]{
                           "==",
                           4
-                        ],
-                        --[[ :: ]][
-                          --[[ tuple ]][
+                        },
+                        --[[ :: ]]{
+                          --[[ tuple ]]{
                             "!=",
                             4
-                          ],
-                          --[[ :: ]][
-                            --[[ tuple ]][
+                          },
+                          --[[ :: ]]{
+                            --[[ tuple ]]{
                               "&",
                               5
-                            ],
-                            --[[ :: ]][
-                              --[[ tuple ]][
+                            },
+                            --[[ :: ]]{
+                              --[[ tuple ]]{
                                 "^",
                                 6
-                              ],
-                              --[[ :: ]][
-                                --[[ tuple ]][
+                              },
+                              --[[ :: ]]{
+                                --[[ tuple ]]{
                                   "|",
                                   7
-                                ],
-                                --[[ :: ]][
-                                  --[[ tuple ]][
+                                },
+                                --[[ :: ]]{
+                                  --[[ tuple ]]{
                                     "&&",
                                     8
-                                  ],
-                                  --[[ :: ]][
-                                    --[[ tuple ]][
+                                  },
+                                  --[[ :: ]]{
+                                    --[[ tuple ]]{
                                       "||",
                                       9
-                                    ],
+                                    },
                                     --[[ [] ]]0
-                                  ]
-                                ]
-                              ]
-                            ]
-                          ]
-                        ]
-                      ]
-                    ]
-                  ]
-                ]
-              ]
-            ]
-          ]
-        ]
-      ]
-    ]
-  ]
-];
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+};
 
-inss = --[[ :: ]][
-  --[[ tuple ]][
+inss = --[[ :: ]]{
+  --[[ tuple ]]{
     "*",
-    --[[ Bin ]]Block.__(0, [--[[ :: ]][
+    --[[ Bin ]]Block.__(0, {--[[ :: ]]{
           1208987585,
           --[[ [] ]]0
-        ]])
-  ],
-  --[[ :: ]][
-    --[[ tuple ]][
+        }})
+  },
+  --[[ :: ]]{
+    --[[ tuple ]]{
       "/",
-      --[[ Bin ]]Block.__(0, [--[[ :: ]][
+      --[[ Bin ]]Block.__(0, {--[[ :: ]]{
             18577,
-            --[[ :: ]][
+            --[[ :: ]]{
               18585,
-              --[[ :: ]][
+              --[[ :: ]]{
                 4782073,
                 --[[ [] ]]0
-              ]
-            ]
-          ]])
-    ],
-    --[[ :: ]][
-      --[[ tuple ]][
+              }
+            }
+          }})
+    },
+    --[[ :: ]]{
+      --[[ tuple ]]{
         "%",
-        --[[ Bin ]]Block.__(0, [--[[ :: ]][
+        --[[ Bin ]]Block.__(0, {--[[ :: ]]{
               18577,
-              --[[ :: ]][
+              --[[ :: ]]{
                 18585,
-                --[[ :: ]][
+                --[[ :: ]]{
                   4782073,
-                  --[[ :: ]][
+                  --[[ :: ]]{
                     18578,
                     --[[ [] ]]0
-                  ]
-                ]
-              ]
-            ]])
-      ],
-      --[[ :: ]][
-        --[[ tuple ]][
+                  }
+                }
+              }
+            }})
+      },
+      --[[ :: ]]{
+        --[[ tuple ]]{
           "+",
-          --[[ Bin ]]Block.__(0, [--[[ :: ]][
+          --[[ Bin ]]Block.__(0, {--[[ :: ]]{
                 4719048,
                 --[[ [] ]]0
-              ]])
-        ],
-        --[[ :: ]][
-          --[[ tuple ]][
+              }})
+        },
+        --[[ :: ]]{
+          --[[ tuple ]]{
             "-",
-            --[[ Bin ]]Block.__(0, [--[[ :: ]][
+            --[[ Bin ]]Block.__(0, {--[[ :: ]]{
                   18577,
-                  --[[ :: ]][
+                  --[[ :: ]]{
                     4729288,
                     --[[ [] ]]0
-                  ]
-                ]])
-          ],
-          --[[ :: ]][
-            --[[ tuple ]][
+                  }
+                }})
+          },
+          --[[ :: ]]{
+            --[[ tuple ]]{
               "<<",
-              --[[ Bin ]]Block.__(0, [--[[ :: ]][
+              --[[ Bin ]]Block.__(0, {--[[ :: ]]{
                     18577,
-                    --[[ :: ]][
+                    --[[ :: ]]{
                       4772832,
                       --[[ [] ]]0
-                    ]
-                  ]])
-            ],
-            --[[ :: ]][
-              --[[ tuple ]][
+                    }
+                  }})
+            },
+            --[[ :: ]]{
+              --[[ tuple ]]{
                 ">>",
-                --[[ Bin ]]Block.__(0, [--[[ :: ]][
+                --[[ Bin ]]Block.__(0, {--[[ :: ]]{
                       18577,
-                      --[[ :: ]][
+                      --[[ :: ]]{
                         4772856,
                         --[[ [] ]]0
-                      ]
-                    ]])
-              ],
-              --[[ :: ]][
-                --[[ tuple ]][
+                      }
+                    }})
+              },
+              --[[ :: ]]{
+                --[[ tuple ]]{
                   "<",
-                  --[[ Cmp ]]Block.__(1, [10])
-                ],
-                --[[ :: ]][
-                  --[[ tuple ]][
+                  --[[ Cmp ]]Block.__(1, {10})
+                },
+                --[[ :: ]]{
+                  --[[ tuple ]]{
                     "<=",
-                    --[[ Cmp ]]Block.__(1, [12])
-                  ],
-                  --[[ :: ]][
-                    --[[ tuple ]][
+                    --[[ Cmp ]]Block.__(1, {12})
+                  },
+                  --[[ :: ]]{
+                    --[[ tuple ]]{
                       ">",
-                      --[[ Cmp ]]Block.__(1, [13])
-                    ],
-                    --[[ :: ]][
-                      --[[ tuple ]][
+                      --[[ Cmp ]]Block.__(1, {13})
+                    },
+                    --[[ :: ]]{
+                      --[[ tuple ]]{
                         ">=",
-                        --[[ Cmp ]]Block.__(1, [11])
-                      ],
-                      --[[ :: ]][
-                        --[[ tuple ]][
+                        --[[ Cmp ]]Block.__(1, {11})
+                      },
+                      --[[ :: ]]{
+                        --[[ tuple ]]{
                           "==",
-                          --[[ Cmp ]]Block.__(1, [2])
-                        ],
-                        --[[ :: ]][
-                          --[[ tuple ]][
+                          --[[ Cmp ]]Block.__(1, {2})
+                        },
+                        --[[ :: ]]{
+                          --[[ tuple ]]{
                             "!=",
-                            --[[ Cmp ]]Block.__(1, [3])
-                          ],
-                          --[[ :: ]][
-                            --[[ tuple ]][
+                            --[[ Cmp ]]Block.__(1, {3})
+                          },
+                          --[[ :: ]]{
+                            --[[ tuple ]]{
                               "&",
-                              --[[ Bin ]]Block.__(0, [--[[ :: ]][
+                              --[[ Bin ]]Block.__(0, {--[[ :: ]]{
                                     4727240,
                                     --[[ [] ]]0
-                                  ]])
-                            ],
-                            --[[ :: ]][
-                              --[[ tuple ]][
+                                  }})
+                            },
+                            --[[ :: ]]{
+                              --[[ tuple ]]{
                                 "^",
-                                --[[ Bin ]]Block.__(0, [--[[ :: ]][
+                                --[[ Bin ]]Block.__(0, {--[[ :: ]]{
                                       4731336,
                                       --[[ [] ]]0
-                                    ]])
-                              ],
-                              --[[ :: ]][
-                                --[[ tuple ]][
+                                    }})
+                              },
+                              --[[ :: ]]{
+                                --[[ tuple ]]{
                                   "|",
-                                  --[[ Bin ]]Block.__(0, [--[[ :: ]][
+                                  --[[ Bin ]]Block.__(0, {--[[ :: ]]{
                                         4721096,
                                         --[[ [] ]]0
-                                      ]])
-                                ],
+                                      }})
+                                },
                                 --[[ [] ]]0
-                              ]
-                            ]
-                          ]
-                        ]
-                      ]
-                    ]
-                  ]
-                ]
-              ]
-            ]
-          ]
-        ]
-      ]
-    ]
-  ]
-];
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+};
 
-tokint = --[[ Sym ]]Block.__(3, [addsym("int")]);
+tokint = --[[ Sym ]]Block.__(3, {addsym("int")});
 
-tokchar = --[[ Sym ]]Block.__(3, [addsym("char")]);
+tokchar = --[[ Sym ]]Block.__(3, {addsym("char")});
 
-tokret = --[[ Sym ]]Block.__(3, [addsym("return")]);
+tokret = --[[ Sym ]]Block.__(3, {addsym("return")});
 
-tokif = --[[ Sym ]]Block.__(3, [addsym("if")]);
+tokif = --[[ Sym ]]Block.__(3, {addsym("if")});
 
-tokelse = --[[ Sym ]]Block.__(3, [addsym("else")]);
+tokelse = --[[ Sym ]]Block.__(3, {addsym("else")});
 
-tokwhile = --[[ Sym ]]Block.__(3, [addsym("while")]);
+tokwhile = --[[ Sym ]]Block.__(3, {addsym("while")});
 
-tokfor = --[[ Sym ]]Block.__(3, [addsym("for")]);
+tokfor = --[[ Sym ]]Block.__(3, {addsym("for")});
 
-tokbreak = --[[ Sym ]]Block.__(3, [addsym("break")]);
+tokbreak = --[[ Sym ]]Block.__(3, {addsym("break")});
 
 function binary(stk, lvl) do
   if (lvl == -1) then do
@@ -866,23 +866,23 @@ function unary(stk) do
               t = Curry._1(next$1, --[[ () ]]0);
               match$1;
               if (Caml_obj.caml_equal(t, tokint)) then do
-                match$1 = Caml_obj.caml_equal(Curry._1(next$1, --[[ () ]]0), --[[ Op ]]Block.__(0, ["*"])) and --[[ tuple ]][
+                match$1 = Caml_obj.caml_equal(Curry._1(next$1, --[[ () ]]0), --[[ Op ]]Block.__(0, {"*"})) and --[[ tuple ]]{
                     --[[ Int ]]0,
                     1
-                  ] or --[[ tuple ]][
+                  } or --[[ tuple ]]{
                     --[[ Int ]]0,
                     5
-                  ];
+                  };
               end else if (Caml_obj.caml_equal(t, tokchar)) then do
-                match$1 = --[[ tuple ]][
+                match$1 = --[[ tuple ]]{
                   --[[ Chr ]]1,
                   2
-                ];
+                };
               end else do
-                throw [
+                throw {
                       Caml_builtin_exceptions.failure,
                       "[cast] expected"
-                    ];
+                    };
               end end  end 
               for k = 1 , match$1[1] , 1 do
                 Curry._1(next$1, --[[ () ]]0);
@@ -891,47 +891,47 @@ function unary(stk) do
               return read(match$1[0]);end end end 
            do
           else do
-            unops = --[[ :: ]][
-              --[[ tuple ]][
+            unops = --[[ :: ]]{
+              --[[ tuple ]]{
                 "+",
                 0
-              ],
-              --[[ :: ]][
-                --[[ tuple ]][
+              },
+              --[[ :: ]]{
+                --[[ tuple ]]{
                   "-",
                   4782040
-                ],
-                --[[ :: ]][
-                  --[[ tuple ]][
+                },
+                --[[ :: ]]{
+                  --[[ tuple ]]{
                     "~",
                     4782032
-                  ],
-                  --[[ :: ]][
-                    --[[ tuple ]][
+                  },
+                  --[[ :: ]]{
+                    --[[ tuple ]]{
                       "!",
                       4752832
-                    ],
+                    },
                     --[[ [] ]]0
-                  ]
-                ]
-              ]
-            ];
+                  }
+                }
+              }
+            };
             unary(stk);
             if (not List.mem_assoc(o, unops)) then do
-              s = Curry._1(Printf.sprintf(--[[ Format ]][
-                        --[[ String_literal ]]Block.__(11, [
+              s = Curry._1(Printf.sprintf(--[[ Format ]]{
+                        --[[ String_literal ]]Block.__(11, {
                             "unknown operator ",
-                            --[[ String ]]Block.__(2, [
+                            --[[ String ]]Block.__(2, {
                                 --[[ No_padding ]]0,
                                 --[[ End_of_format ]]0
-                              ])
-                          ]),
+                              })
+                          }),
                         "unknown operator %s"
-                      ]), o);
-              throw [
+                      }), o);
+              throw {
                     Caml_builtin_exceptions.failure,
                     s
-                  ];
+                  };
             end
              end 
             out(List.assoc(o, unops));
@@ -953,22 +953,22 @@ function unary(stk) do
         if (List.mem_assoc(i, stk)) then do
           l = List.assoc(i, stk);
           if (l <= -256) then do
-            throw [
+            throw {
                   Caml_builtin_exceptions.assert_failure,
-                  --[[ tuple ]][
+                  --[[ tuple ]]{
                     "qcc.ml",
                     295,
                     6
-                  ]
-                ];
+                  }
+                };
           end
            end 
           out(4754245);
           out(l & 255);
-          lval.contents = --[[ tuple ]][
-            --[[ Mov ]]Block.__(0, [3]),
+          lval.contents = --[[ tuple ]]{
+            --[[ Mov ]]Block.__(0, {3}),
             --[[ Int ]]0
-          ];
+          };
         end else do
           out(18616);
           g = Caml_array.caml_array_get(globs, i);
@@ -999,46 +999,46 @@ function postfix(stk) do
             while(true) do
               rl = _rl;
               l = _l;
-              if (nextis(--[[ Op ]]Block.__(0, [")"]))) then do
+              if (nextis(--[[ Op ]]Block.__(0, {")"}))) then do
                 Curry._1(next$1, --[[ () ]]0);
                 return List.iter(pop, l);
               end else do
                 expr(stk);
                 push(0);
-                if (nextis(--[[ Op ]]Block.__(0, [","]))) then do
+                if (nextis(--[[ Op ]]Block.__(0, {","}))) then do
                   Curry._1(next$1, --[[ () ]]0);
                 end
                  end 
                 _rl = List.tl(rl);
-                _l = --[[ :: ]][
+                _l = --[[ :: ]]{
                   List.hd(rl),
                   l
-                ];
+                };
                 continue ;
               end end 
             end;
           end end;
           patchlval(--[[ () ]]0);
           push(0);
-          emitargs(--[[ [] ]]0, --[[ :: ]][
+          emitargs(--[[ [] ]]0, --[[ :: ]]{
                 7,
-                --[[ :: ]][
+                --[[ :: ]]{
                   6,
-                  --[[ :: ]][
+                  --[[ :: ]]{
                     2,
-                    --[[ :: ]][
+                    --[[ :: ]]{
                       1,
-                      --[[ :: ]][
+                      --[[ :: ]]{
                         8,
-                        --[[ :: ]][
+                        --[[ :: ]]{
                           9,
                           --[[ [] ]]0
-                        ]
-                      ]
-                    ]
-                  ]
-                ]
-              ]);
+                        }
+                      }
+                    }
+                  }
+                }
+              });
           pop(0);
           if (align.contents % 2 ~= 0) then do
             out(1216605192);
@@ -1061,46 +1061,46 @@ function postfix(stk) do
     patchlval(--[[ () ]]0);
     out(4753857);
     read(lval.contents[1]);
-    return out(List.assoc(--[[ tuple ]][
+    return out(List.assoc(--[[ tuple ]]{
                     op,
                     lval.contents[1]
-                  ], --[[ :: ]][
-                    --[[ tuple ]][
-                      --[[ tuple ]][
+                  }, --[[ :: ]]{
+                    --[[ tuple ]]{
+                      --[[ tuple ]]{
                         "++",
                         --[[ Int ]]0
-                      ],
+                      },
                       4783873
-                    ],
-                    --[[ :: ]][
-                      --[[ tuple ]][
-                        --[[ tuple ]][
+                    },
+                    --[[ :: ]]{
+                      --[[ tuple ]]{
+                        --[[ tuple ]]{
                           "--",
                           --[[ Int ]]0
-                        ],
+                        },
                         4783881
-                      ],
-                      --[[ :: ]][
-                        --[[ tuple ]][
-                          --[[ tuple ]][
+                      },
+                      --[[ :: ]]{
+                        --[[ tuple ]]{
+                          --[[ tuple ]]{
                             "++",
                             --[[ Chr ]]1
-                          ],
+                          },
                           65025
-                        ],
-                        --[[ :: ]][
-                          --[[ tuple ]][
-                            --[[ tuple ]][
+                        },
+                        --[[ :: ]]{
+                          --[[ tuple ]]{
+                            --[[ tuple ]]{
                               "--",
                               --[[ Chr ]]1
-                            ],
+                            },
                             65033
-                          ],
+                          },
                           --[[ [] ]]0
-                        ]
-                      ]
-                    ]
-                  ]));
+                        }
+                      }
+                    }
+                  }));
   end end 
 end end
 
@@ -1140,14 +1140,14 @@ function decl(g, _n, _stk) do
         while(true) do
           stk = _stk;
           n = _n;
-          while(nextis(--[[ Op ]]Block.__(0, ["*"]))) do
+          while(nextis(--[[ Op ]]Block.__(0, {"*"}))) do
             Curry._1(next$1, --[[ () ]]0);
           end;
-          if (nextis(--[[ Op ]]Block.__(0, [";"]))) then do
-            return --[[ tuple ]][
+          if (nextis(--[[ Op ]]Block.__(0, {";"}))) then do
+            return --[[ tuple ]]{
                     n,
                     stk
-                  ];
+                  };
           end else do
             match = Curry._1(next$1, --[[ () ]]0);
             if (match.tag == --[[ Sym ]]3) then do
@@ -1157,10 +1157,10 @@ function decl(g, _n, _stk) do
               if (g) then do
                 glo = Caml_array.caml_array_get(globs, s);
                 if (glo.va >= 0) then do
-                  throw [
+                  throw {
                         Caml_builtin_exceptions.failure,
                         "symbol defined twice"
-                      ];
+                      };
                 end
                  end 
                 va = (gpos.contents + 232 | 0) + 4194304 | 0;
@@ -1171,30 +1171,30 @@ function decl(g, _n, _stk) do
                 gpos.contents = gpos.contents + 8 | 0;
                 stk$prime = stk;
               end else do
-                stk$prime = --[[ :: ]][
-                  --[[ tuple ]][
+                stk$prime = --[[ :: ]]{
+                  --[[ tuple ]]{
                     s,
                     top - (n$prime << 3) | 0
-                  ],
+                  },
                   stk
-                ];
+                };
               end end 
-              if (nextis(--[[ Op ]]Block.__(0, [","]))) then do
+              if (nextis(--[[ Op ]]Block.__(0, {","}))) then do
                 Curry._1(next$1, --[[ () ]]0);
                 _stk = stk$prime;
                 _n = n$prime;
                 continue ;
               end else do
-                return --[[ tuple ]][
+                return --[[ tuple ]]{
                         n$prime,
                         stk$prime
-                      ];
+                      };
               end end 
             end else do
-              throw [
+              throw {
                     Caml_builtin_exceptions.failure,
                     "[var] expected in [decl]"
-                  ];
+                  };
             end end 
           end end 
         end;
@@ -1203,21 +1203,21 @@ function decl(g, _n, _stk) do
       match = vars(0, stk);
       Curry._1(next$1, --[[ () ]]0);
       if (dbg.contents) then do
-        Curry._1(Printf.eprintf(--[[ Format ]][
-                  --[[ String_literal ]]Block.__(11, [
+        Curry._1(Printf.eprintf(--[[ Format ]]{
+                  --[[ String_literal ]]Block.__(11, {
                       "end of decl (",
-                      --[[ Int ]]Block.__(4, [
+                      --[[ Int ]]Block.__(4, {
                           --[[ Int_d ]]0,
                           --[[ No_padding ]]0,
                           --[[ No_precision ]]0,
-                          --[[ String_literal ]]Block.__(11, [
+                          --[[ String_literal ]]Block.__(11, {
                               " vars)\n",
                               --[[ End_of_format ]]0
-                            ])
-                        ])
-                    ]),
+                            })
+                        })
+                    }),
                   "end of decl (%d vars)\n"
-                ]), n);
+                }), n);
       end
        end 
       _stk = match[1];
@@ -1227,14 +1227,14 @@ function decl(g, _n, _stk) do
       Curry._1(unnext, t);
       if (not g and n ~= 0) then do
         if ((n << 3) >= 256) then do
-          throw [
+          throw {
                 Caml_builtin_exceptions.assert_failure,
-                --[[ tuple ]][
+                --[[ tuple ]]{
                   "qcc.ml",
                   436,
                   6
-                ]
-              ];
+                }
+              };
         end
          end 
         out(4752364);
@@ -1246,10 +1246,10 @@ function decl(g, _n, _stk) do
         console.error("end of blk decls");
       end
        end 
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               n,
               stk
-            ];
+            };
     end end 
   end;
 end end
@@ -1293,19 +1293,19 @@ function stmt(brk, stk) do
       loc$2 = opos.contents;
       pexpr(stk);
       bl.contents = test(0, 0);
-      match = --[[ tuple ]][
+      match = --[[ tuple ]]{
         0,
         loc$2
-      ];
+      };
     end else do
       Curry._1(next$1, --[[ () ]]0);
-      if (not nextis(--[[ Op ]]Block.__(0, [";"]))) then do
+      if (not nextis(--[[ Op ]]Block.__(0, {";"}))) then do
         expr(stk);
       end
        end 
       Curry._1(next$1, --[[ () ]]0);
       top = opos.contents;
-      if (nextis(--[[ Op ]]Block.__(0, [";"]))) then do
+      if (nextis(--[[ Op ]]Block.__(0, {";"}))) then do
         bl.contents = 0;
       end else do
         expr(stk);
@@ -1320,21 +1320,21 @@ function stmt(brk, stk) do
       Curry._1(next$1, --[[ () ]]0);
       out(233);
       le(32, (top - opos.contents | 0) - 4 | 0);
-      match = --[[ tuple ]][
+      match = --[[ tuple ]]{
         bdy,
         itr
-      ];
+      };
     end end 
     patch(true, match[0], opos.contents);
-    stmt(--[[ tuple ]][
+    stmt(--[[ tuple ]]{
           bl,
           ba
-        ], stk);
+        }, stk);
     out(233);
     le(32, (match[1] - opos.contents | 0) - 4 | 0);
     return patch(true, bl.contents, opos.contents);
   end else if (Caml_obj.caml_equal(t, tokret)) then do
-    if (not nextis(--[[ Op ]]Block.__(0, [";"]))) then do
+    if (not nextis(--[[ Op ]]Block.__(0, {";"}))) then do
       expr(stk);
     end
      end 
@@ -1349,14 +1349,14 @@ function stmt(brk, stk) do
     brkl = brk[0];
     n = align.contents - brk[1] | 0;
     if (n < 0) then do
-      throw [
+      throw {
             Caml_builtin_exceptions.assert_failure,
-            --[[ tuple ]][
+            --[[ tuple ]]{
               "qcc.ml",
               515,
               4
-            ]
-          ];
+            }
+          };
     end
      end 
     if (n ~= 0) then do
@@ -1393,7 +1393,7 @@ function block(brk, stk) do
   match = decl(false, 0, stk);
   stk$prime = match[1];
   n = match[0];
-  while(not nextis(--[[ Op ]]Block.__(0, ["}"]))) do
+  while(not nextis(--[[ Op ]]Block.__(0, {"}"}))) do
     stmt(brk, stk$prime);
   end;
   Curry._1(next$1, --[[ () ]]0);
@@ -1409,7 +1409,7 @@ end end
 
 function top(_param) do
   while(true) do
-    if (nextis(--[[ Op ]]Block.__(0, ["EOF!"]))) then do
+    if (nextis(--[[ Op ]]Block.__(0, {"EOF!"}))) then do
       return 0;
     end else if (nextis(tokint)) then do
       decl(true, 0, --[[ [] ]]0);
@@ -1421,10 +1421,10 @@ function top(_param) do
         f = match[0];
         g = Caml_array.caml_array_get(globs, f);
         if (g.va >= 0) then do
-          throw [
+          throw {
                 Caml_builtin_exceptions.failure,
                 "symbol defined twice"
-              ];
+              };
         end
          end 
         Caml_array.caml_array_set(globs, f, do
@@ -1443,32 +1443,32 @@ function top(_param) do
                   if (match[0] == ")") then do
                     return stk;
                   end else do
-                    throw [
+                    throw {
                           Caml_builtin_exceptions.failure,
                           "[var] or ) expected"
-                        ];
+                        };
                   end end end end end 
                if ___conditional___ = 1--[[ ILit ]]
                or ___conditional___ = 2--[[ SLit ]] then do
-                  throw [
+                  throw {
                         Caml_builtin_exceptions.failure,
                         "[var] or ) expected"
-                      ];end end end 
+                      };end end end 
                if ___conditional___ = 3--[[ Sym ]] then do
                   r = List.hd(regs);
                   push(r);
-                  if (nextis(--[[ Op ]]Block.__(0, [","]))) then do
+                  if (nextis(--[[ Op ]]Block.__(0, {","}))) then do
                     Curry._1(next$1, --[[ () ]]0);
                   end
                    end 
-                  stk$prime_000 = --[[ tuple ]][
+                  stk$prime_000 = --[[ tuple ]]{
                     match[0],
                     ((-n | 0) << 3)
-                  ];
-                  stk$prime = --[[ :: ]][
+                  };
+                  stk$prime = --[[ :: ]]{
                     stk$prime_000,
                     stk
-                  ];
+                  };
                   _stk = stk$prime;
                   _n = n + 1 | 0;
                   _regs = List.tl(regs);
@@ -1482,111 +1482,111 @@ function top(_param) do
         align.contents = 0;
         out(85);
         out(4753893);
-        stk = emitargs(--[[ :: ]][
+        stk = emitargs(--[[ :: ]]{
               7,
-              --[[ :: ]][
+              --[[ :: ]]{
                 6,
-                --[[ :: ]][
+                --[[ :: ]]{
                   2,
-                  --[[ :: ]][
+                  --[[ :: ]]{
                     1,
-                    --[[ :: ]][
+                    --[[ :: ]]{
                       8,
-                      --[[ :: ]][
+                      --[[ :: ]]{
                         9,
                         --[[ [] ]]0
-                      ]
-                    ]
-                  ]
-                ]
-              ]
-            ], 1, --[[ [] ]]0);
-        while(Caml_obj.caml_notequal(Curry._1(next$1, --[[ () ]]0), --[[ Op ]]Block.__(0, ["{"]))) do
+                      }
+                    }
+                  }
+                }
+              }
+            }, 1, --[[ [] ]]0);
+        while(Caml_obj.caml_notequal(Curry._1(next$1, --[[ () ]]0), --[[ Op ]]Block.__(0, {"{"}))) do
           
         end;
         retl.contents = 0;
-        block(--[[ tuple ]][
+        block(--[[ tuple ]]{
               do
                 contents: 0
               end,
               0
-            ], stk);
+            }, stk);
         patch(true, retl.contents, opos.contents);
         out(51651);
         if (dbg.contents) then do
-          Curry._1(Printf.eprintf(--[[ Format ]][
-                    --[[ String_literal ]]Block.__(11, [
+          Curry._1(Printf.eprintf(--[[ Format ]]{
+                    --[[ String_literal ]]Block.__(11, {
                         "done with function ",
-                        --[[ String ]]Block.__(2, [
+                        --[[ String ]]Block.__(2, {
                             --[[ No_padding ]]0,
-                            --[[ Char_literal ]]Block.__(12, [
+                            --[[ Char_literal ]]Block.__(12, {
                                 --[[ "\n" ]]10,
                                 --[[ End_of_format ]]0
-                              ])
-                          ])
-                      ]),
+                              })
+                          })
+                      }),
                     "done with function %s\n"
-                  ]), symstr(f));
+                  }), symstr(f));
         end
          end 
         _param = --[[ () ]]0;
         continue ;
       end else do
-        throw [
+        throw {
               Caml_builtin_exceptions.failure,
               "[decl] or [fun] expected"
-            ];
+            };
       end end 
     end end  end 
   end;
 end end
 
-elfhdr = Bytes.of_string(__String.concat("", --[[ :: ]][
+elfhdr = Bytes.of_string(__String.concat("", --[[ :: ]]{
           "\x7fELF\x02\x01\x01\0",
-          --[[ :: ]][
+          --[[ :: ]]{
             "\0\0\0\0\0\0\0\0",
-            --[[ :: ]][
+            --[[ :: ]]{
               "\x02\0",
-              --[[ :: ]][
+              --[[ :: ]]{
                 ">\0",
-                --[[ :: ]][
+                --[[ :: ]]{
                   "\x01\0\0\0",
-                  --[[ :: ]][
+                  --[[ :: ]]{
                     "\0\0\0\0\0\0\0\0",
-                    --[[ :: ]][
+                    --[[ :: ]]{
                       "@\0\0\0\0\0\0\0",
-                      --[[ :: ]][
+                      --[[ :: ]]{
                         "\0\0\0\0\0\0\0\0",
-                        --[[ :: ]][
+                        --[[ :: ]]{
                           "\0\0\0\0",
-                          --[[ :: ]][
+                          --[[ :: ]]{
                             "@\0",
-                            --[[ :: ]][
+                            --[[ :: ]]{
                               "8\0",
-                              --[[ :: ]][
+                              --[[ :: ]]{
                                 "\x03\0",
-                                --[[ :: ]][
+                                --[[ :: ]]{
                                   "@\0",
-                                  --[[ :: ]][
+                                  --[[ :: ]]{
                                     "\0\0",
-                                    --[[ :: ]][
+                                    --[[ :: ]]{
                                       "\0\0",
                                       --[[ [] ]]0
-                                    ]
-                                  ]
-                                ]
-                              ]
-                            ]
-                          ]
-                        ]
-                      ]
-                    ]
-                  ]
-                ]
-              ]
-            ]
-          ]
-        ]));
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }));
 
 function elfphdr(ty, off, sz, align) do
   le(32, ty);
@@ -1698,64 +1698,64 @@ function elfgen(outf) do
   dyn = opos.contents;
   List.iter((function (param) do
           return le(64, param);
-        end end), --[[ :: ]][
+        end end), --[[ :: ]]{
         1,
-        --[[ :: ]][
+        --[[ :: ]]{
           29,
-          --[[ :: ]][
+          --[[ :: ]]{
             4,
-            --[[ :: ]][
+            --[[ :: ]]{
               va(hash),
-              --[[ :: ]][
+              --[[ :: ]]{
                 5,
-                --[[ :: ]][
+                --[[ :: ]]{
                   va(strtab),
-                  --[[ :: ]][
+                  --[[ :: ]]{
                     6,
-                    --[[ :: ]][
+                    --[[ :: ]]{
                       va(symtab),
-                      --[[ :: ]][
+                      --[[ :: ]]{
                         7,
-                        --[[ :: ]][
+                        --[[ :: ]]{
                           va(rel),
-                          --[[ :: ]][
+                          --[[ :: ]]{
                             8,
-                            --[[ :: ]][
+                            --[[ :: ]]{
                               hash - rel | 0,
-                              --[[ :: ]][
+                              --[[ :: ]]{
                                 9,
-                                --[[ :: ]][
+                                --[[ :: ]]{
                                   24,
-                                  --[[ :: ]][
+                                  --[[ :: ]]{
                                     10,
-                                    --[[ :: ]][
+                                    --[[ :: ]]{
                                       symtab - strtab | 0,
-                                      --[[ :: ]][
+                                      --[[ :: ]]{
                                         11,
-                                        --[[ :: ]][
+                                        --[[ :: ]]{
                                           24,
-                                          --[[ :: ]][
+                                          --[[ :: ]]{
                                             0,
                                             --[[ [] ]]0
-                                          ]
-                                        ]
-                                      ]
-                                    ]
-                                  ]
-                                ]
-                              ]
-                            ]
-                          ]
-                        ]
-                      ]
-                    ]
-                  ]
-                ]
-              ]
-            ]
-          ]
-        ]
-      ]);
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      });
   tend = opos.contents;
   Bytes.blit(obuf, 0, obuf, off, tend);
   Bytes.blit(glo, 0, obuf, 232, gpos.contents);
@@ -1765,14 +1765,14 @@ function elfgen(outf) do
   elfphdr(1, 0, tend + off | 0, 2097152);
   elfphdr(2, dyn + off | 0, tend - dyn | 0, 8);
   if (opos.contents ~= 232) then do
-    throw [
+    throw {
           Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]][
+          --[[ tuple ]]{
             "qcc.ml",
             698,
             2
-          ]
-        ];
+          }
+        };
   end
    end 
   patch(false, 24, va(entry));
@@ -1784,72 +1784,72 @@ function main(param) do
     local ___conditional___=(param.tag | 0);
     do
        if ___conditional___ = 0--[[ Op ]] then do
-          return Curry._1(Printf.printf(--[[ Format ]][
-                          --[[ String_literal ]]Block.__(11, [
+          return Curry._1(Printf.printf(--[[ Format ]]{
+                          --[[ String_literal ]]Block.__(11, {
                               "Operator '",
-                              --[[ String ]]Block.__(2, [
+                              --[[ String ]]Block.__(2, {
                                   --[[ No_padding ]]0,
-                                  --[[ String_literal ]]Block.__(11, [
+                                  --[[ String_literal ]]Block.__(11, {
                                       "'\n",
                                       --[[ End_of_format ]]0
-                                    ])
-                                ])
-                            ]),
+                                    })
+                                })
+                            }),
                           "Operator '%s'\n"
-                        ]), param[0]);end end end 
+                        }), param[0]);end end end 
        if ___conditional___ = 1--[[ ILit ]] then do
-          return Curry._1(Printf.printf(--[[ Format ]][
-                          --[[ String_literal ]]Block.__(11, [
+          return Curry._1(Printf.printf(--[[ Format ]]{
+                          --[[ String_literal ]]Block.__(11, {
                               "Int literal ",
-                              --[[ Int ]]Block.__(4, [
+                              --[[ Int ]]Block.__(4, {
                                   --[[ Int_d ]]0,
                                   --[[ No_padding ]]0,
                                   --[[ No_precision ]]0,
-                                  --[[ Char_literal ]]Block.__(12, [
+                                  --[[ Char_literal ]]Block.__(12, {
                                       --[[ "\n" ]]10,
                                       --[[ End_of_format ]]0
-                                    ])
-                                ])
-                            ]),
+                                    })
+                                })
+                            }),
                           "Int literal %d\n"
-                        ]), param[0]);end end end 
+                        }), param[0]);end end end 
        if ___conditional___ = 2--[[ SLit ]] then do
-          return Curry._1(Printf.printf(--[[ Format ]][
-                          --[[ String_literal ]]Block.__(11, [
+          return Curry._1(Printf.printf(--[[ Format ]]{
+                          --[[ String_literal ]]Block.__(11, {
                               "Str literal ",
-                              --[[ Caml_string ]]Block.__(3, [
+                              --[[ Caml_string ]]Block.__(3, {
                                   --[[ No_padding ]]0,
-                                  --[[ Char_literal ]]Block.__(12, [
+                                  --[[ Char_literal ]]Block.__(12, {
                                       --[[ "\n" ]]10,
                                       --[[ End_of_format ]]0
-                                    ])
-                                ])
-                            ]),
+                                    })
+                                })
+                            }),
                           "Str literal %S\n"
-                        ]), param[1]);end end end 
+                        }), param[1]);end end end 
        if ___conditional___ = 3--[[ Sym ]] then do
           i = param[0];
-          return Curry._2(Printf.printf(--[[ Format ]][
-                          --[[ String_literal ]]Block.__(11, [
+          return Curry._2(Printf.printf(--[[ Format ]]{
+                          --[[ String_literal ]]Block.__(11, {
                               "Symbol '",
-                              --[[ String ]]Block.__(2, [
+                              --[[ String ]]Block.__(2, {
                                   --[[ No_padding ]]0,
-                                  --[[ String_literal ]]Block.__(11, [
+                                  --[[ String_literal ]]Block.__(11, {
                                       "' (",
-                                      --[[ Int ]]Block.__(4, [
+                                      --[[ Int ]]Block.__(4, {
                                           --[[ Int_d ]]0,
                                           --[[ No_padding ]]0,
                                           --[[ No_precision ]]0,
-                                          --[[ String_literal ]]Block.__(11, [
+                                          --[[ String_literal ]]Block.__(11, {
                                               ")\n",
                                               --[[ End_of_format ]]0
-                                            ])
-                                        ])
-                                    ])
-                                ])
-                            ]),
+                                            })
+                                        })
+                                    })
+                                })
+                            }),
                           "Symbol '%s' (%d)\n"
-                        ]), symstr(i), i);end end end 
+                        }), symstr(i), i);end end end 
        do
       
     end
@@ -1861,10 +1861,10 @@ function main(param) do
         partial_arg_000 = do
           contents: 0
         end;
-        partial_arg = --[[ tuple ]][
+        partial_arg = --[[ tuple ]]{
           partial_arg_000,
           0
-        ];
+        };
         c = function (param) do
           return block(partial_arg, param);
         end end;
@@ -1881,13 +1881,13 @@ function main(param) do
             _param = --[[ () ]]0;
             continue ;
           end else if (tok[0] == "EOF!") then do
-            return Printf.printf(--[[ Format ]][
-                        --[[ String_literal ]]Block.__(11, [
+            return Printf.printf(--[[ Format ]]{
+                        --[[ String_literal ]]Block.__(11, {
                             "End of input stream\n",
                             --[[ End_of_format ]]0
-                          ]),
+                          }),
                         "End of input stream\n"
-                      ]);
+                      });
           end else do
             ppsym(tok);
             _param = --[[ () ]]0;

@@ -35,10 +35,10 @@ end
 sumdown = v$1;
 
 function cons(x, y) do
-  return --[[ Cons ]][
+  return --[[ Cons ]]{
           x,
           y
-        ];
+        };
 end end
 
 function length(x) do
@@ -51,10 +51,10 @@ end end
 
 function map(f, x) do
   if (x) then do
-    return --[[ Cons ]][
+    return --[[ Cons ]]{
             Curry._1(f, x[0]),
             map(f, x[1])
-          ];
+          };
   end else do
     return --[[ Nil ]]0;
   end end 

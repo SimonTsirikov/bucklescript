@@ -75,12 +75,12 @@ end end
 
 function b44(param) do
   return (function (x, y, z, d) do
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               x,
               y,
               z,
               d
-            ];
+            };
     end end);
 end end
 

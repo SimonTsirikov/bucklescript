@@ -5,11 +5,11 @@ u = do
   x: 3,
   y: 32,
   bark: (function (__this, x, y) do
-      console.log(--[[ tuple ]][
+      console.log(--[[ tuple ]]{
             __this.length,
             __this.x,
             __this.y
-          ]);
+          });
       return --[[ () ]]0;
     end end),
   length: 32
@@ -27,13 +27,13 @@ js_obj = do
   y: 32,
   bark: (function (x, y) do
       o = this ;
-      console.log(--[[ tuple ]][
+      console.log(--[[ tuple ]]{
             o.length,
             o.x,
             o.y,
             x,
             y
-          ]);
+          });
       return x + y | 0; end
     end),
   length: 32

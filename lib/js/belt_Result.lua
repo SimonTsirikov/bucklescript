@@ -25,9 +25,9 @@ end end
 
 function mapU(opt, f) do
   if (opt.tag) then do
-    return --[[ Error ]]Block.__(1, [opt[0]]);
+    return --[[ Error ]]Block.__(1, {opt[0]});
   end else do
-    return --[[ Ok ]]Block.__(0, [f(opt[0])]);
+    return --[[ Ok ]]Block.__(0, {f(opt[0])});
   end end 
 end end
 
@@ -37,7 +37,7 @@ end end
 
 function flatMapU(opt, f) do
   if (opt.tag) then do
-    return --[[ Error ]]Block.__(1, [opt[0]]);
+    return --[[ Error ]]Block.__(1, {opt[0]});
   end else do
     return f(opt[0]);
   end end 

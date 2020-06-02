@@ -44,20 +44,20 @@ function basename(param) do
               end end), Filename.current_dir_name, param);
 end end
 
-suites_000 = --[[ tuple ]][
+suites_000 = --[[ tuple ]]{
   "basename",
   (function (param) do
-      return --[[ Eq ]]Block.__(0, [
+      return --[[ Eq ]]Block.__(0, {
                 basename("b/c/a.b"),
                 "a.b"
-              ]);
+              });
     end end)
-];
+};
 
-suites = --[[ :: ]][
+suites = --[[ :: ]]{
   suites_000,
   --[[ [] ]]0
-];
+};
 
 Mt.from_pair_suites("Inline_regression_test", suites);
 

@@ -36,25 +36,25 @@ function Make(funarg) do
     end;
     step2 = function (top, rest_of_stack) do
       if (find_default(already_processed, top)) then do
-        throw [
+        throw {
               Caml_builtin_exceptions.assert_failure,
-              --[[ tuple ]][
+              --[[ tuple ]]{
                 "gpr_405_test.ml",
                 43,
                 6
-              ]
-            ];
+              }
+            };
       end
        end 
       if (find_default(on_the_stack, top)) then do
-        throw [
+        throw {
               Caml_builtin_exceptions.assert_failure,
-              --[[ tuple ]][
+              --[[ tuple ]]{
                 "gpr_405_test.ml",
                 44,
                 6
-              ]
-            ];
+              }
+            };
       end
        end 
       Curry._3(H.add, on_the_stack, top, true);
@@ -77,28 +77,28 @@ function Make(funarg) do
             _successors = successors[1];
             continue ;
           end else do
-            return step2(successor, --[[ :: ]][
-                        --[[ tuple ]][
+            return step2(successor, --[[ :: ]]{
+                        --[[ tuple ]]{
                           top$1,
                           successors
-                        ],
+                        },
                         rest_of_stack$1
-                      ]);
+                      });
           end end 
         end else do
           if (Curry._2(H.find, l_labels, top$1) == Curry._2(H.find, n_labels, top$1)) then do
-            cut_set.contents = --[[ :: ]][
+            cut_set.contents = --[[ :: ]]{
               top$1,
               cut_set.contents
-            ];
+            };
             Curry._3(H.add, l_labels, top$1, 0);
           end
            end 
           if (Curry._2(H.find, l_labels, top$1) > Curry._2(H.find, n_labels, top$1)) then do
-            throw [
+            throw {
                   Caml_builtin_exceptions.invalid_argument,
                   "Graph.Mincut: graph not reducible"
-                ];
+                };
           end
            end 
           if (rest_of_stack$1) then do

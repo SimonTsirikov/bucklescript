@@ -8,10 +8,10 @@ Stack = require "../../lib/js/stack.lua";
 function to_list(v) do
   acc = --[[ [] ]]0;
   while(v.c ~= --[[ [] ]]0) do
-    acc = --[[ :: ]][
+    acc = --[[ :: ]]{
       Stack.pop(v),
       acc
-    ];
+    };
   end;
   return List.rev(acc);
 end end
@@ -27,29 +27,29 @@ function v(param) do
   return to_list(v$1);
 end end
 
-suites_000 = --[[ tuple ]][
+suites_000 = --[[ tuple ]]{
   "push_test",
   (function (param) do
-      return --[[ Eq ]]Block.__(0, [
-                --[[ :: ]][
+      return --[[ Eq ]]Block.__(0, {
+                --[[ :: ]]{
                   1,
-                  --[[ :: ]][
+                  --[[ :: ]]{
                     4,
-                    --[[ :: ]][
+                    --[[ :: ]]{
                       3,
                       --[[ [] ]]0
-                    ]
-                  ]
-                ],
+                    }
+                  }
+                },
                 v(--[[ () ]]0)
-              ]);
+              });
     end end)
-];
+};
 
-suites = --[[ :: ]][
+suites = --[[ :: ]]{
   suites_000,
   --[[ [] ]]0
-];
+};
 
 Mt.from_pair_suites("Stack_test", suites);
 

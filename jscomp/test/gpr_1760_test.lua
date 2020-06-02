@@ -15,18 +15,18 @@ end;
 
 function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = --[[ :: ]][
-    --[[ tuple ]][
+  suites.contents = --[[ :: ]]{
+    --[[ tuple ]]{
       loc .. (" id " .. String(test_id.contents)),
       (function (param) do
-          return --[[ Eq ]]Block.__(0, [
+          return --[[ Eq ]]Block.__(0, {
                     x,
                     y
-                  ]);
+                  });
         end end)
-    ],
+    },
     suites.contents
-  ];
+  };
   return --[[ () ]]0;
 end end
 
@@ -73,13 +73,13 @@ end
 a6;
 
 try do
-  Caml_int64.div(--[[ int64 ]][
+  Caml_int64.div(--[[ int64 ]]{
         --[[ hi ]]0,
         --[[ lo ]]0
-      ], --[[ int64 ]][
+      }, --[[ int64 ]]{
         --[[ hi ]]0,
         --[[ lo ]]0
-      ]);
+      });
   a6 = 0;
 end
 catch (exn$4)do
@@ -89,34 +89,34 @@ end
 a7;
 
 try do
-  Caml_int64.mod_(--[[ int64 ]][
+  Caml_int64.mod_(--[[ int64 ]]{
         --[[ hi ]]0,
         --[[ lo ]]0
-      ], --[[ int64 ]][
+      }, --[[ int64 ]]{
         --[[ hi ]]0,
         --[[ lo ]]0
-      ]);
+      });
   a7 = 0;
 end
 catch (exn$5)do
   a7 = 1;
 end
 
-eq("File \"gpr_1760_test.ml\", line 30, characters 5-12", --[[ tuple ]][
+eq("File \"gpr_1760_test.ml\", line 30, characters 5-12", --[[ tuple ]]{
       a0,
       a1,
       a4,
       a5,
       a6,
       a7
-    ], --[[ tuple ]][
+    }, --[[ tuple ]]{
       1,
       1,
       1,
       1,
       1,
       1
-    ]);
+    });
 
 Mt.from_pair_suites("Gpr_1760_test", suites.contents);
 

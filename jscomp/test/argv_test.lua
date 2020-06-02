@@ -17,25 +17,25 @@ test = do
   contents: true
 end;
 
-arg_spec_000 = --[[ tuple ]][
+arg_spec_000 = --[[ tuple ]]{
   "-c",
-  --[[ Set ]]Block.__(2, [compile]),
+  --[[ Set ]]Block.__(2, {compile}),
   " Compile"
-];
+};
 
-arg_spec_001 = --[[ :: ]][
-  --[[ tuple ]][
+arg_spec_001 = --[[ :: ]]{
+  --[[ tuple ]]{
     "-d",
-    --[[ Clear ]]Block.__(3, [test]),
+    --[[ Clear ]]Block.__(3, {test}),
     " Test"
-  ],
+  },
   --[[ [] ]]0
-];
+};
 
-arg_spec = --[[ :: ]][
+arg_spec = --[[ :: ]]{
   arg_spec_000,
   arg_spec_001
-];
+};
 
 Arg.parse(arg_spec, anno_fun, usage_msg);
 

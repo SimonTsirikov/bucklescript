@@ -14,13 +14,13 @@ end
 function bark(param) do
   return (function (x, y) do
       o = this ;
-      console.log(--[[ tuple ]][
+      console.log(--[[ tuple ]]{
             o.length,
             o.x,
             o.y,
             x,
             y
-          ]);
+          });
       return x + y | 0; end
     end);
 end end

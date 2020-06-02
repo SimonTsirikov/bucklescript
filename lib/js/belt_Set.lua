@@ -88,8 +88,8 @@ function split(m, e) do
   cmp = m.cmp;
   match = Belt_SetDict.split(m.data, e, cmp);
   match$1 = match[0];
-  return --[[ tuple ]][
-          --[[ tuple ]][
+  return --[[ tuple ]]{
+          --[[ tuple ]]{
             do
               cmp: cmp,
               data: match$1[0]
@@ -98,9 +98,9 @@ function split(m, e) do
               cmp: cmp,
               data: match$1[1]
             end
-          ],
+          },
           match[1]
-        ];
+        };
 end end
 
 function make(id) do
@@ -169,7 +169,7 @@ end end
 function partitionU(m, f) do
   match = Belt_SetDict.partitionU(m.data, f);
   cmp = m.cmp;
-  return --[[ tuple ]][
+  return --[[ tuple ]]{
           do
             cmp: cmp,
             data: match[0]
@@ -178,7 +178,7 @@ function partitionU(m, f) do
             cmp: cmp,
             data: match[1]
           end
-        ];
+        };
 end end
 
 function partition(m, f) do

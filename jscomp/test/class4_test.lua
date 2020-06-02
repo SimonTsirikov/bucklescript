@@ -6,17 +6,17 @@ Curry = require "../../lib/js/curry.lua";
 Caml_oo_curry = require "../../lib/js/caml_oo_curry.lua";
 CamlinternalOO = require "../../lib/js/camlinternalOO.lua";
 
-shared = ["x"];
+shared = {"x"};
 
-shared$1 = [
+shared$1 = {
   "move",
   "get_x"
-];
+};
 
-shared$2 = [
+shared$2 = {
   "bump",
   "get_x"
-];
+};
 
 suites = do
   contents: --[[ [] ]]0
@@ -28,33 +28,33 @@ end;
 
 function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = --[[ :: ]][
-    --[[ tuple ]][
+  suites.contents = --[[ :: ]]{
+    --[[ tuple ]]{
       loc .. (" id " .. String(test_id.contents)),
       (function (param) do
-          return --[[ Eq ]]Block.__(0, [
+          return --[[ Eq ]]Block.__(0, {
                     x,
                     y
-                  ]);
+                  });
         end end)
-    ],
+    },
     suites.contents
-  ];
+  };
   return --[[ () ]]0;
 end end
 
 function restricted_point_init(__class) do
   x_init = CamlinternalOO.new_variable(__class, "");
-  ids = CamlinternalOO.new_methods_variables(__class, [
+  ids = CamlinternalOO.new_methods_variables(__class, {
         "move",
         "get_x",
         "bump"
-      ], shared);
+      }, shared);
   move = ids[0];
   get_x = ids[1];
   bump = ids[2];
   x = ids[3];
-  CamlinternalOO.set_methods(__class, [
+  CamlinternalOO.set_methods(__class, {
         get_x,
         (function (self$1) do
             return self$1[x];
@@ -68,7 +68,7 @@ function restricted_point_init(__class) do
         (function (self$1) do
             return Curry._2(self$1[0][move], self$1, 1);
           end end)
-      ]);
+      });
   return (function (env, self, x_init$1) do
       self$1 = CamlinternalOO.create_object_opt(self, __class);
       self$1[x_init] = x_init$1;
@@ -105,11 +105,11 @@ end;
 
 function abstract_point_001(__class) do
   x_init = CamlinternalOO.new_variable(__class, "");
-  ids = CamlinternalOO.get_method_labels(__class, [
+  ids = CamlinternalOO.get_method_labels(__class, {
         "move",
         "get_x",
         "get_offset"
-      ]);
+      });
   get_x = ids[1];
   get_offset = ids[2];
   CamlinternalOO.set_method(__class, get_offset, (function (self$5) do
@@ -122,12 +122,12 @@ function abstract_point_001(__class) do
     end end);
 end end
 
-abstract_point = --[[ class ]][
+abstract_point = --[[ class ]]{
   0,
   abstract_point_001,
   0,
   0
-];
+};
 
 function point_init(__class) do
   x_init = CamlinternalOO.new_variable(__class, "");
@@ -135,9 +135,9 @@ function point_init(__class) do
   move = ids[0];
   get_x = ids[1];
   x = ids[2];
-  inh = CamlinternalOO.inherits(__class, 0, shared$1, ["get_offset"], abstract_point, true);
+  inh = CamlinternalOO.inherits(__class, 0, shared$1, {"get_offset"}, abstract_point, true);
   obj_init = inh[0];
-  CamlinternalOO.set_methods(__class, [
+  CamlinternalOO.set_methods(__class, {
         get_x,
         (function (self$6) do
             return self$6[x];
@@ -147,7 +147,7 @@ function point_init(__class) do
             self$6[x] = self$6[x] + d | 0;
             return --[[ () ]]0;
           end end)
-      ]);
+      });
   return (function (env, self, x_init$1) do
       self$1 = CamlinternalOO.create_object_opt(self, __class);
       self$1[x_init] = x_init$1;
@@ -157,23 +157,23 @@ function point_init(__class) do
     end end);
 end end
 
-point = CamlinternalOO.make_class([
+point = CamlinternalOO.make_class({
       "move",
       "get_offset",
       "get_x"
-    ], point_init);
+    }, point_init);
 
 function colored_point_init(__class) do
   x = CamlinternalOO.new_variable(__class, "");
   c = CamlinternalOO.new_variable(__class, "");
-  ids = CamlinternalOO.new_methods_variables(__class, ["color"], ["c"]);
+  ids = CamlinternalOO.new_methods_variables(__class, {"color"}, {"c"});
   color = ids[0];
   c$1 = ids[1];
-  inh = CamlinternalOO.inherits(__class, shared, 0, [
+  inh = CamlinternalOO.inherits(__class, shared, 0, {
         "get_offset",
         "get_x",
         "move"
-      ], point, true);
+      }, point, true);
   obj_init = inh[0];
   CamlinternalOO.set_method(__class, color, (function (self$7) do
           return self$7[c$1];
@@ -188,22 +188,22 @@ function colored_point_init(__class) do
     end end);
 end end
 
-colored_point = CamlinternalOO.make_class([
+colored_point = CamlinternalOO.make_class({
       "move",
       "color",
       "get_offset",
       "get_x"
-    ], colored_point_init);
+    }, colored_point_init);
 
 p$prime = Curry._3(colored_point[0], 0, 5, "red");
 
-eq("File \"class4_test.ml\", line 67, characters 5-12", --[[ tuple ]][
+eq("File \"class4_test.ml\", line 67, characters 5-12", --[[ tuple ]]{
       5,
       "red"
-    ], --[[ tuple ]][
+    }, --[[ tuple ]]{
       Caml_oo_curry.js1(291546447, 1, p$prime),
       Caml_oo_curry.js1(-899911325, 2, p$prime)
-    ]);
+    });
 
 function get_succ_x(p) do
   return Caml_oo_curry.js1(291546447, 3, p) + 1 | 0;

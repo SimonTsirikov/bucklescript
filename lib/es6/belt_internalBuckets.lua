@@ -213,10 +213,10 @@ function fillArray(_i, arr, _cell) do
   while(true) do
     cell = _cell;
     i = _i;
-    arr[i] = --[[ tuple ]][
+    arr[i] = --[[ tuple ]]{
       cell.key,
       cell.value
-    ];
+    };
     match = cell.next;
     if (match ~= undefined) then do
       _cell = match;
@@ -272,10 +272,10 @@ end end
 
 function toArray(h) do
   return linear(h, (function (x) do
-                return --[[ tuple ]][
+                return --[[ tuple ]]{
                         x.key,
                         x.value
-                      ];
+                      };
               end end));
 end end
 

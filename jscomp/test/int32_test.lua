@@ -12,18 +12,18 @@ Pervasives = require "../../lib/js/pervasives.lua";
 Ext_array_test = require "./ext_array_test.lua";
 
 function f(x) do
-  return --[[ tuple ]][
+  return --[[ tuple ]]{
           x,
           (x >>> 1),
           (x >>> 2)
-        ];
+        };
 end end
 
 shift_right_logical_tests_000 = __Array.map((function (x) do
         return (-1 >>> x) | 0;
       end end), Ext_array_test.range(0, 31));
 
-shift_right_logical_tests_001 = [
+shift_right_logical_tests_001 = {
   -1,
   2147483647,
   1073741823,
@@ -56,18 +56,18 @@ shift_right_logical_tests_001 = [
   7,
   3,
   1
-];
+};
 
-shift_right_logical_tests = --[[ tuple ]][
+shift_right_logical_tests = --[[ tuple ]]{
   shift_right_logical_tests_000,
   shift_right_logical_tests_001
-];
+};
 
 shift_right_tests_000 = __Array.map((function (x) do
         return (Int32.min_int >> x);
       end end), Ext_array_test.range(0, 31));
 
-shift_right_tests_001 = [
+shift_right_tests_001 = {
   -2147483648,
   -1073741824,
   -536870912,
@@ -100,18 +100,18 @@ shift_right_tests_001 = [
   -4,
   -2,
   -1
-];
+};
 
-shift_right_tests = --[[ tuple ]][
+shift_right_tests = --[[ tuple ]]{
   shift_right_tests_000,
   shift_right_tests_001
-];
+};
 
 shift_left_tests_000 = __Array.map((function (x) do
         return (1 << x);
       end end), Ext_array_test.range(0, 31));
 
-shift_left_tests_001 = [
+shift_left_tests_001 = {
   1,
   2,
   4,
@@ -144,101 +144,101 @@ shift_left_tests_001 = [
   536870912,
   1073741824,
   -2147483648
-];
+};
 
-shift_left_tests = --[[ tuple ]][
+shift_left_tests = --[[ tuple ]]{
   shift_left_tests_000,
   shift_left_tests_001
-];
+};
 
 $star$tilde = Caml_int32.imul;
 
 suites = do
-  contents: Pervasives.$at(--[[ :: ]][
-        --[[ tuple ]][
+  contents: Pervasives.$at(--[[ :: ]]{
+        --[[ tuple ]]{
           "File \"int32_test.ml\", line 31, characters 2-9",
           (function (param) do
-              return --[[ Eq ]]Block.__(0, [
+              return --[[ Eq ]]Block.__(0, {
                         1,
                         1
-                      ]);
+                      });
             end end)
-        ],
-        --[[ :: ]][
-          --[[ tuple ]][
+        },
+        --[[ :: ]]{
+          --[[ tuple ]]{
             "File \"int32_test.ml\", line 32, characters 2-9",
             (function (param) do
-                return --[[ Eq ]]Block.__(0, [
+                return --[[ Eq ]]Block.__(0, {
                           -2147483647,
                           -2147483647
-                        ]);
+                        });
               end end)
-          ],
+          },
           --[[ [] ]]0
-        ]
-      ], Pervasives.$at(__Array.to_list(Ext_array_test.map2i((function (i, a, b) do
-                      return --[[ tuple ]][
-                              Curry._1(Format.asprintf(--[[ Format ]][
-                                        --[[ String_literal ]]Block.__(11, [
+        }
+      }, Pervasives.$at(__Array.to_list(Ext_array_test.map2i((function (i, a, b) do
+                      return --[[ tuple ]]{
+                              Curry._1(Format.asprintf(--[[ Format ]]{
+                                        --[[ String_literal ]]Block.__(11, {
                                             "shift_right_logical_cases ",
-                                            --[[ Int ]]Block.__(4, [
+                                            --[[ Int ]]Block.__(4, {
                                                 --[[ Int_d ]]0,
                                                 --[[ No_padding ]]0,
                                                 --[[ No_precision ]]0,
                                                 --[[ End_of_format ]]0
-                                              ])
-                                          ]),
+                                              })
+                                          }),
                                         "shift_right_logical_cases %d"
-                                      ]), i),
+                                      }), i),
                               (function (param) do
-                                  return --[[ Eq ]]Block.__(0, [
+                                  return --[[ Eq ]]Block.__(0, {
                                             a,
                                             b
-                                          ]);
+                                          });
                                 end end)
-                            ];
+                            };
                     end end), shift_right_logical_tests_000, shift_right_logical_tests_001)), Pervasives.$at(__Array.to_list(Ext_array_test.map2i((function (i, a, b) do
-                          return --[[ tuple ]][
-                                  Curry._1(Format.asprintf(--[[ Format ]][
-                                            --[[ String_literal ]]Block.__(11, [
+                          return --[[ tuple ]]{
+                                  Curry._1(Format.asprintf(--[[ Format ]]{
+                                            --[[ String_literal ]]Block.__(11, {
                                                 "shift_right_cases ",
-                                                --[[ Int ]]Block.__(4, [
+                                                --[[ Int ]]Block.__(4, {
                                                     --[[ Int_d ]]0,
                                                     --[[ No_padding ]]0,
                                                     --[[ No_precision ]]0,
                                                     --[[ End_of_format ]]0
-                                                  ])
-                                              ]),
+                                                  })
+                                              }),
                                             "shift_right_cases %d"
-                                          ]), i),
+                                          }), i),
                                   (function (param) do
-                                      return --[[ Eq ]]Block.__(0, [
+                                      return --[[ Eq ]]Block.__(0, {
                                                 a,
                                                 b
-                                              ]);
+                                              });
                                     end end)
-                                ];
+                                };
                         end end), shift_right_tests_000, shift_right_tests_001)), __Array.to_list(Ext_array_test.map2i((function (i, a, b) do
-                          return --[[ tuple ]][
-                                  Curry._1(Format.asprintf(--[[ Format ]][
-                                            --[[ String_literal ]]Block.__(11, [
+                          return --[[ tuple ]]{
+                                  Curry._1(Format.asprintf(--[[ Format ]]{
+                                            --[[ String_literal ]]Block.__(11, {
                                                 "shift_left_cases ",
-                                                --[[ Int ]]Block.__(4, [
+                                                --[[ Int ]]Block.__(4, {
                                                     --[[ Int_d ]]0,
                                                     --[[ No_padding ]]0,
                                                     --[[ No_precision ]]0,
                                                     --[[ End_of_format ]]0
-                                                  ])
-                                              ]),
+                                                  })
+                                              }),
                                             "shift_left_cases %d"
-                                          ]), i),
+                                          }), i),
                                   (function (param) do
-                                      return --[[ Eq ]]Block.__(0, [
+                                      return --[[ Eq ]]Block.__(0, {
                                                 a,
                                                 b
-                                              ]);
+                                              });
                                     end end)
-                                ];
+                                };
                         end end), shift_left_tests_000, shift_left_tests_001)))))
 end;
 

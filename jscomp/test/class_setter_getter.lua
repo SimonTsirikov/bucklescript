@@ -7,13 +7,13 @@ function fff(x) do
 end end
 
 function ff(x, z) do
-  return --[[ :: ]][
+  return --[[ :: ]]{
           x.height,
-          --[[ :: ]][
+          --[[ :: ]]{
             z.height,
             --[[ [] ]]0
-          ]
-        ];
+          }
+        };
 end end
 
 exports.fff = fff;

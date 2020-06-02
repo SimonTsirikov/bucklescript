@@ -39,40 +39,40 @@ end end
 
 function print_failure_test_fail(param) do
   all_tests_ok.contents = false;
-  return Pervasives.print_string(Curry._1(Printf.sprintf(--[[ Format ]][
-                      --[[ String_literal ]]Block.__(11, [
+  return Pervasives.print_string(Curry._1(Printf.sprintf(--[[ Format ]]{
+                      --[[ String_literal ]]Block.__(11, {
                           "\n********* Failure Test number ",
-                          --[[ Int ]]Block.__(4, [
+                          --[[ Int ]]Block.__(4, {
                               --[[ Int_i ]]3,
                               --[[ No_padding ]]0,
                               --[[ No_precision ]]0,
-                              --[[ String_literal ]]Block.__(11, [
+                              --[[ String_literal ]]Block.__(11, {
                                   " incorrectly failed ***********\n",
                                   --[[ End_of_format ]]0
-                                ])
-                            ])
-                        ]),
+                                })
+                            })
+                        }),
                       "\n********* Failure Test number %i incorrectly failed ***********\n"
-                    ]), test_num.contents));
+                    }), test_num.contents));
 end end
 
 function print_failure_test_succeed(param) do
   all_tests_ok.contents = false;
-  return Pervasives.print_string(Curry._1(Printf.sprintf(--[[ Format ]][
-                      --[[ String_literal ]]Block.__(11, [
+  return Pervasives.print_string(Curry._1(Printf.sprintf(--[[ Format ]]{
+                      --[[ String_literal ]]Block.__(11, {
                           "\n********* Failure Test number ",
-                          --[[ Int ]]Block.__(4, [
+                          --[[ Int ]]Block.__(4, {
                               --[[ Int_i ]]3,
                               --[[ No_padding ]]0,
                               --[[ No_precision ]]0,
-                              --[[ String_literal ]]Block.__(11, [
+                              --[[ String_literal ]]Block.__(11, {
                                   " failed to fail ***********\n",
                                   --[[ End_of_format ]]0
-                                ])
-                            ])
-                        ]),
+                                })
+                            })
+                        }),
                       "\n********* Failure Test number %i failed to fail ***********\n"
-                    ]), test_num.contents));
+                    }), test_num.contents));
 end end
 
 function test(b) do
@@ -82,21 +82,21 @@ function test(b) do
     return 0;
   end else do
     all_tests_ok.contents = false;
-    return Pervasives.print_string(Curry._1(Printf.sprintf(--[[ Format ]][
-                        --[[ String_literal ]]Block.__(11, [
+    return Pervasives.print_string(Curry._1(Printf.sprintf(--[[ Format ]]{
+                        --[[ String_literal ]]Block.__(11, {
                             "\n********* Test number ",
-                            --[[ Int ]]Block.__(4, [
+                            --[[ Int ]]Block.__(4, {
                                 --[[ Int_i ]]3,
                                 --[[ No_padding ]]0,
                                 --[[ No_precision ]]0,
-                                --[[ String_literal ]]Block.__(11, [
+                                --[[ String_literal ]]Block.__(11, {
                                     " failed ***********\n",
                                     --[[ End_of_format ]]0
-                                  ])
-                              ])
-                          ]),
+                                  })
+                              })
+                          }),
                         "\n********* Test number %i failed ***********\n"
-                      ]), test_num.contents));
+                      }), test_num.contents));
   end end 
 end end
 
@@ -140,10 +140,10 @@ function failure_test(f, x, s) do
   f$1 = f;
   x$1 = x;
   return test_raises_exc_p((function (x) do
-                return Caml_obj.caml_equal(x, [
+                return Caml_obj.caml_equal(x, {
                             Caml_builtin_exceptions.failure,
                             s$1
-                          ]);
+                          });
               end end), f$1, x$1);
 end end
 

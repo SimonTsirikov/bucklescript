@@ -15,17 +15,17 @@ function Make(X) do
         end;
 end end
 
-B = Caml_module.init_mod(--[[ tuple ]][
+B = Caml_module.init_mod(--[[ tuple ]]{
       "recursive_unbound_module_test.ml",
       18,
       0
-    ], --[[ Module ]]Block.__(0, [[--[[ tuple ]][
-            --[[ Module ]]Block.__(0, [[--[[ tuple ]][
+    }, --[[ Module ]]Block.__(0, {{--[[ tuple ]]{
+            --[[ Module ]]Block.__(0, {{--[[ tuple ]]{
                     --[[ Function ]]0,
                     "f"
-                  ]]]),
+                  }}}),
             "M"
-          ]]]));
+          }}}));
 
 function f(param) do
   return --[[ () ]]0;
@@ -35,13 +35,13 @@ M = do
   f: f
 end;
 
-Caml_module.update_mod(--[[ Module ]]Block.__(0, [[--[[ tuple ]][
-            --[[ Module ]]Block.__(0, [[--[[ tuple ]][
+Caml_module.update_mod(--[[ Module ]]Block.__(0, {{--[[ tuple ]]{
+            --[[ Module ]]Block.__(0, {{--[[ tuple ]]{
                     --[[ Function ]]0,
                     "f"
-                  ]]]),
+                  }}}),
             "M"
-          ]]]), B, do
+          }}}), B, do
       M: M
     end);
 

@@ -26,10 +26,10 @@ function ensure_ge(x, y) do
   if (x >= y) then do
     return x;
   end else do
-    throw [
+    throw {
           Caml_builtin_exceptions.invalid_argument,
           "String.concat"
-        ];
+        };
   end end 
 end end
 
@@ -201,10 +201,10 @@ end end
 function index_from(s, i, c) do
   l = #s;
   if (i < 0 or i > l) then do
-    throw [
+    throw {
           Caml_builtin_exceptions.invalid_argument,
           "String.index_from / Bytes.index_from"
-        ];
+        };
   end
    end 
   return index_rec(s, l, i, c);
@@ -213,10 +213,10 @@ end end
 function index_from_opt(s, i, c) do
   l = #s;
   if (i < 0 or i > l) then do
-    throw [
+    throw {
           Caml_builtin_exceptions.invalid_argument,
           "String.index_from_opt / Bytes.index_from_opt"
-        ];
+        };
   end
    end 
   return index_rec_opt(s, l, i, c);
@@ -244,10 +244,10 @@ end end
 
 function rindex_from(s, i, c) do
   if (i < -1 or i >= #s) then do
-    throw [
+    throw {
           Caml_builtin_exceptions.invalid_argument,
           "String.rindex_from / Bytes.rindex_from"
-        ];
+        };
   end
    end 
   return rindex_rec(s, i, c);
@@ -273,10 +273,10 @@ end end
 
 function rindex_from_opt(s, i, c) do
   if (i < -1 or i >= #s) then do
-    throw [
+    throw {
           Caml_builtin_exceptions.invalid_argument,
           "String.rindex_from_opt / Bytes.rindex_from_opt"
-        ];
+        };
   end
    end 
   return rindex_rec_opt(s, i, c);
@@ -285,10 +285,10 @@ end end
 function contains_from(s, i, c) do
   l = #s;
   if (i < 0 or i > l) then do
-    throw [
+    throw {
           Caml_builtin_exceptions.invalid_argument,
           "String.contains_from / Bytes.contains_from"
-        ];
+        };
   end
    end 
   try do
@@ -310,10 +310,10 @@ end end
 
 function rcontains_from(s, i, c) do
   if (i < 0 or i >= #s) then do
-    throw [
+    throw {
           Caml_builtin_exceptions.invalid_argument,
           "String.rcontains_from / Bytes.rcontains_from"
-        ];
+        };
   end
    end 
   try do
@@ -352,18 +352,18 @@ function split_on_char(sep, s) do
   j = #s;
   for i = #s - 1 | 0 , 0 , -1 do
     if (s.charCodeAt(i) == sep) then do
-      r = --[[ :: ]][
+      r = --[[ :: ]]{
         sub(s, i + 1 | 0, (j - i | 0) - 1 | 0),
         r
-      ];
+      };
       j = i;
     end
      end 
   end
-  return --[[ :: ]][
+  return --[[ :: ]]{
           sub(s, 0, j),
           r
-        ];
+        };
 end end
 
 function uppercase(s) do

@@ -17,18 +17,18 @@ function eq(loc, param) do
   y = param[1];
   x = param[0];
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = --[[ :: ]][
-    --[[ tuple ]][
+  suites.contents = --[[ :: ]]{
+    --[[ tuple ]]{
       loc .. (" id " .. String(test_id.contents)),
       (function (param) do
-          return --[[ Eq ]]Block.__(0, [
+          return --[[ Eq ]]Block.__(0, {
                     x,
                     y
-                  ]);
+                  });
         end end)
-    ],
+    },
     suites.contents
-  ];
+  };
   return --[[ () ]]0;
 end end
 
@@ -49,14 +49,14 @@ pathobj = Path.parse(current_dir_name);
 match$2 = typeof module == "undefined" and undefined or module;
 
 if (match$2 ~= undefined) then do
-  console.log(--[[ tuple ]][
+  console.log(--[[ tuple ]]{
         match$2.id,
         match$2.paths
-      ]);
-  eq("File \"fs_test.ml\", line 45, characters 7-14", --[[ tuple ]][
+      });
+  eq("File \"fs_test.ml\", line 45, characters 7-14", --[[ tuple ]]{
         pathobj.name,
         "test"
-      ]);
+      });
 end
  end 
 

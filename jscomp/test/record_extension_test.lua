@@ -26,11 +26,11 @@ function f(x) do
    end 
 end end
 
-v0 = [
+v0 = {
   Inline_record,
   --[[ x ]]3,
   --[[ y ]]"4"
-];
+};
 
 eq("File \"record_extension_test.ml\", line 18, characters 6-13", f(v0), 7);
 
@@ -46,10 +46,10 @@ function f2_with(x) do
   if (typeof x == "number" or x.tag) then do
     return x;
   end else do
-    return --[[ C ]]Block.__(0, [
+    return --[[ C ]]Block.__(0, {
               --[[ x ]]0,
               --[[ y ]]x[--[[ y ]]1]
-            ]);
+            });
   end end 
 end end
 

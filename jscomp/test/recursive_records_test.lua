@@ -41,18 +41,18 @@ eq("File \"recursive_records_test.ml\", line 29, characters 5-12", a0(rec_cell),
 
 eq("File \"recursive_records_test.ml\", line 30, characters 5-12", a0(f0(3)), 9);
 
-rec_cell2 = [];
+rec_cell2 = {};
 
 rec_cell2[0] = 3;
 
 rec_cell2[1] = rec_cell2;
 
 function f2(x) do
-  rec_cell2 = [];
-  Caml_obj.caml_update_dummy(rec_cell2, --[[ Cons ]][
+  rec_cell2 = {};
+  Caml_obj.caml_update_dummy(rec_cell2, --[[ Cons ]]{
         --[[ content ]]Caml_int32.imul(x, x) - 6 | 0,
         --[[ next ]]rec_cell2
-      ]);
+      });
   return rec_cell2;
 end end
 
@@ -68,14 +68,14 @@ function tl_exn(x) do
   if (x) then do
     return x[--[[ next ]]1];
   end else do
-    throw [
+    throw {
           Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]][
+          --[[ tuple ]]{
             "recursive_records_test.ml",
             52,
             11
-          ]
-        ];
+          }
+        };
   end end 
 end end
 
@@ -85,18 +85,18 @@ rec_cell2$1 = f2(3);
 
 eq("File \"recursive_records_test.ml\", line 60, characters 5-12", (hd(rec_cell2$1) + hd(tl_exn(rec_cell2$1)) | 0) + hd(tl_exn(tl_exn(rec_cell2$1))) | 0, 9);
 
-rec_cell3 = [];
+rec_cell3 = {};
 
 rec_cell3[0] = 3;
 
 rec_cell3[1] = rec_cell3;
 
 function f3(x) do
-  rec_cell3 = [];
-  Caml_obj.caml_update_dummy(rec_cell3, --[[ :: ]][
+  rec_cell3 = {};
+  Caml_obj.caml_update_dummy(rec_cell3, --[[ :: ]]{
         Caml_int32.imul(x, x) - 6 | 0,
         rec_cell3
-      ]);
+      });
   return rec_cell3;
 end end
 

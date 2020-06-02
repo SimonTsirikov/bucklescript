@@ -16,42 +16,42 @@ end;
 
 function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = --[[ :: ]][
-    --[[ tuple ]][
+  suites.contents = --[[ :: ]]{
+    --[[ tuple ]]{
       loc .. (" id " .. String(test_id.contents)),
       (function (param) do
-          return --[[ Eq ]]Block.__(0, [
+          return --[[ Eq ]]Block.__(0, {
                     x,
                     y
-                  ]);
+                  });
         end end)
-    ],
+    },
     suites.contents
-  ];
+  };
   return --[[ () ]]0;
 end end
 
-class_tables = --[[ Cons ]][
+class_tables = --[[ Cons ]]{
   0,
   0,
   0
-];
+};
 
 function create(param) do
   if (not class_tables[0]) then do
-    __class = CamlinternalOO.create_table([
+    __class = CamlinternalOO.create_table({
           "add",
           "get"
-        ]);
+        });
     env = CamlinternalOO.new_variable(__class, "");
-    ids = CamlinternalOO.new_methods_variables(__class, [
+    ids = CamlinternalOO.new_methods_variables(__class, {
           "get",
           "add"
-        ], ["data"]);
+        }, {"data"});
     get = ids[0];
     add = ids[1];
     data = ids[2];
-    CamlinternalOO.set_methods(__class, [
+    CamlinternalOO.set_methods(__class, {
           add,
           (function (self$1, param) do
               self$1[data] = self$1[data] + 1 | 0;
@@ -61,7 +61,7 @@ function create(param) do
           (function (self$1, param) do
               return self$1[data];
             end end)
-        ]);
+        });
     env_init = function (env$1) do
       self = CamlinternalOO.create_object_opt(0, __class);
       self[data] = 0;

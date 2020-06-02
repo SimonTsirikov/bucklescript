@@ -5,10 +5,10 @@ Caml_builtin_exceptions = require "./caml_builtin_exceptions.lua";
 
 function init_mod(loc, shape) do
   undef_module = function (param) do
-    throw [
+    throw {
           Caml_builtin_exceptions.undefined_recursive_module,
           loc
-        ];
+        };
   end end;
   loop = function (shape, struct_, idx) do
     if (typeof shape == "number") then do
@@ -19,12 +19,12 @@ function init_mod(loc, shape) do
             struct_[idx] = undef_module;
             return --[[ () ]]0;end end end 
          if ___conditional___ = 2--[[ Class ]] then do
-            struct_[idx] = --[[ tuple ]][
+            struct_[idx] = --[[ tuple ]]{
               undef_module,
               undef_module,
               undef_module,
               0
-            ];
+            };
             return --[[ () ]]0;end end end 
          do
         
@@ -77,23 +77,23 @@ function update_mod(shape, o, n) do
     end end  end 
   end end;
   if (typeof shape == "number") then do
-    throw [
+    throw {
           Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]][
+          --[[ tuple ]]{
             "caml_module.ml",
             107,
             10
-          ]
-        ];
+          }
+        };
   end else if (shape.tag) then do
-    throw [
+    throw {
           Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]][
+          --[[ tuple ]]{
             "caml_module.ml",
             107,
             10
-          ]
-        ];
+          }
+        };
   end else do
     comps = shape[0];
     for i = 0 , #comps - 1 | 0 , 1 do

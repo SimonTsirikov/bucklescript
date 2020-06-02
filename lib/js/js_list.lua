@@ -20,10 +20,10 @@ function length(l) do
 end end
 
 function cons(x, xs) do
-  return --[[ :: ]][
+  return --[[ :: ]]{
           x,
           xs
-        ];
+        };
 end end
 
 function isEmpty(x) do
@@ -73,10 +73,10 @@ function revAppend(_l1, _l2) do
     l2 = _l2;
     l1 = _l1;
     if (l1) then do
-      _l2 = --[[ :: ]][
+      _l2 = --[[ :: ]]{
         l1[0],
         l2
-      ];
+      };
       _l1 = l1[1];
       continue ;
     end else do
@@ -95,10 +95,10 @@ function mapRevAux(f, _acc, _ls) do
     acc = _acc;
     if (ls) then do
       _ls = ls[1];
-      _acc = --[[ :: ]][
+      _acc = --[[ :: ]]{
         f(ls[0]),
         acc
-      ];
+      };
       continue ;
     end else do
       return acc;
@@ -215,10 +215,10 @@ function filterRevAux(f, _acc, _xs) do
       y = xs[0];
       if (f(y)) then do
         _xs = ys;
-        _acc = --[[ :: ]][
+        _acc = --[[ :: ]]{
           y,
           acc
-        ];
+        };
         continue ;
       end else do
         _xs = ys;
@@ -243,10 +243,10 @@ function filterMapRevAux(f, _acc, _xs) do
       match = f(xs[0]);
       _xs = ys;
       if (match ~= undefined) then do
-        _acc = --[[ :: ]][
+        _acc = --[[ :: ]]{
           Caml_option.valFromOption(match),
           acc
-        ];
+        };
         continue ;
       end else do
         continue ;
@@ -300,7 +300,7 @@ function toVector(xs) do
       end end 
     end;
   end else do
-    return [];
+    return {};
   end end 
 end end
 

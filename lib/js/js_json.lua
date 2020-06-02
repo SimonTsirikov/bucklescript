@@ -6,9 +6,9 @@ Caml_option = require "./caml_option.lua";
 function classify(x) do
   ty = typeof x;
   if (ty == "string") then do
-    return --[[ JSONString ]]Block.__(0, [x]);
+    return --[[ JSONString ]]Block.__(0, {x});
   end else if (ty == "number") then do
-    return --[[ JSONNumber ]]Block.__(1, [x]);
+    return --[[ JSONNumber ]]Block.__(1, {x});
   end else if (ty == "boolean") then do
     if (x == true) then do
       return --[[ JSONTrue ]]1;
@@ -18,9 +18,9 @@ function classify(x) do
   end else if (x == null) then do
     return --[[ JSONNull ]]2;
   end else if (Array.isArray(x)) then do
-    return --[[ JSONArray ]]Block.__(3, [x]);
+    return --[[ JSONArray ]]Block.__(3, {x});
   end else do
-    return --[[ JSONObject ]]Block.__(2, [x]);
+    return --[[ JSONObject ]]Block.__(2, {x});
   end end  end  end  end  end 
 end end
 

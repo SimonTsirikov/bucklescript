@@ -158,34 +158,34 @@ function splitAuxPivot(n, x, pres, cmp) do
   c = cmp(x, v);
   if (c == 0) then do
     pres.contents = Caml_option.some(d);
-    return --[[ tuple ]][
+    return --[[ tuple ]]{
             l,
             r
-          ];
+          };
   end else if (c < 0) then do
     if (l ~= null) then do
       match = splitAuxPivot(l, x, pres, cmp);
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               match[0],
               Belt_internalAVLtree.join(match[1], v, d, r)
-            ];
+            };
     end else do
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               null,
               n
-            ];
+            };
     end end 
   end else if (r ~= null) then do
     match$1 = splitAuxPivot(r, x, pres, cmp);
-    return --[[ tuple ]][
+    return --[[ tuple ]]{
             Belt_internalAVLtree.join(l, v, d, match$1[0]),
             match$1[1]
-          ];
+          };
   end else do
-    return --[[ tuple ]][
+    return --[[ tuple ]]{
             n,
             null
-          ];
+          };
   end end  end  end 
 end end
 
@@ -195,18 +195,18 @@ function split(n, x, cmp) do
       contents: undefined
     end;
     v = splitAuxPivot(n, x, pres, cmp);
-    return --[[ tuple ]][
+    return --[[ tuple ]]{
             v,
             pres.contents
-          ];
+          };
   end else do
-    return --[[ tuple ]][
-            --[[ tuple ]][
+    return --[[ tuple ]]{
+            --[[ tuple ]]{
               null,
               null
-            ],
+            },
             undefined
-          ];
+          };
   end end 
 end end
 

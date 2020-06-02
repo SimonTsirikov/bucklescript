@@ -17,10 +17,10 @@ CamlinternalFormat = require "./camlinternalFormat.lua";
 Caml_builtin_exceptions = require "./caml_builtin_exceptions.lua";
 
 function add_queue(x, q) do
-  c = --[[ Cons ]][
+  c = --[[ Cons ]]{
     --[[ head ]]x,
     --[[ tail : Nil ]]0
-  ];
+  };
   match = q.insert;
   if (match) then do
     q.insert = c;
@@ -119,21 +119,21 @@ function format_pp_token(state, size, param) do
               if (ls) then do
                 x = ls[0];
                 if (Caml_obj.caml_lessthan(n, x)) then do
-                  return --[[ :: ]][
+                  return --[[ :: ]]{
                           n,
                           ls
-                        ];
+                        };
                 end else do
-                  return --[[ :: ]][
+                  return --[[ :: ]]{
                           x,
                           add_tab(n, ls[1])
-                        ];
+                        };
                 end end 
               end else do
-                return --[[ :: ]][
+                return --[[ :: ]]{
                         n,
                         --[[ [] ]]0
-                      ];
+                      };
               end end 
             end end;
             tabs.contents = add_tab(state.pp_margin - state.pp_space_left | 0, tabs.contents);
@@ -286,28 +286,28 @@ function format_pp_token(state, size, param) do
           bl_type = ty ~= 1 and (
               size > state.pp_space_left and ty or --[[ Pp_fits ]]5
             ) or --[[ Pp_vbox ]]1;
-          state.pp_format_stack = --[[ :: ]][
-            --[[ Format_elem ]][
+          state.pp_format_stack = --[[ :: ]]{
+            --[[ Format_elem ]]{
               bl_type,
               offset$1
-            ],
+            },
             state.pp_format_stack
-          ];
+          };
           return --[[ () ]]0;end end end 
        if ___conditional___ = 4--[[ Pp_tbegin ]] then do
-          state.pp_tbox_stack = --[[ :: ]][
+          state.pp_tbox_stack = --[[ :: ]]{
             param[0],
             state.pp_tbox_stack
-          ];
+          };
           return --[[ () ]]0;end end end 
        if ___conditional___ = 5--[[ Pp_open_tag ]] then do
           tag_name = param[0];
           marker$1 = Curry._1(state.pp_mark_open_tag, tag_name);
           pp_output_string(state, marker$1);
-          state.pp_mark_stack = --[[ :: ]][
+          state.pp_mark_stack = --[[ :: ]]{
             tag_name,
             state.pp_mark_stack
-          ];
+          };
           return --[[ () ]]0;end end end 
        do
       
@@ -348,26 +348,26 @@ end end
 function enqueue_string_as(state, size, s) do
   return enqueue_advance(state, do
               elem_size: size,
-              token: --[[ Pp_text ]]Block.__(0, [s]),
+              token: --[[ Pp_text ]]Block.__(0, {s}),
               length: size
             end);
 end end
 
 q_elem = do
   elem_size: -1,
-  token: --[[ Pp_text ]]Block.__(0, [""]),
+  token: --[[ Pp_text ]]Block.__(0, {""}),
   length: 0
 end;
 
-scan_stack_bottom_000 = --[[ Scan_elem ]][
+scan_stack_bottom_000 = --[[ Scan_elem ]]{
   -1,
   q_elem
-];
+};
 
-scan_stack_bottom = --[[ :: ]][
+scan_stack_bottom = --[[ :: ]]{
   scan_stack_bottom_000,
   --[[ [] ]]0
-];
+};
 
 function set_size(state, ty) do
   match = state.pp_scan_stack;
@@ -422,13 +422,13 @@ function scan_push(state, b, tok) do
     set_size(state, true);
   end
    end 
-  state.pp_scan_stack = --[[ :: ]][
-    --[[ Scan_elem ]][
+  state.pp_scan_stack = --[[ :: ]]{
+    --[[ Scan_elem ]]{
       state.pp_right_total,
       tok
-    ],
+    },
     state.pp_scan_stack
-  ];
+  };
   return --[[ () ]]0;
 end end
 
@@ -437,10 +437,10 @@ function pp_open_box_gen(state, indent, br_ty) do
   if (state.pp_curr_depth < state.pp_max_boxes) then do
     elem = do
       elem_size: -state.pp_right_total | 0,
-      token: --[[ Pp_begin ]]Block.__(3, [
+      token: --[[ Pp_begin ]]Block.__(3, {
           indent,
           br_ty
-        ]),
+        }),
       length: 0
     end;
     return scan_push(state, false, elem);
@@ -475,17 +475,17 @@ end end
 
 function pp_open_tag(state, tag_name) do
   if (state.pp_print_tags) then do
-    state.pp_tag_stack = --[[ :: ]][
+    state.pp_tag_stack = --[[ :: ]]{
       tag_name,
       state.pp_tag_stack
-    ];
+    };
     Curry._1(state.pp_print_open_tag, tag_name);
   end
    end 
   if (state.pp_mark_tags) then do
     return pp_enqueue(state, do
                 elem_size: 0,
-                token: --[[ Pp_open_tag ]]Block.__(5, [tag_name]),
+                token: --[[ Pp_open_tag ]]Block.__(5, {tag_name}),
                 length: 0
               end);
   end else do
@@ -678,10 +678,10 @@ function pp_print_break(state, width, offset) do
   if (state.pp_curr_depth < state.pp_max_boxes) then do
     elem = do
       elem_size: -state.pp_right_total | 0,
-      token: --[[ Pp_break ]]Block.__(1, [
+      token: --[[ Pp_break ]]Block.__(1, {
           width,
           offset
-        ]),
+        }),
       length: width
     end;
     return scan_push(state, true, elem);
@@ -703,9 +703,9 @@ function pp_open_tbox(state, param) do
   if (state.pp_curr_depth < state.pp_max_boxes) then do
     elem = do
       elem_size: 0,
-      token: --[[ Pp_tbegin ]]Block.__(4, [--[[ Pp_tbox ]][do
+      token: --[[ Pp_tbegin ]]Block.__(4, {--[[ Pp_tbox ]]{do
               contents: --[[ [] ]]0
-            end]]),
+            end}}),
       length: 0
     end;
     return enqueue_advance(state, elem);
@@ -733,10 +733,10 @@ function pp_print_tbreak(state, width, offset) do
   if (state.pp_curr_depth < state.pp_max_boxes) then do
     elem = do
       elem_size: -state.pp_right_total | 0,
-      token: --[[ Pp_tbreak ]]Block.__(2, [
+      token: --[[ Pp_tbreak ]]Block.__(2, {
           width,
           offset
-        ]),
+        }),
       length: width
     end;
     return scan_push(state, true, elem);
@@ -854,10 +854,10 @@ function pp_set_formatter_output_functions(state, f, g) do
 end end
 
 function pp_get_formatter_output_functions(state, param) do
-  return --[[ tuple ]][
+  return --[[ tuple ]]{
           state.pp_out_string,
           state.pp_out_flush
-        ];
+        };
 end end
 
 function display_newline(state, param) do
@@ -925,21 +925,21 @@ function pp_make_formatter(f, g, h, i, j) do
   end;
   sys_tok = do
     elem_size: -1,
-    token: --[[ Pp_begin ]]Block.__(3, [
+    token: --[[ Pp_begin ]]Block.__(3, {
         0,
         --[[ Pp_hovbox ]]3
-      ]),
+      }),
     length: 0
   end;
   add_queue(sys_tok, pp_queue);
-  sys_scan_stack_000 = --[[ Scan_elem ]][
+  sys_scan_stack_000 = --[[ Scan_elem ]]{
     1,
     sys_tok
-  ];
-  sys_scan_stack = --[[ :: ]][
+  };
+  sys_scan_stack = --[[ :: ]]{
     sys_scan_stack_000,
     scan_stack_bottom
-  ];
+  };
   return do
           pp_scan_stack: sys_scan_stack,
           pp_format_stack: --[[ [] ]]0,
@@ -1053,10 +1053,10 @@ function flush_symbolic_output_buffer(sob) do
 end end
 
 function add_symbolic_output_item(sob, item) do
-  sob.symbolic_output_contents = --[[ :: ]][
+  sob.symbolic_output_contents = --[[ :: ]]{
     item,
     sob.symbolic_output_contents
-  ];
+  };
   return --[[ () ]]0;
 end end
 
@@ -1066,7 +1066,7 @@ function formatter_of_symbolic_output_buffer(sob) do
     s = param;
     i = param$1;
     n = param$2;
-    return add_symbolic_output_item(sob$1, --[[ Output_string ]]Block.__(0, [__String.sub(s, i, n)]));
+    return add_symbolic_output_item(sob$1, --[[ Output_string ]]Block.__(0, {__String.sub(s, i, n)}));
   end end;
   g = function (param) do
     return add_symbolic_output_item(sob, --[[ Output_flush ]]0);
@@ -1075,10 +1075,10 @@ function formatter_of_symbolic_output_buffer(sob) do
     return add_symbolic_output_item(sob, --[[ Output_newline ]]1);
   end end;
   i = function (param) do
-    return add_symbolic_output_item(sob, --[[ Output_spaces ]]Block.__(1, [param]));
+    return add_symbolic_output_item(sob, --[[ Output_spaces ]]Block.__(1, {param}));
   end end;
   j = function (param) do
-    return add_symbolic_output_item(sob, --[[ Output_indent ]]Block.__(2, [param]));
+    return add_symbolic_output_item(sob, --[[ Output_indent ]]Block.__(2, {param}));
   end end;
   return pp_make_formatter(f, g, h, i, j);
 end end
@@ -1476,10 +1476,10 @@ function output_acc(ppf, acc) do
           return pp_print_flush(ppf, --[[ () ]]0);end end end 
        if ___conditional___ = 8--[[ Acc_invalid_arg ]] then do
           output_acc(ppf, acc[0]);
-          throw [
+          throw {
                 Caml_builtin_exceptions.invalid_argument,
                 acc[1]
-              ];end end end 
+              };end end end 
        do
       
     end
@@ -1601,10 +1601,10 @@ function strput_acc(ppf, acc) do
           return pp_print_flush(ppf, --[[ () ]]0);end end end 
        if ___conditional___ = 8--[[ Acc_invalid_arg ]] then do
           strput_acc(ppf, acc[0]);
-          throw [
+          throw {
                 Caml_builtin_exceptions.invalid_argument,
                 acc[1]
-              ];end end end 
+              };end end end 
        do
       
     end
@@ -1695,12 +1695,12 @@ function pp_set_all_formatter_output_functions(state, f, g, h, i) do
 end end
 
 function pp_get_all_formatter_output_functions(state, param) do
-  return --[[ tuple ]][
+  return --[[ tuple ]]{
           state.pp_out_string,
           state.pp_out_flush,
           state.pp_out_newline,
           state.pp_out_spaces
-        ];
+        };
 end end
 
 function set_all_formatter_output_functions(param, param$1, param$2, param$3) do

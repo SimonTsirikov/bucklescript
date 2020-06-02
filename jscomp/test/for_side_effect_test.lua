@@ -20,20 +20,20 @@ function test2(param) do
   return v;
 end end
 
-suites_000 = --[[ tuple ]][
+suites_000 = --[[ tuple ]]{
   "for_order",
   (function (param) do
-      return --[[ Eq ]]Block.__(0, [
+      return --[[ Eq ]]Block.__(0, {
                 10,
                 test2(--[[ () ]]0)
-              ]);
+              });
     end end)
-];
+};
 
-suites = --[[ :: ]][
+suites = --[[ :: ]]{
   suites_000,
   --[[ [] ]]0
-];
+};
 
 Mt.from_pair_suites("For_side_effect_test", suites);
 

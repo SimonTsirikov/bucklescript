@@ -4,10 +4,10 @@ Caml_builtin_exceptions = require "./caml_builtin_exceptions.lua";
 
 function get(s, i) do
   if (i < 0 or i >= #s) then do
-    throw [
+    throw {
           Caml_builtin_exceptions.invalid_argument,
           "index out of bounds"
-        ];
+        };
   end
    end 
   return s[i];
@@ -26,10 +26,10 @@ end end
 
 function caml_create_bytes(len) do
   if (len < 0) then do
-    throw [
+    throw {
           Caml_builtin_exceptions.invalid_argument,
           "String.create"
-        ];
+        };
   end
    end 
   result = new Array(len);

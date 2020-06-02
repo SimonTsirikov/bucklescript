@@ -15,18 +15,18 @@ end;
 
 function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = --[[ :: ]][
-    --[[ tuple ]][
+  suites.contents = --[[ :: ]]{
+    --[[ tuple ]]{
       loc .. (" id " .. String(test_id.contents)),
       (function (param) do
-          return --[[ Eq ]]Block.__(0, [
+          return --[[ Eq ]]Block.__(0, {
                     x,
                     y
-                  ]);
+                  });
         end end)
-    ],
+    },
     suites.contents
-  ];
+  };
   return --[[ () ]]0;
 end end
 
@@ -53,19 +53,19 @@ end end
 
 g(--[[ () ]]0);
 
-x = [];
+x = {};
 
-y = [];
+y = {};
 
-Caml_obj.caml_update_dummy(x, --[[ :: ]][
+Caml_obj.caml_update_dummy(x, --[[ :: ]]{
       1,
       y
-    ]);
+    });
 
-Caml_obj.caml_update_dummy(y, --[[ :: ]][
+Caml_obj.caml_update_dummy(y, --[[ :: ]]{
       2,
       x
-    ]);
+    });
 
 eq("File \"rec_fun_test.ml\", line 27, characters 6-13", called.contents, 2);
 

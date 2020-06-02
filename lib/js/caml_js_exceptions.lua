@@ -9,10 +9,10 @@ function internalToOCamlException(e) do
   if (Caml_exceptions.caml_is_extension(e)) then do
     return e;
   end else do
-    return [
+    return {
             __Error,
             e
-          ];
+          };
   end end 
 end end
 

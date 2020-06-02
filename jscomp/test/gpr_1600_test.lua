@@ -9,7 +9,7 @@ obj = do
 end;
 
 eventObj = do
-  events: [],
+  events: {},
   empty: (function () do
       return --[[ () ]]0; end
     end),

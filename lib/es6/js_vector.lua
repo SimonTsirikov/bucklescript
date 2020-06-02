@@ -54,10 +54,10 @@ function toList(a) do
     if (i < 0) then do
       return res;
     end else do
-      _res = --[[ :: ]][
+      _res = --[[ :: ]]{
         a[i],
         res
-      ];
+      };
       _i = i - 1 | 0;
       continue ;
     end end 
@@ -109,7 +109,7 @@ end end
 function mapi(f, a) do
   l = #a;
   if (l == 0) then do
-    return [];
+    return {};
   end else do
     r = new Array(l);
     for i = 0 , l - 1 | 0 , 1 do
@@ -120,7 +120,7 @@ function mapi(f, a) do
 end end
 
 function append(x, a) do
-  return a.concat([x]);
+  return a.concat({x});
 end end
 
 export do

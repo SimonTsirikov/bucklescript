@@ -4,47 +4,47 @@ Curry = require "../../lib/js/curry.lua";
 Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
 
 function peek_queue(param) do
-  throw [
+  throw {
         Caml_builtin_exceptions.assert_failure,
-        --[[ tuple ]][
+        --[[ tuple ]]{
           "format_regression.ml",
           10,
           19
-        ]
-      ];
+        }
+      };
 end end
 
 function int_of_size(param) do
-  throw [
+  throw {
         Caml_builtin_exceptions.assert_failure,
-        --[[ tuple ]][
+        --[[ tuple ]]{
           "format_regression.ml",
           11,
           20
-        ]
-      ];
+        }
+      };
 end end
 
 function take_queue(param) do
-  throw [
+  throw {
         Caml_builtin_exceptions.assert_failure,
-        --[[ tuple ]][
+        --[[ tuple ]]{
           "format_regression.ml",
           12,
           19
-        ]
-      ];
+        }
+      };
 end end
 
 function format_pp_token(param, param$1) do
-  throw [
+  throw {
         Caml_builtin_exceptions.assert_failure,
-        --[[ tuple ]][
+        --[[ tuple ]]{
           "format_regression.ml",
           13,
           26
-        ]
-      ];
+        }
+      };
 end end
 
 function advance_loop(state) do

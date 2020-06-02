@@ -22,20 +22,20 @@ function f(param) do
   end;
 end end
 
-suites_000 = --[[ tuple ]][
+suites_000 = --[[ tuple ]]{
   "sum",
   (function (param) do
-      return --[[ Eq ]]Block.__(0, [
+      return --[[ Eq ]]Block.__(0, {
                 55,
                 f(--[[ () ]]0)
-              ]);
+              });
     end end)
-];
+};
 
-suites = --[[ :: ]][
+suites = --[[ :: ]]{
   suites_000,
   --[[ [] ]]0
-];
+};
 
 Mt.from_pair_suites("Loop_regression_test", suites);
 

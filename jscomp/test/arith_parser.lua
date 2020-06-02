@@ -4,7 +4,7 @@ Block = require "../../lib/js/block.lua";
 Parsing = require "../../lib/js/parsing.lua";
 Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
 
-yytransl_const = [
+yytransl_const = {
   259,
   260,
   261,
@@ -14,13 +14,13 @@ yytransl_const = [
   265,
   0,
   0
-];
+};
 
-yytransl_block = [
+yytransl_block = {
   257,
   258,
   0
-];
+};
 
 yylhs = "\xff\xff\x01\0\x02\0\x02\0\x02\0\x02\0\x02\0\x02\0\x02\0\x02\0\0\0";
 
@@ -44,70 +44,70 @@ yynames_const = "PLUS\0MINUS\0TIMES\0DIVIDE\0UMINUS\0LPAREN\0RPAREN\0EOF\0";
 
 yynames_block = "NUMERAL\0IDENT\0";
 
-yyact = [
+yyact = {
   (function (param) do
-      throw [
+      throw {
             Caml_builtin_exceptions.failure,
             "parser"
-          ];
+          };
     end end),
   (function (__caml_parser_env) do
       return Parsing.peek_val(__caml_parser_env, 1);
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ Numeral ]]Block.__(0, [_1]);
+      return --[[ Numeral ]]Block.__(0, {_1});
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ Variable ]]Block.__(6, [_1]);
+      return --[[ Variable ]]Block.__(6, {_1});
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ Plus ]]Block.__(1, [
+      return --[[ Plus ]]Block.__(1, {
                 _1,
                 _3
-              ]);
+              });
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ Minus ]]Block.__(2, [
+      return --[[ Minus ]]Block.__(2, {
                 _1,
                 _3
-              ]);
+              });
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ Times ]]Block.__(3, [
+      return --[[ Times ]]Block.__(3, {
                 _1,
                 _3
-              ]);
+              });
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ Divide ]]Block.__(4, [
+      return --[[ Divide ]]Block.__(4, {
                 _1,
                 _3
-              ]);
+              });
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ Negate ]]Block.__(5, [_2]);
+      return --[[ Negate ]]Block.__(5, {_2});
     end end),
   (function (__caml_parser_env) do
       return Parsing.peek_val(__caml_parser_env, 1);
     end end),
   (function (__caml_parser_env) do
-      throw [
+      throw {
             Parsing.YYexit,
             Parsing.peek_val(__caml_parser_env, 0)
-          ];
+          };
     end end)
-];
+};
 
 yytables = do
   actions: yyact,

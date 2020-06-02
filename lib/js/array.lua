@@ -13,13 +13,13 @@ Floatarray = { };
 
 function init(l, f) do
   if (l == 0) then do
-    return [];
+    return {};
   end else do
     if (l < 0) then do
-      throw [
+      throw {
             Caml_builtin_exceptions.invalid_argument,
             "Array.init"
-          ];
+          };
     end
      end 
     res = Caml_array.caml_make_vect(l, Curry._1(f, 0));
@@ -31,7 +31,7 @@ function init(l, f) do
 end end
 
 function make_matrix(sx, sy, init) do
-  res = Caml_array.caml_make_vect(sx, []);
+  res = Caml_array.caml_make_vect(sx, {});
   for x = 0 , sx - 1 | 0 , 1 do
     res[x] = Caml_array.caml_make_vect(sy, init);
   end
@@ -41,7 +41,7 @@ end end
 function copy(a) do
   l = #a;
   if (l == 0) then do
-    return [];
+    return {};
   end else do
     return Caml_array.caml_array_sub(a, 0, l);
   end end 
@@ -60,10 +60,10 @@ end end
 
 function sub(a, ofs, len) do
   if (ofs < 0 or len < 0 or ofs > (#a - len | 0)) then do
-    throw [
+    throw {
           Caml_builtin_exceptions.invalid_argument,
           "Array.sub"
-        ];
+        };
   end
    end 
   return Caml_array.caml_array_sub(a, ofs, len);
@@ -71,10 +71,10 @@ end end
 
 function fill(a, ofs, len, v) do
   if (ofs < 0 or len < 0 or ofs > (#a - len | 0)) then do
-    throw [
+    throw {
           Caml_builtin_exceptions.invalid_argument,
           "Array.fill"
-        ];
+        };
   end
    end 
   for i = ofs , (ofs + len | 0) - 1 | 0 , 1 do
@@ -85,10 +85,10 @@ end end
 
 function blit(a1, ofs1, a2, ofs2, len) do
   if (len < 0 or ofs1 < 0 or ofs1 > (#a1 - len | 0) or ofs2 < 0 or ofs2 > (#a2 - len | 0)) then do
-    throw [
+    throw {
           Caml_builtin_exceptions.invalid_argument,
           "Array.blit"
-        ];
+        };
   end
    end 
   return Caml_array.caml_array_blit(a1, ofs1, a2, ofs2, len);
@@ -103,10 +103,10 @@ end end
 
 function iter2(f, a, b) do
   if (#a ~= #b) then do
-    throw [
+    throw {
           Caml_builtin_exceptions.invalid_argument,
           "Array.iter2: arrays must have the same length"
-        ];
+        };
   end
    end 
   for i = 0 , #a - 1 | 0 , 1 do
@@ -118,7 +118,7 @@ end end
 function map(f, a) do
   l = #a;
   if (l == 0) then do
-    return [];
+    return {};
   end else do
     r = Caml_array.caml_make_vect(l, Curry._1(f, a[0]));
     for i = 1 , l - 1 | 0 , 1 do
@@ -132,14 +132,14 @@ function map2(f, a, b) do
   la = #a;
   lb = #b;
   if (la ~= lb) then do
-    throw [
+    throw {
           Caml_builtin_exceptions.invalid_argument,
           "Array.map2: arrays must have the same length"
-        ];
+        };
   end
    end 
   if (la == 0) then do
-    return [];
+    return {};
   end else do
     r = Caml_array.caml_make_vect(la, Curry._2(f, a[0], b[0]));
     for i = 1 , la - 1 | 0 , 1 do
@@ -159,7 +159,7 @@ end end
 function mapi(f, a) do
   l = #a;
   if (l == 0) then do
-    return [];
+    return {};
   end else do
     r = Caml_array.caml_make_vect(l, Curry._2(f, 0, a[0]));
     for i = 1 , l - 1 | 0 , 1 do
@@ -178,10 +178,10 @@ function to_list(a) do
     if (i < 0) then do
       return res;
     end else do
-      _res = --[[ :: ]][
+      _res = --[[ :: ]]{
         a[i],
         res
-      ];
+      };
       _i = i - 1 | 0;
       continue ;
     end end 
@@ -220,7 +220,7 @@ function of_list(l) do
       end end 
     end;
   end else do
-    return [];
+    return {};
   end end 
 end end
 
@@ -325,10 +325,10 @@ function sort(cmp, a) do
     end else if (i31 < l) then do
       return i31;
     end else do
-      throw [
+      throw {
             Bottom,
             i
-          ];
+          };
     end end  end  end 
   end end;
   trickle = function (l, i, e) do
@@ -383,14 +383,14 @@ function sort(cmp, a) do
       i = _i;
       father = (i - 1 | 0) / 3 | 0;
       if (i == father) then do
-        throw [
+        throw {
               Caml_builtin_exceptions.assert_failure,
-              --[[ tuple ]][
+              --[[ tuple ]]{
                 "array.ml",
                 238,
                 4
-              ]
-            ];
+              }
+            };
       end
        end 
       if (Curry._2(cmp, Caml_array.caml_array_get(a, father), e) < 0) then do

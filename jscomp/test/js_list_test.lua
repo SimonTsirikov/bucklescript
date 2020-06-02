@@ -16,163 +16,163 @@ end;
 
 function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = --[[ :: ]][
-    --[[ tuple ]][
+  suites.contents = --[[ :: ]]{
+    --[[ tuple ]]{
       loc .. (" id " .. String(test_id.contents)),
       (function (param) do
-          return --[[ Eq ]]Block.__(0, [
+          return --[[ Eq ]]Block.__(0, {
                     x,
                     y
-                  ]);
+                  });
         end end)
-    ],
+    },
     suites.contents
-  ];
+  };
   return --[[ () ]]0;
 end end
 
-eq("File \"js_list_test.ml\", line 11, characters 7-14", Js_list.flatten(--[[ :: ]][
-          --[[ :: ]][
+eq("File \"js_list_test.ml\", line 11, characters 7-14", Js_list.flatten(--[[ :: ]]{
+          --[[ :: ]]{
             1,
-            --[[ :: ]][
+            --[[ :: ]]{
               2,
               --[[ [] ]]0
-            ]
-          ],
-          --[[ :: ]][
-            --[[ :: ]][
+            }
+          },
+          --[[ :: ]]{
+            --[[ :: ]]{
               3,
               --[[ [] ]]0
-            ],
-            --[[ :: ]][
+            },
+            --[[ :: ]]{
               --[[ [] ]]0,
-              --[[ :: ]][
-                --[[ :: ]][
+              --[[ :: ]]{
+                --[[ :: ]]{
                   1,
-                  --[[ :: ]][
+                  --[[ :: ]]{
                     2,
-                    --[[ :: ]][
+                    --[[ :: ]]{
                       3,
                       --[[ [] ]]0
-                    ]
-                  ]
-                ],
+                    }
+                  }
+                },
                 --[[ [] ]]0
-              ]
-            ]
-          ]
-        ]), --[[ :: ]][
+              }
+            }
+          }
+        }), --[[ :: ]]{
       1,
-      --[[ :: ]][
+      --[[ :: ]]{
         2,
-        --[[ :: ]][
+        --[[ :: ]]{
           3,
-          --[[ :: ]][
+          --[[ :: ]]{
             1,
-            --[[ :: ]][
+            --[[ :: ]]{
               2,
-              --[[ :: ]][
+              --[[ :: ]]{
                 3,
                 --[[ [] ]]0
-              ]
-            ]
-          ]
-        ]
-      ]
-    ]);
+              }
+            }
+          }
+        }
+      }
+    });
 
 eq("File \"js_list_test.ml\", line 14, characters 7-14", Js_list.filterMap((function (x) do
             if (x % 2 == 0) then do
               return x;
             end
              end 
-          end end), --[[ :: ]][
+          end end), --[[ :: ]]{
           1,
-          --[[ :: ]][
+          --[[ :: ]]{
             2,
-            --[[ :: ]][
+            --[[ :: ]]{
               3,
-              --[[ :: ]][
+              --[[ :: ]]{
                 4,
-                --[[ :: ]][
+                --[[ :: ]]{
                   5,
-                  --[[ :: ]][
+                  --[[ :: ]]{
                     6,
-                    --[[ :: ]][
+                    --[[ :: ]]{
                       7,
                       --[[ [] ]]0
-                    ]
-                  ]
-                ]
-              ]
-            ]
-          ]
-        ]), --[[ :: ]][
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }), --[[ :: ]]{
       2,
-      --[[ :: ]][
+      --[[ :: ]]{
         4,
-        --[[ :: ]][
+        --[[ :: ]]{
           6,
           --[[ [] ]]0
-        ]
-      ]
-    ]);
+        }
+      }
+    });
 
 eq("File \"js_list_test.ml\", line 17, characters 7-14", Js_list.filterMap((function (x) do
             if (x % 2 == 0) then do
               return x;
             end
              end 
-          end end), --[[ :: ]][
+          end end), --[[ :: ]]{
           1,
-          --[[ :: ]][
+          --[[ :: ]]{
             2,
-            --[[ :: ]][
+            --[[ :: ]]{
               3,
-              --[[ :: ]][
+              --[[ :: ]]{
                 4,
-                --[[ :: ]][
+                --[[ :: ]]{
                   5,
-                  --[[ :: ]][
+                  --[[ :: ]]{
                     6,
                     --[[ [] ]]0
-                  ]
-                ]
-              ]
-            ]
-          ]
-        ]), --[[ :: ]][
+                  }
+                }
+              }
+            }
+          }
+        }), --[[ :: ]]{
       2,
-      --[[ :: ]][
+      --[[ :: ]]{
         4,
-        --[[ :: ]][
+        --[[ :: ]]{
           6,
           --[[ [] ]]0
-        ]
-      ]
-    ]);
+        }
+      }
+    });
 
 eq("File \"js_list_test.ml\", line 20, characters 7-14", Js_list.countBy((function (x) do
             return x % 2 == 0;
-          end end), --[[ :: ]][
+          end end), --[[ :: ]]{
           1,
-          --[[ :: ]][
+          --[[ :: ]]{
             2,
-            --[[ :: ]][
+            --[[ :: ]]{
               3,
-              --[[ :: ]][
+              --[[ :: ]]{
                 4,
-                --[[ :: ]][
+                --[[ :: ]]{
                   5,
-                  --[[ :: ]][
+                  --[[ :: ]]{
                     6,
                     --[[ [] ]]0
-                  ]
-                ]
-              ]
-            ]
-          ]
-        ]), 3);
+                  }
+                }
+              }
+            }
+          }
+        }), 3);
 
 function f(i) do
   return i;
@@ -185,10 +185,10 @@ eq("File \"js_list_test.ml\", line 23, characters 7-14", Js_list.countBy((functi
           end end), v), 50000);
 
 vv = Js_list.foldRight((function (x, y) do
-        return --[[ :: ]][
+        return --[[ :: ]]{
                 x,
                 y
-              ];
+              };
       end end), v, --[[ [] ]]0);
 
 eq("File \"js_list_test.ml\", line 27, characters 7-14", true, Js_list.equal((function (x, y) do

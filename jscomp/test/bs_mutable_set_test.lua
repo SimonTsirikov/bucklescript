@@ -293,28 +293,28 @@ b("File \"bs_mutable_set_test.ml\", line 120, characters 4-11", Belt_MutableSetI
         end));
 
 b("File \"bs_mutable_set_test.ml\", line 126, characters 4-11", Belt_MutableSetInt.eq(Belt_MutableSetInt.intersect(do
-              data: Belt_internalSetInt.fromArray([
+              data: Belt_internalSetInt.fromArray({
                     1,
                     3,
                     4,
                     5,
                     7,
                     9
-                  ])
+                  })
             end, do
-              data: Belt_internalSetInt.fromArray([
+              data: Belt_internalSetInt.fromArray({
                     2,
                     4,
                     5,
                     6,
                     8,
                     10
-                  ])
+                  })
             end), do
-          data: Belt_internalSetInt.fromArray([
+          data: Belt_internalSetInt.fromArray({
                 4,
                 5
-              ])
+              })
         end));
 
 xs$13 = Array_data_util.randomRange(0, 39);
@@ -397,22 +397,22 @@ b("File \"bs_mutable_set_test.ml\", line 164, characters 4-11", Belt_MutableSetI
 
 b("File \"bs_mutable_set_test.ml\", line 165, characters 4-11", Belt_MutableSetInt.eq(a2, a4));
 
-Belt_List.forEach(--[[ :: ]][
+Belt_List.forEach(--[[ :: ]]{
       a0,
-      --[[ :: ]][
+      --[[ :: ]]{
         a1,
-        --[[ :: ]][
+        --[[ :: ]]{
           a2,
-          --[[ :: ]][
+          --[[ :: ]]{
             a3,
-            --[[ :: ]][
+            --[[ :: ]]{
               a4,
               --[[ [] ]]0
-            ]
-          ]
-        ]
-      ]
-    ], (function (x) do
+            }
+          }
+        }
+      }
+    }, (function (x) do
         return Belt_internalAVLset.checkInvariantInternal(x.data);
       end end));
 
@@ -508,55 +508,55 @@ function id(loc, x) do
                   end end)));
 end end
 
-id("File \"bs_mutable_set_test.ml\", line 229, characters 5-12", []);
+id("File \"bs_mutable_set_test.ml\", line 229, characters 5-12", {});
 
-id("File \"bs_mutable_set_test.ml\", line 230, characters 5-12", [0]);
+id("File \"bs_mutable_set_test.ml\", line 230, characters 5-12", {0});
 
-id("File \"bs_mutable_set_test.ml\", line 231, characters 5-12", [
+id("File \"bs_mutable_set_test.ml\", line 231, characters 5-12", {
       0,
       1
-    ]);
+    });
 
-id("File \"bs_mutable_set_test.ml\", line 232, characters 5-12", [
+id("File \"bs_mutable_set_test.ml\", line 232, characters 5-12", {
       0,
       1,
       2
-    ]);
+    });
 
-id("File \"bs_mutable_set_test.ml\", line 233, characters 5-12", [
+id("File \"bs_mutable_set_test.ml\", line 233, characters 5-12", {
       0,
       1,
       2,
       3
-    ]);
+    });
 
-id("File \"bs_mutable_set_test.ml\", line 234, characters 5-12", [
+id("File \"bs_mutable_set_test.ml\", line 234, characters 5-12", {
       0,
       1,
       2,
       3,
       4
-    ]);
+    });
 
-id("File \"bs_mutable_set_test.ml\", line 235, characters 5-12", [
+id("File \"bs_mutable_set_test.ml\", line 235, characters 5-12", {
       0,
       1,
       2,
       3,
       4,
       5
-    ]);
+    });
 
-id("File \"bs_mutable_set_test.ml\", line 236, characters 5-12", [
+id("File \"bs_mutable_set_test.ml\", line 236, characters 5-12", {
       0,
       1,
       2,
       3,
       4,
       6
-    ]);
+    });
 
-id("File \"bs_mutable_set_test.ml\", line 237, characters 5-12", [
+id("File \"bs_mutable_set_test.ml\", line 237, characters 5-12", {
       0,
       1,
       2,
@@ -564,9 +564,9 @@ id("File \"bs_mutable_set_test.ml\", line 237, characters 5-12", [
       4,
       6,
       7
-    ]);
+    });
 
-id("File \"bs_mutable_set_test.ml\", line 238, characters 5-12", [
+id("File \"bs_mutable_set_test.ml\", line 238, characters 5-12", {
       0,
       1,
       2,
@@ -575,9 +575,9 @@ id("File \"bs_mutable_set_test.ml\", line 238, characters 5-12", [
       6,
       7,
       8
-    ]);
+    });
 
-id("File \"bs_mutable_set_test.ml\", line 239, characters 5-12", [
+id("File \"bs_mutable_set_test.ml\", line 239, characters 5-12", {
       0,
       1,
       2,
@@ -587,7 +587,7 @@ id("File \"bs_mutable_set_test.ml\", line 239, characters 5-12", [
       7,
       8,
       9
-    ]);
+    });
 
 id("File \"bs_mutable_set_test.ml\", line 240, characters 5-12", Array_data_util.range(0, 1000));
 
@@ -742,28 +742,28 @@ b("File \"bs_mutable_set_test.ml\", line 288, characters 4-11", Belt_MutableSetI
         end));
 
 b("File \"bs_mutable_set_test.ml\", line 294, characters 4-11", Belt_MutableSetInt.eq(Belt_MutableSetInt.intersect(do
-              data: Belt_internalSetInt.fromArray([
+              data: Belt_internalSetInt.fromArray({
                     1,
                     3,
                     4,
                     5,
                     7,
                     9
-                  ])
+                  })
             end, do
-              data: Belt_internalSetInt.fromArray([
+              data: Belt_internalSetInt.fromArray({
                     2,
                     4,
                     5,
                     6,
                     8,
                     10
-                  ])
+                  })
             end), do
-          data: Belt_internalSetInt.fromArray([
+          data: Belt_internalSetInt.fromArray({
                 4,
                 5
-              ])
+              })
         end));
 
 xs$44 = Array_data_util.randomRange(0, 39);

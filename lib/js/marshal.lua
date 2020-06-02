@@ -6,10 +6,10 @@ Caml_builtin_exceptions = require "./caml_builtin_exceptions.lua";
 
 function to_buffer(buff, ofs, len, v, flags) do
   if (ofs < 0 or len < 0 or ofs > (#buff - len | 0)) then do
-    throw [
+    throw {
           Caml_builtin_exceptions.invalid_argument,
           "Marshal.to_buffer: substring out of bounds"
-        ];
+        };
   end
    end 
   return Caml_external_polyfill.resolve("caml_output_value_to_buffer")(buff, ofs, len, v, flags);
@@ -17,10 +17,10 @@ end end
 
 function data_size(buff, ofs) do
   if (ofs < 0 or ofs > (#buff - 20 | 0)) then do
-    throw [
+    throw {
           Caml_builtin_exceptions.invalid_argument,
           "Marshal.data_size"
-        ];
+        };
   end
    end 
   return Caml_external_polyfill.resolve("caml_marshal_data_size")(buff, ofs);
@@ -32,18 +32,18 @@ end end
 
 function from_bytes(buff, ofs) do
   if (ofs < 0 or ofs > (#buff - 20 | 0)) then do
-    throw [
+    throw {
           Caml_builtin_exceptions.invalid_argument,
           "Marshal.from_bytes"
-        ];
+        };
   end
    end 
   len = Caml_external_polyfill.resolve("caml_marshal_data_size")(buff, ofs);
   if (ofs > (#buff - (20 + len | 0) | 0)) then do
-    throw [
+    throw {
           Caml_builtin_exceptions.invalid_argument,
           "Marshal.from_bytes"
-        ];
+        };
   end
    end 
   return Caml_external_polyfill.resolve("caml_input_value_from_string")(buff, ofs);

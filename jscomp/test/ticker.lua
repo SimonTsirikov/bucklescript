@@ -27,23 +27,23 @@ function split(delim, s) do
         end
         catch (exn)do
           if (exn == Caml_builtin_exceptions.not_found) then do
-            return --[[ :: ]][
+            return --[[ :: ]]{
                     __String.sub(s, 0, i),
                     l
-                  ];
+                  };
           end else do
             throw exn;
           end end 
         end
         l_000 = __String.sub(s, i$prime + 1 | 0, (i - i$prime | 0) - 1 | 0);
-        l$1 = --[[ :: ]][
+        l$1 = --[[ :: ]]{
           l_000,
           l
-        ];
-        l$2 = i$prime == 0 and --[[ :: ]][
+        };
+        l$2 = i$prime == 0 and --[[ :: ]]{
             "",
             l$1
-          ] or l$1;
+          } or l$1;
         _i = i$prime;
         _l = l$2;
         continue ;
@@ -77,21 +77,21 @@ function string_of_rank(param) do
       return "Uninitialized";
     end end 
   end else do
-    return Curry._1(Printf.sprintf(--[[ Format ]][
-                    --[[ String_literal ]]Block.__(11, [
+    return Curry._1(Printf.sprintf(--[[ Format ]]{
+                    --[[ String_literal ]]Block.__(11, {
                         "Ranked(",
-                        --[[ Int ]]Block.__(4, [
+                        --[[ Int ]]Block.__(4, {
                             --[[ Int_i ]]3,
                             --[[ No_padding ]]0,
                             --[[ No_precision ]]0,
-                            --[[ Char_literal ]]Block.__(12, [
+                            --[[ Char_literal ]]Block.__(12, {
                                 --[[ ")" ]]41,
                                 --[[ End_of_format ]]0
-                              ])
-                          ])
-                      ]),
+                              })
+                          })
+                      }),
                     "Ranked(%i)"
-                  ]), param[0]);
+                  }), param[0]);
   end end 
 end end
 
@@ -123,23 +123,23 @@ end end
 function create(l, x, d, r) do
   hl = height(l);
   hr = height(r);
-  return --[[ Node ]][
+  return --[[ Node ]]{
           --[[ l ]]l,
           --[[ v ]]x,
           --[[ d ]]d,
           --[[ r ]]r,
           --[[ h ]]hl >= hr and hl + 1 | 0 or hr + 1 | 0
-        ];
+        };
 end end
 
 function singleton(x, d) do
-  return --[[ Node ]][
+  return --[[ Node ]]{
           --[[ l : Empty ]]0,
           --[[ v ]]x,
           --[[ d ]]d,
           --[[ r : Empty ]]0,
           --[[ h ]]1
-        ];
+        };
 end end
 
 function bal(l, x, d, r) do
@@ -156,16 +156,16 @@ function bal(l, x, d, r) do
       end else if (lr) then do
         return create(create(ll, lv, ld, lr[--[[ l ]]0]), lr[--[[ v ]]1], lr[--[[ d ]]2], create(lr[--[[ r ]]3], x, d, r));
       end else do
-        throw [
+        throw {
               Caml_builtin_exceptions.invalid_argument,
               "Map.bal"
-            ];
+            };
       end end  end 
     end else do
-      throw [
+      throw {
             Caml_builtin_exceptions.invalid_argument,
             "Map.bal"
-          ];
+          };
     end end 
   end else if (hr > (hl + 2 | 0)) then do
     if (r) then do
@@ -178,25 +178,25 @@ function bal(l, x, d, r) do
       end else if (rl) then do
         return create(create(l, x, d, rl[--[[ l ]]0]), rl[--[[ v ]]1], rl[--[[ d ]]2], create(rl[--[[ r ]]3], rv, rd, rr));
       end else do
-        throw [
+        throw {
               Caml_builtin_exceptions.invalid_argument,
               "Map.bal"
-            ];
+            };
       end end  end 
     end else do
-      throw [
+      throw {
             Caml_builtin_exceptions.invalid_argument,
             "Map.bal"
-          ];
+          };
     end end 
   end else do
-    return --[[ Node ]][
+    return --[[ Node ]]{
             --[[ l ]]l,
             --[[ v ]]x,
             --[[ d ]]d,
             --[[ r ]]r,
             --[[ h ]]hl >= hr and hl + 1 | 0 or hr + 1 | 0
-          ];
+          };
   end end  end 
 end end
 
@@ -219,13 +219,13 @@ function add(x, data, m) do
       if (d == data) then do
         return m;
       end else do
-        return --[[ Node ]][
+        return --[[ Node ]]{
                 --[[ l ]]l,
                 --[[ v ]]x,
                 --[[ d ]]data,
                 --[[ r ]]r,
                 --[[ h ]]m[--[[ h ]]4]
-              ];
+              };
       end end 
     end else if (c < 0) then do
       ll = add(x, data, l);
@@ -243,13 +243,13 @@ function add(x, data, m) do
       end end 
     end end  end 
   end else do
-    return --[[ Node ]][
+    return --[[ Node ]]{
             --[[ l : Empty ]]0,
             --[[ v ]]x,
             --[[ d ]]data,
             --[[ r : Empty ]]0,
             --[[ h ]]1
-          ];
+          };
   end end 
 end end
 
@@ -296,10 +296,10 @@ function find_first(f, _param) do
               continue ;
             end end 
           end else do
-            return --[[ tuple ]][
+            return --[[ tuple ]]{
                     v0,
                     d0
-                  ];
+                  };
           end end 
         end;
       end else do
@@ -338,10 +338,10 @@ function find_first_opt(f, _param) do
               continue ;
             end end 
           end else do
-            return --[[ tuple ]][
+            return --[[ tuple ]]{
                     v0,
                     d0
-                  ];
+                  };
           end end 
         end;
       end else do
@@ -380,10 +380,10 @@ function find_last(f, _param) do
               continue ;
             end end 
           end else do
-            return --[[ tuple ]][
+            return --[[ tuple ]]{
                     v0,
                     d0
-                  ];
+                  };
           end end 
         end;
       end else do
@@ -422,10 +422,10 @@ function find_last_opt(f, _param) do
               continue ;
             end end 
           end else do
-            return --[[ tuple ]][
+            return --[[ tuple ]]{
                     v0,
                     d0
-                  ];
+                  };
           end end 
         end;
       end else do
@@ -481,10 +481,10 @@ function min_binding(_param) do
         _param = l;
         continue ;
       end else do
-        return --[[ tuple ]][
+        return --[[ tuple ]]{
                 param[--[[ v ]]1],
                 param[--[[ d ]]2]
-              ];
+              };
       end end 
     end else do
       throw Caml_builtin_exceptions.not_found;
@@ -501,10 +501,10 @@ function min_binding_opt(_param) do
         _param = l;
         continue ;
       end else do
-        return --[[ tuple ]][
+        return --[[ tuple ]]{
                 param[--[[ v ]]1],
                 param[--[[ d ]]2]
-              ];
+              };
       end end 
     end else do
       return ;
@@ -521,10 +521,10 @@ function max_binding(_param) do
         _param = r;
         continue ;
       end else do
-        return --[[ tuple ]][
+        return --[[ tuple ]]{
                 param[--[[ v ]]1],
                 param[--[[ d ]]2]
-              ];
+              };
       end end 
     end else do
       throw Caml_builtin_exceptions.not_found;
@@ -541,10 +541,10 @@ function max_binding_opt(_param) do
         _param = r;
         continue ;
       end else do
-        return --[[ tuple ]][
+        return --[[ tuple ]]{
                 param[--[[ v ]]1],
                 param[--[[ d ]]2]
-              ];
+              };
       end end 
     end else do
       return ;
@@ -561,10 +561,10 @@ function remove_min_binding(param) do
       return param[--[[ r ]]3];
     end end 
   end else do
-    throw [
+    throw {
           Caml_builtin_exceptions.invalid_argument,
           "Map.remove_min_elt"
-        ];
+        };
   end end 
 end end
 
@@ -624,13 +624,13 @@ function update(x, f, m) do
         if (d == data) then do
           return m;
         end else do
-          return --[[ Node ]][
+          return --[[ Node ]]{
                   --[[ l ]]l,
                   --[[ v ]]x,
                   --[[ d ]]data,
                   --[[ r ]]r,
                   --[[ h ]]m[--[[ h ]]4]
-                ];
+                };
         end end 
       end else do
         return merge(l, r);
@@ -653,13 +653,13 @@ function update(x, f, m) do
   end else do
     match$1 = Curry._1(f, undefined);
     if (match$1 ~= undefined) then do
-      return --[[ Node ]][
+      return --[[ Node ]]{
               --[[ l : Empty ]]0,
               --[[ v ]]x,
               --[[ d ]]Caml_option.valFromOption(match$1),
               --[[ r : Empty ]]0,
               --[[ h ]]1
-            ];
+            };
     end else do
       return --[[ Empty ]]0;
     end end 
@@ -685,13 +685,13 @@ function map(f, param) do
     l$prime = map(f, param[--[[ l ]]0]);
     d$prime = Curry._1(f, param[--[[ d ]]2]);
     r$prime = map(f, param[--[[ r ]]3]);
-    return --[[ Node ]][
+    return --[[ Node ]]{
             --[[ l ]]l$prime,
             --[[ v ]]param[--[[ v ]]1],
             --[[ d ]]d$prime,
             --[[ r ]]r$prime,
             --[[ h ]]param[--[[ h ]]4]
-          ];
+          };
   end else do
     return --[[ Empty ]]0;
   end end 
@@ -703,13 +703,13 @@ function mapi(f, param) do
     l$prime = mapi(f, param[--[[ l ]]0]);
     d$prime = Curry._2(f, v, param[--[[ d ]]2]);
     r$prime = mapi(f, param[--[[ r ]]3]);
-    return --[[ Node ]][
+    return --[[ Node ]]{
             --[[ l ]]l$prime,
             --[[ v ]]v,
             --[[ d ]]d$prime,
             --[[ r ]]r$prime,
             --[[ h ]]param[--[[ h ]]4]
-          ];
+          };
   end else do
     return --[[ Empty ]]0;
   end end 
@@ -826,32 +826,32 @@ function split$1(x, param) do
     l = param[--[[ l ]]0];
     c = Caml_obj.caml_compare(x, v);
     if (c == 0) then do
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               l,
               Caml_option.some(d),
               r
-            ];
+            };
     end else if (c < 0) then do
       match = split$1(x, l);
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               match[0],
               match[1],
               join(match[2], v, d, r)
-            ];
+            };
     end else do
       match$1 = split$1(x, r);
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               join(l, v, d, match$1[0]),
               match$1[1],
               match$1[2]
-            ];
+            };
     end end  end 
   end else do
-    return --[[ tuple ]][
+    return --[[ tuple ]]{
             --[[ Empty ]]0,
             undefined,
             --[[ Empty ]]0
-          ];
+          };
   end end 
 end end
 
@@ -872,14 +872,14 @@ function merge$1(f, s1, s2) do
     match$1 = split$1(v2, s1);
     return concat_or_join(merge$1(f, match$1[0], s2[--[[ l ]]0]), v2, Curry._3(f, v2, match$1[1], Caml_option.some(s2[--[[ d ]]2])), merge$1(f, match$1[2], s2[--[[ r ]]3]));
   end else do
-    throw [
+    throw {
           Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]][
+          --[[ tuple ]]{
             "map.ml",
             393,
             10
-          ]
-        ];
+          }
+        };
   end end 
 end end
 
@@ -954,21 +954,21 @@ function partition(p, param) do
     rf = match$1[1];
     rt = match$1[0];
     if (pvd) then do
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               join(lt, v, d, rt),
               concat(lf, rf)
-            ];
+            };
     end else do
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               concat(lt, rt),
               join(lf, v, d, rf)
-            ];
+            };
     end end 
   end else do
-    return --[[ tuple ]][
+    return --[[ tuple ]]{
             --[[ Empty ]]0,
             --[[ Empty ]]0
-          ];
+          };
   end end 
 end end
 
@@ -977,12 +977,12 @@ function cons_enum(_m, _e) do
     e = _e;
     m = _m;
     if (m) then do
-      _e = --[[ More ]][
+      _e = --[[ More ]]{
         m[--[[ v ]]1],
         m[--[[ d ]]2],
         m[--[[ r ]]3],
         e
-      ];
+      };
       _m = m[--[[ l ]]0];
       continue ;
     end else do
@@ -1059,13 +1059,13 @@ function bindings_aux(_accu, _param) do
     accu = _accu;
     if (param) then do
       _param = param[--[[ l ]]0];
-      _accu = --[[ :: ]][
-        --[[ tuple ]][
+      _accu = --[[ :: ]]{
+        --[[ tuple ]]{
           param[--[[ v ]]1],
           param[--[[ d ]]2]
-        ],
+        },
         bindings_aux(accu, param[--[[ r ]]3])
-      ];
+      };
       continue ;
     end else do
       return accu;
@@ -1126,11 +1126,11 @@ function compute_update_sequences(all_tickers) do
                 counter$1 = loop(counter, match$1.lhs);
                 counter$2 = loop(counter$1, match$1.rhs);
                 counter$3 = counter$2 + 1 | 0;
-                ticker.rank = --[[ Ranked ]][counter$3];
+                ticker.rank = --[[ Ranked ]]{counter$3};
                 return counter$3;
               end else do
                 counter$4 = counter + 1 | 0;
-                ticker.rank = --[[ Ranked ]][counter$4];
+                ticker.rank = --[[ Ranked ]]{counter$4};
                 return counter$4;
               end end 
             end else do
@@ -1150,16 +1150,16 @@ function compute_update_sequences(all_tickers) do
                 ticker_name = ticker.ticker_name;
                 if (type_) then do
                   match = type_[0];
-                  map$1 = loop(--[[ :: ]][
+                  map$1 = loop(--[[ :: ]]{
                         ticker,
                         up
-                      ], map, match.lhs);
+                      }, map, match.lhs);
                   _ticker = match.rhs;
                   _map = map$1;
-                  _up = --[[ :: ]][
+                  _up = --[[ :: ]]{
                     ticker,
                     up
-                  ];
+                  };
                   continue ;
                 end else do
                   l = find(ticker_name, map);
@@ -1169,28 +1169,28 @@ function compute_update_sequences(all_tickers) do
             end end;
             return loop(--[[ [] ]]0, map, ticker);
           end else do
-            return add(ticker.ticker_name, --[[ :: ]][
+            return add(ticker.ticker_name, --[[ :: ]]{
                         ticker,
                         --[[ [] ]]0
-                      ], map);
+                      }, map);
           end end 
         end end), --[[ Empty ]]0, List.rev(all_tickers));
   return fold((function (k, l, map) do
                 l$1 = List.sort_uniq((function (lhs, rhs) do
                         match = lhs.rank;
                         if (typeof match == "number") then do
-                          throw [
+                          throw {
                                 Caml_builtin_exceptions.failure,
                                 "All nodes should be ranked"
-                              ];
+                              };
                         end
                          end 
                         match$1 = rhs.rank;
                         if (typeof match$1 == "number") then do
-                          throw [
+                          throw {
                                 Caml_builtin_exceptions.failure,
                                 "All nodes should be ranked"
-                              ];
+                              };
                         end
                          end 
                         return Caml_primitive.caml_int_compare(match[0], match$1[0]);
@@ -1221,10 +1221,10 @@ function process_quote(ticker_map, new_ticker, new_value) do
                   ticker.value = new_value;
                   return --[[ () ]]0;
                 end else do
-                  throw [
+                  throw {
                         Caml_builtin_exceptions.failure,
                         "Only single Market ticker should be udpated upon a new quote"
-                      ];
+                      };
                 end end  end 
               end end), update_sequence);
 end end
@@ -1237,11 +1237,11 @@ function process_input_line(ticker_map, all_tickers, line) do
             value: undefined,
             rank: --[[ Uninitialized ]]0,
             ticker_name: ticker_name,
-            type_: --[[ Binary_op ]][do
+            type_: --[[ Binary_op ]]{do
                 op: op,
                 rhs: rhs$1,
                 lhs: lhs$1
-              end]
+              end}
           end;
   end end;
   tokens = split(--[[ "|" ]]124, line);
@@ -1254,30 +1254,30 @@ function process_input_line(ticker_map, all_tickers, line) do
             match$1 = match[1];
             if (match$1) then do
               if (match$1[1]) then do
-                throw [
+                throw {
                       Caml_builtin_exceptions.failure,
                       "Invalid input line"
-                    ];
+                    };
               end
                end 
               ticker_map$1 = ticker_map ~= undefined and Caml_option.valFromOption(ticker_map) or compute_update_sequences(all_tickers);
               value = Caml_format.caml_float_of_string(match$1[0]);
               process_quote(ticker_map$1, match[0], value);
-              return --[[ tuple ]][
+              return --[[ tuple ]]{
                       all_tickers,
                       Caml_option.some(ticker_map$1)
-                    ];
+                    };
             end else do
-              throw [
+              throw {
                     Caml_builtin_exceptions.failure,
                     "Invalid input line"
-                  ];
+                  };
             end end 
           end else do
-            throw [
+            throw {
                   Caml_builtin_exceptions.failure,
                   "Invalid input line"
-                ];
+                };
           end end end end end 
        if ___conditional___ = "R" then do
           match$2 = tokens[1];
@@ -1293,30 +1293,30 @@ function process_input_line(ticker_map, all_tickers, line) do
                       match$5 = match$4[1];
                       if (match$5) then do
                         if (match$5[1]) then do
-                          throw [
+                          throw {
                                 Caml_builtin_exceptions.failure,
                                 "Invalid input line"
-                              ];
+                              };
                         end
                          end 
-                        return --[[ tuple ]][
-                                --[[ :: ]][
+                        return --[[ tuple ]]{
+                                --[[ :: ]]{
                                   make_binary_op(ticker_name, match$4[0], match$5[0], --[[ PLUS ]]0),
                                   all_tickers
-                                ],
+                                },
                                 ticker_map
-                              ];
+                              };
                       end else do
-                        throw [
+                        throw {
                               Caml_builtin_exceptions.failure,
                               "Invalid input line"
-                            ];
+                            };
                       end end 
                     end else do
-                      throw [
+                      throw {
                             Caml_builtin_exceptions.failure,
                             "Invalid input line"
-                          ];
+                          };
                     end end end end end 
                  if ___conditional___ = "-" then do
                     match$6 = match$3[1];
@@ -1324,41 +1324,41 @@ function process_input_line(ticker_map, all_tickers, line) do
                       match$7 = match$6[1];
                       if (match$7) then do
                         if (match$7[1]) then do
-                          throw [
+                          throw {
                                 Caml_builtin_exceptions.failure,
                                 "Invalid input line"
-                              ];
+                              };
                         end
                          end 
-                        return --[[ tuple ]][
-                                --[[ :: ]][
+                        return --[[ tuple ]]{
+                                --[[ :: ]]{
                                   make_binary_op(ticker_name, match$6[0], match$7[0], --[[ MINUS ]]1),
                                   all_tickers
-                                ],
+                                },
                                 ticker_map
-                              ];
+                              };
                       end else do
-                        throw [
+                        throw {
                               Caml_builtin_exceptions.failure,
                               "Invalid input line"
-                            ];
+                            };
                       end end 
                     end else do
-                      throw [
+                      throw {
                             Caml_builtin_exceptions.failure,
                             "Invalid input line"
-                          ];
+                          };
                     end end end end end 
                  if ___conditional___ = "S" then do
                     if (match$3[1]) then do
-                      throw [
+                      throw {
                             Caml_builtin_exceptions.failure,
                             "Invalid input line"
-                          ];
+                          };
                     end
                      end 
-                    return --[[ tuple ]][
-                            --[[ :: ]][
+                    return --[[ tuple ]]{
+                            --[[ :: ]]{
                               do
                                 value: undefined,
                                 rank: --[[ Uninitialized ]]0,
@@ -1366,44 +1366,44 @@ function process_input_line(ticker_map, all_tickers, line) do
                                 type_: --[[ Market ]]0
                               end,
                               all_tickers
-                            ],
+                            },
                             ticker_map
-                          ];end end end 
+                          };end end end 
                  do
                 else do
-                  throw [
+                  throw {
                         Caml_builtin_exceptions.failure,
                         "Invalid input line"
-                      ];
+                      };
                   end end
                   
               end
             end else do
-              throw [
+              throw {
                     Caml_builtin_exceptions.failure,
                     "Invalid input line"
-                  ];
+                  };
             end end 
           end else do
-            throw [
+            throw {
                   Caml_builtin_exceptions.failure,
                   "Invalid input line"
-                ];
+                };
           end end end end end 
        do
       else do
-        throw [
+        throw {
               Caml_builtin_exceptions.failure,
               "Invalid input line"
-            ];
+            };
         end end
         
     end
   end else do
-    throw [
+    throw {
           Caml_builtin_exceptions.failure,
           "Invalid input line"
-        ];
+        };
   end end 
 end end
 
@@ -1422,34 +1422,34 @@ function loop(_lines, _param) do
   end;
 end end
 
-lines = --[[ :: ]][
+lines = --[[ :: ]]{
   "R|MSFT|S",
-  --[[ :: ]][
+  --[[ :: ]]{
     "R|IBM|S",
-    --[[ :: ]][
+    --[[ :: ]]{
       "R|FB|S",
-      --[[ :: ]][
+      --[[ :: ]]{
         "R|CP1|+|MSFT|IBM",
-        --[[ :: ]][
+        --[[ :: ]]{
           "R|CP2|-|FB|IBM",
-          --[[ :: ]][
+          --[[ :: ]]{
             "R|CP12|+|CP1|CP2",
-            --[[ :: ]][
+            --[[ :: ]]{
               "Q|MSFT|120.",
-              --[[ :: ]][
+              --[[ :: ]]{
                 "Q|IBM|130.",
-                --[[ :: ]][
+                --[[ :: ]]{
                   "Q|FB|80.",
                   --[[ [] ]]0
-                ]
-              ]
-            ]
-          ]
-        ]
-      ]
-    ]
-  ]
-];
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+};
 
 exports.Util = Util;
 exports.string_of_rank = string_of_rank;

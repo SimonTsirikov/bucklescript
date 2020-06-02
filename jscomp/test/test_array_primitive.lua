@@ -13,10 +13,10 @@ end end
 
 function caml_array_set(xs, index, newval) do
   if (index < 0 or index >= #xs) then do
-    throw [
+    throw {
           Caml_builtin_exceptions.invalid_argument,
           "index out of bounds"
-        ];
+        };
   end
    end 
   return Caml_array.caml_array_set(xs, index, newval);
@@ -24,10 +24,10 @@ end end
 
 function caml_array_get(xs, index) do
   if (index < 0 or index >= #xs) then do
-    throw [
+    throw {
           Caml_builtin_exceptions.invalid_argument,
           "index out of bounds"
-        ];
+        };
   end
    end 
   return Caml_array.caml_array_get(xs, index);

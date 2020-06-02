@@ -17,18 +17,18 @@ end;
 
 function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = --[[ :: ]][
-    --[[ tuple ]][
+  suites.contents = --[[ :: ]]{
+    --[[ tuple ]]{
       loc .. (" id " .. String(test_id.contents)),
       (function (param) do
-          return --[[ Eq ]]Block.__(0, [
+          return --[[ Eq ]]Block.__(0, {
                     x,
                     y
-                  ]);
+                  });
         end end)
-    ],
+    },
     suites.contents
-  ];
+  };
   return --[[ () ]]0;
 end end
 
@@ -61,12 +61,12 @@ end
 
 eq("File \"caml_sys_poly_fill_test.ml\", line 23, characters 5-12", "Z", tmp);
 
-console.log(--[[ tuple ]][
+console.log(--[[ tuple ]]{
       Caml_sys.caml_sys_getcwd(--[[ () ]]0),
       Caml_sys.caml_sys_time(--[[ () ]]0),
       Sys.argv,
       Sys.executable_name
-    ]);
+    });
 
 Mt.from_pair_suites("Caml_sys_poly_fill_test", suites.contents);
 

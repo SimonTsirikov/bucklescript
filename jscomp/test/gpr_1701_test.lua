@@ -42,10 +42,10 @@ function read_lines(inc) do
       end end 
     end
     if (match ~= undefined) then do
-      _acc = --[[ :: ]][
+      _acc = --[[ :: ]]{
         match,
         acc
-      ];
+      };
       continue ;
     end else do
       return List.rev(acc);
@@ -68,10 +68,10 @@ function read_lines2(inc) do
         throw exn;
       end end 
     end
-    _acc = --[[ :: ]][
+    _acc = --[[ :: ]]{
       l,
       acc
-    ];
+    };
     continue ;
   end;
 end end
@@ -80,10 +80,10 @@ function read_lines3(inc) do
   loop = function (acc) do
     try do
       l = Pervasives.input_line(inc);
-      return loop(--[[ :: ]][
+      return loop(--[[ :: ]]{
                   l,
                   acc
-                ]);
+                });
     end
     catch (exn)do
       if (exn == Caml_builtin_exceptions.end_of_file) then do

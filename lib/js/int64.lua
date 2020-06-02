@@ -6,24 +6,24 @@ Caml_js_exceptions = require "./caml_js_exceptions.lua";
 Caml_builtin_exceptions = require "./caml_builtin_exceptions.lua";
 
 function succ(n) do
-  return Caml_int64.add(n, --[[ int64 ]][
+  return Caml_int64.add(n, --[[ int64 ]]{
               --[[ hi ]]0,
               --[[ lo ]]1
-            ]);
+            });
 end end
 
 function pred(n) do
-  return Caml_int64.sub(n, --[[ int64 ]][
+  return Caml_int64.sub(n, --[[ int64 ]]{
               --[[ hi ]]0,
               --[[ lo ]]1
-            ]);
+            });
 end end
 
 function abs(n) do
-  if (Caml_int64.ge(n, --[[ int64 ]][
+  if (Caml_int64.ge(n, --[[ int64 ]]{
           --[[ hi ]]0,
           --[[ lo ]]0
-        ])) then do
+        })) then do
     return n;
   end else do
     return Caml_int64.neg(n);
@@ -31,10 +31,10 @@ function abs(n) do
 end end
 
 function lognot(n) do
-  return Caml_int64.xor(n, --[[ int64 ]][
+  return Caml_int64.xor(n, --[[ int64 ]]{
               --[[ hi ]]-1,
               --[[ lo ]]4294967295
-            ]);
+            });
 end end
 
 function to_string(n) do
@@ -61,30 +61,30 @@ function equal(x, y) do
   return Caml_int64.compare(x, y) == 0;
 end end
 
-zero = --[[ int64 ]][
+zero = --[[ int64 ]]{
   --[[ hi ]]0,
   --[[ lo ]]0
-];
+};
 
-one = --[[ int64 ]][
+one = --[[ int64 ]]{
   --[[ hi ]]0,
   --[[ lo ]]1
-];
+};
 
-minus_one = --[[ int64 ]][
+minus_one = --[[ int64 ]]{
   --[[ hi ]]-1,
   --[[ lo ]]4294967295
-];
+};
 
-max_int = --[[ int64 ]][
+max_int = --[[ int64 ]]{
   --[[ hi ]]2147483647,
   --[[ lo ]]4294967295
-];
+};
 
-min_int = --[[ int64 ]][
+min_int = --[[ int64 ]]{
   --[[ hi ]]-2147483648,
   --[[ lo ]]0
-];
+};
 
 exports.zero = zero;
 exports.one = one;

@@ -36,10 +36,10 @@ function tailExn(x) do
 end end
 
 function add(xs, x) do
-  return --[[ :: ]][
+  return --[[ :: ]]{
           x,
           xs
-        ];
+        };
 end end
 
 function get(x, n) do
@@ -98,10 +98,10 @@ function partitionAux(p, _cell, _precX, _precY) do
     if (cell) then do
       t = cell[1];
       h = cell[0];
-      next = --[[ :: ]][
+      next = --[[ :: ]]{
         h,
         --[[ [] ]]0
-      ];
+      };
       if (p(h)) then do
         precX[1] = next;
         _precX = next;
@@ -126,14 +126,14 @@ function splitAux(_cell, _precX, _precY) do
     cell = _cell;
     if (cell) then do
       match = cell[0];
-      nextA = --[[ :: ]][
+      nextA = --[[ :: ]]{
         match[0],
         --[[ [] ]]0
-      ];
-      nextB = --[[ :: ]][
+      };
+      nextB = --[[ :: ]]{
         match[1],
         --[[ [] ]]0
-      ];
+      };
       precX[1] = nextA;
       precY[1] = nextB;
       _precY = nextB;
@@ -151,10 +151,10 @@ function copyAuxCont(_cellX, _prec) do
     prec = _prec;
     cellX = _cellX;
     if (cellX) then do
-      next = --[[ :: ]][
+      next = --[[ :: ]]{
         cellX[0],
         --[[ [] ]]0
-      ];
+      };
       prec[1] = next;
       _prec = next;
       _cellX = cellX[1];
@@ -173,10 +173,10 @@ function copyAuxWitFilter(f, _cellX, _prec) do
       t = cellX[1];
       h = cellX[0];
       if (f(h)) then do
-        next = --[[ :: ]][
+        next = --[[ :: ]]{
           h,
           --[[ [] ]]0
-        ];
+        };
         prec[1] = next;
         _prec = next;
         _cellX = t;
@@ -200,10 +200,10 @@ function copyAuxWithFilterIndex(f, _cellX, _prec, _i) do
       t = cellX[1];
       h = cellX[0];
       if (f(h, i)) then do
-        next = --[[ :: ]][
+        next = --[[ :: ]]{
           h,
           --[[ [] ]]0
-        ];
+        };
         prec[1] = next;
         _i = i + 1 | 0;
         _prec = next;
@@ -228,10 +228,10 @@ function copyAuxWitFilterMap(f, _cellX, _prec) do
       t = cellX[1];
       match = f(cellX[0]);
       if (match ~= undefined) then do
-        next = --[[ :: ]][
+        next = --[[ :: ]]{
           Caml_option.valFromOption(match),
           --[[ [] ]]0
-        ];
+        };
         prec[1] = next;
         _prec = next;
         _cellX = t;
@@ -257,10 +257,10 @@ function removeAssocAuxWithMap(_cellX, x, _prec, f) do
         prec[1] = t;
         return true;
       end else do
-        next = --[[ :: ]][
+        next = --[[ :: ]]{
           h,
           --[[ [] ]]0
-        ];
+        };
         prec[1] = next;
         _prec = next;
         _cellX = t;
@@ -280,19 +280,19 @@ function setAssocAuxWithMap(_cellX, x, k, _prec, eq) do
       t = cellX[1];
       h = cellX[0];
       if (eq(h[0], x)) then do
-        prec[1] = --[[ :: ]][
-          --[[ tuple ]][
+        prec[1] = --[[ :: ]]{
+          --[[ tuple ]]{
             x,
             k
-          ],
+          },
           t
-        ];
+        };
         return true;
       end else do
-        next = --[[ :: ]][
+        next = --[[ :: ]]{
           h,
           --[[ [] ]]0
-        ];
+        };
         prec[1] = next;
         _prec = next;
         _cellX = t;
@@ -309,10 +309,10 @@ function copyAuxWithMap(_cellX, _prec, f) do
     prec = _prec;
     cellX = _cellX;
     if (cellX) then do
-      next = --[[ :: ]][
+      next = --[[ :: ]]{
         f(cellX[0]),
         --[[ [] ]]0
-      ];
+      };
       prec[1] = next;
       _prec = next;
       _cellX = cellX[1];
@@ -329,13 +329,13 @@ function zipAux(_cellX, _cellY, _prec) do
     cellY = _cellY;
     cellX = _cellX;
     if (cellX and cellY) then do
-      next = --[[ :: ]][
-        --[[ tuple ]][
+      next = --[[ :: ]]{
+        --[[ tuple ]]{
           cellX[0],
           cellY[0]
-        ],
+        },
         --[[ [] ]]0
-      ];
+      };
       prec[1] = next;
       _prec = next;
       _cellY = cellY[1];
@@ -353,10 +353,10 @@ function copyAuxWithMap2(f, _cellX, _cellY, _prec) do
     cellY = _cellY;
     cellX = _cellX;
     if (cellX and cellY) then do
-      next = --[[ :: ]][
+      next = --[[ :: ]]{
         f(cellX[0], cellY[0]),
         --[[ [] ]]0
-      ];
+      };
       prec[1] = next;
       _prec = next;
       _cellY = cellY[1];
@@ -374,10 +374,10 @@ function copyAuxWithMapI(f, _i, _cellX, _prec) do
     cellX = _cellX;
     i = _i;
     if (cellX) then do
-      next = --[[ :: ]][
+      next = --[[ :: ]]{
         f(i, cellX[0]),
         --[[ [] ]]0
-      ];
+      };
       prec[1] = next;
       _prec = next;
       _cellX = cellX[1];
@@ -397,10 +397,10 @@ function takeAux(_n, _cell, _prec) do
     if (n == 0) then do
       return true;
     end else if (cell) then do
-      cell$1 = --[[ :: ]][
+      cell$1 = --[[ :: ]]{
         cell[0],
         --[[ [] ]]0
-      ];
+      };
       prec[1] = cell$1;
       _prec = cell$1;
       _cell = cell[1];
@@ -420,10 +420,10 @@ function splitAtAux(_n, _cell, _prec) do
     if (n == 0) then do
       return cell;
     end else if (cell) then do
-      cell$1 = --[[ :: ]][
+      cell$1 = --[[ :: ]]{
         cell[0],
         --[[ [] ]]0
-      ];
+      };
       prec[1] = cell$1;
       _prec = cell$1;
       _cell = cell[1];
@@ -441,10 +441,10 @@ function take(lst, n) do
   end else if (n == 0) then do
     return --[[ [] ]]0;
   end else if (lst) then do
-    cell = --[[ :: ]][
+    cell = --[[ :: ]]{
       lst[0],
       --[[ [] ]]0
-    ];
+    };
     has = takeAux(n - 1 | 0, lst[1], cell);
     if (has) then do
       return cell;
@@ -482,21 +482,21 @@ function splitAt(lst, n) do
   if (n < 0) then do
     return ;
   end else if (n == 0) then do
-    return --[[ tuple ]][
+    return --[[ tuple ]]{
             --[[ [] ]]0,
             lst
-          ];
+          };
   end else if (lst) then do
-    cell = --[[ :: ]][
+    cell = --[[ :: ]]{
       lst[0],
       --[[ [] ]]0
-    ];
+    };
     rest = splitAtAux(n - 1 | 0, lst[1], cell);
     if (rest ~= undefined) then do
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               cell,
               rest
-            ];
+            };
     end else do
       return ;
     end end 
@@ -507,10 +507,10 @@ end end
 
 function concat(xs, ys) do
   if (xs) then do
-    cell = --[[ :: ]][
+    cell = --[[ :: ]]{
       xs[0],
       --[[ [] ]]0
-    ];
+    };
     copyAuxCont(xs[1], cell)[1] = ys;
     return cell;
   end else do
@@ -520,10 +520,10 @@ end end
 
 function mapU(xs, f) do
   if (xs) then do
-    cell = --[[ :: ]][
+    cell = --[[ :: ]]{
       f(xs[0]),
       --[[ [] ]]0
-    ];
+    };
     copyAuxWithMap(xs[1], cell, f);
     return cell;
   end else do
@@ -537,10 +537,10 @@ end end
 
 function zipByU(l1, l2, f) do
   if (l1 and l2) then do
-    cell = --[[ :: ]][
+    cell = --[[ :: ]]{
       f(l1[0], l2[0]),
       --[[ [] ]]0
-    ];
+    };
     copyAuxWithMap2(f, l1[1], l2[1], cell);
     return cell;
   end else do
@@ -554,10 +554,10 @@ end end
 
 function mapWithIndexU(xs, f) do
   if (xs) then do
-    cell = --[[ :: ]][
+    cell = --[[ :: ]]{
       f(0, xs[0]),
       --[[ [] ]]0
-    ];
+    };
     copyAuxWithMapI(f, 1, xs[1], cell);
     return cell;
   end else do
@@ -573,17 +573,17 @@ function makeByU(n, f) do
   if (n <= 0) then do
     return --[[ [] ]]0;
   end else do
-    headX = --[[ :: ]][
+    headX = --[[ :: ]]{
       f(0),
       --[[ [] ]]0
-    ];
+    };
     cur = headX;
     i = 1;
     while(i < n) do
-      v = --[[ :: ]][
+      v = --[[ :: ]]{
         f(i),
         --[[ [] ]]0
-      ];
+      };
       cur[1] = v;
       cur = v;
       i = i + 1 | 0;
@@ -600,17 +600,17 @@ function make(n, v) do
   if (n <= 0) then do
     return --[[ [] ]]0;
   end else do
-    headX = --[[ :: ]][
+    headX = --[[ :: ]]{
       v,
       --[[ [] ]]0
-    ];
+    };
     cur = headX;
     i = 1;
     while(i < n) do
-      v$1 = --[[ :: ]][
+      v$1 = --[[ :: ]]{
         v,
         --[[ [] ]]0
-      ];
+      };
       cur[1] = v$1;
       cur = v$1;
       i = i + 1 | 0;
@@ -660,10 +660,10 @@ function fromArray(a) do
     if (i < 0) then do
       return res;
     end else do
-      _res = --[[ :: ]][
+      _res = --[[ :: ]]{
         a$1[i],
         res
-      ];
+      };
       _i = i - 1 | 0;
       continue ;
     end end 
@@ -688,10 +688,10 @@ function reverseConcat(_l1, _l2) do
     l2 = _l2;
     l1 = _l1;
     if (l1) then do
-      _l2 = --[[ :: ]][
+      _l2 = --[[ :: ]]{
         l1[0],
         l2
-      ];
+      };
       _l1 = l1[1];
       continue ;
     end else do
@@ -725,10 +725,10 @@ function flatten(_xs) do
     if (xs) then do
       match = xs[0];
       if (match) then do
-        cell = --[[ :: ]][
+        cell = --[[ :: ]]{
           match[0],
           --[[ [] ]]0
-        ];
+        };
         flattenAux(copyAuxCont(match[1], cell), xs[1]);
         return cell;
       end else do
@@ -768,10 +768,10 @@ function mapReverseU(l, f) do
     accu = _accu;
     if (xs) then do
       _xs = xs[1];
-      _accu = --[[ :: ]][
+      _accu = --[[ :: ]]{
         f$1(xs[0]),
         accu
-      ];
+      };
       continue ;
     end else do
       return accu;
@@ -895,10 +895,10 @@ function mapReverse2U(l1, l2, f) do
     l2$1 = _l2;
     l1$1 = _l1;
     if (l1$1 and l2$1) then do
-      _accu = --[[ :: ]][
+      _accu = --[[ :: ]]{
         f$1(l1$1[0], l2$1[0]),
         accu
-      ];
+      };
       _l2 = l2$1[1];
       _l1 = l1$1[1];
       continue ;
@@ -1197,10 +1197,10 @@ function removeAssocU(xs, x, eq) do
     if (eq(pair[0], x)) then do
       return l;
     end else do
-      cell = --[[ :: ]][
+      cell = --[[ :: ]]{
         pair,
         --[[ [] ]]0
-      ];
+      };
       removed = removeAssocAuxWithMap(l, x, cell, eq);
       if (removed) then do
         return cell;
@@ -1222,39 +1222,39 @@ function setAssocU(xs, x, k, eq) do
     l = xs[1];
     pair = xs[0];
     if (eq(pair[0], x)) then do
-      return --[[ :: ]][
-              --[[ tuple ]][
+      return --[[ :: ]]{
+              --[[ tuple ]]{
                 x,
                 k
-              ],
+              },
               l
-            ];
+            };
     end else do
-      cell = --[[ :: ]][
+      cell = --[[ :: ]]{
         pair,
         --[[ [] ]]0
-      ];
+      };
       replaced = setAssocAuxWithMap(l, x, k, cell, eq);
       if (replaced) then do
         return cell;
       end else do
-        return --[[ :: ]][
-                --[[ tuple ]][
+        return --[[ :: ]]{
+                --[[ tuple ]]{
                   x,
                   k
-                ],
+                },
                 xs
-              ];
+              };
       end end 
     end end 
   end else do
-    return --[[ :: ]][
-            --[[ tuple ]][
+    return --[[ :: ]]{
+            --[[ tuple ]]{
               x,
               k
-            ],
+            },
             --[[ [] ]]0
-          ];
+          };
   end end 
 end end
 
@@ -1300,10 +1300,10 @@ function keepU(_xs, p) do
       t = xs[1];
       h = xs[0];
       if (p(h)) then do
-        cell = --[[ :: ]][
+        cell = --[[ :: ]]{
           h,
           --[[ [] ]]0
-        ];
+        };
         copyAuxWitFilter(p, t, cell);
         return cell;
       end else do
@@ -1331,10 +1331,10 @@ function keepWithIndexU(xs, p) do
       t = xs$1[1];
       h = xs$1[0];
       if (p$1(h, i)) then do
-        cell = --[[ :: ]][
+        cell = --[[ :: ]]{
           h,
           --[[ [] ]]0
-        ];
+        };
         copyAuxWithFilterIndex(p$1, t, cell, i + 1 | 0);
         return cell;
       end else do
@@ -1359,10 +1359,10 @@ function keepMapU(_xs, p) do
       t = xs[1];
       match = p(xs[0]);
       if (match ~= undefined) then do
-        cell = --[[ :: ]][
+        cell = --[[ :: ]]{
           Caml_option.valFromOption(match),
           --[[ [] ]]0
-        ];
+        };
         copyAuxWitFilterMap(p, t, cell);
         return cell;
       end else do
@@ -1382,32 +1382,32 @@ end end
 function partitionU(l, p) do
   if (l) then do
     h = l[0];
-    nextX = --[[ :: ]][
+    nextX = --[[ :: ]]{
       h,
       --[[ [] ]]0
-    ];
-    nextY = --[[ :: ]][
+    };
+    nextY = --[[ :: ]]{
       h,
       --[[ [] ]]0
-    ];
+    };
     b = p(h);
     partitionAux(p, l[1], nextX, nextY);
     if (b) then do
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               nextX,
               nextY[1]
-            ];
+            };
     end else do
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               nextX[1],
               nextY
-            ];
+            };
     end end 
   end else do
-    return --[[ tuple ]][
+    return --[[ tuple ]]{
             --[[ [] ]]0,
             --[[ [] ]]0
-          ];
+          };
   end end 
 end end
 
@@ -1418,36 +1418,36 @@ end end
 function unzip(xs) do
   if (xs) then do
     match = xs[0];
-    cellX = --[[ :: ]][
+    cellX = --[[ :: ]]{
       match[0],
       --[[ [] ]]0
-    ];
-    cellY = --[[ :: ]][
+    };
+    cellY = --[[ :: ]]{
       match[1],
       --[[ [] ]]0
-    ];
+    };
     splitAux(xs[1], cellX, cellY);
-    return --[[ tuple ]][
+    return --[[ tuple ]]{
             cellX,
             cellY
-          ];
+          };
   end else do
-    return --[[ tuple ]][
+    return --[[ tuple ]]{
             --[[ [] ]]0,
             --[[ [] ]]0
-          ];
+          };
   end end 
 end end
 
 function zip(l1, l2) do
   if (l1 and l2) then do
-    cell = --[[ :: ]][
-      --[[ tuple ]][
+    cell = --[[ :: ]]{
+      --[[ tuple ]]{
         l1[0],
         l2[0]
-      ],
+      },
       --[[ [] ]]0
-    ];
+    };
     zipAux(l1[1], l2[1], cell);
     return cell;
   end else do

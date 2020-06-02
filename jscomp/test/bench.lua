@@ -10,7 +10,7 @@ function map(f, a) do
   a$1 = a;
   l = #a$1;
   if (l == 0) then do
-    return [];
+    return {};
   end else do
     r = Caml_array.caml_make_vect(l, f$1(a$1[0]));
     for i = 1 , l - 1 | 0 , 1 do
@@ -24,13 +24,13 @@ function init(l, f) do
   l$1 = l;
   f$1 = Curry.__1(f);
   if (l$1 == 0) then do
-    return [];
+    return {};
   end else do
     if (l$1 < 0) then do
-      throw [
+      throw {
             Caml_builtin_exceptions.invalid_argument,
             "Array.init"
-          ];
+          };
     end
      end 
     res = Caml_array.caml_make_vect(l$1, f$1(0));

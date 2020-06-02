@@ -10,28 +10,28 @@ Caml_oo_curry = require "../../lib/js/caml_oo_curry.lua";
 CamlinternalOO = require "../../lib/js/camlinternalOO.lua";
 Caml_exceptions = require "../../lib/js/caml_exceptions.lua";
 
-shared = ["window"];
+shared = {"window"};
 
-shared$1 = ["top_widget"];
+shared$1 = {"top_widget"};
 
-shared$2 = ["x"];
+shared$2 = {"x"};
 
-shared$3 = ["copy"];
+shared$3 = {"copy"};
 
-shared$4 = [
+shared$4 = {
   "move",
   "get_x"
-];
+};
 
-shared$5 = [
+shared$5 = {
   "save",
   "restore"
-];
+};
 
-shared$6 = [
+shared$6 = {
   "get",
   "set"
-];
+};
 
 suites = do
   contents: --[[ [] ]]0
@@ -43,18 +43,18 @@ end;
 
 function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = --[[ :: ]][
-    --[[ tuple ]][
+  suites.contents = --[[ :: ]]{
+    --[[ tuple ]]{
       loc .. (" id " .. String(test_id.contents)),
       (function (param) do
-          return --[[ Eq ]]Block.__(0, [
+          return --[[ Eq ]]Block.__(0, {
                     x,
                     y
-                  ]);
+                  });
         end end)
-    ],
+    },
     suites.contents
-  ];
+  };
   return --[[ () ]]0;
 end end
 
@@ -64,7 +64,7 @@ function point_init(__class) do
   move = ids[0];
   get_x = ids[1];
   x = ids[2];
-  CamlinternalOO.set_methods(__class, [
+  CamlinternalOO.set_methods(__class, {
         get_x,
         (function (self$1) do
             return self$1[x];
@@ -74,7 +74,7 @@ function point_init(__class) do
             self$1[x] = self$1[x] + d | 0;
             return --[[ () ]]0;
           end end)
-      ]);
+      });
   return (function (env, self, x_init$1) do
       self$1 = CamlinternalOO.create_object_opt(self, __class);
       self$1[x_init] = x_init$1;
@@ -91,24 +91,24 @@ q = Oo.copy(p);
 
 Caml_oo_curry.js2(-933174511, 1, q, 7);
 
-eq("File \"class7_test.ml\", line 22, characters 5-12", --[[ tuple ]][
+eq("File \"class7_test.ml\", line 22, characters 5-12", --[[ tuple ]]{
       55,
       62
-    ], --[[ tuple ]][
+    }, --[[ tuple ]]{
       Caml_oo_curry.js1(291546447, 2, p),
       Caml_oo_curry.js1(291546447, 3, q)
-    ]);
+    });
 
 function ref_init(__class) do
   x_init = CamlinternalOO.new_variable(__class, "");
-  ids = CamlinternalOO.new_methods_variables(__class, [
+  ids = CamlinternalOO.new_methods_variables(__class, {
         "set",
         "get"
-      ], shared$2);
+      }, shared$2);
   set = ids[0];
   get = ids[1];
   x = ids[2];
-  CamlinternalOO.set_methods(__class, [
+  CamlinternalOO.set_methods(__class, {
         get,
         (function (self$2) do
             return self$2[x];
@@ -118,7 +118,7 @@ function ref_init(__class) do
             self$2[x] = y;
             return --[[ () ]]0;
           end end)
-      ]);
+      });
   return (function (env, self, x_init$1) do
       self$1 = CamlinternalOO.create_object_opt(self, __class);
       self$1[x_init] = x_init$1;
@@ -134,7 +134,7 @@ function backup_init(__class) do
   save = ids[0];
   restore = ids[1];
   copy = ids[2];
-  CamlinternalOO.set_methods(__class, [
+  CamlinternalOO.set_methods(__class, {
         save,
         (function (self$3) do
             copy$1 = Caml_exceptions.caml_set_oo_id(Caml_obj.caml_obj_dup(self$3));
@@ -150,7 +150,7 @@ function backup_init(__class) do
               return self$3;
             end end 
           end end)
-      ]);
+      });
   return (function (env, self) do
       self$1 = CamlinternalOO.create_object_opt(self, __class);
       self$1[copy] = undefined;
@@ -164,10 +164,10 @@ function backup_ref_init(__class) do
   x = CamlinternalOO.new_variable(__class, "");
   inh = CamlinternalOO.inherits(__class, shared$2, 0, shared$6, ref, true);
   obj_init = inh[0];
-  inh$1 = CamlinternalOO.inherits(__class, shared$3, 0, [
+  inh$1 = CamlinternalOO.inherits(__class, shared$3, 0, {
         "restore",
         "save"
-      ], backup, true);
+      }, backup, true);
   obj_init$1 = inh$1[0];
   return (function (env, self, x$1) do
       self$1 = CamlinternalOO.create_object_opt(self, __class);
@@ -178,12 +178,12 @@ function backup_ref_init(__class) do
     end end);
 end end
 
-backup_ref = CamlinternalOO.make_class([
+backup_ref = CamlinternalOO.make_class({
       "save",
       "restore",
       "get",
       "set"
-    ], backup_ref_init);
+    }, backup_ref_init);
 
 function get(_p, _n) do
   while(true) do
@@ -209,31 +209,31 @@ Caml_oo_curry.js1(-867333315, 10, p$1);
 
 Caml_oo_curry.js2(5741474, 11, p$1, 2);
 
-eq("File \"class7_test.ml\", line 47, characters 5-12", [
+eq("File \"class7_test.ml\", line 47, characters 5-12", {
       2,
       1,
       1,
       1,
       1
-    ], [
+    }, {
       get(p$1, 0),
       get(p$1, 1),
       get(p$1, 2),
       get(p$1, 3),
       get(p$1, 4)
-    ]);
+    });
 
 function backup2_init(__class) do
-  ids = CamlinternalOO.new_methods_variables(__class, [
+  ids = CamlinternalOO.new_methods_variables(__class, {
         "save",
         "restore",
         "clear"
-      ], shared$3);
+      }, shared$3);
   save = ids[0];
   restore = ids[1];
   clear = ids[2];
   copy = ids[3];
-  CamlinternalOO.set_methods(__class, [
+  CamlinternalOO.set_methods(__class, {
         save,
         (function (self$5) do
             self$5[copy] = Caml_option.some(Caml_exceptions.caml_set_oo_id(Caml_obj.caml_obj_dup(self$5)));
@@ -253,7 +253,7 @@ function backup2_init(__class) do
             self$5[copy] = undefined;
             return --[[ () ]]0;
           end end)
-      ]);
+      });
   return (function (env, self) do
       self$1 = CamlinternalOO.create_object_opt(self, __class);
       self$1[copy] = undefined;
@@ -261,21 +261,21 @@ function backup2_init(__class) do
     end end);
 end end
 
-backup2 = CamlinternalOO.make_class([
+backup2 = CamlinternalOO.make_class({
       "clear",
       "save",
       "restore"
-    ], backup2_init);
+    }, backup2_init);
 
 function backup_ref2_init(__class) do
   x = CamlinternalOO.new_variable(__class, "");
   inh = CamlinternalOO.inherits(__class, shared$2, 0, shared$6, ref, true);
   obj_init = inh[0];
-  inh$1 = CamlinternalOO.inherits(__class, shared$3, 0, [
+  inh$1 = CamlinternalOO.inherits(__class, shared$3, 0, {
         "clear",
         "restore",
         "save"
-      ], backup2, true);
+      }, backup2, true);
   obj_init$1 = inh$1[0];
   return (function (env, self, x$1) do
       self$1 = CamlinternalOO.create_object_opt(self, __class);
@@ -286,13 +286,13 @@ function backup_ref2_init(__class) do
     end end);
 end end
 
-backup_ref2 = CamlinternalOO.make_class([
+backup_ref2 = CamlinternalOO.make_class({
       "clear",
       "save",
       "restore",
       "get",
       "set"
-    ], backup_ref2_init);
+    }, backup_ref2_init);
 
 p$2 = Curry._2(backup_ref2[0], 0, 0);
 
@@ -304,19 +304,19 @@ Caml_oo_curry.js1(-867333315, 14, p$2);
 
 Caml_oo_curry.js2(5741474, 15, p$2, 2);
 
-eq("File \"class7_test.ml\", line 63, characters 5-12", [
+eq("File \"class7_test.ml\", line 63, characters 5-12", {
       2,
       1,
       0,
       0,
       0
-    ], [
+    }, {
       get(p$2, 0),
       get(p$2, 1),
       get(p$2, 2),
       get(p$2, 3),
       get(p$2, 4)
-    ]);
+    });
 
 function window_init(__class) do
   ids = CamlinternalOO.new_methods_variables(__class, shared$1, shared$1);

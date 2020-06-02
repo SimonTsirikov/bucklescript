@@ -3,10 +3,10 @@
 
 ff = "B";
 
-console.log(--[[ tuple ]][
+console.log(--[[ tuple ]]{
       "A",
       ff,
       "A"
-    ]);
+    });
 
 --[[  Not a pure module ]]

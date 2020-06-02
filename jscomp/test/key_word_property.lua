@@ -15,13 +15,13 @@ function mk(__window, __default) do
 end end
 
 function mk2(__window, __default) do
-  return --[[ :: ]][
+  return --[[ :: ]]{
           do
             window: __window,
             default: __default
           end,
           --[[ [] ]]0
-        ];
+        };
 end end
 
 function des(v) do

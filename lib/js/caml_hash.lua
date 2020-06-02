@@ -65,14 +65,14 @@ function caml_hash(count, _limit, seed, obj) do
         num = num - 1 | 0;
       end else if (typeof obj$1 ~= "boolean" and typeof obj$1 ~= "undefined") then do
         if (typeof obj$1 == "symbol") then do
-          throw [
+          throw {
                 Caml_builtin_exceptions.assert_failure,
-                --[[ tuple ]][
+                --[[ tuple ]]{
                   "caml_hash.ml",
                   128,
                   8
-                ]
-              ];
+                }
+              };
         end
          end 
         if (typeof obj$1 ~= "function") then do

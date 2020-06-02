@@ -14,15 +14,15 @@ end;
 
 function __throw(loc, x) do
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = --[[ :: ]][
-    --[[ tuple ]][
+  suites.contents = --[[ :: ]]{
+    --[[ tuple ]]{
       loc .. (" id " .. String(test_id.contents)),
       (function (param) do
-          return --[[ ThrowAny ]]Block.__(7, [x]);
+          return --[[ ThrowAny ]]Block.__(7, {x});
         end end)
-    ],
+    },
     suites.contents
-  ];
+  };
   return --[[ () ]]0;
 end end
 
@@ -38,11 +38,11 @@ function aFromJs(param) do
   return param - 0 | 0;
 end end
 
-jsMapperConstantArray = [
+jsMapperConstantArray = {
   0,
   3,
   4
-];
+};
 
 function bToJs(param) do
   return jsMapperConstantArray[param];
@@ -52,20 +52,20 @@ function bFromJs(param) do
   return Js_mapperRt.fromIntAssert(3, jsMapperConstantArray, param);
 end end
 
-jsMapperConstantArray$1 = [
-  --[[ tuple ]][
+jsMapperConstantArray$1 = {
+  --[[ tuple ]]{
     22125,
     "c0"
-  ],
-  --[[ tuple ]][
+  },
+  --[[ tuple ]]{
     22126,
     "c1"
-  ],
-  --[[ tuple ]][
+  },
+  --[[ tuple ]]{
     22127,
     "c2"
-  ]
-];
+  }
+};
 
 function cToJs(param) do
   return Js_mapperRt.binarySearch(3, param, jsMapperConstantArray$1);

@@ -14,18 +14,18 @@ end;
 
 function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = --[[ :: ]][
-    --[[ tuple ]][
+  suites.contents = --[[ :: ]]{
+    --[[ tuple ]]{
       loc .. (" id " .. String(test_id.contents)),
       (function (param) do
-          return --[[ Eq ]]Block.__(0, [
+          return --[[ Eq ]]Block.__(0, {
                     x,
                     y
-                  ]);
+                  });
         end end)
-    ],
+    },
     suites.contents
-  ];
+  };
   return --[[ () ]]0;
 end end
 
@@ -49,37 +49,37 @@ function hey_int (option){
  }
 ;
 
-uu = [
+uu = {
   hey_string("on_open"),
   hey_string("on_closed"),
   hey_string("in")
-];
+};
 
-vv = [
+vv = {
   hey_int(3),
   hey_int(0),
   hey_int(4)
-];
+};
 
-eq("File \"poly_variant_test.ml\", line 58, characters 5-12", vv, [
+eq("File \"poly_variant_test.ml\", line 58, characters 5-12", vv, {
       3,
       0,
       4
-    ]);
+    });
 
-eq("File \"poly_variant_test.ml\", line 59, characters 5-12", --[[ tuple ]][
+eq("File \"poly_variant_test.ml\", line 59, characters 5-12", --[[ tuple ]]{
       hey_int(5),
       hey_int(6)
-    ], --[[ tuple ]][
+    }, --[[ tuple ]]{
       5,
       6
-    ]);
+    });
 
-eq("File \"poly_variant_test.ml\", line 60, characters 5-12", uu, [
+eq("File \"poly_variant_test.ml\", line 60, characters 5-12", uu, {
       "on_open",
       "on_closed",
       "in"
-    ]);
+    });
 
 hey_string("on_closed");
 
@@ -130,10 +130,10 @@ end end
 
 eq("File \"poly_variant_test.ml\", line 142, characters 5-12", 2, 2);
 
-eq("File \"poly_variant_test.ml\", line 143, characters 5-12", 3, p_is_int_test(--[[ `b ]][
+eq("File \"poly_variant_test.ml\", line 143, characters 5-12", 3, p_is_int_test(--[[ `b ]]{
           98,
           2
-        ]));
+        }));
 
 Mt.from_pair_suites("Poly_variant_test", suites.contents);
 

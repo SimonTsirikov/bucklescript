@@ -15,23 +15,23 @@ buf = __Buffer.create(50);
 fmt = Format.formatter_of_buffer(buf);
 
 function print_float(f) do
-  return Curry._1(Format.fprintf(fmt, --[[ Format ]][
-                  --[[ String ]]Block.__(2, [
+  return Curry._1(Format.fprintf(fmt, --[[ Format ]]{
+                  --[[ String ]]Block.__(2, {
                       --[[ No_padding ]]0,
                       --[[ End_of_format ]]0
-                    ]),
+                    }),
                   "%s"
-                ]), Pervasives.string_of_float(f));
+                }), Pervasives.string_of_float(f));
 end end
 
 function print_newline(param) do
-  return Format.fprintf(fmt, --[[ Format ]][
-              --[[ Char_literal ]]Block.__(12, [
+  return Format.fprintf(fmt, --[[ Format ]]{
+              --[[ Char_literal ]]Block.__(12, {
                   --[[ "\n" ]]10,
                   --[[ End_of_format ]]0
-                ]),
+                }),
               "\n"
-            ]);
+            });
 end end
 
 s = do

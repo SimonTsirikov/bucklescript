@@ -12,7 +12,7 @@ function map(f, a) do
   a$1 = a;
   l = #a$1;
   if (l == 0) then do
-    return [];
+    return {};
   end else do
     r = Caml_array.caml_make_vect(l, f$1(a$1[0]));
     for i = 1 , l - 1 | 0 , 1 do
@@ -26,13 +26,13 @@ function init(l, f) do
   l$1 = l;
   f$1 = Curry.__1(f);
   if (l$1 == 0) then do
-    return [];
+    return {};
   end else do
     if (l$1 < 0) then do
-      throw [
+      throw {
             Caml_builtin_exceptions.invalid_argument,
             "Array.init"
-          ];
+          };
     end
      end 
     res = Caml_array.caml_make_vect(l$1, f$1(0));
@@ -80,18 +80,18 @@ end;
 
 function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = --[[ :: ]][
-    --[[ tuple ]][
+  suites.contents = --[[ :: ]]{
+    --[[ tuple ]]{
       loc .. (" id " .. String(test_id.contents)),
       (function (param) do
-          return --[[ Eq ]]Block.__(0, [
+          return --[[ Eq ]]Block.__(0, {
                     x,
                     y
-                  ]);
+                  });
         end end)
-    ],
+    },
     suites.contents
-  ];
+  };
   return --[[ () ]]0;
 end end
 
@@ -104,17 +104,17 @@ all_v = do
 end;
 
 function add5(a0, a1, a2, a3, a4) do
-  console.log(--[[ tuple ]][
+  console.log(--[[ tuple ]]{
         a0,
         a1,
         a2,
         a3,
         a4
-      ]);
-  all_v.contents = --[[ :: ]][
+      });
+  all_v.contents = --[[ :: ]]{
     v.contents,
     all_v.contents
-  ];
+  };
   return (((a0 + a1 | 0) + a2 | 0) + a3 | 0) + a4 | 0;
 end end
 
@@ -136,10 +136,10 @@ function g(x) do
   u = function (param, param$1) do
     return add5(x, partial_arg$1, partial_arg, param, param$1);
   end end;
-  all_v.contents = --[[ :: ]][
+  all_v.contents = --[[ :: ]]{
     v.contents,
     all_v.contents
-  ];
+  };
   return u;
 end end
 
@@ -159,25 +159,25 @@ eq("File \"earger_curry_test.ml\", line 120, characters 7-14", c, 10);
 
 eq("File \"earger_curry_test.ml\", line 121, characters 7-14", d, 11);
 
-eq("File \"earger_curry_test.ml\", line 122, characters 7-14", all_v.contents, --[[ :: ]][
+eq("File \"earger_curry_test.ml\", line 122, characters 7-14", all_v.contents, --[[ :: ]]{
       8,
-      --[[ :: ]][
+      --[[ :: ]]{
         8,
-        --[[ :: ]][
+        --[[ :: ]]{
           6,
-          --[[ :: ]][
+          --[[ :: ]]{
             6,
-            --[[ :: ]][
+            --[[ :: ]]{
               4,
-              --[[ :: ]][
+              --[[ :: ]]{
                 2,
                 --[[ [] ]]0
-              ]
-            ]
-          ]
-        ]
-      ]
-    ]);
+              }
+            }
+          }
+        }
+      }
+    });
 
 Mt.from_pair_suites("Earger_curry_test", suites.contents);
 

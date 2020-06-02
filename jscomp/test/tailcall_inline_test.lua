@@ -26,12 +26,12 @@ function f(param) do
   return v;
 end end
 
-suites_000 = --[[ tuple ]][
+suites_000 = --[[ tuple ]]{
   "acc",
   (function (param) do
-      return --[[ Eq ]]Block.__(0, [
+      return --[[ Eq ]]Block.__(0, {
                 f(--[[ () ]]0),
-                [
+                {
                   0,
                   1,
                   3,
@@ -42,41 +42,41 @@ suites_000 = --[[ tuple ]][
                   28,
                   36,
                   45
-                ]
-              ]);
+                }
+              });
     end end)
-];
+};
 
-suites_001 = --[[ :: ]][
-  --[[ tuple ]][
+suites_001 = --[[ :: ]]{
+  --[[ tuple ]]{
     "array_to_list",
     (function (param) do
-        return --[[ Eq ]]Block.__(0, [
-                  --[[ :: ]][
+        return --[[ Eq ]]Block.__(0, {
+                  --[[ :: ]]{
                     1,
-                    --[[ :: ]][
+                    --[[ :: ]]{
                       2,
-                      --[[ :: ]][
+                      --[[ :: ]]{
                         3,
                         --[[ [] ]]0
-                      ]
-                    ]
-                  ],
-                  __Array.to_list([
+                      }
+                    }
+                  },
+                  __Array.to_list({
                         1,
                         2,
                         3
-                      ])
-                ]);
+                      })
+                });
       end end)
-  ],
+  },
   --[[ [] ]]0
-];
+};
 
-suites = --[[ :: ]][
+suites = --[[ :: ]]{
   suites_000,
   suites_001
-];
+};
 
 Mt.from_pair_suites("Tailcall_inline_test", suites);
 

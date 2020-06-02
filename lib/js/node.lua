@@ -3,15 +3,15 @@
 
 function test(x) do
   if (typeof x == "string") then do
-    return --[[ tuple ]][
+    return --[[ tuple ]]{
             --[[ String ]]0,
             x
-          ];
+          };
   end else do
-    return --[[ tuple ]][
+    return --[[ tuple ]]{
             --[[ Buffer ]]1,
             x
-          ];
+          };
   end end 
 end end
 

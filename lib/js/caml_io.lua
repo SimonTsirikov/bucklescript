@@ -65,13 +65,13 @@ function caml_ml_output_char(oc, __char) do
 end end
 
 function caml_ml_out_channels_list(param) do
-  return --[[ :: ]][
+  return --[[ :: ]]{
           stdout,
-          --[[ :: ]][
+          --[[ :: ]]{
             stderr,
             --[[ [] ]]0
-          ]
-        ];
+          }
+        };
 end end
 
 stdin = undefined;

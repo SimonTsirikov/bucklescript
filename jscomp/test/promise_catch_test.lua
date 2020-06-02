@@ -18,18 +18,18 @@ end;
 
 function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = --[[ :: ]][
-    --[[ tuple ]][
+  suites.contents = --[[ :: ]]{
+    --[[ tuple ]]{
       loc .. (" id " .. String(test_id.contents)),
       (function (param) do
-          return --[[ Eq ]]Block.__(0, [
+          return --[[ Eq ]]Block.__(0, {
                     x,
                     y
-                  ]);
+                  });
         end end)
-    ],
+    },
     suites.contents
-  ];
+  };
   return --[[ () ]]0;
 end end
 
@@ -41,14 +41,14 @@ function handler(e) do
     console.log("hi");
     return Promise.resolve(0);
   end else do
-    throw [
+    throw {
           Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]][
+          --[[ tuple ]]{
             "promise_catch_test.ml",
             22,
             9
-          ]
-        ];
+          }
+        };
   end end  end 
 end end
 
@@ -85,14 +85,14 @@ catch (raw_e)do
 end
 
 if (exit == 1) then do
-  throw [
+  throw {
         Caml_builtin_exceptions.assert_failure,
-        --[[ tuple ]][
+        --[[ tuple ]]{
           "promise_catch_test.ml",
           39,
           9
-        ]
-      ];
+        }
+      };
 end
  end 
 

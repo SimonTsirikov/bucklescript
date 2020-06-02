@@ -31,44 +31,44 @@ u = 1;
 
 v = true;
 
-suites_000 = --[[ tuple ]][
+suites_000 = --[[ tuple ]]{
   "caml_bool_eq_caml_bool",
   (function (param) do
-      return --[[ Eq ]]Block.__(0, [
+      return --[[ Eq ]]Block.__(0, {
                 u,
                 true
-              ]);
+              });
     end end)
-];
+};
 
-suites_001 = --[[ :: ]][
-  --[[ tuple ]][
+suites_001 = --[[ :: ]]{
+  --[[ tuple ]]{
     "js_bool_eq_js_bool",
     (function (param) do
-        return --[[ Eq ]]Block.__(0, [
+        return --[[ Eq ]]Block.__(0, {
                   v,
                   true
-                ]);
+                });
       end end)
-  ],
-  --[[ :: ]][
-    --[[ tuple ]][
+  },
+  --[[ :: ]]{
+    --[[ tuple ]]{
       "js_bool_neq_acml_bool",
       (function (param) do
-          return --[[ Eq ]]Block.__(0, [
+          return --[[ Eq ]]Block.__(0, {
                     true,
                     true == true
-                  ]);
+                  });
         end end)
-    ],
+    },
     --[[ [] ]]0
-  ]
-];
+  }
+};
 
-suites = --[[ :: ]][
+suites = --[[ :: ]]{
   suites_000,
   suites_001
-];
+};
 
 function ff(u) do
   if (u == true) then do
@@ -99,7 +99,7 @@ function ss(x) do
 end end
 
 function bb(x) do
-  return --[[ tuple ]][
+  return --[[ tuple ]]{
           true > x,
           false,
           true,
@@ -108,10 +108,10 @@ function bb(x) do
           false < x,
           false >= x,
           true
-        ];
+        };
 end end
 
-consts = --[[ tuple ]][
+consts = --[[ tuple ]]{
   false,
   false,
   true,
@@ -120,12 +120,12 @@ consts = --[[ tuple ]][
   false,
   true,
   true
-];
+};
 
-bool_array = [
+bool_array = {
   true,
   false
-];
+};
 
 Mt.from_pair_suites("Js_bool_test", suites);
 

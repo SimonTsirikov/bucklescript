@@ -6,7 +6,7 @@ Caml_oo_curry = require "../../lib/js/caml_oo_curry.lua";
 CamlinternalOO = require "../../lib/js/camlinternalOO.lua";
 Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
 
-shared = [
+shared = {
   "get0",
   "get1",
   "get2",
@@ -27,9 +27,9 @@ shared = [
   "get17",
   "get18",
   "get19"
-];
+};
 
-shared$1 = [
+shared$1 = {
   "get9",
   "get8",
   "get7",
@@ -50,9 +50,9 @@ shared$1 = [
   "get10",
   "get1",
   "get0"
-];
+};
 
-shared$2 = [
+shared$2 = {
   "field0",
   "field1",
   "field2",
@@ -153,7 +153,7 @@ shared$2 = [
   "field97",
   "field98",
   "field99"
-];
+};
 
 __class = CamlinternalOO.create_table(shared);
 
@@ -399,7 +399,7 @@ field98 = ids[118];
 
 field99 = ids[119];
 
-CamlinternalOO.set_methods(__class, [
+CamlinternalOO.set_methods(__class, {
       get0,
       (function (self$1) do
           return self$1[field0] + 0 | 0;
@@ -480,7 +480,7 @@ CamlinternalOO.set_methods(__class, [
       (function (self$1) do
           return self$1[field19] + 19 | 0;
         end end)
-    ]);
+    });
 
 function obj_init(env) do
   self = CamlinternalOO.create_object_opt(0, __class);
@@ -592,14 +592,14 @@ CamlinternalOO.init_class(__class);
 raw_object = obj_init(0);
 
 if (Caml_oo_curry.js1(291536124, 1, raw_object) ~= 34) then do
-  throw [
+  throw {
         Caml_builtin_exceptions.assert_failure,
-        --[[ tuple ]][
+        --[[ tuple ]]{
           "large_obj_test.ml",
           124,
           10
-        ]
-      ];
+        }
+      };
 end
  end 
 
@@ -726,7 +726,7 @@ function raw_class_init(__class) do
   field97 = ids[117];
   field98 = ids[118];
   field99 = ids[119];
-  CamlinternalOO.set_methods(__class, [
+  CamlinternalOO.set_methods(__class, {
         get0,
         (function (self$2) do
             return self$2[field0] + 0 | 0;
@@ -807,7 +807,7 @@ function raw_class_init(__class) do
         (function (self$2) do
             return self$2[field19] + 19 | 0;
           end end)
-      ]);
+      });
   return (function (env, self, value$1) do
       self$1 = CamlinternalOO.create_object_opt(self, __class);
       self$1[value] = value$1;
@@ -920,14 +920,14 @@ raw_class = CamlinternalOO.make_class(shared, raw_class_init);
 v = Curry._2(raw_class[0], 0, 3);
 
 if (Caml_oo_curry.js1(291536121, 2, v) ~= 56) then do
-  throw [
+  throw {
         Caml_builtin_exceptions.assert_failure,
-        --[[ tuple ]][
+        --[[ tuple ]]{
           "large_obj_test.ml",
           251,
           2
-        ]
-      ];
+        }
+      };
 end
  end 
 

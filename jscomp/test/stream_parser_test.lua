@@ -23,7 +23,7 @@ function parse(token) do
         return Curry._1(token, --[[ () ]]0);
       end
       catch (exn)do
-        return --[[ Kwd ]]Block.__(0, ["=="]);
+        return --[[ Kwd ]]Block.__(0, {"=="});
       end
     end else do
       return Queue.pop(look_ahead);
@@ -38,34 +38,34 @@ function parse(token) do
             v = parse_expr_aux(parse_term_aux(parse_atom(--[[ () ]]0)));
             match = token$1(--[[ () ]]0);
             if (match.tag) then do
-              throw [
+              throw {
                     Parse_error,
                     "Unbalanced parens"
-                  ];
+                  };
             end else if (match[0] == ")") then do
               return v;
             end else do
-              throw [
+              throw {
                     Parse_error,
                     "Unbalanced parens"
-                  ];
+                  };
             end end  end 
           end else do
             Queue.push(e, look_ahead);
-            throw [
+            throw {
                   Parse_error,
                   "unexpected token"
-                ];
+                };
           end end end end end 
        if ___conditional___ = 2--[[ Int ]] then do
           return e[0];end end end 
        do
       else do
         Queue.push(e, look_ahead);
-        throw [
+        throw {
               Parse_error,
               "unexpected token"
-            ];
+            };
         end end
         
     end
@@ -113,36 +113,36 @@ function parse(token) do
     end end 
   end end;
   r = parse_expr_aux(parse_term_aux(parse_atom(--[[ () ]]0)));
-  return --[[ tuple ]][
+  return --[[ tuple ]]{
           r,
           Queue.fold((function (acc, x) do
-                  return --[[ :: ]][
+                  return --[[ :: ]]{
                           x,
                           acc
-                        ];
+                        };
                 end end), --[[ [] ]]0, look_ahead)
-        ];
+        };
 end end
 
-lexer = Genlex.make_lexer(--[[ :: ]][
+lexer = Genlex.make_lexer(--[[ :: ]]{
       "(",
-      --[[ :: ]][
+      --[[ :: ]]{
         "*",
-        --[[ :: ]][
+        --[[ :: ]]{
           "/",
-          --[[ :: ]][
+          --[[ :: ]]{
             "+",
-            --[[ :: ]][
+            --[[ :: ]]{
               "-",
-              --[[ :: ]][
+              --[[ :: ]]{
                 ")",
                 --[[ [] ]]0
-              ]
-            ]
-          ]
-        ]
-      ]
-    ]);
+              }
+            }
+          }
+        }
+      }
+    });
 
 function token(chars) do
   strm = lexer(chars);
@@ -163,7 +163,7 @@ function l_parse(token) do
         return Curry._1(token, --[[ () ]]0);
       end
       catch (exn)do
-        return --[[ Kwd ]]Block.__(0, ["=="]);
+        return --[[ Kwd ]]Block.__(0, {"=="});
       end
     end else do
       return Queue.pop(look_ahead);
@@ -204,32 +204,32 @@ function l_parse(token) do
             v = parse_t_aux(parse_f_aux(parse_f(--[[ () ]]0)));
             t$1 = token$1(--[[ () ]]0);
             if (t$1.tag) then do
-              throw [
+              throw {
                     Parse_error,
                     "Unbalanced )"
-                  ];
+                  };
             end else if (t$1[0] == ")") then do
               return v;
             end else do
-              throw [
+              throw {
                     Parse_error,
                     "Unbalanced )"
-                  ];
+                  };
             end end  end 
           end else do
-            throw [
+            throw {
                   Parse_error,
                   "Unexpected token"
-                ];
+                };
           end end end end end 
        if ___conditional___ = 2--[[ Int ]] then do
           return t[0];end end end 
        do
       else do
-        throw [
+        throw {
               Parse_error,
               "Unexpected token"
-            ];
+            };
         end end
         
     end
@@ -261,15 +261,15 @@ function l_parse(token) do
     end;
   end end;
   r = parse_t_aux(parse_f_aux(parse_f(--[[ () ]]0)));
-  return --[[ tuple ]][
+  return --[[ tuple ]]{
           r,
           Queue.fold((function (acc, x) do
-                  return --[[ :: ]][
+                  return --[[ :: ]]{
                           x,
                           acc
-                        ];
+                        };
                 end end), --[[ [] ]]0, look_ahead)
-        ];
+        };
 end end
 
 suites = do
@@ -282,49 +282,49 @@ end;
 
 function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = --[[ :: ]][
-    --[[ tuple ]][
+  suites.contents = --[[ :: ]]{
+    --[[ tuple ]]{
       loc .. (" id " .. String(test_id.contents)),
       (function (param) do
-          return --[[ Eq ]]Block.__(0, [
+          return --[[ Eq ]]Block.__(0, {
                     x,
                     y
-                  ]);
+                  });
         end end)
-    ],
+    },
     suites.contents
-  ];
+  };
   return --[[ () ]]0;
 end end
 
 match = parse(token(Stream.of_string("1 + 2 + (3  - 2) * 3 * 3  - 2 a")));
 
-eq("File \"stream_parser_test.ml\", line 132, characters 5-12", --[[ tuple ]][
+eq("File \"stream_parser_test.ml\", line 132, characters 5-12", --[[ tuple ]]{
       match[0],
       match[1]
-    ], --[[ tuple ]][
+    }, --[[ tuple ]]{
       10,
-      --[[ :: ]][
-        --[[ Ident ]]Block.__(1, ["a"]),
+      --[[ :: ]]{
+        --[[ Ident ]]Block.__(1, {"a"}),
         --[[ [] ]]0
-      ]
-    ]);
+      }
+    });
 
-eq("File \"stream_parser_test.ml\", line 133, characters 5-12", --[[ tuple ]][
+eq("File \"stream_parser_test.ml\", line 133, characters 5-12", --[[ tuple ]]{
       2,
-      --[[ :: ]][
-        --[[ Kwd ]]Block.__(0, ["=="]),
+      --[[ :: ]]{
+        --[[ Kwd ]]Block.__(0, {"=="}),
         --[[ [] ]]0
-      ]
-    ], parse(token(Stream.of_string("3 - 2  - 1"))));
+      }
+    }, parse(token(Stream.of_string("3 - 2  - 1"))));
 
-eq("File \"stream_parser_test.ml\", line 134, characters 5-12", --[[ tuple ]][
+eq("File \"stream_parser_test.ml\", line 134, characters 5-12", --[[ tuple ]]{
       0,
-      --[[ :: ]][
-        --[[ Kwd ]]Block.__(0, ["=="]),
+      --[[ :: ]]{
+        --[[ Kwd ]]Block.__(0, {"=="}),
         --[[ [] ]]0
-      ]
-    ], l_parse(token(Stream.of_string("3 - 2  - 1"))));
+      }
+    }, l_parse(token(Stream.of_string("3 - 2  - 1"))));
 
 Mt.from_pair_suites("Stream_parser_test", suites.contents);
 

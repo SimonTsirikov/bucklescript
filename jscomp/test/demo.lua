@@ -5,7 +5,7 @@ Curry = require "../../lib/js/curry.lua";
 BUI = require "@blp/ui";
 Runtime = require "@runtime";
 
-data = [
+data = {
   do
     ticker: "GOOG",
     price: 700.0
@@ -18,7 +18,7 @@ data = [
     ticker: "MSFT",
     price: 300.0
   end
-];
+};
 
 function ui_layout(compile, lookup, appContext) do
   init = Curry._1(compile, "bid  - ask");
@@ -57,7 +57,7 @@ function ui_layout(compile, lookup, appContext) do
     width: 200
   end;
   grid.minHeight = 300;
-  grid.titleRows = [
+  grid.titleRows = {
     do
       label: do
         text: "Ticker"
@@ -78,13 +78,13 @@ function ui_layout(compile, lookup, appContext) do
         text: "Result"
       end
     end
-  ];
-  grid.columns = [
+  };
+  grid.columns = {
     u,
     u,
     u,
     u
-  ];
+  };
   inputCode.text = " bid - ask";
   inputCode.minHeight = 100;
   button.text = "update formula";
@@ -112,12 +112,12 @@ function ui_layout(compile, lookup, appContext) do
                         bid: bid,
                         ask: ask
                       end);
-                  return [
+                  return {
                           mk_titleRow(param.ticker),
                           mk_titleRow(bid.toFixed(2)),
                           mk_titleRow(ask.toFixed(2)),
                           mk_titleRow(result.toFixed(2))
-                        ];
+                        };
                 end end));
           return --[[ () ]]0;
         end end), 100);

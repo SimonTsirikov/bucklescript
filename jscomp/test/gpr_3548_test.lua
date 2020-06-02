@@ -2,16 +2,16 @@
 
 Js_mapperRt = require "../../lib/js/js_mapperRt.lua";
 
-jsMapperConstantArray = [
-  --[[ tuple ]][
+jsMapperConstantArray = {
+  --[[ tuple ]]{
     -1010337642,
     "vertical"
-  ],
-  --[[ tuple ]][
+  },
+  --[[ tuple ]]{
     208994564,
     "horizontal"
-  ]
-];
+  }
+};
 
 function orientationToJs(param) do
   return Js_mapperRt.binarySearch(2, param, jsMapperConstantArray);

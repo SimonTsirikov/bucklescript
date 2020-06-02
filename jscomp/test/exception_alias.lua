@@ -5,13 +5,13 @@ Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
 
 a0 = Caml_builtin_exceptions.not_found;
 
-b = List.length(--[[ :: ]][
+b = List.length(--[[ :: ]]{
       1,
-      --[[ :: ]][
+      --[[ :: ]]{
         2,
         --[[ [] ]]0
-      ]
-    ]);
+      }
+    });
 
 List$1 = do
   compare_lengths: List.compare_lengths,

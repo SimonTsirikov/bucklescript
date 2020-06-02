@@ -9,23 +9,23 @@ Caml_option = require "../../lib/js/caml_option.lua";
 Caml_primitive = require "../../lib/js/caml_primitive.lua";
 Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
 
-A = Caml_module.init_mod(--[[ tuple ]][
+A = Caml_module.init_mod(--[[ tuple ]]{
       "rec_module_test.ml",
       3,
       6
-    ], --[[ Module ]]Block.__(0, [[--[[ tuple ]][
+    }, --[[ Module ]]Block.__(0, {{--[[ tuple ]]{
             --[[ Function ]]0,
             "even"
-          ]]]));
+          }}}));
 
-B = Caml_module.init_mod(--[[ tuple ]][
+B = Caml_module.init_mod(--[[ tuple ]]{
       "rec_module_test.ml",
       11,
       6
-    ], --[[ Module ]]Block.__(0, [[--[[ tuple ]][
+    }, --[[ Module ]]Block.__(0, {{--[[ tuple ]]{
             --[[ Function ]]0,
             "odd"
-          ]]]));
+          }}}));
 
 function even(n) do
   if (n == 0) then do
@@ -37,10 +37,10 @@ function even(n) do
   end end  end 
 end end
 
-Caml_module.update_mod(--[[ Module ]]Block.__(0, [[--[[ tuple ]][
+Caml_module.update_mod(--[[ Module ]]Block.__(0, {{--[[ tuple ]]{
             --[[ Function ]]0,
             "even"
-          ]]]), A, do
+          }}}), A, do
       even: even
     end);
 
@@ -54,42 +54,42 @@ function odd(n) do
   end end  end 
 end end
 
-Caml_module.update_mod(--[[ Module ]]Block.__(0, [[--[[ tuple ]][
+Caml_module.update_mod(--[[ Module ]]Block.__(0, {{--[[ tuple ]]{
             --[[ Function ]]0,
             "odd"
-          ]]]), B, do
+          }}}), B, do
       odd: odd
     end);
 
-AA = Caml_module.init_mod(--[[ tuple ]][
+AA = Caml_module.init_mod(--[[ tuple ]]{
       "rec_module_test.ml",
       21,
       6
-    ], --[[ Module ]]Block.__(0, [[
-          --[[ tuple ]][
+    }, --[[ Module ]]Block.__(0, {{
+          --[[ tuple ]]{
             --[[ Function ]]0,
             "even"
-          ],
-          --[[ tuple ]][
+          },
+          --[[ tuple ]]{
             --[[ Function ]]0,
             "x"
-          ]
-        ]]));
+          }
+        }}));
 
-BB = Caml_module.init_mod(--[[ tuple ]][
+BB = Caml_module.init_mod(--[[ tuple ]]{
       "rec_module_test.ml",
       31,
       6
-    ], --[[ Module ]]Block.__(0, [[
-          --[[ tuple ]][
+    }, --[[ Module ]]Block.__(0, {{
+          --[[ tuple ]]{
             --[[ Function ]]0,
             "odd"
-          ],
-          --[[ tuple ]][
+          },
+          --[[ tuple ]]{
             --[[ Function ]]0,
             "y"
-          ]
-        ]]));
+          }
+        }}));
 
 function even$1(n) do
   if (n == 0) then do
@@ -105,16 +105,16 @@ function x(param) do
   return Curry._1(BB.y, --[[ () ]]0) + 3 | 0;
 end end
 
-Caml_module.update_mod(--[[ Module ]]Block.__(0, [[
-          --[[ tuple ]][
+Caml_module.update_mod(--[[ Module ]]Block.__(0, {{
+          --[[ tuple ]]{
             --[[ Function ]]0,
             "even"
-          ],
-          --[[ tuple ]][
+          },
+          --[[ tuple ]]{
             --[[ Function ]]0,
             "x"
-          ]
-        ]]), AA, do
+          }
+        }}), AA, do
       even: even$1,
       x: x
     end);
@@ -133,28 +133,28 @@ function y(param) do
   return 32;
 end end
 
-Caml_module.update_mod(--[[ Module ]]Block.__(0, [[
-          --[[ tuple ]][
+Caml_module.update_mod(--[[ Module ]]Block.__(0, {{
+          --[[ tuple ]]{
             --[[ Function ]]0,
             "odd"
-          ],
-          --[[ tuple ]][
+          },
+          --[[ tuple ]]{
             --[[ Function ]]0,
             "y"
-          ]
-        ]]), BB, do
+          }
+        }}), BB, do
       odd: odd$1,
       y: y
     end);
 
-AAA = Caml_module.init_mod(--[[ tuple ]][
+AAA = Caml_module.init_mod(--[[ tuple ]]{
       "rec_module_test.ml",
       55,
       2
-    ], --[[ Module ]]Block.__(0, [[--[[ tuple ]][
+    }, --[[ Module ]]Block.__(0, {{--[[ tuple ]]{
             --[[ Function ]]0,
             "compare"
-          ]]]));
+          }}}));
 
 function height(param) do
   if (param) then do
@@ -167,12 +167,12 @@ end end
 function create(l, v, r) do
   hl = l and l[--[[ h ]]3] or 0;
   hr = r and r[--[[ h ]]3] or 0;
-  return --[[ Node ]][
+  return --[[ Node ]]{
           --[[ l ]]l,
           --[[ v ]]v,
           --[[ r ]]r,
           --[[ h ]]hl >= hr and hl + 1 | 0 or hr + 1 | 0
-        ];
+        };
 end end
 
 function bal(l, v, r) do
@@ -188,16 +188,16 @@ function bal(l, v, r) do
       end else if (lr) then do
         return create(create(ll, lv, lr[--[[ l ]]0]), lr[--[[ v ]]1], create(lr[--[[ r ]]2], v, r));
       end else do
-        throw [
+        throw {
               Caml_builtin_exceptions.invalid_argument,
               "Set.bal"
-            ];
+            };
       end end  end 
     end else do
-      throw [
+      throw {
             Caml_builtin_exceptions.invalid_argument,
             "Set.bal"
-          ];
+          };
     end end 
   end else if (hr > (hl + 2 | 0)) then do
     if (r) then do
@@ -209,24 +209,24 @@ function bal(l, v, r) do
       end else if (rl) then do
         return create(create(l, v, rl[--[[ l ]]0]), rl[--[[ v ]]1], create(rl[--[[ r ]]2], rv, rr));
       end else do
-        throw [
+        throw {
               Caml_builtin_exceptions.invalid_argument,
               "Set.bal"
-            ];
+            };
       end end  end 
     end else do
-      throw [
+      throw {
             Caml_builtin_exceptions.invalid_argument,
             "Set.bal"
-          ];
+          };
     end end 
   end else do
-    return --[[ Node ]][
+    return --[[ Node ]]{
             --[[ l ]]l,
             --[[ v ]]v,
             --[[ r ]]r,
             --[[ h ]]hl >= hr and hl + 1 | 0 or hr + 1 | 0
-          ];
+          };
   end end  end 
 end end
 
@@ -254,22 +254,22 @@ function add(x, t) do
       end end 
     end end  end 
   end else do
-    return --[[ Node ]][
+    return --[[ Node ]]{
             --[[ l : Empty ]]0,
             --[[ v ]]x,
             --[[ r : Empty ]]0,
             --[[ h ]]1
-          ];
+          };
   end end 
 end end
 
 function singleton(x) do
-  return --[[ Node ]][
+  return --[[ Node ]]{
           --[[ l : Empty ]]0,
           --[[ v ]]x,
           --[[ r : Empty ]]0,
           --[[ h ]]1
-        ];
+        };
 end end
 
 function add_min_element(x, param) do
@@ -385,10 +385,10 @@ function remove_min_elt(param) do
       return param[--[[ r ]]2];
     end end 
   end else do
-    throw [
+    throw {
           Caml_builtin_exceptions.invalid_argument,
           "Set.remove_min_elt"
-        ];
+        };
   end end 
 end end
 
@@ -411,32 +411,32 @@ function split(x, param) do
     l = param[--[[ l ]]0];
     c = Curry._2(AAA.compare, x, v);
     if (c == 0) then do
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               l,
               true,
               r
-            ];
+            };
     end else if (c < 0) then do
       match = split(x, l);
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               match[0],
               match[1],
               join(match[2], v, r)
-            ];
+            };
     end else do
       match$1 = split(x, r);
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               join(l, v, match$1[0]),
               match$1[1],
               match$1[2]
-            ];
+            };
     end end  end 
   end else do
-    return --[[ tuple ]][
+    return --[[ tuple ]]{
             --[[ Empty ]]0,
             false,
             --[[ Empty ]]0
-          ];
+          };
   end end 
 end end
 
@@ -574,11 +574,11 @@ function cons_enum(_s, _e) do
     e = _e;
     s = _s;
     if (s) then do
-      _e = --[[ More ]][
+      _e = --[[ More ]]{
         s[--[[ v ]]1],
         s[--[[ r ]]2],
         e
-      ];
+      };
       _s = s[--[[ l ]]0];
       continue ;
     end else do
@@ -639,23 +639,23 @@ function subset(_s1, _s2) do
             return false;
           end end 
         end else if (c < 0) then do
-          if (subset(--[[ Node ]][
+          if (subset(--[[ Node ]]{
                   --[[ l ]]l1,
                   --[[ v ]]v1,
                   --[[ r : Empty ]]0,
                   --[[ h ]]0
-                ], l2)) then do
+                }, l2)) then do
             _s1 = r1;
             continue ;
           end else do
             return false;
           end end 
-        end else if (subset(--[[ Node ]][
+        end else if (subset(--[[ Node ]]{
                 --[[ l : Empty ]]0,
                 --[[ v ]]v1,
                 --[[ r ]]r1,
                 --[[ h ]]0
-              ], r2)) then do
+              }, r2)) then do
           _s1 = l1;
           continue ;
         end else do
@@ -763,21 +763,21 @@ function partition(p, param) do
     rf = match$1[1];
     rt = match$1[0];
     if (pv) then do
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               join(lt, v, rt),
               concat(lf, rf)
-            ];
+            };
     end else do
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               concat(lt, rt),
               join(lf, v, rf)
-            ];
+            };
     end end 
   end else do
-    return --[[ tuple ]][
+    return --[[ tuple ]]{
             --[[ Empty ]]0,
             --[[ Empty ]]0
-          ];
+          };
   end end 
 end end
 
@@ -795,10 +795,10 @@ function elements_aux(_accu, _param) do
     accu = _accu;
     if (param) then do
       _param = param[--[[ l ]]0];
-      _accu = --[[ :: ]][
+      _accu = --[[ :: ]]{
         param[--[[ v ]]1],
         elements_aux(accu, param[--[[ r ]]2])
-      ];
+      };
       continue ;
     end else do
       return accu;
@@ -1035,41 +1035,41 @@ function of_list(l) do
                 local ___conditional___=(n);
                 do
                    if ___conditional___ = 0 then do
-                      return --[[ tuple ]][
+                      return --[[ tuple ]]{
                               --[[ Empty ]]0,
                               l
-                            ];end end end 
+                            };end end end 
                    if ___conditional___ = 1 then do
                       if (l) then do
-                        return --[[ tuple ]][
-                                --[[ Node ]][
+                        return --[[ tuple ]]{
+                                --[[ Node ]]{
                                   --[[ l : Empty ]]0,
                                   --[[ v ]]l[0],
                                   --[[ r : Empty ]]0,
                                   --[[ h ]]1
-                                ],
+                                },
                                 l[1]
-                              ];
+                              };
                       end
                        end end else 
                    if ___conditional___ = 2 then do
                       if (l) then do
                         match = l[1];
                         if (match) then do
-                          return --[[ tuple ]][
-                                  --[[ Node ]][
-                                    --[[ l : Node ]][
+                          return --[[ tuple ]]{
+                                  --[[ Node ]]{
+                                    --[[ l : Node ]]{
                                       --[[ l : Empty ]]0,
                                       --[[ v ]]l[0],
                                       --[[ r : Empty ]]0,
                                       --[[ h ]]1
-                                    ],
+                                    },
                                     --[[ v ]]match[0],
                                     --[[ r : Empty ]]0,
                                     --[[ h ]]2
-                                  ],
+                                  },
                                   match[1]
-                                ];
+                                };
                         end
                          end 
                       end
@@ -1080,25 +1080,25 @@ function of_list(l) do
                         if (match$1) then do
                           match$2 = match$1[1];
                           if (match$2) then do
-                            return --[[ tuple ]][
-                                    --[[ Node ]][
-                                      --[[ l : Node ]][
+                            return --[[ tuple ]]{
+                                    --[[ Node ]]{
+                                      --[[ l : Node ]]{
                                         --[[ l : Empty ]]0,
                                         --[[ v ]]l[0],
                                         --[[ r : Empty ]]0,
                                         --[[ h ]]1
-                                      ],
+                                      },
                                       --[[ v ]]match$1[0],
-                                      --[[ r : Node ]][
+                                      --[[ r : Node ]]{
                                         --[[ l : Empty ]]0,
                                         --[[ v ]]match$2[0],
                                         --[[ r : Empty ]]0,
                                         --[[ h ]]1
-                                      ],
+                                      },
                                       --[[ h ]]2
-                                    ],
+                                    },
                                     match$2[1]
-                                  ];
+                                  };
                           end
                            end 
                         end
@@ -1115,19 +1115,19 @@ function of_list(l) do
                 l$1 = match$3[1];
                 if (l$1) then do
                   match$4 = sub((n - nl | 0) - 1 | 0, l$1[1]);
-                  return --[[ tuple ]][
+                  return --[[ tuple ]]{
                           create(match$3[0], l$1[0], match$4[0]),
                           match$4[1]
-                        ];
+                        };
                 end else do
-                  throw [
+                  throw {
                         Caml_builtin_exceptions.assert_failure,
-                        --[[ tuple ]][
+                        --[[ tuple ]]{
                           "set.ml",
                           510,
                           18
-                        ]
-                      ];
+                        }
+                      };
                 end end 
               end end;
               return sub(List.length(l$1), l$1)[0];
@@ -1203,114 +1203,114 @@ function compare$1(t1, t2) do
   end end  end 
 end end
 
-Caml_module.update_mod(--[[ Module ]]Block.__(0, [[--[[ tuple ]][
+Caml_module.update_mod(--[[ Module ]]Block.__(0, {{--[[ tuple ]]{
             --[[ Function ]]0,
             "compare"
-          ]]]), AAA, do
+          }}}), AAA, do
       compare: compare$1
     end);
 
-suites_000 = --[[ tuple ]][
+suites_000 = --[[ tuple ]]{
   "test1",
   (function (param) do
-      return --[[ Eq ]]Block.__(0, [
-                --[[ tuple ]][
+      return --[[ Eq ]]Block.__(0, {
+                --[[ tuple ]]{
                   true,
                   true,
                   false,
                   false
-                ],
-                --[[ tuple ]][
+                },
+                --[[ tuple ]]{
                   Curry._1(A.even, 2),
                   Curry._1(AA.even, 4),
                   Curry._1(B.odd, 2),
                   Curry._1(BB.odd, 4)
-                ]
-              ]);
+                }
+              });
     end end)
-];
+};
 
-suites_001 = --[[ :: ]][
-  --[[ tuple ]][
+suites_001 = --[[ :: ]]{
+  --[[ tuple ]]{
     "test2",
     (function (param) do
-        return --[[ Eq ]]Block.__(0, [
+        return --[[ Eq ]]Block.__(0, {
                   Curry._1(BB.y, --[[ () ]]0),
                   32
-                ]);
+                });
       end end)
-  ],
-  --[[ :: ]][
-    --[[ tuple ]][
+  },
+  --[[ :: ]]{
+    --[[ tuple ]]{
       "test3",
       (function (param) do
-          return --[[ Eq ]]Block.__(0, [
+          return --[[ Eq ]]Block.__(0, {
                     Curry._1(AA.x, --[[ () ]]0),
                     35
-                  ]);
+                  });
         end end)
-    ],
-    --[[ :: ]][
-      --[[ tuple ]][
+    },
+    --[[ :: ]]{
+      --[[ tuple ]]{
         "test4",
         (function (param) do
-            return --[[ Eq ]]Block.__(0, [
+            return --[[ Eq ]]Block.__(0, {
                       true,
                       Curry._1(A.even, 2)
-                    ]);
+                    });
           end end)
-      ],
-      --[[ :: ]][
-        --[[ tuple ]][
+      },
+      --[[ :: ]]{
+        --[[ tuple ]]{
           "test4",
           (function (param) do
-              return --[[ Eq ]]Block.__(0, [
+              return --[[ Eq ]]Block.__(0, {
                         true,
                         Curry._1(AA.even, 4)
-                      ]);
+                      });
             end end)
-        ],
-        --[[ :: ]][
-          --[[ tuple ]][
+        },
+        --[[ :: ]]{
+          --[[ tuple ]]{
             "test5",
             (function (param) do
-                return --[[ Eq ]]Block.__(0, [
+                return --[[ Eq ]]Block.__(0, {
                           false,
                           Curry._1(B.odd, 2)
-                        ]);
+                        });
               end end)
-          ],
-          --[[ :: ]][
-            --[[ tuple ]][
+          },
+          --[[ :: ]]{
+            --[[ tuple ]]{
               "test6",
               (function (param) do
-                  return --[[ Eq ]]Block.__(0, [
+                  return --[[ Eq ]]Block.__(0, {
                             2,
-                            cardinal(of_list(--[[ :: ]][
-                                      --[[ Leaf ]]Block.__(0, ["a"]),
-                                      --[[ :: ]][
-                                        --[[ Leaf ]]Block.__(0, ["b"]),
-                                        --[[ :: ]][
-                                          --[[ Leaf ]]Block.__(0, ["a"]),
+                            cardinal(of_list(--[[ :: ]]{
+                                      --[[ Leaf ]]Block.__(0, {"a"}),
+                                      --[[ :: ]]{
+                                        --[[ Leaf ]]Block.__(0, {"b"}),
+                                        --[[ :: ]]{
+                                          --[[ Leaf ]]Block.__(0, {"a"}),
                                           --[[ [] ]]0
-                                        ]
-                                      ]
-                                    ]))
-                          ]);
+                                        }
+                                      }
+                                    }))
+                          });
                 end end)
-            ],
+            },
             --[[ [] ]]0
-          ]
-        ]
-      ]
-    ]
-  ]
-];
+          }
+        }
+      }
+    }
+  }
+};
 
-suites = --[[ :: ]][
+suites = --[[ :: ]]{
   suites_000,
   suites_001
-];
+};
 
 Mt.from_pair_suites("Rec_module_test", suites);
 

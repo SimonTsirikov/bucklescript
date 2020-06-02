@@ -23,20 +23,20 @@ function length(l) do
 end end
 
 function cons(a, l) do
-  return --[[ :: ]][
+  return --[[ :: ]]{
           a,
           l
-        ];
+        };
 end end
 
 function hd(param) do
   if (param) then do
     return param[0];
   end else do
-    throw [
+    throw {
           Caml_builtin_exceptions.failure,
           "hd"
-        ];
+        };
   end end 
 end end
 
@@ -44,19 +44,19 @@ function tl(param) do
   if (param) then do
     return param[1];
   end else do
-    throw [
+    throw {
           Caml_builtin_exceptions.failure,
           "tl"
-        ];
+        };
   end end 
 end end
 
 function nth(l, n) do
   if (n < 0) then do
-    throw [
+    throw {
           Caml_builtin_exceptions.invalid_argument,
           "List.nth"
-        ];
+        };
   end
    end 
   _l = l;
@@ -73,20 +73,20 @@ function nth(l, n) do
         continue ;
       end end 
     end else do
-      throw [
+      throw {
             Caml_builtin_exceptions.failure,
             "nth"
-          ];
+          };
     end end 
   end;
 end end
 
 function nth_opt(l, n) do
   if (n < 0) then do
-    throw [
+    throw {
           Caml_builtin_exceptions.invalid_argument,
           "List.nth"
-        ];
+        };
   end
    end 
   _l = l;
@@ -113,10 +113,10 @@ function rev_append(_l1, _l2) do
     l2 = _l2;
     l1 = _l1;
     if (l1) then do
-      _l2 = --[[ :: ]][
+      _l2 = --[[ :: ]]{
         l1[0],
         l2
-      ];
+      };
       _l1 = l1[1];
       continue ;
     end else do
@@ -137,10 +137,10 @@ function init_tailrec_aux(_acc, _i, n, f) do
       return acc;
     end else do
       _i = i + 1 | 0;
-      _acc = --[[ :: ]][
+      _acc = --[[ :: ]]{
         Curry._1(f, i),
         acc
-      ];
+      };
       continue ;
     end end 
   end;
@@ -151,19 +151,19 @@ function init_aux(i, n, f) do
     return --[[ [] ]]0;
   end else do
     r = Curry._1(f, i);
-    return --[[ :: ]][
+    return --[[ :: ]]{
             r,
             init_aux(i + 1 | 0, n, f)
-          ];
+          };
   end end 
 end end
 
 function init(len, f) do
   if (len < 0) then do
-    throw [
+    throw {
           Caml_builtin_exceptions.invalid_argument,
           "List.init"
-        ];
+        };
   end
    end 
   if (len > 10000) then do
@@ -184,10 +184,10 @@ end end
 function map(f, param) do
   if (param) then do
     r = Curry._1(f, param[0]);
-    return --[[ :: ]][
+    return --[[ :: ]]{
             r,
             map(f, param[1])
-          ];
+          };
   end else do
     return --[[ [] ]]0;
   end end 
@@ -196,10 +196,10 @@ end end
 function mapi(i, f, param) do
   if (param) then do
     r = Curry._2(f, i, param[0]);
-    return --[[ :: ]][
+    return --[[ :: ]]{
             r,
             mapi(i + 1 | 0, f, param[1])
-          ];
+          };
   end else do
     return --[[ [] ]]0;
   end end 
@@ -217,10 +217,10 @@ function rev_map(f, l) do
     accu = _accu;
     if (param) then do
       _param = param[1];
-      _accu = --[[ :: ]][
+      _accu = --[[ :: ]]{
         Curry._1(f, param[0]),
         accu
-      ];
+      };
       continue ;
     end else do
       return accu;
@@ -285,21 +285,21 @@ function map2(f, l1, l2) do
   if (l1) then do
     if (l2) then do
       r = Curry._2(f, l1[0], l2[0]);
-      return --[[ :: ]][
+      return --[[ :: ]]{
               r,
               map2(f, l1[1], l2[1])
-            ];
+            };
     end else do
-      throw [
+      throw {
             Caml_builtin_exceptions.invalid_argument,
             "List.map2"
-          ];
+          };
     end end 
   end else if (l2) then do
-    throw [
+    throw {
           Caml_builtin_exceptions.invalid_argument,
           "List.map2"
-        ];
+        };
   end else do
     return --[[ [] ]]0;
   end end  end 
@@ -317,23 +317,23 @@ function rev_map2(f, l1, l2) do
       if (l2$1) then do
         _l2 = l2$1[1];
         _l1 = l1$1[1];
-        _accu = --[[ :: ]][
+        _accu = --[[ :: ]]{
           Curry._2(f, l1$1[0], l2$1[0]),
           accu
-        ];
+        };
         continue ;
       end else do
-        throw [
+        throw {
               Caml_builtin_exceptions.invalid_argument,
               "List.rev_map2"
-            ];
+            };
       end end 
     end else do
       if (l2$1) then do
-        throw [
+        throw {
               Caml_builtin_exceptions.invalid_argument,
               "List.rev_map2"
-            ];
+            };
       end
        end 
       return accu;
@@ -352,16 +352,16 @@ function iter2(f, _l1, _l2) do
         _l1 = l1[1];
         continue ;
       end else do
-        throw [
+        throw {
               Caml_builtin_exceptions.invalid_argument,
               "List.iter2"
-            ];
+            };
       end end 
     end else if (l2) then do
-      throw [
+      throw {
             Caml_builtin_exceptions.invalid_argument,
             "List.iter2"
-          ];
+          };
     end else do
       return --[[ () ]]0;
     end end  end 
@@ -380,17 +380,17 @@ function fold_left2(f, _accu, _l1, _l2) do
         _accu = Curry._3(f, accu, l1[0], l2[0]);
         continue ;
       end else do
-        throw [
+        throw {
               Caml_builtin_exceptions.invalid_argument,
               "List.fold_left2"
-            ];
+            };
       end end 
     end else do
       if (l2) then do
-        throw [
+        throw {
               Caml_builtin_exceptions.invalid_argument,
               "List.fold_left2"
-            ];
+            };
       end
        end 
       return accu;
@@ -403,17 +403,17 @@ function fold_right2(f, l1, l2, accu) do
     if (l2) then do
       return Curry._3(f, l1[0], l2[0], fold_right2(f, l1[1], l2[1], accu));
     end else do
-      throw [
+      throw {
             Caml_builtin_exceptions.invalid_argument,
             "List.fold_right2"
-          ];
+          };
     end end 
   end else do
     if (l2) then do
-      throw [
+      throw {
             Caml_builtin_exceptions.invalid_argument,
             "List.fold_right2"
-          ];
+          };
     end
      end 
     return accu;
@@ -466,16 +466,16 @@ function for_all2(p, _l1, _l2) do
           return false;
         end end 
       end else do
-        throw [
+        throw {
               Caml_builtin_exceptions.invalid_argument,
               "List.for_all2"
-            ];
+            };
       end end 
     end else if (l2) then do
-      throw [
+      throw {
             Caml_builtin_exceptions.invalid_argument,
             "List.for_all2"
-          ];
+          };
     end else do
       return true;
     end end  end 
@@ -496,16 +496,16 @@ function exists2(p, _l1, _l2) do
           continue ;
         end end 
       end else do
-        throw [
+        throw {
               Caml_builtin_exceptions.invalid_argument,
               "List.exists2"
-            ];
+            };
       end end 
     end else if (l2) then do
-      throw [
+      throw {
             Caml_builtin_exceptions.invalid_argument,
             "List.exists2"
-          ];
+          };
     end else do
       return false;
     end end  end 
@@ -651,10 +651,10 @@ function remove_assoc(x, param) do
     if (Caml_obj.caml_equal(pair[0], x)) then do
       return l;
     end else do
-      return --[[ :: ]][
+      return --[[ :: ]]{
               pair,
               remove_assoc(x, l)
-            ];
+            };
     end end 
   end else do
     return --[[ [] ]]0;
@@ -668,10 +668,10 @@ function remove_assq(x, param) do
     if (pair[0] == x) then do
       return l;
     end else do
-      return --[[ :: ]][
+      return --[[ :: ]]{
               pair,
               remove_assq(x, l)
-            ];
+            };
     end end 
   end else do
     return --[[ [] ]]0;
@@ -724,10 +724,10 @@ function find_all(p) do
           x = param$1[0];
           if (Curry._1(p, x)) then do
             _param = l;
-            _accu = --[[ :: ]][
+            _accu = --[[ :: ]]{
               x,
               accu
-            ];
+            };
             continue ;
           end else do
             _param = l;
@@ -753,24 +753,24 @@ function partition(p, l) do
       x = param[0];
       if (Curry._1(p, x)) then do
         _param = l$1;
-        _yes = --[[ :: ]][
+        _yes = --[[ :: ]]{
           x,
           yes
-        ];
+        };
         continue ;
       end else do
         _param = l$1;
-        _no = --[[ :: ]][
+        _no = --[[ :: ]]{
           x,
           no
-        ];
+        };
         continue ;
       end end 
     end else do
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               rev_append(yes, --[[ [] ]]0),
               rev_append(no, --[[ [] ]]0)
-            ];
+            };
     end end 
   end;
 end end
@@ -779,45 +779,45 @@ function split(param) do
   if (param) then do
     match = param[0];
     match$1 = split(param[1]);
-    return --[[ tuple ]][
-            --[[ :: ]][
+    return --[[ tuple ]]{
+            --[[ :: ]]{
               match[0],
               match$1[0]
-            ],
-            --[[ :: ]][
+            },
+            --[[ :: ]]{
               match[1],
               match$1[1]
-            ]
-          ];
+            }
+          };
   end else do
-    return --[[ tuple ]][
+    return --[[ tuple ]]{
             --[[ [] ]]0,
             --[[ [] ]]0
-          ];
+          };
   end end 
 end end
 
 function combine(l1, l2) do
   if (l1) then do
     if (l2) then do
-      return --[[ :: ]][
-              --[[ tuple ]][
+      return --[[ :: ]]{
+              --[[ tuple ]]{
                 l1[0],
                 l2[0]
-              ],
+              },
               combine(l1[1], l2[1])
-            ];
+            };
     end else do
-      throw [
+      throw {
             Caml_builtin_exceptions.invalid_argument,
             "List.combine"
-          ];
+          };
     end end 
   end else if (l2) then do
-    throw [
+    throw {
           Caml_builtin_exceptions.invalid_argument,
           "List.combine"
-        ];
+        };
   end else do
     return --[[ [] ]]0;
   end end  end 
@@ -829,15 +829,15 @@ function merge(cmp, l1, l2) do
       h2 = l2[0];
       h1 = l1[0];
       if (Curry._2(cmp, h1, h2) <= 0) then do
-        return --[[ :: ]][
+        return --[[ :: ]]{
                 h1,
                 merge(cmp, l1[1], l2)
-              ];
+              };
       end else do
-        return --[[ :: ]][
+        return --[[ :: ]]{
                 h2,
                 merge(cmp, l1, l2[1])
-              ];
+              };
       end end 
     end else do
       return l1;
@@ -858,14 +858,14 @@ function chop(_k, _l) do
       _k = k - 1 | 0;
       continue ;
     end else do
-      throw [
+      throw {
             Caml_builtin_exceptions.assert_failure,
-            --[[ tuple ]][
+            --[[ tuple ]]{
               "list.ml",
               262,
               11
-            ]
-          ];
+            }
+          };
     end end  end 
   end;
 end end
@@ -883,72 +883,72 @@ function stable_sort(cmp, l) do
             x1 = l[0];
             if (Curry._2(cmp, x1, x2) <= 0) then do
               if (Curry._2(cmp, x2, x3) <= 0) then do
-                return --[[ :: ]][
+                return --[[ :: ]]{
                         x1,
-                        --[[ :: ]][
+                        --[[ :: ]]{
                           x2,
-                          --[[ :: ]][
+                          --[[ :: ]]{
                             x3,
                             --[[ [] ]]0
-                          ]
-                        ]
-                      ];
+                          }
+                        }
+                      };
               end else if (Curry._2(cmp, x1, x3) <= 0) then do
-                return --[[ :: ]][
+                return --[[ :: ]]{
                         x1,
-                        --[[ :: ]][
+                        --[[ :: ]]{
                           x3,
-                          --[[ :: ]][
+                          --[[ :: ]]{
                             x2,
                             --[[ [] ]]0
-                          ]
-                        ]
-                      ];
+                          }
+                        }
+                      };
               end else do
-                return --[[ :: ]][
+                return --[[ :: ]]{
                         x3,
-                        --[[ :: ]][
+                        --[[ :: ]]{
                           x1,
-                          --[[ :: ]][
+                          --[[ :: ]]{
                             x2,
                             --[[ [] ]]0
-                          ]
-                        ]
-                      ];
+                          }
+                        }
+                      };
               end end  end 
             end else if (Curry._2(cmp, x1, x3) <= 0) then do
-              return --[[ :: ]][
+              return --[[ :: ]]{
                       x2,
-                      --[[ :: ]][
+                      --[[ :: ]]{
                         x1,
-                        --[[ :: ]][
+                        --[[ :: ]]{
                           x3,
                           --[[ [] ]]0
-                        ]
-                      ]
-                    ];
+                        }
+                      }
+                    };
             end else if (Curry._2(cmp, x2, x3) <= 0) then do
-              return --[[ :: ]][
+              return --[[ :: ]]{
                       x2,
-                      --[[ :: ]][
+                      --[[ :: ]]{
                         x3,
-                        --[[ :: ]][
+                        --[[ :: ]]{
                           x1,
                           --[[ [] ]]0
-                        ]
-                      ]
-                    ];
+                        }
+                      }
+                    };
             end else do
-              return --[[ :: ]][
+              return --[[ :: ]]{
                       x3,
-                      --[[ :: ]][
+                      --[[ :: ]]{
                         x2,
-                        --[[ :: ]][
+                        --[[ :: ]]{
                           x1,
                           --[[ [] ]]0
-                        ]
-                      ]
-                    ];
+                        }
+                      }
+                    };
             end end  end  end 
           end
            end 
@@ -962,21 +962,21 @@ function stable_sort(cmp, l) do
         x2$1 = match$2[0];
         x1$1 = l[0];
         if (Curry._2(cmp, x1$1, x2$1) <= 0) then do
-          return --[[ :: ]][
+          return --[[ :: ]]{
                   x1$1,
-                  --[[ :: ]][
+                  --[[ :: ]]{
                     x2$1,
                     --[[ [] ]]0
-                  ]
-                ];
+                  }
+                };
         end else do
-          return --[[ :: ]][
+          return --[[ :: ]]{
                   x2$1,
-                  --[[ :: ]][
+                  --[[ :: ]]{
                     x1$1,
                     --[[ [] ]]0
-                  ]
-                ];
+                  }
+                };
         end end 
       end
        end 
@@ -999,17 +999,17 @@ function stable_sort(cmp, l) do
           h2 = l2$1[0];
           h1 = l1[0];
           if (Curry._2(cmp, h1, h2) > 0) then do
-            _accu = --[[ :: ]][
+            _accu = --[[ :: ]]{
               h1,
               accu
-            ];
+            };
             _l1 = l1[1];
             continue ;
           end else do
-            _accu = --[[ :: ]][
+            _accu = --[[ :: ]]{
               h2,
               accu
-            ];
+            };
             _l2 = l2$1[1];
             continue ;
           end end 
@@ -1033,72 +1033,72 @@ function stable_sort(cmp, l) do
             x1 = l[0];
             if (Curry._2(cmp, x1, x2) > 0) then do
               if (Curry._2(cmp, x2, x3) > 0) then do
-                return --[[ :: ]][
+                return --[[ :: ]]{
                         x1,
-                        --[[ :: ]][
+                        --[[ :: ]]{
                           x2,
-                          --[[ :: ]][
+                          --[[ :: ]]{
                             x3,
                             --[[ [] ]]0
-                          ]
-                        ]
-                      ];
+                          }
+                        }
+                      };
               end else if (Curry._2(cmp, x1, x3) > 0) then do
-                return --[[ :: ]][
+                return --[[ :: ]]{
                         x1,
-                        --[[ :: ]][
+                        --[[ :: ]]{
                           x3,
-                          --[[ :: ]][
+                          --[[ :: ]]{
                             x2,
                             --[[ [] ]]0
-                          ]
-                        ]
-                      ];
+                          }
+                        }
+                      };
               end else do
-                return --[[ :: ]][
+                return --[[ :: ]]{
                         x3,
-                        --[[ :: ]][
+                        --[[ :: ]]{
                           x1,
-                          --[[ :: ]][
+                          --[[ :: ]]{
                             x2,
                             --[[ [] ]]0
-                          ]
-                        ]
-                      ];
+                          }
+                        }
+                      };
               end end  end 
             end else if (Curry._2(cmp, x1, x3) > 0) then do
-              return --[[ :: ]][
+              return --[[ :: ]]{
                       x2,
-                      --[[ :: ]][
+                      --[[ :: ]]{
                         x1,
-                        --[[ :: ]][
+                        --[[ :: ]]{
                           x3,
                           --[[ [] ]]0
-                        ]
-                      ]
-                    ];
+                        }
+                      }
+                    };
             end else if (Curry._2(cmp, x2, x3) > 0) then do
-              return --[[ :: ]][
+              return --[[ :: ]]{
                       x2,
-                      --[[ :: ]][
+                      --[[ :: ]]{
                         x3,
-                        --[[ :: ]][
+                        --[[ :: ]]{
                           x1,
                           --[[ [] ]]0
-                        ]
-                      ]
-                    ];
+                        }
+                      }
+                    };
             end else do
-              return --[[ :: ]][
+              return --[[ :: ]]{
                       x3,
-                      --[[ :: ]][
+                      --[[ :: ]]{
                         x2,
-                        --[[ :: ]][
+                        --[[ :: ]]{
                           x1,
                           --[[ [] ]]0
-                        ]
-                      ]
-                    ];
+                        }
+                      }
+                    };
             end end  end  end 
           end
            end 
@@ -1112,21 +1112,21 @@ function stable_sort(cmp, l) do
         x2$1 = match$2[0];
         x1$1 = l[0];
         if (Curry._2(cmp, x1$1, x2$1) > 0) then do
-          return --[[ :: ]][
+          return --[[ :: ]]{
                   x1$1,
-                  --[[ :: ]][
+                  --[[ :: ]]{
                     x2$1,
                     --[[ [] ]]0
-                  ]
-                ];
+                  }
+                };
         end else do
-          return --[[ :: ]][
+          return --[[ :: ]]{
                   x2$1,
-                  --[[ :: ]][
+                  --[[ :: ]]{
                     x1$1,
                     --[[ [] ]]0
-                  ]
-                ];
+                  }
+                };
         end end 
       end
        end 
@@ -1149,17 +1149,17 @@ function stable_sort(cmp, l) do
           h2 = l2$1[0];
           h1 = l1[0];
           if (Curry._2(cmp, h1, h2) <= 0) then do
-            _accu = --[[ :: ]][
+            _accu = --[[ :: ]]{
               h1,
               accu
-            ];
+            };
             _l1 = l1[1];
             continue ;
           end else do
-            _accu = --[[ :: ]][
+            _accu = --[[ :: ]]{
               h2,
               accu
-            ];
+            };
             _l2 = l2$1[1];
             continue ;
           end end 
@@ -1194,135 +1194,135 @@ function sort_uniq(cmp, l) do
             if (c == 0) then do
               c$1 = Curry._2(cmp, x2, x3);
               if (c$1 == 0) then do
-                return --[[ :: ]][
+                return --[[ :: ]]{
                         x2,
                         --[[ [] ]]0
-                      ];
+                      };
               end else if (c$1 < 0) then do
-                return --[[ :: ]][
+                return --[[ :: ]]{
                         x2,
-                        --[[ :: ]][
+                        --[[ :: ]]{
                           x3,
                           --[[ [] ]]0
-                        ]
-                      ];
+                        }
+                      };
               end else do
-                return --[[ :: ]][
+                return --[[ :: ]]{
                         x3,
-                        --[[ :: ]][
+                        --[[ :: ]]{
                           x2,
                           --[[ [] ]]0
-                        ]
-                      ];
+                        }
+                      };
               end end  end 
             end else if (c < 0) then do
               c$2 = Curry._2(cmp, x2, x3);
               if (c$2 == 0) then do
-                return --[[ :: ]][
+                return --[[ :: ]]{
                         x1,
-                        --[[ :: ]][
+                        --[[ :: ]]{
                           x2,
                           --[[ [] ]]0
-                        ]
-                      ];
+                        }
+                      };
               end else if (c$2 < 0) then do
-                return --[[ :: ]][
+                return --[[ :: ]]{
                         x1,
-                        --[[ :: ]][
+                        --[[ :: ]]{
                           x2,
-                          --[[ :: ]][
+                          --[[ :: ]]{
                             x3,
                             --[[ [] ]]0
-                          ]
-                        ]
-                      ];
+                          }
+                        }
+                      };
               end else do
                 c$3 = Curry._2(cmp, x1, x3);
                 if (c$3 == 0) then do
-                  return --[[ :: ]][
+                  return --[[ :: ]]{
                           x1,
-                          --[[ :: ]][
+                          --[[ :: ]]{
                             x2,
                             --[[ [] ]]0
-                          ]
-                        ];
+                          }
+                        };
                 end else if (c$3 < 0) then do
-                  return --[[ :: ]][
+                  return --[[ :: ]]{
                           x1,
-                          --[[ :: ]][
+                          --[[ :: ]]{
                             x3,
-                            --[[ :: ]][
+                            --[[ :: ]]{
                               x2,
                               --[[ [] ]]0
-                            ]
-                          ]
-                        ];
+                            }
+                          }
+                        };
                 end else do
-                  return --[[ :: ]][
+                  return --[[ :: ]]{
                           x3,
-                          --[[ :: ]][
+                          --[[ :: ]]{
                             x1,
-                            --[[ :: ]][
+                            --[[ :: ]]{
                               x2,
                               --[[ [] ]]0
-                            ]
-                          ]
-                        ];
+                            }
+                          }
+                        };
                 end end  end 
               end end  end 
             end else do
               c$4 = Curry._2(cmp, x1, x3);
               if (c$4 == 0) then do
-                return --[[ :: ]][
+                return --[[ :: ]]{
                         x2,
-                        --[[ :: ]][
+                        --[[ :: ]]{
                           x1,
                           --[[ [] ]]0
-                        ]
-                      ];
+                        }
+                      };
               end else if (c$4 < 0) then do
-                return --[[ :: ]][
+                return --[[ :: ]]{
                         x2,
-                        --[[ :: ]][
+                        --[[ :: ]]{
                           x1,
-                          --[[ :: ]][
+                          --[[ :: ]]{
                             x3,
                             --[[ [] ]]0
-                          ]
-                        ]
-                      ];
+                          }
+                        }
+                      };
               end else do
                 c$5 = Curry._2(cmp, x2, x3);
                 if (c$5 == 0) then do
-                  return --[[ :: ]][
+                  return --[[ :: ]]{
                           x2,
-                          --[[ :: ]][
+                          --[[ :: ]]{
                             x1,
                             --[[ [] ]]0
-                          ]
-                        ];
+                          }
+                        };
                 end else if (c$5 < 0) then do
-                  return --[[ :: ]][
+                  return --[[ :: ]]{
                           x2,
-                          --[[ :: ]][
+                          --[[ :: ]]{
                             x3,
-                            --[[ :: ]][
+                            --[[ :: ]]{
                               x1,
                               --[[ [] ]]0
-                            ]
-                          ]
-                        ];
+                            }
+                          }
+                        };
                 end else do
-                  return --[[ :: ]][
+                  return --[[ :: ]]{
                           x3,
-                          --[[ :: ]][
+                          --[[ :: ]]{
                             x2,
-                            --[[ :: ]][
+                            --[[ :: ]]{
                               x1,
                               --[[ [] ]]0
-                            ]
-                          ]
-                        ];
+                            }
+                          }
+                        };
                 end end  end 
               end end  end 
             end end  end 
@@ -1339,26 +1339,26 @@ function sort_uniq(cmp, l) do
         x1$1 = l[0];
         c$6 = Curry._2(cmp, x1$1, x2$1);
         if (c$6 == 0) then do
-          return --[[ :: ]][
+          return --[[ :: ]]{
                   x1$1,
                   --[[ [] ]]0
-                ];
+                };
         end else if (c$6 < 0) then do
-          return --[[ :: ]][
+          return --[[ :: ]]{
                   x1$1,
-                  --[[ :: ]][
+                  --[[ :: ]]{
                     x2$1,
                     --[[ [] ]]0
-                  ]
-                ];
+                  }
+                };
         end else do
-          return --[[ :: ]][
+          return --[[ :: ]]{
                   x2$1,
-                  --[[ :: ]][
+                  --[[ :: ]]{
                     x1$1,
                     --[[ [] ]]0
-                  ]
-                ];
+                  }
+                };
         end end  end 
       end
        end 
@@ -1384,25 +1384,25 @@ function sort_uniq(cmp, l) do
           h1 = l1[0];
           c$7 = Curry._2(cmp, h1, h2);
           if (c$7 == 0) then do
-            _accu = --[[ :: ]][
+            _accu = --[[ :: ]]{
               h1,
               accu
-            ];
+            };
             _l2 = t2;
             _l1 = t1;
             continue ;
           end else if (c$7 > 0) then do
-            _accu = --[[ :: ]][
+            _accu = --[[ :: ]]{
               h1,
               accu
-            ];
+            };
             _l1 = t1;
             continue ;
           end else do
-            _accu = --[[ :: ]][
+            _accu = --[[ :: ]]{
               h2,
               accu
-            ];
+            };
             _l2 = t2;
             continue ;
           end end  end 
@@ -1428,135 +1428,135 @@ function sort_uniq(cmp, l) do
             if (c == 0) then do
               c$1 = Curry._2(cmp, x2, x3);
               if (c$1 == 0) then do
-                return --[[ :: ]][
+                return --[[ :: ]]{
                         x2,
                         --[[ [] ]]0
-                      ];
+                      };
               end else if (c$1 > 0) then do
-                return --[[ :: ]][
+                return --[[ :: ]]{
                         x2,
-                        --[[ :: ]][
+                        --[[ :: ]]{
                           x3,
                           --[[ [] ]]0
-                        ]
-                      ];
+                        }
+                      };
               end else do
-                return --[[ :: ]][
+                return --[[ :: ]]{
                         x3,
-                        --[[ :: ]][
+                        --[[ :: ]]{
                           x2,
                           --[[ [] ]]0
-                        ]
-                      ];
+                        }
+                      };
               end end  end 
             end else if (c > 0) then do
               c$2 = Curry._2(cmp, x2, x3);
               if (c$2 == 0) then do
-                return --[[ :: ]][
+                return --[[ :: ]]{
                         x1,
-                        --[[ :: ]][
+                        --[[ :: ]]{
                           x2,
                           --[[ [] ]]0
-                        ]
-                      ];
+                        }
+                      };
               end else if (c$2 > 0) then do
-                return --[[ :: ]][
+                return --[[ :: ]]{
                         x1,
-                        --[[ :: ]][
+                        --[[ :: ]]{
                           x2,
-                          --[[ :: ]][
+                          --[[ :: ]]{
                             x3,
                             --[[ [] ]]0
-                          ]
-                        ]
-                      ];
+                          }
+                        }
+                      };
               end else do
                 c$3 = Curry._2(cmp, x1, x3);
                 if (c$3 == 0) then do
-                  return --[[ :: ]][
+                  return --[[ :: ]]{
                           x1,
-                          --[[ :: ]][
+                          --[[ :: ]]{
                             x2,
                             --[[ [] ]]0
-                          ]
-                        ];
+                          }
+                        };
                 end else if (c$3 > 0) then do
-                  return --[[ :: ]][
+                  return --[[ :: ]]{
                           x1,
-                          --[[ :: ]][
+                          --[[ :: ]]{
                             x3,
-                            --[[ :: ]][
+                            --[[ :: ]]{
                               x2,
                               --[[ [] ]]0
-                            ]
-                          ]
-                        ];
+                            }
+                          }
+                        };
                 end else do
-                  return --[[ :: ]][
+                  return --[[ :: ]]{
                           x3,
-                          --[[ :: ]][
+                          --[[ :: ]]{
                             x1,
-                            --[[ :: ]][
+                            --[[ :: ]]{
                               x2,
                               --[[ [] ]]0
-                            ]
-                          ]
-                        ];
+                            }
+                          }
+                        };
                 end end  end 
               end end  end 
             end else do
               c$4 = Curry._2(cmp, x1, x3);
               if (c$4 == 0) then do
-                return --[[ :: ]][
+                return --[[ :: ]]{
                         x2,
-                        --[[ :: ]][
+                        --[[ :: ]]{
                           x1,
                           --[[ [] ]]0
-                        ]
-                      ];
+                        }
+                      };
               end else if (c$4 > 0) then do
-                return --[[ :: ]][
+                return --[[ :: ]]{
                         x2,
-                        --[[ :: ]][
+                        --[[ :: ]]{
                           x1,
-                          --[[ :: ]][
+                          --[[ :: ]]{
                             x3,
                             --[[ [] ]]0
-                          ]
-                        ]
-                      ];
+                          }
+                        }
+                      };
               end else do
                 c$5 = Curry._2(cmp, x2, x3);
                 if (c$5 == 0) then do
-                  return --[[ :: ]][
+                  return --[[ :: ]]{
                           x2,
-                          --[[ :: ]][
+                          --[[ :: ]]{
                             x1,
                             --[[ [] ]]0
-                          ]
-                        ];
+                          }
+                        };
                 end else if (c$5 > 0) then do
-                  return --[[ :: ]][
+                  return --[[ :: ]]{
                           x2,
-                          --[[ :: ]][
+                          --[[ :: ]]{
                             x3,
-                            --[[ :: ]][
+                            --[[ :: ]]{
                               x1,
                               --[[ [] ]]0
-                            ]
-                          ]
-                        ];
+                            }
+                          }
+                        };
                 end else do
-                  return --[[ :: ]][
+                  return --[[ :: ]]{
                           x3,
-                          --[[ :: ]][
+                          --[[ :: ]]{
                             x2,
-                            --[[ :: ]][
+                            --[[ :: ]]{
                               x1,
                               --[[ [] ]]0
-                            ]
-                          ]
-                        ];
+                            }
+                          }
+                        };
                 end end  end 
               end end  end 
             end end  end 
@@ -1573,26 +1573,26 @@ function sort_uniq(cmp, l) do
         x1$1 = l[0];
         c$6 = Curry._2(cmp, x1$1, x2$1);
         if (c$6 == 0) then do
-          return --[[ :: ]][
+          return --[[ :: ]]{
                   x1$1,
                   --[[ [] ]]0
-                ];
+                };
         end else if (c$6 > 0) then do
-          return --[[ :: ]][
+          return --[[ :: ]]{
                   x1$1,
-                  --[[ :: ]][
+                  --[[ :: ]]{
                     x2$1,
                     --[[ [] ]]0
-                  ]
-                ];
+                  }
+                };
         end else do
-          return --[[ :: ]][
+          return --[[ :: ]]{
                   x2$1,
-                  --[[ :: ]][
+                  --[[ :: ]]{
                     x1$1,
                     --[[ [] ]]0
-                  ]
-                ];
+                  }
+                };
         end end  end 
       end
        end 
@@ -1618,25 +1618,25 @@ function sort_uniq(cmp, l) do
           h1 = l1[0];
           c$7 = Curry._2(cmp, h1, h2);
           if (c$7 == 0) then do
-            _accu = --[[ :: ]][
+            _accu = --[[ :: ]]{
               h1,
               accu
-            ];
+            };
             _l2 = t2;
             _l1 = t1;
             continue ;
           end else if (c$7 < 0) then do
-            _accu = --[[ :: ]][
+            _accu = --[[ :: ]]{
               h1,
               accu
-            ];
+            };
             _l1 = t1;
             continue ;
           end else do
-            _accu = --[[ :: ]][
+            _accu = --[[ :: ]]{
               h2,
               accu
-            ];
+            };
             _l2 = t2;
             continue ;
           end end  end 

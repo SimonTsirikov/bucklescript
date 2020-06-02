@@ -2,15 +2,15 @@
 
 Belt_Array = require "../../lib/js/belt_Array.lua";
 
-b = Belt_Array.eq([
+b = Belt_Array.eq({
       1,
       2,
       3
-    ], [
+    }, {
       1,
       2,
       3
-    ], (function (prim, prim$1) do
+    }, (function (prim, prim$1) do
         return prim == prim$1;
       end end));
 

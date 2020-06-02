@@ -13,14 +13,14 @@ function f(param) do
         return 1;end end end 
      do
     else do
-      throw [
+      throw {
             Caml_builtin_exceptions.assert_failure,
-            --[[ tuple ]][
+            --[[ tuple ]]{
               "test_string.ml",
               4,
               18
-            ]
-          ];
+            }
+          };
       end end
       
   end

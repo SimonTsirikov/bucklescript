@@ -14,22 +14,22 @@ end;
 function add_test(loc, test) do
   counter.contents = counter.contents + 1 | 0;
   id = loc .. (" id " .. String(counter.contents));
-  suites.contents = --[[ :: ]][
-    --[[ tuple ]][
+  suites.contents = --[[ :: ]]{
+    --[[ tuple ]]{
       id,
       test
-    ],
+    },
     suites.contents
-  ];
+  };
   return --[[ () ]]0;
 end end
 
 function eq(loc, x, y) do
   return add_test(loc, (function (param) do
-                return --[[ Eq ]]Block.__(0, [
+                return --[[ Eq ]]Block.__(0, {
                           x,
                           y
-                        ]);
+                        });
               end end));
 end end
 

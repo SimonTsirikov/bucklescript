@@ -8,16 +8,16 @@ local ___conditional___=(Sys.os_type);
 do
    if ___conditional___ = "Cygwin"
    or ___conditional___ = "Unix" then do
-      match = --[[ tuple ]][
+      match = --[[ tuple ]]{
         1,
         2
-      ];end else 
+      };end else 
    do end end
   else do
-    match = --[[ tuple ]][
+    match = --[[ tuple ]]{
       3,
       4
-    ];
+    };
     end end
     
 end

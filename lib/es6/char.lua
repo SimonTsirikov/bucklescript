@@ -5,10 +5,10 @@ import * as Caml_builtin_exceptions from "./caml_builtin_exceptions.lua";
 
 function chr(n) do
   if (n < 0 or n > 255) then do
-    throw [
+    throw {
           Caml_builtin_exceptions.invalid_argument,
           "Char.chr"
-        ];
+        };
   end
    end 
   return n;
@@ -59,19 +59,19 @@ function escaped(c) do
   local ___conditional___=(exit);
   do
      if ___conditional___ = 1 then do
-        s = [
+        s = {
           0,
           0,
           0,
           0
-        ];
+        };
         s[0] = --[[ "\\" ]]92;
         s[1] = 48 + (c / 100 | 0) | 0;
         s[2] = 48 + (c / 10 | 0) % 10 | 0;
         s[3] = 48 + c % 10 | 0;
         return Caml_bytes.bytes_to_string(s);end end end 
      if ___conditional___ = 2 then do
-        s$1 = [0];
+        s$1 = {0};
         s$1[0] = c;
         return Caml_bytes.bytes_to_string(s$1);end end end 
      do

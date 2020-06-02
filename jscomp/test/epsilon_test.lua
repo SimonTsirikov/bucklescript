@@ -6,33 +6,33 @@ Pervasives = require "../../lib/js/pervasives.lua";
 
 v = (Number.EPSILON?Number.EPSILON:2.220446049250313e-16);
 
-suites_000 = --[[ tuple ]][
+suites_000 = --[[ tuple ]]{
   "epsilon",
   (function (param) do
-      return --[[ Eq ]]Block.__(0, [
+      return --[[ Eq ]]Block.__(0, {
                 Pervasives.epsilon_float,
                 v
-              ]);
+              });
     end end)
-];
+};
 
-suites_001 = --[[ :: ]][
-  --[[ tuple ]][
+suites_001 = --[[ :: ]]{
+  --[[ tuple ]]{
     "raw_epsilon",
     (function (param) do
-        return --[[ Eq ]]Block.__(0, [
+        return --[[ Eq ]]Block.__(0, {
                   2.220446049250313e-16,
                   v
-                ]);
+                });
       end end)
-  ],
+  },
   --[[ [] ]]0
-];
+};
 
-suites = --[[ :: ]][
+suites = --[[ :: ]]{
   suites_000,
   suites_001
-];
+};
 
 Mt.from_pair_suites("Epsilon_test", suites);
 

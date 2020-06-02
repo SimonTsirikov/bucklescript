@@ -18,38 +18,38 @@ end;
 
 function record(fmt) do
   return Printf.kprintf((function (s) do
-                accum.contents = --[[ :: ]][
+                accum.contents = --[[ :: ]]{
                   s,
                   accum.contents
-                ];
+                };
                 return --[[ () ]]0;
               end end), fmt);
 end end
 
 function f_unit(param) do
-  return record(--[[ Format ]][
-              --[[ String_literal ]]Block.__(11, [
+  return record(--[[ Format ]]{
+              --[[ String_literal ]]Block.__(11, {
                   "unit()",
                   --[[ End_of_format ]]0
-                ]),
+                }),
               "unit()"
-            ]);
+            });
 end end
 
 function f_bool(b) do
-  return Curry._1(record(--[[ Format ]][
-                  --[[ String_literal ]]Block.__(11, [
+  return Curry._1(record(--[[ Format ]]{
+                  --[[ String_literal ]]Block.__(11, {
                       "bool(",
-                      --[[ Bool ]]Block.__(9, [
+                      --[[ Bool ]]Block.__(9, {
                           --[[ No_padding ]]0,
-                          --[[ Char_literal ]]Block.__(12, [
+                          --[[ Char_literal ]]Block.__(12, {
                               --[[ ")" ]]41,
                               --[[ End_of_format ]]0
-                            ])
-                        ])
-                    ]),
+                            })
+                        })
+                    }),
                   "bool(%b)"
-                ]), b);
+                }), b);
 end end
 
 r_set = do
@@ -61,19 +61,19 @@ r_clear = do
 end;
 
 function f_string(s) do
-  return Curry._1(record(--[[ Format ]][
-                  --[[ String_literal ]]Block.__(11, [
+  return Curry._1(record(--[[ Format ]]{
+                  --[[ String_literal ]]Block.__(11, {
                       "string(",
-                      --[[ String ]]Block.__(2, [
+                      --[[ String ]]Block.__(2, {
                           --[[ No_padding ]]0,
-                          --[[ Char_literal ]]Block.__(12, [
+                          --[[ Char_literal ]]Block.__(12, {
                               --[[ ")" ]]41,
                               --[[ End_of_format ]]0
-                            ])
-                        ])
-                    ]),
+                            })
+                        })
+                    }),
                   "string(%s)"
-                ]), s);
+                }), s);
 end end
 
 r_string = do
@@ -81,21 +81,21 @@ r_string = do
 end;
 
 function f_int(i) do
-  return Curry._1(record(--[[ Format ]][
-                  --[[ String_literal ]]Block.__(11, [
+  return Curry._1(record(--[[ Format ]]{
+                  --[[ String_literal ]]Block.__(11, {
                       "int(",
-                      --[[ Int ]]Block.__(4, [
+                      --[[ Int ]]Block.__(4, {
                           --[[ Int_d ]]0,
                           --[[ No_padding ]]0,
                           --[[ No_precision ]]0,
-                          --[[ Char_literal ]]Block.__(12, [
+                          --[[ Char_literal ]]Block.__(12, {
                               --[[ ")" ]]41,
                               --[[ End_of_format ]]0
-                            ])
-                        ])
-                    ]),
+                            })
+                        })
+                    }),
                   "int(%d)"
-                ]), i);
+                }), i);
 end end
 
 r_int = do
@@ -103,21 +103,21 @@ r_int = do
 end;
 
 function f_float(f) do
-  return Curry._1(record(--[[ Format ]][
-                  --[[ String_literal ]]Block.__(11, [
+  return Curry._1(record(--[[ Format ]]{
+                  --[[ String_literal ]]Block.__(11, {
                       "float(",
-                      --[[ Float ]]Block.__(8, [
+                      --[[ Float ]]Block.__(8, {
                           --[[ Float_g ]]9,
                           --[[ No_padding ]]0,
                           --[[ No_precision ]]0,
-                          --[[ Char_literal ]]Block.__(12, [
+                          --[[ Char_literal ]]Block.__(12, {
                               --[[ ")" ]]41,
                               --[[ End_of_format ]]0
-                            ])
-                        ])
-                    ]),
+                            })
+                        })
+                    }),
                   "float(%g)"
-                ]), f);
+                }), f);
 end end
 
 r_float = do
@@ -125,172 +125,172 @@ r_float = do
 end;
 
 function f_symbol(s) do
-  return Curry._1(record(--[[ Format ]][
-                  --[[ String_literal ]]Block.__(11, [
+  return Curry._1(record(--[[ Format ]]{
+                  --[[ String_literal ]]Block.__(11, {
                       "symbol(",
-                      --[[ String ]]Block.__(2, [
+                      --[[ String ]]Block.__(2, {
                           --[[ No_padding ]]0,
-                          --[[ Char_literal ]]Block.__(12, [
+                          --[[ Char_literal ]]Block.__(12, {
                               --[[ ")" ]]41,
                               --[[ End_of_format ]]0
-                            ])
-                        ])
-                    ]),
+                            })
+                        })
+                    }),
                   "symbol(%s)"
-                ]), s);
+                }), s);
 end end
 
 function f_rest(s) do
-  return Curry._1(record(--[[ Format ]][
-                  --[[ String_literal ]]Block.__(11, [
+  return Curry._1(record(--[[ Format ]]{
+                  --[[ String_literal ]]Block.__(11, {
                       "rest(",
-                      --[[ String ]]Block.__(2, [
+                      --[[ String ]]Block.__(2, {
                           --[[ No_padding ]]0,
-                          --[[ Char_literal ]]Block.__(12, [
+                          --[[ Char_literal ]]Block.__(12, {
                               --[[ ")" ]]41,
                               --[[ End_of_format ]]0
-                            ])
-                        ])
-                    ]),
+                            })
+                        })
+                    }),
                   "rest(%s)"
-                ]), s);
+                }), s);
 end end
 
 function f_anon(s) do
-  return Curry._1(record(--[[ Format ]][
-                  --[[ String_literal ]]Block.__(11, [
+  return Curry._1(record(--[[ Format ]]{
+                  --[[ String_literal ]]Block.__(11, {
                       "anon(",
-                      --[[ String ]]Block.__(2, [
+                      --[[ String ]]Block.__(2, {
                           --[[ No_padding ]]0,
-                          --[[ Char_literal ]]Block.__(12, [
+                          --[[ Char_literal ]]Block.__(12, {
                               --[[ ")" ]]41,
                               --[[ End_of_format ]]0
-                            ])
-                        ])
-                    ]),
+                            })
+                        })
+                    }),
                   "anon(%s)"
-                ]), s);
+                }), s);
 end end
 
-spec_000 = --[[ tuple ]][
+spec_000 = --[[ tuple ]]{
   "-u",
-  --[[ Unit ]]Block.__(0, [f_unit]),
+  --[[ Unit ]]Block.__(0, {f_unit}),
   "Unit (0)"
-];
+};
 
-spec_001 = --[[ :: ]][
-  --[[ tuple ]][
+spec_001 = --[[ :: ]]{
+  --[[ tuple ]]{
     "-b",
-    --[[ Bool ]]Block.__(1, [f_bool]),
+    --[[ Bool ]]Block.__(1, {f_bool}),
     "Bool (1)"
-  ],
-  --[[ :: ]][
-    --[[ tuple ]][
+  },
+  --[[ :: ]]{
+    --[[ tuple ]]{
       "-s",
-      --[[ Set ]]Block.__(2, [r_set]),
+      --[[ Set ]]Block.__(2, {r_set}),
       "Set (0)"
-    ],
-    --[[ :: ]][
-      --[[ tuple ]][
+    },
+    --[[ :: ]]{
+      --[[ tuple ]]{
         "-c",
-        --[[ Clear ]]Block.__(3, [r_clear]),
+        --[[ Clear ]]Block.__(3, {r_clear}),
         "Clear (0)"
-      ],
-      --[[ :: ]][
-        --[[ tuple ]][
+      },
+      --[[ :: ]]{
+        --[[ tuple ]]{
           "-str",
-          --[[ String ]]Block.__(4, [f_string]),
+          --[[ String ]]Block.__(4, {f_string}),
           "String (1)"
-        ],
-        --[[ :: ]][
-          --[[ tuple ]][
+        },
+        --[[ :: ]]{
+          --[[ tuple ]]{
             "-sstr",
-            --[[ Set_string ]]Block.__(5, [r_string]),
+            --[[ Set_string ]]Block.__(5, {r_string}),
             "Set_string (1)"
-          ],
-          --[[ :: ]][
-            --[[ tuple ]][
+          },
+          --[[ :: ]]{
+            --[[ tuple ]]{
               "-i",
-              --[[ Int ]]Block.__(6, [f_int]),
+              --[[ Int ]]Block.__(6, {f_int}),
               "Int (1)"
-            ],
-            --[[ :: ]][
-              --[[ tuple ]][
+            },
+            --[[ :: ]]{
+              --[[ tuple ]]{
                 "-si",
-                --[[ Set_int ]]Block.__(7, [r_int]),
+                --[[ Set_int ]]Block.__(7, {r_int}),
                 "Set_int (1)"
-              ],
-              --[[ :: ]][
-                --[[ tuple ]][
+              },
+              --[[ :: ]]{
+                --[[ tuple ]]{
                   "-f",
-                  --[[ Float ]]Block.__(8, [f_float]),
+                  --[[ Float ]]Block.__(8, {f_float}),
                   "Float (1)"
-                ],
-                --[[ :: ]][
-                  --[[ tuple ]][
+                },
+                --[[ :: ]]{
+                  --[[ tuple ]]{
                     "-sf",
-                    --[[ Set_float ]]Block.__(9, [r_float]),
+                    --[[ Set_float ]]Block.__(9, {r_float}),
                     "Set_float (1)"
-                  ],
-                  --[[ :: ]][
-                    --[[ tuple ]][
+                  },
+                  --[[ :: ]]{
+                    --[[ tuple ]]{
                       "-t",
-                      --[[ Tuple ]]Block.__(10, [--[[ :: ]][
-                            --[[ Bool ]]Block.__(1, [f_bool]),
-                            --[[ :: ]][
-                              --[[ String ]]Block.__(4, [f_string]),
-                              --[[ :: ]][
-                                --[[ Int ]]Block.__(6, [f_int]),
+                      --[[ Tuple ]]Block.__(10, {--[[ :: ]]{
+                            --[[ Bool ]]Block.__(1, {f_bool}),
+                            --[[ :: ]]{
+                              --[[ String ]]Block.__(4, {f_string}),
+                              --[[ :: ]]{
+                                --[[ Int ]]Block.__(6, {f_int}),
                                 --[[ [] ]]0
-                              ]
-                            ]
-                          ]]),
+                              }
+                            }
+                          }}),
                       "Tuple (3)"
-                    ],
-                    --[[ :: ]][
-                      --[[ tuple ]][
+                    },
+                    --[[ :: ]]{
+                      --[[ tuple ]]{
                         "-sym",
-                        --[[ Symbol ]]Block.__(11, [
-                            --[[ :: ]][
+                        --[[ Symbol ]]Block.__(11, {
+                            --[[ :: ]]{
                               "a",
-                              --[[ :: ]][
+                              --[[ :: ]]{
                                 "b",
-                                --[[ :: ]][
+                                --[[ :: ]]{
                                   "c",
                                   --[[ [] ]]0
-                                ]
-                              ]
-                            ],
+                                }
+                              }
+                            },
                             f_symbol
-                          ]),
+                          }),
                         "Symbol (1)"
-                      ],
-                      --[[ :: ]][
-                        --[[ tuple ]][
+                      },
+                      --[[ :: ]]{
+                        --[[ tuple ]]{
                           "-rest",
-                          --[[ Rest ]]Block.__(12, [f_rest]),
+                          --[[ Rest ]]Block.__(12, {f_rest}),
                           "Rest (*)"
-                        ],
+                        },
                         --[[ [] ]]0
-                      ]
-                    ]
-                  ]
-                ]
-              ]
-            ]
-          ]
-        ]
-      ]
-    ]
-  ]
-];
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+};
 
-spec = --[[ :: ]][
+spec = --[[ :: ]]{
   spec_000,
   spec_001
-];
+};
 
-args1 = [
+args1 = {
   "prog",
   "anon1",
   "-u",
@@ -322,9 +322,9 @@ args1 = [
   "-rest",
   "r1",
   "r2"
-];
+};
 
-args2 = [
+args2 = {
   "prog",
   "anon1",
   "-u",
@@ -348,22 +348,22 @@ args2 = [
   "-rest",
   "r1",
   "r2"
-];
+};
 
 function error(s) do
-  return Curry._1(Printf.printf(--[[ Format ]][
-                  --[[ String_literal ]]Block.__(11, [
+  return Curry._1(Printf.printf(--[[ Format ]]{
+                  --[[ String_literal ]]Block.__(11, {
                       "error (",
-                      --[[ String ]]Block.__(2, [
+                      --[[ String ]]Block.__(2, {
                           --[[ No_padding ]]0,
-                          --[[ String_literal ]]Block.__(11, [
+                          --[[ String_literal ]]Block.__(11, {
                               ")\n",
                               --[[ End_of_format ]]0
-                            ])
-                        ])
-                    ]),
+                            })
+                        })
+                    }),
                   "error (%s)\n"
-                ]), s);
+                }), s);
 end end
 
 function check(r, v, msg) do
@@ -384,79 +384,79 @@ function test(argv) do
   accum.contents = --[[ [] ]]0;
   Arg.parse_argv(current, argv, spec, f_anon, "usage");
   result = List.rev(accum.contents);
-  reference = --[[ :: ]][
+  reference = --[[ :: ]]{
     "anon(anon1)",
-    --[[ :: ]][
+    --[[ :: ]]{
       "unit()",
-      --[[ :: ]][
+      --[[ :: ]]{
         "bool(true)",
-        --[[ :: ]][
+        --[[ :: ]]{
           "anon(anon2)",
-          --[[ :: ]][
+          --[[ :: ]]{
             "string(foo)",
-            --[[ :: ]][
+            --[[ :: ]]{
               "int(19)",
-              --[[ :: ]][
+              --[[ :: ]]{
                 "float(3.14)",
-                --[[ :: ]][
+                --[[ :: ]]{
                   "anon(anon3)",
-                  --[[ :: ]][
+                  --[[ :: ]]{
                     "bool(false)",
-                    --[[ :: ]][
+                    --[[ :: ]]{
                       "string(gee)",
-                      --[[ :: ]][
+                      --[[ :: ]]{
                         "int(1436)",
-                        --[[ :: ]][
+                        --[[ :: ]]{
                           "symbol(c)",
-                          --[[ :: ]][
+                          --[[ :: ]]{
                             "anon(anon4)",
-                            --[[ :: ]][
+                            --[[ :: ]]{
                               "rest(r1)",
-                              --[[ :: ]][
+                              --[[ :: ]]{
                                 "rest(r2)",
                                 --[[ [] ]]0
-                              ]
-                            ]
-                          ]
-                        ]
-                      ]
-                    ]
-                  ]
-                ]
-              ]
-            ]
-          ]
-        ]
-      ]
-    ]
-  ];
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  };
   if (Caml_obj.caml_notequal(result, reference)) then do
     f = function (x, y) do
-      return Curry._3(Printf.printf(--[[ Format ]][
-                      --[[ String ]]Block.__(2, [
-                          --[[ Lit_padding ]]Block.__(0, [
+      return Curry._3(Printf.printf(--[[ Format ]]{
+                      --[[ String ]]Block.__(2, {
+                          --[[ Lit_padding ]]Block.__(0, {
                               --[[ Right ]]1,
                               20
-                            ]),
-                          --[[ Char_literal ]]Block.__(12, [
+                            }),
+                          --[[ Char_literal ]]Block.__(12, {
                               --[[ " " ]]32,
-                              --[[ Char ]]Block.__(0, [--[[ Char_literal ]]Block.__(12, [
+                              --[[ Char ]]Block.__(0, {--[[ Char_literal ]]Block.__(12, {
                                       --[[ " " ]]32,
-                                      --[[ String ]]Block.__(2, [
-                                          --[[ Lit_padding ]]Block.__(0, [
+                                      --[[ String ]]Block.__(2, {
+                                          --[[ Lit_padding ]]Block.__(0, {
                                               --[[ Left ]]0,
                                               20
-                                            ]),
-                                          --[[ Char_literal ]]Block.__(12, [
+                                            }),
+                                          --[[ Char_literal ]]Block.__(12, {
                                               --[[ "\n" ]]10,
-                                              --[[ Flush ]]Block.__(10, [--[[ End_of_format ]]0])
-                                            ])
-                                        ])
-                                    ])])
-                            ])
-                        ]),
+                                              --[[ Flush ]]Block.__(10, {--[[ End_of_format ]]0})
+                                            })
+                                        })
+                                    })})
+                            })
+                        }),
                       "%20s %c %-20s\n%!"
-                    ]), x, x == y and --[[ "=" ]]61 or --[[ "#" ]]35, y);
+                    }), x, x == y and --[[ "=" ]]61 or --[[ "#" ]]35, y);
     end end;
     List.iter2(f, result, reference);
   end

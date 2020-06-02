@@ -31,14 +31,14 @@ __Array.iter((function (x) do
       end end), u);
 
 if (v.contents ~= 45) then do
-  throw [
+  throw {
         Caml_builtin_exceptions.assert_failure,
-        --[[ tuple ]][
+        --[[ tuple ]]{
           "test_closure.ml",
           53,
           2
-        ]
-      ];
+        }
+      };
 end
  end 
 

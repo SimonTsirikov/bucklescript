@@ -24,95 +24,95 @@ function f00(a, b) do
   return a.send(b);
 end end
 
-a = [];
+a = {};
 
 a.push(1, 2, 3, 4);
 
-eq("File \"splice_test.ml\", line 29, characters 5-12", a, [
+eq("File \"splice_test.ml\", line 29, characters 5-12", a, {
       1,
       2,
       3,
       4
-    ]);
+    });
 
 function dynamic(arr) do
-  a = [];
-  Caml_splice_call.spliceObjApply(a, "push", [
+  a = {};
+  Caml_splice_call.spliceObjApply(a, "push", {
         1,
         arr
-      ]);
-  return eq("File \"splice_test.ml\", line 34, characters 5-12", a, Caml_array.caml_array_concat(--[[ :: ]][
-                  [1],
-                  --[[ :: ]][
+      });
+  return eq("File \"splice_test.ml\", line 34, characters 5-12", a, Caml_array.caml_array_concat(--[[ :: ]]{
+                  {1},
+                  --[[ :: ]]{
                     arr,
                     --[[ [] ]]0
-                  ]
-                ]));
+                  }
+                }));
 end end
 
-dynamic([
+dynamic({
       2,
       3,
       4
-    ]);
+    });
 
-dynamic([]);
+dynamic({});
 
-dynamic([
+dynamic({
       1,
       1,
       3
-    ]);
+    });
 
-a$1 = [];
+a$1 = {};
 
 a$1.push(1, 2, 3, 4);
 
-eq("File \"splice_test.ml\", line 51, characters 7-14", a$1, [
+eq("File \"splice_test.ml\", line 51, characters 7-14", a$1, {
       1,
       2,
       3,
       4
-    ]);
+    });
 
 function dynamic$1(arr) do
-  a = [];
-  Caml_splice_call.spliceObjApply(a, "push", [
+  a = {};
+  Caml_splice_call.spliceObjApply(a, "push", {
         1,
         arr
-      ]);
-  return eq("File \"splice_test.ml\", line 56, characters 7-14", a, Caml_array.caml_array_concat(--[[ :: ]][
-                  [1],
-                  --[[ :: ]][
+      });
+  return eq("File \"splice_test.ml\", line 56, characters 7-14", a, Caml_array.caml_array_concat(--[[ :: ]]{
+                  {1},
+                  --[[ :: ]]{
                     arr,
                     --[[ [] ]]0
-                  ]
-                ]));
+                  }
+                }));
 end end
 
-dynamic$1([
+dynamic$1({
       2,
       3,
       4
-    ]);
+    });
 
-dynamic$1([]);
+dynamic$1({});
 
-dynamic$1([
+dynamic$1({
       1,
       1,
       3
-    ]);
+    });
 
 Pipe = do
   dynamic: dynamic$1
 end;
 
 function f1(c) do
-  return Caml_splice_call.spliceApply(Math.max, [
+  return Caml_splice_call.spliceApply(Math.max, {
               1,
               c
-            ]);
+            });
 end end
 
 eq("File \"splice_test.ml\", line 67, characters 6-13", Math.max(1, 2, 3), 3);

@@ -24,10 +24,10 @@ function should(b) do
 end end
 
 shuffledDataAdd = Belt_Array.makeByAndShuffle(1000001, (function (i) do
-        return --[[ tuple ]][
+        return --[[ tuple ]]{
                 i,
                 i
-              ];
+              };
       end end));
 
 function test(param) do

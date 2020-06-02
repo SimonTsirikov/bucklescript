@@ -3,29 +3,29 @@
 Curry = require "../../lib/js/curry.lua";
 Caml_option = require "../../lib/js/caml_option.lua";
 
-console.log(--[[ tuple ]][
+console.log(--[[ tuple ]]{
       "hello world",
       1
-    ]);
+    });
 
 console.log(1337);
 
 console.log("hello world");
 
-arg_string = --[[ `String ]][
+arg_string = --[[ `String ]]{
   -976970511,
   "hi runtime"
-];
+};
 
 console.log(arg_string[1]);
 
-arg_pair = --[[ `Pair ]][
+arg_pair = --[[ `Pair ]]{
   892012602,
-  --[[ tuple ]][
+  --[[ tuple ]]{
     "hi",
     1
-  ]
-];
+  }
+};
 
 console.log(arg_pair[1]);
 
@@ -39,10 +39,10 @@ console.log(3, "hi");
 
 console.log(4, undefined);
 
-some_arg = --[[ `Bool ]][
+some_arg = --[[ `Bool ]]{
   737456202,
   true
-];
+};
 
 console.log(5, some_arg ~= undefined and Caml_option.valFromOption(some_arg)[1] or undefined);
 
@@ -55,13 +55,13 @@ function dyn_log3(prim, prim$1, prim$2) do
   return --[[ () ]]0;
 end end
 
-dyn_log3(--[[ `Int ]][
+dyn_log3(--[[ `Int ]]{
       3654863,
       8
-    ], --[[ `Bool ]][
+    }, --[[ `Bool ]]{
       737456202,
       true
-    ], --[[ () ]]0);
+    }, --[[ () ]]0);
 
 console.log("foo");
 

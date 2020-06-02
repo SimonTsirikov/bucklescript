@@ -12,14 +12,14 @@ end end
 
 function assert_f(x) do
   if (x <= 3) then do
-    throw [
+    throw {
           Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]][
+          --[[ tuple ]]{
             "exception_value_test.ml",
             9,
             12
-          ]
-        ];
+          }
+        };
   end
    end 
   return 3;
@@ -35,10 +35,10 @@ B = Caml_exceptions.create("Exception_value_test.B");
 
 C = Caml_exceptions.create("Exception_value_test.C");
 
-u = [
+u = {
   A,
   3
-];
+};
 
 function test_not_found(f, param) do
   try do

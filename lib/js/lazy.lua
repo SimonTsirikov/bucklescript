@@ -6,7 +6,7 @@ Caml_obj = require "./caml_obj.lua";
 CamlinternalLazy = require "./camlinternalLazy.lua";
 
 function from_fun(f) do
-  x = --[[ obj_block ]]Block.__(Obj.lazy_tag, [0]);
+  x = --[[ obj_block ]]Block.__(Obj.lazy_tag, {0});
   x[0] = f;
   return x;
 end end

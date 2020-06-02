@@ -19,22 +19,22 @@ function Make(Ord) do
   create = function (l, x, d, r) do
     hl = height(l);
     hr = height(r);
-    return --[[ Node ]][
+    return --[[ Node ]]{
             l,
             x,
             d,
             r,
             hl >= hr and hl + 1 | 0 or hr + 1 | 0
-          ];
+          };
   end end;
   singleton = function (x, d) do
-    return --[[ Node ]][
+    return --[[ Node ]]{
             --[[ Empty ]]0,
             x,
             d,
             --[[ Empty ]]0,
             1
-          ];
+          };
   end end;
   bal = function (l, x, d, r) do
     hl = l and l[4] or 0;
@@ -50,16 +50,16 @@ function Make(Ord) do
         end else if (lr) then do
           return create(create(ll, lv, ld, lr[0]), lr[1], lr[2], create(lr[3], x, d, r));
         end else do
-          throw [
+          throw {
                 Caml_builtin_exceptions.invalid_argument,
                 "Map.bal"
-              ];
+              };
         end end  end 
       end else do
-        throw [
+        throw {
               Caml_builtin_exceptions.invalid_argument,
               "Map.bal"
-            ];
+            };
       end end 
     end else if (hr > (hl + 2 | 0)) then do
       if (r) then do
@@ -72,25 +72,25 @@ function Make(Ord) do
         end else if (rl) then do
           return create(create(l, x, d, rl[0]), rl[1], rl[2], create(rl[3], rv, rd, rr));
         end else do
-          throw [
+          throw {
                 Caml_builtin_exceptions.invalid_argument,
                 "Map.bal"
-              ];
+              };
         end end  end 
       end else do
-        throw [
+        throw {
               Caml_builtin_exceptions.invalid_argument,
               "Map.bal"
-            ];
+            };
       end end 
     end else do
-      return --[[ Node ]][
+      return --[[ Node ]]{
               l,
               x,
               d,
               r,
               hl >= hr and hl + 1 | 0 or hr + 1 | 0
-            ];
+            };
     end end  end 
   end end;
   is_empty = function (param) do
@@ -108,26 +108,26 @@ function Make(Ord) do
       l = param[0];
       c = Curry._2(Ord.compare, x, v);
       if (c == 0) then do
-        return --[[ Node ]][
+        return --[[ Node ]]{
                 l,
                 x,
                 data,
                 r,
                 param[4]
-              ];
+              };
       end else if (c < 0) then do
         return bal(add(x, data, l), v, d, r);
       end else do
         return bal(l, v, d, add(x, data, r));
       end end  end 
     end else do
-      return --[[ Node ]][
+      return --[[ Node ]]{
               --[[ Empty ]]0,
               x,
               data,
               --[[ Empty ]]0,
               1
-            ];
+            };
     end end 
   end end;
   find = function (x, _param) do
@@ -171,10 +171,10 @@ function Make(Ord) do
           _param = l;
           continue ;
         end else do
-          return --[[ tuple ]][
+          return --[[ tuple ]]{
                   param[1],
                   param[2]
-                ];
+                };
         end end 
       end else do
         throw Caml_builtin_exceptions.not_found;
@@ -190,10 +190,10 @@ function Make(Ord) do
           _param = r;
           continue ;
         end else do
-          return --[[ tuple ]][
+          return --[[ tuple ]]{
                   param[1],
                   param[2]
-                ];
+                };
         end end 
       end else do
         throw Caml_builtin_exceptions.not_found;
@@ -209,10 +209,10 @@ function Make(Ord) do
         return param[3];
       end end 
     end else do
-      throw [
+      throw {
             Caml_builtin_exceptions.invalid_argument,
             "Map.remove_min_elt"
-          ];
+          };
     end end 
   end end;
   remove = function (x, param) do
@@ -262,13 +262,13 @@ function Make(Ord) do
       l$prime = map(f, param[0]);
       d$prime = Curry._1(f, param[2]);
       r$prime = map(f, param[3]);
-      return --[[ Node ]][
+      return --[[ Node ]]{
               l$prime,
               param[1],
               d$prime,
               r$prime,
               param[4]
-            ];
+            };
     end else do
       return --[[ Empty ]]0;
     end end 
@@ -279,13 +279,13 @@ function Make(Ord) do
       l$prime = mapi(f, param[0]);
       d$prime = Curry._2(f, v, param[2]);
       r$prime = mapi(f, param[3]);
-      return --[[ Node ]][
+      return --[[ Node ]]{
               l$prime,
               v,
               d$prime,
               r$prime,
               param[4]
-            ];
+            };
     end else do
       return --[[ Empty ]]0;
     end end 
@@ -393,32 +393,32 @@ function Make(Ord) do
       l = param[0];
       c = Curry._2(Ord.compare, x, v);
       if (c == 0) then do
-        return --[[ tuple ]][
+        return --[[ tuple ]]{
                 l,
                 Caml_option.some(d),
                 r
-              ];
+              };
       end else if (c < 0) then do
         match = split(x, l);
-        return --[[ tuple ]][
+        return --[[ tuple ]]{
                 match[0],
                 match[1],
                 join(match[2], v, d, r)
-              ];
+              };
       end else do
         match$1 = split(x, r);
-        return --[[ tuple ]][
+        return --[[ tuple ]]{
                 join(l, v, d, match$1[0]),
                 match$1[1],
                 match$1[2]
-              ];
+              };
       end end  end 
     end else do
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               --[[ Empty ]]0,
               undefined,
               --[[ Empty ]]0
-            ];
+            };
     end end 
   end end;
   merge = function (f, s1, s2) do
@@ -438,14 +438,14 @@ function Make(Ord) do
       match$1 = split(v2, s1);
       return concat_or_join(merge(f, match$1[0], s2[0]), v2, Curry._3(f, v2, match$1[1], Caml_option.some(s2[2])), merge(f, match$1[2], s2[3]));
     end else do
-      throw [
+      throw {
             Caml_builtin_exceptions.assert_failure,
-            --[[ tuple ]][
+            --[[ tuple ]]{
               "inline_map2_test.ml",
               270,
               10
-            ]
-          ];
+            }
+          };
     end end 
   end end;
   filter = function (p, param) do
@@ -476,21 +476,21 @@ function Make(Ord) do
       rf = match$1[1];
       rt = match$1[0];
       if (pvd) then do
-        return --[[ tuple ]][
+        return --[[ tuple ]]{
                 join(lt, v, d, rt),
                 concat(lf, rf)
-              ];
+              };
       end else do
-        return --[[ tuple ]][
+        return --[[ tuple ]]{
                 concat(lt, rt),
                 join(lf, v, d, rf)
-              ];
+              };
       end end 
     end else do
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               --[[ Empty ]]0,
               --[[ Empty ]]0
-            ];
+            };
     end end 
   end end;
   cons_enum = function (_m, _e) do
@@ -498,12 +498,12 @@ function Make(Ord) do
       e = _e;
       m = _m;
       if (m) then do
-        _e = --[[ More ]][
+        _e = --[[ More ]]{
           m[1],
           m[2],
           m[3],
           e
-        ];
+        };
         _m = m[0];
         continue ;
       end else do
@@ -576,13 +576,13 @@ function Make(Ord) do
       accu = _accu;
       if (param) then do
         _param = param[0];
-        _accu = --[[ :: ]][
-          --[[ tuple ]][
+        _accu = --[[ :: ]]{
+          --[[ tuple ]]{
             param[1],
             param[2]
-          ],
+          },
           bindings_aux(accu, param[3])
-        ];
+        };
         continue ;
       end else do
         return accu;
@@ -642,23 +642,23 @@ end end
 function create(l, x, d, r) do
   hl = height(l);
   hr = height(r);
-  return --[[ Node ]][
+  return --[[ Node ]]{
           l,
           x,
           d,
           r,
           hl >= hr and hl + 1 | 0 or hr + 1 | 0
-        ];
+        };
 end end
 
 function singleton(x, d) do
-  return --[[ Node ]][
+  return --[[ Node ]]{
           --[[ Empty ]]0,
           x,
           d,
           --[[ Empty ]]0,
           1
-        ];
+        };
 end end
 
 function bal(l, x, d, r) do
@@ -675,16 +675,16 @@ function bal(l, x, d, r) do
       end else if (lr) then do
         return create(create(ll, lv, ld, lr[0]), lr[1], lr[2], create(lr[3], x, d, r));
       end else do
-        throw [
+        throw {
               Caml_builtin_exceptions.invalid_argument,
               "Map.bal"
-            ];
+            };
       end end  end 
     end else do
-      throw [
+      throw {
             Caml_builtin_exceptions.invalid_argument,
             "Map.bal"
-          ];
+          };
     end end 
   end else if (hr > (hl + 2 | 0)) then do
     if (r) then do
@@ -697,25 +697,25 @@ function bal(l, x, d, r) do
       end else if (rl) then do
         return create(create(l, x, d, rl[0]), rl[1], rl[2], create(rl[3], rv, rd, rr));
       end else do
-        throw [
+        throw {
               Caml_builtin_exceptions.invalid_argument,
               "Map.bal"
-            ];
+            };
       end end  end 
     end else do
-      throw [
+      throw {
             Caml_builtin_exceptions.invalid_argument,
             "Map.bal"
-          ];
+          };
     end end 
   end else do
-    return --[[ Node ]][
+    return --[[ Node ]]{
             l,
             x,
             d,
             r,
             hl >= hr and hl + 1 | 0 or hr + 1 | 0
-          ];
+          };
   end end  end 
 end end
 
@@ -735,26 +735,26 @@ function add(x, data, param) do
     l = param[0];
     c = Caml_primitive.caml_int_compare(x, v);
     if (c == 0) then do
-      return --[[ Node ]][
+      return --[[ Node ]]{
               l,
               x,
               data,
               r,
               param[4]
-            ];
+            };
     end else if (c < 0) then do
       return bal(add(x, data, l), v, d, r);
     end else do
       return bal(l, v, d, add(x, data, r));
     end end  end 
   end else do
-    return --[[ Node ]][
+    return --[[ Node ]]{
             --[[ Empty ]]0,
             x,
             data,
             --[[ Empty ]]0,
             1
-          ];
+          };
   end end 
 end end
 
@@ -801,10 +801,10 @@ function min_binding(_param) do
         _param = l;
         continue ;
       end else do
-        return --[[ tuple ]][
+        return --[[ tuple ]]{
                 param[1],
                 param[2]
-              ];
+              };
       end end 
     end else do
       throw Caml_builtin_exceptions.not_found;
@@ -821,10 +821,10 @@ function max_binding(_param) do
         _param = r;
         continue ;
       end else do
-        return --[[ tuple ]][
+        return --[[ tuple ]]{
                 param[1],
                 param[2]
-              ];
+              };
       end end 
     end else do
       throw Caml_builtin_exceptions.not_found;
@@ -841,10 +841,10 @@ function remove_min_binding(param) do
       return param[3];
     end end 
   end else do
-    throw [
+    throw {
           Caml_builtin_exceptions.invalid_argument,
           "Map.remove_min_elt"
-        ];
+        };
   end end 
 end end
 
@@ -897,13 +897,13 @@ function map(f, param) do
     l$prime = map(f, param[0]);
     d$prime = Curry._1(f, param[2]);
     r$prime = map(f, param[3]);
-    return --[[ Node ]][
+    return --[[ Node ]]{
             l$prime,
             param[1],
             d$prime,
             r$prime,
             param[4]
-          ];
+          };
   end else do
     return --[[ Empty ]]0;
   end end 
@@ -915,13 +915,13 @@ function mapi(f, param) do
     l$prime = mapi(f, param[0]);
     d$prime = Curry._2(f, v, param[2]);
     r$prime = mapi(f, param[3]);
-    return --[[ Node ]][
+    return --[[ Node ]]{
             l$prime,
             v,
             d$prime,
             r$prime,
             param[4]
-          ];
+          };
   end else do
     return --[[ Empty ]]0;
   end end 
@@ -1038,32 +1038,32 @@ function split(x, param) do
     l = param[0];
     c = Caml_primitive.caml_int_compare(x, v);
     if (c == 0) then do
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               l,
               Caml_option.some(d),
               r
-            ];
+            };
     end else if (c < 0) then do
       match = split(x, l);
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               match[0],
               match[1],
               join(match[2], v, d, r)
-            ];
+            };
     end else do
       match$1 = split(x, r);
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               join(l, v, d, match$1[0]),
               match$1[1],
               match$1[2]
-            ];
+            };
     end end  end 
   end else do
-    return --[[ tuple ]][
+    return --[[ tuple ]]{
             --[[ Empty ]]0,
             undefined,
             --[[ Empty ]]0
-          ];
+          };
   end end 
 end end
 
@@ -1084,14 +1084,14 @@ function merge(f, s1, s2) do
     match$1 = split(v2, s1);
     return concat_or_join(merge(f, match$1[0], s2[0]), v2, Curry._3(f, v2, match$1[1], Caml_option.some(s2[2])), merge(f, match$1[2], s2[3]));
   end else do
-    throw [
+    throw {
           Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]][
+          --[[ tuple ]]{
             "inline_map2_test.ml",
             270,
             10
-          ]
-        ];
+          }
+        };
   end end 
 end end
 
@@ -1124,21 +1124,21 @@ function partition(p, param) do
     rf = match$1[1];
     rt = match$1[0];
     if (pvd) then do
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               join(lt, v, d, rt),
               concat(lf, rf)
-            ];
+            };
     end else do
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               concat(lt, rt),
               join(lf, v, d, rf)
-            ];
+            };
     end end 
   end else do
-    return --[[ tuple ]][
+    return --[[ tuple ]]{
             --[[ Empty ]]0,
             --[[ Empty ]]0
-          ];
+          };
   end end 
 end end
 
@@ -1147,12 +1147,12 @@ function cons_enum(_m, _e) do
     e = _e;
     m = _m;
     if (m) then do
-      _e = --[[ More ]][
+      _e = --[[ More ]]{
         m[1],
         m[2],
         m[3],
         e
-      ];
+      };
       _m = m[0];
       continue ;
     end else do
@@ -1229,13 +1229,13 @@ function bindings_aux(_accu, _param) do
     accu = _accu;
     if (param) then do
       _param = param[0];
-      _accu = --[[ :: ]][
-        --[[ tuple ]][
+      _accu = --[[ :: ]]{
+        --[[ tuple ]]{
           param[1],
           param[2]
-        ],
+        },
         bindings_aux(accu, param[3])
-      ];
+      };
       continue ;
     end else do
       return accu;
@@ -1287,31 +1287,31 @@ end;
 
 m = List.fold_left((function (acc, param) do
         return add(param[0], param[1], acc);
-      end end), --[[ Empty ]]0, --[[ :: ]][
-      --[[ tuple ]][
+      end end), --[[ Empty ]]0, --[[ :: ]]{
+      --[[ tuple ]]{
         10,
         --[[ "a" ]]97
-      ],
-      --[[ :: ]][
-        --[[ tuple ]][
+      },
+      --[[ :: ]]{
+        --[[ tuple ]]{
           3,
           --[[ "b" ]]98
-        ],
-        --[[ :: ]][
-          --[[ tuple ]][
+        },
+        --[[ :: ]]{
+          --[[ tuple ]]{
             7,
             --[[ "c" ]]99
-          ],
-          --[[ :: ]][
-            --[[ tuple ]][
+          },
+          --[[ :: ]]{
+            --[[ tuple ]]{
               20,
               --[[ "d" ]]100
-            ],
+            },
             --[[ [] ]]0
-          ]
-        ]
-      ]
-    ]);
+          }
+        }
+      }
+    });
 
 function height$1(param) do
   if (param) then do
@@ -1324,23 +1324,23 @@ end end
 function create$1(l, x, d, r) do
   hl = height$1(l);
   hr = height$1(r);
-  return --[[ Node ]][
+  return --[[ Node ]]{
           l,
           x,
           d,
           r,
           hl >= hr and hl + 1 | 0 or hr + 1 | 0
-        ];
+        };
 end end
 
 function singleton$1(x, d) do
-  return --[[ Node ]][
+  return --[[ Node ]]{
           --[[ Empty ]]0,
           x,
           d,
           --[[ Empty ]]0,
           1
-        ];
+        };
 end end
 
 function bal$1(l, x, d, r) do
@@ -1357,16 +1357,16 @@ function bal$1(l, x, d, r) do
       end else if (lr) then do
         return create$1(create$1(ll, lv, ld, lr[0]), lr[1], lr[2], create$1(lr[3], x, d, r));
       end else do
-        throw [
+        throw {
               Caml_builtin_exceptions.invalid_argument,
               "Map.bal"
-            ];
+            };
       end end  end 
     end else do
-      throw [
+      throw {
             Caml_builtin_exceptions.invalid_argument,
             "Map.bal"
-          ];
+          };
     end end 
   end else if (hr > (hl + 2 | 0)) then do
     if (r) then do
@@ -1379,25 +1379,25 @@ function bal$1(l, x, d, r) do
       end else if (rl) then do
         return create$1(create$1(l, x, d, rl[0]), rl[1], rl[2], create$1(rl[3], rv, rd, rr));
       end else do
-        throw [
+        throw {
               Caml_builtin_exceptions.invalid_argument,
               "Map.bal"
-            ];
+            };
       end end  end 
     end else do
-      throw [
+      throw {
             Caml_builtin_exceptions.invalid_argument,
             "Map.bal"
-          ];
+          };
     end end 
   end else do
-    return --[[ Node ]][
+    return --[[ Node ]]{
             l,
             x,
             d,
             r,
             hl >= hr and hl + 1 | 0 or hr + 1 | 0
-          ];
+          };
   end end  end 
 end end
 
@@ -1417,26 +1417,26 @@ function add$1(x, data, param) do
     l = param[0];
     c = Caml_primitive.caml_string_compare(x, v);
     if (c == 0) then do
-      return --[[ Node ]][
+      return --[[ Node ]]{
               l,
               x,
               data,
               r,
               param[4]
-            ];
+            };
     end else if (c < 0) then do
       return bal$1(add$1(x, data, l), v, d, r);
     end else do
       return bal$1(l, v, d, add$1(x, data, r));
     end end  end 
   end else do
-    return --[[ Node ]][
+    return --[[ Node ]]{
             --[[ Empty ]]0,
             x,
             data,
             --[[ Empty ]]0,
             1
-          ];
+          };
   end end 
 end end
 
@@ -1483,10 +1483,10 @@ function min_binding$1(_param) do
         _param = l;
         continue ;
       end else do
-        return --[[ tuple ]][
+        return --[[ tuple ]]{
                 param[1],
                 param[2]
-              ];
+              };
       end end 
     end else do
       throw Caml_builtin_exceptions.not_found;
@@ -1503,10 +1503,10 @@ function max_binding$1(_param) do
         _param = r;
         continue ;
       end else do
-        return --[[ tuple ]][
+        return --[[ tuple ]]{
                 param[1],
                 param[2]
-              ];
+              };
       end end 
     end else do
       throw Caml_builtin_exceptions.not_found;
@@ -1523,10 +1523,10 @@ function remove_min_binding$1(param) do
       return param[3];
     end end 
   end else do
-    throw [
+    throw {
           Caml_builtin_exceptions.invalid_argument,
           "Map.remove_min_elt"
-        ];
+        };
   end end 
 end end
 
@@ -1579,13 +1579,13 @@ function map$1(f, param) do
     l$prime = map$1(f, param[0]);
     d$prime = Curry._1(f, param[2]);
     r$prime = map$1(f, param[3]);
-    return --[[ Node ]][
+    return --[[ Node ]]{
             l$prime,
             param[1],
             d$prime,
             r$prime,
             param[4]
-          ];
+          };
   end else do
     return --[[ Empty ]]0;
   end end 
@@ -1597,13 +1597,13 @@ function mapi$1(f, param) do
     l$prime = mapi$1(f, param[0]);
     d$prime = Curry._2(f, v, param[2]);
     r$prime = mapi$1(f, param[3]);
-    return --[[ Node ]][
+    return --[[ Node ]]{
             l$prime,
             v,
             d$prime,
             r$prime,
             param[4]
-          ];
+          };
   end else do
     return --[[ Empty ]]0;
   end end 
@@ -1720,32 +1720,32 @@ function split$1(x, param) do
     l = param[0];
     c = Caml_primitive.caml_string_compare(x, v);
     if (c == 0) then do
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               l,
               Caml_option.some(d),
               r
-            ];
+            };
     end else if (c < 0) then do
       match = split$1(x, l);
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               match[0],
               match[1],
               join$1(match[2], v, d, r)
-            ];
+            };
     end else do
       match$1 = split$1(x, r);
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               join$1(l, v, d, match$1[0]),
               match$1[1],
               match$1[2]
-            ];
+            };
     end end  end 
   end else do
-    return --[[ tuple ]][
+    return --[[ tuple ]]{
             --[[ Empty ]]0,
             undefined,
             --[[ Empty ]]0
-          ];
+          };
   end end 
 end end
 
@@ -1766,14 +1766,14 @@ function merge$1(f, s1, s2) do
     match$1 = split$1(v2, s1);
     return concat_or_join$1(merge$1(f, match$1[0], s2[0]), v2, Curry._3(f, v2, match$1[1], Caml_option.some(s2[2])), merge$1(f, match$1[2], s2[3]));
   end else do
-    throw [
+    throw {
           Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]][
+          --[[ tuple ]]{
             "inline_map2_test.ml",
             270,
             10
-          ]
-        ];
+          }
+        };
   end end 
 end end
 
@@ -1806,21 +1806,21 @@ function partition$1(p, param) do
     rf = match$1[1];
     rt = match$1[0];
     if (pvd) then do
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               join$1(lt, v, d, rt),
               concat$1(lf, rf)
-            ];
+            };
     end else do
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               concat$1(lt, rt),
               join$1(lf, v, d, rf)
-            ];
+            };
     end end 
   end else do
-    return --[[ tuple ]][
+    return --[[ tuple ]]{
             --[[ Empty ]]0,
             --[[ Empty ]]0
-          ];
+          };
   end end 
 end end
 
@@ -1829,12 +1829,12 @@ function cons_enum$1(_m, _e) do
     e = _e;
     m = _m;
     if (m) then do
-      _e = --[[ More ]][
+      _e = --[[ More ]]{
         m[1],
         m[2],
         m[3],
         e
-      ];
+      };
       _m = m[0];
       continue ;
     end else do
@@ -1911,13 +1911,13 @@ function bindings_aux$1(_accu, _param) do
     accu = _accu;
     if (param) then do
       _param = param[0];
-      _accu = --[[ :: ]][
-        --[[ tuple ]][
+      _accu = --[[ :: ]]{
+        --[[ tuple ]]{
           param[1],
           param[2]
-        ],
+        },
         bindings_aux$1(accu, param[3])
-      ];
+      };
       continue ;
     end else do
       return accu;
@@ -1969,55 +1969,55 @@ end;
 
 s = List.fold_left((function (acc, param) do
         return add$1(param[0], param[1], acc);
-      end end), --[[ Empty ]]0, --[[ :: ]][
-      --[[ tuple ]][
+      end end), --[[ Empty ]]0, --[[ :: ]]{
+      --[[ tuple ]]{
         "10",
         --[[ "a" ]]97
-      ],
-      --[[ :: ]][
-        --[[ tuple ]][
+      },
+      --[[ :: ]]{
+        --[[ tuple ]]{
           "3",
           --[[ "b" ]]98
-        ],
-        --[[ :: ]][
-          --[[ tuple ]][
+        },
+        --[[ :: ]]{
+          --[[ tuple ]]{
             "7",
             --[[ "c" ]]99
-          ],
-          --[[ :: ]][
-            --[[ tuple ]][
+          },
+          --[[ :: ]]{
+            --[[ tuple ]]{
               "20",
               --[[ "d" ]]100
-            ],
+            },
             --[[ [] ]]0
-          ]
-        ]
-      ]
-    ]);
+          }
+        }
+      }
+    });
 
-Mt.from_pair_suites("Inline_map2_test", --[[ :: ]][
-      --[[ tuple ]][
+Mt.from_pair_suites("Inline_map2_test", --[[ :: ]]{
+      --[[ tuple ]]{
         "assertion1",
         (function (param) do
-            return --[[ Eq ]]Block.__(0, [
+            return --[[ Eq ]]Block.__(0, {
                       find(10, m),
                       --[[ "a" ]]97
-                    ]);
+                    });
           end end)
-      ],
-      --[[ :: ]][
-        --[[ tuple ]][
+      },
+      --[[ :: ]]{
+        --[[ tuple ]]{
           "assertion2",
           (function (param) do
-              return --[[ Eq ]]Block.__(0, [
+              return --[[ Eq ]]Block.__(0, {
                         find$1("10", s),
                         --[[ "a" ]]97
-                      ]);
+                      });
             end end)
-        ],
+        },
         --[[ [] ]]0
-      ]
-    ]);
+      }
+    });
 
 empty = --[[ Empty ]]0;
 

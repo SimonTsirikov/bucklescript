@@ -255,24 +255,24 @@ b("File \"bs_poly_mutable_set_test.ml\", line 118, characters 4-11", Belt_Mutabl
           data: null
         end));
 
-b("File \"bs_poly_mutable_set_test.ml\", line 124, characters 4-11", Belt_MutableSet.eq(Belt_MutableSet.intersect(fromArray([
+b("File \"bs_poly_mutable_set_test.ml\", line 124, characters 4-11", Belt_MutableSet.eq(Belt_MutableSet.intersect(fromArray({
                   1,
                   3,
                   4,
                   5,
                   7,
                   9
-                ]), fromArray([
+                }), fromArray({
                   2,
                   4,
                   5,
                   6,
                   8,
                   10
-                ])), fromArray([
+                })), fromArray({
               4,
               5
-            ])));
+            })));
 
 b("File \"bs_poly_mutable_set_test.ml\", line 130, characters 4-11", Belt_MutableSet.eq(Belt_MutableSet.diff(aa$2, bb$2), fromArray(Array_data_util.randomRange(0, 39))));
 
@@ -306,22 +306,22 @@ b("File \"bs_poly_mutable_set_test.ml\", line 162, characters 4-11", Belt_Mutabl
 
 b("File \"bs_poly_mutable_set_test.ml\", line 163, characters 4-11", Belt_MutableSet.eq(a2, a4));
 
-Belt_List.forEach(--[[ :: ]][
+Belt_List.forEach(--[[ :: ]]{
       a0,
-      --[[ :: ]][
+      --[[ :: ]]{
         a1,
-        --[[ :: ]][
+        --[[ :: ]]{
           a2,
-          --[[ :: ]][
+          --[[ :: ]]{
             a3,
-            --[[ :: ]][
+            --[[ :: ]]{
               a4,
               --[[ [] ]]0
-            ]
-          ]
-        ]
-      ]
-    ], (function (x) do
+            }
+          }
+        }
+      }
+    }, (function (x) do
         return Belt_internalAVLset.checkInvariantInternal(x.data);
       end end));
 

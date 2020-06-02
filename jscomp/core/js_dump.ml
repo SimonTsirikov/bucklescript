@@ -836,8 +836,8 @@ and expression_desc cxt ~(level:int) f x : cxt  =
   | Array (el,_) ->
     (** TODO: simplify for singleton list *)
       (match el with
-      | []| [ _ ] -> P.bracket_group f 1 (fun _ -> array_element_list  cxt f el)
-      | _ -> P.bracket_vgroup f 1 (fun _ -> array_element_list  cxt f el))
+      | []| [ _ ] -> P.curlybrace_group f 1 (fun _ -> array_element_list  cxt f el)
+      | _ -> P.curlybrace_vgroup f 1 (fun _ -> array_element_list  cxt f el))
   | Optional_block (e,identity) -> 
     expression ~level cxt f  
       (if identity then e 

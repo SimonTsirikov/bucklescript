@@ -171,10 +171,10 @@ function stackAllLeft(_v, _s) do
     s = _s;
     v = _v;
     if (v ~= null) then do
-      _s = --[[ :: ]][
+      _s = --[[ :: ]]{
         v,
         s
-      ];
+      };
       _v = v.left;
       continue ;
     end else do
@@ -325,21 +325,21 @@ function partitionSharedU(n, p) do
     rf = match$1[1];
     rt = match$1[0];
     if (pv) then do
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               joinShared(lt, value, rt),
               concatShared(lf, rf)
-            ];
+            };
     end else do
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               concatShared(lt, rt),
               joinShared(lf, value, rf)
-            ];
+            };
     end end 
   end else do
-    return --[[ tuple ]][
+    return --[[ tuple ]]{
             null,
             null
-          ];
+          };
   end end 
 end end
 
@@ -368,10 +368,10 @@ function toListAux(_n, _accu) do
     accu = _accu;
     n = _n;
     if (n ~= null) then do
-      _accu = --[[ :: ]][
+      _accu = --[[ :: ]]{
         n.value,
         toListAux(n.right, accu)
-      ];
+      };
       _n = n.left;
       continue ;
     end else do
@@ -478,7 +478,7 @@ function toArray(n) do
     fillArray(n, 0, v);
     return v;
   end else do
-    return [];
+    return {};
   end end 
 end end
 
@@ -614,15 +614,15 @@ function partitionCopyU(n, p) do
     end;
     fillArrayWithPartition(n, cursor, v, p);
     forwardLen = cursor.forward;
-    return --[[ tuple ]][
+    return --[[ tuple ]]{
             fromSortedArrayAux(v, 0, forwardLen),
             fromSortedArrayRevAux(v, backward, size - forwardLen | 0)
-          ];
+          };
   end else do
-    return --[[ tuple ]][
+    return --[[ tuple ]]{
             null,
             null
-          ];
+          };
   end end 
 end end
 

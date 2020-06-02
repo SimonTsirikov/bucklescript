@@ -98,14 +98,14 @@ function cycle(x, k) do
   return --[[ () ]]0;
 end end
 
-state = [
+state = {
   1732584193,
   -271733879,
   -1732584194,
   271733878
-];
+};
 
-md5blk = [
+md5blk = {
   0,
   0,
   0,
@@ -122,7 +122,7 @@ md5blk = [
   0,
   0,
   0
-];
+};
 
 function caml_md5_string(s, start, len) do
   s$1 = s.slice(start, len);

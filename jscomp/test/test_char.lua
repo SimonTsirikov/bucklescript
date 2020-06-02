@@ -8,10 +8,10 @@ end end
 
 function chr(n) do
   if (n < 0 or n > 255) then do
-    throw [
+    throw {
           Caml_builtin_exceptions.invalid_argument,
           "Char.chr"
-        ];
+        };
   end
    end 
   return n;

@@ -10,14 +10,14 @@ function bench(param) do
   end
   for i$1 = 0 , 1000000 , 1 do
     if (not Hashtbl.mem(table, i$1)) then do
-      throw [
+      throw {
             Caml_builtin_exceptions.assert_failure,
-            --[[ tuple ]][
+            --[[ tuple ]]{
               "raw_hash_tbl_bench.ml",
               9,
               4
-            ]
-          ];
+            }
+          };
     end
      end 
   end

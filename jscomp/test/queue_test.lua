@@ -81,45 +81,45 @@ T2 = do
   queue_1: queue_1$1
 end;
 
-suites_000 = --[[ tuple ]][
+suites_000 = --[[ tuple ]]{
   "File \"queue_test.ml\", line 26, characters 2-9",
   (function (param) do
-      x = [
+      x = {
         3,
         4,
         5,
         2
-      ];
-      return --[[ Eq ]]Block.__(0, [
+      };
+      return --[[ Eq ]]Block.__(0, {
                 x,
                 queue_1(x)
-              ]);
+              });
     end end)
-];
+};
 
-suites_001 = --[[ :: ]][
-  --[[ tuple ]][
+suites_001 = --[[ :: ]]{
+  --[[ tuple ]]{
     "File \"queue_test.ml\", line 29, characters 2-9",
     (function (param) do
-        x = [
+        x = {
           3,
           4,
           5,
           2
-        ];
-        return --[[ Eq ]]Block.__(0, [
+        };
+        return --[[ Eq ]]Block.__(0, {
                   x,
                   queue_1$1(x)
-                ]);
+                });
       end end)
-  ],
+  },
   --[[ [] ]]0
-];
+};
 
-suites = --[[ :: ]][
+suites = --[[ :: ]]{
   suites_000,
   suites_001
-];
+};
 
 Mt.from_pair_suites("Queue_test", suites);
 

@@ -18,10 +18,10 @@ function marshal(obj) do
 end end
 
 function unmarshal(str, pos) do
-  return --[[ tuple ]][
+  return --[[ tuple ]]{
           Marshal.from_bytes(str, pos),
           pos + Marshal.total_size(str, pos) | 0
-        ];
+        };
 end end
 
 function extension_constructor(x) do
@@ -30,18 +30,18 @@ function extension_constructor(x) do
   if (typeof slot ~= "number" and slot.tag == 248) then do
     name = slot[0];
   end else do
-    throw [
+    throw {
           Caml_builtin_exceptions.invalid_argument,
           "Obj.extension_constructor"
-        ];
+        };
   end end 
   if (name.tag == 252) then do
     return slot;
   end else do
-    throw [
+    throw {
           Caml_builtin_exceptions.invalid_argument,
           "Obj.extension_constructor"
-        ];
+        };
   end end 
 end end
 

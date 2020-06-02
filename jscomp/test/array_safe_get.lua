@@ -4,10 +4,10 @@ Caml_array = require "../../lib/js/caml_array.lua";
 Caml_js_exceptions = require "../../lib/js/caml_js_exceptions.lua";
 Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
 
-x = [
+x = {
   1,
   2
-];
+};
 
 y;
 

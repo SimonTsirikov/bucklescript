@@ -3,10 +3,10 @@
 Caml_array = require "../../lib/js/caml_array.lua";
 
 function g(x) do
-  return [
+  return {
           3,
           x
-        ];
+        };
 end end
 
 function ff(v, u) do

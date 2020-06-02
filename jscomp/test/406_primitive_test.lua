@@ -18,19 +18,19 @@ end end
 
 eq("File \"406_primitive_test.ml\", line 18, characters 6-13", 32, 32);
 
-backend_type = --[[ Other ]]["BS"];
+backend_type = --[[ Other ]]{"BS"};
 
-eq("File \"406_primitive_test.ml\", line 29, characters 6-13", backend_type, --[[ Other ]]["BS"]);
+eq("File \"406_primitive_test.ml\", line 29, characters 6-13", backend_type, --[[ Other ]]{"BS"});
 
 function f(param) do
   A = Caml_exceptions.create("A");
   try do
     for i = 0 , 200 , 1 do
       if (i == 10) then do
-        throw [
+        throw {
               A,
               0
-            ];
+            };
       end
        end 
     end

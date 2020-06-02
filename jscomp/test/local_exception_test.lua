@@ -4,20 +4,20 @@ Caml_exceptions = require "../../lib/js/caml_exceptions.lua";
 
 A = Caml_exceptions.create("Local_exception_test.A");
 
-v = [
+v = {
   A,
   3,
   true
-];
+};
 
 B = Caml_exceptions.create("Local_exception_test.B");
 
 D = Caml_exceptions.create("Local_exception_test.D");
 
-d = [
+d = {
   D,
   3
-];
+};
 
 u = B;
 

@@ -14,32 +14,32 @@ function split(x, tree) do
     l = tree[0];
     c = Caml_primitive.caml_string_compare(x, v);
     if (c == 0) then do
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               l,
               true,
               r
-            ];
+            };
     end else if (c < 0) then do
       match = split(x, l);
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               match[0],
               match[1],
               Set_gen.internal_join(match[2], v, r)
-            ];
+            };
     end else do
       match$1 = split(x, r);
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               Set_gen.internal_join(l, v, match$1[0]),
               match$1[1],
               match$1[2]
-            ];
+            };
     end end  end 
   end else do
-    return --[[ tuple ]][
+    return --[[ tuple ]]{
             --[[ Empty ]]0,
             false,
             --[[ Empty ]]0
-          ];
+          };
   end end 
 end end
 
@@ -57,12 +57,12 @@ function add(x, tree) do
       return Set_gen.internal_bal(l, v, add(x, r));
     end end  end 
   end else do
-    return --[[ Node ]][
+    return --[[ Node ]]{
             --[[ Empty ]]0,
             x,
             --[[ Empty ]]0,
             1
-          ];
+          };
   end end 
 end end
 
@@ -196,23 +196,23 @@ function subset(_s1, _s2) do
             return false;
           end end 
         end else if (c < 0) then do
-          if (subset(--[[ Node ]][
+          if (subset(--[[ Node ]]{
                   l1,
                   v1,
                   --[[ Empty ]]0,
                   0
-                ], l2)) then do
+                }, l2)) then do
             _s1 = r1;
             continue ;
           end else do
             return false;
           end end 
-        end else if (subset(--[[ Node ]][
+        end else if (subset(--[[ Node ]]{
                 --[[ Empty ]]0,
                 v1,
                 r1,
                 0
-              ], r2)) then do
+              }, r2)) then do
           _s1 = l1;
           continue ;
         end else do

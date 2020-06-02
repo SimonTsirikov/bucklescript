@@ -53,17 +53,17 @@ end end
 
 eq("File \"exn_error_pattern.ml\", line 34, characters 5-12", f(Caml_builtin_exceptions.not_found), 0);
 
-eq("File \"exn_error_pattern.ml\", line 35, characters 5-12", f([
+eq("File \"exn_error_pattern.ml\", line 35, characters 5-12", f({
           Caml_builtin_exceptions.invalid_argument,
           ""
-        ]), 1);
+        }), 1);
 
 eq("File \"exn_error_pattern.ml\", line 36, characters 5-12", f(Caml_builtin_exceptions.stack_overflow), 1);
 
-eq("File \"exn_error_pattern.ml\", line 37, characters 5-12", f([
+eq("File \"exn_error_pattern.ml\", line 37, characters 5-12", f({
           Caml_builtin_exceptions.sys_error,
           ""
-        ]), 2);
+        }), 2);
 
 tmp;
 

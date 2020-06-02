@@ -17,26 +17,26 @@ function eq(loc, param) do
   y = param[1];
   x = param[0];
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = --[[ :: ]][
-    --[[ tuple ]][
+  suites.contents = --[[ :: ]]{
+    --[[ tuple ]]{
       loc .. (" id " .. String(test_id.contents)),
       (function (param) do
-          return --[[ Eq ]]Block.__(0, [
+          return --[[ Eq ]]Block.__(0, {
                     x,
                     y
-                  ]);
+                  });
         end end)
-    ],
+    },
     suites.contents
-  ];
+  };
   return --[[ () ]]0;
 end end
 
-b = [
+b = {
   0,
   0,
   0
-];
+};
 
 b[0] = --[[ "a" ]]97;
 
@@ -50,16 +50,16 @@ res = Caml_bytes.bytes_to_string(b);
 
 console.log(res);
 
-eq("File \"bytes_split_gpr_743_test.ml\", line 17, characters 5-12", --[[ tuple ]][
+eq("File \"bytes_split_gpr_743_test.ml\", line 17, characters 5-12", --[[ tuple ]]{
       "aab",
       res
-    ]);
+    });
 
-b$1 = [
+b$1 = {
   0,
   0,
   0
-];
+};
 
 b$1[0] = --[[ "a" ]]97;
 
@@ -73,10 +73,10 @@ res2 = Caml_bytes.bytes_to_string(b$1);
 
 console.log(res2);
 
-eq("File \"bytes_split_gpr_743_test.ml\", line 32, characters 5-12", --[[ tuple ]][
+eq("File \"bytes_split_gpr_743_test.ml\", line 32, characters 5-12", --[[ tuple ]]{
       "bcc",
       res2
-    ]);
+    });
 
 Mt.from_pair_suites("Bytes_split_gpr_743_test", suites.contents);
 

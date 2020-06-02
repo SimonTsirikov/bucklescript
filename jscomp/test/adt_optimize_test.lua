@@ -177,14 +177,14 @@ function f11(x) do
   if (typeof x == "number") then do
     return 2;
   end else if (x.tag) then do
-    throw [
+    throw {
           Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]][
+          --[[ tuple ]]{
             "adt_optimize_test.ml",
             191,
             9
-          ]
-        ];
+          }
+        };
   end else do
     return 1;
   end end  end 

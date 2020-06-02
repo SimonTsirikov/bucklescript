@@ -9,27 +9,27 @@ function insert(queue, prio, elt) do
     e = queue[1];
     p = queue[0];
     if (prio <= p) then do
-      return --[[ Node ]][
+      return --[[ Node ]]{
               prio,
               elt,
               insert(right, p, e),
               left
-            ];
+            };
     end else do
-      return --[[ Node ]][
+      return --[[ Node ]]{
               p,
               e,
               insert(right, prio, elt),
               left
-            ];
+            };
     end end 
   end else do
-    return --[[ Node ]][
+    return --[[ Node ]]{
             prio,
             elt,
             --[[ Empty ]]0,
             --[[ Empty ]]0
-          ];
+          };
   end end 
 end end
 
@@ -44,19 +44,19 @@ function remove_top(param) do
         rprio = right[0];
         lprio = left[0];
         if (lprio <= rprio) then do
-          return --[[ Node ]][
+          return --[[ Node ]]{
                   lprio,
                   left[1],
                   remove_top(left),
                   right
-                ];
+                };
         end else do
-          return --[[ Node ]][
+          return --[[ Node ]]{
                   rprio,
                   right[1],
                   left,
                   remove_top(right)
-                ];
+                };
         end end 
       end else do
         return param[3];
@@ -71,11 +71,11 @@ end end
 
 function extract(queue) do
   if (queue) then do
-    return --[[ tuple ]][
+    return --[[ tuple ]]{
             queue[0],
             queue[1],
             remove_top(queue)
-          ];
+          };
   end else do
     throw Queue_is_empty;
   end end 

@@ -16,41 +16,41 @@ end end
 
 d3 = d2(2016)(1, --[[ () ]]0);
 
-suites_000 = --[[ tuple ]][
+suites_000 = --[[ tuple ]]{
   "getMonth",
   (function (param) do
-      return --[[ Eq ]]Block.__(0, [
+      return --[[ Eq ]]Block.__(0, {
                 2,
                 d.getMonth()
-              ]);
+              });
     end end)
-];
+};
 
-suites_001 = --[[ :: ]][
-  --[[ tuple ]][
+suites_001 = --[[ :: ]]{
+  --[[ tuple ]]{
     "getYear",
     (function (param) do
-        return --[[ Eq ]]Block.__(0, [
-                  --[[ tuple ]][
+        return --[[ Eq ]]Block.__(0, {
+                  --[[ tuple ]]{
                     2016,
                     2,
                     1
-                  ],
-                  --[[ tuple ]][
+                  },
+                  --[[ tuple ]]{
                     d3.getFullYear(),
                     d3.getMonth(),
                     d3.getDate()
-                  ]
-                ]);
+                  }
+                });
       end end)
-  ],
+  },
   --[[ [] ]]0
-];
+};
 
-suites = --[[ :: ]][
+suites = --[[ :: ]]{
   suites_000,
   suites_001
-];
+};
 
 Mt.from_pair_suites("Oo_js_test_date", suites);
 

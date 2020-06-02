@@ -17,31 +17,31 @@ function eq(loc, param) do
   y = param[1];
   x = param[0];
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = --[[ :: ]][
-    --[[ tuple ]][
+  suites.contents = --[[ :: ]]{
+    --[[ tuple ]]{
       loc .. (" id " .. String(test_id.contents)),
       (function (param) do
-          return --[[ Eq ]]Block.__(0, [
+          return --[[ Eq ]]Block.__(0, {
                     x,
                     y
-                  ]);
+                  });
         end end)
-    ],
+    },
     suites.contents
-  ];
+  };
   return --[[ () ]]0;
 end end
 
 function joinClasses(prim) do
-  return Caml_splice_call.spliceApply(JoinClasses, [prim]);
+  return Caml_splice_call.spliceApply(JoinClasses, {prim});
 end end
 
 a = JoinClasses(1, 2, 3);
 
-pair = --[[ tuple ]][
+pair = --[[ tuple ]]{
   a,
   6
-];
+};
 
 console.log(pair);
 

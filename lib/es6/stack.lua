@@ -26,10 +26,10 @@ function copy(s) do
 end end
 
 function push(x, s) do
-  s.c = --[[ :: ]][
+  s.c = --[[ :: ]]{
     x,
     s.c
-  ];
+  };
   s.len = s.len + 1 | 0;
   return --[[ () ]]0;
 end end

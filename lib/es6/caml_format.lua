@@ -121,11 +121,11 @@ function parse_sign_and_base(s) do
     end end  end 
   end
    end 
-  return --[[ tuple ]][
+  return --[[ tuple ]]{
           i,
           sign,
           base
-        ];
+        };
 end end
 
 function caml_int_of_string(s) do
@@ -137,10 +137,10 @@ function caml_int_of_string(s) do
   c = i < len and s.charCodeAt(i) or --[[ "\000" ]]0;
   d = parse_digit(c);
   if (d < 0 or d >= base) then do
-    throw [
+    throw {
           Caml_builtin_exceptions.failure,
           "int_of_string"
-        ];
+        };
   end
    end 
   aux = function (_acc, _k) do
@@ -157,18 +157,18 @@ function caml_int_of_string(s) do
         end else do
           v = parse_digit(a);
           if (v < 0 or v >= base) then do
-            throw [
+            throw {
                   Caml_builtin_exceptions.failure,
                   "int_of_string"
-                ];
+                };
           end
            end 
           acc$1 = base * acc + v;
           if (acc$1 > threshold) then do
-            throw [
+            throw {
                   Caml_builtin_exceptions.failure,
                   "int_of_string"
-                ];
+                };
           end
            end 
           _k = k + 1 | 0;
@@ -181,10 +181,10 @@ function caml_int_of_string(s) do
   res = match[1] * aux(d, i + 1 | 0);
   or_res = res | 0;
   if (base == 10 and res ~= or_res) then do
-    throw [
+    throw {
           Caml_builtin_exceptions.failure,
           "int_of_string"
-        ];
+        };
   end
    end 
   return or_res;
@@ -200,39 +200,39 @@ function caml_int64_of_string(s) do
   local ___conditional___=(hbase);
   do
      if ___conditional___ = 0--[[ Oct ]] then do
-        threshold = --[[ int64 ]][
+        threshold = --[[ int64 ]]{
           --[[ hi ]]536870911,
           --[[ lo ]]4294967295
-        ];end else 
+        };end else 
      if ___conditional___ = 1--[[ Hex ]] then do
-        threshold = --[[ int64 ]][
+        threshold = --[[ int64 ]]{
           --[[ hi ]]268435455,
           --[[ lo ]]4294967295
-        ];end else 
+        };end else 
      if ___conditional___ = 2--[[ Dec ]] then do
-        threshold = --[[ int64 ]][
+        threshold = --[[ int64 ]]{
           --[[ hi ]]429496729,
           --[[ lo ]]2576980377
-        ];end else 
+        };end else 
      if ___conditional___ = 3--[[ Bin ]] then do
-        threshold = --[[ int64 ]][
+        threshold = --[[ int64 ]]{
           --[[ hi ]]2147483647,
           --[[ lo ]]4294967295
-        ];end else 
+        };end else 
      do end end end end end
     
   end
   len = #s;
   c = i < len and s.charCodeAt(i) or --[[ "\000" ]]0;
   d = Caml_int64.of_int32(parse_digit(c));
-  if (Caml_int64.lt(d, --[[ int64 ]][
+  if (Caml_int64.lt(d, --[[ int64 ]]{
           --[[ hi ]]0,
           --[[ lo ]]0
-        ]) or Caml_int64.ge(d, base)) then do
-    throw [
+        }) or Caml_int64.ge(d, base)) then do
+    throw {
           Caml_builtin_exceptions.failure,
           "int64_of_string"
-        ];
+        };
   end
    end 
   aux = function (_acc, _k) do
@@ -248,14 +248,14 @@ function caml_int64_of_string(s) do
           continue ;
         end else do
           v = Caml_int64.of_int32(parse_digit(a));
-          if (Caml_int64.lt(v, --[[ int64 ]][
+          if (Caml_int64.lt(v, --[[ int64 ]]{
                   --[[ hi ]]0,
                   --[[ lo ]]0
-                ]) or Caml_int64.ge(v, base) or Caml_int64.gt(acc, threshold)) then do
-            throw [
+                }) or Caml_int64.ge(v, base) or Caml_int64.gt(acc, threshold)) then do
+            throw {
                   Caml_builtin_exceptions.failure,
                   "int64_of_string"
-                ];
+                };
           end
            end 
           acc$1 = Caml_int64.add(Caml_int64.mul(base, acc), v);
@@ -267,18 +267,18 @@ function caml_int64_of_string(s) do
     end;
   end end;
   res = Caml_int64.mul(sign, aux(d, i + 1 | 0));
-  or_res = Caml_int64.or_(res, --[[ int64 ]][
+  or_res = Caml_int64.or_(res, --[[ int64 ]]{
         --[[ hi ]]0,
         --[[ lo ]]0
-      ]);
-  if (Caml_int64.eq(base, --[[ int64 ]][
+      });
+  if (Caml_int64.eq(base, --[[ int64 ]]{
           --[[ hi ]]0,
           --[[ lo ]]10
-        ]) and Caml_int64.neq(res, or_res)) then do
-    throw [
+        }) and Caml_int64.neq(res, or_res)) then do
+    throw {
           Caml_builtin_exceptions.failure,
           "int64_of_string"
-        ];
+        };
   end
    end 
   return or_res;
@@ -309,10 +309,10 @@ end end
 function parse_format(fmt) do
   len = #fmt;
   if (len > 31) then do
-    throw [
+    throw {
           Caml_builtin_exceptions.invalid_argument,
           "format_int: format too long"
-        ];
+        };
   end
    end 
   f = do
@@ -596,36 +596,36 @@ end end
 
 function caml_int64_format(fmt, x) do
   f = parse_format(fmt);
-  x$1 = f.signedconv and Caml_int64.lt(x, --[[ int64 ]][
+  x$1 = f.signedconv and Caml_int64.lt(x, --[[ int64 ]]{
         --[[ hi ]]0,
         --[[ lo ]]0
-      ]) and (f.sign = -1, Caml_int64.neg(x)) or x;
+      }) and (f.sign = -1, Caml_int64.neg(x)) or x;
   s = "";
   match = f.base;
   local ___conditional___=(match);
   do
      if ___conditional___ = 0--[[ Oct ]] then do
-        wbase = --[[ int64 ]][
+        wbase = --[[ int64 ]]{
           --[[ hi ]]0,
           --[[ lo ]]8
-        ];
+        };
         cvtbl = "01234567";
-        if (Caml_int64.lt(x$1, --[[ int64 ]][
+        if (Caml_int64.lt(x$1, --[[ int64 ]]{
                 --[[ hi ]]0,
                 --[[ lo ]]0
-              ])) then do
+              })) then do
           y = Caml_int64.discard_sign(x$1);
           match$1 = Caml_int64.div_mod(y, wbase);
-          quotient = Caml_int64.add(--[[ int64 ]][
+          quotient = Caml_int64.add(--[[ int64 ]]{
                 --[[ hi ]]268435456,
                 --[[ lo ]]0
-              ], match$1[0]);
+              }, match$1[0]);
           modulus = match$1[1];
           s = String.fromCharCode(cvtbl.charCodeAt(Caml_int64.to_int32(modulus))) .. s;
-          while(Caml_int64.neq(quotient, --[[ int64 ]][
+          while(Caml_int64.neq(quotient, --[[ int64 ]]{
                   --[[ hi ]]0,
                   --[[ lo ]]0
-                ])) do
+                })) do
             match$2 = Caml_int64.div_mod(quotient, wbase);
             quotient = match$2[0];
             modulus = match$2[1];
@@ -636,10 +636,10 @@ function caml_int64_format(fmt, x) do
           quotient$1 = match$3[0];
           modulus$1 = match$3[1];
           s = String.fromCharCode(cvtbl.charCodeAt(Caml_int64.to_int32(modulus$1))) .. s;
-          while(Caml_int64.neq(quotient$1, --[[ int64 ]][
+          while(Caml_int64.neq(quotient$1, --[[ int64 ]]{
                   --[[ hi ]]0,
                   --[[ lo ]]0
-                ])) do
+                })) do
             match$4 = Caml_int64.div_mod(quotient$1, wbase);
             quotient$1 = match$4[0];
             modulus$1 = match$4[1];
@@ -649,31 +649,31 @@ function caml_int64_format(fmt, x) do
      if ___conditional___ = 1--[[ Hex ]] then do
         s = Caml_int64.to_hex(x$1) .. s;end else 
      if ___conditional___ = 2--[[ Dec ]] then do
-        wbase$1 = --[[ int64 ]][
+        wbase$1 = --[[ int64 ]]{
           --[[ hi ]]0,
           --[[ lo ]]10
-        ];
+        };
         cvtbl$1 = "0123456789";
-        if (Caml_int64.lt(x$1, --[[ int64 ]][
+        if (Caml_int64.lt(x$1, --[[ int64 ]]{
                 --[[ hi ]]0,
                 --[[ lo ]]0
-              ])) then do
+              })) then do
           y$1 = Caml_int64.discard_sign(x$1);
           match$5 = Caml_int64.div_mod(y$1, wbase$1);
-          match$6 = Caml_int64.div_mod(Caml_int64.add(--[[ int64 ]][
+          match$6 = Caml_int64.div_mod(Caml_int64.add(--[[ int64 ]]{
                     --[[ hi ]]0,
                     --[[ lo ]]8
-                  ], match$5[1]), wbase$1);
-          quotient$2 = Caml_int64.add(Caml_int64.add(--[[ int64 ]][
+                  }, match$5[1]), wbase$1);
+          quotient$2 = Caml_int64.add(Caml_int64.add(--[[ int64 ]]{
                     --[[ hi ]]214748364,
                     --[[ lo ]]3435973836
-                  ], match$5[0]), match$6[0]);
+                  }, match$5[0]), match$6[0]);
           modulus$2 = match$6[1];
           s = String.fromCharCode(cvtbl$1.charCodeAt(Caml_int64.to_int32(modulus$2))) .. s;
-          while(Caml_int64.neq(quotient$2, --[[ int64 ]][
+          while(Caml_int64.neq(quotient$2, --[[ int64 ]]{
                   --[[ hi ]]0,
                   --[[ lo ]]0
-                ])) do
+                })) do
             match$7 = Caml_int64.div_mod(quotient$2, wbase$1);
             quotient$2 = match$7[0];
             modulus$2 = match$7[1];
@@ -684,10 +684,10 @@ function caml_int64_format(fmt, x) do
           quotient$3 = match$8[0];
           modulus$3 = match$8[1];
           s = String.fromCharCode(cvtbl$1.charCodeAt(Caml_int64.to_int32(modulus$3))) .. s;
-          while(Caml_int64.neq(quotient$3, --[[ int64 ]][
+          while(Caml_int64.neq(quotient$3, --[[ int64 ]]{
                   --[[ hi ]]0,
                   --[[ lo ]]0
-                ])) do
+                })) do
             match$9 = Caml_int64.div_mod(quotient$3, wbase$1);
             quotient$3 = match$9[0];
             modulus$3 = match$9[1];
@@ -861,10 +861,10 @@ float_of_string = (function(s,exn){
 });
 
 function caml_float_of_string(s) do
-  return float_of_string(s, [
+  return float_of_string(s, {
               Caml_builtin_exceptions.failure,
               "float_of_string"
-            ]);
+            });
 end end
 
 caml_nativeint_format = caml_format_int;

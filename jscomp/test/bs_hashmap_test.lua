@@ -42,24 +42,24 @@ function add(prim, prim$1) do
   return prim + prim$1 | 0;
 end end
 
-Belt_HashMap.mergeMany(empty, [
-      --[[ tuple ]][
+Belt_HashMap.mergeMany(empty, {
+      --[[ tuple ]]{
         1,
         1
-      ],
-      --[[ tuple ]][
+      },
+      --[[ tuple ]]{
         2,
         3
-      ],
-      --[[ tuple ]][
+      },
+      --[[ tuple ]]{
         3,
         3
-      ],
-      --[[ tuple ]][
+      },
+      --[[ tuple ]]{
         2,
         2
-      ]
-    ]);
+      }
+    });
 
 eqx("File \"bs_hashmap_test.ml\", line 31, characters 6-13", Belt_HashMap.get(empty, 2), 2);
 

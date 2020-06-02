@@ -20,7 +20,7 @@ function init(n, f) do
   return s;
 end end
 
-empty = [];
+empty = {};
 
 function copy(s) do
   len = #s;
@@ -39,10 +39,10 @@ end end
 
 function sub(s, ofs, len) do
   if (ofs < 0 or len < 0 or ofs > (#s - len | 0)) then do
-    throw [
+    throw {
           Caml_builtin_exceptions.invalid_argument,
           "String.sub / Bytes.sub"
-        ];
+        };
   end
    end 
   r = Caml_bytes.caml_create_bytes(len);
@@ -61,10 +61,10 @@ function $plus$plus(a, b) do
   match$2 = c < 0;
   if (match) then do
     if (match$1 and not match$2) then do
-      throw [
+      throw {
             Caml_builtin_exceptions.invalid_argument,
             "Bytes.extend"
-          ];
+          };
     end else do
       return c;
     end end 
@@ -72,10 +72,10 @@ function $plus$plus(a, b) do
     return c;
   end else do
     if (match$2) then do
-      throw [
+      throw {
             Caml_builtin_exceptions.invalid_argument,
             "Bytes.extend"
-          ];
+          };
     end
      end 
     return c;
@@ -85,13 +85,13 @@ end end
 function extend(s, left, right) do
   len = $plus$plus($plus$plus(#s, left), right);
   r = Caml_bytes.caml_create_bytes(len);
-  match = left < 0 and --[[ tuple ]][
+  match = left < 0 and --[[ tuple ]]{
       -left | 0,
       0
-    ] or --[[ tuple ]][
+    } or --[[ tuple ]]{
       0,
       left
-    ];
+    };
   dstoff = match[1];
   srcoff = match[0];
   cpylen = Caml_primitive.caml_int_min(#s - srcoff | 0, len - dstoff | 0);
@@ -104,10 +104,10 @@ end end
 
 function fill(s, ofs, len, c) do
   if (ofs < 0 or len < 0 or ofs > (#s - len | 0)) then do
-    throw [
+    throw {
           Caml_builtin_exceptions.invalid_argument,
           "String.fill / Bytes.fill"
-        ];
+        };
   end
    end 
   return Caml_bytes.caml_fill_bytes(s, ofs, len, c);
@@ -115,10 +115,10 @@ end end
 
 function blit(s1, ofs1, s2, ofs2, len) do
   if (len < 0 or ofs1 < 0 or ofs1 > (#s1 - len | 0) or ofs2 < 0 or ofs2 > (#s2 - len | 0)) then do
-    throw [
+    throw {
           Caml_builtin_exceptions.invalid_argument,
           "Bytes.blit"
-        ];
+        };
   end
    end 
   return Caml_bytes.caml_blit_bytes(s1, ofs1, s2, ofs2, len);
@@ -126,10 +126,10 @@ end end
 
 function blit_string(s1, ofs1, s2, ofs2, len) do
   if (len < 0 or ofs1 < 0 or ofs1 > (#s1 - len | 0) or ofs2 < 0 or ofs2 > (#s2 - len | 0)) then do
-    throw [
+    throw {
           Caml_builtin_exceptions.invalid_argument,
           "String.blit / Bytes.blit_string"
-        ];
+        };
   end
    end 
   return Caml_bytes.caml_blit_string(s1, ofs1, s2, ofs2, len);
@@ -153,10 +153,10 @@ function ensure_ge(x, y) do
   if (x >= y) then do
     return x;
   end else do
-    throw [
+    throw {
           Caml_builtin_exceptions.invalid_argument,
           "Bytes.concat"
-        ];
+        };
   end end 
 end end
 
@@ -445,10 +445,10 @@ end end
 function index_from(s, i, c) do
   l = #s;
   if (i < 0 or i > l) then do
-    throw [
+    throw {
           Caml_builtin_exceptions.invalid_argument,
           "String.index_from / Bytes.index_from"
-        ];
+        };
   end
    end 
   return index_rec(s, l, i, c);
@@ -457,10 +457,10 @@ end end
 function index_from_opt(s, i, c) do
   l = #s;
   if (i < 0 or i > l) then do
-    throw [
+    throw {
           Caml_builtin_exceptions.invalid_argument,
           "String.index_from_opt / Bytes.index_from_opt"
-        ];
+        };
   end
    end 
   return index_rec_opt(s, l, i, c);
@@ -488,10 +488,10 @@ end end
 
 function rindex_from(s, i, c) do
   if (i < -1 or i >= #s) then do
-    throw [
+    throw {
           Caml_builtin_exceptions.invalid_argument,
           "String.rindex_from / Bytes.rindex_from"
-        ];
+        };
   end
    end 
   return rindex_rec(s, i, c);
@@ -517,10 +517,10 @@ end end
 
 function rindex_from_opt(s, i, c) do
   if (i < -1 or i >= #s) then do
-    throw [
+    throw {
           Caml_builtin_exceptions.invalid_argument,
           "String.rindex_from_opt / Bytes.rindex_from_opt"
-        ];
+        };
   end
    end 
   return rindex_rec_opt(s, i, c);
@@ -529,10 +529,10 @@ end end
 function contains_from(s, i, c) do
   l = #s;
   if (i < 0 or i > l) then do
-    throw [
+    throw {
           Caml_builtin_exceptions.invalid_argument,
           "String.contains_from / Bytes.contains_from"
-        ];
+        };
   end
    end 
   try do
@@ -554,10 +554,10 @@ end end
 
 function rcontains_from(s, i, c) do
   if (i < 0 or i >= #s) then do
-    throw [
+    throw {
           Caml_builtin_exceptions.invalid_argument,
           "String.rcontains_from / Bytes.rcontains_from"
-        ];
+        };
   end
    end 
   try do

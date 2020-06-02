@@ -10,42 +10,42 @@ v_ice_cream3_000 = do
   num: 3
 end;
 
-v_ice_cream3_001 = --[[ :: ]][
+v_ice_cream3_001 = --[[ :: ]]{
   do
     flavor: "x",
     num: 3
   end,
-  --[[ :: ]][
+  --[[ :: ]]{
     do
       flavor: "vanilla",
       num: 3
     end,
     --[[ [] ]]0
-  ]
-];
+  }
+};
 
-v_ice_cream3 = --[[ :: ]][
+v_ice_cream3 = --[[ :: ]]{
   v_ice_cream3_000,
   v_ice_cream3_001
-];
+};
 
 v_ice_cream4_000 = do
   flavor: "vanilla",
   num: 3
 end;
 
-v_ice_cream4_001 = --[[ :: ]][
+v_ice_cream4_001 = --[[ :: ]]{
   do
     flavor: "x",
     num: 3
   end,
   --[[ [] ]]0
-];
+};
 
-v_ice_cream4 = --[[ :: ]][
+v_ice_cream4 = --[[ :: ]]{
   v_ice_cream4_000,
   v_ice_cream4_001
-];
+};
 
 vv = do
   x: 3
@@ -61,22 +61,22 @@ end;
 
 int_expects_000 = { };
 
-int_expects_001 = --[[ :: ]][
+int_expects_001 = --[[ :: ]]{
   do
     x: 2
   end,
-  --[[ :: ]][
+  --[[ :: ]]{
     do
       x: 3
     end,
     --[[ [] ]]0
-  ]
-];
+  }
+};
 
-int_expects = --[[ :: ]][
+int_expects = --[[ :: ]]{
   int_expects_000,
   int_expects_001
-];
+};
 
 mk_ice = do
   flavour: "vanilla",
@@ -118,22 +118,22 @@ v_mk7_000 = do
   y: 3
 end;
 
-v_mk7_001 = --[[ :: ]][
+v_mk7_001 = --[[ :: ]]{
   do
     y: 2
   end,
-  --[[ :: ]][
+  --[[ :: ]]{
     do
       y: 2
     end,
     --[[ [] ]]0
-  ]
-];
+  }
+};
 
-v_mk7 = --[[ :: ]][
+v_mk7 = --[[ :: ]]{
   v_mk7_000,
   v_mk7_001
-];
+};
 
 again("a", 3);
 

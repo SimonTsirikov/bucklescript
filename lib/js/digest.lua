@@ -19,10 +19,10 @@ end end
 
 function substring(str, ofs, len) do
   if (ofs < 0 or len < 0 or ofs > (#str - len | 0)) then do
-    throw [
+    throw {
           Caml_builtin_exceptions.invalid_argument,
           "Digest.substring"
-        ];
+        };
   end
    end 
   return Caml_md5.caml_md5_string(str, ofs, len);
@@ -60,10 +60,10 @@ end end
 
 function to_hex(d) do
   if (#d ~= 16) then do
-    throw [
+    throw {
           Caml_builtin_exceptions.invalid_argument,
           "Digest.to_hex"
-        ];
+        };
   end
    end 
   result = Caml_bytes.caml_create_bytes(32);
@@ -77,39 +77,39 @@ end end
 
 function from_hex(s) do
   if (#s ~= 32) then do
-    throw [
+    throw {
           Caml_builtin_exceptions.invalid_argument,
           "Digest.from_hex"
-        ];
+        };
   end
    end 
   digit = function (c) do
     if (c >= 65) then do
       if (c >= 97) then do
         if (c >= 103) then do
-          throw [
+          throw {
                 Caml_builtin_exceptions.invalid_argument,
                 "Digest.from_hex"
-              ];
+              };
         end
          end 
         return (c - --[[ "a" ]]97 | 0) + 10 | 0;
       end else do
         if (c >= 71) then do
-          throw [
+          throw {
                 Caml_builtin_exceptions.invalid_argument,
                 "Digest.from_hex"
-              ];
+              };
         end
          end 
         return (c - --[[ "A" ]]65 | 0) + 10 | 0;
       end end 
     end else do
       if (c > 57 or c < 48) then do
-        throw [
+        throw {
               Caml_builtin_exceptions.invalid_argument,
               "Digest.from_hex"
-            ];
+            };
       end
        end 
       return c - --[[ "0" ]]48 | 0;

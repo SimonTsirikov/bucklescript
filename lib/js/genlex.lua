@@ -48,7 +48,7 @@ end end
 function make_lexer(keywords) do
   kwd_table = Hashtbl.create(undefined, 17);
   List.iter((function (s) do
-          return Hashtbl.add(kwd_table, s, --[[ Kwd ]]Block.__(0, [s]));
+          return Hashtbl.add(kwd_table, s, --[[ Kwd ]]Block.__(0, {s}));
         end end), keywords);
   ident_or_keyword = function (id) do
     try do
@@ -56,7 +56,7 @@ function make_lexer(keywords) do
     end
     catch (exn)do
       if (exn == Caml_builtin_exceptions.not_found) then do
-        return --[[ Ident ]]Block.__(1, [id]);
+        return --[[ Ident ]]Block.__(1, {id});
       end else do
         throw exn;
       end end 
@@ -69,10 +69,10 @@ function make_lexer(keywords) do
     end
     catch (exn)do
       if (exn == Caml_builtin_exceptions.not_found) then do
-        throw [
+        throw {
               Stream.__Error,
               "Illegal character " .. s
-            ];
+            };
       end
        end 
       throw exn;
@@ -103,7 +103,7 @@ function make_lexer(keywords) do
                  if ___conditional___ = 34 then do
                     Stream.junk(strm__);
                     reset_buffer(--[[ () ]]0);
-                    return --[[ String ]]Block.__(4, [string(strm__)]);end end end 
+                    return --[[ String ]]Block.__(4, {string(strm__)});end end end 
                  if ___conditional___ = 39 then do
                     Stream.junk(strm__);
                     c$1;
@@ -112,10 +112,10 @@ function make_lexer(keywords) do
                     end
                     catch (exn)do
                       if (exn == Stream.Failure) then do
-                        throw [
+                        throw {
                               Stream.__Error,
                               ""
-                            ];
+                            };
                       end
                        end 
                       throw exn;
@@ -123,19 +123,19 @@ function make_lexer(keywords) do
                     match$1 = Stream.peek(strm__);
                     if (match$1 ~= undefined) then do
                       if (match$1 ~= 39) then do
-                        throw [
+                        throw {
                               Stream.__Error,
                               ""
-                            ];
+                            };
                       end
                        end 
                       Stream.junk(strm__);
-                      return --[[ Char ]]Block.__(5, [c$1]);
+                      return --[[ Char ]]Block.__(5, {c$1});
                     end else do
-                      throw [
+                      throw {
                             Stream.__Error,
                             ""
-                          ];
+                          };
                     end end end end end 
                  if ___conditional___ = 40 then do
                     Stream.junk(strm__);
@@ -431,12 +431,12 @@ function make_lexer(keywords) do
                end  end 
             end
              end 
-            return --[[ Float ]]Block.__(3, [Caml_format.caml_float_of_string(get_string(--[[ () ]]0))]);
+            return --[[ Float ]]Block.__(3, {Caml_format.caml_float_of_string(get_string(--[[ () ]]0))});
           end;
         end end  end 
       end
        end 
-      return --[[ Int ]]Block.__(2, [Caml_format.caml_int_of_string(get_string(--[[ () ]]0))]);
+      return --[[ Int ]]Block.__(2, {Caml_format.caml_int_of_string(get_string(--[[ () ]]0))});
     end;
   end end;
   exponent_part = function (strm__) do
@@ -460,14 +460,14 @@ function make_lexer(keywords) do
       if (match ~= undefined) then do
         c = match;
         if (c > 57 or c < 48) then do
-          return --[[ Float ]]Block.__(3, [Caml_format.caml_float_of_string(get_string(--[[ () ]]0))]);
+          return --[[ Float ]]Block.__(3, {Caml_format.caml_float_of_string(get_string(--[[ () ]]0))});
         end else do
           Stream.junk(strm__);
           store(c);
           continue ;
         end end 
       end else do
-        return --[[ Float ]]Block.__(3, [Caml_format.caml_float_of_string(get_string(--[[ () ]]0))]);
+        return --[[ Float ]]Block.__(3, {Caml_format.caml_float_of_string(get_string(--[[ () ]]0))});
       end end 
     end;
   end end;
@@ -488,10 +488,10 @@ function make_lexer(keywords) do
             end
             catch (exn)do
               if (exn == Stream.Failure) then do
-                throw [
+                throw {
                       Stream.__Error,
                       ""
-                    ];
+                    };
               end
                end 
               throw exn;
@@ -520,10 +520,10 @@ function make_lexer(keywords) do
         end
         catch (exn)do
           if (exn == Stream.Failure) then do
-            throw [
+            throw {
                   Stream.__Error,
                   ""
-                ];
+                };
           end
            end 
           throw exn;
@@ -569,10 +569,10 @@ function make_lexer(keywords) do
           if (match$1 ~= undefined) then do
             c2 = match$1;
             if (c2 > 57 or c2 < 48) then do
-              throw [
+              throw {
                     Stream.__Error,
                     ""
-                  ];
+                  };
             end
              end 
             Stream.junk(strm__);
@@ -580,25 +580,25 @@ function make_lexer(keywords) do
             if (match$2 ~= undefined) then do
               c3 = match$2;
               if (c3 > 57 or c3 < 48) then do
-                throw [
+                throw {
                       Stream.__Error,
                       ""
-                    ];
+                    };
               end
                end 
               Stream.junk(strm__);
               return Char.chr((Caml_int32.imul(c1 - 48 | 0, 100) + Caml_int32.imul(c2 - 48 | 0, 10) | 0) + (c3 - 48 | 0) | 0);
             end else do
-              throw [
+              throw {
                     Stream.__Error,
                     ""
-                  ];
+                  };
             end end 
           end else do
-            throw [
+            throw {
                   Stream.__Error,
                   ""
-                ];
+                };
           end end 
         end else do
           return c1;

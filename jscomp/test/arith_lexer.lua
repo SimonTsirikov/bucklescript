@@ -30,9 +30,9 @@ function __ocaml_lex_lexeme_rec(lexbuf, ___ocaml_lex_state) do
           ___ocaml_lex_state = 0;
           continue ;end end end 
        if ___conditional___ = 1 then do
-          return --[[ NUMERAL ]]Block.__(0, [Caml_format.caml_int_of_string(Lexing.lexeme(lexbuf))]);end end end 
+          return --[[ NUMERAL ]]Block.__(0, {Caml_format.caml_int_of_string(Lexing.lexeme(lexbuf))});end end end 
        if ___conditional___ = 2 then do
-          return --[[ IDENT ]]Block.__(1, [Lexing.lexeme(lexbuf)]);end end end 
+          return --[[ IDENT ]]Block.__(1, {Lexing.lexeme(lexbuf)});end end end 
        if ___conditional___ = 3 then do
           return --[[ PLUS ]]0;end end end 
        if ___conditional___ = 4 then do

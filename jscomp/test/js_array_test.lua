@@ -5,494 +5,494 @@ Block = require "../../lib/js/block.lua";
 Js_vector = require "../../lib/js/js_vector.lua";
 Caml_option = require "../../lib/js/caml_option.lua";
 
-suites_000 = --[[ tuple ]][
+suites_000 = --[[ tuple ]]{
   "File \"js_array_test.ml\", line 3, characters 4-11",
   (function (param) do
-      x = [
+      x = {
         1,
         2,
         3,
         4,
         5
-      ];
-      return --[[ Eq ]]Block.__(0, [
-                [
+      };
+      return --[[ Eq ]]Block.__(0, {
+                {
                   2,
                   4
-                ],
+                },
                 (Js_vector.filterInPlace((function (x) do
                           return x % 2 == 0;
                         end end), x), x)
-              ]);
+              });
     end end)
-];
+};
 
-suites_001 = --[[ :: ]][
-  --[[ tuple ]][
+suites_001 = --[[ :: ]]{
+  --[[ tuple ]]{
     "File \"js_array_test.ml\", line 11, characters 4-11",
     (function (param) do
-        x = [
+        x = {
           1,
           2,
           3,
           4,
           5
-        ];
-        return --[[ Eq ]]Block.__(0, [
+        };
+        return --[[ Eq ]]Block.__(0, {
                   true,
                   (Js_vector.filterInPlace((function (x) do
                             return x > 10;
                           end end), x), #x == 0)
-                ]);
+                });
       end end)
-  ],
-  --[[ :: ]][
-    --[[ tuple ]][
+  },
+  --[[ :: ]]{
+    --[[ tuple ]]{
       "isArray_array",
       (function (param) do
-          return --[[ Eq ]]Block.__(0, [
+          return --[[ Eq ]]Block.__(0, {
                     true,
-                    Array.isArray([])
-                  ]);
+                    Array.isArray({})
+                  });
         end end)
-    ],
-    --[[ :: ]][
-      --[[ tuple ]][
+    },
+    --[[ :: ]]{
+      --[[ tuple ]]{
         "isArray_int",
         (function (param) do
-            return --[[ Eq ]]Block.__(0, [
+            return --[[ Eq ]]Block.__(0, {
                       false,
                       Array.isArray(34)
-                    ]);
+                    });
           end end)
-      ],
-      --[[ :: ]][
-        --[[ tuple ]][
+      },
+      --[[ :: ]]{
+        --[[ tuple ]]{
           "length",
           (function (param) do
-              return --[[ Eq ]]Block.__(0, [
+              return --[[ Eq ]]Block.__(0, {
                         3,
-                        [
+                        {
                           1,
                           2,
                           3
-                        ].length
-                      ]);
+                        }.length
+                      });
             end end)
-        ],
-        --[[ :: ]][
-          --[[ tuple ]][
+        },
+        --[[ :: ]]{
+          --[[ tuple ]]{
             "copyWithin",
             (function (param) do
-                return --[[ Eq ]]Block.__(0, [
-                          [
+                return --[[ Eq ]]Block.__(0, {
+                          {
                             1,
                             2,
                             3,
                             1,
                             2
-                          ],
-                          [
+                          },
+                          {
                               1,
                               2,
                               3,
                               4,
                               5
-                            ].copyWithin(-2)
-                        ]);
+                            }.copyWithin(-2)
+                        });
               end end)
-          ],
-          --[[ :: ]][
-            --[[ tuple ]][
+          },
+          --[[ :: ]]{
+            --[[ tuple ]]{
               "copyWithinFrom",
               (function (param) do
-                  return --[[ Eq ]]Block.__(0, [
-                            [
+                  return --[[ Eq ]]Block.__(0, {
+                            {
                               4,
                               5,
                               3,
                               4,
                               5
-                            ],
-                            [
+                            },
+                            {
                                 1,
                                 2,
                                 3,
                                 4,
                                 5
-                              ].copyWithin(0, 3)
-                          ]);
+                              }.copyWithin(0, 3)
+                          });
                 end end)
-            ],
-            --[[ :: ]][
-              --[[ tuple ]][
+            },
+            --[[ :: ]]{
+              --[[ tuple ]]{
                 "copyWithinFromRange",
                 (function (param) do
-                    return --[[ Eq ]]Block.__(0, [
-                              [
+                    return --[[ Eq ]]Block.__(0, {
+                              {
                                 4,
                                 2,
                                 3,
                                 4,
                                 5
-                              ],
-                              [
+                              },
+                              {
                                   1,
                                   2,
                                   3,
                                   4,
                                   5
-                                ].copyWithin(0, 3, 4)
-                            ]);
+                                }.copyWithin(0, 3, 4)
+                            });
                   end end)
-              ],
-              --[[ :: ]][
-                --[[ tuple ]][
+              },
+              --[[ :: ]]{
+                --[[ tuple ]]{
                   "fillInPlace",
                   (function (param) do
-                      return --[[ Eq ]]Block.__(0, [
-                                [
+                      return --[[ Eq ]]Block.__(0, {
+                                {
                                   4,
                                   4,
                                   4
-                                ],
-                                [
+                                },
+                                {
                                     1,
                                     2,
                                     3
-                                  ].fill(4)
-                              ]);
+                                  }.fill(4)
+                              });
                     end end)
-                ],
-                --[[ :: ]][
-                  --[[ tuple ]][
+                },
+                --[[ :: ]]{
+                  --[[ tuple ]]{
                     "fillFromInPlace",
                     (function (param) do
-                        return --[[ Eq ]]Block.__(0, [
-                                  [
+                        return --[[ Eq ]]Block.__(0, {
+                                  {
                                     1,
                                     4,
                                     4
-                                  ],
-                                  [
+                                  },
+                                  {
                                       1,
                                       2,
                                       3
-                                    ].fill(4, 1)
-                                ]);
+                                    }.fill(4, 1)
+                                });
                       end end)
-                  ],
-                  --[[ :: ]][
-                    --[[ tuple ]][
+                  },
+                  --[[ :: ]]{
+                    --[[ tuple ]]{
                       "fillRangeInPlace",
                       (function (param) do
-                          return --[[ Eq ]]Block.__(0, [
-                                    [
+                          return --[[ Eq ]]Block.__(0, {
+                                    {
                                       1,
                                       4,
                                       3
-                                    ],
-                                    [
+                                    },
+                                    {
                                         1,
                                         2,
                                         3
-                                      ].fill(4, 1, 2)
-                                  ]);
+                                      }.fill(4, 1, 2)
+                                  });
                         end end)
-                    ],
-                    --[[ :: ]][
-                      --[[ tuple ]][
+                    },
+                    --[[ :: ]]{
+                      --[[ tuple ]]{
                         "pop",
                         (function (param) do
-                            return --[[ Eq ]]Block.__(0, [
+                            return --[[ Eq ]]Block.__(0, {
                                       3,
-                                      Caml_option.undefined_to_opt([
+                                      Caml_option.undefined_to_opt({
                                               1,
                                               2,
                                               3
-                                            ].pop())
-                                    ]);
+                                            }.pop())
+                                    });
                           end end)
-                      ],
-                      --[[ :: ]][
-                        --[[ tuple ]][
+                      },
+                      --[[ :: ]]{
+                        --[[ tuple ]]{
                           "pop - empty array",
                           (function (param) do
-                              return --[[ Eq ]]Block.__(0, [
+                              return --[[ Eq ]]Block.__(0, {
                                         undefined,
-                                        Caml_option.undefined_to_opt([].pop())
-                                      ]);
+                                        Caml_option.undefined_to_opt({}.pop())
+                                      });
                             end end)
-                        ],
-                        --[[ :: ]][
-                          --[[ tuple ]][
+                        },
+                        --[[ :: ]]{
+                          --[[ tuple ]]{
                             "push",
                             (function (param) do
-                                return --[[ Eq ]]Block.__(0, [
+                                return --[[ Eq ]]Block.__(0, {
                                           4,
-                                          [
+                                          {
                                               1,
                                               2,
                                               3
-                                            ].push(4)
-                                        ]);
+                                            }.push(4)
+                                        });
                               end end)
-                          ],
-                          --[[ :: ]][
-                            --[[ tuple ]][
+                          },
+                          --[[ :: ]]{
+                            --[[ tuple ]]{
                               "pushMany",
                               (function (param) do
-                                  return --[[ Eq ]]Block.__(0, [
+                                  return --[[ Eq ]]Block.__(0, {
                                             5,
-                                            [
+                                            {
                                                 1,
                                                 2,
                                                 3
-                                              ].push(4, 5)
-                                          ]);
+                                              }.push(4, 5)
+                                          });
                                 end end)
-                            ],
-                            --[[ :: ]][
-                              --[[ tuple ]][
+                            },
+                            --[[ :: ]]{
+                              --[[ tuple ]]{
                                 "reverseInPlace",
                                 (function (param) do
-                                    return --[[ Eq ]]Block.__(0, [
-                                              [
+                                    return --[[ Eq ]]Block.__(0, {
+                                              {
                                                 3,
                                                 2,
                                                 1
-                                              ],
-                                              [
+                                              },
+                                              {
                                                   1,
                                                   2,
                                                   3
-                                                ].reverse()
-                                            ]);
+                                                }.reverse()
+                                            });
                                   end end)
-                              ],
-                              --[[ :: ]][
-                                --[[ tuple ]][
+                              },
+                              --[[ :: ]]{
+                                --[[ tuple ]]{
                                   "shift",
                                   (function (param) do
-                                      return --[[ Eq ]]Block.__(0, [
+                                      return --[[ Eq ]]Block.__(0, {
                                                 1,
-                                                Caml_option.undefined_to_opt([
+                                                Caml_option.undefined_to_opt({
                                                         1,
                                                         2,
                                                         3
-                                                      ].shift())
-                                              ]);
+                                                      }.shift())
+                                              });
                                     end end)
-                                ],
-                                --[[ :: ]][
-                                  --[[ tuple ]][
+                                },
+                                --[[ :: ]]{
+                                  --[[ tuple ]]{
                                     "shift - empty array",
                                     (function (param) do
-                                        return --[[ Eq ]]Block.__(0, [
+                                        return --[[ Eq ]]Block.__(0, {
                                                   undefined,
-                                                  Caml_option.undefined_to_opt([].shift())
-                                                ]);
+                                                  Caml_option.undefined_to_opt({}.shift())
+                                                });
                                       end end)
-                                  ],
-                                  --[[ :: ]][
-                                    --[[ tuple ]][
+                                  },
+                                  --[[ :: ]]{
+                                    --[[ tuple ]]{
                                       "sortInPlace",
                                       (function (param) do
-                                          return --[[ Eq ]]Block.__(0, [
-                                                    [
+                                          return --[[ Eq ]]Block.__(0, {
+                                                    {
                                                       1,
                                                       2,
                                                       3
-                                                    ],
-                                                    [
+                                                    },
+                                                    {
                                                         3,
                                                         1,
                                                         2
-                                                      ].sort()
-                                                  ]);
+                                                      }.sort()
+                                                  });
                                         end end)
-                                    ],
-                                    --[[ :: ]][
-                                      --[[ tuple ]][
+                                    },
+                                    --[[ :: ]]{
+                                      --[[ tuple ]]{
                                         "sortInPlaceWith",
                                         (function (param) do
-                                            return --[[ Eq ]]Block.__(0, [
-                                                      [
+                                            return --[[ Eq ]]Block.__(0, {
+                                                      {
                                                         3,
                                                         2,
                                                         1
-                                                      ],
-                                                      [
+                                                      },
+                                                      {
                                                           3,
                                                           1,
                                                           2
-                                                        ].sort((function (a, b) do
+                                                        }.sort((function (a, b) do
                                                               return b - a | 0;
                                                             end end))
-                                                    ]);
+                                                    });
                                           end end)
-                                      ],
-                                      --[[ :: ]][
-                                        --[[ tuple ]][
+                                      },
+                                      --[[ :: ]]{
+                                        --[[ tuple ]]{
                                           "spliceInPlace",
                                           (function (param) do
-                                              arr = [
+                                              arr = {
                                                 1,
                                                 2,
                                                 3,
                                                 4
-                                              ];
+                                              };
                                               removed = arr.splice(2, 0, 5);
-                                              return --[[ Eq ]]Block.__(0, [
-                                                        --[[ tuple ]][
-                                                          [
+                                              return --[[ Eq ]]Block.__(0, {
+                                                        --[[ tuple ]]{
+                                                          {
                                                             1,
                                                             2,
                                                             5,
                                                             3,
                                                             4
-                                                          ],
-                                                          []
-                                                        ],
-                                                        --[[ tuple ]][
+                                                          },
+                                                          {}
+                                                        },
+                                                        --[[ tuple ]]{
                                                           arr,
                                                           removed
-                                                        ]
-                                                      ]);
+                                                        }
+                                                      });
                                             end end)
-                                        ],
-                                        --[[ :: ]][
-                                          --[[ tuple ]][
+                                        },
+                                        --[[ :: ]]{
+                                          --[[ tuple ]]{
                                             "removeFromInPlace",
                                             (function (param) do
-                                                arr = [
+                                                arr = {
                                                   1,
                                                   2,
                                                   3,
                                                   4
-                                                ];
+                                                };
                                                 removed = arr.splice(2);
-                                                return --[[ Eq ]]Block.__(0, [
-                                                          --[[ tuple ]][
-                                                            [
+                                                return --[[ Eq ]]Block.__(0, {
+                                                          --[[ tuple ]]{
+                                                            {
                                                               1,
                                                               2
-                                                            ],
-                                                            [
+                                                            },
+                                                            {
                                                               3,
                                                               4
-                                                            ]
-                                                          ],
-                                                          --[[ tuple ]][
+                                                            }
+                                                          },
+                                                          --[[ tuple ]]{
                                                             arr,
                                                             removed
-                                                          ]
-                                                        ]);
+                                                          }
+                                                        });
                                               end end)
-                                          ],
-                                          --[[ :: ]][
-                                            --[[ tuple ]][
+                                          },
+                                          --[[ :: ]]{
+                                            --[[ tuple ]]{
                                               "removeCountInPlace",
                                               (function (param) do
-                                                  arr = [
+                                                  arr = {
                                                     1,
                                                     2,
                                                     3,
                                                     4
-                                                  ];
+                                                  };
                                                   removed = arr.splice(2, 1);
-                                                  return --[[ Eq ]]Block.__(0, [
-                                                            --[[ tuple ]][
-                                                              [
+                                                  return --[[ Eq ]]Block.__(0, {
+                                                            --[[ tuple ]]{
+                                                              {
                                                                 1,
                                                                 2,
                                                                 4
-                                                              ],
-                                                              [3]
-                                                            ],
-                                                            --[[ tuple ]][
+                                                              },
+                                                              {3}
+                                                            },
+                                                            --[[ tuple ]]{
                                                               arr,
                                                               removed
-                                                            ]
-                                                          ]);
+                                                            }
+                                                          });
                                                 end end)
-                                            ],
-                                            --[[ :: ]][
-                                              --[[ tuple ]][
+                                            },
+                                            --[[ :: ]]{
+                                              --[[ tuple ]]{
                                                 "unshift",
                                                 (function (param) do
-                                                    return --[[ Eq ]]Block.__(0, [
+                                                    return --[[ Eq ]]Block.__(0, {
                                                               4,
-                                                              [
+                                                              {
                                                                   1,
                                                                   2,
                                                                   3
-                                                                ].unshift(4)
-                                                            ]);
+                                                                }.unshift(4)
+                                                            });
                                                   end end)
-                                              ],
-                                              --[[ :: ]][
-                                                --[[ tuple ]][
+                                              },
+                                              --[[ :: ]]{
+                                                --[[ tuple ]]{
                                                   "unshiftMany",
                                                   (function (param) do
-                                                      return --[[ Eq ]]Block.__(0, [
+                                                      return --[[ Eq ]]Block.__(0, {
                                                                 5,
-                                                                [
+                                                                {
                                                                     1,
                                                                     2,
                                                                     3
-                                                                  ].unshift(4, 5)
-                                                              ]);
+                                                                  }.unshift(4, 5)
+                                                              });
                                                     end end)
-                                                ],
-                                                --[[ :: ]][
-                                                  --[[ tuple ]][
+                                                },
+                                                --[[ :: ]]{
+                                                  --[[ tuple ]]{
                                                     "append",
                                                     (function (param) do
-                                                        return --[[ Eq ]]Block.__(0, [
-                                                                  [
+                                                        return --[[ Eq ]]Block.__(0, {
+                                                                  {
                                                                     1,
                                                                     2,
                                                                     3,
                                                                     4
-                                                                  ],
-                                                                  [
+                                                                  },
+                                                                  {
                                                                       1,
                                                                       2,
                                                                       3
-                                                                    ].concat([4])
-                                                                ]);
+                                                                    }.concat({4})
+                                                                });
                                                       end end)
-                                                  ],
-                                                  --[[ :: ]][
-                                                    --[[ tuple ]][
+                                                  },
+                                                  --[[ :: ]]{
+                                                    --[[ tuple ]]{
                                                       "concat",
                                                       (function (param) do
-                                                          return --[[ Eq ]]Block.__(0, [
-                                                                    [
+                                                          return --[[ Eq ]]Block.__(0, {
+                                                                    {
                                                                       1,
                                                                       2,
                                                                       3,
                                                                       4,
                                                                       5
-                                                                    ],
-                                                                    [
+                                                                    },
+                                                                    {
                                                                         1,
                                                                         2,
                                                                         3
-                                                                      ].concat([
+                                                                      }.concat({
                                                                           4,
                                                                           5
-                                                                        ])
-                                                                  ]);
+                                                                        })
+                                                                  });
                                                         end end)
-                                                    ],
-                                                    --[[ :: ]][
-                                                      --[[ tuple ]][
+                                                    },
+                                                    --[[ :: ]]{
+                                                      --[[ tuple ]]{
                                                         "concatMany",
                                                         (function (param) do
-                                                            return --[[ Eq ]]Block.__(0, [
-                                                                      [
+                                                            return --[[ Eq ]]Block.__(0, {
+                                                                      {
                                                                         1,
                                                                         2,
                                                                         3,
@@ -500,637 +500,637 @@ suites_001 = --[[ :: ]][
                                                                         5,
                                                                         6,
                                                                         7
-                                                                      ],
-                                                                      [
+                                                                      },
+                                                                      {
                                                                           1,
                                                                           2,
                                                                           3
-                                                                        ].concat([
+                                                                        }.concat({
                                                                             4,
                                                                             5
-                                                                          ], [
+                                                                          }, {
                                                                             6,
                                                                             7
-                                                                          ])
-                                                                    ]);
+                                                                          })
+                                                                    });
                                                           end end)
-                                                      ],
-                                                      --[[ :: ]][
-                                                        --[[ tuple ]][
+                                                      },
+                                                      --[[ :: ]]{
+                                                        --[[ tuple ]]{
                                                           "includes",
                                                           (function (param) do
-                                                              return --[[ Eq ]]Block.__(0, [
+                                                              return --[[ Eq ]]Block.__(0, {
                                                                         true,
-                                                                        [
+                                                                        {
                                                                             1,
                                                                             2,
                                                                             3
-                                                                          ].includes(3)
-                                                                      ]);
+                                                                          }.includes(3)
+                                                                      });
                                                             end end)
-                                                        ],
-                                                        --[[ :: ]][
-                                                          --[[ tuple ]][
+                                                        },
+                                                        --[[ :: ]]{
+                                                          --[[ tuple ]]{
                                                             "indexOf",
                                                             (function (param) do
-                                                                return --[[ Eq ]]Block.__(0, [
+                                                                return --[[ Eq ]]Block.__(0, {
                                                                           1,
-                                                                          [
+                                                                          {
                                                                               1,
                                                                               2,
                                                                               3
-                                                                            ].indexOf(2)
-                                                                        ]);
+                                                                            }.indexOf(2)
+                                                                        });
                                                               end end)
-                                                          ],
-                                                          --[[ :: ]][
-                                                            --[[ tuple ]][
+                                                          },
+                                                          --[[ :: ]]{
+                                                            --[[ tuple ]]{
                                                               "indexOfFrom",
                                                               (function (param) do
-                                                                  return --[[ Eq ]]Block.__(0, [
+                                                                  return --[[ Eq ]]Block.__(0, {
                                                                             3,
-                                                                            [
+                                                                            {
                                                                                 1,
                                                                                 2,
                                                                                 3,
                                                                                 2
-                                                                              ].indexOf(2, 2)
-                                                                          ]);
+                                                                              }.indexOf(2, 2)
+                                                                          });
                                                                 end end)
-                                                            ],
-                                                            --[[ :: ]][
-                                                              --[[ tuple ]][
+                                                            },
+                                                            --[[ :: ]]{
+                                                              --[[ tuple ]]{
                                                                 "join",
                                                                 (function (param) do
-                                                                    return --[[ Eq ]]Block.__(0, [
+                                                                    return --[[ Eq ]]Block.__(0, {
                                                                               "1,2,3",
-                                                                              [
+                                                                              {
                                                                                   1,
                                                                                   2,
                                                                                   3
-                                                                                ].join()
-                                                                            ]);
+                                                                                }.join()
+                                                                            });
                                                                   end end)
-                                                              ],
-                                                              --[[ :: ]][
-                                                                --[[ tuple ]][
+                                                              },
+                                                              --[[ :: ]]{
+                                                                --[[ tuple ]]{
                                                                   "joinWith",
                                                                   (function (param) do
-                                                                      return --[[ Eq ]]Block.__(0, [
+                                                                      return --[[ Eq ]]Block.__(0, {
                                                                                 "1;2;3",
-                                                                                [
+                                                                                {
                                                                                     1,
                                                                                     2,
                                                                                     3
-                                                                                  ].join(";")
-                                                                              ]);
+                                                                                  }.join(";")
+                                                                              });
                                                                     end end)
-                                                                ],
-                                                                --[[ :: ]][
-                                                                  --[[ tuple ]][
+                                                                },
+                                                                --[[ :: ]]{
+                                                                  --[[ tuple ]]{
                                                                     "lastIndexOf",
                                                                     (function (param) do
-                                                                        return --[[ Eq ]]Block.__(0, [
+                                                                        return --[[ Eq ]]Block.__(0, {
                                                                                   1,
-                                                                                  [
+                                                                                  {
                                                                                       1,
                                                                                       2,
                                                                                       3
-                                                                                    ].lastIndexOf(2)
-                                                                                ]);
+                                                                                    }.lastIndexOf(2)
+                                                                                });
                                                                       end end)
-                                                                  ],
-                                                                  --[[ :: ]][
-                                                                    --[[ tuple ]][
+                                                                  },
+                                                                  --[[ :: ]]{
+                                                                    --[[ tuple ]]{
                                                                       "lastIndexOfFrom",
                                                                       (function (param) do
-                                                                          return --[[ Eq ]]Block.__(0, [
+                                                                          return --[[ Eq ]]Block.__(0, {
                                                                                     1,
-                                                                                    [
+                                                                                    {
                                                                                         1,
                                                                                         2,
                                                                                         3,
                                                                                         2
-                                                                                      ].lastIndexOf(2, 2)
-                                                                                  ]);
+                                                                                      }.lastIndexOf(2, 2)
+                                                                                  });
                                                                         end end)
-                                                                    ],
-                                                                    --[[ :: ]][
-                                                                      --[[ tuple ]][
+                                                                    },
+                                                                    --[[ :: ]]{
+                                                                      --[[ tuple ]]{
                                                                         "slice",
                                                                         (function (param) do
-                                                                            return --[[ Eq ]]Block.__(0, [
-                                                                                      [
+                                                                            return --[[ Eq ]]Block.__(0, {
+                                                                                      {
                                                                                         2,
                                                                                         3
-                                                                                      ],
-                                                                                      [
+                                                                                      },
+                                                                                      {
                                                                                           1,
                                                                                           2,
                                                                                           3,
                                                                                           4,
                                                                                           5
-                                                                                        ].slice(1, 3)
-                                                                                    ]);
+                                                                                        }.slice(1, 3)
+                                                                                    });
                                                                           end end)
-                                                                      ],
-                                                                      --[[ :: ]][
-                                                                        --[[ tuple ]][
+                                                                      },
+                                                                      --[[ :: ]]{
+                                                                        --[[ tuple ]]{
                                                                           "copy",
                                                                           (function (param) do
-                                                                              return --[[ Eq ]]Block.__(0, [
-                                                                                        [
+                                                                              return --[[ Eq ]]Block.__(0, {
+                                                                                        {
                                                                                           1,
                                                                                           2,
                                                                                           3,
                                                                                           4,
                                                                                           5
-                                                                                        ],
-                                                                                        [
+                                                                                        },
+                                                                                        {
                                                                                             1,
                                                                                             2,
                                                                                             3,
                                                                                             4,
                                                                                             5
-                                                                                          ].slice()
-                                                                                      ]);
+                                                                                          }.slice()
+                                                                                      });
                                                                             end end)
-                                                                        ],
-                                                                        --[[ :: ]][
-                                                                          --[[ tuple ]][
+                                                                        },
+                                                                        --[[ :: ]]{
+                                                                          --[[ tuple ]]{
                                                                             "sliceFrom",
                                                                             (function (param) do
-                                                                                return --[[ Eq ]]Block.__(0, [
-                                                                                          [
+                                                                                return --[[ Eq ]]Block.__(0, {
+                                                                                          {
                                                                                             3,
                                                                                             4,
                                                                                             5
-                                                                                          ],
-                                                                                          [
+                                                                                          },
+                                                                                          {
                                                                                               1,
                                                                                               2,
                                                                                               3,
                                                                                               4,
                                                                                               5
-                                                                                            ].slice(2)
-                                                                                        ]);
+                                                                                            }.slice(2)
+                                                                                        });
                                                                               end end)
-                                                                          ],
-                                                                          --[[ :: ]][
-                                                                            --[[ tuple ]][
+                                                                          },
+                                                                          --[[ :: ]]{
+                                                                            --[[ tuple ]]{
                                                                               "toString",
                                                                               (function (param) do
-                                                                                  return --[[ Eq ]]Block.__(0, [
+                                                                                  return --[[ Eq ]]Block.__(0, {
                                                                                             "1,2,3",
-                                                                                            [
+                                                                                            {
                                                                                                 1,
                                                                                                 2,
                                                                                                 3
-                                                                                              ].toString()
-                                                                                          ]);
+                                                                                              }.toString()
+                                                                                          });
                                                                                 end end)
-                                                                            ],
-                                                                            --[[ :: ]][
-                                                                              --[[ tuple ]][
+                                                                            },
+                                                                            --[[ :: ]]{
+                                                                              --[[ tuple ]]{
                                                                                 "toLocaleString",
                                                                                 (function (param) do
-                                                                                    return --[[ Eq ]]Block.__(0, [
+                                                                                    return --[[ Eq ]]Block.__(0, {
                                                                                               "1,2,3",
-                                                                                              [
+                                                                                              {
                                                                                                   1,
                                                                                                   2,
                                                                                                   3
-                                                                                                ].toLocaleString()
-                                                                                            ]);
+                                                                                                }.toLocaleString()
+                                                                                            });
                                                                                   end end)
-                                                                              ],
-                                                                              --[[ :: ]][
-                                                                                --[[ tuple ]][
+                                                                              },
+                                                                              --[[ :: ]]{
+                                                                                --[[ tuple ]]{
                                                                                   "every",
                                                                                   (function (param) do
-                                                                                      return --[[ Eq ]]Block.__(0, [
+                                                                                      return --[[ Eq ]]Block.__(0, {
                                                                                                 true,
-                                                                                                [
+                                                                                                {
                                                                                                     1,
                                                                                                     2,
                                                                                                     3
-                                                                                                  ].every((function (n) do
+                                                                                                  }.every((function (n) do
                                                                                                         return n > 0;
                                                                                                       end end))
-                                                                                              ]);
+                                                                                              });
                                                                                     end end)
-                                                                                ],
-                                                                                --[[ :: ]][
-                                                                                  --[[ tuple ]][
+                                                                                },
+                                                                                --[[ :: ]]{
+                                                                                  --[[ tuple ]]{
                                                                                     "everyi",
                                                                                     (function (param) do
-                                                                                        return --[[ Eq ]]Block.__(0, [
+                                                                                        return --[[ Eq ]]Block.__(0, {
                                                                                                   false,
-                                                                                                  [
+                                                                                                  {
                                                                                                       1,
                                                                                                       2,
                                                                                                       3
-                                                                                                    ].every((function (param, i) do
+                                                                                                    }.every((function (param, i) do
                                                                                                           return i > 0;
                                                                                                         end end))
-                                                                                                ]);
+                                                                                                });
                                                                                       end end)
-                                                                                  ],
-                                                                                  --[[ :: ]][
-                                                                                    --[[ tuple ]][
+                                                                                  },
+                                                                                  --[[ :: ]]{
+                                                                                    --[[ tuple ]]{
                                                                                       "filter",
                                                                                       (function (param) do
-                                                                                          return --[[ Eq ]]Block.__(0, [
-                                                                                                    [
+                                                                                          return --[[ Eq ]]Block.__(0, {
+                                                                                                    {
                                                                                                       2,
                                                                                                       4
-                                                                                                    ],
-                                                                                                    [
+                                                                                                    },
+                                                                                                    {
                                                                                                         1,
                                                                                                         2,
                                                                                                         3,
                                                                                                         4
-                                                                                                      ].filter((function (n) do
+                                                                                                      }.filter((function (n) do
                                                                                                             return n % 2 == 0;
                                                                                                           end end))
-                                                                                                  ]);
+                                                                                                  });
                                                                                         end end)
-                                                                                    ],
-                                                                                    --[[ :: ]][
-                                                                                      --[[ tuple ]][
+                                                                                    },
+                                                                                    --[[ :: ]]{
+                                                                                      --[[ tuple ]]{
                                                                                         "filteri",
                                                                                         (function (param) do
-                                                                                            return --[[ Eq ]]Block.__(0, [
-                                                                                                      [
+                                                                                            return --[[ Eq ]]Block.__(0, {
+                                                                                                      {
                                                                                                         1,
                                                                                                         3
-                                                                                                      ],
-                                                                                                      [
+                                                                                                      },
+                                                                                                      {
                                                                                                           1,
                                                                                                           2,
                                                                                                           3,
                                                                                                           4
-                                                                                                        ].filter((function (param, i) do
+                                                                                                        }.filter((function (param, i) do
                                                                                                               return i % 2 == 0;
                                                                                                             end end))
-                                                                                                    ]);
+                                                                                                    });
                                                                                           end end)
-                                                                                      ],
-                                                                                      --[[ :: ]][
-                                                                                        --[[ tuple ]][
+                                                                                      },
+                                                                                      --[[ :: ]]{
+                                                                                        --[[ tuple ]]{
                                                                                           "find",
                                                                                           (function (param) do
-                                                                                              return --[[ Eq ]]Block.__(0, [
+                                                                                              return --[[ Eq ]]Block.__(0, {
                                                                                                         2,
-                                                                                                        Caml_option.undefined_to_opt([
+                                                                                                        Caml_option.undefined_to_opt({
                                                                                                                 1,
                                                                                                                 2,
                                                                                                                 3,
                                                                                                                 4
-                                                                                                              ].find((function (n) do
+                                                                                                              }.find((function (n) do
                                                                                                                     return n % 2 == 0;
                                                                                                                   end end)))
-                                                                                                      ]);
+                                                                                                      });
                                                                                             end end)
-                                                                                        ],
-                                                                                        --[[ :: ]][
-                                                                                          --[[ tuple ]][
+                                                                                        },
+                                                                                        --[[ :: ]]{
+                                                                                          --[[ tuple ]]{
                                                                                             "find - no match",
                                                                                             (function (param) do
-                                                                                                return --[[ Eq ]]Block.__(0, [
+                                                                                                return --[[ Eq ]]Block.__(0, {
                                                                                                           undefined,
-                                                                                                          Caml_option.undefined_to_opt([
+                                                                                                          Caml_option.undefined_to_opt({
                                                                                                                   1,
                                                                                                                   2,
                                                                                                                   3,
                                                                                                                   4
-                                                                                                                ].find((function (n) do
+                                                                                                                }.find((function (n) do
                                                                                                                       return n % 2 == 5;
                                                                                                                     end end)))
-                                                                                                        ]);
+                                                                                                        });
                                                                                               end end)
-                                                                                          ],
-                                                                                          --[[ :: ]][
-                                                                                            --[[ tuple ]][
+                                                                                          },
+                                                                                          --[[ :: ]]{
+                                                                                            --[[ tuple ]]{
                                                                                               "findi",
                                                                                               (function (param) do
-                                                                                                  return --[[ Eq ]]Block.__(0, [
+                                                                                                  return --[[ Eq ]]Block.__(0, {
                                                                                                             1,
-                                                                                                            Caml_option.undefined_to_opt([
+                                                                                                            Caml_option.undefined_to_opt({
                                                                                                                     1,
                                                                                                                     2,
                                                                                                                     3,
                                                                                                                     4
-                                                                                                                  ].find((function (param, i) do
+                                                                                                                  }.find((function (param, i) do
                                                                                                                         return i % 2 == 0;
                                                                                                                       end end)))
-                                                                                                          ]);
+                                                                                                          });
                                                                                                 end end)
-                                                                                            ],
-                                                                                            --[[ :: ]][
-                                                                                              --[[ tuple ]][
+                                                                                            },
+                                                                                            --[[ :: ]]{
+                                                                                              --[[ tuple ]]{
                                                                                                 "findi - no match",
                                                                                                 (function (param) do
-                                                                                                    return --[[ Eq ]]Block.__(0, [
+                                                                                                    return --[[ Eq ]]Block.__(0, {
                                                                                                               undefined,
-                                                                                                              Caml_option.undefined_to_opt([
+                                                                                                              Caml_option.undefined_to_opt({
                                                                                                                       1,
                                                                                                                       2,
                                                                                                                       3,
                                                                                                                       4
-                                                                                                                    ].find((function (param, i) do
+                                                                                                                    }.find((function (param, i) do
                                                                                                                           return i % 2 == 5;
                                                                                                                         end end)))
-                                                                                                            ]);
+                                                                                                            });
                                                                                                   end end)
-                                                                                              ],
-                                                                                              --[[ :: ]][
-                                                                                                --[[ tuple ]][
+                                                                                              },
+                                                                                              --[[ :: ]]{
+                                                                                                --[[ tuple ]]{
                                                                                                   "findIndex",
                                                                                                   (function (param) do
-                                                                                                      return --[[ Eq ]]Block.__(0, [
+                                                                                                      return --[[ Eq ]]Block.__(0, {
                                                                                                                 1,
-                                                                                                                [
+                                                                                                                {
                                                                                                                     1,
                                                                                                                     2,
                                                                                                                     3,
                                                                                                                     4
-                                                                                                                  ].findIndex((function (n) do
+                                                                                                                  }.findIndex((function (n) do
                                                                                                                         return n % 2 == 0;
                                                                                                                       end end))
-                                                                                                              ]);
+                                                                                                              });
                                                                                                     end end)
-                                                                                                ],
-                                                                                                --[[ :: ]][
-                                                                                                  --[[ tuple ]][
+                                                                                                },
+                                                                                                --[[ :: ]]{
+                                                                                                  --[[ tuple ]]{
                                                                                                     "findIndexi",
                                                                                                     (function (param) do
-                                                                                                        return --[[ Eq ]]Block.__(0, [
+                                                                                                        return --[[ Eq ]]Block.__(0, {
                                                                                                                   0,
-                                                                                                                  [
+                                                                                                                  {
                                                                                                                       1,
                                                                                                                       2,
                                                                                                                       3,
                                                                                                                       4
-                                                                                                                    ].findIndex((function (param, i) do
+                                                                                                                    }.findIndex((function (param, i) do
                                                                                                                           return i % 2 == 0;
                                                                                                                         end end))
-                                                                                                                ]);
+                                                                                                                });
                                                                                                       end end)
-                                                                                                  ],
-                                                                                                  --[[ :: ]][
-                                                                                                    --[[ tuple ]][
+                                                                                                  },
+                                                                                                  --[[ :: ]]{
+                                                                                                    --[[ tuple ]]{
                                                                                                       "forEach",
                                                                                                       (function (param) do
                                                                                                           sum = do
                                                                                                             contents: 0
                                                                                                           end;
-                                                                                                          [
+                                                                                                          {
                                                                                                               1,
                                                                                                               2,
                                                                                                               3
-                                                                                                            ].forEach((function (n) do
+                                                                                                            }.forEach((function (n) do
                                                                                                                   sum.contents = sum.contents + n | 0;
                                                                                                                   return --[[ () ]]0;
                                                                                                                 end end));
-                                                                                                          return --[[ Eq ]]Block.__(0, [
+                                                                                                          return --[[ Eq ]]Block.__(0, {
                                                                                                                     6,
                                                                                                                     sum.contents
-                                                                                                                  ]);
+                                                                                                                  });
                                                                                                         end end)
-                                                                                                    ],
-                                                                                                    --[[ :: ]][
-                                                                                                      --[[ tuple ]][
+                                                                                                    },
+                                                                                                    --[[ :: ]]{
+                                                                                                      --[[ tuple ]]{
                                                                                                         "forEachi",
                                                                                                         (function (param) do
                                                                                                             sum = do
                                                                                                               contents: 0
                                                                                                             end;
-                                                                                                            [
+                                                                                                            {
                                                                                                                 1,
                                                                                                                 2,
                                                                                                                 3
-                                                                                                              ].forEach((function (param, i) do
+                                                                                                              }.forEach((function (param, i) do
                                                                                                                     sum.contents = sum.contents + i | 0;
                                                                                                                     return --[[ () ]]0;
                                                                                                                   end end));
-                                                                                                            return --[[ Eq ]]Block.__(0, [
+                                                                                                            return --[[ Eq ]]Block.__(0, {
                                                                                                                       3,
                                                                                                                       sum.contents
-                                                                                                                    ]);
+                                                                                                                    });
                                                                                                           end end)
-                                                                                                      ],
-                                                                                                      --[[ :: ]][
-                                                                                                        --[[ tuple ]][
+                                                                                                      },
+                                                                                                      --[[ :: ]]{
+                                                                                                        --[[ tuple ]]{
                                                                                                           "map",
                                                                                                           (function (param) do
-                                                                                                              return --[[ Eq ]]Block.__(0, [
-                                                                                                                        [
+                                                                                                              return --[[ Eq ]]Block.__(0, {
+                                                                                                                        {
                                                                                                                           2,
                                                                                                                           4,
                                                                                                                           6,
                                                                                                                           8
-                                                                                                                        ],
-                                                                                                                        [
+                                                                                                                        },
+                                                                                                                        {
                                                                                                                             1,
                                                                                                                             2,
                                                                                                                             3,
                                                                                                                             4
-                                                                                                                          ].map((function (n) do
+                                                                                                                          }.map((function (n) do
                                                                                                                                 return (n << 1);
                                                                                                                               end end))
-                                                                                                                      ]);
+                                                                                                                      });
                                                                                                             end end)
-                                                                                                        ],
-                                                                                                        --[[ :: ]][
-                                                                                                          --[[ tuple ]][
+                                                                                                        },
+                                                                                                        --[[ :: ]]{
+                                                                                                          --[[ tuple ]]{
                                                                                                             "map",
                                                                                                             (function (param) do
-                                                                                                                return --[[ Eq ]]Block.__(0, [
-                                                                                                                          [
+                                                                                                                return --[[ Eq ]]Block.__(0, {
+                                                                                                                          {
                                                                                                                             0,
                                                                                                                             2,
                                                                                                                             4,
                                                                                                                             6
-                                                                                                                          ],
-                                                                                                                          [
+                                                                                                                          },
+                                                                                                                          {
                                                                                                                               1,
                                                                                                                               2,
                                                                                                                               3,
                                                                                                                               4
-                                                                                                                            ].map((function (param, i) do
+                                                                                                                            }.map((function (param, i) do
                                                                                                                                   return (i << 1);
                                                                                                                                 end end))
-                                                                                                                        ]);
+                                                                                                                        });
                                                                                                               end end)
-                                                                                                          ],
-                                                                                                          --[[ :: ]][
-                                                                                                            --[[ tuple ]][
+                                                                                                          },
+                                                                                                          --[[ :: ]]{
+                                                                                                            --[[ tuple ]]{
                                                                                                               "reduce",
                                                                                                               (function (param) do
-                                                                                                                  return --[[ Eq ]]Block.__(0, [
+                                                                                                                  return --[[ Eq ]]Block.__(0, {
                                                                                                                             -10,
-                                                                                                                            [
+                                                                                                                            {
                                                                                                                                 1,
                                                                                                                                 2,
                                                                                                                                 3,
                                                                                                                                 4
-                                                                                                                              ].reduce((function (acc, n) do
+                                                                                                                              }.reduce((function (acc, n) do
                                                                                                                                     return acc - n | 0;
                                                                                                                                   end end), 0)
-                                                                                                                          ]);
+                                                                                                                          });
                                                                                                                 end end)
-                                                                                                            ],
-                                                                                                            --[[ :: ]][
-                                                                                                              --[[ tuple ]][
+                                                                                                            },
+                                                                                                            --[[ :: ]]{
+                                                                                                              --[[ tuple ]]{
                                                                                                                 "reducei",
                                                                                                                 (function (param) do
-                                                                                                                    return --[[ Eq ]]Block.__(0, [
+                                                                                                                    return --[[ Eq ]]Block.__(0, {
                                                                                                                               -6,
-                                                                                                                              [
+                                                                                                                              {
                                                                                                                                   1,
                                                                                                                                   2,
                                                                                                                                   3,
                                                                                                                                   4
-                                                                                                                                ].reduce((function (acc, param, i) do
+                                                                                                                                }.reduce((function (acc, param, i) do
                                                                                                                                       return acc - i | 0;
                                                                                                                                     end end), 0)
-                                                                                                                            ]);
+                                                                                                                            });
                                                                                                                   end end)
-                                                                                                              ],
-                                                                                                              --[[ :: ]][
-                                                                                                                --[[ tuple ]][
+                                                                                                              },
+                                                                                                              --[[ :: ]]{
+                                                                                                                --[[ tuple ]]{
                                                                                                                   "reduceRight",
                                                                                                                   (function (param) do
-                                                                                                                      return --[[ Eq ]]Block.__(0, [
+                                                                                                                      return --[[ Eq ]]Block.__(0, {
                                                                                                                                 -10,
-                                                                                                                                [
+                                                                                                                                {
                                                                                                                                     1,
                                                                                                                                     2,
                                                                                                                                     3,
                                                                                                                                     4
-                                                                                                                                  ].reduceRight((function (acc, n) do
+                                                                                                                                  }.reduceRight((function (acc, n) do
                                                                                                                                         return acc - n | 0;
                                                                                                                                       end end), 0)
-                                                                                                                              ]);
+                                                                                                                              });
                                                                                                                     end end)
-                                                                                                                ],
-                                                                                                                --[[ :: ]][
-                                                                                                                  --[[ tuple ]][
+                                                                                                                },
+                                                                                                                --[[ :: ]]{
+                                                                                                                  --[[ tuple ]]{
                                                                                                                     "reduceRighti",
                                                                                                                     (function (param) do
-                                                                                                                        return --[[ Eq ]]Block.__(0, [
+                                                                                                                        return --[[ Eq ]]Block.__(0, {
                                                                                                                                   -6,
-                                                                                                                                  [
+                                                                                                                                  {
                                                                                                                                       1,
                                                                                                                                       2,
                                                                                                                                       3,
                                                                                                                                       4
-                                                                                                                                    ].reduceRight((function (acc, param, i) do
+                                                                                                                                    }.reduceRight((function (acc, param, i) do
                                                                                                                                           return acc - i | 0;
                                                                                                                                         end end), 0)
-                                                                                                                                ]);
+                                                                                                                                });
                                                                                                                       end end)
-                                                                                                                  ],
-                                                                                                                  --[[ :: ]][
-                                                                                                                    --[[ tuple ]][
+                                                                                                                  },
+                                                                                                                  --[[ :: ]]{
+                                                                                                                    --[[ tuple ]]{
                                                                                                                       "some",
                                                                                                                       (function (param) do
-                                                                                                                          return --[[ Eq ]]Block.__(0, [
+                                                                                                                          return --[[ Eq ]]Block.__(0, {
                                                                                                                                     false,
-                                                                                                                                    [
+                                                                                                                                    {
                                                                                                                                         1,
                                                                                                                                         2,
                                                                                                                                         3,
                                                                                                                                         4
-                                                                                                                                      ].some((function (n) do
+                                                                                                                                      }.some((function (n) do
                                                                                                                                             return n <= 0;
                                                                                                                                           end end))
-                                                                                                                                  ]);
+                                                                                                                                  });
                                                                                                                         end end)
-                                                                                                                    ],
-                                                                                                                    --[[ :: ]][
-                                                                                                                      --[[ tuple ]][
+                                                                                                                    },
+                                                                                                                    --[[ :: ]]{
+                                                                                                                      --[[ tuple ]]{
                                                                                                                         "somei",
                                                                                                                         (function (param) do
-                                                                                                                            return --[[ Eq ]]Block.__(0, [
+                                                                                                                            return --[[ Eq ]]Block.__(0, {
                                                                                                                                       true,
-                                                                                                                                      [
+                                                                                                                                      {
                                                                                                                                           1,
                                                                                                                                           2,
                                                                                                                                           3,
                                                                                                                                           4
-                                                                                                                                        ].some((function (param, i) do
+                                                                                                                                        }.some((function (param, i) do
                                                                                                                                               return i <= 0;
                                                                                                                                             end end))
-                                                                                                                                    ]);
+                                                                                                                                    });
                                                                                                                           end end)
-                                                                                                                      ],
+                                                                                                                      },
                                                                                                                       --[[ [] ]]0
-                                                                                                                    ]
-                                                                                                                  ]
-                                                                                                                ]
-                                                                                                              ]
-                                                                                                            ]
-                                                                                                          ]
-                                                                                                        ]
-                                                                                                      ]
-                                                                                                    ]
-                                                                                                  ]
-                                                                                                ]
-                                                                                              ]
-                                                                                            ]
-                                                                                          ]
-                                                                                        ]
-                                                                                      ]
-                                                                                    ]
-                                                                                  ]
-                                                                                ]
-                                                                              ]
-                                                                            ]
-                                                                          ]
-                                                                        ]
-                                                                      ]
-                                                                    ]
-                                                                  ]
-                                                                ]
-                                                              ]
-                                                            ]
-                                                          ]
-                                                        ]
-                                                      ]
-                                                    ]
-                                                  ]
-                                                ]
-                                              ]
-                                            ]
-                                          ]
-                                        ]
-                                      ]
-                                    ]
-                                  ]
-                                ]
-                              ]
-                            ]
-                          ]
-                        ]
-                      ]
-                    ]
-                  ]
-                ]
-              ]
-            ]
-          ]
-        ]
-      ]
-    ]
-  ]
-];
+                                                                                                                    }
+                                                                                                                  }
+                                                                                                                }
+                                                                                                              }
+                                                                                                            }
+                                                                                                          }
+                                                                                                        }
+                                                                                                      }
+                                                                                                    }
+                                                                                                  }
+                                                                                                }
+                                                                                              }
+                                                                                            }
+                                                                                          }
+                                                                                        }
+                                                                                      }
+                                                                                    }
+                                                                                  }
+                                                                                }
+                                                                              }
+                                                                            }
+                                                                          }
+                                                                        }
+                                                                      }
+                                                                    }
+                                                                  }
+                                                                }
+                                                              }
+                                                            }
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+};
 
-suites = --[[ :: ]][
+suites = --[[ :: ]]{
   suites_000,
   suites_001
-];
+};
 
 Mt.from_pair_suites("Js_array_test", suites);
 

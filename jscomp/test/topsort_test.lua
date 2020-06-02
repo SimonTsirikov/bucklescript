@@ -11,63 +11,63 @@ Caml_exceptions = require "../../lib/js/caml_exceptions.lua";
 Caml_js_exceptions = require "../../lib/js/caml_js_exceptions.lua";
 Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
 
-graph = --[[ :: ]][
-  --[[ tuple ]][
+graph = --[[ :: ]]{
+  --[[ tuple ]]{
     "a",
     "b"
-  ],
-  --[[ :: ]][
-    --[[ tuple ]][
+  },
+  --[[ :: ]]{
+    --[[ tuple ]]{
       "a",
       "c"
-    ],
-    --[[ :: ]][
-      --[[ tuple ]][
+    },
+    --[[ :: ]]{
+      --[[ tuple ]]{
         "a",
         "d"
-      ],
-      --[[ :: ]][
-        --[[ tuple ]][
+      },
+      --[[ :: ]]{
+        --[[ tuple ]]{
           "b",
           "e"
-        ],
-        --[[ :: ]][
-          --[[ tuple ]][
+        },
+        --[[ :: ]]{
+          --[[ tuple ]]{
             "c",
             "f"
-          ],
-          --[[ :: ]][
-            --[[ tuple ]][
+          },
+          --[[ :: ]]{
+            --[[ tuple ]]{
               "d",
               "e"
-            ],
-            --[[ :: ]][
-              --[[ tuple ]][
+            },
+            --[[ :: ]]{
+              --[[ tuple ]]{
                 "e",
                 "f"
-              ],
-              --[[ :: ]][
-                --[[ tuple ]][
+              },
+              --[[ :: ]]{
+                --[[ tuple ]]{
                   "e",
                   "g"
-                ],
+                },
                 --[[ [] ]]0
-              ]
-            ]
-          ]
-        ]
-      ]
-    ]
-  ]
-];
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+};
 
 function nexts(x, g) do
   return List.fold_left((function (acc, param) do
                 if (param[0] == x) then do
-                  return --[[ :: ]][
+                  return --[[ :: ]]{
                           param[1],
                           acc
-                        ];
+                        };
                 end else do
                   return acc;
                 end end 
@@ -86,10 +86,10 @@ function dfs1(_nodes, graph, _visited) do
         continue ;
       end else do
         console.log(x);
-        _visited = --[[ :: ]][
+        _visited = --[[ :: ]]{
           x,
           visited
-        ];
+        };
         _nodes = Pervasives.$at(nexts(x, graph), xs);
         continue ;
       end end 
@@ -99,77 +99,77 @@ function dfs1(_nodes, graph, _visited) do
   end;
 end end
 
-if (not Caml_obj.caml_equal(dfs1(--[[ :: ]][
+if (not Caml_obj.caml_equal(dfs1(--[[ :: ]]{
             "a",
             --[[ [] ]]0
-          ], graph, --[[ [] ]]0), --[[ :: ]][
+          }, graph, --[[ [] ]]0), --[[ :: ]]{
         "a",
-        --[[ :: ]][
+        --[[ :: ]]{
           "d",
-          --[[ :: ]][
+          --[[ :: ]]{
             "e",
-            --[[ :: ]][
+            --[[ :: ]]{
               "g",
-              --[[ :: ]][
+              --[[ :: ]]{
                 "f",
-                --[[ :: ]][
+                --[[ :: ]]{
                   "c",
-                  --[[ :: ]][
+                  --[[ :: ]]{
                     "b",
                     --[[ [] ]]0
-                  ]
-                ]
-              ]
-            ]
-          ]
-        ]
-      ])) then do
-  throw [
+                  }
+                }
+              }
+            }
+          }
+        }
+      })) then do
+  throw {
         Caml_builtin_exceptions.assert_failure,
-        --[[ tuple ]][
+        --[[ tuple ]]{
           "topsort_test.ml",
           29,
           2
-        ]
-      ];
+        }
+      };
 end
  end 
 
 Pervasives.print_newline(--[[ () ]]0);
 
-if (not Caml_obj.caml_equal(dfs1(--[[ :: ]][
+if (not Caml_obj.caml_equal(dfs1(--[[ :: ]]{
             "b",
             --[[ [] ]]0
-          ], --[[ :: ]][
-            --[[ tuple ]][
+          }, --[[ :: ]]{
+            --[[ tuple ]]{
               "f",
               "d"
-            ],
+            },
             graph
-          ], --[[ [] ]]0), --[[ :: ]][
+          }, --[[ [] ]]0), --[[ :: ]]{
         "b",
-        --[[ :: ]][
+        --[[ :: ]]{
           "e",
-          --[[ :: ]][
+          --[[ :: ]]{
             "g",
-            --[[ :: ]][
+            --[[ :: ]]{
               "f",
-              --[[ :: ]][
+              --[[ :: ]]{
                 "d",
                 --[[ [] ]]0
-              ]
-            ]
-          ]
-        ]
-      ])) then do
-  throw [
+              }
+            }
+          }
+        }
+      })) then do
+  throw {
         Caml_builtin_exceptions.assert_failure,
-        --[[ tuple ]][
+        --[[ tuple ]]{
           "topsort_test.ml",
           32,
           2
-        ]
-      ];
+        }
+      };
 end
  end 
 
@@ -185,10 +185,10 @@ function dfs2(nodes, graph, visited) do
           _nodes = xs;
           continue ;
         end else do
-          _visited = aux(nexts(x, graph), graph, --[[ :: ]][
+          _visited = aux(nexts(x, graph), graph, --[[ :: ]]{
                 x,
                 visited
-              ]);
+              });
           _nodes = xs;
           continue ;
         end end 
@@ -200,75 +200,75 @@ function dfs2(nodes, graph, visited) do
   return List.rev(aux(nodes, graph, visited));
 end end
 
-if (not Caml_obj.caml_equal(dfs2(--[[ :: ]][
+if (not Caml_obj.caml_equal(dfs2(--[[ :: ]]{
             "a",
             --[[ [] ]]0
-          ], graph, --[[ [] ]]0), --[[ :: ]][
+          }, graph, --[[ [] ]]0), --[[ :: ]]{
         "a",
-        --[[ :: ]][
+        --[[ :: ]]{
           "d",
-          --[[ :: ]][
+          --[[ :: ]]{
             "e",
-            --[[ :: ]][
+            --[[ :: ]]{
               "g",
-              --[[ :: ]][
+              --[[ :: ]]{
                 "f",
-                --[[ :: ]][
+                --[[ :: ]]{
                   "c",
-                  --[[ :: ]][
+                  --[[ :: ]]{
                     "b",
                     --[[ [] ]]0
-                  ]
-                ]
-              ]
-            ]
-          ]
-        ]
-      ])) then do
-  throw [
+                  }
+                }
+              }
+            }
+          }
+        }
+      })) then do
+  throw {
         Caml_builtin_exceptions.assert_failure,
-        --[[ tuple ]][
+        --[[ tuple ]]{
           "topsort_test.ml",
           47,
           2
-        ]
-      ];
+        }
+      };
 end
  end 
 
-if (not Caml_obj.caml_equal(dfs2(--[[ :: ]][
+if (not Caml_obj.caml_equal(dfs2(--[[ :: ]]{
             "b",
             --[[ [] ]]0
-          ], --[[ :: ]][
-            --[[ tuple ]][
+          }, --[[ :: ]]{
+            --[[ tuple ]]{
               "f",
               "d"
-            ],
+            },
             graph
-          ], --[[ [] ]]0), --[[ :: ]][
+          }, --[[ [] ]]0), --[[ :: ]]{
         "b",
-        --[[ :: ]][
+        --[[ :: ]]{
           "e",
-          --[[ :: ]][
+          --[[ :: ]]{
             "g",
-            --[[ :: ]][
+            --[[ :: ]]{
               "f",
-              --[[ :: ]][
+              --[[ :: ]]{
                 "d",
                 --[[ [] ]]0
-              ]
-            ]
-          ]
-        ]
-      ])) then do
-  throw [
+              }
+            }
+          }
+        }
+      })) then do
+  throw {
         Caml_builtin_exceptions.assert_failure,
-        --[[ tuple ]][
+        --[[ tuple ]]{
           "topsort_test.ml",
           48,
           2
-        ]
-      ];
+        }
+      };
 end
  end 
 
@@ -280,10 +280,10 @@ function dfs3(nodes, graph) do
     if (List.mem(node, visited.contents)) then do
       return 0;
     end else do
-      visited.contents = --[[ :: ]][
+      visited.contents = --[[ :: ]]{
         node,
         visited.contents
-      ];
+      };
       return List.iter((function (x) do
                     return aux(x, graph);
                   end end), nexts(node, graph));
@@ -295,115 +295,115 @@ function dfs3(nodes, graph) do
   return List.rev(visited.contents);
 end end
 
-if (not Caml_obj.caml_equal(dfs3(--[[ :: ]][
+if (not Caml_obj.caml_equal(dfs3(--[[ :: ]]{
             "a",
             --[[ [] ]]0
-          ], graph), --[[ :: ]][
+          }, graph), --[[ :: ]]{
         "a",
-        --[[ :: ]][
+        --[[ :: ]]{
           "d",
-          --[[ :: ]][
+          --[[ :: ]]{
             "e",
-            --[[ :: ]][
+            --[[ :: ]]{
               "g",
-              --[[ :: ]][
+              --[[ :: ]]{
                 "f",
-                --[[ :: ]][
+                --[[ :: ]]{
                   "c",
-                  --[[ :: ]][
+                  --[[ :: ]]{
                     "b",
                     --[[ [] ]]0
-                  ]
-                ]
-              ]
-            ]
-          ]
-        ]
-      ])) then do
-  throw [
+                  }
+                }
+              }
+            }
+          }
+        }
+      })) then do
+  throw {
         Caml_builtin_exceptions.assert_failure,
-        --[[ tuple ]][
+        --[[ tuple ]]{
           "topsort_test.ml",
           65,
           2
-        ]
-      ];
+        }
+      };
 end
  end 
 
-if (not Caml_obj.caml_equal(dfs3(--[[ :: ]][
+if (not Caml_obj.caml_equal(dfs3(--[[ :: ]]{
             "b",
             --[[ [] ]]0
-          ], --[[ :: ]][
-            --[[ tuple ]][
+          }, --[[ :: ]]{
+            --[[ tuple ]]{
               "f",
               "d"
-            ],
+            },
             graph
-          ]), --[[ :: ]][
+          }), --[[ :: ]]{
         "b",
-        --[[ :: ]][
+        --[[ :: ]]{
           "e",
-          --[[ :: ]][
+          --[[ :: ]]{
             "g",
-            --[[ :: ]][
+            --[[ :: ]]{
               "f",
-              --[[ :: ]][
+              --[[ :: ]]{
                 "d",
                 --[[ [] ]]0
-              ]
-            ]
-          ]
-        ]
-      ])) then do
-  throw [
+              }
+            }
+          }
+        }
+      })) then do
+  throw {
         Caml_builtin_exceptions.assert_failure,
-        --[[ tuple ]][
+        --[[ tuple ]]{
           "topsort_test.ml",
           66,
           2
-        ]
-      ];
+        }
+      };
 end
  end 
 
-grwork = --[[ :: ]][
-  --[[ tuple ]][
+grwork = --[[ :: ]]{
+  --[[ tuple ]]{
     "wake",
     "shower"
-  ],
-  --[[ :: ]][
-    --[[ tuple ]][
+  },
+  --[[ :: ]]{
+    --[[ tuple ]]{
       "shower",
       "dress"
-    ],
-    --[[ :: ]][
-      --[[ tuple ]][
+    },
+    --[[ :: ]]{
+      --[[ tuple ]]{
         "dress",
         "go"
-      ],
-      --[[ :: ]][
-        --[[ tuple ]][
+      },
+      --[[ :: ]]{
+        --[[ tuple ]]{
           "wake",
           "eat"
-        ],
-        --[[ :: ]][
-          --[[ tuple ]][
+        },
+        --[[ :: ]]{
+          --[[ tuple ]]{
             "eat",
             "washup"
-          ],
-          --[[ :: ]][
-            --[[ tuple ]][
+          },
+          --[[ :: ]]{
+            --[[ tuple ]]{
               "washup",
               "go"
-            ],
+            },
             --[[ [] ]]0
-          ]
-        ]
-      ]
-    ]
-  ]
-];
+          }
+        }
+      }
+    }
+  }
+};
 
 function unsafe_topsort(graph) do
   visited = do
@@ -415,10 +415,10 @@ function unsafe_topsort(graph) do
     end else do
       nodes = nexts(node, graph);
       List.iter(sort_node, nodes);
-      visited.contents = --[[ :: ]][
+      visited.contents = --[[ :: ]]{
         node,
         visited.contents
-      ];
+      };
       return --[[ () ]]0;
     end end 
   end end;
@@ -428,33 +428,33 @@ function unsafe_topsort(graph) do
   return visited.contents;
 end end
 
-if (not Caml_obj.caml_equal(unsafe_topsort(grwork), --[[ :: ]][
+if (not Caml_obj.caml_equal(unsafe_topsort(grwork), --[[ :: ]]{
         "wake",
-        --[[ :: ]][
+        --[[ :: ]]{
           "shower",
-          --[[ :: ]][
+          --[[ :: ]]{
             "dress",
-            --[[ :: ]][
+            --[[ :: ]]{
               "eat",
-              --[[ :: ]][
+              --[[ :: ]]{
                 "washup",
-                --[[ :: ]][
+                --[[ :: ]]{
                   "go",
                   --[[ [] ]]0
-                ]
-              ]
-            ]
-          ]
-        ]
-      ])) then do
-  throw [
+                }
+              }
+            }
+          }
+        }
+      })) then do
+  throw {
         Caml_builtin_exceptions.assert_failure,
-        --[[ tuple ]][
+        --[[ tuple ]]{
           "topsort_test.ml",
           110,
           2
-        ]
-      ];
+        }
+      };
 end
  end 
 
@@ -469,12 +469,12 @@ end end
 function create(l, v, r) do
   hl = l and l[--[[ h ]]3] or 0;
   hr = r and r[--[[ h ]]3] or 0;
-  return --[[ Node ]][
+  return --[[ Node ]]{
           --[[ l ]]l,
           --[[ v ]]v,
           --[[ r ]]r,
           --[[ h ]]hl >= hr and hl + 1 | 0 or hr + 1 | 0
-        ];
+        };
 end end
 
 function bal(l, v, r) do
@@ -490,16 +490,16 @@ function bal(l, v, r) do
       end else if (lr) then do
         return create(create(ll, lv, lr[--[[ l ]]0]), lr[--[[ v ]]1], create(lr[--[[ r ]]2], v, r));
       end else do
-        throw [
+        throw {
               Caml_builtin_exceptions.invalid_argument,
               "Set.bal"
-            ];
+            };
       end end  end 
     end else do
-      throw [
+      throw {
             Caml_builtin_exceptions.invalid_argument,
             "Set.bal"
-          ];
+          };
     end end 
   end else if (hr > (hl + 2 | 0)) then do
     if (r) then do
@@ -511,24 +511,24 @@ function bal(l, v, r) do
       end else if (rl) then do
         return create(create(l, v, rl[--[[ l ]]0]), rl[--[[ v ]]1], create(rl[--[[ r ]]2], rv, rr));
       end else do
-        throw [
+        throw {
               Caml_builtin_exceptions.invalid_argument,
               "Set.bal"
-            ];
+            };
       end end  end 
     end else do
-      throw [
+      throw {
             Caml_builtin_exceptions.invalid_argument,
             "Set.bal"
-          ];
+          };
     end end 
   end else do
-    return --[[ Node ]][
+    return --[[ Node ]]{
             --[[ l ]]l,
             --[[ v ]]v,
             --[[ r ]]r,
             --[[ h ]]hl >= hr and hl + 1 | 0 or hr + 1 | 0
-          ];
+          };
   end end  end 
 end end
 
@@ -556,22 +556,22 @@ function add(x, t) do
       end end 
     end end  end 
   end else do
-    return --[[ Node ]][
+    return --[[ Node ]]{
             --[[ l : Empty ]]0,
             --[[ v ]]x,
             --[[ r : Empty ]]0,
             --[[ h ]]1
-          ];
+          };
   end end 
 end end
 
 function singleton(x) do
-  return --[[ Node ]][
+  return --[[ Node ]]{
           --[[ l : Empty ]]0,
           --[[ v ]]x,
           --[[ r : Empty ]]0,
           --[[ h ]]1
-        ];
+        };
 end end
 
 function add_min_element(x, param) do
@@ -687,10 +687,10 @@ function remove_min_elt(param) do
       return param[--[[ r ]]2];
     end end 
   end else do
-    throw [
+    throw {
           Caml_builtin_exceptions.invalid_argument,
           "Set.remove_min_elt"
-        ];
+        };
   end end 
 end end
 
@@ -713,32 +713,32 @@ function split(x, param) do
     l = param[--[[ l ]]0];
     c = Caml_primitive.caml_string_compare(x, v);
     if (c == 0) then do
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               l,
               true,
               r
-            ];
+            };
     end else if (c < 0) then do
       match = split(x, l);
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               match[0],
               match[1],
               join(match[2], v, r)
-            ];
+            };
     end else do
       match$1 = split(x, r);
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               join(l, v, match$1[0]),
               match$1[1],
               match$1[2]
-            ];
+            };
     end end  end 
   end else do
-    return --[[ tuple ]][
+    return --[[ tuple ]]{
             --[[ Empty ]]0,
             false,
             --[[ Empty ]]0
-          ];
+          };
   end end 
 end end
 
@@ -876,11 +876,11 @@ function cons_enum(_s, _e) do
     e = _e;
     s = _s;
     if (s) then do
-      _e = --[[ More ]][
+      _e = --[[ More ]]{
         s[--[[ v ]]1],
         s[--[[ r ]]2],
         e
-      ];
+      };
       _s = s[--[[ l ]]0];
       continue ;
     end else do
@@ -941,23 +941,23 @@ function subset(_s1, _s2) do
             return false;
           end end 
         end else if (c < 0) then do
-          if (subset(--[[ Node ]][
+          if (subset(--[[ Node ]]{
                   --[[ l ]]l1,
                   --[[ v ]]v1,
                   --[[ r : Empty ]]0,
                   --[[ h ]]0
-                ], l2)) then do
+                }, l2)) then do
             _s1 = r1;
             continue ;
           end else do
             return false;
           end end 
-        end else if (subset(--[[ Node ]][
+        end else if (subset(--[[ Node ]]{
                 --[[ l : Empty ]]0,
                 --[[ v ]]v1,
                 --[[ r ]]r1,
                 --[[ h ]]0
-              ], r2)) then do
+              }, r2)) then do
           _s1 = l1;
           continue ;
         end else do
@@ -1065,21 +1065,21 @@ function partition(p, param) do
     rf = match$1[1];
     rt = match$1[0];
     if (pv) then do
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               join(lt, v, rt),
               concat(lf, rf)
-            ];
+            };
     end else do
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               concat(lt, rt),
               join(lf, v, rf)
-            ];
+            };
     end end 
   end else do
-    return --[[ tuple ]][
+    return --[[ tuple ]]{
             --[[ Empty ]]0,
             --[[ Empty ]]0
-          ];
+          };
   end end 
 end end
 
@@ -1097,10 +1097,10 @@ function elements_aux(_accu, _param) do
     accu = _accu;
     if (param) then do
       _param = param[--[[ l ]]0];
-      _accu = --[[ :: ]][
+      _accu = --[[ :: ]]{
         param[--[[ v ]]1],
         elements_aux(accu, param[--[[ r ]]2])
-      ];
+      };
       continue ;
     end else do
       return accu;
@@ -1337,41 +1337,41 @@ function of_list(l) do
                 local ___conditional___=(n);
                 do
                    if ___conditional___ = 0 then do
-                      return --[[ tuple ]][
+                      return --[[ tuple ]]{
                               --[[ Empty ]]0,
                               l
-                            ];end end end 
+                            };end end end 
                    if ___conditional___ = 1 then do
                       if (l) then do
-                        return --[[ tuple ]][
-                                --[[ Node ]][
+                        return --[[ tuple ]]{
+                                --[[ Node ]]{
                                   --[[ l : Empty ]]0,
                                   --[[ v ]]l[0],
                                   --[[ r : Empty ]]0,
                                   --[[ h ]]1
-                                ],
+                                },
                                 l[1]
-                              ];
+                              };
                       end
                        end end else 
                    if ___conditional___ = 2 then do
                       if (l) then do
                         match = l[1];
                         if (match) then do
-                          return --[[ tuple ]][
-                                  --[[ Node ]][
-                                    --[[ l : Node ]][
+                          return --[[ tuple ]]{
+                                  --[[ Node ]]{
+                                    --[[ l : Node ]]{
                                       --[[ l : Empty ]]0,
                                       --[[ v ]]l[0],
                                       --[[ r : Empty ]]0,
                                       --[[ h ]]1
-                                    ],
+                                    },
                                     --[[ v ]]match[0],
                                     --[[ r : Empty ]]0,
                                     --[[ h ]]2
-                                  ],
+                                  },
                                   match[1]
-                                ];
+                                };
                         end
                          end 
                       end
@@ -1382,25 +1382,25 @@ function of_list(l) do
                         if (match$1) then do
                           match$2 = match$1[1];
                           if (match$2) then do
-                            return --[[ tuple ]][
-                                    --[[ Node ]][
-                                      --[[ l : Node ]][
+                            return --[[ tuple ]]{
+                                    --[[ Node ]]{
+                                      --[[ l : Node ]]{
                                         --[[ l : Empty ]]0,
                                         --[[ v ]]l[0],
                                         --[[ r : Empty ]]0,
                                         --[[ h ]]1
-                                      ],
+                                      },
                                       --[[ v ]]match$1[0],
-                                      --[[ r : Node ]][
+                                      --[[ r : Node ]]{
                                         --[[ l : Empty ]]0,
                                         --[[ v ]]match$2[0],
                                         --[[ r : Empty ]]0,
                                         --[[ h ]]1
-                                      ],
+                                      },
                                       --[[ h ]]2
-                                    ],
+                                    },
                                     match$2[1]
-                                  ];
+                                  };
                           end
                            end 
                         end
@@ -1417,19 +1417,19 @@ function of_list(l) do
                 l$1 = match$3[1];
                 if (l$1) then do
                   match$4 = sub((n - nl | 0) - 1 | 0, l$1[1]);
-                  return --[[ tuple ]][
+                  return --[[ tuple ]]{
                           create(match$3[0], l$1[0], match$4[0]),
                           match$4[1]
-                        ];
+                        };
                 end else do
-                  throw [
+                  throw {
                         Caml_builtin_exceptions.assert_failure,
-                        --[[ tuple ]][
+                        --[[ tuple ]]{
                           "set.ml",
                           510,
                           18
-                        ]
-                      ];
+                        }
+                      };
                 end end 
               end end;
               return sub(List.length(l$1), l$1)[0];
@@ -1497,30 +1497,30 @@ function pathsort(graph) do
   visited = do
     contents: --[[ [] ]]0
   end;
-  empty_path = --[[ tuple ]][
+  empty_path = --[[ tuple ]]{
     --[[ Empty ]]0,
     --[[ [] ]]0
-  ];
+  };
   $plus$great = function (node, param) do
     stack = param[1];
     set = param[0];
     if (mem(node, set)) then do
-      throw [
+      throw {
             Cycle,
-            --[[ :: ]][
+            --[[ :: ]]{
               node,
               stack
-            ]
-          ];
+            }
+          };
     end
      end 
-    return --[[ tuple ]][
+    return --[[ tuple ]]{
             add(node, set),
-            --[[ :: ]][
+            --[[ :: ]]{
               node,
               stack
-            ]
-          ];
+            }
+          };
   end end;
   sort_nodes = function (path, nodes) do
     return List.iter((function (node) do
@@ -1532,10 +1532,10 @@ function pathsort(graph) do
       return 0;
     end else do
       sort_nodes($plus$great(node, path), nexts(node, graph));
-      visited.contents = --[[ :: ]][
+      visited.contents = --[[ :: ]]{
         node,
         visited.contents
-      ];
+      };
       return --[[ () ]]0;
     end end 
   end end;
@@ -1545,52 +1545,52 @@ function pathsort(graph) do
   return visited.contents;
 end end
 
-if (not Caml_obj.caml_equal(pathsort(grwork), --[[ :: ]][
+if (not Caml_obj.caml_equal(pathsort(grwork), --[[ :: ]]{
         "wake",
-        --[[ :: ]][
+        --[[ :: ]]{
           "shower",
-          --[[ :: ]][
+          --[[ :: ]]{
             "dress",
-            --[[ :: ]][
+            --[[ :: ]]{
               "eat",
-              --[[ :: ]][
+              --[[ :: ]]{
                 "washup",
-                --[[ :: ]][
+                --[[ :: ]]{
                   "go",
                   --[[ [] ]]0
-                ]
-              ]
-            ]
-          ]
-        ]
-      ])) then do
-  throw [
+                }
+              }
+            }
+          }
+        }
+      })) then do
+  throw {
         Caml_builtin_exceptions.assert_failure,
-        --[[ tuple ]][
+        --[[ tuple ]]{
           "topsort_test.ml",
           150,
           4
-        ]
-      ];
+        }
+      };
 end
  end 
 
 try do
-  pathsort(--[[ :: ]][
-        --[[ tuple ]][
+  pathsort(--[[ :: ]]{
+        --[[ tuple ]]{
           "go",
           "eat"
-        ],
+        },
         grwork
-      ]);
-  throw [
+      });
+  throw {
         Caml_builtin_exceptions.assert_failure,
-        --[[ tuple ]][
+        --[[ tuple ]]{
           "topsort_test.ml",
           156,
           8
-        ]
-      ];
+        }
+      };
 end
 catch (raw_exn)do
   exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
@@ -1620,14 +1620,14 @@ catch (raw_exn)do
     exit = 1;
   end end 
   if (exit == 1) then do
-    throw [
+    throw {
           Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]][
+          --[[ tuple ]]{
             "topsort_test.ml",
             159,
             11
-          ]
-        ];
+          }
+        };
   end
    end 
 end

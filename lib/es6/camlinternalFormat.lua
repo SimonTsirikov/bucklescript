@@ -48,10 +48,10 @@ end end
 
 function pad_of_pad_opt(pad_opt) do
   if (pad_opt ~= undefined) then do
-    return --[[ Lit_padding ]]Block.__(0, [
+    return --[[ Lit_padding ]]Block.__(0, {
               --[[ Right ]]1,
               pad_opt
-            ]);
+            });
   end else do
     return --[[ No_padding ]]0;
   end end 
@@ -59,7 +59,7 @@ end end
 
 function prec_of_prec_opt(prec_opt) do
   if (prec_opt ~= undefined) then do
-    return --[[ Lit_precision ]][prec_opt];
+    return --[[ Lit_precision ]]{prec_opt};
   end else do
     return --[[ No_precision ]]0;
   end end 
@@ -70,13 +70,13 @@ function param_format_of_ignored_format(ign, fmt) do
     local ___conditional___=(ign);
     do
        if ___conditional___ = 0--[[ Ignored_char ]] then do
-          return --[[ Param_format_EBB ]][--[[ Char ]]Block.__(0, [fmt])];end end end 
+          return --[[ Param_format_EBB ]]{--[[ Char ]]Block.__(0, {fmt})};end end end 
        if ___conditional___ = 1--[[ Ignored_caml_char ]] then do
-          return --[[ Param_format_EBB ]][--[[ Caml_char ]]Block.__(1, [fmt])];end end end 
+          return --[[ Param_format_EBB ]]{--[[ Caml_char ]]Block.__(1, {fmt})};end end end 
        if ___conditional___ = 2--[[ Ignored_reader ]] then do
-          return --[[ Param_format_EBB ]][--[[ Reader ]]Block.__(19, [fmt])];end end end 
+          return --[[ Param_format_EBB ]]{--[[ Reader ]]Block.__(19, {fmt})};end end end 
        if ___conditional___ = 3--[[ Ignored_scan_next_char ]] then do
-          return --[[ Param_format_EBB ]][--[[ Scan_next_char ]]Block.__(22, [fmt])];end end end 
+          return --[[ Param_format_EBB ]]{--[[ Scan_next_char ]]Block.__(22, {fmt})};end end end 
        do
       
     end
@@ -84,78 +84,78 @@ function param_format_of_ignored_format(ign, fmt) do
     local ___conditional___=(ign.tag | 0);
     do
        if ___conditional___ = 0--[[ Ignored_string ]] then do
-          return --[[ Param_format_EBB ]][--[[ String ]]Block.__(2, [
+          return --[[ Param_format_EBB ]]{--[[ String ]]Block.__(2, {
                       pad_of_pad_opt(ign[0]),
                       fmt
-                    ])];end end end 
+                    })};end end end 
        if ___conditional___ = 1--[[ Ignored_caml_string ]] then do
-          return --[[ Param_format_EBB ]][--[[ Caml_string ]]Block.__(3, [
+          return --[[ Param_format_EBB ]]{--[[ Caml_string ]]Block.__(3, {
                       pad_of_pad_opt(ign[0]),
                       fmt
-                    ])];end end end 
+                    })};end end end 
        if ___conditional___ = 2--[[ Ignored_int ]] then do
-          return --[[ Param_format_EBB ]][--[[ Int ]]Block.__(4, [
+          return --[[ Param_format_EBB ]]{--[[ Int ]]Block.__(4, {
                       ign[0],
                       pad_of_pad_opt(ign[1]),
                       --[[ No_precision ]]0,
                       fmt
-                    ])];end end end 
+                    })};end end end 
        if ___conditional___ = 3--[[ Ignored_int32 ]] then do
-          return --[[ Param_format_EBB ]][--[[ Int32 ]]Block.__(5, [
+          return --[[ Param_format_EBB ]]{--[[ Int32 ]]Block.__(5, {
                       ign[0],
                       pad_of_pad_opt(ign[1]),
                       --[[ No_precision ]]0,
                       fmt
-                    ])];end end end 
+                    })};end end end 
        if ___conditional___ = 4--[[ Ignored_nativeint ]] then do
-          return --[[ Param_format_EBB ]][--[[ Nativeint ]]Block.__(6, [
+          return --[[ Param_format_EBB ]]{--[[ Nativeint ]]Block.__(6, {
                       ign[0],
                       pad_of_pad_opt(ign[1]),
                       --[[ No_precision ]]0,
                       fmt
-                    ])];end end end 
+                    })};end end end 
        if ___conditional___ = 5--[[ Ignored_int64 ]] then do
-          return --[[ Param_format_EBB ]][--[[ Int64 ]]Block.__(7, [
+          return --[[ Param_format_EBB ]]{--[[ Int64 ]]Block.__(7, {
                       ign[0],
                       pad_of_pad_opt(ign[1]),
                       --[[ No_precision ]]0,
                       fmt
-                    ])];end end end 
+                    })};end end end 
        if ___conditional___ = 6--[[ Ignored_float ]] then do
-          return --[[ Param_format_EBB ]][--[[ Float ]]Block.__(8, [
+          return --[[ Param_format_EBB ]]{--[[ Float ]]Block.__(8, {
                       --[[ Float_f ]]0,
                       pad_of_pad_opt(ign[0]),
                       prec_of_prec_opt(ign[1]),
                       fmt
-                    ])];end end end 
+                    })};end end end 
        if ___conditional___ = 7--[[ Ignored_bool ]] then do
-          return --[[ Param_format_EBB ]][--[[ Bool ]]Block.__(9, [
+          return --[[ Param_format_EBB ]]{--[[ Bool ]]Block.__(9, {
                       pad_of_pad_opt(ign[0]),
                       fmt
-                    ])];end end end 
+                    })};end end end 
        if ___conditional___ = 8--[[ Ignored_format_arg ]] then do
-          return --[[ Param_format_EBB ]][--[[ Format_arg ]]Block.__(13, [
+          return --[[ Param_format_EBB ]]{--[[ Format_arg ]]Block.__(13, {
                       ign[0],
                       ign[1],
                       fmt
-                    ])];end end end 
+                    })};end end end 
        if ___conditional___ = 9--[[ Ignored_format_subst ]] then do
-          return --[[ Param_format_EBB ]][--[[ Format_subst ]]Block.__(14, [
+          return --[[ Param_format_EBB ]]{--[[ Format_subst ]]Block.__(14, {
                       ign[0],
                       ign[1],
                       fmt
-                    ])];end end end 
+                    })};end end end 
        if ___conditional___ = 10--[[ Ignored_scan_char_set ]] then do
-          return --[[ Param_format_EBB ]][--[[ Scan_char_set ]]Block.__(20, [
+          return --[[ Param_format_EBB ]]{--[[ Scan_char_set ]]Block.__(20, {
                       ign[0],
                       ign[1],
                       fmt
-                    ])];end end end 
+                    })};end end end 
        if ___conditional___ = 11--[[ Ignored_scan_get_counter ]] then do
-          return --[[ Param_format_EBB ]][--[[ Scan_get_counter ]]Block.__(21, [
+          return --[[ Param_format_EBB ]]{--[[ Scan_get_counter ]]Block.__(21, {
                       ign[0],
                       fmt
-                    ])];end end end 
+                    })};end end end 
        do
       
     end
@@ -869,42 +869,42 @@ function symm(param) do
     local ___conditional___=(param.tag | 0);
     do
        if ___conditional___ = 0--[[ Char_ty ]] then do
-          return --[[ Char_ty ]]Block.__(0, [symm(param[0])]);end end end 
+          return --[[ Char_ty ]]Block.__(0, {symm(param[0])});end end end 
        if ___conditional___ = 1--[[ String_ty ]] then do
-          return --[[ String_ty ]]Block.__(1, [symm(param[0])]);end end end 
+          return --[[ String_ty ]]Block.__(1, {symm(param[0])});end end end 
        if ___conditional___ = 2--[[ Int_ty ]] then do
-          return --[[ Int_ty ]]Block.__(2, [symm(param[0])]);end end end 
+          return --[[ Int_ty ]]Block.__(2, {symm(param[0])});end end end 
        if ___conditional___ = 3--[[ Int32_ty ]] then do
-          return --[[ Int32_ty ]]Block.__(3, [symm(param[0])]);end end end 
+          return --[[ Int32_ty ]]Block.__(3, {symm(param[0])});end end end 
        if ___conditional___ = 4--[[ Nativeint_ty ]] then do
-          return --[[ Nativeint_ty ]]Block.__(4, [symm(param[0])]);end end end 
+          return --[[ Nativeint_ty ]]Block.__(4, {symm(param[0])});end end end 
        if ___conditional___ = 5--[[ Int64_ty ]] then do
-          return --[[ Int64_ty ]]Block.__(5, [symm(param[0])]);end end end 
+          return --[[ Int64_ty ]]Block.__(5, {symm(param[0])});end end end 
        if ___conditional___ = 6--[[ Float_ty ]] then do
-          return --[[ Float_ty ]]Block.__(6, [symm(param[0])]);end end end 
+          return --[[ Float_ty ]]Block.__(6, {symm(param[0])});end end end 
        if ___conditional___ = 7--[[ Bool_ty ]] then do
-          return --[[ Bool_ty ]]Block.__(7, [symm(param[0])]);end end end 
+          return --[[ Bool_ty ]]Block.__(7, {symm(param[0])});end end end 
        if ___conditional___ = 8--[[ Format_arg_ty ]] then do
-          return --[[ Format_arg_ty ]]Block.__(8, [
+          return --[[ Format_arg_ty ]]Block.__(8, {
                     param[0],
                     symm(param[1])
-                  ]);end end end 
+                  });end end end 
        if ___conditional___ = 9--[[ Format_subst_ty ]] then do
-          return --[[ Format_subst_ty ]]Block.__(9, [
+          return --[[ Format_subst_ty ]]Block.__(9, {
                     param[1],
                     param[0],
                     symm(param[2])
-                  ]);end end end 
+                  });end end end 
        if ___conditional___ = 10--[[ Alpha_ty ]] then do
-          return --[[ Alpha_ty ]]Block.__(10, [symm(param[0])]);end end end 
+          return --[[ Alpha_ty ]]Block.__(10, {symm(param[0])});end end end 
        if ___conditional___ = 11--[[ Theta_ty ]] then do
-          return --[[ Theta_ty ]]Block.__(11, [symm(param[0])]);end end end 
+          return --[[ Theta_ty ]]Block.__(11, {symm(param[0])});end end end 
        if ___conditional___ = 12--[[ Any_ty ]] then do
-          return --[[ Any_ty ]]Block.__(12, [symm(param[0])]);end end end 
+          return --[[ Any_ty ]]Block.__(12, {symm(param[0])});end end end 
        if ___conditional___ = 13--[[ Reader_ty ]] then do
-          return --[[ Reader_ty ]]Block.__(13, [symm(param[0])]);end end end 
+          return --[[ Reader_ty ]]Block.__(13, {symm(param[0])});end end end 
        if ___conditional___ = 14--[[ Ignored_reader_ty ]] then do
-          return --[[ Ignored_reader_ty ]]Block.__(14, [symm(param[0])]);end end end 
+          return --[[ Ignored_reader_ty ]]Block.__(14, {symm(param[0])});end end end 
        do
       
     end
@@ -913,7 +913,7 @@ end end
 
 function fmtty_rel_det(param) do
   if (typeof param == "number") then do
-    return --[[ tuple ]][
+    return --[[ tuple ]]{
             (function (param) do
                 return --[[ Refl ]]0;
               end end),
@@ -926,7 +926,7 @@ function fmtty_rel_det(param) do
             (function (param) do
                 return --[[ Refl ]]0;
               end end)
-          ];
+          };
   end else do
     local ___conditional___=(param.tag | 0);
     do
@@ -934,7 +934,7 @@ function fmtty_rel_det(param) do
           match = fmtty_rel_det(param[0]);
           af = match[1];
           fa = match[0];
-          return --[[ tuple ]][
+          return --[[ tuple ]]{
                   (function (param) do
                       Curry._1(fa, --[[ Refl ]]0);
                       return --[[ Refl ]]0;
@@ -945,12 +945,12 @@ function fmtty_rel_det(param) do
                     end end),
                   match[2],
                   match[3]
-                ];end end end 
+                };end end end 
        if ___conditional___ = 1--[[ String_ty ]] then do
           match$1 = fmtty_rel_det(param[0]);
           af$1 = match$1[1];
           fa$1 = match$1[0];
-          return --[[ tuple ]][
+          return --[[ tuple ]]{
                   (function (param) do
                       Curry._1(fa$1, --[[ Refl ]]0);
                       return --[[ Refl ]]0;
@@ -961,12 +961,12 @@ function fmtty_rel_det(param) do
                     end end),
                   match$1[2],
                   match$1[3]
-                ];end end end 
+                };end end end 
        if ___conditional___ = 2--[[ Int_ty ]] then do
           match$2 = fmtty_rel_det(param[0]);
           af$2 = match$2[1];
           fa$2 = match$2[0];
-          return --[[ tuple ]][
+          return --[[ tuple ]]{
                   (function (param) do
                       Curry._1(fa$2, --[[ Refl ]]0);
                       return --[[ Refl ]]0;
@@ -977,12 +977,12 @@ function fmtty_rel_det(param) do
                     end end),
                   match$2[2],
                   match$2[3]
-                ];end end end 
+                };end end end 
        if ___conditional___ = 3--[[ Int32_ty ]] then do
           match$3 = fmtty_rel_det(param[0]);
           af$3 = match$3[1];
           fa$3 = match$3[0];
-          return --[[ tuple ]][
+          return --[[ tuple ]]{
                   (function (param) do
                       Curry._1(fa$3, --[[ Refl ]]0);
                       return --[[ Refl ]]0;
@@ -993,12 +993,12 @@ function fmtty_rel_det(param) do
                     end end),
                   match$3[2],
                   match$3[3]
-                ];end end end 
+                };end end end 
        if ___conditional___ = 4--[[ Nativeint_ty ]] then do
           match$4 = fmtty_rel_det(param[0]);
           af$4 = match$4[1];
           fa$4 = match$4[0];
-          return --[[ tuple ]][
+          return --[[ tuple ]]{
                   (function (param) do
                       Curry._1(fa$4, --[[ Refl ]]0);
                       return --[[ Refl ]]0;
@@ -1009,12 +1009,12 @@ function fmtty_rel_det(param) do
                     end end),
                   match$4[2],
                   match$4[3]
-                ];end end end 
+                };end end end 
        if ___conditional___ = 5--[[ Int64_ty ]] then do
           match$5 = fmtty_rel_det(param[0]);
           af$5 = match$5[1];
           fa$5 = match$5[0];
-          return --[[ tuple ]][
+          return --[[ tuple ]]{
                   (function (param) do
                       Curry._1(fa$5, --[[ Refl ]]0);
                       return --[[ Refl ]]0;
@@ -1025,12 +1025,12 @@ function fmtty_rel_det(param) do
                     end end),
                   match$5[2],
                   match$5[3]
-                ];end end end 
+                };end end end 
        if ___conditional___ = 6--[[ Float_ty ]] then do
           match$6 = fmtty_rel_det(param[0]);
           af$6 = match$6[1];
           fa$6 = match$6[0];
-          return --[[ tuple ]][
+          return --[[ tuple ]]{
                   (function (param) do
                       Curry._1(fa$6, --[[ Refl ]]0);
                       return --[[ Refl ]]0;
@@ -1041,12 +1041,12 @@ function fmtty_rel_det(param) do
                     end end),
                   match$6[2],
                   match$6[3]
-                ];end end end 
+                };end end end 
        if ___conditional___ = 7--[[ Bool_ty ]] then do
           match$7 = fmtty_rel_det(param[0]);
           af$7 = match$7[1];
           fa$7 = match$7[0];
-          return --[[ tuple ]][
+          return --[[ tuple ]]{
                   (function (param) do
                       Curry._1(fa$7, --[[ Refl ]]0);
                       return --[[ Refl ]]0;
@@ -1057,12 +1057,12 @@ function fmtty_rel_det(param) do
                     end end),
                   match$7[2],
                   match$7[3]
-                ];end end end 
+                };end end end 
        if ___conditional___ = 8--[[ Format_arg_ty ]] then do
           match$8 = fmtty_rel_det(param[1]);
           af$8 = match$8[1];
           fa$8 = match$8[0];
-          return --[[ tuple ]][
+          return --[[ tuple ]]{
                   (function (param) do
                       Curry._1(fa$8, --[[ Refl ]]0);
                       return --[[ Refl ]]0;
@@ -1073,7 +1073,7 @@ function fmtty_rel_det(param) do
                     end end),
                   match$8[2],
                   match$8[3]
-                ];end end end 
+                };end end end 
        if ___conditional___ = 9--[[ Format_subst_ty ]] then do
           match$9 = fmtty_rel_det(param[2]);
           de = match$9[3];
@@ -1086,7 +1086,7 @@ function fmtty_rel_det(param) do
           dj = match$10[2];
           ga = match$10[1];
           ag = match$10[0];
-          return --[[ tuple ]][
+          return --[[ tuple ]]{
                   (function (param) do
                       Curry._1(fa$9, --[[ Refl ]]0);
                       Curry._1(ag, --[[ Refl ]]0);
@@ -1107,12 +1107,12 @@ function fmtty_rel_det(param) do
                       Curry._1(de, --[[ Refl ]]0);
                       return --[[ Refl ]]0;
                     end end)
-                ];end end end 
+                };end end end 
        if ___conditional___ = 10--[[ Alpha_ty ]] then do
           match$11 = fmtty_rel_det(param[0]);
           af$10 = match$11[1];
           fa$10 = match$11[0];
-          return --[[ tuple ]][
+          return --[[ tuple ]]{
                   (function (param) do
                       Curry._1(fa$10, --[[ Refl ]]0);
                       return --[[ Refl ]]0;
@@ -1123,12 +1123,12 @@ function fmtty_rel_det(param) do
                     end end),
                   match$11[2],
                   match$11[3]
-                ];end end end 
+                };end end end 
        if ___conditional___ = 11--[[ Theta_ty ]] then do
           match$12 = fmtty_rel_det(param[0]);
           af$11 = match$12[1];
           fa$11 = match$12[0];
-          return --[[ tuple ]][
+          return --[[ tuple ]]{
                   (function (param) do
                       Curry._1(fa$11, --[[ Refl ]]0);
                       return --[[ Refl ]]0;
@@ -1139,12 +1139,12 @@ function fmtty_rel_det(param) do
                     end end),
                   match$12[2],
                   match$12[3]
-                ];end end end 
+                };end end end 
        if ___conditional___ = 12--[[ Any_ty ]] then do
           match$13 = fmtty_rel_det(param[0]);
           af$12 = match$13[1];
           fa$12 = match$13[0];
-          return --[[ tuple ]][
+          return --[[ tuple ]]{
                   (function (param) do
                       Curry._1(fa$12, --[[ Refl ]]0);
                       return --[[ Refl ]]0;
@@ -1155,14 +1155,14 @@ function fmtty_rel_det(param) do
                     end end),
                   match$13[2],
                   match$13[3]
-                ];end end end 
+                };end end end 
        if ___conditional___ = 13--[[ Reader_ty ]] then do
           match$14 = fmtty_rel_det(param[0]);
           de$1 = match$14[3];
           ed$1 = match$14[2];
           af$13 = match$14[1];
           fa$13 = match$14[0];
-          return --[[ tuple ]][
+          return --[[ tuple ]]{
                   (function (param) do
                       Curry._1(fa$13, --[[ Refl ]]0);
                       return --[[ Refl ]]0;
@@ -1179,14 +1179,14 @@ function fmtty_rel_det(param) do
                       Curry._1(de$1, --[[ Refl ]]0);
                       return --[[ Refl ]]0;
                     end end)
-                ];end end end 
+                };end end end 
        if ___conditional___ = 14--[[ Ignored_reader_ty ]] then do
           match$15 = fmtty_rel_det(param[0]);
           de$2 = match$15[3];
           ed$2 = match$15[2];
           af$14 = match$15[1];
           fa$14 = match$15[0];
-          return --[[ tuple ]][
+          return --[[ tuple ]]{
                   (function (param) do
                       Curry._1(fa$14, --[[ Refl ]]0);
                       return --[[ Refl ]]0;
@@ -1203,7 +1203,7 @@ function fmtty_rel_det(param) do
                       Curry._1(de$2, --[[ Refl ]]0);
                       return --[[ Refl ]]0;
                     end end)
-                ];end end end 
+                };end end end 
        do
       
     end
@@ -1234,14 +1234,14 @@ function trans(ty1, ty2) do
             exit = 5;end else 
          do end end end end end end end end
         else do
-          throw [
+          throw {
                 Caml_builtin_exceptions.assert_failure,
-                --[[ tuple ]][
+                --[[ tuple ]]{
                   "camlinternalFormat.ml",
                   846,
                   23
-                ]
-              ];
+                }
+              };
           end end
           
       end
@@ -1256,7 +1256,7 @@ function trans(ty1, ty2) do
             local ___conditional___=(ty2.tag | 0);
             do
                if ___conditional___ = 0--[[ Char_ty ]] then do
-                  return --[[ Char_ty ]]Block.__(0, [trans(ty1[0], ty2[0])]);end end end 
+                  return --[[ Char_ty ]]Block.__(0, {trans(ty1[0], ty2[0])});end end end 
                if ___conditional___ = 8--[[ Format_arg_ty ]] then do
                   exit = 6;end else 
                if ___conditional___ = 9--[[ Format_subst_ty ]] then do
@@ -1282,7 +1282,7 @@ function trans(ty1, ty2) do
             local ___conditional___=(ty2.tag | 0);
             do
                if ___conditional___ = 1--[[ String_ty ]] then do
-                  return --[[ String_ty ]]Block.__(1, [trans(ty1[0], ty2[0])]);end end end 
+                  return --[[ String_ty ]]Block.__(1, {trans(ty1[0], ty2[0])});end end end 
                if ___conditional___ = 8--[[ Format_arg_ty ]] then do
                   exit = 6;end else 
                if ___conditional___ = 9--[[ Format_subst_ty ]] then do
@@ -1308,7 +1308,7 @@ function trans(ty1, ty2) do
             local ___conditional___=(ty2.tag | 0);
             do
                if ___conditional___ = 2--[[ Int_ty ]] then do
-                  return --[[ Int_ty ]]Block.__(2, [trans(ty1[0], ty2[0])]);end end end 
+                  return --[[ Int_ty ]]Block.__(2, {trans(ty1[0], ty2[0])});end end end 
                if ___conditional___ = 8--[[ Format_arg_ty ]] then do
                   exit = 6;end else 
                if ___conditional___ = 9--[[ Format_subst_ty ]] then do
@@ -1334,7 +1334,7 @@ function trans(ty1, ty2) do
             local ___conditional___=(ty2.tag | 0);
             do
                if ___conditional___ = 3--[[ Int32_ty ]] then do
-                  return --[[ Int32_ty ]]Block.__(3, [trans(ty1[0], ty2[0])]);end end end 
+                  return --[[ Int32_ty ]]Block.__(3, {trans(ty1[0], ty2[0])});end end end 
                if ___conditional___ = 8--[[ Format_arg_ty ]] then do
                   exit = 6;end else 
                if ___conditional___ = 9--[[ Format_subst_ty ]] then do
@@ -1360,7 +1360,7 @@ function trans(ty1, ty2) do
             local ___conditional___=(ty2.tag | 0);
             do
                if ___conditional___ = 4--[[ Nativeint_ty ]] then do
-                  return --[[ Nativeint_ty ]]Block.__(4, [trans(ty1[0], ty2[0])]);end end end 
+                  return --[[ Nativeint_ty ]]Block.__(4, {trans(ty1[0], ty2[0])});end end end 
                if ___conditional___ = 8--[[ Format_arg_ty ]] then do
                   exit = 6;end else 
                if ___conditional___ = 9--[[ Format_subst_ty ]] then do
@@ -1386,7 +1386,7 @@ function trans(ty1, ty2) do
             local ___conditional___=(ty2.tag | 0);
             do
                if ___conditional___ = 5--[[ Int64_ty ]] then do
-                  return --[[ Int64_ty ]]Block.__(5, [trans(ty1[0], ty2[0])]);end end end 
+                  return --[[ Int64_ty ]]Block.__(5, {trans(ty1[0], ty2[0])});end end end 
                if ___conditional___ = 8--[[ Format_arg_ty ]] then do
                   exit = 6;end else 
                if ___conditional___ = 9--[[ Format_subst_ty ]] then do
@@ -1412,7 +1412,7 @@ function trans(ty1, ty2) do
             local ___conditional___=(ty2.tag | 0);
             do
                if ___conditional___ = 6--[[ Float_ty ]] then do
-                  return --[[ Float_ty ]]Block.__(6, [trans(ty1[0], ty2[0])]);end end end 
+                  return --[[ Float_ty ]]Block.__(6, {trans(ty1[0], ty2[0])});end end end 
                if ___conditional___ = 8--[[ Format_arg_ty ]] then do
                   exit = 6;end else 
                if ___conditional___ = 9--[[ Format_subst_ty ]] then do
@@ -1438,7 +1438,7 @@ function trans(ty1, ty2) do
             local ___conditional___=(ty2.tag | 0);
             do
                if ___conditional___ = 7--[[ Bool_ty ]] then do
-                  return --[[ Bool_ty ]]Block.__(7, [trans(ty1[0], ty2[0])]);end end end 
+                  return --[[ Bool_ty ]]Block.__(7, {trans(ty1[0], ty2[0])});end end end 
                if ___conditional___ = 8--[[ Format_arg_ty ]] then do
                   exit = 6;end else 
                if ___conditional___ = 9--[[ Format_subst_ty ]] then do
@@ -1459,22 +1459,22 @@ function trans(ty1, ty2) do
           end end end else 
        if ___conditional___ = 8--[[ Format_arg_ty ]] then do
           if (typeof ty2 == "number") then do
-            throw [
+            throw {
                   Caml_builtin_exceptions.assert_failure,
-                  --[[ tuple ]][
+                  --[[ tuple ]]{
                     "camlinternalFormat.ml",
                     832,
                     26
-                  ]
-                ];
+                  }
+                };
           end else do
             local ___conditional___=(ty2.tag | 0);
             do
                if ___conditional___ = 8--[[ Format_arg_ty ]] then do
-                  return --[[ Format_arg_ty ]]Block.__(8, [
+                  return --[[ Format_arg_ty ]]Block.__(8, {
                             trans(ty1[0], ty2[0]),
                             trans(ty1[1], ty2[1])
-                          ]);end end end 
+                          });end end end 
                if ___conditional___ = 10--[[ Alpha_ty ]] then do
                   exit = 1;end else 
                if ___conditional___ = 11--[[ Theta_ty ]] then do
@@ -1487,28 +1487,28 @@ function trans(ty1, ty2) do
                   exit = 5;end else 
                do end end end end end
               else do
-                throw [
+                throw {
                       Caml_builtin_exceptions.assert_failure,
-                      --[[ tuple ]][
+                      --[[ tuple ]]{
                         "camlinternalFormat.ml",
                         832,
                         26
-                      ]
-                    ];
+                      }
+                    };
                 end end
                 
             end
           end end end else 
        if ___conditional___ = 9--[[ Format_subst_ty ]] then do
           if (typeof ty2 == "number") then do
-            throw [
+            throw {
                   Caml_builtin_exceptions.assert_failure,
-                  --[[ tuple ]][
+                  --[[ tuple ]]{
                     "camlinternalFormat.ml",
                     842,
                     28
-                  ]
-                ];
+                  }
+                };
           end else do
             local ___conditional___=(ty2.tag | 0);
             do
@@ -1519,11 +1519,11 @@ function trans(ty1, ty2) do
                   match = fmtty_rel_det(ty);
                   Curry._1(match[1], --[[ Refl ]]0);
                   Curry._1(match[3], --[[ Refl ]]0);
-                  return --[[ Format_subst_ty ]]Block.__(9, [
+                  return --[[ Format_subst_ty ]]Block.__(9, {
                             ty1[0],
                             ty2[1],
                             trans(ty1[2], ty2[2])
-                          ]);end end end 
+                          });end end end 
                if ___conditional___ = 10--[[ Alpha_ty ]] then do
                   exit = 1;end else 
                if ___conditional___ = 11--[[ Theta_ty ]] then do
@@ -1536,81 +1536,81 @@ function trans(ty1, ty2) do
                   exit = 5;end else 
                do end end end end end end
               else do
-                throw [
+                throw {
                       Caml_builtin_exceptions.assert_failure,
-                      --[[ tuple ]][
+                      --[[ tuple ]]{
                         "camlinternalFormat.ml",
                         842,
                         28
-                      ]
-                    ];
+                      }
+                    };
                 end end
                 
             end
           end end end else 
        if ___conditional___ = 10--[[ Alpha_ty ]] then do
           if (typeof ty2 == "number") then do
-            throw [
+            throw {
                   Caml_builtin_exceptions.assert_failure,
-                  --[[ tuple ]][
+                  --[[ tuple ]]{
                     "camlinternalFormat.ml",
                     810,
                     21
-                  ]
-                ];
+                  }
+                };
           end else if (ty2.tag == --[[ Alpha_ty ]]10) then do
-            return --[[ Alpha_ty ]]Block.__(10, [trans(ty1[0], ty2[0])]);
+            return --[[ Alpha_ty ]]Block.__(10, {trans(ty1[0], ty2[0])});
           end else do
-            throw [
+            throw {
                   Caml_builtin_exceptions.assert_failure,
-                  --[[ tuple ]][
+                  --[[ tuple ]]{
                     "camlinternalFormat.ml",
                     810,
                     21
-                  ]
-                ];
+                  }
+                };
           end end  end end end end 
        if ___conditional___ = 11--[[ Theta_ty ]] then do
           if (typeof ty2 == "number") then do
-            throw [
+            throw {
                   Caml_builtin_exceptions.assert_failure,
-                  --[[ tuple ]][
+                  --[[ tuple ]]{
                     "camlinternalFormat.ml",
                     814,
                     21
-                  ]
-                ];
+                  }
+                };
           end else do
             local ___conditional___=(ty2.tag | 0);
             do
                if ___conditional___ = 10--[[ Alpha_ty ]] then do
                   exit = 1;end else 
                if ___conditional___ = 11--[[ Theta_ty ]] then do
-                  return --[[ Theta_ty ]]Block.__(11, [trans(ty1[0], ty2[0])]);end end end 
+                  return --[[ Theta_ty ]]Block.__(11, {trans(ty1[0], ty2[0])});end end end 
                do end
               else do
-                throw [
+                throw {
                       Caml_builtin_exceptions.assert_failure,
-                      --[[ tuple ]][
+                      --[[ tuple ]]{
                         "camlinternalFormat.ml",
                         814,
                         21
-                      ]
-                    ];
+                      }
+                    };
                 end end
                 
             end
           end end end else 
        if ___conditional___ = 12--[[ Any_ty ]] then do
           if (typeof ty2 == "number") then do
-            throw [
+            throw {
                   Caml_builtin_exceptions.assert_failure,
-                  --[[ tuple ]][
+                  --[[ tuple ]]{
                     "camlinternalFormat.ml",
                     818,
                     19
-                  ]
-                ];
+                  }
+                };
           end else do
             local ___conditional___=(ty2.tag | 0);
             do
@@ -1619,31 +1619,31 @@ function trans(ty1, ty2) do
                if ___conditional___ = 11--[[ Theta_ty ]] then do
                   exit = 2;end else 
                if ___conditional___ = 12--[[ Any_ty ]] then do
-                  return --[[ Any_ty ]]Block.__(12, [trans(ty1[0], ty2[0])]);end end end 
+                  return --[[ Any_ty ]]Block.__(12, {trans(ty1[0], ty2[0])});end end end 
                do end end
               else do
-                throw [
+                throw {
                       Caml_builtin_exceptions.assert_failure,
-                      --[[ tuple ]][
+                      --[[ tuple ]]{
                         "camlinternalFormat.ml",
                         818,
                         19
-                      ]
-                    ];
+                      }
+                    };
                 end end
                 
             end
           end end end else 
        if ___conditional___ = 13--[[ Reader_ty ]] then do
           if (typeof ty2 == "number") then do
-            throw [
+            throw {
                   Caml_builtin_exceptions.assert_failure,
-                  --[[ tuple ]][
+                  --[[ tuple ]]{
                     "camlinternalFormat.ml",
                     822,
                     22
-                  ]
-                ];
+                  }
+                };
           end else do
             local ___conditional___=(ty2.tag | 0);
             do
@@ -1654,31 +1654,31 @@ function trans(ty1, ty2) do
                if ___conditional___ = 12--[[ Any_ty ]] then do
                   exit = 3;end else 
                if ___conditional___ = 13--[[ Reader_ty ]] then do
-                  return --[[ Reader_ty ]]Block.__(13, [trans(ty1[0], ty2[0])]);end end end 
+                  return --[[ Reader_ty ]]Block.__(13, {trans(ty1[0], ty2[0])});end end end 
                do end end end
               else do
-                throw [
+                throw {
                       Caml_builtin_exceptions.assert_failure,
-                      --[[ tuple ]][
+                      --[[ tuple ]]{
                         "camlinternalFormat.ml",
                         822,
                         22
-                      ]
-                    ];
+                      }
+                    };
                 end end
                 
             end
           end end end else 
        if ___conditional___ = 14--[[ Ignored_reader_ty ]] then do
           if (typeof ty2 == "number") then do
-            throw [
+            throw {
                   Caml_builtin_exceptions.assert_failure,
-                  --[[ tuple ]][
+                  --[[ tuple ]]{
                     "camlinternalFormat.ml",
                     827,
                     30
-                  ]
-                ];
+                  }
+                };
           end else do
             local ___conditional___=(ty2.tag | 0);
             do
@@ -1691,17 +1691,17 @@ function trans(ty1, ty2) do
                if ___conditional___ = 13--[[ Reader_ty ]] then do
                   exit = 4;end else 
                if ___conditional___ = 14--[[ Ignored_reader_ty ]] then do
-                  return --[[ Ignored_reader_ty ]]Block.__(14, [trans(ty1[0], ty2[0])]);end end end 
+                  return --[[ Ignored_reader_ty ]]Block.__(14, {trans(ty1[0], ty2[0])});end end end 
                do end end end end
               else do
-                throw [
+                throw {
                       Caml_builtin_exceptions.assert_failure,
-                      --[[ tuple ]][
+                      --[[ tuple ]]{
                         "camlinternalFormat.ml",
                         827,
                         30
-                      ]
-                    ];
+                      }
+                    };
                 end end
                 
             end
@@ -1713,77 +1713,77 @@ function trans(ty1, ty2) do
   local ___conditional___=(exit);
   do
      if ___conditional___ = 1 then do
-        throw [
+        throw {
               Caml_builtin_exceptions.assert_failure,
-              --[[ tuple ]][
+              --[[ tuple ]]{
                 "camlinternalFormat.ml",
                 811,
                 21
-              ]
-            ];end end end 
+              }
+            };end end end 
      if ___conditional___ = 2 then do
-        throw [
+        throw {
               Caml_builtin_exceptions.assert_failure,
-              --[[ tuple ]][
+              --[[ tuple ]]{
                 "camlinternalFormat.ml",
                 815,
                 21
-              ]
-            ];end end end 
+              }
+            };end end end 
      if ___conditional___ = 3 then do
-        throw [
+        throw {
               Caml_builtin_exceptions.assert_failure,
-              --[[ tuple ]][
+              --[[ tuple ]]{
                 "camlinternalFormat.ml",
                 819,
                 19
-              ]
-            ];end end end 
+              }
+            };end end end 
      if ___conditional___ = 4 then do
-        throw [
+        throw {
               Caml_builtin_exceptions.assert_failure,
-              --[[ tuple ]][
+              --[[ tuple ]]{
                 "camlinternalFormat.ml",
                 823,
                 22
-              ]
-            ];end end end 
+              }
+            };end end end 
      if ___conditional___ = 5 then do
-        throw [
+        throw {
               Caml_builtin_exceptions.assert_failure,
-              --[[ tuple ]][
+              --[[ tuple ]]{
                 "camlinternalFormat.ml",
                 828,
                 30
-              ]
-            ];end end end 
+              }
+            };end end end 
      if ___conditional___ = 6 then do
-        throw [
+        throw {
               Caml_builtin_exceptions.assert_failure,
-              --[[ tuple ]][
+              --[[ tuple ]]{
                 "camlinternalFormat.ml",
                 833,
                 26
-              ]
-            ];end end end 
+              }
+            };end end end 
      if ___conditional___ = 7 then do
-        throw [
+        throw {
               Caml_builtin_exceptions.assert_failure,
-              --[[ tuple ]][
+              --[[ tuple ]]{
                 "camlinternalFormat.ml",
                 843,
                 28
-              ]
-            ];end end end 
+              }
+            };end end end 
      if ___conditional___ = 8 then do
-        throw [
+        throw {
               Caml_builtin_exceptions.assert_failure,
-              --[[ tuple ]][
+              --[[ tuple ]]{
                 "camlinternalFormat.ml",
                 847,
                 23
-              ]
-            ];end end end 
+              }
+            };end end end 
      do
     
   end
@@ -1805,45 +1805,45 @@ function fmtty_of_fmt(_fmtty) do
          or ___conditional___ = 3--[[ Caml_string ]]
          or ___conditional___ = 4--[[ Int ]] then do
             ty_rest = fmtty_of_fmt(fmtty[3]);
-            prec_ty = fmtty_of_precision_fmtty(fmtty[2], --[[ Int_ty ]]Block.__(2, [ty_rest]));
+            prec_ty = fmtty_of_precision_fmtty(fmtty[2], --[[ Int_ty ]]Block.__(2, {ty_rest}));
             return fmtty_of_padding_fmtty(fmtty[1], prec_ty);end end end 
          if ___conditional___ = 5--[[ Int32 ]] then do
             ty_rest$1 = fmtty_of_fmt(fmtty[3]);
-            prec_ty$1 = fmtty_of_precision_fmtty(fmtty[2], --[[ Int32_ty ]]Block.__(3, [ty_rest$1]));
+            prec_ty$1 = fmtty_of_precision_fmtty(fmtty[2], --[[ Int32_ty ]]Block.__(3, {ty_rest$1}));
             return fmtty_of_padding_fmtty(fmtty[1], prec_ty$1);end end end 
          if ___conditional___ = 6--[[ Nativeint ]] then do
             ty_rest$2 = fmtty_of_fmt(fmtty[3]);
-            prec_ty$2 = fmtty_of_precision_fmtty(fmtty[2], --[[ Nativeint_ty ]]Block.__(4, [ty_rest$2]));
+            prec_ty$2 = fmtty_of_precision_fmtty(fmtty[2], --[[ Nativeint_ty ]]Block.__(4, {ty_rest$2}));
             return fmtty_of_padding_fmtty(fmtty[1], prec_ty$2);end end end 
          if ___conditional___ = 7--[[ Int64 ]] then do
             ty_rest$3 = fmtty_of_fmt(fmtty[3]);
-            prec_ty$3 = fmtty_of_precision_fmtty(fmtty[2], --[[ Int64_ty ]]Block.__(5, [ty_rest$3]));
+            prec_ty$3 = fmtty_of_precision_fmtty(fmtty[2], --[[ Int64_ty ]]Block.__(5, {ty_rest$3}));
             return fmtty_of_padding_fmtty(fmtty[1], prec_ty$3);end end end 
          if ___conditional___ = 8--[[ Float ]] then do
             ty_rest$4 = fmtty_of_fmt(fmtty[3]);
-            prec_ty$4 = fmtty_of_precision_fmtty(fmtty[2], --[[ Float_ty ]]Block.__(6, [ty_rest$4]));
+            prec_ty$4 = fmtty_of_precision_fmtty(fmtty[2], --[[ Float_ty ]]Block.__(6, {ty_rest$4}));
             return fmtty_of_padding_fmtty(fmtty[1], prec_ty$4);end end end 
          if ___conditional___ = 9--[[ Bool ]] then do
-            return fmtty_of_padding_fmtty(fmtty[0], --[[ Bool_ty ]]Block.__(7, [fmtty_of_fmt(fmtty[1])]));end end end 
+            return fmtty_of_padding_fmtty(fmtty[0], --[[ Bool_ty ]]Block.__(7, {fmtty_of_fmt(fmtty[1])}));end end end 
          if ___conditional___ = 10--[[ Flush ]] then do
             _fmtty = fmtty[0];
             continue ;end end end 
          if ___conditional___ = 13--[[ Format_arg ]] then do
-            return --[[ Format_arg_ty ]]Block.__(8, [
+            return --[[ Format_arg_ty ]]Block.__(8, {
                       fmtty[1],
                       fmtty_of_fmt(fmtty[2])
-                    ]);end end end 
+                    });end end end 
          if ___conditional___ = 14--[[ Format_subst ]] then do
             ty = fmtty[1];
-            return --[[ Format_subst_ty ]]Block.__(9, [
+            return --[[ Format_subst_ty ]]Block.__(9, {
                       ty,
                       ty,
                       fmtty_of_fmt(fmtty[2])
-                    ]);end end end 
+                    });end end end 
          if ___conditional___ = 15--[[ Alpha ]] then do
-            return --[[ Alpha_ty ]]Block.__(10, [fmtty_of_fmt(fmtty[0])]);end end end 
+            return --[[ Alpha_ty ]]Block.__(10, {fmtty_of_fmt(fmtty[0])});end end end 
          if ___conditional___ = 16--[[ Theta ]] then do
-            return --[[ Theta_ty ]]Block.__(11, [fmtty_of_fmt(fmtty[0])]);end end end 
+            return --[[ Theta_ty ]]Block.__(11, {fmtty_of_fmt(fmtty[0])});end end end 
          if ___conditional___ = 11--[[ String_literal ]]
          or ___conditional___ = 12--[[ Char_literal ]]
          or ___conditional___ = 17--[[ Formatting_lit ]] then do
@@ -1852,17 +1852,17 @@ function fmtty_of_fmt(_fmtty) do
          if ___conditional___ = 18--[[ Formatting_gen ]] then do
             return CamlinternalFormatBasics.concat_fmtty(fmtty_of_formatting_gen(fmtty[0]), fmtty_of_fmt(fmtty[1]));end end end 
          if ___conditional___ = 19--[[ Reader ]] then do
-            return --[[ Reader_ty ]]Block.__(13, [fmtty_of_fmt(fmtty[0])]);end end end 
+            return --[[ Reader_ty ]]Block.__(13, {fmtty_of_fmt(fmtty[0])});end end end 
          if ___conditional___ = 20--[[ Scan_char_set ]] then do
-            return --[[ String_ty ]]Block.__(1, [fmtty_of_fmt(fmtty[2])]);end end end 
+            return --[[ String_ty ]]Block.__(1, {fmtty_of_fmt(fmtty[2])});end end end 
          if ___conditional___ = 21--[[ Scan_get_counter ]] then do
-            return --[[ Int_ty ]]Block.__(2, [fmtty_of_fmt(fmtty[1])]);end end end 
+            return --[[ Int_ty ]]Block.__(2, {fmtty_of_fmt(fmtty[1])});end end end 
          if ___conditional___ = 23--[[ Ignored_param ]] then do
             ign = fmtty[0];
             fmt = fmtty[1];
             if (typeof ign == "number") then do
               if (ign == --[[ Ignored_reader ]]2) then do
-                return --[[ Ignored_reader_ty ]]Block.__(14, [fmtty_of_fmt(fmt)]);
+                return --[[ Ignored_reader_ty ]]Block.__(14, {fmtty_of_fmt(fmt)});
               end else do
                 return fmtty_of_fmt(fmt);
               end end 
@@ -1875,18 +1875,18 @@ function fmtty_of_fmt(_fmtty) do
             return fmtty_of_custom(fmtty[0], fmtty_of_fmt(fmtty[2]));end end end 
          do
         else do
-          return --[[ Char_ty ]]Block.__(0, [fmtty_of_fmt(fmtty[0])]);
+          return --[[ Char_ty ]]Block.__(0, {fmtty_of_fmt(fmtty[0])});
           end end
           
       end
     end end 
-    return fmtty_of_padding_fmtty(fmtty[0], --[[ String_ty ]]Block.__(1, [fmtty_of_fmt(fmtty[1])]));
+    return fmtty_of_padding_fmtty(fmtty[0], --[[ String_ty ]]Block.__(1, {fmtty_of_fmt(fmtty[1])}));
   end;
 end end
 
 function fmtty_of_custom(arity, fmtty) do
   if (arity) then do
-    return --[[ Any_ty ]]Block.__(12, [fmtty_of_custom(arity[0], fmtty)]);
+    return --[[ Any_ty ]]Block.__(12, {fmtty_of_custom(arity[0], fmtty)});
   end else do
     return fmtty;
   end end 
@@ -1896,13 +1896,13 @@ function fmtty_of_padding_fmtty(pad, fmtty) do
   if (typeof pad == "number" or not pad.tag) then do
     return fmtty;
   end else do
-    return --[[ Int_ty ]]Block.__(2, [fmtty]);
+    return --[[ Int_ty ]]Block.__(2, {fmtty});
   end end 
 end end
 
 function fmtty_of_precision_fmtty(prec, fmtty) do
   if (typeof prec == "number" and prec ~= 0) then do
-    return --[[ Int_ty ]]Block.__(2, [fmtty]);
+    return --[[ Int_ty ]]Block.__(2, {fmtty});
   end else do
     return fmtty;
   end end 
@@ -1912,29 +1912,29 @@ Type_mismatch = Caml_exceptions.create("CamlinternalFormat.Type_mismatch");
 
 function type_padding(pad, fmtty) do
   if (typeof pad == "number") then do
-    return --[[ Padding_fmtty_EBB ]][
+    return --[[ Padding_fmtty_EBB ]]{
             --[[ No_padding ]]0,
             fmtty
-          ];
+          };
   end else if (pad.tag) then do
     if (typeof fmtty == "number") then do
       throw Type_mismatch;
     end else if (fmtty.tag == --[[ Int_ty ]]2) then do
-      return --[[ Padding_fmtty_EBB ]][
-              --[[ Arg_padding ]]Block.__(1, [pad[0]]),
+      return --[[ Padding_fmtty_EBB ]]{
+              --[[ Arg_padding ]]Block.__(1, {pad[0]}),
               fmtty[0]
-            ];
+            };
     end else do
       throw Type_mismatch;
     end end  end 
   end else do
-    return --[[ Padding_fmtty_EBB ]][
-            --[[ Lit_padding ]]Block.__(0, [
+    return --[[ Padding_fmtty_EBB ]]{
+            --[[ Lit_padding ]]Block.__(0, {
                 pad[0],
                 pad[1]
-              ]),
+              }),
             fmtty
-          ];
+          };
   end end  end 
 end end
 
@@ -1946,36 +1946,36 @@ function type_padprec(pad, prec, fmtty) do
       if (typeof match$1 == "number") then do
         throw Type_mismatch;
       end else if (match$1.tag == --[[ Int_ty ]]2) then do
-        return --[[ Padprec_fmtty_EBB ]][
+        return --[[ Padprec_fmtty_EBB ]]{
                 match[0],
                 --[[ Arg_precision ]]1,
                 match$1[0]
-              ];
+              };
       end else do
         throw Type_mismatch;
       end end  end 
     end else do
-      return --[[ Padprec_fmtty_EBB ]][
+      return --[[ Padprec_fmtty_EBB ]]{
               match[0],
               --[[ No_precision ]]0,
               match[1]
-            ];
+            };
     end end 
   end else do
-    return --[[ Padprec_fmtty_EBB ]][
+    return --[[ Padprec_fmtty_EBB ]]{
             match[0],
-            --[[ Lit_precision ]][prec[0]],
+            --[[ Lit_precision ]]{prec[0]},
             match[1]
-          ];
+          };
   end end 
 end end
 
 function type_ignored_format_substitution(sub_fmtty, fmt, fmtty) do
   if (typeof sub_fmtty == "number") then do
-    return --[[ Fmtty_fmt_EBB ]][
+    return --[[ Fmtty_fmt_EBB ]]{
             --[[ End_of_fmtty ]]0,
             type_format_gen(fmt, fmtty)
-          ];
+          };
   end else do
     local ___conditional___=(sub_fmtty.tag | 0);
     do
@@ -1986,20 +1986,20 @@ function type_ignored_format_substitution(sub_fmtty, fmt, fmtty) do
             throw Type_mismatch;
           end else do
             match = type_ignored_format_substitution(sub_fmtty[0], fmt, fmtty[0]);
-            return --[[ Fmtty_fmt_EBB ]][
-                    --[[ Char_ty ]]Block.__(0, [match[0]]),
+            return --[[ Fmtty_fmt_EBB ]]{
+                    --[[ Char_ty ]]Block.__(0, {match[0]}),
                     match[1]
-                  ];
+                  };
           end end  end end end end 
        if ___conditional___ = 1--[[ String_ty ]] then do
           if (typeof fmtty == "number") then do
             throw Type_mismatch;
           end else if (fmtty.tag == --[[ String_ty ]]1) then do
             match$1 = type_ignored_format_substitution(sub_fmtty[0], fmt, fmtty[0]);
-            return --[[ Fmtty_fmt_EBB ]][
-                    --[[ String_ty ]]Block.__(1, [match$1[0]]),
+            return --[[ Fmtty_fmt_EBB ]]{
+                    --[[ String_ty ]]Block.__(1, {match$1[0]}),
                     match$1[1]
-                  ];
+                  };
           end else do
             throw Type_mismatch;
           end end  end end end end 
@@ -2008,10 +2008,10 @@ function type_ignored_format_substitution(sub_fmtty, fmt, fmtty) do
             throw Type_mismatch;
           end else if (fmtty.tag == --[[ Int_ty ]]2) then do
             match$2 = type_ignored_format_substitution(sub_fmtty[0], fmt, fmtty[0]);
-            return --[[ Fmtty_fmt_EBB ]][
-                    --[[ Int_ty ]]Block.__(2, [match$2[0]]),
+            return --[[ Fmtty_fmt_EBB ]]{
+                    --[[ Int_ty ]]Block.__(2, {match$2[0]}),
                     match$2[1]
-                  ];
+                  };
           end else do
             throw Type_mismatch;
           end end  end end end end 
@@ -2020,10 +2020,10 @@ function type_ignored_format_substitution(sub_fmtty, fmt, fmtty) do
             throw Type_mismatch;
           end else if (fmtty.tag == --[[ Int32_ty ]]3) then do
             match$3 = type_ignored_format_substitution(sub_fmtty[0], fmt, fmtty[0]);
-            return --[[ Fmtty_fmt_EBB ]][
-                    --[[ Int32_ty ]]Block.__(3, [match$3[0]]),
+            return --[[ Fmtty_fmt_EBB ]]{
+                    --[[ Int32_ty ]]Block.__(3, {match$3[0]}),
                     match$3[1]
-                  ];
+                  };
           end else do
             throw Type_mismatch;
           end end  end end end end 
@@ -2032,10 +2032,10 @@ function type_ignored_format_substitution(sub_fmtty, fmt, fmtty) do
             throw Type_mismatch;
           end else if (fmtty.tag == --[[ Nativeint_ty ]]4) then do
             match$4 = type_ignored_format_substitution(sub_fmtty[0], fmt, fmtty[0]);
-            return --[[ Fmtty_fmt_EBB ]][
-                    --[[ Nativeint_ty ]]Block.__(4, [match$4[0]]),
+            return --[[ Fmtty_fmt_EBB ]]{
+                    --[[ Nativeint_ty ]]Block.__(4, {match$4[0]}),
                     match$4[1]
-                  ];
+                  };
           end else do
             throw Type_mismatch;
           end end  end end end end 
@@ -2044,10 +2044,10 @@ function type_ignored_format_substitution(sub_fmtty, fmt, fmtty) do
             throw Type_mismatch;
           end else if (fmtty.tag == --[[ Int64_ty ]]5) then do
             match$5 = type_ignored_format_substitution(sub_fmtty[0], fmt, fmtty[0]);
-            return --[[ Fmtty_fmt_EBB ]][
-                    --[[ Int64_ty ]]Block.__(5, [match$5[0]]),
+            return --[[ Fmtty_fmt_EBB ]]{
+                    --[[ Int64_ty ]]Block.__(5, {match$5[0]}),
                     match$5[1]
-                  ];
+                  };
           end else do
             throw Type_mismatch;
           end end  end end end end 
@@ -2056,10 +2056,10 @@ function type_ignored_format_substitution(sub_fmtty, fmt, fmtty) do
             throw Type_mismatch;
           end else if (fmtty.tag == --[[ Float_ty ]]6) then do
             match$6 = type_ignored_format_substitution(sub_fmtty[0], fmt, fmtty[0]);
-            return --[[ Fmtty_fmt_EBB ]][
-                    --[[ Float_ty ]]Block.__(6, [match$6[0]]),
+            return --[[ Fmtty_fmt_EBB ]]{
+                    --[[ Float_ty ]]Block.__(6, {match$6[0]}),
                     match$6[1]
-                  ];
+                  };
           end else do
             throw Type_mismatch;
           end end  end end end end 
@@ -2068,10 +2068,10 @@ function type_ignored_format_substitution(sub_fmtty, fmt, fmtty) do
             throw Type_mismatch;
           end else if (fmtty.tag == --[[ Bool_ty ]]7) then do
             match$7 = type_ignored_format_substitution(sub_fmtty[0], fmt, fmtty[0]);
-            return --[[ Fmtty_fmt_EBB ]][
-                    --[[ Bool_ty ]]Block.__(7, [match$7[0]]),
+            return --[[ Fmtty_fmt_EBB ]]{
+                    --[[ Bool_ty ]]Block.__(7, {match$7[0]}),
                     match$7[1]
-                  ];
+                  };
           end else do
             throw Type_mismatch;
           end end  end end end end 
@@ -2080,18 +2080,18 @@ function type_ignored_format_substitution(sub_fmtty, fmt, fmtty) do
             throw Type_mismatch;
           end else if (fmtty.tag == --[[ Format_arg_ty ]]8) then do
             sub2_fmtty$prime = fmtty[0];
-            if (Caml_obj.caml_notequal(--[[ Fmtty_EBB ]][sub_fmtty[0]], --[[ Fmtty_EBB ]][sub2_fmtty$prime])) then do
+            if (Caml_obj.caml_notequal(--[[ Fmtty_EBB ]]{sub_fmtty[0]}, --[[ Fmtty_EBB ]]{sub2_fmtty$prime})) then do
               throw Type_mismatch;
             end
              end 
             match$8 = type_ignored_format_substitution(sub_fmtty[1], fmt, fmtty[1]);
-            return --[[ Fmtty_fmt_EBB ]][
-                    --[[ Format_arg_ty ]]Block.__(8, [
+            return --[[ Fmtty_fmt_EBB ]]{
+                    --[[ Format_arg_ty ]]Block.__(8, {
                         sub2_fmtty$prime,
                         match$8[0]
-                      ]),
+                      }),
                     match$8[1]
-                  ];
+                  };
           end else do
             throw Type_mismatch;
           end end  end end end end 
@@ -2101,11 +2101,11 @@ function type_ignored_format_substitution(sub_fmtty, fmt, fmtty) do
           end else if (fmtty.tag == --[[ Format_subst_ty ]]9) then do
             sub2_fmtty$prime$1 = fmtty[1];
             sub1_fmtty$prime = fmtty[0];
-            if (Caml_obj.caml_notequal(--[[ Fmtty_EBB ]][CamlinternalFormatBasics.erase_rel(sub_fmtty[0])], --[[ Fmtty_EBB ]][CamlinternalFormatBasics.erase_rel(sub1_fmtty$prime)])) then do
+            if (Caml_obj.caml_notequal(--[[ Fmtty_EBB ]]{CamlinternalFormatBasics.erase_rel(sub_fmtty[0])}, --[[ Fmtty_EBB ]]{CamlinternalFormatBasics.erase_rel(sub1_fmtty$prime)})) then do
               throw Type_mismatch;
             end
              end 
-            if (Caml_obj.caml_notequal(--[[ Fmtty_EBB ]][CamlinternalFormatBasics.erase_rel(sub_fmtty[1])], --[[ Fmtty_EBB ]][CamlinternalFormatBasics.erase_rel(sub2_fmtty$prime$1)])) then do
+            if (Caml_obj.caml_notequal(--[[ Fmtty_EBB ]]{CamlinternalFormatBasics.erase_rel(sub_fmtty[1])}, --[[ Fmtty_EBB ]]{CamlinternalFormatBasics.erase_rel(sub2_fmtty$prime$1)})) then do
               throw Type_mismatch;
             end
              end 
@@ -2114,14 +2114,14 @@ function type_ignored_format_substitution(sub_fmtty, fmt, fmtty) do
             Curry._1(match$9[1], --[[ Refl ]]0);
             Curry._1(match$9[3], --[[ Refl ]]0);
             match$10 = type_ignored_format_substitution(CamlinternalFormatBasics.erase_rel(sub_fmtty[2]), fmt, fmtty[2]);
-            return --[[ Fmtty_fmt_EBB ]][
-                    --[[ Format_subst_ty ]]Block.__(9, [
+            return --[[ Fmtty_fmt_EBB ]]{
+                    --[[ Format_subst_ty ]]Block.__(9, {
                         sub1_fmtty$prime,
                         sub2_fmtty$prime$1,
                         symm(match$10[0])
-                      ]),
+                      }),
                     match$10[1]
-                  ];
+                  };
           end else do
             throw Type_mismatch;
           end end  end end end end 
@@ -2130,10 +2130,10 @@ function type_ignored_format_substitution(sub_fmtty, fmt, fmtty) do
             throw Type_mismatch;
           end else if (fmtty.tag == --[[ Alpha_ty ]]10) then do
             match$11 = type_ignored_format_substitution(sub_fmtty[0], fmt, fmtty[0]);
-            return --[[ Fmtty_fmt_EBB ]][
-                    --[[ Alpha_ty ]]Block.__(10, [match$11[0]]),
+            return --[[ Fmtty_fmt_EBB ]]{
+                    --[[ Alpha_ty ]]Block.__(10, {match$11[0]}),
                     match$11[1]
-                  ];
+                  };
           end else do
             throw Type_mismatch;
           end end  end end end end 
@@ -2142,10 +2142,10 @@ function type_ignored_format_substitution(sub_fmtty, fmt, fmtty) do
             throw Type_mismatch;
           end else if (fmtty.tag == --[[ Theta_ty ]]11) then do
             match$12 = type_ignored_format_substitution(sub_fmtty[0], fmt, fmtty[0]);
-            return --[[ Fmtty_fmt_EBB ]][
-                    --[[ Theta_ty ]]Block.__(11, [match$12[0]]),
+            return --[[ Fmtty_fmt_EBB ]]{
+                    --[[ Theta_ty ]]Block.__(11, {match$12[0]}),
                     match$12[1]
-                  ];
+                  };
           end else do
             throw Type_mismatch;
           end end  end end end end 
@@ -2156,10 +2156,10 @@ function type_ignored_format_substitution(sub_fmtty, fmt, fmtty) do
             throw Type_mismatch;
           end else if (fmtty.tag == --[[ Reader_ty ]]13) then do
             match$13 = type_ignored_format_substitution(sub_fmtty[0], fmt, fmtty[0]);
-            return --[[ Fmtty_fmt_EBB ]][
-                    --[[ Reader_ty ]]Block.__(13, [match$13[0]]),
+            return --[[ Fmtty_fmt_EBB ]]{
+                    --[[ Reader_ty ]]Block.__(13, {match$13[0]}),
                     match$13[1]
-                  ];
+                  };
           end else do
             throw Type_mismatch;
           end end  end end end end 
@@ -2168,10 +2168,10 @@ function type_ignored_format_substitution(sub_fmtty, fmt, fmtty) do
             throw Type_mismatch;
           end else if (fmtty.tag == --[[ Ignored_reader_ty ]]14) then do
             match$14 = type_ignored_format_substitution(sub_fmtty[0], fmt, fmtty[0]);
-            return --[[ Fmtty_fmt_EBB ]][
-                    --[[ Ignored_reader_ty ]]Block.__(14, [match$14[0]]),
+            return --[[ Fmtty_fmt_EBB ]]{
+                    --[[ Ignored_reader_ty ]]Block.__(14, {match$14[0]}),
                     match$14[1]
-                  ];
+                  };
           end else do
             throw Type_mismatch;
           end end  end end end end 
@@ -2183,10 +2183,10 @@ end end
 
 function type_format_gen(fmt, fmtty) do
   if (typeof fmt == "number") then do
-    return --[[ Fmt_fmtty_EBB ]][
+    return --[[ Fmt_fmtty_EBB ]]{
             --[[ End_of_format ]]0,
             fmtty
-          ];
+          };
   end else do
     local ___conditional___=(fmt.tag | 0);
     do
@@ -2197,10 +2197,10 @@ function type_format_gen(fmt, fmtty) do
             throw Type_mismatch;
           end else do
             match = type_format_gen(fmt[0], fmtty[0]);
-            return --[[ Fmt_fmtty_EBB ]][
-                    --[[ Char ]]Block.__(0, [match[0]]),
+            return --[[ Fmt_fmtty_EBB ]]{
+                    --[[ Char ]]Block.__(0, {match[0]}),
                     match[1]
-                  ];
+                  };
           end end  end end end end 
        if ___conditional___ = 1--[[ Caml_char ]] then do
           if (typeof fmtty == "number") then do
@@ -2209,10 +2209,10 @@ function type_format_gen(fmt, fmtty) do
             throw Type_mismatch;
           end else do
             match$1 = type_format_gen(fmt[0], fmtty[0]);
-            return --[[ Fmt_fmtty_EBB ]][
-                    --[[ Caml_char ]]Block.__(1, [match$1[0]]),
+            return --[[ Fmt_fmtty_EBB ]]{
+                    --[[ Caml_char ]]Block.__(1, {match$1[0]}),
                     match$1[1]
-                  ];
+                  };
           end end  end end end end 
        if ___conditional___ = 2--[[ String ]] then do
           match$2 = type_padding(fmt[0], fmtty);
@@ -2221,13 +2221,13 @@ function type_format_gen(fmt, fmtty) do
             throw Type_mismatch;
           end else if (match$3.tag == --[[ String_ty ]]1) then do
             match$4 = type_format_gen(fmt[1], match$3[0]);
-            return --[[ Fmt_fmtty_EBB ]][
-                    --[[ String ]]Block.__(2, [
+            return --[[ Fmt_fmtty_EBB ]]{
+                    --[[ String ]]Block.__(2, {
                         match$2[0],
                         match$4[0]
-                      ]),
+                      }),
                     match$4[1]
-                  ];
+                  };
           end else do
             throw Type_mismatch;
           end end  end end end end 
@@ -2238,13 +2238,13 @@ function type_format_gen(fmt, fmtty) do
             throw Type_mismatch;
           end else if (match$6.tag == --[[ String_ty ]]1) then do
             match$7 = type_format_gen(fmt[1], match$6[0]);
-            return --[[ Fmt_fmtty_EBB ]][
-                    --[[ Caml_string ]]Block.__(3, [
+            return --[[ Fmt_fmtty_EBB ]]{
+                    --[[ Caml_string ]]Block.__(3, {
                         match$5[0],
                         match$7[0]
-                      ]),
+                      }),
                     match$7[1]
-                  ];
+                  };
           end else do
             throw Type_mismatch;
           end end  end end end end 
@@ -2255,15 +2255,15 @@ function type_format_gen(fmt, fmtty) do
             throw Type_mismatch;
           end else if (match$9.tag == --[[ Int_ty ]]2) then do
             match$10 = type_format_gen(fmt[3], match$9[0]);
-            return --[[ Fmt_fmtty_EBB ]][
-                    --[[ Int ]]Block.__(4, [
+            return --[[ Fmt_fmtty_EBB ]]{
+                    --[[ Int ]]Block.__(4, {
                         fmt[0],
                         match$8[0],
                         match$8[1],
                         match$10[0]
-                      ]),
+                      }),
                     match$10[1]
-                  ];
+                  };
           end else do
             throw Type_mismatch;
           end end  end end end end 
@@ -2274,15 +2274,15 @@ function type_format_gen(fmt, fmtty) do
             throw Type_mismatch;
           end else if (match$12.tag == --[[ Int32_ty ]]3) then do
             match$13 = type_format_gen(fmt[3], match$12[0]);
-            return --[[ Fmt_fmtty_EBB ]][
-                    --[[ Int32 ]]Block.__(5, [
+            return --[[ Fmt_fmtty_EBB ]]{
+                    --[[ Int32 ]]Block.__(5, {
                         fmt[0],
                         match$11[0],
                         match$11[1],
                         match$13[0]
-                      ]),
+                      }),
                     match$13[1]
-                  ];
+                  };
           end else do
             throw Type_mismatch;
           end end  end end end end 
@@ -2293,15 +2293,15 @@ function type_format_gen(fmt, fmtty) do
             throw Type_mismatch;
           end else if (match$15.tag == --[[ Nativeint_ty ]]4) then do
             match$16 = type_format_gen(fmt[3], match$15[0]);
-            return --[[ Fmt_fmtty_EBB ]][
-                    --[[ Nativeint ]]Block.__(6, [
+            return --[[ Fmt_fmtty_EBB ]]{
+                    --[[ Nativeint ]]Block.__(6, {
                         fmt[0],
                         match$14[0],
                         match$14[1],
                         match$16[0]
-                      ]),
+                      }),
                     match$16[1]
-                  ];
+                  };
           end else do
             throw Type_mismatch;
           end end  end end end end 
@@ -2312,15 +2312,15 @@ function type_format_gen(fmt, fmtty) do
             throw Type_mismatch;
           end else if (match$18.tag == --[[ Int64_ty ]]5) then do
             match$19 = type_format_gen(fmt[3], match$18[0]);
-            return --[[ Fmt_fmtty_EBB ]][
-                    --[[ Int64 ]]Block.__(7, [
+            return --[[ Fmt_fmtty_EBB ]]{
+                    --[[ Int64 ]]Block.__(7, {
                         fmt[0],
                         match$17[0],
                         match$17[1],
                         match$19[0]
-                      ]),
+                      }),
                     match$19[1]
-                  ];
+                  };
           end else do
             throw Type_mismatch;
           end end  end end end end 
@@ -2331,15 +2331,15 @@ function type_format_gen(fmt, fmtty) do
             throw Type_mismatch;
           end else if (match$21.tag == --[[ Float_ty ]]6) then do
             match$22 = type_format_gen(fmt[3], match$21[0]);
-            return --[[ Fmt_fmtty_EBB ]][
-                    --[[ Float ]]Block.__(8, [
+            return --[[ Fmt_fmtty_EBB ]]{
+                    --[[ Float ]]Block.__(8, {
                         fmt[0],
                         match$20[0],
                         match$20[1],
                         match$22[0]
-                      ]),
+                      }),
                     match$22[1]
-                  ];
+                  };
           end else do
             throw Type_mismatch;
           end end  end end end end 
@@ -2350,58 +2350,58 @@ function type_format_gen(fmt, fmtty) do
             throw Type_mismatch;
           end else if (match$24.tag == --[[ Bool_ty ]]7) then do
             match$25 = type_format_gen(fmt[1], match$24[0]);
-            return --[[ Fmt_fmtty_EBB ]][
-                    --[[ Bool ]]Block.__(9, [
+            return --[[ Fmt_fmtty_EBB ]]{
+                    --[[ Bool ]]Block.__(9, {
                         match$23[0],
                         match$25[0]
-                      ]),
+                      }),
                     match$25[1]
-                  ];
+                  };
           end else do
             throw Type_mismatch;
           end end  end end end end 
        if ___conditional___ = 10--[[ Flush ]] then do
           match$26 = type_format_gen(fmt[0], fmtty);
-          return --[[ Fmt_fmtty_EBB ]][
-                  --[[ Flush ]]Block.__(10, [match$26[0]]),
+          return --[[ Fmt_fmtty_EBB ]]{
+                  --[[ Flush ]]Block.__(10, {match$26[0]}),
                   match$26[1]
-                ];end end end 
+                };end end end 
        if ___conditional___ = 11--[[ String_literal ]] then do
           match$27 = type_format_gen(fmt[1], fmtty);
-          return --[[ Fmt_fmtty_EBB ]][
-                  --[[ String_literal ]]Block.__(11, [
+          return --[[ Fmt_fmtty_EBB ]]{
+                  --[[ String_literal ]]Block.__(11, {
                       fmt[0],
                       match$27[0]
-                    ]),
+                    }),
                   match$27[1]
-                ];end end end 
+                };end end end 
        if ___conditional___ = 12--[[ Char_literal ]] then do
           match$28 = type_format_gen(fmt[1], fmtty);
-          return --[[ Fmt_fmtty_EBB ]][
-                  --[[ Char_literal ]]Block.__(12, [
+          return --[[ Fmt_fmtty_EBB ]]{
+                  --[[ Char_literal ]]Block.__(12, {
                       fmt[0],
                       match$28[0]
-                    ]),
+                    }),
                   match$28[1]
-                ];end end end 
+                };end end end 
        if ___conditional___ = 13--[[ Format_arg ]] then do
           if (typeof fmtty == "number") then do
             throw Type_mismatch;
           end else if (fmtty.tag == --[[ Format_arg_ty ]]8) then do
             sub_fmtty$prime = fmtty[0];
-            if (Caml_obj.caml_notequal(--[[ Fmtty_EBB ]][fmt[1]], --[[ Fmtty_EBB ]][sub_fmtty$prime])) then do
+            if (Caml_obj.caml_notequal(--[[ Fmtty_EBB ]]{fmt[1]}, --[[ Fmtty_EBB ]]{sub_fmtty$prime})) then do
               throw Type_mismatch;
             end
              end 
             match$29 = type_format_gen(fmt[2], fmtty[1]);
-            return --[[ Fmt_fmtty_EBB ]][
-                    --[[ Format_arg ]]Block.__(13, [
+            return --[[ Fmt_fmtty_EBB ]]{
+                    --[[ Format_arg ]]Block.__(13, {
                         fmt[0],
                         sub_fmtty$prime,
                         match$29[0]
-                      ]),
+                      }),
                     match$29[1]
-                  ];
+                  };
           end else do
             throw Type_mismatch;
           end end  end end end end 
@@ -2410,19 +2410,19 @@ function type_format_gen(fmt, fmtty) do
             throw Type_mismatch;
           end else if (fmtty.tag == --[[ Format_subst_ty ]]9) then do
             sub_fmtty1 = fmtty[0];
-            if (Caml_obj.caml_notequal(--[[ Fmtty_EBB ]][CamlinternalFormatBasics.erase_rel(fmt[1])], --[[ Fmtty_EBB ]][CamlinternalFormatBasics.erase_rel(sub_fmtty1)])) then do
+            if (Caml_obj.caml_notequal(--[[ Fmtty_EBB ]]{CamlinternalFormatBasics.erase_rel(fmt[1])}, --[[ Fmtty_EBB ]]{CamlinternalFormatBasics.erase_rel(sub_fmtty1)})) then do
               throw Type_mismatch;
             end
              end 
             match$30 = type_format_gen(fmt[2], CamlinternalFormatBasics.erase_rel(fmtty[2]));
-            return --[[ Fmt_fmtty_EBB ]][
-                    --[[ Format_subst ]]Block.__(14, [
+            return --[[ Fmt_fmtty_EBB ]]{
+                    --[[ Format_subst ]]Block.__(14, {
                         fmt[0],
                         sub_fmtty1,
                         match$30[0]
-                      ]),
+                      }),
                     match$30[1]
-                  ];
+                  };
           end else do
             throw Type_mismatch;
           end end  end end end end 
@@ -2431,10 +2431,10 @@ function type_format_gen(fmt, fmtty) do
             throw Type_mismatch;
           end else if (fmtty.tag == --[[ Alpha_ty ]]10) then do
             match$31 = type_format_gen(fmt[0], fmtty[0]);
-            return --[[ Fmt_fmtty_EBB ]][
-                    --[[ Alpha ]]Block.__(15, [match$31[0]]),
+            return --[[ Fmt_fmtty_EBB ]]{
+                    --[[ Alpha ]]Block.__(15, {match$31[0]}),
                     match$31[1]
-                  ];
+                  };
           end else do
             throw Type_mismatch;
           end end  end end end end 
@@ -2443,22 +2443,22 @@ function type_format_gen(fmt, fmtty) do
             throw Type_mismatch;
           end else if (fmtty.tag == --[[ Theta_ty ]]11) then do
             match$32 = type_format_gen(fmt[0], fmtty[0]);
-            return --[[ Fmt_fmtty_EBB ]][
-                    --[[ Theta ]]Block.__(16, [match$32[0]]),
+            return --[[ Fmt_fmtty_EBB ]]{
+                    --[[ Theta ]]Block.__(16, {match$32[0]}),
                     match$32[1]
-                  ];
+                  };
           end else do
             throw Type_mismatch;
           end end  end end end end 
        if ___conditional___ = 17--[[ Formatting_lit ]] then do
           match$33 = type_format_gen(fmt[1], fmtty);
-          return --[[ Fmt_fmtty_EBB ]][
-                  --[[ Formatting_lit ]]Block.__(17, [
+          return --[[ Fmt_fmtty_EBB ]]{
+                  --[[ Formatting_lit ]]Block.__(17, {
                       fmt[0],
                       match$33[0]
-                    ]),
+                    }),
                   match$33[1]
-                ];end end end 
+                };end end end 
        if ___conditional___ = 18--[[ Formatting_gen ]] then do
           formatting_gen = fmt[0];
           fmt0 = fmt[1];
@@ -2467,40 +2467,40 @@ function type_format_gen(fmt, fmtty) do
             match$34 = formatting_gen[0];
             match$35 = type_format_gen(match$34[0], fmtty0);
             match$36 = type_format_gen(fmt0, match$35[1]);
-            return --[[ Fmt_fmtty_EBB ]][
-                    --[[ Formatting_gen ]]Block.__(18, [
-                        --[[ Open_box ]]Block.__(1, [--[[ Format ]][
+            return --[[ Fmt_fmtty_EBB ]]{
+                    --[[ Formatting_gen ]]Block.__(18, {
+                        --[[ Open_box ]]Block.__(1, {--[[ Format ]]{
                               match$35[0],
                               match$34[1]
-                            ]]),
+                            }}),
                         match$36[0]
-                      ]),
+                      }),
                     match$36[1]
-                  ];
+                  };
           end else do
             match$37 = formatting_gen[0];
             match$38 = type_format_gen(match$37[0], fmtty0);
             match$39 = type_format_gen(fmt0, match$38[1]);
-            return --[[ Fmt_fmtty_EBB ]][
-                    --[[ Formatting_gen ]]Block.__(18, [
-                        --[[ Open_tag ]]Block.__(0, [--[[ Format ]][
+            return --[[ Fmt_fmtty_EBB ]]{
+                    --[[ Formatting_gen ]]Block.__(18, {
+                        --[[ Open_tag ]]Block.__(0, {--[[ Format ]]{
                               match$38[0],
                               match$37[1]
-                            ]]),
+                            }}),
                         match$39[0]
-                      ]),
+                      }),
                     match$39[1]
-                  ];
+                  };
           end end end end end 
        if ___conditional___ = 19--[[ Reader ]] then do
           if (typeof fmtty == "number") then do
             throw Type_mismatch;
           end else if (fmtty.tag == --[[ Reader_ty ]]13) then do
             match$40 = type_format_gen(fmt[0], fmtty[0]);
-            return --[[ Fmt_fmtty_EBB ]][
-                    --[[ Reader ]]Block.__(19, [match$40[0]]),
+            return --[[ Fmt_fmtty_EBB ]]{
+                    --[[ Reader ]]Block.__(19, {match$40[0]}),
                     match$40[1]
-                  ];
+                  };
           end else do
             throw Type_mismatch;
           end end  end end end end 
@@ -2509,14 +2509,14 @@ function type_format_gen(fmt, fmtty) do
             throw Type_mismatch;
           end else if (fmtty.tag == --[[ String_ty ]]1) then do
             match$41 = type_format_gen(fmt[2], fmtty[0]);
-            return --[[ Fmt_fmtty_EBB ]][
-                    --[[ Scan_char_set ]]Block.__(20, [
+            return --[[ Fmt_fmtty_EBB ]]{
+                    --[[ Scan_char_set ]]Block.__(20, {
                         fmt[0],
                         fmt[1],
                         match$41[0]
-                      ]),
+                      }),
                     match$41[1]
-                  ];
+                  };
           end else do
             throw Type_mismatch;
           end end  end end end end 
@@ -2525,13 +2525,13 @@ function type_format_gen(fmt, fmtty) do
             throw Type_mismatch;
           end else if (fmtty.tag == --[[ Int_ty ]]2) then do
             match$42 = type_format_gen(fmt[1], fmtty[0]);
-            return --[[ Fmt_fmtty_EBB ]][
-                    --[[ Scan_get_counter ]]Block.__(21, [
+            return --[[ Fmt_fmtty_EBB ]]{
+                    --[[ Scan_get_counter ]]Block.__(21, {
                         fmt[0],
                         match$42[0]
-                      ]),
+                      }),
                     match$42[1]
-                  ];
+                  };
           end else do
             throw Type_mismatch;
           end end  end end end end 
@@ -2545,13 +2545,13 @@ function type_format_gen(fmt, fmtty) do
                 throw Type_mismatch;
               end else if (fmtty$1.tag == --[[ Ignored_reader_ty ]]14) then do
                 match$43 = type_format_gen(fmt$1, fmtty$1[0]);
-                return --[[ Fmt_fmtty_EBB ]][
-                        --[[ Ignored_param ]]Block.__(23, [
+                return --[[ Fmt_fmtty_EBB ]]{
+                        --[[ Ignored_param ]]Block.__(23, {
                             --[[ Ignored_reader ]]2,
                             match$43[0]
-                          ]),
+                          }),
                         match$43[1]
-                      ];
+                      };
               end else do
                 throw Type_mismatch;
               end end  end 
@@ -2562,23 +2562,23 @@ function type_format_gen(fmt, fmtty) do
             local ___conditional___=(ign.tag | 0);
             do
                if ___conditional___ = 8--[[ Ignored_format_arg ]] then do
-                  return type_ignored_param_one(--[[ Ignored_format_arg ]]Block.__(8, [
+                  return type_ignored_param_one(--[[ Ignored_format_arg ]]Block.__(8, {
                                 ign[0],
                                 ign[1]
-                              ]), fmt$1, fmtty$1);end end end 
+                              }), fmt$1, fmtty$1);end end end 
                if ___conditional___ = 9--[[ Ignored_format_subst ]] then do
                   match$44 = type_ignored_format_substitution(ign[1], fmt$1, fmtty$1);
                   match$45 = match$44[1];
-                  return --[[ Fmt_fmtty_EBB ]][
-                          --[[ Ignored_param ]]Block.__(23, [
-                              --[[ Ignored_format_subst ]]Block.__(9, [
+                  return --[[ Fmt_fmtty_EBB ]]{
+                          --[[ Ignored_param ]]Block.__(23, {
+                              --[[ Ignored_format_subst ]]Block.__(9, {
                                   ign[0],
                                   match$44[0]
-                                ]),
+                                }),
                               match$45[0]
-                            ]),
+                            }),
                           match$45[1]
-                        ];end end end 
+                        };end end end 
                do
               else do
                 return type_ignored_param_one(ign, fmt$1, fmtty$1);
@@ -2597,13 +2597,13 @@ end end
 
 function type_ignored_param_one(ign, fmt, fmtty) do
   match = type_format_gen(fmt, fmtty);
-  return --[[ Fmt_fmtty_EBB ]][
-          --[[ Ignored_param ]]Block.__(23, [
+  return --[[ Fmt_fmtty_EBB ]]{
+          --[[ Ignored_param ]]Block.__(23, {
               ign,
               match[0]
-            ]),
+            }),
           match[1]
-        ];
+        };
 end end
 
 function type_format(fmt, fmtty) do
@@ -3014,10 +3014,10 @@ function make_printf(_k, o, _acc, _fmt) do
             rest = fmt[0];
             return (function(k,acc,rest)do
             return function (c) do
-              new_acc = --[[ Acc_data_char ]]Block.__(5, [
+              new_acc = --[[ Acc_data_char ]]Block.__(5, {
                   acc,
                   c
-                ]);
+                });
               return make_printf(k, o, new_acc, rest);
             end end
             end(k,acc,rest));end end end 
@@ -3026,10 +3026,10 @@ function make_printf(_k, o, _acc, _fmt) do
             return (function(k,acc,rest$1)do
             return function (c) do
               new_acc_001 = format_caml_char(c);
-              new_acc = --[[ Acc_data_string ]]Block.__(4, [
+              new_acc = --[[ Acc_data_string ]]Block.__(4, {
                   acc,
                   new_acc_001
-                ]);
+                });
               return make_printf(k, o, new_acc, rest$1);
             end end
             end(k,acc,rest$1));end end end 
@@ -3061,20 +3061,20 @@ function make_printf(_k, o, _acc, _fmt) do
                   return (function(k$1,o$1,acc$1,fmt$1,fconv)do
                   return function (p, x) do
                     str = convert_float(fconv, p, x);
-                    return make_printf(k$1, o$1, --[[ Acc_data_string ]]Block.__(4, [
+                    return make_printf(k$1, o$1, --[[ Acc_data_string ]]Block.__(4, {
                                   acc$1,
                                   str
-                                ]), fmt$1);
+                                }), fmt$1);
                   end end
                   end(k$1,o$1,acc$1,fmt$1,fconv));
                 end else do
                   return (function(k$1,o$1,acc$1,fmt$1,fconv)do
                   return function (x) do
                     str = convert_float(fconv, -6, x);
-                    return make_printf(k$1, o$1, --[[ Acc_data_string ]]Block.__(4, [
+                    return make_printf(k$1, o$1, --[[ Acc_data_string ]]Block.__(4, {
                                   acc$1,
                                   str
-                                ]), fmt$1);
+                                }), fmt$1);
                   end end
                   end(k$1,o$1,acc$1,fmt$1,fconv));
                 end end 
@@ -3083,10 +3083,10 @@ function make_printf(_k, o, _acc, _fmt) do
                 return (function(k$1,o$1,acc$1,fmt$1,fconv,p)do
                 return function (x) do
                   str = convert_float(fconv, p, x);
-                  return make_printf(k$1, o$1, --[[ Acc_data_string ]]Block.__(4, [
+                  return make_printf(k$1, o$1, --[[ Acc_data_string ]]Block.__(4, {
                                 acc$1,
                                 str
-                              ]), fmt$1);
+                              }), fmt$1);
                 end end
                 end(k$1,o$1,acc$1,fmt$1,fconv,p));
               end end 
@@ -3097,10 +3097,10 @@ function make_printf(_k, o, _acc, _fmt) do
                   return (function(k$1,o$1,acc$1,fmt$1,fconv,padty)do
                   return function (w, p, x) do
                     str = fix_padding(padty, w, convert_float(fconv, p, x));
-                    return make_printf(k$1, o$1, --[[ Acc_data_string ]]Block.__(4, [
+                    return make_printf(k$1, o$1, --[[ Acc_data_string ]]Block.__(4, {
                                   acc$1,
                                   str
-                                ]), fmt$1);
+                                }), fmt$1);
                   end end
                   end(k$1,o$1,acc$1,fmt$1,fconv,padty));
                 end else do
@@ -3108,10 +3108,10 @@ function make_printf(_k, o, _acc, _fmt) do
                   return function (w, x) do
                     str = convert_float(fconv, -6, x);
                     str$prime = fix_padding(padty, w, str);
-                    return make_printf(k$1, o$1, --[[ Acc_data_string ]]Block.__(4, [
+                    return make_printf(k$1, o$1, --[[ Acc_data_string ]]Block.__(4, {
                                   acc$1,
                                   str$prime
-                                ]), fmt$1);
+                                }), fmt$1);
                   end end
                   end(k$1,o$1,acc$1,fmt$1,fconv,padty));
                 end end 
@@ -3120,10 +3120,10 @@ function make_printf(_k, o, _acc, _fmt) do
                 return (function(k$1,o$1,acc$1,fmt$1,fconv,padty,p$1)do
                 return function (w, x) do
                   str = fix_padding(padty, w, convert_float(fconv, p$1, x));
-                  return make_printf(k$1, o$1, --[[ Acc_data_string ]]Block.__(4, [
+                  return make_printf(k$1, o$1, --[[ Acc_data_string ]]Block.__(4, {
                                 acc$1,
                                 str
-                              ]), fmt$1);
+                              }), fmt$1);
                 end end
                 end(k$1,o$1,acc$1,fmt$1,fconv,padty,p$1));
               end end 
@@ -3135,10 +3135,10 @@ function make_printf(_k, o, _acc, _fmt) do
                   return (function(k$1,o$1,acc$1,fmt$1,fconv,padty$1,w)do
                   return function (p, x) do
                     str = fix_padding(padty$1, w, convert_float(fconv, p, x));
-                    return make_printf(k$1, o$1, --[[ Acc_data_string ]]Block.__(4, [
+                    return make_printf(k$1, o$1, --[[ Acc_data_string ]]Block.__(4, {
                                   acc$1,
                                   str
-                                ]), fmt$1);
+                                }), fmt$1);
                   end end
                   end(k$1,o$1,acc$1,fmt$1,fconv,padty$1,w));
                 end else do
@@ -3146,10 +3146,10 @@ function make_printf(_k, o, _acc, _fmt) do
                   return function (x) do
                     str = convert_float(fconv, -6, x);
                     str$prime = fix_padding(padty$1, w, str);
-                    return make_printf(k$1, o$1, --[[ Acc_data_string ]]Block.__(4, [
+                    return make_printf(k$1, o$1, --[[ Acc_data_string ]]Block.__(4, {
                                   acc$1,
                                   str$prime
-                                ]), fmt$1);
+                                }), fmt$1);
                   end end
                   end(k$1,o$1,acc$1,fmt$1,fconv,padty$1,w));
                 end end 
@@ -3158,10 +3158,10 @@ function make_printf(_k, o, _acc, _fmt) do
                 return (function(k$1,o$1,acc$1,fmt$1,fconv,padty$1,w,p$2)do
                 return function (x) do
                   str = fix_padding(padty$1, w, convert_float(fconv, p$2, x));
-                  return make_printf(k$1, o$1, --[[ Acc_data_string ]]Block.__(4, [
+                  return make_printf(k$1, o$1, --[[ Acc_data_string ]]Block.__(4, {
                                 acc$1,
                                 str
-                              ]), fmt$1);
+                              }), fmt$1);
                 end end
                 end(k$1,o$1,acc$1,fmt$1,fconv,padty$1,w,p$2));
               end end 
@@ -3170,31 +3170,31 @@ function make_printf(_k, o, _acc, _fmt) do
             return make_padding(k, o, acc, fmt[1], fmt[0], Pervasives.string_of_bool);end end end 
          if ___conditional___ = 10--[[ Flush ]] then do
             _fmt = fmt[0];
-            _acc = --[[ Acc_flush ]]Block.__(7, [acc]);
+            _acc = --[[ Acc_flush ]]Block.__(7, {acc});
             continue ;end end end 
          if ___conditional___ = 11--[[ String_literal ]] then do
             _fmt = fmt[1];
-            _acc = --[[ Acc_string_literal ]]Block.__(2, [
+            _acc = --[[ Acc_string_literal ]]Block.__(2, {
                 acc,
                 fmt[0]
-              ]);
+              });
             continue ;end end end 
          if ___conditional___ = 12--[[ Char_literal ]] then do
             _fmt = fmt[1];
-            _acc = --[[ Acc_char_literal ]]Block.__(3, [
+            _acc = --[[ Acc_char_literal ]]Block.__(3, {
                 acc,
                 fmt[0]
-              ]);
+              });
             continue ;end end end 
          if ___conditional___ = 13--[[ Format_arg ]] then do
             rest$2 = fmt[2];
             ty = string_of_fmtty(fmt[1]);
             return (function(k,acc,rest$2,ty)do
             return function (str) do
-              return make_printf(k, o, --[[ Acc_data_string ]]Block.__(4, [
+              return make_printf(k, o, --[[ Acc_data_string ]]Block.__(4, {
                             acc,
                             ty
-                          ]), rest$2);
+                          }), rest$2);
             end end
             end(k,acc,rest$2,ty));end end end 
          if ___conditional___ = 14--[[ Format_subst ]] then do
@@ -3209,30 +3209,30 @@ function make_printf(_k, o, _acc, _fmt) do
             rest$4 = fmt[0];
             return (function(k,acc,rest$4)do
             return function (f, x) do
-              return make_printf(k, o, --[[ Acc_delay ]]Block.__(6, [
+              return make_printf(k, o, --[[ Acc_delay ]]Block.__(6, {
                             acc,
                             (function (o) do
                                 return Curry._2(f, o, x);
                               end end)
-                          ]), rest$4);
+                          }), rest$4);
             end end
             end(k,acc,rest$4));end end end 
          if ___conditional___ = 16--[[ Theta ]] then do
             rest$5 = fmt[0];
             return (function(k,acc,rest$5)do
             return function (f) do
-              return make_printf(k, o, --[[ Acc_delay ]]Block.__(6, [
+              return make_printf(k, o, --[[ Acc_delay ]]Block.__(6, {
                             acc,
                             f
-                          ]), rest$5);
+                          }), rest$5);
             end end
             end(k,acc,rest$5));end end end 
          if ___conditional___ = 17--[[ Formatting_lit ]] then do
             _fmt = fmt[1];
-            _acc = --[[ Acc_formatting_lit ]]Block.__(0, [
+            _acc = --[[ Acc_formatting_lit ]]Block.__(0, {
                 acc,
                 fmt[0]
-              ]);
+              });
             continue ;end end end 
          if ___conditional___ = 18--[[ Formatting_gen ]] then do
             match = fmt[0];
@@ -3240,10 +3240,10 @@ function make_printf(_k, o, _acc, _fmt) do
               rest$6 = fmt[1];
               k$prime = (function(k,acc,rest$6)do
               return function k$prime(koc, kacc) do
-                return make_printf(k, koc, --[[ Acc_formatting_gen ]]Block.__(1, [
+                return make_printf(k, koc, --[[ Acc_formatting_gen ]]Block.__(1, {
                               acc,
-                              --[[ Acc_open_box ]]Block.__(1, [kacc])
-                            ]), rest$6);
+                              --[[ Acc_open_box ]]Block.__(1, {kacc})
+                            }), rest$6);
               end end
               end(k,acc,rest$6));
               _fmt = match[0][0];
@@ -3254,10 +3254,10 @@ function make_printf(_k, o, _acc, _fmt) do
               rest$7 = fmt[1];
               k$prime$1 = (function(k,acc,rest$7)do
               return function k$prime$1(koc, kacc) do
-                return make_printf(k, koc, --[[ Acc_formatting_gen ]]Block.__(1, [
+                return make_printf(k, koc, --[[ Acc_formatting_gen ]]Block.__(1, {
                               acc,
-                              --[[ Acc_open_tag ]]Block.__(0, [kacc])
-                            ]), rest$7);
+                              --[[ Acc_open_tag ]]Block.__(0, {kacc})
+                            }), rest$7);
               end end
               end(k,acc,rest$7));
               _fmt = match[0][0];
@@ -3266,20 +3266,20 @@ function make_printf(_k, o, _acc, _fmt) do
               continue ;
             end end end end end 
          if ___conditional___ = 19--[[ Reader ]] then do
-            throw [
+            throw {
                   Caml_builtin_exceptions.assert_failure,
-                  --[[ tuple ]][
+                  --[[ tuple ]]{
                     "camlinternalFormat.ml",
                     1525,
                     4
-                  ]
-                ];end end end 
+                  }
+                };end end end 
          if ___conditional___ = 20--[[ Scan_char_set ]] then do
             rest$8 = fmt[2];
-            new_acc = --[[ Acc_invalid_arg ]]Block.__(8, [
+            new_acc = --[[ Acc_invalid_arg ]]Block.__(8, {
                 acc,
                 "Printf: bad conversion %["
-              ]);
+              });
             return (function(k,rest$8,new_acc)do
             return function (param) do
               return make_printf(k, o, new_acc, rest$8);
@@ -3290,10 +3290,10 @@ function make_printf(_k, o, _acc, _fmt) do
             return (function(k,acc,rest$9)do
             return function (n) do
               new_acc_001 = Caml_format.caml_format_int("%u", n);
-              new_acc = --[[ Acc_data_string ]]Block.__(4, [
+              new_acc = --[[ Acc_data_string ]]Block.__(4, {
                   acc,
                   new_acc_001
-                ]);
+                });
               return make_printf(k, o, new_acc, rest$9);
             end end
             end(k,acc,rest$9));end end end 
@@ -3301,10 +3301,10 @@ function make_printf(_k, o, _acc, _fmt) do
             rest$10 = fmt[0];
             return (function(k,acc,rest$10)do
             return function (c) do
-              new_acc = --[[ Acc_data_char ]]Block.__(5, [
+              new_acc = --[[ Acc_data_char ]]Block.__(5, {
                   acc,
                   c
-                ]);
+                });
               return make_printf(k, o, new_acc, rest$10);
             end end
             end(k,acc,rest$10));end end end 
@@ -3322,14 +3322,14 @@ end end
 function make_ignored_param(k, o, acc, ign, fmt) do
   if (typeof ign == "number") then do
     if (ign == --[[ Ignored_reader ]]2) then do
-      throw [
+      throw {
             Caml_builtin_exceptions.assert_failure,
-            --[[ tuple ]][
+            --[[ tuple ]]{
               "camlinternalFormat.ml",
               1593,
               39
-            ]
-          ];
+            }
+          };
     end else do
       return make_invalid_arg(k, o, acc, fmt);
     end end 
@@ -3413,23 +3413,23 @@ function make_from_fmtty(k, o, acc, fmtty, fmt) do
               return make_from_fmtty(k, o, acc, rest$12, fmt);
             end end);end end end 
        if ___conditional___ = 13--[[ Reader_ty ]] then do
-          throw [
+          throw {
                 Caml_builtin_exceptions.assert_failure,
-                --[[ tuple ]][
+                --[[ tuple ]]{
                   "camlinternalFormat.ml",
                   1616,
                   31
-                ]
-              ];end end end 
+                }
+              };end end end 
        if ___conditional___ = 14--[[ Ignored_reader_ty ]] then do
-          throw [
+          throw {
                 Caml_builtin_exceptions.assert_failure,
-                --[[ tuple ]][
+                --[[ tuple ]]{
                   "camlinternalFormat.ml",
                   1617,
                   31
-                ]
-              ];end end end 
+                }
+              };end end end 
        do
       
     end
@@ -3437,30 +3437,30 @@ function make_from_fmtty(k, o, acc, fmtty, fmt) do
 end end
 
 function make_invalid_arg(k, o, acc, fmt) do
-  return make_printf(k, o, --[[ Acc_invalid_arg ]]Block.__(8, [
+  return make_printf(k, o, --[[ Acc_invalid_arg ]]Block.__(8, {
                 acc,
                 "Printf: bad conversion %_"
-              ]), fmt);
+              }), fmt);
 end end
 
 function make_padding(k, o, acc, fmt, pad, trans) do
   if (typeof pad == "number") then do
     return (function (x) do
         new_acc_001 = Curry._1(trans, x);
-        new_acc = --[[ Acc_data_string ]]Block.__(4, [
+        new_acc = --[[ Acc_data_string ]]Block.__(4, {
             acc,
             new_acc_001
-          ]);
+          });
         return make_printf(k, o, new_acc, fmt);
       end end);
   end else if (pad.tag) then do
     padty = pad[0];
     return (function (w, x) do
         new_acc_001 = fix_padding(padty, w, Curry._1(trans, x));
-        new_acc = --[[ Acc_data_string ]]Block.__(4, [
+        new_acc = --[[ Acc_data_string ]]Block.__(4, {
             acc,
             new_acc_001
-          ]);
+          });
         return make_printf(k, o, new_acc, fmt);
       end end);
   end else do
@@ -3468,10 +3468,10 @@ function make_padding(k, o, acc, fmt, pad, trans) do
     padty$1 = pad[0];
     return (function (x) do
         new_acc_001 = fix_padding(padty$1, width, Curry._1(trans, x));
-        new_acc = --[[ Acc_data_string ]]Block.__(4, [
+        new_acc = --[[ Acc_data_string ]]Block.__(4, {
             acc,
             new_acc_001
-          ]);
+          });
         return make_printf(k, o, new_acc, fmt);
       end end);
   end end  end 
@@ -3483,28 +3483,28 @@ function make_int_padding_precision(k, o, acc, fmt, pad, prec, trans, iconv) do
       if (prec ~= 0) then do
         return (function (p, x) do
             str = fix_int_precision(p, Curry._2(trans, iconv, x));
-            return make_printf(k, o, --[[ Acc_data_string ]]Block.__(4, [
+            return make_printf(k, o, --[[ Acc_data_string ]]Block.__(4, {
                           acc,
                           str
-                        ]), fmt);
+                        }), fmt);
           end end);
       end else do
         return (function (x) do
             str = Curry._2(trans, iconv, x);
-            return make_printf(k, o, --[[ Acc_data_string ]]Block.__(4, [
+            return make_printf(k, o, --[[ Acc_data_string ]]Block.__(4, {
                           acc,
                           str
-                        ]), fmt);
+                        }), fmt);
           end end);
       end end 
     end else do
       p = prec[0];
       return (function (x) do
           str = fix_int_precision(p, Curry._2(trans, iconv, x));
-          return make_printf(k, o, --[[ Acc_data_string ]]Block.__(4, [
+          return make_printf(k, o, --[[ Acc_data_string ]]Block.__(4, {
                         acc,
                         str
-                      ]), fmt);
+                      }), fmt);
         end end);
     end end 
   end else if (pad.tag) then do
@@ -3513,28 +3513,28 @@ function make_int_padding_precision(k, o, acc, fmt, pad, prec, trans, iconv) do
       if (prec ~= 0) then do
         return (function (w, p, x) do
             str = fix_padding(padty, w, fix_int_precision(p, Curry._2(trans, iconv, x)));
-            return make_printf(k, o, --[[ Acc_data_string ]]Block.__(4, [
+            return make_printf(k, o, --[[ Acc_data_string ]]Block.__(4, {
                           acc,
                           str
-                        ]), fmt);
+                        }), fmt);
           end end);
       end else do
         return (function (w, x) do
             str = fix_padding(padty, w, Curry._2(trans, iconv, x));
-            return make_printf(k, o, --[[ Acc_data_string ]]Block.__(4, [
+            return make_printf(k, o, --[[ Acc_data_string ]]Block.__(4, {
                           acc,
                           str
-                        ]), fmt);
+                        }), fmt);
           end end);
       end end 
     end else do
       p$1 = prec[0];
       return (function (w, x) do
           str = fix_padding(padty, w, fix_int_precision(p$1, Curry._2(trans, iconv, x)));
-          return make_printf(k, o, --[[ Acc_data_string ]]Block.__(4, [
+          return make_printf(k, o, --[[ Acc_data_string ]]Block.__(4, {
                         acc,
                         str
-                      ]), fmt);
+                      }), fmt);
         end end);
     end end 
   end else do
@@ -3544,28 +3544,28 @@ function make_int_padding_precision(k, o, acc, fmt, pad, prec, trans, iconv) do
       if (prec ~= 0) then do
         return (function (p, x) do
             str = fix_padding(padty$1, w, fix_int_precision(p, Curry._2(trans, iconv, x)));
-            return make_printf(k, o, --[[ Acc_data_string ]]Block.__(4, [
+            return make_printf(k, o, --[[ Acc_data_string ]]Block.__(4, {
                           acc,
                           str
-                        ]), fmt);
+                        }), fmt);
           end end);
       end else do
         return (function (x) do
             str = fix_padding(padty$1, w, Curry._2(trans, iconv, x));
-            return make_printf(k, o, --[[ Acc_data_string ]]Block.__(4, [
+            return make_printf(k, o, --[[ Acc_data_string ]]Block.__(4, {
                           acc,
                           str
-                        ]), fmt);
+                        }), fmt);
           end end);
       end end 
     end else do
       p$2 = prec[0];
       return (function (x) do
           str = fix_padding(padty$1, w, fix_int_precision(p$2, Curry._2(trans, iconv, x)));
-          return make_printf(k, o, --[[ Acc_data_string ]]Block.__(4, [
+          return make_printf(k, o, --[[ Acc_data_string ]]Block.__(4, {
                         acc,
                         str
-                      ]), fmt);
+                      }), fmt);
         end end);
     end end 
   end end  end 
@@ -3578,10 +3578,10 @@ function make_custom(k, o, acc, rest, arity, f) do
         return make_custom(k, o, acc, rest, arity$1, Curry._1(f, x));
       end end);
   end else do
-    return make_printf(k, o, --[[ Acc_data_string ]]Block.__(4, [
+    return make_printf(k, o, --[[ Acc_data_string ]]Block.__(4, {
                   acc,
                   f
-                ]), rest);
+                }), rest);
   end end 
 end end
 
@@ -3702,14 +3702,14 @@ function make_iprintf(_k, o, _fmt) do
               continue ;
             end end end end end 
          if ___conditional___ = 19--[[ Reader ]] then do
-            throw [
+            throw {
                   Caml_builtin_exceptions.assert_failure,
-                  --[[ tuple ]][
+                  --[[ tuple ]]{
                     "camlinternalFormat.ml",
                     1797,
                     8
-                  ]
-                ];end end end 
+                  }
+                };end end end 
          if ___conditional___ = 13--[[ Format_arg ]]
          or ___conditional___ = 20--[[ Scan_char_set ]] then do
             exit = 3;end else 
@@ -3912,10 +3912,10 @@ function output_acc(o, _acc) do
             return Caml_io.caml_ml_flush(o);end end end 
          if ___conditional___ = 8--[[ Acc_invalid_arg ]] then do
             output_acc(o, acc[0]);
-            throw [
+            throw {
                   Caml_builtin_exceptions.invalid_argument,
                   acc[1]
-                ];end end end 
+                };end end end 
          do
         
       end
@@ -3974,10 +3974,10 @@ function bufput_acc(b, _acc) do
             continue ;end end end 
          if ___conditional___ = 8--[[ Acc_invalid_arg ]] then do
             bufput_acc(b, acc[0]);
-            throw [
+            throw {
                   Caml_builtin_exceptions.invalid_argument,
                   acc[1]
-                ];end end end 
+                };end end end 
          do
         
       end
@@ -4036,10 +4036,10 @@ function strput_acc(b, _acc) do
             continue ;end end end 
          if ___conditional___ = 8--[[ Acc_invalid_arg ]] then do
             strput_acc(b, acc[0]);
-            throw [
+            throw {
                   Caml_builtin_exceptions.invalid_argument,
                   acc[1]
-                ];end end end 
+                };end end end 
          do
         
       end
@@ -4063,33 +4063,33 @@ function failwith_message(param) do
   k = function (param, acc) do
     strput_acc(buf, acc);
     s = __Buffer.contents(buf);
-    throw [
+    throw {
           Caml_builtin_exceptions.failure,
           s
-        ];
+        };
   end end;
   return make_printf(k, --[[ () ]]0, --[[ End_of_acc ]]0, param[0]);
 end end
 
 function open_box_of_string(str) do
   if (str == "") then do
-    return --[[ tuple ]][
+    return --[[ tuple ]]{
             0,
             --[[ Pp_box ]]4
-          ];
+          };
   end else do
     len = #str;
     invalid_box = function (param) do
-      return Curry._1(failwith_message(--[[ Format ]][
-                      --[[ String_literal ]]Block.__(11, [
+      return Curry._1(failwith_message(--[[ Format ]]{
+                      --[[ String_literal ]]Block.__(11, {
                           "invalid box description ",
-                          --[[ Caml_string ]]Block.__(3, [
+                          --[[ Caml_string ]]Block.__(3, {
                               --[[ No_padding ]]0,
                               --[[ End_of_format ]]0
-                            ])
-                        ]),
+                            })
+                        }),
                       "invalid box description %S"
-                    ]), str);
+                    }), str);
     end end;
     parse_spaces = function (_i) do
       while(true) do
@@ -4197,53 +4197,53 @@ function open_box_of_string(str) do
         end end
         
     end
-    return --[[ tuple ]][
+    return --[[ tuple ]]{
             indent,
             box_type
-          ];
+          };
   end end 
 end end
 
 function make_padding_fmt_ebb(pad, fmt) do
   if (typeof pad == "number") then do
-    return --[[ Padding_fmt_EBB ]][
+    return --[[ Padding_fmt_EBB ]]{
             --[[ No_padding ]]0,
             fmt
-          ];
+          };
   end else if (pad.tag) then do
-    return --[[ Padding_fmt_EBB ]][
-            --[[ Arg_padding ]]Block.__(1, [pad[0]]),
+    return --[[ Padding_fmt_EBB ]]{
+            --[[ Arg_padding ]]Block.__(1, {pad[0]}),
             fmt
-          ];
+          };
   end else do
-    return --[[ Padding_fmt_EBB ]][
-            --[[ Lit_padding ]]Block.__(0, [
+    return --[[ Padding_fmt_EBB ]]{
+            --[[ Lit_padding ]]Block.__(0, {
                 pad[0],
                 pad[1]
-              ]),
+              }),
             fmt
-          ];
+          };
   end end  end 
 end end
 
 function make_precision_fmt_ebb(prec, fmt) do
   if (typeof prec == "number") then do
     if (prec ~= 0) then do
-      return --[[ Precision_fmt_EBB ]][
+      return --[[ Precision_fmt_EBB ]]{
               --[[ Arg_precision ]]1,
               fmt
-            ];
+            };
     end else do
-      return --[[ Precision_fmt_EBB ]][
+      return --[[ Precision_fmt_EBB ]]{
               --[[ No_precision ]]0,
               fmt
-            ];
+            };
     end end 
   end else do
-    return --[[ Precision_fmt_EBB ]][
-            --[[ Lit_precision ]][prec[0]],
+    return --[[ Precision_fmt_EBB ]]{
+            --[[ Lit_precision ]]{prec[0]},
             fmt
-          ];
+          };
   end end 
 end end
 
@@ -4252,121 +4252,121 @@ function make_padprec_fmt_ebb(pad, prec, fmt) do
   fmt$prime = match[1];
   prec$1 = match[0];
   if (typeof pad == "number") then do
-    return --[[ Padprec_fmt_EBB ]][
+    return --[[ Padprec_fmt_EBB ]]{
             --[[ No_padding ]]0,
             prec$1,
             fmt$prime
-          ];
+          };
   end else if (pad.tag) then do
-    return --[[ Padprec_fmt_EBB ]][
-            --[[ Arg_padding ]]Block.__(1, [pad[0]]),
+    return --[[ Padprec_fmt_EBB ]]{
+            --[[ Arg_padding ]]Block.__(1, {pad[0]}),
             prec$1,
             fmt$prime
-          ];
+          };
   end else do
-    return --[[ Padprec_fmt_EBB ]][
-            --[[ Lit_padding ]]Block.__(0, [
+    return --[[ Padprec_fmt_EBB ]]{
+            --[[ Lit_padding ]]Block.__(0, {
                 pad[0],
                 pad[1]
-              ]),
+              }),
             prec$1,
             fmt$prime
-          ];
+          };
   end end  end 
 end end
 
 function fmt_ebb_of_string(legacy_behavior, str) do
   legacy_behavior$1 = legacy_behavior ~= undefined and legacy_behavior or true;
   invalid_format_message = function (str_ind, msg) do
-    return Curry._3(failwith_message(--[[ Format ]][
-                    --[[ String_literal ]]Block.__(11, [
+    return Curry._3(failwith_message(--[[ Format ]]{
+                    --[[ String_literal ]]Block.__(11, {
                         "invalid format ",
-                        --[[ Caml_string ]]Block.__(3, [
+                        --[[ Caml_string ]]Block.__(3, {
                             --[[ No_padding ]]0,
-                            --[[ String_literal ]]Block.__(11, [
+                            --[[ String_literal ]]Block.__(11, {
                                 ": at character number ",
-                                --[[ Int ]]Block.__(4, [
+                                --[[ Int ]]Block.__(4, {
                                     --[[ Int_d ]]0,
                                     --[[ No_padding ]]0,
                                     --[[ No_precision ]]0,
-                                    --[[ String_literal ]]Block.__(11, [
+                                    --[[ String_literal ]]Block.__(11, {
                                         ", ",
-                                        --[[ String ]]Block.__(2, [
+                                        --[[ String ]]Block.__(2, {
                                             --[[ No_padding ]]0,
                                             --[[ End_of_format ]]0
-                                          ])
-                                      ])
-                                  ])
-                              ])
-                          ])
-                      ]),
+                                          })
+                                      })
+                                  })
+                              })
+                          })
+                      }),
                     "invalid format %S: at character number %d, %s"
-                  ]), str, str_ind, msg);
+                  }), str, str_ind, msg);
   end end;
   invalid_format_without = function (str_ind, c, s) do
-    return Curry._4(failwith_message(--[[ Format ]][
-                    --[[ String_literal ]]Block.__(11, [
+    return Curry._4(failwith_message(--[[ Format ]]{
+                    --[[ String_literal ]]Block.__(11, {
                         "invalid format ",
-                        --[[ Caml_string ]]Block.__(3, [
+                        --[[ Caml_string ]]Block.__(3, {
                             --[[ No_padding ]]0,
-                            --[[ String_literal ]]Block.__(11, [
+                            --[[ String_literal ]]Block.__(11, {
                                 ": at character number ",
-                                --[[ Int ]]Block.__(4, [
+                                --[[ Int ]]Block.__(4, {
                                     --[[ Int_d ]]0,
                                     --[[ No_padding ]]0,
                                     --[[ No_precision ]]0,
-                                    --[[ String_literal ]]Block.__(11, [
+                                    --[[ String_literal ]]Block.__(11, {
                                         ", '",
-                                        --[[ Char ]]Block.__(0, [--[[ String_literal ]]Block.__(11, [
+                                        --[[ Char ]]Block.__(0, {--[[ String_literal ]]Block.__(11, {
                                                 "' without ",
-                                                --[[ String ]]Block.__(2, [
+                                                --[[ String ]]Block.__(2, {
                                                     --[[ No_padding ]]0,
                                                     --[[ End_of_format ]]0
-                                                  ])
-                                              ])])
-                                      ])
-                                  ])
-                              ])
-                          ])
-                      ]),
+                                                  })
+                                              })})
+                                      })
+                                  })
+                              })
+                          })
+                      }),
                     "invalid format %S: at character number %d, '%c' without %s"
-                  ]), str, str_ind, c, s);
+                  }), str, str_ind, c, s);
   end end;
   expected_character = function (str_ind, expected, read) do
-    return Curry._4(failwith_message(--[[ Format ]][
-                    --[[ String_literal ]]Block.__(11, [
+    return Curry._4(failwith_message(--[[ Format ]]{
+                    --[[ String_literal ]]Block.__(11, {
                         "invalid format ",
-                        --[[ Caml_string ]]Block.__(3, [
+                        --[[ Caml_string ]]Block.__(3, {
                             --[[ No_padding ]]0,
-                            --[[ String_literal ]]Block.__(11, [
+                            --[[ String_literal ]]Block.__(11, {
                                 ": at character number ",
-                                --[[ Int ]]Block.__(4, [
+                                --[[ Int ]]Block.__(4, {
                                     --[[ Int_d ]]0,
                                     --[[ No_padding ]]0,
                                     --[[ No_precision ]]0,
-                                    --[[ String_literal ]]Block.__(11, [
+                                    --[[ String_literal ]]Block.__(11, {
                                         ", ",
-                                        --[[ String ]]Block.__(2, [
+                                        --[[ String ]]Block.__(2, {
                                             --[[ No_padding ]]0,
-                                            --[[ String_literal ]]Block.__(11, [
+                                            --[[ String_literal ]]Block.__(11, {
                                                 " expected, read ",
-                                                --[[ Caml_char ]]Block.__(1, [--[[ End_of_format ]]0])
-                                              ])
-                                          ])
-                                      ])
-                                  ])
-                              ])
-                          ])
-                      ]),
+                                                --[[ Caml_char ]]Block.__(1, {--[[ End_of_format ]]0})
+                                              })
+                                          })
+                                      })
+                                  })
+                              })
+                          })
+                      }),
                     "invalid format %S: at character number %d, %s expected, read %C"
-                  ]), str, str_ind, expected, read);
+                  }), str, str_ind, expected, read);
   end end;
   parse_after_at = function (str_ind, end_ind) do
     if (str_ind == end_ind) then do
-      return --[[ Fmt_EBB ]][--[[ Char_literal ]]Block.__(12, [
+      return --[[ Fmt_EBB ]]{--[[ Char_literal ]]Block.__(12, {
                   --[[ "@" ]]64,
                   --[[ End_of_format ]]0
-                ])];
+                })};
     end else do
       c = Caml_string.get(str, str_ind);
       if (c >= 65) then do
@@ -4379,10 +4379,10 @@ function fmt_ebb_of_string(legacy_behavior, str) do
              or ___conditional___ = 125 then do
                 beg_ind = str_ind + 1 | 0;
                 match = parse_literal(beg_ind, beg_ind, end_ind);
-                return --[[ Fmt_EBB ]][--[[ Formatting_lit ]]Block.__(17, [
+                return --[[ Fmt_EBB ]]{--[[ Formatting_lit ]]Block.__(17, {
                             --[[ Close_tag ]]1,
                             match[0]
-                          ])];end end end 
+                          })};end end end 
              do
             else do
               end end
@@ -4397,10 +4397,10 @@ function fmt_ebb_of_string(legacy_behavior, str) do
              or ___conditional___ = 2 then do
                 beg_ind$1 = str_ind + 1 | 0;
                 match$1 = parse_literal(beg_ind$1, beg_ind$1, end_ind);
-                return --[[ Fmt_EBB ]][--[[ Formatting_lit ]]Block.__(17, [
+                return --[[ Fmt_EBB ]]{--[[ Formatting_lit ]]Block.__(17, {
                             --[[ Close_box ]]0,
                             match$1[0]
-                          ])];end end end 
+                          })};end end end 
              do
             
           end
@@ -4413,47 +4413,47 @@ function fmt_ebb_of_string(legacy_behavior, str) do
              if ___conditional___ = 0 then do
                 beg_ind$2 = str_ind + 1 | 0;
                 match$2 = parse_literal(beg_ind$2, beg_ind$2, end_ind);
-                return --[[ Fmt_EBB ]][--[[ Formatting_lit ]]Block.__(17, [
-                            --[[ Break ]]Block.__(0, [
+                return --[[ Fmt_EBB ]]{--[[ Formatting_lit ]]Block.__(17, {
+                            --[[ Break ]]Block.__(0, {
                                 "@ ",
                                 1,
                                 0
-                              ]),
+                              }),
                             match$2[0]
-                          ])];end end end 
+                          })};end end end 
              if ___conditional___ = 5 then do
                 if ((str_ind + 1 | 0) < end_ind and Caml_string.get(str, str_ind + 1 | 0) == --[[ "%" ]]37) then do
                   beg_ind$3 = str_ind + 2 | 0;
                   match$3 = parse_literal(beg_ind$3, beg_ind$3, end_ind);
-                  return --[[ Fmt_EBB ]][--[[ Formatting_lit ]]Block.__(17, [
+                  return --[[ Fmt_EBB ]]{--[[ Formatting_lit ]]Block.__(17, {
                               --[[ Escaped_percent ]]6,
                               match$3[0]
-                            ])];
+                            })};
                 end else do
                   match$4 = parse_literal(str_ind, str_ind, end_ind);
-                  return --[[ Fmt_EBB ]][--[[ Char_literal ]]Block.__(12, [
+                  return --[[ Fmt_EBB ]]{--[[ Char_literal ]]Block.__(12, {
                               --[[ "@" ]]64,
                               match$4[0]
-                            ])];
+                            })};
                 end end end end end 
              if ___conditional___ = 12 then do
                 beg_ind$4 = str_ind + 1 | 0;
                 match$5 = parse_literal(beg_ind$4, beg_ind$4, end_ind);
-                return --[[ Fmt_EBB ]][--[[ Formatting_lit ]]Block.__(17, [
-                            --[[ Break ]]Block.__(0, [
+                return --[[ Fmt_EBB ]]{--[[ Formatting_lit ]]Block.__(17, {
+                            --[[ Break ]]Block.__(0, {
                                 "@,",
                                 0,
                                 0
-                              ]),
+                              }),
                             match$5[0]
-                          ])];end end end 
+                          })};end end end 
              if ___conditional___ = 14 then do
                 beg_ind$5 = str_ind + 1 | 0;
                 match$6 = parse_literal(beg_ind$5, beg_ind$5, end_ind);
-                return --[[ Fmt_EBB ]][--[[ Formatting_lit ]]Block.__(17, [
+                return --[[ Fmt_EBB ]]{--[[ Formatting_lit ]]Block.__(17, {
                             --[[ Flush_newline ]]4,
                             match$6[0]
-                          ])];end end end 
+                          })};end end end 
              if ___conditional___ = 27 then do
                 str_ind$1 = str_ind + 1 | 0;
                 end_ind$1 = end_ind;
@@ -4491,14 +4491,14 @@ function fmt_ebb_of_string(legacy_behavior, str) do
                       end
                        end 
                       s = __String.sub(str, str_ind$1 - 2 | 0, (str_ind_3 - str_ind$1 | 0) + 3 | 0);
-                      match$7 = --[[ tuple ]][
+                      match$7 = --[[ tuple ]]{
                         str_ind_3 + 1 | 0,
-                        --[[ Break ]]Block.__(0, [
+                        --[[ Break ]]Block.__(0, {
                             s,
                             width,
                             0
-                          ])
-                      ];
+                          })
+                      };
                     end else if (switcher == 2 or switcher == 1) then do
                       throw Caml_builtin_exceptions.not_found;
                     end else do
@@ -4509,14 +4509,14 @@ function fmt_ebb_of_string(legacy_behavior, str) do
                       end
                        end 
                       s$1 = __String.sub(str, str_ind$1 - 2 | 0, (str_ind_5 - str_ind$1 | 0) + 3 | 0);
-                      match$7 = --[[ tuple ]][
+                      match$7 = --[[ tuple ]]{
                         str_ind_5 + 1 | 0,
-                        --[[ Break ]]Block.__(0, [
+                        --[[ Break ]]Block.__(0, {
                             s$1,
                             width,
                             match$11[1]
-                          ])
-                      ];
+                          })
+                      };
                     end end  end 
                   end
                    end 
@@ -4524,24 +4524,24 @@ function fmt_ebb_of_string(legacy_behavior, str) do
                 catch (raw_exn)do
                   exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
                   if (exn == Caml_builtin_exceptions.not_found or exn[0] == Caml_builtin_exceptions.failure) then do
-                    match$7 = --[[ tuple ]][
+                    match$7 = --[[ tuple ]]{
                       str_ind$1,
-                      --[[ Break ]]Block.__(0, [
+                      --[[ Break ]]Block.__(0, {
                           "@;",
                           1,
                           0
-                        ])
-                    ];
+                        })
+                    };
                   end else do
                     throw exn;
                   end end 
                 end
                 next_ind = match$7[0];
                 match$12 = parse_literal(next_ind, next_ind, end_ind$1);
-                return --[[ Fmt_EBB ]][--[[ Formatting_lit ]]Block.__(17, [
+                return --[[ Fmt_EBB ]]{--[[ Formatting_lit ]]Block.__(17, {
                             match$7[1],
                             match$12[0]
-                          ])];end end end 
+                          })};end end end 
              if ___conditional___ = 28 then do
                 str_ind$2 = str_ind + 1 | 0;
                 end_ind$2 = end_ind;
@@ -4569,13 +4569,13 @@ function fmt_ebb_of_string(legacy_behavior, str) do
                     end
                      end 
                     s$2 = __String.sub(str, str_ind$2 - 2 | 0, (str_ind_3$1 - str_ind$2 | 0) + 3 | 0);
-                    match$13 = --[[ tuple ]][
+                    match$13 = --[[ tuple ]]{
                       str_ind_3$1 + 1 | 0,
-                      --[[ Magic_size ]]Block.__(1, [
+                      --[[ Magic_size ]]Block.__(1, {
                           s$2,
                           match$15[1]
-                        ])
-                    ];
+                        })
+                    };
                   end
                    end 
                 end
@@ -4591,16 +4591,16 @@ function fmt_ebb_of_string(legacy_behavior, str) do
                   match$16 = match$13;
                   next_ind$1 = match$16[0];
                   match$17 = parse_literal(next_ind$1, next_ind$1, end_ind$2);
-                  return --[[ Fmt_EBB ]][--[[ Formatting_lit ]]Block.__(17, [
+                  return --[[ Fmt_EBB ]]{--[[ Formatting_lit ]]Block.__(17, {
                               match$16[1],
                               match$17[0]
-                            ])];
+                            })};
                 end else do
                   match$18 = parse_literal(str_ind$2, str_ind$2, end_ind$2);
-                  return --[[ Fmt_EBB ]][--[[ Formatting_lit ]]Block.__(17, [
-                              --[[ Scan_indic ]]Block.__(2, [--[[ "<" ]]60]),
+                  return --[[ Fmt_EBB ]]{--[[ Formatting_lit ]]Block.__(17, {
+                              --[[ Scan_indic ]]Block.__(2, {--[[ "<" ]]60}),
                               match$18[0]
-                            ])];
+                            })};
                 end end end end end 
              if ___conditional___ = 1
              or ___conditional___ = 2
@@ -4630,17 +4630,17 @@ function fmt_ebb_of_string(legacy_behavior, str) do
              or ___conditional___ = 31 then do
                 beg_ind$6 = str_ind + 1 | 0;
                 match$19 = parse_literal(beg_ind$6, beg_ind$6, end_ind);
-                return --[[ Fmt_EBB ]][--[[ Formatting_lit ]]Block.__(17, [
+                return --[[ Fmt_EBB ]]{--[[ Formatting_lit ]]Block.__(17, {
                             --[[ FFlush ]]2,
                             match$19[0]
-                          ])];end end end 
+                          })};end end end 
              if ___conditional___ = 32 then do
                 beg_ind$7 = str_ind + 1 | 0;
                 match$20 = parse_literal(beg_ind$7, beg_ind$7, end_ind);
-                return --[[ Fmt_EBB ]][--[[ Formatting_lit ]]Block.__(17, [
+                return --[[ Fmt_EBB ]]{--[[ Formatting_lit ]]Block.__(17, {
                             --[[ Escaped_at ]]5,
                             match$20[0]
-                          ])];end end end 
+                          })};end end end 
              do
             
           end
@@ -4649,35 +4649,35 @@ function fmt_ebb_of_string(legacy_behavior, str) do
       end else do
         beg_ind$8 = str_ind + 1 | 0;
         match$21 = parse_literal(beg_ind$8, beg_ind$8, end_ind);
-        return --[[ Fmt_EBB ]][--[[ Formatting_lit ]]Block.__(17, [
+        return --[[ Fmt_EBB ]]{--[[ Formatting_lit ]]Block.__(17, {
                     --[[ Force_newline ]]3,
                     match$21[0]
-                  ])];
+                  })};
       end end  end 
       beg_ind$9 = str_ind + 1 | 0;
       match$22 = parse_literal(beg_ind$9, beg_ind$9, end_ind);
-      return --[[ Fmt_EBB ]][--[[ Formatting_lit ]]Block.__(17, [
-                  --[[ Scan_indic ]]Block.__(2, [c]),
+      return --[[ Fmt_EBB ]]{--[[ Formatting_lit ]]Block.__(17, {
+                  --[[ Scan_indic ]]Block.__(2, {c}),
                   match$22[0]
-                ])];
+                })};
     end end 
   end end;
   add_literal = function (lit_start, str_ind, fmt) do
     size = str_ind - lit_start | 0;
     if (size ~= 0) then do
       if (size ~= 1) then do
-        return --[[ Fmt_EBB ]][--[[ String_literal ]]Block.__(11, [
+        return --[[ Fmt_EBB ]]{--[[ String_literal ]]Block.__(11, {
                     __String.sub(str, lit_start, size),
                     fmt
-                  ])];
+                  })};
       end else do
-        return --[[ Fmt_EBB ]][--[[ Char_literal ]]Block.__(12, [
+        return --[[ Fmt_EBB ]]{--[[ Char_literal ]]Block.__(12, {
                     Caml_string.get(str, lit_start),
                     fmt
-                  ])];
+                  })};
       end end 
     end else do
-      return --[[ Fmt_EBB ]][fmt];
+      return --[[ Fmt_EBB ]]{fmt};
     end end 
   end end;
   parse_format = function (pct_ind, end_ind) do
@@ -4750,27 +4750,27 @@ function fmt_ebb_of_string(legacy_behavior, str) do
     end;
     set_flag = function (str_ind, flag) do
       if (flag.contents and not legacy_behavior$1) then do
-        Curry._3(failwith_message(--[[ Format ]][
-                  --[[ String_literal ]]Block.__(11, [
+        Curry._3(failwith_message(--[[ Format ]]{
+                  --[[ String_literal ]]Block.__(11, {
                       "invalid format ",
-                      --[[ Caml_string ]]Block.__(3, [
+                      --[[ Caml_string ]]Block.__(3, {
                           --[[ No_padding ]]0,
-                          --[[ String_literal ]]Block.__(11, [
+                          --[[ String_literal ]]Block.__(11, {
                               ": at character number ",
-                              --[[ Int ]]Block.__(4, [
+                              --[[ Int ]]Block.__(4, {
                                   --[[ Int_d ]]0,
                                   --[[ No_padding ]]0,
                                   --[[ No_precision ]]0,
-                                  --[[ String_literal ]]Block.__(11, [
+                                  --[[ String_literal ]]Block.__(11, {
                                       ", duplicate flag ",
-                                      --[[ Caml_char ]]Block.__(1, [--[[ End_of_format ]]0])
-                                    ])
-                                ])
-                            ])
-                        ])
-                    ]),
+                                      --[[ Caml_char ]]Block.__(1, {--[[ End_of_format ]]0})
+                                    })
+                                })
+                            })
+                        })
+                    }),
                   "invalid format %S: at character number %d, duplicate flag %C"
-                ]), str, str_ind, Caml_string.get(str, str_ind));
+                }), str, str_ind, Caml_string.get(str, str_ind));
       end
        end 
       flag.contents = true;
@@ -4847,14 +4847,14 @@ function fmt_ebb_of_string(legacy_behavior, str) do
       if (match$1 >= 48) then do
         if (match$1 < 58) then do
           match$2 = parse_positive(str_ind$2, end_ind$1, 0);
-          return parse_after_padding(pct_ind$1, match$2[0], end_ind$1, minus$1, plus$1, hash$1, space$1, ign$1, --[[ Lit_padding ]]Block.__(0, [
+          return parse_after_padding(pct_ind$1, match$2[0], end_ind$1, minus$1, plus$1, hash$1, space$1, ign$1, --[[ Lit_padding ]]Block.__(0, {
                         padty,
                         match$2[1]
-                      ]));
+                      }));
         end
          end 
       end else if (match$1 == 42) then do
-        return parse_after_padding(pct_ind$1, str_ind$2 + 1 | 0, end_ind$1, minus$1, plus$1, hash$1, space$1, ign$1, --[[ Arg_padding ]]Block.__(1, [padty]));
+        return parse_after_padding(pct_ind$1, str_ind$2 + 1 | 0, end_ind$1, minus$1, plus$1, hash$1, space$1, ign$1, --[[ Arg_padding ]]Block.__(1, {padty}));
       end
        end  end 
       local ___conditional___=(padty);
@@ -4868,10 +4868,10 @@ function fmt_ebb_of_string(legacy_behavior, str) do
          if ___conditional___ = 1--[[ Right ]] then do
             return parse_after_padding(pct_ind$1, str_ind$2, end_ind$1, minus$1, plus$1, hash$1, space$1, ign$1, --[[ No_padding ]]0);end end end 
          if ___conditional___ = 2--[[ Zeros ]] then do
-            return parse_after_padding(pct_ind$1, str_ind$2, end_ind$1, minus$1, plus$1, hash$1, space$1, ign$1, --[[ Lit_padding ]]Block.__(0, [
+            return parse_after_padding(pct_ind$1, str_ind$2, end_ind$1, minus$1, plus$1, hash$1, space$1, ign$1, --[[ Lit_padding ]]Block.__(0, {
                           --[[ Right ]]1,
                           0
-                        ]));end end end 
+                        }));end end end 
          do
         
       end
@@ -4881,30 +4881,30 @@ function fmt_ebb_of_string(legacy_behavior, str) do
     while(true) do
       str_ind = _str_ind;
       if (str_ind == end_ind) then do
-        Curry._3(failwith_message(--[[ Format ]][
-                  --[[ String_literal ]]Block.__(11, [
+        Curry._3(failwith_message(--[[ Format ]]{
+                  --[[ String_literal ]]Block.__(11, {
                       "invalid format ",
-                      --[[ Caml_string ]]Block.__(3, [
+                      --[[ Caml_string ]]Block.__(3, {
                           --[[ No_padding ]]0,
-                          --[[ String_literal ]]Block.__(11, [
+                          --[[ String_literal ]]Block.__(11, {
                               ": unclosed sub-format, expected \"",
-                              --[[ Char_literal ]]Block.__(12, [
+                              --[[ Char_literal ]]Block.__(12, {
                                   --[[ "%" ]]37,
-                                  --[[ Char ]]Block.__(0, [--[[ String_literal ]]Block.__(11, [
+                                  --[[ Char ]]Block.__(0, {--[[ String_literal ]]Block.__(11, {
                                           "\" at character number ",
-                                          --[[ Int ]]Block.__(4, [
+                                          --[[ Int ]]Block.__(4, {
                                               --[[ Int_d ]]0,
                                               --[[ No_padding ]]0,
                                               --[[ No_precision ]]0,
                                               --[[ End_of_format ]]0
-                                            ])
-                                        ])])
-                                ])
-                            ])
-                        ])
-                    ]),
+                                            })
+                                        })})
+                                })
+                            })
+                        })
+                    }),
                   "invalid format %S: unclosed sub-format, expected \"%%%c\" at character number %d"
-                ]), str, c, end_ind);
+                }), str, c, end_ind);
       end
        end 
       match = Caml_string.get(str, str_ind);
@@ -4985,10 +4985,10 @@ function fmt_ebb_of_string(legacy_behavior, str) do
        end 
       c = Caml_string.get(str, str_ind);
       if (c > 57 or c < 48) then do
-        return --[[ tuple ]][
+        return --[[ tuple ]]{
                 str_ind,
                 acc
-              ];
+              };
       end else do
         new_acc = Caml_int32.imul(acc, 10) + (c - --[[ "0" ]]48 | 0) | 0;
         _acc = new_acc;
@@ -5040,7 +5040,7 @@ function fmt_ebb_of_string(legacy_behavior, str) do
       end else if (pad.tag) then do
         if (pad[0] >= 2) then do
           if (legacy_behavior$1) then do
-            return --[[ Arg_padding ]]Block.__(1, [--[[ Right ]]1]);
+            return --[[ Arg_padding ]]Block.__(1, {--[[ Right ]]1});
           end else do
             return incompatible_flag(pct_ind, str_ind, --[[ "0" ]]48, "precision");
           end end 
@@ -5049,10 +5049,10 @@ function fmt_ebb_of_string(legacy_behavior, str) do
         end end 
       end else if (pad[0] >= 2) then do
         if (legacy_behavior$1) then do
-          return --[[ Lit_padding ]]Block.__(0, [
+          return --[[ Lit_padding ]]Block.__(0, {
                     --[[ Right ]]1,
                     pad[1]
-                  ]);
+                  });
         end else do
           return incompatible_flag(pct_ind, str_ind, --[[ "0" ]]48, "precision");
         end end 
@@ -5066,7 +5066,7 @@ function fmt_ebb_of_string(legacy_behavior, str) do
       end else if (pad.tag) then do
         if (pad[0] >= 2) then do
           if (legacy_behavior$1) then do
-            return --[[ Arg_padding ]]Block.__(1, [--[[ Right ]]1]);
+            return --[[ Arg_padding ]]Block.__(1, {--[[ Right ]]1});
           end else do
             return incompatible_flag(pct_ind, str_ind, symb, "0");
           end end 
@@ -5075,10 +5075,10 @@ function fmt_ebb_of_string(legacy_behavior, str) do
         end end 
       end else if (pad[0] >= 2) then do
         if (legacy_behavior$1) then do
-          return --[[ Lit_padding ]]Block.__(0, [
+          return --[[ Lit_padding ]]Block.__(0, {
                     --[[ Right ]]1,
                     pad[1]
-                  ]);
+                  });
         end else do
           return incompatible_flag(pct_ind, str_ind, symb, "0");
         end end 
@@ -5136,7 +5136,7 @@ function fmt_ebb_of_string(legacy_behavior, str) do
       do
          if ___conditional___ = 33 then do
             match = parse_literal(str_ind, str_ind, end_ind);
-            fmt_result = --[[ Fmt_EBB ]][--[[ Flush ]]Block.__(10, [match[0]])];end else 
+            fmt_result = --[[ Fmt_EBB ]]{--[[ Flush ]]Block.__(10, {match[0]})};end else 
          if ___conditional___ = 40 then do
             sub_end = search_subformat_end(str_ind, end_ind, --[[ ")" ]]41);
             beg_ind = sub_end + 2 | 0;
@@ -5146,20 +5146,20 @@ function fmt_ebb_of_string(legacy_behavior, str) do
             sub_fmtty = fmtty_of_fmt(match$2[0]);
             if (ign_used.contents = true, ign) then do
               ignored_000 = opt_of_pad(--[[ "_" ]]95, (pad_used.contents = true, pad));
-              ignored = --[[ Ignored_format_subst ]]Block.__(9, [
+              ignored = --[[ Ignored_format_subst ]]Block.__(9, {
                   ignored_000,
                   sub_fmtty
-                ]);
-              fmt_result = --[[ Fmt_EBB ]][--[[ Ignored_param ]]Block.__(23, [
+                });
+              fmt_result = --[[ Fmt_EBB ]]{--[[ Ignored_param ]]Block.__(23, {
                     ignored,
                     fmt_rest
-                  ])];
+                  })};
             end else do
-              fmt_result = --[[ Fmt_EBB ]][--[[ Format_subst ]]Block.__(14, [
+              fmt_result = --[[ Fmt_EBB ]]{--[[ Format_subst ]]Block.__(14, {
                     opt_of_pad(--[[ "(" ]]40, (pad_used.contents = true, pad)),
                     sub_fmtty,
                     fmt_rest
-                  ])];
+                  })};
             end end end else 
          if ___conditional___ = 44 then do
             fmt_result = parse_literal(str_ind, str_ind, end_ind);end else 
@@ -5169,41 +5169,41 @@ function fmt_ebb_of_string(legacy_behavior, str) do
          if ___conditional___ = 67 then do
             match$3 = parse_literal(str_ind, str_ind, end_ind);
             fmt_rest$1 = match$3[0];
-            fmt_result = (ign_used.contents = true, ign) and --[[ Fmt_EBB ]][--[[ Ignored_param ]]Block.__(23, [
+            fmt_result = (ign_used.contents = true, ign) and --[[ Fmt_EBB ]]{--[[ Ignored_param ]]Block.__(23, {
                     --[[ Ignored_caml_char ]]1,
                     fmt_rest$1
-                  ])] or --[[ Fmt_EBB ]][--[[ Caml_char ]]Block.__(1, [fmt_rest$1])];end else 
+                  })} or --[[ Fmt_EBB ]]{--[[ Caml_char ]]Block.__(1, {fmt_rest$1})};end else 
          if ___conditional___ = 78 then do
             match$4 = parse_literal(str_ind, str_ind, end_ind);
             fmt_rest$2 = match$4[0];
             if (ign_used.contents = true, ign) then do
-              ignored$1 = --[[ Ignored_scan_get_counter ]]Block.__(11, [--[[ Token_counter ]]2]);
-              fmt_result = --[[ Fmt_EBB ]][--[[ Ignored_param ]]Block.__(23, [
+              ignored$1 = --[[ Ignored_scan_get_counter ]]Block.__(11, {--[[ Token_counter ]]2});
+              fmt_result = --[[ Fmt_EBB ]]{--[[ Ignored_param ]]Block.__(23, {
                     ignored$1,
                     fmt_rest$2
-                  ])];
+                  })};
             end else do
-              fmt_result = --[[ Fmt_EBB ]][--[[ Scan_get_counter ]]Block.__(21, [
+              fmt_result = --[[ Fmt_EBB ]]{--[[ Scan_get_counter ]]Block.__(21, {
                     --[[ Token_counter ]]2,
                     fmt_rest$2
-                  ])];
+                  })};
             end end end else 
          if ___conditional___ = 83 then do
             pad$1 = check_no_0(symb, (pad_used.contents = true, padprec));
             match$5 = parse_literal(str_ind, str_ind, end_ind);
             fmt_rest$3 = match$5[0];
             if (ign_used.contents = true, ign) then do
-              ignored$2 = --[[ Ignored_caml_string ]]Block.__(1, [opt_of_pad(--[[ "_" ]]95, (pad_used.contents = true, padprec))]);
-              fmt_result = --[[ Fmt_EBB ]][--[[ Ignored_param ]]Block.__(23, [
+              ignored$2 = --[[ Ignored_caml_string ]]Block.__(1, {opt_of_pad(--[[ "_" ]]95, (pad_used.contents = true, padprec))});
+              fmt_result = --[[ Fmt_EBB ]]{--[[ Ignored_param ]]Block.__(23, {
                     ignored$2,
                     fmt_rest$3
-                  ])];
+                  })};
             end else do
               match$6 = make_padding_fmt_ebb(pad$1, fmt_rest$3);
-              fmt_result = --[[ Fmt_EBB ]][--[[ Caml_string ]]Block.__(3, [
+              fmt_result = --[[ Fmt_EBB ]]{--[[ Caml_string ]]Block.__(3, {
                     match$6[0],
                     match$6[1]
-                  ])];
+                  })};
             end end end else 
          if ___conditional___ = 91 then do
             match$7 = parse_char_set(str_ind, end_ind);
@@ -5213,20 +5213,20 @@ function fmt_ebb_of_string(legacy_behavior, str) do
             fmt_rest$4 = match$8[0];
             if (ign_used.contents = true, ign) then do
               ignored_000$1 = opt_of_pad(--[[ "_" ]]95, (pad_used.contents = true, pad));
-              ignored$3 = --[[ Ignored_scan_char_set ]]Block.__(10, [
+              ignored$3 = --[[ Ignored_scan_char_set ]]Block.__(10, {
                   ignored_000$1,
                   char_set
-                ]);
-              fmt_result = --[[ Fmt_EBB ]][--[[ Ignored_param ]]Block.__(23, [
+                });
+              fmt_result = --[[ Fmt_EBB ]]{--[[ Ignored_param ]]Block.__(23, {
                     ignored$3,
                     fmt_rest$4
-                  ])];
+                  })};
             end else do
-              fmt_result = --[[ Fmt_EBB ]][--[[ Scan_char_set ]]Block.__(20, [
+              fmt_result = --[[ Fmt_EBB ]]{--[[ Scan_char_set ]]Block.__(20, {
                     opt_of_pad(--[[ "[" ]]91, (pad_used.contents = true, pad)),
                     char_set,
                     fmt_rest$4
-                  ])];
+                  })};
             end end end else 
          if ___conditional___ = 32
          or ___conditional___ = 35
@@ -5236,29 +5236,29 @@ function fmt_ebb_of_string(legacy_behavior, str) do
             exit$1 = 5;end else 
          if ___conditional___ = 97 then do
             match$9 = parse_literal(str_ind, str_ind, end_ind);
-            fmt_result = --[[ Fmt_EBB ]][--[[ Alpha ]]Block.__(15, [match$9[0]])];end else 
+            fmt_result = --[[ Fmt_EBB ]]{--[[ Alpha ]]Block.__(15, {match$9[0]})};end else 
          if ___conditional___ = 66
          or ___conditional___ = 98 then do
             exit$1 = 3;end else 
          if ___conditional___ = 99 then do
             char_format = function (fmt_rest) do
               if (ign_used.contents = true, ign) then do
-                return --[[ Fmt_EBB ]][--[[ Ignored_param ]]Block.__(23, [
+                return --[[ Fmt_EBB ]]{--[[ Ignored_param ]]Block.__(23, {
                             --[[ Ignored_char ]]0,
                             fmt_rest
-                          ])];
+                          })};
               end else do
-                return --[[ Fmt_EBB ]][--[[ Char ]]Block.__(0, [fmt_rest])];
+                return --[[ Fmt_EBB ]]{--[[ Char ]]Block.__(0, {fmt_rest})};
               end end 
             end end;
             scan_format = function (fmt_rest) do
               if (ign_used.contents = true, ign) then do
-                return --[[ Fmt_EBB ]][--[[ Ignored_param ]]Block.__(23, [
+                return --[[ Fmt_EBB ]]{--[[ Ignored_param ]]Block.__(23, {
                             --[[ Ignored_scan_next_char ]]3,
                             fmt_rest
-                          ])];
+                          })};
               end else do
-                return --[[ Fmt_EBB ]][--[[ Scan_next_char ]]Block.__(22, [fmt_rest])];
+                return --[[ Fmt_EBB ]]{--[[ Scan_next_char ]]Block.__(22, {fmt_rest})};
               end end 
             end end;
             match$10 = parse_literal(str_ind, str_ind, end_ind);
@@ -5285,30 +5285,30 @@ function fmt_ebb_of_string(legacy_behavior, str) do
          if ___conditional___ = 114 then do
             match$12 = parse_literal(str_ind, str_ind, end_ind);
             fmt_rest$6 = match$12[0];
-            fmt_result = (ign_used.contents = true, ign) and --[[ Fmt_EBB ]][--[[ Ignored_param ]]Block.__(23, [
+            fmt_result = (ign_used.contents = true, ign) and --[[ Fmt_EBB ]]{--[[ Ignored_param ]]Block.__(23, {
                     --[[ Ignored_reader ]]2,
                     fmt_rest$6
-                  ])] or --[[ Fmt_EBB ]][--[[ Reader ]]Block.__(19, [fmt_rest$6])];end else 
+                  })} or --[[ Fmt_EBB ]]{--[[ Reader ]]Block.__(19, {fmt_rest$6})};end else 
          if ___conditional___ = 115 then do
             pad$2 = check_no_0(symb, (pad_used.contents = true, padprec));
             match$13 = parse_literal(str_ind, str_ind, end_ind);
             fmt_rest$7 = match$13[0];
             if (ign_used.contents = true, ign) then do
-              ignored$4 = --[[ Ignored_string ]]Block.__(0, [opt_of_pad(--[[ "_" ]]95, (pad_used.contents = true, padprec))]);
-              fmt_result = --[[ Fmt_EBB ]][--[[ Ignored_param ]]Block.__(23, [
+              ignored$4 = --[[ Ignored_string ]]Block.__(0, {opt_of_pad(--[[ "_" ]]95, (pad_used.contents = true, padprec))});
+              fmt_result = --[[ Fmt_EBB ]]{--[[ Ignored_param ]]Block.__(23, {
                     ignored$4,
                     fmt_rest$7
-                  ])];
+                  })};
             end else do
               match$14 = make_padding_fmt_ebb(pad$2, fmt_rest$7);
-              fmt_result = --[[ Fmt_EBB ]][--[[ String ]]Block.__(2, [
+              fmt_result = --[[ Fmt_EBB ]]{--[[ String ]]Block.__(2, {
                     match$14[0],
                     match$14[1]
-                  ])];
+                  })};
             end end end else 
          if ___conditional___ = 116 then do
             match$15 = parse_literal(str_ind, str_ind, end_ind);
-            fmt_result = --[[ Fmt_EBB ]][--[[ Theta ]]Block.__(16, [match$15[0]])];end else 
+            fmt_result = --[[ Fmt_EBB ]]{--[[ Theta ]]Block.__(16, {match$15[0]})};end else 
          if ___conditional___ = 88
          or ___conditional___ = 100
          or ___conditional___ = 105
@@ -5411,20 +5411,20 @@ function fmt_ebb_of_string(legacy_behavior, str) do
             sub_fmtty$1 = fmtty_of_fmt(match$16[0]);
             if (ign_used.contents = true, ign) then do
               ignored_000$2 = opt_of_pad(--[[ "_" ]]95, (pad_used.contents = true, pad));
-              ignored$5 = --[[ Ignored_format_arg ]]Block.__(8, [
+              ignored$5 = --[[ Ignored_format_arg ]]Block.__(8, {
                   ignored_000$2,
                   sub_fmtty$1
-                ]);
-              fmt_result = --[[ Fmt_EBB ]][--[[ Ignored_param ]]Block.__(23, [
+                });
+              fmt_result = --[[ Fmt_EBB ]]{--[[ Ignored_param ]]Block.__(23, {
                     ignored$5,
                     fmt_rest$8
-                  ])];
+                  })};
             end else do
-              fmt_result = --[[ Fmt_EBB ]][--[[ Format_arg ]]Block.__(13, [
+              fmt_result = --[[ Fmt_EBB ]]{--[[ Format_arg ]]Block.__(13, {
                     opt_of_pad(--[[ "{" ]]123, (pad_used.contents = true, pad)),
                     sub_fmtty$1,
                     fmt_rest$8
-                  ])];
+                  })};
             end end end else 
          do end end end end end end end end end end end end end end end end end end end end end
         
@@ -5441,22 +5441,22 @@ function fmt_ebb_of_string(legacy_behavior, str) do
           fmt_rest$9 = match$18[0];
           if (ign_used.contents = true, ign) then do
             ignored_001 = opt_of_pad(--[[ "_" ]]95, (pad_used.contents = true, pad));
-            ignored$6 = --[[ Ignored_int ]]Block.__(2, [
+            ignored$6 = --[[ Ignored_int ]]Block.__(2, {
                 iconv,
                 ignored_001
-              ]);
-            fmt_result = --[[ Fmt_EBB ]][--[[ Ignored_param ]]Block.__(23, [
+              });
+            fmt_result = --[[ Fmt_EBB ]]{--[[ Ignored_param ]]Block.__(23, {
                   ignored$6,
                   fmt_rest$9
-                ])];
+                })};
           end else do
             match$19 = make_padprec_fmt_ebb(get_int_pad(--[[ () ]]0), (prec_used.contents = true, prec), fmt_rest$9);
-            fmt_result = --[[ Fmt_EBB ]][--[[ Int ]]Block.__(4, [
+            fmt_result = --[[ Fmt_EBB ]]{--[[ Int ]]Block.__(4, {
                   iconv,
                   match$19[0],
                   match$19[1],
                   match$19[2]
-                ])];
+                })};
           end end end else 
        if ___conditional___ = 8 then do
           if (str_ind == end_ind or not is_int_base(Caml_string.get(str, str_ind))) then do
@@ -5464,16 +5464,16 @@ function fmt_ebb_of_string(legacy_behavior, str) do
             fmt_rest$10 = match$20[0];
             counter = counter_of_char(symb);
             if (ign_used.contents = true, ign) then do
-              ignored$7 = --[[ Ignored_scan_get_counter ]]Block.__(11, [counter]);
-              fmt_result = --[[ Fmt_EBB ]][--[[ Ignored_param ]]Block.__(23, [
+              ignored$7 = --[[ Ignored_scan_get_counter ]]Block.__(11, {counter});
+              fmt_result = --[[ Fmt_EBB ]]{--[[ Ignored_param ]]Block.__(23, {
                     ignored$7,
                     fmt_rest$10
-                  ])];
+                  })};
             end else do
-              fmt_result = --[[ Fmt_EBB ]][--[[ Scan_get_counter ]]Block.__(21, [
+              fmt_result = --[[ Fmt_EBB ]]{--[[ Scan_get_counter ]]Block.__(21, {
                     counter,
                     fmt_rest$10
-                  ])];
+                  })};
             end end 
           end else do
             exit$1 = 6;
@@ -5492,77 +5492,77 @@ function fmt_ebb_of_string(legacy_behavior, str) do
           if (ign_used.contents = true, ign) then do
             ignored_000$3 = opt_of_pad(--[[ "_" ]]95, (pad_used.contents = true, pad));
             ignored_001$1 = get_prec_opt(--[[ () ]]0);
-            ignored$8 = --[[ Ignored_float ]]Block.__(6, [
+            ignored$8 = --[[ Ignored_float ]]Block.__(6, {
                 ignored_000$3,
                 ignored_001$1
-              ]);
-            fmt_result = --[[ Fmt_EBB ]][--[[ Ignored_param ]]Block.__(23, [
+              });
+            fmt_result = --[[ Fmt_EBB ]]{--[[ Ignored_param ]]Block.__(23, {
                   ignored$8,
                   fmt_rest$11
-                ])];
+                })};
           end else do
             match$22 = make_padprec_fmt_ebb((pad_used.contents = true, pad), (prec_used.contents = true, prec), fmt_rest$11);
-            fmt_result = --[[ Fmt_EBB ]][--[[ Float ]]Block.__(8, [
+            fmt_result = --[[ Fmt_EBB ]]{--[[ Float ]]Block.__(8, {
                   fconv,
                   match$22[0],
                   match$22[1],
                   match$22[2]
-                ])];
+                })};
           end end end else 
        if ___conditional___ = 3 then do
           pad$3 = check_no_0(symb, (pad_used.contents = true, padprec));
           match$23 = parse_literal(str_ind, str_ind, end_ind);
           fmt_rest$12 = match$23[0];
           if (ign_used.contents = true, ign) then do
-            ignored$9 = --[[ Ignored_bool ]]Block.__(7, [opt_of_pad(--[[ "_" ]]95, (pad_used.contents = true, padprec))]);
-            fmt_result = --[[ Fmt_EBB ]][--[[ Ignored_param ]]Block.__(23, [
+            ignored$9 = --[[ Ignored_bool ]]Block.__(7, {opt_of_pad(--[[ "_" ]]95, (pad_used.contents = true, padprec))});
+            fmt_result = --[[ Fmt_EBB ]]{--[[ Ignored_param ]]Block.__(23, {
                   ignored$9,
                   fmt_rest$12
-                ])];
+                })};
           end else do
             match$24 = make_padding_fmt_ebb(pad$3, fmt_rest$12);
-            fmt_result = --[[ Fmt_EBB ]][--[[ Bool ]]Block.__(9, [
+            fmt_result = --[[ Fmt_EBB ]]{--[[ Bool ]]Block.__(9, {
                   match$24[0],
                   match$24[1]
-                ])];
+                })};
           end end end else 
        if ___conditional___ = 4 then do
           match$25 = parse_literal(str_ind, str_ind, end_ind);
-          fmt_result = --[[ Fmt_EBB ]][--[[ Char_literal ]]Block.__(12, [
+          fmt_result = --[[ Fmt_EBB ]]{--[[ Char_literal ]]Block.__(12, {
                 symb,
                 match$25[0]
-              ])];end else 
+              })};end else 
        if ___conditional___ = 5 then do
-          fmt_result = Curry._3(failwith_message(--[[ Format ]][
-                    --[[ String_literal ]]Block.__(11, [
+          fmt_result = Curry._3(failwith_message(--[[ Format ]]{
+                    --[[ String_literal ]]Block.__(11, {
                         "invalid format ",
-                        --[[ Caml_string ]]Block.__(3, [
+                        --[[ Caml_string ]]Block.__(3, {
                             --[[ No_padding ]]0,
-                            --[[ String_literal ]]Block.__(11, [
+                            --[[ String_literal ]]Block.__(11, {
                                 ": at character number ",
-                                --[[ Int ]]Block.__(4, [
+                                --[[ Int ]]Block.__(4, {
                                     --[[ Int_d ]]0,
                                     --[[ No_padding ]]0,
                                     --[[ No_precision ]]0,
-                                    --[[ String_literal ]]Block.__(11, [
+                                    --[[ String_literal ]]Block.__(11, {
                                         ", flag ",
-                                        --[[ Caml_char ]]Block.__(1, [--[[ String_literal ]]Block.__(11, [
+                                        --[[ Caml_char ]]Block.__(1, {--[[ String_literal ]]Block.__(11, {
                                                 " is only allowed after the '",
-                                                --[[ Char_literal ]]Block.__(12, [
+                                                --[[ Char_literal ]]Block.__(12, {
                                                     --[[ "%" ]]37,
-                                                    --[[ String_literal ]]Block.__(11, [
+                                                    --[[ String_literal ]]Block.__(11, {
                                                         "', before padding and precision",
                                                         --[[ End_of_format ]]0
-                                                      ])
-                                                  ])
-                                              ])])
-                                      ])
-                                  ])
-                              ])
-                          ])
-                      ]),
+                                                      })
+                                                  })
+                                              })})
+                                      })
+                                  })
+                              })
+                          })
+                      }),
                     "invalid format %S: at character number %d, flag %C is only allowed after the '%%', before padding and precision"
-                  ]), str, pct_ind, symb);end else 
+                  }), str, pct_ind, symb);end else 
        if ___conditional___ = 6 then do
           if (symb >= 108) then do
             if (symb >= 111) then do
@@ -5580,22 +5580,22 @@ function fmt_ebb_of_string(legacy_behavior, str) do
                     fmt_rest$13 = match$26[0];
                     if (ign_used.contents = true, ign) then do
                       ignored_001$2 = opt_of_pad(--[[ "_" ]]95, (pad_used.contents = true, pad));
-                      ignored$10 = --[[ Ignored_int32 ]]Block.__(3, [
+                      ignored$10 = --[[ Ignored_int32 ]]Block.__(3, {
                           iconv$1,
                           ignored_001$2
-                        ]);
-                      fmt_result = --[[ Fmt_EBB ]][--[[ Ignored_param ]]Block.__(23, [
+                        });
+                      fmt_result = --[[ Fmt_EBB ]]{--[[ Ignored_param ]]Block.__(23, {
                             ignored$10,
                             fmt_rest$13
-                          ])];
+                          })};
                     end else do
                       match$27 = make_padprec_fmt_ebb(get_int_pad(--[[ () ]]0), (prec_used.contents = true, prec), fmt_rest$13);
-                      fmt_result = --[[ Fmt_EBB ]][--[[ Int32 ]]Block.__(5, [
+                      fmt_result = --[[ Fmt_EBB ]]{--[[ Int32 ]]Block.__(5, {
                             iconv$1,
                             match$27[0],
                             match$27[1],
                             match$27[2]
-                          ])];
+                          })};
                     end end end else 
                  if ___conditional___ = 1 then do
                     exit = 1;end else 
@@ -5609,22 +5609,22 @@ function fmt_ebb_of_string(legacy_behavior, str) do
                     fmt_rest$14 = match$28[0];
                     if (ign_used.contents = true, ign) then do
                       ignored_001$3 = opt_of_pad(--[[ "_" ]]95, (pad_used.contents = true, pad));
-                      ignored$11 = --[[ Ignored_nativeint ]]Block.__(4, [
+                      ignored$11 = --[[ Ignored_nativeint ]]Block.__(4, {
                           iconv$2,
                           ignored_001$3
-                        ]);
-                      fmt_result = --[[ Fmt_EBB ]][--[[ Ignored_param ]]Block.__(23, [
+                        });
+                      fmt_result = --[[ Fmt_EBB ]]{--[[ Ignored_param ]]Block.__(23, {
                             ignored$11,
                             fmt_rest$14
-                          ])];
+                          })};
                     end else do
                       match$29 = make_padprec_fmt_ebb(get_int_pad(--[[ () ]]0), (prec_used.contents = true, prec), fmt_rest$14);
-                      fmt_result = --[[ Fmt_EBB ]][--[[ Nativeint ]]Block.__(6, [
+                      fmt_result = --[[ Fmt_EBB ]]{--[[ Nativeint ]]Block.__(6, {
                             iconv$2,
                             match$29[0],
                             match$29[1],
                             match$29[2]
-                          ])];
+                          })};
                     end end end else 
                  do end end end end
                 
@@ -5642,55 +5642,55 @@ function fmt_ebb_of_string(legacy_behavior, str) do
             fmt_rest$15 = match$30[0];
             if (ign_used.contents = true, ign) then do
               ignored_001$4 = opt_of_pad(--[[ "_" ]]95, (pad_used.contents = true, pad));
-              ignored$12 = --[[ Ignored_int64 ]]Block.__(5, [
+              ignored$12 = --[[ Ignored_int64 ]]Block.__(5, {
                   iconv$3,
                   ignored_001$4
-                ]);
-              fmt_result = --[[ Fmt_EBB ]][--[[ Ignored_param ]]Block.__(23, [
+                });
+              fmt_result = --[[ Fmt_EBB ]]{--[[ Ignored_param ]]Block.__(23, {
                     ignored$12,
                     fmt_rest$15
-                  ])];
+                  })};
             end else do
               match$31 = make_padprec_fmt_ebb(get_int_pad(--[[ () ]]0), (prec_used.contents = true, prec), fmt_rest$15);
-              fmt_result = --[[ Fmt_EBB ]][--[[ Int64 ]]Block.__(7, [
+              fmt_result = --[[ Fmt_EBB ]]{--[[ Int64 ]]Block.__(7, {
                     iconv$3,
                     match$31[0],
                     match$31[1],
                     match$31[2]
-                  ])];
+                  })};
             end end 
           end end  end end else 
        do end end end end end end
       
     end
     if (exit == 1) then do
-      fmt_result = Curry._3(failwith_message(--[[ Format ]][
-                --[[ String_literal ]]Block.__(11, [
+      fmt_result = Curry._3(failwith_message(--[[ Format ]]{
+                --[[ String_literal ]]Block.__(11, {
                     "invalid format ",
-                    --[[ Caml_string ]]Block.__(3, [
+                    --[[ Caml_string ]]Block.__(3, {
                         --[[ No_padding ]]0,
-                        --[[ String_literal ]]Block.__(11, [
+                        --[[ String_literal ]]Block.__(11, {
                             ": at character number ",
-                            --[[ Int ]]Block.__(4, [
+                            --[[ Int ]]Block.__(4, {
                                 --[[ Int_d ]]0,
                                 --[[ No_padding ]]0,
                                 --[[ No_precision ]]0,
-                                --[[ String_literal ]]Block.__(11, [
+                                --[[ String_literal ]]Block.__(11, {
                                     ", invalid conversion \"",
-                                    --[[ Char_literal ]]Block.__(12, [
+                                    --[[ Char_literal ]]Block.__(12, {
                                         --[[ "%" ]]37,
-                                        --[[ Char ]]Block.__(0, [--[[ Char_literal ]]Block.__(12, [
+                                        --[[ Char ]]Block.__(0, {--[[ Char_literal ]]Block.__(12, {
                                                 --[[ "\"" ]]34,
                                                 --[[ End_of_format ]]0
-                                              ])])
-                                      ])
-                                  ])
-                              ])
-                          ])
-                      ])
-                  ]),
+                                              })})
+                                      })
+                                  })
+                              })
+                          })
+                      })
+                  }),
                 "invalid format %S: at character number %d, invalid conversion \"%%%c\""
-              ]), str, str_ind - 1 | 0, symb);
+              }), str, str_ind - 1 | 0, symb);
     end
      end 
     if (not legacy_behavior$1) then do
@@ -5706,11 +5706,11 @@ function fmt_ebb_of_string(legacy_behavior, str) do
         incompatible_flag(pct_ind, str_ind, symb, "' '");
       end
        end 
-      if (not pad_used.contents and Caml_obj.caml_notequal(--[[ Padding_EBB ]][pad], --[[ Padding_EBB ]][--[[ No_padding ]]0])) then do
+      if (not pad_used.contents and Caml_obj.caml_notequal(--[[ Padding_EBB ]]{pad}, --[[ Padding_EBB ]]{--[[ No_padding ]]0})) then do
         incompatible_flag(pct_ind, str_ind, symb, "`padding'");
       end
        end 
-      if (not prec_used.contents and Caml_obj.caml_notequal(--[[ Precision_EBB ]][prec], --[[ Precision_EBB ]][--[[ No_precision ]]0])) then do
+      if (not prec_used.contents and Caml_obj.caml_notequal(--[[ Precision_EBB ]]{prec}, --[[ Precision_EBB ]]{--[[ No_precision ]]0})) then do
         incompatible_flag(pct_ind, str_ind, ign and --[[ "_" ]]95 or symb, "`precision'");
       end
        end 
@@ -5757,27 +5757,27 @@ function fmt_ebb_of_string(legacy_behavior, str) do
     match = Caml_string.get(str, str_ind);
     if (match >= 48) then do
       if (match >= 58) then do
-        throw [
+        throw {
               Caml_builtin_exceptions.assert_failure,
-              --[[ tuple ]][
+              --[[ tuple ]]{
                 "camlinternalFormat.ml",
                 2814,
                 11
-              ]
-            ];
+              }
+            };
       end
        end 
       return parse_positive(str_ind, end_ind, 0);
     end else do
       if (match ~= 45) then do
-        throw [
+        throw {
               Caml_builtin_exceptions.assert_failure,
-              --[[ tuple ]][
+              --[[ tuple ]]{
                 "camlinternalFormat.ml",
                 2814,
                 11
-              ]
-            ];
+              }
+            };
       end
        end 
       if ((str_ind + 1 | 0) == end_ind) then do
@@ -5789,48 +5789,48 @@ function fmt_ebb_of_string(legacy_behavior, str) do
         return expected_character(str_ind + 1 | 0, "digit", c);
       end else do
         match$1 = parse_positive(str_ind + 1 | 0, end_ind, 0);
-        return --[[ tuple ]][
+        return --[[ tuple ]]{
                 match$1[0],
                 -match$1[1] | 0
-              ];
+              };
       end end 
     end end 
   end end;
   incompatible_flag = function (pct_ind, str_ind, symb, option) do
     subfmt = __String.sub(str, pct_ind, str_ind - pct_ind | 0);
-    return Curry._5(failwith_message(--[[ Format ]][
-                    --[[ String_literal ]]Block.__(11, [
+    return Curry._5(failwith_message(--[[ Format ]]{
+                    --[[ String_literal ]]Block.__(11, {
                         "invalid format ",
-                        --[[ Caml_string ]]Block.__(3, [
+                        --[[ Caml_string ]]Block.__(3, {
                             --[[ No_padding ]]0,
-                            --[[ String_literal ]]Block.__(11, [
+                            --[[ String_literal ]]Block.__(11, {
                                 ": at character number ",
-                                --[[ Int ]]Block.__(4, [
+                                --[[ Int ]]Block.__(4, {
                                     --[[ Int_d ]]0,
                                     --[[ No_padding ]]0,
                                     --[[ No_precision ]]0,
-                                    --[[ String_literal ]]Block.__(11, [
+                                    --[[ String_literal ]]Block.__(11, {
                                         ", ",
-                                        --[[ String ]]Block.__(2, [
+                                        --[[ String ]]Block.__(2, {
                                             --[[ No_padding ]]0,
-                                            --[[ String_literal ]]Block.__(11, [
+                                            --[[ String_literal ]]Block.__(11, {
                                                 " is incompatible with '",
-                                                --[[ Char ]]Block.__(0, [--[[ String_literal ]]Block.__(11, [
+                                                --[[ Char ]]Block.__(0, {--[[ String_literal ]]Block.__(11, {
                                                         "' in sub-format ",
-                                                        --[[ Caml_string ]]Block.__(3, [
+                                                        --[[ Caml_string ]]Block.__(3, {
                                                             --[[ No_padding ]]0,
                                                             --[[ End_of_format ]]0
-                                                          ])
-                                                      ])])
-                                              ])
-                                          ])
-                                      ])
-                                  ])
-                              ])
-                          ])
-                      ]),
+                                                          })
+                                                      })})
+                                              })
+                                          })
+                                      })
+                                  })
+                              })
+                          })
+                      }),
                     "invalid format %S: at character number %d, %s is incompatible with '%c' in sub-format %S"
-                  ]), str, pct_ind, option, symb, subfmt);
+                  }), str, pct_ind, option, symb, subfmt);
   end end;
   parse_after_padding = function (pct_ind, str_ind, end_ind, minus, plus, hash, space, ign, pad) do
     if (str_ind == end_ind) then do
@@ -5856,7 +5856,7 @@ function fmt_ebb_of_string(legacy_behavior, str) do
        end 
       parse_literal = function (minus, str_ind) do
         match = parse_positive(str_ind, end_ind$1, 0);
-        return parse_after_precision(pct_ind$1, match[0], end_ind$1, minus, plus$1, hash$1, space$1, ign$1, pad$1, --[[ Lit_precision ]][match[1]]);
+        return parse_after_precision(pct_ind$1, match[0], end_ind$1, minus, plus$1, hash$1, space$1, ign$1, pad$1, --[[ Lit_precision ]]{match[1]});
       end end;
       symb$1 = Caml_string.get(str, str_ind$1);
       exit = 0;
@@ -5886,7 +5886,7 @@ function fmt_ebb_of_string(legacy_behavior, str) do
       end
        end 
       if (legacy_behavior$1) then do
-        return parse_after_precision(pct_ind$1, str_ind$1, end_ind$1, minus$1, plus$1, hash$1, space$1, ign$1, pad$1, --[[ Lit_precision ]][0]);
+        return parse_after_precision(pct_ind$1, str_ind$1, end_ind$1, minus$1, plus$1, hash$1, space$1, ign$1, pad$1, --[[ Lit_precision ]]{0});
       end else do
         return invalid_format_without(str_ind$1 - 1 | 0, --[[ "." ]]46, "precision");
       end end 
@@ -5956,14 +5956,14 @@ function fmt_ebb_of_string(legacy_behavior, str) do
       return --[[ Token_counter ]]2;
     end
      end  end 
-    throw [
+    throw {
           Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]][
+          --[[ tuple ]]{
             "camlinternalFormat.ml",
             2876,
             34
-          ]
-        ];
+          }
+        };
   end end;
   parse_char_set = function (str_ind, end_ind) do
     if (str_ind == end_ind) then do
@@ -5978,42 +5978,42 @@ function fmt_ebb_of_string(legacy_behavior, str) do
       return --[[ () ]]0;
     end end;
     fail_single_percent = function (str_ind) do
-      return Curry._2(failwith_message(--[[ Format ]][
-                      --[[ String_literal ]]Block.__(11, [
+      return Curry._2(failwith_message(--[[ Format ]]{
+                      --[[ String_literal ]]Block.__(11, {
                           "invalid format ",
-                          --[[ Caml_string ]]Block.__(3, [
+                          --[[ Caml_string ]]Block.__(3, {
                               --[[ No_padding ]]0,
-                              --[[ String_literal ]]Block.__(11, [
+                              --[[ String_literal ]]Block.__(11, {
                                   ": '",
-                                  --[[ Char_literal ]]Block.__(12, [
+                                  --[[ Char_literal ]]Block.__(12, {
                                       --[[ "%" ]]37,
-                                      --[[ String_literal ]]Block.__(11, [
+                                      --[[ String_literal ]]Block.__(11, {
                                           "' alone is not accepted in character sets, use ",
-                                          --[[ Char_literal ]]Block.__(12, [
+                                          --[[ Char_literal ]]Block.__(12, {
                                               --[[ "%" ]]37,
-                                              --[[ Char_literal ]]Block.__(12, [
+                                              --[[ Char_literal ]]Block.__(12, {
                                                   --[[ "%" ]]37,
-                                                  --[[ String_literal ]]Block.__(11, [
+                                                  --[[ String_literal ]]Block.__(11, {
                                                       " instead at position ",
-                                                      --[[ Int ]]Block.__(4, [
+                                                      --[[ Int ]]Block.__(4, {
                                                           --[[ Int_d ]]0,
                                                           --[[ No_padding ]]0,
                                                           --[[ No_precision ]]0,
-                                                          --[[ Char_literal ]]Block.__(12, [
+                                                          --[[ Char_literal ]]Block.__(12, {
                                                               --[[ "." ]]46,
                                                               --[[ End_of_format ]]0
-                                                            ])
-                                                        ])
-                                                    ])
-                                                ])
-                                            ])
-                                        ])
-                                    ])
-                                ])
-                            ])
-                        ]),
+                                                            })
+                                                        })
+                                                    })
+                                                })
+                                            })
+                                        })
+                                    })
+                                })
+                            })
+                        }),
                       "invalid format %S: '%%' alone is not accepted in character sets, use %%%% instead at position %d."
-                    ]), str, str_ind);
+                    }), str, str_ind);
     end end;
     parse_char_set_content = function (_str_ind, end_ind) do
       while(true) do
@@ -6121,19 +6121,19 @@ function fmt_ebb_of_string(legacy_behavior, str) do
     end
      end 
     match = Caml_string.get(str, str_ind);
-    match$1 = match ~= 94 and --[[ tuple ]][
+    match$1 = match ~= 94 and --[[ tuple ]]{
         str_ind,
         false
-      ] or --[[ tuple ]][
+      } or --[[ tuple ]]{
         str_ind + 1 | 0,
         true
-      ];
+      };
     next_ind = parse_char_set_start(match$1[0], end_ind);
     char_set$1 = Bytes.to_string(char_set);
-    return --[[ tuple ]][
+    return --[[ tuple ]]{
             next_ind,
             match$1[1] and rev_char_set(char_set$1) or char_set$1
-          ];
+          };
   end end;
   compute_int_conv = function (pct_ind, str_ind, _plus, _hash, _space, symb) do
     while(true) do
@@ -6316,14 +6316,14 @@ function fmt_ebb_of_string(legacy_behavior, str) do
           return incompatible_flag(pct_ind, str_ind, symb, "' '");
         end end 
       end else do
-        throw [
+        throw {
               Caml_builtin_exceptions.assert_failure,
-              --[[ tuple ]][
+              --[[ tuple ]]{
                 "camlinternalFormat.ml",
                 2909,
                 28
-              ]
-            ];
+              }
+            };
       end end  end 
     end;
   end end;
@@ -6429,14 +6429,14 @@ function fmt_ebb_of_string(legacy_behavior, str) do
               return --[[ Float_h ]]16;end end end 
            do
           else do
-            throw [
+            throw {
                   Caml_builtin_exceptions.assert_failure,
-                  --[[ tuple ]][
+                  --[[ tuple ]]{
                     "camlinternalFormat.ml",
                     2943,
                     25
-                  ]
-                ];
+                  }
+                };
             end end
             
         end
@@ -6455,14 +6455,14 @@ function fmt_ebb_of_string(legacy_behavior, str) do
           
         end
       end else do
-        throw [
+        throw {
               Caml_builtin_exceptions.assert_failure,
-              --[[ tuple ]][
+              --[[ tuple ]]{
                 "camlinternalFormat.ml",
                 2943,
                 25
-              ]
-            ];
+              }
+            };
       end end  end  end  end 
     end;
   end end;
@@ -6481,20 +6481,20 @@ function fmt_ebb_of_string(legacy_behavior, str) do
        end 
       if (minus) then do
         if (typeof prec == "number") then do
-          return parse_conv(--[[ Arg_padding ]]Block.__(1, [--[[ Left ]]0]));
+          return parse_conv(--[[ Arg_padding ]]Block.__(1, {--[[ Left ]]0}));
         end else do
-          return parse_conv(--[[ Lit_padding ]]Block.__(0, [
+          return parse_conv(--[[ Lit_padding ]]Block.__(0, {
                         --[[ Left ]]0,
                         prec[0]
-                      ]));
+                      }));
         end end 
       end else if (typeof prec == "number") then do
-        return parse_conv(--[[ Arg_padding ]]Block.__(1, [--[[ Right ]]1]));
+        return parse_conv(--[[ Arg_padding ]]Block.__(1, {--[[ Right ]]1}));
       end else do
-        return parse_conv(--[[ Lit_padding ]]Block.__(0, [
+        return parse_conv(--[[ Lit_padding ]]Block.__(0, {
                       --[[ Right ]]1,
                       prec[0]
-                    ]));
+                    }));
       end end  end 
     end else do
       return parse_conv(pad);
@@ -6521,28 +6521,28 @@ function fmt_ebb_of_string(legacy_behavior, str) do
       match$1 = parse_literal(beg_ind, beg_ind, end_ind);
       match$2 = parse_literal(str_ind, str_ind, ind + 1 | 0);
       sub_fmt = match$2[0];
-      sub_format = --[[ Format ]][
+      sub_format = --[[ Format ]]{
         sub_fmt,
         sub_str
-      ];
-      formatting = is_open_tag and --[[ Open_tag ]]Block.__(0, [sub_format]) or (check_open_box(sub_fmt), --[[ Open_box ]]Block.__(1, [sub_format]));
-      return --[[ Fmt_EBB ]][--[[ Formatting_gen ]]Block.__(18, [
+      };
+      formatting = is_open_tag and --[[ Open_tag ]]Block.__(0, {sub_format}) or (check_open_box(sub_fmt), --[[ Open_box ]]Block.__(1, {sub_format}));
+      return --[[ Fmt_EBB ]]{--[[ Formatting_gen ]]Block.__(18, {
                   formatting,
                   match$1[0]
-                ])];
+                })};
     end
     catch (exn)do
       if (exn == Caml_builtin_exceptions.not_found) then do
         match$3 = parse_literal(str_ind, str_ind, end_ind);
-        sub_format$1 = --[[ Format ]][
+        sub_format$1 = --[[ Format ]]{
           --[[ End_of_format ]]0,
           ""
-        ];
-        formatting$1 = is_open_tag and --[[ Open_tag ]]Block.__(0, [sub_format$1]) or --[[ Open_box ]]Block.__(1, [sub_format$1]);
-        return --[[ Fmt_EBB ]][--[[ Formatting_gen ]]Block.__(18, [
+        };
+        formatting$1 = is_open_tag and --[[ Open_tag ]]Block.__(0, {sub_format$1}) or --[[ Open_box ]]Block.__(1, {sub_format$1});
+        return --[[ Fmt_EBB ]]{--[[ Formatting_gen ]]Block.__(18, {
                     formatting$1,
                     match$3[0]
-                  ])];
+                  })};
       end else do
         throw exn;
       end end 
@@ -6554,29 +6554,29 @@ end end
 function format_of_string_fmtty(str, fmtty) do
   match = fmt_ebb_of_string(undefined, str);
   try do
-    return --[[ Format ]][
+    return --[[ Format ]]{
             type_format(match[0], fmtty),
             str
-          ];
+          };
   end
   catch (exn)do
     if (exn == Type_mismatch) then do
-      return Curry._2(failwith_message(--[[ Format ]][
-                      --[[ String_literal ]]Block.__(11, [
+      return Curry._2(failwith_message(--[[ Format ]]{
+                      --[[ String_literal ]]Block.__(11, {
                           "bad input: format type mismatch between ",
-                          --[[ Caml_string ]]Block.__(3, [
+                          --[[ Caml_string ]]Block.__(3, {
                               --[[ No_padding ]]0,
-                              --[[ String_literal ]]Block.__(11, [
+                              --[[ String_literal ]]Block.__(11, {
                                   " and ",
-                                  --[[ Caml_string ]]Block.__(3, [
+                                  --[[ Caml_string ]]Block.__(3, {
                                       --[[ No_padding ]]0,
                                       --[[ End_of_format ]]0
-                                    ])
-                                ])
-                            ])
-                        ]),
+                                    })
+                                })
+                            })
+                        }),
                       "bad input: format type mismatch between %S and %S"
-                    ]), str, string_of_fmtty(fmtty));
+                    }), str, string_of_fmtty(fmtty));
     end else do
       throw exn;
     end end 
@@ -6586,29 +6586,29 @@ end end
 function format_of_string_format(str, param) do
   match = fmt_ebb_of_string(undefined, str);
   try do
-    return --[[ Format ]][
+    return --[[ Format ]]{
             type_format(match[0], fmtty_of_fmt(param[0])),
             str
-          ];
+          };
   end
   catch (exn)do
     if (exn == Type_mismatch) then do
-      return Curry._2(failwith_message(--[[ Format ]][
-                      --[[ String_literal ]]Block.__(11, [
+      return Curry._2(failwith_message(--[[ Format ]]{
+                      --[[ String_literal ]]Block.__(11, {
                           "bad input: format type mismatch between ",
-                          --[[ Caml_string ]]Block.__(3, [
+                          --[[ Caml_string ]]Block.__(3, {
                               --[[ No_padding ]]0,
-                              --[[ String_literal ]]Block.__(11, [
+                              --[[ String_literal ]]Block.__(11, {
                                   " and ",
-                                  --[[ Caml_string ]]Block.__(3, [
+                                  --[[ Caml_string ]]Block.__(3, {
                                       --[[ No_padding ]]0,
                                       --[[ End_of_format ]]0
-                                    ])
-                                ])
-                            ])
-                        ]),
+                                    })
+                                })
+                            })
+                        }),
                       "bad input: format type mismatch between %S and %S"
-                    ]), str, param[1]);
+                    }), str, param[1]);
     end else do
       throw exn;
     end end 

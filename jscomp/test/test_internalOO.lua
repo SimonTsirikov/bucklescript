@@ -53,23 +53,23 @@ end end
 function create(l, x, d, r) do
   hl = height(l);
   hr = height(r);
-  return --[[ Node ]][
+  return --[[ Node ]]{
           --[[ l ]]l,
           --[[ v ]]x,
           --[[ d ]]d,
           --[[ r ]]r,
           --[[ h ]]hl >= hr and hl + 1 | 0 or hr + 1 | 0
-        ];
+        };
 end end
 
 function singleton(x, d) do
-  return --[[ Node ]][
+  return --[[ Node ]]{
           --[[ l : Empty ]]0,
           --[[ v ]]x,
           --[[ d ]]d,
           --[[ r : Empty ]]0,
           --[[ h ]]1
-        ];
+        };
 end end
 
 function bal(l, x, d, r) do
@@ -86,16 +86,16 @@ function bal(l, x, d, r) do
       end else if (lr) then do
         return create(create(ll, lv, ld, lr[--[[ l ]]0]), lr[--[[ v ]]1], lr[--[[ d ]]2], create(lr[--[[ r ]]3], x, d, r));
       end else do
-        throw [
+        throw {
               Caml_builtin_exceptions.invalid_argument,
               "Map.bal"
-            ];
+            };
       end end  end 
     end else do
-      throw [
+      throw {
             Caml_builtin_exceptions.invalid_argument,
             "Map.bal"
-          ];
+          };
     end end 
   end else if (hr > (hl + 2 | 0)) then do
     if (r) then do
@@ -108,25 +108,25 @@ function bal(l, x, d, r) do
       end else if (rl) then do
         return create(create(l, x, d, rl[--[[ l ]]0]), rl[--[[ v ]]1], rl[--[[ d ]]2], create(rl[--[[ r ]]3], rv, rd, rr));
       end else do
-        throw [
+        throw {
               Caml_builtin_exceptions.invalid_argument,
               "Map.bal"
-            ];
+            };
       end end  end 
     end else do
-      throw [
+      throw {
             Caml_builtin_exceptions.invalid_argument,
             "Map.bal"
-          ];
+          };
     end end 
   end else do
-    return --[[ Node ]][
+    return --[[ Node ]]{
             --[[ l ]]l,
             --[[ v ]]x,
             --[[ d ]]d,
             --[[ r ]]r,
             --[[ h ]]hl >= hr and hl + 1 | 0 or hr + 1 | 0
-          ];
+          };
   end end  end 
 end end
 
@@ -149,13 +149,13 @@ function add(x, data, m) do
       if (d == data) then do
         return m;
       end else do
-        return --[[ Node ]][
+        return --[[ Node ]]{
                 --[[ l ]]l,
                 --[[ v ]]x,
                 --[[ d ]]data,
                 --[[ r ]]r,
                 --[[ h ]]m[--[[ h ]]4]
-              ];
+              };
       end end 
     end else if (c < 0) then do
       ll = add(x, data, l);
@@ -173,13 +173,13 @@ function add(x, data, m) do
       end end 
     end end  end 
   end else do
-    return --[[ Node ]][
+    return --[[ Node ]]{
             --[[ l : Empty ]]0,
             --[[ v ]]x,
             --[[ d ]]data,
             --[[ r : Empty ]]0,
             --[[ h ]]1
-          ];
+          };
   end end 
 end end
 
@@ -226,10 +226,10 @@ function find_first(f, _param) do
               continue ;
             end end 
           end else do
-            return --[[ tuple ]][
+            return --[[ tuple ]]{
                     v0,
                     d0
-                  ];
+                  };
           end end 
         end;
       end else do
@@ -268,10 +268,10 @@ function find_first_opt(f, _param) do
               continue ;
             end end 
           end else do
-            return --[[ tuple ]][
+            return --[[ tuple ]]{
                     v0,
                     d0
-                  ];
+                  };
           end end 
         end;
       end else do
@@ -310,10 +310,10 @@ function find_last(f, _param) do
               continue ;
             end end 
           end else do
-            return --[[ tuple ]][
+            return --[[ tuple ]]{
                     v0,
                     d0
-                  ];
+                  };
           end end 
         end;
       end else do
@@ -352,10 +352,10 @@ function find_last_opt(f, _param) do
               continue ;
             end end 
           end else do
-            return --[[ tuple ]][
+            return --[[ tuple ]]{
                     v0,
                     d0
-                  ];
+                  };
           end end 
         end;
       end else do
@@ -411,10 +411,10 @@ function min_binding(_param) do
         _param = l;
         continue ;
       end else do
-        return --[[ tuple ]][
+        return --[[ tuple ]]{
                 param[--[[ v ]]1],
                 param[--[[ d ]]2]
-              ];
+              };
       end end 
     end else do
       throw Caml_builtin_exceptions.not_found;
@@ -431,10 +431,10 @@ function min_binding_opt(_param) do
         _param = l;
         continue ;
       end else do
-        return --[[ tuple ]][
+        return --[[ tuple ]]{
                 param[--[[ v ]]1],
                 param[--[[ d ]]2]
-              ];
+              };
       end end 
     end else do
       return ;
@@ -451,10 +451,10 @@ function max_binding(_param) do
         _param = r;
         continue ;
       end else do
-        return --[[ tuple ]][
+        return --[[ tuple ]]{
                 param[--[[ v ]]1],
                 param[--[[ d ]]2]
-              ];
+              };
       end end 
     end else do
       throw Caml_builtin_exceptions.not_found;
@@ -471,10 +471,10 @@ function max_binding_opt(_param) do
         _param = r;
         continue ;
       end else do
-        return --[[ tuple ]][
+        return --[[ tuple ]]{
                 param[--[[ v ]]1],
                 param[--[[ d ]]2]
-              ];
+              };
       end end 
     end else do
       return ;
@@ -491,10 +491,10 @@ function remove_min_binding(param) do
       return param[--[[ r ]]3];
     end end 
   end else do
-    throw [
+    throw {
           Caml_builtin_exceptions.invalid_argument,
           "Map.remove_min_elt"
-        ];
+        };
   end end 
 end end
 
@@ -554,13 +554,13 @@ function update(x, f, m) do
         if (d == data) then do
           return m;
         end else do
-          return --[[ Node ]][
+          return --[[ Node ]]{
                   --[[ l ]]l,
                   --[[ v ]]x,
                   --[[ d ]]data,
                   --[[ r ]]r,
                   --[[ h ]]m[--[[ h ]]4]
-                ];
+                };
         end end 
       end else do
         return merge(l, r);
@@ -583,13 +583,13 @@ function update(x, f, m) do
   end else do
     match$1 = Curry._1(f, undefined);
     if (match$1 ~= undefined) then do
-      return --[[ Node ]][
+      return --[[ Node ]]{
               --[[ l : Empty ]]0,
               --[[ v ]]x,
               --[[ d ]]Caml_option.valFromOption(match$1),
               --[[ r : Empty ]]0,
               --[[ h ]]1
-            ];
+            };
     end else do
       return --[[ Empty ]]0;
     end end 
@@ -615,13 +615,13 @@ function map(f, param) do
     l$prime = map(f, param[--[[ l ]]0]);
     d$prime = Curry._1(f, param[--[[ d ]]2]);
     r$prime = map(f, param[--[[ r ]]3]);
-    return --[[ Node ]][
+    return --[[ Node ]]{
             --[[ l ]]l$prime,
             --[[ v ]]param[--[[ v ]]1],
             --[[ d ]]d$prime,
             --[[ r ]]r$prime,
             --[[ h ]]param[--[[ h ]]4]
-          ];
+          };
   end else do
     return --[[ Empty ]]0;
   end end 
@@ -633,13 +633,13 @@ function mapi(f, param) do
     l$prime = mapi(f, param[--[[ l ]]0]);
     d$prime = Curry._2(f, v, param[--[[ d ]]2]);
     r$prime = mapi(f, param[--[[ r ]]3]);
-    return --[[ Node ]][
+    return --[[ Node ]]{
             --[[ l ]]l$prime,
             --[[ v ]]v,
             --[[ d ]]d$prime,
             --[[ r ]]r$prime,
             --[[ h ]]param[--[[ h ]]4]
-          ];
+          };
   end else do
     return --[[ Empty ]]0;
   end end 
@@ -756,32 +756,32 @@ function split(x, param) do
     l = param[--[[ l ]]0];
     c = Caml_primitive.caml_string_compare(x, v);
     if (c == 0) then do
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               l,
               Caml_option.some(d),
               r
-            ];
+            };
     end else if (c < 0) then do
       match = split(x, l);
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               match[0],
               match[1],
               join(match[2], v, d, r)
-            ];
+            };
     end else do
       match$1 = split(x, r);
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               join(l, v, d, match$1[0]),
               match$1[1],
               match$1[2]
-            ];
+            };
     end end  end 
   end else do
-    return --[[ tuple ]][
+    return --[[ tuple ]]{
             --[[ Empty ]]0,
             undefined,
             --[[ Empty ]]0
-          ];
+          };
   end end 
 end end
 
@@ -802,14 +802,14 @@ function merge$1(f, s1, s2) do
     match$1 = split(v2, s1);
     return concat_or_join(merge$1(f, match$1[0], s2[--[[ l ]]0]), v2, Curry._3(f, v2, match$1[1], Caml_option.some(s2[--[[ d ]]2])), merge$1(f, match$1[2], s2[--[[ r ]]3]));
   end else do
-    throw [
+    throw {
           Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]][
+          --[[ tuple ]]{
             "map.ml",
             393,
             10
-          ]
-        ];
+          }
+        };
   end end 
 end end
 
@@ -884,21 +884,21 @@ function partition(p, param) do
     rf = match$1[1];
     rt = match$1[0];
     if (pvd) then do
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               join(lt, v, d, rt),
               concat(lf, rf)
-            ];
+            };
     end else do
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               concat(lt, rt),
               join(lf, v, d, rf)
-            ];
+            };
     end end 
   end else do
-    return --[[ tuple ]][
+    return --[[ tuple ]]{
             --[[ Empty ]]0,
             --[[ Empty ]]0
-          ];
+          };
   end end 
 end end
 
@@ -907,12 +907,12 @@ function cons_enum(_m, _e) do
     e = _e;
     m = _m;
     if (m) then do
-      _e = --[[ More ]][
+      _e = --[[ More ]]{
         m[--[[ v ]]1],
         m[--[[ d ]]2],
         m[--[[ r ]]3],
         e
-      ];
+      };
       _m = m[--[[ l ]]0];
       continue ;
     end else do
@@ -989,13 +989,13 @@ function bindings_aux(_accu, _param) do
     accu = _accu;
     if (param) then do
       _param = param[--[[ l ]]0];
-      _accu = --[[ :: ]][
-        --[[ tuple ]][
+      _accu = --[[ :: ]]{
+        --[[ tuple ]]{
           param[--[[ v ]]1],
           param[--[[ d ]]2]
-        ],
+        },
         bindings_aux(accu, param[--[[ r ]]3])
-      ];
+      };
       continue ;
     end else do
       return accu;
@@ -1055,23 +1055,23 @@ end end
 function create$1(l, x, d, r) do
   hl = height$1(l);
   hr = height$1(r);
-  return --[[ Node ]][
+  return --[[ Node ]]{
           --[[ l ]]l,
           --[[ v ]]x,
           --[[ d ]]d,
           --[[ r ]]r,
           --[[ h ]]hl >= hr and hl + 1 | 0 or hr + 1 | 0
-        ];
+        };
 end end
 
 function singleton$1(x, d) do
-  return --[[ Node ]][
+  return --[[ Node ]]{
           --[[ l : Empty ]]0,
           --[[ v ]]x,
           --[[ d ]]d,
           --[[ r : Empty ]]0,
           --[[ h ]]1
-        ];
+        };
 end end
 
 function bal$1(l, x, d, r) do
@@ -1088,16 +1088,16 @@ function bal$1(l, x, d, r) do
       end else if (lr) then do
         return create$1(create$1(ll, lv, ld, lr[--[[ l ]]0]), lr[--[[ v ]]1], lr[--[[ d ]]2], create$1(lr[--[[ r ]]3], x, d, r));
       end else do
-        throw [
+        throw {
               Caml_builtin_exceptions.invalid_argument,
               "Map.bal"
-            ];
+            };
       end end  end 
     end else do
-      throw [
+      throw {
             Caml_builtin_exceptions.invalid_argument,
             "Map.bal"
-          ];
+          };
     end end 
   end else if (hr > (hl + 2 | 0)) then do
     if (r) then do
@@ -1110,25 +1110,25 @@ function bal$1(l, x, d, r) do
       end else if (rl) then do
         return create$1(create$1(l, x, d, rl[--[[ l ]]0]), rl[--[[ v ]]1], rl[--[[ d ]]2], create$1(rl[--[[ r ]]3], rv, rd, rr));
       end else do
-        throw [
+        throw {
               Caml_builtin_exceptions.invalid_argument,
               "Map.bal"
-            ];
+            };
       end end  end 
     end else do
-      throw [
+      throw {
             Caml_builtin_exceptions.invalid_argument,
             "Map.bal"
-          ];
+          };
     end end 
   end else do
-    return --[[ Node ]][
+    return --[[ Node ]]{
             --[[ l ]]l,
             --[[ v ]]x,
             --[[ d ]]d,
             --[[ r ]]r,
             --[[ h ]]hl >= hr and hl + 1 | 0 or hr + 1 | 0
-          ];
+          };
   end end  end 
 end end
 
@@ -1151,13 +1151,13 @@ function add$1(x, data, m) do
       if (d == data) then do
         return m;
       end else do
-        return --[[ Node ]][
+        return --[[ Node ]]{
                 --[[ l ]]l,
                 --[[ v ]]x,
                 --[[ d ]]data,
                 --[[ r ]]r,
                 --[[ h ]]m[--[[ h ]]4]
-              ];
+              };
       end end 
     end else if (c < 0) then do
       ll = add$1(x, data, l);
@@ -1175,13 +1175,13 @@ function add$1(x, data, m) do
       end end 
     end end  end 
   end else do
-    return --[[ Node ]][
+    return --[[ Node ]]{
             --[[ l : Empty ]]0,
             --[[ v ]]x,
             --[[ d ]]data,
             --[[ r : Empty ]]0,
             --[[ h ]]1
-          ];
+          };
   end end 
 end end
 
@@ -1228,10 +1228,10 @@ function find_first$1(f, _param) do
               continue ;
             end end 
           end else do
-            return --[[ tuple ]][
+            return --[[ tuple ]]{
                     v0,
                     d0
-                  ];
+                  };
           end end 
         end;
       end else do
@@ -1270,10 +1270,10 @@ function find_first_opt$1(f, _param) do
               continue ;
             end end 
           end else do
-            return --[[ tuple ]][
+            return --[[ tuple ]]{
                     v0,
                     d0
-                  ];
+                  };
           end end 
         end;
       end else do
@@ -1312,10 +1312,10 @@ function find_last$1(f, _param) do
               continue ;
             end end 
           end else do
-            return --[[ tuple ]][
+            return --[[ tuple ]]{
                     v0,
                     d0
-                  ];
+                  };
           end end 
         end;
       end else do
@@ -1354,10 +1354,10 @@ function find_last_opt$1(f, _param) do
               continue ;
             end end 
           end else do
-            return --[[ tuple ]][
+            return --[[ tuple ]]{
                     v0,
                     d0
-                  ];
+                  };
           end end 
         end;
       end else do
@@ -1413,10 +1413,10 @@ function min_binding$1(_param) do
         _param = l;
         continue ;
       end else do
-        return --[[ tuple ]][
+        return --[[ tuple ]]{
                 param[--[[ v ]]1],
                 param[--[[ d ]]2]
-              ];
+              };
       end end 
     end else do
       throw Caml_builtin_exceptions.not_found;
@@ -1433,10 +1433,10 @@ function min_binding_opt$1(_param) do
         _param = l;
         continue ;
       end else do
-        return --[[ tuple ]][
+        return --[[ tuple ]]{
                 param[--[[ v ]]1],
                 param[--[[ d ]]2]
-              ];
+              };
       end end 
     end else do
       return ;
@@ -1453,10 +1453,10 @@ function max_binding$1(_param) do
         _param = r;
         continue ;
       end else do
-        return --[[ tuple ]][
+        return --[[ tuple ]]{
                 param[--[[ v ]]1],
                 param[--[[ d ]]2]
-              ];
+              };
       end end 
     end else do
       throw Caml_builtin_exceptions.not_found;
@@ -1473,10 +1473,10 @@ function max_binding_opt$1(_param) do
         _param = r;
         continue ;
       end else do
-        return --[[ tuple ]][
+        return --[[ tuple ]]{
                 param[--[[ v ]]1],
                 param[--[[ d ]]2]
-              ];
+              };
       end end 
     end else do
       return ;
@@ -1493,10 +1493,10 @@ function remove_min_binding$1(param) do
       return param[--[[ r ]]3];
     end end 
   end else do
-    throw [
+    throw {
           Caml_builtin_exceptions.invalid_argument,
           "Map.remove_min_elt"
-        ];
+        };
   end end 
 end end
 
@@ -1556,13 +1556,13 @@ function update$1(x, f, m) do
         if (d == data) then do
           return m;
         end else do
-          return --[[ Node ]][
+          return --[[ Node ]]{
                   --[[ l ]]l,
                   --[[ v ]]x,
                   --[[ d ]]data,
                   --[[ r ]]r,
                   --[[ h ]]m[--[[ h ]]4]
-                ];
+                };
         end end 
       end else do
         return merge$2(l, r);
@@ -1585,13 +1585,13 @@ function update$1(x, f, m) do
   end else do
     match$1 = Curry._1(f, undefined);
     if (match$1 ~= undefined) then do
-      return --[[ Node ]][
+      return --[[ Node ]]{
               --[[ l : Empty ]]0,
               --[[ v ]]x,
               --[[ d ]]Caml_option.valFromOption(match$1),
               --[[ r : Empty ]]0,
               --[[ h ]]1
-            ];
+            };
     end else do
       return --[[ Empty ]]0;
     end end 
@@ -1617,13 +1617,13 @@ function map$1(f, param) do
     l$prime = map$1(f, param[--[[ l ]]0]);
     d$prime = Curry._1(f, param[--[[ d ]]2]);
     r$prime = map$1(f, param[--[[ r ]]3]);
-    return --[[ Node ]][
+    return --[[ Node ]]{
             --[[ l ]]l$prime,
             --[[ v ]]param[--[[ v ]]1],
             --[[ d ]]d$prime,
             --[[ r ]]r$prime,
             --[[ h ]]param[--[[ h ]]4]
-          ];
+          };
   end else do
     return --[[ Empty ]]0;
   end end 
@@ -1635,13 +1635,13 @@ function mapi$1(f, param) do
     l$prime = mapi$1(f, param[--[[ l ]]0]);
     d$prime = Curry._2(f, v, param[--[[ d ]]2]);
     r$prime = mapi$1(f, param[--[[ r ]]3]);
-    return --[[ Node ]][
+    return --[[ Node ]]{
             --[[ l ]]l$prime,
             --[[ v ]]v,
             --[[ d ]]d$prime,
             --[[ r ]]r$prime,
             --[[ h ]]param[--[[ h ]]4]
-          ];
+          };
   end else do
     return --[[ Empty ]]0;
   end end 
@@ -1758,32 +1758,32 @@ function split$1(x, param) do
     l = param[--[[ l ]]0];
     c = Caml_primitive.caml_string_compare(x, v);
     if (c == 0) then do
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               l,
               Caml_option.some(d),
               r
-            ];
+            };
     end else if (c < 0) then do
       match = split$1(x, l);
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               match[0],
               match[1],
               join$1(match[2], v, d, r)
-            ];
+            };
     end else do
       match$1 = split$1(x, r);
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               join$1(l, v, d, match$1[0]),
               match$1[1],
               match$1[2]
-            ];
+            };
     end end  end 
   end else do
-    return --[[ tuple ]][
+    return --[[ tuple ]]{
             --[[ Empty ]]0,
             undefined,
             --[[ Empty ]]0
-          ];
+          };
   end end 
 end end
 
@@ -1804,14 +1804,14 @@ function merge$3(f, s1, s2) do
     match$1 = split$1(v2, s1);
     return concat_or_join$1(merge$3(f, match$1[0], s2[--[[ l ]]0]), v2, Curry._3(f, v2, match$1[1], Caml_option.some(s2[--[[ d ]]2])), merge$3(f, match$1[2], s2[--[[ r ]]3]));
   end else do
-    throw [
+    throw {
           Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]][
+          --[[ tuple ]]{
             "map.ml",
             393,
             10
-          ]
-        ];
+          }
+        };
   end end 
 end end
 
@@ -1886,21 +1886,21 @@ function partition$1(p, param) do
     rf = match$1[1];
     rt = match$1[0];
     if (pvd) then do
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               join$1(lt, v, d, rt),
               concat$1(lf, rf)
-            ];
+            };
     end else do
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               concat$1(lt, rt),
               join$1(lf, v, d, rf)
-            ];
+            };
     end end 
   end else do
-    return --[[ tuple ]][
+    return --[[ tuple ]]{
             --[[ Empty ]]0,
             --[[ Empty ]]0
-          ];
+          };
   end end 
 end end
 
@@ -1909,12 +1909,12 @@ function cons_enum$1(_m, _e) do
     e = _e;
     m = _m;
     if (m) then do
-      _e = --[[ More ]][
+      _e = --[[ More ]]{
         m[--[[ v ]]1],
         m[--[[ d ]]2],
         m[--[[ r ]]3],
         e
-      ];
+      };
       _m = m[--[[ l ]]0];
       continue ;
     end else do
@@ -1991,13 +1991,13 @@ function bindings_aux$1(_accu, _param) do
     accu = _accu;
     if (param) then do
       _param = param[--[[ l ]]0];
-      _accu = --[[ :: ]][
-        --[[ tuple ]][
+      _accu = --[[ :: ]]{
+        --[[ tuple ]]{
           param[--[[ v ]]1],
           param[--[[ d ]]2]
-        ],
+        },
         bindings_aux$1(accu, param[--[[ r ]]3])
-      ];
+      };
       continue ;
     end else do
       return accu;
@@ -2057,23 +2057,23 @@ end end
 function create$2(l, x, d, r) do
   hl = height$2(l);
   hr = height$2(r);
-  return --[[ Node ]][
+  return --[[ Node ]]{
           --[[ l ]]l,
           --[[ v ]]x,
           --[[ d ]]d,
           --[[ r ]]r,
           --[[ h ]]hl >= hr and hl + 1 | 0 or hr + 1 | 0
-        ];
+        };
 end end
 
 function singleton$2(x, d) do
-  return --[[ Node ]][
+  return --[[ Node ]]{
           --[[ l : Empty ]]0,
           --[[ v ]]x,
           --[[ d ]]d,
           --[[ r : Empty ]]0,
           --[[ h ]]1
-        ];
+        };
 end end
 
 function bal$2(l, x, d, r) do
@@ -2090,16 +2090,16 @@ function bal$2(l, x, d, r) do
       end else if (lr) then do
         return create$2(create$2(ll, lv, ld, lr[--[[ l ]]0]), lr[--[[ v ]]1], lr[--[[ d ]]2], create$2(lr[--[[ r ]]3], x, d, r));
       end else do
-        throw [
+        throw {
               Caml_builtin_exceptions.invalid_argument,
               "Map.bal"
-            ];
+            };
       end end  end 
     end else do
-      throw [
+      throw {
             Caml_builtin_exceptions.invalid_argument,
             "Map.bal"
-          ];
+          };
     end end 
   end else if (hr > (hl + 2 | 0)) then do
     if (r) then do
@@ -2112,25 +2112,25 @@ function bal$2(l, x, d, r) do
       end else if (rl) then do
         return create$2(create$2(l, x, d, rl[--[[ l ]]0]), rl[--[[ v ]]1], rl[--[[ d ]]2], create$2(rl[--[[ r ]]3], rv, rd, rr));
       end else do
-        throw [
+        throw {
               Caml_builtin_exceptions.invalid_argument,
               "Map.bal"
-            ];
+            };
       end end  end 
     end else do
-      throw [
+      throw {
             Caml_builtin_exceptions.invalid_argument,
             "Map.bal"
-          ];
+          };
     end end 
   end else do
-    return --[[ Node ]][
+    return --[[ Node ]]{
             --[[ l ]]l,
             --[[ v ]]x,
             --[[ d ]]d,
             --[[ r ]]r,
             --[[ h ]]hl >= hr and hl + 1 | 0 or hr + 1 | 0
-          ];
+          };
   end end  end 
 end end
 
@@ -2153,13 +2153,13 @@ function add$2(x, data, m) do
       if (d == data) then do
         return m;
       end else do
-        return --[[ Node ]][
+        return --[[ Node ]]{
                 --[[ l ]]l,
                 --[[ v ]]x,
                 --[[ d ]]data,
                 --[[ r ]]r,
                 --[[ h ]]m[--[[ h ]]4]
-              ];
+              };
       end end 
     end else if (c < 0) then do
       ll = add$2(x, data, l);
@@ -2177,13 +2177,13 @@ function add$2(x, data, m) do
       end end 
     end end  end 
   end else do
-    return --[[ Node ]][
+    return --[[ Node ]]{
             --[[ l : Empty ]]0,
             --[[ v ]]x,
             --[[ d ]]data,
             --[[ r : Empty ]]0,
             --[[ h ]]1
-          ];
+          };
   end end 
 end end
 
@@ -2230,10 +2230,10 @@ function find_first$2(f, _param) do
               continue ;
             end end 
           end else do
-            return --[[ tuple ]][
+            return --[[ tuple ]]{
                     v0,
                     d0
-                  ];
+                  };
           end end 
         end;
       end else do
@@ -2272,10 +2272,10 @@ function find_first_opt$2(f, _param) do
               continue ;
             end end 
           end else do
-            return --[[ tuple ]][
+            return --[[ tuple ]]{
                     v0,
                     d0
-                  ];
+                  };
           end end 
         end;
       end else do
@@ -2314,10 +2314,10 @@ function find_last$2(f, _param) do
               continue ;
             end end 
           end else do
-            return --[[ tuple ]][
+            return --[[ tuple ]]{
                     v0,
                     d0
-                  ];
+                  };
           end end 
         end;
       end else do
@@ -2356,10 +2356,10 @@ function find_last_opt$2(f, _param) do
               continue ;
             end end 
           end else do
-            return --[[ tuple ]][
+            return --[[ tuple ]]{
                     v0,
                     d0
-                  ];
+                  };
           end end 
         end;
       end else do
@@ -2415,10 +2415,10 @@ function min_binding$2(_param) do
         _param = l;
         continue ;
       end else do
-        return --[[ tuple ]][
+        return --[[ tuple ]]{
                 param[--[[ v ]]1],
                 param[--[[ d ]]2]
-              ];
+              };
       end end 
     end else do
       throw Caml_builtin_exceptions.not_found;
@@ -2435,10 +2435,10 @@ function min_binding_opt$2(_param) do
         _param = l;
         continue ;
       end else do
-        return --[[ tuple ]][
+        return --[[ tuple ]]{
                 param[--[[ v ]]1],
                 param[--[[ d ]]2]
-              ];
+              };
       end end 
     end else do
       return ;
@@ -2455,10 +2455,10 @@ function max_binding$2(_param) do
         _param = r;
         continue ;
       end else do
-        return --[[ tuple ]][
+        return --[[ tuple ]]{
                 param[--[[ v ]]1],
                 param[--[[ d ]]2]
-              ];
+              };
       end end 
     end else do
       throw Caml_builtin_exceptions.not_found;
@@ -2475,10 +2475,10 @@ function max_binding_opt$2(_param) do
         _param = r;
         continue ;
       end else do
-        return --[[ tuple ]][
+        return --[[ tuple ]]{
                 param[--[[ v ]]1],
                 param[--[[ d ]]2]
-              ];
+              };
       end end 
     end else do
       return ;
@@ -2495,10 +2495,10 @@ function remove_min_binding$2(param) do
       return param[--[[ r ]]3];
     end end 
   end else do
-    throw [
+    throw {
           Caml_builtin_exceptions.invalid_argument,
           "Map.remove_min_elt"
-        ];
+        };
   end end 
 end end
 
@@ -2558,13 +2558,13 @@ function update$2(x, f, m) do
         if (d == data) then do
           return m;
         end else do
-          return --[[ Node ]][
+          return --[[ Node ]]{
                   --[[ l ]]l,
                   --[[ v ]]x,
                   --[[ d ]]data,
                   --[[ r ]]r,
                   --[[ h ]]m[--[[ h ]]4]
-                ];
+                };
         end end 
       end else do
         return merge$4(l, r);
@@ -2587,13 +2587,13 @@ function update$2(x, f, m) do
   end else do
     match$1 = Curry._1(f, undefined);
     if (match$1 ~= undefined) then do
-      return --[[ Node ]][
+      return --[[ Node ]]{
               --[[ l : Empty ]]0,
               --[[ v ]]x,
               --[[ d ]]Caml_option.valFromOption(match$1),
               --[[ r : Empty ]]0,
               --[[ h ]]1
-            ];
+            };
     end else do
       return --[[ Empty ]]0;
     end end 
@@ -2619,13 +2619,13 @@ function map$2(f, param) do
     l$prime = map$2(f, param[--[[ l ]]0]);
     d$prime = Curry._1(f, param[--[[ d ]]2]);
     r$prime = map$2(f, param[--[[ r ]]3]);
-    return --[[ Node ]][
+    return --[[ Node ]]{
             --[[ l ]]l$prime,
             --[[ v ]]param[--[[ v ]]1],
             --[[ d ]]d$prime,
             --[[ r ]]r$prime,
             --[[ h ]]param[--[[ h ]]4]
-          ];
+          };
   end else do
     return --[[ Empty ]]0;
   end end 
@@ -2637,13 +2637,13 @@ function mapi$2(f, param) do
     l$prime = mapi$2(f, param[--[[ l ]]0]);
     d$prime = Curry._2(f, v, param[--[[ d ]]2]);
     r$prime = mapi$2(f, param[--[[ r ]]3]);
-    return --[[ Node ]][
+    return --[[ Node ]]{
             --[[ l ]]l$prime,
             --[[ v ]]v,
             --[[ d ]]d$prime,
             --[[ r ]]r$prime,
             --[[ h ]]param[--[[ h ]]4]
-          ];
+          };
   end else do
     return --[[ Empty ]]0;
   end end 
@@ -2760,32 +2760,32 @@ function split$2(x, param) do
     l = param[--[[ l ]]0];
     c = Caml_primitive.caml_int_compare(x, v);
     if (c == 0) then do
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               l,
               Caml_option.some(d),
               r
-            ];
+            };
     end else if (c < 0) then do
       match = split$2(x, l);
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               match[0],
               match[1],
               join$2(match[2], v, d, r)
-            ];
+            };
     end else do
       match$1 = split$2(x, r);
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               join$2(l, v, d, match$1[0]),
               match$1[1],
               match$1[2]
-            ];
+            };
     end end  end 
   end else do
-    return --[[ tuple ]][
+    return --[[ tuple ]]{
             --[[ Empty ]]0,
             undefined,
             --[[ Empty ]]0
-          ];
+          };
   end end 
 end end
 
@@ -2806,14 +2806,14 @@ function merge$5(f, s1, s2) do
     match$1 = split$2(v2, s1);
     return concat_or_join$2(merge$5(f, match$1[0], s2[--[[ l ]]0]), v2, Curry._3(f, v2, match$1[1], Caml_option.some(s2[--[[ d ]]2])), merge$5(f, match$1[2], s2[--[[ r ]]3]));
   end else do
-    throw [
+    throw {
           Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]][
+          --[[ tuple ]]{
             "map.ml",
             393,
             10
-          ]
-        ];
+          }
+        };
   end end 
 end end
 
@@ -2888,21 +2888,21 @@ function partition$2(p, param) do
     rf = match$1[1];
     rt = match$1[0];
     if (pvd) then do
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               join$2(lt, v, d, rt),
               concat$2(lf, rf)
-            ];
+            };
     end else do
-      return --[[ tuple ]][
+      return --[[ tuple ]]{
               concat$2(lt, rt),
               join$2(lf, v, d, rf)
-            ];
+            };
     end end 
   end else do
-    return --[[ tuple ]][
+    return --[[ tuple ]]{
             --[[ Empty ]]0,
             --[[ Empty ]]0
-          ];
+          };
   end end 
 end end
 
@@ -2911,12 +2911,12 @@ function cons_enum$2(_m, _e) do
     e = _e;
     m = _m;
     if (m) then do
-      _e = --[[ More ]][
+      _e = --[[ More ]]{
         m[--[[ v ]]1],
         m[--[[ d ]]2],
         m[--[[ r ]]3],
         e
-      ];
+      };
       _m = m[--[[ l ]]0];
       continue ;
     end else do
@@ -2993,13 +2993,13 @@ function bindings_aux$2(_accu, _param) do
     accu = _accu;
     if (param) then do
       _param = param[--[[ l ]]0];
-      _accu = --[[ :: ]][
-        --[[ tuple ]][
+      _accu = --[[ :: ]]{
+        --[[ tuple ]]{
           param[--[[ v ]]1],
           param[--[[ d ]]2]
-        ],
+        },
         bindings_aux$2(accu, param[--[[ r ]]3])
-      ];
+      };
       continue ;
     end else do
       return accu;
@@ -3050,7 +3050,7 @@ end;
 
 dummy_table = do
   size: 0,
-  methods: [--[[ () ]]0],
+  methods: {--[[ () ]]0},
   methods_by_name: --[[ Empty ]]0,
   methods_by_label: --[[ Empty ]]0,
   previous_states: --[[ [] ]]0,
@@ -3063,7 +3063,7 @@ table_count = do
   contents: 0
 end;
 
-dummy_met = --[[ obj_block ]][];
+dummy_met = --[[ obj_block ]]{};
 
 function fit_size(n) do
   if (n <= 2) then do
@@ -3152,13 +3152,13 @@ function set_method(table, label, element) do
   if (find$2(label, table.methods_by_label)) then do
     return put(table, label, element);
   end else do
-    table.hidden_meths = --[[ :: ]][
-      --[[ tuple ]][
+    table.hidden_meths = --[[ :: ]]{
+      --[[ tuple ]]{
         label,
         element
-      ],
+      },
       table.hidden_meths
-    ];
+    };
     return --[[ () ]]0;
   end end 
 end end
@@ -3194,17 +3194,17 @@ function narrow(table, vars, virt_meths, concr_meths) do
   concr_meth_labs = List.map((function (param) do
           return get_method_label(table, param);
         end end), concr_meths$1);
-  table.previous_states = --[[ :: ]][
-    --[[ tuple ]][
+  table.previous_states = --[[ :: ]]{
+    --[[ tuple ]]{
       table.methods_by_name,
       table.methods_by_label,
       table.hidden_meths,
       table.vars,
       virt_meth_labs,
       vars$1
-    ],
+    },
     table.previous_states
-  ];
+  };
   table.vars = fold((function (lab, info, tvars) do
           if (List.mem(lab, vars$1)) then do
             return add(lab, info, tvars);
@@ -3245,10 +3245,10 @@ function narrow(table, vars, virt_meths, concr_meths) do
           if (List.mem(met[0], virt_meth_labs)) then do
             return hm;
           end else do
-            return --[[ :: ]][
+            return --[[ :: ]]{
                     met,
                     hm
-                  ];
+                  };
           end end 
         end end), table.hidden_meths, --[[ [] ]]0);
   return --[[ () ]]0;
@@ -3267,10 +3267,10 @@ function widen(table) do
           if (List.mem(met[0], virt_meths)) then do
             return hm;
           end else do
-            return --[[ :: ]][
+            return --[[ :: ]]{
                     met,
                     hm
-                  ];
+                  };
           end end 
         end end), table.hidden_meths, match[2]);
   return --[[ () ]]0;
@@ -3302,7 +3302,7 @@ end end
 
 function to_array(arr) do
   if (Caml_obj.caml_equal(arr, 0)) then do
-    return [];
+    return {};
   end else do
     return arr;
   end end 
@@ -3328,14 +3328,14 @@ function get_variable(table, name) do
   end
   catch (exn)do
     if (exn == Caml_builtin_exceptions.not_found) then do
-      throw [
+      throw {
             Caml_builtin_exceptions.assert_failure,
-            --[[ tuple ]][
+            --[[ tuple ]]{
               "test_internalOO.ml",
               280,
               50
-            ]
-          ];
+            }
+          };
     end
      end 
     throw exn;
@@ -3349,16 +3349,16 @@ function get_variables(table, names) do
 end end
 
 function add_initializer(table, f) do
-  table.initializers = --[[ :: ]][
+  table.initializers = --[[ :: ]]{
     f,
     table.initializers
-  ];
+  };
   return --[[ () ]]0;
 end end
 
 function create_table(public_methods) do
   if (public_methods == 0) then do
-    return new_table([]);
+    return new_table({});
   end else do
     tags = __Array.map(public_method_label, public_methods);
     table = new_table(tags);
@@ -3383,32 +3383,32 @@ function inherits(cla, vals, virt_meths, concr_meths, param, top) do
   narrow(cla, vals, virt_meths, concr_meths);
   init = top and Curry._2(__super, cla, param[3]) or Curry._1(__super, cla);
   widen(cla);
-  return Caml_array.caml_array_concat(--[[ :: ]][
-              [init],
-              --[[ :: ]][
+  return Caml_array.caml_array_concat(--[[ :: ]]{
+              {init},
+              --[[ :: ]]{
                 __Array.map((function (param) do
                         return get_variable(cla, param);
                       end end), to_array(vals)),
-                --[[ :: ]][
+                --[[ :: ]]{
                   __Array.map((function (nm) do
                           return get_method(cla, get_method_label(cla, nm));
                         end end), to_array(concr_meths)),
                   --[[ [] ]]0
-                ]
-              ]
-            ]);
+                }
+              }
+            });
 end end
 
 function make_class(pub_meths, class_init) do
   table = create_table(pub_meths);
   env_init = Curry._1(class_init, table);
   init_class(table);
-  return --[[ tuple ]][
+  return --[[ tuple ]]{
           Curry._1(env_init, 0),
           class_init,
           env_init,
           0
-        ];
+        };
 end end
 
 function make_class_store(pub_meths, class_init, init_table) do
@@ -3422,17 +3422,17 @@ end end
 
 function dummy_class(loc) do
   undef = function (param) do
-    throw [
+    throw {
           Caml_builtin_exceptions.undefined_recursive_module,
           loc
-        ];
+        };
   end end;
-  return --[[ tuple ]][
+  return --[[ tuple ]]{
           undef,
           undef,
           undef,
           0
-        ];
+        };
 end end
 
 function create_object(table) do
@@ -3504,11 +3504,11 @@ function build_path(n, keys, tables) do
   end;
   r = res;
   for i = 0 , n , 1 do
-    r = --[[ Cons ]][
+    r = --[[ Cons ]]{
       Caml_array.caml_array_get(keys, i),
       r,
       --[[ Empty ]]0
-    ];
+    };
   end
   tables.data = r;
   return res;
@@ -3528,11 +3528,11 @@ function lookup_keys(i, keys, tables) do
         _tables = tables$1.next;
         continue ;
       end else do
-        next = --[[ Cons ]][
+        next = --[[ Cons ]]{
           key,
           --[[ Empty ]]0,
           --[[ Empty ]]0
-        ];
+        };
         tables$1.next = next;
         return build_path(i - 1 | 0, keys, next);
       end end  end 

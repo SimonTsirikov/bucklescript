@@ -41,7 +41,7 @@ end end
 
 dummy_table = do
   size: 0,
-  methods: [--[[ () ]]0],
+  methods: {--[[ () ]]0},
   methods_by_name: Belt_MapString.empty,
   methods_by_label: Belt_MapInt.empty,
   previous_states: --[[ [] ]]0,
@@ -54,7 +54,7 @@ table_count = do
   contents: 0
 end;
 
-dummy_met = --[[ obj_block ]][];
+dummy_met = --[[ obj_block ]]{};
 
 function fit_size(n) do
   if (n <= 2) then do
@@ -138,13 +138,13 @@ function set_method(table, label, element) do
     resize(array, label$1 + 1 | 0);
     return Caml_array.caml_array_set(array.methods, label$1, element$1);
   end else do
-    table.hidden_meths = --[[ :: ]][
-      --[[ tuple ]][
+    table.hidden_meths = --[[ :: ]]{
+      --[[ tuple ]]{
         label,
         element
-      ],
+      },
       table.hidden_meths
-    ];
+    };
     return --[[ () ]]0;
   end end 
 end end
@@ -180,17 +180,17 @@ function narrow(table, vars, virt_meths, concr_meths) do
   concr_meth_labs = List.map((function (param) do
           return get_method_label(table, param);
         end end), concr_meths$1);
-  table.previous_states = --[[ :: ]][
-    --[[ tuple ]][
+  table.previous_states = --[[ :: ]]{
+    --[[ tuple ]]{
       table.methods_by_name,
       table.methods_by_label,
       table.hidden_meths,
       table.vars,
       virt_meth_labs,
       vars$1
-    ],
+    },
     table.previous_states
-  ];
+  };
   table.vars = Belt_MapString.reduceU(table.vars, Belt_MapString.empty, (function (tvars, lab, info) do
           if (List.mem(lab, vars$1)) then do
             return Belt_MapString.set(tvars, lab, info);
@@ -220,10 +220,10 @@ function narrow(table, vars, virt_meths, concr_meths) do
           if (List.mem(met[0], virt_meth_labs)) then do
             return hm;
           end else do
-            return --[[ :: ]][
+            return --[[ :: ]]{
                     met,
                     hm
-                  ];
+                  };
           end end 
         end end), table.hidden_meths, --[[ [] ]]0);
   return --[[ () ]]0;
@@ -242,10 +242,10 @@ function widen(table) do
           if (List.mem(met[0], virt_meths)) then do
             return hm;
           end else do
-            return --[[ :: ]][
+            return --[[ :: ]]{
                     met,
                     hm
-                  ];
+                  };
           end end 
         end end), table.hidden_meths, match[2]);
   return --[[ () ]]0;
@@ -273,7 +273,7 @@ end end
 
 function to_array(arr) do
   if (Caml_obj.caml_equal(arr, 0)) then do
-    return [];
+    return {};
   end else do
     return arr;
   end end 
@@ -304,16 +304,16 @@ function get_variables(table, names) do
 end end
 
 function add_initializer(table, f) do
-  table.initializers = --[[ :: ]][
+  table.initializers = --[[ :: ]]{
     f,
     table.initializers
-  ];
+  };
   return --[[ () ]]0;
 end end
 
 function create_table(public_methods) do
   if (public_methods == 0) then do
-    return new_table([]);
+    return new_table({});
   end else do
     tags = __Array.map(public_method_label, public_methods);
     table = new_table(tags);
@@ -338,32 +338,32 @@ function inherits(cla, vals, virt_meths, concr_meths, param, top) do
   narrow(cla, vals, virt_meths, concr_meths);
   init = top and Curry._2(__super, cla, param[3]) or Curry._1(__super, cla);
   widen(cla);
-  return Caml_array.caml_array_concat(--[[ :: ]][
-              [init],
-              --[[ :: ]][
+  return Caml_array.caml_array_concat(--[[ :: ]]{
+              {init},
+              --[[ :: ]]{
                 __Array.map((function (param) do
                         return Belt_MapString.getExn(cla.vars, param);
                       end end), to_array(vals)),
-                --[[ :: ]][
+                --[[ :: ]]{
                   __Array.map((function (nm) do
                           return get_method(cla, get_method_label(cla, nm));
                         end end), to_array(concr_meths)),
                   --[[ [] ]]0
-                ]
-              ]
-            ]);
+                }
+              }
+            });
 end end
 
 function make_class(pub_meths, class_init) do
   table = create_table(pub_meths);
   env_init = Curry._1(class_init, table);
   init_class(table);
-  return --[[ tuple ]][
+  return --[[ tuple ]]{
           Curry._1(env_init, 0),
           class_init,
           env_init,
           0
-        ];
+        };
 end end
 
 function make_class_store(pub_meths, class_init, init_table) do
@@ -441,14 +441,14 @@ function set_data(tables, v) do
     tables[--[[ data ]]1] = v;
     return --[[ () ]]0;
   end else do
-    throw [
+    throw {
           Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]][
+          --[[ tuple ]]{
             "camlinternalOO.ml",
             484,
             13
-          ]
-        ];
+          }
+        };
   end end 
 end end
 
@@ -457,14 +457,14 @@ function set_next(tables, v) do
     tables[--[[ next ]]2] = v;
     return --[[ () ]]0;
   end else do
-    throw [
+    throw {
           Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]][
+          --[[ tuple ]]{
             "camlinternalOO.ml",
             487,
             13
-          ]
-        ];
+          }
+        };
   end end 
 end end
 
@@ -472,14 +472,14 @@ function get_key(param) do
   if (param) then do
     return param[--[[ key ]]0];
   end else do
-    throw [
+    throw {
           Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]][
+          --[[ tuple ]]{
             "camlinternalOO.ml",
             490,
             13
-          ]
-        ];
+          }
+        };
   end end 
 end end
 
@@ -487,14 +487,14 @@ function get_data(param) do
   if (param) then do
     return param[--[[ data ]]1];
   end else do
-    throw [
+    throw {
           Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]][
+          --[[ tuple ]]{
             "camlinternalOO.ml",
             493,
             13
-          ]
-        ];
+          }
+        };
   end end 
 end end
 
@@ -502,30 +502,30 @@ function get_next(param) do
   if (param) then do
     return param[--[[ next ]]2];
   end else do
-    throw [
+    throw {
           Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]][
+          --[[ tuple ]]{
             "camlinternalOO.ml",
             496,
             13
-          ]
-        ];
+          }
+        };
   end end 
 end end
 
 function build_path(n, keys, tables) do
-  res = --[[ Cons ]][
+  res = --[[ Cons ]]{
     --[[ key ]]0,
     --[[ data : Empty ]]0,
     --[[ next : Empty ]]0
-  ];
+  };
   r = res;
   for i = 0 , n , 1 do
-    r = --[[ Cons ]][
+    r = --[[ Cons ]]{
       --[[ key ]]Caml_array.caml_array_get(keys, i),
       --[[ data ]]r,
       --[[ next : Empty ]]0
-    ];
+    };
   end
   set_data(tables, r);
   return res;
@@ -544,14 +544,14 @@ function lookup_keys(i, keys, tables) do
         if (tables_data) then do
           return lookup_keys(i - 1 | 0, keys, tables_data);
         end else do
-          throw [
+          throw {
                 Caml_builtin_exceptions.assert_failure,
-                --[[ tuple ]][
+                --[[ tuple ]]{
                   "camlinternalOO.ml",
                   514,
                   17
-                ]
-              ];
+                }
+              };
         end end 
       end else do
         next = get_next(tables$1);
@@ -559,11 +559,11 @@ function lookup_keys(i, keys, tables) do
           _tables = next;
           continue ;
         end else do
-          next$1 = --[[ Cons ]][
+          next$1 = --[[ Cons ]]{
             --[[ key ]]key,
             --[[ data : Empty ]]0,
             --[[ next : Empty ]]0
-          ];
+          };
           set_next(tables$1, next$1);
           return build_path(i - 1 | 0, keys, next$1);
         end end 

@@ -20,34 +20,34 @@ end;
 function add_test(loc, test) do
   counter.contents = counter.contents + 1 | 0;
   id = loc .. (" id " .. String(counter.contents));
-  suites.contents = --[[ :: ]][
-    --[[ tuple ]][
+  suites.contents = --[[ :: ]]{
+    --[[ tuple ]]{
       id,
       test
-    ],
+    },
     suites.contents
-  ];
+  };
   return --[[ () ]]0;
 end end
 
 function eq(loc, x, y) do
   return add_test(loc, (function (param) do
-                return --[[ Eq ]]Block.__(0, [
+                return --[[ Eq ]]Block.__(0, {
                           x,
                           y
-                        ]);
+                        });
               end end));
 end end
 
 function false_(loc) do
   return add_test(loc, (function (param) do
-                return --[[ Ok ]]Block.__(4, [false]);
+                return --[[ Ok ]]Block.__(4, {false});
               end end));
 end end
 
 function true_(loc) do
   return add_test(loc, (function (param) do
-                return --[[ Ok ]]Block.__(4, [true]);
+                return --[[ Ok ]]Block.__(4, {true});
               end end));
 end end
 
@@ -56,42 +56,42 @@ v = JSON.parse(" { \"x\" : [1, 2, 3 ] } ");
 add_test("File \"js_json_test.ml\", line 23, characters 11-18", (function (param) do
         ty = Js_json.classify(v);
         if (typeof ty == "number" or ty.tag ~= --[[ JSONObject ]]2) then do
-          return --[[ Ok ]]Block.__(4, [false]);
+          return --[[ Ok ]]Block.__(4, {false});
         end else do
           match = Js_dict.get(ty[0], "x");
           if (match ~= undefined) then do
             ty2 = Js_json.classify(Caml_option.valFromOption(match));
             if (typeof ty2 == "number" or ty2.tag ~= --[[ JSONArray ]]3) then do
-              return --[[ Ok ]]Block.__(4, [false]);
+              return --[[ Ok ]]Block.__(4, {false});
             end else do
               ty2[0].forEach((function (x) do
                       ty3 = Js_json.classify(x);
                       if (typeof ty3 == "number") then do
-                        throw [
+                        throw {
                               Caml_builtin_exceptions.assert_failure,
-                              --[[ tuple ]][
+                              --[[ tuple ]]{
                                 "js_json_test.ml",
                                 37,
                                 21
-                              ]
-                            ];
+                              }
+                            };
                       end else if (ty3.tag == --[[ JSONNumber ]]1) then do
                         return --[[ () ]]0;
                       end else do
-                        throw [
+                        throw {
                               Caml_builtin_exceptions.assert_failure,
-                              --[[ tuple ]][
+                              --[[ tuple ]]{
                                 "js_json_test.ml",
                                 37,
                                 21
-                              ]
-                            ];
+                              }
+                            };
                       end end  end 
                     end end));
-              return --[[ Ok ]]Block.__(4, [true]);
+              return --[[ Ok ]]Block.__(4, {true});
             end end 
           end else do
-            return --[[ Ok ]]Block.__(4, [false]);
+            return --[[ Ok ]]Block.__(4, {false});
           end end 
         end end 
       end end));
@@ -105,18 +105,18 @@ ty = Js_json.classify(json);
 if (typeof ty == "number") then do
   if (ty >= 2) then do
     add_test("File \"js_json_test.ml\", line 54, characters 30-37", (function (param) do
-            return --[[ Ok ]]Block.__(4, [true]);
+            return --[[ Ok ]]Block.__(4, {true});
           end end));
   end else do
     console.log(ty);
     add_test("File \"js_json_test.ml\", line 55, characters 27-34", (function (param) do
-            return --[[ Ok ]]Block.__(4, [false]);
+            return --[[ Ok ]]Block.__(4, {false});
           end end));
   end end 
 end else do
   console.log(ty);
   add_test("File \"js_json_test.ml\", line 55, characters 27-34", (function (param) do
-          return --[[ Ok ]]Block.__(4, [false]);
+          return --[[ Ok ]]Block.__(4, {false});
         end end));
 end end 
 
@@ -126,11 +126,11 @@ ty$1 = Js_json.classify(json$1);
 
 if (typeof ty$1 == "number") then do
   add_test("File \"js_json_test.ml\", line 65, characters 16-23", (function (param) do
-          return --[[ Ok ]]Block.__(4, [false]);
+          return --[[ Ok ]]Block.__(4, {false});
         end end));
 end else if (ty$1.tag) then do
   add_test("File \"js_json_test.ml\", line 65, characters 16-23", (function (param) do
-          return --[[ Ok ]]Block.__(4, [false]);
+          return --[[ Ok ]]Block.__(4, {false});
         end end));
 end else do
   eq("File \"js_json_test.ml\", line 64, characters 31-38", ty$1[0], "test string");
@@ -150,7 +150,7 @@ end end
 
 if (exit == 1) then do
   add_test("File \"js_json_test.ml\", line 75, characters 18-25", (function (param) do
-          return --[[ Ok ]]Block.__(4, [false]);
+          return --[[ Ok ]]Block.__(4, {false});
         end end));
 end
  end 
@@ -169,7 +169,7 @@ end end
 
 if (exit$1 == 1) then do
   add_test("File \"js_json_test.ml\", line 85, characters 18-25", (function (param) do
-          return --[[ Ok ]]Block.__(4, [false]);
+          return --[[ Ok ]]Block.__(4, {false});
         end end));
 end
  end 
@@ -186,14 +186,14 @@ function test(v) do
           return eq("File \"js_json_test.ml\", line 94, characters 30-37", true, v);end end end 
        if ___conditional___ = 2--[[ JSONNull ]] then do
           return add_test("File \"js_json_test.ml\", line 96, characters 18-25", (function (param) do
-                        return --[[ Ok ]]Block.__(4, [false]);
+                        return --[[ Ok ]]Block.__(4, {false});
                       end end));end end end 
        do
       
     end
   end else do
     return add_test("File \"js_json_test.ml\", line 96, characters 18-25", (function (param) do
-                  return --[[ Ok ]]Block.__(4, [false]);
+                  return --[[ Ok ]]Block.__(4, {false});
                 end end));
   end end 
 end end
@@ -206,14 +206,14 @@ function option_get(param) do
   if (param ~= undefined) then do
     return Caml_option.valFromOption(param);
   end else do
-    throw [
+    throw {
           Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]][
+          --[[ tuple ]]{
             "js_json_test.ml",
             102,
             36
-          ]
-        ];
+          }
+        };
   end end 
 end end
 
@@ -229,46 +229,46 @@ ty$4 = Js_json.classify(json$4);
 
 if (typeof ty$4 == "number") then do
   add_test("File \"js_json_test.ml\", line 134, characters 16-23", (function (param) do
-          return --[[ Ok ]]Block.__(4, [false]);
+          return --[[ Ok ]]Block.__(4, {false});
         end end));
 end else if (ty$4.tag == --[[ JSONObject ]]2) then do
   x = ty$4[0];
   ta = Js_json.classify(option_get(Js_dict.get(x, "a")));
   if (typeof ta == "number") then do
     add_test("File \"js_json_test.ml\", line 132, characters 18-25", (function (param) do
-            return --[[ Ok ]]Block.__(4, [false]);
+            return --[[ Ok ]]Block.__(4, {false});
           end end));
   end else if (ta.tag) then do
     add_test("File \"js_json_test.ml\", line 132, characters 18-25", (function (param) do
-            return --[[ Ok ]]Block.__(4, [false]);
+            return --[[ Ok ]]Block.__(4, {false});
           end end));
   end else if (ta[0] ~= "test string") then do
     add_test("File \"js_json_test.ml\", line 123, characters 18-25", (function (param) do
-            return --[[ Ok ]]Block.__(4, [false]);
+            return --[[ Ok ]]Block.__(4, {false});
           end end));
   end else do
     ty$5 = Js_json.classify(option_get(Js_dict.get(x, "b")));
     if (typeof ty$5 == "number") then do
       add_test("File \"js_json_test.ml\", line 130, characters 22-29", (function (param) do
-              return --[[ Ok ]]Block.__(4, [false]);
+              return --[[ Ok ]]Block.__(4, {false});
             end end));
     end else if (ty$5.tag == --[[ JSONNumber ]]1) then do
       b = ty$5[0];
       add_test("File \"js_json_test.ml\", line 129, characters 19-26", (function (param) do
-              return --[[ Approx ]]Block.__(5, [
+              return --[[ Approx ]]Block.__(5, {
                         123.0,
                         b
-                      ]);
+                      });
             end end));
     end else do
       add_test("File \"js_json_test.ml\", line 130, characters 22-29", (function (param) do
-              return --[[ Ok ]]Block.__(4, [false]);
+              return --[[ Ok ]]Block.__(4, {false});
             end end));
     end end  end 
   end end  end  end 
 end else do
   add_test("File \"js_json_test.ml\", line 134, characters 16-23", (function (param) do
-          return --[[ Ok ]]Block.__(4, [false]);
+          return --[[ Ok ]]Block.__(4, {false});
         end end));
 end end  end 
 
@@ -276,7 +276,7 @@ function eq_at_i(loc, json, i, kind, expected) do
   ty = Js_json.classify(json);
   if (typeof ty == "number") then do
     return add_test(loc, (function (param) do
-                  return --[[ Ok ]]Block.__(4, [false]);
+                  return --[[ Ok ]]Block.__(4, {false});
                 end end));
   end else if (ty.tag == --[[ JSONArray ]]3) then do
     ty$1 = Js_json.classify(Caml_array.caml_array_get(ty[0], i));
@@ -285,11 +285,11 @@ function eq_at_i(loc, json, i, kind, expected) do
        if ___conditional___ = 0--[[ String ]] then do
           if (typeof ty$1 == "number") then do
             return add_test(loc, (function (param) do
-                          return --[[ Ok ]]Block.__(4, [false]);
+                          return --[[ Ok ]]Block.__(4, {false});
                         end end));
           end else if (ty$1.tag) then do
             return add_test(loc, (function (param) do
-                          return --[[ Ok ]]Block.__(4, [false]);
+                          return --[[ Ok ]]Block.__(4, {false});
                         end end));
           end else do
             return eq(loc, ty$1[0], expected);
@@ -297,37 +297,37 @@ function eq_at_i(loc, json, i, kind, expected) do
        if ___conditional___ = 1--[[ Number ]] then do
           if (typeof ty$1 == "number") then do
             return add_test(loc, (function (param) do
-                          return --[[ Ok ]]Block.__(4, [false]);
+                          return --[[ Ok ]]Block.__(4, {false});
                         end end));
           end else if (ty$1.tag == --[[ JSONNumber ]]1) then do
             return eq(loc, ty$1[0], expected);
           end else do
             return add_test(loc, (function (param) do
-                          return --[[ Ok ]]Block.__(4, [false]);
+                          return --[[ Ok ]]Block.__(4, {false});
                         end end));
           end end  end end end end 
        if ___conditional___ = 2--[[ Object ]] then do
           if (typeof ty$1 == "number") then do
             return add_test(loc, (function (param) do
-                          return --[[ Ok ]]Block.__(4, [false]);
+                          return --[[ Ok ]]Block.__(4, {false});
                         end end));
           end else if (ty$1.tag == --[[ JSONObject ]]2) then do
             return eq(loc, ty$1[0], expected);
           end else do
             return add_test(loc, (function (param) do
-                          return --[[ Ok ]]Block.__(4, [false]);
+                          return --[[ Ok ]]Block.__(4, {false});
                         end end));
           end end  end end end end 
        if ___conditional___ = 3--[[ Array ]] then do
           if (typeof ty$1 == "number") then do
             return add_test(loc, (function (param) do
-                          return --[[ Ok ]]Block.__(4, [false]);
+                          return --[[ Ok ]]Block.__(4, {false});
                         end end));
           end else if (ty$1.tag == --[[ JSONArray ]]3) then do
             return eq(loc, ty$1[0], expected);
           end else do
             return add_test(loc, (function (param) do
-                          return --[[ Ok ]]Block.__(4, [false]);
+                          return --[[ Ok ]]Block.__(4, {false});
                         end end));
           end end  end end end end 
        if ___conditional___ = 4--[[ Boolean ]] then do
@@ -340,30 +340,30 @@ function eq_at_i(loc, json, i, kind, expected) do
                   return eq(loc, true, expected);end end end 
                if ___conditional___ = 2--[[ JSONNull ]] then do
                   return add_test(loc, (function (param) do
-                                return --[[ Ok ]]Block.__(4, [false]);
+                                return --[[ Ok ]]Block.__(4, {false});
                               end end));end end end 
                do
               
             end
           end else do
             return add_test(loc, (function (param) do
-                          return --[[ Ok ]]Block.__(4, [false]);
+                          return --[[ Ok ]]Block.__(4, {false});
                         end end));
           end end end end end 
        if ___conditional___ = 5--[[ Null ]] then do
           if (typeof ty$1 == "number") then do
             if (ty$1 >= 2) then do
               return add_test(loc, (function (param) do
-                            return --[[ Ok ]]Block.__(4, [true]);
+                            return --[[ Ok ]]Block.__(4, {true});
                           end end));
             end else do
               return add_test(loc, (function (param) do
-                            return --[[ Ok ]]Block.__(4, [false]);
+                            return --[[ Ok ]]Block.__(4, {false});
                           end end));
             end end 
           end else do
             return add_test(loc, (function (param) do
-                          return --[[ Ok ]]Block.__(4, [false]);
+                          return --[[ Ok ]]Block.__(4, {false});
                         end end));
           end end end end end 
        do
@@ -371,18 +371,18 @@ function eq_at_i(loc, json, i, kind, expected) do
     end
   end else do
     return add_test(loc, (function (param) do
-                  return --[[ Ok ]]Block.__(4, [false]);
+                  return --[[ Ok ]]Block.__(4, {false});
                 end end));
   end end  end 
 end end
 
 json$5 = JSON.parse(JSON.stringify(__Array.map((function (prim) do
                 return prim;
-              end end), [
+              end end), {
               "string 0",
               "string 1",
               "string 2"
-            ])));
+            })));
 
 eq_at_i("File \"js_json_test.ml\", line 193, characters 10-17", json$5, 0, --[[ String ]]0, "string 0");
 
@@ -390,11 +390,11 @@ eq_at_i("File \"js_json_test.ml\", line 194, characters 10-17", json$5, 1, --[[ 
 
 eq_at_i("File \"js_json_test.ml\", line 195, characters 10-17", json$5, 2, --[[ String ]]0, "string 2");
 
-json$6 = JSON.parse(JSON.stringify([
+json$6 = JSON.parse(JSON.stringify({
           "string 0",
           "string 1",
           "string 2"
-        ]));
+        }));
 
 eq_at_i("File \"js_json_test.ml\", line 205, characters 10-17", json$6, 0, --[[ String ]]0, "string 0");
 
@@ -402,11 +402,11 @@ eq_at_i("File \"js_json_test.ml\", line 206, characters 10-17", json$6, 1, --[[ 
 
 eq_at_i("File \"js_json_test.ml\", line 207, characters 10-17", json$6, 2, --[[ String ]]0, "string 2");
 
-a = [
+a = {
   1.0000001,
   10000000000.1,
   123.0
-];
+};
 
 json$7 = JSON.parse(JSON.stringify(a));
 
@@ -416,11 +416,11 @@ eq_at_i("File \"js_json_test.ml\", line 220, characters 10-17", json$7, 1, --[[ 
 
 eq_at_i("File \"js_json_test.ml\", line 221, characters 10-17", json$7, 2, --[[ Number ]]1, Caml_array.caml_array_get(a, 2));
 
-a$1 = [
+a$1 = {
   0,
   -1347440721,
   -268391749
-];
+};
 
 json$8 = JSON.parse(JSON.stringify(__Array.map((function (prim) do
                 return prim;
@@ -432,11 +432,11 @@ eq_at_i("File \"js_json_test.ml\", line 235, characters 10-17", json$8, 1, --[[ 
 
 eq_at_i("File \"js_json_test.ml\", line 236, characters 10-17", json$8, 2, --[[ Number ]]1, Caml_array.caml_array_get(a$1, 2));
 
-a$2 = [
+a$2 = {
   true,
   false,
   true
-];
+};
 
 json$9 = JSON.parse(JSON.stringify(a$2));
 
@@ -453,10 +453,10 @@ function make_d(s, i) do
   return d;
 end end
 
-a$3 = [
+a$3 = {
   make_d("aaa", 123),
   make_d("bbb", 456)
-];
+};
 
 json$10 = JSON.parse(JSON.stringify(a$3));
 
@@ -464,55 +464,55 @@ ty$6 = Js_json.classify(json$10);
 
 if (typeof ty$6 == "number") then do
   add_test("File \"js_json_test.ml\", line 282, characters 16-23", (function (param) do
-          return --[[ Ok ]]Block.__(4, [false]);
+          return --[[ Ok ]]Block.__(4, {false});
         end end));
 end else if (ty$6.tag == --[[ JSONArray ]]3) then do
   ty$7 = Js_json.classify(Caml_array.caml_array_get(ty$6[0], 1));
   if (typeof ty$7 == "number") then do
     add_test("File \"js_json_test.ml\", line 280, characters 18-25", (function (param) do
-            return --[[ Ok ]]Block.__(4, [false]);
+            return --[[ Ok ]]Block.__(4, {false});
           end end));
   end else if (ty$7.tag == --[[ JSONObject ]]2) then do
     ty$8 = Js_json.classify(option_get(Js_dict.get(ty$7[0], "a")));
     if (typeof ty$8 == "number") then do
       add_test("File \"js_json_test.ml\", line 278, characters 20-27", (function (param) do
-              return --[[ Ok ]]Block.__(4, [false]);
+              return --[[ Ok ]]Block.__(4, {false});
             end end));
     end else if (ty$8.tag) then do
       add_test("File \"js_json_test.ml\", line 278, characters 20-27", (function (param) do
-              return --[[ Ok ]]Block.__(4, [false]);
+              return --[[ Ok ]]Block.__(4, {false});
             end end));
     end else do
       eq("File \"js_json_test.ml\", line 277, characters 40-47", ty$8[0], "bbb");
     end end  end 
   end else do
     add_test("File \"js_json_test.ml\", line 280, characters 18-25", (function (param) do
-            return --[[ Ok ]]Block.__(4, [false]);
+            return --[[ Ok ]]Block.__(4, {false});
           end end));
   end end  end 
 end else do
   add_test("File \"js_json_test.ml\", line 282, characters 16-23", (function (param) do
-          return --[[ Ok ]]Block.__(4, [false]);
+          return --[[ Ok ]]Block.__(4, {false});
         end end));
 end end  end 
 
 try do
   JSON.parse("{{ A}");
   add_test("File \"js_json_test.ml\", line 288, characters 11-18", (function (param) do
-          return --[[ Ok ]]Block.__(4, [false]);
+          return --[[ Ok ]]Block.__(4, {false});
         end end));
 end
 catch (exn)do
   add_test("File \"js_json_test.ml\", line 291, characters 10-17", (function (param) do
-          return --[[ Ok ]]Block.__(4, [true]);
+          return --[[ Ok ]]Block.__(4, {true});
         end end));
 end
 
-eq("File \"js_json_test.ml\", line 295, characters 12-19", JSON.stringify([
+eq("File \"js_json_test.ml\", line 295, characters 12-19", JSON.stringify({
           1,
           2,
           3
-        ]), "[1,2,3]");
+        }), "[1,2,3]");
 
 eq("File \"js_json_test.ml\", line 299, characters 2-9", JSON.stringify(do
           foo: 1,
@@ -530,7 +530,7 @@ eq("File \"js_json_test.ml\", line 308, characters 5-12", Js_json.decodeString("
 
 eq("File \"js_json_test.ml\", line 310, characters 5-12", Js_json.decodeString(true), undefined);
 
-eq("File \"js_json_test.ml\", line 312, characters 5-12", Js_json.decodeString([]), undefined);
+eq("File \"js_json_test.ml\", line 312, characters 5-12", Js_json.decodeString({}), undefined);
 
 eq("File \"js_json_test.ml\", line 314, characters 5-12", Js_json.decodeString(null), undefined);
 
@@ -542,7 +542,7 @@ eq("File \"js_json_test.ml\", line 322, characters 5-12", Js_json.decodeNumber("
 
 eq("File \"js_json_test.ml\", line 324, characters 5-12", Js_json.decodeNumber(true), undefined);
 
-eq("File \"js_json_test.ml\", line 326, characters 5-12", Js_json.decodeNumber([]), undefined);
+eq("File \"js_json_test.ml\", line 326, characters 5-12", Js_json.decodeNumber({}), undefined);
 
 eq("File \"js_json_test.ml\", line 328, characters 5-12", Js_json.decodeNumber(null), undefined);
 
@@ -554,7 +554,7 @@ eq("File \"js_json_test.ml\", line 336, characters 5-12", Js_json.decodeObject("
 
 eq("File \"js_json_test.ml\", line 338, characters 5-12", Js_json.decodeObject(true), undefined);
 
-eq("File \"js_json_test.ml\", line 340, characters 5-12", Js_json.decodeObject([]), undefined);
+eq("File \"js_json_test.ml\", line 340, characters 5-12", Js_json.decodeObject({}), undefined);
 
 eq("File \"js_json_test.ml\", line 342, characters 5-12", Js_json.decodeObject(null), undefined);
 
@@ -566,7 +566,7 @@ eq("File \"js_json_test.ml\", line 351, characters 5-12", Js_json.decodeArray("t
 
 eq("File \"js_json_test.ml\", line 353, characters 5-12", Js_json.decodeArray(true), undefined);
 
-eq("File \"js_json_test.ml\", line 355, characters 5-12", Js_json.decodeArray([]), []);
+eq("File \"js_json_test.ml\", line 355, characters 5-12", Js_json.decodeArray({}), {});
 
 eq("File \"js_json_test.ml\", line 357, characters 5-12", Js_json.decodeArray(null), undefined);
 
@@ -578,7 +578,7 @@ eq("File \"js_json_test.ml\", line 365, characters 5-12", Js_json.decodeBoolean(
 
 eq("File \"js_json_test.ml\", line 367, characters 5-12", Js_json.decodeBoolean(true), true);
 
-eq("File \"js_json_test.ml\", line 369, characters 5-12", Js_json.decodeBoolean([]), undefined);
+eq("File \"js_json_test.ml\", line 369, characters 5-12", Js_json.decodeBoolean({}), undefined);
 
 eq("File \"js_json_test.ml\", line 371, characters 5-12", Js_json.decodeBoolean(null), undefined);
 
@@ -590,7 +590,7 @@ eq("File \"js_json_test.ml\", line 379, characters 5-12", Js_json.decodeNull("te
 
 eq("File \"js_json_test.ml\", line 381, characters 5-12", Js_json.decodeNull(true), undefined);
 
-eq("File \"js_json_test.ml\", line 383, characters 5-12", Js_json.decodeNull([]), undefined);
+eq("File \"js_json_test.ml\", line 383, characters 5-12", Js_json.decodeNull({}), undefined);
 
 eq("File \"js_json_test.ml\", line 385, characters 5-12", Js_json.decodeNull(null), null);
 

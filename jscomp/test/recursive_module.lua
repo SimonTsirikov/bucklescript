@@ -29,46 +29,46 @@ Xx = do
     end end)
 end;
 
-Int3 = Caml_module.init_mod(--[[ tuple ]][
+Int3 = Caml_module.init_mod(--[[ tuple ]]{
       "recursive_module.ml",
       27,
       6
-    ], --[[ Module ]]Block.__(0, [[--[[ tuple ]][
+    }, --[[ Module ]]Block.__(0, {{--[[ tuple ]]{
             --[[ Function ]]0,
             "u"
-          ]]]));
+          }}}));
 
-Caml_module.update_mod(--[[ Module ]]Block.__(0, [[--[[ tuple ]][
+Caml_module.update_mod(--[[ Module ]]Block.__(0, {{--[[ tuple ]]{
             --[[ Function ]]0,
             "u"
-          ]]]), Int3, Int3);
+          }}}), Int3, Int3);
 
-Inta = Caml_module.init_mod(--[[ tuple ]][
+Inta = Caml_module.init_mod(--[[ tuple ]]{
       "recursive_module.ml",
       31,
       6
-    ], --[[ Module ]]Block.__(0, [[--[[ tuple ]][
+    }, --[[ Module ]]Block.__(0, {{--[[ tuple ]]{
             --[[ Lazy ]]1,
             "a"
-          ]]]));
+          }}}));
 
-Intb = Caml_module.init_mod(--[[ tuple ]][
+Intb = Caml_module.init_mod(--[[ tuple ]]{
       "recursive_module.ml",
       36,
       6
-    ], --[[ Module ]]Block.__(0, [[--[[ tuple ]][
+    }, --[[ Module ]]Block.__(0, {{--[[ tuple ]]{
             --[[ Lazy ]]1,
             "a"
-          ]]]));
+          }}}));
 
 a = Caml_obj.caml_lazy_make((function (param) do
         return CamlinternalLazy.force(Intb.a);
       end end));
 
-Caml_module.update_mod(--[[ Module ]]Block.__(0, [[--[[ tuple ]][
+Caml_module.update_mod(--[[ Module ]]Block.__(0, {{--[[ tuple ]]{
             --[[ Lazy ]]1,
             "a"
-          ]]]), Inta, do
+          }}}), Inta, do
       a: a
     end);
 
@@ -76,10 +76,10 @@ a$1 = Caml_obj.caml_lazy_make((function (param) do
         return CamlinternalLazy.force(Inta.a) + 1 | 0;
       end end));
 
-Caml_module.update_mod(--[[ Module ]]Block.__(0, [[--[[ tuple ]][
+Caml_module.update_mod(--[[ Module ]]Block.__(0, {{--[[ tuple ]]{
             --[[ Lazy ]]1,
             "a"
-          ]]]), Intb, do
+          }}}), Intb, do
       a: a$1
     end);
 
@@ -98,39 +98,39 @@ end
 
 eq("File \"recursive_module.ml\", line 41, characters 3-10", -1, tmp);
 
-Inta$1 = Caml_module.init_mod(--[[ tuple ]][
+Inta$1 = Caml_module.init_mod(--[[ tuple ]]{
       "recursive_module.ml",
       48,
       8
-    ], --[[ Module ]]Block.__(0, [[--[[ tuple ]][
+    }, --[[ Module ]]Block.__(0, {{--[[ tuple ]]{
             --[[ Lazy ]]1,
             "a"
-          ]]]));
+          }}}));
 
-Intb$1 = Caml_module.init_mod(--[[ tuple ]][
+Intb$1 = Caml_module.init_mod(--[[ tuple ]]{
       "recursive_module.ml",
       53,
       8
-    ], --[[ Module ]]Block.__(0, [[--[[ tuple ]][
+    }, --[[ Module ]]Block.__(0, {{--[[ tuple ]]{
             --[[ Lazy ]]1,
             "a"
-          ]]]));
+          }}}));
 
 a$2 = Caml_obj.caml_lazy_make((function (param) do
         return CamlinternalLazy.force(Intb$1.a) + 1 | 0;
       end end));
 
-Caml_module.update_mod(--[[ Module ]]Block.__(0, [[--[[ tuple ]][
+Caml_module.update_mod(--[[ Module ]]Block.__(0, {{--[[ tuple ]]{
             --[[ Lazy ]]1,
             "a"
-          ]]]), Inta$1, do
+          }}}), Inta$1, do
       a: a$2
     end);
 
-Caml_module.update_mod(--[[ Module ]]Block.__(0, [[--[[ tuple ]][
+Caml_module.update_mod(--[[ Module ]]Block.__(0, {{--[[ tuple ]]{
             --[[ Lazy ]]1,
             "a"
-          ]]]), Intb$1, do
+          }}}), Intb$1, do
       a: 2
     end);
 

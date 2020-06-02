@@ -29,10 +29,10 @@ end end
 
 function sub(b, ofs, len) do
   if (ofs < 0 or len < 0 or ofs > (b.position - len | 0)) then do
-    throw [
+    throw {
           Caml_builtin_exceptions.invalid_argument,
           "Buffer.sub"
-        ];
+        };
   end
    end 
   return Bytes.sub_string(b.buffer, ofs, len);
@@ -40,10 +40,10 @@ end end
 
 function blit(src, srcoff, dst, dstoff, len) do
   if (len < 0 or srcoff < 0 or srcoff > (src.position - len | 0) or dstoff < 0 or dstoff > (#dst - len | 0)) then do
-    throw [
+    throw {
           Caml_builtin_exceptions.invalid_argument,
           "Buffer.blit"
-        ];
+        };
   end
    end 
   return Caml_bytes.caml_blit_bytes(src.buffer, srcoff, dst, dstoff, len);
@@ -51,10 +51,10 @@ end end
 
 function nth(b, ofs) do
   if (ofs < 0 or ofs >= b.position) then do
-    throw [
+    throw {
           Caml_builtin_exceptions.invalid_argument,
           "Buffer.nth"
-        ];
+        };
   end
    end 
   return b.buffer[ofs];
@@ -103,14 +103,14 @@ end end
 function add_utf_8_uchar(b, u) do
   u$1 = u;
   if (u$1 < 0) then do
-    throw [
+    throw {
           Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]][
+          --[[ tuple ]]{
             "buffer.ml",
             90,
             19
-          ]
-        ];
+          }
+        };
   end
    end 
   if (u$1 <= 127) then do
@@ -149,28 +149,28 @@ function add_utf_8_uchar(b, u) do
     b.position = pos$2 + 4 | 0;
     return --[[ () ]]0;
   end else do
-    throw [
+    throw {
           Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]][
+          --[[ tuple ]]{
             "buffer.ml",
             123,
             8
-          ]
-        ];
+          }
+        };
   end end  end  end  end 
 end end
 
 function add_utf_16be_uchar(b, u) do
   u$1 = u;
   if (u$1 < 0) then do
-    throw [
+    throw {
           Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]][
+          --[[ tuple ]]{
             "buffer.ml",
             126,
             19
-          ]
-        ];
+          }
+        };
   end
    end 
   if (u$1 <= 65535) then do
@@ -199,28 +199,28 @@ function add_utf_16be_uchar(b, u) do
     b.position = pos$1 + 4 | 0;
     return --[[ () ]]0;
   end else do
-    throw [
+    throw {
           Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]][
+          --[[ tuple ]]{
             "buffer.ml",
             144,
             8
-          ]
-        ];
+          }
+        };
   end end  end 
 end end
 
 function add_utf_16le_uchar(b, u) do
   u$1 = u;
   if (u$1 < 0) then do
-    throw [
+    throw {
           Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]][
+          --[[ tuple ]]{
             "buffer.ml",
             147,
             19
-          ]
-        ];
+          }
+        };
   end
    end 
   if (u$1 <= 65535) then do
@@ -249,23 +249,23 @@ function add_utf_16le_uchar(b, u) do
     b.position = pos$1 + 4 | 0;
     return --[[ () ]]0;
   end else do
-    throw [
+    throw {
           Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]][
+          --[[ tuple ]]{
             "buffer.ml",
             165,
             8
-          ]
-        ];
+          }
+        };
   end end  end 
 end end
 
 function add_substring(b, s, offset, len) do
   if (offset < 0 or len < 0 or offset > (#s - len | 0)) then do
-    throw [
+    throw {
           Caml_builtin_exceptions.invalid_argument,
           "Buffer.add_substring/add_subbytes"
-        ];
+        };
   end
    end 
   new_position = b.position + len | 0;
@@ -304,10 +304,10 @@ end end
 
 function add_channel(b, ic, len) do
   if (len < 0) then do
-    throw [
+    throw {
           Caml_builtin_exceptions.invalid_argument,
           "Buffer.add_channel"
-        ];
+        };
   end
    end 
   if ((b.position + len | 0) > b.length) then do
@@ -341,14 +341,14 @@ end end
 function closing(param) do
   if (param ~= 40) then do
     if (param ~= 123) then do
-      throw [
+      throw {
             Caml_builtin_exceptions.assert_failure,
-            --[[ tuple ]][
+            --[[ tuple ]]{
               "buffer.ml",
               216,
               9
-            ]
-          ];
+            }
+          };
     end else do
       return --[[ "}" ]]125;
     end end 
@@ -429,18 +429,18 @@ function find_ident(s, start, lim) do
   c = Caml_string.get(s, start);
   if (c ~= 40 and c ~= 123) then do
     stop = advance_to_non_alpha(s, start + 1 | 0);
-    return --[[ tuple ]][
+    return --[[ tuple ]]{
             __String.sub(s, start, stop - start | 0),
             stop
-          ];
+          };
   end
    end 
   new_start = start + 1 | 0;
   stop$1 = advance_to_closing(c, closing(c), 0, s, new_start);
-  return --[[ tuple ]][
+  return --[[ tuple ]]{
           __String.sub(s, new_start, (stop$1 - start | 0) - 1 | 0),
           stop$1 + 1 | 0
-        ];
+        };
 end end
 
 function add_substitute(b, f, s) do
@@ -492,10 +492,10 @@ end end
 
 function truncate(b, len) do
   if (len < 0 or len > b.position) then do
-    throw [
+    throw {
           Caml_builtin_exceptions.invalid_argument,
           "Buffer.truncate"
-        ];
+        };
   end
    end 
   b.position = len;

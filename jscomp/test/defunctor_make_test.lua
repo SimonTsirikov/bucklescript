@@ -27,13 +27,13 @@ end end
 function create(l, x, d, r) do
   hl = height(l);
   hr = height(r);
-  return --[[ Node ]][
+  return --[[ Node ]]{
           l,
           x,
           d,
           r,
           hl >= hr and hl + 1 | 0 or hr + 1 | 0
-        ];
+        };
 end end
 
 function bal(l, x, d, r) do
@@ -50,16 +50,16 @@ function bal(l, x, d, r) do
       end else if (lr) then do
         return create(create(ll, lv, ld, lr[0]), lr[1], lr[2], create(lr[3], x, d, r));
       end else do
-        throw [
+        throw {
               Caml_builtin_exceptions.invalid_argument,
               "Map.bal"
-            ];
+            };
       end end  end 
     end else do
-      throw [
+      throw {
             Caml_builtin_exceptions.invalid_argument,
             "Map.bal"
-          ];
+          };
     end end 
   end else if (hr > (hl + 2 | 0)) then do
     if (r) then do
@@ -72,25 +72,25 @@ function bal(l, x, d, r) do
       end else if (rl) then do
         return create(create(l, x, d, rl[0]), rl[1], rl[2], create(rl[3], rv, rd, rr));
       end else do
-        throw [
+        throw {
               Caml_builtin_exceptions.invalid_argument,
               "Map.bal"
-            ];
+            };
       end end  end 
     end else do
-      throw [
+      throw {
             Caml_builtin_exceptions.invalid_argument,
             "Map.bal"
-          ];
+          };
     end end 
   end else do
-    return --[[ Node ]][
+    return --[[ Node ]]{
             l,
             x,
             d,
             r,
             hl >= hr and hl + 1 | 0 or hr + 1 | 0
-          ];
+          };
   end end  end 
 end end
 
@@ -102,26 +102,26 @@ function add(x, data, compare, param) do
     l = param[0];
     c = compare(x, v);
     if (c == 0) then do
-      return --[[ Node ]][
+      return --[[ Node ]]{
               l,
               x,
               data,
               r,
               param[4]
-            ];
+            };
     end else if (c < 0) then do
       return bal(add(x, data, compare, l), v, d, r);
     end else do
       return bal(l, v, d, add(x, data, compare, r));
     end end  end 
   end else do
-    return --[[ Node ]][
+    return --[[ Node ]]{
             --[[ Empty ]]0,
             x,
             data,
             --[[ Empty ]]0,
             1
-          ];
+          };
   end end 
 end end
 

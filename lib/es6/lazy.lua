@@ -6,7 +6,7 @@ import * as Caml_obj from "./caml_obj.lua";
 import * as CamlinternalLazy from "./camlinternalLazy.lua";
 
 function from_fun(f) do
-  x = --[[ obj_block ]]Block.__(Obj.lazy_tag, [0]);
+  x = --[[ obj_block ]]Block.__(Obj.lazy_tag, {0});
   x[0] = f;
   return x;
 end end

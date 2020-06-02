@@ -50,17 +50,17 @@ function f(children) do
                                 a14 = children$14[0];
                                 if (children$15) then do
                                   if (children$15[1]) then do
-                                    throw [
+                                    throw {
                                           Caml_builtin_exceptions.assert_failure,
-                                          --[[ tuple ]][
+                                          --[[ tuple ]]{
                                             "gpr_1150.ml",
                                             56,
                                             34
-                                          ]
-                                        ];
+                                          }
+                                        };
                                   end
                                    end 
-                                  return [
+                                  return {
                                           a0,
                                           a1,
                                           a2,
@@ -77,9 +77,9 @@ function f(children) do
                                           a13,
                                           a14,
                                           children$15[0]
-                                        ];
+                                        };
                                 end else do
-                                  return [
+                                  return {
                                           a0,
                                           a1,
                                           a2,
@@ -95,10 +95,10 @@ function f(children) do
                                           a12,
                                           a13,
                                           a14
-                                        ];
+                                        };
                                 end end 
                               end else do
-                                return [
+                                return {
                                         a0,
                                         a1,
                                         a2,
@@ -113,10 +113,10 @@ function f(children) do
                                         a11,
                                         a12,
                                         a13
-                                      ];
+                                      };
                               end end 
                             end else do
-                              return [
+                              return {
                                       a0,
                                       a1,
                                       a2,
@@ -130,10 +130,10 @@ function f(children) do
                                       a10,
                                       a11,
                                       a12
-                                    ];
+                                    };
                             end end 
                           end else do
-                            return [
+                            return {
                                     a0,
                                     a1,
                                     a2,
@@ -146,10 +146,10 @@ function f(children) do
                                     a9,
                                     a10,
                                     a11
-                                  ];
+                                  };
                           end end 
                         end else do
-                          return [
+                          return {
                                   a0,
                                   a1,
                                   a2,
@@ -161,10 +161,10 @@ function f(children) do
                                   a8,
                                   a9,
                                   a10
-                                ];
+                                };
                         end end 
                       end else do
-                        return [
+                        return {
                                 a0,
                                 a1,
                                 a2,
@@ -175,10 +175,10 @@ function f(children) do
                                 a7,
                                 a8,
                                 a9
-                              ];
+                              };
                       end end 
                     end else do
-                      return [
+                      return {
                               a0,
                               a1,
                               a2,
@@ -188,10 +188,10 @@ function f(children) do
                               a6,
                               a7,
                               a8
-                            ];
+                            };
                     end end 
                   end else do
-                    return [
+                    return {
                             a0,
                             a1,
                             a2,
@@ -200,10 +200,10 @@ function f(children) do
                             a5,
                             a6,
                             a7
-                          ];
+                          };
                   end end 
                 end else do
-                  return [
+                  return {
                           a0,
                           a1,
                           a2,
@@ -211,53 +211,53 @@ function f(children) do
                           a4,
                           a5,
                           a6
-                        ];
+                        };
                 end end 
               end else do
-                return [
+                return {
                         a0,
                         a1,
                         a2,
                         a3,
                         a4,
                         a5
-                      ];
+                      };
               end end 
             end else do
-              return [
+              return {
                       a0,
                       a1,
                       a2,
                       a3,
                       a4
-                    ];
+                    };
             end end 
           end else do
-            return [
+            return {
                     a0,
                     a1,
                     a2,
                     a3
-                  ];
+                  };
           end end 
         end else do
-          return [
+          return {
                   a0,
                   a1,
                   a2
-                ];
+                };
         end end 
       end else do
-        return [
+        return {
                 a0,
                 a1
-              ];
+              };
       end end 
     end else do
-      return [a0];
+      return {a0};
     end end 
   end else do
-    return [];
+    return {};
   end end 
 end end
 

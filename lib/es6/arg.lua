@@ -48,10 +48,10 @@ end end
 function split(s) do
   i = __String.index(s, --[[ "=" ]]61);
   len = #s;
-  return --[[ tuple ]][
+  return --[[ tuple ]]{
           __String.sub(s, 0, i),
           __String.sub(s, i + 1 | 0, len - (i + 1 | 0) | 0)
-        ];
+        };
 end end
 
 function make_symlist(prefix, sep, suffix, l) do
@@ -65,10 +65,10 @@ function make_symlist(prefix, sep, suffix, l) do
 end end
 
 function help_action(param) do
-  throw [
+  throw {
         Stop,
-        --[[ Unknown ]]Block.__(0, ["-help"])
-      ];
+        --[[ Unknown ]]Block.__(0, {"-help"})
+      };
 end end
 
 function add_help(speclist) do
@@ -79,14 +79,14 @@ function add_help(speclist) do
   end
   catch (exn)do
     if (exn == Caml_builtin_exceptions.not_found) then do
-      add1 = --[[ :: ]][
-        --[[ tuple ]][
+      add1 = --[[ :: ]]{
+        --[[ tuple ]]{
           "-help",
-          --[[ Unit ]]Block.__(0, [help_action]),
+          --[[ Unit ]]Block.__(0, {help_action}),
           " Display this list of options"
-        ],
+        },
         --[[ [] ]]0
-      ];
+      };
     end else do
       throw exn;
     end end 
@@ -98,14 +98,14 @@ function add_help(speclist) do
   end
   catch (exn$1)do
     if (exn$1 == Caml_builtin_exceptions.not_found) then do
-      add2 = --[[ :: ]][
-        --[[ tuple ]][
+      add2 = --[[ :: ]]{
+        --[[ tuple ]]{
           "--help",
-          --[[ Unit ]]Block.__(0, [help_action]),
+          --[[ Unit ]]Block.__(0, {help_action}),
           " Display this list of options"
-        ],
+        },
         --[[ [] ]]0
-      ];
+      };
     end else do
       throw exn$1;
     end end 
@@ -114,16 +114,16 @@ function add_help(speclist) do
 end end
 
 function usage_b(buf, speclist, errmsg) do
-  Curry._1(Printf.bprintf(buf, --[[ Format ]][
-            --[[ String ]]Block.__(2, [
+  Curry._1(Printf.bprintf(buf, --[[ Format ]]{
+            --[[ String ]]Block.__(2, {
                 --[[ No_padding ]]0,
-                --[[ Char_literal ]]Block.__(12, [
+                --[[ Char_literal ]]Block.__(12, {
                     --[[ "\n" ]]10,
                     --[[ End_of_format ]]0
-                  ])
-              ]),
+                  })
+              }),
             "%s\n"
-          ]), errmsg);
+          }), errmsg);
   return List.iter((function (param) do
                 buf$1 = buf;
                 param$1 = param;
@@ -132,48 +132,48 @@ function usage_b(buf, speclist, errmsg) do
                   spec = param$1[1];
                   key = param$1[0];
                   if (spec.tag == --[[ Symbol ]]11) then do
-                    return Curry._3(Printf.bprintf(buf$1, --[[ Format ]][
-                                    --[[ String_literal ]]Block.__(11, [
+                    return Curry._3(Printf.bprintf(buf$1, --[[ Format ]]{
+                                    --[[ String_literal ]]Block.__(11, {
                                         "  ",
-                                        --[[ String ]]Block.__(2, [
+                                        --[[ String ]]Block.__(2, {
                                             --[[ No_padding ]]0,
-                                            --[[ Char_literal ]]Block.__(12, [
+                                            --[[ Char_literal ]]Block.__(12, {
                                                 --[[ " " ]]32,
-                                                --[[ String ]]Block.__(2, [
+                                                --[[ String ]]Block.__(2, {
                                                     --[[ No_padding ]]0,
-                                                    --[[ String ]]Block.__(2, [
+                                                    --[[ String ]]Block.__(2, {
                                                         --[[ No_padding ]]0,
-                                                        --[[ Char_literal ]]Block.__(12, [
+                                                        --[[ Char_literal ]]Block.__(12, {
                                                             --[[ "\n" ]]10,
                                                             --[[ End_of_format ]]0
-                                                          ])
-                                                      ])
-                                                  ])
-                                              ])
-                                          ])
-                                      ]),
+                                                          })
+                                                      })
+                                                  })
+                                              })
+                                          })
+                                      }),
                                     "  %s %s%s\n"
-                                  ]), key, make_symlist("{", "|", "}", spec[0]), doc);
+                                  }), key, make_symlist("{", "|", "}", spec[0]), doc);
                   end else do
-                    return Curry._2(Printf.bprintf(buf$1, --[[ Format ]][
-                                    --[[ String_literal ]]Block.__(11, [
+                    return Curry._2(Printf.bprintf(buf$1, --[[ Format ]]{
+                                    --[[ String_literal ]]Block.__(11, {
                                         "  ",
-                                        --[[ String ]]Block.__(2, [
+                                        --[[ String ]]Block.__(2, {
                                             --[[ No_padding ]]0,
-                                            --[[ Char_literal ]]Block.__(12, [
+                                            --[[ Char_literal ]]Block.__(12, {
                                                 --[[ " " ]]32,
-                                                --[[ String ]]Block.__(2, [
+                                                --[[ String ]]Block.__(2, {
                                                     --[[ No_padding ]]0,
-                                                    --[[ Char_literal ]]Block.__(12, [
+                                                    --[[ Char_literal ]]Block.__(12, {
                                                         --[[ "\n" ]]10,
                                                         --[[ End_of_format ]]0
-                                                      ])
-                                                  ])
-                                              ])
-                                          ])
-                                      ]),
+                                                      })
+                                                  })
+                                              })
+                                          })
+                                      }),
                                     "  %s %s\n"
-                                  ]), key, doc);
+                                  }), key, doc);
                   end end 
                 end else do
                   return 0;
@@ -188,13 +188,13 @@ function usage_string(speclist, errmsg) do
 end end
 
 function usage(speclist, errmsg) do
-  return Curry._1(Printf.eprintf(--[[ Format ]][
-                  --[[ String ]]Block.__(2, [
+  return Curry._1(Printf.eprintf(--[[ Format ]]{
+                  --[[ String ]]Block.__(2, {
                       --[[ No_padding ]]0,
                       --[[ End_of_format ]]0
-                    ]),
+                    }),
                   "%s"
-                ]), usage_string(speclist, errmsg));
+                }), usage_string(speclist, errmsg));
 end end
 
 current = do
@@ -258,102 +258,102 @@ function parse_and_expand_argv_dynamic_aux(allow_expand, current, argv, speclist
              or ___conditional___ = "-help"
              do end
             else do
-              Curry._2(Printf.bprintf(b, --[[ Format ]][
-                        --[[ String ]]Block.__(2, [
+              Curry._2(Printf.bprintf(b, --[[ Format ]]{
+                        --[[ String ]]Block.__(2, {
                             --[[ No_padding ]]0,
-                            --[[ String_literal ]]Block.__(11, [
+                            --[[ String_literal ]]Block.__(11, {
                                 ": unknown option '",
-                                --[[ String ]]Block.__(2, [
+                                --[[ String ]]Block.__(2, {
                                     --[[ No_padding ]]0,
-                                    --[[ String_literal ]]Block.__(11, [
+                                    --[[ String_literal ]]Block.__(11, {
                                         "'.\n",
                                         --[[ End_of_format ]]0
-                                      ])
-                                  ])
-                              ])
-                          ]),
+                                      })
+                                  })
+                              })
+                          }),
                         "%s: unknown option '%s'.\n"
-                      ]), progname, s);
+                      }), progname, s);
               end end
               
           endend else 
        if ___conditional___ = 1--[[ Wrong ]] then do
-          Curry._4(Printf.bprintf(b, --[[ Format ]][
-                    --[[ String ]]Block.__(2, [
+          Curry._4(Printf.bprintf(b, --[[ Format ]]{
+                    --[[ String ]]Block.__(2, {
                         --[[ No_padding ]]0,
-                        --[[ String_literal ]]Block.__(11, [
+                        --[[ String_literal ]]Block.__(11, {
                             ": wrong argument '",
-                            --[[ String ]]Block.__(2, [
+                            --[[ String ]]Block.__(2, {
                                 --[[ No_padding ]]0,
-                                --[[ String_literal ]]Block.__(11, [
+                                --[[ String_literal ]]Block.__(11, {
                                     "'; option '",
-                                    --[[ String ]]Block.__(2, [
+                                    --[[ String ]]Block.__(2, {
                                         --[[ No_padding ]]0,
-                                        --[[ String_literal ]]Block.__(11, [
+                                        --[[ String_literal ]]Block.__(11, {
                                             "' expects ",
-                                            --[[ String ]]Block.__(2, [
+                                            --[[ String ]]Block.__(2, {
                                                 --[[ No_padding ]]0,
-                                                --[[ String_literal ]]Block.__(11, [
+                                                --[[ String_literal ]]Block.__(11, {
                                                     ".\n",
                                                     --[[ End_of_format ]]0
-                                                  ])
-                                              ])
-                                          ])
-                                      ])
-                                  ])
-                              ])
-                          ])
-                      ]),
+                                                  })
+                                              })
+                                          })
+                                      })
+                                  })
+                              })
+                          })
+                      }),
                     "%s: wrong argument '%s'; option '%s' expects %s.\n"
-                  ]), progname, error[1], error[0], error[2]);end else 
+                  }), progname, error[1], error[0], error[2]);end else 
        if ___conditional___ = 2--[[ Missing ]] then do
-          Curry._2(Printf.bprintf(b, --[[ Format ]][
-                    --[[ String ]]Block.__(2, [
+          Curry._2(Printf.bprintf(b, --[[ Format ]]{
+                    --[[ String ]]Block.__(2, {
                         --[[ No_padding ]]0,
-                        --[[ String_literal ]]Block.__(11, [
+                        --[[ String_literal ]]Block.__(11, {
                             ": option '",
-                            --[[ String ]]Block.__(2, [
+                            --[[ String ]]Block.__(2, {
                                 --[[ No_padding ]]0,
-                                --[[ String_literal ]]Block.__(11, [
+                                --[[ String_literal ]]Block.__(11, {
                                     "' needs an argument.\n",
                                     --[[ End_of_format ]]0
-                                  ])
-                              ])
-                          ])
-                      ]),
+                                  })
+                              })
+                          })
+                      }),
                     "%s: option '%s' needs an argument.\n"
-                  ]), progname, error[0]);end else 
+                  }), progname, error[0]);end else 
        if ___conditional___ = 3--[[ Message ]] then do
-          Curry._2(Printf.bprintf(b, --[[ Format ]][
-                    --[[ String ]]Block.__(2, [
+          Curry._2(Printf.bprintf(b, --[[ Format ]]{
+                    --[[ String ]]Block.__(2, {
                         --[[ No_padding ]]0,
-                        --[[ String_literal ]]Block.__(11, [
+                        --[[ String_literal ]]Block.__(11, {
                             ": ",
-                            --[[ String ]]Block.__(2, [
+                            --[[ String ]]Block.__(2, {
                                 --[[ No_padding ]]0,
-                                --[[ String_literal ]]Block.__(11, [
+                                --[[ String_literal ]]Block.__(11, {
                                     ".\n",
                                     --[[ End_of_format ]]0
-                                  ])
-                              ])
-                          ])
-                      ]),
+                                  })
+                              })
+                          })
+                      }),
                     "%s: %s.\n"
-                  ]), progname, error[0]);end else 
+                  }), progname, error[0]);end else 
        do end end end end end
       
     end
     usage_b(b, speclist.contents, errmsg);
-    if (Caml_obj.caml_equal(error, --[[ Unknown ]]Block.__(0, ["-help"])) or Caml_obj.caml_equal(error, --[[ Unknown ]]Block.__(0, ["--help"]))) then do
-      return [
+    if (Caml_obj.caml_equal(error, --[[ Unknown ]]Block.__(0, {"-help"})) or Caml_obj.caml_equal(error, --[[ Unknown ]]Block.__(0, {"--help"}))) then do
+      return {
               Help,
               __Buffer.contents(b)
-            ];
+            };
     end else do
-      return [
+      return {
               Bad,
               __Buffer.contents(b)
-            ];
+            };
     end end 
   end end;
   current.contents = current.contents + 1 | 0;
@@ -363,26 +363,26 @@ function parse_and_expand_argv_dynamic_aux(allow_expand, current, argv, speclist
       if (#s >= 1 and Caml_string.get(s, 0) == --[[ "-" ]]45) then do
         match;
         try do
-          match = --[[ tuple ]][
+          match = --[[ tuple ]]{
             assoc3(s, speclist.contents),
             undefined
-          ];
+          };
         end
         catch (exn)do
           if (exn == Caml_builtin_exceptions.not_found) then do
             try do
               match$1 = split(s);
-              match = --[[ tuple ]][
+              match = --[[ tuple ]]{
                 assoc3(match$1[0], speclist.contents),
                 match$1[1]
-              ];
+              };
             end
             catch (exn$1)do
               if (exn$1 == Caml_builtin_exceptions.not_found) then do
-                throw [
+                throw {
                       Stop,
-                      --[[ Unknown ]]Block.__(0, [s])
-                    ];
+                      --[[ Unknown ]]Block.__(0, {s})
+                    };
               end
                end 
               throw exn$1;
@@ -395,14 +395,14 @@ function parse_and_expand_argv_dynamic_aux(allow_expand, current, argv, speclist
         no_arg = (function(s,follow)do
         return function no_arg(param) do
           if (follow ~= undefined) then do
-            throw [
+            throw {
                   Stop,
-                  --[[ Wrong ]]Block.__(1, [
+                  --[[ Wrong ]]Block.__(1, {
                       s,
                       follow,
                       "no argument"
-                    ])
-                ];
+                    })
+                };
           end else do
             return --[[ () ]]0;
           end end 
@@ -415,10 +415,10 @@ function parse_and_expand_argv_dynamic_aux(allow_expand, current, argv, speclist
           end else if ((current.contents + 1 | 0) < #argv.contents) then do
             return Caml_array.caml_array_get(argv.contents, current.contents + 1 | 0);
           end else do
-            throw [
+            throw {
                   Stop,
-                  --[[ Missing ]]Block.__(2, [s])
-                ];
+                  --[[ Missing ]]Block.__(2, {s})
+                };
           end end  end 
         end end
         end(s,follow));
@@ -444,14 +444,14 @@ function parse_and_expand_argv_dynamic_aux(allow_expand, current, argv, speclist
                 if (match ~= undefined) then do
                   Curry._1(param[0], match);
                 end else do
-                  throw [
+                  throw {
                         Stop,
-                        --[[ Wrong ]]Block.__(1, [
+                        --[[ Wrong ]]Block.__(1, {
                             s,
                             arg,
                             "a boolean"
-                          ])
-                      ];
+                          })
+                      };
                 end end 
                 return consume_arg(--[[ () ]]0);end end end 
              if ___conditional___ = 2--[[ Set ]] then do
@@ -475,14 +475,14 @@ function parse_and_expand_argv_dynamic_aux(allow_expand, current, argv, speclist
                 if (match$1 ~= undefined) then do
                   Curry._1(param[0], match$1);
                 end else do
-                  throw [
+                  throw {
                         Stop,
-                        --[[ Wrong ]]Block.__(1, [
+                        --[[ Wrong ]]Block.__(1, {
                             s,
                             arg$2,
                             "an integer"
-                          ])
-                      ];
+                          })
+                      };
                 end end 
                 return consume_arg(--[[ () ]]0);end end end 
              if ___conditional___ = 7--[[ Set_int ]] then do
@@ -491,14 +491,14 @@ function parse_and_expand_argv_dynamic_aux(allow_expand, current, argv, speclist
                 if (match$2 ~= undefined) then do
                   param[0].contents = match$2;
                 end else do
-                  throw [
+                  throw {
                         Stop,
-                        --[[ Wrong ]]Block.__(1, [
+                        --[[ Wrong ]]Block.__(1, {
                             s,
                             arg$3,
                             "an integer"
-                          ])
-                      ];
+                          })
+                      };
                 end end 
                 return consume_arg(--[[ () ]]0);end end end 
              if ___conditional___ = 8--[[ Float ]] then do
@@ -507,14 +507,14 @@ function parse_and_expand_argv_dynamic_aux(allow_expand, current, argv, speclist
                 if (match$3 ~= undefined) then do
                   Curry._1(param[0], match$3);
                 end else do
-                  throw [
+                  throw {
                         Stop,
-                        --[[ Wrong ]]Block.__(1, [
+                        --[[ Wrong ]]Block.__(1, {
                             s,
                             arg$4,
                             "a float"
-                          ])
-                      ];
+                          })
+                      };
                 end end 
                 return consume_arg(--[[ () ]]0);end end end 
              if ___conditional___ = 9--[[ Set_float ]] then do
@@ -523,14 +523,14 @@ function parse_and_expand_argv_dynamic_aux(allow_expand, current, argv, speclist
                 if (match$4 ~= undefined) then do
                   param[0].contents = match$4;
                 end else do
-                  throw [
+                  throw {
                         Stop,
-                        --[[ Wrong ]]Block.__(1, [
+                        --[[ Wrong ]]Block.__(1, {
                             s,
                             arg$5,
                             "a float"
-                          ])
-                      ];
+                          })
+                      };
                 end end 
                 return consume_arg(--[[ () ]]0);end end end 
              if ___conditional___ = 10--[[ Tuple ]] then do
@@ -542,14 +542,14 @@ function parse_and_expand_argv_dynamic_aux(allow_expand, current, argv, speclist
                   Curry._1(param[1], arg$6);
                   return consume_arg(--[[ () ]]0);
                 end else do
-                  throw [
+                  throw {
                         Stop,
-                        --[[ Wrong ]]Block.__(1, [
+                        --[[ Wrong ]]Block.__(1, {
                             s,
                             arg$6,
                             "one of: " .. make_symlist("", " ", "", symb)
-                          ])
-                      ];
+                          })
+                      };
                 end end end end end 
              if ___conditional___ = 12--[[ Rest ]] then do
                 f = param[0];
@@ -560,10 +560,10 @@ function parse_and_expand_argv_dynamic_aux(allow_expand, current, argv, speclist
                 return --[[ () ]]0;end end end 
              if ___conditional___ = 13--[[ Expand ]] then do
                 if (not allow_expand) then do
-                  throw [
+                  throw {
                         Caml_builtin_exceptions.invalid_argument,
                         "Arg.Expand is is only allowed with Arg.parse_and_expand_argv_dynamic"
-                      ];
+                      };
                 end
                  end 
                 arg$7 = get_arg(--[[ () ]]0);
@@ -571,16 +571,16 @@ function parse_and_expand_argv_dynamic_aux(allow_expand, current, argv, speclist
                 consume_arg(--[[ () ]]0);
                 before = __Array.sub(argv.contents, 0, current.contents + 1 | 0);
                 after = __Array.sub(argv.contents, current.contents + 1 | 0, (#argv.contents - current.contents | 0) - 1 | 0);
-                argv.contents = Caml_array.caml_array_concat(--[[ :: ]][
+                argv.contents = Caml_array.caml_array_concat(--[[ :: ]]{
                       before,
-                      --[[ :: ]][
+                      --[[ :: ]]{
                         newarg,
-                        --[[ :: ]][
+                        --[[ :: ]]{
                           after,
                           --[[ [] ]]0
-                        ]
-                      ]
-                    ]);
+                        }
+                      }
+                    });
                 return --[[ () ]]0;end end end 
              do
             
@@ -595,7 +595,7 @@ function parse_and_expand_argv_dynamic_aux(allow_expand, current, argv, speclist
     catch (raw_exn)do
       exn$2 = Caml_js_exceptions.internalToOCamlException(raw_exn);
       if (exn$2[0] == Bad) then do
-        throw convert_error(--[[ Message ]]Block.__(3, [exn$2[1]]));
+        throw convert_error(--[[ Message ]]Block.__(3, {exn$2[1]}));
       end
        end 
       if (exn$2[0] == Stop) then do
@@ -634,22 +634,22 @@ function parse(l, f, msg) do
   catch (raw_exn)do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn[0] == Bad) then do
-      Curry._1(Printf.eprintf(--[[ Format ]][
-                --[[ String ]]Block.__(2, [
+      Curry._1(Printf.eprintf(--[[ Format ]]{
+                --[[ String ]]Block.__(2, {
                     --[[ No_padding ]]0,
                     --[[ End_of_format ]]0
-                  ]),
+                  }),
                 "%s"
-              ]), exn[1]);
+              }), exn[1]);
       return Pervasives.exit(2);
     end else if (exn[0] == Help) then do
-      Curry._1(Printf.printf(--[[ Format ]][
-                --[[ String ]]Block.__(2, [
+      Curry._1(Printf.printf(--[[ Format ]]{
+                --[[ String ]]Block.__(2, {
                     --[[ No_padding ]]0,
                     --[[ End_of_format ]]0
-                  ]),
+                  }),
                 "%s"
-              ]), exn[1]);
+              }), exn[1]);
       return Pervasives.exit(0);
     end else do
       throw exn;
@@ -664,22 +664,22 @@ function parse_dynamic(l, f, msg) do
   catch (raw_exn)do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn[0] == Bad) then do
-      Curry._1(Printf.eprintf(--[[ Format ]][
-                --[[ String ]]Block.__(2, [
+      Curry._1(Printf.eprintf(--[[ Format ]]{
+                --[[ String ]]Block.__(2, {
                     --[[ No_padding ]]0,
                     --[[ End_of_format ]]0
-                  ]),
+                  }),
                 "%s"
-              ]), exn[1]);
+              }), exn[1]);
       return Pervasives.exit(2);
     end else if (exn[0] == Help) then do
-      Curry._1(Printf.printf(--[[ Format ]][
-                --[[ String ]]Block.__(2, [
+      Curry._1(Printf.printf(--[[ Format ]]{
+                --[[ String ]]Block.__(2, {
                     --[[ No_padding ]]0,
                     --[[ End_of_format ]]0
-                  ]),
+                  }),
                 "%s"
-              ]), exn[1]);
+              }), exn[1]);
       return Pervasives.exit(0);
     end else do
       throw exn;
@@ -703,22 +703,22 @@ function parse_expand(l, f, msg) do
   catch (raw_exn)do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn[0] == Bad) then do
-      Curry._1(Printf.eprintf(--[[ Format ]][
-                --[[ String ]]Block.__(2, [
+      Curry._1(Printf.eprintf(--[[ Format ]]{
+                --[[ String ]]Block.__(2, {
                     --[[ No_padding ]]0,
                     --[[ End_of_format ]]0
-                  ]),
+                  }),
                 "%s"
-              ]), exn[1]);
+              }), exn[1]);
       return Pervasives.exit(2);
     end else if (exn[0] == Help) then do
-      Curry._1(Printf.printf(--[[ Format ]][
-                --[[ String ]]Block.__(2, [
+      Curry._1(Printf.printf(--[[ Format ]]{
+                --[[ String ]]Block.__(2, {
                     --[[ No_padding ]]0,
                     --[[ End_of_format ]]0
-                  ]),
+                  }),
                 "%s"
-              ]), exn[1]);
+              }), exn[1]);
       return Pervasives.exit(0);
     end else do
       throw exn;
@@ -811,31 +811,31 @@ function align(limitOpt, speclist) do
                   cutcol = second_word(msg);
                   n = Caml_primitive.caml_int_max(0, len$2 - cutcol | 0) + 3 | 0;
                   spaces = Caml_bytes.bytes_to_string(Bytes.make(n, --[[ " " ]]32));
-                  return --[[ tuple ]][
+                  return --[[ tuple ]]{
                           kwd,
                           spec,
                           "\n" .. (spaces .. replace_leading_tab(msg))
-                        ];
+                        };
                 end else do
                   msg$1 = ksd[2];
                   cutcol$1 = second_word(msg$1);
                   kwd_len = #kwd;
                   diff = (len$2 - kwd_len | 0) - cutcol$1 | 0;
                   if (diff <= 0) then do
-                    return --[[ tuple ]][
+                    return --[[ tuple ]]{
                             kwd,
                             spec,
                             replace_leading_tab(msg$1)
-                          ];
+                          };
                   end else do
                     spaces$1 = Caml_bytes.bytes_to_string(Bytes.make(diff, --[[ " " ]]32));
                     prefix = __String.sub(replace_leading_tab(msg$1), 0, cutcol$1);
                     suffix = __String.sub(msg$1, cutcol$1, #msg$1 - cutcol$1 | 0);
-                    return --[[ tuple ]][
+                    return --[[ tuple ]]{
                             kwd,
                             spec,
                             prefix .. (spaces$1 .. suffix)
-                          ];
+                          };
                   end end 
                 end end  end 
               end end), completed);
@@ -859,10 +859,10 @@ function read_aux(trim, sep, file) do
   stash = function (param) do
     word = __Buffer.contents(buf);
     word$1 = trim and trim_cr(word) or word;
-    words.contents = --[[ :: ]][
+    words.contents = --[[ :: ]]{
       word$1,
       words.contents
-    ];
+    };
     buf.position = 0;
     return --[[ () ]]0;
   end end;
@@ -905,13 +905,13 @@ end end
 function write_aux(sep, file, args) do
   oc = Pervasives.open_out_bin(file);
   __Array.iter((function (s) do
-          return Curry._2(Printf.fprintf(oc, --[[ Format ]][
-                          --[[ String ]]Block.__(2, [
+          return Curry._2(Printf.fprintf(oc, --[[ Format ]]{
+                          --[[ String ]]Block.__(2, {
                               --[[ No_padding ]]0,
-                              --[[ Char ]]Block.__(0, [--[[ End_of_format ]]0])
-                            ]),
+                              --[[ Char ]]Block.__(0, {--[[ End_of_format ]]0})
+                            }),
                           "%s%c"
-                        ]), s, sep);
+                        }), s, sep);
         end end), args);
   Caml_io.caml_ml_flush(oc);
   return Caml_external_polyfill.resolve("caml_ml_close_channel")(oc);

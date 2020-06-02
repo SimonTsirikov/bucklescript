@@ -26,10 +26,10 @@ end end
 function save_and_close(time, t) do
   return if_spacetime_enabled((function (param) do
                 if (t.closed) then do
-                  throw [
+                  throw {
                         Caml_builtin_exceptions.failure,
                         "Series is closed"
-                      ];
+                      };
                 end
                  end 
                 Caml_external_polyfill.resolve("caml_spacetime_only_works_for_native_code")(time, t.channel);
@@ -52,10 +52,10 @@ function take(time, param) do
   closed = param.closed;
   return if_spacetime_enabled((function (param) do
                 if (closed) then do
-                  throw [
+                  throw {
                         Caml_builtin_exceptions.failure,
                         "Series is closed"
-                      ];
+                      };
                 end
                  end 
                 Caml_gc.caml_gc_minor(--[[ () ]]0);

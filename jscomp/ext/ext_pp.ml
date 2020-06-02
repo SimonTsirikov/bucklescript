@@ -121,6 +121,12 @@ let bracket fmt u =
   string fmt "]";
   v
 
+let curlybrace fmt u =
+  string fmt "{";
+  let v = u () in
+  string fmt "}";
+  v
+
 let brace_vgroup st n action =
   string st "do";
   let v = vgroup st n (fun _ ->
@@ -143,8 +149,22 @@ let bracket_vgroup st n action =
   string st "]";
   v
 
+let curlybrace_vgroup st n action =
+  string st "{";
+  let v = vgroup st n (fun _ ->
+      newline st;
+      let v =  action () in
+      v
+    ) in
+  force_newline st;
+  string st "}";
+  v
+
 let bracket_group st n action =
   group st n (fun _ -> bracket st action)
+
+let curlybrace_group st n action =
+  group st n (fun _ -> curlybrace st action)
 
 let paren_vgroup st n action =
   string st "(";

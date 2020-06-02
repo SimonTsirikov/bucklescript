@@ -119,10 +119,10 @@ caml_lex_engine_aux = (function (tbl, start_state, lexbuf, exn){
 empty_token_lit = "lexing: empty token";
 
 function caml_lex_engine(tbls, i, buf) do
-  return caml_lex_engine_aux(tbls, i, buf, [
+  return caml_lex_engine_aux(tbls, i, buf, {
               Caml_builtin_exceptions.failure,
               empty_token_lit
-            ]);
+            });
 end end
 
 /***********************************************/
@@ -279,10 +279,10 @@ caml_new_lex_engine_aux = (function (tbl, start_state, lexbuf, exn) {
     });
 
 function caml_new_lex_engine(tbl, i, buf) do
-  return caml_new_lex_engine_aux(tbl, i, buf, [
+  return caml_new_lex_engine_aux(tbl, i, buf, {
               Caml_builtin_exceptions.failure,
               empty_token_lit
-            ]);
+            });
 end end
 
 exports.caml_lex_engine = caml_lex_engine;

@@ -120,64 +120,64 @@ function from_pair_suites(name, suites) do
     end else do
       name$1 = name;
       suites$1 = suites;
-      console.log(--[[ tuple ]][
+      console.log(--[[ tuple ]]{
             name$1,
             "testing"
-          ]);
+          });
       return List.iter((function (param) do
                     name = param[0];
                     match = Curry._1(param[1], --[[ () ]]0);
                     local ___conditional___=(match.tag | 0);
                     do
                        if ___conditional___ = 0--[[ Eq ]] then do
-                          console.log(--[[ tuple ]][
+                          console.log(--[[ tuple ]]{
                                 name,
                                 match[0],
                                 "eq?",
                                 match[1]
-                              ]);
+                              });
                           return --[[ () ]]0;end end end 
                        if ___conditional___ = 1--[[ Neq ]] then do
-                          console.log(--[[ tuple ]][
+                          console.log(--[[ tuple ]]{
                                 name,
                                 match[0],
                                 "neq?",
                                 match[1]
-                              ]);
+                              });
                           return --[[ () ]]0;end end end 
                        if ___conditional___ = 2--[[ StrictEq ]] then do
-                          console.log(--[[ tuple ]][
+                          console.log(--[[ tuple ]]{
                                 name,
                                 match[0],
                                 "strict_eq?",
                                 match[1]
-                              ]);
+                              });
                           return --[[ () ]]0;end end end 
                        if ___conditional___ = 3--[[ StrictNeq ]] then do
-                          console.log(--[[ tuple ]][
+                          console.log(--[[ tuple ]]{
                                 name,
                                 match[0],
                                 "strict_neq?",
                                 match[1]
-                              ]);
+                              });
                           return --[[ () ]]0;end end end 
                        if ___conditional___ = 4--[[ Ok ]] then do
-                          console.log(--[[ tuple ]][
+                          console.log(--[[ tuple ]]{
                                 name,
                                 match[0],
                                 "ok?"
-                              ]);
+                              });
                           return --[[ () ]]0;end end end 
                        if ___conditional___ = 5--[[ Approx ]] then do
-                          console.log(--[[ tuple ]][
+                          console.log(--[[ tuple ]]{
                                 name,
                                 match[0],
                                 "~",
                                 match[1]
-                              ]);
+                              });
                           return --[[ () ]]0;end end end 
                        if ___conditional___ = 6--[[ ApproxThreshold ]] then do
-                          console.log(--[[ tuple ]][
+                          console.log(--[[ tuple ]]{
                                 name,
                                 match[1],
                                 "~",
@@ -185,7 +185,7 @@ function from_pair_suites(name, suites) do
                                 " (",
                                 match[0],
                                 ")"
-                              ]);
+                              });
                           return --[[ () ]]0;end end end 
                        if ___conditional___ = 7--[[ ThrowAny ]] then do
                           return --[[ () ]]0;end end end 
@@ -235,46 +235,46 @@ end end
 
 function eq_suites(test_id, suites, loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = --[[ :: ]][
-    --[[ tuple ]][
+  suites.contents = --[[ :: ]]{
+    --[[ tuple ]]{
       loc .. (" id " .. String(test_id.contents)),
       (function (param) do
-          return --[[ Eq ]]Block.__(0, [
+          return --[[ Eq ]]Block.__(0, {
                     x,
                     y
-                  ]);
+                  });
         end end)
-    ],
+    },
     suites.contents
-  ];
+  };
   return --[[ () ]]0;
 end end
 
 function bool_suites(test_id, suites, loc, x) do
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = --[[ :: ]][
-    --[[ tuple ]][
+  suites.contents = --[[ :: ]]{
+    --[[ tuple ]]{
       loc .. (" id " .. String(test_id.contents)),
       (function (param) do
-          return --[[ Ok ]]Block.__(4, [x]);
+          return --[[ Ok ]]Block.__(4, {x});
         end end)
-    ],
+    },
     suites.contents
-  ];
+  };
   return --[[ () ]]0;
 end end
 
 function throw_suites(test_id, suites, loc, x) do
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = --[[ :: ]][
-    --[[ tuple ]][
+  suites.contents = --[[ :: ]]{
+    --[[ tuple ]]{
       loc .. (" id " .. String(test_id.contents)),
       (function (param) do
-          return --[[ ThrowAny ]]Block.__(7, [x]);
+          return --[[ ThrowAny ]]Block.__(7, {x});
         end end)
-    ],
+    },
     suites.contents
-  ];
+  };
   return --[[ () ]]0;
 end end
 

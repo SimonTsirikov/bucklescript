@@ -10,10 +10,10 @@ function test2(v) do
 end end
 
 function test(p) do
-  return --[[ tuple ]][
+  return --[[ tuple ]]{
           p.catch,
           p.then
-        ];
+        };
 end end
 
 __case = Export_keyword.__case;

@@ -31,27 +31,27 @@ function $eq$star(a, b) do
   return Belt_SetInt.eq(Belt_SetInt.fromArray(a), Belt_SetInt.fromArray(b));
 end end
 
-b("File \"bs_set_int_test.ml\", line 17, characters 4-11", $eq$star([
+b("File \"bs_set_int_test.ml\", line 17, characters 4-11", $eq$star({
           1,
           2,
           3
-        ], [
+        }, {
           3,
           2,
           1
-        ]));
+        }));
 
-u = Belt_SetInt.intersect(Belt_SetInt.fromArray([
+u = Belt_SetInt.intersect(Belt_SetInt.fromArray({
           1,
           2,
           3
-        ]), Belt_SetInt.fromArray([
+        }), Belt_SetInt.fromArray({
           3,
           4,
           5
-        ]));
+        }));
 
-b("File \"bs_set_int_test.ml\", line 23, characters 4-11", Belt_SetInt.eq(Belt_SetInt.fromArray([3]), u));
+b("File \"bs_set_int_test.ml\", line 23, characters 4-11", Belt_SetInt.eq(Belt_SetInt.fromArray({3}), u));
 
 function range(i, j) do
   return __Array.init((j - i | 0) + 1 | 0, (function (k) do
@@ -131,7 +131,7 @@ s$5 = Belt_SetInt.diff(Belt_SetInt.fromArray(revRange(1, 100)), Belt_SetInt.from
 
 b("File \"bs_set_int_test.ml\", line 66, characters 6-13", Belt_SetInt.eq(Belt_SetInt.fromArray(i$7), s$5));
 
-ss = [
+ss = {
   1,
   222,
   3,
@@ -140,9 +140,9 @@ ss = [
   0,
   33,
   -1
-];
+};
 
-v$1 = Belt_SetInt.fromArray([
+v$1 = Belt_SetInt.fromArray({
       1,
       222,
       3,
@@ -151,7 +151,7 @@ v$1 = Belt_SetInt.fromArray([
       0,
       33,
       -1
-    ]);
+    });
 
 minv = Belt_SetInt.minUndefined(v$1);
 
@@ -335,10 +335,10 @@ v1 = Belt_SetInt.fromArray(Array_data_util.randomRange(1, 2001));
 
 v2 = Belt_SetInt.fromArray(Array_data_util.randomRange(3, 2002));
 
-v3 = Belt_SetInt.removeMany(v2, [
+v3 = Belt_SetInt.removeMany(v2, {
       2002,
       2001
-    ]);
+    });
 
 us = Belt_Array.map(Array_data_util.randomRange(1000, 3000), (function (x) do
         return Belt_SetInt.has(v$12, x);

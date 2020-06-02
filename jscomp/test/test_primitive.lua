@@ -6,39 +6,39 @@ Pervasives = require "../../lib/js/pervasives.lua";
 CamlinternalLazy = require "../../lib/js/camlinternalLazy.lua";
 
 function a4(prim) do
-  return --[[ tuple ]][
+  return --[[ tuple ]]{
           "File \"test_primitive.ml\", line 30, characters 9-19",
           prim
-        ];
+        };
 end end
 
 function a5(prim) do
-  return --[[ tuple ]][
+  return --[[ tuple ]]{
           31,
           prim
-        ];
+        };
 end end
 
 function a6(prim) do
-  return --[[ tuple ]][
-          --[[ tuple ]][
+  return --[[ tuple ]]{
+          --[[ tuple ]]{
             "test_primitive.ml",
             32,
             9,
             19
-          ],
+          },
           prim
-        ];
+        };
 end end
 
 test_float = 3;
 
 test_abs = Math.abs(3.0);
 
-v = [
+v = {
   1.0,
   2.0
-];
+};
 
 xxx = "a";
 
@@ -93,10 +93,10 @@ a2 = 28;
 
 a3 = "Test_primitive";
 
-xx = --[[ tuple ]][
+xx = --[[ tuple ]]{
   0,
   0
-];
+};
 
 exports.a0 = a0;
 exports.a1 = a1;

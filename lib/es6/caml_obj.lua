@@ -30,10 +30,10 @@ end end
 function caml_obj_truncate(x, new_size) do
   len = #x | 0;
   if (new_size <= 0 or new_size > len) then do
-    throw [
+    throw {
           Caml_builtin_exceptions.invalid_argument,
           "Obj.truncate"
-        ];
+        };
   end
    end 
   if (len ~= new_size) then do
@@ -48,11 +48,11 @@ function caml_obj_truncate(x, new_size) do
 end end
 
 function caml_lazy_make_forward(x) do
-  return Block.__(250, [x]);
+  return Block.__(250, {x});
 end end
 
 function caml_lazy_make(fn) do
-  block = [fn];
+  block = {fn};
   block.tag = 246;
   return block;
 end end
@@ -82,10 +82,10 @@ function caml_compare(_a, _b) do
              end end else 
          if ___conditional___ = "function" then do
             if (b_type == "function") then do
-              throw [
+              throw {
                     Caml_builtin_exceptions.invalid_argument,
                     "compare: functional value"
-                  ];
+                  };
             end
              end end else 
          if ___conditional___ = "number" then do
@@ -165,10 +165,10 @@ function caml_compare(_a, _b) do
               return Caml_primitive.caml_int_compare(a[1], b[1]);
             end else do
               if (tag_a == 251) then do
-                throw [
+                throw {
                       Caml_builtin_exceptions.invalid_argument,
                       "equal: abstract value"
-                    ];
+                    };
               end
                end 
               if (tag_a ~= tag_b) then do
@@ -226,21 +226,21 @@ function caml_compare(_a, _b) do
                         return 0;
                       end end 
                     end end;
-                    partial_arg = --[[ tuple ]][
+                    partial_arg = --[[ tuple ]]{
                       a$2,
                       b$2,
                       min_key_rhs
-                    ];
+                    };
                     do_key_a = (function(partial_arg)do
                     return function do_key_a(param) do
                       return do_key(partial_arg, param);
                     end end
                     end(partial_arg));
-                    partial_arg$1 = --[[ tuple ]][
+                    partial_arg$1 = --[[ tuple ]]{
                       b$2,
                       a$2,
                       min_key_lhs
-                    ];
+                    };
                     do_key_b = (function(partial_arg$1)do
                     return function do_key_b(param) do
                       return do_key(partial_arg$1, param);
@@ -324,10 +324,10 @@ function caml_equal(_a, _b) do
       end else do
         b_type = typeof b;
         if (a_type == "function" or b_type == "function") then do
-          throw [
+          throw {
                 Caml_builtin_exceptions.invalid_argument,
                 "equal: functional value"
-              ];
+              };
         end
          end 
         if (b_type == "number" or b_type == "undefined" or b == null) then do
@@ -345,10 +345,10 @@ function caml_equal(_a, _b) do
             return a[1] == b[1];
           end else do
             if (tag_a == 251) then do
-              throw [
+              throw {
                     Caml_builtin_exceptions.invalid_argument,
                     "equal: abstract value"
-                  ];
+                  };
             end
              end 
             if (tag_a ~= tag_b) then do

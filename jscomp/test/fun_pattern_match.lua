@@ -17,25 +17,25 @@ function f3(param) do
   return (function (param) do
       rhs = param.rank;
       if (typeof lhs == "number") then do
-        throw [
+        throw {
               Caml_builtin_exceptions.assert_failure,
-              --[[ tuple ]][
+              --[[ tuple ]]{
                 "fun_pattern_match.ml",
                 44,
                 9
-              ]
-            ];
+              }
+            };
       end
        end 
       if (typeof rhs == "number") then do
-        throw [
+        throw {
               Caml_builtin_exceptions.assert_failure,
-              --[[ tuple ]][
+              --[[ tuple ]]{
                 "fun_pattern_match.ml",
                 44,
                 9
-              ]
-            ];
+              }
+            };
       end
        end 
       return Caml_primitive.caml_int_compare(lhs[0], rhs[0]);
@@ -47,35 +47,35 @@ function f4(param) do
   return (function (param) do
       rhs = param.rank;
       if (typeof lhs == "number") then do
-        throw [
+        throw {
               Caml_builtin_exceptions.assert_failure,
-              --[[ tuple ]][
+              --[[ tuple ]]{
                 "fun_pattern_match.ml",
                 52,
                 9
-              ]
-            ];
+              }
+            };
       end
        end 
       if (typeof rhs == "number") then do
-        throw [
+        throw {
               Caml_builtin_exceptions.assert_failure,
-              --[[ tuple ]][
+              --[[ tuple ]]{
                 "fun_pattern_match.ml",
                 52,
                 9
-              ]
-            ];
+              }
+            };
       end
        end 
       return Caml_primitive.caml_int_compare(lhs[0], rhs[0]);
     end end);
 end end
 
-x = --[[ `A ]][
+x = --[[ `A ]]{
   65,
   r
-];
+};
 
 function r(param) do
   return x;

@@ -16,7 +16,7 @@ function f(x) do
   return Digest.to_hex(Digest.string(x));
 end end
 
-ref = [
+ref = {
   "d41d8cd98f00b204e9800998ecf8427e",
   "0cc175b9c0f1b6a831c399e269772661",
   "4124bc0a9335c27f086f24ba207a4912",
@@ -147,92 +147,92 @@ ref = [
   "020406e1d05cdc2aa287641f7ae2cc39",
   "e510683b3f5ffe4093d021808bc6ff70",
   "b325dc1c6f5e7a2b7cf465b9feab7948"
-];
+};
 
-Mt.from_pair_suites("Digest_test", Pervasives.$at(--[[ :: ]][
-          --[[ tuple ]][
+Mt.from_pair_suites("Digest_test", Pervasives.$at(--[[ :: ]]{
+          --[[ tuple ]]{
             "File \"digest_test.ml\", line 6, characters 4-11",
             (function (param) do
-                return --[[ Eq ]]Block.__(0, [
+                return --[[ Eq ]]Block.__(0, {
                           Digest.to_hex(Digest.string("value")),
                           "2063c1608d6e0baf80249c42e2be5804"
-                        ]);
+                        });
               end end)
-          ],
-          --[[ :: ]][
-            --[[ tuple ]][
+          },
+          --[[ :: ]]{
+            --[[ tuple ]]{
               "File \"digest_test.ml\", line 7, characters 4-11",
               (function (param) do
-                  return --[[ Eq ]]Block.__(0, [
+                  return --[[ Eq ]]Block.__(0, {
                             Digest.to_hex(Digest.string("The quick brown fox jumps over the lazy dog")),
                             "9e107d9d372bb6826bd81d3542a419d6"
-                          ]);
+                          });
                 end end)
-            ],
-            --[[ :: ]][
-              --[[ tuple ]][
+            },
+            --[[ :: ]]{
+              --[[ tuple ]]{
                 "File \"digest_test.ml\", line 9, characters 4-11",
                 (function (param) do
-                    return --[[ Eq ]]Block.__(0, [
+                    return --[[ Eq ]]Block.__(0, {
                               Digest.to_hex(Digest.string("The quick brown fox jumps over the lazy dog.")),
                               "e4d909c290d0fb1ca068ffaddf22cbd0"
-                            ]);
+                            });
                   end end)
-              ],
-              --[[ :: ]][
-                --[[ tuple ]][
+              },
+              --[[ :: ]]{
+                --[[ tuple ]]{
                   "File \"digest_test.ml\", line 11, characters 4-11",
                   (function (param) do
-                      return --[[ Eq ]]Block.__(0, [
+                      return --[[ Eq ]]Block.__(0, {
                                 Digest.to_hex(Digest.string("")),
                                 "d41d8cd98f00b204e9800998ecf8427e"
-                              ]);
+                              });
                     end end)
-                ],
-                --[[ :: ]][
-                  --[[ tuple ]][
+                },
+                --[[ :: ]]{
+                  --[[ tuple ]]{
                     "File \"digest_test.ml\", line 12, characters 4-11",
                     (function (param) do
-                        return --[[ Eq ]]Block.__(0, [
+                        return --[[ Eq ]]Block.__(0, {
                                   Digest.to_hex(Digest.string("The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.")),
                                   "7065cc36bba1d155fb09f9d02f22e8bf"
-                                ]);
+                                });
                       end end)
-                  ],
-                  --[[ :: ]][
-                    --[[ tuple ]][
+                  },
+                  --[[ :: ]]{
+                    --[[ tuple ]]{
                       "File \"digest_test.ml\", line 13, characters 4-11",
                       (function (param) do
-                          return --[[ Eq ]]Block.__(0, [
+                          return --[[ Eq ]]Block.__(0, {
                                     Digest.to_hex(Digest.string("The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.")),
                                     "b9193d1df4b7a8f0a25ffdd1005c5b2b"
-                                  ]);
+                                  });
                         end end)
-                    ],
+                    },
                     --[[ [] ]]0
-                  ]
-                ]
-              ]
-            ]
-          ]
-        ], __Array.to_list(__Array.map((function (i) do
-                    return --[[ tuple ]][
-                            Curry._1(Printf.sprintf(--[[ Format ]][
-                                      --[[ Int ]]Block.__(4, [
+                  }
+                }
+              }
+            }
+          }
+        }, __Array.to_list(__Array.map((function (i) do
+                    return --[[ tuple ]]{
+                            Curry._1(Printf.sprintf(--[[ Format ]]{
+                                      --[[ Int ]]Block.__(4, {
                                           --[[ Int_d ]]0,
                                           --[[ No_padding ]]0,
                                           --[[ No_precision ]]0,
                                           --[[ End_of_format ]]0
-                                        ]),
+                                        }),
                                       "%d"
-                                    ]), i),
+                                    }), i),
                             (function (param) do
-                                return --[[ Eq ]]Block.__(0, [
+                                return --[[ Eq ]]Block.__(0, {
                                           Digest.to_hex(Digest.string(Caml_bytes.bytes_to_string(Bytes.make(i, --[[ "a" ]]97)))),
                                           Caml_array.caml_array_get(ref, i)
-                                        ]);
+                                        });
                               end end)
-                          ];
+                          };
                   end end), Ext_array_test.range(0, 129)))));
 
 exports.f = f;

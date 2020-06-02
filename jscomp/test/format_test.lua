@@ -20,18 +20,18 @@ end;
 
 function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = --[[ :: ]][
-    --[[ tuple ]][
+  suites.contents = --[[ :: ]]{
+    --[[ tuple ]]{
       loc .. (" id " .. String(test_id.contents)),
       (function (param) do
-          return --[[ Eq ]]Block.__(0, [
+          return --[[ Eq ]]Block.__(0, {
                     x,
                     y
-                  ]);
+                  });
         end end)
-    ],
+    },
     suites.contents
-  ];
+  };
   return --[[ () ]]0;
 end end
 
@@ -42,22 +42,22 @@ function eq3(loc, a, b, c) do
 end end
 
 function u(param) do
-  return Pervasives.$caret$caret(--[[ Format ]][
-              --[[ String_literal ]]Block.__(11, [
+  return Pervasives.$caret$caret(--[[ Format ]]{
+              --[[ String_literal ]]Block.__(11, {
                   "xx ",
-                  --[[ String ]]Block.__(2, [
+                  --[[ String ]]Block.__(2, {
                       --[[ No_padding ]]0,
                       --[[ End_of_format ]]0
-                    ])
-                ]),
+                    })
+                }),
               "xx %s"
-            ], --[[ Format ]][
-              --[[ String_literal ]]Block.__(11, [
+            }, --[[ Format ]]{
+              --[[ String_literal ]]Block.__(11, {
                   "yy",
                   --[[ End_of_format ]]0
-                ]),
+                }),
               "yy"
-            ]);
+            });
 end end
 
 M = { };
@@ -106,36 +106,36 @@ function f(loc, ls) do
               end end), ls);
 end end
 
-f("File \"format_test.ml\", line 78, characters 6-13", --[[ :: ]][
-      --[[ tuple ]][
+f("File \"format_test.ml\", line 78, characters 6-13", --[[ :: ]]{
+      --[[ tuple ]]{
         "0x3.fp+1",
         7.875
-      ],
-      --[[ :: ]][
-        --[[ tuple ]][
+      },
+      --[[ :: ]]{
+        --[[ tuple ]]{
           " 0x3.fp2",
           15.75
-        ],
-        --[[ :: ]][
-          --[[ tuple ]][
+        },
+        --[[ :: ]]{
+          --[[ tuple ]]{
             " 0x4.fp2",
             19.75
-          ],
+          },
           --[[ [] ]]0
-        ]
-      ]
-    ]);
+        }
+      }
+    });
 
 function sl(f) do
-  return Curry._1(Printf.sprintf(--[[ Format ]][
-                  --[[ Float ]]Block.__(8, [
+  return Curry._1(Printf.sprintf(--[[ Format ]]{
+                  --[[ Float ]]Block.__(8, {
                       --[[ Float_h ]]16,
                       --[[ No_padding ]]0,
                       --[[ No_precision ]]0,
                       --[[ End_of_format ]]0
-                    ]),
+                    }),
                   "%h"
-                ]), f);
+                }), f);
 end end
 
 function aux_list(loc, ls) do
@@ -144,88 +144,88 @@ function aux_list(loc, ls) do
               end end), ls);
 end end
 
-literals_000 = --[[ tuple ]][
+literals_000 = --[[ tuple ]]{
   7.875,
   "0x1.f8p+2"
-];
+};
 
-literals_001 = --[[ :: ]][
-  --[[ tuple ]][
+literals_001 = --[[ :: ]]{
+  --[[ tuple ]]{
     0.3,
     "0x1.3333333333333p-2"
-  ],
-  --[[ :: ]][
-    --[[ tuple ]][
+  },
+  --[[ :: ]]{
+    --[[ tuple ]]{
       Pervasives.infinity,
       "infinity"
-    ],
-    --[[ :: ]][
-      --[[ tuple ]][
+    },
+    --[[ :: ]]{
+      --[[ tuple ]]{
         0.4,
         "0x1.999999999999ap-2"
-      ],
-      --[[ :: ]][
-        --[[ tuple ]][
+      },
+      --[[ :: ]]{
+        --[[ tuple ]]{
           0.5,
           "0x1p-1"
-        ],
-        --[[ :: ]][
-          --[[ tuple ]][
+        },
+        --[[ :: ]]{
+          --[[ tuple ]]{
             0.6,
             "0x1.3333333333333p-1"
-          ],
-          --[[ :: ]][
-            --[[ tuple ]][
+          },
+          --[[ :: ]]{
+            --[[ tuple ]]{
               0.7,
               "0x1.6666666666666p-1"
-            ],
-            --[[ :: ]][
-              --[[ tuple ]][
+            },
+            --[[ :: ]]{
+              --[[ tuple ]]{
                 0.8,
                 "0x1.999999999999ap-1"
-              ],
-              --[[ :: ]][
-                --[[ tuple ]][
+              },
+              --[[ :: ]]{
+                --[[ tuple ]]{
                   0.9,
                   "0x1.ccccccccccccdp-1"
-                ],
+                },
                 --[[ [] ]]0
-              ]
-            ]
-          ]
-        ]
-      ]
-    ]
-  ]
-];
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+};
 
-literals = --[[ :: ]][
+literals = --[[ :: ]]{
   literals_000,
   literals_001
-];
+};
 
 aux_list("File \"format_test.ml\", line 110, characters 11-18", literals);
 
-eq("File \"format_test.ml\", line 113, characters 5-12", Curry._1(Printf.sprintf(--[[ Format ]][
-              --[[ Float ]]Block.__(8, [
+eq("File \"format_test.ml\", line 113, characters 5-12", Curry._1(Printf.sprintf(--[[ Format ]]{
+              --[[ Float ]]Block.__(8, {
                   --[[ Float_H ]]19,
                   --[[ No_padding ]]0,
                   --[[ No_precision ]]0,
                   --[[ End_of_format ]]0
-                ]),
+                }),
               "%H"
-            ]), 7.875), "0X1.F8P+2");
+            }), 7.875), "0X1.F8P+2");
 
 function scan_float(loc, s, expect) do
-  return Curry._1(Scanf.sscanf(s, --[[ Format ]][
-                  --[[ Float ]]Block.__(8, [
+  return Curry._1(Scanf.sscanf(s, --[[ Format ]]{
+                  --[[ Float ]]Block.__(8, {
                       --[[ Float_h ]]16,
                       --[[ No_padding ]]0,
                       --[[ No_precision ]]0,
                       --[[ End_of_format ]]0
-                    ]),
+                    }),
                   "%h"
-                ]), (function (result) do
+                }), (function (result) do
                 return eq(loc, result, expect);
               end end));
 end end

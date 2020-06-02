@@ -47,270 +47,270 @@ end end
 
 function print_stat(c) do
   st = stat(--[[ () ]]0);
-  Curry._1(Printf.fprintf(c, --[[ Format ]][
-            --[[ String_literal ]]Block.__(11, [
+  Curry._1(Printf.fprintf(c, --[[ Format ]]{
+            --[[ String_literal ]]Block.__(11, {
                 "minor_collections: ",
-                --[[ Int ]]Block.__(4, [
+                --[[ Int ]]Block.__(4, {
                     --[[ Int_d ]]0,
                     --[[ No_padding ]]0,
                     --[[ No_precision ]]0,
-                    --[[ Char_literal ]]Block.__(12, [
+                    --[[ Char_literal ]]Block.__(12, {
                         --[[ "\n" ]]10,
                         --[[ End_of_format ]]0
-                      ])
-                  ])
-              ]),
+                      })
+                  })
+              }),
             "minor_collections: %d\n"
-          ]), st.minor_collections);
-  Curry._1(Printf.fprintf(c, --[[ Format ]][
-            --[[ String_literal ]]Block.__(11, [
+          }), st.minor_collections);
+  Curry._1(Printf.fprintf(c, --[[ Format ]]{
+            --[[ String_literal ]]Block.__(11, {
                 "major_collections: ",
-                --[[ Int ]]Block.__(4, [
+                --[[ Int ]]Block.__(4, {
                     --[[ Int_d ]]0,
                     --[[ No_padding ]]0,
                     --[[ No_precision ]]0,
-                    --[[ Char_literal ]]Block.__(12, [
+                    --[[ Char_literal ]]Block.__(12, {
                         --[[ "\n" ]]10,
                         --[[ End_of_format ]]0
-                      ])
-                  ])
-              ]),
+                      })
+                  })
+              }),
             "major_collections: %d\n"
-          ]), st.major_collections);
-  Curry._1(Printf.fprintf(c, --[[ Format ]][
-            --[[ String_literal ]]Block.__(11, [
+          }), st.major_collections);
+  Curry._1(Printf.fprintf(c, --[[ Format ]]{
+            --[[ String_literal ]]Block.__(11, {
                 "compactions:       ",
-                --[[ Int ]]Block.__(4, [
+                --[[ Int ]]Block.__(4, {
                     --[[ Int_d ]]0,
                     --[[ No_padding ]]0,
                     --[[ No_precision ]]0,
-                    --[[ Char_literal ]]Block.__(12, [
+                    --[[ Char_literal ]]Block.__(12, {
                         --[[ "\n" ]]10,
                         --[[ End_of_format ]]0
-                      ])
-                  ])
-              ]),
+                      })
+                  })
+              }),
             "compactions:       %d\n"
-          ]), st.compactions);
-  Printf.fprintf(c, --[[ Format ]][
-        --[[ Char_literal ]]Block.__(12, [
+          }), st.compactions);
+  Printf.fprintf(c, --[[ Format ]]{
+        --[[ Char_literal ]]Block.__(12, {
             --[[ "\n" ]]10,
             --[[ End_of_format ]]0
-          ]),
+          }),
         "\n"
-      ]);
-  l1 = #Curry._1(Printf.sprintf(--[[ Format ]][
-            --[[ Float ]]Block.__(8, [
+      });
+  l1 = #Curry._1(Printf.sprintf(--[[ Format ]]{
+            --[[ Float ]]Block.__(8, {
                 --[[ Float_f ]]0,
                 --[[ No_padding ]]0,
-                --[[ Lit_precision ]][0],
+                --[[ Lit_precision ]]{0},
                 --[[ End_of_format ]]0
-              ]),
+              }),
             "%.0f"
-          ]), st.minor_words);
-  Curry._2(Printf.fprintf(c, --[[ Format ]][
-            --[[ String_literal ]]Block.__(11, [
+          }), st.minor_words);
+  Curry._2(Printf.fprintf(c, --[[ Format ]]{
+            --[[ String_literal ]]Block.__(11, {
                 "minor_words:    ",
-                --[[ Float ]]Block.__(8, [
+                --[[ Float ]]Block.__(8, {
                     --[[ Float_f ]]0,
-                    --[[ Arg_padding ]]Block.__(1, [--[[ Right ]]1]),
-                    --[[ Lit_precision ]][0],
-                    --[[ Char_literal ]]Block.__(12, [
+                    --[[ Arg_padding ]]Block.__(1, {--[[ Right ]]1}),
+                    --[[ Lit_precision ]]{0},
+                    --[[ Char_literal ]]Block.__(12, {
                         --[[ "\n" ]]10,
                         --[[ End_of_format ]]0
-                      ])
-                  ])
-              ]),
+                      })
+                  })
+              }),
             "minor_words:    %*.0f\n"
-          ]), l1, st.minor_words);
-  Curry._2(Printf.fprintf(c, --[[ Format ]][
-            --[[ String_literal ]]Block.__(11, [
+          }), l1, st.minor_words);
+  Curry._2(Printf.fprintf(c, --[[ Format ]]{
+            --[[ String_literal ]]Block.__(11, {
                 "promoted_words: ",
-                --[[ Float ]]Block.__(8, [
+                --[[ Float ]]Block.__(8, {
                     --[[ Float_f ]]0,
-                    --[[ Arg_padding ]]Block.__(1, [--[[ Right ]]1]),
-                    --[[ Lit_precision ]][0],
-                    --[[ Char_literal ]]Block.__(12, [
+                    --[[ Arg_padding ]]Block.__(1, {--[[ Right ]]1}),
+                    --[[ Lit_precision ]]{0},
+                    --[[ Char_literal ]]Block.__(12, {
                         --[[ "\n" ]]10,
                         --[[ End_of_format ]]0
-                      ])
-                  ])
-              ]),
+                      })
+                  })
+              }),
             "promoted_words: %*.0f\n"
-          ]), l1, st.promoted_words);
-  Curry._2(Printf.fprintf(c, --[[ Format ]][
-            --[[ String_literal ]]Block.__(11, [
+          }), l1, st.promoted_words);
+  Curry._2(Printf.fprintf(c, --[[ Format ]]{
+            --[[ String_literal ]]Block.__(11, {
                 "major_words:    ",
-                --[[ Float ]]Block.__(8, [
+                --[[ Float ]]Block.__(8, {
                     --[[ Float_f ]]0,
-                    --[[ Arg_padding ]]Block.__(1, [--[[ Right ]]1]),
-                    --[[ Lit_precision ]][0],
-                    --[[ Char_literal ]]Block.__(12, [
+                    --[[ Arg_padding ]]Block.__(1, {--[[ Right ]]1}),
+                    --[[ Lit_precision ]]{0},
+                    --[[ Char_literal ]]Block.__(12, {
                         --[[ "\n" ]]10,
                         --[[ End_of_format ]]0
-                      ])
-                  ])
-              ]),
+                      })
+                  })
+              }),
             "major_words:    %*.0f\n"
-          ]), l1, st.major_words);
-  Printf.fprintf(c, --[[ Format ]][
-        --[[ Char_literal ]]Block.__(12, [
+          }), l1, st.major_words);
+  Printf.fprintf(c, --[[ Format ]]{
+        --[[ Char_literal ]]Block.__(12, {
             --[[ "\n" ]]10,
             --[[ End_of_format ]]0
-          ]),
+          }),
         "\n"
-      ]);
-  l2 = #Curry._1(Printf.sprintf(--[[ Format ]][
-            --[[ Int ]]Block.__(4, [
+      });
+  l2 = #Curry._1(Printf.sprintf(--[[ Format ]]{
+            --[[ Int ]]Block.__(4, {
                 --[[ Int_d ]]0,
                 --[[ No_padding ]]0,
                 --[[ No_precision ]]0,
                 --[[ End_of_format ]]0
-              ]),
+              }),
             "%d"
-          ]), st.top_heap_words);
-  Curry._2(Printf.fprintf(c, --[[ Format ]][
-            --[[ String_literal ]]Block.__(11, [
+          }), st.top_heap_words);
+  Curry._2(Printf.fprintf(c, --[[ Format ]]{
+            --[[ String_literal ]]Block.__(11, {
                 "top_heap_words: ",
-                --[[ Int ]]Block.__(4, [
+                --[[ Int ]]Block.__(4, {
                     --[[ Int_d ]]0,
-                    --[[ Arg_padding ]]Block.__(1, [--[[ Right ]]1]),
+                    --[[ Arg_padding ]]Block.__(1, {--[[ Right ]]1}),
                     --[[ No_precision ]]0,
-                    --[[ Char_literal ]]Block.__(12, [
+                    --[[ Char_literal ]]Block.__(12, {
                         --[[ "\n" ]]10,
                         --[[ End_of_format ]]0
-                      ])
-                  ])
-              ]),
+                      })
+                  })
+              }),
             "top_heap_words: %*d\n"
-          ]), l2, st.top_heap_words);
-  Curry._2(Printf.fprintf(c, --[[ Format ]][
-            --[[ String_literal ]]Block.__(11, [
+          }), l2, st.top_heap_words);
+  Curry._2(Printf.fprintf(c, --[[ Format ]]{
+            --[[ String_literal ]]Block.__(11, {
                 "heap_words:     ",
-                --[[ Int ]]Block.__(4, [
+                --[[ Int ]]Block.__(4, {
                     --[[ Int_d ]]0,
-                    --[[ Arg_padding ]]Block.__(1, [--[[ Right ]]1]),
+                    --[[ Arg_padding ]]Block.__(1, {--[[ Right ]]1}),
                     --[[ No_precision ]]0,
-                    --[[ Char_literal ]]Block.__(12, [
+                    --[[ Char_literal ]]Block.__(12, {
                         --[[ "\n" ]]10,
                         --[[ End_of_format ]]0
-                      ])
-                  ])
-              ]),
+                      })
+                  })
+              }),
             "heap_words:     %*d\n"
-          ]), l2, st.heap_words);
-  Curry._2(Printf.fprintf(c, --[[ Format ]][
-            --[[ String_literal ]]Block.__(11, [
+          }), l2, st.heap_words);
+  Curry._2(Printf.fprintf(c, --[[ Format ]]{
+            --[[ String_literal ]]Block.__(11, {
                 "live_words:     ",
-                --[[ Int ]]Block.__(4, [
+                --[[ Int ]]Block.__(4, {
                     --[[ Int_d ]]0,
-                    --[[ Arg_padding ]]Block.__(1, [--[[ Right ]]1]),
+                    --[[ Arg_padding ]]Block.__(1, {--[[ Right ]]1}),
                     --[[ No_precision ]]0,
-                    --[[ Char_literal ]]Block.__(12, [
+                    --[[ Char_literal ]]Block.__(12, {
                         --[[ "\n" ]]10,
                         --[[ End_of_format ]]0
-                      ])
-                  ])
-              ]),
+                      })
+                  })
+              }),
             "live_words:     %*d\n"
-          ]), l2, st.live_words);
-  Curry._2(Printf.fprintf(c, --[[ Format ]][
-            --[[ String_literal ]]Block.__(11, [
+          }), l2, st.live_words);
+  Curry._2(Printf.fprintf(c, --[[ Format ]]{
+            --[[ String_literal ]]Block.__(11, {
                 "free_words:     ",
-                --[[ Int ]]Block.__(4, [
+                --[[ Int ]]Block.__(4, {
                     --[[ Int_d ]]0,
-                    --[[ Arg_padding ]]Block.__(1, [--[[ Right ]]1]),
+                    --[[ Arg_padding ]]Block.__(1, {--[[ Right ]]1}),
                     --[[ No_precision ]]0,
-                    --[[ Char_literal ]]Block.__(12, [
+                    --[[ Char_literal ]]Block.__(12, {
                         --[[ "\n" ]]10,
                         --[[ End_of_format ]]0
-                      ])
-                  ])
-              ]),
+                      })
+                  })
+              }),
             "free_words:     %*d\n"
-          ]), l2, st.free_words);
-  Curry._2(Printf.fprintf(c, --[[ Format ]][
-            --[[ String_literal ]]Block.__(11, [
+          }), l2, st.free_words);
+  Curry._2(Printf.fprintf(c, --[[ Format ]]{
+            --[[ String_literal ]]Block.__(11, {
                 "largest_free:   ",
-                --[[ Int ]]Block.__(4, [
+                --[[ Int ]]Block.__(4, {
                     --[[ Int_d ]]0,
-                    --[[ Arg_padding ]]Block.__(1, [--[[ Right ]]1]),
+                    --[[ Arg_padding ]]Block.__(1, {--[[ Right ]]1}),
                     --[[ No_precision ]]0,
-                    --[[ Char_literal ]]Block.__(12, [
+                    --[[ Char_literal ]]Block.__(12, {
                         --[[ "\n" ]]10,
                         --[[ End_of_format ]]0
-                      ])
-                  ])
-              ]),
+                      })
+                  })
+              }),
             "largest_free:   %*d\n"
-          ]), l2, st.largest_free);
-  Curry._2(Printf.fprintf(c, --[[ Format ]][
-            --[[ String_literal ]]Block.__(11, [
+          }), l2, st.largest_free);
+  Curry._2(Printf.fprintf(c, --[[ Format ]]{
+            --[[ String_literal ]]Block.__(11, {
                 "fragments:      ",
-                --[[ Int ]]Block.__(4, [
+                --[[ Int ]]Block.__(4, {
                     --[[ Int_d ]]0,
-                    --[[ Arg_padding ]]Block.__(1, [--[[ Right ]]1]),
+                    --[[ Arg_padding ]]Block.__(1, {--[[ Right ]]1}),
                     --[[ No_precision ]]0,
-                    --[[ Char_literal ]]Block.__(12, [
+                    --[[ Char_literal ]]Block.__(12, {
                         --[[ "\n" ]]10,
                         --[[ End_of_format ]]0
-                      ])
-                  ])
-              ]),
+                      })
+                  })
+              }),
             "fragments:      %*d\n"
-          ]), l2, st.fragments);
-  Printf.fprintf(c, --[[ Format ]][
-        --[[ Char_literal ]]Block.__(12, [
+          }), l2, st.fragments);
+  Printf.fprintf(c, --[[ Format ]]{
+        --[[ Char_literal ]]Block.__(12, {
             --[[ "\n" ]]10,
             --[[ End_of_format ]]0
-          ]),
+          }),
         "\n"
-      ]);
-  Curry._1(Printf.fprintf(c, --[[ Format ]][
-            --[[ String_literal ]]Block.__(11, [
+      });
+  Curry._1(Printf.fprintf(c, --[[ Format ]]{
+            --[[ String_literal ]]Block.__(11, {
                 "live_blocks: ",
-                --[[ Int ]]Block.__(4, [
+                --[[ Int ]]Block.__(4, {
                     --[[ Int_d ]]0,
                     --[[ No_padding ]]0,
                     --[[ No_precision ]]0,
-                    --[[ Char_literal ]]Block.__(12, [
+                    --[[ Char_literal ]]Block.__(12, {
                         --[[ "\n" ]]10,
                         --[[ End_of_format ]]0
-                      ])
-                  ])
-              ]),
+                      })
+                  })
+              }),
             "live_blocks: %d\n"
-          ]), st.live_blocks);
-  Curry._1(Printf.fprintf(c, --[[ Format ]][
-            --[[ String_literal ]]Block.__(11, [
+          }), st.live_blocks);
+  Curry._1(Printf.fprintf(c, --[[ Format ]]{
+            --[[ String_literal ]]Block.__(11, {
                 "free_blocks: ",
-                --[[ Int ]]Block.__(4, [
+                --[[ Int ]]Block.__(4, {
                     --[[ Int_d ]]0,
                     --[[ No_padding ]]0,
                     --[[ No_precision ]]0,
-                    --[[ Char_literal ]]Block.__(12, [
+                    --[[ Char_literal ]]Block.__(12, {
                         --[[ "\n" ]]10,
                         --[[ End_of_format ]]0
-                      ])
-                  ])
-              ]),
+                      })
+                  })
+              }),
             "free_blocks: %d\n"
-          ]), st.free_blocks);
-  return Curry._1(Printf.fprintf(c, --[[ Format ]][
-                  --[[ String_literal ]]Block.__(11, [
+          }), st.free_blocks);
+  return Curry._1(Printf.fprintf(c, --[[ Format ]]{
+                  --[[ String_literal ]]Block.__(11, {
                       "heap_chunks: ",
-                      --[[ Int ]]Block.__(4, [
+                      --[[ Int ]]Block.__(4, {
                           --[[ Int_d ]]0,
                           --[[ No_padding ]]0,
                           --[[ No_precision ]]0,
-                          --[[ Char_literal ]]Block.__(12, [
+                          --[[ Char_literal ]]Block.__(12, {
                               --[[ "\n" ]]10,
                               --[[ End_of_format ]]0
-                            ])
-                        ])
-                    ]),
+                            })
+                        })
+                    }),
                   "heap_chunks: %d\n"
-                ]), st.heap_chunks);
+                }), st.heap_chunks);
 end end
 
 function allocated_bytes(param) do

@@ -2,10 +2,10 @@
 
 __Array = require "../../lib/js/array.lua";
 
-const_v = __Array.append([
+const_v = __Array.append({
       1,
       2
-    ], [3]);
+    }, {3});
 
 exports.const_v = const_v;
 --[[ const_v Not a pure module ]]

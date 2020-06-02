@@ -4,9 +4,9 @@ Caml_obj = require "../../lib/js/caml_obj.lua";
 CamlinternalLazy = require "../../lib/js/camlinternalLazy.lua";
 
 function fix(param) do
-  return --[[ Fix ]][Caml_obj.caml_lazy_make((function (param) do
+  return --[[ Fix ]]{Caml_obj.caml_lazy_make((function (param) do
                   return fix(--[[ () ]]0);
-                end end))];
+                end end))};
 end end
 
 function unfixLeak(_param) do

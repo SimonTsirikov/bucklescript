@@ -81,7 +81,7 @@ end end
 
 function make(l, f) do
   if (l <= 0) then do
-    return [];
+    return {};
   end else do
     res = new Array(l);
     for i = 0 , l - 1 | 0 , 1 do
@@ -93,7 +93,7 @@ end end
 
 function makeByU(l, f) do
   if (l <= 0) then do
-    return [];
+    return {};
   end else do
     res = new Array(l);
     for i = 0 , l - 1 | 0 , 1 do
@@ -120,7 +120,7 @@ end end
 function range(start, finish) do
   cut = finish - start | 0;
   if (cut < 0) then do
-    return [];
+    return {};
   end else do
     arr = new Array(cut + 1 | 0);
     for i = 0 , cut , 1 do
@@ -133,7 +133,7 @@ end end
 function rangeBy(start, finish, step) do
   cut = finish - start | 0;
   if (cut < 0 or step <= 0) then do
-    return [];
+    return {};
   end else do
     nb = (cut / step | 0) + 1 | 0;
     arr = new Array(nb);
@@ -152,10 +152,10 @@ function zip(xs, ys) do
   len = lenx < leny and lenx or leny;
   s = new Array(len);
   for i = 0 , len - 1 | 0 , 1 do
-    s[i] = --[[ tuple ]][
+    s[i] = --[[ tuple ]]{
       xs[i],
       ys[i]
-    ];
+    };
   end
   return s;
 end end
@@ -208,14 +208,14 @@ end end
 
 function slice(a, offset, len) do
   if (len <= 0) then do
-    return [];
+    return {};
   end else do
     lena = #a;
     ofs = offset < 0 and Caml_primitive.caml_int_max(lena + offset | 0, 0) or offset;
     hasLen = lena - ofs | 0;
     copyLength = hasLen < len and hasLen or len;
     if (copyLength <= 0) then do
-      return [];
+      return {};
     end else do
       result = new Array(copyLength);
       for i = 0 , copyLength - 1 | 0 , 1 do
@@ -642,10 +642,10 @@ function partitionU(a, f) do
   end
   a1.length = i;
   a2.length = j;
-  return --[[ tuple ]][
+  return --[[ tuple ]]{
           a1,
           a2
-        ];
+        };
 end end
 
 function partition(a, f) do
@@ -661,10 +661,10 @@ function unzip(a) do
     a1[i] = match[0];
     a2[i] = match[1];
   end
-  return --[[ tuple ]][
+  return --[[ tuple ]]{
           a1,
           a2
-        ];
+        };
 end end
 
 export do

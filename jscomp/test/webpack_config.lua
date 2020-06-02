@@ -37,7 +37,7 @@ A = { };
 B = { };
 
 function f(param) do
-  return --[[ tuple ]][
+  return --[[ tuple ]]{
           (function (prim) do
               List$3.ff();
               return --[[ () ]]0;
@@ -54,18 +54,18 @@ function f(param) do
               List$2.ff2();
               return --[[ () ]]0;
             end end)
-        ];
+        };
 end end
 
 List$1.xx();
 
-List.length(--[[ :: ]][
+List.length(--[[ :: ]]{
       1,
-      --[[ :: ]][
+      --[[ :: ]]{
         2,
         --[[ [] ]]0
-      ]
-    ]);
+      }
+    });
 
 List.length(--[[ [] ]]0);
 

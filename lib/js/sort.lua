@@ -9,15 +9,15 @@ function merge(order, l1, l2) do
       h2 = l2[0];
       h1 = l1[0];
       if (Curry._2(order, h1, h2)) then do
-        return --[[ :: ]][
+        return --[[ :: ]]{
                 h1,
                 merge(order, l1[1], l2)
-              ];
+              };
       end else do
-        return --[[ :: ]][
+        return --[[ :: ]]{
                 h2,
                 merge(order, l1, l2[1])
-              ];
+              };
       end end 
     end else do
       return l1;
@@ -34,30 +34,30 @@ function list(order, l) do
       e = param[0];
       if (match) then do
         e2 = match[0];
-        return --[[ :: ]][
-                Curry._2(order, e, e2) and --[[ :: ]][
+        return --[[ :: ]]{
+                Curry._2(order, e, e2) and --[[ :: ]]{
                     e,
-                    --[[ :: ]][
+                    --[[ :: ]]{
                       e2,
                       --[[ [] ]]0
-                    ]
-                  ] or --[[ :: ]][
+                    }
+                  } or --[[ :: ]]{
                     e2,
-                    --[[ :: ]][
+                    --[[ :: ]]{
                       e,
                       --[[ [] ]]0
-                    ]
-                  ],
+                    }
+                  },
                 initlist(match[1])
-              ];
+              };
       end else do
-        return --[[ :: ]][
-                --[[ :: ]][
+        return --[[ :: ]]{
+                --[[ :: ]]{
                   e,
                   --[[ [] ]]0
-                ],
+                },
                 --[[ [] ]]0
-              ];
+              };
       end end 
     end else do
       return --[[ [] ]]0;
@@ -67,10 +67,10 @@ function list(order, l) do
     if (x) then do
       match = x[1];
       if (match) then do
-        return --[[ :: ]][
+        return --[[ :: ]]{
                 merge(order, x[0], match[0]),
                 merge2(match[1])
-              ];
+              };
       end else do
         return x;
       end end 
@@ -124,10 +124,10 @@ function array(cmp, arr) do
         i = lo + 1 | 0;
         j = hi - 1 | 0;
         if (not Curry._2(cmp, pivot, arr[hi]) or not Curry._2(cmp, arr[lo], pivot)) then do
-          throw [
+          throw {
                 Caml_builtin_exceptions.invalid_argument,
                 "Sort.array"
-              ];
+              };
         end
          end 
         while(i < j) do

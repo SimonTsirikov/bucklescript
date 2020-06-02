@@ -77,10 +77,10 @@ end end
 
 function randomRange(i, j) do
   return Belt_Array.map(Array_data_util.randomRange(i, j), (function (x) do
-                return --[[ tuple ]][
+                return --[[ tuple ]]{
                         x,
                         x
-                      ];
+                      };
               end end));
 end end
 
@@ -151,7 +151,7 @@ b("File \"bs_poly_map_test.ml\", line 77, characters 4-11", 11 == Belt_Map.getUn
 
 b("File \"bs_poly_map_test.ml\", line 78, characters 4-11", Belt_Map.getUndefined(a4, 3) == undefined);
 
-a7 = Belt_Map.removeMany(a0, [
+a7 = Belt_Map.removeMany(a0, {
       7,
       8,
       0,
@@ -163,12 +163,12 @@ a7 = Belt_Map.removeMany(a0, [
       4,
       5,
       6
-    ]);
+    });
 
-eq("File \"bs_poly_map_test.ml\", line 81, characters 5-12", Belt_MapDict.keysToArray(a7.data), [
+eq("File \"bs_poly_map_test.ml\", line 81, characters 5-12", Belt_MapDict.keysToArray(a7.data), {
       9,
       10
-    ]);
+    });
 
 a8 = Belt_Map.removeMany(a7, Array_data_util.randomRange(0, 100));
 
@@ -206,10 +206,10 @@ end;
 m1 = acc(m, Belt_Array.concat(Array_data_util.randomRange(0, 20), Array_data_util.randomRange(10, 30)));
 
 x$8 = Belt_Array.makeBy(31, (function (i) do
-        return --[[ tuple ]][
+        return --[[ tuple ]]{
                 i,
                 i >= 10 and i <= 20 and 2 or 1
-              ];
+              };
       end end));
 
 b("File \"bs_poly_map_test.ml\", line 103, characters 4-11", Belt_Map.eq(m1, Belt_Map.fromArray(x$8, Icmp), (function (x, y) do
@@ -222,17 +222,17 @@ v0 = do
 end;
 
 v1 = Belt_Map.mergeMany(v0, Belt_Array.map(Array_data_util.randomRange(0, 10000), (function (x) do
-            return --[[ tuple ]][
+            return --[[ tuple ]]{
                     x,
                     x
-                  ];
+                  };
           end end)));
 
 x$9 = Belt_Array.map(Array_data_util.randomRange(0, 10000), (function (x) do
-        return --[[ tuple ]][
+        return --[[ tuple ]]{
                 x,
                 x
-              ];
+              };
       end end));
 
 v2 = Belt_Map.fromArray(x$9, Icmp);
@@ -281,7 +281,7 @@ b("File \"bs_poly_map_test.ml\", line 129, characters 4-11", Belt_MapDict.isEmpt
 map$1 = Belt_Map.removeMany(do
       cmp: Icmp.cmp,
       data: Belt_MapDict.empty
-    end, [0]);
+    end, {0});
 
 b("File \"bs_poly_map_test.ml\", line 130, characters 4-11", Belt_MapDict.isEmpty(map$1.data));
 

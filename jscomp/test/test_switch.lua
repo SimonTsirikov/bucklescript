@@ -31,7 +31,7 @@ function bind(x, f) do
   if (x.tag) then do
     return x;
   end else do
-    return --[[ Left ]]Block.__(0, [Curry._1(f, x[0])]);
+    return --[[ Left ]]Block.__(0, {Curry._1(f, x[0])});
   end end 
 end end
 

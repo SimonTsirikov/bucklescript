@@ -7,10 +7,10 @@ A = Caml_exceptions.create("Test_exception_escape.N.A");
 f;
 
 try do
-  throw [
+  throw {
         A,
         3
-      ];
+      };
 end
 catch (exn)do
   f = 3;

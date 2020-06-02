@@ -25,11 +25,11 @@ for i = 0 , 1 , 1 do
   Caml_array.caml_array_set(arr, i, i + 1 | 0);
 end
 
-console.log(--[[ tuple ]][
+console.log(--[[ tuple ]]{
       a,
       b,
       arr
-    ]);
+    });
 
 c = arr;
 
