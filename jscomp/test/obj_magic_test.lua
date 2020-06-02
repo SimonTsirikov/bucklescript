@@ -1,8 +1,8 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-Obj = require "../../lib/js/obj.lua";
-Block = require "../../lib/js/block.lua";
+Mt = require "./mt";
+Obj = require "../../lib/js/obj";
+Block = require "../../lib/js/block";
 
 empty_backtrace = --[[ obj_block ]]Block.__(Obj.abstract_tag, {});
 

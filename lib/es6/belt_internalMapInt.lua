@@ -7,7 +7,7 @@ import * as Caml_primitive from "./caml_primitive.lua";
 import * as Belt_internalAVLtree from "./belt_internalAVLtree.lua";
 
 function add(t, x, data) do
-  if (t ~= null) then do
+  if (t ~= nil) then do
     k = t.key;
     if (x == k) then do
       return Belt_internalAVLtree.updateValue(t, data);
@@ -27,13 +27,13 @@ end end
 function get(_n, x) do
   while(true) do
     n = _n;
-    if (n ~= null) then do
+    if (n ~= nil) then do
       v = n.key;
       if (x == v) then do
         return Caml_option.some(n.value);
       end else do
         _n = x < v and n.left or n.right;
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return ;
@@ -44,13 +44,13 @@ end end
 function getUndefined(_n, x) do
   while(true) do
     n = _n;
-    if (n ~= null) then do
+    if (n ~= nil) then do
       v = n.key;
       if (x == v) then do
         return n.value;
       end else do
         _n = x < v and n.left or n.right;
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return ;
@@ -61,16 +61,16 @@ end end
 function getExn(_n, x) do
   while(true) do
     n = _n;
-    if (n ~= null) then do
+    if (n ~= nil) then do
       v = n.key;
       if (x == v) then do
         return n.value;
       end else do
         _n = x < v and n.left or n.right;
-        continue ;
+        ::continue:: ;
       end end 
     end else do
-      throw new Error("getExn");
+      error (new Error("getExn"))
     end end 
   end;
 end end
@@ -78,13 +78,13 @@ end end
 function getWithDefault(_n, x, def) do
   while(true) do
     n = _n;
-    if (n ~= null) then do
+    if (n ~= nil) then do
       v = n.key;
       if (x == v) then do
         return n.value;
       end else do
         _n = x < v and n.left or n.right;
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return def;
@@ -95,13 +95,13 @@ end end
 function has(_n, x) do
   while(true) do
     n = _n;
-    if (n ~= null) then do
+    if (n ~= nil) then do
       v = n.key;
       if (x == v) then do
         return true;
       end else do
         _n = x < v and n.left or n.right;
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return false;
@@ -110,13 +110,13 @@ function has(_n, x) do
 end end
 
 function remove(n, x) do
-  if (n ~= null) then do
+  if (n ~= nil) then do
     l = n.left;
     v = n.key;
     r = n.right;
     if (x == v) then do
-      if (l ~= null) then do
-        if (r ~= null) then do
+      if (l ~= nil) then do
+        if (r ~= nil) then do
           kr = do
             contents: r.key
           end;
@@ -153,7 +153,7 @@ function splitAux(x, n) do
             r
           };
   end else if (x < v) then do
-    if (l ~= null) then do
+    if (l ~= nil) then do
       match = splitAux(x, l);
       return --[[ tuple ]]{
               match[0],
@@ -162,12 +162,12 @@ function splitAux(x, n) do
             };
     end else do
       return --[[ tuple ]]{
-              null,
+              nil,
               undefined,
               n
             };
     end end 
-  end else if (r ~= null) then do
+  end else if (r ~= nil) then do
     match$1 = splitAux(x, r);
     return --[[ tuple ]]{
             Belt_internalAVLtree.join(l, v, d, match$1[0]),
@@ -178,27 +178,27 @@ function splitAux(x, n) do
     return --[[ tuple ]]{
             n,
             undefined,
-            null
+            nil
           };
   end end  end  end 
 end end
 
 function split(x, n) do
-  if (n ~= null) then do
+  if (n ~= nil) then do
     return splitAux(x, n);
   end else do
     return --[[ tuple ]]{
-            null,
+            nil,
             undefined,
-            null
+            nil
           };
   end end 
 end end
 
 function mergeU(s1, s2, f) do
-  if (s1 ~= null) then do
+  if (s1 ~= nil) then do
     if (s1.height >= (
-        s2 ~= null and s2.height or 0
+        s2 ~= nil and s2.height or 0
       )) then do
       l1 = s1.left;
       v1 = s1.key;
@@ -208,11 +208,11 @@ function mergeU(s1, s2, f) do
       return Belt_internalAVLtree.concatOrJoin(mergeU(l1, match[0], f), v1, f(v1, Caml_option.some(d1), match[1]), mergeU(r1, match[2], f));
     end
      end 
-  end else if (s2 == null) then do
-    return null;
+  end else if (s2 == nil) then do
+    return nil;
   end
    end  end 
-  if (s2 ~= null) then do
+  if (s2 ~= nil) then do
     l2 = s2.left;
     v2 = s2.key;
     d2 = s2.value;
@@ -241,7 +241,7 @@ function compareAux(_e1, _e2, vcmp) do
         if (cx == 0) then do
           _e2 = Belt_internalAVLtree.stackAllLeft(h2.right, e2[1]);
           _e1 = Belt_internalAVLtree.stackAllLeft(h1.right, e1[1]);
-          continue ;
+          ::continue:: ;
         end else do
           return cx;
         end end 
@@ -280,7 +280,7 @@ function eqAux(_e1, _e2, eq) do
       if (h1.key == h2.key and eq(h1.value, h2.value)) then do
         _e2 = Belt_internalAVLtree.stackAllLeft(h2.right, e2[1]);
         _e1 = Belt_internalAVLtree.stackAllLeft(h1.right, e1[1]);
-        continue ;
+        ::continue:: ;
       end else do
         return false;
       end end 
@@ -305,7 +305,7 @@ function eq(s1, s2, f) do
 end end
 
 function addMutate(t, x, data) do
-  if (t ~= null) then do
+  if (t ~= nil) then do
     k = t.key;
     if (x == k) then do
       t.key = x;
@@ -330,7 +330,7 @@ end end
 function fromArray(xs) do
   len = #xs;
   if (len == 0) then do
-    return null;
+    return nil;
   end else do
     next = Belt_SortArray.strictlySortedLengthU(xs, (function (param, param$1) do
             return param[0] < param$1[0];

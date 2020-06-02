@@ -1,6 +1,6 @@
 --[['use strict';]]
 
-Caml_option = require "./caml_option.lua";
+Caml_option = require "./caml_option";
 
 function test(x) do
   return x == undefined;
@@ -14,7 +14,7 @@ function getExn(f) do
   if (f ~= undefined) then do
     return f;
   end else do
-    throw new Error("Js.Undefined.getExn");
+    error (new Error("Js.Undefined.getExn"))
   end end 
 end end
 

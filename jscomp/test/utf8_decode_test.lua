@@ -1,12 +1,12 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-List = require "../../lib/js/list.lua";
-Block = require "../../lib/js/block.lua";
-Curry = require "../../lib/js/curry.lua";
-Stream = require "../../lib/js/stream.lua";
-Caml_bytes = require "../../lib/js/caml_bytes.lua";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
+Mt = require "./mt";
+List = require "../../lib/js/list";
+Block = require "../../lib/js/block";
+Curry = require "../../lib/js/curry";
+Stream = require "../../lib/js/stream";
+Caml_bytes = require "../../lib/js/caml_bytes";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 function classify(chr) do
   if ((chr & 128) == 0) then do
@@ -50,20 +50,20 @@ function utf8_decode(strm) do
                   Stream.junk(strm);
                   match$1 = classify(match);
                   if (typeof match$1 == "number") then do
-                    throw {
-                          Stream.__Error,
-                          "Invalid byte"
-                        };
+                    error ({
+                      Stream.__Error,
+                      "Invalid byte"
+                    })
                   end else do
                     local ___conditional___=(match$1.tag | 0);
                     do
                        if ___conditional___ = 0--[[ Single ]] then do
                           return Stream.icons(match$1[0], utf8_decode(strm));end end end 
                        if ___conditional___ = 1--[[ Cont ]] then do
-                          throw {
-                                Stream.__Error,
-                                "Unexpected continuation byte"
-                              };end end end 
+                          error ({
+                            Stream.__Error,
+                            "Unexpected continuation byte"
+                          })end end end 
                        if ___conditional___ = 2--[[ Leading ]] then do
                           follow = function (strm, _n, _c) do
                             while(true) do
@@ -74,19 +74,19 @@ function utf8_decode(strm) do
                               end else do
                                 match = classify(Stream.next(strm));
                                 if (typeof match == "number") then do
-                                  throw {
-                                        Stream.__Error,
-                                        "Continuation byte expected"
-                                      };
+                                  error ({
+                                    Stream.__Error,
+                                    "Continuation byte expected"
+                                  })
                                 end else if (match.tag == --[[ Cont ]]1) then do
                                   _c = (c << 6) | match[0] & 63;
                                   _n = n - 1 | 0;
-                                  continue ;
+                                  ::continue:: ;
                                 end else do
-                                  throw {
-                                        Stream.__Error,
-                                        "Continuation byte expected"
-                                      };
+                                  error ({
+                                    Stream.__Error,
+                                    "Continuation byte expected"
+                                  })
                                 end end  end 
                               end end 
                             end;
@@ -123,10 +123,10 @@ function decode(bytes, offset) do
   offset$1 = offset;
   match = classify(Caml_bytes.get(bytes, offset$1));
   if (typeof match == "number") then do
-    throw {
-          Caml_builtin_exceptions.invalid_argument,
-          "decode"
-        };
+    error ({
+      Caml_builtin_exceptions.invalid_argument,
+      "decode"
+    })
   end else do
     local ___conditional___=(match.tag | 0);
     do
@@ -136,10 +136,10 @@ function decode(bytes, offset) do
                   offset$1 + 1 | 0
                 };end end end 
        if ___conditional___ = 1--[[ Cont ]] then do
-          throw {
-                Caml_builtin_exceptions.invalid_argument,
-                "decode"
-              };end end end 
+          error ({
+            Caml_builtin_exceptions.invalid_argument,
+            "decode"
+          })end end end 
        if ___conditional___ = 2--[[ Leading ]] then do
           _n = match[0];
           _c = match[1];
@@ -156,20 +156,20 @@ function decode(bytes, offset) do
             end else do
               match$1 = classify(Caml_bytes.get(bytes, offset$2));
               if (typeof match$1 == "number") then do
-                throw {
-                      Caml_builtin_exceptions.invalid_argument,
-                      "decode"
-                    };
+                error ({
+                  Caml_builtin_exceptions.invalid_argument,
+                  "decode"
+                })
               end else if (match$1.tag == --[[ Cont ]]1) then do
                 _offset = offset$2 + 1 | 0;
                 _c = (c << 6) | match$1[0] & 63;
                 _n = n - 1 | 0;
-                continue ;
+                ::continue:: ;
               end else do
-                throw {
-                      Caml_builtin_exceptions.invalid_argument,
-                      "decode"
-                    };
+                error ({
+                  Caml_builtin_exceptions.invalid_argument,
+                  "decode"
+                })
               end end  end 
             end end 
           end;end end end 
@@ -187,7 +187,7 @@ function eq_list(cmp, _xs, _ys) do
       if (ys and Curry._2(cmp, xs[0], ys[0])) then do
         _ys = ys[1];
         _xs = xs[1];
-        continue ;
+        ::continue:: ;
       end else do
         return false;
       end end 

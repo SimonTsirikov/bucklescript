@@ -1,17 +1,17 @@
 --[['use strict';]]
 
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 function f(x) do
   if (x > 3 or x < 1) then do
-    throw {
-          Caml_builtin_exceptions.match_failure,
-          --[[ tuple ]]{
-            "test_incomplete.ml",
-            3,
-            2
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.match_failure,
+      --[[ tuple ]]{
+        "test_incomplete.ml",
+        3,
+        2
+      }
+    })
   end else do
     return --[[ "a" ]]97;
   end end 

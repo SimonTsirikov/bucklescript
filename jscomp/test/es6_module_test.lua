@@ -1,8 +1,8 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-List = require "../../lib/js/list.lua";
-Block = require "../../lib/js/block.lua";
+Mt = require "./mt";
+List = require "../../lib/js/list";
+Block = require "../../lib/js/block";
 
 function length(param) do
   return 3;

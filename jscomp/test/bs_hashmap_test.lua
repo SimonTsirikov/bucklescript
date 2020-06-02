@@ -1,14 +1,14 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-Belt_Id = require "../../lib/js/belt_Id.lua";
-Hashtbl = require "../../lib/js/hashtbl.lua";
-Belt_Array = require "../../lib/js/belt_Array.lua";
-Belt_HashMap = require "../../lib/js/belt_HashMap.lua";
-Belt_SortArray = require "../../lib/js/belt_SortArray.lua";
-Caml_primitive = require "../../lib/js/caml_primitive.lua";
-Array_data_util = require "./array_data_util.lua";
-Belt_internalBucketsType = require "../../lib/js/belt_internalBucketsType.lua";
+Mt = require "./mt";
+Belt_Id = require "../../lib/js/belt_Id";
+Hashtbl = require "../../lib/js/hashtbl";
+Belt_Array = require "../../lib/js/belt_Array";
+Belt_HashMap = require "../../lib/js/belt_HashMap";
+Belt_SortArray = require "../../lib/js/belt_SortArray";
+Caml_primitive = require "../../lib/js/caml_primitive";
+Array_data_util = require "./array_data_util";
+Belt_internalBucketsType = require "../../lib/js/belt_internalBucketsType";
 
 suites = do
   contents: --[[ [] ]]0

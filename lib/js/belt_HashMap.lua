@@ -1,8 +1,8 @@
 --[['use strict';]]
 
-Caml_option = require "./caml_option.lua";
-Belt_internalBuckets = require "./belt_internalBuckets.lua";
-Belt_internalBucketsType = require "./belt_internalBucketsType.lua";
+Caml_option = require "./caml_option";
+Belt_internalBuckets = require "./belt_internalBuckets";
+Belt_internalBucketsType = require "./belt_internalBucketsType";
 
 function size(prim) do
   return prim.size;
@@ -21,7 +21,7 @@ function copyBucketReHash(hash, h_buckets, ndata_tail, _old_bucket) do
       end end 
       ndata_tail[nidx] = old_bucket;
       _old_bucket = old_bucket.next;
-      continue ;
+      ::continue:: ;
     end else do
       return --[[ () ]]0;
     end end 
@@ -38,7 +38,7 @@ function replaceInBucket(eq, key, info, _cell) do
       match = cell.next;
       if (match ~= undefined) then do
         _cell = match;
-        continue ;
+        ::continue:: ;
       end else do
         return true;
       end end 
@@ -130,7 +130,7 @@ function remove(h, key) do
           end else do
             _bucket = cell_next;
             _prec = bucket$1;
-            continue ;
+            ::continue:: ;
           end end 
         end else do
           return --[[ () ]]0;
@@ -171,7 +171,7 @@ function get(h, key) do
                     return Caml_option.some(buckets.value);
                   end else do
                     _buckets = buckets.next;
-                    continue ;
+                    ::continue:: ;
                   end end 
                 end else do
                   return ;
@@ -206,7 +206,7 @@ function has(h, key) do
         match = cell.next;
         if (match ~= undefined) then do
           _cell = match;
-          continue ;
+          ::continue:: ;
         end else do
           return false;
         end end 

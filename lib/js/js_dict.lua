@@ -1,6 +1,6 @@
 --[['use strict';]]
 
-Caml_option = require "./caml_option.lua";
+Caml_option = require "./caml_option";
 
 function get(dict, k) do
   if ((k in dict)) then do
@@ -47,7 +47,7 @@ function fromList(entries) do
       match = param[0];
       dict[match[0]] = match[1];
       _param = param[1];
-      continue ;
+      ::continue:: ;
     end else do
       return dict;
     end end 

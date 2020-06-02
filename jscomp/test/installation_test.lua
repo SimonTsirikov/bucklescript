@@ -1,12 +1,12 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-Fs = require "fs";
-Path = require "path";
-Block = require "../../lib/js/block.lua";
-Child_process = require "child_process";
-App_root_finder = require "./app_root_finder.lua";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
+Mt = require "./mt";
+Fs = require "";
+Path = require "";
+Block = require "../../lib/js/block";
+Child_process = require "child_pro";
+App_root_finder = require "./app_root_finder";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 suites = do
   contents: --[[ [] ]]0
@@ -40,22 +40,21 @@ if (match ~= undefined) then do
   bsc_exe = Path.join(root, "bsc");
   exit = 0;
   output;
-  try do
+  xpcall(function() do
     output = Child_process.execSync(bsc_exe .. " -where ", do
           encoding: "utf8"
         end);
     exit = 1;
-  end
-  catch (e)do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "installation_test.ml",
-            33,
-            8
-          }
-        };
-  end
+  end end,function(e) return do
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "installation_test.ml",
+        33,
+        8
+      }
+    })
+  end end)
   if (exit == 1) then do
     dir = output.trim();
     files = Fs.readdirSync(dir);
@@ -66,14 +65,14 @@ if (match ~= undefined) then do
   end
    end 
 end else do
-  throw {
-        Caml_builtin_exceptions.assert_failure,
-        --[[ tuple ]]{
-          "installation_test.ml",
-          35,
-          18
-        }
-      };
+  error ({
+    Caml_builtin_exceptions.assert_failure,
+    --[[ tuple ]]{
+      "installation_test.ml",
+      35,
+      18
+    }
+  })
 end end 
 
 Mt.from_pair_suites("Installation_test", suites.contents);

@@ -1,9 +1,9 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-Caml_exceptions = require "../../lib/js/caml_exceptions.lua";
-Caml_js_exceptions = require "../../lib/js/caml_js_exceptions.lua";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
+Mt = require "./mt";
+Caml_exceptions = require "../../lib/js/caml_exceptions";
+Caml_js_exceptions = require "../../lib/js/caml_js_exceptions";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 function f(match) do
   if (Caml_exceptions.caml_is_extension(match)) then do
@@ -67,12 +67,11 @@ eq("File \"exn_error_pattern.ml\", line 37, characters 5-12", f({
 
 tmp;
 
-try do
-  throw new Error("x");
-end
-catch (raw_e)do
+xpcall(function() do
+  error (new Error("x"))
+end end,function(raw_e) return do
   tmp = Caml_js_exceptions.internalToOCamlException(raw_e);
-end
+end end)
 
 eq("File \"exn_error_pattern.ml\", line 38, characters 5-12", f(tmp), undefined);
 

@@ -1,7 +1,7 @@
 --[['use strict';]]
 
-Js_dict = require "./js_dict.lua";
-Process = require "process";
+Js_dict = require "./js_dict";
+Process = require "pro";
 
 function putEnvVar(key, __var) do
   Process.env[key] = __var;

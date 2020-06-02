@@ -1,9 +1,9 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-Block = require "../../lib/js/block.lua";
-Caml_exceptions = require "../../lib/js/caml_exceptions.lua";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
+Mt = require "./mt";
+Block = require "../../lib/js/block";
+Caml_exceptions = require "../../lib/js/caml_exceptions";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 Str = Caml_exceptions.create("Extensible_variant_test.Str");
 
@@ -23,14 +23,14 @@ function to_int(x) do
   end else if (x[0] == Int$1) then do
     return x[2];
   end else do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "extensible_variant_test.ml",
-            16,
-            9
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "extensible_variant_test.ml",
+        16,
+        9
+      }
+    })
   end end  end  end 
 end end
 

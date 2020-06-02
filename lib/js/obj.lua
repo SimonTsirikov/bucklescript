@@ -1,9 +1,9 @@
 --[['use strict';]]
 
-Marshal = require "./marshal.lua";
-Caml_array = require "./caml_array.lua";
-Caml_external_polyfill = require "./caml_external_polyfill.lua";
-Caml_builtin_exceptions = require "./caml_builtin_exceptions.lua";
+Marshal = require "./marshal";
+Caml_array = require "./caml_array";
+Caml_external_polyfill = require "./caml_external_polyfill";
+Caml_builtin_exceptions = require "./caml_builtin_exceptions";
 
 function is_block(a) do
   return typeof a ~= "number";
@@ -30,18 +30,18 @@ function extension_constructor(x) do
   if (typeof slot ~= "number" and slot.tag == 248) then do
     name = slot[0];
   end else do
-    throw {
-          Caml_builtin_exceptions.invalid_argument,
-          "Obj.extension_constructor"
-        };
+    error ({
+      Caml_builtin_exceptions.invalid_argument,
+      "Obj.extension_constructor"
+    })
   end end 
   if (name.tag == 252) then do
     return slot;
   end else do
-    throw {
-          Caml_builtin_exceptions.invalid_argument,
-          "Obj.extension_constructor"
-        };
+    error ({
+      Caml_builtin_exceptions.invalid_argument,
+      "Obj.extension_constructor"
+    })
   end end 
 end end
 

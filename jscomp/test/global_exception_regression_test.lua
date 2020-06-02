@@ -1,8 +1,8 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-Block = require "../../lib/js/block.lua";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
+Mt = require "./mt";
+Block = require "../../lib/js/block";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 v = Caml_builtin_exceptions.not_found;
 

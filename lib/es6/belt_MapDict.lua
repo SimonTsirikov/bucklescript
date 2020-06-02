@@ -5,7 +5,7 @@ import * as Caml_option from "./caml_option.lua";
 import * as Belt_internalAVLtree from "./belt_internalAVLtree.lua";
 
 function set(t, newK, newD, cmp) do
-  if (t ~= null) then do
+  if (t ~= nil) then do
     k = t.key;
     c = cmp(newK, k);
     if (c == 0) then do
@@ -26,7 +26,7 @@ function set(t, newK, newD, cmp) do
 end end
 
 function updateU(t, newK, f, cmp) do
-  if (t ~= null) then do
+  if (t ~= nil) then do
     k = t.key;
     c = cmp(newK, k);
     if (c == 0) then do
@@ -36,8 +36,8 @@ function updateU(t, newK, f, cmp) do
       end else do
         l = t.left;
         r = t.right;
-        if (l ~= null) then do
-          if (r ~= null) then do
+        if (l ~= nil) then do
+          if (r ~= nil) then do
             kr = do
               contents: r.key
             end;
@@ -93,8 +93,8 @@ function removeAux0(n, x, cmp) do
   r = n.right;
   c = cmp(x, v);
   if (c == 0) then do
-    if (l ~= null) then do
-      if (r ~= null) then do
+    if (l ~= nil) then do
+      if (r ~= nil) then do
         kr = do
           contents: r.key
         end;
@@ -110,7 +110,7 @@ function removeAux0(n, x, cmp) do
       return r;
     end end 
   end else if (c < 0) then do
-    if (l ~= null) then do
+    if (l ~= nil) then do
       ll = removeAux0(l, x, cmp);
       if (ll == l) then do
         return n;
@@ -120,7 +120,7 @@ function removeAux0(n, x, cmp) do
     end else do
       return n;
     end end 
-  end else if (r ~= null) then do
+  end else if (r ~= nil) then do
     rr = removeAux0(r, x, cmp);
     if (rr == r) then do
       return n;
@@ -133,10 +133,10 @@ function removeAux0(n, x, cmp) do
 end end
 
 function remove(n, x, cmp) do
-  if (n ~= null) then do
+  if (n ~= nil) then do
     return removeAux0(n, x, cmp);
   end else do
-    return null;
+    return nil;
   end end 
 end end
 
@@ -163,7 +163,7 @@ function splitAuxPivot(n, x, pres, cmp) do
             r
           };
   end else if (c < 0) then do
-    if (l ~= null) then do
+    if (l ~= nil) then do
       match = splitAuxPivot(l, x, pres, cmp);
       return --[[ tuple ]]{
               match[0],
@@ -171,11 +171,11 @@ function splitAuxPivot(n, x, pres, cmp) do
             };
     end else do
       return --[[ tuple ]]{
-              null,
+              nil,
               n
             };
     end end 
-  end else if (r ~= null) then do
+  end else if (r ~= nil) then do
     match$1 = splitAuxPivot(r, x, pres, cmp);
     return --[[ tuple ]]{
             Belt_internalAVLtree.join(l, v, d, match$1[0]),
@@ -184,13 +184,13 @@ function splitAuxPivot(n, x, pres, cmp) do
   end else do
     return --[[ tuple ]]{
             n,
-            null
+            nil
           };
   end end  end  end 
 end end
 
 function split(n, x, cmp) do
-  if (n ~= null) then do
+  if (n ~= nil) then do
     pres = do
       contents: undefined
     end;
@@ -202,8 +202,8 @@ function split(n, x, cmp) do
   end else do
     return --[[ tuple ]]{
             --[[ tuple ]]{
-              null,
-              null
+              nil,
+              nil
             },
             undefined
           };
@@ -211,8 +211,8 @@ function split(n, x, cmp) do
 end end
 
 function mergeU(s1, s2, f, cmp) do
-  if (s1 ~= null) then do
-    if (s2 ~= null) then do
+  if (s1 ~= nil) then do
+    if (s2 ~= nil) then do
       if (s1.height >= s2.height) then do
         l1 = s1.left;
         v1 = s1.key;
@@ -247,12 +247,12 @@ function mergeU(s1, s2, f, cmp) do
                     return f(k, Caml_option.some(v), undefined);
                   end end));
     end end 
-  end else if (s2 ~= null) then do
+  end else if (s2 ~= nil) then do
     return Belt_internalAVLtree.keepMapU(s2, (function (k, v) do
                   return f(k, undefined, Caml_option.some(v));
                 end end));
   end else do
-    return null;
+    return nil;
   end end  end 
 end end
 
@@ -262,7 +262,7 @@ end end
 
 function removeMany(t, keys, cmp) do
   len = #keys;
-  if (t ~= null) then do
+  if (t ~= nil) then do
     _t = t;
     xs = keys;
     _i = 0;
@@ -274,10 +274,10 @@ function removeMany(t, keys, cmp) do
       if (i < len$1) then do
         ele = xs[i];
         u = removeAux0(t$1, ele, cmp$1);
-        if (u ~= null) then do
+        if (u ~= nil) then do
           _i = i + 1 | 0;
           _t = u;
-          continue ;
+          ::continue:: ;
         end else do
           return u;
         end end 
@@ -286,11 +286,11 @@ function removeMany(t, keys, cmp) do
       end end 
     end;
   end else do
-    return null;
+    return nil;
   end end 
 end end
 
-empty = null;
+empty = nil;
 
 isEmpty = Belt_internalAVLtree.isEmpty;
 

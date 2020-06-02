@@ -1,8 +1,8 @@
 --[['use strict';]]
 
-List = require "../../lib/js/list.lua";
-Curry = require "../../lib/js/curry.lua";
-Caml_int32 = require "../../lib/js/caml_int32.lua";
+List = require "../../lib/js/list";
+Curry = require "../../lib/js/curry";
+Caml_int32 = require "../../lib/js/caml_int32";
 
 function h0(x) do
   return x();

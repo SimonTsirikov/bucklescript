@@ -6,13 +6,13 @@ import * as Belt_internalAVLset from "./belt_internalAVLset.lua";
 function has(_t, x) do
   while(true) do
     t = _t;
-    if (t ~= null) then do
+    if (t ~= nil) then do
       v = t.value;
       if (x == v) then do
         return true;
       end else do
         _t = x < v and t.left or t.right;
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return false;
@@ -32,7 +32,7 @@ function compareAux(_e1, _e2) do
       if (k1 == k2) then do
         _e2 = Belt_internalAVLset.stackAllLeft(h2.right, e2[1]);
         _e1 = Belt_internalAVLset.stackAllLeft(h1.right, e1[1]);
-        continue ;
+        ::continue:: ;
       end else if (k1 < k2) then do
         return -1;
       end else do
@@ -64,8 +64,8 @@ function subset(_s1, _s2) do
   while(true) do
     s2 = _s2;
     s1 = _s1;
-    if (s1 ~= null) then do
-      if (s2 ~= null) then do
+    if (s1 ~= nil) then do
+      if (s2 ~= nil) then do
         l1 = s1.left;
         v1 = s1.value;
         r1 = s1.right;
@@ -76,20 +76,20 @@ function subset(_s1, _s2) do
           if (subset(l1, l2)) then do
             _s2 = r2;
             _s1 = r1;
-            continue ;
+            ::continue:: ;
           end else do
             return false;
           end end 
         end else if (v1 < v2) then do
-          if (subset(Belt_internalAVLset.create(l1, v1, null), l2)) then do
+          if (subset(Belt_internalAVLset.create(l1, v1, nil), l2)) then do
             _s1 = r1;
-            continue ;
+            ::continue:: ;
           end else do
             return false;
           end end 
-        end else if (subset(Belt_internalAVLset.create(null, v1, r1), r2)) then do
+        end else if (subset(Belt_internalAVLset.create(nil, v1, r1), r2)) then do
           _s1 = l1;
-          continue ;
+          ::continue:: ;
         end else do
           return false;
         end end  end  end 
@@ -105,13 +105,13 @@ end end
 function get(_n, x) do
   while(true) do
     n = _n;
-    if (n ~= null) then do
+    if (n ~= nil) then do
       v = n.value;
       if (x == v) then do
         return v;
       end else do
         _n = x < v and n.left or n.right;
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return ;
@@ -122,13 +122,13 @@ end end
 function getUndefined(_n, x) do
   while(true) do
     n = _n;
-    if (n ~= null) then do
+    if (n ~= nil) then do
       v = n.value;
       if (x == v) then do
         return v;
       end else do
         _n = x < v and n.left or n.right;
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return ;
@@ -139,22 +139,22 @@ end end
 function getExn(_n, x) do
   while(true) do
     n = _n;
-    if (n ~= null) then do
+    if (n ~= nil) then do
       v = n.value;
       if (x == v) then do
         return v;
       end else do
         _n = x < v and n.left or n.right;
-        continue ;
+        ::continue:: ;
       end end 
     end else do
-      throw new Error("getExn");
+      error (new Error("getExn"))
     end end 
   end;
 end end
 
 function addMutate(t, x) do
-  if (t ~= null) then do
+  if (t ~= nil) then do
     k = t.value;
     if (x == k) then do
       return t;
@@ -176,7 +176,7 @@ end end
 function fromArray(xs) do
   len = #xs;
   if (len == 0) then do
-    return null;
+    return nil;
   end else do
     next = Belt_SortArrayInt.strictlySortedLength(xs);
     result;

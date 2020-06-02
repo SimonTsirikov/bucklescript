@@ -1,6 +1,6 @@
 --[['use strict';]]
 
-Curry = require "../../lib/js/curry.lua";
+Curry = require "../../lib/js/curry";
 
 function map_pair(r, param) do
   return --[[ tuple ]]{

@@ -7,7 +7,7 @@ function f(_x, _y) do
     x = _x;
     _y = x;
     _x = y;
-    continue ;
+    ::continue:: ;
   end;
 end end
 
@@ -20,7 +20,7 @@ function f1(_x, _y, _z) do
     _z = x;
     _y = z;
     _x = y;
-    continue ;
+    ::continue:: ;
   end;
 end end
 
@@ -28,7 +28,7 @@ function f2(x, _y) do
   while(true) do
     y = _y;
     _y = y + 10 | 0;
-    continue ;
+    ::continue:: ;
   end;
 end end
 
@@ -38,7 +38,7 @@ function f3(_x, _y) do
     x = _x;
     _y = x + 10 | 0;
     _x = y;
-    continue ;
+    ::continue:: ;
   end;
 end end
 
@@ -48,7 +48,7 @@ function f4(_x, _y) do
     x = _x;
     _y = y + x | 0;
     _x = x + 10 | 0;
-    continue ;
+    ::continue:: ;
   end;
 end end
 
@@ -57,14 +57,14 @@ function f5(_x, _y, z) do
     y = _y;
     _y = z + 20 | 0;
     _x = y + 10 | 0;
-    continue ;
+    ::continue:: ;
   end;
 end end
 
 function f6(b) do
   while(true) do
     if (b) then do
-      continue ;
+      ::continue:: ;
     end else do
       return false;
     end end 
@@ -76,7 +76,7 @@ function f7(b) do
     if (b) then do
       return true;
     end else do
-      continue ;
+      ::continue:: ;
     end end 
   end;
 end end
@@ -87,13 +87,13 @@ function f8(_x, _y) do
     x = _x;
     if (x > 10) then do
       _y = y + 1 | 0;
-      continue ;
+      ::continue:: ;
     end else if (x < 5) then do
       _x = x - 1 | 0;
-      continue ;
+      ::continue:: ;
     end else if (x > 6) then do
       _x = x - 2 | 0;
-      continue ;
+      ::continue:: ;
     end else do
       return f8(x, y + 1 | 0) + f8(x - 1 | 0, y) | 0;
     end end  end  end 

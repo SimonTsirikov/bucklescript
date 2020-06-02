@@ -1,16 +1,16 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-__Array = require "../../lib/js/array.lua";
-Block = require "../../lib/js/block.lua";
-Curry = require "../../lib/js/curry.lua";
-Int64 = require "../../lib/js/int64.lua";
-__Buffer = require "../../lib/js/buffer.lua";
-Format = require "../../lib/js/format.lua";
-Printf = require "../../lib/js/printf.lua";
-Caml_int64 = require "../../lib/js/caml_int64.lua";
-Pervasives = require "../../lib/js/pervasives.lua";
-Caml_format = require "../../lib/js/caml_format.lua";
+Mt = require "./mt";
+__Array = require "../../lib/js/array";
+Block = require "../../lib/js/block";
+Curry = require "../../lib/js/curry";
+Int64 = require "../../lib/js/int64";
+__Buffer = require "../../lib/js/buffer";
+Format = require "../../lib/js/format";
+Printf = require "../../lib/js/printf";
+Caml_int64 = require "../../lib/js/caml_int64";
+Pervasives = require "../../lib/js/pervasives";
+Caml_format = require "../../lib/js/caml_format";
 
 of_string = {
   --[[ tuple ]]{

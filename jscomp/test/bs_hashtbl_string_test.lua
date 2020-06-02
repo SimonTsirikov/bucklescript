@@ -1,16 +1,16 @@
 --[['use strict';]]
 
-Belt_Id = require "../../lib/js/belt_Id.lua";
-Hashtbl = require "../../lib/js/hashtbl.lua";
-Belt_HashMap = require "../../lib/js/belt_HashMap.lua";
-Belt_MapDict = require "../../lib/js/belt_MapDict.lua";
-Caml_primitive = require "../../lib/js/caml_primitive.lua";
-Belt_HashMapInt = require "../../lib/js/belt_HashMapInt.lua";
-Belt_HashSetInt = require "../../lib/js/belt_HashSetInt.lua";
-Belt_HashMapString = require "../../lib/js/belt_HashMapString.lua";
-Caml_hash_primitive = require "../../lib/js/caml_hash_primitive.lua";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
-Belt_internalBucketsType = require "../../lib/js/belt_internalBucketsType.lua";
+Belt_Id = require "../../lib/js/belt_Id";
+Hashtbl = require "../../lib/js/hashtbl";
+Belt_HashMap = require "../../lib/js/belt_HashMap";
+Belt_MapDict = require "../../lib/js/belt_MapDict";
+Caml_primitive = require "../../lib/js/caml_primitive";
+Belt_HashMapInt = require "../../lib/js/belt_HashMapInt";
+Belt_HashSetInt = require "../../lib/js/belt_HashSetInt";
+Belt_HashMapString = require "../../lib/js/belt_HashMapString";
+Caml_hash_primitive = require "../../lib/js/caml_hash_primitive";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
+Belt_internalBucketsType = require "../../lib/js/belt_internalBucketsType";
 
 function hash_string(s) do
   return Caml_hash_primitive.caml_hash_final_mix(Caml_hash_primitive.caml_hash_mix_string(0, s));
@@ -53,14 +53,14 @@ function bench(param) do
   end
   for i$1 = 0 , 1000000 , 1 do
     if (not Belt_HashMap.has(empty, i$1)) then do
-      throw {
-            Caml_builtin_exceptions.assert_failure,
-            --[[ tuple ]]{
-              "bs_hashtbl_string_test.ml",
-              50,
-              4
-            }
-          };
+      error ({
+        Caml_builtin_exceptions.assert_failure,
+        --[[ tuple ]]{
+          "bs_hashtbl_string_test.ml",
+          50,
+          4
+        }
+      })
     end
      end 
   end
@@ -74,14 +74,14 @@ function bench2(m) do
   end
   for i$1 = 0 , 1000000 , 1 do
     if (not Belt_HashMap.has(empty, String(i$1))) then do
-      throw {
-            Caml_builtin_exceptions.assert_failure,
-            --[[ tuple ]]{
-              "bs_hashtbl_string_test.ml",
-              76,
-              4
-            }
-          };
+      error ({
+        Caml_builtin_exceptions.assert_failure,
+        --[[ tuple ]]{
+          "bs_hashtbl_string_test.ml",
+          76,
+          4
+        }
+      })
     end
      end 
   end
@@ -91,14 +91,14 @@ function bench2(m) do
   if (empty.size == 0) then do
     return 0;
   end else do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "bs_hashtbl_string_test.ml",
-            82,
-            2
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "bs_hashtbl_string_test.ml",
+        82,
+        2
+      }
+    })
   end end 
 end end
 
@@ -114,14 +114,14 @@ function bench3(m) do
   end
   for i$1 = 0 , 1000000 , 1 do
     if (not Belt_MapDict.has(table, String(i$1), cmp)) then do
-      throw {
-            Caml_builtin_exceptions.assert_failure,
-            --[[ tuple ]]{
-              "bs_hashtbl_string_test.ml",
-              98,
-              4
-            }
-          };
+      error ({
+        Caml_builtin_exceptions.assert_failure,
+        --[[ tuple ]]{
+          "bs_hashtbl_string_test.ml",
+          98,
+          4
+        }
+      })
     end
      end 
   end
@@ -131,14 +131,14 @@ function bench3(m) do
   if (Belt_MapDict.size(table) == 0) then do
     return 0;
   end else do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "bs_hashtbl_string_test.ml",
-            105,
-            2
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "bs_hashtbl_string_test.ml",
+        105,
+        2
+      }
+    })
   end end 
 end end
 
@@ -151,14 +151,14 @@ function bench4(param) do
   end
   for i$1 = 0 , 1000000 , 1 do
     if (not Belt_HashMapString.has(table, String(i$1))) then do
-      throw {
-            Caml_builtin_exceptions.assert_failure,
-            --[[ tuple ]]{
-              "bs_hashtbl_string_test.ml",
-              118,
-              4
-            }
-          };
+      error ({
+        Caml_builtin_exceptions.assert_failure,
+        --[[ tuple ]]{
+          "bs_hashtbl_string_test.ml",
+          118,
+          4
+        }
+      })
     end
      end 
   end
@@ -168,14 +168,14 @@ function bench4(param) do
   if (Belt_HashMapString.isEmpty(table)) then do
     return 0;
   end else do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "bs_hashtbl_string_test.ml",
-            124,
-            2
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "bs_hashtbl_string_test.ml",
+        124,
+        2
+      }
+    })
   end end 
 end end
 
@@ -189,14 +189,14 @@ function bench5(param) do
   console.time("test/bs_hashtbl_string_test.ml 137");
   for i$1 = 0 , 1000000 , 1 do
     if (not Belt_HashMap.has(table, i$1)) then do
-      throw {
-            Caml_builtin_exceptions.assert_failure,
-            --[[ tuple ]]{
-              "bs_hashtbl_string_test.ml",
-              138,
-              6
-            }
-          };
+      error ({
+        Caml_builtin_exceptions.assert_failure,
+        --[[ tuple ]]{
+          "bs_hashtbl_string_test.ml",
+          138,
+          6
+        }
+      })
     end
      end 
   end
@@ -209,14 +209,14 @@ function bench5(param) do
   if (Belt_HashMap.isEmpty(table)) then do
     return 0;
   end else do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "bs_hashtbl_string_test.ml",
-            144,
-            2
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "bs_hashtbl_string_test.ml",
+        144,
+        2
+      }
+    })
   end end 
 end end
 
@@ -227,14 +227,14 @@ function bench6(param) do
   end
   for i$1 = 0 , 1000000 , 1 do
     if (not Belt_HashMapInt.has(table, i$1)) then do
-      throw {
-            Caml_builtin_exceptions.assert_failure,
-            --[[ tuple ]]{
-              "bs_hashtbl_string_test.ml",
-              156,
-              4
-            }
-          };
+      error ({
+        Caml_builtin_exceptions.assert_failure,
+        --[[ tuple ]]{
+          "bs_hashtbl_string_test.ml",
+          156,
+          4
+        }
+      })
     end
      end 
   end
@@ -244,14 +244,14 @@ function bench6(param) do
   if (table.size == 0) then do
     return 0;
   end else do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "bs_hashtbl_string_test.ml",
-            162,
-            2
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "bs_hashtbl_string_test.ml",
+        162,
+        2
+      }
+    })
   end end 
 end end
 
@@ -263,14 +263,14 @@ function bench7(param) do
   end
   for i$1 = 0 , 1000000 , 1 do
     if (not Belt_HashSetInt.has(table, i$1)) then do
-      throw {
-            Caml_builtin_exceptions.assert_failure,
-            --[[ tuple ]]{
-              "bs_hashtbl_string_test.ml",
-              181,
-              4
-            }
-          };
+      error ({
+        Caml_builtin_exceptions.assert_failure,
+        --[[ tuple ]]{
+          "bs_hashtbl_string_test.ml",
+          181,
+          4
+        }
+      })
     end
      end 
   end
@@ -280,14 +280,14 @@ function bench7(param) do
   if (table.size == 0) then do
     return 0;
   end else do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "bs_hashtbl_string_test.ml",
-            192,
-            2
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "bs_hashtbl_string_test.ml",
+        192,
+        2
+      }
+    })
   end end 
 end end
 

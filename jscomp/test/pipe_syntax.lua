@@ -1,8 +1,8 @@
 --[['use strict';]]
 
-Curry = require "../../lib/js/curry.lua";
-Belt_Array = require "../../lib/js/belt_Array.lua";
-Caml_option = require "../../lib/js/caml_option.lua";
+Curry = require "../../lib/js/curry";
+Belt_Array = require "../../lib/js/belt_Array";
+Caml_option = require "../../lib/js/caml_option";
 
 function t0(x, f) do
   return Curry._1(f, Curry._1(f, Curry._1(f, x)));

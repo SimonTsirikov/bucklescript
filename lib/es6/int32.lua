@@ -30,17 +30,16 @@ function to_string(n) do
 end end
 
 function of_string_opt(s) do
-  try do
+  xpcall(function() do
     return Caml_format.caml_int32_of_string(s);
-  end
-  catch (raw_exn)do
+  end end,function(raw_exn) return do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn[0] == Caml_builtin_exceptions.failure) then do
       return ;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 compare = Caml_primitive.caml_int32_compare;

@@ -1,9 +1,9 @@
 --[['use strict';]]
 
-Caml_int32 = require "./caml_int32.lua";
-Caml_int64 = require "./caml_int64.lua";
-Caml_utils = require "./caml_utils.lua";
-Caml_builtin_exceptions = require "./caml_builtin_exceptions.lua";
+Caml_int32 = require "./caml_int32";
+Caml_int64 = require "./caml_int64";
+Caml_utils = require "./caml_utils";
+Caml_builtin_exceptions = require "./caml_builtin_exceptions";
 
 function parse_digit(c) do
   if (c >= 65) then do
@@ -137,10 +137,10 @@ function caml_int_of_string(s) do
   c = i < len and s.charCodeAt(i) or --[[ "\000" ]]0;
   d = parse_digit(c);
   if (d < 0 or d >= base) then do
-    throw {
-          Caml_builtin_exceptions.failure,
-          "int_of_string"
-        };
+    error ({
+      Caml_builtin_exceptions.failure,
+      "int_of_string"
+    })
   end
    end 
   aux = function (_acc, _k) do
@@ -153,27 +153,27 @@ function caml_int_of_string(s) do
         a = s.charCodeAt(k);
         if (a == --[[ "_" ]]95) then do
           _k = k + 1 | 0;
-          continue ;
+          ::continue:: ;
         end else do
           v = parse_digit(a);
           if (v < 0 or v >= base) then do
-            throw {
-                  Caml_builtin_exceptions.failure,
-                  "int_of_string"
-                };
+            error ({
+              Caml_builtin_exceptions.failure,
+              "int_of_string"
+            })
           end
            end 
           acc$1 = base * acc + v;
           if (acc$1 > threshold) then do
-            throw {
-                  Caml_builtin_exceptions.failure,
-                  "int_of_string"
-                };
+            error ({
+              Caml_builtin_exceptions.failure,
+              "int_of_string"
+            })
           end
            end 
           _k = k + 1 | 0;
           _acc = acc$1;
-          continue ;
+          ::continue:: ;
         end end 
       end end 
     end;
@@ -181,10 +181,10 @@ function caml_int_of_string(s) do
   res = match[1] * aux(d, i + 1 | 0);
   or_res = res | 0;
   if (base == 10 and res ~= or_res) then do
-    throw {
-          Caml_builtin_exceptions.failure,
-          "int_of_string"
-        };
+    error ({
+      Caml_builtin_exceptions.failure,
+      "int_of_string"
+    })
   end
    end 
   return or_res;
@@ -229,10 +229,10 @@ function caml_int64_of_string(s) do
           --[[ hi ]]0,
           --[[ lo ]]0
         }) or Caml_int64.ge(d, base)) then do
-    throw {
-          Caml_builtin_exceptions.failure,
-          "int64_of_string"
-        };
+    error ({
+      Caml_builtin_exceptions.failure,
+      "int64_of_string"
+    })
   end
    end 
   aux = function (_acc, _k) do
@@ -245,23 +245,23 @@ function caml_int64_of_string(s) do
         a = s.charCodeAt(k);
         if (a == --[[ "_" ]]95) then do
           _k = k + 1 | 0;
-          continue ;
+          ::continue:: ;
         end else do
           v = Caml_int64.of_int32(parse_digit(a));
           if (Caml_int64.lt(v, --[[ int64 ]]{
                   --[[ hi ]]0,
                   --[[ lo ]]0
                 }) or Caml_int64.ge(v, base) or Caml_int64.gt(acc, threshold)) then do
-            throw {
-                  Caml_builtin_exceptions.failure,
-                  "int64_of_string"
-                };
+            error ({
+              Caml_builtin_exceptions.failure,
+              "int64_of_string"
+            })
           end
            end 
           acc$1 = Caml_int64.add(Caml_int64.mul(base, acc), v);
           _k = k + 1 | 0;
           _acc = acc$1;
-          continue ;
+          ::continue:: ;
         end end 
       end end 
     end;
@@ -275,10 +275,10 @@ function caml_int64_of_string(s) do
           --[[ hi ]]0,
           --[[ lo ]]10
         }) and Caml_int64.neq(res, or_res)) then do
-    throw {
-          Caml_builtin_exceptions.failure,
-          "int64_of_string"
-        };
+    error ({
+      Caml_builtin_exceptions.failure,
+      "int64_of_string"
+    })
   end
    end 
   return or_res;
@@ -309,10 +309,10 @@ end end
 function parse_format(fmt) do
   len = #fmt;
   if (len > 31) then do
-    throw {
-          Caml_builtin_exceptions.invalid_argument,
-          "format_int: format too long"
-        };
+    error ({
+      Caml_builtin_exceptions.invalid_argument,
+      "format_int: format too long"
+    })
   end
    end 
   f = do
@@ -347,7 +347,7 @@ function parse_format(fmt) do
                   f.base = --[[ Hex ]]1;
                   f.uppercase = true;
                   _i = i + 1 | 0;
-                  continue ;end end end 
+                  ::continue:: ;end end end 
                if ___conditional___ = 13
                or ___conditional___ = 14
                or ___conditional___ = 15 then do
@@ -358,11 +358,11 @@ function parse_format(fmt) do
                if ___conditional___ = 23 then do
                   f.base = --[[ Oct ]]0;
                   _i = i + 1 | 0;
-                  continue ;end end end 
+                  ::continue:: ;end end end 
                if ___conditional___ = 29 then do
                   f.base = --[[ Dec ]]2;
                   _i = i + 1 | 0;
-                  continue ;end end end 
+                  ::continue:: ;end end end 
                if ___conditional___ = 1
                or ___conditional___ = 2
                or ___conditional___ = 3
@@ -391,7 +391,7 @@ function parse_format(fmt) do
                if ___conditional___ = 32 then do
                   f.base = --[[ Hex ]]1;
                   _i = i + 1 | 0;
-                  continue ;end end end 
+                  ::continue:: ;end end end 
                do
               
             end
@@ -403,7 +403,7 @@ function parse_format(fmt) do
           f.uppercase = true;
           f.conv = String.fromCharCode(lowercase(c));
           _i = i + 1 | 0;
-          continue ;
+          ::continue:: ;
         end end  end 
       end else do
         local ___conditional___=(c);
@@ -411,14 +411,14 @@ function parse_format(fmt) do
            if ___conditional___ = 35 then do
               f.alternate = true;
               _i = i + 1 | 0;
-              continue ;end end end 
+              ::continue:: ;end end end 
            if ___conditional___ = 32
            or ___conditional___ = 43 then do
               exit = 2;end else 
            if ___conditional___ = 45 then do
               f.justify = "-";
               _i = i + 1 | 0;
-              continue ;end end end 
+              ::continue:: ;end end end 
            if ___conditional___ = 46 then do
               f.prec = 0;
               j = i + 1 | 0;
@@ -432,7 +432,7 @@ function parse_format(fmt) do
                 j = j + 1 | 0;
               end;
               _i = j;
-              continue ;end end end 
+              ::continue:: ;end end end 
            if ___conditional___ = 33
            or ___conditional___ = 34
            or ___conditional___ = 36
@@ -448,7 +448,7 @@ function parse_format(fmt) do
            if ___conditional___ = 48 then do
               f.filter = "0";
               _i = i + 1 | 0;
-              continue ;end end end 
+              ::continue:: ;end end end 
            if ___conditional___ = 49
            or ___conditional___ = 50
            or ___conditional___ = 51
@@ -470,11 +470,11 @@ function parse_format(fmt) do
       do
          if ___conditional___ = 1 then do
             _i = i + 1 | 0;
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 2 then do
             f.signstyle = String.fromCharCode(c);
             _i = i + 1 | 0;
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 3 then do
             f.width = 0;
             j$1 = i;
@@ -488,17 +488,17 @@ function parse_format(fmt) do
               j$1 = j$1 + 1 | 0;
             end;
             _i = j$1;
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 4 then do
             f.signedconv = true;
             f.base = --[[ Dec ]]2;
             _i = i + 1 | 0;
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 5 then do
             f.signedconv = true;
             f.conv = String.fromCharCode(c);
             _i = i + 1 | 0;
-            continue ;end end end 
+            ::continue:: ;end end end 
          do
         
       end

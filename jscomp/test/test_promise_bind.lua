@@ -1,6 +1,6 @@
 --[['use strict';]]
 
-__Promise = require "./promise.lua";
+__Promise = require "./promise";
 
 v = __Promise.f;
 

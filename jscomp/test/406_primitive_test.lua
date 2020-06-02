@@ -1,8 +1,8 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-Caml_exceptions = require "../../lib/js/caml_exceptions.lua";
-Caml_js_exceptions = require "../../lib/js/caml_js_exceptions.lua";
+Mt = require "./mt";
+Caml_exceptions = require "../../lib/js/caml_exceptions";
+Caml_js_exceptions = require "../../lib/js/caml_js_exceptions";
 
 suites = do
   contents: --[[ [] ]]0
@@ -24,26 +24,25 @@ eq("File \"406_primitive_test.ml\", line 29, characters 6-13", backend_type, --[
 
 function f(param) do
   A = Caml_exceptions.create("A");
-  try do
+  xpcall(function() do
     for i = 0 , 200 , 1 do
       if (i == 10) then do
-        throw {
-              A,
-              0
-            };
+        error ({
+          A,
+          0
+        })
       end
        end 
     end
     return --[[ () ]]0;
-  end
-  catch (raw_exn)do
+  end end,function(raw_exn) return do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn[0] == A) then do
       return --[[ () ]]0;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 Mt.from_pair_suites("406_primitive_test", suites.contents);

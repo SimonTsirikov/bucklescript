@@ -1,26 +1,26 @@
 --[['use strict';]]
 
-Sys = require "./sys.lua";
-List = require "./list.lua";
-__Array = require "./array.lua";
-Block = require "./block.lua";
-Bytes = require "./bytes.lua";
-Curry = require "./curry.lua";
-__Buffer = require "./buffer.lua";
-Printf = require "./printf.lua";
-__String = require "./string.lua";
-Caml_io = require "./caml_io.lua";
-Caml_obj = require "./caml_obj.lua";
-Caml_array = require "./caml_array.lua";
-Caml_bytes = require "./caml_bytes.lua";
-Pervasives = require "./pervasives.lua";
-Caml_format = require "./caml_format.lua";
-Caml_string = require "./caml_string.lua";
-Caml_primitive = require "./caml_primitive.lua";
-Caml_exceptions = require "./caml_exceptions.lua";
-Caml_js_exceptions = require "./caml_js_exceptions.lua";
-Caml_external_polyfill = require "./caml_external_polyfill.lua";
-Caml_builtin_exceptions = require "./caml_builtin_exceptions.lua";
+Sys = require "./sys";
+List = require "./list";
+__Array = require "./array";
+Block = require "./block";
+Bytes = require "./bytes";
+Curry = require "./curry";
+__Buffer = require "./buffer";
+Printf = require "./printf";
+__String = require "./string";
+Caml_io = require "./caml_io";
+Caml_obj = require "./caml_obj";
+Caml_array = require "./caml_array";
+Caml_bytes = require "./caml_bytes";
+Pervasives = require "./pervasives";
+Caml_format = require "./caml_format";
+Caml_string = require "./caml_string";
+Caml_primitive = require "./caml_primitive";
+Caml_exceptions = require "./caml_exceptions";
+Caml_js_exceptions = require "./caml_js_exceptions";
+Caml_external_polyfill = require "./caml_external_polyfill";
+Caml_builtin_exceptions = require "./caml_builtin_exceptions";
 
 Bad = Caml_exceptions.create("Arg.Bad");
 
@@ -37,10 +37,10 @@ function assoc3(x, _l) do
         return match[1];
       end else do
         _l = l[1];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
-      throw Caml_builtin_exceptions.not_found;
+      error (Caml_builtin_exceptions.not_found)
     end end 
   end;
 end end
@@ -65,19 +65,18 @@ function make_symlist(prefix, sep, suffix, l) do
 end end
 
 function help_action(param) do
-  throw {
-        Stop,
-        --[[ Unknown ]]Block.__(0, {"-help"})
-      };
+  error ({
+    Stop,
+    --[[ Unknown ]]Block.__(0, {"-help"})
+  })
 end end
 
 function add_help(speclist) do
   add1;
-  try do
+  xpcall(function() do
     assoc3("-help", speclist);
     add1 = --[[ [] ]]0;
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Caml_builtin_exceptions.not_found) then do
       add1 = --[[ :: ]]{
         --[[ tuple ]]{
@@ -88,15 +87,14 @@ function add_help(speclist) do
         --[[ [] ]]0
       };
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
   add2;
-  try do
+  xpcall(function() do
     assoc3("--help", speclist);
     add2 = --[[ [] ]]0;
-  end
-  catch (exn$1)do
+  end end,function(exn$1) return do
     if (exn$1 == Caml_builtin_exceptions.not_found) then do
       add2 = --[[ :: ]]{
         --[[ tuple ]]{
@@ -107,9 +105,9 @@ function add_help(speclist) do
         --[[ [] ]]0
       };
     end else do
-      throw exn$1;
+      error (exn$1)
     end end 
-  end
+  end end)
   return Pervasives.$at(speclist, Pervasives.$at(add1, add2));
 end end
 
@@ -202,45 +200,42 @@ current = do
 end;
 
 function bool_of_string_opt(x) do
-  try do
+  xpcall(function() do
     return Pervasives.bool_of_string(x);
-  end
-  catch (raw_exn)do
+  end end,function(raw_exn) return do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn[0] == Caml_builtin_exceptions.invalid_argument) then do
       return ;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 function int_of_string_opt(x) do
-  try do
+  xpcall(function() do
     return Caml_format.caml_int_of_string(x);
-  end
-  catch (raw_exn)do
+  end end,function(raw_exn) return do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn[0] == Caml_builtin_exceptions.failure) then do
       return ;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 function float_of_string_opt(x) do
-  try do
+  xpcall(function() do
     return Caml_format.caml_float_of_string(x);
-  end
-  catch (raw_exn)do
+  end end,function(raw_exn) return do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn[0] == Caml_builtin_exceptions.failure) then do
       return ;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 function parse_and_expand_argv_dynamic_aux(allow_expand, current, argv, speclist, anonfun, errmsg) do
@@ -358,51 +353,49 @@ function parse_and_expand_argv_dynamic_aux(allow_expand, current, argv, speclist
   end end;
   current.contents = current.contents + 1 | 0;
   while(current.contents < #argv.contents) do
-    try do
+    xpcall(function() do
       s = Caml_array.caml_array_get(argv.contents, current.contents);
       if (#s >= 1 and Caml_string.get(s, 0) == --[[ "-" ]]45) then do
         match;
-        try do
+        xpcall(function() do
           match = --[[ tuple ]]{
             assoc3(s, speclist.contents),
             undefined
           };
-        end
-        catch (exn)do
+        end end,function(exn) return do
           if (exn == Caml_builtin_exceptions.not_found) then do
-            try do
+            xpcall(function() do
               match$1 = split(s);
               match = --[[ tuple ]]{
                 assoc3(match$1[0], speclist.contents),
                 match$1[1]
               };
-            end
-            catch (exn$1)do
+            end end,function(exn$1) return do
               if (exn$1 == Caml_builtin_exceptions.not_found) then do
-                throw {
-                      Stop,
-                      --[[ Unknown ]]Block.__(0, {s})
-                    };
+                error ({
+                  Stop,
+                  --[[ Unknown ]]Block.__(0, {s})
+                })
               end
                end 
-              throw exn$1;
-            end
+              error (exn$1)
+            end end)
           end else do
-            throw exn;
+            error (exn)
           end end 
-        end
+        end end)
         follow = match[1];
         no_arg = (function(s,follow)do
         return function no_arg(param) do
           if (follow ~= undefined) then do
-            throw {
-                  Stop,
-                  --[[ Wrong ]]Block.__(1, {
-                      s,
-                      follow,
-                      "no argument"
-                    })
-                };
+            error ({
+              Stop,
+              --[[ Wrong ]]Block.__(1, {
+                  s,
+                  follow,
+                  "no argument"
+                })
+            })
           end else do
             return --[[ () ]]0;
           end end 
@@ -415,10 +408,10 @@ function parse_and_expand_argv_dynamic_aux(allow_expand, current, argv, speclist
           end else if ((current.contents + 1 | 0) < #argv.contents) then do
             return Caml_array.caml_array_get(argv.contents, current.contents + 1 | 0);
           end else do
-            throw {
-                  Stop,
-                  --[[ Missing ]]Block.__(2, {s})
-                };
+            error ({
+              Stop,
+              --[[ Missing ]]Block.__(2, {s})
+            })
           end end  end 
         end end
         end(s,follow));
@@ -444,14 +437,14 @@ function parse_and_expand_argv_dynamic_aux(allow_expand, current, argv, speclist
                 if (match ~= undefined) then do
                   Curry._1(param[0], match);
                 end else do
-                  throw {
-                        Stop,
-                        --[[ Wrong ]]Block.__(1, {
-                            s,
-                            arg,
-                            "a boolean"
-                          })
-                      };
+                  error ({
+                    Stop,
+                    --[[ Wrong ]]Block.__(1, {
+                        s,
+                        arg,
+                        "a boolean"
+                      })
+                  })
                 end end 
                 return consume_arg(--[[ () ]]0);end end end 
              if ___conditional___ = 2--[[ Set ]] then do
@@ -475,14 +468,14 @@ function parse_and_expand_argv_dynamic_aux(allow_expand, current, argv, speclist
                 if (match$1 ~= undefined) then do
                   Curry._1(param[0], match$1);
                 end else do
-                  throw {
-                        Stop,
-                        --[[ Wrong ]]Block.__(1, {
-                            s,
-                            arg$2,
-                            "an integer"
-                          })
-                      };
+                  error ({
+                    Stop,
+                    --[[ Wrong ]]Block.__(1, {
+                        s,
+                        arg$2,
+                        "an integer"
+                      })
+                  })
                 end end 
                 return consume_arg(--[[ () ]]0);end end end 
              if ___conditional___ = 7--[[ Set_int ]] then do
@@ -491,14 +484,14 @@ function parse_and_expand_argv_dynamic_aux(allow_expand, current, argv, speclist
                 if (match$2 ~= undefined) then do
                   param[0].contents = match$2;
                 end else do
-                  throw {
-                        Stop,
-                        --[[ Wrong ]]Block.__(1, {
-                            s,
-                            arg$3,
-                            "an integer"
-                          })
-                      };
+                  error ({
+                    Stop,
+                    --[[ Wrong ]]Block.__(1, {
+                        s,
+                        arg$3,
+                        "an integer"
+                      })
+                  })
                 end end 
                 return consume_arg(--[[ () ]]0);end end end 
              if ___conditional___ = 8--[[ Float ]] then do
@@ -507,14 +500,14 @@ function parse_and_expand_argv_dynamic_aux(allow_expand, current, argv, speclist
                 if (match$3 ~= undefined) then do
                   Curry._1(param[0], match$3);
                 end else do
-                  throw {
-                        Stop,
-                        --[[ Wrong ]]Block.__(1, {
-                            s,
-                            arg$4,
-                            "a float"
-                          })
-                      };
+                  error ({
+                    Stop,
+                    --[[ Wrong ]]Block.__(1, {
+                        s,
+                        arg$4,
+                        "a float"
+                      })
+                  })
                 end end 
                 return consume_arg(--[[ () ]]0);end end end 
              if ___conditional___ = 9--[[ Set_float ]] then do
@@ -523,14 +516,14 @@ function parse_and_expand_argv_dynamic_aux(allow_expand, current, argv, speclist
                 if (match$4 ~= undefined) then do
                   param[0].contents = match$4;
                 end else do
-                  throw {
-                        Stop,
-                        --[[ Wrong ]]Block.__(1, {
-                            s,
-                            arg$5,
-                            "a float"
-                          })
-                      };
+                  error ({
+                    Stop,
+                    --[[ Wrong ]]Block.__(1, {
+                        s,
+                        arg$5,
+                        "a float"
+                      })
+                  })
                 end end 
                 return consume_arg(--[[ () ]]0);end end end 
              if ___conditional___ = 10--[[ Tuple ]] then do
@@ -542,14 +535,14 @@ function parse_and_expand_argv_dynamic_aux(allow_expand, current, argv, speclist
                   Curry._1(param[1], arg$6);
                   return consume_arg(--[[ () ]]0);
                 end else do
-                  throw {
-                        Stop,
-                        --[[ Wrong ]]Block.__(1, {
-                            s,
-                            arg$6,
-                            "one of: " .. make_symlist("", " ", "", symb)
-                          })
-                      };
+                  error ({
+                    Stop,
+                    --[[ Wrong ]]Block.__(1, {
+                        s,
+                        arg$6,
+                        "one of: " .. make_symlist("", " ", "", symb)
+                      })
+                  })
                 end end end end end 
              if ___conditional___ = 12--[[ Rest ]] then do
                 f = param[0];
@@ -560,10 +553,10 @@ function parse_and_expand_argv_dynamic_aux(allow_expand, current, argv, speclist
                 return --[[ () ]]0;end end end 
              if ___conditional___ = 13--[[ Expand ]] then do
                 if (not allow_expand) then do
-                  throw {
-                        Caml_builtin_exceptions.invalid_argument,
-                        "Arg.Expand is is only allowed with Arg.parse_and_expand_argv_dynamic"
-                      };
+                  error ({
+                    Caml_builtin_exceptions.invalid_argument,
+                    "Arg.Expand is is only allowed with Arg.parse_and_expand_argv_dynamic"
+                  })
                 end
                  end 
                 arg$7 = get_arg(--[[ () ]]0);
@@ -591,19 +584,18 @@ function parse_and_expand_argv_dynamic_aux(allow_expand, current, argv, speclist
       end else do
         Curry._1(anonfun, s);
       end end 
-    end
-    catch (raw_exn)do
+    end end,function(raw_exn) return do
       exn$2 = Caml_js_exceptions.internalToOCamlException(raw_exn);
       if (exn$2[0] == Bad) then do
-        throw convert_error(--[[ Message ]]Block.__(3, {exn$2[1]}));
+        error (convert_error(--[[ Message ]]Block.__(3, {exn$2[1]})))
       end
        end 
       if (exn$2[0] == Stop) then do
-        throw convert_error(exn$2[1]);
+        error (convert_error(exn$2[1]))
       end
        end 
-      throw exn$2;
-    end
+      error (exn$2)
+    end end)
     current.contents = current.contents + 1 | 0;
   end;
   return --[[ () ]]0;
@@ -628,10 +620,9 @@ function parse_argv(currentOpt, argv, speclist, anonfun, errmsg) do
 end end
 
 function parse(l, f, msg) do
-  try do
+  xpcall(function() do
     return parse_argv(undefined, Sys.argv, l, f, msg);
-  end
-  catch (raw_exn)do
+  end end,function(raw_exn) return do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn[0] == Bad) then do
       Curry._1(Printf.eprintf(--[[ Format ]]{
@@ -652,16 +643,15 @@ function parse(l, f, msg) do
               }), exn[1]);
       return Pervasives.exit(0);
     end else do
-      throw exn;
+      error (exn)
     end end  end 
-  end
+  end end)
 end end
 
 function parse_dynamic(l, f, msg) do
-  try do
+  xpcall(function() do
     return parse_argv_dynamic(undefined, Sys.argv, l, f, msg);
-  end
-  catch (raw_exn)do
+  end end,function(raw_exn) return do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn[0] == Bad) then do
       Curry._1(Printf.eprintf(--[[ Format ]]{
@@ -682,13 +672,13 @@ function parse_dynamic(l, f, msg) do
               }), exn[1]);
       return Pervasives.exit(0);
     end else do
-      throw exn;
+      error (exn)
     end end  end 
-  end
+  end end)
 end end
 
 function parse_expand(l, f, msg) do
-  try do
+  xpcall(function() do
     argv = do
       contents: Sys.argv
     end;
@@ -699,8 +689,7 @@ function parse_expand(l, f, msg) do
       contents: current.contents
     end;
     return parse_and_expand_argv_dynamic(current$1, argv, spec, f, msg);
-  end
-  catch (raw_exn)do
+  end end,function(raw_exn) return do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn[0] == Bad) then do
       Curry._1(Printf.eprintf(--[[ Format ]]{
@@ -721,9 +710,9 @@ function parse_expand(l, f, msg) do
               }), exn[1]);
       return Pervasives.exit(0);
     end else do
-      throw exn;
+      error (exn)
     end end  end 
-  end
+  end end)
 end end
 
 function second_word(s) do
@@ -735,39 +724,37 @@ function second_word(s) do
         return len;
       end else if (Caml_string.get(s, n) == --[[ " " ]]32) then do
         _n = n + 1 | 0;
-        continue ;
+        ::continue:: ;
       end else do
         return n;
       end end  end 
     end;
   end end;
   n;
-  try do
+  xpcall(function() do
     n = __String.index(s, --[[ "\t" ]]9);
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Caml_builtin_exceptions.not_found) then do
       exit = 0;
       n$1;
-      try do
+      xpcall(function() do
         n$1 = __String.index(s, --[[ " " ]]32);
         exit = 2;
-      end
-      catch (exn$1)do
+      end end,function(exn$1) return do
         if (exn$1 == Caml_builtin_exceptions.not_found) then do
           return len;
         end else do
-          throw exn$1;
+          error (exn$1)
         end end 
-      end
+      end end)
       if (exit == 2) then do
         return loop(n$1 + 1 | 0);
       end
        end 
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
   return loop(n + 1 | 0);
 end end
 
@@ -867,7 +854,7 @@ function read_aux(trim, sep, file) do
     return --[[ () ]]0;
   end end;
   read = function (param) do
-    try do
+    xpcall(function() do
       c = Caml_external_polyfill.resolve("caml_ml_input_char")(ic);
       if (c == sep) then do
         stash(--[[ () ]]0);
@@ -876,8 +863,7 @@ function read_aux(trim, sep, file) do
         __Buffer.add_char(buf, c);
         return read(--[[ () ]]0);
       end end 
-    end
-    catch (exn)do
+    end end,function(exn) return do
       if (exn == Caml_builtin_exceptions.end_of_file) then do
         if (buf.position > 0) then do
           return stash(--[[ () ]]0);
@@ -885,9 +871,9 @@ function read_aux(trim, sep, file) do
           return 0;
         end end 
       end else do
-        throw exn;
+        error (exn)
       end end 
-    end
+    end end)
   end end;
   read(--[[ () ]]0);
   Caml_external_polyfill.resolve("caml_ml_close_channel")(ic);

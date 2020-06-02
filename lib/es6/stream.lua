@@ -53,16 +53,16 @@ function get_data(count, _d) do
             match = get_data(count, d[0]);
             if (typeof match == "number") then do
               _d = d2;
-              continue ;
+              ::continue:: ;
             end else if (match.tag) then do
-              throw {
-                    Caml_builtin_exceptions.assert_failure,
-                    --[[ tuple ]]{
-                      "stream.ml",
-                      53,
-                      12
-                    }
-                  };
+              error ({
+                Caml_builtin_exceptions.assert_failure,
+                --[[ tuple ]]{
+                  "stream.ml",
+                  53,
+                  12
+                }
+              })
             end else do
               return --[[ Scons ]]Block.__(0, {
                         match[0],
@@ -74,7 +74,7 @@ function get_data(count, _d) do
             end end  end end end end 
          if ___conditional___ = 2--[[ Slazy ]] then do
             _d = CamlinternalLazy.force(d[0]);
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 3--[[ Sgen ]] then do
             g = d[0];
             match$1 = g.curr;
@@ -139,21 +139,21 @@ function peek_data(s) do
             if (typeof d == "number") then do
               return ;
             end else if (d.tag) then do
-              throw {
-                    Caml_builtin_exceptions.assert_failure,
-                    --[[ tuple ]]{
-                      "stream.ml",
-                      82,
-                      12
-                    }
-                  };
+              error ({
+                Caml_builtin_exceptions.assert_failure,
+                --[[ tuple ]]{
+                  "stream.ml",
+                  82,
+                  12
+                }
+              })
             end else do
               s.data = d;
               return Caml_option.some(d[0]);
             end end  end end end end 
          if ___conditional___ = 2--[[ Slazy ]] then do
             s.data = CamlinternalLazy.force(match[0]);
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 3--[[ Sgen ]] then do
             g = match[0];
             match$1 = g.curr;
@@ -223,7 +223,7 @@ function junk_data(s) do
      end 
     match$2 = peek_data(s);
     if (match$2 ~= undefined) then do
-      continue ;
+      ::continue:: ;
     end else do
       return --[[ () ]]0;
     end end 
@@ -291,14 +291,14 @@ function next(s) do
     junk(s);
     return Caml_option.valFromOption(match);
   end else do
-    throw Failure;
+    error (Failure)
   end end 
 end end
 
 function empty(s) do
   match = peek(s);
   if (match ~= undefined) then do
-    throw Failure;
+    error (Failure)
   end else do
     return --[[ () ]]0;
   end end 
@@ -312,7 +312,7 @@ function iter(f, strm) do
       junk(strm);
       Curry._1(f, Caml_option.valFromOption(match));
       _param = --[[ () ]]0;
-      continue ;
+      ::continue:: ;
     end else do
       return --[[ () ]]0;
     end end 

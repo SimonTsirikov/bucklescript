@@ -1,11 +1,11 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-List = require "../../lib/js/list.lua";
-Block = require "../../lib/js/block.lua";
-Curry = require "../../lib/js/curry.lua";
-Caml_primitive = require "../../lib/js/caml_primitive.lua";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
+Mt = require "./mt";
+List = require "../../lib/js/list";
+Block = require "../../lib/js/block";
+Curry = require "../../lib/js/curry";
+Caml_primitive = require "../../lib/js/caml_primitive";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 function height(param) do
   if (param) then do
@@ -41,16 +41,16 @@ function bal(l, x, d, r) do
       end else if (lr) then do
         return create(create(ll, lv, ld, lr[--[[ l ]]0]), lr[--[[ v ]]1], lr[--[[ d ]]2], create(lr[--[[ r ]]3], x, d, r));
       end else do
-        throw {
-              Caml_builtin_exceptions.invalid_argument,
-              "Map.bal"
-            };
+        error ({
+          Caml_builtin_exceptions.invalid_argument,
+          "Map.bal"
+        })
       end end  end 
     end else do
-      throw {
-            Caml_builtin_exceptions.invalid_argument,
-            "Map.bal"
-          };
+      error ({
+        Caml_builtin_exceptions.invalid_argument,
+        "Map.bal"
+      })
     end end 
   end else if (hr > (hl + 2 | 0)) then do
     if (r) then do
@@ -63,16 +63,16 @@ function bal(l, x, d, r) do
       end else if (rl) then do
         return create(create(l, x, d, rl[--[[ l ]]0]), rl[--[[ v ]]1], rl[--[[ d ]]2], create(rl[--[[ r ]]3], rv, rd, rr));
       end else do
-        throw {
-              Caml_builtin_exceptions.invalid_argument,
-              "Map.bal"
-            };
+        error ({
+          Caml_builtin_exceptions.invalid_argument,
+          "Map.bal"
+        })
       end end  end 
     end else do
-      throw {
-            Caml_builtin_exceptions.invalid_argument,
-            "Map.bal"
-          };
+      error ({
+        Caml_builtin_exceptions.invalid_argument,
+        "Map.bal"
+      })
     end end 
   end else do
     return --[[ Node ]]{
@@ -142,7 +142,7 @@ function cons_enum(_m, _e) do
         e
       };
       _m = m[--[[ l ]]0];
-      continue ;
+      ::continue:: ;
     end else do
       return e;
     end end 
@@ -167,7 +167,7 @@ function compare(cmp, m1, m2) do
           end else do
             _e2 = cons_enum(e2[2], e2[3]);
             _e1 = cons_enum(e1[2], e1[3]);
-            continue ;
+            ::continue:: ;
           end end 
         end end 
       end else do
@@ -191,7 +191,7 @@ function equal(cmp, m1, m2) do
       if (e2 and e1[0] == e2[0] and Curry._2(cmp, e1[1], e2[1])) then do
         _e2 = cons_enum(e2[2], e2[3]);
         _e1 = cons_enum(e1[2], e1[3]);
-        continue ;
+        ::continue:: ;
       end else do
         return false;
       end end 
@@ -245,16 +245,16 @@ function bal$1(l, x, d, r) do
       end else if (lr) then do
         return create$1(create$1(ll, lv, ld, lr[--[[ l ]]0]), lr[--[[ v ]]1], lr[--[[ d ]]2], create$1(lr[--[[ r ]]3], x, d, r));
       end else do
-        throw {
-              Caml_builtin_exceptions.invalid_argument,
-              "Map.bal"
-            };
+        error ({
+          Caml_builtin_exceptions.invalid_argument,
+          "Map.bal"
+        })
       end end  end 
     end else do
-      throw {
-            Caml_builtin_exceptions.invalid_argument,
-            "Map.bal"
-          };
+      error ({
+        Caml_builtin_exceptions.invalid_argument,
+        "Map.bal"
+      })
     end end 
   end else if (hr > (hl + 2 | 0)) then do
     if (r) then do
@@ -267,16 +267,16 @@ function bal$1(l, x, d, r) do
       end else if (rl) then do
         return create$1(create$1(l, x, d, rl[--[[ l ]]0]), rl[--[[ v ]]1], rl[--[[ d ]]2], create$1(rl[--[[ r ]]3], rv, rd, rr));
       end else do
-        throw {
-              Caml_builtin_exceptions.invalid_argument,
-              "Map.bal"
-            };
+        error ({
+          Caml_builtin_exceptions.invalid_argument,
+          "Map.bal"
+        })
       end end  end 
     end else do
-      throw {
-            Caml_builtin_exceptions.invalid_argument,
-            "Map.bal"
-          };
+      error ({
+        Caml_builtin_exceptions.invalid_argument,
+        "Map.bal"
+      })
     end end 
   end else do
     return --[[ Node ]]{
@@ -343,10 +343,10 @@ function find(x, _param) do
         return param[--[[ d ]]2];
       end else do
         _param = c < 0 and param[--[[ l ]]0] or param[--[[ r ]]3];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
-      throw Caml_builtin_exceptions.not_found;
+      error (Caml_builtin_exceptions.not_found)
     end end 
   end;
 end end

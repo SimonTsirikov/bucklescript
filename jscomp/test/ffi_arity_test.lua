@@ -1,9 +1,9 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-Block = require "../../lib/js/block.lua";
-Curry = require "../../lib/js/curry.lua";
-Caml_int32 = require "../../lib/js/caml_int32.lua";
+Mt = require "./mt";
+Block = require "../../lib/js/block";
+Curry = require "../../lib/js/curry";
+Caml_int32 = require "../../lib/js/caml_int32";
 
 function f(v) do
   if (v % 2 == 0) then do

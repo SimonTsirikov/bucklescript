@@ -1,12 +1,12 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-List = require "../../lib/js/list.lua";
-Block = require "../../lib/js/block.lua";
-Curry = require "../../lib/js/curry.lua";
-Caml_obj = require "../../lib/js/caml_obj.lua";
-CamlinternalLazy = require "../../lib/js/camlinternalLazy.lua";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
+Mt = require "./mt";
+List = require "../../lib/js/list";
+Block = require "../../lib/js/block";
+Curry = require "../../lib/js/curry";
+Caml_obj = require "../../lib/js/caml_obj";
+CamlinternalLazy = require "../../lib/js/camlinternalLazy";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 x = {};
 
@@ -59,14 +59,14 @@ end;
 
 v = do
   contents: (function (param) do
-      throw {
-            Caml_builtin_exceptions.assert_failure,
-            --[[ tuple ]]{
-              "rec_value_test.ml",
-              23,
-              24
-            }
-          };
+      error ({
+        Caml_builtin_exceptions.assert_failure,
+        --[[ tuple ]]{
+          "rec_value_test.ml",
+          23,
+          24
+        }
+      })
     end end)
 end;
 
@@ -142,7 +142,7 @@ function even2(_n) do
       return true;
     end else do
       _n = n - 1 | 0;
-      continue ;
+      ::continue:: ;
     end end 
   end;
 end end
@@ -159,7 +159,7 @@ function sum(_acc, _n) do
     if (n > 0) then do
       _n = n - 1 | 0;
       _acc = acc + n | 0;
-      continue ;
+      ::continue:: ;
     end else do
       return acc;
     end end 
@@ -243,24 +243,24 @@ suites_001 = --[[ :: ]]{
           if (match) then do
             tmp = match[0];
           end else do
-            throw {
-                  Caml_builtin_exceptions.assert_failure,
-                  --[[ tuple ]]{
-                    "rec_value_test.ml",
-                    108,
-                    2
-                  }
-                };
+            error ({
+              Caml_builtin_exceptions.assert_failure,
+              --[[ tuple ]]{
+                "rec_value_test.ml",
+                108,
+                2
+              }
+            })
           end end 
         end else do
-          throw {
-                Caml_builtin_exceptions.assert_failure,
-                --[[ tuple ]]{
-                  "rec_value_test.ml",
-                  108,
-                  2
-                }
-              };
+          error ({
+            Caml_builtin_exceptions.assert_failure,
+            --[[ tuple ]]{
+              "rec_value_test.ml",
+              108,
+              2
+            }
+          })
         end end 
         return --[[ Eq ]]Block.__(0, {
                   3,
@@ -382,14 +382,14 @@ suites_001 = --[[ :: ]]{
                     "File \"rec_value_test.ml\", line 129, characters 2-9",
                     (function (param) do
                         if (rec_variant_b.tag) then do
-                          throw {
-                                Caml_builtin_exceptions.assert_failure,
-                                --[[ tuple ]]{
-                                  "rec_value_test.ml",
-                                  132,
-                                  11
-                                }
-                              };
+                          error ({
+                            Caml_builtin_exceptions.assert_failure,
+                            --[[ tuple ]]{
+                              "rec_value_test.ml",
+                              132,
+                              11
+                            }
+                          })
                         end else do
                           return --[[ Eq ]]Block.__(0, {
                                     Curry._1(rec_variant_b[1], --[[ () ]]0),
@@ -408,14 +408,14 @@ suites_001 = --[[ :: ]]{
                                       rec_variant_b
                                     });
                           end else do
-                            throw {
-                                  Caml_builtin_exceptions.assert_failure,
-                                  --[[ tuple ]]{
-                                    "rec_value_test.ml",
-                                    137,
-                                    11
-                                  }
-                                };
+                            error ({
+                              Caml_builtin_exceptions.assert_failure,
+                              --[[ tuple ]]{
+                                "rec_value_test.ml",
+                                137,
+                                11
+                              }
+                            })
                           end end 
                         end end)
                     },

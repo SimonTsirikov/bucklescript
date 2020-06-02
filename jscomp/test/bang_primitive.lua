@@ -14,7 +14,7 @@ end end
 
 function f(x, y) do
   return --[[ tuple ]]{
-          String.fromCharCode.apply(null, x),
+          String.fromCharCode.apply(nil, x),
           0
         };
 end end

@@ -1,8 +1,8 @@
 --[['use strict';]]
 
-Block = require "./block.lua";
-Caml_primitive = require "./caml_primitive.lua";
-Caml_builtin_exceptions = require "./caml_builtin_exceptions.lua";
+Block = require "./block";
+Caml_primitive = require "./caml_primitive";
+Caml_builtin_exceptions = require "./caml_builtin_exceptions";
 
 for_in = (function(o,foo){
         for (var x in o) { foo(x) }});
@@ -30,10 +30,10 @@ end end
 function caml_obj_truncate(x, new_size) do
   len = #x | 0;
   if (new_size <= 0 or new_size > len) then do
-    throw {
-          Caml_builtin_exceptions.invalid_argument,
-          "Obj.truncate"
-        };
+    error ({
+      Caml_builtin_exceptions.invalid_argument,
+      "Obj.truncate"
+    })
   end
    end 
   if (len ~= new_size) then do
@@ -82,10 +82,10 @@ function caml_compare(_a, _b) do
              end end else 
          if ___conditional___ = "function" then do
             if (b_type == "function") then do
-              throw {
-                    Caml_builtin_exceptions.invalid_argument,
-                    "compare: functional value"
-                  };
+              error ({
+                Caml_builtin_exceptions.invalid_argument,
+                "compare: functional value"
+              })
             end
              end end else 
          if ___conditional___ = "number" then do
@@ -123,24 +123,24 @@ function caml_compare(_a, _b) do
           end else if (b_type == "function") then do
             return -1;
           end else if (a_type == "number") then do
-            if (b == null or b.tag == 256) then do
+            if (b == nil or b.tag == 256) then do
               return 1;
             end else do
               return -1;
             end end 
           end else if (b_type == "number") then do
-            if (a == null or a.tag == 256) then do
+            if (a == nil or a.tag == 256) then do
               return -1;
             end else do
               return 1;
             end end 
-          end else if (a == null) then do
+          end else if (a == nil) then do
             if (b.tag == 256) then do
               return 1;
             end else do
               return -1;
             end end 
-          end else if (b == null) then do
+          end else if (b == nil) then do
             if (a.tag == 256) then do
               return -1;
             end else do
@@ -151,10 +151,10 @@ function caml_compare(_a, _b) do
             tag_b = b.tag | 0;
             if (tag_a == 250) then do
               _a = a[0];
-              continue ;
+              ::continue:: ;
             end else if (tag_b == 250) then do
               _b = b[0];
-              continue ;
+              ::continue:: ;
             end else if (tag_a == 256) then do
               if (tag_b == 256) then do
                 return Caml_primitive.caml_int_compare(a[1], b[1]);
@@ -165,10 +165,10 @@ function caml_compare(_a, _b) do
               return Caml_primitive.caml_int_compare(a[1], b[1]);
             end else do
               if (tag_a == 251) then do
-                throw {
-                      Caml_builtin_exceptions.invalid_argument,
-                      "equal: abstract value"
-                    };
+                error ({
+                  Caml_builtin_exceptions.invalid_argument,
+                  "equal: abstract value"
+                })
               end
                end 
               if (tag_a ~= tag_b) then do
@@ -196,7 +196,7 @@ function caml_compare(_a, _b) do
                           return res;
                         end else do
                           _i = i + 1 | 0;
-                          continue ;
+                          ::continue:: ;
                         end end 
                       end end 
                     end;
@@ -277,7 +277,7 @@ function caml_compare(_a, _b) do
                         return res$1;
                       end else do
                         _i$1 = i$1 + 1 | 0;
-                        continue ;
+                        ::continue:: ;
                       end end 
                     end end 
                   end;
@@ -296,7 +296,7 @@ function caml_compare(_a, _b) do
                         return res$2;
                       end else do
                         _i$2 = i$2 + 1 | 0;
-                        continue ;
+                        ::continue:: ;
                       end end 
                     end end 
                   end;
@@ -324,10 +324,10 @@ function caml_equal(_a, _b) do
       end else do
         b_type = typeof b;
         if (a_type == "function" or b_type == "function") then do
-          throw {
-                Caml_builtin_exceptions.invalid_argument,
-                "equal: functional value"
-              };
+          error ({
+            Caml_builtin_exceptions.invalid_argument,
+            "equal: functional value"
+          })
         end
          end 
         if (b_type == "number" or b_type == "undefined" or b == null) then do
@@ -337,18 +337,18 @@ function caml_equal(_a, _b) do
           tag_b = b.tag | 0;
           if (tag_a == 250) then do
             _a = a[0];
-            continue ;
+            ::continue:: ;
           end else if (tag_b == 250) then do
             _b = b[0];
-            continue ;
+            ::continue:: ;
           end else if (tag_a == 248) then do
             return a[1] == b[1];
           end else do
             if (tag_a == 251) then do
-              throw {
-                    Caml_builtin_exceptions.invalid_argument,
-                    "equal: abstract value"
-                  };
+              error ({
+                Caml_builtin_exceptions.invalid_argument,
+                "equal: abstract value"
+              })
             end
              end 
             if (tag_a ~= tag_b) then do
@@ -370,7 +370,7 @@ function caml_equal(_a, _b) do
                       return true;
                     end else if (caml_equal(a$1[i], b$1[i])) then do
                       _i = i + 1 | 0;
-                      continue ;
+                      ::continue:: ;
                     end else do
                       return false;
                     end end  end 
@@ -422,7 +422,7 @@ function caml_equal(_a, _b) do
 end end
 
 function caml_equal_null(x, y) do
-  if (y ~= null) then do
+  if (y ~= nil) then do
     return caml_equal(x, y);
   end else do
     return x == y;
@@ -438,7 +438,7 @@ function caml_equal_undefined(x, y) do
 end end
 
 function caml_equal_nullable(x, y) do
-  if (y == null) then do
+  if (y == nil) then do
     return x == y;
   end else do
     return caml_equal(x, y);

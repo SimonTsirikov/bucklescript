@@ -1,6 +1,6 @@
 --[['use strict';]]
 
-Block = require "../../lib/js/block.lua";
+Block = require "../../lib/js/block";
 
 function f(param) do
   return --[[ Format ]]{

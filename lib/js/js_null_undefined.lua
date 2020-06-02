@@ -1,9 +1,9 @@
 --[['use strict';]]
 
-Caml_option = require "./caml_option.lua";
+Caml_option = require "./caml_option";
 
 function bind(x, f) do
-  if (x == null) then do
+  if (x == nil) then do
     return x;
   end else do
     return f(x);
@@ -11,7 +11,7 @@ function bind(x, f) do
 end end
 
 function iter(x, f) do
-  if (x == null) then do
+  if (x == nil) then do
     return --[[ () ]]0;
   end else do
     return f(x);

@@ -1,8 +1,8 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-Block = require "../../lib/js/block.lua";
-CamlinternalLazy = require "../../lib/js/camlinternalLazy.lua";
+Mt = require "./mt";
+Block = require "../../lib/js/block";
+CamlinternalLazy = require "../../lib/js/camlinternalLazy";
 
 suites = do
   contents: --[[ [] ]]0

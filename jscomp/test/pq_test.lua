@@ -1,6 +1,6 @@
 --[['use strict';]]
 
-Caml_exceptions = require "../../lib/js/caml_exceptions.lua";
+Caml_exceptions = require "../../lib/js/caml_exceptions";
 
 function insert(queue, prio, elt) do
   if (queue) then do
@@ -65,7 +65,7 @@ function remove_top(param) do
       return left;
     end end 
   end else do
-    throw Queue_is_empty;
+    error (Queue_is_empty)
   end end 
 end end
 
@@ -77,7 +77,7 @@ function extract(queue) do
             remove_top(queue)
           };
   end else do
-    throw Queue_is_empty;
+    error (Queue_is_empty)
   end end 
 end end
 

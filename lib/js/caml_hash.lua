@@ -1,7 +1,7 @@
 --[['use strict';]]
 
-Caml_hash_primitive = require "./caml_hash_primitive.lua";
-Caml_builtin_exceptions = require "./caml_builtin_exceptions.lua";
+Caml_hash_primitive = require "./caml_hash_primitive";
+Caml_builtin_exceptions = require "./caml_builtin_exceptions";
 
 function push_back(q, v) do
   cell = do
@@ -65,14 +65,14 @@ function caml_hash(count, _limit, seed, obj) do
         num = num - 1 | 0;
       end else if (typeof obj$1 ~= "boolean" and typeof obj$1 ~= "undefined") then do
         if (typeof obj$1 == "symbol") then do
-          throw {
-                Caml_builtin_exceptions.assert_failure,
-                --[[ tuple ]]{
-                  "caml_hash.ml",
-                  128,
-                  8
-                }
-              };
+          error ({
+            Caml_builtin_exceptions.assert_failure,
+            --[[ tuple ]]{
+              "caml_hash.ml",
+              128,
+              8
+            }
+          })
         end
          end 
         if (typeof obj$1 ~= "function") then do

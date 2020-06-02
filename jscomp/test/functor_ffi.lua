@@ -1,6 +1,6 @@
 --[['use strict';]]
 
-Caml_option = require "../../lib/js/caml_option.lua";
+Caml_option = require "../../lib/js/caml_option";
 
 function Make(S) do
   opt_get = function (f, i) do

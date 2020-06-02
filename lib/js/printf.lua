@@ -1,9 +1,9 @@
 --[['use strict';]]
 
-Curry = require "./curry.lua";
-__Buffer = require "./buffer.lua";
-Pervasives = require "./pervasives.lua";
-CamlinternalFormat = require "./camlinternalFormat.lua";
+Curry = require "./curry";
+__Buffer = require "./buffer";
+Pervasives = require "./pervasives";
+CamlinternalFormat = require "./camlinternalFormat";
 
 function kfprintf(k, o, param) do
   return CamlinternalFormat.make_printf((function (o, acc) do

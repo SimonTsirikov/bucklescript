@@ -1,16 +1,16 @@
 --[['use strict';]]
 
-Curry = require "./curry.lua";
-Caml_option = require "./caml_option.lua";
+Curry = require "./curry";
+Caml_option = require "./caml_option";
 
 function make(param) do
   return do
-          root: null
+          root: nil
         end;
 end end
 
 function clear(s) do
-  s.root = null;
+  s.root = nil;
   return --[[ () ]]0;
 end end
 
@@ -30,7 +30,7 @@ end end
 
 function topUndefined(s) do
   match = s.root;
-  if (match ~= null) then do
+  if (match ~= nil) then do
     return match.head;
   end
    end 
@@ -38,19 +38,19 @@ end end
 
 function top(s) do
   match = s.root;
-  if (match ~= null) then do
+  if (match ~= nil) then do
     return Caml_option.some(match.head);
   end
    end 
 end end
 
 function isEmpty(s) do
-  return s.root == null;
+  return s.root == nil;
 end end
 
 function popUndefined(s) do
   match = s.root;
-  if (match ~= null) then do
+  if (match ~= nil) then do
     s.root = match.tail;
     return match.head;
   end
@@ -59,7 +59,7 @@ end end
 
 function pop(s) do
   match = s.root;
-  if (match ~= null) then do
+  if (match ~= nil) then do
     s.root = match.tail;
     return Caml_option.some(match.head);
   end
@@ -68,17 +68,17 @@ end end
 
 function size(s) do
   match = s.root;
-  if (match ~= null) then do
+  if (match ~= nil) then do
     _x = match;
     _acc = 0;
     while(true) do
       acc = _acc;
       x = _x;
       match$1 = x.tail;
-      if (match$1 ~= null) then do
+      if (match$1 ~= nil) then do
         _acc = acc + 1 | 0;
         _x = match$1;
-        continue ;
+        ::continue:: ;
       end else do
         return acc + 1 | 0;
       end end 
@@ -93,10 +93,10 @@ function forEachU(s, f) do
   f$1 = f;
   while(true) do
     s$1 = _s;
-    if (s$1 ~= null) then do
+    if (s$1 ~= nil) then do
       f$1(s$1.head);
       _s = s$1.tail;
-      continue ;
+      ::continue:: ;
     end else do
       return --[[ () ]]0;
     end end 
@@ -109,7 +109,7 @@ end end
 
 function dynamicPopIterU(s, f) do
   cursor = s.root;
-  while(cursor ~= null) do
+  while(cursor ~= nil) do
     v = cursor;
     s.root = v.tail;
     f(v.head);

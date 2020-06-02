@@ -1,6 +1,6 @@
 --[['use strict';]]
 
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 function blackify(s) do
   if (s and s[0]) then do
@@ -38,10 +38,10 @@ function mem(x, _param) do
         return true;
       end else if (x < y) then do
         _param = param[1];
-        continue ;
+        ::continue:: ;
       end else do
         _param = param[3];
-        continue ;
+        ::continue:: ;
       end end  end 
     end else do
       return false;
@@ -260,14 +260,14 @@ function unbalanced_left(param) do
     end end 
   end
    end 
-  throw {
-        Caml_builtin_exceptions.assert_failure,
-        --[[ tuple ]]{
-          "rbset.ml",
-          57,
-          9
-        }
-      };
+  error ({
+    Caml_builtin_exceptions.assert_failure,
+    --[[ tuple ]]{
+      "rbset.ml",
+      57,
+      9
+    }
+  })
 end end
 
 function unbalanced_right(param) do
@@ -326,14 +326,14 @@ function unbalanced_right(param) do
     end end 
   end
    end 
-  throw {
-        Caml_builtin_exceptions.assert_failure,
-        --[[ tuple ]]{
-          "rbset.ml",
-          63,
-          9
-        }
-      };
+  error ({
+    Caml_builtin_exceptions.assert_failure,
+    --[[ tuple ]]{
+      "rbset.ml",
+      63,
+      9
+    }
+  })
 end end
 
 function lbalance(x1, x2, x3) do
@@ -543,14 +543,14 @@ function remove_min(param) do
                   false
                 };
         end else do
-          throw {
-                Caml_builtin_exceptions.assert_failure,
-                --[[ tuple ]]{
-                  "rbset.ml",
-                  115,
-                  4
-                }
-              };
+          error ({
+            Caml_builtin_exceptions.assert_failure,
+            --[[ tuple ]]{
+              "rbset.ml",
+              115,
+              4
+            }
+          })
         end end 
       end else do
         return --[[ tuple ]]{
@@ -587,14 +587,14 @@ function remove_min(param) do
             };
     end end 
   end else do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "rbset.ml",
-            115,
-            4
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "rbset.ml",
+        115,
+        4
+      }
+    })
   end end 
 end end
 

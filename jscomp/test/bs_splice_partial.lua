@@ -1,10 +1,10 @@
 --[['use strict';]]
 
-Curry = require "../../lib/js/curry.lua";
+Curry = require "../../lib/js/curry";
 
 function test_hi(x) do
   match = x.hi(1, 2, 3);
-  if (match ~= null) then do
+  if (match ~= nil) then do
     console.log(match);
     return 2;
   end else do
@@ -14,7 +14,7 @@ end end
 
 function test_hi__2(x) do
   match = x.hi__2();
-  if (match == null) then do
+  if (match == nil) then do
     return 1;
   end else do
     return 2;

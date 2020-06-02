@@ -1,7 +1,7 @@
 --[['use strict';]]
 
-Curry = require "../../lib/js/curry.lua";
-Lexing = require "../../lib/js/lexing.lua";
+Curry = require "../../lib/js/curry";
+Lexing = require "../../lib/js/lexing";
 
 function l(prim) do
   console.log(prim);
@@ -31,48 +31,48 @@ function __ocaml_lex_token_rec(l, lexbuf, ___ocaml_lex_state) do
        if ___conditional___ = 0 then do
           Curry._1(l, "new line");
           ___ocaml_lex_state = 0;
-          continue ;end end end 
+          ::continue:: ;end end end 
        if ___conditional___ = 1 then do
           Curry._1(l, "number");
           Curry._1(l, Lexing.lexeme(lexbuf));
           ___ocaml_lex_state = 0;
-          continue ;end end end 
+          ::continue:: ;end end end 
        if ___conditional___ = 2 then do
           Curry._1(l, "ident");
           Curry._1(l, Lexing.lexeme(lexbuf));
           ___ocaml_lex_state = 0;
-          continue ;end end end 
+          ::continue:: ;end end end 
        if ___conditional___ = 3 then do
           Curry._1(l, "+");
           ___ocaml_lex_state = 0;
-          continue ;end end end 
+          ::continue:: ;end end end 
        if ___conditional___ = 4 then do
           Curry._1(l, "-");
           ___ocaml_lex_state = 0;
-          continue ;end end end 
+          ::continue:: ;end end end 
        if ___conditional___ = 5 then do
           Curry._1(l, "*");
           ___ocaml_lex_state = 0;
-          continue ;end end end 
+          ::continue:: ;end end end 
        if ___conditional___ = 6 then do
           Curry._1(l, "/");
           ___ocaml_lex_state = 0;
-          continue ;end end end 
+          ::continue:: ;end end end 
        if ___conditional___ = 7 then do
           Curry._1(l, "(");
           ___ocaml_lex_state = 0;
-          continue ;end end end 
+          ::continue:: ;end end end 
        if ___conditional___ = 8 then do
           Curry._1(l, ")");
           ___ocaml_lex_state = 0;
-          continue ;end end end 
+          ::continue:: ;end end end 
        if ___conditional___ = 9 then do
           return Curry._1(l, "eof");end end end 
        do
       else do
         Curry._1(lexbuf.refill_buff, lexbuf);
         ___ocaml_lex_state = __ocaml_lex_state$1;
-        continue ;
+        ::continue:: ;
         end end
         
     end

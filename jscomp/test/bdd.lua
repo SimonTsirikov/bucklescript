@@ -1,8 +1,8 @@
 --[['use strict';]]
 
-Caml_array = require "../../lib/js/caml_array.lua";
-Caml_int32 = require "../../lib/js/caml_int32.lua";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
+Caml_array = require "../../lib/js/caml_array";
+Caml_int32 = require "../../lib/js/caml_int32";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 function __eval(_bdd, vars) do
   while(true) do
@@ -11,10 +11,10 @@ function __eval(_bdd, vars) do
       return bdd == 0;
     end else if (Caml_array.caml_array_get(vars, bdd[1])) then do
       _bdd = bdd[3];
-      continue ;
+      ::continue:: ;
     end else do
       _bdd = bdd[0];
-      continue ;
+      ::continue:: ;
     end end  end 
   end;
 end end
@@ -61,14 +61,14 @@ function resize(newSize) do
       if (bucket) then do
         n = bucket[0];
         if (typeof n == "number") then do
-          throw {
-                Caml_builtin_exceptions.assert_failure,
-                --[[ tuple ]]{
-                  "bdd.ml",
-                  54,
-                  27
-                }
-              };
+          error ({
+            Caml_builtin_exceptions.assert_failure,
+            --[[ tuple ]]{
+              "bdd.ml",
+              54,
+              27
+            }
+          })
         end
          end 
         ind = hashVal(getId(n[0]), getId(n[3]), n[1]) & newSz_1;
@@ -77,7 +77,7 @@ function resize(newSize) do
               Caml_array.caml_array_get(newArr, ind)
             });
         _bucket = bucket[1];
-        continue ;
+        ::continue:: ;
       end else do
         return --[[ () ]]0;
       end end 
@@ -131,21 +131,21 @@ function mkNode(low, v, high) do
       if (b) then do
         n = b[0];
         if (typeof n == "number") then do
-          throw {
-                Caml_builtin_exceptions.assert_failure,
-                --[[ tuple ]]{
-                  "bdd.ml",
-                  99,
-                  31
-                }
-              };
+          error ({
+            Caml_builtin_exceptions.assert_failure,
+            --[[ tuple ]]{
+              "bdd.ml",
+              99,
+              31
+            }
+          })
         end
          end 
         if (v == n[1] and idl == getId(n[0]) and idh == getId(n[3])) then do
           return n;
         end else do
           _b = b[1];
-          continue ;
+          ::continue:: ;
         end end 
       end else do
         n_002 = (nodeC.contents = nodeC.contents + 1 | 0, nodeC.contents);
@@ -384,14 +384,14 @@ function main(param) do
   if (succeeded) then do
     return 0;
   end else do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "bdd.ml",
-            233,
-            2
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "bdd.ml",
+        233,
+        2
+      }
+    })
   end end 
 end end
 

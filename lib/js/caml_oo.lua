@@ -1,7 +1,7 @@
 --[['use strict';]]
 
-Caml_array = require "./caml_array.lua";
-Caml_builtin_exceptions = require "./caml_builtin_exceptions.lua";
+Caml_array = require "./caml_array";
+Caml_builtin_exceptions = require "./caml_builtin_exceptions";
 
 caml_methods_cache = Caml_array.caml_make_vect(1000, 0);
 
@@ -15,14 +15,14 @@ function caml_get_public_method(obj, tag, cacheid) do
       while(true) do
         i = _i;
         if (i < 3) then do
-          throw {
-                Caml_builtin_exceptions.assert_failure,
-                --[[ tuple ]]{
-                  "caml_oo.ml",
-                  62,
-                  20
-                }
-              };
+          error ({
+            Caml_builtin_exceptions.assert_failure,
+            --[[ tuple ]]{
+              "caml_oo.ml",
+              62,
+              20
+            }
+          })
         end
          end 
         if (meths[i] == tag) then do
@@ -30,7 +30,7 @@ function caml_get_public_method(obj, tag, cacheid) do
           return i;
         end else do
           _i = i - 2 | 0;
-          continue ;
+          ::continue:: ;
         end end 
       end;
     end end;

@@ -25,7 +25,7 @@ a = true;
 
 b = false;
 
-c = null;
+c = nil;
 
 d = undefined;
 

@@ -5,10 +5,10 @@ import * as Caml_builtin_exceptions from "./caml_builtin_exceptions.lua";
 
 function chr(n) do
   if (n < 0 or n > 255) then do
-    throw {
-          Caml_builtin_exceptions.invalid_argument,
-          "Char.chr"
-        };
+    error ({
+      Caml_builtin_exceptions.invalid_argument,
+      "Char.chr"
+    })
   end
    end 
   return n;

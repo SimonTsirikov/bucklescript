@@ -1,12 +1,12 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-List = require "../../lib/js/list.lua";
-__Array = require "../../lib/js/array.lua";
-Block = require "../../lib/js/block.lua";
-Curry = require "../../lib/js/curry.lua";
-Hashtbl = require "../../lib/js/hashtbl.lua";
-Caml_primitive = require "../../lib/js/caml_primitive.lua";
+Mt = require "./mt";
+List = require "../../lib/js/list";
+__Array = require "../../lib/js/array";
+Block = require "../../lib/js/block";
+Curry = require "../../lib/js/curry";
+Hashtbl = require "../../lib/js/hashtbl";
+Caml_primitive = require "../../lib/js/caml_primitive";
 
 function f(H) do
   tbl = Curry._1(H.create, 17);

@@ -1,8 +1,8 @@
 --[['use strict';]]
 
-Curry = require "../../lib/js/curry.lua";
-Caml_primitive = require "../../lib/js/caml_primitive.lua";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
+Curry = require "../../lib/js/curry";
+Caml_primitive = require "../../lib/js/caml_primitive";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 function height(param) do
   if (param) then do
@@ -38,16 +38,16 @@ function bal(l, x, d, r) do
       end else if (lr) then do
         return create(create(ll, lv, ld, lr[--[[ l ]]0]), lr[--[[ v ]]1], lr[--[[ d ]]2], create(lr[--[[ r ]]3], x, d, r));
       end else do
-        throw {
-              Caml_builtin_exceptions.invalid_argument,
-              "Map.bal"
-            };
+        error ({
+          Caml_builtin_exceptions.invalid_argument,
+          "Map.bal"
+        })
       end end  end 
     end else do
-      throw {
-            Caml_builtin_exceptions.invalid_argument,
-            "Map.bal"
-          };
+      error ({
+        Caml_builtin_exceptions.invalid_argument,
+        "Map.bal"
+      })
     end end 
   end else if (hr > (hl + 2 | 0)) then do
     if (r) then do
@@ -60,16 +60,16 @@ function bal(l, x, d, r) do
       end else if (rl) then do
         return create(create(l, x, d, rl[--[[ l ]]0]), rl[--[[ v ]]1], rl[--[[ d ]]2], create(rl[--[[ r ]]3], rv, rd, rr));
       end else do
-        throw {
-              Caml_builtin_exceptions.invalid_argument,
-              "Map.bal"
-            };
+        error ({
+          Caml_builtin_exceptions.invalid_argument,
+          "Map.bal"
+        })
       end end  end 
     end else do
-      throw {
-            Caml_builtin_exceptions.invalid_argument,
-            "Map.bal"
-          };
+      error ({
+        Caml_builtin_exceptions.invalid_argument,
+        "Map.bal"
+      })
     end end 
   end else do
     return --[[ Node ]]{
@@ -136,10 +136,10 @@ function find(x, _param) do
         return param[--[[ d ]]2];
       end else do
         _param = c < 0 and param[--[[ l ]]0] or param[--[[ r ]]3];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
-      throw Caml_builtin_exceptions.not_found;
+      error (Caml_builtin_exceptions.not_found)
     end end 
   end;
 end end

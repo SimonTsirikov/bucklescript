@@ -1,15 +1,15 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-__Array = require "../../lib/js/array.lua";
-Block = require "../../lib/js/block.lua";
-Curry = require "../../lib/js/curry.lua";
-Printf = require "../../lib/js/printf.lua";
-Mt_global = require "./mt_global.lua";
-Caml_float = require "../../lib/js/caml_float.lua";
-Caml_int64 = require "../../lib/js/caml_int64.lua";
-Pervasives = require "../../lib/js/pervasives.lua";
-Caml_primitive = require "../../lib/js/caml_primitive.lua";
+Mt = require "./mt";
+__Array = require "../../lib/js/array";
+Block = require "../../lib/js/block";
+Curry = require "../../lib/js/curry";
+Printf = require "../../lib/js/printf";
+Mt_global = require "./mt_global";
+Caml_float = require "../../lib/js/caml_float";
+Caml_int64 = require "../../lib/js/caml_int64";
+Pervasives = require "../../lib/js/pervasives";
+Caml_primitive = require "../../lib/js/caml_primitive";
 
 test_id = do
   contents: 0

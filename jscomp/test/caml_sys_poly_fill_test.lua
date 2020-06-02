@@ -1,11 +1,11 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-Sys = require "../../lib/js/sys.lua";
-Block = require "../../lib/js/block.lua";
-Caml_sys = require "../../lib/js/caml_sys.lua";
-Node_process = require "../../lib/js/node_process.lua";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
+Mt = require "./mt";
+Sys = require "../../lib/js/sys";
+Block = require "../../lib/js/block";
+Caml_sys = require "../../lib/js/caml_sys";
+Node_process = require "../../lib/js/node_process";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 suites = do
   contents: --[[ [] ]]0
@@ -48,16 +48,15 @@ Node_process.deleteEnvVar("Caml_sys_poly_fill_test");
 
 tmp;
 
-try do
+xpcall(function() do
   tmp = Caml_sys.caml_sys_getenv("Caml_sys_poly_fill_test");
-end
-catch (exn)do
+end end,function(exn) return do
   if (exn == Caml_builtin_exceptions.not_found) then do
     tmp = "Z";
   end else do
-    throw exn;
+    error (exn)
   end end 
-end
+end end)
 
 eq("File \"caml_sys_poly_fill_test.ml\", line 23, characters 5-12", "Z", tmp);
 

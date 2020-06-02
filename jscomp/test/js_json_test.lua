@@ -1,13 +1,13 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-__Array = require "../../lib/js/array.lua";
-Block = require "../../lib/js/block.lua";
-Js_dict = require "../../lib/js/js_dict.lua";
-Js_json = require "../../lib/js/js_json.lua";
-Caml_array = require "../../lib/js/caml_array.lua";
-Caml_option = require "../../lib/js/caml_option.lua";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
+Mt = require "./mt";
+__Array = require "../../lib/js/array";
+Block = require "../../lib/js/block";
+Js_dict = require "../../lib/js/js_dict";
+Js_json = require "../../lib/js/js_json";
+Caml_array = require "../../lib/js/caml_array";
+Caml_option = require "../../lib/js/caml_option";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 suites = do
   contents: --[[ [] ]]0
@@ -67,25 +67,25 @@ add_test("File \"js_json_test.ml\", line 23, characters 11-18", (function (param
               ty2[0].forEach((function (x) do
                       ty3 = Js_json.classify(x);
                       if (typeof ty3 == "number") then do
-                        throw {
-                              Caml_builtin_exceptions.assert_failure,
-                              --[[ tuple ]]{
-                                "js_json_test.ml",
-                                37,
-                                21
-                              }
-                            };
+                        error ({
+                          Caml_builtin_exceptions.assert_failure,
+                          --[[ tuple ]]{
+                            "js_json_test.ml",
+                            37,
+                            21
+                          }
+                        })
                       end else if (ty3.tag == --[[ JSONNumber ]]1) then do
                         return --[[ () ]]0;
                       end else do
-                        throw {
-                              Caml_builtin_exceptions.assert_failure,
-                              --[[ tuple ]]{
-                                "js_json_test.ml",
-                                37,
-                                21
-                              }
-                            };
+                        error ({
+                          Caml_builtin_exceptions.assert_failure,
+                          --[[ tuple ]]{
+                            "js_json_test.ml",
+                            37,
+                            21
+                          }
+                        })
                       end end  end 
                     end end));
               return --[[ Ok ]]Block.__(4, {true});
@@ -206,14 +206,14 @@ function option_get(param) do
   if (param ~= undefined) then do
     return Caml_option.valFromOption(param);
   end else do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "js_json_test.ml",
-            102,
-            36
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "js_json_test.ml",
+        102,
+        36
+      }
+    })
   end end 
 end end
 
@@ -496,17 +496,16 @@ end else do
         end end));
 end end  end 
 
-try do
+xpcall(function() do
   JSON.parse("{{ A}");
   add_test("File \"js_json_test.ml\", line 288, characters 11-18", (function (param) do
           return --[[ Ok ]]Block.__(4, {false});
         end end));
-end
-catch (exn)do
+end end,function(exn) return do
   add_test("File \"js_json_test.ml\", line 291, characters 10-17", (function (param) do
           return --[[ Ok ]]Block.__(4, {true});
         end end));
-end
+end end)
 
 eq("File \"js_json_test.ml\", line 295, characters 12-19", JSON.stringify({
           1,
@@ -522,7 +521,7 @@ eq("File \"js_json_test.ml\", line 299, characters 2-9", JSON.stringify(do
           end
         end), "{\"foo\":1,\"bar\":\"hello\",\"baz\":{\"baaz\":10}}");
 
-eq("File \"js_json_test.ml\", line 303, characters 12-19", JSON.stringify(null), "null");
+eq("File \"js_json_test.ml\", line 303, characters 12-19", JSON.stringify(nil), "null");
 
 eq("File \"js_json_test.ml\", line 305, characters 12-19", JSON.stringify(undefined), undefined);
 
@@ -592,7 +591,7 @@ eq("File \"js_json_test.ml\", line 381, characters 5-12", Js_json.decodeNull(tru
 
 eq("File \"js_json_test.ml\", line 383, characters 5-12", Js_json.decodeNull({}), undefined);
 
-eq("File \"js_json_test.ml\", line 385, characters 5-12", Js_json.decodeNull(null), null);
+eq("File \"js_json_test.ml\", line 385, characters 5-12", Js_json.decodeNull(null), nil);
 
 eq("File \"js_json_test.ml\", line 387, characters 5-12", Js_json.decodeNull({ }), undefined);
 

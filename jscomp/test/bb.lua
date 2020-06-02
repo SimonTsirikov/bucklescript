@@ -1,6 +1,6 @@
 --[['use strict';]]
 
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 function f(x) do
   if (x ~= 98) then do
@@ -25,14 +25,14 @@ function ff(x) do
         return --[[ c ]]99;end end end 
      do
     else do
-      throw {
-            Caml_builtin_exceptions.assert_failure,
-            --[[ tuple ]]{
-              "bb.ml",
-              17,
-              9
-            }
-          };
+      error ({
+        Caml_builtin_exceptions.assert_failure,
+        --[[ tuple ]]{
+          "bb.ml",
+          17,
+          9
+        }
+      })
       end end
       
   end
@@ -50,14 +50,14 @@ function test(x) do
         match = --[[ c ]]99;end else 
      do end end end end
     else do
-      throw {
-            Caml_builtin_exceptions.assert_failure,
-            --[[ tuple ]]{
-              "bb.ml",
-              26,
-              13
-            }
-          };
+      error ({
+        Caml_builtin_exceptions.assert_failure,
+        --[[ tuple ]]{
+          "bb.ml",
+          26,
+          13
+        }
+      })
       end end
       
   end

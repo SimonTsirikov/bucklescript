@@ -1,24 +1,24 @@
 --[['use strict';]]
 
-Sys = require "../../lib/js/sys.lua";
-List = require "../../lib/js/list.lua";
-Block = require "../../lib/js/block.lua";
-Bytes = require "../../lib/js/bytes.lua";
-Curry = require "../../lib/js/curry.lua";
-Format = require "../../lib/js/format.lua";
-__String = require "../../lib/js/string.lua";
-Caml_obj = require "../../lib/js/caml_obj.lua";
-Caml_sys = require "../../lib/js/caml_sys.lua";
-Filename = require "../../lib/js/filename.lua";
-Caml_bytes = require "../../lib/js/caml_bytes.lua";
-Pervasives = require "../../lib/js/pervasives.lua";
-Test_literals = require "./test_literals.lua";
-Ext_string_test = require "./ext_string_test.lua";
-CamlinternalLazy = require "../../lib/js/camlinternalLazy.lua";
-Caml_js_exceptions = require "../../lib/js/caml_js_exceptions.lua";
-Ext_pervasives_test = require "./ext_pervasives_test.lua";
-Caml_external_polyfill = require "../../lib/js/caml_external_polyfill.lua";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
+Sys = require "../../lib/js/sys";
+List = require "../../lib/js/list";
+Block = require "../../lib/js/block";
+Bytes = require "../../lib/js/bytes";
+Curry = require "../../lib/js/curry";
+Format = require "../../lib/js/format";
+__String = require "../../lib/js/string";
+Caml_obj = require "../../lib/js/caml_obj";
+Caml_sys = require "../../lib/js/caml_sys";
+Filename = require "../../lib/js/filename";
+Caml_bytes = require "../../lib/js/caml_bytes";
+Pervasives = require "../../lib/js/pervasives";
+Test_literals = require "./test_literals";
+Ext_string_test = require "./ext_string_test";
+CamlinternalLazy = require "../../lib/js/camlinternalLazy";
+Caml_js_exceptions = require "../../lib/js/caml_js_exceptions";
+Ext_pervasives_test = require "./ext_pervasives_test";
+Caml_external_polyfill = require "../../lib/js/caml_external_polyfill";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 node_sep = "/";
 
@@ -50,7 +50,7 @@ function absolute_path(s) do
         return dir;
       end else if (base == Filename.current_dir_name) then do
         _s = dir;
-        continue ;
+        ::continue:: ;
       end else if (base == Filename.parent_dir_name) then do
         return Curry._1(Filename.dirname, aux(dir));
       end else do
@@ -63,10 +63,9 @@ end end
 
 function chop_extension(locOpt, name) do
   loc = locOpt ~= undefined and locOpt or "";
-  try do
+  xpcall(function() do
     return Filename.chop_extension(name);
-  end
-  catch (raw_exn)do
+  end end,function(raw_exn) return do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn[0] == Caml_builtin_exceptions.invalid_argument) then do
       return Curry._2(Format.ksprintf(Pervasives.invalid_arg, --[[ Format ]]{
@@ -89,23 +88,22 @@ function chop_extension(locOpt, name) do
                       "Filename.chop_extension ( %s : %s )"
                     }), loc, name);
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 function chop_extension_if_any(fname) do
-  try do
+  xpcall(function() do
     return Filename.chop_extension(fname);
-  end
-  catch (raw_exn)do
+  end end,function(raw_exn) return do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn[0] == Caml_builtin_exceptions.invalid_argument) then do
       return fname;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 os_path_separator_char = Filename.dir_sep.charCodeAt(0);
@@ -122,7 +120,7 @@ function relative_path(file_or_dir_1, file_or_dir_2) do
       if (dir1 and dir2 and dir1[0] == dir2[0]) then do
         _dir2 = dir2[1];
         _dir1 = dir1[1];
-        continue ;
+        ::continue:: ;
       end
        end 
       return Pervasives.$at(List.map((function (param) do
@@ -164,7 +162,7 @@ function node_relative_path(node_modules_shorten, file1, dep_file) do
           curr_char = file2.charCodeAt(i);
           if (curr_char == os_path_separator_char or curr_char == --[[ "." ]]46) then do
             _i = i + 1 | 0;
-            continue ;
+            ::continue:: ;
           end else do
             return i;
           end end 
@@ -198,7 +196,7 @@ function find_root_filename(_cwd, filename) do
       cwd$prime = Curry._1(Filename.dirname, cwd);
       if (#cwd$prime < #cwd) then do
         _cwd = cwd$prime;
-        continue ;
+        ::continue:: ;
       end else do
         return Curry._2(Ext_pervasives_test.failwithf("File \"ext_filename_test.ml\", line 205, characters 13-20", --[[ Format ]]{
                         --[[ String ]]Block.__(2, {
@@ -265,14 +263,14 @@ function split_aux(p) do
       new_path = Curry._1(Filename.basename, p$1);
       if (new_path == Filename.dir_sep) then do
         _p = dir;
-        continue ;
+        ::continue:: ;
       end else do
         _acc = --[[ :: ]]{
           new_path,
           acc
         };
         _p = dir;
-        continue ;
+        ::continue:: ;
       end end 
     end end 
   end;
@@ -296,7 +294,7 @@ function rel_normalized_absolute_path(from, to_) do
           if (xss[0] == yss[0]) then do
             _yss = yss[1];
             _xss = xs;
-            continue ;
+            ::continue:: ;
           end else do
             start = List.fold_left((function (acc, param) do
                     return Filename.concat(acc, Ext_string_test.parent_dir_lit);
@@ -334,16 +332,16 @@ function normalize_absolute_path(x) do
         x = paths[0];
         _paths = xs;
         if (x == Ext_string_test.current_dir_lit) then do
-          continue ;
+          ::continue:: ;
         end else if (x == Ext_string_test.parent_dir_lit) then do
           _acc = drop_if_exist(acc);
-          continue ;
+          ::continue:: ;
         end else do
           _acc = --[[ :: ]]{
             x,
             acc
           };
-          continue ;
+          ::continue:: ;
         end end  end 
       end else do
         return acc;
@@ -362,7 +360,7 @@ function normalize_absolute_path(x) do
       if (rev_paths$1) then do
         _rev_paths = rev_paths$1[1];
         _acc = Filename.concat(rev_paths$1[0], acc);
-        continue ;
+        ::continue:: ;
       end else do
         return Filename.concat(root, acc);
       end end 
@@ -391,10 +389,10 @@ end else if (Sys.win32 or false) then do
   simple_convert_node_path_to_os_path = Ext_string_test.replace_slash_backward;
 end else do
   s = "Unknown OS : " .. Sys.os_type;
-  throw {
-        Caml_builtin_exceptions.failure,
-        s
-      };
+  error ({
+    Caml_builtin_exceptions.failure,
+    s
+  })
 end end  end 
 
 $slash$slash = Filename.concat;

@@ -1,7 +1,7 @@
 --[['use strict';]]
 
-Curry = require "./curry.lua";
-Caml_builtin_exceptions = require "./caml_builtin_exceptions.lua";
+Curry = require "./curry";
+Caml_builtin_exceptions = require "./caml_builtin_exceptions";
 
 function merge(order, l1, l2) do
   if (l1) then do
@@ -84,7 +84,7 @@ function list(order, l) do
     if (llist) then do
       if (llist[1]) then do
         _llist = merge2(llist);
-        continue ;
+        ::continue:: ;
       end else do
         return llist[0];
       end end 
@@ -124,10 +124,10 @@ function array(cmp, arr) do
         i = lo + 1 | 0;
         j = hi - 1 | 0;
         if (not Curry._2(cmp, pivot, arr[hi]) or not Curry._2(cmp, arr[lo], pivot)) then do
-          throw {
-                Caml_builtin_exceptions.invalid_argument,
-                "Sort.array"
-              };
+          error ({
+            Caml_builtin_exceptions.invalid_argument,
+            "Sort.array"
+          })
         end
          end 
         while(i < j) do
@@ -147,11 +147,11 @@ function array(cmp, arr) do
         if ((j - lo | 0) <= (hi - i | 0)) then do
           qsort(lo, j);
           _lo = i;
-          continue ;
+          ::continue:: ;
         end else do
           qsort(i, hi);
           _hi = j;
-          continue ;
+          ::continue:: ;
         end end 
       end else do
         return 0;

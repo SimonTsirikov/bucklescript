@@ -1,6 +1,6 @@
 --[['use strict';]]
 
-Curry = require "../../lib/js/curry.lua";
+Curry = require "../../lib/js/curry";
 
 function $pipe$great(x, f) do
   return Curry._1(f, x);
@@ -30,7 +30,7 @@ function f(_x) do
   while(true) do
     x = _x;
     _x = x + 1 | 0;
-    continue ;
+    ::continue:: ;
   end;
 end end
 
@@ -40,7 +40,7 @@ function ff(_x, _y) do
     x = _x;
     _y = x + 1 | 0;
     _x = y;
-    continue ;
+    ::continue:: ;
   end;
 end end
 
@@ -50,7 +50,7 @@ function fff(_x, _y) do
     x = _x;
     _y = x;
     _x = y;
-    continue ;
+    ::continue:: ;
   end;
 end end
 

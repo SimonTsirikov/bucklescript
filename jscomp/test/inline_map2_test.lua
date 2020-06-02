@@ -1,12 +1,12 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-List = require "../../lib/js/list.lua";
-Block = require "../../lib/js/block.lua";
-Curry = require "../../lib/js/curry.lua";
-Caml_option = require "../../lib/js/caml_option.lua";
-Caml_primitive = require "../../lib/js/caml_primitive.lua";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
+Mt = require "./mt";
+List = require "../../lib/js/list";
+Block = require "../../lib/js/block";
+Curry = require "../../lib/js/curry";
+Caml_option = require "../../lib/js/caml_option";
+Caml_primitive = require "../../lib/js/caml_primitive";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 function Make(Ord) do
   height = function (param) do
@@ -50,16 +50,16 @@ function Make(Ord) do
         end else if (lr) then do
           return create(create(ll, lv, ld, lr[0]), lr[1], lr[2], create(lr[3], x, d, r));
         end else do
-          throw {
-                Caml_builtin_exceptions.invalid_argument,
-                "Map.bal"
-              };
+          error ({
+            Caml_builtin_exceptions.invalid_argument,
+            "Map.bal"
+          })
         end end  end 
       end else do
-        throw {
-              Caml_builtin_exceptions.invalid_argument,
-              "Map.bal"
-            };
+        error ({
+          Caml_builtin_exceptions.invalid_argument,
+          "Map.bal"
+        })
       end end 
     end else if (hr > (hl + 2 | 0)) then do
       if (r) then do
@@ -72,16 +72,16 @@ function Make(Ord) do
         end else if (rl) then do
           return create(create(l, x, d, rl[0]), rl[1], rl[2], create(rl[3], rv, rd, rr));
         end else do
-          throw {
-                Caml_builtin_exceptions.invalid_argument,
-                "Map.bal"
-              };
+          error ({
+            Caml_builtin_exceptions.invalid_argument,
+            "Map.bal"
+          })
         end end  end 
       end else do
-        throw {
-              Caml_builtin_exceptions.invalid_argument,
-              "Map.bal"
-            };
+        error ({
+          Caml_builtin_exceptions.invalid_argument,
+          "Map.bal"
+        })
       end end 
     end else do
       return --[[ Node ]]{
@@ -139,10 +139,10 @@ function Make(Ord) do
           return param[2];
         end else do
           _param = c < 0 and param[0] or param[3];
-          continue ;
+          ::continue:: ;
         end end 
       end else do
-        throw Caml_builtin_exceptions.not_found;
+        error (Caml_builtin_exceptions.not_found)
       end end 
     end;
   end end;
@@ -155,7 +155,7 @@ function Make(Ord) do
           return true;
         end else do
           _param = c < 0 and param[0] or param[3];
-          continue ;
+          ::continue:: ;
         end end 
       end else do
         return false;
@@ -169,7 +169,7 @@ function Make(Ord) do
         l = param[0];
         if (l) then do
           _param = l;
-          continue ;
+          ::continue:: ;
         end else do
           return --[[ tuple ]]{
                   param[1],
@@ -177,7 +177,7 @@ function Make(Ord) do
                 };
         end end 
       end else do
-        throw Caml_builtin_exceptions.not_found;
+        error (Caml_builtin_exceptions.not_found)
       end end 
     end;
   end end;
@@ -188,7 +188,7 @@ function Make(Ord) do
         r = param[3];
         if (r) then do
           _param = r;
-          continue ;
+          ::continue:: ;
         end else do
           return --[[ tuple ]]{
                   param[1],
@@ -196,7 +196,7 @@ function Make(Ord) do
                 };
         end end 
       end else do
-        throw Caml_builtin_exceptions.not_found;
+        error (Caml_builtin_exceptions.not_found)
       end end 
     end;
   end end;
@@ -209,10 +209,10 @@ function Make(Ord) do
         return param[3];
       end end 
     end else do
-      throw {
-            Caml_builtin_exceptions.invalid_argument,
-            "Map.remove_min_elt"
-          };
+      error ({
+        Caml_builtin_exceptions.invalid_argument,
+        "Map.remove_min_elt"
+      })
     end end 
   end end;
   remove = function (x, param) do
@@ -251,7 +251,7 @@ function Make(Ord) do
         iter(f, param[0]);
         Curry._2(f, param[1], param[2]);
         _param = param[3];
-        continue ;
+        ::continue:: ;
       end else do
         return --[[ () ]]0;
       end end 
@@ -297,7 +297,7 @@ function Make(Ord) do
       if (m) then do
         _accu = Curry._3(f, m[1], m[2], fold(f, m[0], accu));
         _m = m[3];
-        continue ;
+        ::continue:: ;
       end else do
         return accu;
       end end 
@@ -309,7 +309,7 @@ function Make(Ord) do
       if (param) then do
         if (Curry._2(p, param[1], param[2]) and for_all(p, param[0])) then do
           _param = param[3];
-          continue ;
+          ::continue:: ;
         end else do
           return false;
         end end 
@@ -326,7 +326,7 @@ function Make(Ord) do
           return true;
         end else do
           _param = param[3];
-          continue ;
+          ::continue:: ;
         end end 
       end else do
         return false;
@@ -438,14 +438,14 @@ function Make(Ord) do
       match$1 = split(v2, s1);
       return concat_or_join(merge(f, match$1[0], s2[0]), v2, Curry._3(f, v2, match$1[1], Caml_option.some(s2[2])), merge(f, match$1[2], s2[3]));
     end else do
-      throw {
-            Caml_builtin_exceptions.assert_failure,
-            --[[ tuple ]]{
-              "inline_map2_test.ml",
-              270,
-              10
-            }
-          };
+      error ({
+        Caml_builtin_exceptions.assert_failure,
+        --[[ tuple ]]{
+          "inline_map2_test.ml",
+          270,
+          10
+        }
+      })
     end end 
   end end;
   filter = function (p, param) do
@@ -505,7 +505,7 @@ function Make(Ord) do
           e
         };
         _m = m[0];
-        continue ;
+        ::continue:: ;
       end else do
         return e;
       end end 
@@ -529,7 +529,7 @@ function Make(Ord) do
             end else do
               _e2 = cons_enum(e2[2], e2[3]);
               _e1 = cons_enum(e1[2], e1[3]);
-              continue ;
+              ::continue:: ;
             end end 
           end end 
         end else do
@@ -552,7 +552,7 @@ function Make(Ord) do
         if (e2 and Curry._2(Ord.compare, e1[0], e2[0]) == 0 and Curry._2(cmp, e1[1], e2[1])) then do
           _e2 = cons_enum(e2[2], e2[3]);
           _e1 = cons_enum(e1[2], e1[3]);
-          continue ;
+          ::continue:: ;
         end else do
           return false;
         end end 
@@ -583,7 +583,7 @@ function Make(Ord) do
           },
           bindings_aux(accu, param[3])
         };
-        continue ;
+        ::continue:: ;
       end else do
         return accu;
       end end 
@@ -675,16 +675,16 @@ function bal(l, x, d, r) do
       end else if (lr) then do
         return create(create(ll, lv, ld, lr[0]), lr[1], lr[2], create(lr[3], x, d, r));
       end else do
-        throw {
-              Caml_builtin_exceptions.invalid_argument,
-              "Map.bal"
-            };
+        error ({
+          Caml_builtin_exceptions.invalid_argument,
+          "Map.bal"
+        })
       end end  end 
     end else do
-      throw {
-            Caml_builtin_exceptions.invalid_argument,
-            "Map.bal"
-          };
+      error ({
+        Caml_builtin_exceptions.invalid_argument,
+        "Map.bal"
+      })
     end end 
   end else if (hr > (hl + 2 | 0)) then do
     if (r) then do
@@ -697,16 +697,16 @@ function bal(l, x, d, r) do
       end else if (rl) then do
         return create(create(l, x, d, rl[0]), rl[1], rl[2], create(rl[3], rv, rd, rr));
       end else do
-        throw {
-              Caml_builtin_exceptions.invalid_argument,
-              "Map.bal"
-            };
+        error ({
+          Caml_builtin_exceptions.invalid_argument,
+          "Map.bal"
+        })
       end end  end 
     end else do
-      throw {
-            Caml_builtin_exceptions.invalid_argument,
-            "Map.bal"
-          };
+      error ({
+        Caml_builtin_exceptions.invalid_argument,
+        "Map.bal"
+      })
     end end 
   end else do
     return --[[ Node ]]{
@@ -767,10 +767,10 @@ function find(x, _param) do
         return param[2];
       end else do
         _param = c < 0 and param[0] or param[3];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
-      throw Caml_builtin_exceptions.not_found;
+      error (Caml_builtin_exceptions.not_found)
     end end 
   end;
 end end
@@ -784,7 +784,7 @@ function mem(x, _param) do
         return true;
       end else do
         _param = c < 0 and param[0] or param[3];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return false;
@@ -799,7 +799,7 @@ function min_binding(_param) do
       l = param[0];
       if (l) then do
         _param = l;
-        continue ;
+        ::continue:: ;
       end else do
         return --[[ tuple ]]{
                 param[1],
@@ -807,7 +807,7 @@ function min_binding(_param) do
               };
       end end 
     end else do
-      throw Caml_builtin_exceptions.not_found;
+      error (Caml_builtin_exceptions.not_found)
     end end 
   end;
 end end
@@ -819,7 +819,7 @@ function max_binding(_param) do
       r = param[3];
       if (r) then do
         _param = r;
-        continue ;
+        ::continue:: ;
       end else do
         return --[[ tuple ]]{
                 param[1],
@@ -827,7 +827,7 @@ function max_binding(_param) do
               };
       end end 
     end else do
-      throw Caml_builtin_exceptions.not_found;
+      error (Caml_builtin_exceptions.not_found)
     end end 
   end;
 end end
@@ -841,10 +841,10 @@ function remove_min_binding(param) do
       return param[3];
     end end 
   end else do
-    throw {
-          Caml_builtin_exceptions.invalid_argument,
-          "Map.remove_min_elt"
-        };
+    error ({
+      Caml_builtin_exceptions.invalid_argument,
+      "Map.remove_min_elt"
+    })
   end end 
 end end
 
@@ -885,7 +885,7 @@ function iter(f, _param) do
       iter(f, param[0]);
       Curry._2(f, param[1], param[2]);
       _param = param[3];
-      continue ;
+      ::continue:: ;
     end else do
       return --[[ () ]]0;
     end end 
@@ -934,7 +934,7 @@ function fold(f, _m, _accu) do
     if (m) then do
       _accu = Curry._3(f, m[1], m[2], fold(f, m[0], accu));
       _m = m[3];
-      continue ;
+      ::continue:: ;
     end else do
       return accu;
     end end 
@@ -947,7 +947,7 @@ function for_all(p, _param) do
     if (param) then do
       if (Curry._2(p, param[1], param[2]) and for_all(p, param[0])) then do
         _param = param[3];
-        continue ;
+        ::continue:: ;
       end else do
         return false;
       end end 
@@ -965,7 +965,7 @@ function exists(p, _param) do
         return true;
       end else do
         _param = param[3];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return false;
@@ -1084,14 +1084,14 @@ function merge(f, s1, s2) do
     match$1 = split(v2, s1);
     return concat_or_join(merge(f, match$1[0], s2[0]), v2, Curry._3(f, v2, match$1[1], Caml_option.some(s2[2])), merge(f, match$1[2], s2[3]));
   end else do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "inline_map2_test.ml",
-            270,
-            10
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "inline_map2_test.ml",
+        270,
+        10
+      }
+    })
   end end 
 end end
 
@@ -1154,7 +1154,7 @@ function cons_enum(_m, _e) do
         e
       };
       _m = m[0];
-      continue ;
+      ::continue:: ;
     end else do
       return e;
     end end 
@@ -1179,7 +1179,7 @@ function compare(cmp, m1, m2) do
           end else do
             _e2 = cons_enum(e2[2], e2[3]);
             _e1 = cons_enum(e1[2], e1[3]);
-            continue ;
+            ::continue:: ;
           end end 
         end end 
       end else do
@@ -1203,7 +1203,7 @@ function equal(cmp, m1, m2) do
       if (e2 and e1[0] == e2[0] and Curry._2(cmp, e1[1], e2[1])) then do
         _e2 = cons_enum(e2[2], e2[3]);
         _e1 = cons_enum(e1[2], e1[3]);
-        continue ;
+        ::continue:: ;
       end else do
         return false;
       end end 
@@ -1236,7 +1236,7 @@ function bindings_aux(_accu, _param) do
         },
         bindings_aux(accu, param[3])
       };
-      continue ;
+      ::continue:: ;
     end else do
       return accu;
     end end 
@@ -1357,16 +1357,16 @@ function bal$1(l, x, d, r) do
       end else if (lr) then do
         return create$1(create$1(ll, lv, ld, lr[0]), lr[1], lr[2], create$1(lr[3], x, d, r));
       end else do
-        throw {
-              Caml_builtin_exceptions.invalid_argument,
-              "Map.bal"
-            };
+        error ({
+          Caml_builtin_exceptions.invalid_argument,
+          "Map.bal"
+        })
       end end  end 
     end else do
-      throw {
-            Caml_builtin_exceptions.invalid_argument,
-            "Map.bal"
-          };
+      error ({
+        Caml_builtin_exceptions.invalid_argument,
+        "Map.bal"
+      })
     end end 
   end else if (hr > (hl + 2 | 0)) then do
     if (r) then do
@@ -1379,16 +1379,16 @@ function bal$1(l, x, d, r) do
       end else if (rl) then do
         return create$1(create$1(l, x, d, rl[0]), rl[1], rl[2], create$1(rl[3], rv, rd, rr));
       end else do
-        throw {
-              Caml_builtin_exceptions.invalid_argument,
-              "Map.bal"
-            };
+        error ({
+          Caml_builtin_exceptions.invalid_argument,
+          "Map.bal"
+        })
       end end  end 
     end else do
-      throw {
-            Caml_builtin_exceptions.invalid_argument,
-            "Map.bal"
-          };
+      error ({
+        Caml_builtin_exceptions.invalid_argument,
+        "Map.bal"
+      })
     end end 
   end else do
     return --[[ Node ]]{
@@ -1449,10 +1449,10 @@ function find$1(x, _param) do
         return param[2];
       end else do
         _param = c < 0 and param[0] or param[3];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
-      throw Caml_builtin_exceptions.not_found;
+      error (Caml_builtin_exceptions.not_found)
     end end 
   end;
 end end
@@ -1466,7 +1466,7 @@ function mem$1(x, _param) do
         return true;
       end else do
         _param = c < 0 and param[0] or param[3];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return false;
@@ -1481,7 +1481,7 @@ function min_binding$1(_param) do
       l = param[0];
       if (l) then do
         _param = l;
-        continue ;
+        ::continue:: ;
       end else do
         return --[[ tuple ]]{
                 param[1],
@@ -1489,7 +1489,7 @@ function min_binding$1(_param) do
               };
       end end 
     end else do
-      throw Caml_builtin_exceptions.not_found;
+      error (Caml_builtin_exceptions.not_found)
     end end 
   end;
 end end
@@ -1501,7 +1501,7 @@ function max_binding$1(_param) do
       r = param[3];
       if (r) then do
         _param = r;
-        continue ;
+        ::continue:: ;
       end else do
         return --[[ tuple ]]{
                 param[1],
@@ -1509,7 +1509,7 @@ function max_binding$1(_param) do
               };
       end end 
     end else do
-      throw Caml_builtin_exceptions.not_found;
+      error (Caml_builtin_exceptions.not_found)
     end end 
   end;
 end end
@@ -1523,10 +1523,10 @@ function remove_min_binding$1(param) do
       return param[3];
     end end 
   end else do
-    throw {
-          Caml_builtin_exceptions.invalid_argument,
-          "Map.remove_min_elt"
-        };
+    error ({
+      Caml_builtin_exceptions.invalid_argument,
+      "Map.remove_min_elt"
+    })
   end end 
 end end
 
@@ -1567,7 +1567,7 @@ function iter$1(f, _param) do
       iter$1(f, param[0]);
       Curry._2(f, param[1], param[2]);
       _param = param[3];
-      continue ;
+      ::continue:: ;
     end else do
       return --[[ () ]]0;
     end end 
@@ -1616,7 +1616,7 @@ function fold$1(f, _m, _accu) do
     if (m) then do
       _accu = Curry._3(f, m[1], m[2], fold$1(f, m[0], accu));
       _m = m[3];
-      continue ;
+      ::continue:: ;
     end else do
       return accu;
     end end 
@@ -1629,7 +1629,7 @@ function for_all$1(p, _param) do
     if (param) then do
       if (Curry._2(p, param[1], param[2]) and for_all$1(p, param[0])) then do
         _param = param[3];
-        continue ;
+        ::continue:: ;
       end else do
         return false;
       end end 
@@ -1647,7 +1647,7 @@ function exists$1(p, _param) do
         return true;
       end else do
         _param = param[3];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return false;
@@ -1766,14 +1766,14 @@ function merge$1(f, s1, s2) do
     match$1 = split$1(v2, s1);
     return concat_or_join$1(merge$1(f, match$1[0], s2[0]), v2, Curry._3(f, v2, match$1[1], Caml_option.some(s2[2])), merge$1(f, match$1[2], s2[3]));
   end else do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "inline_map2_test.ml",
-            270,
-            10
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "inline_map2_test.ml",
+        270,
+        10
+      }
+    })
   end end 
 end end
 
@@ -1836,7 +1836,7 @@ function cons_enum$1(_m, _e) do
         e
       };
       _m = m[0];
-      continue ;
+      ::continue:: ;
     end else do
       return e;
     end end 
@@ -1861,7 +1861,7 @@ function compare$1(cmp, m1, m2) do
           end else do
             _e2 = cons_enum$1(e2[2], e2[3]);
             _e1 = cons_enum$1(e1[2], e1[3]);
-            continue ;
+            ::continue:: ;
           end end 
         end end 
       end else do
@@ -1885,7 +1885,7 @@ function equal$1(cmp, m1, m2) do
       if (e2 and Caml_primitive.caml_string_compare(e1[0], e2[0]) == 0 and Curry._2(cmp, e1[1], e2[1])) then do
         _e2 = cons_enum$1(e2[2], e2[3]);
         _e1 = cons_enum$1(e1[2], e1[3]);
-        continue ;
+        ::continue:: ;
       end else do
         return false;
       end end 
@@ -1918,7 +1918,7 @@ function bindings_aux$1(_accu, _param) do
         },
         bindings_aux$1(accu, param[3])
       };
-      continue ;
+      ::continue:: ;
     end else do
       return accu;
     end end 

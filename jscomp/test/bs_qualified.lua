@@ -1,9 +1,9 @@
 --[['use strict';]]
 
-ZZ = require "X";
-Z = require "z";
-Vscode = require "vscode";
-GlMatrix = require "gl-matrix";
+ZZ = require "";
+Z = require "";
+Vscode = require "vs";
+GlMatrix = require "gl-ma";
 
 function f(a, b, c) do
   Vscode.commands.executeCommands("hi", a, b, c);

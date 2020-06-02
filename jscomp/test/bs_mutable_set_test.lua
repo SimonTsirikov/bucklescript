@@ -1,14 +1,14 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-Belt_List = require "../../lib/js/belt_List.lua";
-Belt_Array = require "../../lib/js/belt_Array.lua";
-Belt_Range = require "../../lib/js/belt_Range.lua";
-Caml_array = require "../../lib/js/caml_array.lua";
-Array_data_util = require "./array_data_util.lua";
-Belt_MutableSetInt = require "../../lib/js/belt_MutableSetInt.lua";
-Belt_internalAVLset = require "../../lib/js/belt_internalAVLset.lua";
-Belt_internalSetInt = require "../../lib/js/belt_internalSetInt.lua";
+Mt = require "./mt";
+Belt_List = require "../../lib/js/belt_List";
+Belt_Array = require "../../lib/js/belt_Array";
+Belt_Range = require "../../lib/js/belt_Range";
+Caml_array = require "../../lib/js/caml_array";
+Array_data_util = require "./array_data_util";
+Belt_MutableSetInt = require "../../lib/js/belt_MutableSetInt";
+Belt_internalAVLset = require "../../lib/js/belt_internalAVLset";
+Belt_internalSetInt = require "../../lib/js/belt_internalSetInt";
 
 suites = do
   contents: --[[ [] ]]0
@@ -145,7 +145,7 @@ eq("File \"bs_mutable_set_test.ml\", line 69, characters 5-12", indeedAded, 1000
 eq("File \"bs_mutable_set_test.ml\", line 70, characters 5-12", Belt_internalAVLset.size(v.data), 1501);
 
 b("File \"bs_mutable_set_test.ml\", line 71, characters 4-11", Belt_MutableSetInt.isEmpty(do
-          data: null
+          data: nil
         end));
 
 eq("File \"bs_mutable_set_test.ml\", line 72, characters 5-12", Belt_internalAVLset.minimum(v.data), 500);
@@ -277,7 +277,7 @@ b("File \"bs_mutable_set_test.ml\", line 114, characters 4-11", Belt_MutableSetI
             end, do
               data: Belt_internalSetInt.fromArray(xs$10)
             end), do
-          data: null
+          data: nil
         end));
 
 xs$11 = Array_data_util.randomRange(21, 40);
@@ -289,7 +289,7 @@ b("File \"bs_mutable_set_test.ml\", line 120, characters 4-11", Belt_MutableSetI
             end, do
               data: Belt_internalSetInt.fromArray(xs$12)
             end), do
-          data: null
+          data: nil
         end));
 
 b("File \"bs_mutable_set_test.ml\", line 126, characters 4-11", Belt_MutableSetInt.eq(Belt_MutableSetInt.intersect(do
@@ -417,7 +417,7 @@ Belt_List.forEach(--[[ :: ]]{
       end end));
 
 v$1 = do
-  data: null
+  data: nil
 end;
 
 for i$2 = 0 , 100000 , 1 do
@@ -435,7 +435,7 @@ eq("File \"bs_mutable_set_test.ml\", line 181, characters 5-12", Belt_internalAV
 u$1 = Belt_Array.concat(Array_data_util.randomRange(30, 100), Array_data_util.randomRange(40, 120));
 
 v$2 = do
-  data: null
+  data: nil
 end;
 
 Belt_MutableSetInt.mergeMany(v$2, u$1);
@@ -726,7 +726,7 @@ b("File \"bs_mutable_set_test.ml\", line 282, characters 4-11", Belt_MutableSetI
             end, do
               data: Belt_internalSetInt.fromArray(xs$41)
             end), do
-          data: null
+          data: nil
         end));
 
 xs$42 = Array_data_util.randomRange(21, 40);
@@ -738,7 +738,7 @@ b("File \"bs_mutable_set_test.ml\", line 288, characters 4-11", Belt_MutableSetI
             end, do
               data: Belt_internalSetInt.fromArray(xs$43)
             end), do
-          data: null
+          data: nil
         end));
 
 b("File \"bs_mutable_set_test.ml\", line 294, characters 4-11", Belt_MutableSetInt.eq(Belt_MutableSetInt.intersect(do

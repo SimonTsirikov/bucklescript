@@ -1,16 +1,16 @@
 --[['use strict';]]
 
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 function f(param) do
-  throw {
-        Caml_builtin_exceptions.assert_failure,
-        --[[ tuple ]]{
-          "noassert.ml",
-          5,
-          11
-        }
-      };
+  error ({
+    Caml_builtin_exceptions.assert_failure,
+    --[[ tuple ]]{
+      "noassert.ml",
+      5,
+      11
+    }
+  })
 end end
 
 function h(param) do

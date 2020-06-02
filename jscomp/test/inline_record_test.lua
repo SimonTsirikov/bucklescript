@@ -1,10 +1,10 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-List = require "../../lib/js/list.lua";
-Block = require "../../lib/js/block.lua";
-Caml_exceptions = require "../../lib/js/caml_exceptions.lua";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
+Mt = require "./mt";
+List = require "../../lib/js/list";
+Block = require "../../lib/js/block";
+Caml_exceptions = require "../../lib/js/caml_exceptions";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 suites = do
   contents: --[[ [] ]]0
@@ -64,14 +64,14 @@ tmp;
 if (A0 == A0) then do
   tmp = 3;
 end else do
-  throw {
-        Caml_builtin_exceptions.assert_failure,
-        --[[ tuple ]]{
-          "inline_record_test.ml",
-          51,
-          52
-        }
-      };
+  error ({
+    Caml_builtin_exceptions.assert_failure,
+    --[[ tuple ]]{
+      "inline_record_test.ml",
+      51,
+      52
+    }
+  })
 end end 
 
 eq("File \"inline_record_test.ml\", line 51, characters 6-13", tmp, 3);
@@ -102,14 +102,14 @@ end
 tmp$1;
 
 if (v4.tag) then do
-  throw {
-        Caml_builtin_exceptions.assert_failure,
-        --[[ tuple ]]{
-          "inline_record_test.ml",
-          69,
-          48
-        }
-      };
+  error ({
+    Caml_builtin_exceptions.assert_failure,
+    --[[ tuple ]]{
+      "inline_record_test.ml",
+      69,
+      48
+    }
+  })
 end else do
   tmp$1 = v4[--[[ x ]]0];
 end end 
@@ -121,14 +121,14 @@ tmp$2;
 if (v5.tag) then do
   tmp$2 = v5[--[[ z ]]0];
 end else do
-  throw {
-        Caml_builtin_exceptions.assert_failure,
-        --[[ tuple ]]{
-          "inline_record_test.ml",
-          71,
-          48
-        }
-      };
+  error ({
+    Caml_builtin_exceptions.assert_failure,
+    --[[ tuple ]]{
+      "inline_record_test.ml",
+      71,
+      48
+    }
+  })
 end end 
 
 eq("File \"inline_record_test.ml\", line 71, characters 6-13", tmp$2, 22);
@@ -161,14 +161,14 @@ tmp$3;
 if (v6[0] == A4) then do
   tmp$3 = v6[--[[ x ]]1];
 end else do
-  throw {
-        Caml_builtin_exceptions.assert_failure,
-        --[[ tuple ]]{
-          "inline_record_test.ml",
-          87,
-          49
-        }
-      };
+  error ({
+    Caml_builtin_exceptions.assert_failure,
+    --[[ tuple ]]{
+      "inline_record_test.ml",
+      87,
+      49
+    }
+  })
 end end 
 
 eq("File \"inline_record_test.ml\", line 87, characters 6-13", tmp$3, 11);

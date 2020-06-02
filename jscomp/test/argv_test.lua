@@ -1,7 +1,7 @@
 --[['use strict';]]
 
-Arg = require "../../lib/js/arg.lua";
-Block = require "../../lib/js/block.lua";
+Arg = require "../../lib/js/arg";
+Block = require "../../lib/js/block";
 
 function anno_fun(arg) do
   return --[[ () ]]0;

@@ -1,6 +1,6 @@
 --[['use strict';]]
 
-Unix = require "./unix.lua";
+Unix = require "./unix";
 
 Unix_error = Unix.Unix_error;
 

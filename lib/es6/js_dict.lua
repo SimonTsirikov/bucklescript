@@ -47,7 +47,7 @@ function fromList(entries) do
       match = param[0];
       dict[match[0]] = match[1];
       _param = param[1];
-      continue ;
+      ::continue:: ;
     end else do
       return dict;
     end end 

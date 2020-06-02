@@ -1,6 +1,6 @@
 --[['use strict';]]
 
-Curry = require "./curry.lua";
+Curry = require "./curry";
 
 function MakeComparableU(M) do
   return M;

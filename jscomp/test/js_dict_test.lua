@@ -1,8 +1,8 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-Block = require "../../lib/js/block.lua";
-Js_dict = require "../../lib/js/js_dict.lua";
+Mt = require "./mt";
+Block = require "../../lib/js/block";
+Js_dict = require "../../lib/js/js_dict";
 
 function obj(param) do
   return do

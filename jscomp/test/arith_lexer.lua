@@ -1,10 +1,10 @@
 --[['use strict';]]
 
-Block = require "../../lib/js/block.lua";
-Curry = require "../../lib/js/curry.lua";
-Lexing = require "../../lib/js/lexing.lua";
-Pervasives = require "../../lib/js/pervasives.lua";
-Caml_format = require "../../lib/js/caml_format.lua";
+Block = require "../../lib/js/block";
+Curry = require "../../lib/js/curry";
+Lexing = require "../../lib/js/lexing";
+Pervasives = require "../../lib/js/pervasives";
+Caml_format = require "../../lib/js/caml_format";
 
 __ocaml_lex_tables = do
   lex_base: "\0\0\xf6\xff\xf7\xff\xf8\xff\xf9\xff\xfa\xff\xfb\xff\xfc\xff:\0\x85\0\xff\xff",
@@ -28,7 +28,7 @@ function __ocaml_lex_lexeme_rec(lexbuf, ___ocaml_lex_state) do
     do
        if ___conditional___ = 0 then do
           ___ocaml_lex_state = 0;
-          continue ;end end end 
+          ::continue:: ;end end end 
        if ___conditional___ = 1 then do
           return --[[ NUMERAL ]]Block.__(0, {Caml_format.caml_int_of_string(Lexing.lexeme(lexbuf))});end end end 
        if ___conditional___ = 2 then do
@@ -51,7 +51,7 @@ function __ocaml_lex_lexeme_rec(lexbuf, ___ocaml_lex_state) do
       else do
         Curry._1(lexbuf.refill_buff, lexbuf);
         ___ocaml_lex_state = __ocaml_lex_state$1;
-        continue ;
+        ::continue:: ;
         end end
         
     end

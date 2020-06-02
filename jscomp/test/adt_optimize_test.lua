@@ -1,6 +1,6 @@
 --[['use strict';]]
 
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 function f(x) do
   return x + 1 | 0;
@@ -177,14 +177,14 @@ function f11(x) do
   if (typeof x == "number") then do
     return 2;
   end else if (x.tag) then do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "adt_optimize_test.ml",
-            191,
-            9
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "adt_optimize_test.ml",
+        191,
+        9
+      }
+    })
   end else do
     return 1;
   end end  end 

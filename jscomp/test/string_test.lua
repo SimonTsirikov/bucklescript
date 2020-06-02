@@ -1,13 +1,13 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-List = require "../../lib/js/list.lua";
-Block = require "../../lib/js/block.lua";
-Bytes = require "../../lib/js/bytes.lua";
-__String = require "../../lib/js/string.lua";
-Caml_bytes = require "../../lib/js/caml_bytes.lua";
-Ext_string_test = require "./ext_string_test.lua";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
+Mt = require "./mt";
+List = require "../../lib/js/list";
+Block = require "../../lib/js/block";
+Bytes = require "../../lib/js/bytes";
+__String = require "../../lib/js/string";
+Caml_bytes = require "../../lib/js/caml_bytes";
+Ext_string_test = require "./ext_string_test";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 function ff(x) do
   a;
@@ -61,24 +61,23 @@ end end
 
 function rev_split_by_char(c, s) do
   loop = function (i, l) do
-    try do
+    xpcall(function() do
       i$prime = __String.index_from(s, i, c);
       s$prime = __String.sub(s, i, i$prime - i | 0);
       return loop(i$prime + 1 | 0, s$prime == "" and l or --[[ :: ]]{
                     s$prime,
                     l
                   });
-    end
-    catch (exn)do
+    end end,function(exn) return do
       if (exn == Caml_builtin_exceptions.not_found) then do
         return --[[ :: ]]{
                 __String.sub(s, i, #s - i | 0),
                 l
               };
       end else do
-        throw exn;
+        error (exn)
       end end 
-    end
+    end end)
   end end;
   return loop(0, --[[ [] ]]0);
 end end
@@ -93,19 +92,18 @@ function xsplit(delim, s) do
       l = _l;
       if (i ~= 0) then do
         i$prime;
-        try do
+        xpcall(function() do
           i$prime = __String.rindex_from(s, i - 1 | 0, delim);
-        end
-        catch (exn)do
+        end end,function(exn) return do
           if (exn == Caml_builtin_exceptions.not_found) then do
             return --[[ :: ]]{
                     __String.sub(s, 0, i),
                     l
                   };
           end else do
-            throw exn;
+            error (exn)
           end end 
-        end
+        end end)
         l_000 = __String.sub(s, i$prime + 1 | 0, (i - i$prime | 0) - 1 | 0);
         l$1 = --[[ :: ]]{
           l_000,
@@ -117,7 +115,7 @@ function xsplit(delim, s) do
           } or l$1;
         _i = i$prime;
         _l = l$2;
-        continue ;
+        ::continue:: ;
       end else do
         return l;
       end end 

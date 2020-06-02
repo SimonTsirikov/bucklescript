@@ -311,7 +311,7 @@ function bprint_char_set(buf, char_set) do
           end end  end 
         end else do
           _i = i + 1 | 0;
-          continue ;
+          ::continue:: ;
         end end 
       end else do
         return 0;
@@ -350,7 +350,7 @@ function bprint_char_set(buf, char_set) do
             end end 
           end else do
             _j = j + 1 | 0;
-            continue ;
+            ::continue:: ;
           end end 
         end;
       end else do
@@ -596,67 +596,67 @@ function bprint_fmtty(buf, _fmtty) do
          if ___conditional___ = 0--[[ Char_ty ]] then do
             buffer_add_string(buf, "%c");
             _fmtty = fmtty[0];
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 1--[[ String_ty ]] then do
             buffer_add_string(buf, "%s");
             _fmtty = fmtty[0];
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 2--[[ Int_ty ]] then do
             buffer_add_string(buf, "%i");
             _fmtty = fmtty[0];
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 3--[[ Int32_ty ]] then do
             buffer_add_string(buf, "%li");
             _fmtty = fmtty[0];
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 4--[[ Nativeint_ty ]] then do
             buffer_add_string(buf, "%ni");
             _fmtty = fmtty[0];
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 5--[[ Int64_ty ]] then do
             buffer_add_string(buf, "%Li");
             _fmtty = fmtty[0];
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 6--[[ Float_ty ]] then do
             buffer_add_string(buf, "%f");
             _fmtty = fmtty[0];
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 7--[[ Bool_ty ]] then do
             buffer_add_string(buf, "%B");
             _fmtty = fmtty[0];
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 8--[[ Format_arg_ty ]] then do
             buffer_add_string(buf, "%{");
             bprint_fmtty(buf, fmtty[0]);
             buffer_add_string(buf, "%}");
             _fmtty = fmtty[1];
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 9--[[ Format_subst_ty ]] then do
             buffer_add_string(buf, "%(");
             bprint_fmtty(buf, fmtty[0]);
             buffer_add_string(buf, "%)");
             _fmtty = fmtty[2];
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 10--[[ Alpha_ty ]] then do
             buffer_add_string(buf, "%a");
             _fmtty = fmtty[0];
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 11--[[ Theta_ty ]] then do
             buffer_add_string(buf, "%t");
             _fmtty = fmtty[0];
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 12--[[ Any_ty ]] then do
             buffer_add_string(buf, "%?");
             _fmtty = fmtty[0];
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 13--[[ Reader_ty ]] then do
             buffer_add_string(buf, "%r");
             _fmtty = fmtty[0];
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 14--[[ Ignored_reader_ty ]] then do
             buffer_add_string(buf, "%_r");
             _fmtty = fmtty[0];
-            continue ;end end end 
+            ::continue:: ;end end end 
          do
         
       end
@@ -689,14 +689,14 @@ function bprint_fmt(buf, fmt) do
             buffer_add_char(buf, --[[ "c" ]]99);
             _ign_flag = false;
             _fmt = fmt$1[0];
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 1--[[ Caml_char ]] then do
             buffer_add_char(buf, --[[ "%" ]]37);
             bprint_ignored_flag(buf, ign_flag);
             buffer_add_char(buf, --[[ "C" ]]67);
             _ign_flag = false;
             _fmt = fmt$1[0];
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 2--[[ String ]] then do
             buffer_add_char(buf, --[[ "%" ]]37);
             bprint_ignored_flag(buf, ign_flag);
@@ -704,7 +704,7 @@ function bprint_fmt(buf, fmt) do
             buffer_add_char(buf, --[[ "s" ]]115);
             _ign_flag = false;
             _fmt = fmt$1[1];
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 3--[[ Caml_string ]] then do
             buffer_add_char(buf, --[[ "%" ]]37);
             bprint_ignored_flag(buf, ign_flag);
@@ -712,32 +712,32 @@ function bprint_fmt(buf, fmt) do
             buffer_add_char(buf, --[[ "S" ]]83);
             _ign_flag = false;
             _fmt = fmt$1[1];
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 4--[[ Int ]] then do
             bprint_int_fmt(buf, ign_flag, fmt$1[0], fmt$1[1], fmt$1[2]);
             _ign_flag = false;
             _fmt = fmt$1[3];
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 5--[[ Int32 ]] then do
             bprint_altint_fmt(buf, ign_flag, fmt$1[0], fmt$1[1], fmt$1[2], --[[ "l" ]]108);
             _ign_flag = false;
             _fmt = fmt$1[3];
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 6--[[ Nativeint ]] then do
             bprint_altint_fmt(buf, ign_flag, fmt$1[0], fmt$1[1], fmt$1[2], --[[ "n" ]]110);
             _ign_flag = false;
             _fmt = fmt$1[3];
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 7--[[ Int64 ]] then do
             bprint_altint_fmt(buf, ign_flag, fmt$1[0], fmt$1[1], fmt$1[2], --[[ "L" ]]76);
             _ign_flag = false;
             _fmt = fmt$1[3];
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 8--[[ Float ]] then do
             bprint_float_fmt(buf, ign_flag, fmt$1[0], fmt$1[1], fmt$1[2]);
             _ign_flag = false;
             _fmt = fmt$1[3];
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 9--[[ Bool ]] then do
             buffer_add_char(buf, --[[ "%" ]]37);
             bprint_ignored_flag(buf, ign_flag);
@@ -745,19 +745,19 @@ function bprint_fmt(buf, fmt) do
             buffer_add_char(buf, --[[ "B" ]]66);
             _ign_flag = false;
             _fmt = fmt$1[1];
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 10--[[ Flush ]] then do
             buffer_add_string(buf, "%!");
             _fmt = fmt$1[0];
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 11--[[ String_literal ]] then do
             bprint_string_literal(buf, fmt$1[0]);
             _fmt = fmt$1[1];
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 12--[[ Char_literal ]] then do
             bprint_char_literal(buf, fmt$1[0]);
             _fmt = fmt$1[1];
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 13--[[ Format_arg ]] then do
             buffer_add_char(buf, --[[ "%" ]]37);
             bprint_ignored_flag(buf, ign_flag);
@@ -768,7 +768,7 @@ function bprint_fmt(buf, fmt) do
             buffer_add_char(buf, --[[ "}" ]]125);
             _ign_flag = false;
             _fmt = fmt$1[2];
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 14--[[ Format_subst ]] then do
             buffer_add_char(buf, --[[ "%" ]]37);
             bprint_ignored_flag(buf, ign_flag);
@@ -779,37 +779,37 @@ function bprint_fmt(buf, fmt) do
             buffer_add_char(buf, --[[ ")" ]]41);
             _ign_flag = false;
             _fmt = fmt$1[2];
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 15--[[ Alpha ]] then do
             buffer_add_char(buf, --[[ "%" ]]37);
             bprint_ignored_flag(buf, ign_flag);
             buffer_add_char(buf, --[[ "a" ]]97);
             _ign_flag = false;
             _fmt = fmt$1[0];
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 16--[[ Theta ]] then do
             buffer_add_char(buf, --[[ "%" ]]37);
             bprint_ignored_flag(buf, ign_flag);
             buffer_add_char(buf, --[[ "t" ]]116);
             _ign_flag = false;
             _fmt = fmt$1[0];
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 17--[[ Formatting_lit ]] then do
             bprint_string_literal(buf, string_of_formatting_lit(fmt$1[0]));
             _fmt = fmt$1[1];
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 18--[[ Formatting_gen ]] then do
             bprint_string_literal(buf, "@{");
             bprint_string_literal(buf, string_of_formatting_gen(fmt$1[0]));
             _fmt = fmt$1[1];
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 19--[[ Reader ]] then do
             buffer_add_char(buf, --[[ "%" ]]37);
             bprint_ignored_flag(buf, ign_flag);
             buffer_add_char(buf, --[[ "r" ]]114);
             _ign_flag = false;
             _fmt = fmt$1[0];
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 20--[[ Scan_char_set ]] then do
             buffer_add_char(buf, --[[ "%" ]]37);
             bprint_ignored_flag(buf, ign_flag);
@@ -817,26 +817,26 @@ function bprint_fmt(buf, fmt) do
             bprint_char_set(buf, fmt$1[1]);
             _ign_flag = false;
             _fmt = fmt$1[2];
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 21--[[ Scan_get_counter ]] then do
             buffer_add_char(buf, --[[ "%" ]]37);
             bprint_ignored_flag(buf, ign_flag);
             buffer_add_char(buf, char_of_counter(fmt$1[0]));
             _ign_flag = false;
             _fmt = fmt$1[1];
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 22--[[ Scan_next_char ]] then do
             buffer_add_char(buf, --[[ "%" ]]37);
             bprint_ignored_flag(buf, ign_flag);
             bprint_string_literal(buf, "0c");
             _ign_flag = false;
             _fmt = fmt$1[0];
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 23--[[ Ignored_param ]] then do
             match = param_format_of_ignored_format(fmt$1[0], fmt$1[1]);
             _ign_flag = true;
             _fmt = match[0];
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 24--[[ Custom ]] then do
             for _i = 1 , int_of_custom_arity(fmt$1[0]) , 1 do
               buffer_add_char(buf, --[[ "%" ]]37);
@@ -845,7 +845,7 @@ function bprint_fmt(buf, fmt) do
             end
             _ign_flag = false;
             _fmt = fmt$1[2];
-            continue ;end end end 
+            ::continue:: ;end end end 
          do
         
       end
@@ -1234,14 +1234,14 @@ function trans(ty1, ty2) do
             exit = 5;end else 
          do end end end end end end end end
         else do
-          throw {
-                Caml_builtin_exceptions.assert_failure,
-                --[[ tuple ]]{
-                  "camlinternalFormat.ml",
-                  846,
-                  23
-                }
-              };
+          error ({
+            Caml_builtin_exceptions.assert_failure,
+            --[[ tuple ]]{
+              "camlinternalFormat.ml",
+              846,
+              23
+            }
+          })
           end end
           
       end
@@ -1459,14 +1459,14 @@ function trans(ty1, ty2) do
           end end end else 
        if ___conditional___ = 8--[[ Format_arg_ty ]] then do
           if (typeof ty2 == "number") then do
-            throw {
-                  Caml_builtin_exceptions.assert_failure,
-                  --[[ tuple ]]{
-                    "camlinternalFormat.ml",
-                    832,
-                    26
-                  }
-                };
+            error ({
+              Caml_builtin_exceptions.assert_failure,
+              --[[ tuple ]]{
+                "camlinternalFormat.ml",
+                832,
+                26
+              }
+            })
           end else do
             local ___conditional___=(ty2.tag | 0);
             do
@@ -1487,28 +1487,28 @@ function trans(ty1, ty2) do
                   exit = 5;end else 
                do end end end end end
               else do
-                throw {
-                      Caml_builtin_exceptions.assert_failure,
-                      --[[ tuple ]]{
-                        "camlinternalFormat.ml",
-                        832,
-                        26
-                      }
-                    };
+                error ({
+                  Caml_builtin_exceptions.assert_failure,
+                  --[[ tuple ]]{
+                    "camlinternalFormat.ml",
+                    832,
+                    26
+                  }
+                })
                 end end
                 
             end
           end end end else 
        if ___conditional___ = 9--[[ Format_subst_ty ]] then do
           if (typeof ty2 == "number") then do
-            throw {
-                  Caml_builtin_exceptions.assert_failure,
-                  --[[ tuple ]]{
-                    "camlinternalFormat.ml",
-                    842,
-                    28
-                  }
-                };
+            error ({
+              Caml_builtin_exceptions.assert_failure,
+              --[[ tuple ]]{
+                "camlinternalFormat.ml",
+                842,
+                28
+              }
+            })
           end else do
             local ___conditional___=(ty2.tag | 0);
             do
@@ -1536,50 +1536,50 @@ function trans(ty1, ty2) do
                   exit = 5;end else 
                do end end end end end end
               else do
-                throw {
-                      Caml_builtin_exceptions.assert_failure,
-                      --[[ tuple ]]{
-                        "camlinternalFormat.ml",
-                        842,
-                        28
-                      }
-                    };
+                error ({
+                  Caml_builtin_exceptions.assert_failure,
+                  --[[ tuple ]]{
+                    "camlinternalFormat.ml",
+                    842,
+                    28
+                  }
+                })
                 end end
                 
             end
           end end end else 
        if ___conditional___ = 10--[[ Alpha_ty ]] then do
           if (typeof ty2 == "number") then do
-            throw {
-                  Caml_builtin_exceptions.assert_failure,
-                  --[[ tuple ]]{
-                    "camlinternalFormat.ml",
-                    810,
-                    21
-                  }
-                };
+            error ({
+              Caml_builtin_exceptions.assert_failure,
+              --[[ tuple ]]{
+                "camlinternalFormat.ml",
+                810,
+                21
+              }
+            })
           end else if (ty2.tag == --[[ Alpha_ty ]]10) then do
             return --[[ Alpha_ty ]]Block.__(10, {trans(ty1[0], ty2[0])});
           end else do
-            throw {
-                  Caml_builtin_exceptions.assert_failure,
-                  --[[ tuple ]]{
-                    "camlinternalFormat.ml",
-                    810,
-                    21
-                  }
-                };
+            error ({
+              Caml_builtin_exceptions.assert_failure,
+              --[[ tuple ]]{
+                "camlinternalFormat.ml",
+                810,
+                21
+              }
+            })
           end end  end end end end 
        if ___conditional___ = 11--[[ Theta_ty ]] then do
           if (typeof ty2 == "number") then do
-            throw {
-                  Caml_builtin_exceptions.assert_failure,
-                  --[[ tuple ]]{
-                    "camlinternalFormat.ml",
-                    814,
-                    21
-                  }
-                };
+            error ({
+              Caml_builtin_exceptions.assert_failure,
+              --[[ tuple ]]{
+                "camlinternalFormat.ml",
+                814,
+                21
+              }
+            })
           end else do
             local ___conditional___=(ty2.tag | 0);
             do
@@ -1589,28 +1589,28 @@ function trans(ty1, ty2) do
                   return --[[ Theta_ty ]]Block.__(11, {trans(ty1[0], ty2[0])});end end end 
                do end
               else do
-                throw {
-                      Caml_builtin_exceptions.assert_failure,
-                      --[[ tuple ]]{
-                        "camlinternalFormat.ml",
-                        814,
-                        21
-                      }
-                    };
+                error ({
+                  Caml_builtin_exceptions.assert_failure,
+                  --[[ tuple ]]{
+                    "camlinternalFormat.ml",
+                    814,
+                    21
+                  }
+                })
                 end end
                 
             end
           end end end else 
        if ___conditional___ = 12--[[ Any_ty ]] then do
           if (typeof ty2 == "number") then do
-            throw {
-                  Caml_builtin_exceptions.assert_failure,
-                  --[[ tuple ]]{
-                    "camlinternalFormat.ml",
-                    818,
-                    19
-                  }
-                };
+            error ({
+              Caml_builtin_exceptions.assert_failure,
+              --[[ tuple ]]{
+                "camlinternalFormat.ml",
+                818,
+                19
+              }
+            })
           end else do
             local ___conditional___=(ty2.tag | 0);
             do
@@ -1622,28 +1622,28 @@ function trans(ty1, ty2) do
                   return --[[ Any_ty ]]Block.__(12, {trans(ty1[0], ty2[0])});end end end 
                do end end
               else do
-                throw {
-                      Caml_builtin_exceptions.assert_failure,
-                      --[[ tuple ]]{
-                        "camlinternalFormat.ml",
-                        818,
-                        19
-                      }
-                    };
+                error ({
+                  Caml_builtin_exceptions.assert_failure,
+                  --[[ tuple ]]{
+                    "camlinternalFormat.ml",
+                    818,
+                    19
+                  }
+                })
                 end end
                 
             end
           end end end else 
        if ___conditional___ = 13--[[ Reader_ty ]] then do
           if (typeof ty2 == "number") then do
-            throw {
-                  Caml_builtin_exceptions.assert_failure,
-                  --[[ tuple ]]{
-                    "camlinternalFormat.ml",
-                    822,
-                    22
-                  }
-                };
+            error ({
+              Caml_builtin_exceptions.assert_failure,
+              --[[ tuple ]]{
+                "camlinternalFormat.ml",
+                822,
+                22
+              }
+            })
           end else do
             local ___conditional___=(ty2.tag | 0);
             do
@@ -1657,28 +1657,28 @@ function trans(ty1, ty2) do
                   return --[[ Reader_ty ]]Block.__(13, {trans(ty1[0], ty2[0])});end end end 
                do end end end
               else do
-                throw {
-                      Caml_builtin_exceptions.assert_failure,
-                      --[[ tuple ]]{
-                        "camlinternalFormat.ml",
-                        822,
-                        22
-                      }
-                    };
+                error ({
+                  Caml_builtin_exceptions.assert_failure,
+                  --[[ tuple ]]{
+                    "camlinternalFormat.ml",
+                    822,
+                    22
+                  }
+                })
                 end end
                 
             end
           end end end else 
        if ___conditional___ = 14--[[ Ignored_reader_ty ]] then do
           if (typeof ty2 == "number") then do
-            throw {
-                  Caml_builtin_exceptions.assert_failure,
-                  --[[ tuple ]]{
-                    "camlinternalFormat.ml",
-                    827,
-                    30
-                  }
-                };
+            error ({
+              Caml_builtin_exceptions.assert_failure,
+              --[[ tuple ]]{
+                "camlinternalFormat.ml",
+                827,
+                30
+              }
+            })
           end else do
             local ___conditional___=(ty2.tag | 0);
             do
@@ -1694,14 +1694,14 @@ function trans(ty1, ty2) do
                   return --[[ Ignored_reader_ty ]]Block.__(14, {trans(ty1[0], ty2[0])});end end end 
                do end end end end
               else do
-                throw {
-                      Caml_builtin_exceptions.assert_failure,
-                      --[[ tuple ]]{
-                        "camlinternalFormat.ml",
-                        827,
-                        30
-                      }
-                    };
+                error ({
+                  Caml_builtin_exceptions.assert_failure,
+                  --[[ tuple ]]{
+                    "camlinternalFormat.ml",
+                    827,
+                    30
+                  }
+                })
                 end end
                 
             end
@@ -1713,77 +1713,77 @@ function trans(ty1, ty2) do
   local ___conditional___=(exit);
   do
      if ___conditional___ = 1 then do
-        throw {
-              Caml_builtin_exceptions.assert_failure,
-              --[[ tuple ]]{
-                "camlinternalFormat.ml",
-                811,
-                21
-              }
-            };end end end 
+        error ({
+          Caml_builtin_exceptions.assert_failure,
+          --[[ tuple ]]{
+            "camlinternalFormat.ml",
+            811,
+            21
+          }
+        })end end end 
      if ___conditional___ = 2 then do
-        throw {
-              Caml_builtin_exceptions.assert_failure,
-              --[[ tuple ]]{
-                "camlinternalFormat.ml",
-                815,
-                21
-              }
-            };end end end 
+        error ({
+          Caml_builtin_exceptions.assert_failure,
+          --[[ tuple ]]{
+            "camlinternalFormat.ml",
+            815,
+            21
+          }
+        })end end end 
      if ___conditional___ = 3 then do
-        throw {
-              Caml_builtin_exceptions.assert_failure,
-              --[[ tuple ]]{
-                "camlinternalFormat.ml",
-                819,
-                19
-              }
-            };end end end 
+        error ({
+          Caml_builtin_exceptions.assert_failure,
+          --[[ tuple ]]{
+            "camlinternalFormat.ml",
+            819,
+            19
+          }
+        })end end end 
      if ___conditional___ = 4 then do
-        throw {
-              Caml_builtin_exceptions.assert_failure,
-              --[[ tuple ]]{
-                "camlinternalFormat.ml",
-                823,
-                22
-              }
-            };end end end 
+        error ({
+          Caml_builtin_exceptions.assert_failure,
+          --[[ tuple ]]{
+            "camlinternalFormat.ml",
+            823,
+            22
+          }
+        })end end end 
      if ___conditional___ = 5 then do
-        throw {
-              Caml_builtin_exceptions.assert_failure,
-              --[[ tuple ]]{
-                "camlinternalFormat.ml",
-                828,
-                30
-              }
-            };end end end 
+        error ({
+          Caml_builtin_exceptions.assert_failure,
+          --[[ tuple ]]{
+            "camlinternalFormat.ml",
+            828,
+            30
+          }
+        })end end end 
      if ___conditional___ = 6 then do
-        throw {
-              Caml_builtin_exceptions.assert_failure,
-              --[[ tuple ]]{
-                "camlinternalFormat.ml",
-                833,
-                26
-              }
-            };end end end 
+        error ({
+          Caml_builtin_exceptions.assert_failure,
+          --[[ tuple ]]{
+            "camlinternalFormat.ml",
+            833,
+            26
+          }
+        })end end end 
      if ___conditional___ = 7 then do
-        throw {
-              Caml_builtin_exceptions.assert_failure,
-              --[[ tuple ]]{
-                "camlinternalFormat.ml",
-                843,
-                28
-              }
-            };end end end 
+        error ({
+          Caml_builtin_exceptions.assert_failure,
+          --[[ tuple ]]{
+            "camlinternalFormat.ml",
+            843,
+            28
+          }
+        })end end end 
      if ___conditional___ = 8 then do
-        throw {
-              Caml_builtin_exceptions.assert_failure,
-              --[[ tuple ]]{
-                "camlinternalFormat.ml",
-                847,
-                23
-              }
-            };end end end 
+        error ({
+          Caml_builtin_exceptions.assert_failure,
+          --[[ tuple ]]{
+            "camlinternalFormat.ml",
+            847,
+            23
+          }
+        })end end end 
      do
     
   end
@@ -1827,7 +1827,7 @@ function fmtty_of_fmt(_fmtty) do
             return fmtty_of_padding_fmtty(fmtty[0], --[[ Bool_ty ]]Block.__(7, {fmtty_of_fmt(fmtty[1])}));end end end 
          if ___conditional___ = 10--[[ Flush ]] then do
             _fmtty = fmtty[0];
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 13--[[ Format_arg ]] then do
             return --[[ Format_arg_ty ]]Block.__(8, {
                       fmtty[1],
@@ -1848,7 +1848,7 @@ function fmtty_of_fmt(_fmtty) do
          or ___conditional___ = 12--[[ Char_literal ]]
          or ___conditional___ = 17--[[ Formatting_lit ]] then do
             _fmtty = fmtty[1];
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 18--[[ Formatting_gen ]] then do
             return CamlinternalFormatBasics.concat_fmtty(fmtty_of_formatting_gen(fmtty[0]), fmtty_of_fmt(fmtty[1]));end end end 
          if ___conditional___ = 19--[[ Reader ]] then do
@@ -1918,14 +1918,14 @@ function type_padding(pad, fmtty) do
           };
   end else if (pad.tag) then do
     if (typeof fmtty == "number") then do
-      throw Type_mismatch;
+      error (Type_mismatch)
     end else if (fmtty.tag == --[[ Int_ty ]]2) then do
       return --[[ Padding_fmtty_EBB ]]{
               --[[ Arg_padding ]]Block.__(1, {pad[0]}),
               fmtty[0]
             };
     end else do
-      throw Type_mismatch;
+      error (Type_mismatch)
     end end  end 
   end else do
     return --[[ Padding_fmtty_EBB ]]{
@@ -1944,7 +1944,7 @@ function type_padprec(pad, prec, fmtty) do
     if (prec ~= 0) then do
       match$1 = match[1];
       if (typeof match$1 == "number") then do
-        throw Type_mismatch;
+        error (Type_mismatch)
       end else if (match$1.tag == --[[ Int_ty ]]2) then do
         return --[[ Padprec_fmtty_EBB ]]{
                 match[0],
@@ -1952,7 +1952,7 @@ function type_padprec(pad, prec, fmtty) do
                 match$1[0]
               };
       end else do
-        throw Type_mismatch;
+        error (Type_mismatch)
       end end  end 
     end else do
       return --[[ Padprec_fmtty_EBB ]]{
@@ -1981,9 +1981,9 @@ function type_ignored_format_substitution(sub_fmtty, fmt, fmtty) do
     do
        if ___conditional___ = 0--[[ Char_ty ]] then do
           if (typeof fmtty == "number") then do
-            throw Type_mismatch;
+            error (Type_mismatch)
           end else if (fmtty.tag) then do
-            throw Type_mismatch;
+            error (Type_mismatch)
           end else do
             match = type_ignored_format_substitution(sub_fmtty[0], fmt, fmtty[0]);
             return --[[ Fmtty_fmt_EBB ]]{
@@ -1993,7 +1993,7 @@ function type_ignored_format_substitution(sub_fmtty, fmt, fmtty) do
           end end  end end end end 
        if ___conditional___ = 1--[[ String_ty ]] then do
           if (typeof fmtty == "number") then do
-            throw Type_mismatch;
+            error (Type_mismatch)
           end else if (fmtty.tag == --[[ String_ty ]]1) then do
             match$1 = type_ignored_format_substitution(sub_fmtty[0], fmt, fmtty[0]);
             return --[[ Fmtty_fmt_EBB ]]{
@@ -2001,11 +2001,11 @@ function type_ignored_format_substitution(sub_fmtty, fmt, fmtty) do
                     match$1[1]
                   };
           end else do
-            throw Type_mismatch;
+            error (Type_mismatch)
           end end  end end end end 
        if ___conditional___ = 2--[[ Int_ty ]] then do
           if (typeof fmtty == "number") then do
-            throw Type_mismatch;
+            error (Type_mismatch)
           end else if (fmtty.tag == --[[ Int_ty ]]2) then do
             match$2 = type_ignored_format_substitution(sub_fmtty[0], fmt, fmtty[0]);
             return --[[ Fmtty_fmt_EBB ]]{
@@ -2013,11 +2013,11 @@ function type_ignored_format_substitution(sub_fmtty, fmt, fmtty) do
                     match$2[1]
                   };
           end else do
-            throw Type_mismatch;
+            error (Type_mismatch)
           end end  end end end end 
        if ___conditional___ = 3--[[ Int32_ty ]] then do
           if (typeof fmtty == "number") then do
-            throw Type_mismatch;
+            error (Type_mismatch)
           end else if (fmtty.tag == --[[ Int32_ty ]]3) then do
             match$3 = type_ignored_format_substitution(sub_fmtty[0], fmt, fmtty[0]);
             return --[[ Fmtty_fmt_EBB ]]{
@@ -2025,11 +2025,11 @@ function type_ignored_format_substitution(sub_fmtty, fmt, fmtty) do
                     match$3[1]
                   };
           end else do
-            throw Type_mismatch;
+            error (Type_mismatch)
           end end  end end end end 
        if ___conditional___ = 4--[[ Nativeint_ty ]] then do
           if (typeof fmtty == "number") then do
-            throw Type_mismatch;
+            error (Type_mismatch)
           end else if (fmtty.tag == --[[ Nativeint_ty ]]4) then do
             match$4 = type_ignored_format_substitution(sub_fmtty[0], fmt, fmtty[0]);
             return --[[ Fmtty_fmt_EBB ]]{
@@ -2037,11 +2037,11 @@ function type_ignored_format_substitution(sub_fmtty, fmt, fmtty) do
                     match$4[1]
                   };
           end else do
-            throw Type_mismatch;
+            error (Type_mismatch)
           end end  end end end end 
        if ___conditional___ = 5--[[ Int64_ty ]] then do
           if (typeof fmtty == "number") then do
-            throw Type_mismatch;
+            error (Type_mismatch)
           end else if (fmtty.tag == --[[ Int64_ty ]]5) then do
             match$5 = type_ignored_format_substitution(sub_fmtty[0], fmt, fmtty[0]);
             return --[[ Fmtty_fmt_EBB ]]{
@@ -2049,11 +2049,11 @@ function type_ignored_format_substitution(sub_fmtty, fmt, fmtty) do
                     match$5[1]
                   };
           end else do
-            throw Type_mismatch;
+            error (Type_mismatch)
           end end  end end end end 
        if ___conditional___ = 6--[[ Float_ty ]] then do
           if (typeof fmtty == "number") then do
-            throw Type_mismatch;
+            error (Type_mismatch)
           end else if (fmtty.tag == --[[ Float_ty ]]6) then do
             match$6 = type_ignored_format_substitution(sub_fmtty[0], fmt, fmtty[0]);
             return --[[ Fmtty_fmt_EBB ]]{
@@ -2061,11 +2061,11 @@ function type_ignored_format_substitution(sub_fmtty, fmt, fmtty) do
                     match$6[1]
                   };
           end else do
-            throw Type_mismatch;
+            error (Type_mismatch)
           end end  end end end end 
        if ___conditional___ = 7--[[ Bool_ty ]] then do
           if (typeof fmtty == "number") then do
-            throw Type_mismatch;
+            error (Type_mismatch)
           end else if (fmtty.tag == --[[ Bool_ty ]]7) then do
             match$7 = type_ignored_format_substitution(sub_fmtty[0], fmt, fmtty[0]);
             return --[[ Fmtty_fmt_EBB ]]{
@@ -2073,15 +2073,15 @@ function type_ignored_format_substitution(sub_fmtty, fmt, fmtty) do
                     match$7[1]
                   };
           end else do
-            throw Type_mismatch;
+            error (Type_mismatch)
           end end  end end end end 
        if ___conditional___ = 8--[[ Format_arg_ty ]] then do
           if (typeof fmtty == "number") then do
-            throw Type_mismatch;
+            error (Type_mismatch)
           end else if (fmtty.tag == --[[ Format_arg_ty ]]8) then do
             sub2_fmtty$prime = fmtty[0];
             if (Caml_obj.caml_notequal(--[[ Fmtty_EBB ]]{sub_fmtty[0]}, --[[ Fmtty_EBB ]]{sub2_fmtty$prime})) then do
-              throw Type_mismatch;
+              error (Type_mismatch)
             end
              end 
             match$8 = type_ignored_format_substitution(sub_fmtty[1], fmt, fmtty[1]);
@@ -2093,20 +2093,20 @@ function type_ignored_format_substitution(sub_fmtty, fmt, fmtty) do
                     match$8[1]
                   };
           end else do
-            throw Type_mismatch;
+            error (Type_mismatch)
           end end  end end end end 
        if ___conditional___ = 9--[[ Format_subst_ty ]] then do
           if (typeof fmtty == "number") then do
-            throw Type_mismatch;
+            error (Type_mismatch)
           end else if (fmtty.tag == --[[ Format_subst_ty ]]9) then do
             sub2_fmtty$prime$1 = fmtty[1];
             sub1_fmtty$prime = fmtty[0];
             if (Caml_obj.caml_notequal(--[[ Fmtty_EBB ]]{CamlinternalFormatBasics.erase_rel(sub_fmtty[0])}, --[[ Fmtty_EBB ]]{CamlinternalFormatBasics.erase_rel(sub1_fmtty$prime)})) then do
-              throw Type_mismatch;
+              error (Type_mismatch)
             end
              end 
             if (Caml_obj.caml_notequal(--[[ Fmtty_EBB ]]{CamlinternalFormatBasics.erase_rel(sub_fmtty[1])}, --[[ Fmtty_EBB ]]{CamlinternalFormatBasics.erase_rel(sub2_fmtty$prime$1)})) then do
-              throw Type_mismatch;
+              error (Type_mismatch)
             end
              end 
             sub_fmtty$prime = trans(symm(sub1_fmtty$prime), sub2_fmtty$prime$1);
@@ -2123,11 +2123,11 @@ function type_ignored_format_substitution(sub_fmtty, fmt, fmtty) do
                     match$10[1]
                   };
           end else do
-            throw Type_mismatch;
+            error (Type_mismatch)
           end end  end end end end 
        if ___conditional___ = 10--[[ Alpha_ty ]] then do
           if (typeof fmtty == "number") then do
-            throw Type_mismatch;
+            error (Type_mismatch)
           end else if (fmtty.tag == --[[ Alpha_ty ]]10) then do
             match$11 = type_ignored_format_substitution(sub_fmtty[0], fmt, fmtty[0]);
             return --[[ Fmtty_fmt_EBB ]]{
@@ -2135,11 +2135,11 @@ function type_ignored_format_substitution(sub_fmtty, fmt, fmtty) do
                     match$11[1]
                   };
           end else do
-            throw Type_mismatch;
+            error (Type_mismatch)
           end end  end end end end 
        if ___conditional___ = 11--[[ Theta_ty ]] then do
           if (typeof fmtty == "number") then do
-            throw Type_mismatch;
+            error (Type_mismatch)
           end else if (fmtty.tag == --[[ Theta_ty ]]11) then do
             match$12 = type_ignored_format_substitution(sub_fmtty[0], fmt, fmtty[0]);
             return --[[ Fmtty_fmt_EBB ]]{
@@ -2147,13 +2147,13 @@ function type_ignored_format_substitution(sub_fmtty, fmt, fmtty) do
                     match$12[1]
                   };
           end else do
-            throw Type_mismatch;
+            error (Type_mismatch)
           end end  end end end end 
        if ___conditional___ = 12--[[ Any_ty ]] then do
-          throw Type_mismatch;end end end 
+          error (Type_mismatch)end end end 
        if ___conditional___ = 13--[[ Reader_ty ]] then do
           if (typeof fmtty == "number") then do
-            throw Type_mismatch;
+            error (Type_mismatch)
           end else if (fmtty.tag == --[[ Reader_ty ]]13) then do
             match$13 = type_ignored_format_substitution(sub_fmtty[0], fmt, fmtty[0]);
             return --[[ Fmtty_fmt_EBB ]]{
@@ -2161,11 +2161,11 @@ function type_ignored_format_substitution(sub_fmtty, fmt, fmtty) do
                     match$13[1]
                   };
           end else do
-            throw Type_mismatch;
+            error (Type_mismatch)
           end end  end end end end 
        if ___conditional___ = 14--[[ Ignored_reader_ty ]] then do
           if (typeof fmtty == "number") then do
-            throw Type_mismatch;
+            error (Type_mismatch)
           end else if (fmtty.tag == --[[ Ignored_reader_ty ]]14) then do
             match$14 = type_ignored_format_substitution(sub_fmtty[0], fmt, fmtty[0]);
             return --[[ Fmtty_fmt_EBB ]]{
@@ -2173,7 +2173,7 @@ function type_ignored_format_substitution(sub_fmtty, fmt, fmtty) do
                     match$14[1]
                   };
           end else do
-            throw Type_mismatch;
+            error (Type_mismatch)
           end end  end end end end 
        do
       
@@ -2192,9 +2192,9 @@ function type_format_gen(fmt, fmtty) do
     do
        if ___conditional___ = 0--[[ Char ]] then do
           if (typeof fmtty == "number") then do
-            throw Type_mismatch;
+            error (Type_mismatch)
           end else if (fmtty.tag) then do
-            throw Type_mismatch;
+            error (Type_mismatch)
           end else do
             match = type_format_gen(fmt[0], fmtty[0]);
             return --[[ Fmt_fmtty_EBB ]]{
@@ -2204,9 +2204,9 @@ function type_format_gen(fmt, fmtty) do
           end end  end end end end 
        if ___conditional___ = 1--[[ Caml_char ]] then do
           if (typeof fmtty == "number") then do
-            throw Type_mismatch;
+            error (Type_mismatch)
           end else if (fmtty.tag) then do
-            throw Type_mismatch;
+            error (Type_mismatch)
           end else do
             match$1 = type_format_gen(fmt[0], fmtty[0]);
             return --[[ Fmt_fmtty_EBB ]]{
@@ -2218,7 +2218,7 @@ function type_format_gen(fmt, fmtty) do
           match$2 = type_padding(fmt[0], fmtty);
           match$3 = match$2[1];
           if (typeof match$3 == "number") then do
-            throw Type_mismatch;
+            error (Type_mismatch)
           end else if (match$3.tag == --[[ String_ty ]]1) then do
             match$4 = type_format_gen(fmt[1], match$3[0]);
             return --[[ Fmt_fmtty_EBB ]]{
@@ -2229,13 +2229,13 @@ function type_format_gen(fmt, fmtty) do
                     match$4[1]
                   };
           end else do
-            throw Type_mismatch;
+            error (Type_mismatch)
           end end  end end end end 
        if ___conditional___ = 3--[[ Caml_string ]] then do
           match$5 = type_padding(fmt[0], fmtty);
           match$6 = match$5[1];
           if (typeof match$6 == "number") then do
-            throw Type_mismatch;
+            error (Type_mismatch)
           end else if (match$6.tag == --[[ String_ty ]]1) then do
             match$7 = type_format_gen(fmt[1], match$6[0]);
             return --[[ Fmt_fmtty_EBB ]]{
@@ -2246,13 +2246,13 @@ function type_format_gen(fmt, fmtty) do
                     match$7[1]
                   };
           end else do
-            throw Type_mismatch;
+            error (Type_mismatch)
           end end  end end end end 
        if ___conditional___ = 4--[[ Int ]] then do
           match$8 = type_padprec(fmt[1], fmt[2], fmtty);
           match$9 = match$8[2];
           if (typeof match$9 == "number") then do
-            throw Type_mismatch;
+            error (Type_mismatch)
           end else if (match$9.tag == --[[ Int_ty ]]2) then do
             match$10 = type_format_gen(fmt[3], match$9[0]);
             return --[[ Fmt_fmtty_EBB ]]{
@@ -2265,13 +2265,13 @@ function type_format_gen(fmt, fmtty) do
                     match$10[1]
                   };
           end else do
-            throw Type_mismatch;
+            error (Type_mismatch)
           end end  end end end end 
        if ___conditional___ = 5--[[ Int32 ]] then do
           match$11 = type_padprec(fmt[1], fmt[2], fmtty);
           match$12 = match$11[2];
           if (typeof match$12 == "number") then do
-            throw Type_mismatch;
+            error (Type_mismatch)
           end else if (match$12.tag == --[[ Int32_ty ]]3) then do
             match$13 = type_format_gen(fmt[3], match$12[0]);
             return --[[ Fmt_fmtty_EBB ]]{
@@ -2284,13 +2284,13 @@ function type_format_gen(fmt, fmtty) do
                     match$13[1]
                   };
           end else do
-            throw Type_mismatch;
+            error (Type_mismatch)
           end end  end end end end 
        if ___conditional___ = 6--[[ Nativeint ]] then do
           match$14 = type_padprec(fmt[1], fmt[2], fmtty);
           match$15 = match$14[2];
           if (typeof match$15 == "number") then do
-            throw Type_mismatch;
+            error (Type_mismatch)
           end else if (match$15.tag == --[[ Nativeint_ty ]]4) then do
             match$16 = type_format_gen(fmt[3], match$15[0]);
             return --[[ Fmt_fmtty_EBB ]]{
@@ -2303,13 +2303,13 @@ function type_format_gen(fmt, fmtty) do
                     match$16[1]
                   };
           end else do
-            throw Type_mismatch;
+            error (Type_mismatch)
           end end  end end end end 
        if ___conditional___ = 7--[[ Int64 ]] then do
           match$17 = type_padprec(fmt[1], fmt[2], fmtty);
           match$18 = match$17[2];
           if (typeof match$18 == "number") then do
-            throw Type_mismatch;
+            error (Type_mismatch)
           end else if (match$18.tag == --[[ Int64_ty ]]5) then do
             match$19 = type_format_gen(fmt[3], match$18[0]);
             return --[[ Fmt_fmtty_EBB ]]{
@@ -2322,13 +2322,13 @@ function type_format_gen(fmt, fmtty) do
                     match$19[1]
                   };
           end else do
-            throw Type_mismatch;
+            error (Type_mismatch)
           end end  end end end end 
        if ___conditional___ = 8--[[ Float ]] then do
           match$20 = type_padprec(fmt[1], fmt[2], fmtty);
           match$21 = match$20[2];
           if (typeof match$21 == "number") then do
-            throw Type_mismatch;
+            error (Type_mismatch)
           end else if (match$21.tag == --[[ Float_ty ]]6) then do
             match$22 = type_format_gen(fmt[3], match$21[0]);
             return --[[ Fmt_fmtty_EBB ]]{
@@ -2341,13 +2341,13 @@ function type_format_gen(fmt, fmtty) do
                     match$22[1]
                   };
           end else do
-            throw Type_mismatch;
+            error (Type_mismatch)
           end end  end end end end 
        if ___conditional___ = 9--[[ Bool ]] then do
           match$23 = type_padding(fmt[0], fmtty);
           match$24 = match$23[1];
           if (typeof match$24 == "number") then do
-            throw Type_mismatch;
+            error (Type_mismatch)
           end else if (match$24.tag == --[[ Bool_ty ]]7) then do
             match$25 = type_format_gen(fmt[1], match$24[0]);
             return --[[ Fmt_fmtty_EBB ]]{
@@ -2358,7 +2358,7 @@ function type_format_gen(fmt, fmtty) do
                     match$25[1]
                   };
           end else do
-            throw Type_mismatch;
+            error (Type_mismatch)
           end end  end end end end 
        if ___conditional___ = 10--[[ Flush ]] then do
           match$26 = type_format_gen(fmt[0], fmtty);
@@ -2386,11 +2386,11 @@ function type_format_gen(fmt, fmtty) do
                 };end end end 
        if ___conditional___ = 13--[[ Format_arg ]] then do
           if (typeof fmtty == "number") then do
-            throw Type_mismatch;
+            error (Type_mismatch)
           end else if (fmtty.tag == --[[ Format_arg_ty ]]8) then do
             sub_fmtty$prime = fmtty[0];
             if (Caml_obj.caml_notequal(--[[ Fmtty_EBB ]]{fmt[1]}, --[[ Fmtty_EBB ]]{sub_fmtty$prime})) then do
-              throw Type_mismatch;
+              error (Type_mismatch)
             end
              end 
             match$29 = type_format_gen(fmt[2], fmtty[1]);
@@ -2403,15 +2403,15 @@ function type_format_gen(fmt, fmtty) do
                     match$29[1]
                   };
           end else do
-            throw Type_mismatch;
+            error (Type_mismatch)
           end end  end end end end 
        if ___conditional___ = 14--[[ Format_subst ]] then do
           if (typeof fmtty == "number") then do
-            throw Type_mismatch;
+            error (Type_mismatch)
           end else if (fmtty.tag == --[[ Format_subst_ty ]]9) then do
             sub_fmtty1 = fmtty[0];
             if (Caml_obj.caml_notequal(--[[ Fmtty_EBB ]]{CamlinternalFormatBasics.erase_rel(fmt[1])}, --[[ Fmtty_EBB ]]{CamlinternalFormatBasics.erase_rel(sub_fmtty1)})) then do
-              throw Type_mismatch;
+              error (Type_mismatch)
             end
              end 
             match$30 = type_format_gen(fmt[2], CamlinternalFormatBasics.erase_rel(fmtty[2]));
@@ -2424,11 +2424,11 @@ function type_format_gen(fmt, fmtty) do
                     match$30[1]
                   };
           end else do
-            throw Type_mismatch;
+            error (Type_mismatch)
           end end  end end end end 
        if ___conditional___ = 15--[[ Alpha ]] then do
           if (typeof fmtty == "number") then do
-            throw Type_mismatch;
+            error (Type_mismatch)
           end else if (fmtty.tag == --[[ Alpha_ty ]]10) then do
             match$31 = type_format_gen(fmt[0], fmtty[0]);
             return --[[ Fmt_fmtty_EBB ]]{
@@ -2436,11 +2436,11 @@ function type_format_gen(fmt, fmtty) do
                     match$31[1]
                   };
           end else do
-            throw Type_mismatch;
+            error (Type_mismatch)
           end end  end end end end 
        if ___conditional___ = 16--[[ Theta ]] then do
           if (typeof fmtty == "number") then do
-            throw Type_mismatch;
+            error (Type_mismatch)
           end else if (fmtty.tag == --[[ Theta_ty ]]11) then do
             match$32 = type_format_gen(fmt[0], fmtty[0]);
             return --[[ Fmt_fmtty_EBB ]]{
@@ -2448,7 +2448,7 @@ function type_format_gen(fmt, fmtty) do
                     match$32[1]
                   };
           end else do
-            throw Type_mismatch;
+            error (Type_mismatch)
           end end  end end end end 
        if ___conditional___ = 17--[[ Formatting_lit ]] then do
           match$33 = type_format_gen(fmt[1], fmtty);
@@ -2494,7 +2494,7 @@ function type_format_gen(fmt, fmtty) do
           end end end end end 
        if ___conditional___ = 19--[[ Reader ]] then do
           if (typeof fmtty == "number") then do
-            throw Type_mismatch;
+            error (Type_mismatch)
           end else if (fmtty.tag == --[[ Reader_ty ]]13) then do
             match$40 = type_format_gen(fmt[0], fmtty[0]);
             return --[[ Fmt_fmtty_EBB ]]{
@@ -2502,11 +2502,11 @@ function type_format_gen(fmt, fmtty) do
                     match$40[1]
                   };
           end else do
-            throw Type_mismatch;
+            error (Type_mismatch)
           end end  end end end end 
        if ___conditional___ = 20--[[ Scan_char_set ]] then do
           if (typeof fmtty == "number") then do
-            throw Type_mismatch;
+            error (Type_mismatch)
           end else if (fmtty.tag == --[[ String_ty ]]1) then do
             match$41 = type_format_gen(fmt[2], fmtty[0]);
             return --[[ Fmt_fmtty_EBB ]]{
@@ -2518,11 +2518,11 @@ function type_format_gen(fmt, fmtty) do
                     match$41[1]
                   };
           end else do
-            throw Type_mismatch;
+            error (Type_mismatch)
           end end  end end end end 
        if ___conditional___ = 21--[[ Scan_get_counter ]] then do
           if (typeof fmtty == "number") then do
-            throw Type_mismatch;
+            error (Type_mismatch)
           end else if (fmtty.tag == --[[ Int_ty ]]2) then do
             match$42 = type_format_gen(fmt[1], fmtty[0]);
             return --[[ Fmt_fmtty_EBB ]]{
@@ -2533,7 +2533,7 @@ function type_format_gen(fmt, fmtty) do
                     match$42[1]
                   };
           end else do
-            throw Type_mismatch;
+            error (Type_mismatch)
           end end  end end end end 
        if ___conditional___ = 23--[[ Ignored_param ]] then do
           ign = fmt[0];
@@ -2542,7 +2542,7 @@ function type_format_gen(fmt, fmtty) do
           if (typeof ign == "number") then do
             if (ign == --[[ Ignored_reader ]]2) then do
               if (typeof fmtty$1 == "number") then do
-                throw Type_mismatch;
+                error (Type_mismatch)
               end else if (fmtty$1.tag == --[[ Ignored_reader_ty ]]14) then do
                 match$43 = type_format_gen(fmt$1, fmtty$1[0]);
                 return --[[ Fmt_fmtty_EBB ]]{
@@ -2553,7 +2553,7 @@ function type_format_gen(fmt, fmtty) do
                         match$43[1]
                       };
               end else do
-                throw Type_mismatch;
+                error (Type_mismatch)
               end end  end 
             end else do
               return type_ignored_param_one(ign, fmt$1, fmtty$1);
@@ -2588,7 +2588,7 @@ function type_format_gen(fmt, fmtty) do
           end end end end end 
        if ___conditional___ = 22--[[ Scan_next_char ]]
        or ___conditional___ = 24--[[ Custom ]] then do
-          throw Type_mismatch;end end end 
+          error (Type_mismatch)end end end 
        do
       
     end
@@ -2611,7 +2611,7 @@ function type_format(fmt, fmtty) do
   if (typeof match[1] == "number") then do
     return match[0];
   end else do
-    throw Type_mismatch;
+    error (Type_mismatch)
   end end 
 end end
 
@@ -2952,7 +2952,7 @@ function convert_float(fconv, prec, x) do
             if (switcher > 23 or switcher < 0) then do
               if (switcher ~= 55) then do
                 _i = i + 1 | 0;
-                continue ;
+                ::continue:: ;
               end else do
                 return true;
               end end 
@@ -2960,7 +2960,7 @@ function convert_float(fconv, prec, x) do
               return true;
             end else do
               _i = i + 1 | 0;
-              continue ;
+              ::continue:: ;
             end end  end 
           end end 
         end;
@@ -3171,21 +3171,21 @@ function make_printf(_k, o, _acc, _fmt) do
          if ___conditional___ = 10--[[ Flush ]] then do
             _fmt = fmt[0];
             _acc = --[[ Acc_flush ]]Block.__(7, {acc});
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 11--[[ String_literal ]] then do
             _fmt = fmt[1];
             _acc = --[[ Acc_string_literal ]]Block.__(2, {
                 acc,
                 fmt[0]
               });
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 12--[[ Char_literal ]] then do
             _fmt = fmt[1];
             _acc = --[[ Acc_char_literal ]]Block.__(3, {
                 acc,
                 fmt[0]
               });
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 13--[[ Format_arg ]] then do
             rest$2 = fmt[2];
             ty = string_of_fmtty(fmt[1]);
@@ -3233,7 +3233,7 @@ function make_printf(_k, o, _acc, _fmt) do
                 acc,
                 fmt[0]
               });
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 18--[[ Formatting_gen ]] then do
             match = fmt[0];
             if (match.tag) then do
@@ -3249,7 +3249,7 @@ function make_printf(_k, o, _acc, _fmt) do
               _fmt = match[0][0];
               _acc = --[[ End_of_acc ]]0;
               _k = k$prime;
-              continue ;
+              ::continue:: ;
             end else do
               rest$7 = fmt[1];
               k$prime$1 = (function(k,acc,rest$7)do
@@ -3263,17 +3263,17 @@ function make_printf(_k, o, _acc, _fmt) do
               _fmt = match[0][0];
               _acc = --[[ End_of_acc ]]0;
               _k = k$prime$1;
-              continue ;
+              ::continue:: ;
             end end end end end 
          if ___conditional___ = 19--[[ Reader ]] then do
-            throw {
-                  Caml_builtin_exceptions.assert_failure,
-                  --[[ tuple ]]{
-                    "camlinternalFormat.ml",
-                    1525,
-                    4
-                  }
-                };end end end 
+            error ({
+              Caml_builtin_exceptions.assert_failure,
+              --[[ tuple ]]{
+                "camlinternalFormat.ml",
+                1525,
+                4
+              }
+            })end end end 
          if ___conditional___ = 20--[[ Scan_char_set ]] then do
             rest$8 = fmt[2];
             new_acc = --[[ Acc_invalid_arg ]]Block.__(8, {
@@ -3322,14 +3322,14 @@ end end
 function make_ignored_param(k, o, acc, ign, fmt) do
   if (typeof ign == "number") then do
     if (ign == --[[ Ignored_reader ]]2) then do
-      throw {
-            Caml_builtin_exceptions.assert_failure,
-            --[[ tuple ]]{
-              "camlinternalFormat.ml",
-              1593,
-              39
-            }
-          };
+      error ({
+        Caml_builtin_exceptions.assert_failure,
+        --[[ tuple ]]{
+          "camlinternalFormat.ml",
+          1593,
+          39
+        }
+      })
     end else do
       return make_invalid_arg(k, o, acc, fmt);
     end end 
@@ -3413,23 +3413,23 @@ function make_from_fmtty(k, o, acc, fmtty, fmt) do
               return make_from_fmtty(k, o, acc, rest$12, fmt);
             end end);end end end 
        if ___conditional___ = 13--[[ Reader_ty ]] then do
-          throw {
-                Caml_builtin_exceptions.assert_failure,
-                --[[ tuple ]]{
-                  "camlinternalFormat.ml",
-                  1616,
-                  31
-                }
-              };end end end 
+          error ({
+            Caml_builtin_exceptions.assert_failure,
+            --[[ tuple ]]{
+              "camlinternalFormat.ml",
+              1616,
+              31
+            }
+          })end end end 
        if ___conditional___ = 14--[[ Ignored_reader_ty ]] then do
-          throw {
-                Caml_builtin_exceptions.assert_failure,
-                --[[ tuple ]]{
-                  "camlinternalFormat.ml",
-                  1617,
-                  31
-                }
-              };end end end 
+          error ({
+            Caml_builtin_exceptions.assert_failure,
+            --[[ tuple ]]{
+              "camlinternalFormat.ml",
+              1617,
+              31
+            }
+          })end end end 
        do
       
     end
@@ -3657,7 +3657,7 @@ function make_iprintf(_k, o, _fmt) do
             end(partial_arg$8));end end end 
          if ___conditional___ = 10--[[ Flush ]] then do
             _fmt = fmt[0];
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 14--[[ Format_subst ]] then do
             rest = fmt[2];
             fmtty = fmt[1];
@@ -3690,7 +3690,7 @@ function make_iprintf(_k, o, _fmt) do
                 return make_iprintf(k, koc, rest$1);
               end end
               end(k,rest$1));
-              continue ;
+              ::continue:: ;
             end else do
               rest$2 = fmt[1];
               _fmt = match[0][0];
@@ -3699,17 +3699,17 @@ function make_iprintf(_k, o, _fmt) do
                 return make_iprintf(k, koc, rest$2);
               end end
               end(k,rest$2));
-              continue ;
+              ::continue:: ;
             end end end end end 
          if ___conditional___ = 19--[[ Reader ]] then do
-            throw {
-                  Caml_builtin_exceptions.assert_failure,
-                  --[[ tuple ]]{
-                    "camlinternalFormat.ml",
-                    1797,
-                    8
-                  }
-                };end end end 
+            error ({
+              Caml_builtin_exceptions.assert_failure,
+              --[[ tuple ]]{
+                "camlinternalFormat.ml",
+                1797,
+                8
+              }
+            })end end end 
          if ___conditional___ = 13--[[ Format_arg ]]
          or ___conditional___ = 20--[[ Scan_char_set ]] then do
             exit = 3;end else 
@@ -3847,7 +3847,7 @@ function make_iprintf(_k, o, _fmt) do
           end(partial_arg$27));end end end 
        if ___conditional___ = 2 then do
           _fmt = fmt[1];
-          continue ;end end end 
+          ::continue:: ;end end end 
        if ___conditional___ = 3 then do
           partial_arg$28 = make_iprintf(k, o, fmt[2]);
           return (function(partial_arg$28)do
@@ -3892,11 +3892,11 @@ function output_acc(o, _acc) do
             if (match.tag) then do
               Pervasives.output_string(o, "@[");
               _acc = match[0];
-              continue ;
+              ::continue:: ;
             end else do
               Pervasives.output_string(o, "@{");
               _acc = match[0];
-              continue ;
+              ::continue:: ;
             end end end end end 
          if ___conditional___ = 2--[[ Acc_string_literal ]]
          or ___conditional___ = 4--[[ Acc_data_string ]] then do
@@ -3912,10 +3912,10 @@ function output_acc(o, _acc) do
             return Caml_io.caml_ml_flush(o);end end end 
          if ___conditional___ = 8--[[ Acc_invalid_arg ]] then do
             output_acc(o, acc[0]);
-            throw {
-                  Caml_builtin_exceptions.invalid_argument,
-                  acc[1]
-                };end end end 
+            error ({
+              Caml_builtin_exceptions.invalid_argument,
+              acc[1]
+            })end end end 
          do
         
       end
@@ -3954,11 +3954,11 @@ function bufput_acc(b, _acc) do
             if (match.tag) then do
               __Buffer.add_string(b, "@[");
               _acc = match[0];
-              continue ;
+              ::continue:: ;
             end else do
               __Buffer.add_string(b, "@{");
               _acc = match[0];
-              continue ;
+              ::continue:: ;
             end end end end end 
          if ___conditional___ = 2--[[ Acc_string_literal ]]
          or ___conditional___ = 4--[[ Acc_data_string ]] then do
@@ -3971,13 +3971,13 @@ function bufput_acc(b, _acc) do
             return Curry._1(acc[1], b);end end end 
          if ___conditional___ = 7--[[ Acc_flush ]] then do
             _acc = acc[0];
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 8--[[ Acc_invalid_arg ]] then do
             bufput_acc(b, acc[0]);
-            throw {
-                  Caml_builtin_exceptions.invalid_argument,
-                  acc[1]
-                };end end end 
+            error ({
+              Caml_builtin_exceptions.invalid_argument,
+              acc[1]
+            })end end end 
          do
         
       end
@@ -4016,11 +4016,11 @@ function strput_acc(b, _acc) do
             if (match.tag) then do
               __Buffer.add_string(b, "@[");
               _acc = match[0];
-              continue ;
+              ::continue:: ;
             end else do
               __Buffer.add_string(b, "@{");
               _acc = match[0];
-              continue ;
+              ::continue:: ;
             end end end end end 
          if ___conditional___ = 2--[[ Acc_string_literal ]]
          or ___conditional___ = 4--[[ Acc_data_string ]] then do
@@ -4033,13 +4033,13 @@ function strput_acc(b, _acc) do
             return __Buffer.add_string(b, Curry._1(acc[1], --[[ () ]]0));end end end 
          if ___conditional___ = 7--[[ Acc_flush ]] then do
             _acc = acc[0];
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 8--[[ Acc_invalid_arg ]] then do
             strput_acc(b, acc[0]);
-            throw {
-                  Caml_builtin_exceptions.invalid_argument,
-                  acc[1]
-                };end end end 
+            error ({
+              Caml_builtin_exceptions.invalid_argument,
+              acc[1]
+            })end end end 
          do
         
       end
@@ -4063,10 +4063,10 @@ function failwith_message(param) do
   k = function (param, acc) do
     strput_acc(buf, acc);
     s = __Buffer.contents(buf);
-    throw {
-          Caml_builtin_exceptions.failure,
-          s
-        };
+    error ({
+      Caml_builtin_exceptions.failure,
+      s
+    })
   end end;
   return make_printf(k, --[[ () ]]0, --[[ End_of_acc ]]0, param[0]);
 end end
@@ -4103,11 +4103,11 @@ function open_box_of_string(str) do
               return i;
             end else do
               _i = i + 1 | 0;
-              continue ;
+              ::continue:: ;
             end end 
           end else do
             _i = i + 1 | 0;
-            continue ;
+            ::continue:: ;
           end end 
         end end 
       end;
@@ -4123,7 +4123,7 @@ function open_box_of_string(str) do
             return j;
           end else do
             _j = j + 1 | 0;
-            continue ;
+            ::continue:: ;
           end end 
         end end 
       end;
@@ -4140,13 +4140,13 @@ function open_box_of_string(str) do
               return j;
             end else do
               _j = j + 1 | 0;
-              continue ;
+              ::continue:: ;
             end end 
           end else if (match ~= 45) then do
             return j;
           end else do
             _j = j + 1 | 0;
-            continue ;
+            ::continue:: ;
           end end  end 
         end end 
       end;
@@ -4160,17 +4160,16 @@ function open_box_of_string(str) do
     if (nstart == nend) then do
       indent = 0;
     end else do
-      try do
+      xpcall(function() do
         indent = Caml_format.caml_int_of_string(__String.sub(str, nstart, nend - nstart | 0));
-      end
-      catch (raw_exn)do
+      end end,function(raw_exn) return do
         exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
         if (exn[0] == Caml_builtin_exceptions.failure) then do
           indent = invalid_box(--[[ () ]]0);
         end else do
-          throw exn;
+          error (exn)
         end end 
-      end
+      end end)
     end end 
     exp_end = parse_spaces(nend);
     if (exp_end ~= len) then do
@@ -4458,9 +4457,9 @@ function fmt_ebb_of_string(legacy_behavior, str) do
                 str_ind$1 = str_ind + 1 | 0;
                 end_ind$1 = end_ind;
                 match$7;
-                try do
+                xpcall(function() do
                   if (str_ind$1 == end_ind$1 or Caml_string.get(str, str_ind$1) ~= --[[ "<" ]]60) then do
-                    throw Caml_builtin_exceptions.not_found;
+                    error (Caml_builtin_exceptions.not_found)
                   end
                    end 
                   str_ind_1 = parse_spaces(str_ind$1 + 1 | 0, end_ind$1);
@@ -4468,13 +4467,13 @@ function fmt_ebb_of_string(legacy_behavior, str) do
                   exit = 0;
                   if (match$8 >= 48) then do
                     if (match$8 >= 58) then do
-                      throw Caml_builtin_exceptions.not_found;
+                      error (Caml_builtin_exceptions.not_found)
                     end
                      end 
                     exit = 1;
                   end else do
                     if (match$8 ~= 45) then do
-                      throw Caml_builtin_exceptions.not_found;
+                      error (Caml_builtin_exceptions.not_found)
                     end
                      end 
                     exit = 1;
@@ -4487,7 +4486,7 @@ function fmt_ebb_of_string(legacy_behavior, str) do
                     switcher = match$10 - 45 | 0;
                     if (switcher > 12 or switcher < 0) then do
                       if (switcher ~= 17) then do
-                        throw Caml_builtin_exceptions.not_found;
+                        error (Caml_builtin_exceptions.not_found)
                       end
                        end 
                       s = __String.sub(str, str_ind$1 - 2 | 0, (str_ind_3 - str_ind$1 | 0) + 3 | 0);
@@ -4500,12 +4499,12 @@ function fmt_ebb_of_string(legacy_behavior, str) do
                           })
                       };
                     end else if (switcher == 2 or switcher == 1) then do
-                      throw Caml_builtin_exceptions.not_found;
+                      error (Caml_builtin_exceptions.not_found)
                     end else do
                       match$11 = parse_integer(str_ind_3, end_ind$1);
                       str_ind_5 = parse_spaces(match$11[0], end_ind$1);
                       if (Caml_string.get(str, str_ind_5) ~= --[[ ">" ]]62) then do
-                        throw Caml_builtin_exceptions.not_found;
+                        error (Caml_builtin_exceptions.not_found)
                       end
                        end 
                       s$1 = __String.sub(str, str_ind$1 - 2 | 0, (str_ind_5 - str_ind$1 | 0) + 3 | 0);
@@ -4520,8 +4519,7 @@ function fmt_ebb_of_string(legacy_behavior, str) do
                     end end  end 
                   end
                    end 
-                end
-                catch (raw_exn)do
+                end end,function(raw_exn) return do
                   exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
                   if (exn == Caml_builtin_exceptions.not_found or exn[0] == Caml_builtin_exceptions.failure) then do
                     match$7 = --[[ tuple ]]{
@@ -4533,9 +4531,9 @@ function fmt_ebb_of_string(legacy_behavior, str) do
                         })
                     };
                   end else do
-                    throw exn;
+                    error (exn)
                   end end 
-                end
+                end end)
                 next_ind = match$7[0];
                 match$12 = parse_literal(next_ind, next_ind, end_ind$1);
                 return --[[ Fmt_EBB ]]{--[[ Formatting_lit ]]Block.__(17, {
@@ -4546,7 +4544,7 @@ function fmt_ebb_of_string(legacy_behavior, str) do
                 str_ind$2 = str_ind + 1 | 0;
                 end_ind$2 = end_ind;
                 match$13;
-                try do
+                xpcall(function() do
                   str_ind_1$1 = parse_spaces(str_ind$2, end_ind$2);
                   match$14 = Caml_string.get(str, str_ind_1$1);
                   exit$1 = 0;
@@ -4565,7 +4563,7 @@ function fmt_ebb_of_string(legacy_behavior, str) do
                     match$15 = parse_integer(str_ind_1$1, end_ind$2);
                     str_ind_3$1 = parse_spaces(match$15[0], end_ind$2);
                     if (Caml_string.get(str, str_ind_3$1) ~= --[[ ">" ]]62) then do
-                      throw Caml_builtin_exceptions.not_found;
+                      error (Caml_builtin_exceptions.not_found)
                     end
                      end 
                     s$2 = __String.sub(str, str_ind$2 - 2 | 0, (str_ind_3$1 - str_ind$2 | 0) + 3 | 0);
@@ -4578,15 +4576,14 @@ function fmt_ebb_of_string(legacy_behavior, str) do
                     };
                   end
                    end 
-                end
-                catch (raw_exn$1)do
+                end end,function(raw_exn$1) return do
                   exn$1 = Caml_js_exceptions.internalToOCamlException(raw_exn$1);
                   if (exn$1 == Caml_builtin_exceptions.not_found or exn$1[0] == Caml_builtin_exceptions.failure) then do
                     match$13 = undefined;
                   end else do
-                    throw exn$1;
+                    error (exn$1)
                   end end 
-                end
+                end end)
                 if (match$13 ~= undefined) then do
                   match$16 = match$13;
                   next_ind$1 = match$16[0];
@@ -4705,7 +4702,7 @@ function fmt_ebb_of_string(legacy_behavior, str) do
         if (match ~= 37) then do
           if (match ~= 64) then do
             _str_ind = str_ind + 1 | 0;
-            continue ;
+            ::continue:: ;
           end else do
             match$1 = parse_after_at(str_ind + 1 | 0, end_ind);
             return add_literal(lit_start, str_ind, match$1[0]);
@@ -4726,7 +4723,7 @@ function fmt_ebb_of_string(legacy_behavior, str) do
        end 
       if (Caml_string.get(str, str_ind) == --[[ " " ]]32) then do
         _str_ind = str_ind + 1 | 0;
-        continue ;
+        ::continue:: ;
       end else do
         return str_ind;
       end end 
@@ -4789,19 +4786,19 @@ function fmt_ebb_of_string(legacy_behavior, str) do
          if ___conditional___ = 32 then do
             set_flag(str_ind$1, space);
             _str_ind = str_ind$1 + 1 | 0;
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 35 then do
             set_flag(str_ind$1, hash);
             _str_ind = str_ind$1 + 1 | 0;
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 43 then do
             set_flag(str_ind$1, plus);
             _str_ind = str_ind$1 + 1 | 0;
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 45 then do
             set_flag(str_ind$1, minus);
             _str_ind = str_ind$1 + 1 | 0;
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 33
          or ___conditional___ = 34
          or ___conditional___ = 36
@@ -4817,7 +4814,7 @@ function fmt_ebb_of_string(legacy_behavior, str) do
          or ___conditional___ = 48 then do
             set_flag(str_ind$1, zero);
             _str_ind = str_ind$1 + 1 | 0;
-            continue ;end end end 
+            ::continue:: ;end end end 
          do
         else do
           end end
@@ -4910,7 +4907,7 @@ function fmt_ebb_of_string(legacy_behavior, str) do
       match = Caml_string.get(str, str_ind);
       if (match ~= 37) then do
         _str_ind = str_ind + 1 | 0;
-        continue ;
+        ::continue:: ;
       end else do
         if ((str_ind + 1 | 0) == end_ind) then do
           invalid_format_message(end_ind, "unexpected end of format");
@@ -4928,7 +4925,7 @@ function fmt_ebb_of_string(legacy_behavior, str) do
                    if ___conditional___ = 0 then do
                       sub_end = search_subformat_end(str_ind + 2 | 0, end_ind, --[[ "}" ]]125);
                       _str_ind = sub_end + 2 | 0;
-                      continue ;end end end 
+                      ::continue:: ;end end end 
                    if ___conditional___ = 1
                    or ___conditional___ = 2 then do
                       return expected_character(str_ind + 1 | 0, "character ')'", --[[ "}" ]]125);end end end 
@@ -4946,16 +4943,16 @@ function fmt_ebb_of_string(legacy_behavior, str) do
               if (match$2 ~= 40) then do
                 if (match$2 ~= 123) then do
                   _str_ind = str_ind + 3 | 0;
-                  continue ;
+                  ::continue:: ;
                 end else do
                   sub_end$1 = search_subformat_end(str_ind + 3 | 0, end_ind, --[[ "}" ]]125);
                   _str_ind = sub_end$1 + 2 | 0;
-                  continue ;
+                  ::continue:: ;
                 end end 
               end else do
                 sub_end$2 = search_subformat_end(str_ind + 3 | 0, end_ind, --[[ ")" ]]41);
                 _str_ind = sub_end$2 + 2 | 0;
-                continue ;
+                ::continue:: ;
               end end 
             end
              end  end 
@@ -4967,10 +4964,10 @@ function fmt_ebb_of_string(legacy_behavior, str) do
           end else do
             sub_end$3 = search_subformat_end(str_ind + 2 | 0, end_ind, --[[ ")" ]]41);
             _str_ind = sub_end$3 + 2 | 0;
-            continue ;
+            ::continue:: ;
           end end  end 
           _str_ind = str_ind + 2 | 0;
-          continue ;
+          ::continue:: ;
         end end 
       end end 
     end;
@@ -4993,7 +4990,7 @@ function fmt_ebb_of_string(legacy_behavior, str) do
         new_acc = Caml_int32.imul(acc, 10) + (c - --[[ "0" ]]48 | 0) | 0;
         _acc = new_acc;
         _str_ind = str_ind + 1 | 0;
-        continue ;
+        ::continue:: ;
       end end 
     end;
   end end;
@@ -5001,18 +4998,17 @@ function fmt_ebb_of_string(legacy_behavior, str) do
     if (typeof fmt == "number" or not (fmt.tag == --[[ String_literal ]]11 and typeof fmt[1] == "number")) then do
       return --[[ () ]]0;
     end else do
-      try do
+      xpcall(function() do
         open_box_of_string(fmt[0]);
         return --[[ () ]]0;
-      end
-      catch (raw_exn)do
+      end end,function(raw_exn) return do
         exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
         if (exn[0] == Caml_builtin_exceptions.failure) then do
           return --[[ () ]]0;
         end else do
-          throw exn;
+          error (exn)
         end end 
-      end
+      end end)
     end end 
   end end;
   parse_conversion = function (pct_ind, str_ind, end_ind, plus, hash, space, ign, pad, prec, padprec, symb) do
@@ -5757,27 +5753,27 @@ function fmt_ebb_of_string(legacy_behavior, str) do
     match = Caml_string.get(str, str_ind);
     if (match >= 48) then do
       if (match >= 58) then do
-        throw {
-              Caml_builtin_exceptions.assert_failure,
-              --[[ tuple ]]{
-                "camlinternalFormat.ml",
-                2814,
-                11
-              }
-            };
+        error ({
+          Caml_builtin_exceptions.assert_failure,
+          --[[ tuple ]]{
+            "camlinternalFormat.ml",
+            2814,
+            11
+          }
+        })
       end
        end 
       return parse_positive(str_ind, end_ind, 0);
     end else do
       if (match ~= 45) then do
-        throw {
-              Caml_builtin_exceptions.assert_failure,
-              --[[ tuple ]]{
-                "camlinternalFormat.ml",
-                2814,
-                11
-              }
-            };
+        error ({
+          Caml_builtin_exceptions.assert_failure,
+          --[[ tuple ]]{
+            "camlinternalFormat.ml",
+            2814,
+            11
+          }
+        })
       end
        end 
       if ((str_ind + 1 | 0) == end_ind) then do
@@ -5956,14 +5952,14 @@ function fmt_ebb_of_string(legacy_behavior, str) do
       return --[[ Token_counter ]]2;
     end
      end  end 
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "camlinternalFormat.ml",
-            2876,
-            34
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "camlinternalFormat.ml",
+        2876,
+        34
+      }
+    })
   end end;
   parse_char_set = function (str_ind, end_ind) do
     if (str_ind == end_ind) then do
@@ -6032,7 +6028,7 @@ function fmt_ebb_of_string(legacy_behavior, str) do
         end else do
           add_in_char_set(char_set, --[[ "-" ]]45);
           _str_ind = str_ind + 1 | 0;
-          continue ;
+          ::continue:: ;
         end end 
       end;
     end end;
@@ -6105,7 +6101,7 @@ function fmt_ebb_of_string(legacy_behavior, str) do
         add_in_char_set(char_set, c);
         _c = c$prime;
         _str_ind = str_ind + 1 | 0;
-        continue ;
+        ::continue:: ;
       end;
     end end;
     parse_char_set_start = function (str_ind, end_ind) do
@@ -6286,7 +6282,7 @@ function fmt_ebb_of_string(legacy_behavior, str) do
         if (exit$1 == 3) then do
           if (legacy_behavior$1) then do
             _hash = false;
-            continue ;
+            ::continue:: ;
           end else do
             return incompatible_flag(pct_ind, str_ind, symb, "'#'");
           end end 
@@ -6298,32 +6294,32 @@ function fmt_ebb_of_string(legacy_behavior, str) do
         if (space) then do
           if (legacy_behavior$1) then do
             _space = false;
-            continue ;
+            ::continue:: ;
           end else do
             return incompatible_flag(pct_ind, str_ind, --[[ " " ]]32, "'+'");
           end end 
         end else if (legacy_behavior$1) then do
           _plus = false;
-          continue ;
+          ::continue:: ;
         end else do
           return incompatible_flag(pct_ind, str_ind, symb, "'+'");
         end end  end 
       end else if (space) then do
         if (legacy_behavior$1) then do
           _space = false;
-          continue ;
+          ::continue:: ;
         end else do
           return incompatible_flag(pct_ind, str_ind, symb, "' '");
         end end 
       end else do
-        throw {
-              Caml_builtin_exceptions.assert_failure,
-              --[[ tuple ]]{
-                "camlinternalFormat.ml",
-                2909,
-                28
-              }
-            };
+        error ({
+          Caml_builtin_exceptions.assert_failure,
+          --[[ tuple ]]{
+            "camlinternalFormat.ml",
+            2909,
+            28
+          }
+        })
       end end  end 
     end;
   end end;
@@ -6335,7 +6331,7 @@ function fmt_ebb_of_string(legacy_behavior, str) do
         if (space) then do
           if (legacy_behavior$1) then do
             _space = false;
-            continue ;
+            ::continue:: ;
           end else do
             return incompatible_flag(pct_ind, str_ind, --[[ " " ]]32, "'+'");
           end end 
@@ -6373,7 +6369,7 @@ function fmt_ebb_of_string(legacy_behavior, str) do
            end  end 
           if (legacy_behavior$1) then do
             _plus = false;
-            continue ;
+            ::continue:: ;
           end else do
             return incompatible_flag(pct_ind, str_ind, symb, "'+'");
           end end 
@@ -6412,7 +6408,7 @@ function fmt_ebb_of_string(legacy_behavior, str) do
          end  end 
         if (legacy_behavior$1) then do
           _space = false;
-          continue ;
+          ::continue:: ;
         end else do
           return incompatible_flag(pct_ind, str_ind, symb, "' '");
         end end 
@@ -6429,14 +6425,14 @@ function fmt_ebb_of_string(legacy_behavior, str) do
               return --[[ Float_h ]]16;end end end 
            do
           else do
-            throw {
-                  Caml_builtin_exceptions.assert_failure,
-                  --[[ tuple ]]{
-                    "camlinternalFormat.ml",
-                    2943,
-                    25
-                  }
-                };
+            error ({
+              Caml_builtin_exceptions.assert_failure,
+              --[[ tuple ]]{
+                "camlinternalFormat.ml",
+                2943,
+                25
+              }
+            })
             end end
             
         end
@@ -6455,14 +6451,14 @@ function fmt_ebb_of_string(legacy_behavior, str) do
           
         end
       end else do
-        throw {
-              Caml_builtin_exceptions.assert_failure,
-              --[[ tuple ]]{
-                "camlinternalFormat.ml",
-                2943,
-                25
-              }
-            };
+        error ({
+          Caml_builtin_exceptions.assert_failure,
+          --[[ tuple ]]{
+            "camlinternalFormat.ml",
+            2943,
+            25
+          }
+        })
       end end  end  end  end 
     end;
   end end;
@@ -6501,19 +6497,19 @@ function fmt_ebb_of_string(legacy_behavior, str) do
     end end 
   end end;
   parse_tag = function (is_open_tag, str_ind, end_ind) do
-    try do
+    xpcall(function() do
       if (str_ind == end_ind) then do
-        throw Caml_builtin_exceptions.not_found;
+        error (Caml_builtin_exceptions.not_found)
       end
        end 
       match = Caml_string.get(str, str_ind);
       if (match ~= 60) then do
-        throw Caml_builtin_exceptions.not_found;
+        error (Caml_builtin_exceptions.not_found)
       end
        end 
       ind = __String.index_from(str, str_ind + 1 | 0, --[[ ">" ]]62);
       if (ind >= end_ind) then do
-        throw Caml_builtin_exceptions.not_found;
+        error (Caml_builtin_exceptions.not_found)
       end
        end 
       sub_str = __String.sub(str, str_ind, (ind - str_ind | 0) + 1 | 0);
@@ -6530,8 +6526,7 @@ function fmt_ebb_of_string(legacy_behavior, str) do
                   formatting,
                   match$1[0]
                 })};
-    end
-    catch (exn)do
+    end end,function(exn) return do
       if (exn == Caml_builtin_exceptions.not_found) then do
         match$3 = parse_literal(str_ind, str_ind, end_ind);
         sub_format$1 = --[[ Format ]]{
@@ -6544,22 +6539,21 @@ function fmt_ebb_of_string(legacy_behavior, str) do
                     match$3[0]
                   })};
       end else do
-        throw exn;
+        error (exn)
       end end 
-    end
+    end end)
   end end;
   return parse_literal(0, 0, #str);
 end end
 
 function format_of_string_fmtty(str, fmtty) do
   match = fmt_ebb_of_string(undefined, str);
-  try do
+  xpcall(function() do
     return --[[ Format ]]{
             type_format(match[0], fmtty),
             str
           };
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Type_mismatch) then do
       return Curry._2(failwith_message(--[[ Format ]]{
                       --[[ String_literal ]]Block.__(11, {
@@ -6578,20 +6572,19 @@ function format_of_string_fmtty(str, fmtty) do
                       "bad input: format type mismatch between %S and %S"
                     }), str, string_of_fmtty(fmtty));
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 function format_of_string_format(str, param) do
   match = fmt_ebb_of_string(undefined, str);
-  try do
+  xpcall(function() do
     return --[[ Format ]]{
             type_format(match[0], fmtty_of_fmt(param[0])),
             str
           };
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Type_mismatch) then do
       return Curry._2(failwith_message(--[[ Format ]]{
                       --[[ String_literal ]]Block.__(11, {
@@ -6610,9 +6603,9 @@ function format_of_string_format(str, param) do
                       "bad input: format type mismatch between %S and %S"
                     }), str, param[1]);
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 export do

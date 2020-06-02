@@ -1,6 +1,6 @@
 --[['use strict';]]
 
-Sys = require "../../lib/js/sys.lua";
+Sys = require "../../lib/js/sys";
 
 os_version;
 

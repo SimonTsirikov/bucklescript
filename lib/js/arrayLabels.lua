@@ -1,6 +1,6 @@
 --[['use strict';]]
 
-__Array = require "./array.lua";
+__Array = require "./array";
 
 init = __Array.init;
 

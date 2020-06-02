@@ -1,6 +1,6 @@
 --[['use strict';]]
 
-Pervasives = require "../../lib/js/pervasives.lua";
+Pervasives = require "../../lib/js/pervasives";
 
 function str(e) do
   local ___conditional___=(e.tag | 0);

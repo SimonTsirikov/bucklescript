@@ -1,9 +1,9 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-Caml_obj = require "../../lib/js/caml_obj.lua";
-Belt_List = require "../../lib/js/belt_List.lua";
-Caml_option = require "../../lib/js/caml_option.lua";
+Mt = require "./mt";
+Caml_obj = require "../../lib/js/caml_obj";
+Belt_List = require "../../lib/js/belt_List";
+Caml_option = require "../../lib/js/caml_option";
 
 suites = do
   contents: --[[ [] ]]0
@@ -124,11 +124,11 @@ function f13$1(param) do
             });
 end end
 
-b("File \"option_repr_test.ml\", line 94, characters 4-11", Caml_obj.caml_lessthan(undefined, null));
+b("File \"option_repr_test.ml\", line 94, characters 4-11", Caml_obj.caml_lessthan(undefined, nil));
 
-b("File \"option_repr_test.ml\", line 95, characters 4-11", not Caml_obj.caml_greaterthan(undefined, null));
+b("File \"option_repr_test.ml\", line 95, characters 4-11", not Caml_obj.caml_greaterthan(undefined, nil));
 
-b("File \"option_repr_test.ml\", line 96, characters 4-11", Caml_obj.caml_greaterthan(null, undefined));
+b("File \"option_repr_test.ml\", line 96, characters 4-11", Caml_obj.caml_greaterthan(nil, undefined));
 
 b("File \"option_repr_test.ml\", line 97, characters 4-11", Caml_obj.caml_lessthan(undefined, Caml_option.some(undefined)));
 
@@ -174,7 +174,7 @@ function all_true(xs) do
               end end));
 end end
 
-xs_000 = gtx(Caml_option.some(null), Caml_option.some(undefined));
+xs_000 = gtx(Caml_option.some(nil), Caml_option.some(undefined));
 
 xs = --[[ :: ]]{
   xs_000,
@@ -202,13 +202,13 @@ xs_001 = --[[ :: ]]{
             --[[ :: ]]{
               ltx(undefined, Caml_option.some(undefined)),
               --[[ :: ]]{
-                ltx(undefined, null),
+                ltx(undefined, nil),
                 --[[ :: ]]{
                   ltx(undefined, (function (x) do
                           return x;
                         end end)),
                   --[[ :: ]]{
-                    ltx(null, 3),
+                    ltx(nil, 3),
                     --[[ [] ]]0
                   }
                 }
@@ -233,7 +233,7 @@ b("File \"option_repr_test.ml\", line 127, characters 5-12", Belt_List.every(xs$
 xs_000$2 = eqx(undefined, undefined);
 
 xs_001$1 = --[[ :: ]]{
-  neqx(undefined, null),
+  neqx(undefined, nil),
   --[[ :: ]]{
     eqx(Caml_option.some(undefined), Caml_option.some(undefined)),
     --[[ :: ]]{

@@ -1,9 +1,9 @@
 --[['use strict';]]
 
-__Array = require "../../lib/js/array.lua";
-Block = require "../../lib/js/block.lua";
-Curry = require "../../lib/js/curry.lua";
-Caml_module = require "../../lib/js/caml_module.lua";
+__Array = require "../../lib/js/array";
+Block = require "../../lib/js/block";
+Curry = require "../../lib/js/curry";
+Caml_module = require "../../lib/js/caml_module";
 
 PA = Caml_module.init_mod(--[[ tuple ]]{
       "gpr_3931_test.ml",

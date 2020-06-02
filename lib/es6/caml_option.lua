@@ -11,7 +11,7 @@ function some(x) do
     };
     block.tag = 256;
     return block;
-  end else if (x ~= null and x[0] == undefinedHeader) then do
+  end else if (x ~= nil and x[0] == undefinedHeader) then do
     nid = x[1] + 1 | 0;
     block$1 = --[[ tuple ]]{
       undefinedHeader,
@@ -25,7 +25,7 @@ function some(x) do
 end end
 
 function nullable_to_opt(x) do
-  if (x == null or x == undefined) then do
+  if (x == nil or x == undefined) then do
     return ;
   end else do
     return some(x);
@@ -41,7 +41,7 @@ function undefined_to_opt(x) do
 end end
 
 function null_to_opt(x) do
-  if (x == null) then do
+  if (x == nil) then do
     return ;
   end else do
     return some(x);
@@ -49,7 +49,7 @@ function null_to_opt(x) do
 end end
 
 function valFromOption(x) do
-  if (x ~= null and x[0] == undefinedHeader) then do
+  if (x ~= nil and x[0] == undefinedHeader) then do
     depth = x[1];
     if (depth == 0) then do
       return ;

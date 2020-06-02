@@ -1,13 +1,13 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-Belt_Id = require "../../lib/js/belt_Id.lua";
-Belt_List = require "../../lib/js/belt_List.lua";
-Belt_Array = require "../../lib/js/belt_Array.lua";
-Caml_primitive = require "../../lib/js/caml_primitive.lua";
-Array_data_util = require "./array_data_util.lua";
-Belt_MutableSet = require "../../lib/js/belt_MutableSet.lua";
-Belt_internalAVLset = require "../../lib/js/belt_internalAVLset.lua";
+Mt = require "./mt";
+Belt_Id = require "../../lib/js/belt_Id";
+Belt_List = require "../../lib/js/belt_List";
+Belt_Array = require "../../lib/js/belt_Array";
+Caml_primitive = require "../../lib/js/caml_primitive";
+Array_data_util = require "./array_data_util";
+Belt_MutableSet = require "../../lib/js/belt_MutableSet";
+Belt_internalAVLset = require "../../lib/js/belt_internalAVLset";
 
 suites = do
   contents: --[[ [] ]]0
@@ -34,7 +34,7 @@ end end
 function empty(param) do
   return do
           cmp: IntCmp.cmp,
-          data: null
+          data: nil
         end;
 end end
 
@@ -150,7 +150,7 @@ eq("File \"bs_poly_mutable_set_test.ml\", line 68, characters 5-12", Belt_intern
 
 b("File \"bs_poly_mutable_set_test.ml\", line 69, characters 4-11", Belt_MutableSet.isEmpty(do
           cmp: IntCmp.cmp,
-          data: null
+          data: nil
         end));
 
 eq("File \"bs_poly_mutable_set_test.ml\", line 70, characters 5-12", Belt_internalAVLset.minimum(v.data), 500);
@@ -247,12 +247,12 @@ b("File \"bs_poly_mutable_set_test.ml\", line 111, characters 4-11", Belt_Mutabl
 
 b("File \"bs_poly_mutable_set_test.ml\", line 112, characters 4-11", Belt_MutableSet.eq(Belt_MutableSet.intersect(fromArray(Array_data_util.randomRange(0, 20)), fromArray(Array_data_util.randomRange(21, 40))), do
           cmp: IntCmp.cmp,
-          data: null
+          data: nil
         end));
 
 b("File \"bs_poly_mutable_set_test.ml\", line 118, characters 4-11", Belt_MutableSet.eq(Belt_MutableSet.intersect(fromArray(Array_data_util.randomRange(21, 40)), fromArray(Array_data_util.randomRange(0, 20))), do
           cmp: IntCmp.cmp,
-          data: null
+          data: nil
         end));
 
 b("File \"bs_poly_mutable_set_test.ml\", line 124, characters 4-11", Belt_MutableSet.eq(Belt_MutableSet.intersect(fromArray({

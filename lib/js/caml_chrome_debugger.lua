@@ -1,6 +1,6 @@
 --[['use strict';]]
 
-Block = require "./block.lua";
+Block = require "./block";
 
 setupChromeDebugger = (function(_){
  

@@ -1,7 +1,7 @@
 --[['use strict';]]
 
-Curry = require "../../lib/js/curry.lua";
-Submodule = require "./submodule.lua";
+Curry = require "../../lib/js/curry";
+Submodule = require "./submodule";
 
 a0 = Submodule.A0.a0(1, 2);
 

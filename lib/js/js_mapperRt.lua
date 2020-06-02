@@ -10,7 +10,7 @@ function binarySearch(upper, id, array) do
     upper$1 = _upper;
     lower = _lower;
     if (lower >= upper$1) then do
-      throw new Error("binarySearchAux");
+      error (new Error("binarySearchAux"))
     end
      end 
     mid = (lower + upper$1 | 0) / 2 | 0;
@@ -20,10 +20,10 @@ function binarySearch(upper, id, array) do
       return match[1];
     end else if (i < k) then do
       _lower = mid + 1 | 0;
-      continue ;
+      ::continue:: ;
     end else do
       _upper = mid;
-      continue ;
+      ::continue:: ;
     end end  end 
   end;
 end end
@@ -43,7 +43,7 @@ function revSearch(len, array, x) do
         return match[0];
       end else do
         _i = i + 1 | 0;
-        continue ;
+        ::continue:: ;
       end end 
     end end 
   end;
@@ -57,7 +57,7 @@ function revSearchAssert(len, array, x) do
   while(true) do
     i = _i;
     if (i >= len$1) then do
-      throw new Error("File \"js_mapperRt.ml\", line 63, characters 4-10");
+      error (new Error("File \"js_mapperRt.ml\", line 63, characters 4-10"))
     end
      end 
     match = xs[i];
@@ -65,7 +65,7 @@ function revSearchAssert(len, array, x) do
       return match[0];
     end else do
       _i = i + 1 | 0;
-      continue ;
+      ::continue:: ;
     end end 
   end;
 end end
@@ -89,7 +89,7 @@ function fromInt(len, xs, __enum) do
         return i;
       end else do
         _i = i + 1 | 0;
-        continue ;
+        ::continue:: ;
       end end 
     end end 
   end;
@@ -103,7 +103,7 @@ function fromIntAssert(len, xs, __enum) do
   while(true) do
     i = _i;
     if (i >= len$1) then do
-      throw new Error("File \"js_mapperRt.ml\", line 87, characters 4-10");
+      error (new Error("File \"js_mapperRt.ml\", line 87, characters 4-10"))
     end
      end 
     k = xs$1[i];
@@ -111,7 +111,7 @@ function fromIntAssert(len, xs, __enum) do
       return i;
     end else do
       _i = i + 1 | 0;
-      continue ;
+      ::continue:: ;
     end end 
   end;
 end end

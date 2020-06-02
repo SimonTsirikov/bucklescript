@@ -10,8 +10,8 @@ function remove0(nt, x, cmp) do
   if (c == 0) then do
     l = nt.left;
     r = nt.right;
-    if (l ~= null) then do
-      if (r ~= null) then do
+    if (l ~= nil) then do
+      if (r ~= nil) then do
         nt.right = Belt_internalAVLset.removeMinAuxWithRootMutate(nt, r);
         return Belt_internalAVLset.balMutate(nt);
       end else do
@@ -22,7 +22,7 @@ function remove0(nt, x, cmp) do
     end end 
   end else if (c < 0) then do
     match = nt.left;
-    if (match ~= null) then do
+    if (match ~= nil) then do
       nt.left = remove0(match, x, cmp);
       return Belt_internalAVLset.balMutate(nt);
     end else do
@@ -30,7 +30,7 @@ function remove0(nt, x, cmp) do
     end end 
   end else do
     match$1 = nt.right;
-    if (match$1 ~= null) then do
+    if (match$1 ~= nil) then do
       nt.right = remove0(match$1, x, cmp);
       return Belt_internalAVLset.balMutate(nt);
     end else do
@@ -41,7 +41,7 @@ end end
 
 function remove(d, v) do
   oldRoot = d.data;
-  if (oldRoot ~= null) then do
+  if (oldRoot ~= nil) then do
     newRoot = remove0(oldRoot, v, d.cmp);
     if (newRoot ~= oldRoot) then do
       d.data = newRoot;
@@ -61,12 +61,12 @@ function removeMany0(_t, xs, _i, len, cmp) do
     if (i < len) then do
       ele = xs[i];
       u = remove0(t, ele, cmp);
-      if (u ~= null) then do
+      if (u ~= nil) then do
         _i = i + 1 | 0;
         _t = u;
-        continue ;
+        ::continue:: ;
       end else do
-        return null;
+        return nil;
       end end 
     end else do
       return t;
@@ -76,7 +76,7 @@ end end
 
 function removeMany(d, xs) do
   oldRoot = d.data;
-  if (oldRoot ~= null) then do
+  if (oldRoot ~= nil) then do
     len = #xs;
     d.data = removeMany0(oldRoot, xs, 0, len, d.cmp);
     return --[[ () ]]0;
@@ -92,8 +92,8 @@ function removeCheck0(nt, x, removed, cmp) do
     removed.contents = true;
     l = nt.left;
     r = nt.right;
-    if (l ~= null) then do
-      if (r ~= null) then do
+    if (l ~= nil) then do
+      if (r ~= nil) then do
         nt.right = Belt_internalAVLset.removeMinAuxWithRootMutate(nt, r);
         return Belt_internalAVLset.balMutate(nt);
       end else do
@@ -104,7 +104,7 @@ function removeCheck0(nt, x, removed, cmp) do
     end end 
   end else if (c < 0) then do
     match = nt.left;
-    if (match ~= null) then do
+    if (match ~= nil) then do
       nt.left = removeCheck0(match, x, removed, cmp);
       return Belt_internalAVLset.balMutate(nt);
     end else do
@@ -112,7 +112,7 @@ function removeCheck0(nt, x, removed, cmp) do
     end end 
   end else do
     match$1 = nt.right;
-    if (match$1 ~= null) then do
+    if (match$1 ~= nil) then do
       nt.right = removeCheck0(match$1, x, removed, cmp);
       return Belt_internalAVLset.balMutate(nt);
     end else do
@@ -123,7 +123,7 @@ end end
 
 function removeCheck(d, v) do
   oldRoot = d.data;
-  if (oldRoot ~= null) then do
+  if (oldRoot ~= nil) then do
     removed = do
       contents: false
     end;
@@ -139,7 +139,7 @@ function removeCheck(d, v) do
 end end
 
 function addCheck0(t, x, added, cmp) do
-  if (t ~= null) then do
+  if (t ~= nil) then do
     k = t.value;
     c = cmp(x, k);
     if (c == 0) then do
@@ -201,13 +201,13 @@ end end
 function make(id) do
   return do
           cmp: id.cmp,
-          data: null
+          data: nil
         end;
 end end
 
 function isEmpty(d) do
   n = d.data;
-  return n == null;
+  return n == nil;
 end end
 
 function minimum(d) do
@@ -384,8 +384,8 @@ function intersect(a, b) do
   cmp = a.cmp;
   match = a.data;
   match$1 = b.data;
-  if (match ~= null) then do
-    if (match$1 ~= null) then do
+  if (match ~= nil) then do
+    if (match$1 ~= nil) then do
       sizea = Belt_internalAVLset.lengthNode(match);
       sizeb = Belt_internalAVLset.lengthNode(match$1);
       totalSize = sizea + sizeb | 0;
@@ -395,7 +395,7 @@ function intersect(a, b) do
       if (cmp(tmp[sizea - 1 | 0], tmp[sizea]) < 0 or cmp(tmp[totalSize - 1 | 0], tmp[0]) < 0) then do
         return do
                 cmp: cmp,
-                data: null
+                data: nil
               end;
       end else do
         tmp2 = new Array(sizea < sizeb and sizea or sizeb);
@@ -408,13 +408,13 @@ function intersect(a, b) do
     end else do
       return do
               cmp: cmp,
-              data: null
+              data: nil
             end;
     end end 
   end else do
     return do
             cmp: cmp,
-            data: null
+            data: nil
           end;
   end end 
 end end
@@ -423,8 +423,8 @@ function diff(a, b) do
   cmp = a.cmp;
   dataa = a.data;
   match = b.data;
-  if (dataa ~= null) then do
-    if (match ~= null) then do
+  if (dataa ~= nil) then do
+    if (match ~= nil) then do
       sizea = Belt_internalAVLset.lengthNode(dataa);
       sizeb = Belt_internalAVLset.lengthNode(match);
       totalSize = sizea + sizeb | 0;
@@ -453,7 +453,7 @@ function diff(a, b) do
   end else do
     return do
             cmp: cmp,
-            data: null
+            data: nil
           end;
   end end 
 end end
@@ -462,8 +462,8 @@ function union(a, b) do
   cmp = a.cmp;
   dataa = a.data;
   datab = b.data;
-  if (dataa ~= null) then do
-    if (datab ~= null) then do
+  if (dataa ~= nil) then do
+    if (datab ~= nil) then do
       sizea = Belt_internalAVLset.lengthNode(dataa);
       sizeb = Belt_internalAVLset.lengthNode(datab);
       totalSize = sizea + sizeb | 0;

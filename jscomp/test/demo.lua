@@ -1,9 +1,9 @@
 --[['use strict';]]
 
-UI = require "@ui";
-Curry = require "../../lib/js/curry.lua";
-BUI = require "@blp/ui";
-Runtime = require "@runtime";
+UI = require "";
+Curry = require "../../lib/js/curry";
+BUI = require "@bl";
+Runtime = require "@run";
 
 data = {
   do
@@ -90,7 +90,7 @@ function ui_layout(compile, lookup, appContext) do
   button.text = "update formula";
   button.minHeight = 20;
   button.on("click", (function (_event) do
-          try do
+          xpcall(function() do
             hot_function = Curry._1(compile, inputCode.text);
             computeFunction.contents = (function (env) do
                 return Curry._1(hot_function, (function (key) do
@@ -98,10 +98,9 @@ function ui_layout(compile, lookup, appContext) do
                             end end));
               end end);
             return --[[ () ]]0;
-          end
-          catch (e)do
+          end end,function(e) return do
             return --[[ () ]]0;
-          end
+          end end)
         end end));
   Runtime.setInterval((function () do
           grid.dataSource = Array.prototype.map.call(data, (function (param) do

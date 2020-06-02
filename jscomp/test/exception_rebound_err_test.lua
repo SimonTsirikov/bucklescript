@@ -1,11 +1,11 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-Block = require "../../lib/js/block.lua";
-Curry = require "../../lib/js/curry.lua";
-Caml_exceptions = require "../../lib/js/caml_exceptions.lua";
-Caml_js_exceptions = require "../../lib/js/caml_js_exceptions.lua";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
+Mt = require "./mt";
+Block = require "../../lib/js/block";
+Curry = require "../../lib/js/curry";
+Caml_exceptions = require "../../lib/js/caml_exceptions";
+Caml_js_exceptions = require "../../lib/js/caml_js_exceptions";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 suites = do
   contents: --[[ [] ]]0
@@ -39,11 +39,10 @@ B = Caml_exceptions.create("Exception_rebound_err_test.B");
 C = Caml_exceptions.create("Exception_rebound_err_test.C");
 
 function test_js_error4(param) do
-  try do
+  xpcall(function() do
     JSON.parse(" {\"x\"}");
     return 1;
-  end
-  catch (raw_e)do
+  end end,function(raw_e) return do
     e = Caml_js_exceptions.internalToOCamlException(raw_e);
     if (e == Caml_builtin_exceptions.not_found) then do
       return 2;
@@ -64,20 +63,19 @@ function test_js_error4(param) do
     end else do
       return 7;
     end end  end  end 
-  end
+  end end)
 end end
 
 function f(g) do
-  try do
+  xpcall(function() do
     return Curry._1(g, --[[ () ]]0);
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Caml_builtin_exceptions.not_found) then do
       return 1;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 eq("File \"exception_rebound_err_test.ml\", line 24, characters 6-13", test_js_error4(--[[ () ]]0), 7);

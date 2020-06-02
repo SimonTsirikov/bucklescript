@@ -1,8 +1,8 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-Block = require "../../lib/js/block.lua";
-Caml_array = require "../../lib/js/caml_array.lua";
+Mt = require "./mt";
+Block = require "../../lib/js/block";
+Caml_array = require "../../lib/js/caml_array";
 
 a = {
   0,

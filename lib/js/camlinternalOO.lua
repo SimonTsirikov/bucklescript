@@ -1,18 +1,18 @@
 --[['use strict';]]
 
-Obj = require "./obj.lua";
-List = require "./list.lua";
-__Array = require "./array.lua";
-Curry = require "./curry.lua";
-Caml_oo = require "./caml_oo.lua";
-Caml_obj = require "./caml_obj.lua";
-Caml_array = require "./caml_array.lua";
-Caml_int32 = require "./caml_int32.lua";
-Belt_MapInt = require "./belt_MapInt.lua";
-Caml_string = require "./caml_string.lua";
-Belt_MapString = require "./belt_MapString.lua";
-Caml_exceptions = require "./caml_exceptions.lua";
-Caml_builtin_exceptions = require "./caml_builtin_exceptions.lua";
+Obj = require "./obj";
+List = require "./list";
+__Array = require "./array";
+Curry = require "./curry";
+Caml_oo = require "./caml_oo";
+Caml_obj = require "./caml_obj";
+Caml_array = require "./caml_array";
+Caml_int32 = require "./caml_int32";
+Belt_MapInt = require "./belt_MapInt";
+Caml_string = require "./caml_string";
+Belt_MapString = require "./belt_MapString";
+Caml_exceptions = require "./caml_exceptions";
+Caml_builtin_exceptions = require "./caml_builtin_exceptions";
 
 function copy(o) do
   return Caml_exceptions.caml_set_oo_id(Caml_obj.caml_obj_dup(o));
@@ -150,16 +150,15 @@ function set_method(table, label, element) do
 end end
 
 function get_method(table, label) do
-  try do
+  xpcall(function() do
     return List.assoc(label, table.hidden_meths);
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Caml_builtin_exceptions.not_found) then do
       return Caml_array.caml_array_get(table.methods, label);
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 function to_list(arr) do
@@ -397,7 +396,7 @@ function iter_f(obj, _param) do
     if (param) then do
       Curry._1(param[0], obj);
       _param = param[1];
-      continue ;
+      ::continue:: ;
     end else do
       return --[[ () ]]0;
     end end 
@@ -441,14 +440,14 @@ function set_data(tables, v) do
     tables[--[[ data ]]1] = v;
     return --[[ () ]]0;
   end else do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "camlinternalOO.ml",
-            484,
-            13
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "camlinternalOO.ml",
+        484,
+        13
+      }
+    })
   end end 
 end end
 
@@ -457,14 +456,14 @@ function set_next(tables, v) do
     tables[--[[ next ]]2] = v;
     return --[[ () ]]0;
   end else do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "camlinternalOO.ml",
-            487,
-            13
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "camlinternalOO.ml",
+        487,
+        13
+      }
+    })
   end end 
 end end
 
@@ -472,14 +471,14 @@ function get_key(param) do
   if (param) then do
     return param[--[[ key ]]0];
   end else do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "camlinternalOO.ml",
-            490,
-            13
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "camlinternalOO.ml",
+        490,
+        13
+      }
+    })
   end end 
 end end
 
@@ -487,14 +486,14 @@ function get_data(param) do
   if (param) then do
     return param[--[[ data ]]1];
   end else do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "camlinternalOO.ml",
-            493,
-            13
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "camlinternalOO.ml",
+        493,
+        13
+      }
+    })
   end end 
 end end
 
@@ -502,14 +501,14 @@ function get_next(param) do
   if (param) then do
     return param[--[[ next ]]2];
   end else do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "camlinternalOO.ml",
-            496,
-            13
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "camlinternalOO.ml",
+        496,
+        13
+      }
+    })
   end end 
 end end
 
@@ -544,20 +543,20 @@ function lookup_keys(i, keys, tables) do
         if (tables_data) then do
           return lookup_keys(i - 1 | 0, keys, tables_data);
         end else do
-          throw {
-                Caml_builtin_exceptions.assert_failure,
-                --[[ tuple ]]{
-                  "camlinternalOO.ml",
-                  514,
-                  17
-                }
-              };
+          error ({
+            Caml_builtin_exceptions.assert_failure,
+            --[[ tuple ]]{
+              "camlinternalOO.ml",
+              514,
+              17
+            }
+          })
         end end 
       end else do
         next = get_next(tables$1);
         if (next) then do
           _tables = next;
-          continue ;
+          ::continue:: ;
         end else do
           next$1 = --[[ Cons ]]{
             --[[ key ]]key,

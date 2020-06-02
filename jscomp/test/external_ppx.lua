@@ -1,6 +1,6 @@
 --[['use strict';]]
 
-External_ppxGen = require "./external_ppx.gen";
+External_ppxGen = require "./external_ppx";
 
 function f(prim) do
   return External_ppxGen.f(prim);

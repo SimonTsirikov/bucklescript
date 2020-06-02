@@ -1,11 +1,11 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-Block = require "../../lib/js/block.lua";
-Bytes = require "../../lib/js/bytes.lua";
-Curry = require "../../lib/js/curry.lua";
-Lexing = require "../../lib/js/lexing.lua";
-Caml_bytes = require "../../lib/js/caml_bytes.lua";
+Mt = require "./mt";
+Block = require "../../lib/js/block";
+Bytes = require "../../lib/js/bytes";
+Curry = require "../../lib/js/curry";
+Lexing = require "../../lib/js/lexing";
+Caml_bytes = require "../../lib/js/caml_bytes";
 
 __ocaml_lex_tables = do
   lex_base: "\0\0\xfd\xff\xfe\xff\0\0\0\0\x01\0\0\0\0\0\0\0\0\0\0\0\0\0\x04\0\x01\0\x04\0\x03\0\0\0\x06\0\0\0\xff\xff",
@@ -38,7 +38,7 @@ function __ocaml_lex_translate_rec(lexbuf, ___ocaml_lex_state) do
       else do
         Curry._1(lexbuf.refill_buff, lexbuf);
         ___ocaml_lex_state = __ocaml_lex_state$1;
-        continue ;
+        ::continue:: ;
         end end
         
     end

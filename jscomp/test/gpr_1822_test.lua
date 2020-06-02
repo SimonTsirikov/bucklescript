@@ -1,8 +1,8 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-Block = require "../../lib/js/block.lua";
-Caml_int32 = require "../../lib/js/caml_int32.lua";
+Mt = require "./mt";
+Block = require "../../lib/js/block";
+Caml_int32 = require "../../lib/js/caml_int32";
 
 suites = do
   contents: --[[ [] ]]0

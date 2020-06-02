@@ -1,12 +1,12 @@
 --[['use strict';]]
 
-Oo = require "../../lib/js/oo.lua";
-Curry = require "../../lib/js/curry.lua";
-Caml_obj = require "../../lib/js/caml_obj.lua";
-Caml_oo_curry = require "../../lib/js/caml_oo_curry.lua";
-CamlinternalOO = require "../../lib/js/camlinternalOO.lua";
-Caml_exceptions = require "../../lib/js/caml_exceptions.lua";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
+Oo = require "../../lib/js/oo";
+Curry = require "../../lib/js/curry";
+Caml_obj = require "../../lib/js/caml_obj";
+Caml_oo_curry = require "../../lib/js/caml_oo_curry";
+CamlinternalOO = require "../../lib/js/camlinternalOO";
+Caml_exceptions = require "../../lib/js/caml_exceptions";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 shared = {"x"};
 
@@ -53,26 +53,26 @@ v = Curry._2(x[0], 0, 3);
 u = Oo.copy(v);
 
 if (Caml_oo_curry.js1(291546447, 1, v) ~= 3) then do
-  throw {
-        Caml_builtin_exceptions.assert_failure,
-        --[[ tuple ]]{
-          "class_repr.ml",
-          30,
-          9
-        }
-      };
+  error ({
+    Caml_builtin_exceptions.assert_failure,
+    --[[ tuple ]]{
+      "class_repr.ml",
+      30,
+      9
+    }
+  })
 end
  end 
 
 if (Caml_oo_curry.js1(291546447, 2, u) ~= 3) then do
-  throw {
-        Caml_builtin_exceptions.assert_failure,
-        --[[ tuple ]]{
-          "class_repr.ml",
-          32,
-          9
-        }
-      };
+  error ({
+    Caml_builtin_exceptions.assert_failure,
+    --[[ tuple ]]{
+      "class_repr.ml",
+      32,
+      9
+    }
+  })
 end
  end 
 
@@ -109,14 +109,14 @@ v1 = Curry._2(xx[0], 0, 3);
 v2 = Caml_oo_curry.js1(-977586732, 3, v1);
 
 if (Caml_oo_curry.js1(-804710761, 4, v1) ~= 3) then do
-  throw {
-        Caml_builtin_exceptions.assert_failure,
-        --[[ tuple ]]{
-          "class_repr.ml",
-          44,
-          9
-        }
-      };
+  error ({
+    Caml_builtin_exceptions.assert_failure,
+    --[[ tuple ]]{
+      "class_repr.ml",
+      44,
+      9
+    }
+  })
 end
  end 
 
@@ -126,14 +126,14 @@ console.log(--[[ tuple ]]{
     });
 
 if (Caml_oo_curry.js1(-804710761, 7, v2) ~= 9) then do
-  throw {
-        Caml_builtin_exceptions.assert_failure,
-        --[[ tuple ]]{
-          "class_repr.ml",
-          52,
-          9
-        }
-      };
+  error ({
+    Caml_builtin_exceptions.assert_failure,
+    --[[ tuple ]]{
+      "class_repr.ml",
+      52,
+      9
+    }
+  })
 end
  end 
 
@@ -170,14 +170,14 @@ point = CamlinternalOO.make_class({
 v$1 = Curry._1(point[0], 0);
 
 if (Caml_oo_curry.js1(590348294, 8, v$1) ~= 5) then do
-  throw {
-        Caml_builtin_exceptions.assert_failure,
-        --[[ tuple ]]{
-          "class_repr.ml",
-          99,
-          2
-        }
-      };
+  error ({
+    Caml_builtin_exceptions.assert_failure,
+    --[[ tuple ]]{
+      "class_repr.ml",
+      99,
+      2
+    }
+  })
 end
  end 
 

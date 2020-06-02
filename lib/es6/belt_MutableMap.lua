@@ -10,21 +10,21 @@ function removeMutateAux(nt, x, cmp) do
   if (c == 0) then do
     l = nt.left;
     r = nt.right;
-    if (l ~= null) then do
-      if (r ~= null) then do
+    if (l ~= nil) then do
+      if (r ~= nil) then do
         nt.right = Belt_internalAVLtree.removeMinAuxWithRootMutate(nt, r);
         return Belt_internalAVLtree.balMutate(nt);
       end else do
         return l;
       end end 
-    end else if (r ~= null) then do
+    end else if (r ~= nil) then do
       return r;
     end else do
       return l;
     end end  end 
   end else if (c < 0) then do
     match = nt.left;
-    if (match ~= null) then do
+    if (match ~= nil) then do
       nt.left = removeMutateAux(match, x, cmp);
       return Belt_internalAVLtree.balMutate(nt);
     end else do
@@ -32,7 +32,7 @@ function removeMutateAux(nt, x, cmp) do
     end end 
   end else do
     match$1 = nt.right;
-    if (match$1 ~= null) then do
+    if (match$1 ~= nil) then do
       nt.right = removeMutateAux(match$1, x, cmp);
       return Belt_internalAVLtree.balMutate(nt);
     end else do
@@ -43,7 +43,7 @@ end end
 
 function remove(d, k) do
   oldRoot = d.data;
-  if (oldRoot ~= null) then do
+  if (oldRoot ~= nil) then do
     newRoot = removeMutateAux(oldRoot, k, d.cmp);
     if (newRoot ~= oldRoot) then do
       d.data = newRoot;
@@ -63,12 +63,12 @@ function removeArrayMutateAux(_t, xs, _i, len, cmp) do
     if (i < len) then do
       ele = xs[i];
       u = removeMutateAux(t, ele, cmp);
-      if (u ~= null) then do
+      if (u ~= nil) then do
         _i = i + 1 | 0;
         _t = u;
-        continue ;
+        ::continue:: ;
       end else do
-        return null;
+        return nil;
       end end 
     end else do
       return t;
@@ -78,7 +78,7 @@ end end
 
 function removeMany(d, xs) do
   oldRoot = d.data;
-  if (oldRoot ~= null) then do
+  if (oldRoot ~= nil) then do
     len = #xs;
     newRoot = removeArrayMutateAux(oldRoot, xs, 0, len, d.cmp);
     if (newRoot ~= oldRoot) then do
@@ -93,7 +93,7 @@ function removeMany(d, xs) do
 end end
 
 function updateDone(t, x, f, cmp) do
-  if (t ~= null) then do
+  if (t ~= nil) then do
     k = t.key;
     c = cmp(x, k);
     if (c == 0) then do
@@ -104,14 +104,14 @@ function updateDone(t, x, f, cmp) do
       end else do
         l = t.left;
         r = t.right;
-        if (l ~= null) then do
-          if (r ~= null) then do
+        if (l ~= nil) then do
+          if (r ~= nil) then do
             t.right = Belt_internalAVLtree.removeMinAuxWithRootMutate(t, r);
             return Belt_internalAVLtree.balMutate(t);
           end else do
             return l;
           end end 
-        end else if (r ~= null) then do
+        end else if (r ~= nil) then do
           return r;
         end else do
           return l;
@@ -156,18 +156,18 @@ end end
 function make(id) do
   return do
           cmp: id.cmp,
-          data: null
+          data: nil
         end;
 end end
 
 function clear(m) do
-  m.data = null;
+  m.data = nil;
   return --[[ () ]]0;
 end end
 
 function isEmpty(d) do
   x = d.data;
-  return x == null;
+  return x == nil;
 end end
 
 function minKey(m) do

@@ -1,6 +1,6 @@
 --[['use strict';]]
 
-Pervasives = require "../../lib/js/pervasives.lua";
+Pervasives = require "../../lib/js/pervasives";
 
 Pervasives.print_int(3);
 

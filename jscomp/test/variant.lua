@@ -1,11 +1,11 @@
 --[['use strict';]]
 
-Block = require "../../lib/js/block.lua";
-Curry = require "../../lib/js/curry.lua";
-Caml_obj = require "../../lib/js/caml_obj.lua";
-Caml_exceptions = require "../../lib/js/caml_exceptions.lua";
-Caml_js_exceptions = require "../../lib/js/caml_js_exceptions.lua";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
+Block = require "../../lib/js/block";
+Curry = require "../../lib/js/curry";
+Caml_obj = require "../../lib/js/caml_obj";
+Caml_exceptions = require "../../lib/js/caml_exceptions";
+Caml_js_exceptions = require "../../lib/js/caml_js_exceptions";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 function foo(param) do
   if (typeof param == "number") then do
@@ -90,10 +90,9 @@ M = do
 end;
 
 function rollback_path(subst, p) do
-  try do
+  xpcall(function() do
     return "try";
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Caml_builtin_exceptions.not_found) then do
       local ___conditional___=(p.tag | 0);
       do
@@ -106,9 +105,9 @@ function rollback_path(subst, p) do
         
       end
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 EA1 = Caml_exceptions.create("Variant.EA1");
@@ -122,10 +121,9 @@ EC = Caml_exceptions.create("Variant.EC");
 ED = Caml_exceptions.create("Variant.ED");
 
 function fooExn(f) do
-  try do
+  xpcall(function() do
     return Curry._1(f, --[[ () ]]0);
-  end
-  catch (raw_exn)do
+  end end,function(raw_exn) return do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn == EA1) then do
       return 1;
@@ -139,9 +137,9 @@ function fooExn(f) do
       match = exn[1];
       return match[0] + match[1] | 0;
     end else do
-      throw exn;
+      error (exn)
     end end  end  end  end  end 
-  end
+  end end)
 end end
 
 a1 = --[[ A1 ]]0;

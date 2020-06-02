@@ -139,10 +139,10 @@ function of_array$1(kind, layout, data) do
   for i = 0 , dim1 - 1 | 0 , 1 do
     row = Caml_array.caml_array_get(data, i);
     if (#row ~= dim2) then do
-      throw {
-            Caml_builtin_exceptions.invalid_argument,
-            "Bigarray.Array2.of_array: non-rectangular data"
-          };
+      error ({
+        Caml_builtin_exceptions.invalid_argument,
+        "Bigarray.Array2.of_array: non-rectangular data"
+      })
     end
      end 
     for j = 0 , dim2 - 1 | 0 , 1 do
@@ -202,19 +202,19 @@ function of_array$2(kind, layout, data) do
   for i = 0 , dim1 - 1 | 0 , 1 do
     row = Caml_array.caml_array_get(data, i);
     if (#row ~= dim2) then do
-      throw {
-            Caml_builtin_exceptions.invalid_argument,
-            "Bigarray.Array3.of_array: non-cubic data"
-          };
+      error ({
+        Caml_builtin_exceptions.invalid_argument,
+        "Bigarray.Array3.of_array: non-cubic data"
+      })
     end
      end 
     for j = 0 , dim2 - 1 | 0 , 1 do
       col = Caml_array.caml_array_get(row, j);
       if (#col ~= dim3) then do
-        throw {
-              Caml_builtin_exceptions.invalid_argument,
-              "Bigarray.Array3.of_array: non-cubic data"
-            };
+        error ({
+          Caml_builtin_exceptions.invalid_argument,
+          "Bigarray.Array3.of_array: non-cubic data"
+        })
       end
        end 
       for k = 0 , dim3 - 1 | 0 , 1 do
@@ -237,10 +237,10 @@ function array0_of_genarray(a) do
   if (Caml_external_polyfill.resolve("caml_ba_num_dims")(a) == 0) then do
     return a;
   end else do
-    throw {
-          Caml_builtin_exceptions.invalid_argument,
-          "Bigarray.array0_of_genarray"
-        };
+    error ({
+      Caml_builtin_exceptions.invalid_argument,
+      "Bigarray.array0_of_genarray"
+    })
   end end 
 end end
 
@@ -248,10 +248,10 @@ function array1_of_genarray(a) do
   if (Caml_external_polyfill.resolve("caml_ba_num_dims")(a) == 1) then do
     return a;
   end else do
-    throw {
-          Caml_builtin_exceptions.invalid_argument,
-          "Bigarray.array1_of_genarray"
-        };
+    error ({
+      Caml_builtin_exceptions.invalid_argument,
+      "Bigarray.array1_of_genarray"
+    })
   end end 
 end end
 
@@ -259,10 +259,10 @@ function array2_of_genarray(a) do
   if (Caml_external_polyfill.resolve("caml_ba_num_dims")(a) == 2) then do
     return a;
   end else do
-    throw {
-          Caml_builtin_exceptions.invalid_argument,
-          "Bigarray.array2_of_genarray"
-        };
+    error ({
+      Caml_builtin_exceptions.invalid_argument,
+      "Bigarray.array2_of_genarray"
+    })
   end end 
 end end
 
@@ -270,10 +270,10 @@ function array3_of_genarray(a) do
   if (Caml_external_polyfill.resolve("caml_ba_num_dims")(a) == 3) then do
     return a;
   end else do
-    throw {
-          Caml_builtin_exceptions.invalid_argument,
-          "Bigarray.array3_of_genarray"
-        };
+    error ({
+      Caml_builtin_exceptions.invalid_argument,
+      "Bigarray.array3_of_genarray"
+    })
   end end 
 end end
 

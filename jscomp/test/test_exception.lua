@@ -1,38 +1,38 @@
 --[['use strict';]]
 
-Test_common = require "./test_common.lua";
-Caml_exceptions = require "../../lib/js/caml_exceptions.lua";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
+Test_common = require "./test_common";
+Caml_exceptions = require "../../lib/js/caml_exceptions";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 Local = Caml_exceptions.create("Test_exception.Local");
 
 function f(param) do
-  throw {
-        Local,
-        3
-      };
+  error ({
+    Local,
+    3
+  })
 end end
 
 function g(param) do
-  throw Caml_builtin_exceptions.not_found;
+  error (Caml_builtin_exceptions.not_found)
 end end
 
 function h(param) do
-  throw {
-        Test_common.U,
-        3
-      };
+  error ({
+    Test_common.U,
+    3
+  })
 end end
 
 function x(param) do
-  throw Test_common.H;
+  error (Test_common.H)
 end end
 
 function xx(param) do
-  throw {
-        Caml_builtin_exceptions.invalid_argument,
-        "x"
-      };
+  error ({
+    Caml_builtin_exceptions.invalid_argument,
+    "x"
+  })
 end end
 
 Nullary = Caml_exceptions.create("Test_exception.Nullary");

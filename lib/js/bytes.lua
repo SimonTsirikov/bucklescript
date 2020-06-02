@@ -1,10 +1,10 @@
 --[['use strict';]]
 
-Char = require "./char.lua";
-Curry = require "./curry.lua";
-Caml_bytes = require "./caml_bytes.lua";
-Caml_primitive = require "./caml_primitive.lua";
-Caml_builtin_exceptions = require "./caml_builtin_exceptions.lua";
+Char = require "./char";
+Curry = require "./curry";
+Caml_bytes = require "./caml_bytes";
+Caml_primitive = require "./caml_primitive";
+Caml_builtin_exceptions = require "./caml_builtin_exceptions";
 
 function make(n, c) do
   s = Caml_bytes.caml_create_bytes(n);
@@ -39,10 +39,10 @@ end end
 
 function sub(s, ofs, len) do
   if (ofs < 0 or len < 0 or ofs > (#s - len | 0)) then do
-    throw {
-          Caml_builtin_exceptions.invalid_argument,
-          "String.sub / Bytes.sub"
-        };
+    error ({
+      Caml_builtin_exceptions.invalid_argument,
+      "String.sub / Bytes.sub"
+    })
   end
    end 
   r = Caml_bytes.caml_create_bytes(len);
@@ -61,10 +61,10 @@ function $plus$plus(a, b) do
   match$2 = c < 0;
   if (match) then do
     if (match$1 and not match$2) then do
-      throw {
-            Caml_builtin_exceptions.invalid_argument,
-            "Bytes.extend"
-          };
+      error ({
+        Caml_builtin_exceptions.invalid_argument,
+        "Bytes.extend"
+      })
     end else do
       return c;
     end end 
@@ -72,10 +72,10 @@ function $plus$plus(a, b) do
     return c;
   end else do
     if (match$2) then do
-      throw {
-            Caml_builtin_exceptions.invalid_argument,
-            "Bytes.extend"
-          };
+      error ({
+        Caml_builtin_exceptions.invalid_argument,
+        "Bytes.extend"
+      })
     end
      end 
     return c;
@@ -104,10 +104,10 @@ end end
 
 function fill(s, ofs, len, c) do
   if (ofs < 0 or len < 0 or ofs > (#s - len | 0)) then do
-    throw {
-          Caml_builtin_exceptions.invalid_argument,
-          "String.fill / Bytes.fill"
-        };
+    error ({
+      Caml_builtin_exceptions.invalid_argument,
+      "String.fill / Bytes.fill"
+    })
   end
    end 
   return Caml_bytes.caml_fill_bytes(s, ofs, len, c);
@@ -115,10 +115,10 @@ end end
 
 function blit(s1, ofs1, s2, ofs2, len) do
   if (len < 0 or ofs1 < 0 or ofs1 > (#s1 - len | 0) or ofs2 < 0 or ofs2 > (#s2 - len | 0)) then do
-    throw {
-          Caml_builtin_exceptions.invalid_argument,
-          "Bytes.blit"
-        };
+    error ({
+      Caml_builtin_exceptions.invalid_argument,
+      "Bytes.blit"
+    })
   end
    end 
   return Caml_bytes.caml_blit_bytes(s1, ofs1, s2, ofs2, len);
@@ -126,10 +126,10 @@ end end
 
 function blit_string(s1, ofs1, s2, ofs2, len) do
   if (len < 0 or ofs1 < 0 or ofs1 > (#s1 - len | 0) or ofs2 < 0 or ofs2 > (#s2 - len | 0)) then do
-    throw {
-          Caml_builtin_exceptions.invalid_argument,
-          "String.blit / Bytes.blit_string"
-        };
+    error ({
+      Caml_builtin_exceptions.invalid_argument,
+      "String.blit / Bytes.blit_string"
+    })
   end
    end 
   return Caml_bytes.caml_blit_string(s1, ofs1, s2, ofs2, len);
@@ -153,10 +153,10 @@ function ensure_ge(x, y) do
   if (x >= y) then do
     return x;
   end else do
-    throw {
-          Caml_builtin_exceptions.invalid_argument,
-          "Bytes.concat"
-        };
+    error ({
+      Caml_builtin_exceptions.invalid_argument,
+      "Bytes.concat"
+    })
   end end 
 end end
 
@@ -170,7 +170,7 @@ function sum_lengths(_acc, seplen, _param) do
       if (tl) then do
         _param = tl;
         _acc = ensure_ge((#hd + seplen | 0) + acc | 0, acc);
-        continue ;
+        ::continue:: ;
       end else do
         return #hd + acc | 0;
       end end 
@@ -199,7 +199,7 @@ function concat(sep, l) do
           Caml_bytes.caml_blit_bytes(sep$1, 0, dst, pos + #hd | 0, seplen$1);
           _param = tl;
           _pos = (pos + #hd | 0) + seplen$1 | 0;
-          continue ;
+          ::continue:: ;
         end else do
           Caml_bytes.caml_blit_bytes(hd, 0, dst, pos, #hd);
           return dst;
@@ -408,14 +408,14 @@ function index_rec(s, lim, _i, c) do
   while(true) do
     i = _i;
     if (i >= lim) then do
-      throw Caml_builtin_exceptions.not_found;
+      error (Caml_builtin_exceptions.not_found)
     end
      end 
     if (s[i] == c) then do
       return i;
     end else do
       _i = i + 1 | 0;
-      continue ;
+      ::continue:: ;
     end end 
   end;
 end end
@@ -433,7 +433,7 @@ function index_rec_opt(s, lim, _i, c) do
       return i;
     end else do
       _i = i + 1 | 0;
-      continue ;
+      ::continue:: ;
     end end  end 
   end;
 end end
@@ -445,10 +445,10 @@ end end
 function index_from(s, i, c) do
   l = #s;
   if (i < 0 or i > l) then do
-    throw {
-          Caml_builtin_exceptions.invalid_argument,
-          "String.index_from / Bytes.index_from"
-        };
+    error ({
+      Caml_builtin_exceptions.invalid_argument,
+      "String.index_from / Bytes.index_from"
+    })
   end
    end 
   return index_rec(s, l, i, c);
@@ -457,10 +457,10 @@ end end
 function index_from_opt(s, i, c) do
   l = #s;
   if (i < 0 or i > l) then do
-    throw {
-          Caml_builtin_exceptions.invalid_argument,
-          "String.index_from_opt / Bytes.index_from_opt"
-        };
+    error ({
+      Caml_builtin_exceptions.invalid_argument,
+      "String.index_from_opt / Bytes.index_from_opt"
+    })
   end
    end 
   return index_rec_opt(s, l, i, c);
@@ -470,14 +470,14 @@ function rindex_rec(s, _i, c) do
   while(true) do
     i = _i;
     if (i < 0) then do
-      throw Caml_builtin_exceptions.not_found;
+      error (Caml_builtin_exceptions.not_found)
     end
      end 
     if (s[i] == c) then do
       return i;
     end else do
       _i = i - 1 | 0;
-      continue ;
+      ::continue:: ;
     end end 
   end;
 end end
@@ -488,10 +488,10 @@ end end
 
 function rindex_from(s, i, c) do
   if (i < -1 or i >= #s) then do
-    throw {
-          Caml_builtin_exceptions.invalid_argument,
-          "String.rindex_from / Bytes.rindex_from"
-        };
+    error ({
+      Caml_builtin_exceptions.invalid_argument,
+      "String.rindex_from / Bytes.rindex_from"
+    })
   end
    end 
   return rindex_rec(s, i, c);
@@ -506,7 +506,7 @@ function rindex_rec_opt(s, _i, c) do
       return i;
     end else do
       _i = i - 1 | 0;
-      continue ;
+      ::continue:: ;
     end end  end 
   end;
 end end
@@ -517,10 +517,10 @@ end end
 
 function rindex_from_opt(s, i, c) do
   if (i < -1 or i >= #s) then do
-    throw {
-          Caml_builtin_exceptions.invalid_argument,
-          "String.rindex_from_opt / Bytes.rindex_from_opt"
-        };
+    error ({
+      Caml_builtin_exceptions.invalid_argument,
+      "String.rindex_from_opt / Bytes.rindex_from_opt"
+    })
   end
    end 
   return rindex_rec_opt(s, i, c);
@@ -529,23 +529,22 @@ end end
 function contains_from(s, i, c) do
   l = #s;
   if (i < 0 or i > l) then do
-    throw {
-          Caml_builtin_exceptions.invalid_argument,
-          "String.contains_from / Bytes.contains_from"
-        };
+    error ({
+      Caml_builtin_exceptions.invalid_argument,
+      "String.contains_from / Bytes.contains_from"
+    })
   end
    end 
-  try do
+  xpcall(function() do
     index_rec(s, l, i, c);
     return true;
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Caml_builtin_exceptions.not_found) then do
       return false;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 function contains(s, c) do
@@ -554,23 +553,22 @@ end end
 
 function rcontains_from(s, i, c) do
   if (i < 0 or i >= #s) then do
-    throw {
-          Caml_builtin_exceptions.invalid_argument,
-          "String.rcontains_from / Bytes.rcontains_from"
-        };
+    error ({
+      Caml_builtin_exceptions.invalid_argument,
+      "String.rcontains_from / Bytes.rcontains_from"
+    })
   end
    end 
-  try do
+  xpcall(function() do
     rindex_rec(s, i, c);
     return true;
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Caml_builtin_exceptions.not_found) then do
       return false;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 compare = Caml_primitive.caml_bytes_compare;

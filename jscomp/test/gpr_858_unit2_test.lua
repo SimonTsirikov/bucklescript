@@ -1,7 +1,7 @@
 --[['use strict';]]
 
-Curry = require "../../lib/js/curry.lua";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
+Curry = require "../../lib/js/curry";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 delayed = do
   contents: (function (param) do
@@ -22,14 +22,14 @@ for i = 1 , 2 , 1 do
     end else if (i == n) then do
       return 0;
     end else do
-      throw {
-            Caml_builtin_exceptions.assert_failure,
-            --[[ tuple ]]{
-              "gpr_858_unit2_test.ml",
-              6,
-              13
-            }
-          };
+      error ({
+        Caml_builtin_exceptions.assert_failure,
+        --[[ tuple ]]{
+          "gpr_858_unit2_test.ml",
+          6,
+          13
+        }
+      })
     end end  end 
   end end
   end(i));

@@ -1,6 +1,6 @@
 --[['use strict';]]
 
-Caml_option = require "../../lib/js/caml_option.lua";
+Caml_option = require "../../lib/js/caml_option";
 
 function v(displayName, param) do
   tmp = do

@@ -10,13 +10,13 @@ function isfree(id, _param) do
           return id == param[0];end end end 
        if ___conditional___ = 1--[[ Pdot ]] then do
           _param = param[0];
-          continue ;end end end 
+          ::continue:: ;end end end 
        if ___conditional___ = 2--[[ Papply ]] then do
           if (isfree(id, param[0])) then do
             return true;
           end else do
             _param = param[1];
-            continue ;
+            ::continue:: ;
           end end end end end 
        do
       

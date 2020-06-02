@@ -1,7 +1,7 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-List = require "../../lib/js/list.lua";
+Mt = require "./mt";
+List = require "../../lib/js/list";
 
 suites = do
   contents: --[[ [] ]]0

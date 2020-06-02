@@ -1,9 +1,9 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-Block = require "../../lib/js/block.lua";
-Curry = require "../../lib/js/curry.lua";
-Caml_option = require "../../lib/js/caml_option.lua";
+Mt = require "./mt";
+Block = require "../../lib/js/block";
+Curry = require "../../lib/js/curry";
+Caml_option = require "../../lib/js/caml_option";
 
 suites = do
   contents: --[[ [] ]]0
@@ -31,7 +31,7 @@ function eq(loc, x, y) do
 end end
 
 function f1(x) do
-  if (x ~= null) then do
+  if (x ~= nil) then do
     return x + 1 | 0;
   end else do
     return 3;
@@ -39,7 +39,7 @@ function f1(x) do
 end end
 
 function f2(x) do
-  if (x ~= null) then do
+  if (x ~= nil) then do
     return x + 1 | 0;
   end else do
     return 3;
@@ -48,7 +48,7 @@ end end
 
 function f5(h, x) do
   u = Curry._1(h, 32);
-  if (u ~= null) then do
+  if (u ~= nil) then do
     return u + 1 | 0;
   end else do
     return 3;
@@ -58,7 +58,7 @@ end end
 function f4(h, x) do
   u = Curry._1(h, 32);
   v = 32 + x | 0;
-  if (u ~= null) then do
+  if (u ~= nil) then do
     return u + 1 | 0;
   end else do
     return 1 + v | 0;
@@ -74,8 +74,8 @@ function f7(x) do
 end end
 
 function f8(x) do
-  if (x ~= null) then do
-    if (x ~= null) then do
+  if (x ~= nil) then do
+    if (x ~= nil) then do
       return 0;
     end else do
       return 1;
@@ -88,7 +88,7 @@ end end
 u = f8(undefined);
 
 function f9(x) do
-  if (x == null) then do
+  if (x == nil) then do
     return ;
   end else do
     return Caml_option.some(x);
@@ -96,7 +96,7 @@ function f9(x) do
 end end
 
 function f10(x) do
-  return x == null;
+  return x == nil;
 end end
 
 f11 = false;
@@ -201,7 +201,7 @@ Test_def = do
 end;
 
 function f1$2(x) do
-  if (x == null) then do
+  if (x == nil) then do
     return 3;
   end else do
     return x + 1 | 0;
@@ -209,7 +209,7 @@ function f1$2(x) do
 end end
 
 function f2$2(x) do
-  if (x == null) then do
+  if (x == nil) then do
     return 3;
   end else do
     return x + 1 | 0;
@@ -218,7 +218,7 @@ end end
 
 function f5$2(h, x) do
   u = Curry._1(h, 32);
-  if (u == null) then do
+  if (u == nil) then do
     return 3;
   end else do
     return u + 1 | 0;
@@ -228,7 +228,7 @@ end end
 function f4$2(h, x) do
   u = Curry._1(h, 32);
   v = 32 + x | 0;
-  if (u == null) then do
+  if (u == nil) then do
     return 1 + v | 0;
   end else do
     return u + 1 | 0;
@@ -244,9 +244,9 @@ function f7$2(x) do
 end end
 
 function f8$2(x) do
-  if (x == null) then do
+  if (x == nil) then do
     return 2;
-  end else if (x == null) then do
+  end else if (x == nil) then do
     return 1;
   end else do
     return 0;
@@ -256,7 +256,7 @@ end end
 u$2 = f8$2(undefined);
 
 function f9$2(x) do
-  if (x == null) then do
+  if (x == nil) then do
     return ;
   end else do
     return Caml_option.some(x);
@@ -264,7 +264,7 @@ function f9$2(x) do
 end end
 
 function f10$2(x) do
-  return x == null;
+  return x == nil;
 end end
 
 f11$2 = false;

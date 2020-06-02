@@ -8,7 +8,7 @@ function power_2_above(_x, n) do
       return x;
     end else do
       _x = (x << 1);
-      continue ;
+      ::continue:: ;
     end end 
   end;
 end end

@@ -1,7 +1,7 @@
 --[['use strict';]]
 
-Curry = require "./curry.lua";
-Belt_Array = require "./belt_Array.lua";
+Curry = require "./curry";
+Belt_Array = require "./belt_Array";
 
 function copyAuxCont(_c, _prec) do
   while(true) do
@@ -15,7 +15,7 @@ function copyAuxCont(_c, _prec) do
       prec.next = ncopy;
       _prec = ncopy;
       _c = c.next;
-      continue ;
+      ::continue:: ;
     end else do
       return --[[ () ]]0;
     end end 
@@ -60,7 +60,7 @@ function bucketLength(_accu, _buckets) do
     if (buckets ~= undefined) then do
       _buckets = buckets.next;
       _accu = accu + 1 | 0;
-      continue ;
+      ::continue:: ;
     end else do
       return accu;
     end end 
@@ -73,7 +73,7 @@ function doBucketIter(f, _buckets) do
     if (buckets ~= undefined) then do
       f(buckets.key);
       _buckets = buckets.next;
-      continue ;
+      ::continue:: ;
     end else do
       return --[[ () ]]0;
     end end 
@@ -101,7 +101,7 @@ function fillArray(_i, arr, _cell) do
     if (match ~= undefined) then do
       _cell = match;
       _i = i + 1 | 0;
-      continue ;
+      ::continue:: ;
     end else do
       return i + 1 | 0;
     end end 
@@ -129,7 +129,7 @@ function doBucketFold(f, _b, _accu) do
     if (b ~= undefined) then do
       _accu = f(accu, b.key);
       _b = b.next;
-      continue ;
+      ::continue:: ;
     end else do
       return accu;
     end end 

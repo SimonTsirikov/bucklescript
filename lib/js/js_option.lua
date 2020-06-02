@@ -1,6 +1,6 @@
 --[['use strict';]]
 
-Caml_option = require "./caml_option.lua";
+Caml_option = require "./caml_option";
 
 function some(x) do
   return Caml_option.some(x);
@@ -26,7 +26,7 @@ function getExn(x) do
   if (x ~= undefined) then do
     return Caml_option.valFromOption(x);
   end else do
-    throw new Error("getExn");
+    error (new Error("getExn"))
   end end 
 end end
 

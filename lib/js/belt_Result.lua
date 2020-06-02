@@ -1,11 +1,11 @@
 --[['use strict';]]
 
-Block = require "./block.lua";
-Curry = require "./curry.lua";
+Block = require "./block";
+Curry = require "./curry";
 
 function getExn(param) do
   if (param.tag) then do
-    throw new Error("getExn");
+    error (new Error("getExn"))
   end else do
     return param[0];
   end end 

@@ -15,14 +15,14 @@ function caml_get_public_method(obj, tag, cacheid) do
       while(true) do
         i = _i;
         if (i < 3) then do
-          throw {
-                Caml_builtin_exceptions.assert_failure,
-                --[[ tuple ]]{
-                  "caml_oo.ml",
-                  62,
-                  20
-                }
-              };
+          error ({
+            Caml_builtin_exceptions.assert_failure,
+            --[[ tuple ]]{
+              "caml_oo.ml",
+              62,
+              20
+            }
+          })
         end
          end 
         if (meths[i] == tag) then do
@@ -30,7 +30,7 @@ function caml_get_public_method(obj, tag, cacheid) do
           return i;
         end else do
           _i = i - 2 | 0;
-          continue ;
+          ::continue:: ;
         end end 
       end;
     end end;

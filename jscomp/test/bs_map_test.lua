@@ -1,10 +1,10 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-Block = require "../../lib/js/block.lua";
-Belt_Array = require "../../lib/js/belt_Array.lua";
-Belt_MapInt = require "../../lib/js/belt_MapInt.lua";
-Belt_SetInt = require "../../lib/js/belt_SetInt.lua";
+Mt = require "./mt";
+Block = require "../../lib/js/block";
+Belt_Array = require "../../lib/js/belt_Array";
+Belt_MapInt = require "../../lib/js/belt_MapInt";
+Belt_SetInt = require "../../lib/js/belt_SetInt";
 
 suites = do
   contents: --[[ [] ]]0

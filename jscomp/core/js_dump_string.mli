@@ -24,6 +24,7 @@
 
 
  val pp_string : 
+  int ->
   Ext_pp.t -> 
   string -> 
   unit

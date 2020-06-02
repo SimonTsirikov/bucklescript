@@ -1,10 +1,10 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-List = require "../../lib/js/list.lua";
-Block = require "../../lib/js/block.lua";
-Genlex = require "../../lib/js/genlex.lua";
-Stream = require "../../lib/js/stream.lua";
+Mt = require "./mt";
+List = require "../../lib/js/list";
+Block = require "../../lib/js/block";
+Genlex = require "../../lib/js/genlex";
+Stream = require "../../lib/js/stream";
 
 lexer = Genlex.make_lexer(--[[ :: ]]{
       "+",
@@ -37,21 +37,20 @@ function to_list(s) do
   while(true) do
     acc = _acc;
     v;
-    try do
+    xpcall(function() do
       v = Stream.next(s);
-    end
-    catch (exn)do
+    end end,function(exn) return do
       if (exn == Stream.Failure) then do
         return List.rev(acc);
       end else do
-        throw exn;
+        error (exn)
       end end 
-    end
+    end end)
     _acc = --[[ :: ]]{
       v,
       acc
     };
-    continue ;
+    ::continue:: ;
   end;
 end end
 

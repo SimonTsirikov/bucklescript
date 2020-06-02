@@ -4,14 +4,14 @@ import * as Caml_builtin_exceptions from "./caml_builtin_exceptions.lua";
 
 function caml_sys_getenv(s) do
   if (typeof process == "undefined" or process.env == undefined) then do
-    throw Caml_builtin_exceptions.not_found;
+    error (Caml_builtin_exceptions.not_found)
   end
    end 
   match = process.env[s];
   if (match ~= undefined) then do
     return match;
   end else do
-    throw Caml_builtin_exceptions.not_found;
+    error (Caml_builtin_exceptions.not_found)
   end end 
 end end
 
@@ -55,7 +55,7 @@ function caml_sys_get_argv(param) do
           };
   end else do
     argv = process.argv;
-    if (argv == null) then do
+    if (argv == nil) then do
       return --[[ tuple ]]{
               "",
               {""}
@@ -78,17 +78,17 @@ function caml_sys_exit(exit_code) do
 end end
 
 function caml_sys_is_directory(_s) do
-  throw {
-        Caml_builtin_exceptions.failure,
-        "caml_sys_is_directory not implemented"
-      };
+  error ({
+    Caml_builtin_exceptions.failure,
+    "caml_sys_is_directory not implemented"
+  })
 end end
 
 function caml_sys_file_exists(_s) do
-  throw {
-        Caml_builtin_exceptions.failure,
-        "caml_sys_file_exists not implemented"
-      };
+  error ({
+    Caml_builtin_exceptions.failure,
+    "caml_sys_file_exists not implemented"
+  })
 end end
 
 export do

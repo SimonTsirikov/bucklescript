@@ -1,6 +1,6 @@
 --[['use strict';]]
 
-Curry = require "../../lib/js/curry.lua";
+Curry = require "../../lib/js/curry";
 
 function u(x, x$1) do
   return x$1 + x$1 | 0;

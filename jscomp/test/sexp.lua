@@ -1,13 +1,13 @@
 --[['use strict';]]
 
-List = require "../../lib/js/list.lua";
-Curry = require "../../lib/js/curry.lua";
-Hashtbl = require "../../lib/js/hashtbl.lua";
-Caml_obj = require "../../lib/js/caml_obj.lua";
-Pervasives = require "../../lib/js/pervasives.lua";
-Caml_format = require "../../lib/js/caml_format.lua";
-Caml_option = require "../../lib/js/caml_option.lua";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
+List = require "../../lib/js/list";
+Curry = require "../../lib/js/curry";
+Hashtbl = require "../../lib/js/hashtbl";
+Caml_obj = require "../../lib/js/caml_obj";
+Pervasives = require "../../lib/js/pervasives";
+Caml_format = require "../../lib/js/caml_format";
+Caml_option = require "../../lib/js/caml_option";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 equal = Caml_obj.caml_equal;
 
@@ -175,7 +175,7 @@ function map_opt(f, l) do
           Caml_option.valFromOption(match),
           acc
         };
-        continue ;
+        ::continue:: ;
       end else do
         return ;
       end end 
@@ -197,7 +197,7 @@ function list_any(f, e) do
           return res;
         end else do
           _l = l[1];
-          continue ;
+          ::continue:: ;
         end end 
       end else do
         return ;
@@ -224,9 +224,9 @@ function list_all(f, e) do
             Caml_option.valFromOption(match),
             acc
           };
-          continue ;
+          ::continue:: ;
         end else do
-          continue ;
+          ::continue:: ;
         end end 
       end else do
         return List.rev(acc);
@@ -241,12 +241,11 @@ function _try_atom(e, f) do
   if (e[0] >= 848054398) then do
     return ;
   end else do
-    try do
+    xpcall(function() do
       return Caml_option.some(Curry._1(f, e[1]));
-    end
-    catch (exn)do
+    end end,function(exn) return do
       return ;
-    end
+    end end)
   end end 
 end end
 
@@ -372,40 +371,40 @@ function get_field(name, e) do
         match = l[0];
         if (typeof match == "number") then do
           _l = l[1];
-          continue ;
+          ::continue:: ;
         end else if (match[0] ~= 848054398) then do
           _l = l[1];
-          continue ;
+          ::continue:: ;
         end else do
           match$1 = match[1];
           if (match$1) then do
             match$2 = match$1[0];
             if (typeof match$2 == "number") then do
               _l = l[1];
-              continue ;
+              ::continue:: ;
             end else if (match$2[0] ~= 726615281) then do
               _l = l[1];
-              continue ;
+              ::continue:: ;
             end else do
               match$3 = match$1[1];
               if (match$3) then do
                 if (match$3[1]) then do
                   _l = l[1];
-                  continue ;
+                  ::continue:: ;
                 end else if (Caml_obj.caml_equal(name$1, match$2[1])) then do
                   return match$3[0];
                 end else do
                   _l = l[1];
-                  continue ;
+                  ::continue:: ;
                 end end  end 
               end else do
                 _l = l[1];
-                continue ;
+                ::continue:: ;
               end end 
             end end  end 
           end else do
             _l = l[1];
-            continue ;
+            ::continue:: ;
           end end 
         end end  end 
       end else do
@@ -427,29 +426,29 @@ function _get_field_list(name, _l) do
       match = l[0];
       if (typeof match == "number") then do
         _l = l[1];
-        continue ;
+        ::continue:: ;
       end else if (match[0] ~= 848054398) then do
         _l = l[1];
-        continue ;
+        ::continue:: ;
       end else do
         match$1 = match[1];
         if (match$1) then do
           match$2 = match$1[0];
           if (typeof match$2 == "number") then do
             _l = l[1];
-            continue ;
+            ::continue:: ;
           end else if (match$2[0] ~= 726615281) then do
             _l = l[1];
-            continue ;
+            ::continue:: ;
           end else if (Caml_obj.caml_equal(name, match$2[1])) then do
             return match$1[1];
           end else do
             _l = l[1];
-            continue ;
+            ::continue:: ;
           end end  end  end 
         end else do
           _l = l[1];
-          continue ;
+          ::continue:: ;
         end end 
       end end  end 
     end else do
@@ -474,7 +473,7 @@ function _get_variant(s, args, _l) do
         return Curry._1(match[1], args);
       end else do
         _l = l[1];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return ;
@@ -504,10 +503,10 @@ function get_exn(e) do
   if (e ~= undefined) then do
     return Caml_option.valFromOption(e);
   end else do
-    throw {
-          Caml_builtin_exceptions.failure,
-          "CCSexp.Traverse.get_exn"
-        };
+    error ({
+      Caml_builtin_exceptions.failure,
+      "CCSexp.Traverse.get_exn"
+    })
   end end 
 end end
 

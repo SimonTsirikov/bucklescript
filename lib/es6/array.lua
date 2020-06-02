@@ -16,10 +16,10 @@ function init(l, f) do
     return {};
   end else do
     if (l < 0) then do
-      throw {
-            Caml_builtin_exceptions.invalid_argument,
-            "Array.init"
-          };
+      error ({
+        Caml_builtin_exceptions.invalid_argument,
+        "Array.init"
+      })
     end
      end 
     res = Caml_array.caml_make_vect(l, Curry._1(f, 0));
@@ -60,10 +60,10 @@ end end
 
 function sub(a, ofs, len) do
   if (ofs < 0 or len < 0 or ofs > (#a - len | 0)) then do
-    throw {
-          Caml_builtin_exceptions.invalid_argument,
-          "Array.sub"
-        };
+    error ({
+      Caml_builtin_exceptions.invalid_argument,
+      "Array.sub"
+    })
   end
    end 
   return Caml_array.caml_array_sub(a, ofs, len);
@@ -71,10 +71,10 @@ end end
 
 function fill(a, ofs, len, v) do
   if (ofs < 0 or len < 0 or ofs > (#a - len | 0)) then do
-    throw {
-          Caml_builtin_exceptions.invalid_argument,
-          "Array.fill"
-        };
+    error ({
+      Caml_builtin_exceptions.invalid_argument,
+      "Array.fill"
+    })
   end
    end 
   for i = ofs , (ofs + len | 0) - 1 | 0 , 1 do
@@ -85,10 +85,10 @@ end end
 
 function blit(a1, ofs1, a2, ofs2, len) do
   if (len < 0 or ofs1 < 0 or ofs1 > (#a1 - len | 0) or ofs2 < 0 or ofs2 > (#a2 - len | 0)) then do
-    throw {
-          Caml_builtin_exceptions.invalid_argument,
-          "Array.blit"
-        };
+    error ({
+      Caml_builtin_exceptions.invalid_argument,
+      "Array.blit"
+    })
   end
    end 
   return Caml_array.caml_array_blit(a1, ofs1, a2, ofs2, len);
@@ -103,10 +103,10 @@ end end
 
 function iter2(f, a, b) do
   if (#a ~= #b) then do
-    throw {
-          Caml_builtin_exceptions.invalid_argument,
-          "Array.iter2: arrays must have the same length"
-        };
+    error ({
+      Caml_builtin_exceptions.invalid_argument,
+      "Array.iter2: arrays must have the same length"
+    })
   end
    end 
   for i = 0 , #a - 1 | 0 , 1 do
@@ -132,10 +132,10 @@ function map2(f, a, b) do
   la = #a;
   lb = #b;
   if (la ~= lb) then do
-    throw {
-          Caml_builtin_exceptions.invalid_argument,
-          "Array.map2: arrays must have the same length"
-        };
+    error ({
+      Caml_builtin_exceptions.invalid_argument,
+      "Array.map2: arrays must have the same length"
+    })
   end
    end 
   if (la == 0) then do
@@ -183,7 +183,7 @@ function to_list(a) do
         res
       };
       _i = i - 1 | 0;
-      continue ;
+      ::continue:: ;
     end end 
   end;
 end end
@@ -195,7 +195,7 @@ function list_length(_accu, _param) do
     if (param) then do
       _param = param[1];
       _accu = accu + 1 | 0;
-      continue ;
+      ::continue:: ;
     end else do
       return accu;
     end end 
@@ -214,7 +214,7 @@ function of_list(l) do
         a[i] = param[0];
         _param = param[1];
         _i = i + 1 | 0;
-        continue ;
+        ::continue:: ;
       end else do
         return a;
       end end 
@@ -251,7 +251,7 @@ function exists(p, a) do
       return true;
     end else do
       _i = i + 1 | 0;
-      continue ;
+      ::continue:: ;
     end end  end 
   end;
 end end
@@ -265,7 +265,7 @@ function for_all(p, a) do
       return true;
     end else if (Curry._1(p, a[i])) then do
       _i = i + 1 | 0;
-      continue ;
+      ::continue:: ;
     end else do
       return false;
     end end  end 
@@ -283,7 +283,7 @@ function mem(x, a) do
       return true;
     end else do
       _i = i + 1 | 0;
-      continue ;
+      ::continue:: ;
     end end  end 
   end;
 end end
@@ -299,7 +299,7 @@ function memq(x, a) do
       return true;
     end else do
       _i = i + 1 | 0;
-      continue ;
+      ::continue:: ;
     end end  end 
   end;
 end end
@@ -325,14 +325,14 @@ function sort(cmp, a) do
     end else if (i31 < l) then do
       return i31;
     end else do
-      throw {
-            Bottom,
-            i
-          };
+      error ({
+        Bottom,
+        i
+      })
     end end  end  end 
   end end;
   trickle = function (l, i, e) do
-    try do
+    xpcall(function() do
       l$1 = l;
       _i = i;
       e$1 = e;
@@ -342,23 +342,22 @@ function sort(cmp, a) do
         if (Curry._2(cmp, Caml_array.caml_array_get(a, j), e$1) > 0) then do
           Caml_array.caml_array_set(a, i$1, Caml_array.caml_array_get(a, j));
           _i = j;
-          continue ;
+          ::continue:: ;
         end else do
           return Caml_array.caml_array_set(a, i$1, e$1);
         end end 
       end;
-    end
-    catch (raw_exn)do
+    end end,function(raw_exn) return do
       exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
       if (exn[0] == Bottom) then do
         return Caml_array.caml_array_set(a, exn[1], e);
       end else do
-        throw exn;
+        error (exn)
       end end 
-    end
+    end end)
   end end;
   bubble = function (l, i) do
-    try do
+    xpcall(function() do
       l$1 = l;
       _i = i;
       while(true) do
@@ -366,38 +365,37 @@ function sort(cmp, a) do
         j = maxson(l$1, i$1);
         Caml_array.caml_array_set(a, i$1, Caml_array.caml_array_get(a, j));
         _i = j;
-        continue ;
+        ::continue:: ;
       end;
-    end
-    catch (raw_exn)do
+    end end,function(raw_exn) return do
       exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
       if (exn[0] == Bottom) then do
         return exn[1];
       end else do
-        throw exn;
+        error (exn)
       end end 
-    end
+    end end)
   end end;
   trickleup = function (_i, e) do
     while(true) do
       i = _i;
       father = (i - 1 | 0) / 3 | 0;
       if (i == father) then do
-        throw {
-              Caml_builtin_exceptions.assert_failure,
-              --[[ tuple ]]{
-                "array.ml",
-                238,
-                4
-              }
-            };
+        error ({
+          Caml_builtin_exceptions.assert_failure,
+          --[[ tuple ]]{
+            "array.ml",
+            238,
+            4
+          }
+        })
       end
        end 
       if (Curry._2(cmp, Caml_array.caml_array_get(a, father), e) < 0) then do
         Caml_array.caml_array_set(a, i, Caml_array.caml_array_get(a, father));
         if (father > 0) then do
           _i = father;
-          continue ;
+          ::continue:: ;
         end else do
           return Caml_array.caml_array_set(a, 0, e);
         end end 
@@ -446,7 +444,7 @@ function stable_sort(cmp, a) do
           _d = d + 1 | 0;
           _s1 = Caml_array.caml_array_get(a, i1$1);
           _i1 = i1$1;
-          continue ;
+          ::continue:: ;
         end else do
           return blit(src2, i2, dst, d + 1 | 0, src2r - i2 | 0);
         end end 
@@ -457,7 +455,7 @@ function stable_sort(cmp, a) do
           _d = d + 1 | 0;
           _s2 = Caml_array.caml_array_get(src2, i2$1);
           _i2 = i2$1;
-          continue ;
+          ::continue:: ;
         end else do
           return blit(a, i1, dst, d + 1 | 0, src1r - i1 | 0);
         end end 

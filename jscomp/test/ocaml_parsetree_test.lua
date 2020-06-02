@@ -1,41 +1,41 @@
 --[['use strict';]]
 
-Arg = require "../../lib/js/arg.lua";
-Sys = require "../../lib/js/sys.lua";
-Char = require "../../lib/js/char.lua";
-List = require "../../lib/js/list.lua";
-Path = require "path";
-__Array = require "../../lib/js/array.lua";
-Block = require "../../lib/js/block.lua";
-Bytes = require "../../lib/js/bytes.lua";
-Curry = require "../../lib/js/curry.lua";
-__Buffer = require "../../lib/js/buffer.lua";
-Format = require "../../lib/js/format.lua";
-Lexing = require "../../lib/js/lexing.lua";
-Printf = require "../../lib/js/printf.lua";
-__String = require "../../lib/js/string.lua";
-Assert = require "assert";
-Caml_io = require "../../lib/js/caml_io.lua";
-Hashtbl = require "../../lib/js/hashtbl.lua";
-Parsing = require "../../lib/js/parsing.lua";
-Process = require "process";
-Caml_obj = require "../../lib/js/caml_obj.lua";
-Caml_sys = require "../../lib/js/caml_sys.lua";
-Filename = require "../../lib/js/filename.lua";
-Caml_array = require "../../lib/js/caml_array.lua";
-Caml_bytes = require "../../lib/js/caml_bytes.lua";
-Caml_int32 = require "../../lib/js/caml_int32.lua";
-Caml_int64 = require "../../lib/js/caml_int64.lua";
-Pervasives = require "../../lib/js/pervasives.lua";
-Caml_format = require "../../lib/js/caml_format.lua";
-Caml_option = require "../../lib/js/caml_option.lua";
-Caml_string = require "../../lib/js/caml_string.lua";
-Caml_primitive = require "../../lib/js/caml_primitive.lua";
-Caml_exceptions = require "../../lib/js/caml_exceptions.lua";
-CamlinternalLazy = require "../../lib/js/camlinternalLazy.lua";
-Caml_js_exceptions = require "../../lib/js/caml_js_exceptions.lua";
-Caml_external_polyfill = require "../../lib/js/caml_external_polyfill.lua";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
+Arg = require "../../lib/js/arg";
+Sys = require "../../lib/js/sys";
+Char = require "../../lib/js/char";
+List = require "../../lib/js/list";
+Path = require "";
+__Array = require "../../lib/js/array";
+Block = require "../../lib/js/block";
+Bytes = require "../../lib/js/bytes";
+Curry = require "../../lib/js/curry";
+__Buffer = require "../../lib/js/buffer";
+Format = require "../../lib/js/format";
+Lexing = require "../../lib/js/lexing";
+Printf = require "../../lib/js/printf";
+__String = require "../../lib/js/string";
+Assert = require "as";
+Caml_io = require "../../lib/js/caml_io";
+Hashtbl = require "../../lib/js/hashtbl";
+Parsing = require "../../lib/js/parsing";
+Process = require "pro";
+Caml_obj = require "../../lib/js/caml_obj";
+Caml_sys = require "../../lib/js/caml_sys";
+Filename = require "../../lib/js/filename";
+Caml_array = require "../../lib/js/caml_array";
+Caml_bytes = require "../../lib/js/caml_bytes";
+Caml_int32 = require "../../lib/js/caml_int32";
+Caml_int64 = require "../../lib/js/caml_int64";
+Pervasives = require "../../lib/js/pervasives";
+Caml_format = require "../../lib/js/caml_format";
+Caml_option = require "../../lib/js/caml_option";
+Caml_string = require "../../lib/js/caml_string";
+Caml_primitive = require "../../lib/js/caml_primitive";
+Caml_exceptions = require "../../lib/js/caml_exceptions";
+CamlinternalLazy = require "../../lib/js/camlinternalLazy";
+Caml_js_exceptions = require "../../lib/js/caml_js_exceptions";
+Caml_external_polyfill = require "../../lib/js/caml_external_polyfill";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 fast = do
   contents: false
@@ -47,13 +47,12 @@ end;
 
 bs_vscode;
 
-try do
+xpcall(function() do
   Caml_sys.caml_sys_getenv("BS_VSCODE");
   bs_vscode = true;
-end
-catch (exn)do
+end end,function(exn) return do
   bs_vscode = false;
-end
+end end)
 
 color = do
   contents: undefined
@@ -64,7 +63,7 @@ Fatal_error = Caml_exceptions.create("Ocaml_parsetree_test.Misc.Fatal_error");
 function fatal_error(msg) do
   Pervasives.prerr_string(">> Fatal error: ");
   console.error(msg);
-  throw Fatal_error;
+  error (Fatal_error)
 end end
 
 function create_hashtable(size, init) do
@@ -189,7 +188,7 @@ function style_of_tag(s) do
         return cur_styles.contents.warning;end end end 
      do
     else do
-      throw Caml_builtin_exceptions.not_found;
+      error (Caml_builtin_exceptions.not_found)
       end end
       
   end
@@ -206,26 +205,25 @@ function set_color_tag_handling(ppf) do
   functions$prime_mark_open_tag = function (param) do
     or_else = partial_arg;
     s = param;
-    try do
+    xpcall(function() do
       style = style_of_tag(s);
       if (color_enabled.contents) then do
         return ansi_of_style_l(style);
       end else do
         return "";
       end end 
-    end
-    catch (exn)do
+    end end,function(exn) return do
       if (exn == Caml_builtin_exceptions.not_found) then do
         return Curry._1(or_else, s);
       end else do
-        throw exn;
+        error (exn)
       end end 
-    end
+    end end)
   end end;
   functions$prime_mark_close_tag = function (param) do
     or_else = partial_arg$1;
     s = param;
-    try do
+    xpcall(function() do
       style_of_tag(s);
       if (color_enabled.contents) then do
         return ansi_of_style_l(--[[ :: ]]{
@@ -235,14 +233,13 @@ function set_color_tag_handling(ppf) do
       end else do
         return "";
       end end 
-    end
-    catch (exn)do
+    end end,function(exn) return do
       if (exn == Caml_builtin_exceptions.not_found) then do
         return Curry._1(or_else, s);
       end else do
-        throw exn;
+        error (exn)
       end end 
-    end
+    end end)
   end end;
   functions$prime_print_open_tag = functions.print_open_tag;
   functions$prime_print_close_tag = functions.print_close_tag;
@@ -601,14 +598,14 @@ function letter(param) do
               };end end end 
      do
     else do
-      throw {
-            Caml_builtin_exceptions.assert_failure,
-            --[[ tuple ]]{
-              "warnings.ml",
-              176,
-              9
-            }
-          };
+      error ({
+        Caml_builtin_exceptions.assert_failure,
+        --[[ tuple ]]{
+          "warnings.ml",
+          176,
+          9
+        }
+      })
       end end
       
   end
@@ -655,7 +652,7 @@ function parse_opt(error, active, flags, s) do
         end else do
           _i = i + 1 | 0;
           _n = (Caml_int32.imul(10, n) + Caml_string.get(s, i) | 0) - --[[ "0" ]]48 | 0;
-          continue ;
+          ::continue:: ;
         end end 
       end end 
     end;
@@ -668,10 +665,10 @@ function parse_opt(error, active, flags, s) do
       match$1 = get_num(0, i$1 + 2 | 0);
       n2 = match$1[1];
       if (n2 < n1) then do
-        throw {
-              Arg.Bad,
-              "Ill-formed list of warnings"
-            };
+        error ({
+          Arg.Bad,
+          "Ill-formed list of warnings"
+        })
       end
        end 
       return --[[ tuple ]]{
@@ -697,35 +694,35 @@ function parse_opt(error, active, flags, s) do
         if (c >= 65) then do
           if (c >= 97) then do
             if (c >= 123) then do
-              throw {
-                    Arg.Bad,
-                    "Ill-formed list of warnings"
-                  };
+              error ({
+                Arg.Bad,
+                "Ill-formed list of warnings"
+              })
             end
              end 
             List.iter(clear, letter(Caml_string.get(s, i)));
             _i = i + 1 | 0;
-            continue ;
+            ::continue:: ;
           end else do
             if (c >= 91) then do
-              throw {
-                    Arg.Bad,
-                    "Ill-formed list of warnings"
-                  };
+              error ({
+                Arg.Bad,
+                "Ill-formed list of warnings"
+              })
             end
              end 
             List.iter(set, letter(Char.lowercase(Caml_string.get(s, i))));
             _i = i + 1 | 0;
-            continue ;
+            ::continue:: ;
           end end 
         end else if (c >= 46) then do
           if (c >= 64) then do
             return loop_letter_num(set_all, i + 1 | 0);
           end else do
-            throw {
-                  Arg.Bad,
-                  "Ill-formed list of warnings"
-                };
+            error ({
+              Arg.Bad,
+              "Ill-formed list of warnings"
+            })
           end end 
         end else if (c >= 43) then do
           local ___conditional___=(c - 43 | 0);
@@ -733,50 +730,50 @@ function parse_opt(error, active, flags, s) do
              if ___conditional___ = 0 then do
                 return loop_letter_num(set, i + 1 | 0);end end end 
              if ___conditional___ = 1 then do
-                throw {
-                      Arg.Bad,
-                      "Ill-formed list of warnings"
-                    };end end end 
+                error ({
+                  Arg.Bad,
+                  "Ill-formed list of warnings"
+                })end end end 
              if ___conditional___ = 2 then do
                 return loop_letter_num(clear, i + 1 | 0);end end end 
              do
             
           end
         end else do
-          throw {
-                Arg.Bad,
-                "Ill-formed list of warnings"
-              };
+          error ({
+            Arg.Bad,
+            "Ill-formed list of warnings"
+          })
         end end  end  end 
       end end 
     end;
   end end;
   loop_letter_num = function (myset, i) do
     if (i >= #s) then do
-      throw {
-            Arg.Bad,
-            "Ill-formed list of warnings"
-          };
+      error ({
+        Arg.Bad,
+        "Ill-formed list of warnings"
+      })
     end
      end 
     match = Caml_string.get(s, i);
     if (match >= 65) then do
       if (match >= 97) then do
         if (match >= 123) then do
-          throw {
-                Arg.Bad,
-                "Ill-formed list of warnings"
-              };
+          error ({
+            Arg.Bad,
+            "Ill-formed list of warnings"
+          })
         end
          end 
         List.iter(myset, letter(Caml_string.get(s, i)));
         return loop(i + 1 | 0);
       end else do
         if (match >= 91) then do
-          throw {
-                Arg.Bad,
-                "Ill-formed list of warnings"
-              };
+          error ({
+            Arg.Bad,
+            "Ill-formed list of warnings"
+          })
         end
          end 
         List.iter(myset, letter(Char.lowercase(Caml_string.get(s, i))));
@@ -784,10 +781,10 @@ function parse_opt(error, active, flags, s) do
       end end 
     end else do
       if (match > 57 or match < 48) then do
-        throw {
-              Arg.Bad,
-              "Ill-formed list of warnings"
-            };
+        error ({
+          Arg.Bad,
+          "Ill-formed list of warnings"
+        })
       end
        end 
       match$1 = get_range(i);
@@ -888,14 +885,14 @@ function message(param) do
               return "the method " .. (lab .. " is overridden.");
             end end 
           end else do
-            throw {
-                  Caml_builtin_exceptions.assert_failure,
-                  --[[ tuple ]]{
-                    "warnings.ml",
-                    283,
-                    26
-                  }
-                };
+            error ({
+              Caml_builtin_exceptions.assert_failure,
+              --[[ tuple ]]{
+                "warnings.ml",
+                283,
+                26
+              }
+            })
           end end end end end 
        if ___conditional___ = 3--[[ Partial_match ]] then do
           s$1 = param[0];
@@ -926,14 +923,14 @@ function message(param) do
               return "the instance variable " .. (lab$1 .. " is overridden.\nThe behaviour changed in ocaml 3.10 (previous behaviour was hiding.)");
             end end 
           end else do
-            throw {
-                  Caml_builtin_exceptions.assert_failure,
-                  --[[ tuple ]]{
-                    "warnings.ml",
-                    303,
-                    37
-                  }
-                };
+            error ({
+              Caml_builtin_exceptions.assert_failure,
+              --[[ tuple ]]{
+                "warnings.ml",
+                303,
+                37
+              }
+            })
           end end end end end 
        if ___conditional___ = 6--[[ Implicit_public_methods ]] then do
           return "the following private methods were made public implicitly:\n " .. (__String.concat(" ", param[0]) .. ".");end end end 
@@ -1043,14 +1040,14 @@ function message(param) do
           if (param[2]) then do
             return "this record of type " .. (ty .. (" contains fields that are \nnot visible in the current scope: " .. (__String.concat(" ", slist$2) .. ".\nThey will not be selected if the type becomes unknown.")));
           end else do
-            throw {
-                  Caml_builtin_exceptions.assert_failure,
-                  --[[ tuple ]]{
-                    "warnings.ml",
-                    365,
-                    39
-                  }
-                };
+            error ({
+              Caml_builtin_exceptions.assert_failure,
+              --[[ tuple ]]{
+                "warnings.ml",
+                365,
+                39
+              }
+            })
           end end end else 
        if ___conditional___ = 24--[[ Ambiguous_name ]] then do
           slist$3 = param[0];
@@ -1061,14 +1058,14 @@ function message(param) do
           if (param[2]) then do
             return "these field labels belong to several types: " .. (__String.concat(" ", param[1]) .. "\nThe first one was selected. Please disambiguate if this is wrong.");
           end else do
-            throw {
-                  Caml_builtin_exceptions.assert_failure,
-                  --[[ tuple ]]{
-                    "warnings.ml",
-                    374,
-                    36
-                  }
-                };
+            error ({
+              Caml_builtin_exceptions.assert_failure,
+              --[[ tuple ]]{
+                "warnings.ml",
+                374,
+                36
+              }
+            })
           end end end else 
        if ___conditional___ = 25--[[ Disambiguated_name ]] then do
           return "this use of " .. (param[0] .. " required disambiguation.");end end end 
@@ -1291,7 +1288,7 @@ function highlight_terminfo(ppf, num_lines, lb, locs) do
   Format.pp_print_flush(ppf, --[[ () ]]0);
   pos0 = -lb.lex_abs_pos | 0;
   if (pos0 < 0) then do
-    throw Pervasives.Exit;
+    error (Pervasives.Exit)
   end
    end 
   lines = num_loc_lines.contents;
@@ -1302,7 +1299,7 @@ function highlight_terminfo(ppf, num_lines, lb, locs) do
      end 
   end
   if (lines >= (num_lines - 2 | 0)) then do
-    throw Pervasives.Exit;
+    error (Pervasives.Exit)
   end
    end 
   Caml_io.caml_ml_flush(Pervasives.stdout);
@@ -1343,7 +1340,7 @@ end end
 function highlight_dumb(ppf, lb, loc) do
   pos0 = -lb.lex_abs_pos | 0;
   if (pos0 < 0) then do
-    throw Pervasives.Exit;
+    error (Pervasives.Exit)
   end
    end 
   end_pos = (lb.lex_buffer_len - pos0 | 0) - 1 | 0;
@@ -1464,53 +1461,50 @@ function highlight_locations(ppf, locs) do
         match$1 = input_lexbuf.contents;
         if (match$1 ~= undefined) then do
           norepeat;
-          try do
+          xpcall(function() do
             norepeat = Caml_sys.caml_sys_getenv("TERM") == "norepeat";
-          end
-          catch (exn)do
+          end end,function(exn) return do
             if (exn == Caml_builtin_exceptions.not_found) then do
               norepeat = false;
             end else do
-              throw exn;
+              error (exn)
             end end 
-          end
+          end end)
           if (norepeat) then do
             return false;
           end else do
             loc1 = List.hd(locs);
-            try do
+            xpcall(function() do
               highlight_dumb(ppf, match$1, loc1);
               return true;
-            end
-            catch (exn$1)do
+            end end,function(exn$1) return do
               if (exn$1 == Pervasives.Exit) then do
                 return false;
               end else do
-                throw exn$1;
+                error (exn$1)
               end end 
-            end
+            end end)
           end end 
         end else do
           return false;
         end end 
       end else do
         status.contents = Caml_external_polyfill.resolve("caml_terminfo_setup")(Pervasives.stdout);
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       match$2 = input_lexbuf.contents;
       if (match$2 ~= undefined) then do
-        try do
+        xpcall(function() do
           highlight_terminfo(ppf, match[0], match$2, locs);
           return true;
-        end
-        catch (exn$2)do
+        end end,function(exn$2) return do
           if (exn$2 == Pervasives.Exit) then do
             return false;
           end else do
-            throw exn$2;
+            error (exn$2)
           end end 
-        end
+        end end)
       end else do
         return false;
       end end 
@@ -1531,7 +1525,7 @@ function show_filename(file) do
           return dir;
         end else if (base == Filename.current_dir_name) then do
           _s = dir;
-          continue ;
+          ::continue:: ;
         end else if (base == Filename.parent_dir_name) then do
           return Curry._1(Filename.dirname, aux(dir));
         end else do
@@ -1780,10 +1774,10 @@ function prerr_warning(loc, w) do
         end else if (Caml_string.get(str, i) == --[[ "\n" ]]10) then do
           _c = c + 1 | 0;
           _i = i + 1 | 0;
-          continue ;
+          ::continue:: ;
         end else do
           _i = i + 1 | 0;
-          continue ;
+          ::continue:: ;
         end end  end 
       end;
     end end;
@@ -2250,7 +2244,7 @@ function get_docstring(info, dsl) do
         return ds;
       end else do
         _param = param[1];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return ;
@@ -2274,10 +2268,10 @@ function get_docstrings(dsl) do
           ds,
           acc
         };
-        continue ;
+        ::continue:: ;
       end else do
         _param = param[1];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return List.rev(acc);
@@ -2309,31 +2303,29 @@ function set_pre_docstrings(pos, dsl) do
 end end
 
 function get_pre_docs(pos) do
-  try do
+  xpcall(function() do
     dsl = Hashtbl.find(pre_table, pos);
     associate_docstrings(dsl);
     return get_docstring(false, dsl);
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Caml_builtin_exceptions.not_found) then do
       return ;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 function mark_pre_docs(pos) do
-  try do
+  xpcall(function() do
     return associate_docstrings(Hashtbl.find(pre_table, pos));
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Caml_builtin_exceptions.not_found) then do
       return --[[ () ]]0;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 post_table = Hashtbl.create(undefined, 50);
@@ -2347,45 +2339,42 @@ function set_post_docstrings(pos, dsl) do
 end end
 
 function get_post_docs(pos) do
-  try do
+  xpcall(function() do
     dsl = Hashtbl.find(post_table, pos);
     associate_docstrings(dsl);
     return get_docstring(false, dsl);
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Caml_builtin_exceptions.not_found) then do
       return ;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 function mark_post_docs(pos) do
-  try do
+  xpcall(function() do
     return associate_docstrings(Hashtbl.find(post_table, pos));
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Caml_builtin_exceptions.not_found) then do
       return --[[ () ]]0;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 function get_info(pos) do
-  try do
+  xpcall(function() do
     dsl = Hashtbl.find(post_table, pos);
     return get_docstring(true, dsl);
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Caml_builtin_exceptions.not_found) then do
       return ;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 floating_table = Hashtbl.create(undefined, 50);
@@ -2399,16 +2388,15 @@ function set_floating_docstrings(pos, dsl) do
 end end
 
 function get_text(pos) do
-  try do
+  xpcall(function() do
     return get_docstrings(Hashtbl.find(floating_table, pos));
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Caml_builtin_exceptions.not_found) then do
       return --[[ [] ]]0;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 pre_extra_table = Hashtbl.create(undefined, 50);
@@ -2422,16 +2410,15 @@ function set_pre_extra_docstrings(pos, dsl) do
 end end
 
 function get_pre_extra_text(pos) do
-  try do
+  xpcall(function() do
     return get_docstrings(Hashtbl.find(pre_extra_table, pos));
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Caml_builtin_exceptions.not_found) then do
       return --[[ [] ]]0;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 post_extra_table = Hashtbl.create(undefined, 50);
@@ -2445,16 +2432,15 @@ function set_post_extra_docstrings(pos, dsl) do
 end end
 
 function get_post_extra_text(pos) do
-  try do
+  xpcall(function() do
     return get_docstrings(Hashtbl.find(post_extra_table, pos));
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Caml_builtin_exceptions.not_found) then do
       return --[[ [] ]]0;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 function symbol_docs(param) do
@@ -3744,14 +3730,14 @@ function mkexp_constraint(e, param) do
                   t2
                 }));
   end else do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "parser.mly",
-            153,
-            18
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "parser.mly",
+        153,
+        18
+      }
+    })
   end end  end 
 end end
 
@@ -3766,35 +3752,35 @@ function array_function(str, name) do
 end end
 
 function unclosed(opening_name, opening_num, closing_name, closing_num) do
-  throw {
-        __Error$1,
-        --[[ Unclosed ]]Block.__(0, {
-            rhs_loc(opening_num),
-            opening_name,
-            rhs_loc(closing_num),
-            closing_name
-          })
-      };
+  error ({
+    __Error$1,
+    --[[ Unclosed ]]Block.__(0, {
+        rhs_loc(opening_num),
+        opening_name,
+        rhs_loc(closing_num),
+        closing_name
+      })
+  })
 end end
 
 function expecting(pos, nonterm) do
-  throw {
-        __Error$1,
-        --[[ Expecting ]]Block.__(1, {
-            rhs_loc(pos),
-            nonterm
-          })
-      };
+  error ({
+    __Error$1,
+    --[[ Expecting ]]Block.__(1, {
+        rhs_loc(pos),
+        nonterm
+      })
+  })
 end end
 
 function not_expecting(pos, nonterm) do
-  throw {
-        __Error$1,
-        --[[ Not_expecting ]]Block.__(2, {
-            rhs_loc(pos),
-            nonterm
-          })
-      };
+  error ({
+    __Error$1,
+    --[[ Not_expecting ]]Block.__(2, {
+        rhs_loc(pos),
+        nonterm
+      })
+  })
 end end
 
 function bigarray_function(str, name) do
@@ -3840,13 +3826,13 @@ end end
 
 function check_variable(vl, loc, v) do
   if (List.mem(v, vl)) then do
-    throw {
-          __Error$1,
-          --[[ Variable_in_scope ]]Block.__(4, {
-              loc,
-              v
-            })
-        };
+    error ({
+      __Error$1,
+      --[[ Variable_in_scope ]]Block.__(4, {
+          loc,
+          v
+        })
+    })
   end else do
     return 0;
   end end 
@@ -4209,10 +4195,10 @@ yytransl_block = {
 
 yyact = {
   (function (param) do
-      throw {
-            Caml_builtin_exceptions.failure,
-            "parser"
-          };
+      error ({
+        Caml_builtin_exceptions.failure,
+        "parser"
+      })
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
@@ -4230,7 +4216,7 @@ yyact = {
       return Parsing.peek_val(__caml_parser_env, 1);
     end end),
   (function (__caml_parser_env) do
-      throw Caml_builtin_exceptions.end_of_file;
+      error (Caml_builtin_exceptions.end_of_file)
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
@@ -4559,13 +4545,13 @@ yyact = {
       end end 
       if (exit == 1) then do
         if (lbs.lbs_attributes ~= --[[ [] ]]0) then do
-          throw {
-                __Error$1,
-                --[[ Not_expecting ]]Block.__(2, {
-                    lbs.lbs_loc,
-                    "attributes"
-                  })
-              };
+          error ({
+            __Error$1,
+            --[[ Not_expecting ]]Block.__(2, {
+                lbs.lbs_loc,
+                "attributes"
+              })
+          })
         end
          end 
         bindings$1 = List.map((function (lb) do
@@ -5067,35 +5053,35 @@ yyact = {
       body = _3;
       bindings = List.map((function (lb) do
               if (lb.lb_attributes ~= --[[ [] ]]0) then do
-                throw {
-                      __Error$1,
-                      --[[ Not_expecting ]]Block.__(2, {
-                          lb.lb_loc,
-                          "item attribute"
-                        })
-                    };
+                error ({
+                  __Error$1,
+                  --[[ Not_expecting ]]Block.__(2, {
+                      lb.lb_loc,
+                      "item attribute"
+                    })
+                })
               end
                end 
               return mk$17(lb.lb_loc, undefined, undefined, undefined, lb.lb_pattern, lb.lb_expression);
             end end), lbs.lbs_bindings);
       if (lbs.lbs_extension ~= undefined) then do
-        throw {
-              __Error$1,
-              --[[ Not_expecting ]]Block.__(2, {
-                  lbs.lbs_loc,
-                  "extension"
-                })
-            };
+        error ({
+          __Error$1,
+          --[[ Not_expecting ]]Block.__(2, {
+              lbs.lbs_loc,
+              "extension"
+            })
+        })
       end
        end 
       if (lbs.lbs_attributes ~= --[[ [] ]]0) then do
-        throw {
-              __Error$1,
-              --[[ Not_expecting ]]Block.__(2, {
-                  lbs.lbs_loc,
-                  "attributes"
-                })
-            };
+        error ({
+          __Error$1,
+          --[[ Not_expecting ]]Block.__(2, {
+              lbs.lbs_loc,
+              "attributes"
+            })
+        })
       end
        end 
       return mkclass(--[[ Pcl_let ]]Block.__(4, {
@@ -5247,7 +5233,7 @@ yyact = {
       _4 = Parsing.peek_val(__caml_parser_env, 2);
       _6 = Parsing.peek_val(__caml_parser_env, 0);
       if (_1 == --[[ Override ]]0) then do
-        throw Escape_error;
+        error (Escape_error)
       end
        end 
       return --[[ tuple ]]{
@@ -5313,7 +5299,7 @@ yyact = {
       _4 = Parsing.peek_val(__caml_parser_env, 2);
       _6 = Parsing.peek_val(__caml_parser_env, 0);
       if (_1 == --[[ Override ]]0) then do
-        throw Escape_error;
+        error (Escape_error)
       end
        end 
       return --[[ tuple ]]{
@@ -5331,7 +5317,7 @@ yyact = {
       _4 = Parsing.peek_val(__caml_parser_env, 2);
       _6 = Parsing.peek_val(__caml_parser_env, 0);
       if (_1 == --[[ Override ]]0) then do
-        throw Escape_error;
+        error (Escape_error)
       end
        end 
       return --[[ tuple ]]{
@@ -5824,13 +5810,13 @@ yyact = {
       body = _3;
       bindings = List.map((function (lb) do
               if (lb.lb_attributes ~= --[[ [] ]]0) then do
-                throw {
-                      __Error$1,
-                      --[[ Not_expecting ]]Block.__(2, {
-                          lb.lb_loc,
-                          "item attribute"
-                        })
-                    };
+                error ({
+                  __Error$1,
+                  --[[ Not_expecting ]]Block.__(2, {
+                      lb.lb_loc,
+                      "item attribute"
+                    })
+                })
               end
                end 
               return mk$17(lb.lb_loc, undefined, undefined, undefined, lb.lb_pattern, lb.lb_expression);
@@ -5933,7 +5919,7 @@ yyact = {
   (function (__caml_parser_env) do
       Parsing.peek_val(__caml_parser_env, 3);
       Parsing.peek_val(__caml_parser_env, 2);
-      throw Escape_error;
+      error (Escape_error)
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
@@ -7335,10 +7321,10 @@ yyact = {
             };
     end end),
   (function (__caml_parser_env) do
-      throw Escape_error;
+      error (Escape_error)
     end end),
   (function (__caml_parser_env) do
-      throw Escape_error;
+      error (Escape_error)
     end end),
   (function (__caml_parser_env) do
       return Parsing.peek_val(__caml_parser_env, 0);
@@ -8390,12 +8376,12 @@ yyact = {
       _2 = Parsing.peek_val(__caml_parser_env, 1);
       if (_2) then do
         if (_2[1]) then do
-          throw Parsing.Parse_error;
+          error (Parsing.Parse_error)
         end
          end 
         return _2[0];
       end else do
-        throw Parsing.Parse_error;
+        error (Parsing.Parse_error)
       end end 
     end end),
   (function (__caml_parser_env) do
@@ -8405,12 +8391,12 @@ yyact = {
       _2 = Parsing.peek_val(__caml_parser_env, 1);
       if (_2) then do
         if (_2[1]) then do
-          throw Parsing.Parse_error;
+          error (Parsing.Parse_error)
         end
          end 
         return _2[0];
       end else do
-        throw Parsing.Parse_error;
+        error (Parsing.Parse_error)
       end end 
     end end),
   (function (__caml_parser_env) do
@@ -9078,10 +9064,10 @@ yyact = {
                   p2
                 });
       end else do
-        throw {
-              __Error$1,
-              --[[ Applicative_path ]]Block.__(3, {symbol_rloc(--[[ () ]]0)})
-            };
+        error ({
+          __Error$1,
+          --[[ Applicative_path ]]Block.__(3, {symbol_rloc(--[[ () ]]0)})
+        })
       end end 
     end end),
   (function (__caml_parser_env) do
@@ -9548,46 +9534,46 @@ yyact = {
               });
     end end),
   (function (__caml_parser_env) do
-      throw {
-            Parsing.YYexit,
-            Parsing.peek_val(__caml_parser_env, 0)
-          };
+      error ({
+        Parsing.YYexit,
+        Parsing.peek_val(__caml_parser_env, 0)
+      })
     end end),
   (function (__caml_parser_env) do
-      throw {
-            Parsing.YYexit,
-            Parsing.peek_val(__caml_parser_env, 0)
-          };
+      error ({
+        Parsing.YYexit,
+        Parsing.peek_val(__caml_parser_env, 0)
+      })
     end end),
   (function (__caml_parser_env) do
-      throw {
-            Parsing.YYexit,
-            Parsing.peek_val(__caml_parser_env, 0)
-          };
+      error ({
+        Parsing.YYexit,
+        Parsing.peek_val(__caml_parser_env, 0)
+      })
     end end),
   (function (__caml_parser_env) do
-      throw {
-            Parsing.YYexit,
-            Parsing.peek_val(__caml_parser_env, 0)
-          };
+      error ({
+        Parsing.YYexit,
+        Parsing.peek_val(__caml_parser_env, 0)
+      })
     end end),
   (function (__caml_parser_env) do
-      throw {
-            Parsing.YYexit,
-            Parsing.peek_val(__caml_parser_env, 0)
-          };
+      error ({
+        Parsing.YYexit,
+        Parsing.peek_val(__caml_parser_env, 0)
+      })
     end end),
   (function (__caml_parser_env) do
-      throw {
-            Parsing.YYexit,
-            Parsing.peek_val(__caml_parser_env, 0)
-          };
+      error ({
+        Parsing.YYexit,
+        Parsing.peek_val(__caml_parser_env, 0)
+      })
     end end),
   (function (__caml_parser_env) do
-      throw {
-            Parsing.YYexit,
-            Parsing.peek_val(__caml_parser_env, 0)
-          };
+      error ({
+        Parsing.YYexit,
+        Parsing.peek_val(__caml_parser_env, 0)
+      })
     end end)
 };
 
@@ -9658,14 +9644,14 @@ function assert_same_type(lexbuf, x, y) do
   lhs = type_of_directive(x);
   rhs = type_of_directive(y);
   if (lhs ~= rhs) then do
-    throw {
-          __Error$2,
-          --[[ Conditional_expr_expected_type ]]Block.__(7, {
-              lhs,
-              rhs
-            }),
-          curr(lexbuf)
-        };
+    error ({
+      __Error$2,
+      --[[ Conditional_expr_expected_type ]]Block.__(7, {
+          lhs,
+          rhs
+        }),
+      curr(lexbuf)
+    })
   end
    end 
   return y;
@@ -9681,17 +9667,16 @@ exit = 0;
 
 i;
 
-try do
+xpcall(function() do
   i = __String.rindex(Sys.ocaml_version, --[[ "+" ]]43);
   exit = 1;
-end
-catch (exn$1)do
+end end,function(exn$1) return do
   if (exn$1 == Caml_builtin_exceptions.not_found) then do
     tmp = "";
   end else do
-    throw exn$1;
+    error (exn$1)
   end end 
-end
+end end)
 
 if (exit == 1) then do
   tmp = __String.sub(Sys.ocaml_version, i + 1 | 0, (#Sys.ocaml_version - i | 0) - 1 | 0);
@@ -9725,7 +9710,7 @@ function semantic_version_parse(str, start, last_index) do
           if (v >= 0 and v <= 9) then do
             _acc = Caml_int32.imul(acc, 10) + v | 0;
             _start = start + 1 | 0;
-            continue ;
+            ::continue:: ;
           end else do
             return --[[ tuple ]]{
                     acc,
@@ -9758,18 +9743,16 @@ end end
 
 function defined(str) do
   val;
-  try do
+  xpcall(function() do
     val = Hashtbl.find(directive_built_in_values, str);
-  end
-  catch (exn)do
-    try do
+  end end,function(exn) return do
+    xpcall(function() do
       Caml_sys.caml_sys_getenv(str);
       return true;
-    end
-    catch (exn$1)do
+    end end,function(exn$1) return do
       return false;
-    end
-  end
+    end end)
+  end end)
   if (typeof val == "number") then do
     return false;
   end else do
@@ -9779,47 +9762,42 @@ end end
 
 function query(loc, str) do
   v;
-  try do
+  xpcall(function() do
     v = Hashtbl.find(directive_built_in_values, str);
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Caml_builtin_exceptions.not_found) then do
       exit = 0;
       v$1;
-      try do
+      xpcall(function() do
         v$1 = Caml_sys.caml_sys_getenv(str);
         exit = 2;
-      end
-      catch (exn$1)do
+      end end,function(exn$1) return do
         if (exn$1 == Caml_builtin_exceptions.not_found) then do
           return --[[ Dir_bool ]]Block.__(0, {false});
         end else do
-          throw exn$1;
+          error (exn$1)
         end end 
-      end
+      end end)
       if (exit == 2) then do
-        try do
+        xpcall(function() do
           return --[[ Dir_bool ]]Block.__(0, {Pervasives.bool_of_string(v$1)});
-        end
-        catch (exn$2)do
-          try do
+        end end,function(exn$2) return do
+          xpcall(function() do
             return --[[ Dir_int ]]Block.__(2, {Caml_format.caml_int_of_string(v$1)});
-          end
-          catch (exn$3)do
-            try do
+          end end,function(exn$3) return do
+            xpcall(function() do
               return --[[ Dir_float ]]Block.__(1, {Caml_format.caml_float_of_string(v$1)});
-            end
-            catch (exn$4)do
+            end end,function(exn$4) return do
               return --[[ Dir_string ]]Block.__(3, {v$1});
-            end
-          end
-        end
+            end end)
+          end end)
+        end end)
       end
        end 
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
   if (typeof v == "number") then do
     return --[[ Dir_bool ]]Block.__(0, {false});
   end else do
@@ -9837,11 +9815,11 @@ function value_of_token(loc, t) do
           return --[[ Dir_bool ]]Block.__(0, {true});end end end 
        do
       else do
-        throw {
-              __Error$2,
-              --[[ Unexpected_token_in_conditional ]]4,
-              loc
-            };
+        error ({
+          __Error$2,
+          --[[ Unexpected_token_in_conditional ]]4,
+          loc
+        })
         end end
         
     end
@@ -9858,11 +9836,11 @@ function value_of_token(loc, t) do
           return query(loc, t[0]);end end end 
        do
       else do
-        throw {
-              __Error$2,
-              --[[ Unexpected_token_in_conditional ]]4,
-              loc
-            };
+        error ({
+          __Error$2,
+          --[[ Unexpected_token_in_conditional ]]4,
+          loc
+        })
         end end
         
     end
@@ -9886,14 +9864,14 @@ function directive_parse(token_with_comments, lexbuf) do
           local ___conditional___=(t);
           do
              if ___conditional___ = 25--[[ EOF ]] then do
-                throw {
-                      __Error$2,
-                      --[[ Unterminated_if ]]2,
-                      curr(lexbuf)
-                    };end end end 
+                error ({
+                  __Error$2,
+                  --[[ Unterminated_if ]]2,
+                  curr(lexbuf)
+                })end end end 
              if ___conditional___ = 100--[[ EOL ]] then do
                 _param = --[[ () ]]0;
-                continue ;end end end 
+                ::continue:: ;end end end 
              do
             else do
               return t;
@@ -9906,7 +9884,7 @@ function directive_parse(token_with_comments, lexbuf) do
              if ___conditional___ = 18--[[ COMMENT ]]
              or ___conditional___ = 19--[[ DOCSTRING ]] then do
                 _param = --[[ () ]]0;
-                continue ;end end end 
+                ::continue:: ;end end end 
              do
             else do
               return t;
@@ -9919,14 +9897,14 @@ function directive_parse(token_with_comments, lexbuf) do
   end end;
   push = function (e) do
     if (look_ahead.contents ~= undefined) then do
-      throw {
-            Caml_builtin_exceptions.assert_failure,
-            --[[ tuple ]]{
-              "lexer.mll",
-              312,
-              4
-            }
-          };
+      error ({
+        Caml_builtin_exceptions.assert_failure,
+        --[[ tuple ]]{
+          "lexer.mll",
+          312,
+          4
+        }
+      })
     end
      end 
     look_ahead.contents = e;
@@ -9965,11 +9943,11 @@ function directive_parse(token_with_comments, lexbuf) do
                   str = rhs[0];
                   last_index = #str - 1 | 0;
                   if (last_index < 0) then do
-                    throw {
-                          __Error$2,
-                          --[[ Illegal_semver ]]Block.__(6, {str}),
-                          loc
-                        };
+                    error ({
+                      __Error$2,
+                      --[[ Illegal_semver ]]Block.__(6, {str}),
+                      loc
+                    })
                   end
                    end 
                   v = str.charCodeAt(0);
@@ -9990,11 +9968,11 @@ function directive_parse(token_with_comments, lexbuf) do
                       do
                          if ___conditional___ = 0 then do
                             if (last_index == 0) then do
-                              throw {
-                                    __Error$2,
-                                    --[[ Illegal_semver ]]Block.__(6, {str}),
-                                    loc
-                                  };
+                              error ({
+                                __Error$2,
+                                --[[ Illegal_semver ]]Block.__(6, {str}),
+                                loc
+                              })
                             end
                              end 
                             match = str[1] == "=" and --[[ tuple ]]{
@@ -10008,11 +9986,11 @@ function directive_parse(token_with_comments, lexbuf) do
                             exit$2 = 1;end else 
                          if ___conditional___ = 2 then do
                             if (last_index == 0) then do
-                              throw {
-                                    __Error$2,
-                                    --[[ Illegal_semver ]]Block.__(6, {str}),
-                                    loc
-                                  };
+                              error ({
+                                __Error$2,
+                                --[[ Illegal_semver ]]Block.__(6, {str}),
+                                loc
+                              })
                             end
                              end 
                             match = str[1] == "=" and --[[ tuple ]]{
@@ -10072,26 +10050,26 @@ function directive_parse(token_with_comments, lexbuf) do
                   end end  end 
                 end end 
                 if (exit$1 == 3) then do
-                  throw {
-                        __Error$2,
-                        --[[ Conditional_expr_expected_type ]]Block.__(7, {
-                            --[[ Dir_type_string ]]3,
-                            type_of_directive(lhs)
-                          }),
-                        curr(lexbuf)
-                      };
-                end
-                 end 
-              end
-               end 
-              throw {
+                  error ({
                     __Error$2,
                     --[[ Conditional_expr_expected_type ]]Block.__(7, {
                         --[[ Dir_type_string ]]3,
                         type_of_directive(lhs)
                       }),
                     curr(lexbuf)
-                  };
+                  })
+                end
+                 end 
+              end
+               end 
+              error ({
+                __Error$2,
+                --[[ Conditional_expr_expected_type ]]Block.__(7, {
+                    --[[ Dir_type_string ]]3,
+                    type_of_directive(lhs)
+                  }),
+                curr(lexbuf)
+              })
             end else do
               return true;
             end end end else 
@@ -10143,14 +10121,14 @@ function directive_parse(token_with_comments, lexbuf) do
         exit$3 = 2;
       end end  end 
       if (exit$3 == 2) then do
-        throw {
-              Caml_builtin_exceptions.assert_failure,
-              --[[ tuple ]]{
-                "lexer.mll",
-                331,
-                17
-              }
-            };
+        error ({
+          Caml_builtin_exceptions.assert_failure,
+          --[[ tuple ]]{
+            "lexer.mll",
+            331,
+            17
+          }
+        })
       end
        end 
       curr_loc$1 = curr(lexbuf);
@@ -10206,30 +10184,30 @@ function directive_parse(token_with_comments, lexbuf) do
             match = token(--[[ () ]]0);
             if (typeof match == "number") then do
               if (match ~= 81) then do
-                throw {
-                      __Error$2,
-                      --[[ Unterminated_paren_in_conditional ]]1,
-                      curr(lexbuf)
-                    };
+                error ({
+                  __Error$2,
+                  --[[ Unterminated_paren_in_conditional ]]1,
+                  curr(lexbuf)
+                })
               end
                end 
               return v;
             end else do
-              throw {
-                    __Error$2,
-                    --[[ Unterminated_paren_in_conditional ]]1,
-                    curr(lexbuf)
-                  };
+              error ({
+                __Error$2,
+                --[[ Unterminated_paren_in_conditional ]]1,
+                curr(lexbuf)
+              })
             end end end end end 
          if ___conditional___ = 91--[[ TRUE ]] then do
             return true;end end end 
          do
         else do
-          throw {
-                __Error$2,
-                --[[ Unexpected_token_in_conditional ]]4,
-                curr_loc
-              };
+          error ({
+            __Error$2,
+            --[[ Unexpected_token_in_conditional ]]4,
+            curr_loc
+          })
           end end
           
       end
@@ -10238,14 +10216,14 @@ function directive_parse(token_with_comments, lexbuf) do
       do
          if ___conditional___ = 1--[[ FLOAT ]] then do
             return token_op(calc, (function (e) do
-                          throw {
-                                __Error$2,
-                                --[[ Conditional_expr_expected_type ]]Block.__(7, {
-                                    --[[ Dir_type_bool ]]0,
-                                    --[[ Dir_type_float ]]1
-                                  }),
-                                curr_loc
-                              };
+                          error ({
+                            __Error$2,
+                            --[[ Conditional_expr_expected_type ]]Block.__(7, {
+                                --[[ Dir_type_bool ]]0,
+                                --[[ Dir_type_float ]]1
+                              }),
+                            curr_loc
+                          })
                         end end), --[[ Dir_float ]]Block.__(1, {Caml_format.caml_float_of_string(curr_token[0])}));end end end 
          if ___conditional___ = 7--[[ INT ]] then do
             v$1 = curr_token[0];
@@ -10261,22 +10239,22 @@ function directive_parse(token_with_comments, lexbuf) do
                or ___conditional___ = "undefined"
                do end
               else do
-                throw {
-                      __Error$2,
-                      --[[ Unexpected_token_in_conditional ]]4,
-                      curr_loc
-                    };
+                error ({
+                  __Error$2,
+                  --[[ Unexpected_token_in_conditional ]]4,
+                  curr_loc
+                })
                 end end
                 
             end
             t = token(--[[ () ]]0);
             loc = curr(lexbuf);
             if (typeof t == "number") then do
-              throw {
-                    __Error$2,
-                    --[[ Unexpected_token_in_conditional ]]4,
-                    loc
-                  };
+              error ({
+                __Error$2,
+                --[[ Unexpected_token_in_conditional ]]4,
+                loc
+              })
             end else if (t.tag == --[[ UIDENT ]]17) then do
               s = t[0];
               if (calc) then do
@@ -10289,22 +10267,22 @@ function directive_parse(token_with_comments, lexbuf) do
                 return true;
               end end 
             end else do
-              throw {
-                    __Error$2,
-                    --[[ Unexpected_token_in_conditional ]]4,
-                    loc
-                  };
+              error ({
+                __Error$2,
+                --[[ Unexpected_token_in_conditional ]]4,
+                loc
+              })
             end end  end end else 
          if ___conditional___ = 16--[[ STRING ]] then do
             return token_op(calc, (function (e) do
-                          throw {
-                                __Error$2,
-                                --[[ Conditional_expr_expected_type ]]Block.__(7, {
-                                    --[[ Dir_type_bool ]]0,
-                                    --[[ Dir_type_string ]]3
-                                  }),
-                                curr_loc
-                              };
+                          error ({
+                            __Error$2,
+                            --[[ Conditional_expr_expected_type ]]Block.__(7, {
+                                --[[ Dir_type_bool ]]0,
+                                --[[ Dir_type_string ]]3
+                              }),
+                            curr_loc
+                          })
                         end end), --[[ Dir_string ]]Block.__(3, {curr_token[0][0]}));end end end 
          if ___conditional___ = 17--[[ UIDENT ]] then do
             value_v = query(curr_loc, curr_token[0]);
@@ -10315,22 +10293,22 @@ function directive_parse(token_with_comments, lexbuf) do
                           end
                            end 
                           ty = type_of_directive(value_v);
-                          throw {
-                                __Error$2,
-                                --[[ Conditional_expr_expected_type ]]Block.__(7, {
-                                    --[[ Dir_type_bool ]]0,
-                                    ty
-                                  }),
-                                curr_loc
-                              };
+                          error ({
+                            __Error$2,
+                            --[[ Conditional_expr_expected_type ]]Block.__(7, {
+                                --[[ Dir_type_bool ]]0,
+                                ty
+                              }),
+                            curr_loc
+                          })
                         end end), value_v);end end end 
          do
         else do
-          throw {
-                __Error$2,
-                --[[ Unexpected_token_in_conditional ]]4,
-                curr_loc
-              };
+          error ({
+            __Error$2,
+            --[[ Unexpected_token_in_conditional ]]4,
+            curr_loc
+          })
           end end
           
       end
@@ -10340,20 +10318,20 @@ function directive_parse(token_with_comments, lexbuf) do
   match = token(--[[ () ]]0);
   if (typeof match == "number") then do
     if (match ~= 88) then do
-      throw {
-            __Error$2,
-            --[[ Expect_hash_then_in_conditional ]]5,
-            curr(lexbuf)
-          };
+      error ({
+        __Error$2,
+        --[[ Expect_hash_then_in_conditional ]]5,
+        curr(lexbuf)
+      })
     end
      end 
     return v;
   end else do
-    throw {
-          __Error$2,
-          --[[ Expect_hash_then_in_conditional ]]5,
-          curr(lexbuf)
-        };
+    error ({
+      __Error$2,
+      --[[ Expect_hash_then_in_conditional ]]5,
+      curr(lexbuf)
+    })
   end end 
 end end
 
@@ -10827,11 +10805,11 @@ function char_for_decimal_code(lexbuf, i) do
     if (comment_start_loc.contents ~= --[[ [] ]]0) then do
       return --[[ "x" ]]120;
     end else do
-      throw {
-            __Error$2,
-            --[[ Illegal_escape ]]Block.__(1, {Lexing.lexeme(lexbuf)}),
-            curr(lexbuf)
-          };
+      error ({
+        __Error$2,
+        --[[ Illegal_escape ]]Block.__(1, {Lexing.lexeme(lexbuf)}),
+        curr(lexbuf)
+      })
     end end 
   end else do
     return Char.chr(c);
@@ -10886,10 +10864,10 @@ function remove_underscores(s) do
         b[dst] = c;
         _dst = dst + 1 | 0;
         _src = src + 1 | 0;
-        continue ;
+        ::continue:: ;
       end else do
         _src = src + 1 | 0;
-        continue ;
+        ::continue:: ;
       end end 
     end end 
   end;
@@ -10899,11 +10877,11 @@ function get_label_name(lexbuf) do
   s = Lexing.lexeme(lexbuf);
   name = __String.sub(s, 1, #s - 2 | 0);
   if (Hashtbl.mem(keyword_table, name)) then do
-    throw {
-          __Error$2,
-          --[[ Keyword_as_label ]]Block.__(4, {name}),
-          curr(lexbuf)
-        };
+    error ({
+      __Error$2,
+      --[[ Keyword_as_label ]]Block.__(4, {name}),
+      curr(lexbuf)
+    })
   end
    end 
   return name;
@@ -11158,11 +11136,11 @@ function token(lexbuf) do
     do
        if ___conditional___ = 0 then do
           if (not escaped_newlines.contents) then do
-            throw {
-                  __Error$2,
-                  --[[ Illegal_character ]]Block.__(0, {Lexing.lexeme_char(lexbuf$1, 0)}),
-                  curr(lexbuf$1)
-                };
+            error ({
+              __Error$2,
+              --[[ Illegal_character ]]Block.__(0, {Lexing.lexeme_char(lexbuf$1, 0)}),
+              curr(lexbuf$1)
+            })
           end
            end 
           update_loc(lexbuf$1, undefined, 1, false, 0);
@@ -11190,16 +11168,15 @@ function token(lexbuf) do
           return --[[ OPTLABEL ]]Block.__(13, {get_label_name(lexbuf$1)});end end end 
        if ___conditional___ = 10 then do
           s = Lexing.lexeme(lexbuf$1);
-          try do
+          xpcall(function() do
             return Hashtbl.find(keyword_table, s);
-          end
-          catch (exn)do
+          end end,function(exn) return do
             if (exn == Caml_builtin_exceptions.not_found) then do
               return --[[ LIDENT ]]Block.__(11, {s});
             end else do
-              throw exn;
+              error (exn)
             end end 
-          endend end end 
+          end end)end end end 
        if ___conditional___ = 11 then do
           prerr_warning(curr(lexbuf$1), --[[ Deprecated ]]Block.__(0, {"ISO-Latin1 characters in identifiers"}));
           return --[[ LIDENT ]]Block.__(11, {Lexing.lexeme(lexbuf$1)});end end end 
@@ -11209,71 +11186,67 @@ function token(lexbuf) do
           prerr_warning(curr(lexbuf$1), --[[ Deprecated ]]Block.__(0, {"ISO-Latin1 characters in identifiers"}));
           return --[[ UIDENT ]]Block.__(17, {Lexing.lexeme(lexbuf$1)});end end end 
        if ___conditional___ = 14 then do
-          try do
+          xpcall(function() do
             return --[[ INT ]]Block.__(7, {cvt_int_literal(Lexing.lexeme(lexbuf$1))});
-          end
-          catch (raw_exn)do
+          end end,function(raw_exn) return do
             exn$1 = Caml_js_exceptions.internalToOCamlException(raw_exn);
             if (exn$1[0] == Caml_builtin_exceptions.failure) then do
-              throw {
-                    __Error$2,
-                    --[[ Literal_overflow ]]Block.__(5, {"int"}),
-                    curr(lexbuf$1)
-                  };
+              error ({
+                __Error$2,
+                --[[ Literal_overflow ]]Block.__(5, {"int"}),
+                curr(lexbuf$1)
+              })
             end
              end 
-            throw exn$1;
-          endend end end 
+            error (exn$1)
+          end end)end end end 
        if ___conditional___ = 15 then do
           return --[[ FLOAT ]]Block.__(1, {remove_underscores(Lexing.lexeme(lexbuf$1))});end end end 
        if ___conditional___ = 16 then do
-          try do
+          xpcall(function() do
             return --[[ INT32 ]]Block.__(8, {cvt_int32_literal(Lexing.lexeme(lexbuf$1))});
-          end
-          catch (raw_exn$1)do
+          end end,function(raw_exn$1) return do
             exn$2 = Caml_js_exceptions.internalToOCamlException(raw_exn$1);
             if (exn$2[0] == Caml_builtin_exceptions.failure) then do
-              throw {
-                    __Error$2,
-                    --[[ Literal_overflow ]]Block.__(5, {"int32"}),
-                    curr(lexbuf$1)
-                  };
+              error ({
+                __Error$2,
+                --[[ Literal_overflow ]]Block.__(5, {"int32"}),
+                curr(lexbuf$1)
+              })
             end
              end 
-            throw exn$2;
-          endend end end 
+            error (exn$2)
+          end end)end end end 
        if ___conditional___ = 17 then do
-          try do
+          xpcall(function() do
             return --[[ INT64 ]]Block.__(9, {cvt_int64_literal(Lexing.lexeme(lexbuf$1))});
-          end
-          catch (raw_exn$2)do
+          end end,function(raw_exn$2) return do
             exn$3 = Caml_js_exceptions.internalToOCamlException(raw_exn$2);
             if (exn$3[0] == Caml_builtin_exceptions.failure) then do
-              throw {
-                    __Error$2,
-                    --[[ Literal_overflow ]]Block.__(5, {"int64"}),
-                    curr(lexbuf$1)
-                  };
+              error ({
+                __Error$2,
+                --[[ Literal_overflow ]]Block.__(5, {"int64"}),
+                curr(lexbuf$1)
+              })
             end
              end 
-            throw exn$3;
-          endend end end 
+            error (exn$3)
+          end end)end end end 
        if ___conditional___ = 18 then do
-          try do
+          xpcall(function() do
             return --[[ NATIVEINT ]]Block.__(12, {cvt_nativeint_literal(Lexing.lexeme(lexbuf$1))});
-          end
-          catch (raw_exn$3)do
+          end end,function(raw_exn$3) return do
             exn$4 = Caml_js_exceptions.internalToOCamlException(raw_exn$3);
             if (exn$4[0] == Caml_builtin_exceptions.failure) then do
-              throw {
-                    __Error$2,
-                    --[[ Literal_overflow ]]Block.__(5, {"nativeint"}),
-                    curr(lexbuf$1)
-                  };
+              error ({
+                __Error$2,
+                --[[ Literal_overflow ]]Block.__(5, {"nativeint"}),
+                curr(lexbuf$1)
+              })
             end
              end 
-            throw exn$4;
-          endend end end 
+            error (exn$4)
+          end end)end end end 
        if ___conditional___ = 19 then do
           reset_string_buffer(--[[ () ]]0);
           is_in_string.contents = true;
@@ -11314,11 +11287,11 @@ function token(lexbuf) do
        if ___conditional___ = 26 then do
           l = Lexing.lexeme(lexbuf$1);
           esc = __String.sub(l, 1, #l - 1 | 0);
-          throw {
-                __Error$2,
-                --[[ Illegal_escape ]]Block.__(1, {esc}),
-                curr(lexbuf$1)
-              };end end end 
+          error ({
+            __Error$2,
+            --[[ Illegal_escape ]]Block.__(1, {esc}),
+            curr(lexbuf$1)
+          })end end end 
        if ___conditional___ = 27 then do
           match = with_comment_buffer(comment, lexbuf$1);
           return --[[ COMMENT ]]Block.__(18, {--[[ tuple ]]{
@@ -11487,32 +11460,32 @@ function token(lexbuf) do
        if ___conditional___ = 90 then do
           if (if_then_else.contents ~= --[[ Dir_out ]]2) then do
             if (if_then_else.contents == --[[ Dir_if_true ]]0) then do
-              throw {
-                    __Error$2,
-                    --[[ Unterminated_if ]]2,
-                    curr(lexbuf$1)
-                  };
+              error ({
+                __Error$2,
+                --[[ Unterminated_if ]]2,
+                curr(lexbuf$1)
+              })
             end
              end 
-            throw {
-                  __Error$2,
-                  --[[ Unterminated_else ]]3,
-                  curr(lexbuf$1)
-                };
+            error ({
+              __Error$2,
+              --[[ Unterminated_else ]]3,
+              curr(lexbuf$1)
+            })
           end else do
             return --[[ EOF ]]25;
           end end end end end 
        if ___conditional___ = 91 then do
-          throw {
-                __Error$2,
-                --[[ Illegal_character ]]Block.__(0, {Lexing.lexeme_char(lexbuf$1, 0)}),
-                curr(lexbuf$1)
-              };end end end 
+          error ({
+            __Error$2,
+            --[[ Illegal_character ]]Block.__(0, {Lexing.lexeme_char(lexbuf$1, 0)}),
+            curr(lexbuf$1)
+          })end end end 
        do
       else do
         Curry._1(lexbuf$1.refill_buff, lexbuf$1);
         ___ocaml_lex_state = __ocaml_lex_state$1;
-        continue ;
+        ::continue:: ;
         end end
         
     end
@@ -11529,14 +11502,14 @@ function __ocaml_lex_quoted_string_rec(delim, lexbuf, ___ocaml_lex_state) do
           update_loc(lexbuf, undefined, 1, false, 0);
           store_string(Lexing.lexeme(lexbuf));
           ___ocaml_lex_state = 183;
-          continue ;end end end 
+          ::continue:: ;end end end 
        if ___conditional___ = 1 then do
           is_in_string.contents = false;
-          throw {
-                __Error$2,
-                --[[ Unterminated_string ]]0,
-                string_start_loc.contents
-              };end end end 
+          error ({
+            __Error$2,
+            --[[ Unterminated_string ]]0,
+            string_start_loc.contents
+          })end end end 
        if ___conditional___ = 2 then do
           edelim = Lexing.lexeme(lexbuf);
           edelim$1 = __String.sub(edelim, 1, #edelim - 2 | 0);
@@ -11545,17 +11518,17 @@ function __ocaml_lex_quoted_string_rec(delim, lexbuf, ___ocaml_lex_state) do
           end else do
             store_string(Lexing.lexeme(lexbuf));
             ___ocaml_lex_state = 183;
-            continue ;
+            ::continue:: ;
           end end end end end 
        if ___conditional___ = 3 then do
           store_string_char(Lexing.lexeme_char(lexbuf, 0));
           ___ocaml_lex_state = 183;
-          continue ;end end end 
+          ::continue:: ;end end end 
        do
       else do
         Curry._1(lexbuf.refill_buff, lexbuf);
         ___ocaml_lex_state = __ocaml_lex_state$1;
-        continue ;
+        ::continue:: ;
         end end
         
     end
@@ -11606,11 +11579,11 @@ function string(lexbuf) do
           return string(lexbuf$1);end end end 
        if ___conditional___ = 7 then do
           is_in_string.contents = false;
-          throw {
-                __Error$2,
-                --[[ Unterminated_string ]]0,
-                string_start_loc.contents
-              };end end end 
+          error ({
+            __Error$2,
+            --[[ Unterminated_string ]]0,
+            string_start_loc.contents
+          })end end end 
        if ___conditional___ = 8 then do
           store_string_char(Lexing.lexeme_char(lexbuf$1, 0));
           return string(lexbuf$1);end end end 
@@ -11618,7 +11591,7 @@ function string(lexbuf) do
       else do
         Curry._1(lexbuf$1.refill_buff, lexbuf$1);
         ___ocaml_lex_state = __ocaml_lex_state$1;
-        continue ;
+        ::continue:: ;
         end end
         
     end
@@ -11638,7 +11611,7 @@ function __ocaml_lex_comment_rec(lexbuf, ___ocaml_lex_state) do
           };
           store_string(Lexing.lexeme(lexbuf));
           ___ocaml_lex_state = 132;
-          continue ;end end end 
+          ::continue:: ;end end end 
        if ___conditional___ = 1 then do
           match = comment_start_loc.contents;
           if (match) then do
@@ -11647,153 +11620,151 @@ function __ocaml_lex_comment_rec(lexbuf, ___ocaml_lex_state) do
               comment_start_loc.contents = l;
               store_string(Lexing.lexeme(lexbuf));
               ___ocaml_lex_state = 132;
-              continue ;
+              ::continue:: ;
             end else do
               comment_start_loc.contents = --[[ [] ]]0;
               return curr(lexbuf);
             end end 
           end else do
-            throw {
-                  Caml_builtin_exceptions.assert_failure,
-                  --[[ tuple ]]{
-                    "lexer.mll",
-                    992,
-                    16
-                  }
-                };
+            error ({
+              Caml_builtin_exceptions.assert_failure,
+              --[[ tuple ]]{
+                "lexer.mll",
+                992,
+                16
+              }
+            })
           end end end end end 
        if ___conditional___ = 2 then do
           string_start_loc.contents = curr(lexbuf);
           store_string_char(--[[ "\"" ]]34);
           is_in_string.contents = true;
-          try do
+          xpcall(function() do
             string(lexbuf);
-          end
-          catch (raw_exn)do
+          end end,function(raw_exn) return do
             exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
             if (exn[0] == __Error$2) then do
               match$1 = exn[1];
               if (typeof match$1 == "number") then do
                 if (match$1 ~= 0) then do
-                  throw exn;
+                  error (exn)
                 end
                  end 
                 match$2 = comment_start_loc.contents;
                 if (match$2) then do
                   start = List.hd(List.rev(comment_start_loc.contents));
                   comment_start_loc.contents = --[[ [] ]]0;
-                  throw {
-                        __Error$2,
-                        --[[ Unterminated_string_in_comment ]]Block.__(3, {
-                            start,
-                            exn[2]
-                          }),
-                        match$2[0]
-                      };
+                  error ({
+                    __Error$2,
+                    --[[ Unterminated_string_in_comment ]]Block.__(3, {
+                        start,
+                        exn[2]
+                      }),
+                    match$2[0]
+                  })
                 end else do
-                  throw {
-                        Caml_builtin_exceptions.assert_failure,
-                        --[[ tuple ]]{
-                          "lexer.mll",
-                          1006,
-                          18
-                        }
-                      };
+                  error ({
+                    Caml_builtin_exceptions.assert_failure,
+                    --[[ tuple ]]{
+                      "lexer.mll",
+                      1006,
+                      18
+                    }
+                  })
                 end end 
               end else do
-                throw exn;
+                error (exn)
               end end 
             end else do
-              throw exn;
+              error (exn)
             end end 
-          end
+          end end)
           is_in_string.contents = false;
           store_string_char(--[[ "\"" ]]34);
           ___ocaml_lex_state = 132;
-          continue ;end end end 
+          ::continue:: ;end end end 
        if ___conditional___ = 3 then do
           delim = Lexing.lexeme(lexbuf);
           delim$1 = __String.sub(delim, 1, #delim - 2 | 0);
           string_start_loc.contents = curr(lexbuf);
           store_string(Lexing.lexeme(lexbuf));
           is_in_string.contents = true;
-          try do
+          xpcall(function() do
             __ocaml_lex_quoted_string_rec(delim$1, lexbuf, 183);
-          end
-          catch (raw_exn$1)do
+          end end,function(raw_exn$1) return do
             exn$1 = Caml_js_exceptions.internalToOCamlException(raw_exn$1);
             if (exn$1[0] == __Error$2) then do
               match$3 = exn$1[1];
               if (typeof match$3 == "number") then do
                 if (match$3 ~= 0) then do
-                  throw exn$1;
+                  error (exn$1)
                 end
                  end 
                 match$4 = comment_start_loc.contents;
                 if (match$4) then do
                   start$1 = List.hd(List.rev(comment_start_loc.contents));
                   comment_start_loc.contents = --[[ [] ]]0;
-                  throw {
-                        __Error$2,
-                        --[[ Unterminated_string_in_comment ]]Block.__(3, {
-                            start$1,
-                            exn$1[2]
-                          }),
-                        match$4[0]
-                      };
+                  error ({
+                    __Error$2,
+                    --[[ Unterminated_string_in_comment ]]Block.__(3, {
+                        start$1,
+                        exn$1[2]
+                      }),
+                    match$4[0]
+                  })
                 end else do
-                  throw {
-                        Caml_builtin_exceptions.assert_failure,
-                        --[[ tuple ]]{
-                          "lexer.mll",
-                          1026,
-                          18
-                        }
-                      };
+                  error ({
+                    Caml_builtin_exceptions.assert_failure,
+                    --[[ tuple ]]{
+                      "lexer.mll",
+                      1026,
+                      18
+                    }
+                  })
                 end end 
               end else do
-                throw exn$1;
+                error (exn$1)
               end end 
             end else do
-              throw exn$1;
+              error (exn$1)
             end end 
-          end
+          end end)
           is_in_string.contents = false;
           store_string_char(--[[ "|" ]]124);
           store_string(delim$1);
           store_string_char(--[[ "}" ]]125);
           ___ocaml_lex_state = 132;
-          continue ;end end end 
+          ::continue:: ;end end end 
        if ___conditional___ = 5 then do
           update_loc(lexbuf, undefined, 1, false, 1);
           store_string(Lexing.lexeme(lexbuf));
           ___ocaml_lex_state = 132;
-          continue ;end end end 
+          ::continue:: ;end end end 
        if ___conditional___ = 10 then do
           match$5 = comment_start_loc.contents;
           if (match$5) then do
             start$2 = List.hd(List.rev(comment_start_loc.contents));
             comment_start_loc.contents = --[[ [] ]]0;
-            throw {
-                  __Error$2,
-                  --[[ Unterminated_comment ]]Block.__(2, {start$2}),
-                  match$5[0]
-                };
+            error ({
+              __Error$2,
+              --[[ Unterminated_comment ]]Block.__(2, {start$2}),
+              match$5[0]
+            })
           end else do
-            throw {
-                  Caml_builtin_exceptions.assert_failure,
-                  --[[ tuple ]]{
-                    "lexer.mll",
-                    1056,
-                    16
-                  }
-                };
+            error ({
+              Caml_builtin_exceptions.assert_failure,
+              --[[ tuple ]]{
+                "lexer.mll",
+                1056,
+                16
+              }
+            })
           end end end end end 
        if ___conditional___ = 11 then do
           update_loc(lexbuf, undefined, 1, false, 0);
           store_string(Lexing.lexeme(lexbuf));
           ___ocaml_lex_state = 132;
-          continue ;end end end 
+          ::continue:: ;end end end 
        if ___conditional___ = 4
        or ___conditional___ = 6
        or ___conditional___ = 7
@@ -11802,12 +11773,12 @@ function __ocaml_lex_comment_rec(lexbuf, ___ocaml_lex_state) do
        or ___conditional___ = 12 then do
           store_string(Lexing.lexeme(lexbuf));
           ___ocaml_lex_state = 132;
-          continue ;end end end 
+          ::continue:: ;end end end 
        do
       else do
         Curry._1(lexbuf.refill_buff, lexbuf);
         ___ocaml_lex_state = __ocaml_lex_state$1;
-        continue ;
+        ::continue:: ;
         end end
         
     end
@@ -11891,20 +11862,20 @@ function token$1(lexbuf) do
                   do
                      if ___conditional___ = 23--[[ ELSE ]] then do
                         if (if_then_else$1 ~= 0) then do
-                          throw {
-                                __Error$2,
-                                --[[ Unexpected_directive ]]6,
-                                curr(lexbuf$1)
-                              };
+                          error ({
+                            __Error$2,
+                            --[[ Unexpected_directive ]]6,
+                            curr(lexbuf$1)
+                          })
                         end
                          end end else 
                      if ___conditional___ = 24--[[ END ]] then do
                         if (if_then_else$1 >= 2) then do
-                          throw {
-                                __Error$2,
-                                --[[ Unexpected_directive ]]6,
-                                curr(lexbuf$1)
-                              };
+                          error ({
+                            __Error$2,
+                            --[[ Unexpected_directive ]]6,
+                            curr(lexbuf$1)
+                          })
                         end
                          end 
                         if_then_else.contents = --[[ Dir_out ]]2;
@@ -11919,11 +11890,11 @@ function token$1(lexbuf) do
                             while(true) do
                               token = token_with_comments(lexbuf$1);
                               if (token == --[[ EOF ]]25) then do
-                                throw {
-                                      __Error$2,
-                                      --[[ Unterminated_if ]]2,
-                                      curr(lexbuf$1)
-                                    };
+                                error ({
+                                  __Error$2,
+                                  --[[ Unterminated_if ]]2,
+                                  curr(lexbuf$1)
+                                })
                               end
                                end 
                               if (token == --[[ SHARP ]]84 and at_bol(lexbuf$1)) then do
@@ -11939,11 +11910,11 @@ function token$1(lexbuf) do
                                       return Curry._1(cont, lexbuf$1);
                                     end end 
                                   end else if (switcher == 14) then do
-                                    throw {
-                                          __Error$2,
-                                          --[[ Unexpected_directive ]]6,
-                                          curr(lexbuf$1)
-                                        };
+                                    error ({
+                                      __Error$2,
+                                      --[[ Unexpected_directive ]]6,
+                                      curr(lexbuf$1)
+                                    })
                                   end
                                    end  end 
                                 end
@@ -11953,20 +11924,20 @@ function token$1(lexbuf) do
                                   return Curry._1(cont, lexbuf$1);
                                 end else do
                                   _param = --[[ () ]]0;
-                                  continue ;
+                                  ::continue:: ;
                                 end end 
                               end else do
                                 _param = --[[ () ]]0;
-                                continue ;
+                                ::continue:: ;
                               end end 
                             end;
                           end end 
                         end else do
-                          throw {
-                                __Error$2,
-                                --[[ Unexpected_directive ]]6,
-                                curr(lexbuf$1)
-                              };
+                          error ({
+                            __Error$2,
+                            --[[ Unexpected_directive ]]6,
+                            curr(lexbuf$1)
+                          })
                         end end end end end 
                      do
                     else do
@@ -11976,11 +11947,11 @@ function token$1(lexbuf) do
                   end
                 end else if (match.tag == --[[ LIDENT ]]11 and match[0] == "elif") then do
                   if (if_then_else$1 ~= 0) then do
-                    throw {
-                          __Error$2,
-                          --[[ Unexpected_directive ]]6,
-                          curr(lexbuf$1)
-                        };
+                    error ({
+                      __Error$2,
+                      --[[ Unexpected_directive ]]6,
+                      curr(lexbuf$1)
+                    })
                   end
                    end 
                 end else do
@@ -11994,11 +11965,11 @@ function token$1(lexbuf) do
                     else_seen = _else_seen;
                     token$2 = token_with_comments(lexbuf$1);
                     if (token$2 == --[[ EOF ]]25) then do
-                      throw {
-                            __Error$2,
-                            --[[ Unterminated_else ]]3,
-                            curr(lexbuf$1)
-                          };
+                      error ({
+                        __Error$2,
+                        --[[ Unterminated_else ]]3,
+                        curr(lexbuf$1)
+                      })
                     end
                      end 
                     if (token$2 == --[[ SHARP ]]84 and at_bol(lexbuf$1)) then do
@@ -12011,37 +11982,37 @@ function token$1(lexbuf) do
                             return Curry._1(cont, lexbuf$1);
                           end else do
                             if (else_seen) then do
-                              throw {
-                                    __Error$2,
-                                    --[[ Unexpected_directive ]]6,
-                                    curr(lexbuf$1)
-                                  };
-                            end
-                             end 
-                            _else_seen = true;
-                            continue ;
-                          end end 
-                        end else if (switcher$1 == 14) then do
-                          throw {
+                              error ({
                                 __Error$2,
                                 --[[ Unexpected_directive ]]6,
                                 curr(lexbuf$1)
-                              };
+                              })
+                            end
+                             end 
+                            _else_seen = true;
+                            ::continue:: ;
+                          end end 
+                        end else if (switcher$1 == 14) then do
+                          error ({
+                            __Error$2,
+                            --[[ Unexpected_directive ]]6,
+                            curr(lexbuf$1)
+                          })
                         end
                          end  end 
                       end
                        end 
                       if (else_seen and is_elif(token$3)) then do
-                        throw {
-                              __Error$2,
-                              --[[ Unexpected_directive ]]6,
-                              curr(lexbuf$1)
-                            };
+                        error ({
+                          __Error$2,
+                          --[[ Unexpected_directive ]]6,
+                          curr(lexbuf$1)
+                        })
                       end
                        end 
-                      continue ;
+                      ::continue:: ;
                     end else do
-                      continue ;
+                      ::continue:: ;
                     end end 
                   end;
                 end end 
@@ -12050,7 +12021,7 @@ function token$1(lexbuf) do
            if ___conditional___ = 100--[[ EOL ]] then do
               lines$prime = lines ~= 0 and --[[ BlankLine ]]2 or --[[ NewLine ]]1;
               _lines = lines$prime;
-              continue ;end end end 
+              ::continue:: ;end end end 
            do end
           else do
             end end
@@ -12067,7 +12038,7 @@ function token$1(lexbuf) do
                   });
               lines$prime$1 = lines >= 2 and --[[ BlankLine ]]2 or --[[ NoLine ]]0;
               _lines = lines$prime$1;
-              continue ;end end end 
+              ::continue:: ;end end end 
            if ___conditional___ = 19--[[ DOCSTRING ]] then do
               doc = tok[0];
               add_docstring_comment(doc);
@@ -12119,7 +12090,7 @@ function token$1(lexbuf) do
               end end  end 
               _docs = docs$prime;
               _lines = --[[ NoLine ]]0;
-              continue ;end end end 
+              ::continue:: ;end end end 
            do
           else do
             end end
@@ -12155,23 +12126,22 @@ end end
 
 function skip_phrase(lexbuf) do
   while(true) do
-    try do
+    xpcall(function() do
       match = token$1(lexbuf);
       if (typeof match == "number" and not (match ~= 25 and match ~= 83)) then do
         return --[[ () ]]0;
       end else do
         return skip_phrase(lexbuf);
       end end 
-    end
-    catch (raw_exn)do
+    end end,function(raw_exn) return do
       exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
       if (exn[0] == __Error$2) then do
         tmp = exn[1];
         if (typeof tmp == "number") then do
           if (tmp == --[[ Unterminated_string ]]0) then do
-            continue ;
+            ::continue:: ;
           end else do
-            throw exn;
+            error (exn)
           end end 
         end else do
           local ___conditional___=(tmp.tag | 0);
@@ -12179,18 +12149,18 @@ function skip_phrase(lexbuf) do
              if ___conditional___ = 0--[[ Illegal_character ]]
              or ___conditional___ = 2--[[ Unterminated_comment ]]
              or ___conditional___ = 3--[[ Unterminated_string_in_comment ]] then do
-                continue ;end end end 
+                ::continue:: ;end end end 
              do
             else do
-              throw exn;
+              error (exn)
               end end
               
           end
         end end 
       end else do
-        throw exn;
+        error (exn)
       end end 
-    end
+    end end)
   end;
 end end
 
@@ -12203,37 +12173,36 @@ function maybe_skip_phrase(lexbuf) do
 end end
 
 function wrap(parsing_fun, lexbuf) do
-  try do
+  xpcall(function() do
     init(--[[ () ]]0);
     init$1(--[[ () ]]0);
     ast = Curry._2(parsing_fun, token$1, lexbuf);
     Parsing.clear_parser(--[[ () ]]0);
     warn_bad_docstrings(--[[ () ]]0);
     return ast;
-  end
-  catch (raw_err)do
+  end end,function(raw_err) return do
     err = Caml_js_exceptions.internalToOCamlException(raw_err);
     if (err[0] == __Error$2) then do
       tmp = err[1];
       if (typeof tmp == "number") then do
-        throw err;
+        error (err)
       end else if (tmp.tag) then do
-        throw err;
+        error (err)
       end else if (input_name.contents == "//toplevel//") then do
         skip_phrase(lexbuf);
-        throw err;
+        error (err)
       end else do
-        throw err;
+        error (err)
       end end  end  end 
     end else if (err[0] == __Error$1) then do
       if (input_name.contents == "//toplevel//") then do
         maybe_skip_phrase(lexbuf);
-        throw err;
+        error (err)
       end else do
-        throw err;
+        error (err)
       end end 
     end else if (err ~= Parsing.Parse_error and err ~= Escape_error) then do
-      throw err;
+      error (err)
     end
      end  end  end 
     loc = curr(lexbuf);
@@ -12241,11 +12210,11 @@ function wrap(parsing_fun, lexbuf) do
       maybe_skip_phrase(lexbuf);
     end
      end 
-    throw {
-          __Error$1,
-          --[[ Other ]]Block.__(5, {loc})
-        };
-  end
+    error ({
+      __Error$1,
+      --[[ Other ]]Block.__(5, {loc})
+    })
+  end end)
 end end
 
 suites = do

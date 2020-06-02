@@ -1,15 +1,15 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-Belt_Id = require "../../lib/js/belt_Id.lua";
-Belt_Set = require "../../lib/js/belt_Set.lua";
-Caml_obj = require "../../lib/js/caml_obj.lua";
-Belt_List = require "../../lib/js/belt_List.lua";
-Belt_Array = require "../../lib/js/belt_Array.lua";
-Belt_SetDict = require "../../lib/js/belt_SetDict.lua";
-Belt_SortArray = require "../../lib/js/belt_SortArray.lua";
-Caml_primitive = require "../../lib/js/caml_primitive.lua";
-Array_data_util = require "./array_data_util.lua";
+Mt = require "./mt";
+Belt_Id = require "../../lib/js/belt_Id";
+Belt_Set = require "../../lib/js/belt_Set";
+Caml_obj = require "../../lib/js/caml_obj";
+Belt_List = require "../../lib/js/belt_List";
+Belt_Array = require "../../lib/js/belt_Array";
+Belt_SetDict = require "../../lib/js/belt_SetDict";
+Belt_SortArray = require "../../lib/js/belt_SortArray";
+Caml_primitive = require "../../lib/js/caml_primitive";
+Array_data_util = require "./array_data_util";
 
 suites = do
   contents: --[[ [] ]]0

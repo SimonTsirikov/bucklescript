@@ -4,7 +4,7 @@ import * as Belt_internalAVLset from "./belt_internalAVLset.lua";
 import * as Belt_internalSetString from "./belt_internalSetString.lua";
 
 function add(t, x) do
-  if (t ~= null) then do
+  if (t ~= nil) then do
     v = t.value;
     if (x == v) then do
       return t;
@@ -43,13 +43,13 @@ function mergeMany(h, arr) do
 end end
 
 function remove(t, x) do
-  if (t ~= null) then do
+  if (t ~= nil) then do
     l = t.left;
     v = t.value;
     r = t.right;
     if (x == v) then do
-      if (l ~= null) then do
-        if (r ~= null) then do
+      if (l ~= nil) then do
+        if (r ~= nil) then do
           v$1 = do
             contents: r.value
           end;
@@ -101,7 +101,7 @@ function splitAuxNoPivot(n, x) do
             r
           };
   end else if (x < v) then do
-    if (l ~= null) then do
+    if (l ~= nil) then do
       match = splitAuxNoPivot(l, x);
       return --[[ tuple ]]{
               match[0],
@@ -109,11 +109,11 @@ function splitAuxNoPivot(n, x) do
             };
     end else do
       return --[[ tuple ]]{
-              null,
+              nil,
               n
             };
     end end 
-  end else if (r ~= null) then do
+  end else if (r ~= nil) then do
     match$1 = splitAuxNoPivot(r, x);
     return --[[ tuple ]]{
             Belt_internalAVLset.joinShared(l, v, match$1[0]),
@@ -122,7 +122,7 @@ function splitAuxNoPivot(n, x) do
   end else do
     return --[[ tuple ]]{
             n,
-            null
+            nil
           };
   end end  end  end 
 end end
@@ -138,7 +138,7 @@ function splitAuxPivot(n, x, pres) do
             r
           };
   end else if (x < v) then do
-    if (l ~= null) then do
+    if (l ~= nil) then do
       match = splitAuxPivot(l, x, pres);
       return --[[ tuple ]]{
               match[0],
@@ -146,11 +146,11 @@ function splitAuxPivot(n, x, pres) do
             };
     end else do
       return --[[ tuple ]]{
-              null,
+              nil,
               n
             };
     end end 
-  end else if (r ~= null) then do
+  end else if (r ~= nil) then do
     match$1 = splitAuxPivot(r, x, pres);
     return --[[ tuple ]]{
             Belt_internalAVLset.joinShared(l, v, match$1[0]),
@@ -159,13 +159,13 @@ function splitAuxPivot(n, x, pres) do
   end else do
     return --[[ tuple ]]{
             n,
-            null
+            nil
           };
   end end  end  end 
 end end
 
 function split(t, x) do
-  if (t ~= null) then do
+  if (t ~= nil) then do
     pres = do
       contents: false
     end;
@@ -177,8 +177,8 @@ function split(t, x) do
   end else do
     return --[[ tuple ]]{
             --[[ tuple ]]{
-              null,
-              null
+              nil,
+              nil
             },
             false
           };
@@ -186,8 +186,8 @@ function split(t, x) do
 end end
 
 function union(s1, s2) do
-  if (s1 ~= null) then do
-    if (s2 ~= null) then do
+  if (s1 ~= nil) then do
+    if (s2 ~= nil) then do
       h1 = s1.height;
       h2 = s2.height;
       if (h1 >= h2) then do
@@ -218,7 +218,7 @@ function union(s1, s2) do
 end end
 
 function intersect(s1, s2) do
-  if (s1 ~= null and s2 ~= null) then do
+  if (s1 ~= nil and s2 ~= nil) then do
     l1 = s1.left;
     v1 = s1.value;
     r1 = s1.right;
@@ -234,12 +234,12 @@ function intersect(s1, s2) do
       return Belt_internalAVLset.concatShared(ll, rr);
     end end 
   end else do
-    return null;
+    return nil;
   end end 
 end end
 
 function diff(s1, s2) do
-  if (s1 ~= null and s2 ~= null) then do
+  if (s1 ~= nil and s2 ~= nil) then do
     l1 = s1.left;
     v1 = s1.value;
     r1 = s1.right;
@@ -259,7 +259,7 @@ function diff(s1, s2) do
   end end 
 end end
 
-empty = null;
+empty = nil;
 
 fromArray = Belt_internalSetString.fromArray;
 

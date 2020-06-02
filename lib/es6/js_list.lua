@@ -12,7 +12,7 @@ function length(l) do
     if (param) then do
       _param = param[1];
       _len = len + 1 | 0;
-      continue ;
+      ::continue:: ;
     end else do
       return len;
     end end 
@@ -59,7 +59,7 @@ function nth(l, n) do
         end else do
           _n = n$1 - 1 | 0;
           _l = l$1[1];
-          continue ;
+          ::continue:: ;
         end end 
       end else do
         return ;
@@ -78,7 +78,7 @@ function revAppend(_l1, _l2) do
         l2
       };
       _l1 = l1[1];
-      continue ;
+      ::continue:: ;
     end else do
       return l2;
     end end 
@@ -99,7 +99,7 @@ function mapRevAux(f, _acc, _ls) do
         f(ls[0]),
         acc
       };
-      continue ;
+      ::continue:: ;
     end else do
       return acc;
     end end 
@@ -120,7 +120,7 @@ function iter(f, _param) do
     if (param) then do
       f(param[0]);
       _param = param[1];
-      continue ;
+      ::continue:: ;
     end else do
       return --[[ () ]]0;
     end end 
@@ -138,7 +138,7 @@ function iteri(f, l) do
       f$1(i, param[0]);
       _param = param[1];
       _i = i + 1 | 0;
-      continue ;
+      ::continue:: ;
     end else do
       return --[[ () ]]0;
     end end 
@@ -152,7 +152,7 @@ function foldLeft(f, _accu, _l) do
     if (l) then do
       _l = l[1];
       _accu = f(accu, l[0]);
-      continue ;
+      ::continue:: ;
     end else do
       return accu;
     end end 
@@ -166,7 +166,7 @@ function tailLoop(f, _acc, _param) do
     if (param) then do
       _param = param[1];
       _acc = f(param[0], acc);
-      continue ;
+      ::continue:: ;
     end else do
       return acc;
     end end 
@@ -199,7 +199,7 @@ function flatten(lx) do
     if (lx$1) then do
       _lx = lx$1[1];
       _acc = revAppend(lx$1[0], acc);
-      continue ;
+      ::continue:: ;
     end else do
       return revAppend(acc, --[[ [] ]]0);
     end end 
@@ -219,10 +219,10 @@ function filterRevAux(f, _acc, _xs) do
           y,
           acc
         };
-        continue ;
+        ::continue:: ;
       end else do
         _xs = ys;
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return acc;
@@ -247,9 +247,9 @@ function filterMapRevAux(f, _acc, _xs) do
           Caml_option.valFromOption(match),
           acc
         };
-        continue ;
+        ::continue:: ;
       end else do
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return acc;
@@ -271,7 +271,7 @@ function countBy(f, xs) do
     if (xs$1) then do
       _xs = xs$1[1];
       _acc = f$1(xs$1[0]) and acc + 1 | 0 or acc;
-      continue ;
+      ::continue:: ;
     end else do
       return acc;
     end end 
@@ -294,7 +294,7 @@ function toVector(xs) do
         a[i] = param[0];
         _param = param[1];
         _i = i + 1 | 0;
-        continue ;
+        ::continue:: ;
       end else do
         return a;
       end end 
@@ -312,7 +312,7 @@ function equal(cmp, _xs, _ys) do
       if (ys and cmp(xs[0], ys[0])) then do
         _ys = ys[1];
         _xs = xs[1];
-        continue ;
+        ::continue:: ;
       end else do
         return false;
       end end 

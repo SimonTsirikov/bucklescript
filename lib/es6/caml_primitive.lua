@@ -61,7 +61,7 @@ function caml_bytes_compare_aux(s1, s2, _off, len, def) do
         return -1;
       end else do
         _off = off + 1 | 0;
-        continue ;
+        ::continue:: ;
       end end  end 
     end else do
       return def;
@@ -98,7 +98,7 @@ function caml_bytes_equal(s1, s2) do
         b = s2$1[off];
         if (a == b) then do
           _off = off + 1 | 0;
-          continue ;
+          ::continue:: ;
         end else do
           return false;
         end end 

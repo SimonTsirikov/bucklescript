@@ -20,7 +20,7 @@ function everyU(_s, f, p) do
       return true;
     end else if (p(s)) then do
       _s = s + 1 | 0;
-      continue ;
+      ::continue:: ;
     end else do
       return false;
     end end  end 
@@ -43,7 +43,7 @@ function everyByU(s, f, step, p) do
         return true;
       end else if (p$1(s$1)) then do
         _s = s$1 + step$1 | 0;
-        continue ;
+        ::continue:: ;
       end else do
         return false;
       end end  end 
@@ -66,7 +66,7 @@ function someU(_s, f, p) do
       return true;
     end else do
       _s = s + 1 | 0;
-      continue ;
+      ::continue:: ;
     end end  end 
   end;
 end end
@@ -89,7 +89,7 @@ function someByU(s, f, step, p) do
         return true;
       end else do
         _s = s$1 + step$1 | 0;
-        continue ;
+        ::continue:: ;
       end end  end 
     end;
   end else do

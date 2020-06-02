@@ -1,6 +1,6 @@
 --[['use strict';]]
 
-Caml_array = require "../../lib/js/caml_array.lua";
+Caml_array = require "../../lib/js/caml_array";
 
 function g(x) do
   return {

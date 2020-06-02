@@ -1,9 +1,9 @@
 --[['use strict';]]
 
-__Array = require "../../lib/js/array.lua";
-Curry = require "../../lib/js/curry.lua";
-Caml_array = require "../../lib/js/caml_array.lua";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
+__Array = require "../../lib/js/array";
+Curry = require "../../lib/js/curry";
+Caml_array = require "../../lib/js/caml_array";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 v = do
   contents: 0
@@ -31,14 +31,14 @@ __Array.iter((function (x) do
       end end), u);
 
 if (v.contents ~= 45) then do
-  throw {
-        Caml_builtin_exceptions.assert_failure,
-        --[[ tuple ]]{
-          "test_closure.ml",
-          53,
-          2
-        }
-      };
+  error ({
+    Caml_builtin_exceptions.assert_failure,
+    --[[ tuple ]]{
+      "test_closure.ml",
+      53,
+      2
+    }
+  })
 end
  end 
 

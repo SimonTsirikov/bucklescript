@@ -1,10 +1,10 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-__Array = require "../../lib/js/array.lua";
-Block = require "../../lib/js/block.lua";
-Caml_string = require "../../lib/js/caml_string.lua";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
+Mt = require "./mt";
+__Array = require "../../lib/js/array";
+Block = require "../../lib/js/block";
+Caml_string = require "../../lib/js/caml_string";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 suites = do
   contents: --[[ [] ]]0
@@ -41,14 +41,14 @@ function convert(s) do
                     if (match ~= undefined) then do
                       return match;
                     end else do
-                      throw {
-                            Caml_builtin_exceptions.assert_failure,
-                            --[[ tuple ]]{
-                              "chn_test.ml",
-                              20,
-                              18
-                            }
-                          };
+                      error ({
+                        Caml_builtin_exceptions.assert_failure,
+                        --[[ tuple ]]{
+                          "chn_test.ml",
+                          20,
+                          18
+                        }
+                      })
                     end end 
                   end end)));
 end end

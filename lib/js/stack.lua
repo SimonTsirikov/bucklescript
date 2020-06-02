@@ -1,7 +1,7 @@
 --[['use strict';]]
 
-List = require "./list.lua";
-Caml_exceptions = require "./caml_exceptions.lua";
+List = require "./list";
+Caml_exceptions = require "./caml_exceptions";
 
 Empty = Caml_exceptions.create("Stack.Empty");
 
@@ -41,7 +41,7 @@ function pop(s) do
     s.len = s.len - 1 | 0;
     return match[0];
   end else do
-    throw Empty;
+    error (Empty)
   end end 
 end end
 
@@ -50,7 +50,7 @@ function top(s) do
   if (match) then do
     return match[0];
   end else do
-    throw Empty;
+    error (Empty)
   end end 
 end end
 

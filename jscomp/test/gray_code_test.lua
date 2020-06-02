@@ -1,6 +1,6 @@
 --[['use strict';]]
 
-Bytes = require "../../lib/js/bytes.lua";
+Bytes = require "../../lib/js/bytes";
 
 function gray_encode(b) do
   return b ^ (b >>> 1);
@@ -17,7 +17,7 @@ function gray_decode(n) do
     end else do
       _n = (n$1 >>> 1);
       _p = p ^ n$1;
-      continue ;
+      ::continue:: ;
     end end 
   end;
 end end
@@ -38,7 +38,7 @@ function bool_string(len, n) do
     end else do
       _n = (n$1 >>> 1);
       _i = i - 1 | 0;
-      continue ;
+      ::continue:: ;
     end end 
   end;
 end end

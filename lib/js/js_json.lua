@@ -1,7 +1,7 @@
 --[['use strict';]]
 
-Block = require "./block.lua";
-Caml_option = require "./caml_option.lua";
+Block = require "./block";
+Caml_option = require "./caml_option";
 
 function classify(x) do
   ty = typeof x;
@@ -15,7 +15,7 @@ function classify(x) do
     end else do
       return --[[ JSONFalse ]]0;
     end end 
-  end else if (x == null) then do
+  end else if (x == nil) then do
     return --[[ JSONNull ]]2;
   end else if (Array.isArray(x)) then do
     return --[[ JSONArray ]]Block.__(3, {x});
@@ -32,7 +32,7 @@ function test(x, v) do
      if ___conditional___ = 1--[[ Number ]] then do
         return typeof x == "number";end end end 
      if ___conditional___ = 2--[[ Object ]] then do
-        if (x ~= null and typeof x == "object") then do
+        if (x ~= nil and typeof x == "object") then do
           return not Array.isArray(x);
         end else do
           return false;
@@ -42,7 +42,7 @@ function test(x, v) do
      if ___conditional___ = 4--[[ Boolean ]] then do
         return typeof x == "boolean";end end end 
      if ___conditional___ = 5--[[ Null ]] then do
-        return x == null;end end end 
+        return x == nil;end end end 
      do
     
   end
@@ -63,7 +63,7 @@ function decodeNumber(json) do
 end end
 
 function decodeObject(json) do
-  if (typeof json == "object" and not Array.isArray(json) and json ~= null) then do
+  if (typeof json == "object" and not Array.isArray(json) and json ~= nil) then do
     return Caml_option.some(json);
   end
    end 
@@ -84,8 +84,8 @@ function decodeBoolean(json) do
 end end
 
 function decodeNull(json) do
-  if (json == null) then do
-    return null;
+  if (json == nil) then do
+    return nil;
   end
    end 
 end end

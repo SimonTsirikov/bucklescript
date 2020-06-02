@@ -1,70 +1,66 @@
 --[['use strict';]]
 
-Js_exn = require "../../lib/js/js_exn.lua";
-Caml_option = require "../../lib/js/caml_option.lua";
-Caml_js_exceptions = require "../../lib/js/caml_js_exceptions.lua";
+Js_exn = require "../../lib/js/js_exn";
+Caml_option = require "../../lib/js/caml_option";
+Caml_js_exceptions = require "../../lib/js/caml_js_exceptions";
 
 function test_js_error(param) do
   e;
-  try do
+  xpcall(function() do
     e = JSON.parse(" {\"x\" : }");
-  end
-  catch (raw_exn)do
+  end end,function(raw_exn) return do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn[0] == Js_exn.__Error) then do
       console.log(exn[1].stack);
       return ;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
   return Caml_option.some(e);
 end end
 
 function test_js_error2(param) do
-  try do
+  xpcall(function() do
     return JSON.parse(" {\"x\" : }");
-  end
-  catch (raw_e)do
+  end end,function(raw_e) return do
     e = Caml_js_exceptions.internalToOCamlException(raw_e);
     if (e[0] == Js_exn.__Error) then do
       console.log(e[1].stack);
-      throw e;
+      error (e)
     end else do
-      throw e;
+      error (e)
     end end 
-  end
+  end end)
 end end
 
 function example1(param) do
   v;
-  try do
+  xpcall(function() do
     v = JSON.parse(" {\"x\"  }");
-  end
-  catch (raw_exn)do
+  end end,function(raw_exn) return do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn[0] == Js_exn.__Error) then do
       console.log(exn[1].stack);
       return ;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
   return Caml_option.some(v);
 end end
 
 function example2(param) do
-  try do
+  xpcall(function() do
     return Caml_option.some(JSON.parse(" {\"x\"}"));
-  end
-  catch (raw_exn)do
+  end end,function(raw_exn) return do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn[0] == Js_exn.__Error) then do
       return ;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 exports.test_js_error = test_js_error;

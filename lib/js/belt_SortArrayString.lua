@@ -1,6 +1,6 @@
 --[['use strict';]]
 
-Belt_Array = require "./belt_Array.lua";
+Belt_Array = require "./belt_Array";
 
 function sortedLengthAuxMore(xs, _prec, _acc, len) do
   while(true) do
@@ -13,7 +13,7 @@ function sortedLengthAuxMore(xs, _prec, _acc, len) do
       if (prec > v) then do
         _acc = acc + 1 | 0;
         _prec = v;
-        continue ;
+        ::continue:: ;
       end else do
         return acc;
       end end 
@@ -43,7 +43,7 @@ function strictlySortedLength(xs) do
           if (prec < v) then do
             _acc = acc + 1 | 0;
             _prec = v;
-            continue ;
+            ::continue:: ;
           end else do
             return acc;
           end end 
@@ -71,7 +71,7 @@ function isSorted(a) do
         return true;
       end else if (a$1[i] <= a$1[i + 1 | 0]) then do
         _i = i + 1 | 0;
-        continue ;
+        ::continue:: ;
       end else do
         return false;
       end end  end 
@@ -100,7 +100,7 @@ function merge(src, src1ofs, src1len, src2, src2ofs, src2len, dst, dstofs) do
         _d = d + 1 | 0;
         _s1 = src[i1$1];
         _i1 = i1$1;
-        continue ;
+        ::continue:: ;
       end else do
         return Belt_Array.blitUnsafe(src2, i2, dst, d + 1 | 0, src2r - i2 | 0);
       end end 
@@ -111,7 +111,7 @@ function merge(src, src1ofs, src1len, src2, src2ofs, src2len, dst, dstofs) do
         _d = d + 1 | 0;
         _s2 = src2[i2$1];
         _i2 = i2$1;
-        continue ;
+        ::continue:: ;
       end else do
         return Belt_Array.blitUnsafe(src, i1, dst, d + 1 | 0, src1r - i1 | 0);
       end end 
@@ -141,7 +141,7 @@ function union(src, src1ofs, src1len, src2, src2ofs, src2len, dst, dstofs) do
         _d = d$1;
         _s1 = src[i1$1];
         _i1 = i1$1;
-        continue ;
+        ::continue:: ;
       end else do
         Belt_Array.blitUnsafe(src2, i2, dst, d$1, src2r - i2 | 0);
         return (d$1 + src2r | 0) - i2 | 0;
@@ -157,7 +157,7 @@ function union(src, src1ofs, src1len, src2, src2ofs, src2len, dst, dstofs) do
         _i2 = i2$1;
         _s1 = src[i1$2];
         _i1 = i1$2;
-        continue ;
+        ::continue:: ;
       end else if (i1$2 == src1r) then do
         Belt_Array.blitUnsafe(src2, i2$1, dst, d$2, src2r - i2$1 | 0);
         return (d$2 + src2r | 0) - i2$1 | 0;
@@ -173,7 +173,7 @@ function union(src, src1ofs, src1len, src2, src2ofs, src2len, dst, dstofs) do
         _d = d$3;
         _s2 = src2[i2$2];
         _i2 = i2$2;
-        continue ;
+        ::continue:: ;
       end else do
         Belt_Array.blitUnsafe(src, i1, dst, d$3, src1r - i1 | 0);
         return (d$3 + src1r | 0) - i1 | 0;
@@ -201,7 +201,7 @@ function intersect(src, src1ofs, src1len, src2, src2ofs, src2len, dst, dstofs) d
       if (i1$1 < src1r) then do
         _s1 = src[i1$1];
         _i1 = i1$1;
-        continue ;
+        ::continue:: ;
       end else do
         return d;
       end end 
@@ -216,7 +216,7 @@ function intersect(src, src1ofs, src1len, src2, src2ofs, src2len, dst, dstofs) d
         _i2 = i2$1;
         _s1 = src[i1$2];
         _i1 = i1$2;
-        continue ;
+        ::continue:: ;
       end else do
         return d$1;
       end end 
@@ -225,7 +225,7 @@ function intersect(src, src1ofs, src1len, src2, src2ofs, src2len, dst, dstofs) d
       if (i2$2 < src2r) then do
         _s2 = src2[i2$2];
         _i2 = i2$2;
-        continue ;
+        ::continue:: ;
       end else do
         return d;
       end end 
@@ -255,7 +255,7 @@ function diff(src, src1ofs, src1len, src2, src2ofs, src2len, dst, dstofs) do
         _d = d$1;
         _s1 = src[i1$1];
         _i1 = i1$1;
-        continue ;
+        ::continue:: ;
       end else do
         return d$1;
       end end 
@@ -267,7 +267,7 @@ function diff(src, src1ofs, src1len, src2, src2ofs, src2len, dst, dstofs) do
         _i2 = i2$1;
         _s1 = src[i1$2];
         _i1 = i1$2;
-        continue ;
+        ::continue:: ;
       end else if (i1$2 == src1r) then do
         return d;
       end else do
@@ -279,7 +279,7 @@ function diff(src, src1ofs, src1len, src2, src2ofs, src2len, dst, dstofs) do
       if (i2$2 < src2r) then do
         _s2 = src2[i2$2];
         _i2 = i2$2;
-        continue ;
+        ::continue:: ;
       end else do
         Belt_Array.blitUnsafe(src, i1, dst, d, src1r - i1 | 0);
         return (d + src1r | 0) - i1 | 0;
@@ -366,7 +366,7 @@ function binarySearch(sorted, key) do
               end end 
             end else do
               _hi = mid;
-              continue ;
+              ::continue:: ;
             end end 
           end else if (lo$1 == mid) then do
             if (arr[hi$1] == key$1) then do
@@ -376,7 +376,7 @@ function binarySearch(sorted, key) do
             end end 
           end else do
             _lo = mid;
-            continue ;
+            ::continue:: ;
           end end  end  end 
         end;
       end end 

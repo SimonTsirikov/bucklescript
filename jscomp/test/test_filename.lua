@@ -1,7 +1,7 @@
 --[['use strict';]]
 
-List = require "../../lib/js/list.lua";
-Filename = require "../../lib/js/filename.lua";
+List = require "../../lib/js/list";
+Filename = require "../../lib/js/filename";
 
 u = Filename.chop_extension;
 

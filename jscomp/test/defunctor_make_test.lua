@@ -1,7 +1,7 @@
 --[['use strict';]]
 
-Caml_primitive = require "../../lib/js/caml_primitive.lua";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
+Caml_primitive = require "../../lib/js/caml_primitive";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 function getcompare(x) do
   return x;
@@ -50,16 +50,16 @@ function bal(l, x, d, r) do
       end else if (lr) then do
         return create(create(ll, lv, ld, lr[0]), lr[1], lr[2], create(lr[3], x, d, r));
       end else do
-        throw {
-              Caml_builtin_exceptions.invalid_argument,
-              "Map.bal"
-            };
+        error ({
+          Caml_builtin_exceptions.invalid_argument,
+          "Map.bal"
+        })
       end end  end 
     end else do
-      throw {
-            Caml_builtin_exceptions.invalid_argument,
-            "Map.bal"
-          };
+      error ({
+        Caml_builtin_exceptions.invalid_argument,
+        "Map.bal"
+      })
     end end 
   end else if (hr > (hl + 2 | 0)) then do
     if (r) then do
@@ -72,16 +72,16 @@ function bal(l, x, d, r) do
       end else if (rl) then do
         return create(create(l, x, d, rl[0]), rl[1], rl[2], create(rl[3], rv, rd, rr));
       end else do
-        throw {
-              Caml_builtin_exceptions.invalid_argument,
-              "Map.bal"
-            };
+        error ({
+          Caml_builtin_exceptions.invalid_argument,
+          "Map.bal"
+        })
       end end  end 
     end else do
-      throw {
-            Caml_builtin_exceptions.invalid_argument,
-            "Map.bal"
-          };
+      error ({
+        Caml_builtin_exceptions.invalid_argument,
+        "Map.bal"
+      })
     end end 
   end else do
     return --[[ Node ]]{

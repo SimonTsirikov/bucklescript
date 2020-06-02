@@ -1,9 +1,9 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-Fs = require "fs";
-Path = require "path";
-Block = require "../../lib/js/block.lua";
+Mt = require "./mt";
+Fs = require "";
+Path = require "";
+Block = require "../../lib/js/block";
 
 suites = do
   contents: --[[ [] ]]0

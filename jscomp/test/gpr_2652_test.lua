@@ -1,6 +1,6 @@
 --[['use strict';]]
 
-__Buffer = require "../../lib/js/buffer.lua";
+__Buffer = require "../../lib/js/buffer";
 
 foo = __Buffer.contents;
 

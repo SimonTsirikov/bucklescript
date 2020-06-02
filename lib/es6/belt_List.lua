@@ -16,7 +16,7 @@ function headExn(x) do
   if (x) then do
     return x[0];
   end else do
-    throw new Error("headExn");
+    error (new Error("headExn"))
   end end 
 end end
 
@@ -31,7 +31,7 @@ function tailExn(x) do
   if (x) then do
     return x[1];
   end else do
-    throw new Error("tailExn");
+    error (new Error("tailExn"))
   end end 
 end end
 
@@ -57,7 +57,7 @@ function get(x, n) do
         end else do
           _n = n$1 - 1 | 0;
           _x = x$1[1];
-          continue ;
+          ::continue:: ;
         end end 
       end else do
         return ;
@@ -68,7 +68,7 @@ end end
 
 function getExn(x, n) do
   if (n < 0) then do
-    throw new Error("getExn");
+    error (new Error("getExn"))
   end
    end 
   _x = x;
@@ -82,10 +82,10 @@ function getExn(x, n) do
       end else do
         _n = n$1 - 1 | 0;
         _x = x$1[1];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
-      throw new Error("getExn");
+      error (new Error("getExn"))
     end end 
   end;
 end end
@@ -106,12 +106,12 @@ function partitionAux(p, _cell, _precX, _precY) do
         precX[1] = next;
         _precX = next;
         _cell = t;
-        continue ;
+        ::continue:: ;
       end else do
         precY[1] = next;
         _precY = next;
         _cell = t;
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return --[[ () ]]0;
@@ -139,7 +139,7 @@ function splitAux(_cell, _precX, _precY) do
       _precY = nextB;
       _precX = nextA;
       _cell = cell[1];
-      continue ;
+      ::continue:: ;
     end else do
       return --[[ () ]]0;
     end end 
@@ -158,7 +158,7 @@ function copyAuxCont(_cellX, _prec) do
       prec[1] = next;
       _prec = next;
       _cellX = cellX[1];
-      continue ;
+      ::continue:: ;
     end else do
       return prec;
     end end 
@@ -180,10 +180,10 @@ function copyAuxWitFilter(f, _cellX, _prec) do
         prec[1] = next;
         _prec = next;
         _cellX = t;
-        continue ;
+        ::continue:: ;
       end else do
         _cellX = t;
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return --[[ () ]]0;
@@ -208,11 +208,11 @@ function copyAuxWithFilterIndex(f, _cellX, _prec, _i) do
         _i = i + 1 | 0;
         _prec = next;
         _cellX = t;
-        continue ;
+        ::continue:: ;
       end else do
         _i = i + 1 | 0;
         _cellX = t;
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return --[[ () ]]0;
@@ -235,10 +235,10 @@ function copyAuxWitFilterMap(f, _cellX, _prec) do
         prec[1] = next;
         _prec = next;
         _cellX = t;
-        continue ;
+        ::continue:: ;
       end else do
         _cellX = t;
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return --[[ () ]]0;
@@ -264,7 +264,7 @@ function removeAssocAuxWithMap(_cellX, x, _prec, f) do
         prec[1] = next;
         _prec = next;
         _cellX = t;
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return false;
@@ -296,7 +296,7 @@ function setAssocAuxWithMap(_cellX, x, k, _prec, eq) do
         prec[1] = next;
         _prec = next;
         _cellX = t;
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return false;
@@ -316,7 +316,7 @@ function copyAuxWithMap(_cellX, _prec, f) do
       prec[1] = next;
       _prec = next;
       _cellX = cellX[1];
-      continue ;
+      ::continue:: ;
     end else do
       return --[[ () ]]0;
     end end 
@@ -340,7 +340,7 @@ function zipAux(_cellX, _cellY, _prec) do
       _prec = next;
       _cellY = cellY[1];
       _cellX = cellX[1];
-      continue ;
+      ::continue:: ;
     end else do
       return --[[ () ]]0;
     end end 
@@ -361,7 +361,7 @@ function copyAuxWithMap2(f, _cellX, _cellY, _prec) do
       _prec = next;
       _cellY = cellY[1];
       _cellX = cellX[1];
-      continue ;
+      ::continue:: ;
     end else do
       return --[[ () ]]0;
     end end 
@@ -382,7 +382,7 @@ function copyAuxWithMapI(f, _i, _cellX, _prec) do
       _prec = next;
       _cellX = cellX[1];
       _i = i + 1 | 0;
-      continue ;
+      ::continue:: ;
     end else do
       return --[[ () ]]0;
     end end 
@@ -405,7 +405,7 @@ function takeAux(_n, _cell, _prec) do
       _prec = cell$1;
       _cell = cell[1];
       _n = n - 1 | 0;
-      continue ;
+      ::continue:: ;
     end else do
       return false;
     end end  end 
@@ -428,7 +428,7 @@ function splitAtAux(_n, _cell, _prec) do
       _prec = cell$1;
       _cell = cell[1];
       _n = n - 1 | 0;
-      continue ;
+      ::continue:: ;
     end else do
       return ;
     end end  end 
@@ -470,7 +470,7 @@ function drop(lst, n) do
       end else if (l) then do
         _n = n$1 - 1 | 0;
         _l = l[1];
-        continue ;
+        ::continue:: ;
       end else do
         return ;
       end end  end 
@@ -628,7 +628,7 @@ function length(xs) do
     if (x) then do
       _acc = acc + 1 | 0;
       _x = x[1];
-      continue ;
+      ::continue:: ;
     end else do
       return acc;
     end end 
@@ -643,7 +643,7 @@ function fillAux(arr, _i, _x) do
       arr[i] = x[0];
       _x = x[1];
       _i = i + 1 | 0;
-      continue ;
+      ::continue:: ;
     end else do
       return --[[ () ]]0;
     end end 
@@ -665,7 +665,7 @@ function fromArray(a) do
         res
       };
       _i = i - 1 | 0;
-      continue ;
+      ::continue:: ;
     end end 
   end;
 end end
@@ -693,7 +693,7 @@ function reverseConcat(_l1, _l2) do
         l2
       };
       _l1 = l1[1];
-      continue ;
+      ::continue:: ;
     end else do
       return l2;
     end end 
@@ -711,7 +711,7 @@ function flattenAux(_prec, _xs) do
     if (xs) then do
       _xs = xs[1];
       _prec = copyAuxCont(xs[0], prec);
-      continue ;
+      ::continue:: ;
     end else do
       prec[1] = --[[ [] ]]0;
       return --[[ () ]]0;
@@ -733,7 +733,7 @@ function flatten(_xs) do
         return cell;
       end else do
         _xs = xs[1];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return --[[ [] ]]0;
@@ -772,7 +772,7 @@ function mapReverseU(l, f) do
         f$1(xs[0]),
         accu
       };
-      continue ;
+      ::continue:: ;
     end else do
       return accu;
     end end 
@@ -789,7 +789,7 @@ function forEachU(_xs, f) do
     if (xs) then do
       f(xs[0]);
       _xs = xs[1];
-      continue ;
+      ::continue:: ;
     end else do
       return --[[ () ]]0;
     end end 
@@ -811,7 +811,7 @@ function forEachWithIndexU(l, f) do
       f$1(i, xs[0]);
       _i = i + 1 | 0;
       _xs = xs[1];
-      continue ;
+      ::continue:: ;
     end else do
       return --[[ () ]]0;
     end end 
@@ -829,7 +829,7 @@ function reduceU(_l, _accu, f) do
     if (l) then do
       _accu = f(accu, l[0]);
       _l = l[1];
-      continue ;
+      ::continue:: ;
     end else do
       return accu;
     end end 
@@ -874,7 +874,7 @@ function reduceWithIndexU(l, acc, f) do
       _i = i + 1 | 0;
       _acc = f$1(acc$1, l$1[0], i);
       _l = l$1[1];
-      continue ;
+      ::continue:: ;
     end else do
       return acc$1;
     end end 
@@ -901,7 +901,7 @@ function mapReverse2U(l1, l2, f) do
       };
       _l2 = l2$1[1];
       _l1 = l1$1[1];
-      continue ;
+      ::continue:: ;
     end else do
       return accu;
     end end 
@@ -920,7 +920,7 @@ function forEach2U(_l1, _l2, f) do
       f(l1[0], l2[0]);
       _l2 = l2[1];
       _l1 = l1[1];
-      continue ;
+      ::continue:: ;
     end else do
       return --[[ () ]]0;
     end end 
@@ -940,7 +940,7 @@ function reduce2U(_l1, _l2, _accu, f) do
       _accu = f(accu, l1[0], l2[0]);
       _l2 = l2[1];
       _l1 = l1[1];
-      continue ;
+      ::continue:: ;
     end else do
       return accu;
     end end 
@@ -978,7 +978,7 @@ function everyU(_xs, p) do
     if (xs) then do
       if (p(xs[0])) then do
         _xs = xs[1];
-        continue ;
+        ::continue:: ;
       end else do
         return false;
       end end 
@@ -1000,7 +1000,7 @@ function someU(_xs, p) do
         return true;
       end else do
         _xs = xs[1];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return false;
@@ -1020,7 +1020,7 @@ function every2U(_l1, _l2, p) do
       if (p(l1[0], l2[0])) then do
         _l2 = l2[1];
         _l1 = l1[1];
-        continue ;
+        ::continue:: ;
       end else do
         return false;
       end end 
@@ -1042,7 +1042,7 @@ function cmpByLength(_l1, _l2) do
       if (l2) then do
         _l2 = l2[1];
         _l1 = l1[1];
-        continue ;
+        ::continue:: ;
       end else do
         return 1;
       end end 
@@ -1064,7 +1064,7 @@ function cmpU(_l1, _l2, p) do
         if (c == 0) then do
           _l2 = l2[1];
           _l1 = l1[1];
-          continue ;
+          ::continue:: ;
         end else do
           return c;
         end end 
@@ -1091,7 +1091,7 @@ function eqU(_l1, _l2, p) do
       if (l2 and p(l1[0], l2[0])) then do
         _l2 = l2[1];
         _l1 = l1[1];
-        continue ;
+        ::continue:: ;
       end else do
         return false;
       end end 
@@ -1117,7 +1117,7 @@ function some2U(_l1, _l2, p) do
       end else do
         _l2 = l2[1];
         _l1 = l1[1];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return false;
@@ -1137,7 +1137,7 @@ function hasU(_xs, x, eq) do
         return true;
       end else do
         _xs = xs[1];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return false;
@@ -1158,7 +1158,7 @@ function getAssocU(_xs, x, eq) do
         return Caml_option.some(match[1]);
       end else do
         _xs = xs[1];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return ;
@@ -1178,7 +1178,7 @@ function hasAssocU(_xs, x, eq) do
         return true;
       end else do
         _xs = xs[1];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return false;
@@ -1281,7 +1281,7 @@ function getByU(_xs, p) do
         return Caml_option.some(x);
       end else do
         _xs = xs[1];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return ;
@@ -1308,7 +1308,7 @@ function keepU(_xs, p) do
         return cell;
       end else do
         _xs = t;
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return --[[ [] ]]0;
@@ -1340,7 +1340,7 @@ function keepWithIndexU(xs, p) do
       end else do
         _i = i + 1 | 0;
         _xs = t;
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return --[[ [] ]]0;
@@ -1367,7 +1367,7 @@ function keepMapU(_xs, p) do
         return cell;
       end else do
         _xs = t;
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return --[[ [] ]]0;

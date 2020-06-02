@@ -1,32 +1,32 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-Fs = require "fs";
-Sys = require "../../lib/js/sys.lua";
-Char = require "../../lib/js/char.lua";
-List = require "../../lib/js/list.lua";
-Path = require "path";
-__Array = require "../../lib/js/array.lua";
-Block = require "../../lib/js/block.lua";
-Curry = require "../../lib/js/curry.lua";
-Queue = require "../../lib/js/queue.lua";
-__Buffer = require "../../lib/js/buffer.lua";
-Lexing = require "../../lib/js/lexing.lua";
-Printf = require "../../lib/js/printf.lua";
-__String = require "../../lib/js/string.lua";
-Hashtbl = require "../../lib/js/hashtbl.lua";
-Caml_obj = require "../../lib/js/caml_obj.lua";
-Filename = require "../../lib/js/filename.lua";
-Caml_array = require "../../lib/js/caml_array.lua";
-Caml_bytes = require "../../lib/js/caml_bytes.lua";
-Pervasives = require "../../lib/js/pervasives.lua";
-Caml_format = require "../../lib/js/caml_format.lua";
-Caml_module = require "../../lib/js/caml_module.lua";
-Caml_option = require "../../lib/js/caml_option.lua";
-Caml_primitive = require "../../lib/js/caml_primitive.lua";
-Caml_exceptions = require "../../lib/js/caml_exceptions.lua";
-Caml_js_exceptions = require "../../lib/js/caml_js_exceptions.lua";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
+Mt = require "./mt";
+Fs = require "";
+Sys = require "../../lib/js/sys";
+Char = require "../../lib/js/char";
+List = require "../../lib/js/list";
+Path = require "";
+__Array = require "../../lib/js/array";
+Block = require "../../lib/js/block";
+Curry = require "../../lib/js/curry";
+Queue = require "../../lib/js/queue";
+__Buffer = require "../../lib/js/buffer";
+Lexing = require "../../lib/js/lexing";
+Printf = require "../../lib/js/printf";
+__String = require "../../lib/js/string";
+Hashtbl = require "../../lib/js/hashtbl";
+Caml_obj = require "../../lib/js/caml_obj";
+Filename = require "../../lib/js/filename";
+Caml_array = require "../../lib/js/caml_array";
+Caml_bytes = require "../../lib/js/caml_bytes";
+Pervasives = require "../../lib/js/pervasives";
+Caml_format = require "../../lib/js/caml_format";
+Caml_module = require "../../lib/js/caml_module";
+Caml_option = require "../../lib/js/caml_option";
+Caml_primitive = require "../../lib/js/caml_primitive";
+Caml_exceptions = require "../../lib/js/caml_exceptions";
+Caml_js_exceptions = require "../../lib/js/caml_js_exceptions";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 none = do
   source: undefined,
@@ -1553,7 +1553,7 @@ function eat(f) do
             todo: match[1]
           end;
   end else do
-    throw No_good;
+    error (No_good)
   end end 
 end end
 
@@ -1610,7 +1610,7 @@ function parse_hex_symbol(f) do
   match = f.todo;
   if (match) then do
     if (match[0] ~= 48) then do
-      throw No_good;
+      error (No_good)
     end
      end 
     match$1 = match[1];
@@ -1618,7 +1618,7 @@ function parse_hex_symbol(f) do
       match$2 = match$1[0];
       if (match$2 ~= 88) then do
         if (match$2 ~= 120) then do
-          throw No_good;
+          error (No_good)
         end
          end 
         return eat(eat(f));
@@ -1626,27 +1626,26 @@ function parse_hex_symbol(f) do
         return eat(eat(f));
       end end 
     end else do
-      throw No_good;
+      error (No_good)
     end end 
   end else do
-    throw No_good;
+    error (No_good)
   end end 
 end end
 
 function parse_exponent(f) do
   todo_str = __String.concat("", List.map(Char.escaped, f.todo));
   exponent;
-  try do
+  xpcall(function() do
     exponent = Caml_format.caml_int_of_string(todo_str);
-  end
-  catch (raw_exn)do
+  end end,function(raw_exn) return do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn[0] == Caml_builtin_exceptions.failure) then do
-      throw No_good;
+      error (No_good)
     end
      end 
-    throw exn;
-  end
+    error (exn)
+  end end)
   return do
           negative: f.negative,
           mantissa: f.mantissa,
@@ -1670,7 +1669,7 @@ function parse_body(_f) do
            end 
         end else do
           _f = eat(f);
-          continue ;
+          ::continue:: ;
         end end 
       end else if (c ~= 46) then do
         if (c >= 80) then do
@@ -1686,9 +1685,9 @@ function parse_body(_f) do
           decimal_exponent: 0,
           todo: init.todo
         end;
-        continue ;
+        ::continue:: ;
       end else do
-        throw No_good;
+        error (No_good)
       end end  end  end 
       ref_char_code;
       if (c >= --[[ "0" ]]48 and c <= --[[ "9" ]]57) then do
@@ -1698,7 +1697,7 @@ function parse_body(_f) do
       end else if (c >= --[[ "a" ]]97 and c <= --[[ "f" ]]102) then do
         ref_char_code = 87;
       end else do
-        throw No_good;
+        error (No_good)
       end end  end  end 
       value = c - ref_char_code | 0;
       match$1 = f.decimal_exponent;
@@ -1712,7 +1711,7 @@ function parse_body(_f) do
         decimal_exponent: decimal_exponent,
         todo: init$1.todo
       end;
-      continue ;
+      ::continue:: ;
     end else do
       return f;
     end end 
@@ -1720,22 +1719,21 @@ function parse_body(_f) do
 end end
 
 function float_of_string(str) do
-  try do
+  xpcall(function() do
     return Caml_format.caml_float_of_string(str);
-  end
-  catch (e)do
+  end end,function(e) return do
     if (Sys.win32) then do
-      try do
+      xpcall(function() do
         f = parse_body(parse_hex_symbol(parse_sign(start(str))));
         if (f.todo ~= --[[ [] ]]0) then do
-          throw {
-                Caml_builtin_exceptions.assert_failure,
-                --[[ tuple ]]{
-                  "lexer_flow.mll",
-                  546,
-                  4
-                }
-              };
+          error ({
+            Caml_builtin_exceptions.assert_failure,
+            --[[ tuple ]]{
+              "lexer_flow.mll",
+              546,
+              4
+            }
+          })
         end
          end 
         ret = f.mantissa;
@@ -1747,18 +1745,17 @@ function float_of_string(str) do
         end else do
           return ret$1;
         end end 
-      end
-      catch (exn)do
+      end end,function(exn) return do
         if (exn == No_good) then do
-          throw e;
+          error (e)
         end
          end 
-        throw exn;
-      end
+        error (exn)
+      end end)
     end else do
-      throw e;
+      error (e)
     end end 
-  end
+  end end)
 end end
 
 function save_comment(env, start, _end, buf, multiline) do
@@ -1799,7 +1796,7 @@ function unicode_fix_cols(lb) do
         acc$1 = (c & 192) == 128 and acc + 1 | 0 or acc;
         _acc = acc$1;
         _start = start + 1 | 0;
-        continue ;
+        ::continue:: ;
       end end 
     end;
   end end;
@@ -1817,14 +1814,14 @@ end end
 
 function oct_to_int(x) do
   if (x > 55 or x < 48) then do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "lexer_flow.mll",
-            604,
-            11
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "lexer_flow.mll",
+        604,
+        11
+      }
+    })
   end
    end 
   return x - --[[ "0" ]]48 | 0;
@@ -1845,14 +1842,14 @@ function hexa_to_int(x) do
     return x - --[[ "0" ]]48 | 0;
   end
    end  end 
-  throw {
-        Caml_builtin_exceptions.assert_failure,
-        --[[ tuple ]]{
-          "lexer_flow.mll",
-          610,
-          11
-        }
-      };
+  error ({
+    Caml_builtin_exceptions.assert_failure,
+    --[[ tuple ]]{
+      "lexer_flow.mll",
+      610,
+      11
+    }
+  })
 end end
 
 function utf16to8(code) do
@@ -2467,22 +2464,21 @@ function token(env, lexbuf) do
        if ___conditional___ = 22 then do
           word = Lexing.sub_lexeme(lexbuf$1, lexbuf$1.lex_start_pos, lexbuf$1.lex_curr_pos);
           unicode_fix_cols(lexbuf$1);
-          try do
+          xpcall(function() do
             return --[[ tuple ]]{
                     env$1,
                     Hashtbl.find(keywords, word)
                   };
-          end
-          catch (exn)do
+          end end,function(exn) return do
             if (exn == Caml_builtin_exceptions.not_found) then do
               return --[[ tuple ]]{
                       env$1,
                       --[[ T_IDENTIFIER ]]0
                     };
             end else do
-              throw exn;
+              error (exn)
             end end 
-          endend end end 
+          end end)end end end 
        if ___conditional___ = 23 then do
           return --[[ tuple ]]{
                   env$1,
@@ -2770,7 +2766,7 @@ function token(env, lexbuf) do
       else do
         Curry._1(lexbuf$1.refill_buff, lexbuf$1);
         ___ocaml_lex_state = __ocaml_lex_state$1;
-        continue ;
+        ::continue:: ;
         end end
         
     end
@@ -2838,7 +2834,7 @@ function regexp_body(env, buf, lexbuf) do
       else do
         Curry._1(lexbuf$1.refill_buff, lexbuf$1);
         ___ocaml_lex_state = __ocaml_lex_state$1;
-        continue ;
+        ::continue:: ;
         end end
         
     end
@@ -2871,7 +2867,7 @@ function regexp_class(env, buf, lexbuf) do
       else do
         Curry._1(lexbuf$1.refill_buff, lexbuf$1);
         ___ocaml_lex_state = __ocaml_lex_state$1;
-        continue ;
+        ::continue:: ;
         end end
         
     end
@@ -2924,7 +2920,7 @@ function line_comment(env, buf, lexbuf) do
       else do
         Curry._1(lexbuf$1.refill_buff, lexbuf$1);
         ___ocaml_lex_state = __ocaml_lex_state$1;
-        continue ;
+        ::continue:: ;
         end end
         
     end
@@ -2976,7 +2972,7 @@ function comment(env, buf, lexbuf) do
       else do
         Curry._1(lexbuf$1.refill_buff, lexbuf$1);
         ___ocaml_lex_state = __ocaml_lex_state$1;
-        continue ;
+        ::continue:: ;
         end end
         
     end
@@ -3049,7 +3045,7 @@ function template_part(env, start, cooked, raw, literal, lexbuf) do
       else do
         Curry._1(lexbuf$1.refill_buff, lexbuf$1);
         ___ocaml_lex_state = __ocaml_lex_state$1;
-        continue ;
+        ::continue:: ;
         end end
         
     end
@@ -3108,7 +3104,7 @@ function string_quote(env, q, buf, raw, octal, lexbuf) do
       else do
         Curry._1(lexbuf$1.refill_buff, lexbuf$1);
         ___ocaml_lex_state = __ocaml_lex_state$1;
-        continue ;
+        ::continue:: ;
         end end
         
     end
@@ -3125,11 +3121,11 @@ function __ocaml_lex_template_tail_rec(_env, lexbuf, ___ocaml_lex_state) do
        if ___conditional___ = 0 then do
           Lexing.new_line(lexbuf);
           ___ocaml_lex_state = 393;
-          continue ;end end end 
+          ::continue:: ;end end end 
        if ___conditional___ = 1 then do
           unicode_fix_cols(lexbuf);
           ___ocaml_lex_state = 393;
-          continue ;end end end 
+          ::continue:: ;end end end 
        if ___conditional___ = 2 then do
           start = from_lb(env.lex_source, lexbuf);
           buf = __Buffer.create(127);
@@ -3137,7 +3133,7 @@ function __ocaml_lex_template_tail_rec(_env, lexbuf, ___ocaml_lex_state) do
           env$1 = save_comment(match[0], start, match[1], buf, true);
           ___ocaml_lex_state = 393;
           _env = env$1;
-          continue ;end end end 
+          ::continue:: ;end end end 
        if ___conditional___ = 3 then do
           start$1 = from_lb(env.lex_source, lexbuf);
           buf$1 = __Buffer.create(127);
@@ -3145,7 +3141,7 @@ function __ocaml_lex_template_tail_rec(_env, lexbuf, ___ocaml_lex_state) do
           env$2 = save_comment(match$1[0], start$1, match$1[1], buf$1, true);
           ___ocaml_lex_state = 393;
           _env = env$2;
-          continue ;end end end 
+          ::continue:: ;end end end 
        if ___conditional___ = 4 then do
           start$2 = from_lb(env.lex_source, lexbuf);
           cooked = __Buffer.create(127);
@@ -3183,7 +3179,7 @@ function __ocaml_lex_template_tail_rec(_env, lexbuf, ___ocaml_lex_state) do
       else do
         Curry._1(lexbuf.refill_buff, lexbuf);
         ___ocaml_lex_state = __ocaml_lex_state$1;
-        continue ;
+        ::continue:: ;
         end end
         
     end
@@ -3205,11 +3201,11 @@ function __ocaml_lex_jsx_tag_rec(_env, lexbuf, ___ocaml_lex_state) do
        if ___conditional___ = 1 then do
           Lexing.new_line(lexbuf);
           ___ocaml_lex_state = 333;
-          continue ;end end end 
+          ::continue:: ;end end end 
        if ___conditional___ = 2 then do
           unicode_fix_cols(lexbuf);
           ___ocaml_lex_state = 333;
-          continue ;end end end 
+          ::continue:: ;end end end 
        if ___conditional___ = 3 then do
           start = from_lb(env.lex_source, lexbuf);
           buf = __Buffer.create(127);
@@ -3217,7 +3213,7 @@ function __ocaml_lex_jsx_tag_rec(_env, lexbuf, ___ocaml_lex_state) do
           env$1 = save_comment(match[0], start, match[1], buf, true);
           ___ocaml_lex_state = 333;
           _env = env$1;
-          continue ;end end end 
+          ::continue:: ;end end end 
        if ___conditional___ = 4 then do
           start$1 = from_lb(env.lex_source, lexbuf);
           buf$1 = __Buffer.create(127);
@@ -3225,7 +3221,7 @@ function __ocaml_lex_jsx_tag_rec(_env, lexbuf, ___ocaml_lex_state) do
           env$2 = save_comment(match$1[0], start$1, match$1[1], buf$1, true);
           ___ocaml_lex_state = 333;
           _env = env$2;
-          continue ;end end end 
+          ::continue:: ;end end end 
        if ___conditional___ = 5 then do
           return --[[ tuple ]]{
                   env,
@@ -3295,7 +3291,7 @@ function __ocaml_lex_jsx_tag_rec(_env, lexbuf, ___ocaml_lex_state) do
       else do
         Curry._1(lexbuf.refill_buff, lexbuf);
         ___ocaml_lex_state = __ocaml_lex_state$1;
-        continue ;
+        ::continue:: ;
         end end
         
     end
@@ -3920,7 +3916,7 @@ function jsx_text(env, mode, buf, raw, lexbuf) do
       else do
         Curry._1(lexbuf$1.refill_buff, lexbuf$1);
         ___ocaml_lex_state = __ocaml_lex_state$1;
-        continue ;
+        ::continue:: ;
         end end
         
     end
@@ -4067,13 +4063,12 @@ function type_token(env, lexbuf) do
           num$6 = Lexing.sub_lexeme(lexbuf$1, Caml_array.caml_array_get(lexbuf$1.lex_mem, 0), Caml_array.caml_array_get(lexbuf$1.lex_mem, 1));
           w$3 = Lexing.sub_lexeme(lexbuf$1, Caml_array.caml_array_get(lexbuf$1.lex_mem, 1), lexbuf$1.lex_curr_pos);
           match$4;
-          try do
+          xpcall(function() do
             match$4 = --[[ tuple ]]{
               env$1,
               mk_num_singleton(--[[ NORMAL ]]3, num$6, neg$6)
             };
-          end
-          catch (exn)do
+          end end,function(exn) return do
             if (Sys.win32) then do
               loc$1 = from_lb(env$1.lex_source, lexbuf$1);
               env$8 = lex_error(env$1, loc$1, --[[ WindowsFloatOfString ]]59);
@@ -4085,20 +4080,19 @@ function type_token(env, lexbuf) do
                   })
               };
             end else do
-              throw exn;
+              error (exn)
             end end 
-          end
+          end end)
           return illegal_number(match$4[0], lexbuf$1, w$3, match$4[1]);end end end 
        if ___conditional___ = 14 then do
           neg$7 = Lexing.sub_lexeme(lexbuf$1, lexbuf$1.lex_start_pos, Caml_array.caml_array_get(lexbuf$1.lex_mem, 0));
           num$7 = Lexing.sub_lexeme(lexbuf$1, Caml_array.caml_array_get(lexbuf$1.lex_mem, 0), lexbuf$1.lex_curr_pos);
-          try do
+          xpcall(function() do
             return --[[ tuple ]]{
                     env$1,
                     mk_num_singleton(--[[ NORMAL ]]3, num$7, neg$7)
                   };
-          end
-          catch (exn$1)do
+          end end,function(exn$1) return do
             if (Sys.win32) then do
               loc$2 = from_lb(env$1.lex_source, lexbuf$1);
               env$9 = lex_error(env$1, loc$2, --[[ WindowsFloatOfString ]]59);
@@ -4110,9 +4104,9 @@ function type_token(env, lexbuf) do
                         })
                     };
             end else do
-              throw exn$1;
+              error (exn$1)
             end end 
-          endend end end 
+          end end)end end end 
        if ___conditional___ = 15 then do
           neg$8 = Lexing.sub_lexeme(lexbuf$1, lexbuf$1.lex_start_pos, Caml_array.caml_array_get(lexbuf$1.lex_mem, 0));
           num$8 = Lexing.sub_lexeme(lexbuf$1, Caml_array.caml_array_get(lexbuf$1.lex_mem, 0), Caml_array.caml_array_get(lexbuf$1.lex_mem, 1));
@@ -4140,22 +4134,21 @@ function type_token(env, lexbuf) do
        if ___conditional___ = 19 then do
           word = Lexing.sub_lexeme(lexbuf$1, lexbuf$1.lex_start_pos, lexbuf$1.lex_curr_pos);
           unicode_fix_cols(lexbuf$1);
-          try do
+          xpcall(function() do
             return --[[ tuple ]]{
                     env$1,
                     Hashtbl.find(type_keywords, word)
                   };
-          end
-          catch (exn$2)do
+          end end,function(exn$2) return do
             if (exn$2 == Caml_builtin_exceptions.not_found) then do
               return --[[ tuple ]]{
                       env$1,
                       --[[ T_IDENTIFIER ]]0
                     };
             end else do
-              throw exn$2;
+              error (exn$2)
             end end 
-          endend end end 
+          end end)end end end 
        if ___conditional___ = 22 then do
           return --[[ tuple ]]{
                   env$1,
@@ -4292,7 +4285,7 @@ function type_token(env, lexbuf) do
       else do
         Curry._1(lexbuf$1.refill_buff, lexbuf$1);
         ___ocaml_lex_state = __ocaml_lex_state$1;
-        continue ;
+        ::continue:: ;
         end end
         
     end
@@ -4463,7 +4456,7 @@ function string_escape(env, buf, lexbuf) do
       else do
         Curry._1(lexbuf$1.refill_buff, lexbuf$1);
         ___ocaml_lex_state = __ocaml_lex_state$1;
-        continue ;
+        ::continue:: ;
         end end
         
     end
@@ -4485,11 +4478,11 @@ function __ocaml_lex_regexp_rec(_env, lexbuf, ___ocaml_lex_state) do
        if ___conditional___ = 1 then do
           Lexing.new_line(lexbuf);
           ___ocaml_lex_state = 291;
-          continue ;end end end 
+          ::continue:: ;end end end 
        if ___conditional___ = 2 then do
           unicode_fix_cols(lexbuf);
           ___ocaml_lex_state = 291;
-          continue ;end end end 
+          ::continue:: ;end end end 
        if ___conditional___ = 3 then do
           start = from_lb(env.lex_source, lexbuf);
           buf = __Buffer.create(127);
@@ -4497,7 +4490,7 @@ function __ocaml_lex_regexp_rec(_env, lexbuf, ___ocaml_lex_state) do
           env$1 = save_comment(match[0], start, match[1], buf, true);
           ___ocaml_lex_state = 291;
           _env = env$1;
-          continue ;end end end 
+          ::continue:: ;end end end 
        if ___conditional___ = 4 then do
           start$1 = from_lb(env.lex_source, lexbuf);
           buf$1 = __Buffer.create(127);
@@ -4505,7 +4498,7 @@ function __ocaml_lex_regexp_rec(_env, lexbuf, ___ocaml_lex_state) do
           env$2 = save_comment(match$1[0], start$1, match$1[1], buf$1, true);
           ___ocaml_lex_state = 291;
           _env = env$2;
-          continue ;end end end 
+          ::continue:: ;end end end 
        if ___conditional___ = 5 then do
           start$2 = from_lb(env.lex_source, lexbuf);
           buf$2 = __Buffer.create(127);
@@ -4531,7 +4524,7 @@ function __ocaml_lex_regexp_rec(_env, lexbuf, ___ocaml_lex_state) do
       else do
         Curry._1(lexbuf.refill_buff, lexbuf);
         ___ocaml_lex_state = __ocaml_lex_state$1;
-        continue ;
+        ::continue:: ;
         end end
         
     end
@@ -4600,7 +4593,7 @@ function jsx_child(env, start, buf, raw, lexbuf) do
       else do
         Curry._1(lexbuf$1.refill_buff, lexbuf$1);
         ___ocaml_lex_state = __ocaml_lex_state$1;
-        continue ;
+        ::continue:: ;
         end end
         
     end
@@ -4670,16 +4663,16 @@ function bal(l, v, r) do
       end else if (lr) then do
         return create(create(ll, lv, lr[--[[ l ]]0]), lr[--[[ v ]]1], create(lr[--[[ r ]]2], v, r));
       end else do
-        throw {
-              Caml_builtin_exceptions.invalid_argument,
-              "Set.bal"
-            };
+        error ({
+          Caml_builtin_exceptions.invalid_argument,
+          "Set.bal"
+        })
       end end  end 
     end else do
-      throw {
-            Caml_builtin_exceptions.invalid_argument,
-            "Set.bal"
-          };
+      error ({
+        Caml_builtin_exceptions.invalid_argument,
+        "Set.bal"
+      })
     end end 
   end else if (hr > (hl + 2 | 0)) then do
     if (r) then do
@@ -4691,16 +4684,16 @@ function bal(l, v, r) do
       end else if (rl) then do
         return create(create(l, v, rl[--[[ l ]]0]), rl[--[[ v ]]1], create(rl[--[[ r ]]2], rv, rr));
       end else do
-        throw {
-              Caml_builtin_exceptions.invalid_argument,
-              "Set.bal"
-            };
+        error ({
+          Caml_builtin_exceptions.invalid_argument,
+          "Set.bal"
+        })
       end end  end 
     end else do
-      throw {
-            Caml_builtin_exceptions.invalid_argument,
-            "Set.bal"
-          };
+      error ({
+        Caml_builtin_exceptions.invalid_argument,
+        "Set.bal"
+      })
     end end 
   end else do
     return --[[ Node ]]{
@@ -4754,7 +4747,7 @@ function mem(x, _param) do
         return true;
       end else do
         _param = c < 0 and param[--[[ l ]]0] or param[--[[ r ]]2];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return false;
@@ -4795,7 +4788,7 @@ function next_power_of_two(n) do
       return i;
     end else do
       _i = (i << 1);
-      continue ;
+      ::continue:: ;
     end end 
   end;
 end end
@@ -4994,14 +4987,14 @@ end end
 function lookahead(iOpt, env) do
   i = iOpt ~= undefined and iOpt or 0;
   if (i >= 2) then do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "parser_env.ml",
-            288,
-            2
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "parser_env.ml",
+        288,
+        2
+      }
+    })
   end
    end 
   t = env.lookahead.contents;
@@ -5011,10 +5004,10 @@ function lookahead(iOpt, env) do
   if (match ~= undefined) then do
     return match[1];
   end else do
-    throw {
-          Caml_builtin_exceptions.failure,
-          "Lookahead.peek failed"
-        };
+    error ({
+      Caml_builtin_exceptions.failure,
+      "Lookahead.peek failed"
+    })
   end end 
 end end
 
@@ -5185,10 +5178,10 @@ function lex_env(iOpt, env) do
   if (match ~= undefined) then do
     return match[0];
   end else do
-    throw {
-          Caml_builtin_exceptions.failure,
-          "Lookahead.peek failed"
-        };
+    error ({
+      Caml_builtin_exceptions.failure,
+      "Lookahead.peek failed"
+    })
   end end 
 end end
 
@@ -5400,10 +5393,10 @@ function pop_lex_mode(env) do
   if (match) then do
     new_stack = match[1];
   end else do
-    throw {
-          Caml_builtin_exceptions.failure,
-          "Popping lex mode from empty stack"
-        };
+    error ({
+      Caml_builtin_exceptions.failure,
+      "Popping lex mode from empty stack"
+    })
   end end 
   env.lex_mode_stack.contents = new_stack;
   env.lookahead.contents = create$1(env.lex_env.contents, List.hd(env.lex_mode_stack.contents));
@@ -5418,16 +5411,16 @@ function double_pop_lex_mode(env) do
     if (match$1) then do
       new_stack = match$1[1];
     end else do
-      throw {
-            Caml_builtin_exceptions.failure,
-            "Popping lex mode from empty stack"
-          };
+      error ({
+        Caml_builtin_exceptions.failure,
+        "Popping lex mode from empty stack"
+      })
     end end 
   end else do
-    throw {
-          Caml_builtin_exceptions.failure,
-          "Popping lex mode from empty stack"
-        };
+    error ({
+      Caml_builtin_exceptions.failure,
+      "Popping lex mode from empty stack"
+    })
   end end 
   env.lex_mode_stack.contents = new_stack;
   env.lookahead.contents = create$1(env.lex_env.contents, List.hd(env.lex_mode_stack.contents));
@@ -5517,14 +5510,13 @@ end end
 
 function to_parse(env, parse) do
   saved_state = save_state(env);
-  try do
+  xpcall(function() do
     env$1 = env;
     saved_state$1 = saved_state;
     result = Curry._1(parse, env);
     reset_token_sink(true, env$1, saved_state$1.token_buffer);
     return --[[ ParsedSuccessfully ]]{result};
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Rollback) then do
       env$2 = env;
       saved_state$2 = saved_state;
@@ -5537,9 +5529,9 @@ function to_parse(env, parse) do
       env$2.lookahead.contents = create$1(env$2.lex_env.contents, List.hd(env$2.lex_mode_stack.contents));
       return --[[ FailedToParse ]]0;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 Parser_env_Peek = do
@@ -5593,16 +5585,16 @@ function bal$1(l, v, r) do
       end else if (lr) then do
         return create$2(create$2(ll, lv, lr[--[[ l ]]0]), lr[--[[ v ]]1], create$2(lr[--[[ r ]]2], v, r));
       end else do
-        throw {
-              Caml_builtin_exceptions.invalid_argument,
-              "Set.bal"
-            };
+        error ({
+          Caml_builtin_exceptions.invalid_argument,
+          "Set.bal"
+        })
       end end  end 
     end else do
-      throw {
-            Caml_builtin_exceptions.invalid_argument,
-            "Set.bal"
-          };
+      error ({
+        Caml_builtin_exceptions.invalid_argument,
+        "Set.bal"
+      })
     end end 
   end else if (hr > (hl + 2 | 0)) then do
     if (r) then do
@@ -5614,16 +5606,16 @@ function bal$1(l, v, r) do
       end else if (rl) then do
         return create$2(create$2(l, v, rl[--[[ l ]]0]), rl[--[[ v ]]1], create$2(rl[--[[ r ]]2], rv, rr));
       end else do
-        throw {
-              Caml_builtin_exceptions.invalid_argument,
-              "Set.bal"
-            };
+        error ({
+          Caml_builtin_exceptions.invalid_argument,
+          "Set.bal"
+        })
       end end  end 
     end else do
-      throw {
-            Caml_builtin_exceptions.invalid_argument,
-            "Set.bal"
-          };
+      error ({
+        Caml_builtin_exceptions.invalid_argument,
+        "Set.bal"
+      })
     end end 
   end else do
     return --[[ Node ]]{
@@ -5677,7 +5669,7 @@ function mem$1(x, _param) do
         return true;
       end else do
         _param = c < 0 and param[--[[ l ]]0] or param[--[[ r ]]2];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return false;
@@ -5719,16 +5711,16 @@ function bal$2(l, x, d, r) do
       end else if (lr) then do
         return create$3(create$3(ll, lv, ld, lr[--[[ l ]]0]), lr[--[[ v ]]1], lr[--[[ d ]]2], create$3(lr[--[[ r ]]3], x, d, r));
       end else do
-        throw {
-              Caml_builtin_exceptions.invalid_argument,
-              "Map.bal"
-            };
+        error ({
+          Caml_builtin_exceptions.invalid_argument,
+          "Map.bal"
+        })
       end end  end 
     end else do
-      throw {
-            Caml_builtin_exceptions.invalid_argument,
-            "Map.bal"
-          };
+      error ({
+        Caml_builtin_exceptions.invalid_argument,
+        "Map.bal"
+      })
     end end 
   end else if (hr > (hl + 2 | 0)) then do
     if (r) then do
@@ -5741,16 +5733,16 @@ function bal$2(l, x, d, r) do
       end else if (rl) then do
         return create$3(create$3(l, x, d, rl[--[[ l ]]0]), rl[--[[ v ]]1], rl[--[[ d ]]2], create$3(rl[--[[ r ]]3], rv, rd, rr));
       end else do
-        throw {
-              Caml_builtin_exceptions.invalid_argument,
-              "Map.bal"
-            };
+        error ({
+          Caml_builtin_exceptions.invalid_argument,
+          "Map.bal"
+        })
       end end  end 
     end else do
-      throw {
-            Caml_builtin_exceptions.invalid_argument,
-            "Map.bal"
-          };
+      error ({
+        Caml_builtin_exceptions.invalid_argument,
+        "Map.bal"
+      })
     end end 
   end else do
     return --[[ Node ]]{
@@ -5817,10 +5809,10 @@ function find(x, _param) do
         return param[--[[ d ]]2];
       end else do
         _param = c < 0 and param[--[[ l ]]0] or param[--[[ r ]]3];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
-      throw Caml_builtin_exceptions.not_found;
+      error (Caml_builtin_exceptions.not_found)
     end end 
   end;
 end end
@@ -5866,16 +5858,16 @@ function bal$3(l, v, r) do
       end else if (lr) then do
         return create$4(create$4(ll, lv, lr[--[[ l ]]0]), lr[--[[ v ]]1], create$4(lr[--[[ r ]]2], v, r));
       end else do
-        throw {
-              Caml_builtin_exceptions.invalid_argument,
-              "Set.bal"
-            };
+        error ({
+          Caml_builtin_exceptions.invalid_argument,
+          "Set.bal"
+        })
       end end  end 
     end else do
-      throw {
-            Caml_builtin_exceptions.invalid_argument,
-            "Set.bal"
-          };
+      error ({
+        Caml_builtin_exceptions.invalid_argument,
+        "Set.bal"
+      })
     end end 
   end else if (hr > (hl + 2 | 0)) then do
     if (r) then do
@@ -5887,16 +5879,16 @@ function bal$3(l, v, r) do
       end else if (rl) then do
         return create$4(create$4(l, v, rl[--[[ l ]]0]), rl[--[[ v ]]1], create$4(rl[--[[ r ]]2], rv, rr));
       end else do
-        throw {
-              Caml_builtin_exceptions.invalid_argument,
-              "Set.bal"
-            };
+        error ({
+          Caml_builtin_exceptions.invalid_argument,
+          "Set.bal"
+        })
       end end  end 
     end else do
-      throw {
-            Caml_builtin_exceptions.invalid_argument,
-            "Set.bal"
-          };
+      error ({
+        Caml_builtin_exceptions.invalid_argument,
+        "Set.bal"
+      })
     end end 
   end else do
     return --[[ Node ]]{
@@ -5950,7 +5942,7 @@ function mem$2(x, _param) do
         return true;
       end else do
         _param = c < 0 and param[--[[ l ]]0] or param[--[[ r ]]2];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return false;
@@ -6369,7 +6361,7 @@ function postfix_with(env, _t) do
         t_001
       };
       _t = t$1;
-      continue ;
+      ::continue:: ;
     end else do
       return t;
     end end 
@@ -6405,28 +6397,28 @@ function rev_nonempty_acc(acc) do
   if (acc) then do
     end_loc = acc[0][0];
   end else do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "parser_flow.ml",
-            127,
-            13
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "parser_flow.ml",
+        127,
+        13
+      }
+    })
   end end 
   acc$1 = List.rev(acc);
   start_loc;
   if (acc$1) then do
     start_loc = acc$1[0][0];
   end else do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "parser_flow.ml",
-            131,
-            13
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "parser_flow.ml",
+        131,
+        13
+      }
+    })
   end end 
   return --[[ tuple ]]{
           btwn(start_loc, end_loc),
@@ -6535,7 +6527,7 @@ function union_with(env, left) do
           intersection(env$1),
           acc
         };
-        continue ;
+        ::continue:: ;
       end
        end 
       match$1 = rev_nonempty_acc(acc);
@@ -6692,7 +6684,7 @@ function properties(allow_static, env, _param) do
                     },
                     callProperties
                   };
-                  continue ;end end end 
+                  ::continue:: ;end end end 
                do end end end
               
             end
@@ -6759,7 +6751,7 @@ function properties(allow_static, env, _param) do
             indexers,
             callProperties
           };
-          continue ;end end end 
+          ::continue:: ;end end end 
        if ___conditional___ = 2 then do
           return --[[ tuple ]]{
                   List.rev(acc),
@@ -6777,7 +6769,7 @@ function properties(allow_static, env, _param) do
               callProperties
             }
           };
-          continue ;end end end 
+          ::continue:: ;end end end 
        do
       
     end
@@ -6823,7 +6815,7 @@ function types(env, _acc) do
     end
      end 
     _acc = acc$1;
-    continue ;
+    ::continue:: ;
   end;
 end end
 
@@ -6863,7 +6855,7 @@ function function_param_list_without_parens(env) do
               end
                end 
               _acc = acc$1;
-              continue ;end end end 
+              ::continue:: ;end end end 
            if ___conditional___ = 2 then do
               rest = t == --[[ T_ELLIPSIS ]]11 and (token$4(env$1, --[[ T_ELLIPSIS ]]11), param(env$1)) or undefined;
               return --[[ tuple ]]{
@@ -6895,7 +6887,7 @@ function params(env, _acc) do
     end
      end 
     _acc = acc$1;
-    continue ;
+    ::continue:: ;
   end;
 end end
 
@@ -6932,7 +6924,7 @@ function intersection_with(env, left) do
           prefix(env$1),
           acc
         };
-        continue ;
+        ::continue:: ;
       end
        end 
       match$1 = rev_nonempty_acc(acc);
@@ -7017,7 +7009,7 @@ function params$1(env, allow_default, _require_default, _acc) do
     end else do
       _acc = acc$1;
       _require_default = match$3[1];
-      continue ;
+      ::continue:: ;
     end end 
   end;
 end end
@@ -7063,7 +7055,7 @@ function identifier(env, _param) do
         loc,
         qualification$1
       };
-      continue ;
+      ::continue:: ;
     end else do
       return --[[ tuple ]]{
               q_loc,
@@ -7108,14 +7100,14 @@ function annotation(env) do
   if (match ~= undefined) then do
     end_loc = match;
   end else do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "parser_flow.ml",
-            121,
-            16
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "parser_flow.ml",
+        121,
+        16
+      }
+    })
   end end 
   return --[[ tuple ]]{
           btwn(start_loc, end_loc),
@@ -7172,7 +7164,7 @@ function pattern(check_env, _param) do
           return List.fold_left(array_element, check_env$2, arr.elements);end end end 
        if ___conditional___ = 2--[[ Assignment ]] then do
           _param = p[0].left;
-          continue ;end end end 
+          ::continue:: ;end end end 
        if ___conditional___ = 3--[[ Identifier ]] then do
           param$1 = check_env;
           id = p[0];
@@ -7353,7 +7345,7 @@ function param_list(env, _param) do
             },
             has_default$1
           };
-          continue ;end end end 
+          ::continue:: ;end end end 
        if ___conditional___ = 2 then do
           rest = t == --[[ T_ELLIPSIS ]]11 and (token$4(env, --[[ T_ELLIPSIS ]]11), Curry._2(Parse.identifier_with_type, env, --[[ StrictParamName ]]28)) or undefined;
           if (Curry._2(Parser_env_Peek.token, undefined, env) ~= --[[ T_RPAREN ]]4) then do
@@ -7554,7 +7546,7 @@ function helper(env, _decls, _errs) do
       token$4(env, --[[ T_COMMA ]]8);
       _errs = errs$1;
       _decls = decls$1;
-      continue ;
+      ::continue:: ;
     end else do
       end_loc = decl[0];
       declarations = List.rev(decls$1);
@@ -7971,7 +7963,7 @@ function call(env, _left) do
                       arguments: match$1[1]
                     end})
               };
-              continue ;
+              ::continue:: ;
             end end end end end 
          if ___conditional___ = 5--[[ T_LBRACKET ]] then do
             token$4(env, --[[ T_LBRACKET ]]5);
@@ -7987,7 +7979,7 @@ function call(env, _left) do
                     computed: true
                   end})
             };
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 9--[[ T_PERIOD ]] then do
             token$4(env, --[[ T_PERIOD ]]9);
             match$2 = identifier_or_reserved_keyword(env);
@@ -8000,7 +7992,7 @@ function call(env, _left) do
                     computed: false
                   end})
             };
-            continue ;end end end 
+            ::continue:: ;end end end 
          do
         else do
           return left;
@@ -8050,7 +8042,7 @@ function _new(env, _finish_fn) do
       end end
       end(finish_fn,start_loc));
       _finish_fn = finish_fn$prime;
-      continue ;
+      ::continue:: ;
     end
      end 
     Curry._2(Parser_env_Peek.token, undefined, env);
@@ -8165,17 +8157,16 @@ function number(env, number_type) do
        if ___conditional___ = 1--[[ LEGACY_OCTAL ]] then do
           value$1 = Caml_format.caml_int_of_string(value);end else 
        if ___conditional___ = 2--[[ OCTAL ]] then do
-          try do
+          xpcall(function() do
             value$1 = float_of_string(value);
-          end
-          catch (exn)do
+          end end,function(exn) return do
             if (Sys.win32) then do
               error$1(env, --[[ WindowsFloatOfString ]]59);
               value$1 = 789.0;
             end else do
-              throw exn;
+              error (exn)
             end end 
-          endend else 
+          end end)end else 
        do end end end end
       
     end
@@ -8288,14 +8279,14 @@ function primary$1(env) do
           match$4 = Curry._2(Parser_env_Peek.token, undefined, env$3);
           match$5;
           if (typeof match$4 == "number") then do
-            throw {
-                  Caml_builtin_exceptions.assert_failure,
-                  --[[ tuple ]]{
-                    "parser_flow.ml",
-                    1699,
-                    15
-                  }
-                };
+            error ({
+              Caml_builtin_exceptions.assert_failure,
+              --[[ tuple ]]{
+                "parser_flow.ml",
+                1699,
+                15
+              }
+            })
           end else if (match$4.tag == --[[ T_REGEXP ]]3) then do
             match$6 = match$4[0];
             raw$1 = Curry._2(Parser_env_Peek.value, undefined, env$3);
@@ -8306,14 +8297,14 @@ function primary$1(env) do
               match$6[2]
             };
           end else do
-            throw {
-                  Caml_builtin_exceptions.assert_failure,
-                  --[[ tuple ]]{
-                    "parser_flow.ml",
-                    1699,
-                    15
-                  }
-                };
+            error ({
+              Caml_builtin_exceptions.assert_failure,
+              --[[ tuple ]]{
+                "parser_flow.ml",
+                1699,
+                15
+              }
+            })
           end end  end 
           raw_flags = match$5[2];
           pop_lex_mode(env$3);
@@ -8477,7 +8468,7 @@ function sequence(env, _acc) do
         expr,
         acc
       };
-      continue ;
+      ::continue:: ;
     end
      end 
     last_loc = acc and acc[0][0] or none;
@@ -8602,7 +8593,7 @@ function assignment_but_not_arrow_function(env) do
 end end
 
 function error_callback(param, param$1) do
-  throw Parser_env_Try.Rollback;
+  error (Parser_env_Try.Rollback)
 end end
 
 function try_assignment_but_not_arrow_function(env) do
@@ -8612,17 +8603,17 @@ function try_assignment_but_not_arrow_function(env) do
   if (typeof match == "number") then do
     if (match ~= 10) then do
       if (match == 77) then do
-        throw Parser_env_Try.Rollback;
+        error (Parser_env_Try.Rollback)
       end
        end 
     end else do
-      throw Parser_env_Try.Rollback;
+      error (Parser_env_Try.Rollback)
     end end 
   end
    end 
   if (Curry._2(Parser_env_Peek.is_identifier, undefined, env$1)) then do
     if (Curry._2(Parser_env_Peek.value, undefined, env$1) == "checks") then do
-      throw Parser_env_Try.Rollback;
+      error (Parser_env_Try.Rollback)
     end
      end 
     match$1 = ret[1];
@@ -8630,7 +8621,7 @@ function try_assignment_but_not_arrow_function(env) do
       return ret;
     end else do
       if (not Curry._1(Parser_env_Peek.is_line_terminator, env$1)) then do
-        throw Parser_env_Try.Rollback;
+        error (Parser_env_Try.Rollback)
       end
        end 
       return ret;
@@ -8723,7 +8714,7 @@ function logical_and(env, _left, _lloc) do
       loc = btwn(lloc, match$1[0]);
       _lloc = loc;
       _left = make_logical(left, match$1[1], --[[ And ]]1, loc);
-      continue ;
+      ::continue:: ;
     end else do
       return --[[ tuple ]]{
               lloc,
@@ -8745,7 +8736,7 @@ function logical_or(env, _left, _lloc) do
       loc = btwn(lloc, match$2[0]);
       _lloc = loc;
       _left = make_logical(left, match$2[1], --[[ Or ]]0, loc);
-      continue ;
+      ::continue:: ;
     end else do
       return --[[ tuple ]]{
               lloc,
@@ -8940,7 +8931,7 @@ function add_to_stack(_right, _param, _rloc, _stack) do
           rpri
         };
         _right = right$1;
-        continue ;
+        ::continue:: ;
       end
        end 
     end
@@ -8993,7 +8984,7 @@ function binary(env) do
             rop,
             match$2[1]
           }, right_loc, stack);
-      continue ;
+      ::continue:: ;
     end else do
       _right = right;
       _rloc = right_loc;
@@ -9008,7 +8999,7 @@ function binary(env) do
           _param = param[1];
           _rloc = loc;
           _right = make_binary(match$3[0], right$1, match$3[1][0], loc);
-          continue ;
+          ::continue:: ;
         end else do
           return right$1;
         end end 
@@ -9053,7 +9044,7 @@ function arguments$prime(env, _acc) do
     end
      end 
     _acc = acc$1;
-    continue ;
+    ::continue:: ;
   end;
 end end
 
@@ -9084,14 +9075,14 @@ function template_parts(env, _quasis, _expressions) do
       match$1 = Curry._2(Parser_env_Peek.token, undefined, env);
       match$2;
       if (typeof match$1 == "number") then do
-        throw {
-              Caml_builtin_exceptions.assert_failure,
-              --[[ tuple ]]{
-                "parser_flow.ml",
-                1602,
-                19
-              }
-            };
+        error ({
+          Caml_builtin_exceptions.assert_failure,
+          --[[ tuple ]]{
+            "parser_flow.ml",
+            1602,
+            19
+          }
+        })
       end else if (match$1.tag == --[[ T_TEMPLATE_PART ]]2) then do
         match$3 = match$1[0];
         tail = match$3[2];
@@ -9109,14 +9100,14 @@ function template_parts(env, _quasis, _expressions) do
           tail
         };
       end else do
-        throw {
-              Caml_builtin_exceptions.assert_failure,
-              --[[ tuple ]]{
-                "parser_flow.ml",
-                1602,
-                19
-              }
-            };
+        error ({
+          Caml_builtin_exceptions.assert_failure,
+          --[[ tuple ]]{
+            "parser_flow.ml",
+            1602,
+            19
+          }
+        })
       end end  end 
       loc = match$2[0];
       pop_lex_mode(env);
@@ -9137,7 +9128,7 @@ function template_parts(env, _quasis, _expressions) do
       end else do
         _expressions = expressions$1;
         _quasis = quasis$1;
-        continue ;
+        ::continue:: ;
       end end 
     end
      end 
@@ -9219,7 +9210,7 @@ function elements(env, _acc) do
                   undefined,
                   acc
                 };
-                continue ;end end end 
+                ::continue:: ;end end end 
              if ___conditional___ = 0--[[ T_IDENTIFIER ]]
              or ___conditional___ = 1--[[ T_LCURLY ]]
              or ___conditional___ = 2--[[ T_RCURLY ]]
@@ -9244,7 +9235,7 @@ function elements(env, _acc) do
                   elem,
                   acc
                 };
-                continue ;end end end 
+                ::continue:: ;end end end 
              do
             
           end
@@ -9264,7 +9255,7 @@ function elements(env, _acc) do
       elem$1,
       acc
     };
-    continue ;
+    ::continue:: ;
   end;
 end end
 
@@ -9287,17 +9278,17 @@ function error_callback$1(param, param$1) do
     switcher = param$1 - 28 | 0;
     if (switcher > 16 or switcher < 0) then do
       if (switcher ~= 19) then do
-        throw Parser_env_Try.Rollback;
+        error (Parser_env_Try.Rollback)
       end else do
         return --[[ () ]]0;
       end end 
     end else if (switcher > 15 or switcher < 1) then do
       return --[[ () ]]0;
     end else do
-      throw Parser_env_Try.Rollback;
+      error (Parser_env_Try.Rollback)
     end end  end 
   end else do
-    throw Parser_env_Try.Rollback;
+    error (Parser_env_Try.Rollback)
   end end 
 end end
 
@@ -9400,7 +9391,7 @@ function decorator_list_helper(env, _decorators) do
         left_hand_side(env),
         decorators
       };
-      continue ;
+      ::continue:: ;
     end else do
       return decorators;
     end end 
@@ -9498,14 +9489,14 @@ function _method(env, kind) do
   local ___conditional___=(kind);
   do
      if ___conditional___ = 0--[[ Init ]] then do
-        throw {
-              Caml_builtin_exceptions.assert_failure,
-              --[[ tuple ]]{
-                "parser_flow.ml",
-                1954,
-                16
-              }
-            };end end end 
+        error ({
+          Caml_builtin_exceptions.assert_failure,
+          --[[ tuple ]]{
+            "parser_flow.ml",
+            1954,
+            16
+          }
+        })end end end 
      if ___conditional___ = 1--[[ Get ]] then do
         params = --[[ [] ]]0;end else 
      if ___conditional___ = 2--[[ Set ]] then do
@@ -9835,10 +9826,10 @@ function check_property(env, prop_map, prop) do
                  if ___conditional___ = 2--[[ Number ]] then do
                     key = Pervasives.string_of_float(match$2[0]);end else 
                  if ___conditional___ = 3--[[ RegExp ]] then do
-                    throw {
-                          Caml_builtin_exceptions.failure,
-                          "RegExp cannot be property key"
-                        };end end end 
+                    error ({
+                      Caml_builtin_exceptions.failure,
+                      "RegExp cannot be property key"
+                    })end end end 
                  do end end end
                 
               end
@@ -9846,28 +9837,27 @@ function check_property(env, prop_map, prop) do
          if ___conditional___ = 1--[[ Identifier ]] then do
             key = match$1[0][1].name;end else 
          if ___conditional___ = 2--[[ Computed ]] then do
-            throw {
-                  Caml_builtin_exceptions.assert_failure,
-                  --[[ tuple ]]{
-                    "parser_flow.ml",
-                    2103,
-                    30
-                  }
-                };end end end 
+            error ({
+              Caml_builtin_exceptions.assert_failure,
+              --[[ tuple ]]{
+                "parser_flow.ml",
+                2103,
+                30
+              }
+            })end end end 
          do end end
         
       end
       prev_kinds;
-      try do
+      xpcall(function() do
         prev_kinds = find(key, prop_map);
-      end
-      catch (exn)do
+      end end,function(exn) return do
         if (exn == Caml_builtin_exceptions.not_found) then do
           prev_kinds = --[[ Empty ]]0;
         end else do
-          throw exn;
+          error (exn)
         end end 
-      end
+      end end)
       match$3 = prop$1.kind;
       kind_string;
       local ___conditional___=(match$3);
@@ -9949,7 +9939,7 @@ function properties$1(env, _param) do
         acc
       }
     };
-    continue ;
+    ::continue:: ;
   end;
 end end
 
@@ -9992,7 +9982,7 @@ function class_implements(env, _acc) do
     if (typeof match == "number" and match == 8) then do
       token$4(env, --[[ T_COMMA ]]8);
       _acc = acc$1;
-      continue ;
+      ::continue:: ;
     end else do
       return List.rev(acc$1);
     end end 
@@ -10218,7 +10208,7 @@ function elements$1(env, _acc) do
          end 
       end else if (switcher == 4) then do
         token$4(env, --[[ T_SEMICOLON ]]7);
-        continue ;
+        ::continue:: ;
       end
        end  end 
     end
@@ -10227,7 +10217,7 @@ function elements$1(env, _acc) do
       Curry._1(class_element, env),
       acc
     };
-    continue ;
+    ::continue:: ;
   end;
 end end
 
@@ -10532,7 +10522,7 @@ function export_specifiers_and_errs(env, _specifiers, _errs) do
       specifier,
       specifiers
     };
-    continue ;
+    ::continue:: ;
   end;
 end end
 
@@ -10826,14 +10816,14 @@ function declare_export_declaration(allow_export_typeOpt, env) do
         local ___conditional___=(exit$2);
         do
            if ___conditional___ = 3 then do
-              throw {
-                    Caml_builtin_exceptions.assert_failure,
-                    --[[ tuple ]]{
-                      "parser_flow.ml",
-                      3480,
-                      17
-                    }
-                  };end end end 
+              error ({
+                Caml_builtin_exceptions.assert_failure,
+                --[[ tuple ]]{
+                  "parser_flow.ml",
+                  3480,
+                  17
+                }
+              })end end end 
            if ___conditional___ = 4 then do
               if (typeof token$5 == "number") then do
                 if (token$5 ~= 25) then do
@@ -11072,7 +11062,7 @@ function supers(env, _acc) do
     if (typeof match == "number" and match == 8) then do
       token$4(env, --[[ T_COMMA ]]8);
       _acc = acc$1;
-      continue ;
+      ::continue:: ;
     end else do
       return List.rev(acc$1);
     end end 
@@ -11115,7 +11105,7 @@ function supers$1(env, _acc) do
     if (typeof match == "number" and match == 8) then do
       token$4(env, --[[ T_COMMA ]]8);
       _acc = acc$1;
-      continue ;
+      ::continue:: ;
     end else do
       return List.rev(acc$1);
     end end 
@@ -11235,7 +11225,7 @@ function module_items(env, _module_kind, _acc) do
       acc
     };
     _module_kind = module_kind$1;
-    continue ;
+    ::continue:: ;
   end;
 end end
 
@@ -11268,7 +11258,7 @@ function fold(acc, _param) do
                       end end), acc, match[0].elements);end end end 
        if ___conditional___ = 2--[[ Assignment ]] then do
           _param = match[0].left;
-          continue ;end end end 
+          ::continue:: ;end end end 
        if ___conditional___ = 3--[[ Identifier ]] then do
           match$1 = match[0];
           return --[[ :: ]]{
@@ -11279,10 +11269,10 @@ function fold(acc, _param) do
                   acc
                 };end end end 
        if ___conditional___ = 4--[[ Expression ]] then do
-          throw {
-                Caml_builtin_exceptions.failure,
-                "Parser error: No such thing as an expression pattern!"
-              };end end end 
+          error ({
+            Caml_builtin_exceptions.failure,
+            "Parser error: No such thing as an expression pattern!"
+          })end end end 
        do
       
     end
@@ -11400,7 +11390,7 @@ function case_list(env, _param) do
       seen_default$1,
       acc$1
     };
-    continue ;
+    ::continue:: ;
   end;
 end end
 
@@ -11501,7 +11491,7 @@ function specifier_list(env, _acc) do
       specifier,
       acc
     };
-    continue ;
+    ::continue:: ;
   end;
 end end
 
@@ -11769,9 +11759,9 @@ function _object$2(restricted_error) do
           match$1,
           acc
         };
-        continue ;
+        ::continue:: ;
       end else do
-        continue ;
+        ::continue:: ;
       end end 
     end;
   end end;
@@ -11822,7 +11812,7 @@ function _array(restricted_error) do
                     undefined,
                     acc
                   };
-                  continue ;end end end 
+                  ::continue:: ;end end end 
                if ___conditional___ = 0--[[ T_IDENTIFIER ]]
                or ___conditional___ = 1--[[ T_LCURLY ]]
                or ___conditional___ = 2--[[ T_RCURLY ]]
@@ -11847,7 +11837,7 @@ function _array(restricted_error) do
                     element,
                     acc
                   };
-                  continue ;end end end 
+                  ::continue:: ;end end end 
                do
               
             end
@@ -11884,7 +11874,7 @@ function _array(restricted_error) do
         element$1,
         acc
       };
-      continue ;
+      ::continue:: ;
     end;
   end end;
   return (function (env) do
@@ -12005,7 +11995,7 @@ function member_expression(env, _member) do
         member_001
       };
       _member = member$1;
-      continue ;
+      ::continue:: ;
     end else do
       return member;
     end end 
@@ -12169,7 +12159,7 @@ function attributes(env, _acc) do
           attribute$1,
           acc
         };
-        continue ;
+        ::continue:: ;
       end end  end 
     end
      end 
@@ -12178,7 +12168,7 @@ function attributes(env, _acc) do
       attribute$2,
       acc
     };
-    continue ;
+    ::continue:: ;
   end;
 end end
 
@@ -12277,7 +12267,7 @@ function children_and_closing(env, _acc) do
             child(env),
             acc
           };
-          continue ;
+          ::continue:: ;
         end else do
           error_unexpected(env);
           return --[[ tuple ]]{
@@ -12299,7 +12289,7 @@ function children_and_closing(env, _acc) do
             element$1,
             acc
           };
-          continue ;
+          ::continue:: ;
         end else do
           return --[[ tuple ]]{
                   List.rev(acc),
@@ -12312,7 +12302,7 @@ function children_and_closing(env, _acc) do
         child(env),
         acc
       };
-      continue ;
+      ::continue:: ;
     end end 
   end;
 end end
@@ -12488,20 +12478,20 @@ function module_item(env) do
                         __interface$1 = __interface(env$2);
                         match$2 = __interface$1[1];
                         if (typeof match$2 == "number") then do
-                          throw {
-                                Caml_builtin_exceptions.failure,
-                                "Internal Flow Error! Parsed `export interface` into something other than an interface declaration!"
-                              };
+                          error ({
+                            Caml_builtin_exceptions.failure,
+                            "Internal Flow Error! Parsed `export interface` into something other than an interface declaration!"
+                          })
                         end else if (match$2.tag == --[[ InterfaceDeclaration ]]21) then do
                           record_export(env$2, --[[ tuple ]]{
                                 __interface$1[0],
                                 extract_ident_name(match$2[0].id)
                               });
                         end else do
-                          throw {
-                                Caml_builtin_exceptions.failure,
-                                "Internal Flow Error! Parsed `export interface` into something other than an interface declaration!"
-                              };
+                          error ({
+                            Caml_builtin_exceptions.failure,
+                            "Internal Flow Error! Parsed `export interface` into something other than an interface declaration!"
+                          })
                         end end  end 
                         end_loc = __interface$1[0];
                         return --[[ tuple ]]{
@@ -12523,20 +12513,20 @@ function module_item(env) do
                           type_alias$1 = type_alias(env$2);
                           match$3 = type_alias$1[1];
                           if (typeof match$3 == "number") then do
-                            throw {
-                                  Caml_builtin_exceptions.failure,
-                                  "Internal Flow Error! Parsed `export type` into something other than a type alias!"
-                                };
+                            error ({
+                              Caml_builtin_exceptions.failure,
+                              "Internal Flow Error! Parsed `export type` into something other than a type alias!"
+                            })
                           end else if (match$3.tag == --[[ TypeAlias ]]7) then do
                             record_export(env$2, --[[ tuple ]]{
                                   type_alias$1[0],
                                   extract_ident_name(match$3[0].id)
                                 });
                           end else do
-                            throw {
-                                  Caml_builtin_exceptions.failure,
-                                  "Internal Flow Error! Parsed `export type` into something other than a type alias!"
-                                };
+                            error ({
+                              Caml_builtin_exceptions.failure,
+                              "Internal Flow Error! Parsed `export type` into something other than a type alias!"
+                            })
                           end end  end 
                           end_loc$1 = type_alias$1[0];
                           return --[[ tuple ]]{
@@ -12714,10 +12704,10 @@ function module_item(env) do
                 loc$1 = stmt[0];
                 names;
                 if (typeof match$11 == "number") then do
-                  throw {
-                        Caml_builtin_exceptions.failure,
-                        "Internal Flow Error! Unexpected export statement declaration!"
-                      };
+                  error ({
+                    Caml_builtin_exceptions.failure,
+                    "Internal Flow Error! Unexpected export statement declaration!"
+                  })
                 end else do
                   local ___conditional___=(match$11.tag | 0);
                   do
@@ -12767,10 +12757,10 @@ function module_item(env) do
                         end end end else 
                      do end end end end
                     else do
-                      throw {
-                            Caml_builtin_exceptions.failure,
-                            "Internal Flow Error! Unexpected export statement declaration!"
-                          };
+                      error ({
+                        Caml_builtin_exceptions.failure,
+                        "Internal Flow Error! Unexpected export statement declaration!"
+                      })
                       end end
                       
                   end
@@ -13317,14 +13307,14 @@ function statement(env) do
                         match$15 = init;
                         left = match$15.tag and --[[ LeftExpression ]]Block.__(1, {match$15[0]}) or --[[ LeftDeclaration ]]Block.__(0, {match$15[0]});
                       end else do
-                        throw {
-                              Caml_builtin_exceptions.assert_failure,
-                              --[[ tuple ]]{
-                                "parser_flow.ml",
-                                2573,
-                                22
-                              }
-                            };
+                        error ({
+                          Caml_builtin_exceptions.assert_failure,
+                          --[[ tuple ]]{
+                            "parser_flow.ml",
+                            2573,
+                            22
+                          }
+                        })
                       end end 
                       token$4(env$12, --[[ T_OF ]]60);
                       right = Curry._1(Parse.assignment, env$12);
@@ -13347,14 +13337,14 @@ function statement(env) do
                       match$16 = init;
                       left$1 = match$16.tag and --[[ LeftExpression ]]Block.__(1, {match$16[0]}) or --[[ LeftDeclaration ]]Block.__(0, {match$16[0]});
                     end else do
-                      throw {
-                            Caml_builtin_exceptions.assert_failure,
-                            --[[ tuple ]]{
-                              "parser_flow.ml",
-                              2556,
-                              22
-                            }
-                          };
+                      error ({
+                        Caml_builtin_exceptions.assert_failure,
+                        --[[ tuple ]]{
+                          "parser_flow.ml",
+                          2556,
+                          22
+                        }
+                      })
                     end end 
                     token$4(env$12, --[[ T_IN ]]15);
                     right$1 = Curry._1(Parse.expression, env$12);
@@ -13576,7 +13566,7 @@ function statement(env) do
      end 
     error_unexpected(env);
     token$3(env);
-    continue ;
+    ::continue:: ;
   end;
 end end
 
@@ -13598,7 +13588,7 @@ function module_body(term_fn, env) do
         module_item(env$1),
         acc
       };
-      continue ;
+      ::continue:: ;
     end end 
   end;
 end end
@@ -13673,7 +13663,7 @@ function statement_list(_env, term_fn, item_fn, _param) do
               stmts$1
             };
             _env = with_strict(strict, env);
-            continue ;
+            ::continue:: ;
           end end 
         end end 
       end end 
@@ -13703,10 +13693,10 @@ function directives(env, term_fn, item_fn) do
           end
            end 
           s = "Nooo: " .. (token_to_string(token) .. "\n");
-          throw {
-                Caml_builtin_exceptions.failure,
-                s
-              };
+          error ({
+            Caml_builtin_exceptions.failure,
+            s
+          })
         end end), List.rev(match[1]));
   return --[[ tuple ]]{
           env$1,
@@ -13732,7 +13722,7 @@ function statement_list$1(term_fn, env) do
         statement_list_item(undefined, env$1),
         acc
       };
-      continue ;
+      ::continue:: ;
     end end 
   end;
 end end
@@ -14086,10 +14076,10 @@ function program$1(failOpt, token_sinkOpt, parse_optionsOpt, content) do
   ast = Curry._1(parser, env$1);
   error_list = filter_duplicate_errors(env$1.errors.contents);
   if (fail$2 and error_list ~= --[[ [] ]]0) then do
-    throw {
-          __Error,
-          error_list
-        };
+    error ({
+      __Error,
+      error_list
+    })
   end
    end 
   return --[[ tuple ]]{
@@ -14115,10 +14105,9 @@ number$1 = (function (x) {return x;});
 __null = null;
 
 function regexp$1(loc, pattern, flags) do
-  try do
+  xpcall(function() do
     return new RegExp(pattern, flags);
-  end
-  catch (exn)do
+  end end,function(exn) return do
     translation_errors.contents = --[[ :: ]]{
       --[[ tuple ]]{
         loc,
@@ -14127,11 +14116,11 @@ function regexp$1(loc, pattern, flags) do
       translation_errors.contents
     };
     return new RegExp("", flags);
-  end
+  end end)
 end end
 
 function parse(content, options) do
-  try do
+  xpcall(function() do
     match = program$1(false, undefined, Caml_option.some(undefined), content);
     translation_errors.contents = --[[ [] ]]0;
     array_of_list = function (fn, list) do
@@ -14564,10 +14553,10 @@ function parse(content, options) do
                    if ___conditional___ = 6--[[ Delete ]] then do
                       operator = "delete";end else 
                    if ___conditional___ = 7--[[ Await ]] then do
-                      throw {
-                            Caml_builtin_exceptions.failure,
-                            "matched above"
-                          };end end end 
+                      error ({
+                        Caml_builtin_exceptions.failure,
+                        "matched above"
+                      })end end end 
                    do end end end end end end end
                   
                 end
@@ -15149,10 +15138,10 @@ function parse(content, options) do
          if ___conditional___ = 1--[[ Identifier ]] then do
             key = identifier(match[0]);end else 
          if ___conditional___ = 2--[[ Computed ]] then do
-            throw {
-                  Caml_builtin_exceptions.failure,
-                  "There should not be computed object type property keys"
-                };end end end 
+            error ({
+              Caml_builtin_exceptions.failure,
+              "There should not be computed object type property keys"
+            })end end end 
          do end end
         
       end
@@ -16493,8 +16482,7 @@ function parse(content, options) do
     translation_errors$1 = translation_errors.contents;
     ret["errors"] = errors(Pervasives.$at(match[1], translation_errors$1));
     return ret;
-  end
-  catch (raw_exn)do
+  end end,function(raw_exn) return do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn[0] == __Error) then do
       e = new Error(String(List.length(exn[1])) .. " errors");
@@ -16502,9 +16490,9 @@ function parse(content, options) do
       throw(e);
       return ({});
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 suites = do
@@ -16542,14 +16530,14 @@ if (match ~= undefined) then do
         2842
       }, v.range);
 end else do
-  throw {
-        Caml_builtin_exceptions.assert_failure,
-        --[[ tuple ]]{
-          "runParser.ml",
-          15,
-          12
-        }
-      };
+  error ({
+    Caml_builtin_exceptions.assert_failure,
+    --[[ tuple ]]{
+      "runParser.ml",
+      15,
+      12
+    }
+  })
 end end 
 
 Mt.from_pair_suites("Flow_parser_reg_test", suites.contents);

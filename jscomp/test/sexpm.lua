@@ -1,44 +1,43 @@
 --[['use strict';]]
 
-Sys = require "../../lib/js/sys.lua";
-Char = require "../../lib/js/char.lua";
-List = require "../../lib/js/list.lua";
-Block = require "../../lib/js/block.lua";
-Bytes = require "../../lib/js/bytes.lua";
-Curry = require "../../lib/js/curry.lua";
-__Buffer = require "../../lib/js/buffer.lua";
-Format = require "../../lib/js/format.lua";
-Printf = require "../../lib/js/printf.lua";
-__String = require "../../lib/js/string.lua";
-Caml_io = require "../../lib/js/caml_io.lua";
-Printexc = require "../../lib/js/printexc.lua";
-Caml_bytes = require "../../lib/js/caml_bytes.lua";
-Caml_int32 = require "../../lib/js/caml_int32.lua";
-Pervasives = require "../../lib/js/pervasives.lua";
-Caml_primitive = require "../../lib/js/caml_primitive.lua";
-Caml_js_exceptions = require "../../lib/js/caml_js_exceptions.lua";
-Caml_external_polyfill = require "../../lib/js/caml_external_polyfill.lua";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
+Sys = require "../../lib/js/sys";
+Char = require "../../lib/js/char";
+List = require "../../lib/js/list";
+Block = require "../../lib/js/block";
+Bytes = require "../../lib/js/bytes";
+Curry = require "../../lib/js/curry";
+__Buffer = require "../../lib/js/buffer";
+Format = require "../../lib/js/format";
+Printf = require "../../lib/js/printf";
+__String = require "../../lib/js/string";
+Caml_io = require "../../lib/js/caml_io";
+Printexc = require "../../lib/js/printexc";
+Caml_bytes = require "../../lib/js/caml_bytes";
+Caml_int32 = require "../../lib/js/caml_int32";
+Pervasives = require "../../lib/js/pervasives";
+Caml_primitive = require "../../lib/js/caml_primitive";
+Caml_js_exceptions = require "../../lib/js/caml_js_exceptions";
+Caml_external_polyfill = require "../../lib/js/caml_external_polyfill";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 function _with_in(filename, f) do
   ic = Pervasives.open_in_bin(filename);
-  try do
+  xpcall(function() do
     x = Curry._1(f, ic);
     Caml_external_polyfill.resolve("caml_ml_close_channel")(ic);
     return x;
-  end
-  catch (raw_e)do
+  end end,function(raw_e) return do
     e = Caml_js_exceptions.internalToOCamlException(raw_e);
     Caml_external_polyfill.resolve("caml_ml_close_channel")(ic);
     return --[[ `Error ]]{
             106380200,
             Printexc.to_string(e)
           };
-  end
+  end end)
 end end
 
 function _must_escape(s) do
-  try do
+  xpcall(function() do
     for i = 0 , #s - 1 | 0 , 1 do
       c = s.charCodeAt(i);
       exit = 0;
@@ -47,10 +46,10 @@ function _must_escape(s) do
           if (c ~= 92) then do
             exit = 1;
           end else do
-            throw Pervasives.Exit;
+            error (Pervasives.Exit)
           end end 
         end else do
-          throw Pervasives.Exit;
+          error (Pervasives.Exit)
         end end 
       end else if (c >= 11) then do
         if (c >= 32) then do
@@ -67,7 +66,7 @@ function _must_escape(s) do
              or ___conditional___ = 2
              or ___conditional___ = 8
              or ___conditional___ = 9 then do
-                throw Pervasives.Exit;end end end 
+                error (Pervasives.Exit)end end end 
              do end
             
           end
@@ -76,25 +75,24 @@ function _must_escape(s) do
         end end 
       end else do
         if (c >= 9) then do
-          throw Pervasives.Exit;
+          error (Pervasives.Exit)
         end
          end 
         exit = 1;
       end end  end 
       if (exit == 1 and c > 127) then do
-        throw Pervasives.Exit;
+        error (Pervasives.Exit)
       end
        end 
     end
     return false;
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Pervasives.Exit) then do
       return true;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 function to_buf(b, t) do
@@ -317,17 +315,16 @@ function to_file_seq(filename, seq) do
                 end end));
   end end;
   oc = Pervasives.open_out(filename$1);
-  try do
+  xpcall(function() do
     x = Curry._1(f, oc);
     Caml_io.caml_ml_flush(oc);
     Caml_external_polyfill.resolve("caml_ml_close_channel")(oc);
     return x;
-  end
-  catch (e)do
+  end end,function(e) return do
     Caml_io.caml_ml_flush(oc);
     Caml_external_polyfill.resolve("caml_ml_close_channel")(oc);
-    throw e;
-  end
+    error (e)
+  end end)
 end end
 
 function to_file(filename, t) do
@@ -384,14 +381,14 @@ end end
 
 function _get(t) do
   if (t.i >= t.len) then do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "sexpm.ml",
-            152,
-            4
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "sexpm.ml",
+        152,
+        4
+      }
+    })
   end
    end 
   c = Caml_bytes.get(t.buf, t.i);
@@ -461,10 +458,10 @@ function expr(k, t) do
         if (c ~= 32) then do
           return expr_starting_with(c, k, t);
         end else do
-          continue ;
+          ::continue:: ;
         end end 
       end else if (c >= 9) then do
-        continue ;
+        ::continue:: ;
       end else do
         return expr_starting_with(c, k, t);
       end end  end 
@@ -495,14 +492,14 @@ function expr_starting_with(c, k, t) do
       local ___conditional___=(c - 32 | 0);
       do
          if ___conditional___ = 0 then do
-            throw {
-                  Caml_builtin_exceptions.assert_failure,
-                  --[[ tuple ]]{
-                    "sexpm.ml",
-                    183,
-                    27
-                  }
-                };end end end 
+            error ({
+              Caml_builtin_exceptions.assert_failure,
+              --[[ tuple ]]{
+                "sexpm.ml",
+                183,
+                27
+              }
+            })end end end 
          if ___conditional___ = 2 then do
             return quoted(k, t);end end end 
          if ___conditional___ = 1
@@ -527,14 +524,14 @@ function expr_starting_with(c, k, t) do
     end
      end 
   end else if (c >= 9) then do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "sexpm.ml",
-            183,
-            27
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "sexpm.ml",
+        183,
+        27
+      }
+    })
   end
    end  end  end 
   __Buffer.add_char(t.atom, c);
@@ -559,7 +556,7 @@ function expr_list(acc, k, t) do
         end
          end 
       end else if (switcher > 22 or switcher < 2) then do
-        continue ;
+        ::continue:: ;
       end
        end  end 
       return expr_starting_with(c, (function (last, e) do
@@ -664,7 +661,7 @@ function atom(k, t) do
       do
          if ___conditional___ = 1 then do
             __Buffer.add_char(t.atom, c);
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 2 then do
             return _return_atom(c, k, t);end end end 
          do
@@ -685,7 +682,7 @@ function quoted(k, t) do
       if (c ~= 34) then do
         if (c ~= 92) then do
           __Buffer.add_char(t.atom, c);
-          continue ;
+          ::continue:: ;
         end else do
           return escaped((function (c) do
                         __Buffer.add_char(t.atom, c);
@@ -825,7 +822,7 @@ function skip_comment(k, t) do
     end else do
       match = _get(t);
       if (match ~= 10) then do
-        continue ;
+        ::continue:: ;
       end else do
         return Curry._2(k, undefined, --[[ () ]]0);
       end end 
@@ -847,10 +844,10 @@ function expr_or_end(k, t) do
         if (c ~= 32) then do
           return expr_starting_with(c, k, t);
         end else do
-          continue ;
+          ::continue:: ;
         end end 
       end else if (c >= 9) then do
-        continue ;
+        ::continue:: ;
       end else do
         return expr_starting_with(c, k, t);
       end end  end 
@@ -942,7 +939,7 @@ function parse_chan_list(bufsize, ic) do
         e[1],
         acc
       };
-      continue ;
+      ::continue:: ;
     end end  end 
   end;
 end end
@@ -994,14 +991,14 @@ function MakeDecode(funarg) do
   end end;
   _get = function (t) do
     if (t.i >= t.len) then do
-      throw {
-            Caml_builtin_exceptions.assert_failure,
-            --[[ tuple ]]{
-              "sexpm.ml",
-              152,
-              4
-            }
-          };
+      error ({
+        Caml_builtin_exceptions.assert_failure,
+        --[[ tuple ]]{
+          "sexpm.ml",
+          152,
+          4
+        }
+      })
     end
      end 
     c = Caml_bytes.get(t.buf, t.i);
@@ -1068,10 +1065,10 @@ function MakeDecode(funarg) do
           if (c ~= 32) then do
             return expr_starting_with(c, k, t);
           end else do
-            continue ;
+            ::continue:: ;
           end end 
         end else if (c >= 9) then do
-          continue ;
+          ::continue:: ;
         end else do
           return expr_starting_with(c, k, t);
         end end  end 
@@ -1101,14 +1098,14 @@ function MakeDecode(funarg) do
         local ___conditional___=(c - 32 | 0);
         do
            if ___conditional___ = 0 then do
-              throw {
-                    Caml_builtin_exceptions.assert_failure,
-                    --[[ tuple ]]{
-                      "sexpm.ml",
-                      183,
-                      27
-                    }
-                  };end end end 
+              error ({
+                Caml_builtin_exceptions.assert_failure,
+                --[[ tuple ]]{
+                  "sexpm.ml",
+                  183,
+                  27
+                }
+              })end end end 
            if ___conditional___ = 2 then do
               return quoted(k, t);end end end 
            if ___conditional___ = 1
@@ -1133,14 +1130,14 @@ function MakeDecode(funarg) do
       end
        end 
     end else if (c >= 9) then do
-      throw {
-            Caml_builtin_exceptions.assert_failure,
-            --[[ tuple ]]{
-              "sexpm.ml",
-              183,
-              27
-            }
-          };
+      error ({
+        Caml_builtin_exceptions.assert_failure,
+        --[[ tuple ]]{
+          "sexpm.ml",
+          183,
+          27
+        }
+      })
     end
      end  end  end 
     __Buffer.add_char(t.atom, c);
@@ -1164,7 +1161,7 @@ function MakeDecode(funarg) do
           end
            end 
         end else if (switcher > 22 or switcher < 2) then do
-          continue ;
+          ::continue:: ;
         end
          end  end 
         return expr_starting_with(c, (function (last, e) do
@@ -1267,7 +1264,7 @@ function MakeDecode(funarg) do
         do
            if ___conditional___ = 1 then do
               __Buffer.add_char(t.atom, c);
-              continue ;end end end 
+              ::continue:: ;end end end 
            if ___conditional___ = 2 then do
               return _return_atom(c, k, t);end end end 
            do
@@ -1287,7 +1284,7 @@ function MakeDecode(funarg) do
         if (c ~= 34) then do
           if (c ~= 92) then do
             __Buffer.add_char(t.atom, c);
-            continue ;
+            ::continue:: ;
           end else do
             return escaped((function (c) do
                           __Buffer.add_char(t.atom, c);
@@ -1423,7 +1420,7 @@ function MakeDecode(funarg) do
       end else do
         match = _get(t);
         if (match ~= 10) then do
-          continue ;
+          ::continue:: ;
         end else do
           return Curry._2(k, undefined, --[[ () ]]0);
         end end 
@@ -1444,10 +1441,10 @@ function MakeDecode(funarg) do
           if (c ~= 32) then do
             return expr_starting_with(c, k, t);
           end else do
-            continue ;
+            ::continue:: ;
           end end 
         end else if (c >= 9) then do
-          continue ;
+          ::continue:: ;
         end else do
           return expr_starting_with(c, k, t);
         end end  end 

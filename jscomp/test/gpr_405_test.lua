@@ -1,9 +1,9 @@
 --[['use strict';]]
 
-Curry = require "../../lib/js/curry.lua";
-Hashtbl = require "../../lib/js/hashtbl.lua";
-Caml_primitive = require "../../lib/js/caml_primitive.lua";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
+Curry = require "../../lib/js/curry";
+Hashtbl = require "../../lib/js/hashtbl";
+Caml_primitive = require "../../lib/js/caml_primitive";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 function Make(funarg) do
   __let = funarg.V;
@@ -12,16 +12,15 @@ function Make(funarg) do
         hash: __let.hash
       end);
   find_default = function (htbl, x) do
-    try do
+    xpcall(function() do
       return Curry._2(H.find, htbl, x);
-    end
-    catch (exn)do
+    end end,function(exn) return do
       if (exn == Caml_builtin_exceptions.not_found) then do
         return false;
       end else do
-        throw exn;
+        error (exn)
       end end 
-    end
+    end end)
   end end;
   min_cutset = function (gr, first_node) do
     n_labels = Curry._1(H.create, 97);
@@ -36,25 +35,25 @@ function Make(funarg) do
     end;
     step2 = function (top, rest_of_stack) do
       if (find_default(already_processed, top)) then do
-        throw {
-              Caml_builtin_exceptions.assert_failure,
-              --[[ tuple ]]{
-                "gpr_405_test.ml",
-                43,
-                6
-              }
-            };
+        error ({
+          Caml_builtin_exceptions.assert_failure,
+          --[[ tuple ]]{
+            "gpr_405_test.ml",
+            43,
+            6
+          }
+        })
       end
        end 
       if (find_default(on_the_stack, top)) then do
-        throw {
-              Caml_builtin_exceptions.assert_failure,
-              --[[ tuple ]]{
-                "gpr_405_test.ml",
-                44,
-                6
-              }
-            };
+        error ({
+          Caml_builtin_exceptions.assert_failure,
+          --[[ tuple ]]{
+            "gpr_405_test.ml",
+            44,
+            6
+          }
+        })
       end
        end 
       Curry._3(H.add, on_the_stack, top, true);
@@ -75,7 +74,7 @@ function Make(funarg) do
             x = find_default(on_the_stack, successor) and Curry._2(H.find, n_labels, successor) or Curry._2(H.find, l_labels, successor);
             Curry._3(H.add, l_labels, top$1, Caml_primitive.caml_int_max(Curry._2(H.find, l_labels, top$1), x));
             _successors = successors[1];
-            continue ;
+            ::continue:: ;
           end else do
             return step2(successor, --[[ :: ]]{
                         --[[ tuple ]]{
@@ -95,10 +94,10 @@ function Make(funarg) do
           end
            end 
           if (Curry._2(H.find, l_labels, top$1) > Curry._2(H.find, n_labels, top$1)) then do
-            throw {
-                  Caml_builtin_exceptions.invalid_argument,
-                  "Graph.Mincut: graph not reducible"
-                };
+            error ({
+              Caml_builtin_exceptions.invalid_argument,
+              "Graph.Mincut: graph not reducible"
+            })
           end
            end 
           if (rest_of_stack$1) then do
@@ -109,7 +108,7 @@ function Make(funarg) do
             _rest_of_stack = rest_of_stack$1[1];
             _top = new_top;
             _successors = match[1];
-            continue ;
+            ::continue:: ;
           end else do
             return cut_set.contents;
           end end 

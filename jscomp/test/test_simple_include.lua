@@ -1,6 +1,6 @@
 --[['use strict';]]
 
-__Array = require "../../lib/js/array.lua";
+__Array = require "../../lib/js/array";
 
 v = do
   contents: 32

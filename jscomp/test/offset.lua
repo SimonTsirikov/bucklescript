@@ -1,11 +1,11 @@
 --[['use strict';]]
 
-List = require "../../lib/js/list.lua";
-Curry = require "../../lib/js/curry.lua";
-__String = require "../../lib/js/string.lua";
-Caml_option = require "../../lib/js/caml_option.lua";
-Caml_primitive = require "../../lib/js/caml_primitive.lua";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
+List = require "../../lib/js/list";
+Curry = require "../../lib/js/curry";
+__String = require "../../lib/js/string";
+Caml_option = require "../../lib/js/caml_option";
+Caml_primitive = require "../../lib/js/caml_primitive";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 function height(param) do
   if (param) then do
@@ -39,16 +39,16 @@ function bal(l, v, r) do
       end else if (lr) then do
         return create(create(ll, lv, lr[--[[ l ]]0]), lr[--[[ v ]]1], create(lr[--[[ r ]]2], v, r));
       end else do
-        throw {
-              Caml_builtin_exceptions.invalid_argument,
-              "Set.bal"
-            };
+        error ({
+          Caml_builtin_exceptions.invalid_argument,
+          "Set.bal"
+        })
       end end  end 
     end else do
-      throw {
-            Caml_builtin_exceptions.invalid_argument,
-            "Set.bal"
-          };
+      error ({
+        Caml_builtin_exceptions.invalid_argument,
+        "Set.bal"
+      })
     end end 
   end else if (hr > (hl + 2 | 0)) then do
     if (r) then do
@@ -60,16 +60,16 @@ function bal(l, v, r) do
       end else if (rl) then do
         return create(create(l, v, rl[--[[ l ]]0]), rl[--[[ v ]]1], create(rl[--[[ r ]]2], rv, rr));
       end else do
-        throw {
-              Caml_builtin_exceptions.invalid_argument,
-              "Set.bal"
-            };
+        error ({
+          Caml_builtin_exceptions.invalid_argument,
+          "Set.bal"
+        })
       end end  end 
     end else do
-      throw {
-            Caml_builtin_exceptions.invalid_argument,
-            "Set.bal"
-          };
+      error ({
+        Caml_builtin_exceptions.invalid_argument,
+        "Set.bal"
+      })
     end end 
   end else do
     return --[[ Node ]]{
@@ -166,12 +166,12 @@ function min_elt(_param) do
       l = param[--[[ l ]]0];
       if (l) then do
         _param = l;
-        continue ;
+        ::continue:: ;
       end else do
         return param[--[[ v ]]1];
       end end 
     end else do
-      throw Caml_builtin_exceptions.not_found;
+      error (Caml_builtin_exceptions.not_found)
     end end 
   end;
 end end
@@ -183,7 +183,7 @@ function min_elt_opt(_param) do
       l = param[--[[ l ]]0];
       if (l) then do
         _param = l;
-        continue ;
+        ::continue:: ;
       end else do
         return Caml_option.some(param[--[[ v ]]1]);
       end end 
@@ -200,12 +200,12 @@ function max_elt(_param) do
       r = param[--[[ r ]]2];
       if (r) then do
         _param = r;
-        continue ;
+        ::continue:: ;
       end else do
         return param[--[[ v ]]1];
       end end 
     end else do
-      throw Caml_builtin_exceptions.not_found;
+      error (Caml_builtin_exceptions.not_found)
     end end 
   end;
 end end
@@ -217,7 +217,7 @@ function max_elt_opt(_param) do
       r = param[--[[ r ]]2];
       if (r) then do
         _param = r;
-        continue ;
+        ::continue:: ;
       end else do
         return Caml_option.some(param[--[[ v ]]1]);
       end end 
@@ -236,10 +236,10 @@ function remove_min_elt(param) do
       return param[--[[ r ]]2];
     end end 
   end else do
-    throw {
-          Caml_builtin_exceptions.invalid_argument,
-          "Set.remove_min_elt"
-        };
+    error ({
+      Caml_builtin_exceptions.invalid_argument,
+      "Set.remove_min_elt"
+    })
   end end 
 end end
 
@@ -308,7 +308,7 @@ function mem(x, _param) do
         return true;
       end else do
         _param = c < 0 and param[--[[ l ]]0] or param[--[[ r ]]2];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return false;
@@ -431,7 +431,7 @@ function cons_enum(_s, _e) do
         e
       };
       _s = s[--[[ l ]]0];
-      continue ;
+      ::continue:: ;
     end else do
       return e;
     end end 
@@ -452,7 +452,7 @@ function compare(s1, s2) do
         end else do
           _e2 = cons_enum(e2[1], e2[2]);
           _e1 = cons_enum(e1[1], e1[2]);
-          continue ;
+          ::continue:: ;
         end end 
       end else do
         return 1;
@@ -485,7 +485,7 @@ function subset(_s1, _s2) do
           if (subset(l1, l2)) then do
             _s2 = r2;
             _s1 = r1;
-            continue ;
+            ::continue:: ;
           end else do
             return false;
           end end 
@@ -497,7 +497,7 @@ function subset(_s1, _s2) do
                   --[[ h ]]0
                 }, l2)) then do
             _s1 = r1;
-            continue ;
+            ::continue:: ;
           end else do
             return false;
           end end 
@@ -508,7 +508,7 @@ function subset(_s1, _s2) do
                 --[[ h ]]0
               }, r2)) then do
           _s1 = l1;
-          continue ;
+          ::continue:: ;
         end else do
           return false;
         end end  end  end 
@@ -528,7 +528,7 @@ function iter(f, _param) do
       iter(f, param[--[[ l ]]0]);
       Curry._1(f, param[--[[ v ]]1]);
       _param = param[--[[ r ]]2];
-      continue ;
+      ::continue:: ;
     end else do
       return --[[ () ]]0;
     end end 
@@ -542,7 +542,7 @@ function fold(f, _s, _accu) do
     if (s) then do
       _accu = Curry._2(f, s[--[[ v ]]1], fold(f, s[--[[ l ]]0], accu));
       _s = s[--[[ r ]]2];
-      continue ;
+      ::continue:: ;
     end else do
       return accu;
     end end 
@@ -555,7 +555,7 @@ function for_all(p, _param) do
     if (param) then do
       if (Curry._1(p, param[--[[ v ]]1]) and for_all(p, param[--[[ l ]]0])) then do
         _param = param[--[[ r ]]2];
-        continue ;
+        ::continue:: ;
       end else do
         return false;
       end end 
@@ -573,7 +573,7 @@ function exists(p, _param) do
         return true;
       end else do
         _param = param[--[[ r ]]2];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return false;
@@ -650,7 +650,7 @@ function elements_aux(_accu, _param) do
         param[--[[ v ]]1],
         elements_aux(accu, param[--[[ r ]]2])
       };
-      continue ;
+      ::continue:: ;
     end else do
       return accu;
     end end 
@@ -671,10 +671,10 @@ function find(x, _param) do
         return v;
       end else do
         _param = c < 0 and param[--[[ l ]]0] or param[--[[ r ]]2];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
-      throw Caml_builtin_exceptions.not_found;
+      error (Caml_builtin_exceptions.not_found)
     end end 
   end;
 end end
@@ -696,10 +696,10 @@ function find_first(f, _param) do
             if (Curry._1(f$1, v$1)) then do
               _param$1 = param$1[--[[ l ]]0];
               _v0 = v$1;
-              continue ;
+              ::continue:: ;
             end else do
               _param$1 = param$1[--[[ r ]]2];
-              continue ;
+              ::continue:: ;
             end end 
           end else do
             return v0;
@@ -707,10 +707,10 @@ function find_first(f, _param) do
         end;
       end else do
         _param = param[--[[ r ]]2];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
-      throw Caml_builtin_exceptions.not_found;
+      error (Caml_builtin_exceptions.not_found)
     end end 
   end;
 end end
@@ -732,10 +732,10 @@ function find_first_opt(f, _param) do
             if (Curry._1(f$1, v$1)) then do
               _param$1 = param$1[--[[ l ]]0];
               _v0 = v$1;
-              continue ;
+              ::continue:: ;
             end else do
               _param$1 = param$1[--[[ r ]]2];
-              continue ;
+              ::continue:: ;
             end end 
           end else do
             return Caml_option.some(v0);
@@ -743,7 +743,7 @@ function find_first_opt(f, _param) do
         end;
       end else do
         _param = param[--[[ r ]]2];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return ;
@@ -768,10 +768,10 @@ function find_last(f, _param) do
             if (Curry._1(f$1, v$1)) then do
               _param$1 = param$1[--[[ r ]]2];
               _v0 = v$1;
-              continue ;
+              ::continue:: ;
             end else do
               _param$1 = param$1[--[[ l ]]0];
-              continue ;
+              ::continue:: ;
             end end 
           end else do
             return v0;
@@ -779,10 +779,10 @@ function find_last(f, _param) do
         end;
       end else do
         _param = param[--[[ l ]]0];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
-      throw Caml_builtin_exceptions.not_found;
+      error (Caml_builtin_exceptions.not_found)
     end end 
   end;
 end end
@@ -804,10 +804,10 @@ function find_last_opt(f, _param) do
             if (Curry._1(f$1, v$1)) then do
               _param$1 = param$1[--[[ r ]]2];
               _v0 = v$1;
-              continue ;
+              ::continue:: ;
             end else do
               _param$1 = param$1[--[[ l ]]0];
-              continue ;
+              ::continue:: ;
             end end 
           end else do
             return Caml_option.some(v0);
@@ -815,7 +815,7 @@ function find_last_opt(f, _param) do
         end;
       end else do
         _param = param[--[[ l ]]0];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return ;
@@ -833,7 +833,7 @@ function find_opt(x, _param) do
         return Caml_option.some(v);
       end else do
         _param = c < 0 and param[--[[ l ]]0] or param[--[[ r ]]2];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return ;
@@ -971,14 +971,14 @@ function of_list(l) do
                           match$4[1]
                         };
                 end else do
-                  throw {
-                        Caml_builtin_exceptions.assert_failure,
-                        --[[ tuple ]]{
-                          "set.ml",
-                          510,
-                          18
-                        }
-                      };
+                  error ({
+                    Caml_builtin_exceptions.assert_failure,
+                    --[[ tuple ]]{
+                      "set.ml",
+                      510,
+                      18
+                    }
+                  })
                 end end 
               end end;
               return sub(List.length(l$1), l$1)[0];

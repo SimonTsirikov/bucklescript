@@ -1,25 +1,25 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-Char = require "../../lib/js/char.lua";
-List = require "../../lib/js/list.lua";
-__Array = require "../../lib/js/array.lua";
-Block = require "../../lib/js/block.lua";
-Bytes = require "../../lib/js/bytes.lua";
-Curry = require "../../lib/js/curry.lua";
-Format = require "../../lib/js/format.lua";
-__String = require "../../lib/js/string.lua";
-Hashtbl = require "../../lib/js/hashtbl.lua";
-Caml_obj = require "../../lib/js/caml_obj.lua";
-Caml_array = require "../../lib/js/caml_array.lua";
-Caml_bytes = require "../../lib/js/caml_bytes.lua";
-Caml_int32 = require "../../lib/js/caml_int32.lua";
-Pervasives = require "../../lib/js/pervasives.lua";
-Caml_option = require "../../lib/js/caml_option.lua";
-Caml_string = require "../../lib/js/caml_string.lua";
-Caml_primitive = require "../../lib/js/caml_primitive.lua";
-Caml_exceptions = require "../../lib/js/caml_exceptions.lua";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
+Mt = require "./mt";
+Char = require "../../lib/js/char";
+List = require "../../lib/js/list";
+__Array = require "../../lib/js/array";
+Block = require "../../lib/js/block";
+Bytes = require "../../lib/js/bytes";
+Curry = require "../../lib/js/curry";
+Format = require "../../lib/js/format";
+__String = require "../../lib/js/string";
+Hashtbl = require "../../lib/js/hashtbl";
+Caml_obj = require "../../lib/js/caml_obj";
+Caml_array = require "../../lib/js/caml_array";
+Caml_bytes = require "../../lib/js/caml_bytes";
+Caml_int32 = require "../../lib/js/caml_int32";
+Pervasives = require "../../lib/js/pervasives";
+Caml_option = require "../../lib/js/caml_option";
+Caml_string = require "../../lib/js/caml_string";
+Caml_primitive = require "../../lib/js/caml_primitive";
+Caml_exceptions = require "../../lib/js/caml_exceptions";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 suites = do
   contents: --[[ [] ]]0
@@ -85,7 +85,7 @@ function union(_l, _l$prime) do
             r$prime
           };
           _l = r;
-          continue ;
+          ::continue:: ;
         end else do
           _l$prime = r$prime;
           _l = --[[ :: ]]{
@@ -95,7 +95,7 @@ function union(_l, _l$prime) do
             },
             r
           };
-          continue ;
+          ::continue:: ;
         end end  end  end 
       end else do
         return l$prime;
@@ -121,10 +121,10 @@ function inter(_l, _l$prime) do
       c1 = match$1[0];
       if (Caml_obj.caml_lessthan(c2, c1$prime)) then do
         _l = r;
-        continue ;
+        ::continue:: ;
       end else if (Caml_obj.caml_lessthan(c2$prime, c1)) then do
         _l$prime = r$prime;
-        continue ;
+        ::continue:: ;
       end else if (Caml_obj.caml_lessthan(c2, c2$prime)) then do
         return --[[ :: ]]{
                 --[[ tuple ]]{
@@ -172,7 +172,7 @@ function diff(_l, _l$prime) do
                 };
         end else if (c2$prime < c1) then do
           _l$prime = r$prime;
-          continue ;
+          ::continue:: ;
         end else do
           r$prime$prime = c2$prime < c2 and --[[ :: ]]{
               --[[ tuple ]]{
@@ -192,7 +192,7 @@ function diff(_l, _l$prime) do
           end else do
             _l$prime = r$prime;
             _l = r$prime$prime;
-            continue ;
+            ::continue:: ;
           end end 
         end end  end 
       end else do
@@ -258,7 +258,7 @@ function mem(c, _s) do
         return c >= match[0];
       end else do
         _s = s[1];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return false;
@@ -331,16 +331,16 @@ function bal(l, x, d, r) do
       end else if (lr) then do
         return create(create(ll, lv, ld, lr[--[[ l ]]0]), lr[--[[ v ]]1], lr[--[[ d ]]2], create(lr[--[[ r ]]3], x, d, r));
       end else do
-        throw {
-              Caml_builtin_exceptions.invalid_argument,
-              "Map.bal"
-            };
+        error ({
+          Caml_builtin_exceptions.invalid_argument,
+          "Map.bal"
+        })
       end end  end 
     end else do
-      throw {
-            Caml_builtin_exceptions.invalid_argument,
-            "Map.bal"
-          };
+      error ({
+        Caml_builtin_exceptions.invalid_argument,
+        "Map.bal"
+      })
     end end 
   end else if (hr > (hl + 2 | 0)) then do
     if (r) then do
@@ -353,16 +353,16 @@ function bal(l, x, d, r) do
       end else if (rl) then do
         return create(create(l, x, d, rl[--[[ l ]]0]), rl[--[[ v ]]1], rl[--[[ d ]]2], create(rl[--[[ r ]]3], rv, rd, rr));
       end else do
-        throw {
-              Caml_builtin_exceptions.invalid_argument,
-              "Map.bal"
-            };
+        error ({
+          Caml_builtin_exceptions.invalid_argument,
+          "Map.bal"
+        })
       end end  end 
     end else do
-      throw {
-            Caml_builtin_exceptions.invalid_argument,
-            "Map.bal"
-          };
+      error ({
+        Caml_builtin_exceptions.invalid_argument,
+        "Map.bal"
+      })
     end end 
   end else do
     return --[[ Node ]]{
@@ -517,16 +517,16 @@ function bal$1(l, v, r) do
       end else if (lr) then do
         return create$1(create$1(ll, lv, lr[--[[ l ]]0]), lr[--[[ v ]]1], create$1(lr[--[[ r ]]2], v, r));
       end else do
-        throw {
-              Caml_builtin_exceptions.invalid_argument,
-              "Set.bal"
-            };
+        error ({
+          Caml_builtin_exceptions.invalid_argument,
+          "Set.bal"
+        })
       end end  end 
     end else do
-      throw {
-            Caml_builtin_exceptions.invalid_argument,
-            "Set.bal"
-          };
+      error ({
+        Caml_builtin_exceptions.invalid_argument,
+        "Set.bal"
+      })
     end end 
   end else if (hr > (hl + 2 | 0)) then do
     if (r) then do
@@ -538,16 +538,16 @@ function bal$1(l, v, r) do
       end else if (rl) then do
         return create$1(create$1(l, v, rl[--[[ l ]]0]), rl[--[[ v ]]1], create$1(rl[--[[ r ]]2], rv, rr));
       end else do
-        throw {
-              Caml_builtin_exceptions.invalid_argument,
-              "Set.bal"
-            };
+        error ({
+          Caml_builtin_exceptions.invalid_argument,
+          "Set.bal"
+        })
       end end  end 
     end else do
-      throw {
-            Caml_builtin_exceptions.invalid_argument,
-            "Set.bal"
-          };
+      error ({
+        Caml_builtin_exceptions.invalid_argument,
+        "Set.bal"
+      })
     end end 
   end else do
     return --[[ Node ]]{
@@ -611,7 +611,7 @@ function hash(m, accu) do
       match = l[0];
       _accu = hash_combine(match[0], hash_combine(match[1], accu$1));
       _l = l[1];
-      continue ;
+      ::continue:: ;
     end else do
       return accu$1;
     end end 
@@ -653,7 +653,7 @@ function first(f, _param) do
         return res;
       end else do
         _param = param[1];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return ;
@@ -797,7 +797,7 @@ function equal(_l1, _l2) do
                     if (match[1].id == match$1[1].id and equal(match[0], match$1[0])) then do
                       _l2 = l2[1];
                       _l1 = l1[1];
-                      continue ;
+                      ::continue:: ;
                     end else do
                       return false;
                     end end end end end 
@@ -819,7 +819,7 @@ function equal(_l1, _l2) do
                     if (match[1].id == match$2[1].id and Caml_obj.caml_equal(match[0], match$2[0])) then do
                       _l2 = l2[1];
                       _l1 = l1[1];
-                      continue ;
+                      ::continue:: ;
                     end else do
                       return false;
                     end end end end end 
@@ -844,7 +844,7 @@ function equal(_l1, _l2) do
                     if (Caml_obj.caml_equal(match[0], match$3[0])) then do
                       _l2 = l2[1];
                       _l1 = l1[1];
-                      continue ;
+                      ::continue:: ;
                     end else do
                       return false;
                     end end end end end 
@@ -876,15 +876,15 @@ function hash$1(_l, _accu) do
          if ___conditional___ = 0--[[ TSeq ]] then do
             _accu = hash_combine(388635598, hash_combine(match[1].id, hash$1(match[0], accu)));
             _l = l[1];
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 1--[[ TExp ]] then do
             _accu = hash_combine(726404471, hash_combine(match[1].id, hash(match[0], accu)));
             _l = l[1];
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 2--[[ TMatch ]] then do
             _accu = hash_combine(471882453, hash(match[0], accu));
             _l = l[1];
-            continue ;end end end 
+            ::continue:: ;end end end 
          do
         
       end
@@ -1012,7 +1012,7 @@ function find_free(tbl, _idx, len) do
       return idx;
     end else do
       _idx = idx + 1 | 0;
-      continue ;
+      ::continue:: ;
     end end 
   end;
 end end
@@ -1058,7 +1058,7 @@ function split_at_match_rec(_l$prime, _param) do
               x,
               l$prime
             };
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 2--[[ TMatch ]] then do
             return --[[ tuple ]]{
                     List.rev(l$prime),
@@ -1068,14 +1068,14 @@ function split_at_match_rec(_l$prime, _param) do
         
       end
     end else do
-      throw {
-            Caml_builtin_exceptions.assert_failure,
-            --[[ tuple ]]{
-              "re_automata.ml",
-              429,
-              21
-            }
-          };
+      error ({
+        Caml_builtin_exceptions.assert_failure,
+        --[[ tuple ]]{
+          "re_automata.ml",
+          429,
+          21
+        }
+      })
     end end 
   end;
 end end
@@ -1101,7 +1101,7 @@ function remove_duplicates(prev, _l, y) do
               r = l[1];
               if (List.memq(y.id, prev)) then do
                 _l = r;
-                continue ;
+                ::continue:: ;
               end else do
                 match$2 = remove_duplicates(--[[ :: ]]{
                       y.id,
@@ -1119,7 +1119,7 @@ function remove_duplicates(prev, _l, y) do
               r$1 = l[1];
               if (List.memq(x$2.id, prev)) then do
                 _l = r$1;
-                continue ;
+                ::continue:: ;
               end else do
                 match$3 = remove_duplicates(--[[ :: ]]{
                       x$2.id,
@@ -1464,7 +1464,7 @@ function iter(_n, f, _v) do
     end else do
       _v = Curry._1(f, v);
       _n = n - 1 | 0;
-      continue ;
+      ::continue:: ;
     end end 
   end;
 end end
@@ -1502,18 +1502,17 @@ function mk_state(ncol, desc) do
 end end
 
 function find_state(re, desc) do
-  try do
+  xpcall(function() do
     return Curry._2(Re_automata_State.Table.find, re.states, desc);
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Caml_builtin_exceptions.not_found) then do
       st = mk_state(re.ncol, desc);
       Curry._3(Re_automata_State.Table.add, re.states, desc, st);
       return st;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 function delta$1(info, cat, c, st) do
@@ -1556,7 +1555,7 @@ function loop(info, s, pos, st) do
           _st$prime = st$prime$prime;
           _st = st$prime$1;
           _pos = pos$2;
-          continue ;
+          ::continue:: ;
         end else do
           Caml_array.caml_array_set(info$1.positions, st$prime$1.idx, pos$2);
           return st$prime$1;
@@ -1575,10 +1574,9 @@ function loop(info, s, pos, st) do
 end end
 
 function __final(info, st, cat) do
-  try do
+  xpcall(function() do
     return List.assq(cat, st.final);
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Caml_builtin_exceptions.not_found) then do
       st$prime = delta$1(info, cat, -1, st);
       res_000 = st$prime.idx;
@@ -1596,16 +1594,15 @@ function __final(info, st, cat) do
       };
       return res;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 function find_initial_state(re, cat) do
-  try do
+  xpcall(function() do
     return List.assq(cat, re.initial_states);
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Caml_builtin_exceptions.not_found) then do
       st = find_state(re, Curry._2(Re_automata_State.create, cat, re.initial));
       re.initial_states = --[[ :: ]]{
@@ -1617,9 +1614,9 @@ function find_initial_state(re, cat) do
       };
       return st;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 function get_color(re, s, pos) do
@@ -1677,7 +1674,7 @@ function scan_str(info, s, initial_state, groups) do
           desc$prime = delta$1(info$2, cat, real_c, st$1);
           st$prime$1 = find_state(info$2.re, desc$prime);
           Caml_array.caml_array_set(st$1.next, c, st$prime$1);
-          continue ;
+          ::continue:: ;
         end end  end 
       end;
     end end 
@@ -1697,12 +1694,12 @@ function scan_str(info, s, initial_state, groups) do
         if (st$prime$2.idx >= 0) then do
           _st = st$prime$2;
           _pos = pos$2 + 1 | 0;
-          continue ;
+          ::continue:: ;
         end else if (st$prime$2.idx == -3) then do
           return st$prime$2;
         end else do
           validate(info$3, s$1, pos$2, st$2);
-          continue ;
+          ::continue:: ;
         end end  end 
       end else do
         return st$2;
@@ -1725,7 +1722,7 @@ function trans_set(cache, cm, s) do
       v_000,
       s
     };
-    try do
+    xpcall(function() do
       x = v;
       _param = cache.contents;
       while(true) do
@@ -1736,14 +1733,13 @@ function trans_set(cache, cm, s) do
             return param[--[[ d ]]2];
           end else do
             _param = c < 0 and param[--[[ l ]]0] or param[--[[ r ]]3];
-            continue ;
+            ::continue:: ;
           end end 
         end else do
-          throw Caml_builtin_exceptions.not_found;
+          error (Caml_builtin_exceptions.not_found)
         end end 
       end;
-    end
-    catch (exn)do
+    end end,function(exn) return do
       if (exn == Caml_builtin_exceptions.not_found) then do
         l = List.fold_right((function (param, l) do
                 return union(seq(Caml_bytes.get(cm, param[0]), Caml_bytes.get(cm, param[1])), l);
@@ -1751,9 +1747,9 @@ function trans_set(cache, cm, s) do
         cache.contents = add(v, l, cache.contents);
         return l;
       end else do
-        throw exn;
+        error (exn)
       end end 
-    end
+    end end)
   end end 
 end end
 
@@ -1770,12 +1766,12 @@ function is_charset(_param) do
          if ___conditional___ = 4--[[ Sem ]]
          or ___conditional___ = 5--[[ Sem_greedy ]] then do
             _param = param[1];
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 7--[[ No_group ]]
          or ___conditional___ = 9--[[ Case ]]
          or ___conditional___ = 10--[[ No_case ]] then do
             _param = param[0];
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 2--[[ Alternative ]]
          or ___conditional___ = 11--[[ Intersection ]]
          or ___conditional___ = 12--[[ Complement ]] then do
@@ -1783,7 +1779,7 @@ function is_charset(_param) do
          if ___conditional___ = 13--[[ Difference ]] then do
             if (is_charset(param[0])) then do
               _param = param[1];
-              continue ;
+              ::continue:: ;
             end else do
               return false;
             end end end end end 
@@ -1810,7 +1806,7 @@ function split(s, cm) do
       match = t[0];
       Curry._2(f, match[0], match[1]);
       _t = t[1];
-      continue ;
+      ::continue:: ;
     end else do
       return --[[ () ]]0;
     end end 
@@ -1897,22 +1893,22 @@ function colorize(c, regexp) do
            or ___conditional___ = 7--[[ No_group ]]
            or ___conditional___ = 8--[[ Nest ]] then do
               _regexp = regexp[0];
-              continue ;end end end 
+              ::continue:: ;end end end 
            if ___conditional___ = 4--[[ Sem ]]
            or ___conditional___ = 5--[[ Sem_greedy ]]
            or ___conditional___ = 14--[[ Pmark ]] then do
               _regexp = regexp[1];
-              continue ;end end end 
+              ::continue:: ;end end end 
            do
           else do
-            throw {
-                  Caml_builtin_exceptions.assert_failure,
-                  --[[ tuple ]]{
-                    "re.ml",
-                    502,
-                    35
-                  }
-                };
+            error ({
+              Caml_builtin_exceptions.assert_failure,
+              --[[ tuple ]]{
+                "re.ml",
+                502,
+                35
+              }
+            })
             end end
             
         end
@@ -2041,7 +2037,7 @@ function equal$2(_x1, _x2) do
             end else do
               _x2 = x2[0];
               _x1 = x1[0];
-              continue ;
+              ::continue:: ;
             end end end end end 
          if ___conditional___ = 4--[[ Sem ]] then do
             if (typeof x2 == "number" or not (x2.tag == --[[ Sem ]]4 and x1[0] == x2[0])) then do
@@ -2049,7 +2045,7 @@ function equal$2(_x1, _x2) do
             end else do
               _x2 = x2[1];
               _x1 = x1[1];
-              continue ;
+              ::continue:: ;
             end end end end end 
          if ___conditional___ = 5--[[ Sem_greedy ]] then do
             if (typeof x2 == "number" or not (x2.tag == --[[ Sem_greedy ]]5 and x1[0] == x2[0])) then do
@@ -2057,7 +2053,7 @@ function equal$2(_x1, _x2) do
             end else do
               _x2 = x2[1];
               _x1 = x1[1];
-              continue ;
+              ::continue:: ;
             end end end end end 
          if ___conditional___ = 6--[[ Group ]] then do
             return false;end end end 
@@ -2067,7 +2063,7 @@ function equal$2(_x1, _x2) do
             end else do
               _x2 = x2[0];
               _x1 = x1[0];
-              continue ;
+              ::continue:: ;
             end end end end end 
          if ___conditional___ = 8--[[ Nest ]] then do
             if (typeof x2 == "number" or x2.tag ~= --[[ Nest ]]8) then do
@@ -2075,7 +2071,7 @@ function equal$2(_x1, _x2) do
             end else do
               _x2 = x2[0];
               _x1 = x1[0];
-              continue ;
+              ::continue:: ;
             end end end end end 
          if ___conditional___ = 9--[[ Case ]] then do
             if (typeof x2 == "number" or x2.tag ~= --[[ Case ]]9) then do
@@ -2083,7 +2079,7 @@ function equal$2(_x1, _x2) do
             end else do
               _x2 = x2[0];
               _x1 = x1[0];
-              continue ;
+              ::continue:: ;
             end end end end end 
          if ___conditional___ = 10--[[ No_case ]] then do
             if (typeof x2 == "number" or x2.tag ~= --[[ No_case ]]10) then do
@@ -2091,7 +2087,7 @@ function equal$2(_x1, _x2) do
             end else do
               _x2 = x2[0];
               _x1 = x1[0];
-              continue ;
+              ::continue:: ;
             end end end end end 
          if ___conditional___ = 11--[[ Intersection ]] then do
             if (typeof x2 == "number" or x2.tag ~= --[[ Intersection ]]11) then do
@@ -2111,7 +2107,7 @@ function equal$2(_x1, _x2) do
             end else do
               _x2 = x2[1];
               _x1 = x1[1];
-              continue ;
+              ::continue:: ;
             end end end end end 
          if ___conditional___ = 14--[[ Pmark ]] then do
             if (typeof x2 == "number" or not (x2.tag == --[[ Pmark ]]14 and x1[0] == x2[0])) then do
@@ -2119,7 +2115,7 @@ function equal$2(_x1, _x2) do
             end else do
               _x2 = x2[1];
               _x1 = x1[1];
-              continue ;
+              ::continue:: ;
             end end end end end 
          do
         
@@ -2136,7 +2132,7 @@ function eq_list(_l1, _l2) do
       if (l2 and equal$2(l1[0], l2[0])) then do
         _l2 = l2[1];
         _l1 = l1[1];
-        continue ;
+        ::continue:: ;
       end else do
         return false;
       end end 
@@ -2215,7 +2211,7 @@ function merge_sequences(_param) do
                end end else 
            if ___conditional___ = 2--[[ Alternative ]] then do
               _param = Pervasives.$at(x[0], param[1]);
-              continue ;end end end 
+              ::continue:: ;end end end 
            do end
           else do
             end end
@@ -2398,12 +2394,12 @@ function translate(ids, kind, _ign_group, ign_case, _greedy, pos, cache, c, _par
          if ___conditional___ = 5--[[ Sem_greedy ]] then do
             _param = param[1];
             _greedy = param[0];
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 6--[[ Group ]] then do
             r$prime = param[0];
             if (ign_group) then do
               _param = r$prime;
-              continue ;
+              ::continue:: ;
             end else do
               p = pos.contents;
               pos.contents = pos.contents + 2 | 0;
@@ -2416,7 +2412,7 @@ function translate(ids, kind, _ign_group, ign_case, _greedy, pos, cache, c, _par
          if ___conditional___ = 7--[[ No_group ]] then do
             _param = param[0];
             _ign_group = true;
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 8--[[ Nest ]] then do
             b = pos.contents;
             match$4 = translate(ids, kind, ign_group, ign_case, greedy, pos, cache, c, param[0]);
@@ -2442,14 +2438,14 @@ function translate(ids, kind, _ign_group, ign_case, _greedy, pos, cache, c, _par
                   };end end end 
          do
         else do
-          throw {
-                Caml_builtin_exceptions.assert_failure,
-                --[[ tuple ]]{
-                  "re.ml",
-                  714,
-                  4
-                }
-              };
+          error ({
+            Caml_builtin_exceptions.assert_failure,
+            --[[ tuple ]]{
+              "re.ml",
+              714,
+              4
+            }
+          })
           end end
           
       end
@@ -2487,23 +2483,23 @@ end end
 
 function as_set(param) do
   if (typeof param == "number") then do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "re.ml",
-            747,
-            13
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "re.ml",
+        747,
+        13
+      }
+    })
   end else if (param.tag) then do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "re.ml",
-            747,
-            13
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "re.ml",
+        747,
+        13
+      }
+    })
   end else do
     return param[0];
   end end  end 
@@ -2585,11 +2581,11 @@ function handle_case(_ign_case, _r) do
          if ___conditional___ = 9--[[ Case ]] then do
             _r = r[0];
             _ign_case = false;
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 10--[[ No_case ]] then do
             _r = r[0];
             _ign_case = true;
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 11--[[ Intersection ]] then do
             l$prime$1 = List.map((function(ign_case)do
                 return function (r) do
@@ -2647,7 +2643,7 @@ function anchored(_param) do
          if ___conditional___ = 3--[[ Repeat ]] then do
             if (param[1] > 0) then do
               _param = param[0];
-              continue ;
+              ::continue:: ;
             end else do
               return false;
             end end end end end 
@@ -2657,12 +2653,12 @@ function anchored(_param) do
          or ___conditional___ = 9--[[ Case ]]
          or ___conditional___ = 10--[[ No_case ]] then do
             _param = param[0];
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 4--[[ Sem ]]
          or ___conditional___ = 5--[[ Sem_greedy ]]
          or ___conditional___ = 14--[[ Pmark ]] then do
             _param = param[1];
-            continue ;end end end 
+            ::continue:: ;end end end 
          do
         else do
           return false;
@@ -2693,17 +2689,17 @@ epsilon = --[[ Sequence ]]Block.__(1, {--[[ [] ]]0});
 
 function repn(r, i, j) do
   if (i < 0) then do
-    throw {
-          Caml_builtin_exceptions.invalid_argument,
-          "Re.repn"
-        };
+    error ({
+      Caml_builtin_exceptions.invalid_argument,
+      "Re.repn"
+    })
   end
    end 
   if (j ~= undefined and j < i) then do
-    throw {
-          Caml_builtin_exceptions.invalid_argument,
-          "Re.repn"
-        };
+    error ({
+      Caml_builtin_exceptions.invalid_argument,
+      "Re.repn"
+    })
   end
    end 
   return --[[ Repeat ]]Block.__(3, {
@@ -2726,10 +2722,10 @@ function compl(l) do
   if (is_charset(r)) then do
     return r;
   end else do
-    throw {
-          Caml_builtin_exceptions.invalid_argument,
-          "Re.compl"
-        };
+    error ({
+      Caml_builtin_exceptions.invalid_argument,
+      "Re.compl"
+    })
   end end 
 end end
 
@@ -2975,10 +2971,10 @@ function exec_internal(name, posOpt, lenOpt, groups, re, s) do
   pos = posOpt ~= undefined and posOpt or 0;
   len = lenOpt ~= undefined and lenOpt or -1;
   if (pos < 0 or len < -1 or (pos + len | 0) > #s) then do
-    throw {
-          Caml_builtin_exceptions.invalid_argument,
-          name
-        };
+    error ({
+      Caml_builtin_exceptions.invalid_argument,
+      name
+    })
   end
    end 
   groups$1 = groups;
@@ -3048,12 +3044,12 @@ end end
 
 function offset$1(t, i) do
   if (((i << 1) + 1 | 0) >= #t.marks) then do
-    throw Caml_builtin_exceptions.not_found;
+    error (Caml_builtin_exceptions.not_found)
   end
    end 
   m1 = Caml_array.caml_array_get(t.marks, (i << 1));
   if (m1 == -1) then do
-    throw Caml_builtin_exceptions.not_found;
+    error (Caml_builtin_exceptions.not_found)
   end
    end 
   p1 = Caml_array.caml_array_get(t.gpos, m1) - 1 | 0;
@@ -3106,10 +3102,10 @@ function posix_class_of_string(class_) do
      do
     else do
       s = "Invalid pcre class: " .. class_;
-      throw {
-            Caml_builtin_exceptions.invalid_argument,
-            s
-          };
+      error ({
+        Caml_builtin_exceptions.invalid_argument,
+        s
+      })
       end end
       
   end
@@ -3137,28 +3133,26 @@ function parse(multiline, dollar_endonly, dotall, ungreedy, s) do
   end end;
   accept_s = function (s$prime) do
     len = #s$prime;
-    try do
+    xpcall(function() do
       for j = 0 , len - 1 | 0 , 1 do
-        try do
+        xpcall(function() do
           if (Caml_string.get(s$prime, j) ~= Caml_string.get(s, i.contents + j | 0)) then do
-            throw Pervasives.Exit;
+            error (Pervasives.Exit)
           end
            end 
-        end
-        catch (exn)do
-          throw Pervasives.Exit;
-        end
+        end end,function(exn) return do
+          error (Pervasives.Exit)
+        end end)
       end
       i.contents = i.contents + len | 0;
       return true;
-    end
-    catch (exn$1)do
+    end end,function(exn$1) return do
       if (exn$1 == Pervasives.Exit) then do
         return false;
       end else do
-        throw exn$1;
+        error (exn$1)
       end end 
-    end
+    end end)
   end end;
   get = function (param) do
     r = Caml_string.get(s, i.contents);
@@ -3192,7 +3186,7 @@ function parse(multiline, dollar_endonly, dotall, ungreedy, s) do
         if (accept(--[[ ":" ]]58)) then do
           r = regexp$prime(branch$prime(--[[ [] ]]0));
           if (not accept(--[[ ")" ]]41)) then do
-            throw Parse_error;
+            error (Parse_error)
           end
            end 
           return r;
@@ -3204,16 +3198,16 @@ function parse(multiline, dollar_endonly, dotall, ungreedy, s) do
             end else do
               i.contents = i.contents + 1 | 0;
               _param = --[[ () ]]0;
-              continue ;
+              ::continue:: ;
             end end 
           end;
         end else do
-          throw Parse_error;
+          error (Parse_error)
         end end  end 
       end else do
         r$1 = regexp$prime(branch$prime(--[[ [] ]]0));
         if (not accept(--[[ ")" ]]41)) then do
-          throw Parse_error;
+          error (Parse_error)
         end
          end 
         return --[[ Group ]]Block.__(6, {r$1});
@@ -3240,7 +3234,7 @@ function parse(multiline, dollar_endonly, dotall, ungreedy, s) do
       end end 
     end else if (accept(--[[ "\\" ]]92)) then do
       if (i.contents == l) then do
-        throw Parse_error;
+        error (Parse_error)
       end
        end 
       c = get(--[[ () ]]0);
@@ -3256,7 +3250,7 @@ function parse(multiline, dollar_endonly, dotall, ungreedy, s) do
          or ___conditional___ = 55
          or ___conditional___ = 56
          or ___conditional___ = 57 then do
-            throw Not_supported;end end end 
+            error (Not_supported)end end end 
          if ___conditional___ = 65 then do
             return --[[ Beg_of_str ]]5;end end end 
          if ___conditional___ = 66 then do
@@ -3369,7 +3363,7 @@ function parse(multiline, dollar_endonly, dotall, ungreedy, s) do
          or ___conditional___ = 118
          or ___conditional___ = 120
          or ___conditional___ = 121 then do
-            throw Parse_error;end end end 
+            error (Parse_error)end end end 
          if ___conditional___ = 122 then do
             return --[[ End_of_str ]]6;end end end 
          do
@@ -3380,7 +3374,7 @@ function parse(multiline, dollar_endonly, dotall, ungreedy, s) do
       end
     end else do
       if (i.contents == l) then do
-        throw Parse_error;
+        error (Parse_error)
       end
        end 
       c$1 = get(--[[ () ]]0);
@@ -3389,20 +3383,20 @@ function parse(multiline, dollar_endonly, dotall, ungreedy, s) do
           if (c$1 ~= 123) then do
             return --[[ Set ]]Block.__(0, {single(c$1)});
           end else do
-            throw Parse_error;
+            error (Parse_error)
           end end 
         end else do
-          throw Parse_error;
+          error (Parse_error)
         end end 
       end else if (c$1 >= 44) then do
         if (c$1 >= 63) then do
-          throw Parse_error;
+          error (Parse_error)
         end
          end 
         return --[[ Set ]]Block.__(0, {single(c$1)});
       end else do
         if (c$1 >= 42) then do
-          throw Parse_error;
+          error (Parse_error)
         end
          end 
         return --[[ Set ]]Block.__(0, {single(c$1)});
@@ -3431,11 +3425,11 @@ function parse(multiline, dollar_endonly, dotall, ungreedy, s) do
             end else do
               i$prime = Caml_int32.imul(10, i$1) + (d$1 - --[[ "0" ]]48 | 0) | 0;
               if (i$prime < i$1) then do
-                throw Parse_error;
+                error (Parse_error)
               end
                end 
               _i = i$prime;
-              continue ;
+              ::continue:: ;
             end end 
           end end 
         end;
@@ -3452,7 +3446,7 @@ function parse(multiline, dollar_endonly, dotall, ungreedy, s) do
           piece(--[[ () ]]0),
           left
         };
-        continue ;
+        ::continue:: ;
       end end 
     end;
   end end;
@@ -3467,7 +3461,7 @@ function parse(multiline, dollar_endonly, dotall, ungreedy, s) do
                 --[[ [] ]]0
               }
             });
-        continue ;
+        ::continue:: ;
       end else do
         return left;
       end end 
@@ -3504,7 +3498,7 @@ function parse(multiline, dollar_endonly, dotall, ungreedy, s) do
                   --[[ Set ]]Block.__(0, {seq(c, match$1[1])}),
                   s
                 };
-                continue ;
+                ::continue:: ;
               end else do
                 return --[[ :: ]]{
                         --[[ Set ]]Block.__(0, {single(c)}),
@@ -3529,33 +3523,33 @@ function parse(multiline, dollar_endonly, dotall, ungreedy, s) do
               --[[ Set ]]Block.__(0, {single(c)}),
               s
             };
-            continue ;
+            ::continue:: ;
           end end 
         end else do
           _s = --[[ :: ]]{
             match[1],
             s
           };
-          continue ;
+          ::continue:: ;
         end end 
       end end 
     end;
   end end;
   __char = function (param) do
     if (i.contents == l) then do
-      throw Parse_error;
+      error (Parse_error)
     end
      end 
     c = get(--[[ () ]]0);
     if (c == --[[ "[" ]]91) then do
       if (accept(--[[ "=" ]]61)) then do
-        throw Not_supported;
+        error (Not_supported)
       end
        end 
       if (accept(--[[ ":" ]]58)) then do
         compl$1 = accept(--[[ "^" ]]94);
         cls;
-        try do
+        xpcall(function() do
           cls = List.find(accept_s, --[[ :: ]]{
                 "alnum",
                 --[[ :: ]]{
@@ -3596,16 +3590,15 @@ function parse(multiline, dollar_endonly, dotall, ungreedy, s) do
                   }
                 }
               });
-        end
-        catch (exn)do
+        end end,function(exn) return do
           if (exn == Caml_builtin_exceptions.not_found) then do
-            throw Parse_error;
+            error (Parse_error)
           end
            end 
-          throw exn;
-        end
+          error (exn)
+        end end)
         if (not accept_s(":]")) then do
-          throw Parse_error;
+          error (Parse_error)
         end
          end 
         posix_class = posix_class_of_string(cls);
@@ -3619,16 +3612,16 @@ function parse(multiline, dollar_endonly, dotall, ungreedy, s) do
               };
       end else if (accept(--[[ "." ]]46)) then do
         if (i.contents == l) then do
-          throw Parse_error;
+          error (Parse_error)
         end
          end 
         c$1 = get(--[[ () ]]0);
         if (not accept(--[[ "." ]]46)) then do
-          throw Not_supported;
+          error (Not_supported)
         end
          end 
         if (not accept(--[[ "]" ]]93)) then do
-          throw Parse_error;
+          error (Parse_error)
         end
          end 
         return --[[ `Char ]]{
@@ -3791,14 +3784,14 @@ function parse(multiline, dollar_endonly, dotall, ungreedy, s) do
              or ___conditional___ = 62
              or ___conditional___ = 63
              or ___conditional___ = 64 then do
-                throw Parse_error;end end end 
+                error (Parse_error)end end end 
              do
             
           end
         end end 
       end else do
         if (c$2 >= 48) then do
-          throw Not_supported;
+          error (Not_supported)
         end
          end 
         return --[[ `Char ]]{
@@ -3827,11 +3820,11 @@ function parse(multiline, dollar_endonly, dotall, ungreedy, s) do
         i$1 = match;
         j = accept(--[[ "," ]]44) and integer(--[[ () ]]0) or i$1;
         if (not accept(--[[ "}" ]]125)) then do
-          throw Parse_error;
+          error (Parse_error)
         end
          end 
         if (j ~= undefined and j < i$1) then do
-          throw Parse_error;
+          error (Parse_error)
         end
          end 
         return greedy_mod(repn(r, i$1, j));
@@ -3845,7 +3838,7 @@ function parse(multiline, dollar_endonly, dotall, ungreedy, s) do
   end end;
   res = regexp$prime(branch$prime(--[[ [] ]]0));
   if (i.contents ~= l) then do
-    throw Parse_error;
+    error (Parse_error)
   end
    end 
   return res;
@@ -3889,7 +3882,7 @@ function exec(rex, pos, s) do
   s$1 = s;
   match = exec_internal("Re.exec", pos$1, len, true, re, s$1);
   if (typeof match == "number") then do
-    throw Caml_builtin_exceptions.not_found;
+    error (Caml_builtin_exceptions.not_found)
   end
    end 
   return match[0];

@@ -1,8 +1,8 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-Block = require "../../lib/js/block.lua";
-Pervasives = require "../../lib/js/pervasives.lua";
+Mt = require "./mt";
+Block = require "../../lib/js/block";
+Pervasives = require "../../lib/js/pervasives";
 
 v = (Number.EPSILON?Number.EPSILON:2.220446049250313e-16);
 

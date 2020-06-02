@@ -1,10 +1,10 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-__Array = require "../../lib/js/array.lua";
-Block = require "../../lib/js/block.lua";
-Curry = require "../../lib/js/curry.lua";
-Caml_array = require "../../lib/js/caml_array.lua";
+Mt = require "./mt";
+__Array = require "../../lib/js/array";
+Block = require "../../lib/js/block";
+Curry = require "../../lib/js/curry";
+Caml_array = require "../../lib/js/caml_array";
 
 function test(param) do
   v = do
@@ -24,7 +24,7 @@ function test(param) do
         end end
         end(n,acc));
         _n = n - 1 | 0;
-        continue ;
+        ::continue:: ;
       end end 
     end;
   end end;

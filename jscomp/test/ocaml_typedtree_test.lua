@@ -1,47 +1,47 @@
 --[['use strict';]]
 
-Arg = require "../../lib/js/arg.lua";
-Sys = require "../../lib/js/sys.lua";
-Char = require "../../lib/js/char.lua";
-List = require "../../lib/js/list.lua";
-Path = require "path";
-__Array = require "../../lib/js/array.lua";
-Block = require "../../lib/js/block.lua";
-Bytes = require "../../lib/js/bytes.lua";
-Curry = require "../../lib/js/curry.lua";
-Int32 = require "../../lib/js/int32.lua";
-Int64 = require "../../lib/js/int64.lua";
-__Buffer = require "../../lib/js/buffer.lua";
-Digest = require "../../lib/js/digest.lua";
-Format = require "../../lib/js/format.lua";
-Lexing = require "../../lib/js/lexing.lua";
-Printf = require "../../lib/js/printf.lua";
-__String = require "../../lib/js/string.lua";
-Assert = require "assert";
-Caml_io = require "../../lib/js/caml_io.lua";
-Hashtbl = require "../../lib/js/hashtbl.lua";
-Marshal = require "../../lib/js/marshal.lua";
-Parsing = require "../../lib/js/parsing.lua";
-Process = require "process";
-Caml_obj = require "../../lib/js/caml_obj.lua";
-Caml_sys = require "../../lib/js/caml_sys.lua";
-Filename = require "../../lib/js/filename.lua";
-Caml_weak = require "../../lib/js/caml_weak.lua";
-Nativeint = require "../../lib/js/nativeint.lua";
-Caml_array = require "../../lib/js/caml_array.lua";
-Caml_bytes = require "../../lib/js/caml_bytes.lua";
-Caml_int32 = require "../../lib/js/caml_int32.lua";
-Caml_int64 = require "../../lib/js/caml_int64.lua";
-Pervasives = require "../../lib/js/pervasives.lua";
-Caml_format = require "../../lib/js/caml_format.lua";
-Caml_option = require "../../lib/js/caml_option.lua";
-Caml_string = require "../../lib/js/caml_string.lua";
-Caml_primitive = require "../../lib/js/caml_primitive.lua";
-Caml_exceptions = require "../../lib/js/caml_exceptions.lua";
-CamlinternalLazy = require "../../lib/js/camlinternalLazy.lua";
-Caml_js_exceptions = require "../../lib/js/caml_js_exceptions.lua";
-Caml_external_polyfill = require "../../lib/js/caml_external_polyfill.lua";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
+Arg = require "../../lib/js/arg";
+Sys = require "../../lib/js/sys";
+Char = require "../../lib/js/char";
+List = require "../../lib/js/list";
+Path = require "";
+__Array = require "../../lib/js/array";
+Block = require "../../lib/js/block";
+Bytes = require "../../lib/js/bytes";
+Curry = require "../../lib/js/curry";
+Int32 = require "../../lib/js/int32";
+Int64 = require "../../lib/js/int64";
+__Buffer = require "../../lib/js/buffer";
+Digest = require "../../lib/js/digest";
+Format = require "../../lib/js/format";
+Lexing = require "../../lib/js/lexing";
+Printf = require "../../lib/js/printf";
+__String = require "../../lib/js/string";
+Assert = require "as";
+Caml_io = require "../../lib/js/caml_io";
+Hashtbl = require "../../lib/js/hashtbl";
+Marshal = require "../../lib/js/marshal";
+Parsing = require "../../lib/js/parsing";
+Process = require "pro";
+Caml_obj = require "../../lib/js/caml_obj";
+Caml_sys = require "../../lib/js/caml_sys";
+Filename = require "../../lib/js/filename";
+Caml_weak = require "../../lib/js/caml_weak";
+Nativeint = require "../../lib/js/nativeint";
+Caml_array = require "../../lib/js/caml_array";
+Caml_bytes = require "../../lib/js/caml_bytes";
+Caml_int32 = require "../../lib/js/caml_int32";
+Caml_int64 = require "../../lib/js/caml_int64";
+Pervasives = require "../../lib/js/pervasives";
+Caml_format = require "../../lib/js/caml_format";
+Caml_option = require "../../lib/js/caml_option";
+Caml_string = require "../../lib/js/caml_string";
+Caml_primitive = require "../../lib/js/caml_primitive";
+Caml_exceptions = require "../../lib/js/caml_exceptions";
+CamlinternalLazy = require "../../lib/js/camlinternalLazy";
+Caml_js_exceptions = require "../../lib/js/caml_js_exceptions";
+Caml_external_polyfill = require "../../lib/js/caml_external_polyfill";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 cmi_magic_number = "Caml1999I017";
 
@@ -131,13 +131,12 @@ record_event_when_debug = true;
 
 bs_vscode;
 
-try do
+xpcall(function() do
   Caml_sys.caml_sys_getenv("BS_VSCODE");
   bs_vscode = true;
-end
-catch (exn)do
+end end,function(exn) return do
   bs_vscode = false;
-end
+end end)
 
 dont_record_crc_unit = do
   contents: undefined
@@ -156,18 +155,17 @@ Fatal_error = Caml_exceptions.create("Ocaml_typedtree_test.Misc.Fatal_error");
 function fatal_error(msg) do
   Pervasives.prerr_string(">> Fatal error: ");
   console.error(msg);
-  throw Fatal_error;
+  error (Fatal_error)
 end end
 
 function try_finally(work, cleanup) do
   result;
-  try do
+  xpcall(function() do
     result = Curry._1(work, --[[ () ]]0);
-  end
-  catch (e)do
+  end end,function(e) return do
     Curry._1(cleanup, --[[ () ]]0);
-    throw e;
-  end
+    error (e)
+  end end)
   Curry._1(cleanup, --[[ () ]]0);
   return result;
 end end
@@ -191,7 +189,7 @@ function for_all2(pred, _l1, _l2) do
       if (l2 and Curry._2(pred, l1[0], l2[0])) then do
         _l2 = l2[1];
         _l1 = l1[1];
-        continue ;
+        ::continue:: ;
       end else do
         return false;
       end end 
@@ -234,14 +232,14 @@ function split_last(param) do
             };
     end end 
   end else do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "misc.ml",
-            54,
-            10
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "misc.ml",
+        54,
+        10
+      }
+    })
   end end 
 end end
 
@@ -275,26 +273,25 @@ function find_in_path_uncap(path, name) do
         return fullname;
       end else do
         _param = param[1];
-        continue ;
+        ::continue:: ;
       end end  end 
     end else do
-      throw Caml_builtin_exceptions.not_found;
+      error (Caml_builtin_exceptions.not_found)
     end end 
   end;
 end end
 
 function remove_file(filename) do
-  try do
+  xpcall(function() do
     return Caml_external_polyfill.resolve("caml_sys_remove")(filename);
-  end
-  catch (raw_exn)do
+  end end,function(raw_exn) return do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn[0] == Caml_builtin_exceptions.sys_error) then do
       return --[[ () ]]0;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 function create_hashtable(size, init) do
@@ -306,17 +303,16 @@ function create_hashtable(size, init) do
 end end
 
 function chop_extension_if_any(fname) do
-  try do
+  xpcall(function() do
     return Filename.chop_extension(fname);
-  end
-  catch (raw_exn)do
+  end end,function(raw_exn) return do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn[0] == Caml_builtin_exceptions.invalid_argument) then do
       return fname;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 function get_ref(r) do
@@ -471,7 +467,7 @@ function style_of_tag(s) do
         return cur_styles.contents.warning;end end end 
      do
     else do
-      throw Caml_builtin_exceptions.not_found;
+      error (Caml_builtin_exceptions.not_found)
       end end
       
   end
@@ -488,26 +484,25 @@ function set_color_tag_handling(ppf) do
   functions$prime_mark_open_tag = function (param) do
     or_else = partial_arg;
     s = param;
-    try do
+    xpcall(function() do
       style = style_of_tag(s);
       if (color_enabled.contents) then do
         return ansi_of_style_l(style);
       end else do
         return "";
       end end 
-    end
-    catch (exn)do
+    end end,function(exn) return do
       if (exn == Caml_builtin_exceptions.not_found) then do
         return Curry._1(or_else, s);
       end else do
-        throw exn;
+        error (exn)
       end end 
-    end
+    end end)
   end end;
   functions$prime_mark_close_tag = function (param) do
     or_else = partial_arg$1;
     s = param;
-    try do
+    xpcall(function() do
       style_of_tag(s);
       if (color_enabled.contents) then do
         return ansi_of_style_l(--[[ :: ]]{
@@ -517,14 +512,13 @@ function set_color_tag_handling(ppf) do
       end else do
         return "";
       end end 
-    end
-    catch (exn)do
+    end end,function(exn) return do
       if (exn == Caml_builtin_exceptions.not_found) then do
         return Curry._1(or_else, s);
       end else do
-        throw exn;
+        error (exn)
       end end 
-    end
+    end end)
   end end;
   functions$prime_print_open_tag = functions.print_open_tag;
   functions$prime_print_close_tag = functions.print_close_tag;
@@ -883,14 +877,14 @@ function letter(param) do
               };end end end 
      do
     else do
-      throw {
-            Caml_builtin_exceptions.assert_failure,
-            --[[ tuple ]]{
-              "warnings.ml",
-              176,
-              9
-            }
-          };
+      error ({
+        Caml_builtin_exceptions.assert_failure,
+        --[[ tuple ]]{
+          "warnings.ml",
+          176,
+          9
+        }
+      })
       end end
       
   end
@@ -937,7 +931,7 @@ function parse_opt(error, active, flags, s) do
         end else do
           _i = i + 1 | 0;
           _n = (Caml_int32.imul(10, n) + Caml_string.get(s, i) | 0) - --[[ "0" ]]48 | 0;
-          continue ;
+          ::continue:: ;
         end end 
       end end 
     end;
@@ -950,10 +944,10 @@ function parse_opt(error, active, flags, s) do
       match$1 = get_num(0, i$1 + 2 | 0);
       n2 = match$1[1];
       if (n2 < n1) then do
-        throw {
-              Arg.Bad,
-              "Ill-formed list of warnings"
-            };
+        error ({
+          Arg.Bad,
+          "Ill-formed list of warnings"
+        })
       end
        end 
       return --[[ tuple ]]{
@@ -979,35 +973,35 @@ function parse_opt(error, active, flags, s) do
         if (c >= 65) then do
           if (c >= 97) then do
             if (c >= 123) then do
-              throw {
-                    Arg.Bad,
-                    "Ill-formed list of warnings"
-                  };
+              error ({
+                Arg.Bad,
+                "Ill-formed list of warnings"
+              })
             end
              end 
             List.iter(clear, letter(Caml_string.get(s, i)));
             _i = i + 1 | 0;
-            continue ;
+            ::continue:: ;
           end else do
             if (c >= 91) then do
-              throw {
-                    Arg.Bad,
-                    "Ill-formed list of warnings"
-                  };
+              error ({
+                Arg.Bad,
+                "Ill-formed list of warnings"
+              })
             end
              end 
             List.iter(set, letter(Char.lowercase(Caml_string.get(s, i))));
             _i = i + 1 | 0;
-            continue ;
+            ::continue:: ;
           end end 
         end else if (c >= 46) then do
           if (c >= 64) then do
             return loop_letter_num(set_all, i + 1 | 0);
           end else do
-            throw {
-                  Arg.Bad,
-                  "Ill-formed list of warnings"
-                };
+            error ({
+              Arg.Bad,
+              "Ill-formed list of warnings"
+            })
           end end 
         end else if (c >= 43) then do
           local ___conditional___=(c - 43 | 0);
@@ -1015,50 +1009,50 @@ function parse_opt(error, active, flags, s) do
              if ___conditional___ = 0 then do
                 return loop_letter_num(set, i + 1 | 0);end end end 
              if ___conditional___ = 1 then do
-                throw {
-                      Arg.Bad,
-                      "Ill-formed list of warnings"
-                    };end end end 
+                error ({
+                  Arg.Bad,
+                  "Ill-formed list of warnings"
+                })end end end 
              if ___conditional___ = 2 then do
                 return loop_letter_num(clear, i + 1 | 0);end end end 
              do
             
           end
         end else do
-          throw {
-                Arg.Bad,
-                "Ill-formed list of warnings"
-              };
+          error ({
+            Arg.Bad,
+            "Ill-formed list of warnings"
+          })
         end end  end  end 
       end end 
     end;
   end end;
   loop_letter_num = function (myset, i) do
     if (i >= #s) then do
-      throw {
-            Arg.Bad,
-            "Ill-formed list of warnings"
-          };
+      error ({
+        Arg.Bad,
+        "Ill-formed list of warnings"
+      })
     end
      end 
     match = Caml_string.get(s, i);
     if (match >= 65) then do
       if (match >= 97) then do
         if (match >= 123) then do
-          throw {
-                Arg.Bad,
-                "Ill-formed list of warnings"
-              };
+          error ({
+            Arg.Bad,
+            "Ill-formed list of warnings"
+          })
         end
          end 
         List.iter(myset, letter(Caml_string.get(s, i)));
         return loop(i + 1 | 0);
       end else do
         if (match >= 91) then do
-          throw {
-                Arg.Bad,
-                "Ill-formed list of warnings"
-              };
+          error ({
+            Arg.Bad,
+            "Ill-formed list of warnings"
+          })
         end
          end 
         List.iter(myset, letter(Char.lowercase(Caml_string.get(s, i))));
@@ -1066,10 +1060,10 @@ function parse_opt(error, active, flags, s) do
       end end 
     end else do
       if (match > 57 or match < 48) then do
-        throw {
-              Arg.Bad,
-              "Ill-formed list of warnings"
-            };
+        error ({
+          Arg.Bad,
+          "Ill-formed list of warnings"
+        })
       end
        end 
       match$1 = get_range(i);
@@ -1170,14 +1164,14 @@ function message(param) do
               return "the method " .. (lab .. " is overridden.");
             end end 
           end else do
-            throw {
-                  Caml_builtin_exceptions.assert_failure,
-                  --[[ tuple ]]{
-                    "warnings.ml",
-                    283,
-                    26
-                  }
-                };
+            error ({
+              Caml_builtin_exceptions.assert_failure,
+              --[[ tuple ]]{
+                "warnings.ml",
+                283,
+                26
+              }
+            })
           end end end end end 
        if ___conditional___ = 3--[[ Partial_match ]] then do
           s$1 = param[0];
@@ -1208,14 +1202,14 @@ function message(param) do
               return "the instance variable " .. (lab$1 .. " is overridden.\nThe behaviour changed in ocaml 3.10 (previous behaviour was hiding.)");
             end end 
           end else do
-            throw {
-                  Caml_builtin_exceptions.assert_failure,
-                  --[[ tuple ]]{
-                    "warnings.ml",
-                    303,
-                    37
-                  }
-                };
+            error ({
+              Caml_builtin_exceptions.assert_failure,
+              --[[ tuple ]]{
+                "warnings.ml",
+                303,
+                37
+              }
+            })
           end end end end end 
        if ___conditional___ = 6--[[ Implicit_public_methods ]] then do
           return "the following private methods were made public implicitly:\n " .. (__String.concat(" ", param[0]) .. ".");end end end 
@@ -1325,14 +1319,14 @@ function message(param) do
           if (param[2]) then do
             return "this record of type " .. (ty .. (" contains fields that are \nnot visible in the current scope: " .. (__String.concat(" ", slist$2) .. ".\nThey will not be selected if the type becomes unknown.")));
           end else do
-            throw {
-                  Caml_builtin_exceptions.assert_failure,
-                  --[[ tuple ]]{
-                    "warnings.ml",
-                    365,
-                    39
-                  }
-                };
+            error ({
+              Caml_builtin_exceptions.assert_failure,
+              --[[ tuple ]]{
+                "warnings.ml",
+                365,
+                39
+              }
+            })
           end end end else 
        if ___conditional___ = 24--[[ Ambiguous_name ]] then do
           slist$3 = param[0];
@@ -1343,14 +1337,14 @@ function message(param) do
           if (param[2]) then do
             return "these field labels belong to several types: " .. (__String.concat(" ", param[1]) .. "\nThe first one was selected. Please disambiguate if this is wrong.");
           end else do
-            throw {
-                  Caml_builtin_exceptions.assert_failure,
-                  --[[ tuple ]]{
-                    "warnings.ml",
-                    374,
-                    36
-                  }
-                };
+            error ({
+              Caml_builtin_exceptions.assert_failure,
+              --[[ tuple ]]{
+                "warnings.ml",
+                374,
+                36
+              }
+            })
           end end end else 
        if ___conditional___ = 25--[[ Disambiguated_name ]] then do
           return "this use of " .. (param[0] .. " required disambiguation.");end end end 
@@ -1573,7 +1567,7 @@ function highlight_terminfo(ppf, num_lines, lb, locs) do
   Format.pp_print_flush(ppf, --[[ () ]]0);
   pos0 = -lb.lex_abs_pos | 0;
   if (pos0 < 0) then do
-    throw Pervasives.Exit;
+    error (Pervasives.Exit)
   end
    end 
   lines = num_loc_lines.contents;
@@ -1584,7 +1578,7 @@ function highlight_terminfo(ppf, num_lines, lb, locs) do
      end 
   end
   if (lines >= (num_lines - 2 | 0)) then do
-    throw Pervasives.Exit;
+    error (Pervasives.Exit)
   end
    end 
   Caml_io.caml_ml_flush(Pervasives.stdout);
@@ -1625,7 +1619,7 @@ end end
 function highlight_dumb(ppf, lb, loc) do
   pos0 = -lb.lex_abs_pos | 0;
   if (pos0 < 0) then do
-    throw Pervasives.Exit;
+    error (Pervasives.Exit)
   end
    end 
   end_pos = (lb.lex_buffer_len - pos0 | 0) - 1 | 0;
@@ -1746,53 +1740,50 @@ function highlight_locations(ppf, locs) do
         match$1 = input_lexbuf.contents;
         if (match$1 ~= undefined) then do
           norepeat;
-          try do
+          xpcall(function() do
             norepeat = Caml_sys.caml_sys_getenv("TERM") == "norepeat";
-          end
-          catch (exn)do
+          end end,function(exn) return do
             if (exn == Caml_builtin_exceptions.not_found) then do
               norepeat = false;
             end else do
-              throw exn;
+              error (exn)
             end end 
-          end
+          end end)
           if (norepeat) then do
             return false;
           end else do
             loc1 = List.hd(locs);
-            try do
+            xpcall(function() do
               highlight_dumb(ppf, match$1, loc1);
               return true;
-            end
-            catch (exn$1)do
+            end end,function(exn$1) return do
               if (exn$1 == Pervasives.Exit) then do
                 return false;
               end else do
-                throw exn$1;
+                error (exn$1)
               end end 
-            end
+            end end)
           end end 
         end else do
           return false;
         end end 
       end else do
         status.contents = Caml_external_polyfill.resolve("caml_terminfo_setup")(Pervasives.stdout);
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       match$2 = input_lexbuf.contents;
       if (match$2 ~= undefined) then do
-        try do
+        xpcall(function() do
           highlight_terminfo(ppf, match[0], match$2, locs);
           return true;
-        end
-        catch (exn$2)do
+        end end,function(exn$2) return do
           if (exn$2 == Pervasives.Exit) then do
             return false;
           end else do
-            throw exn$2;
+            error (exn$2)
           end end 
-        end
+        end end)
       end else do
         return false;
       end end 
@@ -1813,7 +1804,7 @@ function show_filename(file) do
           return dir;
         end else if (base == Filename.current_dir_name) then do
           _s = dir;
-          continue ;
+          ::continue:: ;
         end else if (base == Filename.parent_dir_name) then do
           return Curry._1(Filename.dirname, aux(dir));
         end else do
@@ -2062,10 +2053,10 @@ function prerr_warning(loc, w) do
         end else if (Caml_string.get(str, i) == --[[ "\n" ]]10) then do
           _c = c + 1 | 0;
           _i = i + 1 | 0;
-          continue ;
+          ::continue:: ;
         end else do
           _i = i + 1 | 0;
-          continue ;
+          ::continue:: ;
         end end  end 
       end;
     end end;
@@ -2332,24 +2323,24 @@ function balance(l, d, r) do
       end else if (lr) then do
         return mknode(mknode(ll, ld, lr[0]), lr[1], mknode(lr[2], d, r));
       end else do
-        throw {
-              Caml_builtin_exceptions.assert_failure,
-              --[[ tuple ]]{
-                "ident.ml",
-                120,
-                11
-              }
-            };
+        error ({
+          Caml_builtin_exceptions.assert_failure,
+          --[[ tuple ]]{
+            "ident.ml",
+            120,
+            11
+          }
+        })
       end end  end 
     end else do
-      throw {
-            Caml_builtin_exceptions.assert_failure,
-            --[[ tuple ]]{
-              "ident.ml",
-              120,
-              11
-            }
-          };
+      error ({
+        Caml_builtin_exceptions.assert_failure,
+        --[[ tuple ]]{
+          "ident.ml",
+          120,
+          11
+        }
+      })
     end end 
   end else if (hr > (hl + 1 | 0)) then do
     if (r) then do
@@ -2364,24 +2355,24 @@ function balance(l, d, r) do
       end else if (rl) then do
         return mknode(mknode(l, d, rl[0]), rl[1], mknode(rl[2], r[1], r[2]));
       end else do
-        throw {
-              Caml_builtin_exceptions.assert_failure,
-              --[[ tuple ]]{
-                "ident.ml",
-                129,
-                11
-              }
-            };
+        error ({
+          Caml_builtin_exceptions.assert_failure,
+          --[[ tuple ]]{
+            "ident.ml",
+            129,
+            11
+          }
+        })
       end end  end 
     end else do
-      throw {
-            Caml_builtin_exceptions.assert_failure,
-            --[[ tuple ]]{
-              "ident.ml",
-              129,
-              11
-            }
-          };
+      error ({
+        Caml_builtin_exceptions.assert_failure,
+        --[[ tuple ]]{
+          "ident.ml",
+          129,
+          11
+        }
+      })
     end end 
   end else do
     return mknode(l, d, r);
@@ -2444,19 +2435,19 @@ function find_same(id, _param) do
                 return k$1.data;
               end else do
                 _param$1 = k$1.previous;
-                continue ;
+                ::continue:: ;
               end end 
             end else do
-              throw Caml_builtin_exceptions.not_found;
+              error (Caml_builtin_exceptions.not_found)
             end end 
           end;
         end end 
       end else do
         _param = c < 0 and param[0] or param[2];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
-      throw Caml_builtin_exceptions.not_found;
+      error (Caml_builtin_exceptions.not_found)
     end end 
   end;
 end end
@@ -2471,10 +2462,10 @@ function find_name(name, _param) do
         return k.data;
       end else do
         _param = c < 0 and param[0] or param[2];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
-      throw Caml_builtin_exceptions.not_found;
+      error (Caml_builtin_exceptions.not_found)
     end end 
   end;
 end end
@@ -2504,7 +2495,7 @@ function find_all(name, _param) do
               };
       end else do
         _param = c < 0 and param[0] or param[2];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return --[[ [] ]]0;
@@ -2520,7 +2511,7 @@ function iter(f, _param) do
       iter(f, param[0]);
       Curry._2(f, k.ident, k.data);
       _param = param[2];
-      continue ;
+      ::continue:: ;
     end else do
       return --[[ () ]]0;
     end end 
@@ -2551,7 +2542,7 @@ function same(_p1, _p2) do
                 if (p1[1] == p2[1]) then do
                   _p2 = p2[0];
                   _p1 = p1[0];
-                  continue ;
+                  ::continue:: ;
                 end else do
                   return false;
                 end end end end end 
@@ -2571,7 +2562,7 @@ function same(_p1, _p2) do
                 if (same(p1[0], p2[0])) then do
                   _p2 = p2[1];
                   _p1 = p1[1];
-                  continue ;
+                  ::continue:: ;
                 end else do
                   return false;
                 end end end end end 
@@ -2593,13 +2584,13 @@ function isfree(id, _param) do
           return Caml_obj.caml_equal(id, param[0]);end end end 
        if ___conditional___ = 1--[[ Pdot ]] then do
           _param = param[0];
-          continue ;end end end 
+          ::continue:: ;end end end 
        if ___conditional___ = 2--[[ Papply ]] then do
           if (isfree(id, param[0])) then do
             return true;
           end else do
             _param = param[1];
-            continue ;
+            ::continue:: ;
           end end end end end 
        do
       
@@ -2616,7 +2607,7 @@ function binding_time(_param) do
           return param[0].stamp;end end end 
        if ___conditional___ = 1--[[ Pdot ]] then do
           _param = param[0];
-          continue ;end end end 
+          ::continue:: ;end end end 
        if ___conditional___ = 2--[[ Papply ]] then do
           return Caml_primitive.caml_int_max(binding_time(param[0]), binding_time(param[1]));end end end 
        do
@@ -2656,16 +2647,16 @@ function head(_param) do
           return param[0];end end end 
        if ___conditional___ = 1--[[ Pdot ]] then do
           _param = param[0];
-          continue ;end end end 
+          ::continue:: ;end end end 
        if ___conditional___ = 2--[[ Papply ]] then do
-          throw {
-                Caml_builtin_exceptions.assert_failure,
-                --[[ tuple ]]{
-                  "path.ml",
-                  49,
-                  22
-                }
-              };end end end 
+          error ({
+            Caml_builtin_exceptions.assert_failure,
+            --[[ tuple ]]{
+              "path.ml",
+              49,
+              22
+            }
+          })end end end 
        do
       
     end
@@ -2683,7 +2674,7 @@ function last(_param) do
           return param[1];end end end 
        if ___conditional___ = 2--[[ Papply ]] then do
           _param = param[1];
-          continue ;end end end 
+          ::continue:: ;end end end 
        do
       
     end
@@ -2707,7 +2698,7 @@ function flat(_accu, _param) do
             param[1],
             accu
           };
-          continue ;end end end 
+          ::continue:: ;end end end 
        if ___conditional___ = 2--[[ Lapply ]] then do
           return fatal_error("Longident.flat");end end end 
        do
@@ -2874,16 +2865,16 @@ function bal(l, x, d, r) do
       end else if (lr) then do
         return create$1(create$1(ll, lv, ld, lr[--[[ l ]]0]), lr[--[[ v ]]1], lr[--[[ d ]]2], create$1(lr[--[[ r ]]3], x, d, r));
       end else do
-        throw {
-              Caml_builtin_exceptions.invalid_argument,
-              "Map.bal"
-            };
+        error ({
+          Caml_builtin_exceptions.invalid_argument,
+          "Map.bal"
+        })
       end end  end 
     end else do
-      throw {
-            Caml_builtin_exceptions.invalid_argument,
-            "Map.bal"
-          };
+      error ({
+        Caml_builtin_exceptions.invalid_argument,
+        "Map.bal"
+      })
     end end 
   end else if (hr > (hl + 2 | 0)) then do
     if (r) then do
@@ -2896,16 +2887,16 @@ function bal(l, x, d, r) do
       end else if (rl) then do
         return create$1(create$1(l, x, d, rl[--[[ l ]]0]), rl[--[[ v ]]1], rl[--[[ d ]]2], create$1(rl[--[[ r ]]3], rv, rd, rr));
       end else do
-        throw {
-              Caml_builtin_exceptions.invalid_argument,
-              "Map.bal"
-            };
+        error ({
+          Caml_builtin_exceptions.invalid_argument,
+          "Map.bal"
+        })
       end end  end 
     end else do
-      throw {
-            Caml_builtin_exceptions.invalid_argument,
-            "Map.bal"
-          };
+      error ({
+        Caml_builtin_exceptions.invalid_argument,
+        "Map.bal"
+      })
     end end 
   end else do
     return --[[ Node ]]{
@@ -2972,10 +2963,10 @@ function find(x, _param) do
         return param[--[[ d ]]2];
       end else do
         _param = c < 0 and param[--[[ l ]]0] or param[--[[ r ]]3];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
-      throw Caml_builtin_exceptions.not_found;
+      error (Caml_builtin_exceptions.not_found)
     end end 
   end;
 end end
@@ -2989,7 +2980,7 @@ function mem(x, _param) do
         return true;
       end else do
         _param = c < 0 and param[--[[ l ]]0] or param[--[[ r ]]3];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return false;
@@ -3004,7 +2995,7 @@ function iter$1(f, _param) do
       iter$1(f, param[--[[ l ]]0]);
       Curry._2(f, param[--[[ v ]]1], param[--[[ d ]]2]);
       _param = param[--[[ r ]]3];
-      continue ;
+      ::continue:: ;
     end else do
       return --[[ () ]]0;
     end end 
@@ -3035,7 +3026,7 @@ function fold(f, _m, _accu) do
     if (m) then do
       _accu = Curry._3(f, m[--[[ v ]]1], m[--[[ d ]]2], fold(f, m[--[[ l ]]0], accu));
       _m = m[--[[ r ]]3];
-      continue ;
+      ::continue:: ;
     end else do
       return accu;
     end end 
@@ -3148,16 +3139,16 @@ function bal$1(l, v, r) do
       end else if (lr) then do
         return create$2(create$2(ll, lv, lr[--[[ l ]]0]), lr[--[[ v ]]1], create$2(lr[--[[ r ]]2], v, r));
       end else do
-        throw {
-              Caml_builtin_exceptions.invalid_argument,
-              "Set.bal"
-            };
+        error ({
+          Caml_builtin_exceptions.invalid_argument,
+          "Set.bal"
+        })
       end end  end 
     end else do
-      throw {
-            Caml_builtin_exceptions.invalid_argument,
-            "Set.bal"
-          };
+      error ({
+        Caml_builtin_exceptions.invalid_argument,
+        "Set.bal"
+      })
     end end 
   end else if (hr > (hl + 2 | 0)) then do
     if (r) then do
@@ -3169,16 +3160,16 @@ function bal$1(l, v, r) do
       end else if (rl) then do
         return create$2(create$2(l, v, rl[--[[ l ]]0]), rl[--[[ v ]]1], create$2(rl[--[[ r ]]2], rv, rr));
       end else do
-        throw {
-              Caml_builtin_exceptions.invalid_argument,
-              "Set.bal"
-            };
+        error ({
+          Caml_builtin_exceptions.invalid_argument,
+          "Set.bal"
+        })
       end end  end 
     end else do
-      throw {
-            Caml_builtin_exceptions.invalid_argument,
-            "Set.bal"
-          };
+      error ({
+        Caml_builtin_exceptions.invalid_argument,
+        "Set.bal"
+      })
     end end 
   end else do
     return --[[ Node ]]{
@@ -3275,12 +3266,12 @@ function min_elt(_param) do
       l = param[--[[ l ]]0];
       if (l) then do
         _param = l;
-        continue ;
+        ::continue:: ;
       end else do
         return param[--[[ v ]]1];
       end end 
     end else do
-      throw Caml_builtin_exceptions.not_found;
+      error (Caml_builtin_exceptions.not_found)
     end end 
   end;
 end end
@@ -3294,10 +3285,10 @@ function remove_min_elt(param) do
       return param[--[[ r ]]2];
     end end 
   end else do
-    throw {
-          Caml_builtin_exceptions.invalid_argument,
-          "Set.remove_min_elt"
-        };
+    error ({
+      Caml_builtin_exceptions.invalid_argument,
+      "Set.remove_min_elt"
+    })
   end end 
 end end
 
@@ -3358,7 +3349,7 @@ function mem$2(x, _param) do
         return true;
       end else do
         _param = c < 0 and param[--[[ l ]]0] or param[--[[ r ]]2];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return false;
@@ -3443,7 +3434,7 @@ function cons_enum(_s, _e) do
         e
       };
       _s = s[--[[ l ]]0];
-      continue ;
+      ::continue:: ;
     end else do
       return e;
     end end 
@@ -3464,7 +3455,7 @@ function compare$1(s1, s2) do
         end else do
           _e2 = cons_enum(e2[1], e2[2]);
           _e1 = cons_enum(e1[1], e1[2]);
-          continue ;
+          ::continue:: ;
         end end 
       end else do
         return 1;
@@ -3488,7 +3479,7 @@ function fold$1(f, _s, _accu) do
     if (s) then do
       _accu = Curry._2(f, s[--[[ v ]]1], fold$1(f, s[--[[ l ]]0], accu));
       _s = s[--[[ r ]]2];
-      continue ;
+      ::continue:: ;
     end else do
       return accu;
     end end 
@@ -3505,7 +3496,7 @@ function elements_aux(_accu, _param) do
         param[--[[ v ]]1],
         elements_aux(accu, param[--[[ r ]]2])
       };
-      continue ;
+      ::continue:: ;
     end else do
       return accu;
     end end 
@@ -3612,16 +3603,16 @@ function bal$2(l, v, r) do
       end else if (lr) then do
         return create$3(create$3(ll, lv, lr[--[[ l ]]0]), lr[--[[ v ]]1], create$3(lr[--[[ r ]]2], v, r));
       end else do
-        throw {
-              Caml_builtin_exceptions.invalid_argument,
-              "Set.bal"
-            };
+        error ({
+          Caml_builtin_exceptions.invalid_argument,
+          "Set.bal"
+        })
       end end  end 
     end else do
-      throw {
-            Caml_builtin_exceptions.invalid_argument,
-            "Set.bal"
-          };
+      error ({
+        Caml_builtin_exceptions.invalid_argument,
+        "Set.bal"
+      })
     end end 
   end else if (hr > (hl + 2 | 0)) then do
     if (r) then do
@@ -3633,16 +3624,16 @@ function bal$2(l, v, r) do
       end else if (rl) then do
         return create$3(create$3(l, v, rl[--[[ l ]]0]), rl[--[[ v ]]1], create$3(rl[--[[ r ]]2], rv, rr));
       end else do
-        throw {
-              Caml_builtin_exceptions.invalid_argument,
-              "Set.bal"
-            };
+        error ({
+          Caml_builtin_exceptions.invalid_argument,
+          "Set.bal"
+        })
       end end  end 
     end else do
-      throw {
-            Caml_builtin_exceptions.invalid_argument,
-            "Set.bal"
-          };
+      error ({
+        Caml_builtin_exceptions.invalid_argument,
+        "Set.bal"
+      })
     end end 
   end else do
     return --[[ Node ]]{
@@ -3739,12 +3730,12 @@ function min_elt$1(_param) do
       l = param[--[[ l ]]0];
       if (l) then do
         _param = l;
-        continue ;
+        ::continue:: ;
       end else do
         return param[--[[ v ]]1];
       end end 
     end else do
-      throw Caml_builtin_exceptions.not_found;
+      error (Caml_builtin_exceptions.not_found)
     end end 
   end;
 end end
@@ -3758,10 +3749,10 @@ function remove_min_elt$1(param) do
       return param[--[[ r ]]2];
     end end 
   end else do
-    throw {
-          Caml_builtin_exceptions.invalid_argument,
-          "Set.remove_min_elt"
-        };
+    error ({
+      Caml_builtin_exceptions.invalid_argument,
+      "Set.remove_min_elt"
+    })
   end end 
 end end
 
@@ -3822,7 +3813,7 @@ function mem$3(x, _param) do
         return true;
       end else do
         _param = c < 0 and param[--[[ l ]]0] or param[--[[ r ]]2];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return false;
@@ -3912,7 +3903,7 @@ function subset$1(_s1, _s2) do
           if (subset$1(l1, l2)) then do
             _s2 = r2;
             _s1 = r1;
-            continue ;
+            ::continue:: ;
           end else do
             return false;
           end end 
@@ -3924,7 +3915,7 @@ function subset$1(_s1, _s2) do
                   --[[ h ]]0
                 }, l2)) then do
             _s1 = r1;
-            continue ;
+            ::continue:: ;
           end else do
             return false;
           end end 
@@ -3935,7 +3926,7 @@ function subset$1(_s1, _s2) do
                 --[[ h ]]0
               }, r2)) then do
           _s1 = l1;
-          continue ;
+          ::continue:: ;
         end else do
           return false;
         end end  end  end 
@@ -3955,7 +3946,7 @@ function fold$2(f, _s, _accu) do
     if (s) then do
       _accu = Curry._2(f, s[--[[ v ]]1], fold$2(f, s[--[[ l ]]0], accu));
       _s = s[--[[ r ]]2];
-      continue ;
+      ::continue:: ;
     end else do
       return accu;
     end end 
@@ -3970,7 +3961,7 @@ function exists(p, _param) do
         return true;
       end else do
         _param = param[--[[ r ]]2];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return false;
@@ -3988,7 +3979,7 @@ function elements_aux$1(_accu, _param) do
         param[--[[ v ]]1],
         elements_aux$1(accu, param[--[[ r ]]2])
       };
-      continue ;
+      ::continue:: ;
     end else do
       return accu;
     end end 
@@ -4031,16 +4022,16 @@ function bal$3(l, x, d, r) do
       end else if (lr) then do
         return create$4(create$4(ll, lv, ld, lr[--[[ l ]]0]), lr[--[[ v ]]1], lr[--[[ d ]]2], create$4(lr[--[[ r ]]3], x, d, r));
       end else do
-        throw {
-              Caml_builtin_exceptions.invalid_argument,
-              "Map.bal"
-            };
+        error ({
+          Caml_builtin_exceptions.invalid_argument,
+          "Map.bal"
+        })
       end end  end 
     end else do
-      throw {
-            Caml_builtin_exceptions.invalid_argument,
-            "Map.bal"
-          };
+      error ({
+        Caml_builtin_exceptions.invalid_argument,
+        "Map.bal"
+      })
     end end 
   end else if (hr > (hl + 2 | 0)) then do
     if (r) then do
@@ -4053,16 +4044,16 @@ function bal$3(l, x, d, r) do
       end else if (rl) then do
         return create$4(create$4(l, x, d, rl[--[[ l ]]0]), rl[--[[ v ]]1], rl[--[[ d ]]2], create$4(rl[--[[ r ]]3], rv, rd, rr));
       end else do
-        throw {
-              Caml_builtin_exceptions.invalid_argument,
-              "Map.bal"
-            };
+        error ({
+          Caml_builtin_exceptions.invalid_argument,
+          "Map.bal"
+        })
       end end  end 
     end else do
-      throw {
-            Caml_builtin_exceptions.invalid_argument,
-            "Map.bal"
-          };
+      error ({
+        Caml_builtin_exceptions.invalid_argument,
+        "Map.bal"
+      })
     end end 
   end else do
     return --[[ Node ]]{
@@ -4129,10 +4120,10 @@ function find$1(x, _param) do
         return param[--[[ d ]]2];
       end else do
         _param = c < 0 and param[--[[ l ]]0] or param[--[[ r ]]3];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
-      throw Caml_builtin_exceptions.not_found;
+      error (Caml_builtin_exceptions.not_found)
     end end 
   end;
 end end
@@ -4144,7 +4135,7 @@ function fold$3(f, _m, _accu) do
     if (m) then do
       _accu = Curry._3(f, m[--[[ v ]]1], m[--[[ d ]]2], fold$3(f, m[--[[ l ]]0], accu));
       _m = m[--[[ r ]]3];
-      continue ;
+      ::continue:: ;
     end else do
       return accu;
     end end 
@@ -4159,14 +4150,14 @@ TypeHash = Hashtbl.Make(do
     end);
 
 function print_raw(param) do
-  throw {
-        Caml_builtin_exceptions.assert_failure,
-        --[[ tuple ]]{
-          "btype.ml",
-          27,
-          16
-        }
-      };
+  error ({
+    Caml_builtin_exceptions.assert_failure,
+    --[[ tuple ]]{
+      "btype.ml",
+      27,
+      16
+    }
+  })
 end end
 
 pivot_level = -1;
@@ -4221,7 +4212,7 @@ function field_kind_repr(_kind) do
       match = kind[0].contents;
       if (match ~= undefined) then do
         _kind = match;
-        continue ;
+        ::continue:: ;
       end else do
         return kind;
       end end 
@@ -4241,13 +4232,13 @@ function repr(_t) do
          if ___conditional___ = 5--[[ Tfield ]] then do
             if (field_kind_repr(match[1]) == --[[ Fabsent ]]1) then do
               _t = match[3];
-              continue ;
+              ::continue:: ;
             end else do
               return t;
             end end end end end 
          if ___conditional___ = 6--[[ Tlink ]] then do
             _t = match[0];
-            continue ;end end end 
+            ::continue:: ;end end end 
          do
         else do
           return t;
@@ -4267,7 +4258,7 @@ function commu_repr(_c) do
       r = c[0];
       if (r.contents ~= --[[ Cunknown ]]1) then do
         _c = r.contents;
-        continue ;
+        ::continue:: ;
       end else do
         return c;
       end end 
@@ -4288,7 +4279,7 @@ function row_field_repr_aux(_tl, _fi) do
       if (match ~= undefined) then do
         _fi = match;
         _tl = Pervasives.$at(tl, tl$prime);
-        continue ;
+        ::continue:: ;
       end else do
         return --[[ Reither ]]Block.__(1, {
                   fi[0],
@@ -4312,7 +4303,7 @@ function rev_concat(_l, _ll) do
     if (ll) then do
       _ll = ll[1];
       _l = Pervasives.$at(ll[0], l);
-      continue ;
+      ::continue:: ;
     end else do
       return l;
     end end 
@@ -4331,7 +4322,7 @@ function row_repr_aux(_ll, _row) do
           f,
           ll
         };
-      continue ;
+      ::continue:: ;
     end
      end 
     if (ll == --[[ [] ]]0) then do
@@ -4359,7 +4350,7 @@ function row_field(tag, row) do
         return row_field_repr_aux(--[[ [] ]]0, match[1]);
       end else do
         _param = param[1];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       match$1 = repr(row.row_more);
@@ -4382,7 +4373,7 @@ function row_more(_row) do
       return ty;
     end else do
       _row = match[0];
-      continue ;
+      ::continue:: ;
     end end 
   end;
 end end
@@ -4405,14 +4396,14 @@ function row_fixed(row) do
             return true;end end end 
          do
         else do
-          throw {
-                Caml_builtin_exceptions.assert_failure,
-                --[[ tuple ]]{
-                  "btype.ml",
-                  137,
-                  9
-                }
-              };
+          error ({
+            Caml_builtin_exceptions.assert_failure,
+            --[[ tuple ]]{
+              "btype.ml",
+              137,
+              9
+            }
+          })
           end end
           
       end
@@ -4469,24 +4460,24 @@ function proxy(ty) do
               do
                  if ___conditional___ = 5--[[ Tfield ]] then do
                     _ty = match$1[3];
-                    continue ;end end end 
+                    ::continue:: ;end end end 
                  if ___conditional___ = 6--[[ Tlink ]] then do
                     _ty = match$1[0];
-                    continue ;end end end 
+                    ::continue:: ;end end end 
                  if ___conditional___ = 0--[[ Tvar ]]
                  or ___conditional___ = 3--[[ Tconstr ]]
                  or ___conditional___ = 9--[[ Tunivar ]] then do
                     return ty$1;end end end 
                  do
                 else do
-                  throw {
-                        Caml_builtin_exceptions.assert_failure,
-                        --[[ tuple ]]{
-                          "btype.ml",
-                          167,
-                          15
-                        }
-                      };
+                  error ({
+                    Caml_builtin_exceptions.assert_failure,
+                    --[[ tuple ]]{
+                      "btype.ml",
+                      167,
+                      15
+                    }
+                  })
                   end end
                   
               end
@@ -4529,7 +4520,7 @@ function has_constr_row(t) do
                     return true;end end end 
                  if ___conditional___ = 5--[[ Tfield ]] then do
                     _t = match$1[3];
-                    continue ;end end end 
+                    ::continue:: ;end end end 
                  do
                 else do
                   return false;
@@ -4608,21 +4599,21 @@ function iter_row(f, _row) do
       do
          if ___conditional___ = 8--[[ Tvariant ]] then do
             _row = match[0];
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 0--[[ Tvar ]]
          or ___conditional___ = 3--[[ Tconstr ]]
          or ___conditional___ = 7--[[ Tsubst ]]
          or ___conditional___ = 9--[[ Tunivar ]]
          do
         else do
-          throw {
-                Caml_builtin_exceptions.assert_failure,
-                --[[ tuple ]]{
-                  "btype.ml",
-                  214,
-                  9
-                }
-              };
+          error ({
+            Caml_builtin_exceptions.assert_failure,
+            --[[ tuple ]]{
+              "btype.ml",
+              214,
+              9
+            }
+          })
           end end
           
       end
@@ -4688,12 +4679,12 @@ function iter_abbrev(f, _param) do
       return --[[ () ]]0;
     end else if (param.tag) then do
       _param = param[0].contents;
-      continue ;
+      ::continue:: ;
     end else do
       Curry._1(f, param[2]);
       Curry._1(f, param[3]);
       _param = param[4];
-      continue ;
+      ::continue:: ;
     end end  end 
   end;
 end end
@@ -4910,14 +4901,14 @@ function copy_kind(_param) do
     param = _param;
     if (typeof param == "number") then do
       if (param ~= 0) then do
-        throw {
-              Caml_builtin_exceptions.assert_failure,
-              --[[ tuple ]]{
-                "btype.ml",
-                363,
-                16
-              }
-            };
+        error ({
+          Caml_builtin_exceptions.assert_failure,
+          --[[ tuple ]]{
+            "btype.ml",
+            363,
+            16
+          }
+        })
       end else do
         return --[[ Fpresent ]]0;
       end end 
@@ -4925,7 +4916,7 @@ function copy_kind(_param) do
       match = param[0].contents;
       if (match ~= undefined) then do
         _param = match;
-        continue ;
+        ::continue:: ;
       end else do
         return --[[ Fvar ]]{do
                   contents: undefined
@@ -5010,25 +5001,25 @@ function copy_type_desc(_keep_namesOpt, f, _ty) do
          if ___conditional___ = 6--[[ Tlink ]] then do
             _ty = ty[0].desc;
             _keep_namesOpt = undefined;
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 7--[[ Tsubst ]] then do
-            throw {
-                  Caml_builtin_exceptions.assert_failure,
-                  --[[ tuple ]]{
-                    "btype.ml",
-                    390,
-                    27
-                  }
-                };end end end 
+            error ({
+              Caml_builtin_exceptions.assert_failure,
+              --[[ tuple ]]{
+                "btype.ml",
+                390,
+                27
+              }
+            })end end end 
          if ___conditional___ = 8--[[ Tvariant ]] then do
-            throw {
-                  Caml_builtin_exceptions.assert_failure,
-                  --[[ tuple ]]{
-                    "btype.ml",
-                    385,
-                    27
-                  }
-                };end end end 
+            error ({
+              Caml_builtin_exceptions.assert_failure,
+              --[[ tuple ]]{
+                "btype.ml",
+                385,
+                27
+              }
+            })end end end 
          if ___conditional___ = 9--[[ Tunivar ]] then do
             return ty;end end end 
          if ___conditional___ = 10--[[ Tpoly ]] then do
@@ -5044,12 +5035,12 @@ function copy_type_desc(_keep_namesOpt, f, _ty) do
                               match$1 = match[0];
                               if (match$1) then do
                                 _ty = match$1[0];
-                                continue ;
+                                ::continue:: ;
                               end
                                end end else 
                            if ___conditional___ = 6--[[ Tlink ]] then do
                               _ty = match[0];
-                              continue ;end end end 
+                              ::continue:: ;end end end 
                            if ___conditional___ = 7--[[ Tsubst ]]
                            or ___conditional___ = 9--[[ Tunivar ]] then do
                               return ty;end end end 
@@ -5060,14 +5051,14 @@ function copy_type_desc(_keep_namesOpt, f, _ty) do
                         end
                       end
                        end 
-                      throw {
-                            Caml_builtin_exceptions.assert_failure,
-                            --[[ tuple ]]{
-                              "btype.ml",
-                              375,
-                              26
-                            }
-                          };
+                      error ({
+                        Caml_builtin_exceptions.assert_failure,
+                        --[[ tuple ]]{
+                          "btype.ml",
+                          375,
+                          26
+                        }
+                      })
                     end;
                   end end), ty[1]);
             return --[[ Tpoly ]]Block.__(10, {
@@ -5113,14 +5104,14 @@ end;
 function dup_kind(r) do
   match = r.contents;
   if (match ~= undefined) then do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "btype.ml",
-            408,
-            40
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "btype.ml",
+        408,
+        40
+      }
+    })
   end
    end 
   if (List.memq(r, new_kinds.contents)) then do
@@ -5240,12 +5231,12 @@ function find_expans(priv, p1, _param) do
     end else if (param.tag) then do
       rem = param[0].contents;
       _param = rem;
-      continue ;
+      ::continue:: ;
     end else if (param[0] >= priv and same(p1, param[1])) then do
       return param[3];
     end else do
       _param = param[4];
-      continue ;
+      ::continue:: ;
     end end  end  end 
   end;
 end end
@@ -5280,18 +5271,18 @@ end end
 
 function forget_abbrev_rec(mem, path) do
   if (typeof mem == "number") then do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "btype.ml",
-            520,
-            6
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "btype.ml",
+        520,
+        6
+      }
+    })
   end else if (mem.tag) then do
     mem$prime = mem[0];
     mem$prime.contents = forget_abbrev_rec(mem$prime.contents, path);
-    throw Pervasives.Exit;
+    error (Pervasives.Exit)
   end else do
     rem = mem[4];
     path$prime = mem[1];
@@ -5310,17 +5301,16 @@ function forget_abbrev_rec(mem, path) do
 end end
 
 function forget_abbrev(mem, path) do
-  try do
+  xpcall(function() do
     mem.contents = forget_abbrev_rec(mem.contents, path);
     return --[[ () ]]0;
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Pervasives.Exit) then do
       return --[[ () ]]0;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 function is_optional(l) do
@@ -5368,10 +5358,10 @@ function extract_label_aux(_hd, l, _param) do
           p,
           hd
         };
-        continue ;
+        ::continue:: ;
       end end 
     end else do
-      throw Caml_builtin_exceptions.not_found;
+      error (Caml_builtin_exceptions.not_found)
     end end 
   end;
 end end
@@ -5539,14 +5529,14 @@ function rev_log(_accu, _param) do
     accu = _accu;
     if (typeof param == "number") then do
       if (param ~= 0) then do
-        throw {
-              Caml_builtin_exceptions.assert_failure,
-              --[[ tuple ]]{
-                "btype.ml",
-                656,
-                15
-              }
-            };
+        error ({
+          Caml_builtin_exceptions.assert_failure,
+          --[[ tuple ]]{
+            "btype.ml",
+            656,
+            15
+          }
+        })
       end
        end 
       return accu;
@@ -5559,7 +5549,7 @@ function rev_log(_accu, _param) do
         param[0],
         accu
       };
-      continue ;
+      ::continue:: ;
     end end 
   end;
 end end
@@ -5570,10 +5560,10 @@ function backtrack(param) do
   change = changes.contents;
   if (typeof change == "number") then do
     if (change ~= 0) then do
-      throw {
-            Caml_builtin_exceptions.failure,
-            "Btype.backtrack"
-          };
+      error ({
+        Caml_builtin_exceptions.failure,
+        "Btype.backtrack"
+      })
     end
      end 
     last_snapshot.contents = old;
@@ -5604,56 +5594,55 @@ end end
 
 function read_cmi(filename) do
   ic = Pervasives.open_in_bin(filename);
-  try do
+  xpcall(function() do
     buffer = Pervasives.really_input_string(ic, #cmi_magic_number);
     if (buffer ~= cmi_magic_number) then do
       Caml_external_polyfill.resolve("caml_ml_close_channel")(ic);
       pre_len = #cmi_magic_number - 3 | 0;
       if (__String.sub(buffer, 0, pre_len) == __String.sub(cmi_magic_number, 0, pre_len)) then do
         msg = buffer < cmi_magic_number and "an older" or "a newer";
-        throw {
-              __Error$1,
-              --[[ Wrong_version_interface ]]Block.__(1, {
-                  filename,
-                  msg
-                })
-            };
+        error ({
+          __Error$1,
+          --[[ Wrong_version_interface ]]Block.__(1, {
+              filename,
+              msg
+            })
+        })
       end else do
-        throw {
-              __Error$1,
-              --[[ Not_an_interface ]]Block.__(0, {filename})
-            };
+        error ({
+          __Error$1,
+          --[[ Not_an_interface ]]Block.__(0, {filename})
+        })
       end end 
     end
      end 
     cmi = input_cmi(ic);
     Caml_external_polyfill.resolve("caml_ml_close_channel")(ic);
     return cmi;
-  end
-  catch (raw_exn)do
+  end end,function(raw_exn) return do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn == Caml_builtin_exceptions.end_of_file) then do
       Caml_external_polyfill.resolve("caml_ml_close_channel")(ic);
-      throw {
-            __Error$1,
-            --[[ Corrupted_interface ]]Block.__(2, {filename})
-          };
+      error ({
+        __Error$1,
+        --[[ Corrupted_interface ]]Block.__(2, {filename})
+      })
     end else if (exn[0] == Caml_builtin_exceptions.failure) then do
       Caml_external_polyfill.resolve("caml_ml_close_channel")(ic);
-      throw {
-            __Error$1,
-            --[[ Corrupted_interface ]]Block.__(2, {filename})
-          };
+      error ({
+        __Error$1,
+        --[[ Corrupted_interface ]]Block.__(2, {filename})
+      })
     end else if (exn[0] == __Error$1) then do
       Caml_external_polyfill.resolve("caml_ml_close_channel")(ic);
-      throw {
-            __Error$1,
-            exn[1]
-          };
+      error ({
+        __Error$1,
+        exn[1]
+      })
     end else do
-      throw exn;
+      error (exn)
     end end  end  end 
-  end
+  end end)
 end end
 
 function output_cmi(filename, oc, cmi) do
@@ -5762,7 +5751,7 @@ end end
 function extract(l, tbl) do
   l$1 = List.sort_uniq(__String.compare, l);
   return List.fold_left((function (assc, name) do
-                try do
+                xpcall(function() do
                   match = Hashtbl.find(tbl, name);
                   return --[[ :: ]]{
                           --[[ tuple ]]{
@@ -5771,8 +5760,7 @@ function extract(l, tbl) do
                           },
                           assc
                         };
-                end
-                catch (exn)do
+                end end,function(exn) return do
                   if (exn == Caml_builtin_exceptions.not_found) then do
                     return --[[ :: ]]{
                             --[[ tuple ]]{
@@ -5782,9 +5770,9 @@ function extract(l, tbl) do
                             assc
                           };
                   end else do
-                    throw exn;
+                    error (exn)
                   end end 
-                end
+                end end)
               end end), --[[ [] ]]0, l$1);
 end end
 
@@ -5814,7 +5802,7 @@ function free_vars(ty) do
                   return 0;
                 end else do
                   _ty = row.row_more;
-                  continue ;
+                  ::continue:: ;
                 end end end end end 
              do
             else do
@@ -6620,7 +6608,7 @@ function get_docstring(info, dsl) do
         return ds;
       end else do
         _param = param[1];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return ;
@@ -6644,10 +6632,10 @@ function get_docstrings(dsl) do
           ds,
           acc
         };
-        continue ;
+        ::continue:: ;
       end else do
         _param = param[1];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return List.rev(acc);
@@ -6679,31 +6667,29 @@ function set_pre_docstrings(pos, dsl) do
 end end
 
 function get_pre_docs(pos) do
-  try do
+  xpcall(function() do
     dsl = Hashtbl.find(pre_table, pos);
     associate_docstrings(dsl);
     return get_docstring(false, dsl);
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Caml_builtin_exceptions.not_found) then do
       return ;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 function mark_pre_docs(pos) do
-  try do
+  xpcall(function() do
     return associate_docstrings(Hashtbl.find(pre_table, pos));
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Caml_builtin_exceptions.not_found) then do
       return --[[ () ]]0;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 post_table = Hashtbl.create(undefined, 50);
@@ -6717,45 +6703,42 @@ function set_post_docstrings(pos, dsl) do
 end end
 
 function get_post_docs(pos) do
-  try do
+  xpcall(function() do
     dsl = Hashtbl.find(post_table, pos);
     associate_docstrings(dsl);
     return get_docstring(false, dsl);
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Caml_builtin_exceptions.not_found) then do
       return ;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 function mark_post_docs(pos) do
-  try do
+  xpcall(function() do
     return associate_docstrings(Hashtbl.find(post_table, pos));
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Caml_builtin_exceptions.not_found) then do
       return --[[ () ]]0;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 function get_info(pos) do
-  try do
+  xpcall(function() do
     dsl = Hashtbl.find(post_table, pos);
     return get_docstring(true, dsl);
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Caml_builtin_exceptions.not_found) then do
       return ;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 floating_table = Hashtbl.create(undefined, 50);
@@ -6769,16 +6752,15 @@ function set_floating_docstrings(pos, dsl) do
 end end
 
 function get_text(pos) do
-  try do
+  xpcall(function() do
     return get_docstrings(Hashtbl.find(floating_table, pos));
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Caml_builtin_exceptions.not_found) then do
       return --[[ [] ]]0;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 pre_extra_table = Hashtbl.create(undefined, 50);
@@ -6792,16 +6774,15 @@ function set_pre_extra_docstrings(pos, dsl) do
 end end
 
 function get_pre_extra_text(pos) do
-  try do
+  xpcall(function() do
     return get_docstrings(Hashtbl.find(pre_extra_table, pos));
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Caml_builtin_exceptions.not_found) then do
       return --[[ [] ]]0;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 post_extra_table = Hashtbl.create(undefined, 50);
@@ -6815,16 +6796,15 @@ function set_post_extra_docstrings(pos, dsl) do
 end end
 
 function get_post_extra_text(pos) do
-  try do
+  xpcall(function() do
     return get_docstrings(Hashtbl.find(post_extra_table, pos));
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Caml_builtin_exceptions.not_found) then do
       return --[[ [] ]]0;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 function symbol_docs(param) do
@@ -8842,24 +8822,24 @@ function bal$4(l, x, d, r) do
       end else if (lr) then do
         return create$5(create$5(ll, lv, ld, lr[0]), lr[1], lr[2], create$5(lr[3], x, d, r));
       end else do
-        throw {
-              Caml_builtin_exceptions.assert_failure,
-              --[[ tuple ]]{
-                "tbl.ml",
-                35,
-                11
-              }
-            };
+        error ({
+          Caml_builtin_exceptions.assert_failure,
+          --[[ tuple ]]{
+            "tbl.ml",
+            35,
+            11
+          }
+        })
       end end  end 
     end else do
-      throw {
-            Caml_builtin_exceptions.assert_failure,
-            --[[ tuple ]]{
-              "tbl.ml",
-              35,
-              11
-            }
-          };
+      error ({
+        Caml_builtin_exceptions.assert_failure,
+        --[[ tuple ]]{
+          "tbl.ml",
+          35,
+          11
+        }
+      })
     end end 
   end else if (hr > (hl + 1 | 0)) then do
     if (r) then do
@@ -8870,24 +8850,24 @@ function bal$4(l, x, d, r) do
       end else if (rl) then do
         return create$5(create$5(l, x, d, rl[0]), rl[1], rl[2], create$5(rl[3], r[1], r[2], r[3]));
       end else do
-        throw {
-              Caml_builtin_exceptions.assert_failure,
-              --[[ tuple ]]{
-                "tbl.ml",
-                42,
-                11
-              }
-            };
+        error ({
+          Caml_builtin_exceptions.assert_failure,
+          --[[ tuple ]]{
+            "tbl.ml",
+            42,
+            11
+          }
+        })
       end end  end 
     end else do
-      throw {
-            Caml_builtin_exceptions.assert_failure,
-            --[[ tuple ]]{
-              "tbl.ml",
-              42,
-              11
-            }
-          };
+      error ({
+        Caml_builtin_exceptions.assert_failure,
+        --[[ tuple ]]{
+          "tbl.ml",
+          42,
+          11
+        }
+      })
     end end 
   end else do
     return create$5(l, x, d, r);
@@ -8934,10 +8914,10 @@ function find$2(x, _param) do
         return param[2];
       end else do
         _param = c < 0 and param[0] or param[3];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
-      throw Caml_builtin_exceptions.not_found;
+      error (Caml_builtin_exceptions.not_found)
     end end 
   end;
 end end
@@ -8951,7 +8931,7 @@ function mem$4(x, _param) do
         return true;
       end else do
         _param = c < 0 and param[0] or param[3];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return false;
@@ -8966,7 +8946,7 @@ function iter$2(f, _param) do
       iter$2(f, param[0]);
       Curry._2(f, param[1], param[2]);
       _param = param[3];
-      continue ;
+      ::continue:: ;
     end else do
       return --[[ () ]]0;
     end end 
@@ -8980,7 +8960,7 @@ function fold$4(f, _m, _accu) do
     if (m) then do
       _accu = Curry._3(f, m[1], m[2], fold$4(f, m[0], accu));
       _m = m[3];
-      continue ;
+      ::continue:: ;
     end else do
       return accu;
     end end 
@@ -9073,16 +9053,15 @@ function module_path(s, p) do
   local ___conditional___=(p.tag | 0);
   do
      if ___conditional___ = 0--[[ Pident ]] then do
-        try do
+        xpcall(function() do
           return find$2(p[0], s.modules);
-        end
-        catch (exn)do
+        end end,function(exn) return do
           if (exn == Caml_builtin_exceptions.not_found) then do
             return p;
           end else do
-            throw exn;
+            error (exn)
           end end 
-        endend end end 
+        end end)end end end 
      if ___conditional___ = 1--[[ Pdot ]] then do
         return --[[ Pdot ]]Block.__(1, {
                   module_path(s, p[0]),
@@ -9103,21 +9082,20 @@ function modtype_path(s, p) do
   local ___conditional___=(p.tag | 0);
   do
      if ___conditional___ = 0--[[ Pident ]] then do
-        try do
+        xpcall(function() do
           match = find$2(p[0], s.modtypes);
           if (match.tag) then do
             return fatal_error("Subst.modtype_path");
           end else do
             return match[0];
           end end 
-        end
-        catch (exn)do
+        end end,function(exn) return do
           if (exn == Caml_builtin_exceptions.not_found) then do
             return p;
           end else do
-            throw exn;
+            error (exn)
           end end 
-        endend end end 
+        end end)end end end 
      if ___conditional___ = 1--[[ Pdot ]] then do
         return --[[ Pdot ]]Block.__(1, {
                   module_path(s, p[0]),
@@ -9135,16 +9113,15 @@ function type_path(s, p) do
   local ___conditional___=(p.tag | 0);
   do
      if ___conditional___ = 0--[[ Pident ]] then do
-        try do
+        xpcall(function() do
           return find$2(p[0], s.types);
-        end
-        catch (exn)do
+        end end,function(exn) return do
           if (exn == Caml_builtin_exceptions.not_found) then do
             return p;
           end else do
-            throw exn;
+            error (exn)
           end end 
-        endend end end 
+        end end)end end end 
      if ___conditional___ = 1--[[ Pdot ]] then do
         return --[[ Pdot ]]Block.__(1, {
                   module_path(s, p[0]),
@@ -9342,14 +9319,14 @@ function typexp(s, ty) do
                           exit$3 = 5;end else 
                        do end end end end
                       else do
-                        throw {
-                              Caml_builtin_exceptions.assert_failure,
-                              --[[ tuple ]]{
-                                "subst.ml",
-                                170,
-                                23
-                              }
-                            };
+                        error ({
+                          Caml_builtin_exceptions.assert_failure,
+                          --[[ tuple ]]{
+                            "subst.ml",
+                            170,
+                            23
+                          }
+                        })
                         end end
                         
                     end
@@ -9636,7 +9613,7 @@ function rename_bound_idents(_s, _idents, _param) do
               idents
             };
             _s = add_type(id, --[[ Pident ]]Block.__(0, {id$prime}), s);
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 3--[[ Sig_module ]] then do
             id$1 = match[0];
             id$prime$1 = rename(id$1);
@@ -9646,7 +9623,7 @@ function rename_bound_idents(_s, _idents, _param) do
               idents
             };
             _s = add_module(id$1, --[[ Pident ]]Block.__(0, {id$prime$1}), s);
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 4--[[ Sig_modtype ]] then do
             id$2 = match[0];
             id$prime$2 = rename(id$2);
@@ -9656,7 +9633,7 @@ function rename_bound_idents(_s, _idents, _param) do
               idents
             };
             _s = add_modtype(id$2, --[[ Mty_ident ]]Block.__(0, {--[[ Pident ]]Block.__(0, {id$prime$2})}), s);
-            continue ;end end end 
+            ::continue:: ;end end end 
          do
         else do
           id$prime$3 = rename(match[0]);
@@ -9665,7 +9642,7 @@ function rename_bound_idents(_s, _idents, _param) do
             id$prime$3,
             idents
           };
-          continue ;
+          ::continue:: ;
           end end
           
       end
@@ -9686,16 +9663,15 @@ function modtype(s, mty) do
         local ___conditional___=(p.tag | 0);
         do
            if ___conditional___ = 0--[[ Pident ]] then do
-              try do
+              xpcall(function() do
                 return find$2(p[0], s.modtypes);
-              end
-              catch (exn)do
+              end end,function(exn) return do
                 if (exn == Caml_builtin_exceptions.not_found) then do
                   return mty;
                 end else do
-                  throw exn;
+                  error (exn)
                 end end 
-              endend end end 
+              end end)end end end 
            if ___conditional___ = 1--[[ Pdot ]] then do
               return --[[ Mty_ident ]]Block.__(0, {--[[ Pdot ]]Block.__(1, {
                             module_path(s, p[0]),
@@ -9801,14 +9777,14 @@ end end
 
 add_delayed_check_forward = do
   contents: (function (param) do
-      throw {
-            Caml_builtin_exceptions.assert_failure,
-            --[[ tuple ]]{
-              "env.ml",
-              24,
-              46
-            }
-          };
+      error ({
+        Caml_builtin_exceptions.assert_failure,
+        --[[ tuple ]]{
+          "env.ml",
+          24,
+          46
+        }
+      })
     end end)
 end;
 
@@ -9846,18 +9822,17 @@ function force(f, x) do
      if ___conditional___ = 0--[[ Done ]] then do
         return match[0];end end end 
      if ___conditional___ = 1--[[ Raise ]] then do
-        throw match[0];end end end 
+        error (match[0])end end end 
      if ___conditional___ = 2--[[ Thunk ]] then do
-        try do
+        xpcall(function() do
           y = Curry._1(f, match[0]);
           x.contents = --[[ Done ]]Block.__(0, {y});
           return y;
-        end
-        catch (raw_e)do
+        end end,function(raw_e) return do
           e = Caml_js_exceptions.internalToOCamlException(raw_e);
           x.contents = --[[ Raise ]]Block.__(1, {e});
-          throw e;
-        endend end end 
+          error (e)
+        end end)end end end 
      do
     
   end
@@ -9882,17 +9857,16 @@ function nothing(param) do
 end end
 
 function already_defined(s, tbl) do
-  try do
+  xpcall(function() do
     find_name(s, tbl);
     return true;
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Caml_builtin_exceptions.not_found) then do
       return false;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 function add$6(kind, slot, id, x, tbl, ref_tbl) do
@@ -9948,11 +9922,11 @@ function fold_name(f) do
             param$2[0],
             stack
           };
-          continue ;
+          ::continue:: ;
         end else if (stack) then do
           _param = stack[0];
           _stack = stack[1];
-          continue ;
+          ::continue:: ;
         end else do
           return accu$1;
         end end  end 
@@ -10029,66 +10003,66 @@ end end
 
 components_of_module$prime = do
   contents: (function (env, sub, path, mty) do
-      throw {
-            Caml_builtin_exceptions.assert_failure,
-            --[[ tuple ]]{
-              "env.ml",
-              272,
-              32
-            }
-          };
+      error ({
+        Caml_builtin_exceptions.assert_failure,
+        --[[ tuple ]]{
+          "env.ml",
+          272,
+          32
+        }
+      })
     end end)
 end;
 
 components_of_module_maker$prime = do
   contents: (function (param) do
-      throw {
-            Caml_builtin_exceptions.assert_failure,
-            --[[ tuple ]]{
-              "env.ml",
-              275,
-              37
-            }
-          };
+      error ({
+        Caml_builtin_exceptions.assert_failure,
+        --[[ tuple ]]{
+          "env.ml",
+          275,
+          37
+        }
+      })
     end end)
 end;
 
 components_of_functor_appl$prime = do
   contents: (function (f, p1, p2) do
-      throw {
-            Caml_builtin_exceptions.assert_failure,
-            --[[ tuple ]]{
-              "env.ml",
-              278,
-              23
-            }
-          };
+      error ({
+        Caml_builtin_exceptions.assert_failure,
+        --[[ tuple ]]{
+          "env.ml",
+          278,
+          23
+        }
+      })
     end end)
 end;
 
 check_modtype_inclusion = do
   contents: (function (env, mty1, path1, mty2) do
-      throw {
-            Caml_builtin_exceptions.assert_failure,
-            --[[ tuple ]]{
-              "env.ml",
-              282,
-              35
-            }
-          };
+      error ({
+        Caml_builtin_exceptions.assert_failure,
+        --[[ tuple ]]{
+          "env.ml",
+          282,
+          35
+        }
+      })
     end end)
 end;
 
 strengthen = do
   contents: (function (env, mty, path) do
-      throw {
-            Caml_builtin_exceptions.assert_failure,
-            --[[ tuple ]]{
-              "env.ml",
-              286,
-              28
-            }
-          };
+      error ({
+        Caml_builtin_exceptions.assert_failure,
+        --[[ tuple ]]{
+          "env.ml",
+          286,
+          28
+        }
+      })
     end end)
 end;
 
@@ -10132,16 +10106,16 @@ function bal$5(l, v, r) do
       end else if (lr) then do
         return create$6(create$6(ll, lv, lr[--[[ l ]]0]), lr[--[[ v ]]1], create$6(lr[--[[ r ]]2], v, r));
       end else do
-        throw {
-              Caml_builtin_exceptions.invalid_argument,
-              "Set.bal"
-            };
+        error ({
+          Caml_builtin_exceptions.invalid_argument,
+          "Set.bal"
+        })
       end end  end 
     end else do
-      throw {
-            Caml_builtin_exceptions.invalid_argument,
-            "Set.bal"
-          };
+      error ({
+        Caml_builtin_exceptions.invalid_argument,
+        "Set.bal"
+      })
     end end 
   end else if (hr > (hl + 2 | 0)) then do
     if (r) then do
@@ -10153,16 +10127,16 @@ function bal$5(l, v, r) do
       end else if (rl) then do
         return create$6(create$6(l, v, rl[--[[ l ]]0]), rl[--[[ v ]]1], create$6(rl[--[[ r ]]2], rv, rr));
       end else do
-        throw {
-              Caml_builtin_exceptions.invalid_argument,
-              "Set.bal"
-            };
+        error ({
+          Caml_builtin_exceptions.invalid_argument,
+          "Set.bal"
+        })
       end end  end 
     end else do
-      throw {
-            Caml_builtin_exceptions.invalid_argument,
-            "Set.bal"
-          };
+      error ({
+        Caml_builtin_exceptions.invalid_argument,
+        "Set.bal"
+      })
     end end 
   end else do
     return --[[ Node ]]{
@@ -10214,7 +10188,7 @@ function fold$5(f, _s, _accu) do
     if (s) then do
       _accu = Curry._2(f, s[--[[ v ]]1], fold$5(f, s[--[[ l ]]0], accu));
       _s = s[--[[ r ]]2];
-      continue ;
+      ::continue:: ;
     end else do
       return accu;
     end end 
@@ -10231,7 +10205,7 @@ function elements_aux$2(_accu, _param) do
         param[--[[ v ]]1],
         elements_aux$2(accu, param[--[[ r ]]2])
       };
-      continue ;
+      ::continue:: ;
     end else do
       return accu;
     end end 
@@ -10251,7 +10225,7 @@ function check_consistency(ps) do
   if (ps.ps_crcs_checked) then do
     return 0;
   end else do
-    try do
+    xpcall(function() do
       List.iter((function (param) do
               crco = param[1];
               if (crco ~= undefined) then do
@@ -10261,51 +10235,49 @@ function check_consistency(ps) do
                 name$1 = name;
                 crc = crco;
                 source = ps.ps_filename;
-                try do
+                xpcall(function() do
                   match = Hashtbl.find(tbl, name$1);
                   if (Caml_obj.caml_notequal(crc, match[0])) then do
-                    throw {
-                          Inconsistency,
-                          name$1,
-                          source,
-                          match[1]
-                        };
+                    error ({
+                      Inconsistency,
+                      name$1,
+                      source,
+                      match[1]
+                    })
                   end else do
                     return 0;
                   end end 
-                end
-                catch (exn)do
+                end end,function(exn) return do
                   if (exn == Caml_builtin_exceptions.not_found) then do
                     return Hashtbl.add(tbl, name$1, --[[ tuple ]]{
                                 crc,
                                 source
                               });
                   end else do
-                    throw exn;
+                    error (exn)
                   end end 
-                end
+                end end)
               end else do
                 return --[[ () ]]0;
               end end 
             end end), ps.ps_crcs);
       ps.ps_crcs_checked = true;
       return --[[ () ]]0;
-    end
-    catch (raw_exn)do
+    end end,function(raw_exn) return do
       exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
       if (exn[0] == Inconsistency) then do
-        throw {
-              __Error$2,
-              --[[ Inconsistent_import ]]Block.__(1, {
-                  exn[1],
-                  exn[3],
-                  exn[2]
-                })
-            };
+        error ({
+          __Error$2,
+          --[[ Inconsistent_import ]]Block.__(1, {
+              exn[1],
+              exn[3],
+              exn[2]
+            })
+        })
       end
        end 
-      throw exn;
-    end
+      error (exn)
+    end end)
   end end 
 end end
 
@@ -10337,14 +10309,14 @@ function read_pers_struct(modname, filename) do
     ps_flags: flags
   end;
   if (ps.ps_name ~= modname) then do
-    throw {
-          __Error$2,
-          --[[ Illegal_renaming ]]Block.__(0, {
-              modname,
-              ps.ps_name,
-              filename
-            })
-        };
+    error ({
+      __Error$2,
+      --[[ Illegal_renaming ]]Block.__(0, {
+          modname,
+          ps.ps_name,
+          filename
+        })
+    })
   end
    end 
   add_import(name);
@@ -10352,13 +10324,13 @@ function read_pers_struct(modname, filename) do
           if (recursive_types.contents) then do
             return 0;
           end else do
-            throw {
-                  __Error$2,
-                  --[[ Need_recursive_types ]]Block.__(2, {
-                      ps.ps_name,
-                      current_unit.contents
-                    })
-                };
+            error ({
+              __Error$2,
+              --[[ Need_recursive_types ]]Block.__(2, {
+                  ps.ps_name,
+                  current_unit.contents
+                })
+            })
           end end 
         end end), ps.ps_flags);
   Hashtbl.add(persistent_structures, modname, ps);
@@ -10368,42 +10340,40 @@ end end
 function find_pers_struct(checkOpt, name) do
   check = checkOpt ~= undefined and checkOpt or true;
   if (name == "*predef*") then do
-    throw Caml_builtin_exceptions.not_found;
+    error (Caml_builtin_exceptions.not_found)
   end
    end 
   r;
-  try do
+  xpcall(function() do
     r = Caml_option.some(Hashtbl.find(persistent_structures, name));
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Caml_builtin_exceptions.not_found) then do
       r = undefined;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
   ps;
   if (r ~= undefined) then do
     match = Caml_option.valFromOption(r);
     if (match ~= undefined) then do
       ps = match;
     end else do
-      throw Caml_builtin_exceptions.not_found;
+      error (Caml_builtin_exceptions.not_found)
     end end 
   end else do
     add_import(name);
     filename;
-    try do
+    xpcall(function() do
       filename = find_in_path_uncap(load_path.contents, name .. ".cmi");
-    end
-    catch (exn$1)do
+    end end,function(exn$1) return do
       if (exn$1 == Caml_builtin_exceptions.not_found) then do
         Hashtbl.add(persistent_structures, name, undefined);
-        throw Caml_builtin_exceptions.not_found;
+        error (Caml_builtin_exceptions.not_found)
       end else do
-        throw exn$1;
+        error (exn$1)
       end end 
-    end
+    end end)
     ps = read_pers_struct(name, filename);
   end end 
   if (check) then do
@@ -10418,24 +10388,23 @@ function find_module_descr(path, env) do
   do
      if ___conditional___ = 0--[[ Pident ]] then do
         id = path[0];
-        try do
+        xpcall(function() do
           return find_same$1(id, env.components)[1];
-        end
-        catch (exn)do
+        end end,function(exn) return do
           if (exn == Caml_builtin_exceptions.not_found) then do
             if (id.stamp == 0 and id.name ~= current_unit.contents) then do
               return find_pers_struct(undefined, id.name).ps_comps;
             end else do
-              throw Caml_builtin_exceptions.not_found;
+              error (Caml_builtin_exceptions.not_found)
             end end 
           end else do
-            throw exn;
+            error (exn)
           end end 
-        endend end end 
+        end end)end end end 
      if ___conditional___ = 1--[[ Pdot ]] then do
         match = force(components_of_module_maker$prime.contents, find_module_descr(path[0], env));
         if (match.tag) then do
-          throw Caml_builtin_exceptions.not_found;
+          error (Caml_builtin_exceptions.not_found)
         end else do
           return find$2(path[1], match[0].comp_components)[0];
         end end end end end 
@@ -10445,7 +10414,7 @@ function find_module_descr(path, env) do
         if (match$1.tag) then do
           return Curry._3(components_of_functor_appl$prime.contents, match$1[0], p1, path[1]);
         end else do
-          throw Caml_builtin_exceptions.not_found;
+          error (Caml_builtin_exceptions.not_found)
         end end end end end 
      do
     
@@ -10460,12 +10429,12 @@ function find$3(proj1, proj2, path, env) do
      if ___conditional___ = 1--[[ Pdot ]] then do
         match = force(components_of_module_maker$prime.contents, find_module_descr(path[0], env));
         if (match.tag) then do
-          throw Caml_builtin_exceptions.not_found;
+          error (Caml_builtin_exceptions.not_found)
         end else do
           return find$2(path[1], Curry._1(proj2, match[0]))[0];
         end end end end end 
      if ___conditional___ = 2--[[ Papply ]] then do
-        throw Caml_builtin_exceptions.not_found;end end end 
+        error (Caml_builtin_exceptions.not_found)end end end 
      do
     
   end
@@ -10508,10 +10477,9 @@ function find_module(alias, path, env) do
   do
      if ___conditional___ = 0--[[ Pident ]] then do
         id = path[0];
-        try do
+        xpcall(function() do
           return find_same$1(id, env.modules)[1];
-        end
-        catch (exn)do
+        end end,function(exn) return do
           if (exn == Caml_builtin_exceptions.not_found) then do
             if (id.stamp == 0 and id.name ~= current_unit.contents) then do
               ps = find_pers_struct(undefined, id.name);
@@ -10521,16 +10489,16 @@ function find_module(alias, path, env) do
                       md_loc: none
                     end;
             end else do
-              throw Caml_builtin_exceptions.not_found;
+              error (Caml_builtin_exceptions.not_found)
             end end 
           end else do
-            throw exn;
+            error (exn)
           end end 
-        endend end end 
+        end end)end end end 
      if ___conditional___ = 1--[[ Pdot ]] then do
         match = force(components_of_module_maker$prime.contents, find_module_descr(path[0], env));
         if (match.tag) then do
-          throw Caml_builtin_exceptions.not_found;
+          error (Caml_builtin_exceptions.not_found)
         end else do
           match$1 = find$2(path[1], match[0].comp_modules);
           md_type = force(subst_modtype_maker, match$1[0]);
@@ -10553,18 +10521,17 @@ function find_module(alias, path, env) do
           end else if (alias) then do
             md_type$1 = mty;
           end else do
-            try do
+            xpcall(function() do
               md_type$1 = Hashtbl.find(f.fcomp_subst_cache, p2);
-            end
-            catch (exn$1)do
+            end end,function(exn$1) return do
               if (exn$1 == Caml_builtin_exceptions.not_found) then do
                 mty$1 = modtype(add_module(f.fcomp_param, p2, f.fcomp_subst), f.fcomp_res);
                 Hashtbl.add(f.fcomp_subst_cache, p2, mty$1);
                 md_type$1 = mty$1;
               end else do
-                throw exn$1;
+                error (exn$1)
               end end 
-            end
+            end end)
           end end  end 
           return do
                   md_type: md_type$1,
@@ -10572,7 +10539,7 @@ function find_module(alias, path, env) do
                   md_loc: none
                 end;
         end else do
-          throw Caml_builtin_exceptions.not_found;
+          error (Caml_builtin_exceptions.not_found)
         end end end end end 
      do
     
@@ -10617,7 +10584,7 @@ function normalize_path(lax, env, path) do
      do end end end end
     
   end
-  try do
+  xpcall(function() do
     match = find_module(true, path$1, env);
     match$1 = match.md_type;
     if (match$1.tag == --[[ Mty_alias ]]3) then do
@@ -10635,8 +10602,7 @@ function normalize_path(lax, env, path) do
     end else do
       return path$1;
     end end 
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Caml_builtin_exceptions.not_found) then do
       tmp = true;
       if (not lax) then do
@@ -10657,43 +10623,42 @@ function normalize_path(lax, env, path) do
       if (tmp) then do
         return path$1;
       end else do
-        throw exn;
+        error (exn)
       end end 
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 function normalize_path$1(oloc, env, path) do
-  try do
+  xpcall(function() do
     return normalize_path(oloc == undefined, env, path);
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Caml_builtin_exceptions.not_found) then do
       if (oloc ~= undefined) then do
-        throw {
-              __Error$2,
-              --[[ Missing_module ]]Block.__(3, {
-                  oloc,
-                  path,
-                  normalize_path(true, env, path)
-                })
-            };
+        error ({
+          __Error$2,
+          --[[ Missing_module ]]Block.__(3, {
+              oloc,
+              path,
+              normalize_path(true, env, path)
+            })
+        })
       end
        end 
-      throw {
-            Caml_builtin_exceptions.assert_failure,
-            --[[ tuple ]]{
-              "env.ml",
-              579,
-              28
-            }
-          };
+      error ({
+        Caml_builtin_exceptions.assert_failure,
+        --[[ tuple ]]{
+          "env.ml",
+          579,
+          28
+        }
+      })
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 function find_type_expansion(path, env) do
@@ -10715,7 +10680,7 @@ function find_type_expansion(path, env) do
    end 
   path$prime = normalize_path$1(undefined, env, path);
   if (same(path, path$prime)) then do
-    throw Caml_builtin_exceptions.not_found;
+    error (Caml_builtin_exceptions.not_found)
   end
    end 
   return --[[ tuple ]]{
@@ -10747,7 +10712,7 @@ function find_type_expansion_opt(path, env) do
   end else do
     path$prime = normalize_path$1(undefined, env, path);
     if (same(path, path$prime)) then do
-      throw Caml_builtin_exceptions.not_found;
+      error (Caml_builtin_exceptions.not_found)
     end
      end 
     return --[[ tuple ]]{
@@ -10771,7 +10736,7 @@ function find_modtype_expansion(path, env) do
   if (match ~= undefined) then do
     return match;
   end else do
-    throw Caml_builtin_exceptions.not_found;
+    error (Caml_builtin_exceptions.not_found)
   end end 
 end end
 
@@ -10781,20 +10746,19 @@ function is_functor_arg(_path, env) do
     local ___conditional___=(path.tag | 0);
     do
        if ___conditional___ = 0--[[ Pident ]] then do
-          try do
+          xpcall(function() do
             find_same(path[0], env.functor_args);
             return true;
-          end
-          catch (exn)do
+          end end,function(exn) return do
             if (exn == Caml_builtin_exceptions.not_found) then do
               return false;
             end else do
-              throw exn;
+              error (exn)
             end end 
-          endend end end 
+          end end)end end end 
        if ___conditional___ = 1--[[ Pdot ]] then do
           _path = path[0];
-          continue ;end end end 
+          ::continue:: ;end end end 
        if ___conditional___ = 2--[[ Papply ]] then do
           return true;end end end 
        do
@@ -10810,13 +10774,12 @@ function lookup_module_descr(lid, env) do
   do
      if ___conditional___ = 0--[[ Lident ]] then do
         s = lid[0];
-        try do
+        xpcall(function() do
           return find_name$1(s, env.components);
-        end
-        catch (exn)do
+        end end,function(exn) return do
           if (exn == Caml_builtin_exceptions.not_found) then do
             if (s == current_unit.contents) then do
-              throw Caml_builtin_exceptions.not_found;
+              error (Caml_builtin_exceptions.not_found)
             end
              end 
             ps = find_pers_struct(undefined, s);
@@ -10829,15 +10792,15 @@ function lookup_module_descr(lid, env) do
                     ps.ps_comps
                   };
           end else do
-            throw exn;
+            error (exn)
           end end 
-        endend end end 
+        end end)end end end 
      if ___conditional___ = 1--[[ Ldot ]] then do
         s$1 = lid[1];
         match = lookup_module_descr(lid[0], env);
         match$1 = force(components_of_module_maker$prime.contents, match[1]);
         if (match$1.tag) then do
-          throw Caml_builtin_exceptions.not_found;
+          error (Caml_builtin_exceptions.not_found)
         end else do
           match$2 = find$2(s$1, match$1[0].comp_components);
           return --[[ tuple ]]{
@@ -10866,7 +10829,7 @@ function lookup_module_descr(lid, env) do
                   Curry._3(components_of_functor_appl$prime.contents, f, p1, p2)
                 };
         end else do
-          throw Caml_builtin_exceptions.not_found;
+          error (Caml_builtin_exceptions.not_found)
         end end end end end 
      do
     
@@ -10878,7 +10841,7 @@ function lookup_module(load, lid, env) do
   do
      if ___conditional___ = 0--[[ Lident ]] then do
         s = lid[0];
-        try do
+        xpcall(function() do
           r = find_name$1(s, env.modules);
           md_type = r[1].md_type;
           if (not md_type.tag) then do
@@ -10887,7 +10850,7 @@ function lookup_module(load, lid, env) do
             do
                if ___conditional___ = 0--[[ Pident ]] then do
                   if (match[0].name == "#recmod#") then do
-                    throw Recmodule;
+                    error (Recmodule)
                   end
                    end end else 
                if ___conditional___ = 1--[[ Pdot ]]
@@ -10898,24 +10861,22 @@ function lookup_module(load, lid, env) do
           end
            end 
           return r[0];
-        end
-        catch (exn)do
+        end end,function(exn) return do
           if (exn == Caml_builtin_exceptions.not_found) then do
             if (s == current_unit.contents) then do
-              throw Caml_builtin_exceptions.not_found;
+              error (Caml_builtin_exceptions.not_found)
             end
              end 
             if (transparent_modules.contents and not load) then do
-              try do
+              xpcall(function() do
                 find_pers_struct(false, s);
-              end
-              catch (exn$1)do
+              end end,function(exn$1) return do
                 if (exn$1 == Caml_builtin_exceptions.not_found) then do
                   prerr_warning(none, --[[ No_cmi_file ]]Block.__(32, {s}));
                 end else do
-                  throw exn$1;
+                  error (exn$1)
                 end end 
-              end
+              end end)
             end else do
               find_pers_struct(undefined, s);
             end end 
@@ -10925,15 +10886,15 @@ function lookup_module(load, lid, env) do
                         flags: 1
                       end});
           end else do
-            throw exn;
+            error (exn)
           end end 
-        endend end end 
+        end end)end end end 
      if ___conditional___ = 1--[[ Ldot ]] then do
         s$1 = lid[1];
         match$1 = lookup_module_descr(lid[0], env);
         match$2 = force(components_of_module_maker$prime.contents, match$1[1]);
         if (match$2.tag) then do
-          throw Caml_builtin_exceptions.not_found;
+          error (Caml_builtin_exceptions.not_found)
         end else do
           match$3 = find$2(s$1, match$2[0].comp_modules);
           return --[[ Pdot ]]Block.__(1, {
@@ -10956,7 +10917,7 @@ function lookup_module(load, lid, env) do
           may(Curry._3(check_modtype_inclusion.contents, env, match$5.md_type, p2), match$6[0].fcomp_arg);
           return p;
         end else do
-          throw Caml_builtin_exceptions.not_found;
+          error (Caml_builtin_exceptions.not_found)
         end end end end end 
      do
     
@@ -10973,7 +10934,7 @@ function lookup(proj1, proj2, lid, env) do
         match = lookup_module_descr(lid[0], env);
         match$1 = force(components_of_module_maker$prime.contents, match[1]);
         if (match$1.tag) then do
-          throw Caml_builtin_exceptions.not_found;
+          error (Caml_builtin_exceptions.not_found)
         end else do
           match$2 = find$2(s, Curry._1(proj2, match$1[0]));
           return --[[ tuple ]]{
@@ -10986,7 +10947,7 @@ function lookup(proj1, proj2, lid, env) do
                 };
         end end end end end 
      if ___conditional___ = 2--[[ Lapply ]] then do
-        throw Caml_builtin_exceptions.not_found;end end end 
+        error (Caml_builtin_exceptions.not_found)end end end 
      do
     
   end
@@ -11019,19 +10980,18 @@ function lookup_all_simple(proj1, proj2, shadow, lid, env) do
         match = lookup_module_descr(lid[0], env);
         match$1 = force(components_of_module_maker$prime.contents, match[1]);
         if (match$1.tag) then do
-          throw Caml_builtin_exceptions.not_found;
+          error (Caml_builtin_exceptions.not_found)
         end else do
           comps;
-          try do
+          xpcall(function() do
             comps = find$2(lid[1], Curry._1(proj2, match$1[0]));
-          end
-          catch (exn)do
+          end end,function(exn) return do
             if (exn == Caml_builtin_exceptions.not_found) then do
               comps = --[[ [] ]]0;
             end else do
-              throw exn;
+              error (exn)
             end end 
-          end
+          end end)
           return List.map((function (param) do
                         return --[[ tuple ]]{
                                 param[0],
@@ -11042,7 +11002,7 @@ function lookup_all_simple(proj1, proj2, shadow, lid, env) do
                       end end), comps);
         end end end end end 
      if ___conditional___ = 2--[[ Lapply ]] then do
-        throw Caml_builtin_exceptions.not_found;end end end 
+        error (Caml_builtin_exceptions.not_found)end end end 
      do
     
   end
@@ -11136,19 +11096,18 @@ function mark_value_used(env, name, vd) do
   if (is_implicit_coercion(env)) then do
     return 0;
   end else do
-    try do
+    xpcall(function() do
       return Curry._1(Hashtbl.find(value_declarations, --[[ tuple ]]{
                       name,
                       vd.val_loc
                     }), --[[ () ]]0);
-    end
-    catch (exn)do
+    end end,function(exn) return do
       if (exn == Caml_builtin_exceptions.not_found) then do
         return --[[ () ]]0;
       end else do
-        throw exn;
+        error (exn)
       end end 
-    end
+    end end)
   end end 
 end end
 
@@ -11156,19 +11115,18 @@ function mark_type_used(env, name, vd) do
   if (is_implicit_coercion(env)) then do
     return 0;
   end else do
-    try do
+    xpcall(function() do
       return Curry._1(Hashtbl.find(type_declarations, --[[ tuple ]]{
                       name,
                       vd.type_loc
                     }), --[[ () ]]0);
-    end
-    catch (exn)do
+    end end,function(exn) return do
       if (exn == Caml_builtin_exceptions.not_found) then do
         return --[[ () ]]0;
       end else do
-        throw exn;
+        error (exn)
       end end 
-    end
+    end end)
   end end 
 end end
 
@@ -11176,20 +11134,19 @@ function mark_constructor_used(usage, env, name, vd, constr) do
   if (is_implicit_coercion(env)) then do
     return 0;
   end else do
-    try do
+    xpcall(function() do
       return Curry._1(Hashtbl.find(used_constructors, --[[ tuple ]]{
                       name,
                       vd.type_loc,
                       constr
                     }), usage);
-    end
-    catch (exn)do
+    end end,function(exn) return do
       if (exn == Caml_builtin_exceptions.not_found) then do
         return --[[ () ]]0;
       end else do
-        throw exn;
+        error (exn)
       end end 
-    end
+    end end)
   end end 
 end end
 
@@ -11198,20 +11155,19 @@ function mark_extension_used(usage, env, ext, name) do
     return 0;
   end else do
     ty_name = last(ext.ext_type_path);
-    try do
+    xpcall(function() do
       return Curry._1(Hashtbl.find(used_constructors, --[[ tuple ]]{
                       ty_name,
                       ext.ext_loc,
                       name
                     }), usage);
-    end
-    catch (exn)do
+    end end,function(exn) return do
       if (exn == Caml_builtin_exceptions.not_found) then do
         return --[[ () ]]0;
       end else do
-        throw exn;
+        error (exn)
       end end 
-    end
+    end end)
   end end 
 end end
 
@@ -11225,23 +11181,22 @@ function set_type_used_callback(name, td, callback) do
       loc
     };
     old;
-    try do
+    xpcall(function() do
       old = Hashtbl.find(type_declarations, key);
-    end
-    catch (exn)do
+    end end,function(exn) return do
       if (exn == Caml_builtin_exceptions.not_found) then do
-        throw {
-              Caml_builtin_exceptions.assert_failure,
-              --[[ tuple ]]{
-                "env.ml",
-                841,
-                22
-              }
-            };
+        error ({
+          Caml_builtin_exceptions.assert_failure,
+          --[[ tuple ]]{
+            "env.ml",
+            841,
+            22
+          }
+        })
       end
        end 
-      throw exn;
-    end
+      error (exn)
+    end end)
     return Hashtbl.replace(type_declarations, key, (function (param) do
                   return Curry._1(callback, old);
                 end end));
@@ -11265,42 +11220,41 @@ function lookup_type$1(lid, env) do
 end end
 
 function mark_type_path(env, path) do
-  try do
+  xpcall(function() do
     decl = find_type_full(path, env)[0];
     return mark_type_used(env, last(path), decl);
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Caml_builtin_exceptions.not_found) then do
       return --[[ () ]]0;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 function ty_path(t) do
   match = repr(t);
   match$1 = match.desc;
   if (typeof match$1 == "number") then do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "env.ml",
-            871,
-            9
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "env.ml",
+        871,
+        9
+      }
+    })
   end else if (match$1.tag == --[[ Tconstr ]]3) then do
     return match$1[0];
   end else do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "env.ml",
-            871,
-            9
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "env.ml",
+        871,
+        9
+      }
+    })
   end end  end 
 end end
 
@@ -11313,7 +11267,7 @@ function lookup_constructor(lid, env) do
     Curry._1(match$1[1], --[[ () ]]0);
     return desc;
   end else do
-    throw Caml_builtin_exceptions.not_found;
+    error (Caml_builtin_exceptions.not_found)
   end end 
 end end
 
@@ -11331,7 +11285,7 @@ function is_lident(param) do
 end end
 
 function lookup_all_constructors$1(lid, env) do
-  try do
+  xpcall(function() do
     cstrs = lookup_all_constructors(lid, env);
     return List.map((function (param) do
                   use = param[1];
@@ -11346,18 +11300,17 @@ function lookup_all_constructors$1(lid, env) do
                             end end)
                         };
                 end end), cstrs);
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Caml_builtin_exceptions.not_found) then do
       if (is_lident(lid)) then do
         return --[[ [] ]]0;
       end else do
-        throw exn;
+        error (exn)
       end end 
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 function mark_constructor(usage, env, name, desc) do
@@ -11372,49 +11325,47 @@ function mark_constructor(usage, env, name, desc) do
        or ___conditional___ = 2--[[ Cstr_extension ]] then do
           ty_path$1 = ty_path(desc.cstr_res);
           ty_name = last(ty_path$1);
-          try do
+          xpcall(function() do
             return Curry._1(Hashtbl.find(used_constructors, --[[ tuple ]]{
                             ty_name,
                             desc.cstr_loc,
                             name
                           }), usage);
-          end
-          catch (exn)do
+          end end,function(exn) return do
             if (exn == Caml_builtin_exceptions.not_found) then do
               return --[[ () ]]0;
             end else do
-              throw exn;
+              error (exn)
             end end 
-          endend end end 
+          end end)end end end 
        do
       
     end
     ty_path$2 = ty_path(desc.cstr_res);
     ty_decl;
-    try do
+    xpcall(function() do
       ty_decl = find_type_full(ty_path$2, env)[0];
-    end
-    catch (exn$1)do
+    end end,function(exn$1) return do
       if (exn$1 == Caml_builtin_exceptions.not_found) then do
-        throw {
-              Caml_builtin_exceptions.assert_failure,
-              --[[ tuple ]]{
-                "env.ml",
-                908,
-                64
-              }
-            };
+        error ({
+          Caml_builtin_exceptions.assert_failure,
+          --[[ tuple ]]{
+            "env.ml",
+            908,
+            64
+          }
+        })
       end
        end 
-      throw exn$1;
-    end
+      error (exn$1)
+    end end)
     ty_name$1 = last(ty_path$2);
     return mark_constructor_used(usage, env, ty_name$1, ty_decl, name);
   end end 
 end end
 
 function lookup_all_labels$1(lid, env) do
-  try do
+  xpcall(function() do
     lbls = lookup_all_labels(lid, env);
     return List.map((function (param) do
                   use = param[1];
@@ -11429,18 +11380,17 @@ function lookup_all_labels$1(lid, env) do
                             end end)
                         };
                 end end), lbls);
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Caml_builtin_exceptions.not_found) then do
       if (is_lident(lid)) then do
         return --[[ [] ]]0;
       end else do
-        throw exn;
+        error (exn)
       end end 
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 function lookup_class$1(lid, env) do
@@ -11488,7 +11438,7 @@ function scrape_alias_safe(env, _mty) do
         
       end
       _mty = find_module(false, path, env).md_type;
-      continue ;
+      ::continue:: ;
     end else do
       return true;
     end end 
@@ -11524,16 +11474,15 @@ function iter_types(f) do
           safe;
           if (match ~= undefined) then do
             match$1 = match;
-            try do
+            xpcall(function() do
               safe = scrape_alias_safe(match$1[0], match$1[3]);
-            end
-            catch (exn)do
+            end end,function(exn) return do
               if (exn == Caml_builtin_exceptions.not_found) then do
                 safe = false;
               end else do
-                throw exn;
+                error (exn)
               end end 
-            end
+            end end)
           end else do
             safe = true;
           end end 
@@ -11631,7 +11580,7 @@ function find_all_comps(proj, s, param) do
   if (match.tag) then do
     return --[[ [] ]]0;
   end else do
-    try do
+    xpcall(function() do
       match$1 = find$2(s, Curry._1(proj, match[0]));
       return --[[ :: ]]{
               --[[ tuple ]]{
@@ -11644,14 +11593,13 @@ function find_all_comps(proj, s, param) do
               },
               --[[ [] ]]0
             };
-    end
-    catch (exn)do
+    end end,function(exn) return do
       if (exn == Caml_builtin_exceptions.not_found) then do
         return --[[ [] ]]0;
       end else do
-        throw exn;
+        error (exn)
       end end 
-    end
+    end end)
   end end 
 end end
 
@@ -11764,7 +11712,7 @@ function gadt_instance_level(env, t) do
         return Caml_option.some(match[0]);
       end else do
         _param = param[1];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return ;
@@ -11774,45 +11722,43 @@ end end
 
 function add_gadt_instances(env, lv, tl) do
   r;
-  try do
+  xpcall(function() do
     r = List.assoc(lv, env.gadt_instances);
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Caml_builtin_exceptions.not_found) then do
-      throw {
-            Caml_builtin_exceptions.assert_failure,
-            --[[ tuple ]]{
-              "env.ml",
-              1066,
-              59
-            }
-          };
+      error ({
+        Caml_builtin_exceptions.assert_failure,
+        --[[ tuple ]]{
+          "env.ml",
+          1066,
+          59
+        }
+      })
     end
      end 
-    throw exn;
-  end
+    error (exn)
+  end end)
   return set_typeset(r, List.fold_right(add$3, tl, r.contents));
 end end
 
 function add_gadt_instance_chain(env, lv, t) do
   r;
-  try do
+  xpcall(function() do
     r = List.assoc(lv, env.gadt_instances);
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Caml_builtin_exceptions.not_found) then do
-      throw {
-            Caml_builtin_exceptions.assert_failure,
-            --[[ tuple ]]{
-              "env.ml",
-              1075,
-              59
-            }
-          };
+      error ({
+        Caml_builtin_exceptions.assert_failure,
+        --[[ tuple ]]{
+          "env.ml",
+          1075,
+          59
+        }
+      })
     end
      end 
-    throw exn;
-  end
+    error (exn)
+  end end)
   add_instance = function (t) do
     t$1 = repr(t);
     if (mem$3(t$1, r.contents)) then do
@@ -11834,30 +11780,28 @@ function scrape_alias(env, path, mty) do
   local ___conditional___=(mty.tag | 0);
   do
      if ___conditional___ = 0--[[ Mty_ident ]] then do
-        try do
+        xpcall(function() do
           return scrape_alias(env, path, find_modtype_expansion(mty[0], env));
-        end
-        catch (exn)do
+        end end,function(exn) return do
           if (exn == Caml_builtin_exceptions.not_found) then do
             return mty;
           end else do
-            throw exn;
+            error (exn)
           end end 
-        endend end end 
+        end end)end end end 
      if ___conditional___ = 1--[[ Mty_signature ]]
      or ___conditional___ = 2--[[ Mty_functor ]]
      or ___conditional___ = 3--[[ Mty_alias ]] then do
         path$1 = mty[0];
-        try do
+        xpcall(function() do
           return scrape_alias(env, path$1, find_module(false, path$1, env).md_type);
-        end
-        catch (exn$1)do
+        end end,function(exn$1) return do
           if (exn$1 == Caml_builtin_exceptions.not_found) then do
             return mty;
           end else do
-            throw exn$1;
+            error (exn$1)
           end end 
-        endend end end 
+        end end)end end end 
      do
     
   end
@@ -12328,10 +12272,9 @@ end end
 function prefix_idents_and_subst$1(root, sub, sg) do
   if (Caml_obj.caml_equal(sub, identity)) then do
     sgs;
-    try do
+    xpcall(function() do
       sgs = Hashtbl.find(prefixed_sg, root);
-    end
-    catch (exn)do
+    end end,function(exn) return do
       if (exn == Caml_builtin_exceptions.not_found) then do
         sgs$1 = do
           contents: --[[ [] ]]0
@@ -12339,13 +12282,12 @@ function prefix_idents_and_subst$1(root, sub, sg) do
         Hashtbl.add(prefixed_sg, root, sgs$1);
         sgs = sgs$1;
       end else do
-        throw exn;
+        error (exn)
       end end 
-    end
-    try do
+    end end)
+    xpcall(function() do
       return List.assq(sg, sgs.contents);
-    end
-    catch (exn$1)do
+    end end,function(exn$1) return do
       if (exn$1 == Caml_builtin_exceptions.not_found) then do
         r = prefix_idents_and_subst(root, sub, sg);
         sgs.contents = --[[ :: ]]{
@@ -12357,9 +12299,9 @@ function prefix_idents_and_subst$1(root, sub, sg) do
         };
         return r;
       end else do
-        throw exn$1;
+        error (exn$1)
       end end 
-    end
+    end end)
   end else do
     return prefix_idents_and_subst(root, sub, sg);
   end end 
@@ -12367,16 +12309,15 @@ end end
 
 function add_to_tbl(id, decl, tbl) do
   decls;
-  try do
+  xpcall(function() do
     decls = find$2(id, tbl);
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Caml_builtin_exceptions.not_found) then do
       decls = --[[ [] ]]0;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
   return add$5(id, --[[ :: ]]{
               decl,
               decls
@@ -12430,25 +12371,25 @@ end end
 
 function check_value_name(name, loc) do
   if (bs_only.contents and name == "|.") then do
-    throw {
-          __Error$2,
-          --[[ Illegal_value_name ]]Block.__(4, {
-              loc,
-              name
-            })
-        };
+    error ({
+      __Error$2,
+      --[[ Illegal_value_name ]]Block.__(4, {
+          loc,
+          name
+        })
+    })
   end
    end 
   if (#name ~= 0 and Caml_string.get(name, 0) == --[[ "#" ]]35) then do
     for i = 1 , #name - 1 | 0 , 1 do
       if (Caml_string.get(name, i) == --[[ "#" ]]35) then do
-        throw {
-              __Error$2,
-              --[[ Illegal_value_name ]]Block.__(4, {
-                  loc,
-                  name
-                })
-            };
+        error ({
+          __Error$2,
+          --[[ Illegal_value_name ]]Block.__(4, {
+              loc,
+              name
+            })
+        })
       end
        end 
     end
@@ -12954,10 +12895,9 @@ function store_cltype(slot, id, path, desc, env, renv) do
 end end
 
 function components_of_functor_appl(f, p1, p2) do
-  try do
+  xpcall(function() do
     return Hashtbl.find(f.fcomp_cache, p2);
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Caml_builtin_exceptions.not_found) then do
       p = --[[ Papply ]]Block.__(2, {
           p1,
@@ -12968,9 +12908,9 @@ function components_of_functor_appl(f, p1, p2) do
       Hashtbl.add(f.fcomp_cache, p2, comps);
       return comps;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 components_of_module$prime.contents = components_of_module;
@@ -13078,24 +13018,24 @@ function add_local_constraint(id, info, elv, env) do
               flags: env$1.flags
             end;
     end else do
-      throw {
-            Caml_builtin_exceptions.assert_failure,
-            --[[ tuple ]]{
-              "env.ml",
-              1538,
-              9
-            }
-          };
+      error ({
+        Caml_builtin_exceptions.assert_failure,
+        --[[ tuple ]]{
+          "env.ml",
+          1538,
+          9
+        }
+      })
     end end 
   end else do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "env.ml",
-            1538,
-            9
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "env.ml",
+        1538,
+        9
+      }
+    })
   end end 
 end end
 
@@ -13170,7 +13110,7 @@ function add_signature(_sg, _env) do
     if (sg) then do
       _env = add_item(sg[0], env);
       _sg = sg[1];
-      continue ;
+      ::continue:: ;
     end else do
       return env;
     end end 
@@ -13321,7 +13261,7 @@ function save_signature(sg, modname, filename) do
   new_id$1.contents = -1;
   sg$2 = signature$2(for_saving(identity), sg$1);
   oc = Pervasives.open_out_bin(filename$1);
-  try do
+  xpcall(function() do
     cmi_cmi_flags = recursive_types.contents and --[[ :: ]]{
         --[[ Rectypes ]]0,
         --[[ [] ]]0
@@ -13357,13 +13297,12 @@ function save_signature(sg, modname, filename) do
     end;
     save_pers_struct(crc, ps);
     return sg$2;
-  end
-  catch (exn)do
+  end end,function(exn) return do
     Caml_io.caml_ml_flush(oc);
     Caml_external_polyfill.resolve("caml_ml_close_channel")(oc);
     remove_file(filename$1);
-    throw exn;
-  end
+    error (exn)
+  end end)
 end end
 
 function find_all$1(proj1, proj2, f, lid, env, acc) do
@@ -14220,13 +14159,13 @@ register_error_of_exn((function (param) do
       end end));
 
 function ill_formed_ast(loc, s) do
-  throw {
-        __Error$3,
-        --[[ Ill_formed_ast ]]Block.__(6, {
-            loc,
-            s
-          })
-      };
+  error ({
+    __Error$3,
+    --[[ Ill_formed_ast ]]Block.__(6, {
+        loc,
+        s
+      })
+  })
 end end
 
 function mktyp(d) do
@@ -14506,14 +14445,14 @@ function mkexp_constraint(e, param) do
                   t2
                 }));
   end else do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "parser.mly",
-            153,
-            18
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "parser.mly",
+        153,
+        18
+      }
+    })
   end end  end 
 end end
 
@@ -14528,35 +14467,35 @@ function array_function(str, name) do
 end end
 
 function unclosed(opening_name, opening_num, closing_name, closing_num) do
-  throw {
-        __Error$3,
-        --[[ Unclosed ]]Block.__(0, {
-            rhs_loc(opening_num),
-            opening_name,
-            rhs_loc(closing_num),
-            closing_name
-          })
-      };
+  error ({
+    __Error$3,
+    --[[ Unclosed ]]Block.__(0, {
+        rhs_loc(opening_num),
+        opening_name,
+        rhs_loc(closing_num),
+        closing_name
+      })
+  })
 end end
 
 function expecting(pos, nonterm) do
-  throw {
-        __Error$3,
-        --[[ Expecting ]]Block.__(1, {
-            rhs_loc(pos),
-            nonterm
-          })
-      };
+  error ({
+    __Error$3,
+    --[[ Expecting ]]Block.__(1, {
+        rhs_loc(pos),
+        nonterm
+      })
+  })
 end end
 
 function not_expecting(pos, nonterm) do
-  throw {
-        __Error$3,
-        --[[ Not_expecting ]]Block.__(2, {
-            rhs_loc(pos),
-            nonterm
-          })
-      };
+  error ({
+    __Error$3,
+    --[[ Not_expecting ]]Block.__(2, {
+        rhs_loc(pos),
+        nonterm
+      })
+  })
 end end
 
 function bigarray_function(str, name) do
@@ -14602,13 +14541,13 @@ end end
 
 function check_variable(vl, loc, v) do
   if (List.mem(v, vl)) then do
-    throw {
-          __Error$3,
-          --[[ Variable_in_scope ]]Block.__(4, {
-              loc,
-              v
-            })
-        };
+    error ({
+      __Error$3,
+      --[[ Variable_in_scope ]]Block.__(4, {
+          loc,
+          v
+        })
+    })
   end else do
     return 0;
   end end 
@@ -14971,10 +14910,10 @@ yytransl_block = {
 
 yyact = {
   (function (param) do
-      throw {
-            Caml_builtin_exceptions.failure,
-            "parser"
-          };
+      error ({
+        Caml_builtin_exceptions.failure,
+        "parser"
+      })
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
@@ -14992,7 +14931,7 @@ yyact = {
       return Parsing.peek_val(__caml_parser_env, 1);
     end end),
   (function (__caml_parser_env) do
-      throw Caml_builtin_exceptions.end_of_file;
+      error (Caml_builtin_exceptions.end_of_file)
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
@@ -15321,13 +15260,13 @@ yyact = {
       end end 
       if (exit == 1) then do
         if (lbs.lbs_attributes ~= --[[ [] ]]0) then do
-          throw {
-                __Error$3,
-                --[[ Not_expecting ]]Block.__(2, {
-                    lbs.lbs_loc,
-                    "attributes"
-                  })
-              };
+          error ({
+            __Error$3,
+            --[[ Not_expecting ]]Block.__(2, {
+                lbs.lbs_loc,
+                "attributes"
+              })
+          })
         end
          end 
         bindings$1 = List.map((function (lb) do
@@ -15829,35 +15768,35 @@ yyact = {
       body = _3;
       bindings = List.map((function (lb) do
               if (lb.lb_attributes ~= --[[ [] ]]0) then do
-                throw {
-                      __Error$3,
-                      --[[ Not_expecting ]]Block.__(2, {
-                          lb.lb_loc,
-                          "item attribute"
-                        })
-                    };
+                error ({
+                  __Error$3,
+                  --[[ Not_expecting ]]Block.__(2, {
+                      lb.lb_loc,
+                      "item attribute"
+                    })
+                })
               end
                end 
               return mk$17(lb.lb_loc, undefined, undefined, undefined, lb.lb_pattern, lb.lb_expression);
             end end), lbs.lbs_bindings);
       if (lbs.lbs_extension ~= undefined) then do
-        throw {
-              __Error$3,
-              --[[ Not_expecting ]]Block.__(2, {
-                  lbs.lbs_loc,
-                  "extension"
-                })
-            };
+        error ({
+          __Error$3,
+          --[[ Not_expecting ]]Block.__(2, {
+              lbs.lbs_loc,
+              "extension"
+            })
+        })
       end
        end 
       if (lbs.lbs_attributes ~= --[[ [] ]]0) then do
-        throw {
-              __Error$3,
-              --[[ Not_expecting ]]Block.__(2, {
-                  lbs.lbs_loc,
-                  "attributes"
-                })
-            };
+        error ({
+          __Error$3,
+          --[[ Not_expecting ]]Block.__(2, {
+              lbs.lbs_loc,
+              "attributes"
+            })
+        })
       end
        end 
       return mkclass(--[[ Pcl_let ]]Block.__(4, {
@@ -16009,7 +15948,7 @@ yyact = {
       _4 = Parsing.peek_val(__caml_parser_env, 2);
       _6 = Parsing.peek_val(__caml_parser_env, 0);
       if (_1 == --[[ Override ]]0) then do
-        throw Escape_error;
+        error (Escape_error)
       end
        end 
       return --[[ tuple ]]{
@@ -16075,7 +16014,7 @@ yyact = {
       _4 = Parsing.peek_val(__caml_parser_env, 2);
       _6 = Parsing.peek_val(__caml_parser_env, 0);
       if (_1 == --[[ Override ]]0) then do
-        throw Escape_error;
+        error (Escape_error)
       end
        end 
       return --[[ tuple ]]{
@@ -16093,7 +16032,7 @@ yyact = {
       _4 = Parsing.peek_val(__caml_parser_env, 2);
       _6 = Parsing.peek_val(__caml_parser_env, 0);
       if (_1 == --[[ Override ]]0) then do
-        throw Escape_error;
+        error (Escape_error)
       end
        end 
       return --[[ tuple ]]{
@@ -16586,13 +16525,13 @@ yyact = {
       body = _3;
       bindings = List.map((function (lb) do
               if (lb.lb_attributes ~= --[[ [] ]]0) then do
-                throw {
-                      __Error$3,
-                      --[[ Not_expecting ]]Block.__(2, {
-                          lb.lb_loc,
-                          "item attribute"
-                        })
-                    };
+                error ({
+                  __Error$3,
+                  --[[ Not_expecting ]]Block.__(2, {
+                      lb.lb_loc,
+                      "item attribute"
+                    })
+                })
               end
                end 
               return mk$17(lb.lb_loc, undefined, undefined, undefined, lb.lb_pattern, lb.lb_expression);
@@ -16695,7 +16634,7 @@ yyact = {
   (function (__caml_parser_env) do
       Parsing.peek_val(__caml_parser_env, 3);
       Parsing.peek_val(__caml_parser_env, 2);
-      throw Escape_error;
+      error (Escape_error)
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
@@ -18097,10 +18036,10 @@ yyact = {
             };
     end end),
   (function (__caml_parser_env) do
-      throw Escape_error;
+      error (Escape_error)
     end end),
   (function (__caml_parser_env) do
-      throw Escape_error;
+      error (Escape_error)
     end end),
   (function (__caml_parser_env) do
       return Parsing.peek_val(__caml_parser_env, 0);
@@ -19152,12 +19091,12 @@ yyact = {
       _2 = Parsing.peek_val(__caml_parser_env, 1);
       if (_2) then do
         if (_2[1]) then do
-          throw Parsing.Parse_error;
+          error (Parsing.Parse_error)
         end
          end 
         return _2[0];
       end else do
-        throw Parsing.Parse_error;
+        error (Parsing.Parse_error)
       end end 
     end end),
   (function (__caml_parser_env) do
@@ -19167,12 +19106,12 @@ yyact = {
       _2 = Parsing.peek_val(__caml_parser_env, 1);
       if (_2) then do
         if (_2[1]) then do
-          throw Parsing.Parse_error;
+          error (Parsing.Parse_error)
         end
          end 
         return _2[0];
       end else do
-        throw Parsing.Parse_error;
+        error (Parsing.Parse_error)
       end end 
     end end),
   (function (__caml_parser_env) do
@@ -19840,10 +19779,10 @@ yyact = {
                   p2
                 });
       end else do
-        throw {
-              __Error$3,
-              --[[ Applicative_path ]]Block.__(3, {symbol_rloc(--[[ () ]]0)})
-            };
+        error ({
+          __Error$3,
+          --[[ Applicative_path ]]Block.__(3, {symbol_rloc(--[[ () ]]0)})
+        })
       end end 
     end end),
   (function (__caml_parser_env) do
@@ -20310,46 +20249,46 @@ yyact = {
               });
     end end),
   (function (__caml_parser_env) do
-      throw {
-            Parsing.YYexit,
-            Parsing.peek_val(__caml_parser_env, 0)
-          };
+      error ({
+        Parsing.YYexit,
+        Parsing.peek_val(__caml_parser_env, 0)
+      })
     end end),
   (function (__caml_parser_env) do
-      throw {
-            Parsing.YYexit,
-            Parsing.peek_val(__caml_parser_env, 0)
-          };
+      error ({
+        Parsing.YYexit,
+        Parsing.peek_val(__caml_parser_env, 0)
+      })
     end end),
   (function (__caml_parser_env) do
-      throw {
-            Parsing.YYexit,
-            Parsing.peek_val(__caml_parser_env, 0)
-          };
+      error ({
+        Parsing.YYexit,
+        Parsing.peek_val(__caml_parser_env, 0)
+      })
     end end),
   (function (__caml_parser_env) do
-      throw {
-            Parsing.YYexit,
-            Parsing.peek_val(__caml_parser_env, 0)
-          };
+      error ({
+        Parsing.YYexit,
+        Parsing.peek_val(__caml_parser_env, 0)
+      })
     end end),
   (function (__caml_parser_env) do
-      throw {
-            Parsing.YYexit,
-            Parsing.peek_val(__caml_parser_env, 0)
-          };
+      error ({
+        Parsing.YYexit,
+        Parsing.peek_val(__caml_parser_env, 0)
+      })
     end end),
   (function (__caml_parser_env) do
-      throw {
-            Parsing.YYexit,
-            Parsing.peek_val(__caml_parser_env, 0)
-          };
+      error ({
+        Parsing.YYexit,
+        Parsing.peek_val(__caml_parser_env, 0)
+      })
     end end),
   (function (__caml_parser_env) do
-      throw {
-            Parsing.YYexit,
-            Parsing.peek_val(__caml_parser_env, 0)
-          };
+      error ({
+        Parsing.YYexit,
+        Parsing.peek_val(__caml_parser_env, 0)
+      })
     end end)
 };
 
@@ -20420,14 +20359,14 @@ function assert_same_type(lexbuf, x, y) do
   lhs = type_of_directive(x);
   rhs = type_of_directive(y);
   if (lhs ~= rhs) then do
-    throw {
-          __Error$4,
-          --[[ Conditional_expr_expected_type ]]Block.__(7, {
-              lhs,
-              rhs
-            }),
-          curr(lexbuf)
-        };
+    error ({
+      __Error$4,
+      --[[ Conditional_expr_expected_type ]]Block.__(7, {
+          lhs,
+          rhs
+        }),
+      curr(lexbuf)
+    })
   end
    end 
   return y;
@@ -20443,17 +20382,16 @@ exit = 0;
 
 i;
 
-try do
+xpcall(function() do
   i = __String.rindex(Sys.ocaml_version, --[[ "+" ]]43);
   exit = 1;
-end
-catch (exn$1)do
+end end,function(exn$1) return do
   if (exn$1 == Caml_builtin_exceptions.not_found) then do
     tmp = "";
   end else do
-    throw exn$1;
+    error (exn$1)
   end end 
-end
+end end)
 
 if (exit == 1) then do
   tmp = __String.sub(Sys.ocaml_version, i + 1 | 0, (#Sys.ocaml_version - i | 0) - 1 | 0);
@@ -20487,7 +20425,7 @@ function semantic_version_parse(str, start, last_index) do
           if (v >= 0 and v <= 9) then do
             _acc = Caml_int32.imul(acc, 10) + v | 0;
             _start = start + 1 | 0;
-            continue ;
+            ::continue:: ;
           end else do
             return --[[ tuple ]]{
                     acc,
@@ -20520,18 +20458,16 @@ end end
 
 function defined(str) do
   val;
-  try do
+  xpcall(function() do
     val = Hashtbl.find(directive_built_in_values, str);
-  end
-  catch (exn)do
-    try do
+  end end,function(exn) return do
+    xpcall(function() do
       Caml_sys.caml_sys_getenv(str);
       return true;
-    end
-    catch (exn$1)do
+    end end,function(exn$1) return do
       return false;
-    end
-  end
+    end end)
+  end end)
   if (typeof val == "number") then do
     return false;
   end else do
@@ -20541,47 +20477,42 @@ end end
 
 function query(loc, str) do
   v;
-  try do
+  xpcall(function() do
     v = Hashtbl.find(directive_built_in_values, str);
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Caml_builtin_exceptions.not_found) then do
       exit = 0;
       v$1;
-      try do
+      xpcall(function() do
         v$1 = Caml_sys.caml_sys_getenv(str);
         exit = 2;
-      end
-      catch (exn$1)do
+      end end,function(exn$1) return do
         if (exn$1 == Caml_builtin_exceptions.not_found) then do
           return --[[ Dir_bool ]]Block.__(0, {false});
         end else do
-          throw exn$1;
+          error (exn$1)
         end end 
-      end
+      end end)
       if (exit == 2) then do
-        try do
+        xpcall(function() do
           return --[[ Dir_bool ]]Block.__(0, {Pervasives.bool_of_string(v$1)});
-        end
-        catch (exn$2)do
-          try do
+        end end,function(exn$2) return do
+          xpcall(function() do
             return --[[ Dir_int ]]Block.__(2, {Caml_format.caml_int_of_string(v$1)});
-          end
-          catch (exn$3)do
-            try do
+          end end,function(exn$3) return do
+            xpcall(function() do
               return --[[ Dir_float ]]Block.__(1, {Caml_format.caml_float_of_string(v$1)});
-            end
-            catch (exn$4)do
+            end end,function(exn$4) return do
               return --[[ Dir_string ]]Block.__(3, {v$1});
-            end
-          end
-        end
+            end end)
+          end end)
+        end end)
       end
        end 
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
   if (typeof v == "number") then do
     return --[[ Dir_bool ]]Block.__(0, {false});
   end else do
@@ -20599,11 +20530,11 @@ function value_of_token(loc, t) do
           return --[[ Dir_bool ]]Block.__(0, {true});end end end 
        do
       else do
-        throw {
-              __Error$4,
-              --[[ Unexpected_token_in_conditional ]]4,
-              loc
-            };
+        error ({
+          __Error$4,
+          --[[ Unexpected_token_in_conditional ]]4,
+          loc
+        })
         end end
         
     end
@@ -20620,11 +20551,11 @@ function value_of_token(loc, t) do
           return query(loc, t[0]);end end end 
        do
       else do
-        throw {
-              __Error$4,
-              --[[ Unexpected_token_in_conditional ]]4,
-              loc
-            };
+        error ({
+          __Error$4,
+          --[[ Unexpected_token_in_conditional ]]4,
+          loc
+        })
         end end
         
     end
@@ -20648,14 +20579,14 @@ function directive_parse(token_with_comments, lexbuf) do
           local ___conditional___=(t);
           do
              if ___conditional___ = 25--[[ EOF ]] then do
-                throw {
-                      __Error$4,
-                      --[[ Unterminated_if ]]2,
-                      curr(lexbuf)
-                    };end end end 
+                error ({
+                  __Error$4,
+                  --[[ Unterminated_if ]]2,
+                  curr(lexbuf)
+                })end end end 
              if ___conditional___ = 100--[[ EOL ]] then do
                 _param = --[[ () ]]0;
-                continue ;end end end 
+                ::continue:: ;end end end 
              do
             else do
               return t;
@@ -20668,7 +20599,7 @@ function directive_parse(token_with_comments, lexbuf) do
              if ___conditional___ = 18--[[ COMMENT ]]
              or ___conditional___ = 19--[[ DOCSTRING ]] then do
                 _param = --[[ () ]]0;
-                continue ;end end end 
+                ::continue:: ;end end end 
              do
             else do
               return t;
@@ -20681,14 +20612,14 @@ function directive_parse(token_with_comments, lexbuf) do
   end end;
   push = function (e) do
     if (look_ahead.contents ~= undefined) then do
-      throw {
-            Caml_builtin_exceptions.assert_failure,
-            --[[ tuple ]]{
-              "lexer.mll",
-              312,
-              4
-            }
-          };
+      error ({
+        Caml_builtin_exceptions.assert_failure,
+        --[[ tuple ]]{
+          "lexer.mll",
+          312,
+          4
+        }
+      })
     end
      end 
     look_ahead.contents = e;
@@ -20727,11 +20658,11 @@ function directive_parse(token_with_comments, lexbuf) do
                   str = rhs[0];
                   last_index = #str - 1 | 0;
                   if (last_index < 0) then do
-                    throw {
-                          __Error$4,
-                          --[[ Illegal_semver ]]Block.__(6, {str}),
-                          loc
-                        };
+                    error ({
+                      __Error$4,
+                      --[[ Illegal_semver ]]Block.__(6, {str}),
+                      loc
+                    })
                   end
                    end 
                   v = str.charCodeAt(0);
@@ -20752,11 +20683,11 @@ function directive_parse(token_with_comments, lexbuf) do
                       do
                          if ___conditional___ = 0 then do
                             if (last_index == 0) then do
-                              throw {
-                                    __Error$4,
-                                    --[[ Illegal_semver ]]Block.__(6, {str}),
-                                    loc
-                                  };
+                              error ({
+                                __Error$4,
+                                --[[ Illegal_semver ]]Block.__(6, {str}),
+                                loc
+                              })
                             end
                              end 
                             match = str[1] == "=" and --[[ tuple ]]{
@@ -20770,11 +20701,11 @@ function directive_parse(token_with_comments, lexbuf) do
                             exit$2 = 1;end else 
                          if ___conditional___ = 2 then do
                             if (last_index == 0) then do
-                              throw {
-                                    __Error$4,
-                                    --[[ Illegal_semver ]]Block.__(6, {str}),
-                                    loc
-                                  };
+                              error ({
+                                __Error$4,
+                                --[[ Illegal_semver ]]Block.__(6, {str}),
+                                loc
+                              })
                             end
                              end 
                             match = str[1] == "=" and --[[ tuple ]]{
@@ -20834,26 +20765,26 @@ function directive_parse(token_with_comments, lexbuf) do
                   end end  end 
                 end end 
                 if (exit$1 == 3) then do
-                  throw {
-                        __Error$4,
-                        --[[ Conditional_expr_expected_type ]]Block.__(7, {
-                            --[[ Dir_type_string ]]3,
-                            type_of_directive(lhs)
-                          }),
-                        curr(lexbuf)
-                      };
-                end
-                 end 
-              end
-               end 
-              throw {
+                  error ({
                     __Error$4,
                     --[[ Conditional_expr_expected_type ]]Block.__(7, {
                         --[[ Dir_type_string ]]3,
                         type_of_directive(lhs)
                       }),
                     curr(lexbuf)
-                  };
+                  })
+                end
+                 end 
+              end
+               end 
+              error ({
+                __Error$4,
+                --[[ Conditional_expr_expected_type ]]Block.__(7, {
+                    --[[ Dir_type_string ]]3,
+                    type_of_directive(lhs)
+                  }),
+                curr(lexbuf)
+              })
             end else do
               return true;
             end end end else 
@@ -20905,14 +20836,14 @@ function directive_parse(token_with_comments, lexbuf) do
         exit$3 = 2;
       end end  end 
       if (exit$3 == 2) then do
-        throw {
-              Caml_builtin_exceptions.assert_failure,
-              --[[ tuple ]]{
-                "lexer.mll",
-                331,
-                17
-              }
-            };
+        error ({
+          Caml_builtin_exceptions.assert_failure,
+          --[[ tuple ]]{
+            "lexer.mll",
+            331,
+            17
+          }
+        })
       end
        end 
       curr_loc$1 = curr(lexbuf);
@@ -20953,30 +20884,30 @@ function directive_parse(token_with_comments, lexbuf) do
             match = token(--[[ () ]]0);
             if (typeof match == "number") then do
               if (match ~= 81) then do
-                throw {
-                      __Error$4,
-                      --[[ Unterminated_paren_in_conditional ]]1,
-                      curr(lexbuf)
-                    };
+                error ({
+                  __Error$4,
+                  --[[ Unterminated_paren_in_conditional ]]1,
+                  curr(lexbuf)
+                })
               end
                end 
               return v;
             end else do
-              throw {
-                    __Error$4,
-                    --[[ Unterminated_paren_in_conditional ]]1,
-                    curr(lexbuf)
-                  };
+              error ({
+                __Error$4,
+                --[[ Unterminated_paren_in_conditional ]]1,
+                curr(lexbuf)
+              })
             end end end end end 
          if ___conditional___ = 91--[[ TRUE ]] then do
             return true;end end end 
          do
         else do
-          throw {
-                __Error$4,
-                --[[ Unexpected_token_in_conditional ]]4,
-                curr_loc
-              };
+          error ({
+            __Error$4,
+            --[[ Unexpected_token_in_conditional ]]4,
+            curr_loc
+          })
           end end
           
       end
@@ -20985,25 +20916,25 @@ function directive_parse(token_with_comments, lexbuf) do
       do
          if ___conditional___ = 1--[[ FLOAT ]] then do
             return token_op(calc, (function (e) do
-                          throw {
-                                __Error$4,
-                                --[[ Conditional_expr_expected_type ]]Block.__(7, {
-                                    --[[ Dir_type_bool ]]0,
-                                    --[[ Dir_type_float ]]1
-                                  }),
-                                curr_loc
-                              };
+                          error ({
+                            __Error$4,
+                            --[[ Conditional_expr_expected_type ]]Block.__(7, {
+                                --[[ Dir_type_bool ]]0,
+                                --[[ Dir_type_float ]]1
+                              }),
+                            curr_loc
+                          })
                         end end), --[[ Dir_float ]]Block.__(1, {Caml_format.caml_float_of_string(curr_token[0])}));end end end 
          if ___conditional___ = 7--[[ INT ]] then do
             return token_op(calc, (function (e) do
-                          throw {
-                                __Error$4,
-                                --[[ Conditional_expr_expected_type ]]Block.__(7, {
-                                    --[[ Dir_type_bool ]]0,
-                                    --[[ Dir_type_int ]]2
-                                  }),
-                                curr_loc
-                              };
+                          error ({
+                            __Error$4,
+                            --[[ Conditional_expr_expected_type ]]Block.__(7, {
+                                --[[ Dir_type_bool ]]0,
+                                --[[ Dir_type_int ]]2
+                              }),
+                            curr_loc
+                          })
                         end end), --[[ Dir_int ]]Block.__(2, {curr_token[0]}));end end end 
          if ___conditional___ = 11--[[ LIDENT ]] then do
             r = curr_token[0];
@@ -21013,22 +20944,22 @@ function directive_parse(token_with_comments, lexbuf) do
                or ___conditional___ = "undefined"
                do end
               else do
-                throw {
-                      __Error$4,
-                      --[[ Unexpected_token_in_conditional ]]4,
-                      curr_loc
-                    };
+                error ({
+                  __Error$4,
+                  --[[ Unexpected_token_in_conditional ]]4,
+                  curr_loc
+                })
                 end end
                 
             end
             t = token(--[[ () ]]0);
             loc = curr(lexbuf);
             if (typeof t == "number") then do
-              throw {
-                    __Error$4,
-                    --[[ Unexpected_token_in_conditional ]]4,
-                    loc
-                  };
+              error ({
+                __Error$4,
+                --[[ Unexpected_token_in_conditional ]]4,
+                loc
+              })
             end else if (t.tag == --[[ UIDENT ]]17) then do
               s = t[0];
               if (calc) then do
@@ -21041,22 +20972,22 @@ function directive_parse(token_with_comments, lexbuf) do
                 return true;
               end end 
             end else do
-              throw {
-                    __Error$4,
-                    --[[ Unexpected_token_in_conditional ]]4,
-                    loc
-                  };
+              error ({
+                __Error$4,
+                --[[ Unexpected_token_in_conditional ]]4,
+                loc
+              })
             end end  end end else 
          if ___conditional___ = 16--[[ STRING ]] then do
             return token_op(calc, (function (e) do
-                          throw {
-                                __Error$4,
-                                --[[ Conditional_expr_expected_type ]]Block.__(7, {
-                                    --[[ Dir_type_bool ]]0,
-                                    --[[ Dir_type_string ]]3
-                                  }),
-                                curr_loc
-                              };
+                          error ({
+                            __Error$4,
+                            --[[ Conditional_expr_expected_type ]]Block.__(7, {
+                                --[[ Dir_type_bool ]]0,
+                                --[[ Dir_type_string ]]3
+                              }),
+                            curr_loc
+                          })
                         end end), --[[ Dir_string ]]Block.__(3, {curr_token[0][0]}));end end end 
          if ___conditional___ = 17--[[ UIDENT ]] then do
             value_v = query(curr_loc, curr_token[0]);
@@ -21067,22 +20998,22 @@ function directive_parse(token_with_comments, lexbuf) do
                           end
                            end 
                           ty = type_of_directive(value_v);
-                          throw {
-                                __Error$4,
-                                --[[ Conditional_expr_expected_type ]]Block.__(7, {
-                                    --[[ Dir_type_bool ]]0,
-                                    ty
-                                  }),
-                                curr_loc
-                              };
+                          error ({
+                            __Error$4,
+                            --[[ Conditional_expr_expected_type ]]Block.__(7, {
+                                --[[ Dir_type_bool ]]0,
+                                ty
+                              }),
+                            curr_loc
+                          })
                         end end), value_v);end end end 
          do
         else do
-          throw {
-                __Error$4,
-                --[[ Unexpected_token_in_conditional ]]4,
-                curr_loc
-              };
+          error ({
+            __Error$4,
+            --[[ Unexpected_token_in_conditional ]]4,
+            curr_loc
+          })
           end end
           
       end
@@ -21107,20 +21038,20 @@ function directive_parse(token_with_comments, lexbuf) do
   match = token(--[[ () ]]0);
   if (typeof match == "number") then do
     if (match ~= 88) then do
-      throw {
-            __Error$4,
-            --[[ Expect_hash_then_in_conditional ]]5,
-            curr(lexbuf)
-          };
+      error ({
+        __Error$4,
+        --[[ Expect_hash_then_in_conditional ]]5,
+        curr(lexbuf)
+      })
     end
      end 
     return v;
   end else do
-    throw {
-          __Error$4,
-          --[[ Expect_hash_then_in_conditional ]]5,
-          curr(lexbuf)
-        };
+    error ({
+      __Error$4,
+      --[[ Expect_hash_then_in_conditional ]]5,
+      curr(lexbuf)
+    })
   end end 
 end end
 
@@ -21594,11 +21525,11 @@ function char_for_decimal_code(lexbuf, i) do
     if (comment_start_loc.contents ~= --[[ [] ]]0) then do
       return --[[ "x" ]]120;
     end else do
-      throw {
-            __Error$4,
-            --[[ Illegal_escape ]]Block.__(1, {Lexing.lexeme(lexbuf)}),
-            curr(lexbuf)
-          };
+      error ({
+        __Error$4,
+        --[[ Illegal_escape ]]Block.__(1, {Lexing.lexeme(lexbuf)}),
+        curr(lexbuf)
+      })
     end end 
   end else do
     return Char.chr(c);
@@ -21653,10 +21584,10 @@ function remove_underscores(s) do
         b[dst] = c;
         _dst = dst + 1 | 0;
         _src = src + 1 | 0;
-        continue ;
+        ::continue:: ;
       end else do
         _src = src + 1 | 0;
-        continue ;
+        ::continue:: ;
       end end 
     end end 
   end;
@@ -21666,11 +21597,11 @@ function get_label_name(lexbuf) do
   s = Lexing.lexeme(lexbuf);
   name = __String.sub(s, 1, #s - 2 | 0);
   if (Hashtbl.mem(keyword_table, name)) then do
-    throw {
-          __Error$4,
-          --[[ Keyword_as_label ]]Block.__(4, {name}),
-          curr(lexbuf)
-        };
+    error ({
+      __Error$4,
+      --[[ Keyword_as_label ]]Block.__(4, {name}),
+      curr(lexbuf)
+    })
   end
    end 
   return name;
@@ -21925,11 +21856,11 @@ function token(lexbuf) do
     do
        if ___conditional___ = 0 then do
           if (not escaped_newlines.contents) then do
-            throw {
-                  __Error$4,
-                  --[[ Illegal_character ]]Block.__(0, {Lexing.lexeme_char(lexbuf$1, 0)}),
-                  curr(lexbuf$1)
-                };
+            error ({
+              __Error$4,
+              --[[ Illegal_character ]]Block.__(0, {Lexing.lexeme_char(lexbuf$1, 0)}),
+              curr(lexbuf$1)
+            })
           end
            end 
           update_loc(lexbuf$1, undefined, 1, false, 0);
@@ -21957,16 +21888,15 @@ function token(lexbuf) do
           return --[[ OPTLABEL ]]Block.__(13, {get_label_name(lexbuf$1)});end end end 
        if ___conditional___ = 10 then do
           s = Lexing.lexeme(lexbuf$1);
-          try do
+          xpcall(function() do
             return Hashtbl.find(keyword_table, s);
-          end
-          catch (exn)do
+          end end,function(exn) return do
             if (exn == Caml_builtin_exceptions.not_found) then do
               return --[[ LIDENT ]]Block.__(11, {s});
             end else do
-              throw exn;
+              error (exn)
             end end 
-          endend end end 
+          end end)end end end 
        if ___conditional___ = 11 then do
           prerr_warning(curr(lexbuf$1), --[[ Deprecated ]]Block.__(0, {"ISO-Latin1 characters in identifiers"}));
           return --[[ LIDENT ]]Block.__(11, {Lexing.lexeme(lexbuf$1)});end end end 
@@ -21976,71 +21906,67 @@ function token(lexbuf) do
           prerr_warning(curr(lexbuf$1), --[[ Deprecated ]]Block.__(0, {"ISO-Latin1 characters in identifiers"}));
           return --[[ UIDENT ]]Block.__(17, {Lexing.lexeme(lexbuf$1)});end end end 
        if ___conditional___ = 14 then do
-          try do
+          xpcall(function() do
             return --[[ INT ]]Block.__(7, {cvt_int_literal(Lexing.lexeme(lexbuf$1))});
-          end
-          catch (raw_exn)do
+          end end,function(raw_exn) return do
             exn$1 = Caml_js_exceptions.internalToOCamlException(raw_exn);
             if (exn$1[0] == Caml_builtin_exceptions.failure) then do
-              throw {
-                    __Error$4,
-                    --[[ Literal_overflow ]]Block.__(5, {"int"}),
-                    curr(lexbuf$1)
-                  };
+              error ({
+                __Error$4,
+                --[[ Literal_overflow ]]Block.__(5, {"int"}),
+                curr(lexbuf$1)
+              })
             end
              end 
-            throw exn$1;
-          endend end end 
+            error (exn$1)
+          end end)end end end 
        if ___conditional___ = 15 then do
           return --[[ FLOAT ]]Block.__(1, {remove_underscores(Lexing.lexeme(lexbuf$1))});end end end 
        if ___conditional___ = 16 then do
-          try do
+          xpcall(function() do
             return --[[ INT32 ]]Block.__(8, {cvt_int32_literal(Lexing.lexeme(lexbuf$1))});
-          end
-          catch (raw_exn$1)do
+          end end,function(raw_exn$1) return do
             exn$2 = Caml_js_exceptions.internalToOCamlException(raw_exn$1);
             if (exn$2[0] == Caml_builtin_exceptions.failure) then do
-              throw {
-                    __Error$4,
-                    --[[ Literal_overflow ]]Block.__(5, {"int32"}),
-                    curr(lexbuf$1)
-                  };
+              error ({
+                __Error$4,
+                --[[ Literal_overflow ]]Block.__(5, {"int32"}),
+                curr(lexbuf$1)
+              })
             end
              end 
-            throw exn$2;
-          endend end end 
+            error (exn$2)
+          end end)end end end 
        if ___conditional___ = 17 then do
-          try do
+          xpcall(function() do
             return --[[ INT64 ]]Block.__(9, {cvt_int64_literal(Lexing.lexeme(lexbuf$1))});
-          end
-          catch (raw_exn$2)do
+          end end,function(raw_exn$2) return do
             exn$3 = Caml_js_exceptions.internalToOCamlException(raw_exn$2);
             if (exn$3[0] == Caml_builtin_exceptions.failure) then do
-              throw {
-                    __Error$4,
-                    --[[ Literal_overflow ]]Block.__(5, {"int64"}),
-                    curr(lexbuf$1)
-                  };
+              error ({
+                __Error$4,
+                --[[ Literal_overflow ]]Block.__(5, {"int64"}),
+                curr(lexbuf$1)
+              })
             end
              end 
-            throw exn$3;
-          endend end end 
+            error (exn$3)
+          end end)end end end 
        if ___conditional___ = 18 then do
-          try do
+          xpcall(function() do
             return --[[ NATIVEINT ]]Block.__(12, {cvt_nativeint_literal(Lexing.lexeme(lexbuf$1))});
-          end
-          catch (raw_exn$3)do
+          end end,function(raw_exn$3) return do
             exn$4 = Caml_js_exceptions.internalToOCamlException(raw_exn$3);
             if (exn$4[0] == Caml_builtin_exceptions.failure) then do
-              throw {
-                    __Error$4,
-                    --[[ Literal_overflow ]]Block.__(5, {"nativeint"}),
-                    curr(lexbuf$1)
-                  };
+              error ({
+                __Error$4,
+                --[[ Literal_overflow ]]Block.__(5, {"nativeint"}),
+                curr(lexbuf$1)
+              })
             end
              end 
-            throw exn$4;
-          endend end end 
+            error (exn$4)
+          end end)end end end 
        if ___conditional___ = 19 then do
           reset_string_buffer(--[[ () ]]0);
           is_in_string.contents = true;
@@ -22081,11 +22007,11 @@ function token(lexbuf) do
        if ___conditional___ = 26 then do
           l = Lexing.lexeme(lexbuf$1);
           esc = __String.sub(l, 1, #l - 1 | 0);
-          throw {
-                __Error$4,
-                --[[ Illegal_escape ]]Block.__(1, {esc}),
-                curr(lexbuf$1)
-              };end end end 
+          error ({
+            __Error$4,
+            --[[ Illegal_escape ]]Block.__(1, {esc}),
+            curr(lexbuf$1)
+          })end end end 
        if ___conditional___ = 27 then do
           match = with_comment_buffer(comment, lexbuf$1);
           return --[[ COMMENT ]]Block.__(18, {--[[ tuple ]]{
@@ -22254,32 +22180,32 @@ function token(lexbuf) do
        if ___conditional___ = 90 then do
           if (if_then_else.contents ~= --[[ Dir_out ]]2) then do
             if (if_then_else.contents == --[[ Dir_if_true ]]0) then do
-              throw {
-                    __Error$4,
-                    --[[ Unterminated_if ]]2,
-                    curr(lexbuf$1)
-                  };
+              error ({
+                __Error$4,
+                --[[ Unterminated_if ]]2,
+                curr(lexbuf$1)
+              })
             end
              end 
-            throw {
-                  __Error$4,
-                  --[[ Unterminated_else ]]3,
-                  curr(lexbuf$1)
-                };
+            error ({
+              __Error$4,
+              --[[ Unterminated_else ]]3,
+              curr(lexbuf$1)
+            })
           end else do
             return --[[ EOF ]]25;
           end end end end end 
        if ___conditional___ = 91 then do
-          throw {
-                __Error$4,
-                --[[ Illegal_character ]]Block.__(0, {Lexing.lexeme_char(lexbuf$1, 0)}),
-                curr(lexbuf$1)
-              };end end end 
+          error ({
+            __Error$4,
+            --[[ Illegal_character ]]Block.__(0, {Lexing.lexeme_char(lexbuf$1, 0)}),
+            curr(lexbuf$1)
+          })end end end 
        do
       else do
         Curry._1(lexbuf$1.refill_buff, lexbuf$1);
         ___ocaml_lex_state = __ocaml_lex_state$1;
-        continue ;
+        ::continue:: ;
         end end
         
     end
@@ -22296,14 +22222,14 @@ function __ocaml_lex_quoted_string_rec(delim, lexbuf, ___ocaml_lex_state) do
           update_loc(lexbuf, undefined, 1, false, 0);
           store_string(Lexing.lexeme(lexbuf));
           ___ocaml_lex_state = 183;
-          continue ;end end end 
+          ::continue:: ;end end end 
        if ___conditional___ = 1 then do
           is_in_string.contents = false;
-          throw {
-                __Error$4,
-                --[[ Unterminated_string ]]0,
-                string_start_loc.contents
-              };end end end 
+          error ({
+            __Error$4,
+            --[[ Unterminated_string ]]0,
+            string_start_loc.contents
+          })end end end 
        if ___conditional___ = 2 then do
           edelim = Lexing.lexeme(lexbuf);
           edelim$1 = __String.sub(edelim, 1, #edelim - 2 | 0);
@@ -22312,17 +22238,17 @@ function __ocaml_lex_quoted_string_rec(delim, lexbuf, ___ocaml_lex_state) do
           end else do
             store_string(Lexing.lexeme(lexbuf));
             ___ocaml_lex_state = 183;
-            continue ;
+            ::continue:: ;
           end end end end end 
        if ___conditional___ = 3 then do
           store_string_char(Lexing.lexeme_char(lexbuf, 0));
           ___ocaml_lex_state = 183;
-          continue ;end end end 
+          ::continue:: ;end end end 
        do
       else do
         Curry._1(lexbuf.refill_buff, lexbuf);
         ___ocaml_lex_state = __ocaml_lex_state$1;
-        continue ;
+        ::continue:: ;
         end end
         
     end
@@ -22342,7 +22268,7 @@ function __ocaml_lex_comment_rec(lexbuf, ___ocaml_lex_state) do
           };
           store_string(Lexing.lexeme(lexbuf));
           ___ocaml_lex_state = 132;
-          continue ;end end end 
+          ::continue:: ;end end end 
        if ___conditional___ = 1 then do
           match = comment_start_loc.contents;
           if (match) then do
@@ -22351,153 +22277,151 @@ function __ocaml_lex_comment_rec(lexbuf, ___ocaml_lex_state) do
               comment_start_loc.contents = l;
               store_string(Lexing.lexeme(lexbuf));
               ___ocaml_lex_state = 132;
-              continue ;
+              ::continue:: ;
             end else do
               comment_start_loc.contents = --[[ [] ]]0;
               return curr(lexbuf);
             end end 
           end else do
-            throw {
-                  Caml_builtin_exceptions.assert_failure,
-                  --[[ tuple ]]{
-                    "lexer.mll",
-                    989,
-                    16
-                  }
-                };
+            error ({
+              Caml_builtin_exceptions.assert_failure,
+              --[[ tuple ]]{
+                "lexer.mll",
+                989,
+                16
+              }
+            })
           end end end end end 
        if ___conditional___ = 2 then do
           string_start_loc.contents = curr(lexbuf);
           store_string_char(--[[ "\"" ]]34);
           is_in_string.contents = true;
-          try do
+          xpcall(function() do
             string(lexbuf);
-          end
-          catch (raw_exn)do
+          end end,function(raw_exn) return do
             exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
             if (exn[0] == __Error$4) then do
               match$1 = exn[1];
               if (typeof match$1 == "number") then do
                 if (match$1 ~= 0) then do
-                  throw exn;
+                  error (exn)
                 end
                  end 
                 match$2 = comment_start_loc.contents;
                 if (match$2) then do
                   start = List.hd(List.rev(comment_start_loc.contents));
                   comment_start_loc.contents = --[[ [] ]]0;
-                  throw {
-                        __Error$4,
-                        --[[ Unterminated_string_in_comment ]]Block.__(3, {
-                            start,
-                            exn[2]
-                          }),
-                        match$2[0]
-                      };
+                  error ({
+                    __Error$4,
+                    --[[ Unterminated_string_in_comment ]]Block.__(3, {
+                        start,
+                        exn[2]
+                      }),
+                    match$2[0]
+                  })
                 end else do
-                  throw {
-                        Caml_builtin_exceptions.assert_failure,
-                        --[[ tuple ]]{
-                          "lexer.mll",
-                          1003,
-                          18
-                        }
-                      };
+                  error ({
+                    Caml_builtin_exceptions.assert_failure,
+                    --[[ tuple ]]{
+                      "lexer.mll",
+                      1003,
+                      18
+                    }
+                  })
                 end end 
               end else do
-                throw exn;
+                error (exn)
               end end 
             end else do
-              throw exn;
+              error (exn)
             end end 
-          end
+          end end)
           is_in_string.contents = false;
           store_string_char(--[[ "\"" ]]34);
           ___ocaml_lex_state = 132;
-          continue ;end end end 
+          ::continue:: ;end end end 
        if ___conditional___ = 3 then do
           delim = Lexing.lexeme(lexbuf);
           delim$1 = __String.sub(delim, 1, #delim - 2 | 0);
           string_start_loc.contents = curr(lexbuf);
           store_string(Lexing.lexeme(lexbuf));
           is_in_string.contents = true;
-          try do
+          xpcall(function() do
             __ocaml_lex_quoted_string_rec(delim$1, lexbuf, 183);
-          end
-          catch (raw_exn$1)do
+          end end,function(raw_exn$1) return do
             exn$1 = Caml_js_exceptions.internalToOCamlException(raw_exn$1);
             if (exn$1[0] == __Error$4) then do
               match$3 = exn$1[1];
               if (typeof match$3 == "number") then do
                 if (match$3 ~= 0) then do
-                  throw exn$1;
+                  error (exn$1)
                 end
                  end 
                 match$4 = comment_start_loc.contents;
                 if (match$4) then do
                   start$1 = List.hd(List.rev(comment_start_loc.contents));
                   comment_start_loc.contents = --[[ [] ]]0;
-                  throw {
-                        __Error$4,
-                        --[[ Unterminated_string_in_comment ]]Block.__(3, {
-                            start$1,
-                            exn$1[2]
-                          }),
-                        match$4[0]
-                      };
+                  error ({
+                    __Error$4,
+                    --[[ Unterminated_string_in_comment ]]Block.__(3, {
+                        start$1,
+                        exn$1[2]
+                      }),
+                    match$4[0]
+                  })
                 end else do
-                  throw {
-                        Caml_builtin_exceptions.assert_failure,
-                        --[[ tuple ]]{
-                          "lexer.mll",
-                          1023,
-                          18
-                        }
-                      };
+                  error ({
+                    Caml_builtin_exceptions.assert_failure,
+                    --[[ tuple ]]{
+                      "lexer.mll",
+                      1023,
+                      18
+                    }
+                  })
                 end end 
               end else do
-                throw exn$1;
+                error (exn$1)
               end end 
             end else do
-              throw exn$1;
+              error (exn$1)
             end end 
-          end
+          end end)
           is_in_string.contents = false;
           store_string_char(--[[ "|" ]]124);
           store_string(delim$1);
           store_string_char(--[[ "}" ]]125);
           ___ocaml_lex_state = 132;
-          continue ;end end end 
+          ::continue:: ;end end end 
        if ___conditional___ = 5 then do
           update_loc(lexbuf, undefined, 1, false, 1);
           store_string(Lexing.lexeme(lexbuf));
           ___ocaml_lex_state = 132;
-          continue ;end end end 
+          ::continue:: ;end end end 
        if ___conditional___ = 10 then do
           match$5 = comment_start_loc.contents;
           if (match$5) then do
             start$2 = List.hd(List.rev(comment_start_loc.contents));
             comment_start_loc.contents = --[[ [] ]]0;
-            throw {
-                  __Error$4,
-                  --[[ Unterminated_comment ]]Block.__(2, {start$2}),
-                  match$5[0]
-                };
+            error ({
+              __Error$4,
+              --[[ Unterminated_comment ]]Block.__(2, {start$2}),
+              match$5[0]
+            })
           end else do
-            throw {
-                  Caml_builtin_exceptions.assert_failure,
-                  --[[ tuple ]]{
-                    "lexer.mll",
-                    1053,
-                    16
-                  }
-                };
+            error ({
+              Caml_builtin_exceptions.assert_failure,
+              --[[ tuple ]]{
+                "lexer.mll",
+                1053,
+                16
+              }
+            })
           end end end end end 
        if ___conditional___ = 11 then do
           update_loc(lexbuf, undefined, 1, false, 0);
           store_string(Lexing.lexeme(lexbuf));
           ___ocaml_lex_state = 132;
-          continue ;end end end 
+          ::continue:: ;end end end 
        if ___conditional___ = 4
        or ___conditional___ = 6
        or ___conditional___ = 7
@@ -22506,12 +22430,12 @@ function __ocaml_lex_comment_rec(lexbuf, ___ocaml_lex_state) do
        or ___conditional___ = 12 then do
           store_string(Lexing.lexeme(lexbuf));
           ___ocaml_lex_state = 132;
-          continue ;end end end 
+          ::continue:: ;end end end 
        do
       else do
         Curry._1(lexbuf.refill_buff, lexbuf);
         ___ocaml_lex_state = __ocaml_lex_state$1;
-        continue ;
+        ::continue:: ;
         end end
         
     end
@@ -22562,11 +22486,11 @@ function string(lexbuf) do
           return string(lexbuf$1);end end end 
        if ___conditional___ = 7 then do
           is_in_string.contents = false;
-          throw {
-                __Error$4,
-                --[[ Unterminated_string ]]0,
-                string_start_loc.contents
-              };end end end 
+          error ({
+            __Error$4,
+            --[[ Unterminated_string ]]0,
+            string_start_loc.contents
+          })end end end 
        if ___conditional___ = 8 then do
           store_string_char(Lexing.lexeme_char(lexbuf$1, 0));
           return string(lexbuf$1);end end end 
@@ -22574,7 +22498,7 @@ function string(lexbuf) do
       else do
         Curry._1(lexbuf$1.refill_buff, lexbuf$1);
         ___ocaml_lex_state = __ocaml_lex_state$1;
-        continue ;
+        ::continue:: ;
         end end
         
     end
@@ -22658,20 +22582,20 @@ function token$1(lexbuf) do
                   do
                      if ___conditional___ = 23--[[ ELSE ]] then do
                         if (if_then_else$1 ~= 0) then do
-                          throw {
-                                __Error$4,
-                                --[[ Unexpected_directive ]]6,
-                                curr(lexbuf$1)
-                              };
+                          error ({
+                            __Error$4,
+                            --[[ Unexpected_directive ]]6,
+                            curr(lexbuf$1)
+                          })
                         end
                          end end else 
                      if ___conditional___ = 24--[[ END ]] then do
                         if (if_then_else$1 >= 2) then do
-                          throw {
-                                __Error$4,
-                                --[[ Unexpected_directive ]]6,
-                                curr(lexbuf$1)
-                              };
+                          error ({
+                            __Error$4,
+                            --[[ Unexpected_directive ]]6,
+                            curr(lexbuf$1)
+                          })
                         end
                          end 
                         if_then_else.contents = --[[ Dir_out ]]2;
@@ -22686,11 +22610,11 @@ function token$1(lexbuf) do
                             while(true) do
                               token = token_with_comments(lexbuf$1);
                               if (token == --[[ EOF ]]25) then do
-                                throw {
-                                      __Error$4,
-                                      --[[ Unterminated_if ]]2,
-                                      curr(lexbuf$1)
-                                    };
+                                error ({
+                                  __Error$4,
+                                  --[[ Unterminated_if ]]2,
+                                  curr(lexbuf$1)
+                                })
                               end
                                end 
                               if (token == --[[ SHARP ]]84 and at_bol(lexbuf$1)) then do
@@ -22706,11 +22630,11 @@ function token$1(lexbuf) do
                                       return Curry._1(cont, lexbuf$1);
                                     end end 
                                   end else if (switcher == 14) then do
-                                    throw {
-                                          __Error$4,
-                                          --[[ Unexpected_directive ]]6,
-                                          curr(lexbuf$1)
-                                        };
+                                    error ({
+                                      __Error$4,
+                                      --[[ Unexpected_directive ]]6,
+                                      curr(lexbuf$1)
+                                    })
                                   end
                                    end  end 
                                 end
@@ -22720,20 +22644,20 @@ function token$1(lexbuf) do
                                   return Curry._1(cont, lexbuf$1);
                                 end else do
                                   _param = --[[ () ]]0;
-                                  continue ;
+                                  ::continue:: ;
                                 end end 
                               end else do
                                 _param = --[[ () ]]0;
-                                continue ;
+                                ::continue:: ;
                               end end 
                             end;
                           end end 
                         end else do
-                          throw {
-                                __Error$4,
-                                --[[ Unexpected_directive ]]6,
-                                curr(lexbuf$1)
-                              };
+                          error ({
+                            __Error$4,
+                            --[[ Unexpected_directive ]]6,
+                            curr(lexbuf$1)
+                          })
                         end end end end end 
                      do
                     else do
@@ -22743,11 +22667,11 @@ function token$1(lexbuf) do
                   end
                 end else if (match.tag == --[[ LIDENT ]]11 and match[0] == "elif") then do
                   if (if_then_else$1 ~= 0) then do
-                    throw {
-                          __Error$4,
-                          --[[ Unexpected_directive ]]6,
-                          curr(lexbuf$1)
-                        };
+                    error ({
+                      __Error$4,
+                      --[[ Unexpected_directive ]]6,
+                      curr(lexbuf$1)
+                    })
                   end
                    end 
                 end else do
@@ -22761,11 +22685,11 @@ function token$1(lexbuf) do
                     else_seen = _else_seen;
                     token$2 = token_with_comments(lexbuf$1);
                     if (token$2 == --[[ EOF ]]25) then do
-                      throw {
-                            __Error$4,
-                            --[[ Unterminated_else ]]3,
-                            curr(lexbuf$1)
-                          };
+                      error ({
+                        __Error$4,
+                        --[[ Unterminated_else ]]3,
+                        curr(lexbuf$1)
+                      })
                     end
                      end 
                     if (token$2 == --[[ SHARP ]]84 and at_bol(lexbuf$1)) then do
@@ -22778,37 +22702,37 @@ function token$1(lexbuf) do
                             return Curry._1(cont, lexbuf$1);
                           end else do
                             if (else_seen) then do
-                              throw {
-                                    __Error$4,
-                                    --[[ Unexpected_directive ]]6,
-                                    curr(lexbuf$1)
-                                  };
-                            end
-                             end 
-                            _else_seen = true;
-                            continue ;
-                          end end 
-                        end else if (switcher$1 == 14) then do
-                          throw {
+                              error ({
                                 __Error$4,
                                 --[[ Unexpected_directive ]]6,
                                 curr(lexbuf$1)
-                              };
+                              })
+                            end
+                             end 
+                            _else_seen = true;
+                            ::continue:: ;
+                          end end 
+                        end else if (switcher$1 == 14) then do
+                          error ({
+                            __Error$4,
+                            --[[ Unexpected_directive ]]6,
+                            curr(lexbuf$1)
+                          })
                         end
                          end  end 
                       end
                        end 
                       if (else_seen and is_elif(token$3)) then do
-                        throw {
-                              __Error$4,
-                              --[[ Unexpected_directive ]]6,
-                              curr(lexbuf$1)
-                            };
+                        error ({
+                          __Error$4,
+                          --[[ Unexpected_directive ]]6,
+                          curr(lexbuf$1)
+                        })
                       end
                        end 
-                      continue ;
+                      ::continue:: ;
                     end else do
-                      continue ;
+                      ::continue:: ;
                     end end 
                   end;
                 end end 
@@ -22817,7 +22741,7 @@ function token$1(lexbuf) do
            if ___conditional___ = 100--[[ EOL ]] then do
               lines$prime = lines ~= 0 and --[[ BlankLine ]]2 or --[[ NewLine ]]1;
               _lines = lines$prime;
-              continue ;end end end 
+              ::continue:: ;end end end 
            do end
           else do
             end end
@@ -22834,7 +22758,7 @@ function token$1(lexbuf) do
                   });
               lines$prime$1 = lines >= 2 and --[[ BlankLine ]]2 or --[[ NoLine ]]0;
               _lines = lines$prime$1;
-              continue ;end end end 
+              ::continue:: ;end end end 
            if ___conditional___ = 19--[[ DOCSTRING ]] then do
               doc = tok[0];
               add_docstring_comment(doc);
@@ -22886,7 +22810,7 @@ function token$1(lexbuf) do
               end end  end 
               _docs = docs$prime;
               _lines = --[[ NoLine ]]0;
-              continue ;end end end 
+              ::continue:: ;end end end 
            do
           else do
             end end
@@ -22922,23 +22846,22 @@ end end
 
 function skip_phrase(lexbuf) do
   while(true) do
-    try do
+    xpcall(function() do
       match = token$1(lexbuf);
       if (typeof match == "number" and not (match ~= 25 and match ~= 83)) then do
         return --[[ () ]]0;
       end else do
         return skip_phrase(lexbuf);
       end end 
-    end
-    catch (raw_exn)do
+    end end,function(raw_exn) return do
       exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
       if (exn[0] == __Error$4) then do
         tmp = exn[1];
         if (typeof tmp == "number") then do
           if (tmp == --[[ Unterminated_string ]]0) then do
-            continue ;
+            ::continue:: ;
           end else do
-            throw exn;
+            error (exn)
           end end 
         end else do
           local ___conditional___=(tmp.tag | 0);
@@ -22946,18 +22869,18 @@ function skip_phrase(lexbuf) do
              if ___conditional___ = 0--[[ Illegal_character ]]
              or ___conditional___ = 2--[[ Unterminated_comment ]]
              or ___conditional___ = 3--[[ Unterminated_string_in_comment ]] then do
-                continue ;end end end 
+                ::continue:: ;end end end 
              do
             else do
-              throw exn;
+              error (exn)
               end end
               
           end
         end end 
       end else do
-        throw exn;
+        error (exn)
       end end 
-    end
+    end end)
   end;
 end end
 
@@ -22970,37 +22893,36 @@ function maybe_skip_phrase(lexbuf) do
 end end
 
 function wrap$1(parsing_fun, lexbuf) do
-  try do
+  xpcall(function() do
     init(--[[ () ]]0);
     init$1(--[[ () ]]0);
     ast = Curry._2(parsing_fun, token$1, lexbuf);
     Parsing.clear_parser(--[[ () ]]0);
     warn_bad_docstrings(--[[ () ]]0);
     return ast;
-  end
-  catch (raw_err)do
+  end end,function(raw_err) return do
     err = Caml_js_exceptions.internalToOCamlException(raw_err);
     if (err[0] == __Error$4) then do
       tmp = err[1];
       if (typeof tmp == "number") then do
-        throw err;
+        error (err)
       end else if (tmp.tag) then do
-        throw err;
+        error (err)
       end else if (input_name.contents == "//toplevel//") then do
         skip_phrase(lexbuf);
-        throw err;
+        error (err)
       end else do
-        throw err;
+        error (err)
       end end  end  end 
     end else if (err[0] == __Error$3) then do
       if (input_name.contents == "//toplevel//") then do
         maybe_skip_phrase(lexbuf);
-        throw err;
+        error (err)
       end else do
-        throw err;
+        error (err)
       end end 
     end else if (err ~= Parsing.Parse_error and err ~= Escape_error) then do
-      throw err;
+      error (err)
     end
      end  end  end 
     loc = curr(lexbuf);
@@ -23008,11 +22930,11 @@ function wrap$1(parsing_fun, lexbuf) do
       maybe_skip_phrase(lexbuf);
     end
      end 
-    throw {
-          __Error$3,
-          --[[ Other ]]Block.__(5, {loc})
-        };
-  end
+    error ({
+      __Error$3,
+      --[[ Other ]]Block.__(5, {loc})
+    })
+  end end)
 end end
 
 function iter_pattern_desc(f, param) do
@@ -23142,7 +23064,7 @@ function bound_idents(_pat) do
             return --[[ () ]]0;end end end 
          if ___conditional___ = 8--[[ Tpat_or ]] then do
             _pat = d[0];
-            continue ;end end end 
+            ::continue:: ;end end end 
          do
         else do
           return iter_pattern_desc(bound_idents, d);
@@ -23184,19 +23106,18 @@ function alpha_pat(env, p) do
     do
        if ___conditional___ = 0--[[ Tpat_var ]] then do
           tmp;
-          try do
+          xpcall(function() do
             tmp = --[[ Tpat_var ]]Block.__(0, {
                 List.assoc(d[0], env),
                 d[1]
               });
-          end
-          catch (exn)do
+          end end,function(exn) return do
             if (exn == Caml_builtin_exceptions.not_found) then do
               tmp = --[[ Tpat_any ]]0;
             end else do
-              throw exn;
+              error (exn)
             end end 
-          end
+          end end)
           return do
                   pat_desc: tmp,
                   pat_loc: p.pat_loc,
@@ -23207,7 +23128,7 @@ function alpha_pat(env, p) do
                 end;end end end 
        if ___conditional___ = 1--[[ Tpat_alias ]] then do
           new_p = alpha_pat(env, d[0]);
-          try do
+          xpcall(function() do
             return do
                     pat_desc: --[[ Tpat_alias ]]Block.__(1, {
                         new_p,
@@ -23220,14 +23141,13 @@ function alpha_pat(env, p) do
                     pat_env: p.pat_env,
                     pat_attributes: p.pat_attributes
                   end;
-          end
-          catch (exn$1)do
+          end end,function(exn$1) return do
             if (exn$1 == Caml_builtin_exceptions.not_found) then do
               return new_p;
             end else do
-              throw exn$1;
+              error (exn$1)
             end end 
-          endend end end 
+          end end)end end end 
        do
       else do
         end end
@@ -24528,17 +24448,16 @@ end end
 
 need_to_clear_env;
 
-try do
+xpcall(function() do
   Caml_sys.caml_sys_getenv("OCAML_BINANNOT_WITHENV");
   need_to_clear_env = false;
-end
-catch (exn$2)do
+end end,function(exn$2) return do
   if (exn$2 == Caml_builtin_exceptions.not_found) then do
     need_to_clear_env = true;
   end else do
-    throw exn$2;
+    error (exn$2)
   end end 
-end
+end end)
 
 function leave_pattern(p) do
   return do
@@ -24850,13 +24769,12 @@ function save_cmt(filename, modname, binary_annots, sourcefile, initial_env, sg)
     Caml_external_polyfill.resolve("caml_ml_close_channel")(oc);
     exit = 0;
     cmd;
-    try do
+    xpcall(function() do
       cmd = Caml_sys.caml_sys_getenv("BS_CMT_POST_PROCESS_CMD");
       exit = 1;
-    end
-    catch (exn)do
+    end end,function(exn) return do
       
-    end
+    end end)
     if (exit == 1) then do
       Caml_sys.caml_sys_system_command(cmd .. (" -cmt-add " .. (filename .. (
                 sourcefile ~= undefined and ":" .. sourcefile or ""
@@ -25029,14 +24947,14 @@ function is_object_type(path) do
      if ___conditional___ = 1--[[ Pdot ]] then do
         name = path[1];end else 
      if ___conditional___ = 2--[[ Papply ]] then do
-        throw {
-              Caml_builtin_exceptions.assert_failure,
-              --[[ tuple ]]{
-                "ctype.ml",
-                149,
-                23
-              }
-            };end end end 
+        error ({
+          Caml_builtin_exceptions.assert_failure,
+          --[[ tuple ]]{
+            "ctype.ml",
+            149,
+            23
+          }
+        })end end end 
      do end end
     
   end
@@ -25147,7 +25065,7 @@ function set_mode_pattern(generate, injective, f) do
   old_unification_mode = umode.contents;
   old_gen = generate_equations.contents;
   old_inj = assume_injective.contents;
-  try do
+  xpcall(function() do
     umode.contents = --[[ Pattern ]]1;
     generate_equations.contents = generate;
     assume_injective.contents = injective;
@@ -25156,13 +25074,12 @@ function set_mode_pattern(generate, injective, f) do
     generate_equations.contents = old_gen;
     assume_injective.contents = old_inj;
     return ret;
-  end
-  catch (e)do
+  end end,function(e) return do
     umode.contents = old_unification_mode;
     generate_equations.contents = old_gen;
     assume_injective.contents = old_inj;
-    throw e;
-  end
+    error (e)
+  end end)
 end end
 
 function in_current_module(param) do
@@ -25180,17 +25097,16 @@ end end
 
 function in_pervasives(p) do
   if (in_current_module(p)) then do
-    try do
+    xpcall(function() do
       find_type_full(p, initial_safe_string)[0];
       return true;
-    end
-    catch (exn)do
+    end end,function(exn) return do
       if (exn == Caml_builtin_exceptions.not_found) then do
         return false;
       end else do
-        throw exn;
+        error (exn)
       end end 
-    end
+    end end)
   end else do
     return false;
   end end 
@@ -25208,25 +25124,25 @@ end end
 function object_fields(ty) do
   match = repr(ty).desc;
   if (typeof match == "number") then do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "ctype.ml",
-            284,
-            27
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "ctype.ml",
+        284,
+        27
+      }
+    })
   end else if (match.tag == --[[ Tobject ]]4) then do
     return match[0];
   end else do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "ctype.ml",
-            284,
-            27
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "ctype.ml",
+        284,
+        27
+      }
+    })
   end end  end 
 end end
 
@@ -25252,7 +25168,7 @@ function flatten_fields(ty) do
           },
           l
         };
-        continue ;
+        ::continue:: ;
       end end 
     end;
   end end;
@@ -25320,7 +25236,7 @@ function associate_fields(fields1, fields2) do
             },
             p
           };
-          continue ;
+          ::continue:: ;
         end else if (Caml_obj.caml_lessthan(n, n$prime)) then do
           _param = --[[ tuple ]]{
             r,
@@ -25334,7 +25250,7 @@ function associate_fields(fields1, fields2) do
             },
             s
           };
-          continue ;
+          ::continue:: ;
         end else do
           _param = --[[ tuple ]]{
             l,
@@ -25348,7 +25264,7 @@ function associate_fields(fields1, fields2) do
             },
             s$prime
           };
-          continue ;
+          ::continue:: ;
         end end  end 
       end else do
         return --[[ tuple ]]{
@@ -25379,10 +25295,10 @@ function object_row(_ty) do
       do
          if ___conditional___ = 4--[[ Tobject ]] then do
             _ty = match[0];
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 5--[[ Tfield ]] then do
             _ty = match[3];
-            continue ;end end end 
+            ::continue:: ;end end end 
          do
         else do
           return ty$1;
@@ -25425,14 +25341,14 @@ end end
 function close_object(ty) do
   match = repr(ty).desc;
   if (typeof match == "number") then do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "ctype.ml",
-            351,
-            25
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "ctype.ml",
+        351,
+        25
+      }
+    })
   end else if (match.tag == --[[ Tobject ]]4) then do
     _ty = match[0];
     while(true) do
@@ -25440,14 +25356,14 @@ function close_object(ty) do
       ty$2 = repr(ty$1);
       match$1 = ty$2.desc;
       if (typeof match$1 == "number") then do
-        throw {
-              Caml_builtin_exceptions.assert_failure,
-              --[[ tuple ]]{
-                "ctype.ml",
-                347,
-                30
-              }
-            };
+        error ({
+          Caml_builtin_exceptions.assert_failure,
+          --[[ tuple ]]{
+            "ctype.ml",
+            347,
+            30
+          }
+        })
       end else do
         local ___conditional___=(match$1.tag | 0);
         do
@@ -25455,45 +25371,45 @@ function close_object(ty) do
               return link_type(ty$2, newty2(ty$2.level, --[[ Tnil ]]0));end end end 
            if ___conditional___ = 5--[[ Tfield ]] then do
               _ty = match$1[3];
-              continue ;end end end 
+              ::continue:: ;end end end 
            do
           else do
-            throw {
-                  Caml_builtin_exceptions.assert_failure,
-                  --[[ tuple ]]{
-                    "ctype.ml",
-                    347,
-                    30
-                  }
-                };
+            error ({
+              Caml_builtin_exceptions.assert_failure,
+              --[[ tuple ]]{
+                "ctype.ml",
+                347,
+                30
+              }
+            })
             end end
             
         end
       end end 
     end;
   end else do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "ctype.ml",
-            351,
-            25
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "ctype.ml",
+        351,
+        25
+      }
+    })
   end end  end 
 end end
 
 function row_variable(ty) do
   match = repr(ty).desc;
   if (typeof match == "number") then do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "ctype.ml",
-            365,
-            23
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "ctype.ml",
+        365,
+        23
+      }
+    })
   end else if (match.tag == --[[ Tobject ]]4) then do
     _ty = match[0];
     while(true) do
@@ -25501,14 +25417,14 @@ function row_variable(ty) do
       ty$2 = repr(ty$1);
       match$1 = ty$2.desc;
       if (typeof match$1 == "number") then do
-        throw {
-              Caml_builtin_exceptions.assert_failure,
-              --[[ tuple ]]{
-                "ctype.ml",
-                361,
-                30
-              }
-            };
+        error ({
+          Caml_builtin_exceptions.assert_failure,
+          --[[ tuple ]]{
+            "ctype.ml",
+            361,
+            30
+          }
+        })
       end else do
         local ___conditional___=(match$1.tag | 0);
         do
@@ -25516,45 +25432,45 @@ function row_variable(ty) do
               return ty$2;end end end 
            if ___conditional___ = 5--[[ Tfield ]] then do
               _ty = match$1[3];
-              continue ;end end end 
+              ::continue:: ;end end end 
            do
           else do
-            throw {
-                  Caml_builtin_exceptions.assert_failure,
-                  --[[ tuple ]]{
-                    "ctype.ml",
-                    361,
-                    30
-                  }
-                };
+            error ({
+              Caml_builtin_exceptions.assert_failure,
+              --[[ tuple ]]{
+                "ctype.ml",
+                361,
+                30
+              }
+            })
             end end
             
         end
       end end 
     end;
   end else do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "ctype.ml",
-            365,
-            23
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "ctype.ml",
+        365,
+        23
+      }
+    })
   end end  end 
 end end
 
 function set_object_name(id, rv, params, ty) do
   match = repr(ty).desc;
   if (typeof match == "number") then do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "ctype.ml",
-            375,
-            6
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "ctype.ml",
+        375,
+        6
+      }
+    })
   end else if (match.tag == --[[ Tobject ]]4) then do
     return set_name(match[1], --[[ tuple ]]{
                 --[[ Pident ]]Block.__(0, {id}),
@@ -25564,28 +25480,28 @@ function set_object_name(id, rv, params, ty) do
                 }
               });
   end else do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "ctype.ml",
-            375,
-            6
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "ctype.ml",
+        375,
+        6
+      }
+    })
   end end  end 
 end end
 
 function hide_private_methods(ty) do
   match = repr(ty).desc;
   if (typeof match == "number") then do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "ctype.ml",
-            397,
-            6
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "ctype.ml",
+        397,
+        6
+      }
+    })
   end else if (match.tag == --[[ Tobject ]]4) then do
     match[1].contents = undefined;
     match$1 = flatten_fields(match[0]);
@@ -25598,14 +25514,14 @@ function hide_private_methods(ty) do
                   end end 
                 end end), match$1[0]);
   end else do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "ctype.ml",
-            397,
-            6
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "ctype.ml",
+        397,
+        6
+      }
+    })
   end end  end 
 end end
 
@@ -25619,7 +25535,7 @@ function signature_of_class_type(_param) do
        if ___conditional___ = 0--[[ Cty_constr ]]
        or ___conditional___ = 2--[[ Cty_arrow ]] then do
           _param = param[2];
-          continue ;end end end 
+          ::continue:: ;end end end 
        do
       
     end
@@ -25633,7 +25549,7 @@ function class_type_arity(_param) do
     do
        if ___conditional___ = 0--[[ Cty_constr ]] then do
           _param = param[2];
-          continue ;end end end 
+          ::continue:: ;end end end 
        if ___conditional___ = 1--[[ Cty_signature ]] then do
           return 0;end end end 
        if ___conditional___ = 2--[[ Cty_arrow ]] then do
@@ -25699,21 +25615,21 @@ function merge_row_fields(fi1, fi2) do
             },
             pairs
           };
-          continue ;
+          ::continue:: ;
         end else if (Caml_obj.caml_lessthan(l1, l2)) then do
           _fi1 = fi1$prime;
           _r1 = --[[ :: ]]{
             p1,
             r1
           };
-          continue ;
+          ::continue:: ;
         end else do
           _fi2 = fi2$prime;
           _r2 = --[[ :: ]]{
             p2,
             r2
           };
-          continue ;
+          ::continue:: ;
         end end  end 
       end else do
         return --[[ tuple ]]{
@@ -25770,7 +25686,7 @@ function closed_schema_rec(_ty) do
         do
            if ___conditional___ = 0--[[ Tvar ]] then do
               if (level ~= 100000000) then do
-                throw Non_closed0;
+                error (Non_closed0)
               end
                end 
               return iter_type_expr(closed_schema_rec, ty$1);end end end 
@@ -25780,7 +25696,7 @@ function closed_schema_rec(_ty) do
               end
                end 
               _ty = match[3];
-              continue ;end end end 
+              ::continue:: ;end end end 
            if ___conditional___ = 8--[[ Tvariant ]] then do
               row = row_repr_aux(--[[ [] ]]0, match[0]);
               iter_row(closed_schema_rec, row);
@@ -25788,7 +25704,7 @@ function closed_schema_rec(_ty) do
                 return 0;
               end else do
                 _ty = row.row_more;
-                continue ;
+                ::continue:: ;
               end end end end end 
            do
           else do
@@ -25804,19 +25720,18 @@ function closed_schema_rec(_ty) do
 end end
 
 function closed_schema(ty) do
-  try do
+  xpcall(function() do
     closed_schema_rec(ty);
     unmark_type(ty);
     return true;
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Non_closed0) then do
       unmark_type(ty);
       return false;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 Non_closed = Caml_exceptions.create("Ocaml_typedtree_test.Ctype.Non_closed");
@@ -25856,7 +25771,7 @@ function free_vars_rec(_real, _ty) do
               return --[[ () ]]0;end end end 
            if ___conditional___ = 3--[[ Tconstr ]] then do
               if (match$1 ~= undefined) then do
-                try do
+                xpcall(function() do
                   match$2 = find_type_expansion(match[0], Caml_option.valFromOption(match$1));
                   if (repr(match$2[1]).level ~= 100000000) then do
                     free_variables.contents = --[[ :: ]]{
@@ -25868,13 +25783,12 @@ function free_vars_rec(_real, _ty) do
                     };
                   end
                    end 
-                end
-                catch (exn)do
+                end end,function(exn) return do
                   if (exn ~= Caml_builtin_exceptions.not_found) then do
-                    throw exn;
+                    error (exn)
                   end
                    end 
-                end
+                end end)
                 return List.iter((function (param) do
                               return free_vars_rec(true, param);
                             end end), match[1]);
@@ -25886,12 +25800,12 @@ function free_vars_rec(_real, _ty) do
            if ___conditional___ = 4--[[ Tobject ]] then do
               _ty = match[0];
               _real = false;
-              continue ;end end end 
+              ::continue:: ;end end end 
            if ___conditional___ = 5--[[ Tfield ]] then do
               free_vars_rec(true, match[2]);
               _ty = match[3];
               _real = false;
-              continue ;end end end 
+              ::continue:: ;end end end 
            if ___conditional___ = 8--[[ Tvariant ]] then do
               row = row_repr_aux(--[[ [] ]]0, match[0]);
               iter_row((function (param) do
@@ -25902,7 +25816,7 @@ function free_vars_rec(_real, _ty) do
               end else do
                 _ty = row.row_more;
                 _real = false;
-                continue ;
+                ::continue:: ;
               end end end end end 
            do
           else do
@@ -25941,11 +25855,11 @@ function closed_type(ty) do
   match = free_vars$1(undefined, ty);
   if (match) then do
     match$1 = match[0];
-    throw {
-          Non_closed,
-          match$1[0],
-          match$1[1]
-        };
+    error ({
+      Non_closed,
+      match$1[0],
+      match$1[1]
+    })
   end else do
     return --[[ () ]]0;
   end end 
@@ -25954,25 +25868,24 @@ end end
 function closed_parameterized_type(params, ty) do
   List.iter(mark_type, params);
   ok;
-  try do
+  xpcall(function() do
     closed_type(ty);
     ok = true;
-  end
-  catch (raw_exn)do
+  end end,function(raw_exn) return do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn[0] == Non_closed) then do
       ok = false;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
   List.iter(unmark_type, params);
   unmark_type(ty);
   return ok;
 end end
 
 function closed_type_decl(decl) do
-  try do
+  xpcall(function() do
     List.iter(mark_type, decl.type_params);
     match = decl.type_kind;
     if (typeof match == "number") then do
@@ -25997,20 +25910,19 @@ function closed_type_decl(decl) do
      end 
     it_type_declaration(unmark_iterators, decl);
     return ;
-  end
-  catch (raw_exn)do
+  end end,function(raw_exn) return do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn[0] == Non_closed) then do
       it_type_declaration(unmark_iterators, decl);
       return exn[1];
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 function closed_extension_constructor(ext) do
-  try do
+  xpcall(function() do
     List.iter(mark_type, ext.ext_type_params);
     match = ext.ext_ret_type;
     if (match == undefined) then do
@@ -26019,16 +25931,15 @@ function closed_extension_constructor(ext) do
      end 
     unmark_extension_constructor(ext);
     return ;
-  end
-  catch (raw_exn)do
+  end end,function(raw_exn) return do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn[0] == Non_closed) then do
       unmark_extension_constructor(ext);
       return exn[1];
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 CCFailure = Caml_exceptions.create("Ocaml_typedtree_test.Ctype.CCFailure");
@@ -26046,30 +25957,29 @@ function closed_class(params, sign) do
             return 0;
           end end 
         end end), fields);
-  try do
+  xpcall(function() do
     mark_type_node(repr(sign.csig_self));
     List.iter((function (param) do
             ty = param[2];
             if (field_kind_repr(param[1]) == --[[ Fpresent ]]0) then do
-              try do
+              xpcall(function() do
                 return closed_type(ty);
-              end
-              catch (raw_exn)do
+              end end,function(raw_exn) return do
                 exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
                 if (exn[0] == Non_closed) then do
-                  throw {
-                        CCFailure,
-                        --[[ CC_Method ]]Block.__(0, {
-                            exn[1],
-                            exn[2],
-                            param[0],
-                            ty
-                          })
-                      };
+                  error ({
+                    CCFailure,
+                    --[[ CC_Method ]]Block.__(0, {
+                        exn[1],
+                        exn[2],
+                        param[0],
+                        ty
+                      })
+                  })
                 end
                  end 
-                throw exn;
-              end
+                error (exn)
+              end end)
             end else do
               return 0;
             end end 
@@ -26078,8 +25988,7 @@ function closed_class(params, sign) do
     List.iter(unmark_type, params);
     unmark_class_signature(sign);
     return ;
-  end
-  catch (raw_exn)do
+  end end,function(raw_exn) return do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn[0] == CCFailure) then do
       iter_type_expr(mark_type, repr(sign.csig_self));
@@ -26087,9 +25996,9 @@ function closed_class(params, sign) do
       unmark_class_signature(sign);
       return exn[1];
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 function iter_generalize(tyl, ty) do
@@ -26176,7 +26085,7 @@ function generalize_spine(_ty) do
               set_level(ty$1, 100000000);
               generalize_spine(match[1]);
               _ty = match[2];
-              continue ;end end end 
+              ::continue:: ;end end end 
            if ___conditional___ = 2--[[ Ttuple ]] then do
               set_level(ty$1, 100000000);
               return List.iter(generalize_spine, match[0]);end end end 
@@ -26191,7 +26100,7 @@ function generalize_spine(_ty) do
            if ___conditional___ = 10--[[ Tpoly ]] then do
               set_level(ty$1, 100000000);
               _ty = match[0];
-              continue ;end end end 
+              ::continue:: ;end end end 
            if ___conditional___ = 11--[[ Tpackage ]] then do
               set_level(ty$1, 100000000);
               return List.iter(generalize_spine, match[2]);end end end 
@@ -26208,49 +26117,47 @@ end end
 
 forward_try_expand_once = do
   contents: (function (env, ty) do
-      throw Cannot_expand;
+      error (Cannot_expand)
     end end)
 end;
 
 function get_level(env, p) do
-  try do
+  xpcall(function() do
     match = find_type_full(p, env)[0].type_newtype_level;
     if (match ~= undefined) then do
       return match[0];
     end else do
       return binding_time(p);
     end end 
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Caml_builtin_exceptions.not_found) then do
       return binding_time(p);
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 function normalize_package_path(env, _p) do
   while(true) do
     p = _p;
     t;
-    try do
+    xpcall(function() do
       t = find_modtype(p, env).mtd_type;
-    end
-    catch (exn)do
+    end end,function(exn) return do
       if (exn == Caml_builtin_exceptions.not_found) then do
         t = undefined;
       end else do
-        throw exn;
+        error (exn)
       end end 
-    end
+    end end)
     if (t ~= undefined) then do
       match = t;
       if (match.tag) then do
         return p;
       end else do
         _p = match[0];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return p;
@@ -26265,16 +26172,16 @@ function update_level(env, level, _ty) do
     if (ty$1.level > level) then do
       match = gadt_instance_level(env, ty$1);
       if (match ~= undefined and level < match) then do
-        throw {
-              Unify,
-              --[[ :: ]]{
-                --[[ tuple ]]{
-                  ty$1,
-                  newty2(level, --[[ Tvar ]]Block.__(0, {undefined}))
-                },
-                --[[ [] ]]0
-              }
-            };
+        error ({
+          Unify,
+          --[[ :: ]]{
+            --[[ tuple ]]{
+              ty$1,
+              newty2(level, --[[ Tvar ]]Block.__(0, {undefined}))
+            },
+            --[[ [] ]]0
+          }
+        })
       end
        end 
       match$1 = ty$1.desc;
@@ -26284,32 +26191,31 @@ function update_level(env, level, _ty) do
            if ___conditional___ = 3--[[ Tconstr ]] then do
               p = match$1[0];
               if (level < get_level(env, p)) then do
-                try do
+                xpcall(function() do
                   link_type(ty$1, Curry._2(forward_try_expand_once.contents, env, ty$1));
                   return update_level(env, level, ty$1);
-                end
-                catch (exn)do
+                end end,function(exn) return do
                   if (exn == Cannot_expand) then do
                     if (level < get_level(env, p)) then do
-                      throw {
-                            Unify,
-                            --[[ :: ]]{
-                              --[[ tuple ]]{
-                                ty$1,
-                                newty2(level, --[[ Tvar ]]Block.__(0, {undefined}))
-                              },
-                              --[[ [] ]]0
-                            }
-                          };
+                      error ({
+                        Unify,
+                        --[[ :: ]]{
+                          --[[ tuple ]]{
+                            ty$1,
+                            newty2(level, --[[ Tvar ]]Block.__(0, {undefined}))
+                          },
+                          --[[ [] ]]0
+                        }
+                      })
                     end
                      end 
                     return iter_type_expr((function (param) do
                                   return update_level(env, level, param);
                                 end end), ty$1);
                   end else do
-                    throw exn;
+                    error (exn)
                   end end 
-                end
+                end end)
               end
                end end else 
            if ___conditional___ = 4--[[ Tobject ]] then do
@@ -26318,22 +26224,22 @@ function update_level(env, level, _ty) do
               if (match$2 ~= undefined and level < get_level(env, match$2[0])) then do
                 set_name(nm, undefined);
                 _ty = ty$1;
-                continue ;
+                ::continue:: ;
               end
                end end else 
            if ___conditional___ = 5--[[ Tfield ]] then do
               ty1 = match$1[2];
               if (match$1[0] == dummy_method and repr(ty1).level > level) then do
-                throw {
-                      Unify,
-                      --[[ :: ]]{
-                        --[[ tuple ]]{
-                          ty1,
-                          newty2(level, --[[ Tvar ]]Block.__(0, {undefined}))
-                        },
-                        --[[ [] ]]0
-                      }
-                    };
+                error ({
+                  Unify,
+                  --[[ :: ]]{
+                    --[[ tuple ]]{
+                      ty1,
+                      newty2(level, --[[ Tvar ]]Block.__(0, {undefined}))
+                    },
+                    --[[ [] ]]0
+                  }
+                })
               end
                end end else 
            if ___conditional___ = 8--[[ Tvariant ]] then do
@@ -26363,16 +26269,16 @@ function update_level(env, level, _ty) do
               if (level < get_level(env, p$1)) then do
                 p$prime = normalize_package_path(env, p$1);
                 if (same(p$1, p$prime)) then do
-                  throw {
-                        Unify,
-                        --[[ :: ]]{
-                          --[[ tuple ]]{
-                            ty$1,
-                            newty2(level, --[[ Tvar ]]Block.__(0, {undefined}))
-                          },
-                          --[[ [] ]]0
-                        }
-                      };
+                  error ({
+                    Unify,
+                    --[[ :: ]]{
+                      --[[ tuple ]]{
+                        ty$1,
+                        newty2(level, --[[ Tvar ]]Block.__(0, {undefined}))
+                      },
+                      --[[ [] ]]0
+                    }
+                  })
                 end
                  end 
                 log_type(ty$1);
@@ -26382,7 +26288,7 @@ function update_level(env, level, _ty) do
                     match$1[2]
                   });
                 _ty = ty$1;
-                continue ;
+                ::continue:: ;
               end
                end end else 
            do end end end end
@@ -26429,22 +26335,21 @@ function generalize_expansive(env, var_level, _ty) do
            if ___conditional___ = 1--[[ Tarrow ]] then do
               generalize_contravariant(env)(var_level, match[1]);
               _ty = match[2];
-              continue ;end end end 
+              ::continue:: ;end end end 
            if ___conditional___ = 3--[[ Tconstr ]] then do
               tyl = match[1];
               variance;
-              try do
+              xpcall(function() do
                 variance = find_type_full(match[0], env)[0].type_variance;
-              end
-              catch (exn)do
+              end end,function(exn) return do
                 if (exn == Caml_builtin_exceptions.not_found) then do
                   variance = List.map((function (param) do
                           return Types_Variance.may_inv;
                         end end), tyl);
                 end else do
-                  throw exn;
+                  error (exn)
                 end end 
-              end
+              end end)
               match[2].contents = --[[ Mnil ]]0;
               return List.iter2((function (v, t) do
                             if (Curry._2(Types_Variance.mem, --[[ May_weak ]]2, v)) then do
@@ -26477,35 +26382,34 @@ end end
 
 function generalize_expansive$1(env, ty) do
   simple_abbrevs.contents = --[[ Mnil ]]0;
-  try do
+  xpcall(function() do
     return generalize_expansive(env, nongen_level.contents, ty);
-  end
-  catch (raw_exn)do
+  end end,function(raw_exn) return do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn[0] == Unify) then do
       tr = exn[1];
       if (tr) then do
         if (tr[1]) then do
-          throw exn;
+          error (exn)
         end
          end 
-        throw {
-              Unify,
-              --[[ :: ]]{
-                --[[ tuple ]]{
-                  ty,
-                  tr[0][1]
-                },
-                tr
-              }
-            };
+        error ({
+          Unify,
+          --[[ :: ]]{
+            --[[ tuple ]]{
+              ty,
+              tr[0][1]
+            },
+            tr
+          }
+        })
       end else do
-        throw exn;
+        error (exn)
       end end 
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 function generalize_structure$2(ty) do
@@ -26596,12 +26500,11 @@ end end
 
 function inv_type(hash, pty, ty) do
   ty$1 = repr(ty);
-  try do
+  xpcall(function() do
     inv = Curry._2(TypeHash.find, hash, ty$1);
     inv.inv_parents = Pervasives.$at(pty, inv.inv_parents);
     return --[[ () ]]0;
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Caml_builtin_exceptions.not_found) then do
       inv$1 = do
         inv_type: ty$1,
@@ -26616,9 +26519,9 @@ function inv_type(hash, pty, ty) do
                     return inv_type(hash, partial_arg, param);
                   end end), ty$1);
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 function compute_univars(ty) do
@@ -26631,7 +26534,7 @@ function compute_univars(ty) do
       return --[[ () ]]0;
     end
      end 
-    try do
+    xpcall(function() do
       univs = Curry._2(TypeHash.find, node_univars, inv.inv_type);
       if (mem$3(univ, univs.contents)) then do
         return 0;
@@ -26641,8 +26544,7 @@ function compute_univars(ty) do
                       return add_univar(univ, param);
                     end end), inv.inv_parents);
       end end 
-    end
-    catch (exn)do
+    end end,function(exn) return do
       if (exn == Caml_builtin_exceptions.not_found) then do
         Curry._3(TypeHash.add, node_univars, inv.inv_type, do
               contents: singleton$1(univ)
@@ -26651,9 +26553,9 @@ function compute_univars(ty) do
                       return add_univar(univ, param);
                     end end), inv.inv_parents);
       end else do
-        throw exn;
+        error (exn)
       end end 
-    end
+    end end)
   end end;
   Curry._2(TypeHash.iter, (function (ty, inv) do
           if (is_Tunivar(ty)) then do
@@ -26663,16 +26565,15 @@ function compute_univars(ty) do
           end end 
         end end), inverted);
   return (function (ty) do
-      try do
+      xpcall(function() do
         return Curry._2(TypeHash.find, node_univars, ty).contents;
-      end
-      catch (exn)do
+      end end,function(exn) return do
         if (exn == Caml_builtin_exceptions.not_found) then do
           return --[[ Empty ]]0;
         end else do
-          throw exn;
+          error (exn)
         end end 
-      end
+      end end)
     end end);
 end end
 
@@ -26684,17 +26585,17 @@ function find_repr(p1, _param) do
     end else if (param.tag) then do
       rem = param[0].contents;
       _param = rem;
-      continue ;
+      ::continue:: ;
     end else if (param[0]) then do
       if (same(p1, param[1])) then do
         return param[2];
       end else do
         _param = param[4];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       _param = param[4];
-      continue ;
+      ::continue:: ;
     end end  end  end 
   end;
 end end
@@ -26733,14 +26634,14 @@ function copy(env, partial, keep_names, ty) do
             match$1[1] and ty$1.level or current_level.contents
           ) or 100000000;
       end else do
-        throw {
-              Caml_builtin_exceptions.assert_failure,
-              --[[ tuple ]]{
-                "ctype.ml",
-                984,
-                16
-              }
-            };
+        error ({
+          Caml_builtin_exceptions.assert_failure,
+          --[[ tuple ]]{
+            "ctype.ml",
+            984,
+            16
+          }
+        })
       end end  end 
       if (forget ~= 100000000) then do
         return newty2(forget, --[[ Tvar ]]Block.__(0, {undefined}));
@@ -26860,14 +26761,14 @@ function copy(env, partial, keep_names, ty) do
                           exit$3 = 4;end else 
                        do end end end end
                       else do
-                        throw {
-                              Caml_builtin_exceptions.assert_failure,
-                              --[[ tuple ]]{
-                                "ctype.ml",
-                                1047,
-                                24
-                              }
-                            };
+                        error ({
+                          Caml_builtin_exceptions.assert_failure,
+                          --[[ tuple ]]{
+                            "ctype.ml",
+                            1047,
+                            24
+                          }
+                        })
                         end end
                         
                     end
@@ -27024,16 +26925,15 @@ end;
 
 function get_new_abstract_name(s) do
   index;
-  try do
+  xpcall(function() do
     index = find(s, reified_var_counter.contents) + 1 | 0;
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Caml_builtin_exceptions.not_found) then do
       index = 0;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
   reified_var_counter.contents = add$1(s, index, reified_var_counter.contents);
   return Curry._2(Printf.sprintf(--[[ Format ]]{
                   --[[ String ]]Block.__(2, {
@@ -27096,14 +26996,14 @@ function instance_constructor(in_pattern, cstr) do
             }));
       tv = copy(undefined, undefined, undefined, existential);
       if (not is_Tvar(tv)) then do
-        throw {
-              Caml_builtin_exceptions.assert_failure,
-              --[[ tuple ]]{
-                "ctype.ml",
-                1170,
-                8
-              }
-            };
+        error ({
+          Caml_builtin_exceptions.assert_failure,
+          --[[ tuple ]]{
+            "ctype.ml",
+            1170,
+            8
+          }
+        })
       end
        end 
       return link_type(tv, to_unify);
@@ -27239,10 +27139,10 @@ function diff_list(l1, l2) do
             diff_list(l1[1], l2)
           };
   end else do
-    throw {
-          Caml_builtin_exceptions.invalid_argument,
-          "Ctype.diff_list"
-        };
+    error ({
+      Caml_builtin_exceptions.invalid_argument,
+      "Ctype.diff_list"
+    })
   end end  end 
 end end
 
@@ -27275,16 +27175,15 @@ function copy_sep(fixed, free, bound, visited, ty) do
       return t;
     end end 
   end else do
-    try do
+    xpcall(function() do
       match = List.assq(ty$1, visited);
       dl = is_Tunivar(ty$1) and --[[ [] ]]0 or diff_list(bound, match[1]);
       if (dl ~= --[[ [] ]]0 and conflicts(univars, dl)) then do
-        throw Caml_builtin_exceptions.not_found;
+        error (Caml_builtin_exceptions.not_found)
       end
        end 
       return match[0];
-    end
-    catch (exn)do
+    end end,function(exn) return do
       if (exn == Caml_builtin_exceptions.not_found) then do
         t$1 = newvar(undefined, --[[ () ]]0);
         match$1 = ty$1.desc;
@@ -27369,9 +27268,9 @@ function copy_sep(fixed, free, bound, visited, ty) do
         t$1.desc = tmp;
         return t$1;
       end else do
-        throw exn;
+        error (exn)
       end end 
-    end
+    end end)
   end end 
 end end
 
@@ -27381,14 +27280,14 @@ function instance_poly(keep_namesOpt, fixed, univars, sch) do
   copy_var = function (ty) do
     match = ty.desc;
     if (typeof match == "number") then do
-      throw {
-            Caml_builtin_exceptions.assert_failure,
-            --[[ tuple ]]{
-              "ctype.ml",
-              1307,
-              11
-            }
-          };
+      error ({
+        Caml_builtin_exceptions.assert_failure,
+        --[[ tuple ]]{
+          "ctype.ml",
+          1307,
+          11
+        }
+      })
     end else if (match.tag == --[[ Tunivar ]]9) then do
       if (keep_names) then do
         return newty2(current_level.contents, --[[ Tvar ]]Block.__(0, {match[0]}));
@@ -27396,14 +27295,14 @@ function instance_poly(keep_namesOpt, fixed, univars, sch) do
         return newvar(undefined, --[[ () ]]0);
       end end 
     end else do
-      throw {
-            Caml_builtin_exceptions.assert_failure,
-            --[[ tuple ]]{
-              "ctype.ml",
-              1307,
-              11
-            }
-          };
+      error ({
+        Caml_builtin_exceptions.assert_failure,
+        --[[ tuple ]]{
+          "ctype.ml",
+          1307,
+          11
+        }
+      })
     end end  end 
   end end;
   vars = List.map(copy_var, univars$1);
@@ -27455,50 +27354,50 @@ end end
 
 unify$prime = do
   contents: (function (env, ty1, ty2) do
-      throw {
-            Unify,
-            --[[ [] ]]0
-          };
+      error ({
+        Unify,
+        --[[ [] ]]0
+      })
     end end)
 end;
 
 function subst(env, level, priv, abbrev, ty, params, args, body) do
   if (List.length(params) ~= List.length(args)) then do
-    throw {
-          Unify,
-          --[[ [] ]]0
-        };
+    error ({
+      Unify,
+      --[[ [] ]]0
+    })
   end
    end 
   old_level = current_level.contents;
   current_level.contents = level;
-  try do
+  xpcall(function() do
     body0 = newvar(undefined, --[[ () ]]0);
     if (ty ~= undefined) then do
       ty$1 = ty;
       match = ty$1.desc;
       if (typeof match == "number") then do
-        throw {
-              Caml_builtin_exceptions.assert_failure,
-              --[[ tuple ]]{
-                "ctype.ml",
-                1347,
-                8
-              }
-            };
+        error ({
+          Caml_builtin_exceptions.assert_failure,
+          --[[ tuple ]]{
+            "ctype.ml",
+            1347,
+            8
+          }
+        })
       end else if (match.tag == --[[ Tconstr ]]3) then do
         path = match[0];
         abbrev$1 = proper_abbrevs(path, match[1], abbrev);
         memorize_abbrev(abbrev$1, priv, path, ty$1, body0);
       end else do
-        throw {
-              Caml_builtin_exceptions.assert_failure,
-              --[[ tuple ]]{
-                "ctype.ml",
-                1347,
-                8
-              }
-            };
+        error ({
+          Caml_builtin_exceptions.assert_failure,
+          --[[ tuple ]]{
+            "ctype.ml",
+            1347,
+            8
+          }
+        })
       end end  end 
     end
      end 
@@ -27512,16 +27411,15 @@ function subst(env, level, priv, abbrev, ty, params, args, body) do
     List.iter2(Curry._1(unify$prime.contents, env), match$1[0], args);
     current_level.contents = old_level;
     return body$prime;
-  end
-  catch (raw_exn)do
+  end end,function(raw_exn) return do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn[0] == Unify) then do
       current_level.contents = old_level;
-      throw exn;
+      error (exn)
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 previous_env = do
@@ -27542,14 +27440,14 @@ function expand_abbrev_gen(kind, find_type_expansion, env, ty) do
   check_abbrev_env(env);
   match = ty.desc;
   if (typeof match == "number") then do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "ctype.ml",
-            1456,
-            6
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "ctype.ml",
+        1456,
+        6
+      }
+    })
   end else if (match.tag == --[[ Tconstr ]]3) then do
     abbrev = match[2];
     args = match[1];
@@ -27560,31 +27458,29 @@ function expand_abbrev_gen(kind, find_type_expansion, env, ty) do
     if (match$1 ~= undefined) then do
       ty$1 = match$1;
       if (level ~= 100000000) then do
-        try do
+        xpcall(function() do
           update_level(env, level, ty$1);
-        end
-        catch (raw_exn)do
+        end end,function(raw_exn) return do
           exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
           if (exn[0] ~= Unify) then do
-            throw exn;
+            error (exn)
           end
            end 
-        end
+        end end)
       end
        end 
       return ty$1;
     end else do
       match$2;
-      try do
+      xpcall(function() do
         match$2 = Curry._2(find_type_expansion, path, env);
-      end
-      catch (exn$1)do
+      end end,function(exn$1) return do
         if (exn$1 == Caml_builtin_exceptions.not_found) then do
-          throw Cannot_expand;
+          error (Cannot_expand)
         end
          end 
-        throw exn$1;
-      end
+        error (exn$1)
+      end end)
       ty$prime = subst(env, level, kind, abbrev, ty, match$2[0], args, match$2[1]);
       ty$2 = repr(ty$prime);
       match$3 = ty$2.desc;
@@ -27611,16 +27507,16 @@ function expand_abbrev_gen(kind, find_type_expansion, env, ty) do
         if (match$4 ~= undefined) then do
           lv = match$4;
           if (level < lv) then do
-            throw {
-                  Unify,
-                  --[[ :: ]]{
-                    --[[ tuple ]]{
-                      ty,
-                      newty2(level, --[[ Tvar ]]Block.__(0, {undefined}))
-                    },
-                    --[[ [] ]]0
-                  }
-                };
+            error ({
+              Unify,
+              --[[ :: ]]{
+                --[[ tuple ]]{
+                  ty,
+                  newty2(level, --[[ Tvar ]]Block.__(0, {undefined}))
+                },
+                --[[ [] ]]0
+              }
+            })
           end
            end 
           add_gadt_instances(env, lv, --[[ :: ]]{
@@ -27637,14 +27533,14 @@ function expand_abbrev_gen(kind, find_type_expansion, env, ty) do
       return ty$prime;
     end end 
   end else do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "ctype.ml",
-            1456,
-            6
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "ctype.ml",
+        1456,
+        6
+      }
+    })
   end end  end 
 end end
 
@@ -27655,82 +27551,78 @@ function expand_abbrev(ty) do
 end end
 
 function expand_head_once(env, ty) do
-  try do
+  xpcall(function() do
     return expand_abbrev(env)(repr(ty));
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Cannot_expand) then do
-      throw {
-            Caml_builtin_exceptions.assert_failure,
-            --[[ tuple ]]{
-              "ctype.ml",
-              1464,
-              56
-            }
-          };
+      error ({
+        Caml_builtin_exceptions.assert_failure,
+        --[[ tuple ]]{
+          "ctype.ml",
+          1464,
+          56
+        }
+      })
     end
      end 
-    throw exn;
-  end
+    error (exn)
+  end end)
 end end
 
 function safe_abbrev(env, ty) do
   snap = snapshot(--[[ () ]]0);
-  try do
+  xpcall(function() do
     expand_abbrev(env)(ty);
     return true;
-  end
-  catch (raw_exn)do
+  end end,function(raw_exn) return do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn == Cannot_expand or exn[0] == Unify) then do
       backtrack(snap);
       return false;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 function try_expand_once(env, ty) do
   ty$1 = repr(ty);
   match = ty$1.desc;
   if (typeof match == "number") then do
-    throw Cannot_expand;
+    error (Cannot_expand)
   end else if (match.tag == --[[ Tconstr ]]3) then do
     return repr(expand_abbrev(env)(ty$1));
   end else do
-    throw Cannot_expand;
+    error (Cannot_expand)
   end end  end 
 end end
 
 function try_expand_safe(env, ty) do
   snap = snapshot(--[[ () ]]0);
-  try do
+  xpcall(function() do
     return try_expand_once(env, ty);
-  end
-  catch (raw_exn)do
+  end end,function(raw_exn) return do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn[0] == Unify) then do
       backtrack(snap);
-      throw Cannot_expand;
+      error (Cannot_expand)
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 function try_expand_head(try_once, env, ty) do
   ty$prime = Curry._2(try_once, env, ty);
-  try do
+  xpcall(function() do
     return try_expand_head(try_once, env, ty$prime);
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Cannot_expand) then do
       return ty$prime;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 function try_expand_head$1(try_once, env, ty) do
@@ -27744,29 +27636,27 @@ function try_expand_head$1(try_once, env, ty) do
 end end
 
 function expand_head_unif(env, ty) do
-  try do
+  xpcall(function() do
     return try_expand_head$1(try_expand_once, env, ty);
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Cannot_expand) then do
       return repr(ty);
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 function expand_head(env, ty) do
-  try do
+  xpcall(function() do
     return try_expand_head$1(try_expand_safe, env, ty);
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Cannot_expand) then do
       return repr(ty);
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 forward_try_expand_once.contents = try_expand_safe;
@@ -27775,7 +27665,7 @@ function extract_concrete_typedecl(env, ty) do
   ty$1 = repr(ty);
   match = ty$1.desc;
   if (typeof match == "number") then do
-    throw Caml_builtin_exceptions.not_found;
+    error (Caml_builtin_exceptions.not_found)
   end else if (match.tag == --[[ Tconstr ]]3) then do
     p = match[0];
     decl = find_type_full(p, env)[0];
@@ -27787,16 +27677,15 @@ function extract_concrete_typedecl(env, ty) do
             };
     end else do
       ty$2;
-      try do
+      xpcall(function() do
         ty$2 = try_expand_once(env, ty$1);
-      end
-      catch (exn)do
+      end end,function(exn) return do
         if (exn == Cannot_expand) then do
-          throw Caml_builtin_exceptions.not_found;
+          error (Caml_builtin_exceptions.not_found)
         end
          end 
-        throw exn;
-      end
+        error (exn)
+      end end)
       match$1 = extract_concrete_typedecl(env, ty$2);
       return --[[ tuple ]]{
               p,
@@ -27805,7 +27694,7 @@ function extract_concrete_typedecl(env, ty) do
             };
     end end 
   end else do
-    throw Caml_builtin_exceptions.not_found;
+    error (Caml_builtin_exceptions.not_found)
   end end  end 
 end end
 
@@ -27817,80 +27706,77 @@ function try_expand_once_opt(env, ty) do
   ty$1 = repr(ty);
   match = ty$1.desc;
   if (typeof match == "number") then do
-    throw Cannot_expand;
+    error (Cannot_expand)
   end else if (match.tag == --[[ Tconstr ]]3) then do
     return repr(expand_abbrev_opt(env, ty$1));
   end else do
-    throw Cannot_expand;
+    error (Cannot_expand)
   end end  end 
 end end
 
 function try_expand_head_opt(env, ty) do
   ty$prime = try_expand_once_opt(env, ty);
-  try do
+  xpcall(function() do
     return try_expand_head_opt(env, ty$prime);
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Cannot_expand) then do
       return ty$prime;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 function expand_head_opt(env, ty) do
   snap = snapshot(--[[ () ]]0);
-  try do
+  xpcall(function() do
     return try_expand_head_opt(env, ty);
-  end
-  catch (raw_exn)do
+  end end,function(raw_exn) return do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn == Cannot_expand or exn[0] == Unify) then do
       backtrack(snap);
       return repr(ty);
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 function enforce_constraints(env, ty) do
   match = ty.desc;
   if (typeof match == "number") then do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "ctype.ml",
-            1574,
-            6
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "ctype.ml",
+        1574,
+        6
+      }
+    })
   end else if (match.tag == --[[ Tconstr ]]3) then do
     level = ty.level;
-    try do
+    xpcall(function() do
       decl = find_type_full(match[0], env)[0];
       subst(env, level, --[[ Public ]]1, do
             contents: --[[ Mnil ]]0
           end, undefined, decl.type_params, match[1], newty2(level, --[[ Tvar ]]Block.__(0, {undefined})));
       return --[[ () ]]0;
-    end
-    catch (exn)do
+    end end,function(exn) return do
       if (exn == Caml_builtin_exceptions.not_found) then do
         return --[[ () ]]0;
       end else do
-        throw exn;
+        error (exn)
       end end 
-    end
+    end end)
   end else do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "ctype.ml",
-            1574,
-            6
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "ctype.ml",
+        1574,
+        6
+      }
+    })
   end end  end 
 end end
 
@@ -27920,21 +27806,20 @@ function full_expand(env, ty) do
 end end
 
 function generic_abbrev(env, path) do
-  try do
+  xpcall(function() do
     match = find_type_expansion(path, env);
     return repr(match[1]).level == 100000000;
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Caml_builtin_exceptions.not_found) then do
       return false;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 function generic_private_abbrev(env, path) do
-  try do
+  xpcall(function() do
     match = find_type_full(path, env)[0];
     match$1 = match.type_kind;
     if (typeof match$1 == "number" and not (match$1 ~= 0 or match.type_private)) then do
@@ -27947,14 +27832,13 @@ function generic_private_abbrev(env, path) do
     end else do
       return false;
     end end 
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Caml_builtin_exceptions.not_found) then do
       return false;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 function is_contractive(env, ty) do
@@ -27966,16 +27850,15 @@ function is_contractive(env, ty) do
     if (in_pervasives(p)) then do
       return true;
     end else do
-      try do
+      xpcall(function() do
         return is_datatype(find_type_full(p, env)[0]);
-      end
-      catch (exn)do
+      end end,function(exn) return do
         if (exn == Caml_builtin_exceptions.not_found) then do
           return false;
         end else do
-          throw exn;
+          error (exn)
         end end 
-      end
+      end end)
     end end 
   end end 
 end end
@@ -27984,7 +27867,7 @@ Occur = Caml_exceptions.create("Ocaml_typedtree_test.Ctype.Occur");
 
 function occur_rec(env, visited, ty0, ty) do
   if (ty == ty0) then do
-    throw Occur;
+    error (Occur)
   end
    end 
   occur_ok = recursive_types.contents and is_contractive(env, ty);
@@ -27993,9 +27876,9 @@ function occur_rec(env, visited, ty0, ty) do
     local ___conditional___=(match.tag | 0);
     do
        if ___conditional___ = 3--[[ Tconstr ]] then do
-          try do
+          xpcall(function() do
             if (occur_ok or List.memq(ty, visited)) then do
-              throw Occur;
+              error (Occur)
             end
              end 
             partial_arg = --[[ :: ]]{
@@ -28005,13 +27888,12 @@ function occur_rec(env, visited, ty0, ty) do
             return iter_type_expr((function (param) do
                           return occur_rec(env, partial_arg, ty0, param);
                         end end), ty);
-          end
-          catch (exn)do
+          end end,function(exn) return do
             if (exn == Occur) then do
-              try do
+              xpcall(function() do
                 ty$prime = try_expand_head$1(try_expand_once, env, ty);
                 if (ty$prime == ty0 or List.memq(ty$prime, visited)) then do
-                  throw Occur;
+                  error (Occur)
                 end
                  end 
                 match$1 = ty$prime.desc;
@@ -28045,22 +27927,21 @@ function occur_rec(env, visited, ty0, ty) do
                   end end 
                 end
                  end 
-              end
-              catch (exn$1)do
+              end end,function(exn$1) return do
                 if (exn$1 == Cannot_expand) then do
                   if (occur_ok) then do
                     return 0;
                   end else do
-                    throw Occur;
+                    error (Occur)
                   end end 
                 end else do
-                  throw exn$1;
+                  error (exn$1)
                 end end 
-              end
+              end end)
             end else do
-              throw exn;
+              error (exn)
             end end 
-          endend else 
+          end end)end else 
        if ___conditional___ = 4--[[ Tobject ]]
        or ___conditional___ = 8--[[ Tvariant ]] then do
           return --[[ () ]]0;end end end 
@@ -28095,35 +27976,33 @@ end end
 
 function occur(env, ty0, ty) do
   old = type_changed.contents;
-  try do
+  xpcall(function() do
     while(type_changed.contents = false, occur_rec(env, --[[ [] ]]0, ty0, ty), type_changed.contents) do
       
     end;
     return merge(type_changed, old);
-  end
-  catch (raw_exn)do
+  end end,function(raw_exn) return do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     merge(type_changed, old);
-    throw exn == Occur and {
-            Unify,
-            --[[ [] ]]0
-          } or exn;
-  end
+    error (exn == Occur and {
+        Unify,
+        --[[ [] ]]0
+      } or exn)
+  end end)
 end end
 
 function occur_in(env, ty0, t) do
-  try do
+  xpcall(function() do
     occur(env, ty0, t);
     return false;
-  end
-  catch (raw_exn)do
+  end end,function(raw_exn) return do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn[0] == Unify) then do
       return true;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 function unify_univar(t1, t2, _param) do
@@ -28132,19 +28011,18 @@ function unify_univar(t1, t2, _param) do
     if (param) then do
       match = param[0];
       find_univ = function (t, cl) do
-        try do
+        xpcall(function() do
           match = List.find((function (param) do
                   return t == repr(param[0]);
                 end end), cl);
           return Caml_option.some(match[1]);
-        end
-        catch (exn)do
+        end end,function(exn) return do
           if (exn == Caml_builtin_exceptions.not_found) then do
             return ;
           end else do
-            throw exn;
+            error (exn)
           end end 
-        end
+        end end)
       end end;
       match$1 = find_univ(t1, match[0]);
       match$2 = find_univ(t2, match[1]);
@@ -28156,51 +28034,51 @@ function unify_univar(t1, t2, _param) do
             if (t2 == repr(match$3)) then do
               return --[[ () ]]0;
             end else do
-              throw {
-                    Unify,
-                    --[[ [] ]]0
-                  };
+              error ({
+                Unify,
+                --[[ [] ]]0
+              })
             end end 
           end else do
-            throw {
-                  Unify,
-                  --[[ [] ]]0
-                };
+            error ({
+              Unify,
+              --[[ [] ]]0
+            })
           end end 
         end else if (match$2 ~= undefined) then do
           r2 = match$2;
           match$4 = r2.contents;
           if (match$4 ~= undefined) then do
-            throw {
-                  Unify,
-                  --[[ [] ]]0
-                };
+            error ({
+              Unify,
+              --[[ [] ]]0
+            })
           end
            end 
           set_univar(r1, t2);
           return set_univar(r2, t1);
         end else do
-          throw {
-                Unify,
-                --[[ [] ]]0
-              };
+          error ({
+            Unify,
+            --[[ [] ]]0
+          })
         end end  end 
       end else do
         if (match$2 ~= undefined) then do
-          throw {
-                Unify,
-                --[[ [] ]]0
-              };
+          error ({
+            Unify,
+            --[[ [] ]]0
+          })
         end
          end 
         _param = param[1];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
-      throw {
-            Unify,
-            --[[ [] ]]0
-          };
+      error ({
+        Unify,
+        --[[ [] ]]0
+      })
     end end 
   end;
 end end
@@ -28221,7 +28099,7 @@ function occur_univar(env, ty) do
           ty$1.level = pivot_level - ty$1.level | 0;
           tmp$1 = true;
         end else do
-          try do
+          xpcall(function() do
             bound$prime = find$1(ty$1, visited.contents);
             if (exists((function(bound)do
                   return function (x) do
@@ -28233,15 +28111,14 @@ function occur_univar(env, ty) do
             end else do
               tmp$1 = false;
             end end 
-          end
-          catch (exn)do
+          end end,function(exn) return do
             if (exn == Caml_builtin_exceptions.not_found) then do
               visited.contents = add$4(ty$1, bound, visited.contents);
               tmp$1 = true;
             end else do
-              throw exn;
+              error (exn)
             end end 
-          end
+          end end)
         end end 
         tmp = tmp$1;
       end
@@ -28260,7 +28137,7 @@ function occur_univar(env, ty) do
              if ___conditional___ = 3--[[ Tconstr ]] then do
                 tl = match[1];
                 if (tl) then do
-                  try do
+                  xpcall(function() do
                     td = find_type_full(match[0], env)[0];
                     return List.iter2((function(bound)do
                               return function (t, v) do
@@ -28271,8 +28148,7 @@ function occur_univar(env, ty) do
                                 end end 
                               end end
                               end(bound)), tl, td.type_variance);
-                  end
-                  catch (exn$1)do
+                  end end,function(exn$1) return do
                     if (exn$1 == Caml_builtin_exceptions.not_found) then do
                       return List.iter((function(bound)do
                                 return function (param) do
@@ -28280,9 +28156,9 @@ function occur_univar(env, ty) do
                                 end end
                                 end(bound)), tl);
                     end else do
-                      throw exn$1;
+                      error (exn$1)
                     end end 
-                  end
+                  end end)
                 end else do
                   return --[[ () ]]0;
                 end end end end end 
@@ -28290,22 +28166,22 @@ function occur_univar(env, ty) do
                 if (mem$3(ty$1, bound)) then do
                   return 0;
                 end else do
-                  throw {
-                        Unify,
-                        --[[ :: ]]{
-                          --[[ tuple ]]{
-                            ty$1,
-                            newty2(100000000, --[[ Tvar ]]Block.__(0, {undefined}))
-                          },
-                          --[[ [] ]]0
-                        }
-                      };
+                  error ({
+                    Unify,
+                    --[[ :: ]]{
+                      --[[ tuple ]]{
+                        ty$1,
+                        newty2(100000000, --[[ Tvar ]]Block.__(0, {undefined}))
+                      },
+                      --[[ [] ]]0
+                    }
+                  })
                 end end end end end 
              if ___conditional___ = 10--[[ Tpoly ]] then do
                 bound$1 = List.fold_right(add$3, List.map(repr, match[1]), bound);
                 _ty = match[0];
                 _bound = bound$1;
-                continue ;end end end 
+                ::continue:: ;end end end 
              do
             else do
               return iter_type_expr((function(bound)do
@@ -28322,14 +28198,13 @@ function occur_univar(env, ty) do
       end end 
     end;
   end end;
-  try do
+  xpcall(function() do
     occur_rec(--[[ Empty ]]0, ty);
     return unmark_type(ty);
-  end
-  catch (exn)do
+  end end,function(exn) return do
     unmark_type(ty);
-    throw exn;
-  end
+    error (exn)
+  end end)
 end end
 
 function add_univars(param, param$1) do
@@ -28379,7 +28254,7 @@ function univars_escape(env, univar_pairs, vl, ty) do
              if ___conditional___ = 3--[[ Tconstr ]] then do
                 tl = match[1];
                 if (tl) then do
-                  try do
+                  xpcall(function() do
                     td = find_type_full(match[0], env)[0];
                     return List.iter2((function (t, v) do
                                   if (Curry._2(Types_Variance.mem, --[[ May_pos ]]0, v) or Curry._2(Types_Variance.mem, --[[ May_neg ]]1, v)) then do
@@ -28388,20 +28263,19 @@ function univars_escape(env, univar_pairs, vl, ty) do
                                     return 0;
                                   end end 
                                 end end), tl, td.type_variance);
-                  end
-                  catch (exn)do
+                  end end,function(exn) return do
                     if (exn == Caml_builtin_exceptions.not_found) then do
                       return List.iter(occur, tl);
                     end else do
-                      throw exn;
+                      error (exn)
                     end end 
-                  end
+                  end end)
                 end else do
                   return --[[ () ]]0;
                 end end end end end 
              if ___conditional___ = 9--[[ Tunivar ]] then do
                 if (mem$3(t$1, family)) then do
-                  throw Occur;
+                  error (Occur)
                 end else do
                   return 0;
                 end end end end end 
@@ -28412,7 +28286,7 @@ function univars_escape(env, univar_pairs, vl, ty) do
                   return --[[ () ]]0;
                 end else do
                   _t = match[0];
-                  continue ;
+                  ::continue:: ;
                 end end end end end 
              do
             else do
@@ -28424,17 +28298,16 @@ function univars_escape(env, univar_pairs, vl, ty) do
       end end 
     end;
   end end;
-  try do
+  xpcall(function() do
     occur(ty);
     return false;
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Occur) then do
       return true;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 function enter_poly(env, univar_pairs, t1, tl1, t2, tl2, f) do
@@ -28455,10 +28328,10 @@ function enter_poly(env, univar_pairs, t1, tl1, t2, tl2, f) do
                 t1,
                 tl1$1
               })))) then do
-    throw {
-          Unify,
-          --[[ [] ]]0
-        };
+    error ({
+      Unify,
+      --[[ [] ]]0
+    })
   end
    end 
   cl1 = List.map((function (t) do
@@ -28490,15 +28363,14 @@ function enter_poly(env, univar_pairs, t1, tl1, t2, tl2, f) do
       old_univars
     }
   };
-  try do
+  xpcall(function() do
     res = Curry._2(f, t1, t2);
     univar_pairs.contents = old_univars;
     return res;
-  end
-  catch (exn)do
+  end end,function(exn) return do
     univar_pairs.contents = old_univars;
-    throw exn;
-  end
+    error (exn)
+  end end)
 end end
 
 univar_pairs = do
@@ -28512,12 +28384,12 @@ function has_cached_expansion(p, _abbrev) do
       return false;
     end else if (abbrev.tag) then do
       _abbrev = abbrev[0].contents;
-      continue ;
+      ::continue:: ;
     end else if (same(p, abbrev[1])) then do
       return true;
     end else do
       _abbrev = abbrev[4];
-      continue ;
+      ::continue:: ;
     end end  end  end 
   end;
 end end
@@ -28562,7 +28434,7 @@ function deep_occur(t0, ty) do
     ty$1 = repr(ty);
     if (ty$1.level >= 0) then do
       if (ty$1 == t0) then do
-        throw Occur;
+        error (Occur)
       end
        end 
       ty$1.level = pivot_level - ty$1.level | 0;
@@ -28571,19 +28443,18 @@ function deep_occur(t0, ty) do
       return 0;
     end end 
   end end;
-  try do
+  xpcall(function() do
     occur_rec(ty);
     unmark_type(ty);
     return false;
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Occur) then do
       unmark_type(ty);
       return true;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 newtype_level = do
@@ -28595,14 +28466,14 @@ function get_newtype_level(param) do
   if (match ~= undefined) then do
     return match;
   end else do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "ctype.ml",
-            1949,
-            12
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "ctype.ml",
+        1949,
+        12
+      }
+    })
   end end 
 end end
 
@@ -28660,23 +28531,23 @@ function reify(env, t) do
                   m = r.row_more;
                   match$1 = m.desc;
                   if (typeof match$1 == "number") then do
-                    throw {
-                          Caml_builtin_exceptions.assert_failure,
-                          --[[ tuple ]]{
-                            "ctype.ml",
-                            1987,
-                            19
-                          }
-                        };
+                    error ({
+                      Caml_builtin_exceptions.assert_failure,
+                      --[[ tuple ]]{
+                        "ctype.ml",
+                        1987,
+                        19
+                      }
+                    })
                   end else if (match$1.tag) then do
-                    throw {
-                          Caml_builtin_exceptions.assert_failure,
-                          --[[ tuple ]]{
-                            "ctype.ml",
-                            1987,
-                            19
-                          }
-                        };
+                    error ({
+                      Caml_builtin_exceptions.assert_failure,
+                      --[[ tuple ]]{
+                        "ctype.ml",
+                        1987,
+                        19
+                      }
+                    })
                   end else do
                     o$1 = match$1[0];
                     name$1 = o$1 ~= undefined and o$1 or "ex";
@@ -28711,21 +28582,20 @@ function reify(env, t) do
 end end
 
 function is_newtype(env, p) do
-  try do
+  xpcall(function() do
     decl = find_type_full(p, env)[0];
     if (decl.type_newtype_level ~= undefined and decl.type_kind == --[[ Type_abstract ]]0) then do
       return decl.type_private == --[[ Public ]]1;
     end else do
       return false;
     end end 
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Caml_builtin_exceptions.not_found) then do
       return false;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 function non_aliasable(p, decl) do
@@ -28742,20 +28612,19 @@ function expands_to_datatype(env, ty) do
   if (typeof match == "number" or match.tag ~= --[[ Tconstr ]]3) then do
     return false;
   end else do
-    try do
+    xpcall(function() do
       if (is_datatype(find_type_full(match[0], env)[0])) then do
         return true;
       end else do
         return expands_to_datatype(env, try_expand_once(env, ty$1));
       end end 
-    end
-    catch (exn)do
+    end end,function(exn) return do
       if (exn == Caml_builtin_exceptions.not_found or exn == Cannot_expand) then do
         return false;
       end else do
-        throw exn;
+        error (exn)
       end end 
-    end
+    end end)
   end end 
 end end
 
@@ -28828,13 +28697,12 @@ function mcomp(type_pairs, env, _t1, _t2) do
           if (t1$prime$1 == t2$prime$1) then do
             return --[[ () ]]0;
           end else do
-            try do
+            xpcall(function() do
               return Curry._2(TypePairs.find, type_pairs, --[[ tuple ]]{
                           t1$prime$1,
                           t2$prime$1
                         });
-            end
-            catch (exn)do
+            end end,function(exn) return do
               if (exn == Caml_builtin_exceptions.not_found) then do
                 Curry._3(TypePairs.add, type_pairs, --[[ tuple ]]{
                       t1$prime$1,
@@ -28850,40 +28718,40 @@ function mcomp(type_pairs, env, _t1, _t2) do
                   end else if (match$3.tag == --[[ Tconstr ]]3) then do
                     exit$2 = 3;
                   end else do
-                    throw {
-                          Unify,
-                          --[[ [] ]]0
-                        };
+                    error ({
+                      Unify,
+                      --[[ [] ]]0
+                    })
                   end end  end 
                 end else do
                   local ___conditional___=(match$2.tag | 0);
                   do
                      if ___conditional___ = 0--[[ Tvar ]] then do
                         if (typeof match$3 == "number") then do
-                          throw {
-                                Unify,
-                                --[[ [] ]]0
-                              };
+                          error ({
+                            Unify,
+                            --[[ [] ]]0
+                          })
                         end else do
                           local ___conditional___=(match$3.tag | 0);
                           do
                              if ___conditional___ = 0--[[ Tvar ]] then do
-                                throw {
-                                      Caml_builtin_exceptions.assert_failure,
-                                      --[[ tuple ]]{
-                                        "ctype.ml",
-                                        2051,
-                                        30
-                                      }
-                                    };end end end 
+                                error ({
+                                  Caml_builtin_exceptions.assert_failure,
+                                  --[[ tuple ]]{
+                                    "ctype.ml",
+                                    2051,
+                                    30
+                                  }
+                                })end end end 
                              if ___conditional___ = 3--[[ Tconstr ]] then do
                                 exit$2 = 3;end else 
                              do end
                             else do
-                              throw {
-                                    Unify,
-                                    --[[ [] ]]0
-                                  };
+                              error ({
+                                Unify,
+                                --[[ [] ]]0
+                              })
                               end end
                               
                           end
@@ -28891,10 +28759,10 @@ function mcomp(type_pairs, env, _t1, _t2) do
                      if ___conditional___ = 1--[[ Tarrow ]] then do
                         l1 = match$2[0];
                         if (typeof match$3 == "number") then do
-                          throw {
-                                Unify,
-                                --[[ [] ]]0
-                              };
+                          error ({
+                            Unify,
+                            --[[ [] ]]0
+                          })
                         end else do
                           local ___conditional___=(match$3.tag | 0);
                           do
@@ -28904,31 +28772,31 @@ function mcomp(type_pairs, env, _t1, _t2) do
                                   mcomp(type_pairs, env, match$2[1], match$3[1]);
                                   _t2 = match$3[2];
                                   _t1 = match$2[2];
-                                  continue ;
+                                  ::continue:: ;
                                 end else do
-                                  throw {
-                                        Unify,
-                                        --[[ [] ]]0
-                                      };
+                                  error ({
+                                    Unify,
+                                    --[[ [] ]]0
+                                  })
                                 end end end end end 
                              if ___conditional___ = 3--[[ Tconstr ]] then do
                                 exit$2 = 3;end else 
                              do end
                             else do
-                              throw {
-                                    Unify,
-                                    --[[ [] ]]0
-                                  };
+                              error ({
+                                Unify,
+                                --[[ [] ]]0
+                              })
                               end end
                               
                           end
                         end end end else 
                      if ___conditional___ = 2--[[ Ttuple ]] then do
                         if (typeof match$3 == "number") then do
-                          throw {
-                                Unify,
-                                --[[ [] ]]0
-                              };
+                          error ({
+                            Unify,
+                            --[[ [] ]]0
+                          })
                         end else do
                           local ___conditional___=(match$3.tag | 0);
                           do
@@ -28938,10 +28806,10 @@ function mcomp(type_pairs, env, _t1, _t2) do
                                 exit$2 = 3;end else 
                              do end
                             else do
-                              throw {
-                                    Unify,
-                                    --[[ [] ]]0
-                                  };
+                              error ({
+                                Unify,
+                                --[[ [] ]]0
+                              })
                               end end
                               
                           end
@@ -28957,23 +28825,22 @@ function mcomp(type_pairs, env, _t1, _t2) do
                           p2 = match$3[0];
                           tl1 = match$2[1];
                           tl2 = match$3[1];
-                          try do
+                          xpcall(function() do
                             decl = find_type_full(p1$1, env$1)[0];
                             decl$prime = find_type_full(p2, env$1)[0];
                             if (same(p1$1, p2)) then do
                               inj;
-                              try do
+                              xpcall(function() do
                                 inj = List.map(Curry._1(Types_Variance.mem, --[[ Inj ]]3), find_type_full(p1$1, env$1)[0].type_variance);
-                              end
-                              catch (exn$1)do
+                              end end,function(exn$1) return do
                                 if (exn$1 == Caml_builtin_exceptions.not_found) then do
                                   inj = List.map((function (param) do
                                           return false;
                                         end end), tl1);
                                 end else do
-                                  throw exn$1;
+                                  error (exn$1)
                                 end end 
-                              end
+                              end end)
                               return List.iter2((function(type_pairs$1,env$1)do
                                         return function (i, param) do
                                           if (i) then do
@@ -28985,10 +28852,10 @@ function mcomp(type_pairs, env, _t1, _t2) do
                                         end(type_pairs$1,env$1)), inj, List.combine(tl1, tl2));
                             end else do
                               if (non_aliasable(p1$1, decl) and non_aliasable(p2, decl$prime)) then do
-                                throw {
-                                      Unify,
-                                      --[[ [] ]]0
-                                    };
+                                error ({
+                                  Unify,
+                                  --[[ [] ]]0
+                                })
                               end
                                end 
                               match$4 = decl.type_kind;
@@ -29017,20 +28884,20 @@ function mcomp(type_pairs, env, _t1, _t2) do
                                     exit$3 = 1;
                                   end end 
                                 end else do
-                                  throw {
-                                        Unify,
-                                        --[[ [] ]]0
-                                      };
+                                  error ({
+                                    Unify,
+                                    --[[ [] ]]0
+                                  })
                                 end end  end 
                               end else if (match$4.tag) then do
                                 if (typeof match$5 == "number") then do
                                   if (match$5 == --[[ Type_abstract ]]0) then do
                                     exit$3 = 1;
                                   end else do
-                                    throw {
-                                          Unify,
-                                          --[[ [] ]]0
-                                        };
+                                    error ({
+                                      Unify,
+                                      --[[ [] ]]0
+                                    })
                                   end end 
                                 end else if (match$5.tag) then do
                                   mcomp_list(type_pairs$1, env$1, tl1, tl2);
@@ -29052,98 +28919,97 @@ function mcomp(type_pairs, env, _t1, _t2) do
                                         if (c1.cd_id.name == c2.cd_id.name) then do
                                           _y = y[1];
                                           _x = x[1];
-                                          continue ;
+                                          ::continue:: ;
                                         end else do
-                                          throw {
-                                                Unify,
-                                                --[[ [] ]]0
-                                              };
-                                        end end 
-                                      end else do
-                                        throw {
-                                              Unify,
-                                              --[[ [] ]]0
-                                            };
-                                      end end 
-                                    end else if (y) then do
-                                      throw {
+                                          error ({
                                             Unify,
                                             --[[ [] ]]0
-                                          };
+                                          })
+                                        end end 
+                                      end else do
+                                        error ({
+                                          Unify,
+                                          --[[ [] ]]0
+                                        })
+                                      end end 
+                                    end else if (y) then do
+                                      error ({
+                                        Unify,
+                                        --[[ [] ]]0
+                                      })
                                     end else do
                                       return --[[ () ]]0;
                                     end end  end 
                                   end;
                                 end else do
-                                  throw {
-                                        Unify,
-                                        --[[ [] ]]0
-                                      };
+                                  error ({
+                                    Unify,
+                                    --[[ [] ]]0
+                                  })
                                 end end  end 
                               end else if (typeof match$5 == "number") then do
                                 if (match$5 == --[[ Type_abstract ]]0) then do
                                   exit$3 = 1;
                                 end else do
-                                  throw {
-                                        Unify,
-                                        --[[ [] ]]0
-                                      };
+                                  error ({
+                                    Unify,
+                                    --[[ [] ]]0
+                                  })
                                 end end 
                               end else if (match$5.tag) then do
-                                throw {
-                                      Unify,
-                                      --[[ [] ]]0
-                                    };
+                                error ({
+                                  Unify,
+                                  --[[ [] ]]0
+                                })
                               end else if (match$4[1] == match$5[1]) then do
                                 mcomp_list(type_pairs$1, env$1, tl1, tl2);
                                 return mcomp_record_description(type_pairs$1, env$1)(match$4[0], match$5[0]);
                               end else do
-                                throw {
-                                      Unify,
-                                      --[[ [] ]]0
-                                    };
+                                error ({
+                                  Unify,
+                                  --[[ [] ]]0
+                                })
                               end end  end  end  end  end 
                               if (exit$3 == 1) then do
                                 if (typeof match$5 == "number") then do
                                   if (match$5 ~= 0) then do
-                                    throw {
-                                          Unify,
-                                          --[[ [] ]]0
-                                        };
+                                    error ({
+                                      Unify,
+                                      --[[ [] ]]0
+                                    })
                                   end
                                    end 
                                   if (non_aliasable(p2, decl$prime)) then do
-                                    throw {
-                                          Unify,
-                                          --[[ [] ]]0
-                                        };
+                                    error ({
+                                      Unify,
+                                      --[[ [] ]]0
+                                    })
                                   end else do
                                     return --[[ () ]]0;
                                   end end 
                                 end else do
-                                  throw {
-                                        Unify,
-                                        --[[ [] ]]0
-                                      };
+                                  error ({
+                                    Unify,
+                                    --[[ [] ]]0
+                                  })
                                 end end 
                               end
                                end 
                             end end 
-                          end
-                          catch (exn$2)do
+                          end end,function(exn$2) return do
                             if (exn$2 == Caml_builtin_exceptions.not_found) then do
                               return --[[ () ]]0;
                             end else do
-                              throw exn$2;
+                              error (exn$2)
                             end end 
-                          end
+                          end end)
                         end end end else 
                      if ___conditional___ = 4--[[ Tobject ]] then do
                         if (typeof match$3 == "number") then do
-                          throw {
-                                Unify,
-                                --[[ [] ]]0
-                              };
+                          error ({
+                            Unify,
+                            --[[ [] ]]0
+                          })
                         end else do
                           local ___conditional___=(match$3.tag | 0);
                           do
@@ -29153,20 +29019,20 @@ function mcomp(type_pairs, env, _t1, _t2) do
                                 return mcomp_fields(type_pairs, env, match$2[0], match$3[0]);end end end 
                              do end
                             else do
-                              throw {
-                                    Unify,
-                                    --[[ [] ]]0
-                                  };
+                              error ({
+                                Unify,
+                                --[[ [] ]]0
+                              })
                               end end
                               
                           end
                         end end end else 
                      if ___conditional___ = 5--[[ Tfield ]] then do
                         if (typeof match$3 == "number") then do
-                          throw {
-                                Unify,
-                                --[[ [] ]]0
-                              };
+                          error ({
+                            Unify,
+                            --[[ [] ]]0
+                          })
                         end else do
                           local ___conditional___=(match$3.tag | 0);
                           do
@@ -29176,10 +29042,10 @@ function mcomp(type_pairs, env, _t1, _t2) do
                                 return mcomp_fields(type_pairs, env, t1$prime$1, t2$prime$1);end end end 
                              do end
                             else do
-                              throw {
-                                    Unify,
-                                    --[[ [] ]]0
-                                  };
+                              error ({
+                                Unify,
+                                --[[ [] ]]0
+                              })
                               end end
                               
                           end
@@ -29189,10 +29055,10 @@ function mcomp(type_pairs, env, _t1, _t2) do
                         exit$2 = 3;end else 
                      if ___conditional___ = 8--[[ Tvariant ]] then do
                         if (typeof match$3 == "number") then do
-                          throw {
-                                Unify,
-                                --[[ [] ]]0
-                              };
+                          error ({
+                            Unify,
+                            --[[ [] ]]0
+                          })
                         end else do
                           local ___conditional___=(match$3.tag | 0);
                           do
@@ -29215,10 +29081,10 @@ function mcomp(type_pairs, env, _t1, _t2) do
                                   end end 
                                 end end;
                                 if (row1$1.row_closed and List.exists(cannot_erase, match$6[1]) or row2$1.row_closed and List.exists(cannot_erase, match$6[0])) then do
-                                  throw {
-                                        Unify,
-                                        --[[ [] ]]0
-                                      };
+                                  error ({
+                                    Unify,
+                                    --[[ [] ]]0
+                                  })
                                 end
                                  end 
                                 return List.iter((function(type_pairs$3,env$3)do
@@ -29257,16 +29123,16 @@ function mcomp(type_pairs, env, _t1, _t2) do
                                               if (match$3 ~= undefined) then do
                                                 t1 = match$3;
                                                 if (typeof match$1 == "number") then do
-                                                  throw {
-                                                        Unify,
-                                                        --[[ [] ]]0
-                                                      };
+                                                  error ({
+                                                    Unify,
+                                                    --[[ [] ]]0
+                                                  })
                                                 end else if (match$1.tag) then do
                                                   if (match$1[0]) then do
-                                                    throw {
-                                                          Unify,
-                                                          --[[ [] ]]0
-                                                        };
+                                                    error ({
+                                                      Unify,
+                                                      --[[ [] ]]0
+                                                    })
                                                   end
                                                    end 
                                                   return List.iter((function (param) do
@@ -29277,31 +29143,31 @@ function mcomp(type_pairs, env, _t1, _t2) do
                                                   if (match$4 ~= undefined) then do
                                                     return mcomp(type_pairs$3, env$3, t1, match$4);
                                                   end else do
-                                                    throw {
-                                                          Unify,
-                                                          --[[ [] ]]0
-                                                        };
+                                                    error ({
+                                                      Unify,
+                                                      --[[ [] ]]0
+                                                    })
                                                   end end 
                                                 end end  end 
                                               end else if (typeof match$1 == "number") then do
-                                                throw {
-                                                      Unify,
-                                                      --[[ [] ]]0
-                                                    };
+                                                error ({
+                                                  Unify,
+                                                  --[[ [] ]]0
+                                                })
                                               end else if (match$1.tag) then do
                                                 if (match$1[1]) then do
-                                                  throw {
-                                                        Unify,
-                                                        --[[ [] ]]0
-                                                      };
+                                                  error ({
+                                                    Unify,
+                                                    --[[ [] ]]0
+                                                  })
                                                 end else do
                                                   return --[[ () ]]0;
                                                 end end 
                                               end else if (match$1[0] ~= undefined) then do
-                                                throw {
-                                                      Unify,
-                                                      --[[ [] ]]0
-                                                    };
+                                                error ({
+                                                  Unify,
+                                                  --[[ [] ]]0
+                                                })
                                               end else do
                                                 return --[[ () ]]0;
                                               end end  end  end  end 
@@ -29312,10 +29178,10 @@ function mcomp(type_pairs, env, _t1, _t2) do
                                               end else if (match$1[0] ~= undefined) then do
                                                 exit = 1;
                                               end else do
-                                                throw {
-                                                      Unify,
-                                                      --[[ [] ]]0
-                                                    };
+                                                error ({
+                                                  Unify,
+                                                  --[[ [] ]]0
+                                                })
                                               end end  end 
                                             end
                                              end 
@@ -29327,10 +29193,10 @@ function mcomp(type_pairs, env, _t1, _t2) do
                                               if (typeof match$1 == "number" or match$1.tag or match$1[0] == undefined) then do
                                                 return --[[ () ]]0;
                                               end else do
-                                                throw {
-                                                      Unify,
-                                                      --[[ [] ]]0
-                                                    };
+                                                error ({
+                                                  Unify,
+                                                  --[[ [] ]]0
+                                                })
                                               end end 
                                             end
                                              end 
@@ -29338,20 +29204,20 @@ function mcomp(type_pairs, env, _t1, _t2) do
                                           end(type_pairs$3,env$3)), match$6[2]);end end end 
                              do end
                             else do
-                              throw {
-                                    Unify,
-                                    --[[ [] ]]0
-                                  };
+                              error ({
+                                Unify,
+                                --[[ [] ]]0
+                              })
                               end end
                               
                           end
                         end end end else 
                      if ___conditional___ = 9--[[ Tunivar ]] then do
                         if (typeof match$3 == "number") then do
-                          throw {
-                                Unify,
-                                --[[ [] ]]0
-                              };
+                          error ({
+                            Unify,
+                            --[[ [] ]]0
+                          })
                         end else do
                           local ___conditional___=(match$3.tag | 0);
                           do
@@ -29361,10 +29227,10 @@ function mcomp(type_pairs, env, _t1, _t2) do
                                 return unify_univar(t1$prime$1, t2$prime$1, univar_pairs.contents);end end end 
                              do end
                             else do
-                              throw {
-                                    Unify,
-                                    --[[ [] ]]0
-                                  };
+                              error ({
+                                Unify,
+                                --[[ [] ]]0
+                              })
                               end end
                               
                           end
@@ -29376,10 +29242,10 @@ function mcomp(type_pairs, env, _t1, _t2) do
                         if (tl1$1) then do
                           exit$5 = 4;
                         end else if (typeof match$3 == "number") then do
-                          throw {
-                                Unify,
-                                --[[ [] ]]0
-                              };
+                          error ({
+                            Unify,
+                            --[[ [] ]]0
+                          })
                         end else do
                           local ___conditional___=(match$3.tag | 0);
                           do
@@ -29391,24 +29257,24 @@ function mcomp(type_pairs, env, _t1, _t2) do
                                 end else do
                                   _t2 = match$3[0];
                                   _t1 = t1$2;
-                                  continue ;
+                                  ::continue:: ;
                                 end end end else 
                              do end end end
                             else do
-                              throw {
-                                    Unify,
-                                    --[[ [] ]]0
-                                  };
+                              error ({
+                                Unify,
+                                --[[ [] ]]0
+                              })
                               end end
                               
                           end
                         end end  end 
                         if (exit$5 == 4) then do
                           if (typeof match$3 == "number") then do
-                            throw {
-                                  Unify,
-                                  --[[ [] ]]0
-                                };
+                            error ({
+                              Unify,
+                              --[[ [] ]]0
+                            })
                           end else do
                             local ___conditional___=(match$3.tag | 0);
                             do
@@ -29420,10 +29286,10 @@ function mcomp(type_pairs, env, _t1, _t2) do
                                               end end));end end end 
                                do end
                               else do
-                                throw {
-                                      Unify,
-                                      --[[ [] ]]0
-                                    };
+                                error ({
+                                  Unify,
+                                  --[[ [] ]]0
+                                })
                                 end end
                                 
                             end
@@ -29432,10 +29298,10 @@ function mcomp(type_pairs, env, _t1, _t2) do
                          end end else 
                      if ___conditional___ = 11--[[ Tpackage ]] then do
                         if (typeof match$3 == "number") then do
-                          throw {
-                                Unify,
-                                --[[ [] ]]0
-                              };
+                          error ({
+                            Unify,
+                            --[[ [] ]]0
+                          })
                         end else do
                           local ___conditional___=(match$3.tag | 0);
                           do
@@ -29445,10 +29311,10 @@ function mcomp(type_pairs, env, _t1, _t2) do
                                 return --[[ () ]]0;end end end 
                              do end
                             else do
-                              throw {
-                                    Unify,
-                                    --[[ [] ]]0
-                                  };
+                              error ({
+                                Unify,
+                                --[[ [] ]]0
+                              })
                               end end
                               
                           end
@@ -29459,42 +29325,41 @@ function mcomp(type_pairs, env, _t1, _t2) do
                 end end 
                 if (exit$2 == 3) then do
                   if (typeof match$3 == "number") then do
-                    throw {
-                          Unify,
-                          --[[ [] ]]0
-                        };
+                    error ({
+                      Unify,
+                      --[[ [] ]]0
+                    })
                   end else if (match$3.tag == --[[ Tconstr ]]3) then do
                     p = match$3[0];
                   end else do
-                    throw {
-                          Unify,
-                          --[[ [] ]]0
-                        };
+                    error ({
+                      Unify,
+                      --[[ [] ]]0
+                    })
                   end end  end 
                 end
                  end 
-                try do
+                xpcall(function() do
                   decl$1 = find_type_full(p, env)[0];
                   if (non_aliasable(p, decl$1) or is_datatype(decl$1)) then do
-                    throw {
-                          Unify,
-                          --[[ [] ]]0
-                        };
+                    error ({
+                      Unify,
+                      --[[ [] ]]0
+                    })
                   end else do
                     return 0;
                   end end 
-                end
-                catch (exn$3)do
+                end end,function(exn$3) return do
                   if (exn$3 == Caml_builtin_exceptions.not_found) then do
                     return --[[ () ]]0;
                   end else do
-                    throw exn$3;
+                    error (exn$3)
                   end end 
-                end
+                end end)
               end else do
-                throw exn;
+                error (exn)
               end end 
-            end
+            end end)
           end end 
         end
          end 
@@ -29505,10 +29370,10 @@ end end
 
 function mcomp_list(type_pairs, env, tl1, tl2) do
   if (List.length(tl1) ~= List.length(tl2)) then do
-    throw {
-          Unify,
-          --[[ [] ]]0
-        };
+    error ({
+      Unify,
+      --[[ [] ]]0
+    })
   end
    end 
   return List.iter2((function (param, param$1) do
@@ -29518,14 +29383,14 @@ end end
 
 function mcomp_fields(type_pairs, env, ty1, ty2) do
   if (not (concrete_object(ty1) and concrete_object(ty2))) then do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "ctype.ml",
-            2096,
-            59
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "ctype.ml",
+        2096,
+        59
+      }
+    })
   end
    end 
   match = flatten_fields(ty2);
@@ -29533,10 +29398,10 @@ function mcomp_fields(type_pairs, env, ty1, ty2) do
   match$2 = associate_fields(match$1[0], match[0]);
   mcomp(type_pairs, env, match$1[1], match[1]);
   if (match$2[1] ~= --[[ [] ]]0 and object_row(ty1).desc == --[[ Tnil ]]0 or match$2[2] ~= --[[ [] ]]0 and object_row(ty2).desc == --[[ Tnil ]]0) then do
-    throw {
-          Unify,
-          --[[ [] ]]0
-        };
+    error ({
+      Unify,
+      --[[ [] ]]0
+    })
   end
    end 
   return List.iter((function (param) do
@@ -29550,33 +29415,33 @@ function mcomp_kind(k1, k2) do
   k2$1 = field_kind_repr(k2);
   if (typeof k1$1 == "number") then do
     if (k1$1 ~= 0) then do
-      throw {
-            Unify,
-            --[[ [] ]]0
-          };
+      error ({
+        Unify,
+        --[[ [] ]]0
+      })
     end
      end 
     if (typeof k2$1 == "number") then do
       if (k2$1 ~= 0) then do
-        throw {
-              Unify,
-              --[[ [] ]]0
-            };
+        error ({
+          Unify,
+          --[[ [] ]]0
+        })
       end else do
         return --[[ () ]]0;
       end end 
     end else do
-      throw {
-            Unify,
-            --[[ [] ]]0
-          };
+      error ({
+        Unify,
+        --[[ [] ]]0
+      })
     end end 
   end else do
     if (typeof k2$1 == "number") then do
-      throw {
-            Unify,
-            --[[ [] ]]0
-          };
+      error ({
+        Unify,
+        --[[ [] ]]0
+      })
     end
      end 
     return --[[ () ]]0;
@@ -29588,16 +29453,16 @@ function mcomp_type_option(type_pairs, env, t, t$prime) do
     if (t$prime ~= undefined) then do
       return mcomp(type_pairs, env, t, t$prime);
     end else do
-      throw {
-            Unify,
-            --[[ [] ]]0
-          };
+      error ({
+        Unify,
+        --[[ [] ]]0
+      })
     end end 
   end else if (t$prime ~= undefined) then do
-    throw {
-          Unify,
-          --[[ [] ]]0
-        };
+    error ({
+      Unify,
+      --[[ [] ]]0
+    })
   end else do
     return --[[ () ]]0;
   end end  end 
@@ -29616,24 +29481,24 @@ function mcomp_record_description(type_pairs, env) do
           if (l1.ld_id.name == l2.ld_id.name and l1.ld_mutable == l2.ld_mutable) then do
             _y = y[1];
             _x = x[1];
-            continue ;
+            ::continue:: ;
           end else do
-            throw {
-                  Unify,
-                  --[[ [] ]]0
-                };
-          end end 
-        end else do
-          throw {
-                Unify,
-                --[[ [] ]]0
-              };
-        end end 
-      end else if (y) then do
-        throw {
+            error ({
               Unify,
               --[[ [] ]]0
-            };
+            })
+          end end 
+        end else do
+          error ({
+            Unify,
+            --[[ [] ]]0
+          })
+        end end 
+      end else if (y) then do
+        error ({
+          Unify,
+          --[[ [] ]]0
+        })
       end else do
         return --[[ () ]]0;
       end end  end 
@@ -29669,35 +29534,34 @@ function find_lowest_level(ty) do
 end end
 
 function find_newtype_level(env, path) do
-  try do
+  xpcall(function() do
     match = find_type_full(path, env)[0].type_newtype_level;
     if (match ~= undefined) then do
       return match;
     end else do
-      throw {
-            Caml_builtin_exceptions.assert_failure,
-            --[[ tuple ]]{
-              "ctype.ml",
-              2227,
-              12
-            }
-          };
+      error ({
+        Caml_builtin_exceptions.assert_failure,
+        --[[ tuple ]]{
+          "ctype.ml",
+          2227,
+          12
+        }
+      })
     end end 
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Caml_builtin_exceptions.not_found) then do
-      throw {
-            Caml_builtin_exceptions.assert_failure,
-            --[[ tuple ]]{
-              "ctype.ml",
-              2228,
-              20
-            }
-          };
+      error ({
+        Caml_builtin_exceptions.assert_failure,
+        --[[ tuple ]]{
+          "ctype.ml",
+          2228,
+          20
+        }
+      })
     end
      end 
-    throw exn;
-  end
+    error (exn)
+  end end)
 end end
 
 function add_gadt_equation(env, source, destination) do
@@ -29739,27 +29603,27 @@ end end
 
 nondep_type$prime = do
   contents: (function (param, param$1, param$2) do
-      throw {
-            Caml_builtin_exceptions.assert_failure,
-            --[[ tuple ]]{
-              "ctype.ml",
-              2250,
-              37
-            }
-          };
+      error ({
+        Caml_builtin_exceptions.assert_failure,
+        --[[ tuple ]]{
+          "ctype.ml",
+          2250,
+          37
+        }
+      })
     end end)
 end;
 
 package_subtype = do
   contents: (function (param, param$1, param$2, param$3, param$4, param$5, param$6) do
-      throw {
-            Caml_builtin_exceptions.assert_failure,
-            --[[ tuple ]]{
-              "ctype.ml",
-              2251,
-              48
-            }
-          };
+      error ({
+        Caml_builtin_exceptions.assert_failure,
+        --[[ tuple ]]{
+          "ctype.ml",
+          2251,
+          48
+        }
+      })
     end end)
 end;
 
@@ -29825,17 +29689,17 @@ function complete_type_list(allow_absentOpt, env, nl1, lv2, mty2, nl2, tl2) do
           exit = 1;
         end end 
         if (exit == 1) then do
-          try do
+          xpcall(function() do
             match = lookup_type$1(concat_longident(--[[ Lident ]]Block.__(0, {"Pkg"}), n), env$prime);
             decl = match[1];
             if (decl.type_arity ~= 0) then do
-              throw Pervasives.Exit;
+              error (Pervasives.Exit)
             end
              end 
             match$1 = decl.type_kind;
             if (typeof match$1 == "number") then do
               if (match$1 ~= 0) then do
-                throw Pervasives.Exit;
+                error (Pervasives.Exit)
               end
                end 
               if (decl.type_private) then do
@@ -29851,27 +29715,26 @@ function complete_type_list(allow_absentOpt, env, nl1, lv2, mty2, nl2, tl2) do
                 end else if (allow_absent) then do
                   return complete(nl, ntl2);
                 end else do
-                  throw Pervasives.Exit;
+                  error (Pervasives.Exit)
                 end end  end 
               end else do
-                throw Pervasives.Exit;
+                error (Pervasives.Exit)
               end end 
             end else do
-              throw Pervasives.Exit;
+              error (Pervasives.Exit)
             end end 
-          end
-          catch (exn)do
+          end end,function(exn) return do
             if (exn == Caml_builtin_exceptions.not_found and allow_absent) then do
               _nl1 = nl;
-              continue ;
+              ::continue:: ;
             end
              end 
             if (exn == Pervasives.Exit) then do
-              throw Caml_builtin_exceptions.not_found;
+              error (Caml_builtin_exceptions.not_found)
             end
              end 
-            throw exn;
-          end
+            error (exn)
+          end end)
         end
          end 
       end else do
@@ -29893,7 +29756,7 @@ function unify_package(env, unify_list, lv1, p1, n1, tl1, lv2, p2, n2, tl2) do
   if (eq_package_path(env, p1, p2) or Curry._7(package_subtype.contents, env, p1, n1, tl1, p2, n2, tl2) and Curry._7(package_subtype.contents, env, p2, n2, tl2, p1, n1, tl1)) then do
     return --[[ () ]]0;
   end else do
-    throw Caml_builtin_exceptions.not_found;
+    error (Caml_builtin_exceptions.not_found)
   end end 
 end end
 
@@ -29903,17 +29766,16 @@ function unify_eq(env, t1, t2) do
   end else do
     match = umode.contents;
     if (match) then do
-      try do
+      xpcall(function() do
         Curry._2(TypePairs.find, unify_eq_set, order_type_pair(t1, t2));
         return true;
-      end
-      catch (exn)do
+      end end,function(exn) return do
         if (exn == Caml_builtin_exceptions.not_found) then do
           return false;
         end else do
-          throw exn;
+          error (exn)
         end end 
-      end
+      end end)
     end else do
       return false;
     end end 
@@ -29930,7 +29792,7 @@ function unify(env, t1, t2) do
       return --[[ () ]]0;
     end else do
       reset_tracing = check_trace_gadt_instances(env.contents);
-      try do
+      xpcall(function() do
         type_changed.contents = true;
         match = t1$1.desc;
         match$1 = t2$1.desc;
@@ -29976,20 +29838,19 @@ function unify(env, t1, t2) do
                             update_level(env.contents, t1$1.level, t2$1);
                             link_type(t1$1, t2$1);
                           end else if (env.contents.local_constraints and is_newtype(env.contents, p1) and is_newtype(env.contents, p2)) then do
-                            try do
+                            xpcall(function() do
                               if (Caml_obj.caml_lessthan(find_newtype_level(env.contents, p1), find_newtype_level(env.contents, p2))) then do
                                 unify(env, t1$1, try_expand_once(env.contents, t2$1));
                               end else do
                                 unify(env, try_expand_once(env.contents, t1$1), t2$1);
                               end end 
-                            end
-                            catch (exn)do
+                            end end,function(exn) return do
                               if (exn == Cannot_expand) then do
                                 unify2(env, t1$1, t2$1);
                               end else do
-                                throw exn;
+                                error (exn)
                               end end 
-                            end
+                            end end)
                           end else do
                             unify2(env, t1$1, t2$1);
                           end end  end 
@@ -30039,25 +29900,24 @@ function unify(env, t1, t2) do
         end
          end 
         return reset_trace_gadt_instances(reset_tracing);
-      end
-      catch (raw_exn)do
+      end end,function(raw_exn) return do
         exn$1 = Caml_js_exceptions.internalToOCamlException(raw_exn);
         if (exn$1[0] == Unify) then do
           reset_trace_gadt_instances(reset_tracing);
-          throw {
-                Unify,
-                --[[ :: ]]{
-                  --[[ tuple ]]{
-                    t1$1,
-                    t2$1
-                  },
-                  exn$1[1]
-                }
-              };
+          error ({
+            Unify,
+            --[[ :: ]]{
+              --[[ tuple ]]{
+                t1$1,
+                t2$1
+              },
+              exn$1[1]
+            }
+          })
         end else do
-          throw exn$1;
+          error (exn$1)
         end end 
-      end
+      end end)
     end end 
   end end 
 end end
@@ -30087,14 +29947,14 @@ function unify_kind(k1, k2) do
       end
        end 
     end end 
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "ctype.ml",
-            2624,
-            37
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "ctype.ml",
+        2624,
+        37
+      }
+    })
   end end 
 end end
 
@@ -30180,7 +30040,7 @@ function unify_fields(env, ty1, ty2) do
   va = make_rowvar(l1 < l2 and l1 or l2, miss2 == --[[ [] ]]0, rest1, miss1 == --[[ [] ]]0, rest2);
   d1 = rest1.desc;
   d2 = rest2.desc;
-  try do
+  xpcall(function() do
     unify(env, build_fields(l1)(miss1, va), rest2);
     unify(env, rest1, build_fields(l2)(miss2, va));
     return List.iter((function (param) do
@@ -30190,14 +30050,13 @@ function unify_fields(env, ty1, ty2) do
                   k1 = param[1];
                   n = param[0];
                   unify_kind(k1, k2);
-                  try do
+                  xpcall(function() do
                     if (trace_gadt_instances.contents) then do
                       update_level(env.contents, va.level, t1);
                     end
                      end 
                     return unify(env, t1, t2);
-                  end
-                  catch (raw_exn)do
+                  end end,function(raw_exn) return do
                     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
                     if (exn[0] == Unify) then do
                       desc_003 = newty2(current_level.contents, --[[ Tnil ]]0);
@@ -30214,37 +30073,36 @@ function unify_fields(env, ty1, ty2) do
                           t2,
                           desc_003$1
                         });
-                      throw {
-                            Unify,
-                            --[[ :: ]]{
-                              --[[ tuple ]]{
-                                newty2(current_level.contents, desc),
-                                newty2(current_level.contents, desc$1)
-                              },
-                              exn[1]
-                            }
-                          };
+                      error ({
+                        Unify,
+                        --[[ :: ]]{
+                          --[[ tuple ]]{
+                            newty2(current_level.contents, desc),
+                            newty2(current_level.contents, desc$1)
+                          },
+                          exn[1]
+                        }
+                      })
                     end
                      end 
-                    throw exn;
-                  end
+                    error (exn)
+                  end end)
                 end end), match$2[0]);
-  end
-  catch (exn)do
+  end end,function(exn) return do
     log_type(rest1);
     rest1.desc = d1;
     log_type(rest2);
     rest2.desc = d2;
-    throw exn;
-  end
+    error (exn)
+  end end)
 end end
 
 function unify_list(env, tl1, tl2) do
   if (List.length(tl1) ~= List.length(tl2)) then do
-    throw {
-          Unify,
-          --[[ [] ]]0
-        };
+    error ({
+      Unify,
+      --[[ [] ]]0
+    })
   end
    end 
   return List.iter2((function (param, param$1) do
@@ -30272,20 +30130,19 @@ function unify_row(env, row1, row2) do
             end end), r1);
       List.iter((function (param) do
               l = param[0];
-              try do
-                throw {
-                      Tags,
-                      l,
-                      Hashtbl.find(ht, hash_variant(l))
-                    };
-              end
-              catch (exn)do
+              xpcall(function() do
+                error ({
+                  Tags,
+                  l,
+                  Hashtbl.find(ht, hash_variant(l))
+                })
+              end end,function(exn) return do
                 if (exn == Caml_builtin_exceptions.not_found) then do
                   return --[[ () ]]0;
                 end else do
-                  throw exn;
+                  error (exn)
                 end end 
-              end
+              end end)
             end end), r2);
     end
      end 
@@ -30318,16 +30175,16 @@ function unify_row(env, row1, row2) do
                 return row_field_repr_aux(--[[ [] ]]0, param[2]) == --[[ Rabsent ]]0;
               end end 
             end end), pairs)) then do
-      throw {
-            Unify,
-            --[[ :: ]]{
-              --[[ tuple ]]{
-                mkvariant(--[[ [] ]]0, true),
-                mkvariant(--[[ [] ]]0, true)
-              },
-              --[[ [] ]]0
-            }
-          };
+      error ({
+        Unify,
+        --[[ :: ]]{
+          --[[ tuple ]]{
+            mkvariant(--[[ [] ]]0, true),
+            mkvariant(--[[ [] ]]0, true)
+          },
+          --[[ [] ]]0
+        }
+      })
     end
      end 
     name = row1$1.row_name ~= undefined and (row1$1.row_closed or empty(r2)) and (not row2$1.row_closed or keep((function (f1, f2) do
@@ -30348,19 +30205,19 @@ function unify_row(env, row1, row2) do
       if (rest$1 ~= --[[ [] ]]0 and (row.row_closed or row_fixed(row)) or closed and row_fixed(row) and not row.row_closed) then do
         t1 = mkvariant(--[[ [] ]]0, true);
         t2 = mkvariant(rest$1, false);
-        throw {
-              Unify,
-              --[[ :: ]]{
-                row == row1$1 and --[[ tuple ]]{
-                    t1,
-                    t2
-                  } or --[[ tuple ]]{
-                    t2,
-                    t1
-                  },
-                --[[ [] ]]0
-              }
-            };
+        error ({
+          Unify,
+          --[[ :: ]]{
+            row == row1$1 and --[[ tuple ]]{
+                t1,
+                t2
+              } or --[[ tuple ]]{
+                t2,
+                t1
+              },
+            --[[ [] ]]0
+          }
+        })
       end
        end 
       rm = row_more(row);
@@ -30394,14 +30251,14 @@ function unify_row(env, row1, row2) do
     end end;
     md1 = rm1.desc;
     md2 = rm2.desc;
-    try do
+    xpcall(function() do
       set_more(row2$1, r1);
       set_more(row1$1, r2);
       return List.iter((function (param) do
                     f2 = param[2];
                     f1 = param[1];
                     l = param[0];
-                    try do
+                    xpcall(function() do
                       env$1 = env;
                       fixed1$1 = fixed1;
                       fixed2$1 = fixed2;
@@ -30420,25 +30277,25 @@ function unify_row(env, row1, row2) do
                             return --[[ () ]]0;
                           end else if (f2$2.tag) then do
                             if (f2$2[2]) then do
-                              throw {
-                                    Unify,
-                                    --[[ [] ]]0
-                                  };
+                              error ({
+                                Unify,
+                                --[[ [] ]]0
+                              })
                             end
                              end 
                             if (fixed2$1) then do
-                              throw {
-                                    Unify,
-                                    --[[ [] ]]0
-                                  };
+                              error ({
+                                Unify,
+                                --[[ [] ]]0
+                              })
                             end else do
                               return set_row_field(f2$2[3], f1$2);
                             end end 
                           end else do
-                            throw {
-                                  Unify,
-                                  --[[ [] ]]0
-                                };
+                            error ({
+                              Unify,
+                              --[[ [] ]]0
+                            })
                           end end  end 
                         end else if (f1$2.tag) then do
                           c1 = f1$2[0];
@@ -30447,17 +30304,17 @@ function unify_row(env, row1, row2) do
                           e1 = f1$2[3];
                           if (typeof f2$2 == "number") then do
                             if (m1) then do
-                              throw {
-                                    Unify,
-                                    --[[ [] ]]0
-                                  };
+                              error ({
+                                Unify,
+                                --[[ [] ]]0
+                              })
                             end
                              end 
                             if (fixed1$1) then do
-                              throw {
-                                    Unify,
-                                    --[[ [] ]]0
-                                  };
+                              error ({
+                                Unify,
+                                --[[ [] ]]0
+                              })
                             end else do
                               return set_row_field(f1$2[3], f2$2);
                             end end 
@@ -30476,10 +30333,10 @@ function unify_row(env, row1, row2) do
                                 if (match) then do
                                   t1 = match[0];
                                   if (c1 or c2) then do
-                                    throw {
-                                          Unify,
-                                          --[[ [] ]]0
-                                        };
+                                    error ({
+                                      Unify,
+                                      --[[ [] ]]0
+                                    })
                                   end
                                    end 
                                   List.iter((function(t1)do
@@ -30497,7 +30354,7 @@ function unify_row(env, row1, row2) do
                               if (redo) then do
                                 _f2 = f2$2;
                                 _f1 = f1$2;
-                                continue ;
+                                ::continue:: ;
                               end else do
                                 tl1$1 = List.map(repr, tl1);
                                 tl2$1 = List.map(repr, tl2);
@@ -30509,7 +30366,7 @@ function unify_row(env, row1, row2) do
                                       ty = param[0];
                                       if (List.memq(ty, tl)) then do
                                         _param = tl$prime;
-                                        continue ;
+                                        ::continue:: ;
                                       end else do
                                         return --[[ :: ]]{
                                                 ty,
@@ -30555,24 +30412,24 @@ function unify_row(env, row1, row2) do
                             end end 
                           end else if (c1) then do
                             if (f1$2[1]) then do
-                              throw {
-                                    Unify,
-                                    --[[ [] ]]0
-                                  };
+                              error ({
+                                Unify,
+                                --[[ [] ]]0
+                              })
                             end
                              end 
                             if (f2$2[0] ~= undefined) then do
-                              throw {
-                                    Unify,
-                                    --[[ [] ]]0
-                                  };
+                              error ({
+                                Unify,
+                                --[[ [] ]]0
+                              })
                             end
                              end 
                             if (fixed1$1) then do
-                              throw {
-                                    Unify,
-                                    --[[ [] ]]0
-                                  };
+                              error ({
+                                Unify,
+                                --[[ [] ]]0
+                              })
                             end else do
                               return set_row_field(f1$2[3], f2$2);
                             end end 
@@ -30580,32 +30437,31 @@ function unify_row(env, row1, row2) do
                             match$1 = f2$2[0];
                             if (match$1 ~= undefined) then do
                               if (fixed1$1) then do
-                                throw {
-                                      Unify,
-                                      --[[ [] ]]0
-                                    };
+                                error ({
+                                  Unify,
+                                  --[[ [] ]]0
+                                })
                               end else do
                                 t2 = match$1;
                                 e1$1 = f1$2[3];
                                 set_row_field(e1$1, f2$2);
                                 update_level(env$1.contents, repr(more$1).level, t2);
-                                try do
+                                xpcall(function() do
                                   return List.iter((function(t2)do
                                             return function (t1) do
                                               return unify(env$1, t1, t2);
                                             end end
                                             end(t2)), f1$2[1]);
-                                end
-                                catch (exn)do
+                                end end,function(exn) return do
                                   e1$1.contents = undefined;
-                                  throw exn;
-                                end
+                                  error (exn)
+                                end end)
                               end end 
                             end else do
-                              throw {
-                                    Unify,
-                                    --[[ [] ]]0
-                                  };
+                              error ({
+                                Unify,
+                                --[[ [] ]]0
+                              })
                             end end 
                           end end  end  end 
                         end else do
@@ -30613,127 +30469,124 @@ function unify_row(env, row1, row2) do
                           if (match$2 ~= undefined) then do
                             t1$1 = match$2;
                             if (typeof f2$2 == "number") then do
-                              throw {
-                                    Unify,
-                                    --[[ [] ]]0
-                                  };
+                              error ({
+                                Unify,
+                                --[[ [] ]]0
+                              })
                             end else if (f2$2.tag) then do
                               if (f2$2[0]) then do
-                                throw {
-                                      Unify,
-                                      --[[ [] ]]0
-                                    };
+                                error ({
+                                  Unify,
+                                  --[[ [] ]]0
+                                })
                               end
                                end 
                               if (fixed2$1) then do
-                                throw {
-                                      Unify,
-                                      --[[ [] ]]0
-                                    };
+                                error ({
+                                  Unify,
+                                  --[[ [] ]]0
+                                })
                               end else do
                                 e2$1 = f2$2[3];
                                 set_row_field(e2$1, f1$2);
                                 update_level(env$1.contents, repr(more$1).level, t1$1);
-                                try do
+                                xpcall(function() do
                                   return List.iter((function(t1$1)do
                                             return function (param) do
                                               return unify(env$1, t1$1, param);
                                             end end
                                             end(t1$1)), f2$2[1]);
-                                end
-                                catch (exn$1)do
+                                end end,function(exn$1) return do
                                   e2$1.contents = undefined;
-                                  throw exn$1;
-                                end
+                                  error (exn$1)
+                                end end)
                               end end 
                             end else do
                               match$3 = f2$2[0];
                               if (match$3 ~= undefined) then do
                                 return unify(env$1, t1$1, match$3);
                               end else do
-                                throw {
-                                      Unify,
-                                      --[[ [] ]]0
-                                    };
+                                error ({
+                                  Unify,
+                                  --[[ [] ]]0
+                                })
                               end end 
                             end end  end 
                           end else if (typeof f2$2 == "number") then do
-                            throw {
-                                  Unify,
-                                  --[[ [] ]]0
-                                };
+                            error ({
+                              Unify,
+                              --[[ [] ]]0
+                            })
                           end else if (f2$2.tag) then do
                             if (f2$2[0]) then do
                               if (f2$2[1]) then do
-                                throw {
-                                      Unify,
-                                      --[[ [] ]]0
-                                    };
+                                error ({
+                                  Unify,
+                                  --[[ [] ]]0
+                                })
                               end
                                end 
                               if (fixed2$1) then do
-                                throw {
-                                      Unify,
-                                      --[[ [] ]]0
-                                    };
+                                error ({
+                                  Unify,
+                                  --[[ [] ]]0
+                                })
                               end else do
                                 return set_row_field(f2$2[3], f1$2);
                               end end 
                             end else do
-                              throw {
-                                    Unify,
-                                    --[[ [] ]]0
-                                  };
+                              error ({
+                                Unify,
+                                --[[ [] ]]0
+                              })
                             end end 
                           end else if (f2$2[0] ~= undefined) then do
-                            throw {
-                                  Unify,
-                                  --[[ [] ]]0
-                                };
+                            error ({
+                              Unify,
+                              --[[ [] ]]0
+                            })
                           end else do
                             return --[[ () ]]0;
                           end end  end  end  end 
                         end end  end  end 
                       end;
-                    end
-                    catch (raw_exn)do
+                    end end,function(raw_exn) return do
                       exn$2 = Caml_js_exceptions.internalToOCamlException(raw_exn);
                       if (exn$2[0] == Unify) then do
-                        throw {
-                              Unify,
-                              --[[ :: ]]{
-                                --[[ tuple ]]{
-                                  mkvariant(--[[ :: ]]{
-                                        --[[ tuple ]]{
-                                          l,
-                                          f1
-                                        },
-                                        --[[ [] ]]0
-                                      }, true),
-                                  mkvariant(--[[ :: ]]{
-                                        --[[ tuple ]]{
-                                          l,
-                                          f2
-                                        },
-                                        --[[ [] ]]0
-                                      }, true)
-                                },
-                                exn$2[1]
-                              }
-                            };
+                        error ({
+                          Unify,
+                          --[[ :: ]]{
+                            --[[ tuple ]]{
+                              mkvariant(--[[ :: ]]{
+                                    --[[ tuple ]]{
+                                      l,
+                                      f1
+                                    },
+                                    --[[ [] ]]0
+                                  }, true),
+                              mkvariant(--[[ :: ]]{
+                                    --[[ tuple ]]{
+                                      l,
+                                      f2
+                                    },
+                                    --[[ [] ]]0
+                                  }, true)
+                            },
+                            exn$2[1]
+                          }
+                        })
                       end
                        end 
-                      throw exn$2;
-                    end
+                      error (exn$2)
+                    end end)
                   end end), pairs);
-    end
-    catch (exn)do
+    end end,function(exn) return do
       log_type(rm1);
       rm1.desc = md1;
       log_type(rm2);
       rm2.desc = md2;
-      throw exn;
-    end
+      error (exn)
+    end end)
   end end 
 end end
 
@@ -30812,7 +30665,7 @@ function unify3(env, t1, t1$prime, t2, t2$prime) do
       occur(env.contents, t1$prime, t2$prime);
       link_type(t1$prime, t2);
     end end 
-    try do
+    xpcall(function() do
       exit$2 = 0;
       f;
       kind;
@@ -30832,10 +30685,10 @@ function unify3(env, t1, t1$prime, t2, t2$prime) do
                 exit$2 = 3;end else 
              do end end end
             else do
-              throw {
-                    Unify,
-                    --[[ [] ]]0
-                  };
+              error ({
+                Unify,
+                --[[ [] ]]0
+              })
               end end
               
           end
@@ -30847,10 +30700,10 @@ function unify3(env, t1, t1$prime, t2, t2$prime) do
            if ___conditional___ = 1--[[ Tarrow ]] then do
               l1 = d1[0];
               if (typeof d2 == "number") then do
-                throw {
-                      Unify,
-                      --[[ [] ]]0
-                    };
+                error ({
+                  Unify,
+                  --[[ [] ]]0
+                })
               end else do
                 local ___conditional___=(d2.tag | 0);
                 do
@@ -30871,29 +30724,29 @@ function unify3(env, t1, t1$prime, t2, t2$prime) do
                           set_commu(match$1[0], match$2);
                         end end 
                       end else do
-                        throw {
-                              Unify,
-                              --[[ [] ]]0
-                            };
+                        error ({
+                          Unify,
+                          --[[ [] ]]0
+                        })
                       end end end else 
                    if ___conditional___ = 3--[[ Tconstr ]] then do
                       exit$4 = 5;end else 
                    do end end end
                   else do
-                    throw {
-                          Unify,
-                          --[[ [] ]]0
-                        };
+                    error ({
+                      Unify,
+                      --[[ [] ]]0
+                    })
                     end end
                     
                 end
               end end end else 
            if ___conditional___ = 2--[[ Ttuple ]] then do
               if (typeof d2 == "number") then do
-                throw {
-                      Unify,
-                      --[[ [] ]]0
-                    };
+                error ({
+                  Unify,
+                  --[[ [] ]]0
+                })
               end else do
                 local ___conditional___=(d2.tag | 0);
                 do
@@ -30903,10 +30756,10 @@ function unify3(env, t1, t1$prime, t2, t2$prime) do
                       exit$4 = 5;end else 
                    do end end end
                   else do
-                    throw {
-                          Unify,
-                          --[[ [] ]]0
-                        };
+                    error ({
+                      Unify,
+                      --[[ [] ]]0
+                    })
                     end end
                     
                 end
@@ -30948,18 +30801,17 @@ function unify3(env, t1, t1$prime, t2, t2$prime) do
                       unify_list(env, tl1, tl2);
                     end else do
                       inj;
-                      try do
+                      xpcall(function() do
                         inj = List.map(Curry._1(Types_Variance.mem, --[[ Inj ]]3), find_type_full(p1, env.contents)[0].type_variance);
-                      end
-                      catch (exn)do
+                      end end,function(exn) return do
                         if (exn == Caml_builtin_exceptions.not_found) then do
                           inj = List.map((function (param) do
                                   return false;
                                 end end), tl1);
                         end else do
-                          throw exn;
+                          error (exn)
                         end end 
-                      end
+                      end end)
                       List.iter2((function (i, param) do
                               t2 = param[1];
                               t1 = param[0];
@@ -30968,19 +30820,18 @@ function unify3(env, t1, t1$prime, t2, t2$prime) do
                               end else do
                                 return set_mode_pattern(false, false, (function (param) do
                                               snap = snapshot(--[[ () ]]0);
-                                              try do
+                                              xpcall(function() do
                                                 return unify(env, t1, t2);
-                                              end
-                                              catch (raw_exn)do
+                                              end end,function(raw_exn) return do
                                                 exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
                                                 if (exn[0] == Unify) then do
                                                   backtrack(snap);
                                                   reify(env, t1);
                                                   return reify(env, t2);
                                                 end else do
-                                                  throw exn;
+                                                  error (exn)
                                                 end end 
-                                              end
+                                              end end)
                                             end end));
                               end end 
                             end end), inj, List.combine(tl1, tl2));
@@ -31046,10 +30897,10 @@ function unify3(env, t1, t1$prime, t2, t2$prime) do
            if ___conditional___ = 4--[[ Tobject ]] then do
               nm1 = d1[1];
               if (typeof d2 == "number") then do
-                throw {
-                      Unify,
-                      --[[ [] ]]0
-                    };
+                error ({
+                  Unify,
+                  --[[ [] ]]0
+                })
               end else do
                 local ___conditional___=(d2.tag | 0);
                 do
@@ -31095,10 +30946,10 @@ function unify3(env, t1, t1$prime, t2, t2$prime) do
                        end end else 
                    do end end end
                   else do
-                    throw {
-                          Unify,
-                          --[[ [] ]]0
-                        };
+                    error ({
+                      Unify,
+                      --[[ [] ]]0
+                    })
                     end end
                     
                 end
@@ -31112,18 +30963,18 @@ function unify3(env, t1, t1$prime, t2, t2$prime) do
               end else if (d2.tag == --[[ Tconstr ]]3) then do
                 exit$4 = 5;
               end else do
-                throw {
-                      Unify,
-                      --[[ [] ]]0
-                    };
+                error ({
+                  Unify,
+                  --[[ [] ]]0
+                })
               end end  end end else 
            if ___conditional___ = 8--[[ Tvariant ]] then do
               row1 = d1[0];
               if (typeof d2 == "number") then do
-                throw {
-                      Unify,
-                      --[[ [] ]]0
-                    };
+                error ({
+                  Unify,
+                  --[[ [] ]]0
+                })
               end else do
                 local ___conditional___=(d2.tag | 0);
                 do
@@ -31135,10 +30986,9 @@ function unify3(env, t1, t1$prime, t2, t2$prime) do
                         unify_row(env, row1, row2);
                       end else do
                         snap = snapshot(--[[ () ]]0);
-                        try do
+                        xpcall(function() do
                           unify_row(env, row1, row2);
-                        end
-                        catch (raw_exn)do
+                        end end,function(raw_exn) return do
                           exn$1 = Caml_js_exceptions.internalToOCamlException(raw_exn);
                           if (exn$1[0] == Unify) then do
                             backtrack(snap);
@@ -31149,16 +30999,16 @@ function unify3(env, t1, t1$prime, t2, t2$prime) do
                             end
                              end 
                           end else do
-                            throw exn$1;
+                            error (exn$1)
                           end end 
-                        end
+                        end end)
                       end end end else 
                    do end end end
                   else do
-                    throw {
-                          Unify,
-                          --[[ [] ]]0
-                        };
+                    error ({
+                      Unify,
+                      --[[ [] ]]0
+                    })
                     end end
                     
                 end
@@ -31170,10 +31020,10 @@ function unify3(env, t1, t1$prime, t2, t2$prime) do
               if (tl1$1) then do
                 exit$7 = 6;
               end else if (typeof d2 == "number") then do
-                throw {
-                      Unify,
-                      --[[ [] ]]0
-                    };
+                error ({
+                  Unify,
+                  --[[ [] ]]0
+                })
               end else do
                 local ___conditional___=(d2.tag | 0);
                 do
@@ -31187,20 +31037,20 @@ function unify3(env, t1, t1$prime, t2, t2$prime) do
                       end end end else 
                    do end end end
                   else do
-                    throw {
-                          Unify,
-                          --[[ [] ]]0
-                        };
+                    error ({
+                      Unify,
+                      --[[ [] ]]0
+                    })
                     end end
                     
                 end
               end end  end 
               if (exit$7 == 6) then do
                 if (typeof d2 == "number") then do
-                  throw {
-                        Unify,
-                        --[[ [] ]]0
-                      };
+                  error ({
+                    Unify,
+                    --[[ [] ]]0
+                  })
                 end else do
                   local ___conditional___=(d2.tag | 0);
                   do
@@ -31212,10 +31062,10 @@ function unify3(env, t1, t1$prime, t2, t2$prime) do
                               end end));end else 
                      do end end end
                     else do
-                      throw {
-                            Unify,
-                            --[[ [] ]]0
-                          };
+                      error ({
+                        Unify,
+                        --[[ [] ]]0
+                      })
                       end end
                       
                   end
@@ -31225,10 +31075,10 @@ function unify3(env, t1, t1$prime, t2, t2$prime) do
            if ___conditional___ = 11--[[ Tpackage ]] then do
               tl1$2 = d1[2];
               if (typeof d2 == "number") then do
-                throw {
-                      Unify,
-                      --[[ [] ]]0
-                    };
+                error ({
+                  Unify,
+                  --[[ [] ]]0
+                })
               end else do
                 local ___conditional___=(d2.tag | 0);
                 do
@@ -31236,33 +31086,32 @@ function unify3(env, t1, t1$prime, t2, t2$prime) do
                       exit$4 = 5;end else 
                    if ___conditional___ = 11--[[ Tpackage ]] then do
                       tl2$1 = d2[2];
-                      try do
+                      xpcall(function() do
                         unify_package(env.contents, (function (param, param$1) do
                                 return unify_list(env, param, param$1);
                               end end), t1.level, d1[0], d1[1], tl1$2, t2.level, d2[0], d2[1], tl2$1);
-                      end
-                      catch (exn$2)do
+                      end end,function(exn$2) return do
                         if (exn$2 == Caml_builtin_exceptions.not_found) then do
                           if (umode.contents == --[[ Expression ]]0) then do
-                            throw {
-                                  Unify,
-                                  --[[ [] ]]0
-                                };
+                            error ({
+                              Unify,
+                              --[[ [] ]]0
+                            })
                           end
                            end 
                           List.iter((function (param) do
                                   return reify(env, param);
                                 end end), Pervasives.$at(tl1$2, tl2$1));
                         end else do
-                          throw exn$2;
+                          error (exn$2)
                         end end 
-                      endend else 
+                      end end)end else 
                    do end end end
                   else do
-                    throw {
-                          Unify,
-                          --[[ [] ]]0
-                        };
+                    error ({
+                      Unify,
+                      --[[ [] ]]0
+                    })
                     end end
                     
                 end
@@ -31299,17 +31148,17 @@ function unify3(env, t1, t1$prime, t2, t2$prime) do
        end 
       if (exit$3 == 4) then do
         if (typeof d1 == "number") then do
-          throw {
-                Unify,
-                --[[ [] ]]0
-              };
+          error ({
+            Unify,
+            --[[ [] ]]0
+          })
         end else if (d1.tag == --[[ Tconstr ]]3) then do
           exit$2 = 2;
         end else do
-          throw {
-                Unify,
-                --[[ [] ]]0
-              };
+          error ({
+            Unify,
+            --[[ [] ]]0
+          })
         end end  end 
       end
        end 
@@ -31324,18 +31173,18 @@ function unify3(env, t1, t1$prime, t2, t2$prime) do
               end
                end 
             end else do
-              throw {
-                    Unify,
-                    --[[ [] ]]0
-                  };
+              error ({
+                Unify,
+                --[[ [] ]]0
+              })
             end end end else 
          if ___conditional___ = 3 then do
             match$8 = field_kind_repr(kind);
             if (typeof match$8 == "number") then do
-              throw {
-                    Unify,
-                    --[[ [] ]]0
-                  };
+              error ({
+                Unify,
+                --[[ [] ]]0
+              })
             end
              end 
             if (f ~= dummy_method) then do
@@ -31346,10 +31195,10 @@ function unify3(env, t1, t1$prime, t2, t2$prime) do
                 unify(env, newty2(rem.level, --[[ Tnil ]]0), rem);
               end end 
             end else do
-              throw {
-                    Unify,
-                    --[[ [] ]]0
-                  };
+              error ({
+                Unify,
+                --[[ [] ]]0
+              })
             end end end else 
          do end end end
         
@@ -31370,19 +31219,18 @@ function unify3(env, t1, t1$prime, t2, t2$prime) do
       end else do
         return 0;
       end end 
-    end
-    catch (raw_exn$1)do
+    end end,function(raw_exn$1) return do
       exn$3 = Caml_js_exceptions.internalToOCamlException(raw_exn$1);
       if (exn$3[0] == Unify) then do
         t1$prime.desc = d1;
-        throw {
-              Unify,
-              exn$3[1]
-            };
+        error ({
+          Unify,
+          exn$3[1]
+        })
       end else do
-        throw exn$3;
+        error (exn$3)
       end end 
-    end
+    end end)
   end
    end 
 end end
@@ -31402,7 +31250,7 @@ function unify2(env, t1, t2) do
       end else do
         _t2$prime$prime = t2$prime;
         _t1$prime$prime = t1$prime;
-        continue ;
+        ::continue:: ;
       end end 
     end;
   end end;
@@ -31459,57 +31307,55 @@ function unify2(env, t1, t2) do
     if (unify_eq(env.contents, t1$2, t1$prime) or not unify_eq(env.contents, t2$2, t2$prime)) then do
       return unify3(env, t1$2, t1$prime, t2$2, t2$prime);
     end else do
-      try do
+      xpcall(function() do
         return unify3(env, t2$2, t2$prime, t1$2, t1$prime);
-      end
-      catch (raw_exn)do
+      end end,function(raw_exn) return do
         exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
         if (exn[0] == Unify) then do
-          throw {
-                Unify,
-                List.map((function (param) do
-                        return --[[ tuple ]]{
-                                param[1],
-                                param[0]
-                              };
-                      end end), exn[1])
-              };
+          error ({
+            Unify,
+            List.map((function (param) do
+                    return --[[ tuple ]]{
+                            param[1],
+                            param[0]
+                          };
+                  end end), exn[1])
+          })
         end
          end 
-        throw exn;
-      end
+        error (exn)
+      end end)
     end end 
   end end 
 end end
 
 function unify$1(env, ty1, ty2) do
-  try do
+  xpcall(function() do
     return unify(env, ty1, ty2);
-  end
-  catch (raw_exn)do
+  end end,function(raw_exn) return do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn[0] == Unify) then do
-      throw {
-            Unify,
-            expand_trace(env.contents, exn[1])
-          };
+      error ({
+        Unify,
+        expand_trace(env.contents, exn[1])
+      })
     end
      end 
     if (exn == Recursive_abbrev) then do
-      throw {
-            Unification_recursive_abbrev,
-            expand_trace(env.contents, --[[ :: ]]{
-                  --[[ tuple ]]{
-                    ty1,
-                    ty2
-                  },
-                  --[[ [] ]]0
-                })
-          };
+      error ({
+        Unification_recursive_abbrev,
+        expand_trace(env.contents, --[[ :: ]]{
+              --[[ tuple ]]{
+                ty1,
+                ty2
+              },
+              --[[ [] ]]0
+            })
+      })
     end
      end 
-    throw exn;
-  end
+    error (exn)
+  end end)
 end end
 
 function unify_var(env, t1, t2) do
@@ -31525,13 +31371,12 @@ function unify_var(env, t1, t2) do
                 end, t1$1, t2$1);
     end else do
       reset_tracing = check_trace_gadt_instances(env);
-      try do
+      xpcall(function() do
         occur(env, t1$1, t2$1);
         update_level(env, t1$1.level, t2$1);
         link_type(t1$1, t2$1);
         return reset_trace_gadt_instances(reset_tracing);
-      end
-      catch (raw_exn)do
+      end end,function(raw_exn) return do
         exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
         if (exn[0] == Unify) then do
           reset_trace_gadt_instances(reset_tracing);
@@ -31542,14 +31387,14 @@ function unify_var(env, t1, t2) do
                 },
                 exn[1]
               });
-          throw {
-                Unify,
-                expanded_trace
-              };
+          error ({
+            Unify,
+            expanded_trace
+          })
         end else do
-          throw exn;
+          error (exn)
         end end 
-      end
+      end end)
     end end 
   end end 
 end end
@@ -31578,10 +31423,10 @@ function filter_arrow(env, t, l) do
   t$1 = expand_head_trace(env, t);
   match = t$1.desc;
   if (typeof match == "number") then do
-    throw {
-          Unify,
-          --[[ [] ]]0
-        };
+    error ({
+      Unify,
+      --[[ [] ]]0
+    })
   end else do
     local ___conditional___=(match.tag | 0);
     do
@@ -31608,17 +31453,17 @@ function filter_arrow(env, t, l) do
                     match[2]
                   };
           end else do
-            throw {
-                  Unify,
-                  --[[ [] ]]0
-                };
+            error ({
+              Unify,
+              --[[ [] ]]0
+            })
           end end end end end 
        do
       else do
-        throw {
-              Unify,
-              --[[ [] ]]0
-            };
+        error ({
+          Unify,
+          --[[ [] ]]0
+        })
         end end
         
     end
@@ -31631,10 +31476,10 @@ function filter_method_field(env, name, priv, _ty) do
     ty$1 = expand_head_trace(env, ty);
     match = ty$1.desc;
     if (typeof match == "number") then do
-      throw {
-            Unify,
-            --[[ [] ]]0
-          };
+      error ({
+        Unify,
+        --[[ [] ]]0
+      })
     end else do
       local ___conditional___=(match.tag | 0);
       do
@@ -31662,14 +31507,14 @@ function filter_method_field(env, name, priv, _ty) do
               return match[2];
             end else do
               _ty = match[3];
-              continue ;
+              ::continue:: ;
             end end end end end 
          do
         else do
-          throw {
-                Unify,
-                --[[ [] ]]0
-              };
+          error ({
+            Unify,
+            --[[ [] ]]0
+          })
           end end
           
       end
@@ -31681,10 +31526,10 @@ function filter_method(env, name, priv, ty) do
   ty$1 = expand_head_trace(env, ty);
   match = ty$1.desc;
   if (typeof match == "number") then do
-    throw {
-          Unify,
-          --[[ [] ]]0
-        };
+    error ({
+      Unify,
+      --[[ [] ]]0
+    })
   end else do
     local ___conditional___=(match.tag | 0);
     do
@@ -31698,10 +31543,10 @@ function filter_method(env, name, priv, ty) do
           return filter_method_field(env, name, priv, match[0]);end end end 
        do
       else do
-        throw {
-              Unify,
-              --[[ [] ]]0
-            };
+        error ({
+          Unify,
+          --[[ [] ]]0
+        })
         end end
         
     end
@@ -31710,10 +31555,9 @@ end end
 
 function filter_self_method(env, lab, priv, meths, ty) do
   ty$prime = filter_method(env, lab, priv, ty);
-  try do
+  xpcall(function() do
     return find(lab, meths.contents);
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Caml_builtin_exceptions.not_found) then do
       pair_000 = create(lab);
       pair = --[[ tuple ]]{
@@ -31723,9 +31567,9 @@ function filter_self_method(env, lab, priv, meths, ty) do
       meths.contents = add$1(lab, pair, meths.contents);
       return pair;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 function moregen_occur(env, level, ty) do
@@ -31733,7 +31577,7 @@ function moregen_occur(env, level, ty) do
     ty$1 = repr(ty);
     if (ty$1.level > level) then do
       if (is_Tvar(ty$1) and ty$1.level >= 99999999) then do
-        throw Occur;
+        error (Occur)
       end
        end 
       ty$1.level = pivot_level - ty$1.level | 0;
@@ -31752,21 +31596,20 @@ function moregen_occur(env, level, ty) do
       return 0;
     end end 
   end end;
-  try do
+  xpcall(function() do
     occur(ty);
     unmark_type(ty);
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Occur) then do
       unmark_type(ty);
-      throw {
-            Unify,
-            --[[ [] ]]0
-          };
+      error ({
+        Unify,
+        --[[ [] ]]0
+      })
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
   occur_univar(env, ty);
   return update_level(env, level, ty);
 end end
@@ -31788,7 +31631,7 @@ function moregen(inst_nongen, type_pairs, env, t1, t2) do
     if (t1$1 == t2$1) then do
       return --[[ () ]]0;
     end else do
-      try do
+      xpcall(function() do
         match = t1$1.desc;
         match$1 = t2$1.desc;
         exit = 0;
@@ -31826,13 +31669,12 @@ function moregen(inst_nongen, type_pairs, env, t1, t2) do
           if (t1$prime$1 == t2$prime$1) then do
             return --[[ () ]]0;
           end else do
-            try do
+            xpcall(function() do
               return Curry._2(TypePairs.find, type_pairs, --[[ tuple ]]{
                           t1$prime$1,
                           t2$prime$1
                         });
-            end
-            catch (exn)do
+            end end,function(exn) return do
               if (exn == Caml_builtin_exceptions.not_found) then do
                 Curry._3(TypePairs.add, type_pairs, --[[ tuple ]]{
                       t1$prime$1,
@@ -31844,10 +31686,10 @@ function moregen(inst_nongen, type_pairs, env, t1, t2) do
                   if (typeof match$3 == "number") then do
                     return --[[ () ]]0;
                   end else do
-                    throw {
-                          Unify,
-                          --[[ [] ]]0
-                        };
+                    error ({
+                      Unify,
+                      --[[ [] ]]0
+                    })
                   end end 
                 end else do
                   local ___conditional___=(match$2.tag | 0);
@@ -31857,17 +31699,17 @@ function moregen(inst_nongen, type_pairs, env, t1, t2) do
                           moregen_occur(env, t1$prime$1.level, t2$1);
                           return link_type(t1$prime$1, t2$1);
                         end else do
-                          throw {
-                                Unify,
-                                --[[ [] ]]0
-                              };
+                          error ({
+                            Unify,
+                            --[[ [] ]]0
+                          })
                         end end end end end 
                      if ___conditional___ = 1--[[ Tarrow ]] then do
                         if (typeof match$3 == "number") then do
-                          throw {
-                                Unify,
-                                --[[ [] ]]0
-                              };
+                          error ({
+                            Unify,
+                            --[[ [] ]]0
+                          })
                         end else if (match$3.tag == --[[ Tarrow ]]1) then do
                           l2 = match$3[0];
                           l1 = match$2[0];
@@ -31875,92 +31717,92 @@ function moregen(inst_nongen, type_pairs, env, t1, t2) do
                             moregen(inst_nongen, type_pairs, env, match$2[1], match$3[1]);
                             return moregen(inst_nongen, type_pairs, env, match$2[2], match$3[2]);
                           end else do
-                            throw {
-                                  Unify,
-                                  --[[ [] ]]0
-                                };
+                            error ({
+                              Unify,
+                              --[[ [] ]]0
+                            })
                           end end 
                         end else do
-                          throw {
-                                Unify,
-                                --[[ [] ]]0
-                              };
+                          error ({
+                            Unify,
+                            --[[ [] ]]0
+                          })
                         end end  end end end end 
                      if ___conditional___ = 2--[[ Ttuple ]] then do
                         if (typeof match$3 == "number") then do
-                          throw {
-                                Unify,
-                                --[[ [] ]]0
-                              };
+                          error ({
+                            Unify,
+                            --[[ [] ]]0
+                          })
                         end else if (match$3.tag == --[[ Ttuple ]]2) then do
                           return moregen_list(inst_nongen, type_pairs, env, match$2[0], match$3[0]);
                         end else do
-                          throw {
-                                Unify,
-                                --[[ [] ]]0
-                              };
+                          error ({
+                            Unify,
+                            --[[ [] ]]0
+                          })
                         end end  end end end end 
                      if ___conditional___ = 3--[[ Tconstr ]] then do
                         if (typeof match$3 == "number") then do
-                          throw {
-                                Unify,
-                                --[[ [] ]]0
-                              };
+                          error ({
+                            Unify,
+                            --[[ [] ]]0
+                          })
                         end else if (match$3.tag == --[[ Tconstr ]]3) then do
                           if (same(match$2[0], match$3[0])) then do
                             return moregen_list(inst_nongen, type_pairs, env, match$2[1], match$3[1]);
                           end else do
-                            throw {
-                                  Unify,
-                                  --[[ [] ]]0
-                                };
+                            error ({
+                              Unify,
+                              --[[ [] ]]0
+                            })
                           end end 
                         end else do
-                          throw {
-                                Unify,
-                                --[[ [] ]]0
-                              };
+                          error ({
+                            Unify,
+                            --[[ [] ]]0
+                          })
                         end end  end end end end 
                      if ___conditional___ = 4--[[ Tobject ]] then do
                         if (typeof match$3 == "number") then do
-                          throw {
-                                Unify,
-                                --[[ [] ]]0
-                              };
+                          error ({
+                            Unify,
+                            --[[ [] ]]0
+                          })
                         end else if (match$3.tag == --[[ Tobject ]]4) then do
                           return moregen_fields(inst_nongen, type_pairs, env, match$2[0], match$3[0]);
                         end else do
-                          throw {
-                                Unify,
-                                --[[ [] ]]0
-                              };
+                          error ({
+                            Unify,
+                            --[[ [] ]]0
+                          })
                         end end  end end end end 
                      if ___conditional___ = 5--[[ Tfield ]] then do
                         if (typeof match$3 == "number") then do
-                          throw {
-                                Unify,
-                                --[[ [] ]]0
-                              };
+                          error ({
+                            Unify,
+                            --[[ [] ]]0
+                          })
                         end else if (match$3.tag == --[[ Tfield ]]5) then do
                           return moregen_fields(inst_nongen, type_pairs, env, t1$prime$1, t2$prime$1);
                         end else do
-                          throw {
-                                Unify,
-                                --[[ [] ]]0
-                              };
+                          error ({
+                            Unify,
+                            --[[ [] ]]0
+                          })
                         end end  end end end end 
                      if ___conditional___ = 6--[[ Tlink ]]
                      or ___conditional___ = 7--[[ Tsubst ]] then do
-                        throw {
-                              Unify,
-                              --[[ [] ]]0
-                            };end end end 
+                        error ({
+                          Unify,
+                          --[[ [] ]]0
+                        })end end end 
                      if ___conditional___ = 8--[[ Tvariant ]] then do
                         if (typeof match$3 == "number") then do
-                          throw {
-                                Unify,
-                                --[[ [] ]]0
-                              };
+                          error ({
+                            Unify,
+                            --[[ [] ]]0
+                          })
                         end else if (match$3.tag == --[[ Tvariant ]]8) then do
                           inst_nongen$1 = inst_nongen;
                           type_pairs$1 = type_pairs;
@@ -31987,10 +31829,10 @@ function moregen(inst_nongen, type_pairs, env, t1, t2) do
                               };
                             r2$1 = match$5[1];
                             if (match$5[0] ~= --[[ [] ]]0 or row1$1.row_closed and (not row2$1.row_closed or r2$1 ~= --[[ [] ]]0)) then do
-                              throw {
-                                    Unify,
-                                    --[[ [] ]]0
-                                  };
+                              error ({
+                                Unify,
+                                --[[ [] ]]0
+                              })
                             end
                              end 
                             match$6 = rm1.desc;
@@ -32000,26 +31842,26 @@ function moregen(inst_nongen, type_pairs, env, t1, t2) do
                             if (typeof match$6 == "number" or match$6.tag ~= --[[ Tunivar ]]9) then do
                               exit$2 = 2;
                             end else if (typeof match$7 == "number") then do
-                              throw {
-                                    Unify,
-                                    --[[ [] ]]0
-                                  };
+                              error ({
+                                Unify,
+                                --[[ [] ]]0
+                              })
                             end else if (match$7.tag == --[[ Tunivar ]]9) then do
                               unify_univar(rm1, rm2, univar_pairs.contents);
                             end else do
-                              throw {
-                                    Unify,
-                                    --[[ [] ]]0
-                                  };
+                              error ({
+                                Unify,
+                                --[[ [] ]]0
+                              })
                             end end  end  end 
                             if (exit$2 == 2) then do
                               if (typeof match$7 == "number" or match$7.tag ~= --[[ Tunivar ]]9) then do
                                 exit$1 = 1;
                               end else do
-                                throw {
-                                      Unify,
-                                      --[[ [] ]]0
-                                    };
+                                error ({
+                                  Unify,
+                                  --[[ [] ]]0
+                                })
                               end end 
                             end
                              end 
@@ -32036,29 +31878,29 @@ function moregen(inst_nongen, type_pairs, env, t1, t2) do
                                 moregen_occur(env$1, rm1.level, ext);
                                 link_type(rm1, ext);
                               end else if (typeof match$6 == "number") then do
-                                throw {
-                                      Unify,
-                                      --[[ [] ]]0
-                                    };
+                                error ({
+                                  Unify,
+                                  --[[ [] ]]0
+                                })
                               end else if (match$6.tag == --[[ Tconstr ]]3) then do
                                 if (typeof match$7 == "number") then do
-                                  throw {
-                                        Unify,
-                                        --[[ [] ]]0
-                                      };
+                                  error ({
+                                    Unify,
+                                    --[[ [] ]]0
+                                  })
                                 end else if (match$7.tag == --[[ Tconstr ]]3) then do
                                   moregen(inst_nongen$1, type_pairs$1, env$1, rm1, rm2);
                                 end else do
-                                  throw {
-                                        Unify,
-                                        --[[ [] ]]0
-                                      };
+                                  error ({
+                                    Unify,
+                                    --[[ [] ]]0
+                                  })
                                 end end  end 
                               end else do
-                                throw {
-                                      Unify,
-                                      --[[ [] ]]0
-                                    };
+                                error ({
+                                  Unify,
+                                  --[[ [] ]]0
+                                })
                               end end  end  end 
                             end
                              end 
@@ -32071,29 +31913,29 @@ function moregen(inst_nongen, type_pairs, env, t1, t2) do
                                             if (typeof f2 == "number") then do
                                               return --[[ () ]]0;
                                             end else do
-                                              throw {
-                                                    Unify,
-                                                    --[[ [] ]]0
-                                                  };
+                                              error ({
+                                                Unify,
+                                                --[[ [] ]]0
+                                              })
                                             end end 
                                           end else if (f1.tag) then do
                                             c1 = f1[0];
                                             if (c1) then do
                                               if (not f1[1] and typeof f2 ~= "number" and not f2.tag) then do
                                                 if (f2[0] ~= undefined) then do
-                                                  throw {
-                                                        Unify,
-                                                        --[[ [] ]]0
-                                                      };
+                                                  error ({
+                                                    Unify,
+                                                    --[[ [] ]]0
+                                                  })
                                                 end
                                                  end 
                                                 if (may_inst) then do
                                                   return set_row_field(f1[3], f2);
                                                 end else do
-                                                  throw {
-                                                        Unify,
-                                                        --[[ [] ]]0
-                                                      };
+                                                  error ({
+                                                    Unify,
+                                                    --[[ [] ]]0
+                                                  })
                                                 end end 
                                               end
                                                end 
@@ -32107,16 +31949,16 @@ function moregen(inst_nongen, type_pairs, env, t1, t2) do
                                                                 return moregen(inst_nongen$1, type_pairs$1, env$1, t1, t2);
                                                               end end), f1[1]);
                                                 end else do
-                                                  throw {
-                                                        Unify,
-                                                        --[[ [] ]]0
-                                                      };
+                                                  error ({
+                                                    Unify,
+                                                    --[[ [] ]]0
+                                                  })
                                                 end end 
                                               end else do
-                                                throw {
-                                                      Unify,
-                                                      --[[ [] ]]0
-                                                    };
+                                                error ({
+                                                  Unify,
+                                                  --[[ [] ]]0
+                                                })
                                               end end 
                                             end
                                              end  end 
@@ -32126,10 +31968,10 @@ function moregen(inst_nongen, type_pairs, env, t1, t2) do
                                               if (may_inst) then do
                                                 return set_row_field(e1, f2);
                                               end else do
-                                                throw {
-                                                      Unify,
-                                                      --[[ [] ]]0
-                                                    };
+                                                error ({
+                                                  Unify,
+                                                  --[[ [] ]]0
+                                                })
                                               end end 
                                             end else if (f2.tag) then do
                                               e2 = f2[3];
@@ -32137,10 +31979,10 @@ function moregen(inst_nongen, type_pairs, env, t1, t2) do
                                                 tl2 = f2[1];
                                                 c2 = f2[0];
                                                 if (c1 and not c2) then do
-                                                  throw {
-                                                        Unify,
-                                                        --[[ [] ]]0
-                                                      };
+                                                  error ({
+                                                    Unify,
+                                                    --[[ [] ]]0
+                                                  })
                                                 end
                                                  end 
                                                 set_row_field(e1, --[[ Reither ]]Block.__(1, {
@@ -32159,10 +32001,10 @@ function moregen(inst_nongen, type_pairs, env, t1, t2) do
                                                                 return moregen(inst_nongen$1, type_pairs$1, env$1, t1, t2$1);
                                                               end end), tl1);
                                                 end else if (tl1 ~= --[[ [] ]]0) then do
-                                                  throw {
-                                                        Unify,
-                                                        --[[ [] ]]0
-                                                      };
+                                                  error ({
+                                                    Unify,
+                                                    --[[ [] ]]0
+                                                  })
                                                 end else do
                                                   return 0;
                                                 end end  end  end 
@@ -32170,50 +32012,50 @@ function moregen(inst_nongen, type_pairs, env, t1, t2) do
                                                 return 0;
                                               end end 
                                             end else do
-                                              throw {
-                                                    Unify,
-                                                    --[[ [] ]]0
-                                                  };
+                                              error ({
+                                                Unify,
+                                                --[[ [] ]]0
+                                              })
                                             end end  end 
                                           end else do
                                             match$1 = f1[0];
                                             if (match$1 ~= undefined) then do
                                               if (typeof f2 == "number") then do
-                                                throw {
-                                                      Unify,
-                                                      --[[ [] ]]0
-                                                    };
+                                                error ({
+                                                  Unify,
+                                                  --[[ [] ]]0
+                                                })
                                               end else if (f2.tag) then do
-                                                throw {
-                                                      Unify,
-                                                      --[[ [] ]]0
-                                                    };
+                                                error ({
+                                                  Unify,
+                                                  --[[ [] ]]0
+                                                })
                                               end else do
                                                 match$2 = f2[0];
                                                 if (match$2 ~= undefined) then do
                                                   return moregen(inst_nongen$1, type_pairs$1, env$1, match$1, match$2);
                                                 end else do
-                                                  throw {
-                                                        Unify,
-                                                        --[[ [] ]]0
-                                                      };
+                                                  error ({
+                                                    Unify,
+                                                    --[[ [] ]]0
+                                                  })
                                                 end end 
                                               end end  end 
                                             end else if (typeof f2 == "number") then do
-                                              throw {
-                                                    Unify,
-                                                    --[[ [] ]]0
-                                                  };
+                                              error ({
+                                                Unify,
+                                                --[[ [] ]]0
+                                              })
                                             end else if (f2.tag) then do
-                                              throw {
-                                                    Unify,
-                                                    --[[ [] ]]0
-                                                  };
+                                              error ({
+                                                Unify,
+                                                --[[ [] ]]0
+                                              })
                                             end else if (f2[0] ~= undefined) then do
-                                              throw {
-                                                    Unify,
-                                                    --[[ [] ]]0
-                                                  };
+                                              error ({
+                                                Unify,
+                                                --[[ [] ]]0
+                                              })
                                             end else do
                                               return --[[ () ]]0;
                                             end end  end  end  end 
@@ -32221,24 +32063,24 @@ function moregen(inst_nongen, type_pairs, env, t1, t2) do
                                         end end), match$4[2]);
                           end end 
                         end else do
-                          throw {
-                                Unify,
-                                --[[ [] ]]0
-                              };
+                          error ({
+                            Unify,
+                            --[[ [] ]]0
+                          })
                         end end  end end end end 
                      if ___conditional___ = 9--[[ Tunivar ]] then do
                         if (typeof match$3 == "number") then do
-                          throw {
-                                Unify,
-                                --[[ [] ]]0
-                              };
+                          error ({
+                            Unify,
+                            --[[ [] ]]0
+                          })
                         end else if (match$3.tag == --[[ Tunivar ]]9) then do
                           return unify_univar(t1$prime$1, t2$prime$1, univar_pairs.contents);
                         end else do
-                          throw {
-                                Unify,
-                                --[[ [] ]]0
-                              };
+                          error ({
+                            Unify,
+                            --[[ [] ]]0
+                          })
                         end end  end end end end 
                      if ___conditional___ = 10--[[ Tpoly ]] then do
                         tl1 = match$2[1];
@@ -32247,10 +32089,10 @@ function moregen(inst_nongen, type_pairs, env, t1, t2) do
                         if (tl1) then do
                           exit$3 = 2;
                         end else if (typeof match$3 == "number") then do
-                          throw {
-                                Unify,
-                                --[[ [] ]]0
-                              };
+                          error ({
+                            Unify,
+                            --[[ [] ]]0
+                          })
                         end else if (match$3.tag == --[[ Tpoly ]]10) then do
                           if (match$3[1]) then do
                             exit$3 = 2;
@@ -32258,96 +32100,94 @@ function moregen(inst_nongen, type_pairs, env, t1, t2) do
                             return moregen(inst_nongen, type_pairs, env, t1$2, match$3[0]);
                           end end 
                         end else do
-                          throw {
-                                Unify,
-                                --[[ [] ]]0
-                              };
+                          error ({
+                            Unify,
+                            --[[ [] ]]0
+                          })
                         end end  end  end 
                         if (exit$3 == 2) then do
                           if (typeof match$3 == "number") then do
-                            throw {
-                                  Unify,
-                                  --[[ [] ]]0
-                                };
+                            error ({
+                              Unify,
+                              --[[ [] ]]0
+                            })
                           end else if (match$3.tag == --[[ Tpoly ]]10) then do
                             return enter_poly(env, univar_pairs, t1$2, tl1, match$3[0], match$3[1], (function (param, param$1) do
                                           return moregen(inst_nongen, type_pairs, env, param, param$1);
                                         end end));
                           end else do
-                            throw {
-                                  Unify,
-                                  --[[ [] ]]0
-                                };
+                            error ({
+                              Unify,
+                              --[[ [] ]]0
+                            })
                           end end  end 
                         end
                          end end else 
                      if ___conditional___ = 11--[[ Tpackage ]] then do
                         if (typeof match$3 == "number") then do
-                          throw {
-                                Unify,
-                                --[[ [] ]]0
-                              };
+                          error ({
+                            Unify,
+                            --[[ [] ]]0
+                          })
                         end else if (match$3.tag == --[[ Tpackage ]]11) then do
-                          try do
+                          xpcall(function() do
                             return unify_package(env, (function (param, param$1) do
                                           return moregen_list(inst_nongen, type_pairs, env, param, param$1);
                                         end end), t1$prime$1.level, match$2[0], match$2[1], match$2[2], t2$prime$1.level, match$3[0], match$3[1], match$3[2]);
-                          end
-                          catch (exn$1)do
+                          end end,function(exn$1) return do
                             if (exn$1 == Caml_builtin_exceptions.not_found) then do
-                              throw {
-                                    Unify,
-                                    --[[ [] ]]0
-                                  };
-                            end
-                             end 
-                            throw exn$1;
-                          end
-                        end else do
-                          throw {
+                              error ({
                                 Unify,
                                 --[[ [] ]]0
-                              };
+                              })
+                            end
+                             end 
+                            error (exn$1)
+                          end end)
+                        end else do
+                          error ({
+                            Unify,
+                            --[[ [] ]]0
+                          })
                         end end  end end end end 
                      do
                     
                   end
                 end end 
               end else do
-                throw exn;
+                error (exn)
               end end 
-            end
+            end end)
           end end 
         end
          end 
-      end
-      catch (raw_exn)do
+      end end,function(raw_exn) return do
         exn$2 = Caml_js_exceptions.internalToOCamlException(raw_exn);
         if (exn$2[0] == Unify) then do
-          throw {
-                Unify,
-                --[[ :: ]]{
-                  --[[ tuple ]]{
-                    t1$1,
-                    t2$1
-                  },
-                  exn$2[1]
-                }
-              };
+          error ({
+            Unify,
+            --[[ :: ]]{
+              --[[ tuple ]]{
+                t1$1,
+                t2$1
+              },
+              exn$2[1]
+            }
+          })
         end
          end 
-        throw exn$2;
-      end
+        error (exn$2)
+      end end)
     end end 
   end end 
 end end
 
 function moregen_list(inst_nongen, type_pairs, env, tl1, tl2) do
   if (List.length(tl1) ~= List.length(tl2)) then do
-    throw {
-          Unify,
-          --[[ [] ]]0
-        };
+    error ({
+      Unify,
+      --[[ [] ]]0
+    })
   end
    end 
   return List.iter2((function (param, param$1) do
@@ -32361,10 +32201,10 @@ function moregen_fields(inst_nongen, type_pairs, env, ty1, ty2) do
   rest2 = match$1[1];
   match$2 = associate_fields(match[0], match$1[0]);
   if (match$2[1] ~= --[[ [] ]]0) then do
-    throw {
-          Unify,
-          --[[ [] ]]0
-        };
+    error ({
+      Unify,
+      --[[ [] ]]0
+    })
   end
    end 
   moregen(inst_nongen, type_pairs, env, match[1], build_fields(repr(ty2).level)(match$2[2], rest2));
@@ -32375,36 +32215,35 @@ function moregen_fields(inst_nongen, type_pairs, env, ty1, ty2) do
                 k1 = param[1];
                 n = param[0];
                 moregen_kind(k1, k2);
-                try do
+                xpcall(function() do
                   return moregen(inst_nongen, type_pairs, env, t1, t2);
-                end
-                catch (raw_exn)do
+                end end,function(raw_exn) return do
                   exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
                   if (exn[0] == Unify) then do
-                    throw {
-                          Unify,
-                          --[[ :: ]]{
-                            --[[ tuple ]]{
-                              newty2(current_level.contents, --[[ Tfield ]]Block.__(5, {
-                                      n,
-                                      k1,
-                                      t1,
-                                      rest2
-                                    })),
-                              newty2(current_level.contents, --[[ Tfield ]]Block.__(5, {
-                                      n,
-                                      k2,
-                                      t2,
-                                      rest2
-                                    }))
-                            },
-                            exn[1]
-                          }
-                        };
+                    error ({
+                      Unify,
+                      --[[ :: ]]{
+                        --[[ tuple ]]{
+                          newty2(current_level.contents, --[[ Tfield ]]Block.__(5, {
+                                  n,
+                                  k1,
+                                  t1,
+                                  rest2
+                                })),
+                          newty2(current_level.contents, --[[ Tfield ]]Block.__(5, {
+                                  n,
+                                  k2,
+                                  t2,
+                                  rest2
+                                }))
+                        },
+                        exn[1]
+                      }
+                    })
                   end
                    end 
-                  throw exn;
-                end
+                  error (exn)
+                end end)
               end end), match$2[0]);
 end end
 
@@ -32415,35 +32254,35 @@ function moregen_kind(k1, k2) do
     return --[[ () ]]0;
   end else if (typeof k1$1 == "number") then do
     if (k1$1 ~= 0) then do
-      throw {
-            Unify,
-            --[[ [] ]]0
-          };
+      error ({
+        Unify,
+        --[[ [] ]]0
+      })
     end
      end 
     if (typeof k2$1 == "number") then do
       if (k2$1 ~= 0) then do
-        throw {
-              Unify,
-              --[[ [] ]]0
-            };
+        error ({
+          Unify,
+          --[[ [] ]]0
+        })
       end else do
         return --[[ () ]]0;
       end end 
     end else do
-      throw {
-            Unify,
-            --[[ [] ]]0
-          };
+      error ({
+        Unify,
+        --[[ [] ]]0
+      })
     end end 
   end else do
     r = k1$1[0];
     if (typeof k2$1 == "number") then do
       if (k2$1 ~= 0) then do
-        throw {
-              Unify,
-              --[[ [] ]]0
-            };
+        error ({
+          Unify,
+          --[[ [] ]]0
+        })
       end
        end 
       return set_kind(r, k2$1);
@@ -32466,18 +32305,17 @@ function moregeneral(env, inst_nongen, pat_sch, subj_sch) do
   current_level.contents = 100000000;
   patt = instance(undefined, env, pat_sch);
   res;
-  try do
+  xpcall(function() do
     moregen$1(inst_nongen, Curry._1(TypePairs.create, 13), env, patt, subj);
     res = true;
-  end
-  catch (raw_exn)do
+  end end,function(raw_exn) return do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn[0] == Unify) then do
       res = false;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
   current_level.contents = old_level;
   return res;
 end end
@@ -32532,7 +32370,7 @@ function rigidify_rec(vars, _ty) do
                 return 0;
               end else do
                 _ty = row_more(row);
-                continue ;
+                ::continue:: ;
               end end end end end 
            do
           else do
@@ -32581,18 +32419,17 @@ function matches(env, ty, ty$prime) do
   vars = rigidify(ty);
   cleanup_abbrev(--[[ () ]]0);
   ok;
-  try do
+  xpcall(function() do
     unify$2(env, ty, ty$prime);
     ok = all_distinct_vars(env, vars);
-  end
-  catch (raw_exn)do
+  end end,function(raw_exn) return do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn[0] == Unify) then do
       ok = false;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
   backtrack(snap);
   return ok;
 end end
@@ -32636,7 +32473,7 @@ function eqtype(rename, type_pairs, subst, env, t1, t2) do
     if (t1$1 == t2$1) then do
       return --[[ () ]]0;
     end else do
-      try do
+      xpcall(function() do
         match = t1$1.desc;
         match$1 = t2$1.desc;
         exit = 0;
@@ -32649,26 +32486,25 @@ function eqtype(rename, type_pairs, subst, env, t1, t2) do
                 if (typeof match$1 == "number" or match$1.tag or not rename) then do
                   exit = 1;
                 end else do
-                  try do
+                  xpcall(function() do
                     normalize_subst(subst);
                     if (List.assq(t1$1, subst.contents) ~= t2$1) then do
-                      throw {
-                            Unify,
-                            --[[ [] ]]0
-                          };
+                      error ({
+                        Unify,
+                        --[[ [] ]]0
+                      })
                     end else do
                       return 0;
                     end end 
-                  end
-                  catch (exn)do
+                  end end,function(exn) return do
                     if (exn == Caml_builtin_exceptions.not_found) then do
                       if (List.exists((function (param) do
                                 return param[1] == t2$1;
                               end end), subst.contents)) then do
-                        throw {
-                              Unify,
-                              --[[ [] ]]0
-                            };
+                        error ({
+                          Unify,
+                          --[[ [] ]]0
+                        })
                       end
                        end 
                       subst.contents = --[[ :: ]]{
@@ -32680,9 +32516,9 @@ function eqtype(rename, type_pairs, subst, env, t1, t2) do
                       };
                       return --[[ () ]]0;
                     end else do
-                      throw exn;
+                      error (exn)
                     end end 
-                  end
+                  end end)
                 end end end else 
              if ___conditional___ = 3--[[ Tconstr ]] then do
                 if (match[1] or typeof match$1 == "number" or not (match$1.tag == --[[ Tconstr ]]3 and not (match$1[1] or not same(match[0], match$1[0])))) then do
@@ -32705,13 +32541,12 @@ function eqtype(rename, type_pairs, subst, env, t1, t2) do
           if (t1$prime$1 == t2$prime$1) then do
             return --[[ () ]]0;
           end else do
-            try do
+            xpcall(function() do
               return Curry._2(TypePairs.find, type_pairs, --[[ tuple ]]{
                           t1$prime$1,
                           t2$prime$1
                         });
-            end
-            catch (exn$1)do
+            end end,function(exn$1) return do
               if (exn$1 == Caml_builtin_exceptions.not_found) then do
                 Curry._3(TypePairs.add, type_pairs, --[[ tuple ]]{
                       t1$prime$1,
@@ -32723,46 +32558,45 @@ function eqtype(rename, type_pairs, subst, env, t1, t2) do
                   if (typeof match$3 == "number") then do
                     return --[[ () ]]0;
                   end else do
-                    throw {
-                          Unify,
-                          --[[ [] ]]0
-                        };
+                    error ({
+                      Unify,
+                      --[[ [] ]]0
+                    })
                   end end 
                 end else do
                   local ___conditional___=(match$2.tag | 0);
                   do
                      if ___conditional___ = 0--[[ Tvar ]] then do
                         if (typeof match$3 == "number") then do
-                          throw {
-                                Unify,
-                                --[[ [] ]]0
-                              };
+                          error ({
+                            Unify,
+                            --[[ [] ]]0
+                          })
                         end else if (match$3.tag) then do
-                          throw {
-                                Unify,
-                                --[[ [] ]]0
-                              };
+                          error ({
+                            Unify,
+                            --[[ [] ]]0
+                          })
                         end else if (rename) then do
-                          try do
+                          xpcall(function() do
                             normalize_subst(subst);
                             if (List.assq(t1$prime$1, subst.contents) ~= t2$prime$1) then do
-                              throw {
-                                    Unify,
-                                    --[[ [] ]]0
-                                  };
+                              error ({
+                                Unify,
+                                --[[ [] ]]0
+                              })
                             end else do
                               return 0;
                             end end 
-                          end
-                          catch (exn$2)do
+                          end end,function(exn$2) return do
                             if (exn$2 == Caml_builtin_exceptions.not_found) then do
                               if (List.exists((function (param) do
                                         return param[1] == t2$prime$1;
                                       end end), subst.contents)) then do
-                                throw {
-                                      Unify,
-                                      --[[ [] ]]0
-                                    };
+                                error ({
+                                  Unify,
+                                  --[[ [] ]]0
+                                })
                               end
                                end 
                               subst.contents = --[[ :: ]]{
@@ -32774,21 +32608,21 @@ function eqtype(rename, type_pairs, subst, env, t1, t2) do
                               };
                               return --[[ () ]]0;
                             end else do
-                              throw exn$2;
+                              error (exn$2)
                             end end 
-                          end
+                          end end)
                         end else do
-                          throw {
-                                Unify,
-                                --[[ [] ]]0
-                              };
+                          error ({
+                            Unify,
+                            --[[ [] ]]0
+                          })
                         end end  end  end end end end 
                      if ___conditional___ = 1--[[ Tarrow ]] then do
                         if (typeof match$3 == "number") then do
-                          throw {
-                                Unify,
-                                --[[ [] ]]0
-                              };
+                          error ({
+                            Unify,
+                            --[[ [] ]]0
+                          })
                         end else if (match$3.tag == --[[ Tarrow ]]1) then do
                           l2 = match$3[0];
                           l1 = match$2[0];
@@ -32796,92 +32630,92 @@ function eqtype(rename, type_pairs, subst, env, t1, t2) do
                             eqtype(rename, type_pairs, subst, env, match$2[1], match$3[1]);
                             return eqtype(rename, type_pairs, subst, env, match$2[2], match$3[2]);
                           end else do
-                            throw {
-                                  Unify,
-                                  --[[ [] ]]0
-                                };
+                            error ({
+                              Unify,
+                              --[[ [] ]]0
+                            })
                           end end 
                         end else do
-                          throw {
-                                Unify,
-                                --[[ [] ]]0
-                              };
+                          error ({
+                            Unify,
+                            --[[ [] ]]0
+                          })
                         end end  end end end end 
                      if ___conditional___ = 2--[[ Ttuple ]] then do
                         if (typeof match$3 == "number") then do
-                          throw {
-                                Unify,
-                                --[[ [] ]]0
-                              };
+                          error ({
+                            Unify,
+                            --[[ [] ]]0
+                          })
                         end else if (match$3.tag == --[[ Ttuple ]]2) then do
                           return eqtype_list(rename, type_pairs, subst, env, match$2[0], match$3[0]);
                         end else do
-                          throw {
-                                Unify,
-                                --[[ [] ]]0
-                              };
+                          error ({
+                            Unify,
+                            --[[ [] ]]0
+                          })
                         end end  end end end end 
                      if ___conditional___ = 3--[[ Tconstr ]] then do
                         if (typeof match$3 == "number") then do
-                          throw {
-                                Unify,
-                                --[[ [] ]]0
-                              };
+                          error ({
+                            Unify,
+                            --[[ [] ]]0
+                          })
                         end else if (match$3.tag == --[[ Tconstr ]]3) then do
                           if (same(match$2[0], match$3[0])) then do
                             return eqtype_list(rename, type_pairs, subst, env, match$2[1], match$3[1]);
                           end else do
-                            throw {
-                                  Unify,
-                                  --[[ [] ]]0
-                                };
+                            error ({
+                              Unify,
+                              --[[ [] ]]0
+                            })
                           end end 
                         end else do
-                          throw {
-                                Unify,
-                                --[[ [] ]]0
-                              };
+                          error ({
+                            Unify,
+                            --[[ [] ]]0
+                          })
                         end end  end end end end 
                      if ___conditional___ = 4--[[ Tobject ]] then do
                         if (typeof match$3 == "number") then do
-                          throw {
-                                Unify,
-                                --[[ [] ]]0
-                              };
+                          error ({
+                            Unify,
+                            --[[ [] ]]0
+                          })
                         end else if (match$3.tag == --[[ Tobject ]]4) then do
                           return eqtype_fields(rename, type_pairs, subst, env, match$2[0], match$3[0]);
                         end else do
-                          throw {
-                                Unify,
-                                --[[ [] ]]0
-                              };
+                          error ({
+                            Unify,
+                            --[[ [] ]]0
+                          })
                         end end  end end end end 
                      if ___conditional___ = 5--[[ Tfield ]] then do
                         if (typeof match$3 == "number") then do
-                          throw {
-                                Unify,
-                                --[[ [] ]]0
-                              };
+                          error ({
+                            Unify,
+                            --[[ [] ]]0
+                          })
                         end else if (match$3.tag == --[[ Tfield ]]5) then do
                           return eqtype_fields(rename, type_pairs, subst, env, t1$prime$1, t2$prime$1);
                         end else do
-                          throw {
-                                Unify,
-                                --[[ [] ]]0
-                              };
+                          error ({
+                            Unify,
+                            --[[ [] ]]0
+                          })
                         end end  end end end end 
                      if ___conditional___ = 6--[[ Tlink ]]
                      or ___conditional___ = 7--[[ Tsubst ]] then do
-                        throw {
-                              Unify,
-                              --[[ [] ]]0
-                            };end end end 
+                        error ({
+                          Unify,
+                          --[[ [] ]]0
+                        })end end end 
                      if ___conditional___ = 8--[[ Tvariant ]] then do
                         if (typeof match$3 == "number") then do
-                          throw {
-                                Unify,
-                                --[[ [] ]]0
-                              };
+                          error ({
+                            Unify,
+                            --[[ [] ]]0
+                          })
                         end else if (match$3.tag == --[[ Tvariant ]]8) then do
                           rename$1 = rename;
                           type_pairs$1 = type_pairs;
@@ -32895,7 +32729,7 @@ function eqtype(rename, type_pairs, subst, env, t1, t2) do
                             match$5 = match$4.desc;
                             if (typeof match$5 ~= "number" and match$5.tag == --[[ Tvariant ]]8) then do
                               _row2 = match$5[0];
-                              continue ;
+                              ::continue:: ;
                             end
                              end 
                             row1$1 = row_repr_aux(--[[ [] ]]0, row1);
@@ -32904,10 +32738,10 @@ function eqtype(rename, type_pairs, subst, env, t1, t2) do
                             r2 = match$6[1];
                             r1 = match$6[0];
                             if (row1$1.row_closed ~= row2$1.row_closed or not row1$1.row_closed and (r1 ~= --[[ [] ]]0 or r2 ~= --[[ [] ]]0) or filter_row_fields(false, Pervasives.$at(r1, r2)) ~= --[[ [] ]]0) then do
-                              throw {
-                                    Unify,
-                                    --[[ [] ]]0
-                                  };
+                              error ({
+                                Unify,
+                                --[[ [] ]]0
+                              })
                             end
                              end 
                             if (not static_row(row1$1)) then do
@@ -32921,46 +32755,46 @@ function eqtype(rename, type_pairs, subst, env, t1, t2) do
                                             if (typeof match$1 == "number") then do
                                               return --[[ () ]]0;
                                             end else do
-                                              throw {
-                                                    Unify,
-                                                    --[[ [] ]]0
-                                                  };
+                                              error ({
+                                                Unify,
+                                                --[[ [] ]]0
+                                              })
                                             end end 
                                           end else if (match.tag) then do
                                             if (match[0]) then do
                                               if (match[1]) then do
-                                                throw {
-                                                      Unify,
-                                                      --[[ [] ]]0
-                                                    };
+                                                error ({
+                                                  Unify,
+                                                  --[[ [] ]]0
+                                                })
                                               end
                                                end 
                                               if (typeof match$1 == "number") then do
-                                                throw {
-                                                      Unify,
-                                                      --[[ [] ]]0
-                                                    };
+                                                error ({
+                                                  Unify,
+                                                  --[[ [] ]]0
+                                                })
                                               end else if (match$1.tag) then do
                                                 if (match$1[0]) then do
                                                   if (match$1[1]) then do
-                                                    throw {
-                                                          Unify,
-                                                          --[[ [] ]]0
-                                                        };
+                                                    error ({
+                                                      Unify,
+                                                      --[[ [] ]]0
+                                                    })
                                                   end
                                                    end 
                                                   return --[[ () ]]0;
                                                 end else do
-                                                  throw {
-                                                        Unify,
-                                                        --[[ [] ]]0
-                                                      };
+                                                  error ({
+                                                    Unify,
+                                                    --[[ [] ]]0
+                                                  })
                                                 end end 
                                               end else do
-                                                throw {
-                                                      Unify,
-                                                      --[[ [] ]]0
-                                                    };
+                                                error ({
+                                                  Unify,
+                                                  --[[ [] ]]0
+                                                })
                                               end end  end 
                                             end else do
                                               match$2 = match[1];
@@ -32968,16 +32802,16 @@ function eqtype(rename, type_pairs, subst, env, t1, t2) do
                                                 tl1 = match$2[1];
                                                 t1 = match$2[0];
                                                 if (typeof match$1 == "number") then do
-                                                  throw {
-                                                        Unify,
-                                                        --[[ [] ]]0
-                                                      };
+                                                  error ({
+                                                    Unify,
+                                                    --[[ [] ]]0
+                                                  })
                                                 end else if (match$1.tag) then do
                                                   if (match$1[0]) then do
-                                                    throw {
-                                                          Unify,
-                                                          --[[ [] ]]0
-                                                        };
+                                                    error ({
+                                                      Unify,
+                                                      --[[ [] ]]0
+                                                    })
                                                   end
                                                    end 
                                                   match$3 = match$1[1];
@@ -32998,63 +32832,63 @@ function eqtype(rename, type_pairs, subst, env, t1, t2) do
                                                                   end end), tl1);
                                                     end end 
                                                   end else do
-                                                    throw {
-                                                          Unify,
-                                                          --[[ [] ]]0
-                                                        };
-                                                  end end 
-                                                end else do
-                                                  throw {
-                                                        Unify,
-                                                        --[[ [] ]]0
-                                                      };
-                                                end end  end 
-                                              end else do
-                                                throw {
+                                                    error ({
                                                       Unify,
                                                       --[[ [] ]]0
-                                                    };
+                                                    })
+                                                  end end 
+                                                end else do
+                                                  error ({
+                                                    Unify,
+                                                    --[[ [] ]]0
+                                                  })
+                                                end end  end 
+                                              end else do
+                                                error ({
+                                                  Unify,
+                                                  --[[ [] ]]0
+                                                })
                                               end end 
                                             end end 
                                           end else do
                                             match$4 = match[0];
                                             if (match$4 ~= undefined) then do
                                               if (typeof match$1 == "number") then do
-                                                throw {
-                                                      Unify,
-                                                      --[[ [] ]]0
-                                                    };
+                                                error ({
+                                                  Unify,
+                                                  --[[ [] ]]0
+                                                })
                                               end else if (match$1.tag) then do
-                                                throw {
-                                                      Unify,
-                                                      --[[ [] ]]0
-                                                    };
+                                                error ({
+                                                  Unify,
+                                                  --[[ [] ]]0
+                                                })
                                               end else do
                                                 match$5 = match$1[0];
                                                 if (match$5 ~= undefined) then do
                                                   return eqtype(rename$1, type_pairs$1, subst$1, env$1, match$4, match$5);
                                                 end else do
-                                                  throw {
-                                                        Unify,
-                                                        --[[ [] ]]0
-                                                      };
+                                                  error ({
+                                                    Unify,
+                                                    --[[ [] ]]0
+                                                  })
                                                 end end 
                                               end end  end 
                                             end else if (typeof match$1 == "number") then do
-                                              throw {
-                                                    Unify,
-                                                    --[[ [] ]]0
-                                                  };
+                                              error ({
+                                                Unify,
+                                                --[[ [] ]]0
+                                              })
                                             end else if (match$1.tag) then do
-                                              throw {
-                                                    Unify,
-                                                    --[[ [] ]]0
-                                                  };
+                                              error ({
+                                                Unify,
+                                                --[[ [] ]]0
+                                              })
                                             end else if (match$1[0] ~= undefined) then do
-                                              throw {
-                                                    Unify,
-                                                    --[[ [] ]]0
-                                                  };
+                                              error ({
+                                                Unify,
+                                                --[[ [] ]]0
+                                              })
                                             end else do
                                               return --[[ () ]]0;
                                             end end  end  end  end 
@@ -33062,24 +32896,24 @@ function eqtype(rename, type_pairs, subst, env, t1, t2) do
                                         end end), match$6[2]);
                           end;
                         end else do
-                          throw {
-                                Unify,
-                                --[[ [] ]]0
-                              };
+                          error ({
+                            Unify,
+                            --[[ [] ]]0
+                          })
                         end end  end end end end 
                      if ___conditional___ = 9--[[ Tunivar ]] then do
                         if (typeof match$3 == "number") then do
-                          throw {
-                                Unify,
-                                --[[ [] ]]0
-                              };
+                          error ({
+                            Unify,
+                            --[[ [] ]]0
+                          })
                         end else if (match$3.tag == --[[ Tunivar ]]9) then do
                           return unify_univar(t1$prime$1, t2$prime$1, univar_pairs.contents);
                         end else do
-                          throw {
-                                Unify,
-                                --[[ [] ]]0
-                              };
+                          error ({
+                            Unify,
+                            --[[ [] ]]0
+                          })
                         end end  end end end end 
                      if ___conditional___ = 10--[[ Tpoly ]] then do
                         tl1 = match$2[1];
@@ -33088,10 +32922,10 @@ function eqtype(rename, type_pairs, subst, env, t1, t2) do
                         if (tl1) then do
                           exit$1 = 2;
                         end else if (typeof match$3 == "number") then do
-                          throw {
-                                Unify,
-                                --[[ [] ]]0
-                              };
+                          error ({
+                            Unify,
+                            --[[ [] ]]0
+                          })
                         end else if (match$3.tag == --[[ Tpoly ]]10) then do
                           if (match$3[1]) then do
                             exit$1 = 2;
@@ -33099,96 +32933,94 @@ function eqtype(rename, type_pairs, subst, env, t1, t2) do
                             return eqtype(rename, type_pairs, subst, env, t1$2, match$3[0]);
                           end end 
                         end else do
-                          throw {
-                                Unify,
-                                --[[ [] ]]0
-                              };
+                          error ({
+                            Unify,
+                            --[[ [] ]]0
+                          })
                         end end  end  end 
                         if (exit$1 == 2) then do
                           if (typeof match$3 == "number") then do
-                            throw {
-                                  Unify,
-                                  --[[ [] ]]0
-                                };
+                            error ({
+                              Unify,
+                              --[[ [] ]]0
+                            })
                           end else if (match$3.tag == --[[ Tpoly ]]10) then do
                             return enter_poly(env, univar_pairs, t1$2, tl1, match$3[0], match$3[1], (function (param, param$1) do
                                           return eqtype(rename, type_pairs, subst, env, param, param$1);
                                         end end));
                           end else do
-                            throw {
-                                  Unify,
-                                  --[[ [] ]]0
-                                };
+                            error ({
+                              Unify,
+                              --[[ [] ]]0
+                            })
                           end end  end 
                         end
                          end end else 
                      if ___conditional___ = 11--[[ Tpackage ]] then do
                         if (typeof match$3 == "number") then do
-                          throw {
-                                Unify,
-                                --[[ [] ]]0
-                              };
+                          error ({
+                            Unify,
+                            --[[ [] ]]0
+                          })
                         end else if (match$3.tag == --[[ Tpackage ]]11) then do
-                          try do
+                          xpcall(function() do
                             return unify_package(env, (function (param, param$1) do
                                           return eqtype_list(rename, type_pairs, subst, env, param, param$1);
                                         end end), t1$prime$1.level, match$2[0], match$2[1], match$2[2], t2$prime$1.level, match$3[0], match$3[1], match$3[2]);
-                          end
-                          catch (exn$3)do
+                          end end,function(exn$3) return do
                             if (exn$3 == Caml_builtin_exceptions.not_found) then do
-                              throw {
-                                    Unify,
-                                    --[[ [] ]]0
-                                  };
-                            end
-                             end 
-                            throw exn$3;
-                          end
-                        end else do
-                          throw {
+                              error ({
                                 Unify,
                                 --[[ [] ]]0
-                              };
+                              })
+                            end
+                             end 
+                            error (exn$3)
+                          end end)
+                        end else do
+                          error ({
+                            Unify,
+                            --[[ [] ]]0
+                          })
                         end end  end end end end 
                      do
                     
                   end
                 end end 
               end else do
-                throw exn$1;
+                error (exn$1)
               end end 
-            end
+            end end)
           end end 
         end
          end 
-      end
-      catch (raw_exn)do
+      end end,function(raw_exn) return do
         exn$4 = Caml_js_exceptions.internalToOCamlException(raw_exn);
         if (exn$4[0] == Unify) then do
-          throw {
-                Unify,
-                --[[ :: ]]{
-                  --[[ tuple ]]{
-                    t1$1,
-                    t2$1
-                  },
-                  exn$4[1]
-                }
-              };
+          error ({
+            Unify,
+            --[[ :: ]]{
+              --[[ tuple ]]{
+                t1$1,
+                t2$1
+              },
+              exn$4[1]
+            }
+          })
         end
          end 
-        throw exn$4;
-      end
+        error (exn$4)
+      end end)
     end end 
   end end 
 end end
 
 function eqtype_list(rename, type_pairs, subst, env, tl1, tl2) do
   if (List.length(tl1) ~= List.length(tl2)) then do
-    throw {
-          Unify,
-          --[[ [] ]]0
-        };
+    error ({
+      Unify,
+      --[[ [] ]]0
+    })
   end
    end 
   return List.iter2((function (param, param$1) do
@@ -33217,16 +33049,16 @@ function eqtype_fields(rename, type_pairs, subst, env, ty1, _ty2) do
       match$3 = match$2.desc;
       if (typeof match$3 ~= "number" and match$3.tag == --[[ Tobject ]]4) then do
         _ty2 = match$3[0];
-        continue ;
+        ::continue:: ;
       end
        end 
       match$4 = associate_fields(match[0], match$1[0]);
       eqtype(rename, type_pairs, subst, env, rest1, rest2);
       if (match$4[1] ~= --[[ [] ]]0 or match$4[2] ~= --[[ [] ]]0) then do
-        throw {
-              Unify,
-              --[[ [] ]]0
-            };
+        error ({
+          Unify,
+          --[[ [] ]]0
+        })
       end
        end 
       return List.iter((function(rest2)do
@@ -33237,36 +33069,35 @@ function eqtype_fields(rename, type_pairs, subst, env, ty1, _ty2) do
                   k1 = param[1];
                   n = param[0];
                   eqtype_kind(k1, k2);
-                  try do
+                  xpcall(function() do
                     return eqtype(rename, type_pairs, subst, env, t1, t2);
-                  end
-                  catch (raw_exn)do
+                  end end,function(raw_exn) return do
                     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
                     if (exn[0] == Unify) then do
-                      throw {
-                            Unify,
-                            --[[ :: ]]{
-                              --[[ tuple ]]{
-                                newty2(current_level.contents, --[[ Tfield ]]Block.__(5, {
-                                        n,
-                                        k1,
-                                        t1,
-                                        rest2
-                                      })),
-                                newty2(current_level.contents, --[[ Tfield ]]Block.__(5, {
-                                        n,
-                                        k2,
-                                        t2,
-                                        rest2
-                                      }))
-                              },
-                              exn[1]
-                            }
-                          };
+                      error ({
+                        Unify,
+                        --[[ :: ]]{
+                          --[[ tuple ]]{
+                            newty2(current_level.contents, --[[ Tfield ]]Block.__(5, {
+                                    n,
+                                    k1,
+                                    t1,
+                                    rest2
+                                  })),
+                            newty2(current_level.contents, --[[ Tfield ]]Block.__(5, {
+                                    n,
+                                    k2,
+                                    t2,
+                                    rest2
+                                  }))
+                          },
+                          exn[1]
+                        }
+                      })
                     end
                      end 
-                    throw exn;
-                  end
+                    error (exn)
+                  end end)
                 end end
                 end(rest2)), match$4[0]);
     end end 
@@ -33278,33 +33109,33 @@ function eqtype_kind(k1, k2) do
   k2$1 = field_kind_repr(k2);
   if (typeof k1$1 == "number") then do
     if (k1$1 ~= 0) then do
-      throw {
-            Unify,
-            --[[ [] ]]0
-          };
+      error ({
+        Unify,
+        --[[ [] ]]0
+      })
     end
      end 
     if (typeof k2$1 == "number") then do
       if (k2$1 ~= 0) then do
-        throw {
-              Unify,
-              --[[ [] ]]0
-            };
+        error ({
+          Unify,
+          --[[ [] ]]0
+        })
       end else do
         return --[[ () ]]0;
       end end 
     end else do
-      throw {
-            Unify,
-            --[[ [] ]]0
-          };
+      error ({
+        Unify,
+        --[[ [] ]]0
+      })
     end end 
   end else do
     if (typeof k2$1 == "number") then do
-      throw {
-            Unify,
-            --[[ [] ]]0
-          };
+      error ({
+        Unify,
+        --[[ [] ]]0
+      })
     end
      end 
     return --[[ () ]]0;
@@ -33312,21 +33143,20 @@ function eqtype_kind(k1, k2) do
 end end
 
 function equal$4(env, rename, tyl1, tyl2) do
-  try do
+  xpcall(function() do
     univar_pairs.contents = --[[ [] ]]0;
     eqtype_list(rename, Curry._1(TypePairs.create, 11), do
           contents: --[[ [] ]]0
         end, env, tyl1, tyl2);
     return true;
-  end
-  catch (raw_exn)do
+  end end,function(raw_exn) return do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn[0] == Unify) then do
       return false;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 function eqtype$1(rename, type_pairs, subst, env, t1, t2) do
@@ -33337,7 +33167,7 @@ end end
 Failure = Caml_exceptions.create("Ocaml_typedtree_test.Ctype.Failure");
 
 function moregen_clty(trace, type_pairs, env, cty1, cty2) do
-  try do
+  xpcall(function() do
     exit = 0;
     local ___conditional___=(cty1.tag | 0);
     do
@@ -33357,57 +33187,55 @@ function moregen_clty(trace, type_pairs, env, cty1, cty2) do
                 match$1 = flatten_fields(ty2);
                 match$2 = associate_fields(match[0], match$1[0]);
                 List.iter((function (param) do
-                        try do
+                        xpcall(function() do
                           return moregen$1(true, type_pairs, env, param[2], param[4]);
-                        end
-                        catch (raw_exn)do
+                        end end,function(raw_exn) return do
                           exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
                           if (exn[0] == Unify) then do
-                            throw {
-                                  Failure,
-                                  --[[ :: ]]{
-                                    --[[ CM_Meth_type_mismatch ]]Block.__(5, {
-                                        param[0],
-                                        env,
-                                        expand_trace(env, exn[1])
-                                      }),
-                                    --[[ [] ]]0
-                                  }
-                                };
+                            error ({
+                              Failure,
+                              --[[ :: ]]{
+                                --[[ CM_Meth_type_mismatch ]]Block.__(5, {
+                                    param[0],
+                                    env,
+                                    expand_trace(env, exn[1])
+                                  }),
+                                --[[ [] ]]0
+                              }
+                            })
                           end
                            end 
-                          throw exn;
-                        end
+                          error (exn)
+                        end end)
                       end end), match$2[0]);
                 return iter$1((function (lab, param) do
                               match = find(lab, sign1.csig_vars);
-                              try do
+                              xpcall(function() do
                                 return moregen$1(true, type_pairs, env, match[2], param[2]);
-                              end
-                              catch (raw_exn)do
+                              end end,function(raw_exn) return do
                                 exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
                                 if (exn[0] == Unify) then do
-                                  throw {
-                                        Failure,
-                                        --[[ :: ]]{
-                                          --[[ CM_Val_type_mismatch ]]Block.__(4, {
-                                              lab,
-                                              env,
-                                              expand_trace(env, exn[1])
-                                            }),
-                                          --[[ [] ]]0
-                                        }
-                                      };
+                                  error ({
+                                    Failure,
+                                    --[[ :: ]]{
+                                      --[[ CM_Val_type_mismatch ]]Block.__(4, {
+                                          lab,
+                                          env,
+                                          expand_trace(env, exn[1])
+                                        }),
+                                      --[[ [] ]]0
+                                    }
+                                  })
                                 end
                                  end 
-                                throw exn;
-                              end
+                                error (exn)
+                              end end)
                             end end), sign2.csig_vars);end end end 
              if ___conditional___ = 2--[[ Cty_arrow ]] then do
-                throw {
-                      Failure,
-                      --[[ [] ]]0
-                    };end end end 
+                error ({
+                  Failure,
+                  --[[ [] ]]0
+                })end end end 
              do
             
           endend else 
@@ -33417,38 +33245,37 @@ function moregen_clty(trace, type_pairs, env, cty1, cty2) do
              if ___conditional___ = 0--[[ Cty_constr ]] then do
                 exit = 1;end else 
              if ___conditional___ = 1--[[ Cty_signature ]] then do
-                throw {
-                      Failure,
-                      --[[ [] ]]0
-                    };end end end 
+                error ({
+                  Failure,
+                  --[[ [] ]]0
+                })end end end 
              if ___conditional___ = 2--[[ Cty_arrow ]] then do
                 if (cty1[0] == cty2[0]) then do
-                  try do
+                  xpcall(function() do
                     moregen$1(true, type_pairs, env, cty1[1], cty2[1]);
-                  end
-                  catch (raw_exn)do
+                  end end,function(raw_exn) return do
                     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
                     if (exn[0] == Unify) then do
-                      throw {
-                            Failure,
-                            --[[ :: ]]{
-                              --[[ CM_Parameter_mismatch ]]Block.__(3, {
-                                  env,
-                                  expand_trace(env, exn[1])
-                                }),
-                              --[[ [] ]]0
-                            }
-                          };
+                      error ({
+                        Failure,
+                        --[[ :: ]]{
+                          --[[ CM_Parameter_mismatch ]]Block.__(3, {
+                              env,
+                              expand_trace(env, exn[1])
+                            }),
+                          --[[ [] ]]0
+                        }
+                      })
                     end
                      end 
-                    throw exn;
-                  end
+                    error (exn)
+                  end end)
                   return moregen_clty(false, type_pairs, env, cty1[2], cty2[2]);
                 end else do
-                  throw {
-                        Failure,
-                        --[[ [] ]]0
-                      };
+                  error ({
+                    Failure,
+                    --[[ [] ]]0
+                  })
                 end end end end end 
              do
             
@@ -33460,30 +33287,29 @@ function moregen_clty(trace, type_pairs, env, cty1, cty2) do
       return moregen_clty(true, type_pairs, env, cty1, cty2[2]);
     end
      end 
-  end
-  catch (raw_exn$1)do
+  end end,function(raw_exn$1) return do
     exn$1 = Caml_js_exceptions.internalToOCamlException(raw_exn$1);
     if (exn$1[0] == Failure) then do
       error = exn$1[1];
       if (trace or error == --[[ [] ]]0) then do
-        throw {
-              Failure,
-              --[[ :: ]]{
-                --[[ CM_Class_type_mismatch ]]Block.__(2, {
-                    env,
-                    cty1,
-                    cty2
-                  }),
-                error
-              }
-            };
+        error ({
+          Failure,
+          --[[ :: ]]{
+            --[[ CM_Class_type_mismatch ]]Block.__(2, {
+                env,
+                cty1,
+                cty2
+              }),
+            error
+          }
+        })
       end
        end 
-      throw exn$1;
+      error (exn$1)
     end else do
-      throw exn$1;
+      error (exn$1)
     end end 
-  end
+  end end)
 end end
 
 function match_class_types(traceOpt, env, pat_sch, subj_sch) do
@@ -33534,11 +33360,10 @@ function match_class_types(traceOpt, env, pat_sch, subj_sch) do
             end end), missing_method), error);
   moregen$1(true, type_pairs, env, match$2[1], match$3[1]);
   error$2 = List.fold_right((function (param, err) do
-          try do
+          xpcall(function() do
             moregen_kind(param[1], param[3]);
             return err;
-          end
-          catch (raw_exn)do
+          end end,function(raw_exn) return do
             exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
             if (exn[0] == Unify) then do
               return --[[ :: ]]{
@@ -33546,12 +33371,12 @@ function match_class_types(traceOpt, env, pat_sch, subj_sch) do
                       err
                     };
             end else do
-              throw exn;
+              error (exn)
             end end 
-          end
+          end end)
         end end), match$4[0], error$1);
   error$3 = fold((function (lab, param, err) do
-          try do
+          xpcall(function() do
             match = find(lab, sign1.csig_vars);
             if (param[0] == --[[ Mutable ]]1 and match[0] ~= --[[ Mutable ]]1) then do
               return --[[ :: ]]{
@@ -33566,17 +33391,16 @@ function match_class_types(traceOpt, env, pat_sch, subj_sch) do
             end else do
               return err;
             end end  end 
-          end
-          catch (exn)do
+          end end,function(exn) return do
             if (exn == Caml_builtin_exceptions.not_found) then do
               return --[[ :: ]]{
                       --[[ CM_Missing_value ]]Block.__(8, {lab}),
                       err
                     };
             end else do
-              throw exn;
+              error (exn)
             end end 
-          end
+          end end)
         end end), sign2.csig_vars, error$2);
   error$4 = fold((function (lab, param, err) do
           if (param[1] == --[[ Virtual ]]0 and not mem(lab, sign2.csig_vars)) then do
@@ -33612,25 +33436,24 @@ function match_class_types(traceOpt, env, pat_sch, subj_sch) do
       error$5
     };
   end else do
-    try do
+    xpcall(function() do
       moregen_clty(trace, type_pairs, env, patt, subj);
       res = --[[ [] ]]0;
-    end
-    catch (raw_exn)do
+    end end,function(raw_exn) return do
       exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
       if (exn[0] == Failure) then do
         res = exn[1];
       end else do
-        throw exn;
+        error (exn)
       end end 
-    end
+    end end)
   end end 
   current_level.contents = old_level;
   return res;
 end end
 
 function equal_clty(trace, type_pairs, subst, env, cty1, cty2) do
-  try do
+  xpcall(function() do
     exit = 0;
     local ___conditional___=(cty1.tag | 0);
     do
@@ -33665,51 +33488,49 @@ function equal_clty(trace, type_pairs, subst, env, cty1, cty2) do
                 match$1 = flatten_fields(ty2);
                 match$2 = associate_fields(match[0], match$1[0]);
                 List.iter((function (param) do
-                        try do
+                        xpcall(function() do
                           return eqtype$1(true, type_pairs, subst, env, param[2], param[4]);
-                        end
-                        catch (raw_exn)do
+                        end end,function(raw_exn) return do
                           exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
                           if (exn[0] == Unify) then do
-                            throw {
-                                  Failure,
-                                  --[[ :: ]]{
-                                    --[[ CM_Meth_type_mismatch ]]Block.__(5, {
-                                        param[0],
-                                        env,
-                                        expand_trace(env, exn[1])
-                                      }),
-                                    --[[ [] ]]0
-                                  }
-                                };
+                            error ({
+                              Failure,
+                              --[[ :: ]]{
+                                --[[ CM_Meth_type_mismatch ]]Block.__(5, {
+                                    param[0],
+                                    env,
+                                    expand_trace(env, exn[1])
+                                  }),
+                                --[[ [] ]]0
+                              }
+                            })
                           end
                            end 
-                          throw exn;
-                        end
+                          error (exn)
+                        end end)
                       end end), match$2[0]);
                 return iter$1((function (lab, param) do
                               match = find(lab, sign1.csig_vars);
-                              try do
+                              xpcall(function() do
                                 return eqtype$1(true, type_pairs, subst, env, match[2], param[2]);
-                              end
-                              catch (raw_exn)do
+                              end end,function(raw_exn) return do
                                 exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
                                 if (exn[0] == Unify) then do
-                                  throw {
-                                        Failure,
-                                        --[[ :: ]]{
-                                          --[[ CM_Val_type_mismatch ]]Block.__(4, {
-                                              lab,
-                                              env,
-                                              expand_trace(env, exn[1])
-                                            }),
-                                          --[[ [] ]]0
-                                        }
-                                      };
+                                  error ({
+                                    Failure,
+                                    --[[ :: ]]{
+                                      --[[ CM_Val_type_mismatch ]]Block.__(4, {
+                                          lab,
+                                          env,
+                                          expand_trace(env, exn[1])
+                                        }),
+                                      --[[ [] ]]0
+                                    }
+                                  })
                                 end
                                  end 
-                                throw exn;
-                              end
+                                error (exn)
+                              end end)
                             end end), sign2.csig_vars);end end end 
              if ___conditional___ = 2--[[ Cty_arrow ]] then do
                 exit = 2;end else 
@@ -33725,26 +33546,25 @@ function equal_clty(trace, type_pairs, subst, env, cty1, cty2) do
                 exit = 2;end else 
              if ___conditional___ = 2--[[ Cty_arrow ]] then do
                 if (cty1[0] == cty2[0]) then do
-                  try do
+                  xpcall(function() do
                     eqtype$1(true, type_pairs, subst, env, cty1[1], cty2[1]);
-                  end
-                  catch (raw_exn)do
+                  end end,function(raw_exn) return do
                     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
                     if (exn[0] == Unify) then do
-                      throw {
-                            Failure,
-                            --[[ :: ]]{
-                              --[[ CM_Parameter_mismatch ]]Block.__(3, {
-                                  env,
-                                  expand_trace(env, exn[1])
-                                }),
-                              --[[ [] ]]0
-                            }
-                          };
+                      error ({
+                        Failure,
+                        --[[ :: ]]{
+                          --[[ CM_Parameter_mismatch ]]Block.__(3, {
+                              env,
+                              expand_trace(env, exn[1])
+                            }),
+                          --[[ [] ]]0
+                        }
+                      })
                     end
                      end 
-                    throw exn;
-                  end
+                    error (exn)
+                  end end)
                   return equal_clty(false, type_pairs, subst, env, cty1[2], cty2[2]);
                 end else do
                   exit = 2;
@@ -33760,43 +33580,42 @@ function equal_clty(trace, type_pairs, subst, env, cty1, cty2) do
        if ___conditional___ = 1 then do
           return equal_clty(true, type_pairs, subst, env, cty1, cty2[2]);end end end 
        if ___conditional___ = 2 then do
-          throw {
-                Failure,
-                trace and --[[ [] ]]0 or --[[ :: ]]{
-                    --[[ CM_Class_type_mismatch ]]Block.__(2, {
-                        env,
-                        cty1,
-                        cty2
-                      }),
-                    --[[ [] ]]0
-                  }
-              };end end end 
-       do
-      
-    end
-  end
-  catch (raw_exn$1)do
-    exn$1 = Caml_js_exceptions.internalToOCamlException(raw_exn$1);
-    if (exn$1[0] == Failure) then do
-      if (trace) then do
-        throw {
-              Failure,
-              --[[ :: ]]{
+          error ({
+            Failure,
+            trace and --[[ [] ]]0 or --[[ :: ]]{
                 --[[ CM_Class_type_mismatch ]]Block.__(2, {
                     env,
                     cty1,
                     cty2
                   }),
-                exn$1[1]
+                --[[ [] ]]0
               }
-            };
+          })end end end 
+       do
+      
+    end
+  end end,function(raw_exn$1) return do
+    exn$1 = Caml_js_exceptions.internalToOCamlException(raw_exn$1);
+    if (exn$1[0] == Failure) then do
+      if (trace) then do
+        error ({
+          Failure,
+          --[[ :: ]]{
+            --[[ CM_Class_type_mismatch ]]Block.__(2, {
+                env,
+                cty1,
+                cty2
+              }),
+            exn$1[1]
+          }
+        })
       end
        end 
-      throw exn$1;
+      error (exn$1)
     end else do
-      throw exn$1;
+      error (exn$1)
     end end 
-  end
+  end end)
 end end
 
 function match_class_declarations(env, patt_params, patt_type, subj_params, subj_type) do
@@ -33871,17 +33690,17 @@ function match_class_declarations(env, patt_params, patt_type, subj_params, subj
           end else do
             return err;
           end end  end 
-          throw {
-                Caml_builtin_exceptions.assert_failure,
-                --[[ tuple ]]{
-                  "ctype.ml",
-                  3600,
-                  34
-                }
-              };
+          error ({
+            Caml_builtin_exceptions.assert_failure,
+            --[[ tuple ]]{
+              "ctype.ml",
+              3600,
+              34
+            }
+          })
         end end), match$2[0], error$1);
   error$3 = fold((function (lab, param, err) do
-          try do
+          xpcall(function() do
             match = find(lab, sign1.csig_vars);
             if (param[0] == --[[ Mutable ]]1 and match[0] ~= --[[ Mutable ]]1) then do
               return --[[ :: ]]{
@@ -33896,17 +33715,16 @@ function match_class_declarations(env, patt_params, patt_type, subj_params, subj
             end else do
               return err;
             end end  end 
-          end
-          catch (exn)do
+          end end,function(exn) return do
             if (exn == Caml_builtin_exceptions.not_found) then do
               return --[[ :: ]]{
                       --[[ CM_Missing_value ]]Block.__(8, {lab}),
                       err
                     };
             end else do
-              throw exn;
+              error (exn)
             end end 
-          end
+          end end)
         end end), sign2.csig_vars, error$2);
   error$4 = fold((function (lab, param, err) do
           if (param[1] == --[[ Virtual ]]0 and not mem(lab, sign2.csig_vars)) then do
@@ -33934,43 +33752,42 @@ function match_class_declarations(env, patt_params, patt_type, subj_params, subj
   if (error$5) then do
     return error$5;
   end else do
-    try do
+    xpcall(function() do
       lp = List.length(patt_params);
       ls = List.length(subj_params);
       if (lp ~= ls) then do
-        throw {
-              Failure,
-              --[[ :: ]]{
-                --[[ CM_Parameter_arity_mismatch ]]Block.__(0, {
-                    lp,
-                    ls
-                  }),
-                --[[ [] ]]0
-              }
-            };
+        error ({
+          Failure,
+          --[[ :: ]]{
+            --[[ CM_Parameter_arity_mismatch ]]Block.__(0, {
+                lp,
+                ls
+              }),
+            --[[ [] ]]0
+          }
+        })
       end
        end 
       List.iter2((function (p, s) do
-              try do
+              xpcall(function() do
                 return eqtype$1(true, type_pairs, subst, env, p, s);
-              end
-              catch (raw_exn)do
+              end end,function(raw_exn) return do
                 exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
                 if (exn[0] == Unify) then do
-                  throw {
-                        Failure,
-                        --[[ :: ]]{
-                          --[[ CM_Type_parameter_mismatch ]]Block.__(1, {
-                              env,
-                              expand_trace(env, exn[1])
-                            }),
-                          --[[ [] ]]0
-                        }
-                      };
+                  error ({
+                    Failure,
+                    --[[ :: ]]{
+                      --[[ CM_Type_parameter_mismatch ]]Block.__(1, {
+                          env,
+                          expand_trace(env, exn[1])
+                        }),
+                      --[[ [] ]]0
+                    }
+                  })
                 end
                  end 
-                throw exn;
-              end
+                error (exn)
+              end end)
             end end), patt_params, subj_params);
       equal_clty(false, type_pairs, subst, env, --[[ Cty_signature ]]Block.__(1, {sign1}), --[[ Cty_signature ]]Block.__(1, {sign2}));
       clty_params = function (param, param$1) do
@@ -33983,15 +33800,14 @@ function match_class_declarations(env, patt_params, patt_type, subj_params, subj
                     end end), param, param$1);
       end end;
       return match_class_types(false, env, clty_params(patt_params, patt_type), clty_params(subj_params, subj_type));
-    end
-    catch (raw_exn)do
+    end end,function(raw_exn) return do
       exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
       if (exn[0] == Failure) then do
         return exn[1];
       end else do
-        throw exn;
+        error (exn)
       end end 
-    end
+    end end)
   end end 
 end end
 
@@ -34028,7 +33844,7 @@ function filter_visited(_l) do
       match = l[0].desc;
       if (typeof match == "number") then do
         _l = l[1];
-        continue ;
+        ::continue:: ;
       end else do
         local ___conditional___=(match.tag | 0);
         do
@@ -34038,7 +33854,7 @@ function filter_visited(_l) do
            do
           else do
             _l = l[1];
-            continue ;
+            ::continue:: ;
             end end
             
         end
@@ -34087,7 +33903,7 @@ function find_cltype_for_path(env, p) do
     ty = match$1;
     match$2 = repr(ty).desc;
     if (typeof match$2 == "number") then do
-      throw Caml_builtin_exceptions.not_found;
+      error (Caml_builtin_exceptions.not_found)
     end else if (match$2.tag == --[[ Tobject ]]4) then do
       match$3 = match$2[1].contents;
       if (match$3 ~= undefined) then do
@@ -34097,23 +33913,23 @@ function find_cltype_for_path(env, p) do
                   ty
                 };
         end else do
-          throw Caml_builtin_exceptions.not_found;
+          error (Caml_builtin_exceptions.not_found)
         end end 
       end else do
-        throw Caml_builtin_exceptions.not_found;
+        error (Caml_builtin_exceptions.not_found)
       end end 
     end else do
-      throw Caml_builtin_exceptions.not_found;
+      error (Caml_builtin_exceptions.not_found)
     end end  end 
   end else do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "ctype.ml",
-            3707,
-            12
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "ctype.ml",
+        3707,
+        12
+      }
+    })
   end end 
 end end
 
@@ -34139,24 +33955,23 @@ function build_subtype(env, visited, loops, posi, level, t) do
     do
        if ___conditional___ = 0--[[ Tvar ]] then do
           if (posi) then do
-            try do
+            xpcall(function() do
               t$prime = List.assq(t$1, loops);
               warn.contents = true;
               return --[[ tuple ]]{
                       t$prime,
                       --[[ Equiv ]]1
                     };
-            end
-            catch (exn)do
+            end end,function(exn) return do
               if (exn == Caml_builtin_exceptions.not_found) then do
                 return --[[ tuple ]]{
                         t$1,
                         --[[ Unchanged ]]0
                       };
               end else do
-                throw exn;
+                error (exn)
               end end 
-            end
+            end end)
           end else do
             return --[[ tuple ]]{
                     t$1,
@@ -34230,10 +34045,10 @@ function build_subtype(env, visited, loops, posi, level, t) do
           if (level > 0 and generic_abbrev(env, p) and safe_abbrev(env, t$1) and not has_constr_row(expand_abbrev(env)(t$1))) then do
             t$prime$1 = repr(expand_abbrev(env)(t$1));
             level$prime = pred_expand(level);
-            try do
+            xpcall(function() do
               match$3 = t$prime$1.desc;
               if (typeof match$3 == "number") then do
-                throw Caml_builtin_exceptions.not_found;
+                error (Caml_builtin_exceptions.not_found)
               end else if (match$3.tag == --[[ Tobject ]]4) then do
                 if (posi and not opened_object(t$prime$1)) then do
                   match$4 = find_cltype_for_path(env, p);
@@ -34242,7 +34057,7 @@ function build_subtype(env, visited, loops, posi, level, t) do
                   match$5 = ty$1.desc;
                   match$6;
                   if (typeof match$5 == "number") then do
-                    throw Caml_builtin_exceptions.not_found;
+                    error (Caml_builtin_exceptions.not_found)
                   end else if (match$5.tag == --[[ Tobject ]]4) then do
                     match$7 = match$5[1].contents;
                     if (match$7 ~= undefined) then do
@@ -34253,19 +34068,19 @@ function build_subtype(env, visited, loops, posi, level, t) do
                           match$8[1]
                         };
                       end else do
-                        throw Caml_builtin_exceptions.not_found;
+                        error (Caml_builtin_exceptions.not_found)
                       end end 
                     end else do
-                      throw Caml_builtin_exceptions.not_found;
+                      error (Caml_builtin_exceptions.not_found)
                     end end 
                   end else do
-                    throw Caml_builtin_exceptions.not_found;
+                    error (Caml_builtin_exceptions.not_found)
                   end end  end 
                   tl1 = match$6[1];
                   if (List.exists((function (param) do
                             return deep_occur(ty$1, param);
                           end end), tl1)) then do
-                    throw Caml_builtin_exceptions.not_found;
+                    error (Caml_builtin_exceptions.not_found)
                   end
                    end 
                   ty$1.desc = --[[ Tvar ]]Block.__(0, {undefined});
@@ -34284,14 +34099,14 @@ function build_subtype(env, visited, loops, posi, level, t) do
                       }, loops$1, posi, pred_enlarge(level$prime), match$6[0]);
                   ty1$prime = match$9[0];
                   if (not is_Tvar(t$prime$prime)) then do
-                    throw {
-                          Caml_builtin_exceptions.assert_failure,
-                          --[[ tuple ]]{
-                            "ctype.ml",
-                            3770,
-                            10
-                          }
-                        };
+                    error ({
+                      Caml_builtin_exceptions.assert_failure,
+                      --[[ tuple ]]{
+                        "ctype.ml",
+                        3770,
+                        10
+                      }
+                    })
                   end
                    end 
                   nm = match$9[1] > --[[ Equiv ]]1 or deep_occur(ty$1, ty1$prime) and undefined or --[[ tuple ]]{
@@ -34304,36 +34119,34 @@ function build_subtype(env, visited, loops, posi, level, t) do
                         contents: nm
                       end
                     });
-                  try do
+                  xpcall(function() do
                     unify_var(env, ty$1, t$1);
-                  end
-                  catch (raw_exn)do
+                  end end,function(raw_exn) return do
                     exn$1 = Caml_js_exceptions.internalToOCamlException(raw_exn);
                     if (exn$1[0] == Unify) then do
-                      throw {
-                            Caml_builtin_exceptions.assert_failure,
-                            --[[ tuple ]]{
-                              "ctype.ml",
-                              3774,
-                              50
-                            }
-                          };
+                      error ({
+                        Caml_builtin_exceptions.assert_failure,
+                        --[[ tuple ]]{
+                          "ctype.ml",
+                          3774,
+                          50
+                        }
+                      })
                     end
                      end 
-                    throw exn$1;
-                  end
+                    error (exn$1)
+                  end end)
                   return --[[ tuple ]]{
                           t$prime$prime,
                           --[[ Changed ]]2
                         };
                 end else do
-                  throw Caml_builtin_exceptions.not_found;
+                  error (Caml_builtin_exceptions.not_found)
                 end end 
               end else do
-                throw Caml_builtin_exceptions.not_found;
+                error (Caml_builtin_exceptions.not_found)
               end end  end 
-            end
-            catch (exn$2)do
+            end end,function(exn$2) return do
               if (exn$2 == Caml_builtin_exceptions.not_found) then do
                 match$10 = build_subtype(env, visited, loops, posi, level$prime, t$prime$1);
                 c$2 = match$10[1];
@@ -34349,9 +34162,9 @@ function build_subtype(env, visited, loops, posi, level, t) do
                         };
                 end end 
               end else do
-                throw exn$2;
+                error (exn$2)
               end end 
-            end
+            end end)
           end else if (memq_warn(t$1, visited)) then do
             return --[[ tuple ]]{
                     t$1,
@@ -34362,7 +34175,7 @@ function build_subtype(env, visited, loops, posi, level, t) do
               t$1,
               visited
             };
-            try do
+            xpcall(function() do
               decl = find_type_full(p, env)[0];
               if (level == 0 and generic_abbrev(env, p) and safe_abbrev(env, t$1) and not has_constr_row(expand_abbrev(env)(t$1))) then do
                 warn.contents = true;
@@ -34403,17 +34216,16 @@ function build_subtype(env, visited, loops, posi, level, t) do
                         --[[ Unchanged ]]0
                       };
               end end 
-            end
-            catch (exn$3)do
+            end end,function(exn$3) return do
               if (exn$3 == Caml_builtin_exceptions.not_found) then do
                 return --[[ tuple ]]{
                         t$1,
                         --[[ Unchanged ]]0
                       };
               end else do
-                throw exn$3;
+                error (exn$3)
               end end 
-            end
+            end end)
           end end  end end end end 
        if ___conditional___ = 4--[[ Tobject ]] then do
           t1 = match[0];
@@ -34470,14 +34282,14 @@ function build_subtype(env, visited, loops, posi, level, t) do
           end end end end end 
        if ___conditional___ = 6--[[ Tlink ]]
        or ___conditional___ = 7--[[ Tsubst ]] then do
-          throw {
-                Caml_builtin_exceptions.assert_failure,
-                --[[ tuple ]]{
-                  "ctype.ml",
-                  3865,
-                  6
-                }
-              };end end end 
+          error ({
+            Caml_builtin_exceptions.assert_failure,
+            --[[ tuple ]]{
+              "ctype.ml",
+              3865,
+              6
+            }
+          })end end end 
        if ___conditional___ = 8--[[ Tvariant ]] then do
           row = row_repr_aux(--[[ [] ]]0, match[0]);
           if (memq_warn(t$1, visited) or not static_row(row)) then do
@@ -34497,23 +34309,23 @@ function build_subtype(env, visited, loops, posi, level, t) do
                     l = orig[0];
                     match = row_field_repr_aux(--[[ [] ]]0, orig[1]);
                     if (typeof match == "number") then do
-                      throw {
-                            Caml_builtin_exceptions.assert_failure,
-                            --[[ tuple ]]{
-                              "ctype.ml",
-                              3832,
-                              17
-                            }
-                          };
+                      error ({
+                        Caml_builtin_exceptions.assert_failure,
+                        --[[ tuple ]]{
+                          "ctype.ml",
+                          3832,
+                          17
+                        }
+                      })
                     end else if (match.tag) then do
-                      throw {
-                            Caml_builtin_exceptions.assert_failure,
-                            --[[ tuple ]]{
-                              "ctype.ml",
-                              3832,
-                              17
-                            }
-                          };
+                      error ({
+                        Caml_builtin_exceptions.assert_failure,
+                        --[[ tuple ]]{
+                          "ctype.ml",
+                          3832,
+                          17
+                        }
+                      })
                     end else do
                       match$1 = match[0];
                       if (match$1 ~= undefined) then do
@@ -34620,11 +34432,11 @@ end end
 subtypes = Curry._1(TypePairs.create, 17);
 
 function subtype_error(env, trace) do
-  throw {
-        Subtype,
-        expand_trace(env, List.rev(trace)),
-        --[[ [] ]]0
-      };
+  error ({
+    Subtype,
+    expand_trace(env, List.rev(trace)),
+    --[[ [] ]]0
+  })
 end end
 
 function subtype_rec(env, _trace, _t1, _t2, _cstrs) do
@@ -34638,14 +34450,13 @@ function subtype_rec(env, _trace, _t1, _t2, _cstrs) do
     if (t1$1 == t2$1) then do
       return cstrs;
     end else do
-      try do
+      xpcall(function() do
         Curry._2(TypePairs.find, subtypes, --[[ tuple ]]{
               t1$1,
               t2$1
             });
         return cstrs;
-      end
-      catch (exn)do
+      end end,function(exn) return do
         if (exn == Caml_builtin_exceptions.not_found) then do
           Curry._3(TypePairs.add, subtypes, --[[ tuple ]]{
                 t1$1,
@@ -34698,7 +34509,7 @@ function subtype_rec(env, _trace, _t1, _t2, _cstrs) do
                               },
                               trace
                             };
-                            continue ;
+                            ::continue:: ;
                           end else do
                             exit = 1;
                           end end end else 
@@ -34866,7 +34677,7 @@ function subtype_rec(env, _trace, _t1, _t2, _cstrs) do
                        if ___conditional___ = 3--[[ Tconstr ]] then do
                           exit$2 = 4;end else 
                        if ___conditional___ = 8--[[ Tvariant ]] then do
-                          try do
+                          xpcall(function() do
                             env$3 = env;
                             trace$3 = trace;
                             row1 = match[0];
@@ -34903,7 +34714,7 @@ function subtype_rec(env, _trace, _t1, _t2, _cstrs) do
                                     end end end else 
                                  if ___conditional___ = 9--[[ Tunivar ]] then do
                                     if (typeof match$7 == "number") then do
-                                      throw Pervasives.Exit;
+                                      error (Pervasives.Exit)
                                     end else if (match$7.tag == --[[ Tunivar ]]9) then do
                                       if (row1$1.row_closed == row2$1.row_closed and r1 == --[[ [] ]]0 and match$5[1] == --[[ [] ]]0) then do
                                         cstrs$7 = subtype_rec(env$3, --[[ :: ]]{
@@ -34923,84 +34734,84 @@ function subtype_rec(env, _trace, _t1, _t2, _cstrs) do
                                                       if (typeof match$1 == "number") then do
                                                         return cstrs;
                                                       end else do
-                                                        throw Pervasives.Exit;
+                                                        error (Pervasives.Exit)
                                                       end end 
                                                     end else if (match.tag) then do
                                                       if (match[0]) then do
                                                         if (match[1]) then do
-                                                          throw Pervasives.Exit;
+                                                          error (Pervasives.Exit)
                                                         end
                                                          end 
                                                         if (typeof match$1 == "number") then do
-                                                          throw Pervasives.Exit;
+                                                          error (Pervasives.Exit)
                                                         end else if (match$1.tag) then do
                                                           if (match$1[0]) then do
                                                             if (match$1[1]) then do
-                                                              throw Pervasives.Exit;
+                                                              error (Pervasives.Exit)
                                                             end
                                                              end 
                                                             return cstrs;
                                                           end else do
-                                                            throw Pervasives.Exit;
+                                                            error (Pervasives.Exit)
                                                           end end 
                                                         end else do
-                                                          throw Pervasives.Exit;
+                                                          error (Pervasives.Exit)
                                                         end end  end 
                                                       end else do
                                                         match$2 = match[1];
                                                         if (match$2) then do
                                                           if (match$2[1]) then do
-                                                            throw Pervasives.Exit;
+                                                            error (Pervasives.Exit)
                                                           end
                                                            end 
                                                           if (typeof match$1 == "number") then do
-                                                            throw Pervasives.Exit;
+                                                            error (Pervasives.Exit)
                                                           end else if (match$1.tag) then do
                                                             if (match$1[0]) then do
-                                                              throw Pervasives.Exit;
+                                                              error (Pervasives.Exit)
                                                             end
                                                              end 
                                                             match$3 = match$1[1];
                                                             if (match$3) then do
                                                               if (match$3[1]) then do
-                                                                throw Pervasives.Exit;
+                                                                error (Pervasives.Exit)
                                                               end
                                                                end 
                                                               t1 = match$2[0];
                                                               t2 = match$3[0];
                                                             end else do
-                                                              throw Pervasives.Exit;
+                                                              error (Pervasives.Exit)
                                                             end end 
                                                           end else do
-                                                            throw Pervasives.Exit;
+                                                            error (Pervasives.Exit)
                                                           end end  end 
                                                         end else do
-                                                          throw Pervasives.Exit;
+                                                          error (Pervasives.Exit)
                                                         end end 
                                                       end end 
                                                     end else do
                                                       match$4 = match[0];
                                                       if (match$4 ~= undefined) then do
                                                         if (typeof match$1 == "number") then do
-                                                          throw Pervasives.Exit;
+                                                          error (Pervasives.Exit)
                                                         end else if (match$1.tag) then do
-                                                          throw Pervasives.Exit;
+                                                          error (Pervasives.Exit)
                                                         end else do
                                                           match$5 = match$1[0];
                                                           if (match$5 ~= undefined) then do
                                                             t1 = match$4;
                                                             t2 = match$5;
                                                           end else do
-                                                            throw Pervasives.Exit;
+                                                            error (Pervasives.Exit)
                                                           end end 
                                                         end end  end 
                                                       end else if (typeof match$1 == "number") then do
-                                                        throw Pervasives.Exit;
+                                                        error (Pervasives.Exit)
                                                       end else if (match$1.tag) then do
-                                                        throw Pervasives.Exit;
+                                                        error (Pervasives.Exit)
                                                       end else do
                                                         if (match$1[0] ~= undefined) then do
-                                                          throw Pervasives.Exit;
+                                                          error (Pervasives.Exit)
                                                         end
                                                          end 
                                                         return cstrs;
@@ -35016,14 +34827,14 @@ function subtype_rec(env, _trace, _t1, _t2, _cstrs) do
                                                   end end
                                                   end(env$3,trace$3)), cstrs$7, pairs);
                                       end else do
-                                        throw Pervasives.Exit;
+                                        error (Pervasives.Exit)
                                       end end 
                                     end else do
-                                      throw Pervasives.Exit;
+                                      error (Pervasives.Exit)
                                     end end  end end end end 
                                  do end end
                                 else do
-                                  throw Pervasives.Exit;
+                                  error (Pervasives.Exit)
                                   end end
                                   
                               end
@@ -35036,7 +34847,7 @@ function subtype_rec(env, _trace, _t1, _t2, _cstrs) do
                                    or ___conditional___ = 3--[[ Tconstr ]]
                                    do end
                                   else do
-                                    throw Pervasives.Exit;
+                                    error (Pervasives.Exit)
                                     end end
                                     
                                 end
@@ -35055,9 +34866,9 @@ function subtype_rec(env, _trace, _t1, _t2, _cstrs) do
                                                 if (match$2) then do
                                                   t1 = match$2[0];
                                                   if (typeof match$1 == "number") then do
-                                                    throw Pervasives.Exit;
+                                                    error (Pervasives.Exit)
                                                   end else if (match$1.tag) then do
-                                                    throw Pervasives.Exit;
+                                                    error (Pervasives.Exit)
                                                   end else do
                                                     match$3 = match$1[0];
                                                     if (match$3 ~= undefined) then do
@@ -35070,11 +34881,11 @@ function subtype_rec(env, _trace, _t1, _t2, _cstrs) do
                                                                   trace$3
                                                                 }, t1, t2, cstrs);
                                                     end else do
-                                                      throw Pervasives.Exit;
+                                                      error (Pervasives.Exit)
                                                     end end 
                                                   end end  end 
                                                 end else do
-                                                  throw Pervasives.Exit;
+                                                  error (Pervasives.Exit)
                                                 end end 
                                               end
                                                end 
@@ -35083,9 +34894,9 @@ function subtype_rec(env, _trace, _t1, _t2, _cstrs) do
                                               if (match$4 ~= undefined) then do
                                                 t1$1 = match$4;
                                                 if (typeof match$1 == "number") then do
-                                                  throw Pervasives.Exit;
+                                                  error (Pervasives.Exit)
                                                 end else if (match$1.tag) then do
-                                                  throw Pervasives.Exit;
+                                                  error (Pervasives.Exit)
                                                 end else do
                                                   match$5 = match$1[0];
                                                   if (match$5 ~= undefined) then do
@@ -35098,19 +34909,19 @@ function subtype_rec(env, _trace, _t1, _t2, _cstrs) do
                                                                 trace$3
                                                               }, t1$1, t2$1, cstrs);
                                                   end else do
-                                                    throw Pervasives.Exit;
+                                                    error (Pervasives.Exit)
                                                   end end 
                                                 end end  end 
                                               end
                                                end 
                                             end end  end 
                                             if (typeof match$1 == "number") then do
-                                              throw Pervasives.Exit;
+                                              error (Pervasives.Exit)
                                             end else if (match$1.tag) then do
-                                              throw Pervasives.Exit;
+                                              error (Pervasives.Exit)
                                             end else do
                                               if (match$1[0] ~= undefined) then do
-                                                throw Pervasives.Exit;
+                                                error (Pervasives.Exit)
                                               end
                                                end 
                                               return cstrs;
@@ -35118,12 +34929,11 @@ function subtype_rec(env, _trace, _t1, _t2, _cstrs) do
                                           end end
                                           end(env$3,trace$3)), cstrs$6, pairs);
                               end else do
-                                throw Pervasives.Exit;
+                                error (Pervasives.Exit)
                               end end 
                             end
                              end 
-                          end
-                          catch (exn$1)do
+                          end end,function(exn$1) return do
                             if (exn$1 == Pervasives.Exit) then do
                               return --[[ :: ]]{
                                       --[[ tuple ]]{
@@ -35135,9 +34945,9 @@ function subtype_rec(env, _trace, _t1, _t2, _cstrs) do
                                       cstrs
                                     };
                             end else do
-                              throw exn$1;
+                              error (exn$1)
                             end end 
-                          endend end end 
+                          end end)end end end 
                        do end end
                       else do
                         exit = 1;
@@ -35166,7 +34976,7 @@ function subtype_rec(env, _trace, _t1, _t2, _cstrs) do
                           end else do
                             _t2 = match$1[0];
                             _t1 = u1$1;
-                            continue ;
+                            ::continue:: ;
                           end end end else 
                        do end end end end
                       else do
@@ -35189,14 +34999,13 @@ function subtype_rec(env, _trace, _t1, _t2, _cstrs) do
                             tl2$1 = match$1[1];
                             u2$1 = match$1[0];
                             if (tl2$1) then do
-                              try do
+                              xpcall(function() do
                                 return enter_poly(env, univar_pairs, u1$1, tl1$1, u2$1, tl2$1, (function(trace,cstrs)do
                                           return function (t1, t2) do
                                             return subtype_rec(env, trace, t1, t2, cstrs);
                                           end end
                                           end(trace,cstrs)));
-                              end
-                              catch (raw_exn)do
+                              end end,function(raw_exn) return do
                                 exn$2 = Caml_js_exceptions.internalToOCamlException(raw_exn);
                                 if (exn$2[0] == Unify) then do
                                   return --[[ :: ]]{
@@ -35209,14 +35018,14 @@ function subtype_rec(env, _trace, _t1, _t2, _cstrs) do
                                           cstrs
                                         };
                                 end else do
-                                  throw exn$2;
+                                  error (exn$2)
                                 end end 
-                              end
+                              end end)
                             end else do
                               match$8 = instance_poly(undefined, false, tl1$1, u1$1);
                               _t2 = u2$1;
                               _t1 = match$8[1];
-                              continue ;
+                              ::continue:: ;
                             end end end end end 
                          do end end
                         else do
@@ -35244,7 +35053,7 @@ function subtype_rec(env, _trace, _t1, _t2, _cstrs) do
                           tl2$2 = match$1[2];
                           nl2 = match$1[1];
                           p2 = match$1[0];
-                          try do
+                          xpcall(function() do
                             ntl1 = complete_type_list(undefined, env, nl2, t1$1.level, --[[ Mty_ident ]]Block.__(0, {p1}), nl1, tl1$2);
                             ntl2 = complete_type_list(true, env, nl1, t2$1.level, --[[ Mty_ident ]]Block.__(0, {p2}), nl2, tl2$2);
                             cstrs$prime = List.map((function(trace,ntl1)do
@@ -35261,7 +35070,7 @@ function subtype_rec(env, _trace, _t1, _t2, _cstrs) do
                               return Pervasives.$at(cstrs$prime, cstrs);
                             end else do
                               snap = snapshot(--[[ () ]]0);
-                              try do
+                              xpcall(function() do
                                 List.iter((function (param) do
                                         return unify$2(env, param[1], param[2]);
                                       end end), cstrs$prime);
@@ -35269,24 +35078,22 @@ function subtype_rec(env, _trace, _t1, _t2, _cstrs) do
                                   backtrack(snap);
                                   return Pervasives.$at(cstrs$prime, cstrs);
                                 end else do
-                                  throw {
-                                        Unify,
-                                        --[[ [] ]]0
-                                      };
+                                  error ({
+                                    Unify,
+                                    --[[ [] ]]0
+                                  })
                                 end end 
-                              end
-                              catch (raw_exn$1)do
+                              end end,function(raw_exn$1) return do
                                 exn$3 = Caml_js_exceptions.internalToOCamlException(raw_exn$1);
                                 if (exn$3[0] == Unify) then do
                                   backtrack(snap);
-                                  throw Caml_builtin_exceptions.not_found;
+                                  error (Caml_builtin_exceptions.not_found)
                                 end else do
-                                  throw exn$3;
+                                  error (exn$3)
                                 end end 
-                              end
+                              end end)
                             end end 
-                          end
-                          catch (exn$4)do
+                          end end,function(exn$4) return do
                             if (exn$4 == Caml_builtin_exceptions.not_found) then do
                               return --[[ :: ]]{
                                       --[[ tuple ]]{
@@ -35298,9 +35105,9 @@ function subtype_rec(env, _trace, _t1, _t2, _cstrs) do
                                       cstrs
                                     };
                             end else do
-                              throw exn$4;
+                              error (exn$4)
                             end end 
-                          endend end end 
+                          end end)end end end 
                        do end end
                       else do
                         exit = 1;
@@ -35329,7 +35136,7 @@ function subtype_rec(env, _trace, _t1, _t2, _cstrs) do
             end else do
               _t2 = t2$1;
               _t1 = expand_abbrev(env)(t1$1);
-              continue ;
+              ::continue:: ;
             end end 
           end
            end 
@@ -35339,7 +35146,7 @@ function subtype_rec(env, _trace, _t1, _t2, _cstrs) do
             end else do
               _t2 = expand_abbrev(env)(t2$1);
               _t1 = t1$1;
-              continue ;
+              ::continue:: ;
             end end 
           end
            end 
@@ -35352,7 +35159,7 @@ function subtype_rec(env, _trace, _t1, _t2, _cstrs) do
               if (typeof match$1 == "number" or not (match$1.tag == --[[ Tconstr ]]3 and same(p1$1, match$1[0]))) then do
                 exit$7 = 4;
               end else do
-                try do
+                xpcall(function() do
                   decl = find_type_full(p1$1, env)[0];
                   return List.fold_left2((function(trace)do
                             return function (cstrs, v, param) do
@@ -35399,8 +35206,7 @@ function subtype_rec(env, _trace, _t1, _t2, _cstrs) do
                               end end  end 
                             end end
                             end(trace)), cstrs, decl.type_variance, List.combine(match[1], match$1[1]));
-                end
-                catch (exn$5)do
+                end end,function(exn$5) return do
                   if (exn$5 == Caml_builtin_exceptions.not_found) then do
                     return --[[ :: ]]{
                             --[[ tuple ]]{
@@ -35412,15 +35218,15 @@ function subtype_rec(env, _trace, _t1, _t2, _cstrs) do
                             cstrs
                           };
                   end else do
-                    throw exn$5;
+                    error (exn$5)
                   end end 
-                end
+                end end)
               end end 
               if (exit$7 == 4) then do
                 if (generic_private_abbrev(env, p1$1)) then do
                   _t2 = t2$1;
                   _t1 = expand_abbrev_opt(env, t1$1);
-                  continue ;
+                  ::continue:: ;
                 end else do
                   exit = 1;
                 end end 
@@ -35446,9 +35252,9 @@ function subtype_rec(env, _trace, _t1, _t2, _cstrs) do
             
           end
         end else do
-          throw exn;
+          error (exn)
         end end 
-      end
+      end end)
     end end 
   end;
 end end
@@ -35466,23 +35272,22 @@ function subtype(env, ty1, ty2) do
   Curry._1(TypePairs.clear, subtypes);
   return (function (param) do
       return List.iter((function (param) do
-                    try do
+                    xpcall(function() do
                       return unify_pairs(do
                                   contents: env
                                 end, param[1], param[2], param[3]);
-                    end
-                    catch (raw_exn)do
+                    end end,function(raw_exn) return do
                       exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
                       if (exn[0] == Unify) then do
-                        throw {
-                              Subtype,
-                              expand_trace(env, List.rev(param[0])),
-                              List.tl(List.tl(exn[1]))
-                            };
+                        error ({
+                          Subtype,
+                          expand_trace(env, List.rev(param[0])),
+                          List.tl(List.tl(exn[1]))
+                        })
                       end
                        end 
-                      throw exn;
-                    end
+                      error (exn)
+                    end end)
                   end end), List.rev(cstrs));
     end end);
 end end
@@ -35510,14 +35315,14 @@ function unalias_object(ty) do
           return ty$1;end end end 
        do
       else do
-        throw {
-              Caml_builtin_exceptions.assert_failure,
-              --[[ tuple ]]{
-                "ctype.ml",
-                4129,
-                6
-              }
-            };
+        error ({
+          Caml_builtin_exceptions.assert_failure,
+          --[[ tuple ]]{
+            "ctype.ml",
+            4129,
+            6
+          }
+        })
         end end
         
     end
@@ -35579,22 +35384,21 @@ function cyclic_abbrev(env, id, ty) do
     end else if (Caml_obj.caml_equal(match[0], --[[ Pident ]]Block.__(0, {id})) or List.memq(ty$1, seen)) then do
       return true;
     end else do
-      try do
+      xpcall(function() do
         return check_cycle(--[[ :: ]]{
                     ty$1,
                     seen
                   }, expand_abbrev_opt(env, ty$1));
-      end
-      catch (raw_exn)do
+      end end,function(raw_exn) return do
         exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
         if (exn == Cannot_expand) then do
           return false;
         end else if (exn[0] == Unify) then do
           return true;
         end else do
-          throw exn;
+          error (exn)
         end end  end 
-      end
+      end end)
     end end  end 
   end end;
   return check_cycle(--[[ [] ]]0, ty);
@@ -35773,7 +35577,7 @@ function nondep_type_rec(env, id, _ty) do
       do
          if ___conditional___ = 6--[[ Tlink ]] then do
             _ty = match[0];
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 0--[[ Tvar ]]
          or ___conditional___ = 9--[[ Tunivar ]] then do
             return ty;end end end 
@@ -35785,10 +35589,9 @@ function nondep_type_rec(env, id, _ty) do
       end
     end end 
     if (exit == 1) then do
-      try do
+      xpcall(function() do
         return Curry._2(TypeHash.find, nondep_hash, ty);
-      end
-      catch (exn)do
+      end end,function(exn) return do
         if (exn == Caml_builtin_exceptions.not_found) then do
           ty$prime = newty2(100000000, --[[ Tvar ]]Block.__(0, {undefined}));
           Curry._3(TypeHash.add, nondep_hash, ty, ty$prime);
@@ -35803,21 +35606,20 @@ function nondep_type_rec(env, id, _ty) do
                if ___conditional___ = 3--[[ Tconstr ]] then do
                   p = match$1[0];
                   if (isfree(id, p)) then do
-                    try do
+                    xpcall(function() do
                       tmp = --[[ Tlink ]]Block.__(6, {nondep_type_rec(env, id, expand_abbrev(env)(newty2(ty.level, ty.desc)))});
-                    end
-                    catch (raw_exn)do
+                    end end,function(raw_exn) return do
                       exn$1 = Caml_js_exceptions.internalToOCamlException(raw_exn);
                       if (exn$1 == Cannot_expand) then do
-                        throw Caml_builtin_exceptions.not_found;
+                        error (Caml_builtin_exceptions.not_found)
                       end
                        end 
                       if (exn$1[0] == Unify) then do
-                        throw Caml_builtin_exceptions.not_found;
+                        error (Caml_builtin_exceptions.not_found)
                       end
                        end 
-                      throw exn$1;
-                    end
+                      error (exn$1)
+                    end end)
                   end else do
                     tmp = --[[ Tconstr ]]Block.__(3, {
                         p,
@@ -35853,12 +35655,11 @@ function nondep_type_rec(env, id, _ty) do
                if ___conditional___ = 8--[[ Tvariant ]] then do
                   row = row_repr_aux(--[[ [] ]]0, match$1[0]);
                   more = repr(row.row_more);
-                  try do
+                  xpcall(function() do
                     ty2 = Curry._2(TypeHash.find, nondep_variants, more);
                     Curry._3(TypeHash.add, nondep_hash, ty, ty2);
                     tmp = --[[ Tlink ]]Block.__(6, {ty2});
-                  end
-                  catch (exn$2)do
+                  end end,function(exn$2) return do
                     if (exn$2 == Caml_builtin_exceptions.not_found) then do
                       Curry._3(TypeHash.add, nondep_variants, more, ty$prime);
                       __static = static_row(row);
@@ -35876,15 +35677,15 @@ function nondep_type_rec(env, id, _ty) do
                               row_name: undefined
                             end}) or --[[ Tvariant ]]Block.__(8, {row$1});
                     end else do
-                      throw exn$2;
+                      error (exn$2)
                     end end 
-                  endend else 
+                  end end)end else 
                if ___conditional___ = 11--[[ Tpackage ]] then do
                   p$2 = match$1[0];
                   if (isfree(id, p$2)) then do
                     p$prime = normalize_package_path(env, p$2);
                     if (isfree(id, p$prime)) then do
-                      throw Caml_builtin_exceptions.not_found;
+                      error (Caml_builtin_exceptions.not_found)
                     end
                      end 
                     tmp = --[[ Tpackage ]]Block.__(11, {
@@ -35913,30 +35714,29 @@ function nondep_type_rec(env, id, _ty) do
           ty$prime.desc = tmp;
           return ty$prime;
         end else do
-          throw exn;
+          error (exn)
         end end 
-      end
+      end end)
     end
      end 
   end;
 end end
 
 function nondep_type(env, id, ty) do
-  try do
+  xpcall(function() do
     ty$prime = nondep_type_rec(env, id, ty);
     Curry._1(TypeHash.clear, nondep_hash);
     Curry._1(TypeHash.clear, nondep_variants);
     return ty$prime;
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Caml_builtin_exceptions.not_found) then do
       Curry._1(TypeHash.clear, nondep_hash);
       Curry._1(TypeHash.clear, nondep_variants);
-      throw Caml_builtin_exceptions.not_found;
+      error (Caml_builtin_exceptions.not_found)
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 nondep_type$prime.contents = nondep_type;
@@ -35962,12 +35762,12 @@ function unroll_abbrev(id, tl, ty) do
 end end
 
 function nondep_type_decl(env, mid, id, is_covariant, decl) do
-  try do
+  xpcall(function() do
     params = List.map((function (param) do
             return nondep_type_rec(env, mid, param);
           end end), decl.type_params);
     tk;
-    try do
+    xpcall(function() do
       match = decl.type_kind;
       tk = typeof match == "number" and (
           match == --[[ Type_abstract ]]0 and --[[ Type_abstract ]]0 or --[[ Type_open ]]1
@@ -35997,34 +35797,32 @@ function nondep_type_decl(env, mid, id, is_covariant, decl) do
                 match[1]
               })
         );
-    end
-    catch (exn)do
+    end end,function(exn) return do
       if (exn == Caml_builtin_exceptions.not_found) then do
         if (is_covariant) then do
           tk = --[[ Type_abstract ]]0;
         end else do
-          throw exn;
+          error (exn)
         end end 
       end else do
-        throw exn;
+        error (exn)
       end end 
-    end
+    end end)
     tm;
-    try do
+    xpcall(function() do
       match$1 = decl.type_manifest;
       tm = match$1 ~= undefined and unroll_abbrev(id, params, nondep_type_rec(env, mid, match$1)) or undefined;
-    end
-    catch (exn$1)do
+    end end,function(exn$1) return do
       if (exn$1 == Caml_builtin_exceptions.not_found) then do
         if (is_covariant) then do
           tm = undefined;
         end else do
-          throw exn$1;
+          error (exn$1)
         end end 
       end else do
-        throw exn$1;
+        error (exn$1)
       end end 
-    end
+    end end)
     Curry._1(TypeHash.clear, nondep_hash);
     Curry._1(TypeHash.clear, nondep_variants);
     priv = tm ~= undefined and has_constr_row(tm) and --[[ Private ]]0 or decl.type_private;
@@ -36039,20 +35837,19 @@ function nondep_type_decl(env, mid, id, is_covariant, decl) do
             type_loc: decl.type_loc,
             type_attributes: decl.type_attributes
           end;
-  end
-  catch (exn$2)do
+  end end,function(exn$2) return do
     if (exn$2 == Caml_builtin_exceptions.not_found) then do
       Curry._1(TypeHash.clear, nondep_hash);
       Curry._1(TypeHash.clear, nondep_variants);
-      throw Caml_builtin_exceptions.not_found;
+      error (Caml_builtin_exceptions.not_found)
     end else do
-      throw exn$2;
+      error (exn$2)
     end end 
-  end
+  end end)
 end end
 
 function nondep_extension_constructor(env, mid, ext) do
-  try do
+  xpcall(function() do
     match;
     if (isfree(mid, ext.ext_type_path)) then do
       ty = newty2(100000000, --[[ Tconstr ]]Block.__(3, {
@@ -36065,14 +35862,14 @@ function nondep_extension_constructor(env, mid, ext) do
       ty$prime = nondep_type_rec(env, mid, ty);
       match$1 = repr(ty$prime).desc;
       if (typeof match$1 == "number") then do
-        throw Caml_builtin_exceptions.not_found;
+        error (Caml_builtin_exceptions.not_found)
       end else if (match$1.tag == --[[ Tconstr ]]3) then do
         match = --[[ tuple ]]{
           match$1[0],
           match$1[1]
         };
       end else do
-        throw Caml_builtin_exceptions.not_found;
+        error (Caml_builtin_exceptions.not_found)
       end end  end 
     end else do
       type_params = List.map((function (param) do
@@ -36100,16 +35897,15 @@ function nondep_extension_constructor(env, mid, ext) do
             ext_loc: ext.ext_loc,
             ext_attributes: ext.ext_attributes
           end;
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Caml_builtin_exceptions.not_found) then do
       Curry._1(TypeHash.clear, nondep_hash);
       Curry._1(TypeHash.clear, nondep_variants);
-      throw Caml_builtin_exceptions.not_found;
+      error (Caml_builtin_exceptions.not_found)
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 function nondep_class_signature(env, id, sign) do
@@ -36144,7 +35940,7 @@ function nondep_class_type(env, id, _param) do
           p = param[0];
           if (isfree(id, p)) then do
             _param = cty;
-            continue ;
+            ::continue:: ;
           end else do
             return --[[ Cty_constr ]]Block.__(0, {
                       p,
@@ -36170,14 +35966,14 @@ end end
 
 function nondep_class_declaration(env, id, decl) do
   if (isfree(id, decl.cty_path)) then do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "ctype.ml",
-            4449,
-            2
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "ctype.ml",
+        4449,
+        2
+      }
+    })
   end
    end 
   match = decl.cty_new;
@@ -36199,14 +35995,14 @@ end end
 
 function nondep_cltype_declaration(env, id, decl) do
   if (isfree(id, decl.clty_path)) then do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "ctype.ml",
-            4468,
-            2
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "ctype.ml",
+        4468,
+        2
+      }
+    })
   end
    end 
   decl_clty_params = List.map((function (param) do
@@ -36397,7 +36193,7 @@ function print_list(pr, sep, ppf, _param) do
         Curry._2(pr, ppf, a);
         Curry._1(sep, ppf);
         _param = l;
-        continue ;
+        ::continue:: ;
       end else do
         return Curry._2(pr, ppf, a);
       end end 
@@ -36667,7 +36463,7 @@ function print_simple_out_type(ppf, ty) do
                                       single = tys[0];
                                       if (typeof single ~= "number" and single.tag == --[[ Otyp_tuple ]]9) then do
                                         if (tys[1]) then do
-                                          throw Caml_builtin_exceptions.not_found;
+                                          error (Caml_builtin_exceptions.not_found)
                                         end
                                          end 
                                         if (variant == "Arity_1") then do
@@ -36688,7 +36484,7 @@ function print_simple_out_type(ppf, ty) do
                                       end
                                        end 
                                       if (tys[1]) then do
-                                        throw Caml_builtin_exceptions.not_found;
+                                        error (Caml_builtin_exceptions.not_found)
                                       end
                                        end 
                                       return --[[ Otyp_arrow ]]Block.__(1, {
@@ -36697,21 +36493,20 @@ function print_simple_out_type(ppf, ty) do
                                                 result
                                               });
                                     end else do
-                                      throw Caml_builtin_exceptions.not_found;
+                                      error (Caml_builtin_exceptions.not_found)
                                     end end 
                                   end end;
                                   exit$3 = 0;
                                   res;
-                                  try do
+                                  xpcall(function() do
                                     res = make(match$6[2], match$5[0]);
                                     exit$3 = 5;
-                                  end
-                                  catch (exn)do
+                                  end end,function(exn) return do
                                     Format.pp_open_box(ppf, 0);
                                     print_typargs(ppf, tyl);
                                     print_ident(ppf, id);
                                     return Format.pp_close_box(ppf, --[[ () ]]0);
-                                  end
+                                  end end)
                                   if (exit$3 == 5) then do
                                     return Curry._2(Format.fprintf(ppf, --[[ Format ]]{
                                                     --[[ Formatting_gen ]]Block.__(18, {
@@ -36798,7 +36593,7 @@ function print_simple_out_type(ppf, ty) do
                                   single = tys[0];
                                   if (typeof single ~= "number" and single.tag == --[[ Otyp_tuple ]]9) then do
                                     if (tys[1]) then do
-                                      throw Caml_builtin_exceptions.not_found;
+                                      error (Caml_builtin_exceptions.not_found)
                                     end
                                      end 
                                     if (variant$1 == "Arity_1") then do
@@ -36819,7 +36614,7 @@ function print_simple_out_type(ppf, ty) do
                                   end
                                    end 
                                   if (tys[1]) then do
-                                    throw Caml_builtin_exceptions.not_found;
+                                    error (Caml_builtin_exceptions.not_found)
                                   end
                                    end 
                                   return --[[ Otyp_arrow ]]Block.__(1, {
@@ -36828,21 +36623,20 @@ function print_simple_out_type(ppf, ty) do
                                             result
                                           });
                                 end else do
-                                  throw Caml_builtin_exceptions.not_found;
+                                  error (Caml_builtin_exceptions.not_found)
                                 end end  end 
                               end end;
                               exit$4 = 0;
                               res$1;
-                              try do
+                              xpcall(function() do
                                 res$1 = make$1(match$11[2], match$10[0]);
                                 exit$4 = 5;
-                              end
-                              catch (exn$1)do
+                              end end,function(exn$1) return do
                                 Format.pp_open_box(ppf, 0);
                                 print_typargs(ppf, tyl$1);
                                 print_ident(ppf, id);
                                 return Format.pp_close_box(ppf, --[[ () ]]0);
-                              end
+                              end end)
                               if (exit$4 == 5) then do
                                 local ___conditional___=(name);
                                 do
@@ -36920,14 +36714,14 @@ function print_simple_out_type(ppf, ty) do
                                                     }), print_out_type_1, res$1);end end end 
                                    do
                                   else do
-                                    throw {
-                                          Caml_builtin_exceptions.assert_failure,
-                                          --[[ tuple ]]{
-                                            "oprint.ml",
-                                            229,
-                                            17
-                                          }
-                                        };
+                                    error ({
+                                      Caml_builtin_exceptions.assert_failure,
+                                      --[[ tuple ]]{
+                                        "oprint.ml",
+                                        229,
+                                        17
+                                      }
+                                    })
                                     end end
                                     
                                 end
@@ -37253,7 +37047,7 @@ function print_fields(rest, ppf, _param) do
         end
          end 
         _param = --[[ [] ]]0;
-        continue ;
+        ::continue:: ;
       end end 
     end else if (rest ~= undefined) then do
       return Curry._1(Format.fprintf(ppf, --[[ Format ]]{
@@ -37360,7 +37154,7 @@ function print_typlist(print_elem, sep, ppf, _param) do
         Format.pp_print_string(ppf, sep);
         Format.pp_print_space(ppf, --[[ () ]]0);
         _param = tyl;
-        continue ;
+        ::continue:: ;
       end else do
         return Curry._2(print_elem, ppf, ty);
       end end 
@@ -37760,37 +37554,37 @@ end;
 
 out_module_type = do
   contents: (function (param) do
-      throw {
-            Caml_builtin_exceptions.failure,
-            "Oprint.out_module_type"
-          };
+      error ({
+        Caml_builtin_exceptions.failure,
+        "Oprint.out_module_type"
+      })
     end end)
 end;
 
 out_sig_item = do
   contents: (function (param) do
-      throw {
-            Caml_builtin_exceptions.failure,
-            "Oprint.out_sig_item"
-          };
+      error ({
+        Caml_builtin_exceptions.failure,
+        "Oprint.out_sig_item"
+      })
     end end)
 end;
 
 out_signature = do
   contents: (function (param) do
-      throw {
-            Caml_builtin_exceptions.failure,
-            "Oprint.out_signature"
-          };
+      error ({
+        Caml_builtin_exceptions.failure,
+        "Oprint.out_signature"
+      })
     end end)
 end;
 
 out_type_extension = do
   contents: (function (param) do
-      throw {
-            Caml_builtin_exceptions.failure,
-            "Oprint.out_type_extension"
-          };
+      error ({
+        Caml_builtin_exceptions.failure,
+        "Oprint.out_type_extension"
+      })
     end end)
 end;
 
@@ -38011,7 +37805,7 @@ function print_out_signature(ppf, param) do
                   },
                   acc
                 };
-                continue ;
+                ::continue:: ;
               end else do
                 return --[[ tuple ]]{
                         List.rev(acc),
@@ -38836,7 +38630,7 @@ function print_out_sig_item(ppf, param) do
                                     Curry._1(sep, ppf);
                                     Curry._2(pr, ppf, param$2[0]);
                                     _param = param$2[1];
-                                    continue ;
+                                    ::continue:: ;
                                   end else do
                                     return --[[ () ]]0;
                                   end end 
@@ -39229,31 +39023,29 @@ unique_names = do
 end;
 
 function ident_name(id) do
-  try do
+  xpcall(function() do
     return find_same(id, unique_names.contents);
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Caml_builtin_exceptions.not_found) then do
       return id.name;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 function add_unique(id) do
-  try do
+  xpcall(function() do
     find_same(id, unique_names.contents);
     return --[[ () ]]0;
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Caml_builtin_exceptions.not_found) then do
       unique_names.contents = add(id, unique_toplevel_name(id), unique_names.contents);
       return --[[ () ]]0;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 function ident$3(ppf, id) do
@@ -39448,7 +39240,7 @@ function safe_kind_repr(_v, _param) do
             k,
             v
           };
-          continue ;
+          ::continue:: ;
         end end 
       end else do
         return "Fvar None";
@@ -39477,7 +39269,7 @@ function safe_commu_repr(_v, _param) do
           r,
           v
         };
-        continue ;
+        ::continue:: ;
       end end 
     end end 
   end;
@@ -39500,7 +39292,7 @@ function safe_repr(_v, _t) do
           t$1,
           v
         };
-        continue ;
+        ::continue:: ;
       end end 
     end end 
   end;
@@ -39513,7 +39305,7 @@ function list_of_memo(_param) do
       return --[[ [] ]]0;
     end else if (param.tag) then do
       _param = param[0].contents;
-      continue ;
+      ::continue:: ;
     end else do
       return --[[ :: ]]{
               param[1],
@@ -40576,7 +40368,7 @@ function compare$2(_p1, _p2) do
                 end else do
                   _p2 = p2[1];
                   _p1 = p1[1];
-                  continue ;
+                  ::continue:: ;
                 end end end end end 
              do
             
@@ -40621,16 +40413,16 @@ function bal$6(l, x, d, r) do
       end else if (lr) then do
         return create$7(create$7(ll, lv, ld, lr[--[[ l ]]0]), lr[--[[ v ]]1], lr[--[[ d ]]2], create$7(lr[--[[ r ]]3], x, d, r));
       end else do
-        throw {
-              Caml_builtin_exceptions.invalid_argument,
-              "Map.bal"
-            };
+        error ({
+          Caml_builtin_exceptions.invalid_argument,
+          "Map.bal"
+        })
       end end  end 
     end else do
-      throw {
-            Caml_builtin_exceptions.invalid_argument,
-            "Map.bal"
-          };
+      error ({
+        Caml_builtin_exceptions.invalid_argument,
+        "Map.bal"
+      })
     end end 
   end else if (hr > (hl + 2 | 0)) then do
     if (r) then do
@@ -40643,16 +40435,16 @@ function bal$6(l, x, d, r) do
       end else if (rl) then do
         return create$7(create$7(l, x, d, rl[--[[ l ]]0]), rl[--[[ v ]]1], rl[--[[ d ]]2], create$7(rl[--[[ r ]]3], rv, rd, rr));
       end else do
-        throw {
-              Caml_builtin_exceptions.invalid_argument,
-              "Map.bal"
-            };
+        error ({
+          Caml_builtin_exceptions.invalid_argument,
+          "Map.bal"
+        })
       end end  end 
     end else do
-      throw {
-            Caml_builtin_exceptions.invalid_argument,
-            "Map.bal"
-          };
+      error ({
+        Caml_builtin_exceptions.invalid_argument,
+        "Map.bal"
+      })
     end end 
   end else do
     return --[[ Node ]]{
@@ -40719,10 +40511,10 @@ function find$4(x, _param) do
         return param[--[[ d ]]2];
       end else do
         _param = c < 0 and param[--[[ l ]]0] or param[--[[ r ]]3];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
-      throw Caml_builtin_exceptions.not_found;
+      error (Caml_builtin_exceptions.not_found)
     end end 
   end;
 end end
@@ -40743,7 +40535,7 @@ function index(l, x) do
       return 1 + index(l[1], x) | 0;
     end end 
   end else do
-    throw Caml_builtin_exceptions.not_found;
+    error (Caml_builtin_exceptions.not_found)
   end end 
 end end
 
@@ -40756,7 +40548,7 @@ function uniq(_param) do
         return false;
       end else do
         _param = l;
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return true;
@@ -40766,7 +40558,7 @@ end end
 
 function normalize_type_path(cacheOpt, env, p) do
   cache = cacheOpt ~= undefined and cacheOpt or false;
-  try do
+  xpcall(function() do
     match = find_type_expansion(p, env);
     params = List.map(repr, match[0]);
     ty = repr(match[1]);
@@ -40799,17 +40591,16 @@ function normalize_type_path(cacheOpt, env, p) do
               };
       end end  end 
     end end 
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Caml_builtin_exceptions.not_found) then do
       return --[[ tuple ]]{
               p,
               --[[ Id ]]0
             };
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 function path_size(param) do
@@ -40861,7 +40652,7 @@ function set_printing_env(env) do
             match = normalize_type_path(true, env, param[0]);
             if (match[1] == --[[ Id ]]0) then do
               p1 = match[0];
-              try do
+              xpcall(function() do
                 r = find$4(p1, printing_map.contents);
                 match$1 = r.contents;
                 if (match$1.tag) then do
@@ -40880,8 +40671,7 @@ function set_printing_env(env) do
                       }});
                   return --[[ () ]]0;
                 end end 
-              end
-              catch (exn)do
+              end end,function(exn) return do
                 if (exn == Caml_builtin_exceptions.not_found) then do
                   printing_map.contents = add$8(p1, do
                         contents: --[[ Paths ]]Block.__(0, {--[[ :: ]]{
@@ -40891,9 +40681,9 @@ function set_printing_env(env) do
                       end, printing_map.contents);
                   return --[[ () ]]0;
                 end else do
-                  throw exn;
+                  error (exn)
                 end end 
-              end
+              end end)
             end else do
               return 0;
             end end 
@@ -40978,9 +40768,9 @@ function best_type_path(p) do
                       return 0;
                     end end 
                   end end), l);
-            continue ;
+            ::continue:: ;
           end else do
-            throw Caml_builtin_exceptions.not_found;
+            error (Caml_builtin_exceptions.not_found)
           end end 
         end end 
       end;
@@ -40989,17 +40779,16 @@ function best_type_path(p) do
             tmp = false;
             if (printing_cont.contents ~= --[[ [] ]]0) then do
               tmp$1;
-              try do
+              xpcall(function() do
                 get_path(--[[ () ]]0);
                 tmp$1 = false;
-              end
-              catch (exn)do
+              end end,function(exn) return do
                 if (exn == Caml_builtin_exceptions.not_found) then do
                   tmp$1 = true;
                 end else do
-                  throw exn;
+                  error (exn)
                 end end 
-              end
+              end end)
               tmp = tmp$1;
             end
              end 
@@ -41011,16 +40800,15 @@ function best_type_path(p) do
       printing_depth.contents = printing_depth.contents + 1 | 0;
     end;
     p$prime$prime;
-    try do
+    xpcall(function() do
       p$prime$prime = get_path(--[[ () ]]0);
-    end
-    catch (exn)do
+    end end,function(exn) return do
       if (exn == Caml_builtin_exceptions.not_found) then do
         p$prime$prime = p$prime;
       end else do
-        throw exn;
+        error (exn)
       end end 
-    end
+    end end)
     return --[[ tuple ]]{
             p$prime$prime,
             match[1]
@@ -41097,7 +40885,7 @@ function new_name(_param) do
           end end
           end(name)), names.contents)) then do
       _param = --[[ () ]]0;
-      continue ;
+      ::continue:: ;
     end else do
       return name;
     end end 
@@ -41105,10 +40893,9 @@ function new_name(_param) do
 end end
 
 function name_of_type(t) do
-  try do
+  xpcall(function() do
     return List.assq(t, names.contents);
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Caml_builtin_exceptions.not_found) then do
       match = t.desc;
       name;
@@ -41160,9 +40947,9 @@ function name_of_type(t) do
        end 
       return name;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 function check_name_of_type(t) do
@@ -41288,7 +41075,7 @@ function mark_loops_rec(_visited, _ty) do
               mark_loops_rec(visited$1, match[1]);
               _ty = match[2];
               _visited = visited$1;
-              continue ;end end end 
+              ::continue:: ;end end end 
            if ___conditional___ = 2--[[ Ttuple ]] then do
               return List.iter((function(visited$1)do
                         return function (param) do
@@ -41339,18 +41126,18 @@ function mark_loops_rec(_visited, _ty) do
                 mark_loops_rec(visited$1, match[2]);
                 _ty = ty2;
                 _visited = visited$1;
-                continue ;
+                ::continue:: ;
               end else do
                 _ty = ty2;
                 _visited = visited$1;
-                continue ;
+                ::continue:: ;
               end end end end end 
            if ___conditional___ = 6--[[ Tlink ]] then do
               return fatal_error("Printtyp.mark_loops_rec (2)");end end end 
            if ___conditional___ = 7--[[ Tsubst ]] then do
               _ty = match[0];
               _visited = visited$1;
-              continue ;end end end 
+              ::continue:: ;end end end 
            if ___conditional___ = 8--[[ Tvariant ]] then do
               if (List.memq(px, visited_objects.contents)) then do
                 return add_alias(px);
@@ -41393,7 +41180,7 @@ function mark_loops_rec(_visited, _ty) do
               List.iter(add_alias, match[1]);
               _ty = match[0];
               _visited = visited$1;
-              continue ;end end end 
+              ::continue:: ;end end end 
            if ___conditional___ = 11--[[ Tpackage ]] then do
               return List.iter((function(visited$1)do
                         return function (param) do
@@ -41719,14 +41506,14 @@ function tree_of_typobject(sch, fi, nm) do
             end end), match$1[1]);
       match$2 = best_type_path(match[0]);
       if (match$2[1] ~= --[[ Id ]]0) then do
-        throw {
-              Caml_builtin_exceptions.assert_failure,
-              --[[ tuple ]]{
-                "printtyp.ml",
-                688,
-                6
-              }
-            };
+        error ({
+          Caml_builtin_exceptions.assert_failure,
+          --[[ tuple ]]{
+            "printtyp.ml",
+            688,
+            6
+          }
+        })
       end
        end 
       return --[[ Otyp_class ]]Block.__(2, {
@@ -42197,7 +41984,7 @@ function prepare_class_type(params, _param) do
                 end end
                 end(sty)), tyl)) then do
             _param = cty;
-            continue ;
+            ::continue:: ;
           end else do
             return List.iter(mark_loops, tyl);
           end end end end end 
@@ -42223,7 +42010,7 @@ function prepare_class_type(params, _param) do
        if ___conditional___ = 2--[[ Cty_arrow ]] then do
           mark_loops(param[1]);
           _param = param[2];
-          continue ;end end end 
+          ::continue:: ;end end end 
        do
       
     end
@@ -42240,7 +42027,7 @@ function tree_of_class_type(sch, params, _param) do
           sty = repr(signature_of_class_type(cty).csig_self);
           if (List.memq(proxy(sty), visited_objects.contents) or not List.for_all(is_Tvar, params)) then do
             _param = cty;
-            continue ;
+            ::continue:: ;
           end else do
             return --[[ Octy_constr ]]Block.__(0, {
                       tree_of_path(param[0]),
@@ -43300,14 +43087,14 @@ function mismatch(unif, param) do
         return ;
       end end  end 
     end else do
-      throw {
-            Caml_builtin_exceptions.assert_failure,
-            --[[ tuple ]]{
-              "printtyp.ml",
-              1339,
-              9
-            }
-          };
+      error ({
+        Caml_builtin_exceptions.assert_failure,
+        --[[ tuple ]]{
+          "printtyp.ml",
+          1339,
+          9
+        }
+      })
     end end 
   end
    end 
@@ -44054,7 +43841,7 @@ function path_same_name(_p1, _p2) do
                 if (p1[1] == p2[1]) then do
                   _p2 = p2[0];
                   _p1 = p1[0];
-                  continue ;
+                  ::continue:: ;
                 end else do
                   return --[[ () ]]0;
                 end end end end end 
@@ -44074,7 +43861,7 @@ function path_same_name(_p1, _p2) do
                 path_same_name(p1[0], p2[0]);
                 _p2 = p2[1];
                 _p1 = p1[1];
-                continue ;end end end 
+                ::continue:: ;end end end 
              do
             
           endend end end 
@@ -44105,7 +43892,7 @@ function trace_same_names(_param) do
         type_same_name(match$2[0], match$1[0]);
         type_same_name(match$2[1], match$1[1]);
         _param = match[1];
-        continue ;
+        ::continue:: ;
       end else do
         return --[[ () ]]0;
       end end 
@@ -44135,7 +43922,7 @@ function report_unification_error(ppf, env, unifOpt, tr, txt1, txt2) do
                 if (tr$2) then do
                   match = tr$2[1];
                   if (match) then do
-                    try do
+                    xpcall(function() do
                       tr$3 = filter_trace(mis == undefined, match[1]);
                       match$1 = may_prepare_expansion(tr$3 == --[[ [] ]]0, tr$2[0]);
                       t1 = match$1[0];
@@ -44209,30 +43996,29 @@ function report_unification_error(ppf, env, unifOpt, tr, txt1, txt2) do
                           });
                       print_labels.contents = true;
                       return --[[ () ]]0;
-                    end
-                    catch (exn)do
+                    end end,function(exn) return do
                       print_labels.contents = true;
-                      throw exn;
-                    end
+                      error (exn)
+                    end end)
                   end else do
-                    throw {
-                          Caml_builtin_exceptions.assert_failure,
-                          --[[ tuple ]]{
-                            "printtyp.ml",
-                            1438,
-                            20
-                          }
-                        };
+                    error ({
+                      Caml_builtin_exceptions.assert_failure,
+                      --[[ tuple ]]{
+                        "printtyp.ml",
+                        1438,
+                        20
+                      }
+                    })
                   end end 
                 end else do
-                  throw {
-                        Caml_builtin_exceptions.assert_failure,
-                        --[[ tuple ]]{
-                          "printtyp.ml",
-                          1438,
-                          20
-                        }
-                      };
+                  error ({
+                    Caml_builtin_exceptions.assert_failure,
+                    --[[ tuple ]]{
+                      "printtyp.ml",
+                      1438,
+                      20
+                    }
+                  })
                 end end 
               end end));
 end end
@@ -44240,7 +44026,7 @@ end end
 function trace$1(fst, keep_last, txt, ppf, tr) do
   print_labels.contents = not classic.contents;
   trace_same_names(tr);
-  try do
+  xpcall(function() do
     if (tr) then do
       match = tr[1];
       if (match) then do
@@ -44263,11 +44049,10 @@ function trace$1(fst, keep_last, txt, ppf, tr) do
     end else do
       return --[[ () ]]0;
     end end 
-  end
-  catch (exn)do
+  end end,function(exn) return do
     print_labels.contents = true;
-    throw exn;
-  end
+    error (exn)
+  end end)
 end end
 
 function class_types(env, cty1, cty2) do
@@ -44952,16 +44737,15 @@ function type_manifest(env, ty1, params1, ty2, params2, priv2) do
           })) then do
       return true;
     end else if (priv2 == --[[ Private ]]0) then do
-      try do
+      xpcall(function() do
         return check_super(try_expand_once_opt(env, expand_head(env, ty1)));
-      end
-      catch (exn)do
+      end end,function(exn) return do
         if (exn == Cannot_expand) then do
           return false;
         end else do
-          throw exn;
+          error (exn)
         end end 
-      end
+      end end)
     end else do
       return false;
     end end  end 
@@ -45238,7 +45022,7 @@ function compare_variants(env, decl1, decl2, _n, _cstrs1, _cstrs2) do
             _cstrs2 = cstrs2[1];
             _cstrs1 = cstrs1[1];
             _n = n + 1 | 0;
-            continue ;
+            ::continue:: ;
           end else do
             return --[[ :: ]]{
                     --[[ Field_type ]]Block.__(0, {cstr1}),
@@ -45304,7 +45088,7 @@ function compare_records(env, decl1, decl2, _n, _labels1, _labels2) do
           _labels2 = labels2[1];
           _labels1 = labels1[1];
           _n = n + 1 | 0;
-          continue ;
+          ::continue:: ;
         end else do
           return --[[ :: ]]{
                   --[[ Field_type ]]Block.__(0, {lab1}),
@@ -45555,16 +45339,15 @@ function scrape(env, mty) do
   if (mty.tag) then do
     return mty;
   end else do
-    try do
+    xpcall(function() do
       return scrape(env, find_modtype_expansion(mty[0], env));
-    end
-    catch (exn)do
+    end end,function(exn) return do
       if (exn == Caml_builtin_exceptions.not_found) then do
         return mty;
       end else do
-        throw exn;
+        error (exn)
       end end 
-    end
+    end end)
   end end 
 end end
 
@@ -45727,7 +45510,7 @@ function nondep_supertype(env, mid, mty) do
             p = mty[0];
             if (isfree(mid, p)) then do
               _mty = find_modtype_expansion(p, env);
-              continue ;
+              ::continue:: ;
             end else do
               return mty;
             end end end end end 
@@ -45761,7 +45544,7 @@ function nondep_supertype(env, mid, mty) do
             p$1 = mty[0];
             if (isfree(mid, p$1)) then do
               _mty = find_module(false, p$1, env).md_type;
-              continue ;
+              ::continue:: ;
             end else do
               return mty;
             end end end end end 
@@ -45825,7 +45608,7 @@ function nondep_supertype(env, mid, mty) do
                   };end end end 
          if ___conditional___ = 4--[[ Sig_modtype ]] then do
             id$1 = item[0];
-            try do
+            xpcall(function() do
               return --[[ :: ]]{
                       --[[ Sig_modtype ]]Block.__(4, {
                           id$1,
@@ -45833,11 +45616,10 @@ function nondep_supertype(env, mid, mty) do
                         }),
                       rem$prime
                     };
-            end
-            catch (exn)do
+            end end,function(exn) return do
               if (exn == Caml_builtin_exceptions.not_found) then do
                 if (va ~= 0) then do
-                  throw Caml_builtin_exceptions.not_found;
+                  error (Caml_builtin_exceptions.not_found)
                 end
                  end 
                 return --[[ :: ]]{
@@ -45852,9 +45634,9 @@ function nondep_supertype(env, mid, mty) do
                         rem$prime
                       };
               end else do
-                throw exn;
+                error (exn)
               end end 
-            endend end end 
+            end end)end end end 
          if ___conditional___ = 5--[[ Sig_class ]] then do
             return --[[ :: ]]{
                     --[[ Sig_class ]]Block.__(5, {
@@ -45897,7 +45679,7 @@ function enrich_typedecl(env, p, decl) do
   if (match ~= undefined) then do
     return decl;
   end else do
-    try do
+    xpcall(function() do
       orig_decl = find_type_full(p, env)[0];
       if (orig_decl.type_arity ~= decl.type_arity) then do
         return decl;
@@ -45920,14 +45702,13 @@ function enrich_typedecl(env, p, decl) do
                 type_attributes: decl.type_attributes
               end;
       end end 
-    end
-    catch (exn)do
+    end end,function(exn) return do
       if (exn == Caml_builtin_exceptions.not_found) then do
         return decl;
       end else do
-        throw exn;
+        error (exn)
       end end 
-    end
+    end end)
   end end 
 end end
 
@@ -46002,7 +45783,7 @@ function type_paths_sig(_env, p, _pos, _sg) do
             pos$prime = typeof match$1 == "number" or match$1.tag and pos + 1 | 0 or pos;
             _sg = sg[1];
             _pos = pos$prime;
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 1--[[ Sig_type ]] then do
             return --[[ :: ]]{
                     --[[ Pdot ]]Block.__(1, {
@@ -46023,18 +45804,18 @@ function type_paths_sig(_env, p, _pos, _sg) do
          if ___conditional___ = 4--[[ Sig_modtype ]] then do
             _sg = sg[1];
             _env = add_modtype$1(match[0], match[1], env);
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 2--[[ Sig_typext ]]
          or ___conditional___ = 5--[[ Sig_class ]]
          or ___conditional___ = 6--[[ Sig_class_type ]] then do
             _sg = sg[1];
-            continue ;end end end 
+            ::continue:: ;end end end 
          do
         
       end
       _sg = sg[1];
       _pos = pos + 1 | 0;
-      continue ;
+      ::continue:: ;
     end else do
       return --[[ [] ]]0;
     end end 
@@ -46047,26 +45828,25 @@ function contains_type(env, _param) do
     local ___conditional___=(param.tag | 0);
     do
        if ___conditional___ = 0--[[ Mty_ident ]] then do
-          try do
+          xpcall(function() do
             match = find_modtype(param[0], env).mtd_type;
             if (match ~= undefined) then do
               return contains_type(env, match);
             end else do
-              throw Pervasives.Exit;
+              error (Pervasives.Exit)
             end end 
-          end
-          catch (exn)do
+          end end,function(exn) return do
             if (exn == Caml_builtin_exceptions.not_found) then do
-              throw Pervasives.Exit;
+              error (Pervasives.Exit)
             end
              end 
-            throw exn;
-          endend end end 
+            error (exn)
+          end end)end end end 
        if ___conditional___ = 1--[[ Mty_signature ]] then do
           return contains_type_sig(env)(param[0]);end end end 
        if ___conditional___ = 2--[[ Mty_functor ]] then do
           _param = param[2];
-          continue ;end end end 
+          ::continue:: ;end end end 
        if ___conditional___ = 3--[[ Mty_alias ]] then do
           return --[[ () ]]0;end end end 
        do
@@ -46087,17 +45867,17 @@ function contains_type_sig(env) do
                           match$1 = match.type_kind;
                           if (match.type_manifest ~= undefined) then do
                             if (typeof match$1 == "number" and not (match$1 ~= 0 or match.type_private)) then do
-                              throw Pervasives.Exit;
+                              error (Pervasives.Exit)
                             end else do
                               return --[[ () ]]0;
                             end end 
                           end else do
-                            throw Pervasives.Exit;
+                            error (Pervasives.Exit)
                           end end end end end 
                        if ___conditional___ = 3--[[ Sig_module ]] then do
                           return contains_type(env$1, param$1[1].md_type);end end end 
                        if ___conditional___ = 4--[[ Sig_modtype ]] then do
-                          throw Pervasives.Exit;end end end 
+                          error (Pervasives.Exit)end end end 
                        do
                       else do
                         return --[[ () ]]0;
@@ -46109,17 +45889,16 @@ function contains_type_sig(env) do
 end end
 
 function contains_type$1(env, mty) do
-  try do
+  xpcall(function() do
     contains_type(env, mty);
     return false;
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Pervasives.Exit) then do
       return true;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 function compare$3(p1, p2) do
@@ -46162,16 +45941,16 @@ function bal$7(l, v, r) do
       end else if (lr) then do
         return create$8(create$8(ll, lv, lr[--[[ l ]]0]), lr[--[[ v ]]1], create$8(lr[--[[ r ]]2], v, r));
       end else do
-        throw {
-              Caml_builtin_exceptions.invalid_argument,
-              "Set.bal"
-            };
+        error ({
+          Caml_builtin_exceptions.invalid_argument,
+          "Set.bal"
+        })
       end end  end 
     end else do
-      throw {
-            Caml_builtin_exceptions.invalid_argument,
-            "Set.bal"
-          };
+      error ({
+        Caml_builtin_exceptions.invalid_argument,
+        "Set.bal"
+      })
     end end 
   end else if (hr > (hl + 2 | 0)) then do
     if (r) then do
@@ -46183,16 +45962,16 @@ function bal$7(l, v, r) do
       end else if (rl) then do
         return create$8(create$8(l, v, rl[--[[ l ]]0]), rl[--[[ v ]]1], create$8(rl[--[[ r ]]2], rv, rr));
       end else do
-        throw {
-              Caml_builtin_exceptions.invalid_argument,
-              "Set.bal"
-            };
+        error ({
+          Caml_builtin_exceptions.invalid_argument,
+          "Set.bal"
+        })
       end end  end 
     end else do
-      throw {
-            Caml_builtin_exceptions.invalid_argument,
-            "Set.bal"
-          };
+      error ({
+        Caml_builtin_exceptions.invalid_argument,
+        "Set.bal"
+      })
     end end 
   end else do
     return --[[ Node ]]{
@@ -46353,7 +46132,7 @@ function fold$6(f, _s, _accu) do
     if (s) then do
       _accu = Curry._2(f, s[--[[ v ]]1], fold$6(f, s[--[[ l ]]0], accu));
       _s = s[--[[ r ]]2];
-      continue ;
+      ::continue:: ;
     end else do
       return accu;
     end end 
@@ -46394,16 +46173,16 @@ function bal$8(l, x, d, r) do
       end else if (lr) then do
         return create$9(create$9(ll, lv, ld, lr[--[[ l ]]0]), lr[--[[ v ]]1], lr[--[[ d ]]2], create$9(lr[--[[ r ]]3], x, d, r));
       end else do
-        throw {
-              Caml_builtin_exceptions.invalid_argument,
-              "Map.bal"
-            };
+        error ({
+          Caml_builtin_exceptions.invalid_argument,
+          "Map.bal"
+        })
       end end  end 
     end else do
-      throw {
-            Caml_builtin_exceptions.invalid_argument,
-            "Map.bal"
-          };
+      error ({
+        Caml_builtin_exceptions.invalid_argument,
+        "Map.bal"
+      })
     end end 
   end else if (hr > (hl + 2 | 0)) then do
     if (r) then do
@@ -46416,16 +46195,16 @@ function bal$8(l, x, d, r) do
       end else if (rl) then do
         return create$9(create$9(l, x, d, rl[--[[ l ]]0]), rl[--[[ v ]]1], rl[--[[ d ]]2], create$9(rl[--[[ r ]]3], rv, rd, rr));
       end else do
-        throw {
-              Caml_builtin_exceptions.invalid_argument,
-              "Map.bal"
-            };
+        error ({
+          Caml_builtin_exceptions.invalid_argument,
+          "Map.bal"
+        })
       end end  end 
     end else do
-      throw {
-            Caml_builtin_exceptions.invalid_argument,
-            "Map.bal"
-          };
+      error ({
+        Caml_builtin_exceptions.invalid_argument,
+        "Map.bal"
+      })
     end end 
   end else do
     return --[[ Node ]]{
@@ -46492,10 +46271,10 @@ function find$5(x, _param) do
         return param[--[[ d ]]2];
       end else do
         _param = c < 0 and param[--[[ l ]]0] or param[--[[ r ]]3];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
-      throw Caml_builtin_exceptions.not_found;
+      error (Caml_builtin_exceptions.not_found)
     end end 
   end;
 end end
@@ -46532,16 +46311,16 @@ function bal$9(l, v, r) do
       end else if (lr) then do
         return create$10(create$10(ll, lv, lr[--[[ l ]]0]), lr[--[[ v ]]1], create$10(lr[--[[ r ]]2], v, r));
       end else do
-        throw {
-              Caml_builtin_exceptions.invalid_argument,
-              "Set.bal"
-            };
+        error ({
+          Caml_builtin_exceptions.invalid_argument,
+          "Set.bal"
+        })
       end end  end 
     end else do
-      throw {
-            Caml_builtin_exceptions.invalid_argument,
-            "Set.bal"
-          };
+      error ({
+        Caml_builtin_exceptions.invalid_argument,
+        "Set.bal"
+      })
     end end 
   end else if (hr > (hl + 2 | 0)) then do
     if (r) then do
@@ -46553,16 +46332,16 @@ function bal$9(l, v, r) do
       end else if (rl) then do
         return create$10(create$10(l, v, rl[--[[ l ]]0]), rl[--[[ v ]]1], create$10(rl[--[[ r ]]2], rv, rr));
       end else do
-        throw {
-              Caml_builtin_exceptions.invalid_argument,
-              "Set.bal"
-            };
+        error ({
+          Caml_builtin_exceptions.invalid_argument,
+          "Set.bal"
+        })
       end end  end 
     end else do
-      throw {
-            Caml_builtin_exceptions.invalid_argument,
-            "Set.bal"
-          };
+      error ({
+        Caml_builtin_exceptions.invalid_argument,
+        "Set.bal"
+      })
     end end 
   end else do
     return --[[ Node ]]{
@@ -46697,7 +46476,7 @@ function mem$5(x, _param) do
         return true;
       end else do
         _param = c < 0 and param[--[[ l ]]0] or param[--[[ r ]]2];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return false;
@@ -46756,7 +46535,7 @@ function get_arg_paths(_param) do
           return --[[ Empty ]]0;end end end 
        if ___conditional___ = 1--[[ Pdot ]] then do
           _param = param[0];
-          continue ;end end end 
+          ::continue:: ;end end end 
        if ___conditional___ = 2--[[ Papply ]] then do
           p2 = param[1];
           return add$9(p2, union$3(get_prefixes(p2), union$3(get_arg_paths(param[0]), get_arg_paths(p2))));end end end 
@@ -46769,10 +46548,9 @@ end end
 function rollback_path(subst, _p) do
   while(true) do
     p = _p;
-    try do
+    xpcall(function() do
       return --[[ Pident ]]Block.__(0, {find$5(p, subst)});
-    end
-    catch (exn)do
+    end end,function(exn) return do
       if (exn == Caml_builtin_exceptions.not_found) then do
         local ___conditional___=(p.tag | 0);
         do
@@ -46787,7 +46565,7 @@ function rollback_path(subst, _p) do
                     p[1],
                     p[2]
                   });
-                continue ;
+                ::continue:: ;
               end end end end end 
            if ___conditional___ = 0--[[ Pident ]]
            or ___conditional___ = 2--[[ Papply ]] then do
@@ -46796,9 +46574,9 @@ function rollback_path(subst, _p) do
           
         end
       end else do
-        throw exn;
+        error (exn)
       end end 
-    end
+    end end)
   end;
 end end
 
@@ -46809,16 +46587,15 @@ function collect_ids(subst, bindings, p) do
      if ___conditional___ = 0--[[ Pident ]] then do
         id = match[0];
         ids;
-        try do
+        xpcall(function() do
           ids = collect_ids(subst, bindings, find_same(id, bindings));
-        end
-        catch (exn)do
+        end end,function(exn) return do
           if (exn == Caml_builtin_exceptions.not_found) then do
             ids = --[[ Empty ]]0;
           end else do
-            throw exn;
+            error (exn)
           end end 
-        end
+        end end)
         return add$11(id, ids);end end end 
      if ___conditional___ = 1--[[ Pdot ]]
      or ___conditional___ = 2--[[ Papply ]] then do
@@ -46919,7 +46696,7 @@ function remove_aliases(env, excl, _mty) do
             return mty;
           end else do
             _mty = mty$prime;
-            continue ;
+            ::continue:: ;
           end end end end end 
        do
       
@@ -46985,7 +46762,7 @@ function value_descriptions(env, cxt, subst, id, vd1, vd2) do
   record_value_dependency(vd1, vd2);
   mark_value_used(env, id.name, vd1);
   vd2$1 = value_description(subst, vd2);
-  try do
+  xpcall(function() do
     env$1 = env;
     id$1 = id;
     vd1$1 = vd1;
@@ -47003,40 +46780,39 @@ function value_descriptions(env, cxt, subst, id, vd1, vd2) do
         end else if (Caml_obj.caml_equal(p1, match$1[0])) then do
           return --[[ Tcoerce_none ]]0;
         end else do
-          throw Dont_match;
+          error (Dont_match)
         end end  end 
       end
        end 
       if (typeof match$1 == "number" or match$1.tag) then do
         return --[[ Tcoerce_none ]]0;
       end else do
-        throw Dont_match;
+        error (Dont_match)
       end end 
     end else do
-      throw Dont_match;
+      error (Dont_match)
     end end 
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Dont_match) then do
-      throw {
-            __Error$5,
-            --[[ :: ]]{
-              --[[ tuple ]]{
-                cxt,
-                env,
-                --[[ Value_descriptions ]]Block.__(1, {
-                    id,
-                    vd1,
-                    vd2$1
-                  })
-              },
-              --[[ [] ]]0
-            }
-          };
+      error ({
+        __Error$5,
+        --[[ :: ]]{
+          --[[ tuple ]]{
+            cxt,
+            env,
+            --[[ Value_descriptions ]]Block.__(1, {
+                id,
+                vd1,
+                vd2$1
+              })
+          },
+          --[[ [] ]]0
+        }
+      })
     end
      end 
-    throw exn;
-  end
+    error (exn)
+  end end)
 end end
 
 function type_declarations$2(env, old_envOpt, cxt, subst, id, decl1, decl2) do
@@ -47045,22 +46821,22 @@ function type_declarations$2(env, old_envOpt, cxt, subst, id, decl1, decl2) do
   decl2$1 = type_declaration(subst, decl2);
   err = type_declarations$1(undefined, env, id.name, decl1, id, decl2$1);
   if (err ~= --[[ [] ]]0) then do
-    throw {
-          __Error$5,
-          --[[ :: ]]{
-            --[[ tuple ]]{
-              cxt,
-              old_env,
-              --[[ Type_declarations ]]Block.__(2, {
-                  id,
-                  decl1,
-                  decl2$1,
-                  err
-                })
-            },
-            --[[ [] ]]0
-          }
-        };
+    error ({
+      __Error$5,
+      --[[ :: ]]{
+        --[[ tuple ]]{
+          cxt,
+          old_env,
+          --[[ Type_declarations ]]Block.__(2, {
+              id,
+              decl1,
+              decl2$1,
+              err
+            })
+        },
+        --[[ [] ]]0
+      }
+    })
   end else do
     return 0;
   end end 
@@ -47071,21 +46847,21 @@ function extension_constructors$1(env, cxt, subst, id, ext1, ext2) do
   if (extension_constructors(env, id, ext1, ext2$1)) then do
     return --[[ () ]]0;
   end else do
-    throw {
-          __Error$5,
-          --[[ :: ]]{
-            --[[ tuple ]]{
-              cxt,
-              env,
-              --[[ Extension_constructors ]]Block.__(3, {
-                  id,
-                  ext1,
-                  ext2$1
-                })
-            },
-            --[[ [] ]]0
-          }
-        };
+    error ({
+      __Error$5,
+      --[[ :: ]]{
+        --[[ tuple ]]{
+          cxt,
+          env,
+          --[[ Extension_constructors ]]Block.__(3, {
+              id,
+              ext1,
+              ext2$1
+            })
+        },
+        --[[ [] ]]0
+      }
+    })
   end end 
 end end
 
@@ -47093,22 +46869,22 @@ function class_type_declarations$1(old_env, env, cxt, subst, id, decl1, decl2) d
   decl2$1 = cltype_declaration(subst, decl2);
   reason = class_type_declarations(env, decl1, decl2$1);
   if (reason) then do
-    throw {
-          __Error$5,
-          --[[ :: ]]{
-            --[[ tuple ]]{
-              cxt,
-              old_env,
-              --[[ Class_type_declarations ]]Block.__(7, {
-                  id,
-                  decl1,
-                  decl2$1,
-                  reason
-                })
-            },
-            --[[ [] ]]0
-          }
-        };
+    error ({
+      __Error$5,
+      --[[ :: ]]{
+        --[[ tuple ]]{
+          cxt,
+          old_env,
+          --[[ Class_type_declarations ]]Block.__(7, {
+              id,
+              decl1,
+              decl2$1,
+              reason
+            })
+        },
+        --[[ [] ]]0
+      }
+    })
   end else do
     return --[[ () ]]0;
   end end 
@@ -47118,22 +46894,22 @@ function class_declarations$1(old_env, env, cxt, subst, id, decl1, decl2) do
   decl2$1 = class_declaration(subst, decl2);
   reason = class_declarations(env, decl1, decl2$1);
   if (reason) then do
-    throw {
-          __Error$5,
-          --[[ :: ]]{
-            --[[ tuple ]]{
-              cxt,
-              old_env,
-              --[[ Class_declarations ]]Block.__(8, {
-                  id,
-                  decl1,
-                  decl2$1,
-                  reason
-                })
-            },
-            --[[ [] ]]0
-          }
-        };
+    error ({
+      __Error$5,
+      --[[ :: ]]{
+        --[[ tuple ]]{
+          cxt,
+          old_env,
+          --[[ Class_declarations ]]Block.__(8, {
+              id,
+              decl1,
+              decl2$1,
+              reason
+            })
+        },
+        --[[ [] ]]0
+      }
+    })
   end else do
     return --[[ () ]]0;
   end end 
@@ -47142,63 +46918,60 @@ end end
 Dont_match$1 = Caml_exceptions.create("Ocaml_typedtree_test.Includemod.Dont_match");
 
 function may_expand_module_path(env, path) do
-  try do
+  xpcall(function() do
     find_modtype_expansion(path, env);
     return true;
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Caml_builtin_exceptions.not_found) then do
       return false;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 function expand_module_path(env, cxt, path) do
-  try do
+  xpcall(function() do
     return find_modtype_expansion(path, env);
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Caml_builtin_exceptions.not_found) then do
-      throw {
-            __Error$5,
-            --[[ :: ]]{
-              --[[ tuple ]]{
-                cxt,
-                env,
-                --[[ Unbound_modtype_path ]]Block.__(9, {path})
-              },
-              --[[ [] ]]0
-            }
-          };
+      error ({
+        __Error$5,
+        --[[ :: ]]{
+          --[[ tuple ]]{
+            cxt,
+            env,
+            --[[ Unbound_modtype_path ]]Block.__(9, {path})
+          },
+          --[[ [] ]]0
+        }
+      })
     end
      end 
-    throw exn;
-  end
+    error (exn)
+  end end)
 end end
 
 function expand_module_alias(env, cxt, path) do
-  try do
+  xpcall(function() do
     return find_module(false, path, env).md_type;
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Caml_builtin_exceptions.not_found) then do
-      throw {
-            __Error$5,
-            --[[ :: ]]{
-              --[[ tuple ]]{
-                cxt,
-                env,
-                --[[ Unbound_module_path ]]Block.__(10, {path})
-              },
-              --[[ [] ]]0
-            }
-          };
+      error ({
+        __Error$5,
+        --[[ :: ]]{
+          --[[ tuple ]]{
+            cxt,
+            env,
+            --[[ Unbound_module_path ]]Block.__(10, {path})
+          },
+          --[[ [] ]]0
+        }
+      })
     end
      end 
-    throw exn;
-  end
+    error (exn)
+  end end)
 end end
 
 function kind_of_field_desc(param) do
@@ -47303,53 +47076,52 @@ function is_runtime_component(param) do
 end end
 
 function modtypes(env, cxt, subst, mty1, mty2) do
-  try do
+  xpcall(function() do
     return try_modtypes(env, cxt, subst, mty1, mty2);
-  end
-  catch (raw_err)do
+  end end,function(raw_err) return do
     err = Caml_js_exceptions.internalToOCamlException(raw_err);
     if (err == Dont_match$1) then do
-      throw {
-            __Error$5,
-            --[[ :: ]]{
-              --[[ tuple ]]{
-                cxt,
-                env,
-                --[[ Module_types ]]Block.__(4, {
-                    mty1,
-                    modtype(subst, mty2)
-                  })
-              },
-              --[[ [] ]]0
-            }
-          };
+      error ({
+        __Error$5,
+        --[[ :: ]]{
+          --[[ tuple ]]{
+            cxt,
+            env,
+            --[[ Module_types ]]Block.__(4, {
+                mty1,
+                modtype(subst, mty2)
+              })
+          },
+          --[[ [] ]]0
+        }
+      })
     end
      end 
     if (err[0] == __Error$5) then do
       if (mty1.tag == --[[ Mty_alias ]]3) then do
-        throw err;
+        error (err)
       end else if (mty2.tag == --[[ Mty_alias ]]3) then do
-        throw err;
+        error (err)
       end else do
-        throw {
-              __Error$5,
-              --[[ :: ]]{
-                --[[ tuple ]]{
-                  cxt,
-                  env,
-                  --[[ Module_types ]]Block.__(4, {
-                      mty1,
-                      modtype(subst, mty2)
-                    })
-                },
-                err[1]
-              }
-            };
+        error ({
+          __Error$5,
+          --[[ :: ]]{
+            --[[ tuple ]]{
+              cxt,
+              env,
+              --[[ Module_types ]]Block.__(4, {
+                  mty1,
+                  modtype(subst, mty2)
+                })
+            },
+            err[1]
+          }
+        })
       end end  end 
     end else do
-      throw err;
+      error (err)
     end end 
-  end
+  end end)
 end end
 
 function try_modtypes(env, cxt, subst, _mty1, mty2) do
@@ -47361,7 +47133,7 @@ function try_modtypes(env, cxt, subst, _mty1, mty2) do
           p1 = mty1[0];
           if (may_expand_module_path(env, p1)) then do
             _mty1 = expand_module_path(env, cxt, p1);
-            continue ;
+            ::continue:: ;
           end
            end end else 
        if ___conditional___ = 1--[[ Mty_signature ]] then do
@@ -47372,7 +47144,7 @@ function try_modtypes(env, cxt, subst, _mty1, mty2) do
                 return signatures(env, cxt, subst, mty1[0], mty2[0]);end end end 
              if ___conditional___ = 2--[[ Mty_functor ]]
              or ___conditional___ = 3--[[ Mty_alias ]] then do
-                throw Dont_match$1;end end end 
+                error (Dont_match$1)end end end 
              do
             
           endend else 
@@ -47404,11 +47176,11 @@ function try_modtypes(env, cxt, subst, _mty1, mty2) do
                               });
                     end end 
                   end else do
-                    throw Dont_match$1;
+                    error (Dont_match$1)
                   end end end end end 
                if ___conditional___ = 1--[[ Mty_signature ]]
                or ___conditional___ = 3--[[ Mty_alias ]] then do
-                  throw Dont_match$1;end end end 
+                  error (Dont_match$1)end end end 
                do
               
             end
@@ -47418,7 +47190,7 @@ function try_modtypes(env, cxt, subst, _mty1, mty2) do
                if ___conditional___ = 0--[[ Mty_ident ]]
                or ___conditional___ = 2--[[ Mty_functor ]] then do
                   if (mty2[1] ~= undefined) then do
-                    throw Dont_match$1;
+                    error (Dont_match$1)
                   end
                    end 
                   cc = modtypes(env, --[[ :: ]]{
@@ -47435,7 +47207,7 @@ function try_modtypes(env, cxt, subst, _mty1, mty2) do
                   end end end end end 
                if ___conditional___ = 1--[[ Mty_signature ]]
                or ___conditional___ = 3--[[ Mty_alias ]] then do
-                  throw Dont_match$1;end end end 
+                  error (Dont_match$1)end end end 
                do
               
             end
@@ -47445,17 +47217,17 @@ function try_modtypes(env, cxt, subst, _mty1, mty2) do
           if (mty2.tag == --[[ Mty_alias ]]3) then do
             p2 = mty2[0];
             if (is_functor_arg(p2, env)) then do
-              throw {
-                    __Error$5,
-                    --[[ :: ]]{
-                      --[[ tuple ]]{
-                        cxt,
-                        env,
-                        --[[ Invalid_module_alias ]]Block.__(11, {p2})
-                      },
-                      --[[ [] ]]0
-                    }
-                  };
+              error ({
+                __Error$5,
+                --[[ :: ]]{
+                  --[[ tuple ]]{
+                    cxt,
+                    env,
+                    --[[ Invalid_module_alias ]]Block.__(11, {p2})
+                  },
+                  --[[ [] ]]0
+                }
+              })
             end
              end 
             if (same(p1$1, p2)) then do
@@ -47466,37 +47238,36 @@ function try_modtypes(env, cxt, subst, _mty1, mty2) do
               if (same(p1$2, p2$1)) then do
                 return --[[ Tcoerce_none ]]0;
               end else do
-                throw Dont_match$1;
+                error (Dont_match$1)
               end end 
             end end 
           end else do
             p1$3;
-            try do
+            xpcall(function() do
               p1$3 = normalize_path$1(none, env, p1$1);
-            end
-            catch (raw_exn)do
+            end end,function(raw_exn) return do
               exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
               if (exn[0] == __Error$2) then do
                 match$2 = exn[1];
                 if (match$2.tag == --[[ Missing_module ]]3) then do
-                  throw {
-                        __Error$5,
-                        --[[ :: ]]{
-                          --[[ tuple ]]{
-                            cxt,
-                            env,
-                            --[[ Unbound_module_path ]]Block.__(10, {match$2[2]})
-                          },
-                          --[[ [] ]]0
-                        }
-                      };
+                  error ({
+                    __Error$5,
+                    --[[ :: ]]{
+                      --[[ tuple ]]{
+                        cxt,
+                        env,
+                        --[[ Unbound_module_path ]]Block.__(10, {match$2[2]})
+                      },
+                      --[[ [] ]]0
+                    }
+                  })
                 end else do
-                  throw exn;
+                  error (exn)
                 end end 
               end else do
-                throw exn;
+                error (exn)
               end end 
-            end
+            end end)
             mty1$1 = strengthen$1(env, expand_module_alias(env, cxt, p1$3), p1$3);
             return --[[ Tcoerce_alias ]]Block.__(3, {
                       p1$3,
@@ -47507,7 +47278,7 @@ function try_modtypes(env, cxt, subst, _mty1, mty2) do
       
     end
     if (mty2.tag) then do
-      throw Dont_match$1;
+      error (Dont_match$1)
     end else do
       env$1 = env;
       cxt$1 = cxt;
@@ -47515,14 +47286,14 @@ function try_modtypes(env, cxt, subst, _mty1, mty2) do
       mty2$1 = modtype(subst, mty2);
       if (not mty1$2.tag) then do
         if (mty2$1.tag) then do
-          throw {
-                Caml_builtin_exceptions.assert_failure,
-                --[[ tuple ]]{
-                  "includemod.ml",
-                  275,
-                  6
-                }
-              };
+          error ({
+            Caml_builtin_exceptions.assert_failure,
+            --[[ tuple ]]{
+              "includemod.ml",
+              275,
+              6
+            }
+          })
         end else if (same(mty1$2[0], mty2$1[0])) then do
           return --[[ Tcoerce_none ]]0;
         end
@@ -47530,14 +47301,14 @@ function try_modtypes(env, cxt, subst, _mty1, mty2) do
       end
        end 
       if (mty2$1.tag) then do
-        throw {
-              Caml_builtin_exceptions.assert_failure,
-              --[[ tuple ]]{
-                "includemod.ml",
-                275,
-                6
-              }
-            };
+        error ({
+          Caml_builtin_exceptions.assert_failure,
+          --[[ tuple ]]{
+            "includemod.ml",
+            275,
+            6
+          }
+        })
       end else do
         return try_modtypes(env$1, cxt$1, identity, mty1$2, expand_module_path(env$1, cxt$1, mty2$1[0]));
       end end 
@@ -47589,7 +47360,7 @@ function signatures(env, cxt, subst, sig1, sig2) do
               pos
             }, tbl);
         _pos = nextpos;
-        continue ;
+        ::continue:: ;
       end else do
         return --[[ tuple ]]{
                 pos,
@@ -47636,7 +47407,7 @@ function signatures(env, cxt, subst, sig1, sig2) do
           };
         end end 
         name2$1 = match$1[0];
-        try do
+        xpcall(function() do
           match$2 = find$2(name2$1, comps1);
           id1 = match$2[0];
           new_subst;
@@ -47662,8 +47433,7 @@ function signatures(env, cxt, subst, sig1, sig2) do
                       },
                       paired
                     }, unpaired, rem);
-        end
-        catch (exn)do
+        end end,function(exn) return do
           if (exn == Caml_builtin_exceptions.not_found) then do
             unpaired$1 = match$1[1] and --[[ :: ]]{
                 --[[ tuple ]]{
@@ -47679,17 +47449,17 @@ function signatures(env, cxt, subst, sig1, sig2) do
               } or unpaired;
             _param = rem;
             _unpaired = unpaired$1;
-            continue ;
+            ::continue:: ;
           end else do
-            throw exn;
+            error (exn)
           end end 
-        end
+        end end)
       end else do
         if (unpaired) then do
-          throw {
-                __Error$5,
-                unpaired
-              };
+          error ({
+            __Error$5,
+            unpaired
+          })
         end
          end 
         cc = signature_components(env, new_env, cxt, subst, List.rev(paired));
@@ -47705,7 +47475,7 @@ function signatures(env, cxt, subst, sig1, sig2) do
                 if (match[0] == pos and match[1] == --[[ Tcoerce_none ]]0) then do
                   _param = param[1];
                   _pos = pos + 1 | 0;
-                  continue ;
+                  ::continue:: ;
                 end else do
                   return false;
                 end end 
@@ -47834,14 +47604,14 @@ function signature_components(old_env, env, cxt, subst, paired) do
   end else do
     return --[[ [] ]]0;
   end end 
-  throw {
-        Caml_builtin_exceptions.assert_failure,
-        --[[ tuple ]]{
-          "includemod.ml",
-          400,
-          6
-        }
-      };
+  error ({
+    Caml_builtin_exceptions.assert_failure,
+    --[[ tuple ]]{
+      "includemod.ml",
+      400,
+      6
+    }
+  })
 end end
 
 function modtype_infos(env, cxt, subst, id, info1, info2) do
@@ -47851,7 +47621,7 @@ function modtype_infos(env, cxt, subst, id, info1, info2) do
     cxt$prime_000,
     cxt
   };
-  try do
+  xpcall(function() do
     match = info1.mtd_type;
     match$1 = info2$1.mtd_type;
     if (match ~= undefined) then do
@@ -47865,29 +47635,28 @@ function modtype_infos(env, cxt, subst, id, info1, info2) do
     end else do
       return --[[ () ]]0;
     end end  end 
-  end
-  catch (raw_exn)do
+  end end,function(raw_exn) return do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn[0] == __Error$5) then do
-      throw {
-            __Error$5,
-            --[[ :: ]]{
-              --[[ tuple ]]{
-                cxt,
-                env,
-                --[[ Modtype_infos ]]Block.__(5, {
-                    id,
-                    info1,
-                    info2$1
-                  })
-              },
-              exn[1]
-            }
-          };
+      error ({
+        __Error$5,
+        --[[ :: ]]{
+          --[[ tuple ]]{
+            cxt,
+            env,
+            --[[ Modtype_infos ]]Block.__(5, {
+                id,
+                info1,
+                info2$1
+              })
+          },
+          exn[1]
+        }
+      })
     end
      end 
-    throw exn;
-  end
+    error (exn)
+  end end)
 end end
 
 function check_modtype_equiv(env, cxt, mty1, mty2) do
@@ -47897,61 +47666,59 @@ function check_modtype_equiv(env, cxt, mty1, mty2) do
     return --[[ () ]]0;
   end
    end 
-  throw {
-        __Error$5,
-        --[[ :: ]]{
-          --[[ tuple ]]{
-            cxt,
-            env,
-            --[[ Modtype_permutation ]]0
-          },
-          --[[ [] ]]0
-        }
-      };
+  error ({
+    __Error$5,
+    --[[ :: ]]{
+      --[[ tuple ]]{
+        cxt,
+        env,
+        --[[ Modtype_permutation ]]0
+      },
+      --[[ [] ]]0
+    }
+  })
 end end
 
 function check_modtype_inclusion$1(env, mty1, path1, mty2) do
-  try do
+  xpcall(function() do
     modtypes(env, --[[ [] ]]0, identity, strengthen$1(env, mty1, path1), mty2);
     return --[[ () ]]0;
-  end
-  catch (raw_exn)do
+  end end,function(raw_exn) return do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn[0] == __Error$5) then do
-      throw Caml_builtin_exceptions.not_found;
+      error (Caml_builtin_exceptions.not_found)
     end
      end 
-    throw exn;
-  end
+    error (exn)
+  end end)
 end end
 
 check_modtype_inclusion.contents = check_modtype_inclusion$1;
 
 function compunit(env, impl_name, impl_sig, intf_name, intf_sig) do
-  try do
+  xpcall(function() do
     return signatures(env, --[[ [] ]]0, identity, impl_sig, intf_sig);
-  end
-  catch (raw_exn)do
+  end end,function(raw_exn) return do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn[0] == __Error$5) then do
-      throw {
-            __Error$5,
-            --[[ :: ]]{
-              --[[ tuple ]]{
-                --[[ [] ]]0,
-                empty,
-                --[[ Interface_mismatch ]]Block.__(6, {
-                    impl_name,
-                    intf_name
-                  })
-              },
-              exn[1]
-            }
-          };
+      error ({
+        __Error$5,
+        --[[ :: ]]{
+          --[[ tuple ]]{
+            --[[ [] ]]0,
+            empty,
+            --[[ Interface_mismatch ]]Block.__(6, {
+                impl_name,
+                intf_name
+              })
+          },
+          exn[1]
+        }
+      })
     end
      end 
-    throw exn;
-  end
+    error (exn)
+  end end)
 end end
 
 function modtypes$1(env, mty1, mty2) do
@@ -48742,14 +48509,14 @@ function path_of_context(param) do
   if (param) then do
     match = param[0];
     if (match.tag) then do
-      throw {
-            Caml_builtin_exceptions.assert_failure,
-            --[[ tuple ]]{
-              "includemod.ml",
-              573,
-              9
-            }
-          };
+      error ({
+        Caml_builtin_exceptions.assert_failure,
+        --[[ tuple ]]{
+          "includemod.ml",
+          573,
+          9
+        }
+      })
     end else do
       _path = --[[ Pident ]]Block.__(0, {match[0]});
       _param = param[1];
@@ -48759,14 +48526,14 @@ function path_of_context(param) do
         if (param$1) then do
           match$1 = param$1[0];
           if (match$1.tag) then do
-            throw {
-                  Caml_builtin_exceptions.assert_failure,
-                  --[[ tuple ]]{
-                    "includemod.ml",
-                    571,
-                    15
-                  }
-                };
+            error ({
+              Caml_builtin_exceptions.assert_failure,
+              --[[ tuple ]]{
+                "includemod.ml",
+                571,
+                15
+              }
+            })
           end else do
             _param = param$1[1];
             _path = --[[ Pdot ]]Block.__(1, {
@@ -48774,7 +48541,7 @@ function path_of_context(param) do
                 match$1[0].name,
                 -1
               });
-            continue ;
+            ::continue:: ;
           end end 
         end else do
           return path;
@@ -48782,14 +48549,14 @@ function path_of_context(param) do
       end;
     end end 
   end else do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "includemod.ml",
-            573,
-            9
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "includemod.ml",
+        573,
+        9
+      }
+    })
   end end 
 end end
 
@@ -48887,13 +48654,12 @@ function is_big(obj) do
       buffer.contents = Caml_bytes.caml_create_bytes(size);
     end
      end 
-    try do
+    xpcall(function() do
       Marshal.to_buffer(buffer.contents, 0, size, obj, --[[ [] ]]0);
       return false;
-    end
-    catch (exn)do
+    end end,function(exn) return do
       return true;
-    end
+    end end)
   end else do
     return false;
   end end 
@@ -49114,7 +48880,7 @@ function records_args(l1, l2) do
             p1,
             r1
           };
-          continue ;
+          ::continue:: ;
         end else if (lbl1.lbl_pos > lbl2.lbl_pos) then do
           _l2 = rem2;
           _r2 = --[[ :: ]]{
@@ -49125,7 +48891,7 @@ function records_args(l1, l2) do
             omega,
             r1
           };
-          continue ;
+          ::continue:: ;
         end else do
           _l2 = rem2;
           _l1 = rem1;
@@ -49137,7 +48903,7 @@ function records_args(l1, l2) do
             p1,
             r1
           };
-          continue ;
+          ::continue:: ;
         end end  end 
       end else do
         _l2 = --[[ [] ]]0;
@@ -49150,7 +48916,7 @@ function records_args(l1, l2) do
           p1,
           r1
         };
-        continue ;
+        ::continue:: ;
       end end 
     end else if (l2$1) then do
       _l2 = l2$1[1];
@@ -49163,7 +48929,7 @@ function records_args(l1, l2) do
         omega,
         r1
       };
-      continue ;
+      ::continue:: ;
     end else do
       return --[[ tuple ]]{
               List.rev(r1),
@@ -49187,7 +48953,7 @@ function compat(_p, _q) do
       do
          if ___conditional___ = 1--[[ Tpat_alias ]] then do
             _p = match[0];
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 2--[[ Tpat_constant ]] then do
             if (typeof match$1 == "number") then do
               exit = 1;
@@ -49269,7 +49035,7 @@ function compat(_p, _q) do
                       if (match$3 ~= undefined and l1 == match$1[0]) then do
                         _q = match$3;
                         _p = match$2;
-                        continue ;
+                        ::continue:: ;
                       end else do
                         return false;
                       end end end end end 
@@ -49366,7 +49132,7 @@ function compat(_p, _q) do
                  if ___conditional___ = 9--[[ Tpat_lazy ]] then do
                     _q = match$1[0];
                     _p = match[0];
-                    continue ;end end end 
+                    ::continue:: ;end end end 
                  do end end
                 else do
                   exit = 3;
@@ -49393,14 +49159,14 @@ function compat(_p, _q) do
                   return true;end end end 
                if ___conditional___ = 1--[[ Tpat_alias ]] then do
                   _q = match$1[0];
-                  continue ;end end end 
+                  ::continue:: ;end end end 
                do
               else do
                 if (typeof match == "number" or not (match.tag and not compat(match[0], q))) then do
                   return true;
                 end else do
                   _p = match[1];
-                  continue ;
+                  ::continue:: ;
                 end end 
                 end end
                 
@@ -49411,17 +49177,17 @@ function compat(_p, _q) do
             return true;
           end else do
             _q = match$1[1];
-            continue ;
+            ::continue:: ;
           end end end end end 
        if ___conditional___ = 3 then do
-          throw {
-                Caml_builtin_exceptions.assert_failure,
-                --[[ tuple ]]{
-                  "parmatch.ml",
-                  106,
-                  6
-                }
-              };end end end 
+          error ({
+            Caml_builtin_exceptions.assert_failure,
+            --[[ tuple ]]{
+              "parmatch.ml",
+              106,
+              6
+            }
+          })end end end 
        do
       
     end
@@ -49437,29 +49203,29 @@ function compats(_ps, _qs) do
         if (compat(ps[0], qs[0])) then do
           _qs = qs[1];
           _ps = ps[1];
-          continue ;
+          ::continue:: ;
         end else do
           return false;
         end end 
       end else do
-        throw {
-              Caml_builtin_exceptions.assert_failure,
-              --[[ tuple ]]{
-                "parmatch.ml",
-                111,
-                12
-              }
-            };
+        error ({
+          Caml_builtin_exceptions.assert_failure,
+          --[[ tuple ]]{
+            "parmatch.ml",
+            111,
+            12
+          }
+        })
       end end 
     end else if (qs) then do
-      throw {
-            Caml_builtin_exceptions.assert_failure,
-            --[[ tuple ]]{
-              "parmatch.ml",
-              111,
-              12
-            }
-          };
+      error ({
+        Caml_builtin_exceptions.assert_failure,
+        --[[ tuple ]]{
+          "parmatch.ml",
+          111,
+          12
+        }
+      })
     end else do
       return true;
     end end  end 
@@ -50369,7 +50135,7 @@ function simple_match_args(p1, _p2) do
          if ___conditional___ = 0--[[ Tpat_var ]]
          or ___conditional___ = 1--[[ Tpat_alias ]] then do
             _p2 = match[0];
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 4--[[ Tpat_construct ]] then do
             return match[2];end end end 
          if ___conditional___ = 5--[[ Tpat_variant ]] then do
@@ -50387,16 +50153,15 @@ function simple_match_args(p1, _p2) do
             arg = match[0];
             return List.map((function(arg)do
                       return function (param) do
-                        try do
+                        xpcall(function() do
                           return get_field(param[1].lbl_pos, arg);
-                        end
-                        catch (exn)do
+                        end end,function(exn) return do
                           if (exn == Caml_builtin_exceptions.not_found) then do
                             return omega;
                           end else do
-                            throw exn;
+                            error (exn)
                           end end 
-                        end
+                        end end)
                       end end
                       end(arg)), omegas);end end end 
          if ___conditional___ = 3--[[ Tpat_tuple ]]
@@ -50474,7 +50239,7 @@ function normalize_pat(_q) do
             return make_pat(--[[ Tpat_any ]]0, q.pat_type, q.pat_env);end end end 
          if ___conditional___ = 1--[[ Tpat_alias ]] then do
             _q = match[0];
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 2--[[ Tpat_constant ]] then do
             return q;end end end 
          if ___conditional___ = 3--[[ Tpat_tuple ]] then do
@@ -50539,13 +50304,13 @@ function discr_pat(q, pss) do
           match$1 = p.pat_desc;
           if (typeof match$1 == "number") then do
             _pss = pss$1[1];
-            continue ;
+            ::continue:: ;
           end else do
             local ___conditional___=(match$1.tag | 0);
             do
                if ___conditional___ = 0--[[ Tpat_var ]] then do
                   _pss = pss$1[1];
-                  continue ;end end end 
+                  ::continue:: ;end end end 
                if ___conditional___ = 1--[[ Tpat_alias ]] then do
                   _pss = --[[ :: ]]{
                     --[[ :: ]]{
@@ -50554,15 +50319,14 @@ function discr_pat(q, pss) do
                     },
                     pss$1[1]
                   };
-                  continue ;end end end 
+                  ::continue:: ;end end end 
                if ___conditional___ = 6--[[ Tpat_record ]] then do
                   new_omegas = List.fold_right((function (param, r) do
                           lbl = param[1];
-                          try do
+                          xpcall(function() do
                             get_field(lbl.lbl_pos, r);
                             return r;
-                          end
-                          catch (exn)do
+                          end end,function(exn) return do
                             if (exn == Caml_builtin_exceptions.not_found) then do
                               return --[[ :: ]]{
                                       --[[ tuple ]]{
@@ -50573,16 +50337,16 @@ function discr_pat(q, pss) do
                                       r
                                     };
                             end else do
-                              throw exn;
+                              error (exn)
                             end end 
-                          end
+                          end end)
                         end end), match$1[0], record_arg(acc));
                   _pss = pss$1[1];
                   _acc = make_pat(--[[ Tpat_record ]]Block.__(6, {
                           new_omegas,
                           match$1[1]
                         }), p.pat_type, p.pat_env);
-                  continue ;end end end 
+                  ::continue:: ;end end end 
                if ___conditional___ = 8--[[ Tpat_or ]] then do
                   ps = match[1];
                   _pss = --[[ :: ]]{
@@ -50598,7 +50362,7 @@ function discr_pat(q, pss) do
                       pss$1[1]
                     }
                   };
-                  continue ;end end end 
+                  ::continue:: ;end end end 
                if ___conditional___ = 3--[[ Tpat_tuple ]]
                or ___conditional___ = 9--[[ Tpat_lazy ]] then do
                   return normalize_pat(p);end end end 
@@ -50683,14 +50447,14 @@ function do_set_args(erase_mutable, q, r) do
                 r[1]
               };
             end else do
-              throw {
-                    Caml_builtin_exceptions.assert_failure,
-                    --[[ tuple ]]{
-                      "parmatch.ml",
-                      450,
-                      13
-                    }
-                  };
+              error ({
+                Caml_builtin_exceptions.assert_failure,
+                --[[ tuple ]]{
+                  "parmatch.ml",
+                  450,
+                  13
+                }
+              })
             end end 
           end else do
             match$3 = --[[ tuple ]]{
@@ -50782,7 +50546,7 @@ function filter_one(q, pss) do
                     },
                     param[1]
                   };
-                  continue ;end end end 
+                  ::continue:: ;end end end 
                if ___conditional___ = 8--[[ Tpat_or ]] then do
                   ps = match[1];
                   _param = --[[ :: ]]{
@@ -50798,7 +50562,7 @@ function filter_one(q, pss) do
                       param[1]
                     }
                   };
-                  continue ;end end end 
+                  ::continue:: ;end end end 
                do
               else do
                 end end
@@ -50814,7 +50578,7 @@ function filter_one(q, pss) do
                   };
           end else do
             _param = pss;
-            continue ;
+            ::continue:: ;
           end end 
         end else do
           return --[[ [] ]]0;
@@ -50856,7 +50620,7 @@ function filter_extra(pss) do
                     },
                     param[1]
                   };
-                  continue ;end end end 
+                  ::continue:: ;end end end 
                if ___conditional___ = 8--[[ Tpat_or ]] then do
                   ps = match[1];
                   _param = --[[ :: ]]{
@@ -50872,18 +50636,18 @@ function filter_extra(pss) do
                       param[1]
                     }
                   };
-                  continue ;end end end 
+                  ::continue:: ;end end end 
                do
               else do
                 _param = param[1];
-                continue ;
+                ::continue:: ;
                 end end
                 
             end
           end end 
         end else do
           _param = param[1];
-          continue ;
+          ::continue:: ;
         end end 
       end else do
         return --[[ [] ]]0;
@@ -50941,13 +50705,13 @@ function filter_all(pat0, pss) do
           match$1 = p.pat_desc;
           if (typeof match$1 == "number") then do
             _param = param[1];
-            continue ;
+            ::continue:: ;
           end else do
             local ___conditional___=(match$1.tag | 0);
             do
                if ___conditional___ = 0--[[ Tpat_var ]] then do
                   _param = param[1];
-                  continue ;end end end 
+                  ::continue:: ;end end end 
                if ___conditional___ = 1--[[ Tpat_alias ]] then do
                   _param = --[[ :: ]]{
                     --[[ :: ]]{
@@ -50956,7 +50720,7 @@ function filter_all(pat0, pss) do
                     },
                     param[1]
                   };
-                  continue ;end end end 
+                  ::continue:: ;end end end 
                if ___conditional___ = 8--[[ Tpat_or ]] then do
                   ps = match[1];
                   _param = --[[ :: ]]{
@@ -50972,12 +50736,12 @@ function filter_all(pat0, pss) do
                       param[1]
                     }
                   };
-                  continue ;end end end 
+                  ::continue:: ;end end end 
                do
               else do
                 _param = param[1];
                 _env = insert(p, match[1], env);
-                continue ;
+                ::continue:: ;
                 end end
                 
             end
@@ -51040,7 +50804,7 @@ function filter_all(pat0, pss) do
                   },
                   param[1]
                 };
-                continue ;end end end 
+                ::continue:: ;end end end 
              if ___conditional___ = 8--[[ Tpat_or ]] then do
                 ps = match$1[1];
                 _param = --[[ :: ]]{
@@ -51056,11 +50820,11 @@ function filter_all(pat0, pss) do
                     param[1]
                   }
                 };
-                continue ;end end end 
+                ::continue:: ;end end end 
              do
             else do
               _param = param[1];
-              continue ;
+              ::continue:: ;
               end end
               
           end
@@ -51080,10 +50844,10 @@ function filter_all(pat0, pss) do
                     };
             end end
             end(ps$1)), env);
-        continue ;
+        ::continue:: ;
       end else do
         _param = param[1];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return env;
@@ -51138,7 +50902,7 @@ function mark_partial(_param) do
                   },
                   param[1]
                 };
-                continue ;end end end 
+                ::continue:: ;end end end 
              if ___conditional___ = 8--[[ Tpat_or ]] then do
                 ps$1 = ps[1];
                 _param = --[[ :: ]]{
@@ -51154,7 +50918,7 @@ function mark_partial(_param) do
                     param[1]
                   }
                 };
-                continue ;end end end 
+                ::continue:: ;end end end 
              do
             else do
               end end
@@ -51202,50 +50966,50 @@ function row_of_pat(pat) do
   match = expand_head(pat.pat_env, pat.pat_type);
   match$1 = match.desc;
   if (typeof match$1 == "number") then do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "parmatch.ml",
-            602,
-            9
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "parmatch.ml",
+        602,
+        9
+      }
+    })
   end else if (match$1.tag == --[[ Tvariant ]]8) then do
     return row_repr_aux(--[[ [] ]]0, match$1[0]);
   end else do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "parmatch.ml",
-            602,
-            9
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "parmatch.ml",
+        602,
+        9
+      }
+    })
   end end  end 
 end end
 
 function generalized_constructor(x) do
   match = x[0].pat_desc;
   if (typeof match == "number") then do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "parmatch.ml",
-            613,
-            9
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "parmatch.ml",
+        613,
+        9
+      }
+    })
   end else if (match.tag == --[[ Tpat_construct ]]4) then do
     return match[1].cstr_generalized;
   end else do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "parmatch.ml",
-            613,
-            9
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "parmatch.ml",
+        613,
+        9
+      }
+    })
   end end  end 
 end end
 
@@ -51258,7 +51022,7 @@ function clean_env(env) do
         x = param[0];
         if (generalized_constructor(x)) then do
           _param = xs;
-          continue ;
+          ::continue:: ;
         end else do
           return --[[ :: ]]{
                   x,
@@ -51302,25 +51066,25 @@ function full_match(ignore_generalized, closing, env) do
             fields = List.map((function (param) do
                     match = param[0].pat_desc;
                     if (typeof match == "number") then do
-                      throw {
-                            Caml_builtin_exceptions.assert_failure,
-                            --[[ tuple ]]{
-                              "parmatch.ml",
-                              640,
-                              17
-                            }
-                          };
+                      error ({
+                        Caml_builtin_exceptions.assert_failure,
+                        --[[ tuple ]]{
+                          "parmatch.ml",
+                          640,
+                          17
+                        }
+                      })
                     end else if (match.tag == --[[ Tpat_variant ]]5) then do
                       return match[0];
                     end else do
-                      throw {
-                            Caml_builtin_exceptions.assert_failure,
-                            --[[ tuple ]]{
-                              "parmatch.ml",
-                              640,
-                              17
-                            }
-                          };
+                      error ({
+                        Caml_builtin_exceptions.assert_failure,
+                        --[[ tuple ]]{
+                          "parmatch.ml",
+                          640,
+                          17
+                        }
+                      })
                     end end  end 
                   end end), env);
             row = row_of_pat(p);
@@ -51412,14 +51176,14 @@ function complete_tags(nconsts, nconstrs, tags) do
              if ___conditional___ = 1--[[ Cstr_block ]] then do
                 return Caml_array.caml_array_set(seen_constr, param[0], true);end end end 
              if ___conditional___ = 2--[[ Cstr_extension ]] then do
-                throw {
-                      Caml_builtin_exceptions.assert_failure,
-                      --[[ tuple ]]{
-                        "parmatch.ml",
-                        703,
-                        14
-                      }
-                    };end end end 
+                error ({
+                  Caml_builtin_exceptions.assert_failure,
+                  --[[ tuple ]]{
+                    "parmatch.ml",
+                    703,
+                    14
+                  }
+                })end end end 
              do
             
           end
@@ -51485,7 +51249,7 @@ function pat_of_constrs(ex_pat, param) do
       return pat_of_constr(ex_pat, cstr);
     end end 
   end else do
-    throw Empty;
+    error (Empty)
   end end 
 end end
 
@@ -51505,7 +51269,7 @@ function get_variant_constructors(env, _ty) do
        end 
       if (match$1.type_manifest ~= undefined) then do
         _ty = expand_head_once(env, clean_copy(ty));
-        continue ;
+        ::continue:: ;
       end else do
         return fatal_error("Parmatch.get_variant_constructors");
       end end 
@@ -51526,7 +51290,7 @@ function map_filter(f, _param) do
               };
       end else do
         _param = xs;
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return --[[ [] ]]0;
@@ -51562,7 +51326,7 @@ function build_other_constant(proj, make, first, next, p, env) do
     i = _i;
     if (List.mem(i, all)) then do
       _i = Curry._1(next, i);
-      continue ;
+      ::continue:: ;
     end else do
       return make_pat(Curry._1(make, i), p.pat_type, p.pat_env);
     end end 
@@ -51591,14 +51355,14 @@ function build_other(ext, env) do
                                    end 
                                 end
                                  end 
-                                throw {
-                                      Caml_builtin_exceptions.assert_failure,
-                                      --[[ tuple ]]{
-                                        "parmatch.ml",
-                                        857,
-                                        55
-                                      }
-                                    };
+                                error ({
+                                  Caml_builtin_exceptions.assert_failure,
+                                  --[[ tuple ]]{
+                                    "parmatch.ml",
+                                    857,
+                                    55
+                                  }
+                                })
                               end end), (function (i) do
                                 return --[[ Tpat_constant ]]Block.__(2, {--[[ Const_int ]]Block.__(0, {i})});
                               end end), 0, (function (prim) do
@@ -51615,14 +51379,14 @@ function build_other(ext, env) do
                              end 
                           end
                            end 
-                          throw {
-                                Caml_builtin_exceptions.assert_failure,
-                                --[[ tuple ]]{
-                                  "parmatch.ml",
-                                  832,
-                                  15
-                                }
-                              };
+                          error ({
+                            Caml_builtin_exceptions.assert_failure,
+                            --[[ tuple ]]{
+                              "parmatch.ml",
+                              832,
+                              15
+                            }
+                          })
                         end end), env);
                   _param = --[[ :: ]]{
                     --[[ tuple ]]{
@@ -51659,32 +51423,31 @@ function build_other(ext, env) do
                     param = _param;
                     if (param) then do
                       match$1 = param[0];
-                      try do
+                      xpcall(function() do
                         _i = match$1[0];
                         imax = match$1[1];
                         while(true) do
                           i = _i;
                           if (i > imax) then do
-                            throw Caml_builtin_exceptions.not_found;
+                            error (Caml_builtin_exceptions.not_found)
                           end
                            end 
                           ci = Char.chr(i);
                           if (List.mem(ci, all_chars)) then do
                             _i = i + 1 | 0;
-                            continue ;
+                            ::continue:: ;
                           end else do
                             return make_pat(--[[ Tpat_constant ]]Block.__(2, {--[[ Const_char ]]Block.__(1, {ci})}), p.pat_type, p.pat_env);
                           end end 
                         end;
-                      end
-                      catch (exn)do
+                      end end,function(exn) return do
                         if (exn == Caml_builtin_exceptions.not_found) then do
                           _param = param[1];
-                          continue ;
+                          ::continue:: ;
                         end else do
-                          throw exn;
+                          error (exn)
                         end end 
-                      end
+                      end end)
                     end else do
                       return omega;
                     end end 
@@ -51699,14 +51462,14 @@ function build_other(ext, env) do
                                    end 
                                 end
                                  end 
-                                throw {
-                                      Caml_builtin_exceptions.assert_failure,
-                                      --[[ tuple ]]{
-                                        "parmatch.ml",
-                                        878,
-                                        21
-                                      }
-                                    };
+                                error ({
+                                  Caml_builtin_exceptions.assert_failure,
+                                  --[[ tuple ]]{
+                                    "parmatch.ml",
+                                    878,
+                                    21
+                                  }
+                                })
                               end end), (function (i) do
                                 return --[[ Tpat_constant ]]Block.__(2, {--[[ Const_string ]]Block.__(2, {
                                               Caml_bytes.bytes_to_string(Bytes.make(i, --[[ "*" ]]42)),
@@ -51725,14 +51488,14 @@ function build_other(ext, env) do
                                    end 
                                 end
                                  end 
-                                throw {
-                                      Caml_builtin_exceptions.assert_failure,
-                                      --[[ tuple ]]{
-                                        "parmatch.ml",
-                                        884,
-                                        21
-                                      }
-                                    };
+                                error ({
+                                  Caml_builtin_exceptions.assert_failure,
+                                  --[[ tuple ]]{
+                                    "parmatch.ml",
+                                    884,
+                                    21
+                                  }
+                                })
                               end end), (function (f) do
                                 return --[[ Tpat_constant ]]Block.__(2, {--[[ Const_float ]]Block.__(3, {Pervasives.string_of_float(f)})});
                               end end), 0.0, (function (f) do
@@ -51748,14 +51511,14 @@ function build_other(ext, env) do
                                    end 
                                 end
                                  end 
-                                throw {
-                                      Caml_builtin_exceptions.assert_failure,
-                                      --[[ tuple ]]{
-                                        "parmatch.ml",
-                                        862,
-                                        57
-                                      }
-                                    };
+                                error ({
+                                  Caml_builtin_exceptions.assert_failure,
+                                  --[[ tuple ]]{
+                                    "parmatch.ml",
+                                    862,
+                                    57
+                                  }
+                                })
                               end end), (function (i) do
                                 return --[[ Tpat_constant ]]Block.__(2, {--[[ Const_int32 ]]Block.__(4, {i})});
                               end end), 0, Int32.succ, p, env);end end end 
@@ -51769,14 +51532,14 @@ function build_other(ext, env) do
                                    end 
                                 end
                                  end 
-                                throw {
-                                      Caml_builtin_exceptions.assert_failure,
-                                      --[[ tuple ]]{
-                                        "parmatch.ml",
-                                        867,
-                                        57
-                                      }
-                                    };
+                                error ({
+                                  Caml_builtin_exceptions.assert_failure,
+                                  --[[ tuple ]]{
+                                    "parmatch.ml",
+                                    867,
+                                    57
+                                  }
+                                })
                               end end), (function (i) do
                                 return --[[ Tpat_constant ]]Block.__(2, {--[[ Const_int64 ]]Block.__(5, {i})});
                               end end), --[[ int64 ]]{
@@ -51793,14 +51556,14 @@ function build_other(ext, env) do
                                    end 
                                 end
                                  end 
-                                throw {
-                                      Caml_builtin_exceptions.assert_failure,
-                                      --[[ tuple ]]{
-                                        "parmatch.ml",
-                                        872,
-                                        61
-                                      }
-                                    };
+                                error ({
+                                  Caml_builtin_exceptions.assert_failure,
+                                  --[[ tuple ]]{
+                                    "parmatch.ml",
+                                    872,
+                                    61
+                                  }
+                                })
                               end end), (function (i) do
                                 return --[[ Tpat_constant ]]Block.__(2, {--[[ Const_nativeint ]]Block.__(6, {i})});
                               end end), 0, Nativeint.succ, p, env);end end end 
@@ -51873,25 +51636,25 @@ function build_other(ext, env) do
             tags = List.map((function (param) do
                     match = param[0].pat_desc;
                     if (typeof match == "number") then do
-                      throw {
-                            Caml_builtin_exceptions.assert_failure,
-                            --[[ tuple ]]{
-                              "parmatch.ml",
-                              801,
-                              23
-                            }
-                          };
+                      error ({
+                        Caml_builtin_exceptions.assert_failure,
+                        --[[ tuple ]]{
+                          "parmatch.ml",
+                          801,
+                          23
+                        }
+                      })
                     end else if (match.tag == --[[ Tpat_variant ]]5) then do
                       return match[0];
                     end else do
-                      throw {
-                            Caml_builtin_exceptions.assert_failure,
-                            --[[ tuple ]]{
-                              "parmatch.ml",
-                              801,
-                              23
-                            }
-                          };
+                      error ({
+                        Caml_builtin_exceptions.assert_failure,
+                        --[[ tuple ]]{
+                          "parmatch.ml",
+                          801,
+                          23
+                        }
+                      })
                     end end  end 
                   end end), env);
             row = row_of_pat(p);
@@ -51939,25 +51702,25 @@ function build_other(ext, env) do
             all_lengths = List.map((function (param) do
                     match = param[0].pat_desc;
                     if (typeof match == "number") then do
-                      throw {
-                            Caml_builtin_exceptions.assert_failure,
-                            --[[ tuple ]]{
-                              "parmatch.ml",
-                              893,
-                              15
-                            }
-                          };
+                      error ({
+                        Caml_builtin_exceptions.assert_failure,
+                        --[[ tuple ]]{
+                          "parmatch.ml",
+                          893,
+                          15
+                        }
+                      })
                     end else if (match.tag == --[[ Tpat_array ]]7) then do
                       return List.length(match[0]);
                     end else do
-                      throw {
-                            Caml_builtin_exceptions.assert_failure,
-                            --[[ tuple ]]{
-                              "parmatch.ml",
-                              893,
-                              15
-                            }
-                          };
+                      error ({
+                        Caml_builtin_exceptions.assert_failure,
+                        --[[ tuple ]]{
+                          "parmatch.ml",
+                          893,
+                          15
+                        }
+                      })
                     end end  end 
                   end end), env);
             _l = 0;
@@ -51965,7 +51728,7 @@ function build_other(ext, env) do
               l = _l;
               if (List.mem(l, all_lengths)) then do
                 _l = l + 1 | 0;
-                continue ;
+                ::continue:: ;
               end else do
                 return make_pat(--[[ Tpat_array ]]Block.__(7, {omegas(l)}), p.pat_type, p.pat_env);
               end end 
@@ -52004,14 +51767,14 @@ function build_other_gadt(ext, env) do
      end 
   end
    end 
-  throw {
-        Caml_builtin_exceptions.assert_failure,
-        --[[ tuple ]]{
-          "parmatch.ml",
-          917,
-          11
-        }
-      };
+  error ({
+    Caml_builtin_exceptions.assert_failure,
+    --[[ tuple ]]{
+      "parmatch.ml",
+      917,
+      11
+    }
+  })
 end end
 
 function has_instance(_p) do
@@ -52031,7 +51794,7 @@ function has_instance(_p) do
               return false;
             end else if (match$1 ~= undefined) then do
               _p = match$1;
-              continue ;
+              ::continue:: ;
             end else do
               return true;
             end end  end end end end 
@@ -52047,12 +51810,12 @@ function has_instance(_p) do
               return true;
             end else do
               _p = match[1];
-              continue ;
+              ::continue:: ;
             end end end end end 
          if ___conditional___ = 1--[[ Tpat_alias ]]
          or ___conditional___ = 9--[[ Tpat_lazy ]] then do
             _p = match[0];
-            continue ;end end end 
+            ::continue:: ;end end end 
          do
         else do
           return true;
@@ -52069,7 +51832,7 @@ function has_instances(_param) do
     if (param) then do
       if (has_instance(param[0])) then do
         _param = param[1];
-        continue ;
+        ::continue:: ;
       end else do
         return false;
       end end 
@@ -52100,7 +51863,7 @@ function satisfiable(_pss, _qs) do
                   match[0],
                   qs[1]
                 };
-                continue ;end end end 
+                ::continue:: ;end end end 
              if ___conditional___ = 5--[[ Tpat_variant ]] then do
                 if (is_absent(match[0], match[2])) then do
                   return false;
@@ -52119,7 +51882,7 @@ function satisfiable(_pss, _qs) do
                     match[1],
                     qs$1
                   };
-                  continue ;
+                  ::continue:: ;
                 end end end end end 
              do end
             else do
@@ -52149,18 +51912,18 @@ function satisfiable(_pss, _qs) do
                 end else do
                   _qs = qs$2;
                   _pss = filter_extra(pss);
-                  continue ;
+                  ::continue:: ;
                 end end 
               end else do
                 _qs = qs$2;
                 _pss = filter_extra(pss);
-                continue ;
+                ::continue:: ;
               end end end end end 
            if ___conditional___ = 2 then do
               q0$1 = discr_pat(q, pss);
               _qs = Pervasives.$at(simple_match_args(q0$1, q), qs[1]);
               _pss = filter_one(q0$1, pss);
-              continue ;end end end 
+              ::continue:: ;end end end 
            do
           
         end
@@ -52189,14 +51952,14 @@ function orify_many(param) do
       return x;
     end end 
   end else do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "parmatch.ml",
-            989,
-            12
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "parmatch.ml",
+        989,
+        12
+      }
+    })
   end end 
 end end
 
@@ -52256,7 +52019,7 @@ function exhaust(ext, pss, n) do
                 return r;
               end else do
                 _param = param[1];
-                continue ;
+                ::continue:: ;
               end end 
             end else do
               return --[[ Rnone ]]0;
@@ -52265,19 +52028,18 @@ function exhaust(ext, pss, n) do
         end else do
           r$1 = exhaust(ext, filter_extra(pss), n - 1 | 0);
           if (r$1) then do
-            try do
+            xpcall(function() do
               return --[[ Rsome ]]{--[[ :: ]]{
                         build_other(ext, constrs),
                         r$1[0]
                       }};
-            end
-            catch (exn)do
+            end end,function(exn) return do
               if (exn == Empty) then do
                 return fatal_error("Parmatch.exhaust");
               end else do
-                throw exn;
+                error (exn)
               end end 
-            end
+            end end)
           end else do
             return --[[ Rnone ]]0;
           end end 
@@ -52349,7 +52111,7 @@ function exhaust_gadt(ext, pss, n) do
         end else do
           r = exhaust_gadt(ext, filter_extra(pss), n - 1 | 0);
           if (r) then do
-            try do
+            xpcall(function() do
               missing_trailing = build_other_gadt(ext, constrs);
               dug = combinations((function (head, tail) do
                       return --[[ :: ]]{
@@ -52362,14 +52124,13 @@ function exhaust_gadt(ext, pss, n) do
               end else do
                 return --[[ Rsome ]]{dug};
               end end 
-            end
-            catch (exn)do
+            end end,function(exn) return do
               if (exn == Empty) then do
                 return fatal_error("Parmatch.exhaust");
               end else do
-                throw exn;
+                error (exn)
               end end 
-            end
+            end end)
           end else do
             return before;
           end end 
@@ -52408,26 +52169,26 @@ function exhaust_gadt$1(ext, pss, n) do
       singletons = List.map((function (param) do
               if (param) then do
                 if (param[1]) then do
-                  throw {
-                        Caml_builtin_exceptions.assert_failure,
-                        --[[ tuple ]]{
-                          "parmatch.ml",
-                          1165,
-                          19
-                        }
-                      };
+                  error ({
+                    Caml_builtin_exceptions.assert_failure,
+                    --[[ tuple ]]{
+                      "parmatch.ml",
+                      1165,
+                      19
+                    }
+                  })
                 end
                  end 
                 return param[0];
               end else do
-                throw {
-                      Caml_builtin_exceptions.assert_failure,
-                      --[[ tuple ]]{
-                        "parmatch.ml",
-                        1165,
-                        19
-                      }
-                    };
+                error ({
+                  Caml_builtin_exceptions.assert_failure,
+                  --[[ tuple ]]{
+                    "parmatch.ml",
+                    1165,
+                    19
+                  }
+                })
               end end 
             end end), lst);
       return --[[ Rsome ]]{--[[ :: ]]{
@@ -52468,7 +52229,7 @@ function pressure_variants(_tdefs, _pss) do
           end else if (tdefs == undefined) then do
             _pss = filter_extra(pss);
             _tdefs = undefined;
-            continue ;
+            ::continue:: ;
           end else do
             full = full_match(true, true, constrs);
             ok = full and try_non_omega(constrs) or try_non_omega(filter_all(q0, mark_partial(pss)));
@@ -52489,7 +52250,7 @@ function pressure_variants(_tdefs, _pss) do
           end end  end 
         end else do
           _pss = filter_extra(pss);
-          continue ;
+          ::continue:: ;
         end end 
       end else do
         return true;
@@ -52516,7 +52277,7 @@ function unalias$1(_p) do
       return p;
     end else do
       _p = match[0];
-      continue ;
+      ::continue:: ;
     end end 
   end;
 end end
@@ -52533,14 +52294,14 @@ function is_var_column(rs) do
                     return false;
                   end end 
                 end else do
-                  throw {
-                        Caml_builtin_exceptions.assert_failure,
-                        --[[ tuple ]]{
-                          "parmatch.ml",
-                          1274,
-                          14
-                        }
-                      };
+                  error ({
+                    Caml_builtin_exceptions.assert_failure,
+                    --[[ tuple ]]{
+                      "parmatch.ml",
+                      1274,
+                      14
+                    }
+                  })
                 end end 
               end end), rs);
 end end
@@ -52550,20 +52311,20 @@ function or_args(_p) do
     p = _p;
     match = p.pat_desc;
     if (typeof match == "number") then do
-      throw {
-            Caml_builtin_exceptions.assert_failure,
-            --[[ tuple ]]{
-              "parmatch.ml",
-              1281,
-              23
-            }
-          };
+      error ({
+        Caml_builtin_exceptions.assert_failure,
+        --[[ tuple ]]{
+          "parmatch.ml",
+          1281,
+          23
+        }
+      })
     end else do
       local ___conditional___=(match.tag | 0);
       do
          if ___conditional___ = 1--[[ Tpat_alias ]] then do
             _p = match[0];
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 8--[[ Tpat_or ]] then do
             return --[[ tuple ]]{
                     match[0],
@@ -52571,14 +52332,14 @@ function or_args(_p) do
                   };end end end 
          do
         else do
-          throw {
-                Caml_builtin_exceptions.assert_failure,
-                --[[ tuple ]]{
-                  "parmatch.ml",
-                  1281,
-                  23
-                }
-              };
+          error ({
+            Caml_builtin_exceptions.assert_failure,
+            --[[ tuple ]]{
+              "parmatch.ml",
+              1281,
+              23
+            }
+          })
           end end
           
       end
@@ -52595,14 +52356,14 @@ function remove(r) do
             active: match[1]
           end;
   end else do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "parmatch.ml",
-            1286,
-            12
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "parmatch.ml",
+        1286,
+        12
+      }
+    })
   end end 
 end end
 
@@ -52618,14 +52379,14 @@ function push_no_or(r) do
             active: match[1]
           end;
   end else do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "parmatch.ml",
-            1293,
-            8
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "parmatch.ml",
+        1293,
+        8
+      }
+    })
   end end 
 end end
 
@@ -52641,14 +52402,14 @@ function push_or(r) do
             active: match[1]
           end;
   end else do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "parmatch.ml",
-            1297,
-            8
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "parmatch.ml",
+        1297,
+        8
+      }
+    })
   end end 
 end end
 
@@ -52684,7 +52445,7 @@ function filter_one$1(q, rs) do
                     end,
                     rem
                   };
-                  continue ;end end end 
+                  ::continue:: ;end end end 
                if ___conditional___ = 8--[[ Tpat_or ]] then do
                   ps = match[1];
                   _rs = --[[ :: ]]{
@@ -52708,7 +52469,7 @@ function filter_one$1(q, rs) do
                       rem
                     }
                   };
-                  continue ;end end end 
+                  ::continue:: ;end end end 
                do
               else do
                 end end
@@ -52727,17 +52488,17 @@ function filter_one$1(q, rs) do
                   };
           end else do
             _rs = rem;
-            continue ;
+            ::continue:: ;
           end end 
         end else do
-          throw {
-                Caml_builtin_exceptions.assert_failure,
-                --[[ tuple ]]{
-                  "parmatch.ml",
-                  1314,
-                  14
-                }
-              };
+          error ({
+            Caml_builtin_exceptions.assert_failure,
+            --[[ tuple ]]{
+              "parmatch.ml",
+              1314,
+              14
+            }
+          })
         end end 
       end else do
         return --[[ [] ]]0;
@@ -52796,14 +52557,14 @@ function extract_columns(pss, qs) do
                                 end end), param, param$1);
                   end end), i, rs[1]);
     end else do
-      throw {
-            Caml_builtin_exceptions.assert_failure,
-            --[[ tuple ]]{
-              "parmatch.ml",
-              1357,
-              8
-            }
-          };
+      error ({
+        Caml_builtin_exceptions.assert_failure,
+        --[[ tuple ]]{
+          "parmatch.ml",
+          1357,
+          8
+        }
+      })
     end end 
   end else do
     return List.map((function (param) do
@@ -52839,11 +52600,11 @@ function every_satisfiables(_pss, _qs) do
               if (match$1[0].pat_loc.loc_ghost and match$1[1].pat_loc.loc_ghost) then do
                 _qs = push_no_or(qs);
                 _pss = List.map(push_no_or, pss);
-                continue ;
+                ::continue:: ;
               end else do
                 _qs = push_or(qs);
                 _pss = List.map(push_or, pss);
-                continue ;
+                ::continue:: ;
               end end end end end 
            do end end
           else do
@@ -52862,16 +52623,16 @@ function every_satisfiables(_pss, _qs) do
               active: Pervasives.$at(simple_match_args(q0, q), match[1])
             end;
             _pss = filter_one$1(q0, pss);
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 2 then do
             if (is_var_column(pss)) then do
               _qs = remove(qs);
               _pss = List.map(remove, pss);
-              continue ;
+              ::continue:: ;
             end else do
               _qs = push_no_or(qs);
               _pss = List.map(push_no_or, pss);
-              continue ;
+              ::continue:: ;
             end end end end end 
          do
         
@@ -52887,14 +52648,14 @@ function every_satisfiables(_pss, _qs) do
                       match = qs.active;
                       if (match) then do
                         if (match[1]) then do
-                          throw {
-                                Caml_builtin_exceptions.assert_failure,
-                                --[[ tuple ]]{
-                                  "parmatch.ml",
-                                  1394,
-                                  23
-                                }
-                              };
+                          error ({
+                            Caml_builtin_exceptions.assert_failure,
+                            --[[ tuple ]]{
+                              "parmatch.ml",
+                              1394,
+                              23
+                            }
+                          })
                         end
                          end 
                         match$1 = or_args(match[0]);
@@ -52920,14 +52681,14 @@ function every_satisfiables(_pss, _qs) do
                           return r2;
                         end end 
                       end else do
-                        throw {
-                              Caml_builtin_exceptions.assert_failure,
-                              --[[ tuple ]]{
-                                "parmatch.ml",
-                                1394,
-                                23
-                              }
-                            };
+                        error ({
+                          Caml_builtin_exceptions.assert_failure,
+                          --[[ tuple ]]{
+                            "parmatch.ml",
+                            1394,
+                            23
+                          }
+                        })
                       end end 
                     end end), extract_columns(pss, qs), extract_elements(qs), --[[ Used ]]0);
       end else if (satisfiable(List.map(make_vector, pss), qs.no_ors)) then do
@@ -53025,7 +52786,7 @@ function le_pat(_p, _q) do
             return true;end end end 
          if ___conditional___ = 1--[[ Tpat_alias ]] then do
             _p = match[0];
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 2--[[ Tpat_constant ]] then do
             if (typeof match$1 ~= "number") then do
               local ___conditional___=(match$1.tag | 0);
@@ -53089,7 +52850,7 @@ function le_pat(_p, _q) do
                       if (match$3 ~= undefined and l1 == match$1[0]) then do
                         _q = match$3;
                         _p = match$2;
-                        continue ;
+                        ::continue:: ;
                       end else do
                         return false;
                       end end end end end 
@@ -53166,7 +52927,7 @@ function le_pat(_p, _q) do
                  if ___conditional___ = 9--[[ Tpat_lazy ]] then do
                     _q = match$1[0];
                     _p = match[0];
-                    continue ;end end end 
+                    ::continue:: ;end end end 
                  do end
                 else do
                   end end
@@ -53180,7 +52941,7 @@ function le_pat(_p, _q) do
     end end 
     if (exit == 2 and typeof match$1 ~= "number" and match$1.tag == --[[ Tpat_alias ]]1) then do
       _q = match$1[0];
-      continue ;
+      ::continue:: ;
     end
      end 
     return not satisfiable(--[[ :: ]]{
@@ -53204,7 +52965,7 @@ function le_pats(_ps, _qs) do
       if (le_pat(ps[0], qs[0])) then do
         _qs = qs[1];
         _ps = ps[1];
-        continue ;
+        ::continue:: ;
       end else do
         return false;
       end end 
@@ -53228,14 +52989,14 @@ function get_mins(le, ps) do
               end end
               end(p)), ps)) then do
           _param = ps;
-          continue ;
+          ::continue:: ;
         end else do
           _param = ps;
           _r = --[[ :: ]]{
             p,
             r
           };
-          continue ;
+          ::continue:: ;
         end end 
       end else do
         return r;
@@ -53266,7 +53027,7 @@ function initial_matrix(_param) do
       match = param[0];
       if (match.c_guard ~= undefined) then do
         _param = param[1];
-        continue ;
+        ::continue:: ;
       end else do
         return --[[ :: ]]{
                 --[[ :: ]]{
@@ -53299,7 +53060,7 @@ function initial_all(no_guard, param) do
             initial_all(no_guard and match.c_guard == undefined, param[1])
           };
   end else if (no_guard) then do
-    throw NoGuard;
+    error (NoGuard)
   end else do
     return --[[ [] ]]0;
   end end  end 
@@ -53349,7 +53110,7 @@ function do_filter_one(q, pss) do
                     },
                     param[1]
                   };
-                  continue ;end end end 
+                  ::continue:: ;end end end 
                if ___conditional___ = 8--[[ Tpat_or ]] then do
                   loc = match[1];
                   ps = match$1[1];
@@ -53372,7 +53133,7 @@ function do_filter_one(q, pss) do
                       param[1]
                     }
                   };
-                  continue ;end end end 
+                  ::continue:: ;end end end 
                do
               else do
                 end end
@@ -53391,7 +53152,7 @@ function do_filter_one(q, pss) do
                   };
           end else do
             _param = pss;
-            continue ;
+            ::continue:: ;
           end end 
         end else do
           return --[[ [] ]]0;
@@ -53415,7 +53176,7 @@ function do_match(_pss, _qs) do
       if (typeof match == "number") then do
         _qs = qs$1;
         _pss = do_filter_var(pss);
-        continue ;
+        ::continue:: ;
       end else if (match.tag == --[[ Tpat_or ]]8) then do
         r = do_match(pss, --[[ :: ]]{
               match[0],
@@ -53428,13 +53189,13 @@ function do_match(_pss, _qs) do
             match[1],
             qs$1
           };
-          continue ;
+          ::continue:: ;
         end end 
       end else do
         q0 = normalize_pat(q);
         _qs = Pervasives.$at(simple_match_args(q0, q), qs$1);
         _pss = do_filter_one(q0, pss);
-        continue ;
+        ::continue:: ;
       end end  end 
     end else if (pss) then do
       match$1 = pss[0];
@@ -53450,20 +53211,19 @@ function do_match(_pss, _qs) do
 end end
 
 function check_partial_all(v, casel) do
-  try do
+  xpcall(function() do
     pss = initial_all(true, casel);
     return do_match(pss, --[[ :: ]]{
                 v,
                 --[[ [] ]]0
               });
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == NoGuard) then do
       return ;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 function get_first(f, _param) do
@@ -53475,7 +53235,7 @@ function get_first(f, _param) do
         return x;
       end else do
         _param = param[1];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return ;
@@ -53542,7 +53302,7 @@ function conv(typed) do
         do
            if ___conditional___ = 1--[[ Tpat_alias ]] then do
               _pat = match[0];
-              continue ;end end end 
+              ::continue:: ;end end end 
            if ___conditional___ = 3--[[ Tpat_tuple ]] then do
               results = select(List.map(loop, match[0]));
               return List.map((function (lst) do
@@ -53567,14 +53327,14 @@ function conv(typed) do
                             if (lst) then do
                               arg = lst[1] and mk$1(undefined, undefined, --[[ Ppat_tuple ]]Block.__(4, {lst})) or lst[0];
                             end else do
-                              throw {
-                                    Caml_builtin_exceptions.assert_failure,
-                                    --[[ tuple ]]{
-                                      "parmatch.ml",
-                                      1729,
-                                      28
-                                    }
-                                  };
+                              error ({
+                                Caml_builtin_exceptions.assert_failure,
+                                --[[ tuple ]]{
+                                  "parmatch.ml",
+                                  1729,
+                                  28
+                                }
+                              })
                             end end 
                             return mk$1(undefined, undefined, --[[ Ppat_construct ]]Block.__(5, {
                                           lid,
@@ -53698,7 +53458,7 @@ function do_check_partial(pred, exhaust, loc, casel, pss) do
             errmsg = "_\nMatching over values of extensible variant types must include\na wild card pattern in order to be exhaustive.";
           end end 
           if (exit == 1) then do
-            try do
+            xpcall(function() do
               buf = __Buffer.create(16);
               fmt = Format.formatter_of_buffer(buf);
               top_pretty(fmt, v$1);
@@ -53708,10 +53468,9 @@ function do_check_partial(pred, exhaust, loc, casel, pss) do
               end
                end 
               errmsg = __Buffer.contents(buf);
-            end
-            catch (exn)do
+            end end,function(exn) return do
               errmsg = "";
-            end
+            end end)
           end
            end 
           prerr_warning(loc, --[[ Partial_match ]]Block.__(3, {errmsg}));
@@ -53787,7 +53546,7 @@ function collect_paths_from_pat(_r, _p) do
             match$1 = match[1];
             if (match$1 ~= undefined) then do
               _p = match$1;
-              continue ;
+              ::continue:: ;
             end else do
               return r;
             end end end end end 
@@ -53801,11 +53560,11 @@ function collect_paths_from_pat(_r, _p) do
          if ___conditional___ = 8--[[ Tpat_or ]] then do
             _p = match[1];
             _r = collect_paths_from_pat(r, match[0]);
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 1--[[ Tpat_alias ]]
          or ___conditional___ = 9--[[ Tpat_lazy ]] then do
             _p = match[0];
-            continue ;end end end 
+            ::continue:: ;end end end 
          do
         else do
           return r;
@@ -54121,14 +53880,14 @@ function warning_leave_scope(param) do
     warning_scope.contents = match[1];
     return --[[ () ]]0;
   end else do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "typetexp.ml",
-            146,
-            10
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "typetexp.ml",
+        146,
+        10
+      }
+    })
   end end 
 end end
 
@@ -54136,10 +53895,9 @@ function warning_attribute(attrs) do
   __process = function (loc, txt, errflag, payload) do
     match = string_of_payload(payload);
     if (match ~= undefined) then do
-      try do
+      xpcall(function() do
         return parse_options(errflag, match);
-      end
-      catch (raw_exn)do
+      end end,function(raw_exn) return do
         exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
         if (exn[0] == Arg.Bad) then do
           return prerr_warning(loc, --[[ Attribute_payload ]]Block.__(30, {
@@ -54147,9 +53905,9 @@ function warning_attribute(attrs) do
                         "Ill-formed list of warnings"
                       }));
         end else do
-          throw exn;
+          error (exn)
         end end 
-      end
+      end end)
     end else do
       return prerr_warning(loc, --[[ Attribute_payload ]]Block.__(30, {
                     txt,
@@ -54189,28 +53947,27 @@ end end
 
 function narrow_unbound_lid_error(env, loc, lid, make_error) do
   check_module = function (mlid) do
-    try do
+    xpcall(function() do
       lookup_module(true, mlid, env);
       return --[[ () ]]0;
-    end
-    catch (exn)do
+    end end,function(exn) return do
       if (exn == Caml_builtin_exceptions.not_found) then do
         return narrow_unbound_lid_error(env, loc, mlid, (function (lid) do
                       return --[[ Unbound_module ]]Block.__(20, {lid});
                     end end));
       end else do
         if (exn == Recmodule) then do
-          throw {
-                __Error$6,
-                loc,
-                env,
-                --[[ Illegal_reference_to_recursive_module ]]1
-              };
+          error ({
+            __Error$6,
+            loc,
+            env,
+            --[[ Illegal_reference_to_recursive_module ]]1
+          })
         end
          end 
-        throw exn;
+        error (exn)
       end end 
-    end
+    end end)
   end end;
   local ___conditional___=(lid.tag | 0);
   do
@@ -54221,36 +53978,36 @@ function narrow_unbound_lid_error(env, loc, lid, make_error) do
         md = find_module(false, lookup_module(true, mlid, env), env);
         match = scrape_alias(env, undefined, md.md_type);
         if (match.tag == --[[ Mty_functor ]]2) then do
-          throw {
-                __Error$6,
-                loc,
-                env,
-                --[[ Access_functor_as_structure ]]Block.__(25, {mlid})
-              };
+          error ({
+            __Error$6,
+            loc,
+            env,
+            --[[ Access_functor_as_structure ]]Block.__(25, {mlid})
+          })
         end
          end end else 
      if ___conditional___ = 2--[[ Lapply ]] then do
         check_module(lid[0]);
         check_module(lid[1]);
-        throw {
-              __Error$6,
-              loc,
-              env,
-              --[[ Ill_typed_functor_application ]]Block.__(24, {lid})
-            };end end end 
+        error ({
+          __Error$6,
+          loc,
+          env,
+          --[[ Ill_typed_functor_application ]]Block.__(24, {lid})
+        })end end end 
      do end
     
   end
-  throw {
-        __Error$6,
-        loc,
-        env,
-        Curry._1(make_error, lid)
-      };
+  error ({
+    __Error$6,
+    loc,
+    env,
+    Curry._1(make_error, lid)
+  })
 end end
 
 function find_component(lookup, make_error, env, loc, lid) do
-  try do
+  xpcall(function() do
     local ___conditional___=(lid.tag | 0);
     do
        if ___conditional___ = 1--[[ Ldot ]] then do
@@ -54275,23 +54032,22 @@ function find_component(lookup, make_error, env, loc, lid) do
        do
       
     end
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Caml_builtin_exceptions.not_found) then do
       return narrow_unbound_lid_error(env, loc, lid, make_error);
     end else do
       if (exn == Recmodule) then do
-        throw {
-              __Error$6,
-              loc,
-              env,
-              --[[ Illegal_reference_to_recursive_module ]]1
-            };
+        error ({
+          __Error$6,
+          loc,
+          env,
+          --[[ Illegal_reference_to_recursive_module ]]1
+        })
       end
        end 
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 function find_type(env, loc, lid) do
@@ -54389,27 +54145,27 @@ end end
 
 transl_modtype_longident = do
   contents: (function (param) do
-      throw {
-            Caml_builtin_exceptions.assert_failure,
-            --[[ tuple ]]{
-              "typetexp.ml",
-              293,
-              45
-            }
-          };
+      error ({
+        Caml_builtin_exceptions.assert_failure,
+        --[[ tuple ]]{
+          "typetexp.ml",
+          293,
+          45
+        }
+      })
     end end)
 end;
 
 transl_modtype = do
   contents: (function (param) do
-      throw {
-            Caml_builtin_exceptions.assert_failure,
-            --[[ tuple ]]{
-              "typetexp.ml",
-              294,
-              35
-            }
-          };
+      error ({
+        Caml_builtin_exceptions.assert_failure,
+        --[[ tuple ]]{
+          "typetexp.ml",
+          294,
+          35
+        }
+      })
     end end)
 end;
 
@@ -54418,12 +54174,12 @@ function create_package_mty(fake, loc, env, param) do
           s2 = param$1[0];
           s1 = param[0];
           if (Caml_obj.caml_equal(s1.txt, s2.txt)) then do
-            throw {
-                  __Error$6,
-                  loc,
-                  env,
-                  --[[ Multiple_constraints_on_type ]]Block.__(15, {s1.txt})
-                };
+            error ({
+              __Error$6,
+              loc,
+              env,
+              --[[ Multiple_constraints_on_type ]]Block.__(15, {s1.txt})
+            })
           end
            end 
           return Caml_obj.caml_compare(s1.txt, s2.txt);
@@ -54534,39 +54290,38 @@ function transl_type_param(env, styp) do
             ctyp_attributes: styp.ptyp_attributes
           end;
   end else if (match.tag) then do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "typetexp.ml",
-            379,
-            9
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "typetexp.ml",
+        379,
+        9
+      }
+    })
   end else do
     name = match[0];
     ty$1;
-    try do
+    xpcall(function() do
       if (name ~= "" and Caml_string.get(name, 0) == --[[ "_" ]]95) then do
-        throw {
-              __Error$6,
-              loc,
-              empty,
-              --[[ Invalid_variable_name ]]Block.__(13, {"'" .. name})
-            };
+        error ({
+          __Error$6,
+          loc,
+          empty,
+          --[[ Invalid_variable_name ]]Block.__(13, {"'" .. name})
+        })
       end
        end 
       find$2(name, type_variables.contents);
-      throw Already_bound;
-    end
-    catch (exn)do
+      error (Already_bound)
+    end end,function(exn) return do
       if (exn == Caml_builtin_exceptions.not_found) then do
         v = new_global_var(validate_name(name), --[[ () ]]0);
         type_variables.contents = add$5(name, v, type_variables.contents);
         ty$1 = v;
       end else do
-        throw exn;
+        error (exn)
       end end 
-    end
+    end end)
     return do
             ctyp_desc: --[[ Ttyp_var ]]Block.__(0, {name}),
             ctyp_type: ty$1,
@@ -54623,12 +54378,12 @@ function transl_type(env, policy, styp) do
       ty = new_pre_univar(undefined, --[[ () ]]0);
     end else do
       if (policy == --[[ Fixed ]]0) then do
-        throw {
-              __Error$6,
-              styp.ptyp_loc,
-              env,
-              --[[ Unbound_type_variable ]]Block.__(0, {"_"})
-            };
+        error ({
+          __Error$6,
+          styp.ptyp_loc,
+          env,
+          --[[ Unbound_type_variable ]]Block.__(0, {"_"})
+        })
       end
        end 
       ty = newvar(validate_name(undefined), --[[ () ]]0);
@@ -54640,24 +54395,22 @@ function transl_type(env, policy, styp) do
        if ___conditional___ = 0--[[ Ptyp_var ]] then do
           name = match[0];
           if (name ~= "" and Caml_string.get(name, 0) == --[[ "_" ]]95) then do
-            throw {
-                  __Error$6,
-                  styp.ptyp_loc,
-                  env,
-                  --[[ Invalid_variable_name ]]Block.__(13, {"'" .. name})
-                };
+            error ({
+              __Error$6,
+              styp.ptyp_loc,
+              env,
+              --[[ Invalid_variable_name ]]Block.__(13, {"'" .. name})
+            })
           end
            end 
           ty$1;
-          try do
+          xpcall(function() do
             ty$1 = instance(undefined, env, List.assoc(name, univars.contents));
-          end
-          catch (exn)do
+          end end,function(exn) return do
             if (exn == Caml_builtin_exceptions.not_found) then do
-              try do
+              xpcall(function() do
                 ty$1 = instance(undefined, env, find$2(name, used_variables.contents)[0]);
-              end
-              catch (exn$1)do
+              end end,function(exn$1) return do
                 if (exn$1 == Caml_builtin_exceptions.not_found) then do
                   v = policy == --[[ Univars ]]2 and new_pre_univar(name, --[[ () ]]0) or newvar(validate_name(name), --[[ () ]]0);
                   used_variables.contents = add$5(name, --[[ tuple ]]{
@@ -54666,13 +54419,13 @@ function transl_type(env, policy, styp) do
                       }, used_variables.contents);
                   ty$1 = v;
                 end else do
-                  throw exn$1;
+                  error (exn$1)
                 end end 
-              end
+              end end)
             end else do
-              throw exn;
+              error (exn)
             end end 
-          end
+          end end)
           return ctyp(--[[ Ttyp_var ]]Block.__(0, {name}), ty$1);end end end 
        if ___conditional___ = 1--[[ Ptyp_arrow ]] then do
           l = match[0];
@@ -54719,16 +54472,16 @@ function transl_type(env, policy, styp) do
             stl$2 = stl$1;
           end end 
           if (List.length(stl$2) ~= decl.type_arity) then do
-            throw {
-                  __Error$6,
-                  styp.ptyp_loc,
-                  env,
-                  --[[ Type_arity_mismatch ]]Block.__(3, {
-                      lid.txt,
-                      decl.type_arity,
-                      List.length(stl$2)
-                    })
-                };
+            error ({
+              __Error$6,
+              styp.ptyp_loc,
+              env,
+              --[[ Type_arity_mismatch ]]Block.__(3, {
+                  lid.txt,
+                  decl.type_arity,
+                  List.length(stl$2)
+                })
+            })
           end
            end 
           args = List.map((function (param) do
@@ -54738,42 +54491,40 @@ function transl_type(env, policy, styp) do
           match$2 = decl.type_manifest;
           unify_param = match$2 ~= undefined and repr(match$2).level ~= 100000000 and unify$2 or unify_var;
           List.iter2((function (param, ty$prime) do
-                  try do
+                  xpcall(function() do
                     return Curry._3(unify_param, env, ty$prime, param[1].ctyp_type);
-                  end
-                  catch (raw_exn)do
+                  end end,function(raw_exn) return do
                     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
                     if (exn[0] == Unify) then do
-                      throw {
-                            __Error$6,
-                            param[0].ptyp_loc,
-                            env,
-                            --[[ Type_mismatch ]]Block.__(6, {swap_list(exn[1])})
-                          };
+                      error ({
+                        __Error$6,
+                        param[0].ptyp_loc,
+                        env,
+                        --[[ Type_mismatch ]]Block.__(6, {swap_list(exn[1])})
+                      })
                     end
                      end 
-                    throw exn;
-                  end
+                    error (exn)
+                  end end)
                 end end), List.combine(stl$2, args), params);
           constr = newconstr(path, List.map((function (ctyp) do
                       return ctyp.ctyp_type;
                     end end), args));
-          try do
+          xpcall(function() do
             enforce_constraints(env, constr);
-          end
-          catch (raw_exn)do
+          end end,function(raw_exn) return do
             exn$2 = Caml_js_exceptions.internalToOCamlException(raw_exn);
             if (exn$2[0] == Unify) then do
-              throw {
-                    __Error$6,
-                    styp.ptyp_loc,
-                    env,
-                    --[[ Type_mismatch ]]Block.__(6, {exn$2[1]})
-                  };
+              error ({
+                __Error$6,
+                styp.ptyp_loc,
+                env,
+                --[[ Type_mismatch ]]Block.__(6, {exn$2[1]})
+              })
             end
              end 
-            throw exn$2;
-          end
+            error (exn$2)
+          end end)
           return ctyp(--[[ Ttyp_constr ]]Block.__(3, {
                         path,
                         lid,
@@ -54797,7 +54548,7 @@ function transl_type(env, policy, styp) do
           stl$3 = match[1];
           lid$1 = match[0];
           match$3;
-          try do
+          xpcall(function() do
             match$4 = lookup_type$1(lid$1.txt, env);
             decl$1 = match$4[1];
             check = function (_decl) do
@@ -54807,28 +54558,28 @@ function transl_type(env, policy, styp) do
                 if (match ~= undefined) then do
                   match$1 = repr(match).desc;
                   if (typeof match$1 == "number") then do
-                    throw Caml_builtin_exceptions.not_found;
+                    error (Caml_builtin_exceptions.not_found)
                   end else do
                     local ___conditional___=(match$1.tag | 0);
                     do
                        if ___conditional___ = 3--[[ Tconstr ]] then do
                           _decl = find_type_full(match$1[0], env)[0];
-                          continue ;end end end 
+                          ::continue:: ;end end end 
                        if ___conditional___ = 8--[[ Tvariant ]] then do
                           if (static_row(match$1[0])) then do
                             return --[[ () ]]0;
                           end else do
-                            throw Caml_builtin_exceptions.not_found;
+                            error (Caml_builtin_exceptions.not_found)
                           end end end end end 
                        do
                       else do
-                        throw Caml_builtin_exceptions.not_found;
+                        error (Caml_builtin_exceptions.not_found)
                         end end
                         
                     end
                   end end 
                 end else do
-                  throw Caml_builtin_exceptions.not_found;
+                  error (Caml_builtin_exceptions.not_found)
                 end end 
               end;
             end end;
@@ -54839,10 +54590,9 @@ function transl_type(env, policy, styp) do
               decl$1,
               true
             };
-          end
-          catch (exn$3)do
+          end end,function(exn$3) return do
             if (exn$3 == Caml_builtin_exceptions.not_found) then do
-              try do
+              xpcall(function() do
                 match$5 = lid$1.txt;
                 lid2;
                 local ___conditional___=(match$5.tag | 0);
@@ -54865,39 +54615,38 @@ function transl_type(env, policy, styp) do
                   match$6[1],
                   false
                 };
-              end
-              catch (exn$4)do
+              end end,function(exn$4) return do
                 if (exn$4 == Caml_builtin_exceptions.not_found) then do
                   find_class$1(env, styp.ptyp_loc, lid$1.txt);
-                  throw {
-                        Caml_builtin_exceptions.assert_failure,
-                        --[[ tuple ]]{
-                          "typetexp.ml",
-                          505,
-                          57
-                        }
-                      };
+                  error ({
+                    Caml_builtin_exceptions.assert_failure,
+                    --[[ tuple ]]{
+                      "typetexp.ml",
+                      505,
+                      57
+                    }
+                  })
                 end else do
-                  throw exn$4;
+                  error (exn$4)
                 end end 
-              end
+              end end)
             end else do
-              throw exn$3;
+              error (exn$3)
             end end 
-          end
+          end end)
           decl$2 = match$3[1];
           path$1 = match$3[0];
           if (List.length(stl$3) ~= decl$2.type_arity) then do
-            throw {
-                  __Error$6,
-                  styp.ptyp_loc,
-                  env,
-                  --[[ Type_arity_mismatch ]]Block.__(3, {
-                      lid$1.txt,
-                      decl$2.type_arity,
-                      List.length(stl$3)
-                    })
-                };
+            error ({
+              __Error$6,
+              styp.ptyp_loc,
+              env,
+              --[[ Type_arity_mismatch ]]Block.__(3, {
+                  lid$1.txt,
+                  decl$2.type_arity,
+                  List.length(stl$3)
+                })
+            })
           end
            end 
           args$1 = List.map((function (param) do
@@ -54905,54 +54654,52 @@ function transl_type(env, policy, styp) do
                 end end), stl$3);
           params$1 = instance_list(empty, decl$2.type_params);
           List.iter2((function (param, ty$prime) do
-                  try do
+                  xpcall(function() do
                     return unify_var(env, ty$prime, param[1].ctyp_type);
-                  end
-                  catch (raw_exn)do
+                  end end,function(raw_exn) return do
                     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
                     if (exn[0] == Unify) then do
-                      throw {
-                            __Error$6,
-                            param[0].ptyp_loc,
-                            env,
-                            --[[ Type_mismatch ]]Block.__(6, {swap_list(exn[1])})
-                          };
+                      error ({
+                        __Error$6,
+                        param[0].ptyp_loc,
+                        env,
+                        --[[ Type_mismatch ]]Block.__(6, {swap_list(exn[1])})
+                      })
                     end
                      end 
-                    throw exn;
-                  end
+                    error (exn)
+                  end end)
                 end end), List.combine(stl$3, args$1), params$1);
           ty_args = List.map((function (ctyp) do
                   return ctyp.ctyp_type;
                 end end), args$1);
           ty$5;
-          try do
+          xpcall(function() do
             ty$5 = expand_head(env, newconstr(path$1, ty_args));
-          end
-          catch (raw_exn$1)do
+          end end,function(raw_exn$1) return do
             exn$5 = Caml_js_exceptions.internalToOCamlException(raw_exn$1);
             if (exn$5[0] == Unify) then do
-              throw {
-                    __Error$6,
-                    styp.ptyp_loc,
-                    env,
-                    --[[ Type_mismatch ]]Block.__(6, {exn$5[1]})
-                  };
+              error ({
+                __Error$6,
+                styp.ptyp_loc,
+                env,
+                --[[ Type_mismatch ]]Block.__(6, {exn$5[1]})
+              })
             end
              end 
-            throw exn$5;
-          end
+            error (exn$5)
+          end end)
           match$7 = ty$5.desc;
           ty$6;
           if (typeof match$7 == "number") then do
-            throw {
-                  Caml_builtin_exceptions.assert_failure,
-                  --[[ tuple ]]{
-                    "typetexp.ml",
-                    553,
-                    10
-                  }
-                };
+            error ({
+              Caml_builtin_exceptions.assert_failure,
+              --[[ tuple ]]{
+                "typetexp.ml",
+                553,
+                10
+              }
+            })
           end else do
             local ___conditional___=(match$7.tag | 0);
             do
@@ -55034,14 +54781,14 @@ function transl_type(env, policy, styp) do
                   ty$6 = newty2(current_level.contents, --[[ Tvariant ]]Block.__(8, {row$2}));end else 
                do end end end
               else do
-                throw {
-                      Caml_builtin_exceptions.assert_failure,
-                      --[[ tuple ]]{
-                        "typetexp.ml",
-                        553,
-                        10
-                      }
-                    };
+                error ({
+                  Caml_builtin_exceptions.assert_failure,
+                  --[[ tuple ]]{
+                    "typetexp.ml",
+                    553,
+                    10
+                  }
+                })
                 end end
                 
             end
@@ -55055,39 +54802,36 @@ function transl_type(env, policy, styp) do
           alias = match[1];
           st = match[0];
           cty;
-          try do
+          xpcall(function() do
             t$1;
-            try do
+            xpcall(function() do
               t$1 = List.assoc(alias, univars.contents);
-            end
-            catch (exn$6)do
+            end end,function(exn$6) return do
               if (exn$6 == Caml_builtin_exceptions.not_found) then do
                 t$1 = instance(undefined, env, find$2(alias, used_variables.contents)[0]);
               end else do
-                throw exn$6;
+                error (exn$6)
               end end 
-            end
+            end end)
             ty$7 = transl_type(env, policy, st);
-            try do
+            xpcall(function() do
               unify_var(env, t$1, ty$7.ctyp_type);
-            end
-            catch (raw_exn$2)do
+            end end,function(raw_exn$2) return do
               exn$7 = Caml_js_exceptions.internalToOCamlException(raw_exn$2);
               if (exn$7[0] == Unify) then do
                 trace = swap_list(exn$7[1]);
-                throw {
-                      __Error$6,
-                      styp.ptyp_loc,
-                      env,
-                      --[[ Alias_type_mismatch ]]Block.__(7, {trace})
-                    };
+                error ({
+                  __Error$6,
+                  styp.ptyp_loc,
+                  env,
+                  --[[ Alias_type_mismatch ]]Block.__(7, {trace})
+                })
               end else do
-                throw exn$7;
+                error (exn$7)
               end end 
-            end
+            end end)
             cty = ty$7;
-          end
-          catch (exn$8)do
+          end end,function(exn$8) return do
             if (exn$8 == Caml_builtin_exceptions.not_found) then do
               if (principal.contents) then do
                 begin_def(--[[ () ]]0);
@@ -55099,23 +54843,22 @@ function transl_type(env, policy, styp) do
                     styp.ptyp_loc
                   }, used_variables.contents);
               ty$8 = transl_type(env, policy, st);
-              try do
+              xpcall(function() do
                 unify_var(env, t$2, ty$8.ctyp_type);
-              end
-              catch (raw_exn$3)do
+              end end,function(raw_exn$3) return do
                 exn$9 = Caml_js_exceptions.internalToOCamlException(raw_exn$3);
                 if (exn$9[0] == Unify) then do
                   trace$1 = swap_list(exn$9[1]);
-                  throw {
-                        __Error$6,
-                        styp.ptyp_loc,
-                        env,
-                        --[[ Alias_type_mismatch ]]Block.__(7, {trace$1})
-                      };
+                  error ({
+                    __Error$6,
+                    styp.ptyp_loc,
+                    env,
+                    --[[ Alias_type_mismatch ]]Block.__(7, {trace$1})
+                  })
                 end else do
-                  throw exn$9;
+                  error (exn$9)
                 end end 
-              end
+              end end)
               if (principal.contents) then do
                 end_def(--[[ () ]]0);
                 generalize_structure$1(current_level.contents, t$2);
@@ -55154,9 +54897,9 @@ function transl_type(env, policy, styp) do
                 ctyp_attributes: ty$8.ctyp_attributes
               end;
             end else do
-              throw exn$8;
+              error (exn$8)
             end end 
-          end
+          end end)
           return ctyp(--[[ Ttyp_alias ]]Block.__(6, {
                         cty,
                         alias
@@ -55187,19 +54930,19 @@ function transl_type(env, policy, styp) do
           hfields = Hashtbl.create(undefined, 17);
           add_typed_field = function (loc, l, f) do
             h = hash_variant(l);
-            try do
+            xpcall(function() do
               match = Hashtbl.find(hfields, h);
               l$prime = match[0];
               if (l ~= l$prime) then do
-                throw {
-                      __Error$6,
-                      styp.ptyp_loc,
-                      env,
-                      --[[ Variant_tags ]]Block.__(12, {
-                          l,
-                          l$prime
-                        })
-                    };
+                error ({
+                  __Error$6,
+                  styp.ptyp_loc,
+                  env,
+                  --[[ Variant_tags ]]Block.__(12, {
+                      l,
+                      l$prime
+                    })
+                })
               end
                end 
               ty = mkfield(l, f);
@@ -55213,37 +54956,35 @@ function transl_type(env, policy, styp) do
                     })) then do
                 return --[[ () ]]0;
               end else do
-                try do
+                xpcall(function() do
                   return unify$2(env, ty, ty$prime);
-                end
-                catch (raw_exn)do
+                end end,function(raw_exn) return do
                   exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
                   if (exn[0] == Unify) then do
-                    throw {
-                          __Error$6,
-                          loc,
-                          env,
-                          --[[ Constructor_mismatch ]]Block.__(10, {
-                              ty,
-                              ty$prime
-                            })
-                        };
+                    error ({
+                      __Error$6,
+                      loc,
+                      env,
+                      --[[ Constructor_mismatch ]]Block.__(10, {
+                          ty,
+                          ty$prime
+                        })
+                    })
                   end
                    end 
-                  throw exn;
-                end
+                  error (exn)
+                end end)
               end end 
-            end
-            catch (exn$1)do
+            end end,function(exn$1) return do
               if (exn$1 == Caml_builtin_exceptions.not_found) then do
                 return Hashtbl.add(hfields, h, --[[ tuple ]]{
                             l,
                             f
                           });
               end else do
-                throw exn$1;
+                error (exn$1)
               end end 
-            end
+            end end)
           end end;
           add_field = function (param) do
             if (param.tag) then do
@@ -55257,19 +54998,18 @@ function transl_type(env, policy, styp) do
                   match$1[0],
                   match$1[1]
                 };
-              try do
+              xpcall(function() do
                 Hashtbl.iter((function (param, param$1) do
-                        throw Pervasives.Exit;
+                        error (Pervasives.Exit)
                       end end), hfields);
                 name$1.contents = nm;
-              end
-              catch (exn)do
+              end end,function(exn) return do
                 if (exn == Pervasives.Exit) then do
                   name$1.contents = undefined;
                 end else do
-                  throw exn;
+                  error (exn)
                 end end 
-              end
+              end end)
               match$2 = expand_head(env, cty.ctyp_type);
               match$3 = match$2.desc;
               fl;
@@ -55281,12 +55021,12 @@ function transl_type(env, policy, styp) do
                 do
                    if ___conditional___ = 0--[[ Tvar ]] then do
                       if (nm ~= undefined) then do
-                        throw {
-                              __Error$6,
-                              sty.ptyp_loc,
-                              env,
-                              --[[ Unbound_type_constructor_2 ]]Block.__(2, {nm[0]})
-                            };
+                        error ({
+                          __Error$6,
+                          sty.ptyp_loc,
+                          env,
+                          --[[ Unbound_type_constructor_2 ]]Block.__(2, {nm[0]})
+                        })
                       end
                        end 
                       exit = 1;end else 
@@ -55305,12 +55045,12 @@ function transl_type(env, policy, styp) do
                 end
               end end 
               if (exit == 1) then do
-                throw {
-                      __Error$6,
-                      sty.ptyp_loc,
-                      env,
-                      --[[ Not_a_variant ]]Block.__(11, {ty})
-                    };
+                error ({
+                  __Error$6,
+                  sty.ptyp_loc,
+                  env,
+                  --[[ Not_a_variant ]]Block.__(11, {ty})
+                })
               end
                end 
               List.iter((function (param) do
@@ -55319,23 +55059,23 @@ function transl_type(env, policy, styp) do
                       f$1;
                       if (present ~= undefined and not List.mem(l, present)) then do
                         if (typeof f == "number") then do
-                          throw {
-                                Caml_builtin_exceptions.assert_failure,
-                                --[[ tuple ]]{
-                                  "typetexp.ml",
-                                  666,
-                                  24
-                                }
-                              };
+                          error ({
+                            Caml_builtin_exceptions.assert_failure,
+                            --[[ tuple ]]{
+                              "typetexp.ml",
+                              666,
+                              24
+                            }
+                          })
                         end else if (f.tag) then do
-                          throw {
-                                Caml_builtin_exceptions.assert_failure,
-                                --[[ tuple ]]{
-                                  "typetexp.ml",
-                                  666,
-                                  24
-                                }
-                              };
+                          error ({
+                            Caml_builtin_exceptions.assert_failure,
+                            --[[ tuple ]]{
+                              "typetexp.ml",
+                              666,
+                              24
+                            }
+                          })
                         end else do
                           match = f[0];
                           f$1 = match ~= undefined and --[[ Reither ]]Block.__(1, {
@@ -55390,12 +55130,12 @@ function transl_type(env, policy, styp) do
               end end 
               if (exit$1 == 1) then do
                 if (List.length(stl) > 1 or c and stl ~= --[[ [] ]]0) then do
-                  throw {
-                        __Error$6,
-                        styp.ptyp_loc,
-                        env,
-                        --[[ Present_has_conjunction ]]Block.__(8, {l})
-                      };
+                  error ({
+                    __Error$6,
+                    styp.ptyp_loc,
+                    env,
+                    --[[ Present_has_conjunction ]]Block.__(8, {l})
+                  })
                 end
                  end 
                 f = tl and --[[ Rpresent ]]Block.__(0, {tl[0].ctyp_type}) or --[[ Rpresent ]]Block.__(0, {undefined});
@@ -55422,12 +55162,12 @@ function transl_type(env, policy, styp) do
                     if (List.mem_assoc(l, fields$2)) then do
                       return 0;
                     end else do
-                      throw {
-                            __Error$6,
-                            styp.ptyp_loc,
-                            env,
-                            --[[ Present_has_no_type ]]Block.__(9, {l})
-                          };
+                      error ({
+                        __Error$6,
+                        styp.ptyp_loc,
+                        env,
+                        --[[ Present_has_no_type ]]Block.__(9, {l})
+                      })
                     end end 
                   end end), present);
           end
@@ -55498,15 +55238,15 @@ function transl_type(env, policy, styp) do
                             };
                     end
                      end 
-                    throw {
-                          __Error$6,
-                          styp.ptyp_loc,
-                          env,
-                          --[[ Cannot_quantify ]]Block.__(14, {
-                              param[0],
-                              v
-                            })
-                        };
+                    error ({
+                      __Error$6,
+                      styp.ptyp_loc,
+                      env,
+                      --[[ Cannot_quantify ]]Block.__(14, {
+                          param[0],
+                          v
+                        })
+                    })
                   end else do
                     return tyl;
                   end end 
@@ -55557,10 +55297,10 @@ function transl_type(env, policy, styp) do
                           pack_txt: p
                         end}), ty$11);end end end 
        if ___conditional___ = 10--[[ Ptyp_extension ]] then do
-          throw {
-                Error_forward,
-                error_of_extension(match[0])
-              };end end end 
+          error ({
+            Error_forward,
+            error_of_extension(match[0])
+          })end end end 
        do
       
     end
@@ -55576,12 +55316,12 @@ function transl_fields(loc, env, policy, seen, o, param) do
     match = param[0];
     s = match[0];
     if (List.mem(s, seen)) then do
-      throw {
-            __Error$6,
-            loc,
-            env,
-            --[[ Repeated_method_label ]]Block.__(16, {s})
-          };
+      error ({
+        __Error$6,
+        loc,
+        env,
+        --[[ Repeated_method_label ]]Block.__(16, {s})
+      })
     end
      end 
     ty2 = transl_fields(loc, env, policy, --[[ :: ]]{
@@ -55657,16 +55397,15 @@ function globalize_used_variables(env, fixed) do
           v = new_global_var(validate_name(undefined), --[[ () ]]0);
           snap = snapshot(--[[ () ]]0);
           tmp;
-          try do
+          xpcall(function() do
             unify$2(env, v, ty);
             tmp = true;
-          end
-          catch (exn)do
+          end end,function(exn) return do
             backtrack(snap);
             tmp = false;
-          end
+          end end)
           if (tmp) then do
-            try do
+            xpcall(function() do
               r.contents = --[[ :: ]]{
                 --[[ tuple ]]{
                   loc,
@@ -55676,16 +55415,15 @@ function globalize_used_variables(env, fixed) do
                 r.contents
               };
               return --[[ () ]]0;
-            end
-            catch (exn$1)do
+            end end,function(exn$1) return do
               if (exn$1 == Caml_builtin_exceptions.not_found) then do
                 if (fixed and is_Tvar(repr(ty))) then do
-                  throw {
-                        __Error$6,
-                        loc,
-                        env,
-                        --[[ Unbound_type_variable ]]Block.__(0, {"'" .. name})
-                      };
+                  error ({
+                    __Error$6,
+                    loc,
+                    env,
+                    --[[ Unbound_type_variable ]]Block.__(0, {"'" .. name})
+                  })
                 end
                  end 
                 v2 = new_global_var(validate_name(undefined), --[[ () ]]0);
@@ -55700,9 +55438,9 @@ function globalize_used_variables(env, fixed) do
                 type_variables.contents = add$5(name, v2, type_variables.contents);
                 return --[[ () ]]0;
               end else do
-                throw exn$1;
+                error (exn$1)
               end end 
-            end
+            end end)
           end else do
             return 0;
           end end 
@@ -55710,22 +55448,21 @@ function globalize_used_variables(env, fixed) do
   used_variables.contents = --[[ Empty ]]0;
   return (function (param) do
       return List.iter((function (param) do
-                    try do
+                    xpcall(function() do
                       return unify$2(env, param[1], param[2]);
-                    end
-                    catch (raw_exn)do
+                    end end,function(raw_exn) return do
                       exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
                       if (exn[0] == Unify) then do
-                        throw {
-                              __Error$6,
-                              param[0],
-                              env,
-                              --[[ Type_mismatch ]]Block.__(6, {exn[1]})
-                            };
+                        error ({
+                          __Error$6,
+                          param[0],
+                          env,
+                          --[[ Type_mismatch ]]Block.__(6, {exn[1]})
+                        })
                       end
                        end 
-                      throw exn;
-                    end
+                      error (exn)
+                    end end)
                   end end), r.contents);
     end end);
 end end
@@ -56476,53 +56213,53 @@ Error_forward$1 = Caml_exceptions.create("Ocaml_typedtree_test.Typecore.Error_fo
 
 type_module = do
   contents: (function (env, md) do
-      throw {
-            Caml_builtin_exceptions.assert_failure,
-            --[[ tuple ]]{
-              "typecore.ml",
-              77,
-              22
-            }
-          };
+      error ({
+        Caml_builtin_exceptions.assert_failure,
+        --[[ tuple ]]{
+          "typecore.ml",
+          77,
+          22
+        }
+      })
     end end)
 end;
 
 type_open = do
   contents: (function (param) do
-      throw {
-            Caml_builtin_exceptions.assert_failure,
-            --[[ tuple ]]{
-              "typecore.ml",
-              83,
-              16
-            }
-          };
+      error ({
+        Caml_builtin_exceptions.assert_failure,
+        --[[ tuple ]]{
+          "typecore.ml",
+          83,
+          16
+        }
+      })
     end end)
 end;
 
 type_package = do
   contents: (function (param) do
-      throw {
-            Caml_builtin_exceptions.assert_failure,
-            --[[ tuple ]]{
-              "typecore.ml",
-              88,
-              16
-            }
-          };
+      error ({
+        Caml_builtin_exceptions.assert_failure,
+        --[[ tuple ]]{
+          "typecore.ml",
+          88,
+          16
+        }
+      })
     end end)
 end;
 
 type_object = do
   contents: (function (env, s) do
-      throw {
-            Caml_builtin_exceptions.assert_failure,
-            --[[ tuple ]]{
-              "typecore.ml",
-              92,
-              20
-            }
-          };
+      error ({
+        Caml_builtin_exceptions.assert_failure,
+        --[[ tuple ]]{
+          "typecore.ml",
+          92,
+          20
+        }
+      })
     end end)
 end;
 
@@ -56558,7 +56295,7 @@ function iter_expression(f, e) do
          if ___conditional___ = 4--[[ Pexp_fun ]] then do
             may(expr, match[1]);
             _e = match[3];
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 5--[[ Pexp_apply ]] then do
             expr(match[0]);
             return List.iter((function (param) do
@@ -56577,7 +56314,7 @@ function iter_expression(f, e) do
          if ___conditional___ = 13--[[ Pexp_setfield ]] then do
             expr(match[0]);
             _e = match[2];
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 8--[[ Pexp_tuple ]]
          or ___conditional___ = 14--[[ Pexp_array ]] then do
             return List.iter(expr, match[0]);end end end 
@@ -56589,12 +56326,12 @@ function iter_expression(f, e) do
          or ___conditional___ = 17--[[ Pexp_while ]] then do
             expr(match[0]);
             _e = match[1];
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 18--[[ Pexp_for ]] then do
             expr(match[1]);
             expr(match[2]);
             _e = match[4];
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 24--[[ Pexp_override ]] then do
             return List.iter((function (param) do
                           return expr(param[1]);
@@ -56607,12 +56344,12 @@ function iter_expression(f, e) do
          if ___conditional___ = 23--[[ Pexp_setinstvar ]]
          or ___conditional___ = 30--[[ Pexp_newtype ]] then do
             _e = match[1];
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 31--[[ Pexp_pack ]] then do
             return module_expr(match[0]);end end end 
          if ___conditional___ = 32--[[ Pexp_open ]] then do
             _e = match[2];
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 0--[[ Pexp_ident ]]
          or ___conditional___ = 1--[[ Pexp_constant ]]
          or ___conditional___ = 22--[[ Pexp_new ]]
@@ -56621,7 +56358,7 @@ function iter_expression(f, e) do
          do
         else do
           _e = match[0];
-          continue ;
+          ::continue:: ;
           end end
           
       end
@@ -56646,14 +56383,14 @@ function iter_expression(f, e) do
             return List.iter(structure_item, match[0]);end end end 
          if ___conditional___ = 2--[[ Pmod_functor ]] then do
             _me = match[2];
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 3--[[ Pmod_apply ]] then do
             module_expr(match[0]);
             _me = match[1];
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 4--[[ Pmod_constraint ]] then do
             _me = match[0];
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 5--[[ Pmod_unpack ]] then do
             return expr(match[0]);end end end 
          if ___conditional___ = 0--[[ Pmod_ident ]]
@@ -56702,7 +56439,7 @@ function iter_expression(f, e) do
          if ___conditional___ = 2--[[ Pcl_fun ]] then do
             may(expr, match[1]);
             _ce = match[3];
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 3--[[ Pcl_apply ]] then do
             class_expr(match[0]);
             return List.iter((function (param) do
@@ -56711,10 +56448,10 @@ function iter_expression(f, e) do
          if ___conditional___ = 4--[[ Pcl_let ]] then do
             List.iter(binding, match[1]);
             _ce = match[2];
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 5--[[ Pcl_constraint ]] then do
             _ce = match[0];
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 0--[[ Pcl_constr ]]
          or ___conditional___ = 6--[[ Pcl_extension ]] then do
             return --[[ () ]]0;end end end 
@@ -56876,23 +56613,23 @@ function extract_option_type(env, ty) do
      end 
   end
    end 
-  throw {
-        Caml_builtin_exceptions.assert_failure,
-        --[[ tuple ]]{
-          "typecore.ml",
-          275,
-          9
-        }
-      };
+  error ({
+    Caml_builtin_exceptions.assert_failure,
+    --[[ tuple ]]{
+      "typecore.ml",
+      275,
+      9
+    }
+  })
 end end
 
 function extract_concrete_record(env, ty) do
   match = extract_concrete_typedecl(env, ty);
   match$1 = match[2].type_kind;
   if (typeof match$1 == "number") then do
-    throw Caml_builtin_exceptions.not_found;
+    error (Caml_builtin_exceptions.not_found)
   end else if (match$1.tag) then do
-    throw Caml_builtin_exceptions.not_found;
+    error (Caml_builtin_exceptions.not_found)
   end else do
     return --[[ tuple ]]{
             match[0],
@@ -56909,7 +56646,7 @@ function extract_concrete_variant(env, ty) do
   p0 = match[0];
   if (typeof match$1 == "number") then do
     if (match$1 == --[[ Type_abstract ]]0) then do
-      throw Caml_builtin_exceptions.not_found;
+      error (Caml_builtin_exceptions.not_found)
     end else do
       return --[[ tuple ]]{
               p0,
@@ -56924,31 +56661,30 @@ function extract_concrete_variant(env, ty) do
             match$1[0]
           };
   end else do
-    throw Caml_builtin_exceptions.not_found;
+    error (Caml_builtin_exceptions.not_found)
   end end  end 
 end end
 
 function extract_label_names(sexp, env, ty) do
-  try do
+  xpcall(function() do
     match = extract_concrete_record(env, ty);
     return List.map((function (l) do
                   return l.ld_id;
                 end end), match[2]);
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Caml_builtin_exceptions.not_found) then do
-      throw {
-            Caml_builtin_exceptions.assert_failure,
-            --[[ tuple ]]{
-              "typecore.ml",
-              293,
-              4
-            }
-          };
+      error ({
+        Caml_builtin_exceptions.assert_failure,
+        --[[ tuple ]]{
+          "typecore.ml",
+          293,
+          4
+        }
+      })
     end
      end 
-    throw exn;
-  end
+    error (exn)
+  end end)
 end end
 
 function explicit_arity(param) do
@@ -56968,65 +56704,63 @@ function explicit_arity(param) do
 end end
 
 function unify_pat_types(loc, env, ty, ty$prime) do
-  try do
+  xpcall(function() do
     return unify$2(env, ty, ty$prime);
-  end
-  catch (raw_exn)do
+  end end,function(raw_exn) return do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn[0] == Unify) then do
-      throw {
-            __Error$7,
-            loc,
-            env,
-            --[[ Pattern_type_clash ]]Block.__(3, {exn[1]})
-          };
+      error ({
+        __Error$7,
+        loc,
+        env,
+        --[[ Pattern_type_clash ]]Block.__(3, {exn[1]})
+      })
     end
      end 
     if (exn[0] == Tags) then do
-      throw {
-            __Error$6,
-            loc,
-            env,
-            --[[ Variant_tags ]]Block.__(12, {
-                exn[1],
-                exn[2]
-              })
-          };
+      error ({
+        __Error$6,
+        loc,
+        env,
+        --[[ Variant_tags ]]Block.__(12, {
+            exn[1],
+            exn[2]
+          })
+      })
     end
      end 
-    throw exn;
-  end
+    error (exn)
+  end end)
 end end
 
 function unify_exp_types(loc, env, ty, expected_ty) do
-  try do
+  xpcall(function() do
     return unify$2(env, ty, expected_ty);
-  end
-  catch (raw_exn)do
+  end end,function(raw_exn) return do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn[0] == Unify) then do
-      throw {
-            __Error$7,
-            loc,
-            env,
-            --[[ Expr_type_clash ]]Block.__(7, {exn[1]})
-          };
+      error ({
+        __Error$7,
+        loc,
+        env,
+        --[[ Expr_type_clash ]]Block.__(7, {exn[1]})
+      })
     end
      end 
     if (exn[0] == Tags) then do
-      throw {
-            __Error$6,
-            loc,
-            env,
-            --[[ Variant_tags ]]Block.__(12, {
-                exn[1],
-                exn[2]
-              })
-          };
+      error ({
+        __Error$6,
+        loc,
+        env,
+        --[[ Variant_tags ]]Block.__(12, {
+            exn[1],
+            exn[2]
+          })
+      })
     end
      end 
-    throw exn;
-  end
+    error (exn)
+  end end)
 end end
 
 newtype_level$1 = do
@@ -57038,14 +56772,14 @@ function get_newtype_level$1(param) do
   if (match ~= undefined) then do
     return match;
   end else do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "typecore.ml",
-            331,
-            12
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "typecore.ml",
+        331,
+        12
+      }
+    })
   end end 
 end end
 
@@ -57055,21 +56789,21 @@ function unify_pat_types_gadt(loc, env, ty, ty$prime) do
   if (match ~= undefined) then do
     newtype_level$2 = match;
   end else do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "typecore.ml",
-            336,
-            14
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "typecore.ml",
+        336,
+        14
+      }
+    })
   end end 
-  try do
+  xpcall(function() do
     lev = newtype_level$2;
     env$1 = env;
     ty1 = ty;
     ty2 = ty$prime;
-    try do
+    xpcall(function() do
       univar_pairs.contents = --[[ [] ]]0;
       newtype_level.contents = lev;
       set_mode_pattern(true, true, (function (param) do
@@ -57077,55 +56811,53 @@ function unify_pat_types_gadt(loc, env, ty, ty$prime) do
             end end));
       newtype_level.contents = undefined;
       return Curry._1(TypePairs.clear, unify_eq_set);
-    end
-    catch (raw_e)do
+    end end,function(raw_e) return do
       e = Caml_js_exceptions.internalToOCamlException(raw_e);
       Curry._1(TypePairs.clear, unify_eq_set);
       if (e[0] == Unify) then do
-        throw {
-              Unify,
-              e[1]
-            };
+        error ({
+          Unify,
+          e[1]
+        })
       end
        end 
       newtype_level.contents = undefined;
-      throw e;
-    end
-  end
-  catch (raw_exn)do
+      error (e)
+    end end)
+  end end,function(raw_exn) return do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn[0] == Unify) then do
-      throw {
-            __Error$7,
-            loc,
-            env.contents,
-            --[[ Pattern_type_clash ]]Block.__(3, {exn[1]})
-          };
+      error ({
+        __Error$7,
+        loc,
+        env.contents,
+        --[[ Pattern_type_clash ]]Block.__(3, {exn[1]})
+      })
     end
      end 
     if (exn[0] == Tags) then do
-      throw {
-            __Error$6,
-            loc,
-            env.contents,
-            --[[ Variant_tags ]]Block.__(12, {
-                exn[1],
-                exn[2]
-              })
-          };
+      error ({
+        __Error$6,
+        loc,
+        env.contents,
+        --[[ Variant_tags ]]Block.__(12, {
+            exn[1],
+            exn[2]
+          })
+      })
     end
      end 
     if (exn[0] == Unification_recursive_abbrev) then do
-      throw {
-            __Error$7,
-            loc,
-            env.contents,
-            --[[ Recursive_local_constraint ]]Block.__(33, {exn[1]})
-          };
+      error ({
+        __Error$7,
+        loc,
+        env.contents,
+        --[[ Recursive_local_constraint ]]Block.__(33, {exn[1]})
+      })
     end
      end 
-    throw exn;
-  end
+    error (exn)
+  end end)
 end end
 
 function unify_pat(env, pat, expected_ty) do
@@ -57142,27 +56874,27 @@ function finalize_variant(pat) do
     match$2 = match$1.desc;
     row;
     if (typeof match$2 == "number") then do
-      throw {
-            Caml_builtin_exceptions.assert_failure,
-            --[[ tuple ]]{
-              "typecore.ml",
-              362,
-              15
-            }
-          };
+      error ({
+        Caml_builtin_exceptions.assert_failure,
+        --[[ tuple ]]{
+          "typecore.ml",
+          362,
+          15
+        }
+      })
     end else if (match$2.tag == --[[ Tvariant ]]8) then do
       row$1 = match$2[0];
       match[2].contents = row$1;
       row = row_repr_aux(--[[ [] ]]0, row$1);
     end else do
-      throw {
-            Caml_builtin_exceptions.assert_failure,
-            --[[ tuple ]]{
-              "typecore.ml",
-              362,
-              15
-            }
-          };
+      error ({
+        Caml_builtin_exceptions.assert_failure,
+        --[[ tuple ]]{
+          "typecore.ml",
+          362,
+          15
+        }
+      })
     end end  end 
     match$3 = row_field(match[0], row);
     if (typeof match$3 == "number" or not match$3.tag) then do
@@ -57189,14 +56921,14 @@ function finalize_variant(pat) do
                         match$4[1]
                       });
           end else do
-            throw {
-                  Caml_builtin_exceptions.assert_failure,
-                  --[[ tuple ]]{
-                    "typecore.ml",
-                    370,
-                    40
-                  }
-                };
+            error ({
+              Caml_builtin_exceptions.assert_failure,
+              --[[ tuple ]]{
+                "typecore.ml",
+                370,
+                40
+              }
+            })
           end end 
         end
          end 
@@ -57225,24 +56957,23 @@ function iter_pattern(f, p) do
 end end
 
 function has_variants(p) do
-  try do
+  xpcall(function() do
     iter_pattern((function (param) do
             tmp = param.pat_desc;
             if (typeof tmp == "number" or tmp.tag ~= --[[ Tpat_variant ]]5) then do
               return --[[ () ]]0;
             end else do
-              throw Pervasives.Exit;
+              error (Pervasives.Exit)
             end end 
           end end), p);
     return false;
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Pervasives.Exit) then do
       return true;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 pattern_variables = do
@@ -57280,12 +57011,12 @@ function enter_variable(is_moduleOpt, is_as_variableOpt, loc, name, ty) do
   if (List.exists((function (param) do
             return param[0].name == name.txt;
           end end), pattern_variables.contents)) then do
-    throw {
-          __Error$7,
-          loc,
-          empty,
-          --[[ Multiply_bound_variable ]]Block.__(5, {name.txt})
-        };
+    error ({
+      __Error$7,
+      loc,
+      empty,
+      --[[ Multiply_bound_variable ]]Block.__(5, {name.txt})
+    })
   end
    end 
   id = create(name.txt);
@@ -57301,12 +57032,12 @@ function enter_variable(is_moduleOpt, is_as_variableOpt, loc, name, ty) do
   };
   if (is_module) then do
     if (not allow_modules.contents) then do
-      throw {
-            __Error$7,
-            loc,
-            empty,
-            --[[ Modules_not_allowed ]]2
-          };
+      error ({
+        __Error$7,
+        loc,
+        empty,
+        --[[ Modules_not_allowed ]]2
+      })
     end
      end 
     module_variables.contents = --[[ :: ]]{
@@ -57353,27 +57084,26 @@ function enter_orpat_variables(loc, env, p1_vs, p2_vs) do
             if (x1 == x2) then do
               _p2_vs = rem2;
               _p1_vs = rem1;
-              continue ;
+              ::continue:: ;
             end else do
-              try do
+              xpcall(function() do
                 unify$2(env, match[1], match$1[1]);
-              end
-              catch (raw_exn)do
+              end end,function(raw_exn) return do
                 exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
                 if (exn[0] == Unify) then do
-                  throw {
-                        __Error$7,
-                        loc,
-                        env,
-                        --[[ Or_pattern_type_clash ]]Block.__(4, {
-                            x1,
-                            exn[1]
-                          })
-                      };
+                  error ({
+                    __Error$7,
+                    loc,
+                    env,
+                    --[[ Or_pattern_type_clash ]]Block.__(4, {
+                        x1,
+                        exn[1]
+                      })
+                  })
                 end
                  end 
-                throw exn;
-              end
+                error (exn)
+              end end)
               return --[[ :: ]]{
                       --[[ tuple ]]{
                         x2,
@@ -57384,28 +57114,28 @@ function enter_orpat_variables(loc, env, p1_vs, p2_vs) do
             end end 
           end else do
             min_var = x1.name < x2.name and x1 or x2;
-            throw {
-                  __Error$7,
-                  loc,
-                  env,
-                  --[[ Orpat_vars ]]Block.__(6, {min_var})
-                };
-          end end 
-        end else do
-          throw {
-                __Error$7,
-                loc,
-                env,
-                --[[ Orpat_vars ]]Block.__(6, {x1})
-              };
-        end end 
-      end else if (p2_vs) then do
-        throw {
+            error ({
               __Error$7,
               loc,
               env,
-              --[[ Orpat_vars ]]Block.__(6, {p2_vs[0][0]})
-            };
+              --[[ Orpat_vars ]]Block.__(6, {min_var})
+            })
+          end end 
+        end else do
+          error ({
+            __Error$7,
+            loc,
+            env,
+            --[[ Orpat_vars ]]Block.__(6, {x1})
+          })
+        end end 
+      end else if (p2_vs) then do
+        error ({
+          __Error$7,
+          loc,
+          env,
+          --[[ Orpat_vars ]]Block.__(6, {p2_vs[0][0]})
+        })
       end else do
         return --[[ [] ]]0;
       end end  end 
@@ -57425,7 +57155,7 @@ function build_as_type(env, _p) do
       do
          if ___conditional___ = 1--[[ Tpat_alias ]] then do
             _p = match[0];
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 3--[[ Tpat_tuple ]] then do
             tyl = List.map((function (param) do
                     return build_as_type(env, param);
@@ -57599,12 +57329,12 @@ function build_or_pat(env, loc, lid) do
     end end 
   end end 
   if (exit == 1) then do
-    throw {
-          __Error$7,
-          loc,
-          env,
-          --[[ Not_a_variant_type ]]Block.__(30, {lid})
-        };
+    error ({
+      __Error$7,
+      loc,
+      env,
+      --[[ Not_a_variant_type ]]Block.__(30, {lid})
+    })
   end
    end 
   match$2 = List.fold_left((function (param, param$1) do
@@ -57758,12 +57488,12 @@ function build_or_pat(env, loc, lid) do
             ty$1
           };
   end else do
-    throw {
-          __Error$7,
-          loc,
-          env,
-          --[[ Not_a_variant_type ]]Block.__(30, {lid})
-        };
+    error ({
+      __Error$7,
+      loc,
+      env,
+      --[[ Not_a_variant_type ]]Block.__(30, {lid})
+    })
   end end 
 end end
 
@@ -57771,16 +57501,15 @@ function expand_path(env, _p) do
   while(true) do
     p = _p;
     decl;
-    try do
+    xpcall(function() do
       decl = find_type_full(p, env)[0];
-    end
-    catch (exn)do
+    end end,function(exn) return do
       if (exn == Caml_builtin_exceptions.not_found) then do
         decl = undefined;
       end else do
-        throw exn;
+        error (exn)
       end end 
-    end
+    end end)
     if (decl ~= undefined) then do
       match = decl.type_manifest;
       if (match ~= undefined) then do
@@ -57790,7 +57519,7 @@ function expand_path(env, _p) do
           return p;
         end else do
           _p = match$2[0];
-          continue ;
+          ::continue:: ;
         end end 
       end
        end 
@@ -57801,7 +57530,7 @@ function expand_path(env, _p) do
       return p;
     end else do
       _p = p$prime;
-      continue ;
+      ::continue:: ;
     end end 
   end;
 end end
@@ -57811,35 +57540,34 @@ function compare_type_path(env, tpath1, tpath2) do
 end end
 
 function wrap_disambiguate(kind, ty, f, x) do
-  try do
+  xpcall(function() do
     return Curry._1(f, x);
-  end
-  catch (raw_exn)do
+  end end,function(raw_exn) return do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn[0] == __Error$7) then do
       match = exn[3];
       if (typeof match == "number") then do
-        throw exn;
+        error (exn)
       end else if (match.tag == --[[ Wrong_name ]]13) then do
-        throw {
-              __Error$7,
-              exn[1],
-              exn[2],
-              --[[ Wrong_name ]]Block.__(13, {
-                  kind,
-                  ty,
-                  match[2],
-                  match[3],
-                  match[4]
-                })
-            };
+        error ({
+          __Error$7,
+          exn[1],
+          exn[2],
+          --[[ Wrong_name ]]Block.__(13, {
+              kind,
+              ty,
+              match[2],
+              match[3],
+              match[4]
+            })
+        })
       end else do
-        throw exn;
+        error (exn)
       end end  end 
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 type_kind = "record";
@@ -57847,25 +57575,25 @@ type_kind = "record";
 function get_type_path$1(env, d) do
   match = d.lbl_res.desc;
   if (typeof match == "number") then do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "typecore.ml",
-            602,
-            11
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "typecore.ml",
+        602,
+        11
+      }
+    })
   end else if (match.tag == --[[ Tconstr ]]3) then do
     return match[0];
   end else do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "typecore.ml",
-            602,
-            11
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "typecore.ml",
+        602,
+        11
+      }
+    })
   end end  end 
 end end
 
@@ -57877,32 +57605,31 @@ function lookup_from_type(env, tpath, lid) do
   do
      if ___conditional___ = 0--[[ Lident ]] then do
         s = match[0];
-        try do
+        xpcall(function() do
           return List.find((function (nd) do
                         return nd.lbl_name == s;
                       end end), descrs);
-        end
-        catch (exn)do
+        end end,function(exn) return do
           if (exn == Caml_builtin_exceptions.not_found) then do
-            throw {
-                  __Error$7,
-                  lid.loc,
-                  env,
-                  --[[ Wrong_name ]]Block.__(13, {
-                      "",
-                      newvar(undefined, --[[ () ]]0),
-                      type_kind,
-                      tpath,
-                      lid.txt
-                    })
-                };
+            error ({
+              __Error$7,
+              lid.loc,
+              env,
+              --[[ Wrong_name ]]Block.__(13, {
+                  "",
+                  newvar(undefined, --[[ () ]]0),
+                  type_kind,
+                  tpath,
+                  lid.txt
+                })
+            })
           end
            end 
-          throw exn;
-        endend end end 
+          error (exn)
+        end end)end end end 
      if ___conditional___ = 1--[[ Ldot ]]
      or ___conditional___ = 2--[[ Lapply ]] then do
-        throw Caml_builtin_exceptions.not_found;end end end 
+        error (Caml_builtin_exceptions.not_found)end end end 
      do
     
   end
@@ -57917,14 +57644,14 @@ function unique(eq, _acc, _param) do
       x = param[0];
       if (List.exists(Curry._1(eq, x), acc)) then do
         _param = rem;
-        continue ;
+        ::continue:: ;
       end else do
         _param = rem;
         _acc = --[[ :: ]]{
           x,
           acc
         };
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return List.rev(acc);
@@ -57973,7 +57700,7 @@ function disambiguate(warnOpt, check_lkOpt, scope, lid, env, opath, lbls) do
       kind = type_kind == "record" and "field" or "constructor";
       return Curry._2(warn, lid.loc, --[[ Not_principal ]]Block.__(8, {"this type-based " .. (kind .. " disambiguation")}));
     end end;
-    try do
+    xpcall(function() do
       match$1 = disambiguate_by_type(env, tpath, scope$1);
       lbl$1 = match$1[0];
       Curry._1(match$1[1], --[[ () ]]0);
@@ -58002,10 +57729,9 @@ function disambiguate(warnOpt, check_lkOpt, scope, lid, env, opath, lbls) do
       end
        end 
       lbl = lbl$1;
-    end
-    catch (exn)do
+    end end,function(exn) return do
       if (exn == Caml_builtin_exceptions.not_found) then do
-        try do
+        xpcall(function() do
           lbl$2 = lookup_from_type(env, tpath, lid);
           Curry._2(check_lk, tpath, lbl$2);
           s = string_of_out_ident(tree_of_path(tpath));
@@ -58022,8 +57748,7 @@ function disambiguate(warnOpt, check_lkOpt, scope, lid, env, opath, lbls) do
           end
            end 
           lbl = lbl$2;
-        end
-        catch (exn$1)do
+        end end,function(exn$1) return do
           if (exn$1 == Caml_builtin_exceptions.not_found) then do
             if (lbls == --[[ [] ]]0) then do
               lbl = unbound_label_error(env, lid);
@@ -58042,26 +57767,26 @@ function disambiguate(warnOpt, check_lkOpt, scope, lid, env, opath, lbls) do
                               tp
                             };
                     end end), lbls);
-              throw {
-                    __Error$7,
-                    lid.loc,
-                    env,
-                    --[[ Name_type_mismatch ]]Block.__(14, {
-                        type_kind,
-                        lid.txt,
-                        tp,
-                        tpl
-                      })
-                  };
+              error ({
+                __Error$7,
+                lid.loc,
+                env,
+                --[[ Name_type_mismatch ]]Block.__(14, {
+                    type_kind,
+                    lid.txt,
+                    tp,
+                    tpl
+                  })
+              })
             end end 
           end else do
-            throw exn$1;
+            error (exn$1)
           end end 
-        end
+        end end)
       end else do
-        throw exn;
+        error (exn)
       end end 
-    end
+    end end)
   end else if (lbls) then do
     match$2 = lbls[0];
     lbl$3 = match$2[0];
@@ -58280,7 +58005,7 @@ function find_record_qual(_param) do
          if ___conditional___ = 0--[[ Lident ]]
          or ___conditional___ = 2--[[ Lapply ]] then do
             _param = param[1];
-            continue ;end end end 
+            ::continue:: ;end end end 
          do
         
       end
@@ -58314,14 +58039,14 @@ function type_label_a_list(labels, loc, closed, env, type_lbl_a, opath, lid_a_li
                                   };end end end 
                          if ___conditional___ = 1--[[ Ldot ]]
                          or ___conditional___ = 2--[[ Lapply ]] then do
-                            throw {
-                                  Caml_builtin_exceptions.assert_failure,
-                                  --[[ tuple ]]{
-                                    "typecore.ml",
-                                    819,
-                                    17
-                                  }
-                                };end end end 
+                            error ({
+                              Caml_builtin_exceptions.assert_failure,
+                              --[[ tuple ]]{
+                                "typecore.ml",
+                                819,
+                                17
+                              }
+                            })end end end 
                          do
                         
                       end
@@ -58388,12 +58113,12 @@ function check_recordpat_labels(loc, lbl_pat_list, closed) do
     check_defined = function (param) do
       label = param[1];
       if (Caml_array.caml_array_get(defined, label.lbl_pos)) then do
-        throw {
-              __Error$7,
-              loc,
-              empty,
-              --[[ Label_multiply_defined ]]Block.__(10, {label.lbl_name})
-            };
+        error ({
+          __Error$7,
+          loc,
+          empty,
+          --[[ Label_multiply_defined ]]Block.__(10, {label.lbl_name})
+        })
       end
        end 
       return Caml_array.caml_array_set(defined, label.lbl_pos, true);
@@ -58429,25 +58154,25 @@ type_kind$1 = "variant";
 function get_type_path$2(env, d) do
   match = d.cstr_res.desc;
   if (typeof match == "number") then do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "typecore.ml",
-            602,
-            11
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "typecore.ml",
+        602,
+        11
+      }
+    })
   end else if (match.tag == --[[ Tconstr ]]3) then do
     return match[0];
   end else do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "typecore.ml",
-            602,
-            11
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "typecore.ml",
+        602,
+        11
+      }
+    })
   end end  end 
 end end
 
@@ -58459,32 +58184,31 @@ function lookup_from_type$1(env, tpath, lid) do
   do
      if ___conditional___ = 0--[[ Lident ]] then do
         s = match[0];
-        try do
+        xpcall(function() do
           return List.find((function (nd) do
                         return nd.cstr_name == s;
                       end end), descrs);
-        end
-        catch (exn)do
+        end end,function(exn) return do
           if (exn == Caml_builtin_exceptions.not_found) then do
-            throw {
-                  __Error$7,
-                  lid.loc,
-                  env,
-                  --[[ Wrong_name ]]Block.__(13, {
-                      "",
-                      newvar(undefined, --[[ () ]]0),
-                      type_kind$1,
-                      tpath,
-                      lid.txt
-                    })
-                };
+            error ({
+              __Error$7,
+              lid.loc,
+              env,
+              --[[ Wrong_name ]]Block.__(13, {
+                  "",
+                  newvar(undefined, --[[ () ]]0),
+                  type_kind$1,
+                  tpath,
+                  lid.txt
+                })
+            })
           end
            end 
-          throw exn;
-        endend end end 
+          error (exn)
+        end end)end end end 
      if ___conditional___ = 1--[[ Ldot ]]
      or ___conditional___ = 2--[[ Lapply ]] then do
-        throw Caml_builtin_exceptions.not_found;end end end 
+        error (Caml_builtin_exceptions.not_found)end end end 
      do
     
   end
@@ -58499,14 +58223,14 @@ function unique$1(eq, _acc, _param) do
       x = param[0];
       if (List.exists(Curry._1(eq, x), acc)) then do
         _param = rem;
-        continue ;
+        ::continue:: ;
       end else do
         _param = rem;
         _acc = --[[ :: ]]{
           x,
           acc
         };
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return List.rev(acc);
@@ -58555,7 +58279,7 @@ function disambiguate$1(warnOpt, check_lkOpt, scope, lid, env, opath, lbls) do
       kind = type_kind$1 == "record" and "field" or "constructor";
       return Curry._2(warn, lid.loc, --[[ Not_principal ]]Block.__(8, {"this type-based " .. (kind .. " disambiguation")}));
     end end;
-    try do
+    xpcall(function() do
       match$1 = disambiguate_by_type$1(env, tpath, scope$1);
       lbl$1 = match$1[0];
       Curry._1(match$1[1], --[[ () ]]0);
@@ -58584,10 +58308,9 @@ function disambiguate$1(warnOpt, check_lkOpt, scope, lid, env, opath, lbls) do
       end
        end 
       lbl = lbl$1;
-    end
-    catch (exn)do
+    end end,function(exn) return do
       if (exn == Caml_builtin_exceptions.not_found) then do
-        try do
+        xpcall(function() do
           lbl$2 = lookup_from_type$1(env, tpath, lid);
           Curry._2(check_lk, tpath, lbl$2);
           s = string_of_out_ident(tree_of_path(tpath));
@@ -58604,8 +58327,7 @@ function disambiguate$1(warnOpt, check_lkOpt, scope, lid, env, opath, lbls) do
           end
            end 
           lbl = lbl$2;
-        end
-        catch (exn$1)do
+        end end,function(exn$1) return do
           if (exn$1 == Caml_builtin_exceptions.not_found) then do
             if (lbls == --[[ [] ]]0) then do
               lbl = unbound_constructor_error(env, lid);
@@ -58624,26 +58346,26 @@ function disambiguate$1(warnOpt, check_lkOpt, scope, lid, env, opath, lbls) do
                               tp
                             };
                     end end), lbls);
-              throw {
-                    __Error$7,
-                    lid.loc,
-                    env,
-                    --[[ Name_type_mismatch ]]Block.__(14, {
-                        type_kind$1,
-                        lid.txt,
-                        tp,
-                        tpl
-                      })
-                  };
+              error ({
+                __Error$7,
+                lid.loc,
+                env,
+                --[[ Name_type_mismatch ]]Block.__(14, {
+                    type_kind$1,
+                    lid.txt,
+                    tp,
+                    tpl
+                  })
+              })
             end end 
           end else do
-            throw exn$1;
+            error (exn$1)
           end end 
-        end
+        end end)
       end else do
-        throw exn;
+        error (exn)
       end end 
-    end
+    end end)
   end else if (lbls) then do
     match$2 = lbls[0];
     lbl$3 = match$2[0];
@@ -58677,14 +58399,14 @@ function unify_head_only(loc, env, ty, constr) do
   ty_res = match[1];
   match$1 = repr(ty_res).desc;
   if (typeof match$1 == "number") then do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "typecore.ml",
-            892,
-            9
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "typecore.ml",
+        892,
+        9
+      }
+    })
   end else if (match$1.tag == --[[ Tconstr ]]3) then do
     ty_res.desc = --[[ Tconstr ]]Block.__(3, {
         match$1[0],
@@ -58696,14 +58418,14 @@ function unify_head_only(loc, env, ty, constr) do
     enforce_constraints(env, ty_res);
     return unify_pat_types(loc, env, ty_res, ty);
   end else do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "typecore.ml",
-            892,
-            9
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "typecore.ml",
+        892,
+        9
+      }
+    })
   end end  end 
 end end
 
@@ -58807,20 +58529,20 @@ function type_pat(constrs, labels, no_existentials, mode, env, sp, expected_ty) 
               end;
               return type_pat$1(undefined, undefined)(p$1, expected_ty);
             end else do
-              throw {
-                    __Error$7,
-                    loc,
-                    env.contents,
-                    --[[ Invalid_interval ]]5
-                  };
+              error ({
+                __Error$7,
+                loc,
+                env.contents,
+                --[[ Invalid_interval ]]5
+              })
             end end 
           end else do
-            throw {
-                  __Error$7,
-                  loc,
-                  env.contents,
-                  --[[ Invalid_interval ]]5
-                };
+            error ({
+              __Error$7,
+              loc,
+              env.contents,
+              --[[ Invalid_interval ]]5
+            })
           end end end end end 
        if ___conditional___ = 4--[[ Ppat_tuple ]] then do
           spl = match[0];
@@ -58854,21 +58576,20 @@ function type_pat(constrs, labels, no_existentials, mode, env, sp, expected_ty) 
           sarg = match[1];
           lid = match[0];
           opath;
-          try do
+          xpcall(function() do
             match$3 = extract_concrete_variant(env.contents, expected_ty);
             opath = --[[ tuple ]]{
               match$3[0],
               match$3[1],
               true
             };
-          end
-          catch (exn)do
+          end end,function(exn) return do
             if (exn == Caml_builtin_exceptions.not_found) then do
               opath = undefined;
             end else do
-              throw exn;
+              error (exn)
             end end 
-          end
+          end end)
           match$4 = lid.txt;
           constrs$1;
           exit = 0;
@@ -58906,15 +58627,15 @@ function type_pat(constrs, labels, no_existentials, mode, env, sp, expected_ty) 
            end 
           check_lk = function (tpath, constr) do
             if (constr.cstr_generalized) then do
-              throw {
-                    __Error$7,
-                    lid.loc,
-                    env.contents,
-                    --[[ Unqualified_gadt_pattern ]]Block.__(34, {
-                        tpath,
-                        constr.cstr_name
-                      })
-                  };
+              error ({
+                __Error$7,
+                lid.loc,
+                env.contents,
+                --[[ Unqualified_gadt_pattern ]]Block.__(34, {
+                    tpath,
+                    constr.cstr_name
+                  })
+              })
             end else do
               return 0;
             end end 
@@ -58927,12 +58648,12 @@ function type_pat(constrs, labels, no_existentials, mode, env, sp, expected_ty) 
           mark_constructor(--[[ Pattern ]]1, env.contents, last$1(lid.txt), constr);
           check_deprecated(loc, constr.cstr_attributes, constr.cstr_name);
           if (no_existentials and constr.cstr_existentials ~= --[[ [] ]]0) then do
-            throw {
-                  __Error$7,
-                  loc,
-                  env.contents,
-                  --[[ Unexpected_existential ]]4
-                };
+            error ({
+              __Error$7,
+              loc,
+              env.contents,
+              --[[ Unexpected_existential ]]4
+            })
           end
            end 
           if (constr.cstr_generalized) then do
@@ -58966,16 +58687,16 @@ function type_pat(constrs, labels, no_existentials, mode, env, sp, expected_ty) 
             sargs = --[[ [] ]]0;
           end end 
           if (List.length(sargs) ~= constr.cstr_arity) then do
-            throw {
-                  __Error$7,
-                  loc,
-                  env.contents,
-                  --[[ Constructor_arity_mismatch ]]Block.__(1, {
-                      lid.txt,
-                      constr.cstr_arity,
-                      List.length(sargs)
-                    })
-                };
+            error ({
+              __Error$7,
+              loc,
+              env.contents,
+              --[[ Constructor_arity_mismatch ]]Block.__(1, {
+                  lid.txt,
+                  constr.cstr_arity,
+                  List.length(sargs)
+                })
+            })
           end
            end 
           match$6 = instance_constructor(--[[ tuple ]]{
@@ -59064,7 +58785,7 @@ function type_pat(constrs, labels, no_existentials, mode, env, sp, expected_ty) 
           end
            end 
           match$7;
-          try do
+          xpcall(function() do
             match$8 = extract_concrete_record(env.contents, expected_ty);
             match$7 = --[[ tuple ]]{
               --[[ tuple ]]{
@@ -59074,17 +58795,16 @@ function type_pat(constrs, labels, no_existentials, mode, env, sp, expected_ty) 
               },
               expected_ty
             };
-          end
-          catch (exn$1)do
+          end end,function(exn$1) return do
             if (exn$1 == Caml_builtin_exceptions.not_found) then do
               match$7 = --[[ tuple ]]{
                 undefined,
                 newvar(undefined, --[[ () ]]0)
               };
             end else do
-              throw exn$1;
+              error (exn$1)
             end end 
-          end
+          end end)
           record_ty = match$7[1];
           opath$1 = match$7[0];
           type_label_pat = function (param) do
@@ -59098,25 +58818,24 @@ function type_pat(constrs, labels, no_existentials, mode, env, sp, expected_ty) 
               end_def(--[[ () ]]0);
             end
              end 
-            try do
+            xpcall(function() do
               unify_pat_types(loc, env.contents, match[2], record_ty);
-            end
-            catch (raw_exn)do
+            end end,function(raw_exn) return do
               exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
               if (exn[0] == Unify) then do
-                throw {
-                      __Error$7,
-                      label_lid.loc,
-                      env.contents,
-                      --[[ Label_mismatch ]]Block.__(2, {
-                          label_lid.txt,
-                          exn[1]
-                        })
-                    };
+                error ({
+                  __Error$7,
+                  label_lid.loc,
+                  env.contents,
+                  --[[ Label_mismatch ]]Block.__(2, {
+                      label_lid.txt,
+                      exn[1]
+                    })
+                })
               end
                end 
-              throw exn;
-            end
+              error (exn)
+            end end)
             arg = type_pat$1(undefined, undefined)(param[2], ty_arg);
             if (vars ~= --[[ [] ]]0) then do
               end_def(--[[ () ]]0);
@@ -59133,12 +58852,12 @@ function type_pat(constrs, labels, no_existentials, mode, env, sp, expected_ty) 
                 end end 
               end end;
               if (List.exists(instantiated, vars)) then do
-                throw {
-                      __Error$7,
-                      label_lid.loc,
-                      env.contents,
-                      --[[ Polymorphic_label ]]Block.__(0, {label_lid.txt})
-                    };
+                error ({
+                  __Error$7,
+                  label_lid.loc,
+                  env.contents,
+                  --[[ Polymorphic_label ]]Block.__(0, {label_lid.txt})
+                })
               end
                end 
             end
@@ -59231,14 +58950,14 @@ function type_pat(constrs, labels, no_existentials, mode, env, sp, expected_ty) 
               };
               match$11 = ty$1.desc;
               if (typeof match$11 == "number") then do
-                throw {
-                      Caml_builtin_exceptions.assert_failure,
-                      --[[ tuple ]]{
-                        "typecore.ml",
-                        955,
-                        13
-                      }
-                    };
+                error ({
+                  Caml_builtin_exceptions.assert_failure,
+                  --[[ tuple ]]{
+                    "typecore.ml",
+                    955,
+                    13
+                  }
+                })
               end else if (match$11.tag == --[[ Tpoly ]]10) then do
                 begin_def(--[[ () ]]0);
                 match$12 = instance_poly(true, false, match$11[1], match$11[0]);
@@ -59267,14 +58986,14 @@ function type_pat(constrs, labels, no_existentials, mode, env, sp, expected_ty) 
                             pat_attributes: --[[ [] ]]0
                           end);
               end else do
-                throw {
-                      Caml_builtin_exceptions.assert_failure,
-                      --[[ tuple ]]{
-                        "typecore.ml",
-                        955,
-                        13
-                      }
-                    };
+                error ({
+                  Caml_builtin_exceptions.assert_failure,
+                  --[[ tuple ]]{
+                    "typecore.ml",
+                    955,
+                    13
+                  }
+                })
               end end  end 
             end end 
           end end 
@@ -59397,17 +59116,17 @@ function type_pat(constrs, labels, no_existentials, mode, env, sp, expected_ty) 
                       pat_attributes: --[[ [] ]]0
                     end);end end end 
        if ___conditional___ = 14--[[ Ppat_exception ]] then do
-          throw {
-                __Error$7,
-                loc,
-                env.contents,
-                --[[ Exception_pattern_below_toplevel ]]8
-              };end end end 
+          error ({
+            __Error$7,
+            loc,
+            env.contents,
+            --[[ Exception_pattern_below_toplevel ]]8
+          })end end end 
        if ___conditional___ = 15--[[ Ppat_extension ]] then do
-          throw {
-                Error_forward$1,
-                error_of_extension(match[0])
-              };end end end 
+          error ({
+            Error_forward$1,
+            error_of_extension(match[0])
+          })end end end 
        do
       
     end
@@ -59418,7 +59137,7 @@ function type_pat$1(allow_existentialsOpt, constrs, labels, levOpt, env, sp, exp
   allow_existentials = allow_existentialsOpt ~= undefined and allow_existentialsOpt or false;
   lev = levOpt ~= undefined and levOpt or current_level.contents;
   newtype_level$1.contents = lev;
-  try do
+  xpcall(function() do
     r = type_pat(constrs, labels, not allow_existentials, --[[ Normal ]]0, env, sp, expected_ty);
     iter_pattern((function (p) do
             p.pat_env = env.contents;
@@ -59426,27 +59145,25 @@ function type_pat$1(allow_existentialsOpt, constrs, labels, levOpt, env, sp, exp
           end end), r);
     newtype_level$1.contents = undefined;
     return r;
-  end
-  catch (e)do
+  end end,function(e) return do
     newtype_level$1.contents = undefined;
-    throw e;
-  end
+    error (e)
+  end end)
 end end
 
 function partial_pred(lev, env, expected_ty, constrs, labels, p) do
   snap = snapshot(--[[ () ]]0);
-  try do
+  xpcall(function() do
     reset_pattern(undefined, true);
     typed_p = type_pat$1(true, Caml_option.some(constrs), Caml_option.some(labels), lev, do
           contents: env
         end, p, expected_ty);
     backtrack(snap);
     return typed_p;
-  end
-  catch (exn)do
+  end end,function(exn) return do
     backtrack(snap);
     return ;
-  end
+  end end)
 end end
 
 function check_partial$1(levOpt, env, expected_ty) do
@@ -59706,22 +59423,22 @@ function final_subexpression(_sexp) do
     do
        if ___conditional___ = 2--[[ Pexp_let ]] then do
           _sexp = match[2];
-          continue ;end end end 
+          ::continue:: ;end end end 
        if ___conditional___ = 6--[[ Pexp_match ]] then do
           match$1 = match[1];
           if (match$1) then do
             _sexp = match$1[0].pc_rhs;
-            continue ;
+            ::continue:: ;
           end else do
             return sexp;
           end end end end end 
        if ___conditional___ = 7--[[ Pexp_try ]] then do
           _sexp = match[0];
-          continue ;end end end 
+          ::continue:: ;end end end 
        if ___conditional___ = 15--[[ Pexp_ifthenelse ]]
        or ___conditional___ = 16--[[ Pexp_sequence ]] then do
           _sexp = match[1];
-          continue ;end end end 
+          ::continue:: ;end end end 
        do
       else do
         return sexp;
@@ -59742,7 +59459,7 @@ function is_nonexpansive(_exp) do
                     return is_nonexpansive(vb.vb_expr);
                   end end), match[1])) then do
             _exp = match[2];
-            continue ;
+            ::continue:: ;
           end else do
             return false;
           end end end end end 
@@ -59797,20 +59514,20 @@ function is_nonexpansive(_exp) do
           end end end end end 
        if ___conditional___ = 15--[[ Texp_sequence ]] then do
           _exp = match[1];
-          continue ;end end end 
+          ::continue:: ;end end end 
        if ___conditional___ = 19--[[ Texp_new ]] then do
           return class_type_arity(match[2].cty_type) > 0;end end end 
        if ___conditional___ = 23--[[ Texp_letmodule ]] then do
           if (is_nonexpansive_mod(match[2])) then do
             _exp = match[3];
-            continue ;
+            ::continue:: ;
           end else do
             return false;
           end end end end end 
        if ___conditional___ = 11--[[ Texp_field ]]
        or ___conditional___ = 25--[[ Texp_lazy ]] then do
           _exp = match[0];
-          continue ;end end end 
+          ::continue:: ;end end end 
        if ___conditional___ = 26--[[ Texp_object ]] then do
           match$2 = match[0];
           count = do
@@ -59912,7 +59629,7 @@ function is_nonexpansive_mod(_mexp) do
           return false;end end end 
        if ___conditional___ = 4--[[ Tmod_constraint ]] then do
           _mexp = match[0];
-          continue ;end end end 
+          ::continue:: ;end end end 
        if ___conditional___ = 5--[[ Tmod_unpack ]] then do
           return is_nonexpansive(match[0]);end end end 
        do
@@ -59956,27 +59673,26 @@ function approx_type(env, _sty) do
             return newty2(current_level.contents, desc$1);end end end 
          if ___conditional___ = 3--[[ Ptyp_constr ]] then do
             ctl = match[1];
-            try do
+            xpcall(function() do
               match$1 = lookup_type$1(match[0].txt, env);
               if (List.length(ctl) ~= match$1[1].type_arity) then do
-                throw Caml_builtin_exceptions.not_found;
+                error (Caml_builtin_exceptions.not_found)
               end
                end 
               tyl = List.map((function (param) do
                       return approx_type(env, param);
                     end end), ctl);
               return newconstr(match$1[0], tyl);
-            end
-            catch (exn)do
+            end end,function(exn) return do
               if (exn == Caml_builtin_exceptions.not_found) then do
                 return newvar(undefined, --[[ () ]]0);
               end else do
-                throw exn;
+                error (exn)
               end end 
-            endend end end 
+            end end)end end end 
          if ___conditional___ = 8--[[ Ptyp_poly ]] then do
             _sty = match[1];
-            continue ;end end end 
+            ::continue:: ;end end end 
          do
         else do
           return newvar(undefined, --[[ () ]]0);
@@ -59995,7 +59711,7 @@ function type_approx(env, _sexp) do
     do
        if ___conditional___ = 2--[[ Pexp_let ]] then do
           _sexp = match[2];
-          continue ;end end end 
+          ::continue:: ;end end end 
        if ___conditional___ = 3--[[ Pexp_function ]] then do
           match$1 = match[0];
           if (match$1) then do
@@ -60039,13 +59755,13 @@ function type_approx(env, _sexp) do
           match$2 = match[1];
           if (match$2) then do
             _sexp = match$2[0].pc_rhs;
-            continue ;
+            ::continue:: ;
           end else do
             return newvar(undefined, --[[ () ]]0);
           end end end end end 
        if ___conditional___ = 7--[[ Pexp_try ]] then do
           _sexp = match[0];
-          continue ;end end end 
+          ::continue:: ;end end end 
        if ___conditional___ = 8--[[ Pexp_tuple ]] then do
           desc$3 = --[[ Ttuple ]]Block.__(2, {List.map((function (param) do
                       return type_approx(env, param);
@@ -60054,26 +59770,25 @@ function type_approx(env, _sexp) do
        if ___conditional___ = 15--[[ Pexp_ifthenelse ]]
        or ___conditional___ = 16--[[ Pexp_sequence ]] then do
           _sexp = match[1];
-          continue ;end end end 
+          ::continue:: ;end end end 
        if ___conditional___ = 19--[[ Pexp_constraint ]] then do
           ty = type_approx(env, match[0]);
           ty1 = approx_type(env, match[1]);
-          try do
+          xpcall(function() do
             unify$2(env, ty, ty1);
-          end
-          catch (raw_exn)do
+          end end,function(raw_exn) return do
             exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
             if (exn[0] == Unify) then do
-              throw {
-                    __Error$7,
-                    sexp.pexp_loc,
-                    env,
-                    --[[ Expr_type_clash ]]Block.__(7, {exn[1]})
-                  };
+              error ({
+                __Error$7,
+                sexp.pexp_loc,
+                env,
+                --[[ Expr_type_clash ]]Block.__(7, {exn[1]})
+              })
             end
              end 
-            throw exn;
-          end
+            error (exn)
+          end end)
           return ty1;end end end 
        if ___conditional___ = 20--[[ Pexp_coerce ]] then do
           approx_ty_opt = function (param) do
@@ -60086,22 +59801,21 @@ function type_approx(env, _sexp) do
           ty$1 = type_approx(env, match[0]);
           ty1$1 = approx_ty_opt(match[1]);
           ty2 = approx_type(env, match[2]);
-          try do
+          xpcall(function() do
             unify$2(env, ty$1, ty1$1);
-          end
-          catch (raw_exn$1)do
+          end end,function(raw_exn$1) return do
             exn$1 = Caml_js_exceptions.internalToOCamlException(raw_exn$1);
             if (exn$1[0] == Unify) then do
-              throw {
-                    __Error$7,
-                    sexp.pexp_loc,
-                    env,
-                    --[[ Expr_type_clash ]]Block.__(7, {exn$1[1]})
-                  };
+              error ({
+                __Error$7,
+                sexp.pexp_loc,
+                env,
+                --[[ Expr_type_clash ]]Block.__(7, {exn$1[1]})
+              })
             end
              end 
-            throw exn$1;
-          end
+            error (exn$1)
+          end end)
           return ty2;end end end 
        do
       else do
@@ -60145,7 +59859,7 @@ function list_labels(env, ty) do
                         ty,
                         visited
                       };
-                      continue ;
+                      ::continue:: ;
                     end end 
                   end end 
                 end;
@@ -60185,27 +59899,27 @@ function check_univars(env, expans, kind, exp, ty_expected, vars) do
             vars$prime
           }));
     ty_expected$1 = repr(ty_expected);
-    throw {
-          __Error$7,
-          exp.exp_loc,
-          env,
-          --[[ Less_general ]]Block.__(31, {
-              kind,
-              --[[ :: ]]{
-                --[[ tuple ]]{
-                  ty,
-                  ty
-                },
-                --[[ :: ]]{
-                  --[[ tuple ]]{
-                    ty_expected$1,
-                    ty_expected$1
-                  },
-                  --[[ [] ]]0
-                }
-              }
-            })
-        };
+    error ({
+      __Error$7,
+      exp.exp_loc,
+      env,
+      --[[ Less_general ]]Block.__(31, {
+          kind,
+          --[[ :: ]]{
+            --[[ tuple ]]{
+              ty,
+              ty
+            },
+            --[[ :: ]]{
+              --[[ tuple ]]{
+                ty_expected$1,
+                ty_expected$1
+              },
+              --[[ [] ]]0
+            }
+          }
+        })
+    })
   end end 
 end end
 
@@ -60245,26 +59959,25 @@ function generalizable(level, ty) do
       return --[[ () ]]0;
     end else do
       if (ty$1.level <= level) then do
-        throw Pervasives.Exit;
+        error (Pervasives.Exit)
       end
        end 
       mark_type_node(ty$1);
       return iter_type_expr(check, ty$1);
     end end 
   end end;
-  try do
+  xpcall(function() do
     check(ty);
     unmark_type(ty);
     return true;
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Pervasives.Exit) then do
       unmark_type(ty);
       return false;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 self_coercion = do
@@ -60297,7 +60010,7 @@ function contains_variant_either(ty) do
                   if (typeof match == "number" or not match.tag) then do
                     return --[[ () ]]0;
                   end else do
-                    throw Pervasives.Exit;
+                    error (Pervasives.Exit)
                   end end 
                 end end), row.row_fields);
         end
@@ -60308,19 +60021,18 @@ function contains_variant_either(ty) do
       return 0;
     end end 
   end end;
-  try do
+  xpcall(function() do
     loop(ty);
     unmark_type(ty);
     return false;
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Pervasives.Exit) then do
       unmark_type(ty);
       return true;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 function iter_ppat(f, p) do
@@ -60367,7 +60079,7 @@ function contains_polymorphic_variant(p) do
       do
          if ___conditional___ = 6--[[ Ppat_variant ]]
          or ___conditional___ = 11--[[ Ppat_type ]] then do
-            throw Pervasives.Exit;end end end 
+            error (Pervasives.Exit)end end end 
          do
         else do
           return iter_ppat(loop, p);
@@ -60376,17 +60088,16 @@ function contains_polymorphic_variant(p) do
       end
     end end 
   end end;
-  try do
+  xpcall(function() do
     loop(p);
     return false;
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Pervasives.Exit) then do
       return true;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 function contains_gadt(env, p) do
@@ -60395,36 +60106,34 @@ function contains_gadt(env, p) do
     if (typeof match == "number" or match.tag ~= --[[ Ppat_construct ]]5) then do
       return iter_ppat(loop, p);
     end else do
-      try do
+      xpcall(function() do
         cstrs = lookup_all_constructors$1(match[0].txt, env);
         List.iter((function (param) do
                 if (param[0].cstr_generalized) then do
-                  throw Pervasives.Exit;
+                  error (Pervasives.Exit)
                 end else do
                   return 0;
                 end end 
               end end), cstrs);
-      end
-      catch (exn)do
+      end end,function(exn) return do
         if (exn ~= Caml_builtin_exceptions.not_found) then do
-          throw exn;
+          error (exn)
         end
          end 
-      end
+      end end)
       return iter_ppat(loop, p);
     end end 
   end end;
-  try do
+  xpcall(function() do
     loop(p);
     return false;
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Pervasives.Exit) then do
       return true;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 function check_absent_variant(env) do
@@ -60493,7 +60202,7 @@ function duplicate_ident_types(loc, caselist, env) do
           end end))(caselist);
   idents = all_idents_cases(caselist$1);
   return List.fold_left((function (env, s) do
-                try do
+                xpcall(function() do
                   match = lookup_value$1(--[[ Lident ]]Block.__(0, {s}), env);
                   desc = match[1];
                   path = match[0];
@@ -60517,14 +60226,13 @@ function duplicate_ident_types(loc, caselist, env) do
                      do
                     
                   end
-                end
-                catch (exn)do
+                end end,function(exn) return do
                   if (exn == Caml_builtin_exceptions.not_found) then do
                     return env;
                   end else do
-                    throw exn;
+                    error (exn)
                   end end 
-                end
+                end end)
               end end), env, idents);
 end end
 
@@ -60578,12 +60286,12 @@ function type_expect_(in_function, env, sexp, ty_expected) do
         tmp;
         if (typeof match$2 == "number") then do
           if (match$2 == --[[ Val_unbound ]]1) then do
-            throw {
-                  __Error$7,
-                  loc,
-                  env,
-                  --[[ Masked_instance_variable ]]Block.__(29, {lid.txt})
-                };
+            error ({
+              __Error$7,
+              loc,
+              env,
+              --[[ Masked_instance_variable ]]Block.__(29, {lid.txt})
+            })
           end else do
             tmp = --[[ Texp_ident ]]Block.__(0, {
                 path,
@@ -60607,14 +60315,14 @@ function type_expect_(in_function, env, sexp, ty_expected) do
                       end;end else 
                    if ___conditional___ = 1--[[ Ldot ]]
                    or ___conditional___ = 2--[[ Lapply ]] then do
-                      throw {
-                            Caml_builtin_exceptions.assert_failure,
-                            --[[ tuple ]]{
-                              "typecore.ml",
-                              1773,
-                              38
-                            }
-                          };end end end 
+                      error ({
+                        Caml_builtin_exceptions.assert_failure,
+                        --[[ tuple ]]{
+                          "typecore.ml",
+                          1773,
+                          38
+                        }
+                      })end end end 
                    do end
                   
                 end
@@ -60776,14 +60484,14 @@ function type_expect_(in_function, env, sexp, ty_expected) do
         if (match$11 ~= undefined) then do
           __default = match$11;
           if (not is_optional(l)) then do
-            throw {
-                  Caml_builtin_exceptions.assert_failure,
-                  --[[ tuple ]]{
-                    "typecore.ml",
-                    1852,
-                    6
-                  }
-                };
+            error ({
+              Caml_builtin_exceptions.assert_failure,
+              --[[ tuple ]]{
+                "typecore.ml",
+                1852,
+                6
+              }
+            })
           end
            end 
           default_loc = __default.pexp_loc;
@@ -60879,30 +60587,29 @@ function type_expect_(in_function, env, sexp, ty_expected) do
                     if (typeof match == "number" or match.tag ~= --[[ Tarrow ]]1) then do
                       return --[[ () ]]0;
                     end else do
-                      try do
+                      xpcall(function() do
                         unify_var(env, newvar(undefined, --[[ () ]]0), match[1]);
-                      end
-                      catch (raw_exn)do
+                      end end,function(raw_exn) return do
                         exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
                         if (exn[0] == Unify) then do
-                          throw {
-                                Caml_builtin_exceptions.assert_failure,
-                                --[[ tuple ]]{
-                                  "typecore.ml",
-                                  1903,
-                                  65
-                                }
-                              };
+                          error ({
+                            Caml_builtin_exceptions.assert_failure,
+                            --[[ tuple ]]{
+                              "typecore.ml",
+                              1903,
+                              65
+                            }
+                          })
                         end
                          end 
-                        throw exn;
-                      end
+                        error (exn)
+                      end end)
                       _ty_fun = match[2];
                       _seen = --[[ :: ]]{
                         ty,
                         seen
                       };
-                      continue ;
+                      ::continue:: ;
                     end end 
                   end end 
                 end;
@@ -60951,7 +60658,7 @@ function type_expect_(in_function, env, sexp, ty_expected) do
                   end,
                   ec
                 };
-                continue ;
+                ::continue:: ;
               end
                end 
               _param = param[1];
@@ -60959,7 +60666,7 @@ function type_expect_(in_function, env, sexp, ty_expected) do
                 c,
                 vc
               };
-              continue ;
+              ::continue:: ;
             end else do
               return --[[ tuple ]]{
                       List.rev(vc),
@@ -60972,12 +60679,12 @@ function type_expect_(in_function, env, sexp, ty_expected) do
         exn_caselist = match$13[1];
         val_caselist = match$13[0];
         if (val_caselist == --[[ [] ]]0 and exn_caselist ~= --[[ [] ]]0) then do
-          throw {
-                __Error$7,
-                loc,
-                env,
-                --[[ No_value_clauses ]]7
-              };
+          error ({
+            __Error$7,
+            loc,
+            env,
+            --[[ No_value_clauses ]]7
+          })
         end
          end 
         match$14 = type_cases(undefined, env, arg.exp_type, ty_expected, true, loc, val_caselist);
@@ -61042,21 +60749,20 @@ function type_expect_(in_function, env, sexp, ty_expected) do
         ty_expected$1 = ty_expected;
         attrs = sexp.pexp_attributes;
         opath;
-        try do
+        xpcall(function() do
           match$17 = extract_concrete_variant(env$1, ty_expected$1);
           opath = --[[ tuple ]]{
             match$17[0],
             match$17[1],
             ty_expected$1.level == 100000000 or not principal.contents
           };
-        end
-        catch (exn)do
+        end end,function(exn) return do
           if (exn == Caml_builtin_exceptions.not_found) then do
             opath = undefined;
           end else do
-            throw exn;
+            error (exn)
           end end 
-        end
+        end end)
         constrs = find_all_constructors(env$1, lid$1.loc, lid$1.txt);
         constr = wrap_disambiguate("This variant expression is expected to have", ty_expected$1, (function (param) do
                 return disambiguate$1(undefined, undefined, undefined, lid$1, env$1, opath, param);
@@ -61075,16 +60781,16 @@ function type_expect_(in_function, env, sexp, ty_expected) do
           sargs$1 = --[[ [] ]]0;
         end end 
         if (List.length(sargs$1) ~= constr.cstr_arity) then do
-          throw {
-                __Error$7,
-                loc$1,
-                env$1,
-                --[[ Constructor_arity_mismatch ]]Block.__(1, {
-                    lid$1.txt,
-                    constr.cstr_arity,
-                    List.length(sargs$1)
-                  })
-              };
+          error ({
+            __Error$7,
+            loc$1,
+            env$1,
+            --[[ Constructor_arity_mismatch ]]Block.__(1, {
+                lid$1.txt,
+                constr.cstr_arity,
+                List.length(sargs$1)
+              })
+          })
         end
          end 
         separate = principal.contents or env$1.local_constraints;
@@ -61135,14 +60841,14 @@ function type_expect_(in_function, env, sexp, ty_expected) do
             match$20[0]
           };
         end else do
-          throw {
-                Caml_builtin_exceptions.assert_failure,
-                --[[ tuple ]]{
-                  "typecore.ml",
-                  3375,
-                  11
-                }
-              };
+          error ({
+            Caml_builtin_exceptions.assert_failure,
+            --[[ tuple ]]{
+              "typecore.ml",
+              3375,
+              11
+            }
+          })
         end end 
         ty_res$1 = match$21[1];
         texp_exp_desc = texp.exp_desc;
@@ -61166,12 +60872,12 @@ function type_expect_(in_function, env, sexp, ty_expected) do
                 return type_argument(env$1, e, param[0], param[1]);
               end end), sargs$1, List.combine(ty_args, match$21[0]));
         if (constr.cstr_private == --[[ Private ]]0) then do
-          throw {
-                __Error$7,
-                loc$1,
-                env$1,
-                --[[ Private_type ]]Block.__(19, {ty_res$1})
-              };
+          error ({
+            __Error$7,
+            loc$1,
+            env$1,
+            --[[ Private_type ]]Block.__(19, {ty_res$1})
+          })
         end
          end 
         return do
@@ -61190,32 +60896,32 @@ function type_expect_(in_function, env, sexp, ty_expected) do
         sarg$1 = match[1];
         l$1 = match[0];
         ty_expected0 = instance(undefined, env, ty_expected);
-        try do
+        xpcall(function() do
           match$22 = expand_head(env, ty_expected);
           match$23 = expand_head(env, ty_expected0);
           if (sarg$1 ~= undefined) then do
             match$24 = match$22.desc;
             if (typeof match$24 == "number") then do
-              throw Caml_builtin_exceptions.not_found;
+              error (Caml_builtin_exceptions.not_found)
             end else if (match$24.tag == --[[ Tvariant ]]8) then do
               match$25 = match$23.desc;
               if (typeof match$25 == "number") then do
-                throw Caml_builtin_exceptions.not_found;
+                error (Caml_builtin_exceptions.not_found)
               end else if (match$25.tag == --[[ Tvariant ]]8) then do
                 row = row_repr_aux(--[[ [] ]]0, match$24[0]);
                 match$26 = row_field_repr_aux(--[[ [] ]]0, List.assoc(l$1, row.row_fields));
                 match$27 = row_field_repr_aux(--[[ [] ]]0, List.assoc(l$1, match$25[0].row_fields));
                 if (typeof match$26 == "number") then do
-                  throw Caml_builtin_exceptions.not_found;
+                  error (Caml_builtin_exceptions.not_found)
                 end else if (match$26.tag) then do
-                  throw Caml_builtin_exceptions.not_found;
+                  error (Caml_builtin_exceptions.not_found)
                 end else do
                   match$28 = match$26[0];
                   if (match$28 ~= undefined) then do
                     if (typeof match$27 == "number") then do
-                      throw Caml_builtin_exceptions.not_found;
+                      error (Caml_builtin_exceptions.not_found)
                     end else if (match$27.tag) then do
-                      throw Caml_builtin_exceptions.not_found;
+                      error (Caml_builtin_exceptions.not_found)
                     end else do
                       match$29 = match$27[0];
                       if (match$29 ~= undefined) then do
@@ -61232,24 +60938,23 @@ function type_expect_(in_function, env, sexp, ty_expected) do
                                     exp_attributes: sexp.pexp_attributes
                                   end);
                       end else do
-                        throw Caml_builtin_exceptions.not_found;
+                        error (Caml_builtin_exceptions.not_found)
                       end end 
                     end end  end 
                   end else do
-                    throw Caml_builtin_exceptions.not_found;
+                    error (Caml_builtin_exceptions.not_found)
                   end end 
                 end end  end 
               end else do
-                throw Caml_builtin_exceptions.not_found;
+                error (Caml_builtin_exceptions.not_found)
               end end  end 
             end else do
-              throw Caml_builtin_exceptions.not_found;
+              error (Caml_builtin_exceptions.not_found)
             end end  end 
           end else do
-            throw Caml_builtin_exceptions.not_found;
+            error (Caml_builtin_exceptions.not_found)
           end end 
-        end
-        catch (exn$1)do
+        end end,function(exn$1) return do
           if (exn$1 == Caml_builtin_exceptions.not_found) then do
             arg$2 = may_map((function (param) do
                     return type_exp(env, param);
@@ -61283,9 +60988,9 @@ function type_expect_(in_function, env, sexp, ty_expected) do
                         exp_attributes: sexp.pexp_attributes
                       end);
           end else do
-            throw exn$1;
+            error (exn$1)
           end end 
-        endend end end 
+        end end)end end end 
      if ___conditional___ = 11--[[ Pexp_record ]] then do
         opt_sexp = match[1];
         lid_sexp_list = match[0];
@@ -61310,21 +61015,20 @@ function type_expect_(in_function, env, sexp, ty_expected) do
           opt_exp = undefined;
         end end 
         get_path = function (ty) do
-          try do
+          xpcall(function() do
             match = extract_concrete_record(env, ty);
             return --[[ tuple ]]{
                     match[0],
                     match[1],
                     ty.level == 100000000 or not principal.contents
                   };
-          end
-          catch (exn)do
+          end end,function(exn) return do
             if (exn == Caml_builtin_exceptions.not_found) then do
               return ;
             end else do
-              throw exn;
+              error (exn)
             end end 
-          end
+          end end)
         end end;
         op = get_path(ty_expected);
         match$30;
@@ -61375,19 +61079,19 @@ function type_expect_(in_function, env, sexp, ty_expected) do
               lbl1 = param[0][1];
               if (rem) then do
                 if (lbl1.lbl_pos == rem[0][1].lbl_pos) then do
-                  throw {
-                        __Error$7,
-                        loc,
-                        env,
-                        --[[ Label_multiply_defined ]]Block.__(10, {lbl1.lbl_name})
-                      };
+                  error ({
+                    __Error$7,
+                    loc,
+                    env,
+                    --[[ Label_multiply_defined ]]Block.__(10, {lbl1.lbl_name})
+                  })
                 end
                  end 
                 _param = rem;
-                continue ;
+                ::continue:: ;
               end else do
                 _param = rem;
-                continue ;
+                ::continue:: ;
               end end 
             end else do
               return --[[ () ]]0;
@@ -61423,14 +61127,14 @@ function type_expect_(in_function, env, sexp, ty_expected) do
               exp_attributes: exp$1.exp_attributes
             end;
           end else do
-            throw {
-                  Caml_builtin_exceptions.assert_failure,
-                  --[[ tuple ]]{
-                    "typecore.ml",
-                    2092,
-                    15
-                  }
-                };
+            error ({
+              Caml_builtin_exceptions.assert_failure,
+              --[[ tuple ]]{
+                "typecore.ml",
+                2092,
+                15
+              }
+            })
           end end 
         end else do
           opt_exp$1 = undefined;
@@ -61439,14 +61143,14 @@ function type_expect_(in_function, env, sexp, ty_expected) do
         if (lbl_exp_list) then do
           num_fields = #lbl_exp_list[0][1].lbl_all;
         end else do
-          throw {
-                Caml_builtin_exceptions.assert_failure,
-                --[[ tuple ]]{
-                  "typecore.ml",
-                  2095,
-                  38
-                }
-              };
+          error ({
+            Caml_builtin_exceptions.assert_failure,
+            --[[ tuple ]]{
+              "typecore.ml",
+              2095,
+              38
+            }
+          })
         end end 
         if (opt_sexp == undefined and List.length(lid_sexp_list) ~= num_fields) then do
           present_indices = List.map((function (param) do
@@ -61462,7 +61166,7 @@ function type_expect_(in_function, env, sexp, ty_expected) do
                 if (List.mem(n, present_indices)) then do
                   _param = rem;
                   _n = n + 1 | 0;
-                  continue ;
+                  ::continue:: ;
                 end else do
                   return --[[ :: ]]{
                           param[0],
@@ -61475,12 +61179,12 @@ function type_expect_(in_function, env, sexp, ty_expected) do
             end;
           end end;
           missing = missing_labels(0, label_names);
-          throw {
-                __Error$7,
-                loc,
-                env,
-                --[[ Label_missing ]]Block.__(11, {missing})
-              };
+          error ({
+            __Error$7,
+            loc,
+            env,
+            --[[ Label_missing ]]Block.__(11, {missing})
+          })
         end else if (opt_sexp ~= undefined and List.length(lid_sexp_list) == num_fields) then do
           prerr_warning(loc, --[[ Useless_record_with ]]11);
         end
@@ -61528,12 +61232,12 @@ function type_expect_(in_function, env, sexp, ty_expected) do
         label$1 = match$34[1];
         unify_exp(env, record$4, ty_record$1);
         if (label$1.lbl_mut == --[[ Immutable ]]0) then do
-          throw {
-                __Error$7,
-                loc,
-                env,
-                --[[ Label_not_mutable ]]Block.__(12, {lid$3.txt})
-              };
+          error ({
+            __Error$7,
+            loc,
+            env,
+            --[[ Label_not_mutable ]]Block.__(12, {lid$3.txt})
+          })
         end
          end 
         return rue(do
@@ -61639,12 +61343,12 @@ function type_expect_(in_function, env, sexp, ty_expected) do
             env
           };
         end else if (match$35.tag) then do
-          throw {
-                __Error$7,
-                param.ppat_loc,
-                env,
-                --[[ Invalid_for_loop_index ]]6
-              };
+          error ({
+            __Error$7,
+            param.ppat_loc,
+            env,
+            --[[ Invalid_for_loop_index ]]6
+          })
         end else do
           match$36 = enter_value((function (s) do
                     return --[[ Unused_for_index ]]Block.__(19, {s});
@@ -61709,28 +61413,27 @@ function type_expect_(in_function, env, sexp, ty_expected) do
           cty$prime = match$39[0];
           ty$4 = cty$1.ctyp_type;
           ty$prime = cty$prime.ctyp_type;
-          try do
+          xpcall(function() do
             force$prime$prime = subtype(env, ty$4, ty$prime);
             Curry._1(match$38[1], --[[ () ]]0);
             Curry._1(match$39[1], --[[ () ]]0);
             Curry._1(force$prime$prime, --[[ () ]]0);
-          end
-          catch (raw_exn)do
+          end end,function(raw_exn) return do
             exn$2 = Caml_js_exceptions.internalToOCamlException(raw_exn);
             if (exn$2[0] == Subtype) then do
-              throw {
-                    __Error$7,
-                    loc,
-                    env,
-                    --[[ Not_subtype ]]Block.__(23, {
-                        exn$2[1],
-                        exn$2[2]
-                      })
-                  };
+              error ({
+                __Error$7,
+                loc,
+                env,
+                --[[ Not_subtype ]]Block.__(23, {
+                    exn$2[1],
+                    exn$2[2]
+                  })
+              })
             end
              end 
-            throw exn$2;
-          end
+            error (exn$2)
+          end end)
           end_def(--[[ () ]]0);
           generalize_structure$1(current_level.contents, ty$4);
           generalize_structure$1(current_level.contents, ty$prime);
@@ -61783,25 +61486,24 @@ function type_expect_(in_function, env, sexp, ty_expected) do
                 snap = snapshot(--[[ () ]]0);
                 match$45 = enlarge_type(env, ty$prime$1);
                 tmp$4;
-                try do
+                xpcall(function() do
                   Curry._1(force, --[[ () ]]0);
                   unify$2(env, arg$4.exp_type, match$45[0]);
                   tmp$4 = true;
-                end
-                catch (raw_exn$1)do
+                end end,function(raw_exn$1) return do
                   exn$3 = Caml_js_exceptions.internalToOCamlException(raw_exn$1);
                   if (exn$3[0] == Unify) then do
                     backtrack(snap);
                     tmp$4 = false;
                   end else do
-                    throw exn$3;
+                    error (exn$3)
                   end end 
-                end
+                end end)
                 tmp$3 = tmp$4;
               end
                end 
               if (not tmp$3) then do
-                try do
+                xpcall(function() do
                   force$prime = subtype(env, arg$4.exp_type, ty$prime$1);
                   Curry._1(force, --[[ () ]]0);
                   Curry._1(force$prime, --[[ () ]]0);
@@ -61809,49 +61511,47 @@ function type_expect_(in_function, env, sexp, ty_expected) do
                     prerr_warning(loc, --[[ Not_principal ]]Block.__(8, {"this ground coercion"}));
                   end
                    end 
-                end
-                catch (raw_exn$2)do
+                end end,function(raw_exn$2) return do
                   exn$4 = Caml_js_exceptions.internalToOCamlException(raw_exn$2);
                   if (exn$4[0] == Subtype) then do
-                    throw {
-                          __Error$7,
-                          loc,
-                          env,
-                          --[[ Not_subtype ]]Block.__(23, {
-                              exn$4[1],
-                              exn$4[2]
-                            })
-                        };
+                    error ({
+                      __Error$7,
+                      loc,
+                      env,
+                      --[[ Not_subtype ]]Block.__(23, {
+                          exn$4[1],
+                          exn$4[2]
+                        })
+                    })
                   end
                    end 
-                  throw exn$4;
-                end
+                  error (exn$4)
+                end end)
               end
                end 
             end else do
               match$46 = enlarge_type(env, ty$prime$1);
               Curry._1(force, --[[ () ]]0);
-              try do
+              xpcall(function() do
                 unify$2(env, arg$4.exp_type, match$46[0]);
-              end
-              catch (raw_exn$3)do
+              end end,function(raw_exn$3) return do
                 exn$5 = Caml_js_exceptions.internalToOCamlException(raw_exn$3);
                 if (exn$5[0] == Unify) then do
-                  throw {
-                        __Error$7,
-                        sarg$3.pexp_loc,
-                        env,
-                        --[[ Coercion_failure ]]Block.__(25, {
-                            ty$prime$1,
-                            full_expand(env, ty$prime$1),
-                            exn$5[1],
-                            match$46[1]
-                          })
-                      };
+                  error ({
+                    __Error$7,
+                    sarg$3.pexp_loc,
+                    env,
+                    --[[ Coercion_failure ]]Block.__(25, {
+                        ty$prime$1,
+                        full_expand(env, ty$prime$1),
+                        exn$5[1],
+                        match$46[1]
+                      })
+                  })
                 end
                  end 
-                throw exn$5;
-              end
+                error (exn$5)
+              end end)
             end end 
           end
            end 
@@ -61889,7 +61589,7 @@ function type_expect_(in_function, env, sexp, ty_expected) do
         end
          end 
         obj = type_exp(env, e);
-        try do
+        xpcall(function() do
           match$47 = obj.exp_desc;
           match$48;
           exit$3 = 0;
@@ -61918,34 +61618,33 @@ function type_expect_(in_function, env, sexp, ty_expected) do
                  if ___conditional___ = 3--[[ Val_anc ]] then do
                     cl_num = match$49[1];
                     method_id;
-                    try do
+                    xpcall(function() do
                       method_id = List.assoc(met, match$49[0]);
-                    end
-                    catch (exn$6)do
+                    end end,function(exn$6) return do
                       if (exn$6 == Caml_builtin_exceptions.not_found) then do
-                        throw {
-                              __Error$7,
-                              e.pexp_loc,
-                              env,
-                              --[[ Undefined_inherited_method ]]Block.__(17, {met})
-                            };
+                        error ({
+                          __Error$7,
+                          e.pexp_loc,
+                          env,
+                          --[[ Undefined_inherited_method ]]Block.__(17, {met})
+                        })
                       end
                        end 
-                      throw exn$6;
-                    end
+                      error (exn$6)
+                    end end)
                     match$51 = lookup_value$1(--[[ Lident ]]Block.__(0, {"selfpat-" .. cl_num}), env);
                     match$52 = lookup_value$1(--[[ Lident ]]Block.__(0, {"self-" .. cl_num}), env);
                     desc$3 = match$51[1];
                     match$53 = desc$3.val_kind;
                     if (typeof match$53 == "number") then do
-                      throw {
-                            Caml_builtin_exceptions.assert_failure,
-                            --[[ tuple ]]{
-                              "typecore.ml",
-                              2384,
-                              18
-                            }
-                          };
+                      error ({
+                        Caml_builtin_exceptions.assert_failure,
+                        --[[ tuple ]]{
+                          "typecore.ml",
+                          2384,
+                          18
+                        }
+                      })
                     end else if (match$53.tag == --[[ Val_self ]]2) then do
                       match$54 = filter_self_method(env, met, --[[ Private ]]0, match$53[0], match$53[3]);
                       typ$1 = match$54[1];
@@ -62006,14 +61705,14 @@ function type_expect_(in_function, env, sexp, ty_expected) do
                         typ$1
                       };
                     end else do
-                      throw {
-                            Caml_builtin_exceptions.assert_failure,
-                            --[[ tuple ]]{
-                              "typecore.ml",
-                              2384,
-                              18
-                            }
-                          };
+                      error ({
+                        Caml_builtin_exceptions.assert_failure,
+                        --[[ tuple ]]{
+                          "typecore.ml",
+                          2384,
+                          18
+                        }
+                      })
                     end end  end end else 
                  do end end end
                 else do
@@ -62041,14 +61740,14 @@ function type_expect_(in_function, env, sexp, ty_expected) do
           match$56 = ty$5.desc;
           typ$3;
           if (typeof match$56 == "number") then do
-            throw {
-                  Caml_builtin_exceptions.assert_failure,
-                  --[[ tuple ]]{
-                    "typecore.ml",
-                    2410,
-                    14
-                  }
-                };
+            error ({
+              Caml_builtin_exceptions.assert_failure,
+              --[[ tuple ]]{
+                "typecore.ml",
+                2410,
+                14
+              }
+            })
           end else do
             local ___conditional___=(match$56.tag | 0);
             do
@@ -62074,14 +61773,14 @@ function type_expect_(in_function, env, sexp, ty_expected) do
                   end end end else 
                do end end end
               else do
-                throw {
-                      Caml_builtin_exceptions.assert_failure,
-                      --[[ tuple ]]{
-                        "typecore.ml",
-                        2410,
-                        14
-                      }
-                    };
+                error ({
+                  Caml_builtin_exceptions.assert_failure,
+                  --[[ tuple ]]{
+                    "typecore.ml",
+                    2410,
+                    14
+                  }
+                })
                 end end
                 
             end
@@ -62098,23 +61797,22 @@ function type_expect_(in_function, env, sexp, ty_expected) do
                       exp_env: env,
                       exp_attributes: sexp.pexp_attributes
                     end);
-        end
-        catch (raw_exn$4)do
+        end end,function(raw_exn$4) return do
           exn$7 = Caml_js_exceptions.internalToOCamlException(raw_exn$4);
           if (exn$7[0] == Unify) then do
-            throw {
-                  __Error$7,
-                  e.pexp_loc,
-                  env,
-                  --[[ Undefined_method ]]Block.__(16, {
-                      obj.exp_type,
-                      met
-                    })
-                };
+            error ({
+              __Error$7,
+              e.pexp_loc,
+              env,
+              --[[ Undefined_method ]]Block.__(16, {
+                  obj.exp_type,
+                  met
+                })
+            })
           end
            end 
-          throw exn$7;
-        endend else 
+          error (exn$7)
+        end end)end else 
      if ___conditional___ = 22--[[ Pexp_new ]] then do
         cl = match[0];
         match$57 = find_class$1(env, loc, cl.txt);
@@ -62134,16 +61832,16 @@ function type_expect_(in_function, env, sexp, ty_expected) do
                       exp_attributes: sexp.pexp_attributes
                     end);
         end else do
-          throw {
-                __Error$7,
-                loc,
-                env,
-                --[[ Virtual_class ]]Block.__(18, {cl.txt})
-              };
+          error ({
+            __Error$7,
+            loc,
+            env,
+            --[[ Virtual_class ]]Block.__(18, {cl.txt})
+          })
         end end end end end 
      if ___conditional___ = 23--[[ Pexp_setinstvar ]] then do
         lab = match[0];
-        try do
+        xpcall(function() do
           match$59 = lookup_value$1(--[[ Lident ]]Block.__(0, {lab.txt}), env);
           desc$4 = match$59[1];
           match$60 = desc$4.val_kind;
@@ -62167,41 +61865,40 @@ function type_expect_(in_function, env, sexp, ty_expected) do
                         exp_attributes: sexp.pexp_attributes
                       end);
           end else do
-            throw {
-                  __Error$7,
-                  loc,
-                  env,
-                  --[[ Instance_variable_not_mutable ]]Block.__(22, {
-                      true,
-                      lab.txt
-                    })
-                };
+            error ({
+              __Error$7,
+              loc,
+              env,
+              --[[ Instance_variable_not_mutable ]]Block.__(22, {
+                  true,
+                  lab.txt
+                })
+            })
           end end  end 
           if (exit$4 == 1) then do
-            throw {
-                  __Error$7,
-                  loc,
-                  env,
-                  --[[ Instance_variable_not_mutable ]]Block.__(22, {
-                      false,
-                      lab.txt
-                    })
-                };
+            error ({
+              __Error$7,
+              loc,
+              env,
+              --[[ Instance_variable_not_mutable ]]Block.__(22, {
+                  false,
+                  lab.txt
+                })
+            })
           end
            end 
-        end
-        catch (exn$8)do
+        end end,function(exn$8) return do
           if (exn$8 == Caml_builtin_exceptions.not_found) then do
-            throw {
-                  __Error$7,
-                  loc,
-                  env,
-                  --[[ Unbound_instance_variable ]]Block.__(21, {lab.txt})
-                };
+            error ({
+              __Error$7,
+              loc,
+              env,
+              --[[ Unbound_instance_variable ]]Block.__(21, {lab.txt})
+            })
           end
            end 
-          throw exn$8;
-        endend else 
+          error (exn$8)
+        end end)end else 
      if ___conditional___ = 24--[[ Pexp_override ]] then do
         lst = match[0];
         List.fold_right((function (param, l) do
@@ -62209,12 +61906,12 @@ function type_expect_(in_function, env, sexp, ty_expected) do
                 if (List.exists((function (l) do
                           return l.txt == lab.txt;
                         end end), l)) then do
-                  throw {
-                        __Error$7,
-                        loc,
-                        env,
-                        --[[ Value_multiply_overridden ]]Block.__(24, {lab.txt})
-                      };
+                  error ({
+                    __Error$7,
+                    loc,
+                    env,
+                    --[[ Value_multiply_overridden ]]Block.__(24, {lab.txt})
+                  })
                 end
                  end 
                 return --[[ :: ]]{
@@ -62223,59 +61920,57 @@ function type_expect_(in_function, env, sexp, ty_expected) do
                       };
               end end), lst, --[[ [] ]]0);
         match$62;
-        try do
+        xpcall(function() do
           match$62 = --[[ tuple ]]{
             lookup_value$1(--[[ Lident ]]Block.__(0, {"selfpat-*"}), env),
             lookup_value$1(--[[ Lident ]]Block.__(0, {"self-*"}), env)
           };
-        end
-        catch (exn$9)do
+        end end,function(exn$9) return do
           if (exn$9 == Caml_builtin_exceptions.not_found) then do
-            throw {
-                  __Error$7,
-                  loc,
-                  env,
-                  --[[ Outside_class ]]0
-                };
+            error ({
+              __Error$7,
+              loc,
+              env,
+              --[[ Outside_class ]]0
+            })
           end
            end 
-          throw exn$9;
-        end
+          error (exn$9)
+        end end)
         match$63 = match$62[0][1];
         match$64 = match$63.val_kind;
         if (typeof match$64 == "number") then do
-          throw {
-                Caml_builtin_exceptions.assert_failure,
-                --[[ tuple ]]{
-                  "typecore.ml",
-                  2494,
-                  10
-                }
-              };
+          error ({
+            Caml_builtin_exceptions.assert_failure,
+            --[[ tuple ]]{
+              "typecore.ml",
+              2494,
+              10
+            }
+          })
         end else if (match$64.tag == --[[ Val_self ]]2) then do
           vars = match$64[1];
           type_override = function (param) do
             lab = param[0];
-            try do
+            xpcall(function() do
               match = find(lab.txt, vars.contents);
               return --[[ tuple ]]{
                       --[[ Pident ]]Block.__(0, {match[0]}),
                       lab,
                       type_expect(undefined, env, param[1], instance(undefined, env, match[3]))
                     };
-            end
-            catch (exn)do
+            end end,function(exn) return do
               if (exn == Caml_builtin_exceptions.not_found) then do
-                throw {
-                      __Error$7,
-                      loc,
-                      env,
-                      --[[ Unbound_instance_variable ]]Block.__(21, {lab.txt})
-                    };
+                error ({
+                  __Error$7,
+                  loc,
+                  env,
+                  --[[ Unbound_instance_variable ]]Block.__(21, {lab.txt})
+                })
               end
                end 
-              throw exn;
-            end
+              error (exn)
+            end end)
           end end;
           modifs = List.map(type_override, lst);
           return rue(do
@@ -62290,14 +61985,14 @@ function type_expect_(in_function, env, sexp, ty_expected) do
                       exp_attributes: sexp.pexp_attributes
                     end);
         end else do
-          throw {
-                Caml_builtin_exceptions.assert_failure,
-                --[[ tuple ]]{
-                  "typecore.ml",
-                  2494,
-                  10
-                }
-              };
+          error ({
+            Caml_builtin_exceptions.assert_failure,
+            --[[ tuple ]]{
+              "typecore.ml",
+              2494,
+              10
+            }
+          })
         end end  end end end end 
      if ___conditional___ = 25--[[ Pexp_letmodule ]] then do
         name$2 = match[0];
@@ -62312,25 +62007,24 @@ function type_expect_(in_function, env, sexp, ty_expected) do
         widen(context);
         body$4 = type_expect(undefined, new_env, match[2], ty_expected);
         end_def(--[[ () ]]0);
-        try do
+        xpcall(function() do
           unify_var(new_env, ty$7, body$4.exp_type);
-        end
-        catch (raw_exn$5)do
+        end end,function(raw_exn$5) return do
           exn$10 = Caml_js_exceptions.internalToOCamlException(raw_exn$5);
           if (exn$10[0] == Unify) then do
-            throw {
-                  __Error$7,
-                  loc,
-                  env,
-                  --[[ Scoping_let_module ]]Block.__(28, {
-                      name$2.txt,
-                      body$4.exp_type
-                    })
-                };
+            error ({
+              __Error$7,
+              loc,
+              env,
+              --[[ Scoping_let_module ]]Block.__(28, {
+                  name$2.txt,
+                  body$4.exp_type
+                })
+            })
           end
            end 
-          throw exn$10;
-        end
+          error (exn$10)
+        end end)
         return re(do
                     exp_desc: --[[ Texp_letmodule ]]Block.__(23, {
                         match$65[0],
@@ -62404,14 +62098,14 @@ function type_expect_(in_function, env, sexp, ty_expected) do
         match$68 = expand_head(env, ty$9).desc;
         exp$3;
         if (typeof match$68 == "number") then do
-          throw {
-                Caml_builtin_exceptions.assert_failure,
-                --[[ tuple ]]{
-                  "typecore.ml",
-                  2600,
-                  15
-                }
-              };
+          error ({
+            Caml_builtin_exceptions.assert_failure,
+            --[[ tuple ]]{
+              "typecore.ml",
+              2600,
+              15
+            }
+          })
         end else do
           local ___conditional___=(match$68.tag | 0);
           do
@@ -62476,14 +62170,14 @@ function type_expect_(in_function, env, sexp, ty_expected) do
                 end end end else 
              do end end end
             else do
-              throw {
-                    Caml_builtin_exceptions.assert_failure,
-                    --[[ tuple ]]{
-                      "typecore.ml",
-                      2600,
-                      15
-                    }
-                  };
+              error ({
+                Caml_builtin_exceptions.assert_failure,
+                --[[ tuple ]]{
+                  "typecore.ml",
+                  2600,
+                  15
+                }
+              })
               end end
               
           end
@@ -62592,22 +62286,22 @@ function type_expect_(in_function, env, sexp, ty_expected) do
         match$73 = match$72.desc;
         match$74;
         if (typeof match$73 == "number") then do
-          throw {
-                __Error$7,
-                loc,
-                env,
-                --[[ Not_a_packed_module ]]Block.__(32, {ty_expected})
-              };
+          error ({
+            __Error$7,
+            loc,
+            env,
+            --[[ Not_a_packed_module ]]Block.__(32, {ty_expected})
+          })
         end else do
           local ___conditional___=(match$73.tag | 0);
           do
              if ___conditional___ = 0--[[ Tvar ]] then do
-                throw {
-                      __Error$7,
-                      loc,
-                      env,
-                      --[[ Cannot_infer_signature ]]3
-                    };end end end 
+                error ({
+                  __Error$7,
+                  loc,
+                  env,
+                  --[[ Cannot_infer_signature ]]3
+                })end end end 
              if ___conditional___ = 11--[[ Tpackage ]] then do
                 if (principal.contents and expand_head(env, ty_expected).level < 100000000) then do
                   prerr_warning(loc, --[[ Not_principal ]]Block.__(8, {"this module packing"}));
@@ -62620,12 +62314,12 @@ function type_expect_(in_function, env, sexp, ty_expected) do
                 };end else 
              do end
             else do
-              throw {
-                    __Error$7,
-                    loc,
-                    env,
-                    --[[ Not_a_packed_module ]]Block.__(32, {ty_expected})
-                  };
+              error ({
+                __Error$7,
+                loc,
+                env,
+                --[[ Not_a_packed_module ]]Block.__(32, {ty_expected})
+              })
               end end
               
           end
@@ -62672,10 +62366,10 @@ function type_expect_(in_function, env, sexp, ty_expected) do
                 exp_attributes: exp$8.exp_attributes
               end;end end end 
      if ___conditional___ = 33--[[ Pexp_extension ]] then do
-        throw {
-              Error_forward$1,
-              error_of_extension(match[0])
-            };end end end 
+        error ({
+          Error_forward$1,
+          error_of_extension(match[0])
+        })end end end 
      do
     
   end
@@ -62694,10 +62388,9 @@ function type_function(in_function, loc, attrs, env, ty_expected, l, caselist) d
   end
    end 
   match$1;
-  try do
+  xpcall(function() do
     match$1 = filter_arrow(env, instance(undefined, env, ty_expected), l);
-  end
-  catch (raw_exn)do
+  end end,function(raw_exn) return do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn[0] == Unify) then do
       ty = expand_head(env, ty_expected);
@@ -62706,55 +62399,54 @@ function type_function(in_function, loc, attrs, env, ty_expected, l, caselist) d
       if (typeof match$2 == "number" or match$2.tag ~= --[[ Tarrow ]]1) then do
         exit = 1;
       end else do
-        throw {
-              __Error$7,
-              loc,
-              env,
-              --[[ Abstract_wrong_label ]]Block.__(27, {
-                  l,
-                  ty
-                })
-            };
+        error ({
+          __Error$7,
+          loc,
+          env,
+          --[[ Abstract_wrong_label ]]Block.__(27, {
+              l,
+              ty
+            })
+        })
       end end 
       if (exit == 1) then do
-        throw {
-              __Error$7,
-              loc_fun,
-              env,
-              --[[ Too_many_arguments ]]Block.__(26, {
-                  in_function ~= undefined,
-                  ty_fun
-                })
-            };
+        error ({
+          __Error$7,
+          loc_fun,
+          env,
+          --[[ Too_many_arguments ]]Block.__(26, {
+              in_function ~= undefined,
+              ty_fun
+            })
+        })
       end
        end 
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
   ty_res = match$1[1];
   ty_arg = match$1[0];
   ty_arg$1;
   if (is_optional(l)) then do
     tv = newvar(undefined, --[[ () ]]0);
-    try do
+    xpcall(function() do
       unify$2(env, ty_arg, type_option$1(tv));
-    end
-    catch (raw_exn$1)do
+    end end,function(raw_exn$1) return do
       exn$1 = Caml_js_exceptions.internalToOCamlException(raw_exn$1);
       if (exn$1[0] == Unify) then do
-        throw {
-              Caml_builtin_exceptions.assert_failure,
-              --[[ tuple ]]{
-                "typecore.ml",
-                2706,
-                24
-              }
-            };
+        error ({
+          Caml_builtin_exceptions.assert_failure,
+          --[[ tuple ]]{
+            "typecore.ml",
+            2706,
+            24
+          }
+        })
       end
        end 
-      throw exn$1;
-    end
+      error (exn$1)
+    end end)
     ty_arg$1 = type_option$1(tv);
   end else do
     ty_arg$1 = ty_arg;
@@ -62814,21 +62506,20 @@ function type_label_access(env, loc, srecord, lid) do
    end 
   ty_exp = record.exp_type;
   opath;
-  try do
+  xpcall(function() do
     match = extract_concrete_record(env, ty_exp);
     opath = --[[ tuple ]]{
       match[0],
       match[1],
       ty_exp.level == 100000000 or not principal.contents
     };
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Caml_builtin_exceptions.not_found) then do
       opath = undefined;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
   labels = find_all_labels(env, lid.loc, lid.txt);
   label = wrap_disambiguate("This expression has", ty_exp, (function (param) do
           return disambiguate(undefined, undefined, undefined, lid, env, opath, param);
@@ -62841,14 +62532,14 @@ function type_label_access(env, loc, srecord, lid) do
 end end
 
 function type_format(loc, str, env) do
-  throw {
-        Caml_builtin_exceptions.assert_failure,
-        --[[ tuple ]]{
-          "typecore.ml",
-          2759,
-          11
-        }
-      };
+  error ({
+    Caml_builtin_exceptions.assert_failure,
+    --[[ tuple ]]{
+      "typecore.ml",
+      2759,
+      11
+    }
+  })
 end end
 
 function type_label_exp(create, env, loc, ty_expected, param) do
@@ -62872,25 +62563,24 @@ function type_label_exp(create, env, loc, ty_expected, param) do
     generalize_structure$1(current_level.contents, ty_res);
   end
    end 
-  try do
+  xpcall(function() do
     unify$2(env, instance_def(ty_res), instance(undefined, env, ty_expected));
-  end
-  catch (raw_exn)do
+  end end,function(raw_exn) return do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn[0] == Unify) then do
-      throw {
-            __Error$7,
-            lid.loc,
-            env,
-            --[[ Label_mismatch ]]Block.__(2, {
-                lid.txt,
-                exn[1]
-              })
-          };
+      error ({
+        __Error$7,
+        lid.loc,
+        env,
+        --[[ Label_mismatch ]]Block.__(2, {
+            lid.txt,
+            exn[1]
+          })
+      })
     end
      end 
-    throw exn;
-  end
+    error (exn)
+  end end)
   ty_arg$1 = instance_def(ty_arg);
   if (separate) then do
     end_def(--[[ () ]]0);
@@ -62899,38 +62589,37 @@ function type_label_exp(create, env, loc, ty_expected, param) do
    end 
   if (label.lbl_private == --[[ Private ]]0) then do
     if (create) then do
-      throw {
-            __Error$7,
-            loc,
-            env,
-            --[[ Private_type ]]Block.__(19, {ty_expected})
-          };
+      error ({
+        __Error$7,
+        loc,
+        env,
+        --[[ Private_type ]]Block.__(19, {ty_expected})
+      })
     end
      end 
-    throw {
-          __Error$7,
-          lid.loc,
-          env,
-          --[[ Private_label ]]Block.__(20, {
-              lid.txt,
-              ty_expected
-            })
-        };
+    error ({
+      __Error$7,
+      lid.loc,
+      env,
+      --[[ Private_label ]]Block.__(20, {
+          lid.txt,
+          ty_expected
+        })
+    })
   end
    end 
   snap = vars == --[[ [] ]]0 and undefined or Caml_option.some(snapshot(--[[ () ]]0));
   arg = type_argument(env, sarg, ty_arg$1, instance(undefined, env, ty_arg$1));
   end_def(--[[ () ]]0);
   arg$1;
-  try do
+  xpcall(function() do
     check_univars(env, vars ~= --[[ [] ]]0, "field value", arg, label.lbl_arg, vars);
     arg$1 = arg;
-  end
-  catch (exn$1)do
+  end end,function(exn$1) return do
     if (is_nonexpansive(arg)) then do
-      throw exn$1;
+      error (exn$1)
     end else do
-      try do
+      xpcall(function() do
         may(backtrack, snap);
         begin_def(--[[ () ]]0);
         arg$2 = type_exp(env, sarg);
@@ -62939,24 +62628,23 @@ function type_label_exp(create, env, loc, ty_expected, param) do
         unify_exp(env, arg$2, ty_arg$1);
         check_univars(env, false, "field value", arg$2, label.lbl_arg, vars);
         arg$1 = arg$2;
-      end
-      catch (raw_e)do
+      end end,function(raw_e) return do
         e = Caml_js_exceptions.internalToOCamlException(raw_e);
         if (e[0] == __Error$7) then do
           tmp = e[3];
           if (typeof tmp == "number") then do
-            throw exn$1;
+            error (exn$1)
           end else if (tmp.tag == --[[ Less_general ]]31) then do
-            throw e;
+            error (e)
           end else do
-            throw exn$1;
+            error (exn$1)
           end end  end 
         end else do
-          throw exn$1;
+          error (exn$1)
         end end 
-      end
+      end end)
     end end 
-  end
+  end end)
   return --[[ tuple ]]{
           lid,
           label,
@@ -62992,13 +62680,13 @@ function type_argument(env, sarg, ty_expected$prime, ty_expected) do
             match$1 = match[2];
             if (match$1 ~= undefined and is_inferred(match[1])) then do
               _sexp = match$1;
-              continue ;
+              ::continue:: ;
             end else do
               return false;
             end end end end end 
          if ___conditional___ = 16--[[ Pexp_sequence ]] then do
             _sexp = match[1];
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 0--[[ Pexp_ident ]]
          or ___conditional___ = 5--[[ Pexp_apply ]]
          or ___conditional___ = 12--[[ Pexp_field ]]
@@ -63009,7 +62697,7 @@ function type_argument(env, sarg, ty_expected$prime, ty_expected) do
             return true;end end end 
          if ___conditional___ = 32--[[ Pexp_open ]] then do
             _sexp = match[2];
-            continue ;end end end 
+            ::continue:: ;end end end 
          do
         else do
           return false;
@@ -63062,7 +62750,7 @@ function type_argument(env, sarg, ty_expected$prime, ty_expected) do
                       },
                       args
                     };
-                    continue ;
+                    ::continue:: ;
                   end else if (l == "" or classic.contents) then do
                     return --[[ tuple ]]{
                             List.rev(args),
@@ -63333,29 +63021,29 @@ function type_application(env, funct, sargs) do
             if (ignore_labels and not is_optional(l)) then do
               if (sargs) then do
                 match$5 = sargs[0];
-                throw {
-                      __Error$7,
-                      match$5[1].pexp_loc,
-                      env,
-                      --[[ Apply_wrong_label ]]Block.__(9, {
-                          match$5[0],
-                          ty_old
-                        })
-                    };
+                error ({
+                  __Error$7,
+                  match$5[1].pexp_loc,
+                  env,
+                  --[[ Apply_wrong_label ]]Block.__(9, {
+                      match$5[0],
+                      ty_old
+                    })
+                })
               end else if (more_sargs) then do
                 match$6 = more_sargs[0];
                 sarg0 = match$6[1];
                 l$prime = match$6[0];
                 if (l ~= l$prime and l$prime ~= "") then do
-                  throw {
-                        __Error$7,
-                        sarg0.pexp_loc,
-                        env,
-                        --[[ Apply_wrong_label ]]Block.__(9, {
-                            l$prime,
-                            match
-                          })
-                      };
+                  error ({
+                    __Error$7,
+                    sarg0.pexp_loc,
+                    env,
+                    --[[ Apply_wrong_label ]]Block.__(9, {
+                        l$prime,
+                        match
+                      })
+                  })
                 end
                  end 
                 match$4 = --[[ tuple ]]{
@@ -63368,19 +63056,19 @@ function type_application(env, funct, sargs) do
                   end(ty,ty0,sarg0))
                 };
               end else do
-                throw {
-                      Caml_builtin_exceptions.assert_failure,
-                      --[[ tuple ]]{
-                        "typecore.ml",
-                        3250,
-                        16
-                      }
-                    };
+                error ({
+                  Caml_builtin_exceptions.assert_failure,
+                  --[[ tuple ]]{
+                    "typecore.ml",
+                    3250,
+                    16
+                  }
+                })
               end end  end 
             end else do
-              try do
+              xpcall(function() do
                 match$7;
-                try do
+                xpcall(function() do
                   match$8 = extract_label_aux(--[[ [] ]]0, name, sargs);
                   sargs1 = match$8[2];
                   sarg0$1 = match$8[1];
@@ -63394,8 +63082,7 @@ function type_application(env, funct, sargs) do
                     Pervasives.$at(sargs1, match$8[3]),
                     more_sargs
                   };
-                end
-                catch (exn)do
+                end end,function(exn) return do
                   if (exn == Caml_builtin_exceptions.not_found) then do
                     match$9 = extract_label_aux(--[[ [] ]]0, name, more_sargs);
                     sargs1$1 = match$9[2];
@@ -63411,9 +63098,9 @@ function type_application(env, funct, sargs) do
                       match$9[3]
                     };
                   end else do
-                    throw exn;
+                    error (exn)
                   end end 
-                end
+                end end)
                 sarg0$3 = match$7[1];
                 l$prime$1 = match$7[0];
                 if (optional == --[[ Required ]]0 and is_optional(l$prime$1)) then do
@@ -63433,8 +63120,7 @@ function type_application(env, funct, sargs) do
                       end end
                       end(ty,ty0,sarg0$3)))
                 };
-              end
-              catch (exn$1)do
+              end end,function(exn$1) return do
                 if (exn$1 == Caml_builtin_exceptions.not_found) then do
                   match$4 = --[[ tuple ]]{
                     sargs,
@@ -63453,9 +63139,9 @@ function type_application(env, funct, sargs) do
                         end(ty))) or (may_warn(funct.exp_loc, --[[ Without_principality ]]Block.__(9, {"commuted an argument"})), undefined)
                   };
                 end else do
-                  throw exn$1;
+                  error (exn$1)
                 end end 
-              end
+              end end)
             end end 
             arg = match$4[2];
             sargs$1 = match$4[0];
@@ -63482,7 +63168,7 @@ function type_application(env, funct, sargs) do
               },
               args
             };
-            continue ;
+            ::continue:: ;
           end else do
             exit = 1;
           end end 
@@ -63491,15 +63177,15 @@ function type_application(env, funct, sargs) do
       if (exit == 1) then do
         if (sargs and ignore_labels) then do
           match$10 = sargs[0];
-          throw {
-                __Error$7,
-                match$10[1].pexp_loc,
-                env,
-                --[[ Apply_wrong_label ]]Block.__(9, {
-                    match$10[0],
-                    ty_old
-                  })
-              };
+          error ({
+            __Error$7,
+            match$10[1].pexp_loc,
+            env,
+            --[[ Apply_wrong_label ]]Block.__(9, {
+                match$10[0],
+                ty_old
+              })
+          })
         end
          end 
         _args$1 = args;
@@ -63581,31 +63267,31 @@ function type_application(env, funct, sargs) do
                 exit$2 = 2;
               end else do
                 if (classic.contents or not has_label(l1, ty_fun$4)) then do
-                  throw {
-                        __Error$7,
-                        sarg1.pexp_loc,
-                        env,
-                        --[[ Apply_wrong_label ]]Block.__(9, {
-                            l1,
-                            ty_res
-                          })
-                      };
+                  error ({
+                    __Error$7,
+                    sarg1.pexp_loc,
+                    env,
+                    --[[ Apply_wrong_label ]]Block.__(9, {
+                        l1,
+                        ty_res
+                      })
+                  })
                 end
                  end 
-                throw {
-                      __Error$7,
-                      funct.exp_loc,
-                      env,
-                      --[[ Incoherent_label_order ]]1
-                    };
+                error ({
+                  __Error$7,
+                  funct.exp_loc,
+                  env,
+                  --[[ Incoherent_label_order ]]1
+                })
               end end 
               if (exit$2 == 2) then do
-                throw {
-                      __Error$7,
-                      funct.exp_loc,
-                      env,
-                      --[[ Apply_non_function ]]Block.__(8, {expand_head(env, funct.exp_type)})
-                    };
+                error ({
+                  __Error$7,
+                  funct.exp_loc,
+                  env,
+                  --[[ Apply_non_function ]]Block.__(8, {expand_head(env, funct.exp_type)})
+                })
               end
                end 
             end
@@ -63632,7 +63318,7 @@ function type_application(env, funct, sargs) do
               },
               args$1
             };
-            continue ;
+            ::continue:: ;
           end else do
             return --[[ tuple ]]{
                     List.map((function (param) do
@@ -63929,7 +63615,7 @@ function type_cases(in_function, env, ty_arg, ty_res, partial_flag, loc, caselis
                   q,
                   --[[ [] ]]0
                 };
-                try do
+                xpcall(function() do
                   pss = get_mins(le_pats, List.filter((function(qs)do
                             return function (param) do
                               return compats(qs, param);
@@ -63950,29 +63636,28 @@ function type_cases(in_function, env, ty_arg, ty_res, partial_flag, loc, caselis
                             return prerr_warning(p.pat_loc, --[[ Unused_pat ]]6);
                           end end), r[0]);
                   end end 
-                end
-                catch (exn)do
+                end end,function(exn) return do
                   exit = 0;
                   if (exn == Empty or exn == Caml_builtin_exceptions.not_found or exn == NoGuard) then do
                     exit = 1;
                   end else do
-                    throw exn;
+                    error (exn)
                   end end 
                   if (exit == 1) then do
-                    throw {
-                          Caml_builtin_exceptions.assert_failure,
-                          --[[ tuple ]]{
-                            "parmatch.ml",
-                            1947,
-                            48
-                          }
-                        };
+                    error ({
+                      Caml_builtin_exceptions.assert_failure,
+                      --[[ tuple ]]{
+                        "parmatch.ml",
+                        1947,
+                        48
+                      }
+                    })
                   end
                    end 
-                end
+                end end)
                 if (match.c_guard ~= undefined) then do
                   _param = rem;
-                  continue ;
+                  ::continue:: ;
                 end else do
                   _param = rem;
                   _pref = --[[ :: ]]{
@@ -63982,7 +63667,7 @@ function type_cases(in_function, env, ty_arg, ty_res, partial_flag, loc, caselis
                     },
                     pref
                   };
-                  continue ;
+                  ::continue:: ;
                 end end 
               end else do
                 return --[[ () ]]0;
@@ -64187,20 +63872,19 @@ function type_let(checkOpt, check_strictOpt, env, rec_flag, spat_sexp_list, scop
                       name$1,
                       key_001
                     };
-                    try do
+                    xpcall(function() do
                       old = Hashtbl.find(value_declarations, key);
                       return Hashtbl.replace(value_declarations, key, (function (param) do
                                     Curry._1(old, --[[ () ]]0);
                                     return Curry._1(callback, --[[ () ]]0);
                                   end end));
-                    end
-                    catch (exn)do
+                    end end,function(exn) return do
                       if (exn == Caml_builtin_exceptions.not_found) then do
                         return Hashtbl.add(value_declarations, key, callback);
                       end else do
-                        throw exn;
+                        error (exn)
                       end end 
-                    end
+                    end end)
                   end end), pat_bound_idents(pat));
             return --[[ tuple ]]{
                     pat,
@@ -65243,14 +64927,14 @@ register_error_of_exn((function (param) do
                                                                             end end), tp0$prime);
                                                               end end 
                                                             end else do
-                                                              throw {
-                                                                    Caml_builtin_exceptions.assert_failure,
-                                                                    --[[ tuple ]]{
-                                                                      "printtyp.ml",
-                                                                      1585,
-                                                                      12
-                                                                    }
-                                                                  };
+                                                              error ({
+                                                                Caml_builtin_exceptions.assert_failure,
+                                                                --[[ tuple ]]{
+                                                                  "printtyp.ml",
+                                                                  1585,
+                                                                  12
+                                                                }
+                                                              })
                                                             end end 
                                                           end end));end end end 
                                            if ___conditional___ = 15--[[ Invalid_format ]] then do
@@ -65908,7 +65592,7 @@ function is_fixed_type(sd) do
               return true;end end end 
            if ___conditional___ = 6--[[ Ptyp_alias ]] then do
               _sty = match$1[0];
-              continue ;end end end 
+              ::continue:: ;end end end 
            if ___conditional___ = 7--[[ Ptyp_variant ]] then do
               if (match$1[1]) then do
                 return true;
@@ -65934,23 +65618,23 @@ function set_fixed_row(env, loc, p, decl) do
   if (match ~= undefined) then do
     tm = expand_head(env, match);
   end else do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "typedecl.ml",
-            113,
-            14
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "typedecl.ml",
+        113,
+        14
+      }
+    })
   end end 
   match$1 = tm.desc;
   rv;
   if (typeof match$1 == "number") then do
-    throw {
-          __Error$8,
-          loc,
-          --[[ Bad_fixed_type ]]Block.__(18, {"is not an object or variant"})
-        };
+    error ({
+      __Error$8,
+      loc,
+      --[[ Bad_fixed_type ]]Block.__(18, {"is not an object or variant"})
+    })
   end else do
     local ___conditional___=(match$1.tag | 0);
     do
@@ -65969,21 +65653,21 @@ function set_fixed_row(env, loc, p, decl) do
           rv = static_row(row) and newty2(100000000, --[[ Tnil ]]0) or row.row_more;end else 
        do end end end
       else do
-        throw {
-              __Error$8,
-              loc,
-              --[[ Bad_fixed_type ]]Block.__(18, {"is not an object or variant"})
-            };
+        error ({
+          __Error$8,
+          loc,
+          --[[ Bad_fixed_type ]]Block.__(18, {"is not an object or variant"})
+        })
         end end
         
     end
   end end 
   if (not is_Tvar(rv)) then do
-    throw {
-          __Error$8,
-          loc,
-          --[[ Bad_fixed_type ]]Block.__(18, {"has no row variable"})
-        };
+    error ({
+      __Error$8,
+      loc,
+      --[[ Bad_fixed_type ]]Block.__(18, {"has no row variable"})
+    })
   end
    end 
   rv.desc = --[[ Tconstr ]]Block.__(3, {
@@ -66028,16 +65712,16 @@ function bal$10(l, v, r) do
       end else if (lr) then do
         return create$11(create$11(ll, lv, lr[--[[ l ]]0]), lr[--[[ v ]]1], create$11(lr[--[[ r ]]2], v, r));
       end else do
-        throw {
-              Caml_builtin_exceptions.invalid_argument,
-              "Set.bal"
-            };
+        error ({
+          Caml_builtin_exceptions.invalid_argument,
+          "Set.bal"
+        })
       end end  end 
     end else do
-      throw {
-            Caml_builtin_exceptions.invalid_argument,
-            "Set.bal"
-          };
+      error ({
+        Caml_builtin_exceptions.invalid_argument,
+        "Set.bal"
+      })
     end end 
   end else if (hr > (hl + 2 | 0)) then do
     if (r) then do
@@ -66049,16 +65733,16 @@ function bal$10(l, v, r) do
       end else if (rl) then do
         return create$11(create$11(l, v, rl[--[[ l ]]0]), rl[--[[ v ]]1], create$11(rl[--[[ r ]]2], rv, rr));
       end else do
-        throw {
-              Caml_builtin_exceptions.invalid_argument,
-              "Set.bal"
-            };
+        error ({
+          Caml_builtin_exceptions.invalid_argument,
+          "Set.bal"
+        })
       end end  end 
     end else do
-      throw {
-            Caml_builtin_exceptions.invalid_argument,
-            "Set.bal"
-          };
+      error ({
+        Caml_builtin_exceptions.invalid_argument,
+        "Set.bal"
+      })
     end end 
   end else do
     return --[[ Node ]]{
@@ -66112,7 +65796,7 @@ function mem$6(x, _param) do
         return true;
       end else do
         _param = c < 0 and param[--[[ l ]]0] or param[--[[ r ]]2];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return false;
@@ -66123,23 +65807,22 @@ end end
 function make_params(env, params) do
   make_param = function (param) do
     sty = param[0];
-    try do
+    xpcall(function() do
       return --[[ tuple ]]{
               transl_type_param(env, sty),
               param[1]
             };
-    end
-    catch (exn)do
+    end end,function(exn) return do
       if (exn == Already_bound) then do
-        throw {
-              __Error$8,
-              sty.ptyp_loc,
-              --[[ Repeated_parameter ]]0
-            };
+        error ({
+          __Error$8,
+          sty.ptyp_loc,
+          --[[ Repeated_parameter ]]0
+        })
       end
        end 
-      throw exn;
-    end
+      error (exn)
+    end end)
   end end;
   return List.map(make_param, params);
 end end
@@ -66164,14 +65847,14 @@ function make_constructor(env, type_path, type_params, sargs, sret_type) do
     end
      end 
     if (exit == 1) then do
-      throw {
-            __Error$8,
-            sret_type$1.ptyp_loc,
-            --[[ Constraint_failed ]]Block.__(5, {
-                ret_type,
-                newconstr(type_path, type_params)
-              })
-          };
+      error ({
+        __Error$8,
+        sret_type$1.ptyp_loc,
+        --[[ Constraint_failed ]]Block.__(5, {
+            ret_type,
+            newconstr(type_path, type_params)
+          })
+      })
     end
      end 
     widen(z);
@@ -66247,41 +65930,40 @@ function check_constraints_rec(env, loc, visited, _ty) do
                       return newvar(undefined, --[[ () ]]0);
                     end end), args);
               ty$prime = newconstr(path, args$prime);
-              try do
+              xpcall(function() do
                 enforce_constraints(env, ty$prime);
-              end
-              catch (raw_exn)do
+              end end,function(raw_exn) return do
                 exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
                 if (exn[0] == Unify) then do
-                  throw {
-                        Caml_builtin_exceptions.assert_failure,
-                        --[[ tuple ]]{
-                          "typedecl.ml",
-                          360,
-                          28
-                        }
-                      };
+                  error ({
+                    Caml_builtin_exceptions.assert_failure,
+                    --[[ tuple ]]{
+                      "typedecl.ml",
+                      360,
+                      28
+                    }
+                  })
                 end
                  end 
                 if (exn == Caml_builtin_exceptions.not_found) then do
-                  throw {
-                        __Error$8,
-                        loc,
-                        --[[ Unavailable_type_constructor ]]Block.__(17, {path})
-                      };
+                  error ({
+                    __Error$8,
+                    loc,
+                    --[[ Unavailable_type_constructor ]]Block.__(17, {path})
+                  })
                 end
                  end 
-                throw exn;
-              end
+                error (exn)
+              end end)
               if (not matches(env, ty$1, ty$prime)) then do
-                throw {
-                      __Error$8,
-                      loc,
-                      --[[ Constraint_failed ]]Block.__(5, {
-                          ty$1,
-                          ty$prime
-                        })
-                    };
+                error ({
+                  __Error$8,
+                  loc,
+                  --[[ Constraint_failed ]]Block.__(5, {
+                      ty$1,
+                      ty$prime
+                    })
+                })
               end
                end 
               return List.iter((function (param) do
@@ -66290,7 +65972,7 @@ function check_constraints_rec(env, loc, visited, _ty) do
            if ___conditional___ = 10--[[ Tpoly ]] then do
               match$1 = instance_poly(undefined, false, match[1], match[0]);
               _ty = match$1[1];
-              continue ;end end end 
+              ::continue:: ;end end end 
            do
           else do
             return iter_type_expr((function (param) do
@@ -66338,16 +66020,16 @@ function bal$11(l, x, d, r) do
       end else if (lr) then do
         return create$12(create$12(ll, lv, ld, lr[--[[ l ]]0]), lr[--[[ v ]]1], lr[--[[ d ]]2], create$12(lr[--[[ r ]]3], x, d, r));
       end else do
-        throw {
-              Caml_builtin_exceptions.invalid_argument,
-              "Map.bal"
-            };
+        error ({
+          Caml_builtin_exceptions.invalid_argument,
+          "Map.bal"
+        })
       end end  end 
     end else do
-      throw {
-            Caml_builtin_exceptions.invalid_argument,
-            "Map.bal"
-          };
+      error ({
+        Caml_builtin_exceptions.invalid_argument,
+        "Map.bal"
+      })
     end end 
   end else if (hr > (hl + 2 | 0)) then do
     if (r) then do
@@ -66360,16 +66042,16 @@ function bal$11(l, x, d, r) do
       end else if (rl) then do
         return create$12(create$12(l, x, d, rl[--[[ l ]]0]), rl[--[[ v ]]1], rl[--[[ d ]]2], create$12(rl[--[[ r ]]3], rv, rd, rr));
       end else do
-        throw {
-              Caml_builtin_exceptions.invalid_argument,
-              "Map.bal"
-            };
+        error ({
+          Caml_builtin_exceptions.invalid_argument,
+          "Map.bal"
+        })
       end end  end 
     end else do
-      throw {
-            Caml_builtin_exceptions.invalid_argument,
-            "Map.bal"
-          };
+      error ({
+        Caml_builtin_exceptions.invalid_argument,
+        "Map.bal"
+      })
     end end 
   end else do
     return --[[ Node ]]{
@@ -66436,10 +66118,10 @@ function find$6(x, _param) do
         return param[--[[ d ]]2];
       end else do
         _param = c < 0 and param[--[[ l ]]0] or param[--[[ r ]]3];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
-      throw Caml_builtin_exceptions.not_found;
+      error (Caml_builtin_exceptions.not_found)
     end end 
   end;
 end end
@@ -66455,18 +66137,18 @@ function check_coherence(env, loc, id, decl) do
     ty = match$1;
     match$2 = repr(ty).desc;
     if (typeof match$2 == "number") then do
-      throw {
-            __Error$8,
-            loc,
-            --[[ Definition_mismatch ]]Block.__(4, {
-                ty,
-                --[[ [] ]]0
-              })
-          };
+      error ({
+        __Error$8,
+        loc,
+        --[[ Definition_mismatch ]]Block.__(4, {
+            ty,
+            --[[ [] ]]0
+          })
+      })
     end else if (match$2.tag == --[[ Tconstr ]]3) then do
       args = match$2[1];
       path = match$2[0];
-      try do
+      xpcall(function() do
         decl$prime = find_type_full(path, env)[0];
         err = List.length(args) ~= List.length(decl.type_params) and --[[ :: ]]{
             --[[ Arity ]]0,
@@ -66478,38 +66160,37 @@ function check_coherence(env, loc, id, decl) do
               }
           );
         if (err ~= --[[ [] ]]0) then do
-          throw {
-                __Error$8,
-                loc,
-                --[[ Definition_mismatch ]]Block.__(4, {
-                    ty,
-                    err
-                  })
-              };
-        end else do
-          return 0;
-        end end 
-      end
-      catch (exn)do
-        if (exn == Caml_builtin_exceptions.not_found) then do
-          throw {
-                __Error$8,
-                loc,
-                --[[ Unavailable_type_constructor ]]Block.__(17, {path})
-              };
-        end
-         end 
-        throw exn;
-      end
-    end else do
-      throw {
+          error ({
             __Error$8,
             loc,
             --[[ Definition_mismatch ]]Block.__(4, {
                 ty,
-                --[[ [] ]]0
+                err
               })
-          };
+          })
+        end else do
+          return 0;
+        end end 
+      end end,function(exn) return do
+        if (exn == Caml_builtin_exceptions.not_found) then do
+          error ({
+            __Error$8,
+            loc,
+            --[[ Unavailable_type_constructor ]]Block.__(17, {path})
+          })
+        end
+         end 
+        error (exn)
+      end end)
+    end else do
+      error ({
+        __Error$8,
+        loc,
+        --[[ Definition_mismatch ]]Block.__(4, {
+            ty,
+            --[[ [] ]]0
+          })
+      })
     end end  end 
   end else do
     return --[[ () ]]0;
@@ -66527,25 +66208,25 @@ function check_well_founded(env, loc, path, to_check, ty) do
       tmp;
       tmp = typeof match == "number" or match.tag ~= --[[ Tconstr ]]3 and false or same(match[0], path);
       if (tmp) then do
-        throw {
-              __Error$8,
-              loc,
-              --[[ Recursive_abbrev ]]Block.__(2, {name(undefined, path)})
-            };
+        error ({
+          __Error$8,
+          loc,
+          --[[ Recursive_abbrev ]]Block.__(2, {name(undefined, path)})
+        })
       end
        end 
-      throw {
-            __Error$8,
-            loc,
-            --[[ Cycle_in_def ]]Block.__(3, {
-                name(undefined, path),
-                ty0
-              })
-          };
+      error ({
+        __Error$8,
+        loc,
+        --[[ Cycle_in_def ]]Block.__(3, {
+            name(undefined, path),
+            ty0
+          })
+      })
     end
      end 
     match$1;
-    try do
+    xpcall(function() do
       prev = find$1(ty$1, visited.contents);
       match$1 = subset$1(exp_nodes, prev) and --[[ tuple ]]{
           true,
@@ -66554,27 +66235,26 @@ function check_well_founded(env, loc, path, to_check, ty) do
           false,
           union$2(exp_nodes, prev)
         };
-    end
-    catch (exn)do
+    end end,function(exn) return do
       if (exn == Caml_builtin_exceptions.not_found) then do
         match$1 = --[[ tuple ]]{
           false,
           exp_nodes
         };
       end else do
-        throw exn;
+        error (exn)
       end end 
-    end
+    end end)
     exp_nodes$1 = match$1[1];
     snap = snapshot(--[[ () ]]0);
     if (match$1[0]) then do
       return --[[ () ]]0;
     end else do
-      try do
+      xpcall(function() do
         visited.contents = add$4(ty$1, exp_nodes$1, visited.contents);
         match$2 = ty$1.desc;
         if (typeof match$2 == "number") then do
-          throw Cannot_expand;
+          error (Cannot_expand)
         end else if (match$2.tag == --[[ Tconstr ]]3) then do
           if (not (
               exp_nodes$1 and false or true
@@ -66585,13 +66265,12 @@ function check_well_founded(env, loc, path, to_check, ty) do
             ) and ty$1 or ty0;
             return check(ty0$1, add$3(ty$1, exp_nodes$1), ty$prime);
           end else do
-            throw Cannot_expand;
+            error (Cannot_expand)
           end end 
         end else do
-          throw Cannot_expand;
+          error (Cannot_expand)
         end end  end 
-      end
-      catch (raw_exn)do
+      end end,function(raw_exn) return do
         exn$1 = Caml_js_exceptions.internalToOCamlException(raw_exn);
         if (exn$1 == Cannot_expand) then do
           tmp$1 = true;
@@ -66623,9 +66302,9 @@ function check_well_founded(env, loc, path, to_check, ty) do
         end else if (exn$1[0] == Unify) then do
           return backtrack(snap);
         end else do
-          throw exn$1;
+          error (exn$1)
         end end  end 
-      end
+      end end)
     end end 
   end end;
   return wrap_trace_gadt_instances(env, (function (param) do
@@ -66690,53 +66369,51 @@ function check_recursion(env, loc, path, decl, to_check) do
                   path$prime = match[0];
                   if (same(path, path$prime)) then do
                     if (not equal$4(env, false, args, args$prime)) then do
-                      throw {
-                            __Error$8,
-                            loc,
-                            --[[ Parameters_differ ]]Block.__(8, {
-                                cpath,
-                                ty$1,
-                                newconstr(path, args)
-                              })
-                          };
+                      error ({
+                        __Error$8,
+                        loc,
+                        --[[ Parameters_differ ]]Block.__(8, {
+                            cpath,
+                            ty$1,
+                            newconstr(path, args)
+                          })
+                      })
                     end
                      end 
                   end else if (Curry._1(to_check, path$prime) and not List.mem(path$prime, prev_exp)) then do
-                    try do
+                    xpcall(function() do
                       match$1 = find_type_expansion(path$prime, env);
                       params0 = match$1[0];
                       match$2 = instance_parameterized_type(undefined, params0, match$1[1]);
-                      try do
+                      xpcall(function() do
                         List.iter2((function (param, param$1) do
                                 return unify$2(env, param, param$1);
                               end end), match$2[0], args$prime);
-                      end
-                      catch (raw_exn)do
+                      end end,function(raw_exn) return do
                         exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
                         if (exn[0] == Unify) then do
-                          throw {
-                                __Error$8,
-                                loc,
-                                --[[ Constraint_failed ]]Block.__(5, {
-                                    ty$1,
-                                    newconstr(path$prime, params0)
-                                  })
-                              };
+                          error ({
+                            __Error$8,
+                            loc,
+                            --[[ Constraint_failed ]]Block.__(5, {
+                                ty$1,
+                                newconstr(path$prime, params0)
+                              })
+                          })
                         end
                          end 
-                        throw exn;
-                      end
+                        error (exn)
+                      end end)
                       check_regular(path$prime, args, --[[ :: ]]{
                             path$prime,
                             prev_exp
                           }, match$2[1]);
-                    end
-                    catch (exn$1)do
+                    end end,function(exn$1) return do
                       if (exn$1 ~= Caml_builtin_exceptions.not_found) then do
-                        throw exn$1;
+                        error (exn$1)
                       end
                        end 
-                    end
+                    end end)
                   end
                    end  end 
                   return List.iter((function (param) do
@@ -66745,7 +66422,7 @@ function check_recursion(env, loc, path, decl, to_check) do
                if ___conditional___ = 10--[[ Tpoly ]] then do
                   match$3 = instance_poly(true, false, match[1], match[0]);
                   _ty = match$3[1];
-                  continue ;end end end 
+                  ::continue:: ;end end end 
                do
               else do
                 return iter_type_expr((function (param) do
@@ -66766,16 +66443,15 @@ function check_recursion(env, loc, path, decl, to_check) do
 end end
 
 function get_variance(ty, visited) do
-  try do
+  xpcall(function() do
     return find$1(ty, visited.contents);
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Caml_builtin_exceptions.not_found) then do
       return Types_Variance.__null;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 function compute_variance(env, visited, vari, ty) do
@@ -66807,7 +66483,7 @@ function compute_variance(env, visited, vari, ty) do
                 compute_variance_rec(v1, match[1]);
                 _ty = match[2];
                 _vari = vari$1;
-                continue ;end end end 
+                ::continue:: ;end end end 
              if ___conditional___ = 2--[[ Ttuple ]] then do
                 return List.iter(compute_same, match[0]);end end end 
              if ___conditional___ = 3--[[ Tconstr ]] then do
@@ -66815,7 +66491,7 @@ function compute_variance(env, visited, vari, ty) do
                 if (tl == --[[ [] ]]0) then do
                   return --[[ () ]]0;
                 end else do
-                  try do
+                  xpcall(function() do
                     decl = find_type_full(match[0], env)[0];
                     return List.iter2((function(vari$1)do
                               return function (ty, v) do
@@ -66832,22 +66508,21 @@ function compute_variance(env, visited, vari, ty) do
                                 end end 
                               end end
                               end(vari$1)), tl, decl.type_variance);
-                  end
-                  catch (exn)do
+                  end end,function(exn) return do
                     if (exn == Caml_builtin_exceptions.not_found) then do
                       return List.iter((function (param) do
                                     return compute_variance_rec(Types_Variance.may_inv, param);
                                   end end), tl);
                     end else do
-                      throw exn;
+                      error (exn)
                     end end 
-                  end
+                  end end)
                 end end end end end 
              if ___conditional___ = 5--[[ Tfield ]] then do
                 compute_variance_rec(vari$1, match[2]);
                 _ty = match[3];
                 _vari = vari$1;
-                continue ;end end end 
+                ::continue:: ;end end end 
              if ___conditional___ = 8--[[ Tvariant ]] then do
                 row = row_repr_aux(--[[ [] ]]0, match[0]);
                 List.iter((function(vari$1)do
@@ -66884,13 +66559,13 @@ function compute_variance(env, visited, vari, ty) do
                     end(vari$1)), row.row_fields);
                 _ty = row.row_more;
                 _vari = vari$1;
-                continue ;end end end 
+                ::continue:: ;end end end 
              if ___conditional___ = 4--[[ Tobject ]]
              or ___conditional___ = 7--[[ Tsubst ]]
              or ___conditional___ = 10--[[ Tpoly ]] then do
                 _ty = match[0];
                 _vari = vari$1;
-                continue ;end end end 
+                ::continue:: ;end end end 
              if ___conditional___ = 11--[[ Tpackage ]] then do
                 v$1 = Curry._2(Types_Variance.mem, --[[ Pos ]]4, vari$1) or Curry._2(Types_Variance.mem, --[[ Neg ]]5, vari$1) and Types_Variance.full or Types_Variance.may_inv;
                 return List.iter((function(v$1)do
@@ -66957,23 +66632,23 @@ function compute_variance_type(env, check, param, decl, tyl) do
             co = match[0];
             ij = Curry._2(Types_Variance.mem, --[[ Inj ]]3, __var);
             if (is_Tvar(ty) and (co and not c or cn and not n or not ij and i)) then do
-              throw {
-                    __Error$8,
-                    loc,
-                    --[[ Bad_variance ]]Block.__(16, {
-                        pos.contents,
-                        --[[ tuple ]]{
-                          co,
-                          cn,
-                          ij
-                        },
-                        --[[ tuple ]]{
-                          c,
-                          n,
-                          i
-                        }
-                      })
-                  };
+              error ({
+                __Error$8,
+                loc,
+                --[[ Bad_variance ]]Block.__(16, {
+                    pos.contents,
+                    --[[ tuple ]]{
+                      co,
+                      cn,
+                      ij
+                    },
+                    --[[ tuple ]]{
+                      c,
+                      n,
+                      i
+                    }
+                  })
+              })
             end else do
               return 0;
             end end 
@@ -67034,23 +66709,23 @@ function compute_variance_type(env, check, param, decl, tyl) do
               code = match$1[3] and (
                   c2 or n2 and -1 or -3
                 ) or -2;
-              throw {
-                    __Error$8,
-                    loc,
-                    --[[ Bad_variance ]]Block.__(16, {
-                        code,
-                        --[[ tuple ]]{
-                          c1,
-                          n1,
-                          false
-                        },
-                        --[[ tuple ]]{
-                          c2,
-                          n2,
-                          false
-                        }
-                      })
-                  };
+              error ({
+                __Error$8,
+                loc,
+                --[[ Bad_variance ]]Block.__(16, {
+                    code,
+                    --[[ tuple ]]{
+                      c1,
+                      n1,
+                      false
+                    },
+                    --[[ tuple ]]{
+                      c2,
+                      n2,
+                      false
+                    }
+                  })
+              })
             end else do
               return iter_type_expr(check$1, ty$1);
             end end 
@@ -67124,14 +66799,14 @@ function compute_variance_gadt(env, check, rloc, decl, param) do
     match = repr(ret_type_opt);
     match$1 = match.desc;
     if (typeof match$1 == "number") then do
-      throw {
-            Caml_builtin_exceptions.assert_failure,
-            --[[ tuple ]]{
-              "typedecl.ml",
-              809,
-              13
-            }
-          };
+      error ({
+        Caml_builtin_exceptions.assert_failure,
+        --[[ tuple ]]{
+          "typedecl.ml",
+          809,
+          13
+        }
+      })
     end else if (match$1.tag == --[[ Tconstr ]]3) then do
       tyl = List.map(repr, match$1[1]);
       fvl = List.map((function (param) do
@@ -67143,11 +66818,11 @@ function compute_variance_gadt(env, check, rloc, decl, param) do
                 fv2$1 = fv2[1];
                 fv1 = param[0];
                 if ((param$1[0] or param$1[1]) and constrained(env, Pervasives.$at(fv1, fv2$1), ty)) then do
-                  throw {
-                        __Error$8,
-                        loc,
-                        --[[ Varying_anonymous ]]4
-                      };
+                  error ({
+                    __Error$8,
+                    loc,
+                    --[[ Varying_anonymous ]]4
+                  })
                 end
                  end 
                 return --[[ tuple ]]{
@@ -67158,14 +66833,14 @@ function compute_variance_gadt(env, check, rloc, decl, param) do
                         fv2$1
                       };
               end else do
-                throw {
-                      Caml_builtin_exceptions.assert_failure,
-                      --[[ tuple ]]{
-                        "typedecl.ml",
-                        798,
-                        37
-                      }
-                    };
+                error ({
+                  Caml_builtin_exceptions.assert_failure,
+                  --[[ tuple ]]{
+                    "typedecl.ml",
+                    798,
+                    37
+                  }
+                })
               end end 
             end end), --[[ tuple ]]{
             --[[ [] ]]0,
@@ -67183,14 +66858,14 @@ function compute_variance_gadt(env, check, rloc, decl, param) do
                   type_attributes: decl.type_attributes
                 end, add_false(tl));
     end else do
-      throw {
-            Caml_builtin_exceptions.assert_failure,
-            --[[ tuple ]]{
-              "typedecl.ml",
-              809,
-              13
-            }
-          };
+      error ({
+        Caml_builtin_exceptions.assert_failure,
+        --[[ tuple ]]{
+          "typedecl.ml",
+          809,
+          13
+        }
+      })
     end end  end 
   end else do
     return compute_variance_type(env, check, rloc, do
@@ -67280,14 +66955,14 @@ function compute_variance_decl(env, check, decl, rloc) do
                         end end 
                       end end), varl);
         end else do
-          throw {
-                Caml_builtin_exceptions.assert_failure,
-                --[[ tuple ]]{
-                  "typedecl.ml",
-                  848,
-                  15
-                }
-              };
+          error ({
+            Caml_builtin_exceptions.assert_failure,
+            --[[ tuple ]]{
+              "typedecl.ml",
+              848,
+              15
+            }
+          })
         end end 
       end end 
     end else do
@@ -67346,7 +67021,7 @@ function compute_variance_fixpoint(env, decls, required, _variances) do
           end end), new_variances, variances);
     if (Caml_obj.caml_notequal(new_variances$1, variances)) then do
       _variances = new_variances$1;
-      continue ;
+      ::continue:: ;
     end else do
       List.iter2((function(new_env)do
           return function (param, req) do
@@ -67479,7 +67154,7 @@ function check_duplicates(sdecl_list) do
                 end else if (match.tag) then do
                   return List.iter((function (param) do
                                 cname = param.pld_name;
-                                try do
+                                xpcall(function() do
                                   name$prime = Hashtbl.find(labels, cname.txt);
                                   return prerr_warning(param.pld_loc, --[[ Duplicate_definitions ]]Block.__(14, {
                                                 "label",
@@ -67487,18 +67162,17 @@ function check_duplicates(sdecl_list) do
                                                 name$prime,
                                                 sdecl.ptype_name.txt
                                               }));
-                                end
-                                catch (exn)do
+                                end end,function(exn) return do
                                   if (exn == Caml_builtin_exceptions.not_found) then do
                                     return Hashtbl.add(labels, cname.txt, sdecl.ptype_name.txt);
                                   end else do
-                                    throw exn;
+                                    error (exn)
                                   end end 
-                                end
+                                end end)
                               end end), match[0]);
                 end else do
                   return List.iter((function (pcd) do
-                                try do
+                                xpcall(function() do
                                   name$prime = Hashtbl.find(constrs, pcd.pcd_name.txt);
                                   return prerr_warning(pcd.pcd_loc, --[[ Duplicate_definitions ]]Block.__(14, {
                                                 "constructor",
@@ -67506,14 +67180,13 @@ function check_duplicates(sdecl_list) do
                                                 name$prime,
                                                 sdecl.ptype_name.txt
                                               }));
-                                end
-                                catch (exn)do
+                                end end,function(exn) return do
                                   if (exn == Caml_builtin_exceptions.not_found) then do
                                     return Hashtbl.add(constrs, pcd.pcd_name.txt, sdecl.ptype_name.txt);
                                   end else do
-                                    throw exn;
+                                    error (exn)
                                   end end 
-                                end
+                                end end)
                               end end), match[0]);
                 end end  end 
               end end), sdecl_list);
@@ -67667,11 +67340,11 @@ function transl_type_decl(env, rec_flag, sdecl_list) do
       List.iter((function (param) do
               name = param.pld_name.txt;
               if (mem$6(name, all_labels.contents)) then do
-                throw {
-                      __Error$8,
-                      sdecl.ptype_loc,
-                      --[[ Duplicate_label ]]Block.__(1, {name})
-                    };
+                error ({
+                  __Error$8,
+                  sdecl.ptype_loc,
+                  --[[ Duplicate_label ]]Block.__(1, {name})
+                })
               end
                end 
               all_labels.contents = add$12(name, all_labels.contents);
@@ -67733,11 +67406,11 @@ function transl_type_decl(env, rec_flag, sdecl_list) do
       List.iter((function (param) do
               name = param.pcd_name.txt;
               if (mem$6(name, all_constrs.contents)) then do
-                throw {
-                      __Error$8,
-                      sdecl.ptype_loc,
-                      --[[ Duplicate_constructor ]]Block.__(0, {name})
-                    };
+                error ({
+                  __Error$8,
+                  sdecl.ptype_loc,
+                  --[[ Duplicate_constructor ]]Block.__(0, {name})
+                })
               end
                end 
               all_constrs.contents = add$12(name, all_constrs.contents);
@@ -67746,11 +67419,11 @@ function transl_type_decl(env, rec_flag, sdecl_list) do
       if (List.length(List.filter((function (cd) do
                       return cd.pcd_args ~= --[[ [] ]]0;
                     end end))(scstrs)) > 246) then do
-        throw {
-              __Error$8,
-              sdecl.ptype_loc,
-              --[[ Too_many_constructors ]]1
-            };
+        error ({
+          __Error$8,
+          sdecl.ptype_loc,
+          --[[ Too_many_constructors ]]1
+        })
       end
        end 
       make_cstr = function (scstr) do
@@ -67829,54 +67502,52 @@ function transl_type_decl(env, rec_flag, sdecl_list) do
     List.iter((function (param) do
             ty = param[0].ctyp_type;
             ty$prime = param[1].ctyp_type;
-            try do
+            xpcall(function() do
               return unify$2(env, ty, ty$prime);
-            end
-            catch (raw_exn)do
+            end end,function(raw_exn) return do
               exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
               if (exn[0] == Unify) then do
-                throw {
-                      __Error$8,
-                      param[2],
-                      --[[ Inconsistent_constraint ]]Block.__(6, {
-                          env,
-                          exn[1]
-                        })
-                    };
+                error ({
+                  __Error$8,
+                  param[2],
+                  --[[ Inconsistent_constraint ]]Block.__(6, {
+                      env,
+                      exn[1]
+                    })
+                })
               end
                end 
-              throw exn;
-            end
+              error (exn)
+            end end)
           end end), cstrs);
     end_def(--[[ () ]]0);
     if (is_fixed_type(sdecl)) then do
       match$5;
-      try do
+      xpcall(function() do
         match$5 = lookup_type$1(--[[ Lident ]]Block.__(0, {id.name .. "#row"}), env);
-      end
-      catch (exn)do
+      end end,function(exn) return do
         if (exn == Caml_builtin_exceptions.not_found) then do
-          throw {
-                Caml_builtin_exceptions.assert_failure,
-                --[[ tuple ]]{
-                  "typedecl.ml",
-                  301,
-                  26
-                }
-              };
+          error ({
+            Caml_builtin_exceptions.assert_failure,
+            --[[ tuple ]]{
+              "typedecl.ml",
+              301,
+              26
+            }
+          })
         end
          end 
-        throw exn;
-      end
+        error (exn)
+      end end)
       set_fixed_row(env, sdecl.ptype_loc, match$5[0], decl);
     end
      end 
     if (man ~= undefined and cyclic_abbrev(env, id, man)) then do
-      throw {
-            __Error$8,
-            sdecl.ptype_loc,
-            --[[ Recursive_abbrev ]]Block.__(2, {sdecl.ptype_name.txt})
-          };
+      error ({
+        __Error$8,
+        sdecl.ptype_loc,
+        --[[ Recursive_abbrev ]]Block.__(2, {sdecl.ptype_name.txt})
+      })
     end
      end 
     return do
@@ -67917,24 +67588,23 @@ function transl_type_decl(env, rec_flag, sdecl_list) do
               params = List.map((function (param) do
                       return newvar(undefined, --[[ () ]]0);
                     end end), decl.type_params);
-              try do
+              xpcall(function() do
                 return unify$2(env, newconstr(path, params), match);
-              end
-              catch (raw_exn)do
+              end end,function(raw_exn) return do
                 exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
                 if (exn[0] == Unify) then do
-                  throw {
-                        __Error$8,
-                        loc,
-                        --[[ Type_clash ]]Block.__(7, {
-                            env,
-                            exn[1]
-                          })
-                      };
+                  error ({
+                    __Error$8,
+                    loc,
+                    --[[ Type_clash ]]Block.__(7, {
+                        env,
+                        exn[1]
+                      })
+                  })
                 end
                  end 
-                throw exn;
-              end
+                error (exn)
+              end end)
             end else do
               return --[[ () ]]0;
             end end 
@@ -67997,14 +67667,14 @@ function transl_type_decl(env, rec_flag, sdecl_list) do
           decl = tdecl.typ_type;
           match = closed_type_decl(decl);
           if (match ~= undefined) then do
-            throw {
-                  __Error$8,
-                  sdecl.ptype_loc,
-                  --[[ Unbound_type_var ]]Block.__(9, {
-                      match,
-                      decl
-                    })
-                };
+            error ({
+              __Error$8,
+              sdecl.ptype_loc,
+              --[[ Unbound_type_var ]]Block.__(9, {
+                  match,
+                  decl
+                })
+            })
           end else do
             return --[[ () ]]0;
           end end 
@@ -68023,23 +67693,23 @@ function transl_type_decl(env, rec_flag, sdecl_list) do
           end else if (match.tag) then do
             find_pl = function (param) do
               if (typeof param == "number") then do
-                throw {
-                      Caml_builtin_exceptions.assert_failure,
-                      --[[ tuple ]]{
-                        "typedecl.ml",
-                        382,
-                        58
-                      }
-                    };
+                error ({
+                  Caml_builtin_exceptions.assert_failure,
+                  --[[ tuple ]]{
+                    "typedecl.ml",
+                    382,
+                    58
+                  }
+                })
               end else if (param.tag) then do
-                throw {
-                      Caml_builtin_exceptions.assert_failure,
-                      --[[ tuple ]]{
-                        "typedecl.ml",
-                        382,
-                        58
-                      }
-                    };
+                error ({
+                  Caml_builtin_exceptions.assert_failure,
+                  --[[ tuple ]]{
+                    "typedecl.ml",
+                    382,
+                    58
+                  }
+                })
               end else do
                 return param[0];
               end end  end 
@@ -68052,23 +67722,22 @@ function transl_type_decl(env, rec_flag, sdecl_list) do
             List.iter((function (param) do
                     ret_type = param.cd_res;
                     match;
-                    try do
+                    xpcall(function() do
                       match = find$6(param.cd_id.name, pl_index);
-                    end
-                    catch (exn)do
+                    end end,function(exn) return do
                       if (exn == Caml_builtin_exceptions.not_found) then do
-                        throw {
-                              Caml_builtin_exceptions.assert_failure,
-                              --[[ tuple ]]{
-                                "typedecl.ml",
-                                395,
-                                30
-                              }
-                            };
+                        error ({
+                          Caml_builtin_exceptions.assert_failure,
+                          --[[ tuple ]]{
+                            "typedecl.ml",
+                            395,
+                            30
+                          }
+                        })
                       end
                        end 
-                      throw exn;
-                    end
+                      error (exn)
+                    end end)
                     sret_type = match.pcd_res;
                     List.iter2((function (sty, ty) do
                             return check_constraints_rec(env, sty.ptyp_loc, visited, ty);
@@ -68082,25 +67751,25 @@ function transl_type_decl(env, rec_flag, sdecl_list) do
           end else do
             find_pl$1 = function (param) do
               if (typeof param == "number") then do
-                throw {
-                      Caml_builtin_exceptions.assert_failure,
-                      --[[ tuple ]]{
-                        "typedecl.ml",
-                        409,
-                        59
-                      }
-                    };
+                error ({
+                  Caml_builtin_exceptions.assert_failure,
+                  --[[ tuple ]]{
+                    "typedecl.ml",
+                    409,
+                    59
+                  }
+                })
               end else if (param.tag == --[[ Ptype_record ]]1) then do
                 return param[0];
               end else do
-                throw {
-                      Caml_builtin_exceptions.assert_failure,
-                      --[[ tuple ]]{
-                        "typedecl.ml",
-                        409,
-                        59
-                      }
-                    };
+                error ({
+                  Caml_builtin_exceptions.assert_failure,
+                  --[[ tuple ]]{
+                    "typedecl.ml",
+                    409,
+                    59
+                  }
+                })
               end end  end 
             end end;
             pl$1 = find_pl$1(sdecl.ptype_kind);
@@ -68113,17 +67782,17 @@ function transl_type_decl(env, rec_flag, sdecl_list) do
                     return pld.pld_type.ptyp_loc;
                   end else do
                     _param = param[1];
-                    continue ;
+                    ::continue:: ;
                   end end 
                 end else do
-                  throw {
-                        Caml_builtin_exceptions.assert_failure,
-                        --[[ tuple ]]{
-                          "typedecl.ml",
-                          413,
-                          16
-                        }
-                      };
+                  error ({
+                    Caml_builtin_exceptions.assert_failure,
+                    --[[ tuple ]]{
+                      "typedecl.ml",
+                      413,
+                      16
+                    }
+                  })
                 end end 
               end;
             end end;
@@ -68138,14 +67807,14 @@ function transl_type_decl(env, rec_flag, sdecl_list) do
             if (match$2 ~= undefined) then do
               sty = match$2;
             end else do
-              throw {
-                    Caml_builtin_exceptions.assert_failure,
-                    --[[ tuple ]]{
-                      "typedecl.ml",
-                      428,
-                      63
-                    }
-                  };
+              error ({
+                Caml_builtin_exceptions.assert_failure,
+                --[[ tuple ]]{
+                  "typedecl.ml",
+                  428,
+                  63
+                }
+              })
             end end 
             return check_constraints_rec(env, sty.ptyp_loc, visited, match$1);
           end else do
@@ -68222,25 +67891,24 @@ function transl_extension_constructor(env, check_open, type_path, type_params, t
         undefined
       };
     end end 
-    try do
+    xpcall(function() do
       unify$2(env, match$2[1], match$3[0]);
-    end
-    catch (raw_exn)do
+    end end,function(raw_exn) return do
       exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
       if (exn[0] == Unify) then do
-        throw {
-              __Error$8,
-              lid.loc,
-              --[[ Rebind_wrong_type ]]Block.__(13, {
-                  lid.txt,
-                  env,
-                  exn[1]
-                })
-            };
+        error ({
+          __Error$8,
+          lid.loc,
+          --[[ Rebind_wrong_type ]]Block.__(13, {
+              lid.txt,
+              env,
+              exn[1]
+            })
+        })
       end
        end 
-      throw exn;
-    end
+      error (exn)
+    end end)
     if (not cdescr.cstr_generalized) then do
       vars = free_variables$1(undefined, newty2(100000000, --[[ Ttuple ]]Block.__(2, {args})));
       List.iter((function (ty) do
@@ -68262,14 +67930,14 @@ function transl_extension_constructor(env, check_open, type_path, type_params, t
     match$4 = cdescr.cstr_res.desc;
     match$5;
     if (typeof match$4 == "number") then do
-      throw {
-            Caml_builtin_exceptions.assert_failure,
-            --[[ tuple ]]{
-              "typedecl.ml",
-              1162,
-              17
-            }
-          };
+      error ({
+        Caml_builtin_exceptions.assert_failure,
+        --[[ tuple ]]{
+          "typedecl.ml",
+          1162,
+          17
+        }
+      })
     end else if (match$4.tag == --[[ Tconstr ]]3) then do
       p = match$4[0];
       decl = find_type_full(p, env)[0];
@@ -68278,14 +67946,14 @@ function transl_extension_constructor(env, check_open, type_path, type_params, t
         decl.type_params
       };
     end else do
-      throw {
-            Caml_builtin_exceptions.assert_failure,
-            --[[ tuple ]]{
-              "typedecl.ml",
-              1162,
-              17
-            }
-          };
+      error ({
+        Caml_builtin_exceptions.assert_failure,
+        --[[ tuple ]]{
+          "typedecl.ml",
+          1162,
+          17
+        }
+      })
     end end  end 
     cstr_type_params = match$5[1];
     cstr_type_path = match$5[0];
@@ -68312,24 +67980,24 @@ function transl_extension_constructor(env, check_open, type_path, type_params, t
       type_params
     };
     if (not equal$4(env, true, cstr_types, ext_types)) then do
-      throw {
-            __Error$8,
-            lid.loc,
-            --[[ Rebind_mismatch ]]Block.__(14, {
-                lid.txt,
-                cstr_type_path,
-                type_path
-              })
-          };
+      error ({
+        __Error$8,
+        lid.loc,
+        --[[ Rebind_mismatch ]]Block.__(14, {
+            lid.txt,
+            cstr_type_path,
+            type_path
+          })
+      })
     end
      end 
     match$6 = cdescr.cstr_private;
     if (not match$6 and priv) then do
-      throw {
-            __Error$8,
-            lid.loc,
-            --[[ Rebind_private ]]Block.__(15, {lid.txt})
-          };
+      error ({
+        __Error$8,
+        lid.loc,
+        --[[ Rebind_private ]]Block.__(15, {lid.txt})
+      })
     end
      end 
     match$7 = cdescr.cstr_tag;
@@ -68338,14 +68006,14 @@ function transl_extension_constructor(env, check_open, type_path, type_params, t
     do
        if ___conditional___ = 0--[[ Cstr_constant ]]
        or ___conditional___ = 1--[[ Cstr_block ]] then do
-          throw {
-                Caml_builtin_exceptions.assert_failure,
-                --[[ tuple ]]{
-                  "typedecl.ml",
-                  1187,
-                  17
-                }
-              };end end end 
+          error ({
+            Caml_builtin_exceptions.assert_failure,
+            --[[ tuple ]]{
+              "typedecl.ml",
+              1187,
+              17
+            }
+          })end end end 
        if ___conditional___ = 2--[[ Cstr_extension ]] then do
           path = match$7[0];end else 
        do end
@@ -68402,7 +68070,7 @@ function transl_type_extension(check_open, env, loc, styext) do
   match$1 = type_decl.type_kind;
   if (typeof match$1 == "number") then do
     if (match$1 == 0 and check_open) then do
-      try do
+      xpcall(function() do
         match$2 = List.find((function (param) do
                 if (param.pext_kind.tag) then do
                   return false;
@@ -68410,26 +68078,25 @@ function transl_type_extension(check_open, env, loc, styext) do
                   return true;
                 end end 
               end end), styext.ptyext_constructors);
-        throw {
-              __Error$8,
-              match$2.pext_loc,
-              --[[ Not_open_type ]]Block.__(10, {type_path})
-            };
-      end
-      catch (exn)do
+        error ({
+          __Error$8,
+          match$2.pext_loc,
+          --[[ Not_open_type ]]Block.__(10, {type_path})
+        })
+      end end,function(exn) return do
         if (exn ~= Caml_builtin_exceptions.not_found) then do
-          throw exn;
+          error (exn)
         end
          end 
-      end
+      end end)
     end
      end 
   end else do
-    throw {
-          __Error$8,
-          loc,
-          --[[ Not_extensible_type ]]Block.__(11, {type_path})
-        };
+    error ({
+      __Error$8,
+      loc,
+      --[[ Not_extensible_type ]]Block.__(11, {type_path})
+    })
   end end 
   type_variance = List.map((function (v) do
           match = Curry._1(Types_Variance.get_upper, v);
@@ -68461,14 +68128,14 @@ function transl_type_extension(check_open, env, loc, styext) do
         }
     );
   if (err ~= --[[ [] ]]0) then do
-    throw {
-          __Error$8,
-          loc,
-          --[[ Extension_mismatch ]]Block.__(12, {
-              type_path,
-              err
-            })
-        };
+    error ({
+      __Error$8,
+      loc,
+      --[[ Extension_mismatch ]]Block.__(12, {
+          type_path,
+          err
+        })
+    })
   end
    end 
   ttype_params = make_params(env, styext.ptyext_params);
@@ -68492,14 +68159,14 @@ function transl_type_extension(check_open, env, loc, styext) do
   List.iter((function (ext) do
           match = closed_extension_constructor(ext.ext_type);
           if (match ~= undefined) then do
-            throw {
-                  __Error$8,
-                  ext.ext_loc,
-                  --[[ Unbound_type_var_ext ]]Block.__(19, {
-                      match,
-                      ext.ext_type
-                    })
-                };
+            error ({
+              __Error$8,
+              ext.ext_loc,
+              --[[ Unbound_type_var_ext ]]Block.__(19, {
+                  match,
+                  ext.ext_type
+                })
+            })
           end else do
             return --[[ () ]]0;
           end end 
@@ -68540,14 +68207,14 @@ function transl_exception(env, sext) do
   may(generalize, ext.ext_type.ext_ret_type);
   match = closed_extension_constructor(ext.ext_type);
   if (match ~= undefined) then do
-    throw {
-          __Error$8,
-          ext.ext_loc,
-          --[[ Unbound_type_var_ext ]]Block.__(19, {
-              match,
-              ext.ext_type
-            })
-        };
+    error ({
+      __Error$8,
+      ext.ext_loc,
+      --[[ Unbound_type_var_ext ]]Block.__(19, {
+          match,
+          ext.ext_type
+        })
+    })
   end
    end 
   newenv = add_extension(true, ext.ext_id, ext.ext_type, env);
@@ -68617,19 +68284,19 @@ function transl_value_decl(env, loc, valdecl) do
     prim = parse_declaration(arity$1, decl);
     prim_native_name = prim.prim_native_name;
     if (arity$1 == 0 and not (#prim_native_name > 3 and prim_native_name[0] == "B" and prim_native_name[1] == "S" and prim_native_name[2] == ":") and (#prim.prim_name == 0 or Caml_string.get(prim.prim_name, 0) ~= --[[ "%" ]]37 and Caml_string.get(prim.prim_name, 0) ~= --[[ "#" ]]35)) then do
-      throw {
-            __Error$8,
-            valdecl.pval_type.ptyp_loc,
-            --[[ Null_arity_external ]]2
-          };
+      error ({
+        __Error$8,
+        valdecl.pval_type.ptyp_loc,
+        --[[ Null_arity_external ]]2
+      })
     end
      end 
     if (native_code.contents and prim.prim_arity > 5 and prim_native_name == "") then do
-      throw {
-            __Error$8,
-            valdecl.pval_type.ptyp_loc,
-            --[[ Missing_native_external ]]3
-          };
+      error ({
+        __Error$8,
+        valdecl.pval_type.ptyp_loc,
+        --[[ Missing_native_external ]]3
+      })
     end
      end 
     v = do
@@ -68687,7 +68354,7 @@ function transl_with_constraint(env, id, row_path, orig_decl, sdecl) do
    end 
   constraints = List.map((function (param) do
           loc = param[2];
-          try do
+          xpcall(function() do
             cty = transl_simple_type(env, false, param[0]);
             cty$prime = transl_simple_type(env, false, param[1]);
             ty = cty.ctyp_type;
@@ -68698,22 +68365,21 @@ function transl_with_constraint(env, id, row_path, orig_decl, sdecl) do
                     cty$prime,
                     loc
                   };
-          end
-          catch (raw_exn)do
+          end end,function(raw_exn) return do
             exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
             if (exn[0] == Unify) then do
-              throw {
-                    __Error$8,
-                    loc,
-                    --[[ Inconsistent_constraint ]]Block.__(6, {
-                        env,
-                        exn[1]
-                      })
-                  };
+              error ({
+                __Error$8,
+                loc,
+                --[[ Inconsistent_constraint ]]Block.__(6, {
+                    env,
+                    exn[1]
+                  })
+              })
             end
              end 
-            throw exn;
-          end
+            error (exn)
+          end end)
         end end), sdecl.ptype_cstrs);
   no_row = not is_fixed_type(sdecl);
   match = sdecl.ptype_manifest;
@@ -68759,14 +68425,14 @@ function transl_with_constraint(env, id, row_path, orig_decl, sdecl) do
    end 
   match$2 = closed_type_decl(decl);
   if (match$2 ~= undefined) then do
-    throw {
-          __Error$8,
-          sdecl.ptype_loc,
-          --[[ Unbound_type_var ]]Block.__(9, {
-              match$2,
-              decl
-            })
-        };
+    error ({
+      __Error$8,
+      sdecl.ptype_loc,
+      --[[ Unbound_type_var ]]Block.__(9, {
+          match$2,
+          decl
+        })
+    })
   end
    end 
   decl$1 = name_recursion(sdecl, id, decl);
@@ -68851,7 +68517,7 @@ function approx_type_decl(env, sdecl_list) do
 end end
 
 function explain_unbound(ppf, tv, tl, typ, kwd, lab) do
-  try do
+  xpcall(function() do
     ti = List.find((function (ti) do
             return deep_occur(tv, Curry._1(typ, ti));
           end end), tl);
@@ -68919,14 +68585,13 @@ function explain_unbound(ppf, tv, tl, typ, kwd, lab) do
                       }),
                     ".@.@[<hov2>In %s@ %s%a@;<1 -2>the variable %a is unbound@]"
                   }), kwd, Curry._1(lab, ti), type_expr$1, Curry._1(typ, ti), type_expr$1, tv);
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Caml_builtin_exceptions.not_found) then do
       return --[[ () ]]0;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 function report_error$5(ppf, param) do
@@ -70003,7 +69668,7 @@ function scrape_class_type(_cty) do
     do
        if ___conditional___ = 0--[[ Cty_constr ]] then do
           _cty = cty[2];
-          continue ;end end end 
+          ::continue:: ;end end end 
        if ___conditional___ = 1--[[ Cty_signature ]]
        or ___conditional___ = 2--[[ Cty_arrow ]] then do
           return cty;end end end 
@@ -70021,7 +69686,7 @@ function generalize_class_type(gen, _param) do
        if ___conditional___ = 0--[[ Cty_constr ]] then do
           List.iter(gen, param[1]);
           _param = param[2];
-          continue ;end end end 
+          ::continue:: ;end end end 
        if ___conditional___ = 1--[[ Cty_signature ]] then do
           match = param[0];
           Curry._1(gen, match.csig_self);
@@ -70034,7 +69699,7 @@ function generalize_class_type(gen, _param) do
        if ___conditional___ = 2--[[ Cty_arrow ]] then do
           Curry._1(gen, param[1]);
           _param = param[2];
-          continue ;end end end 
+          ::continue:: ;end end end 
        do
       
     end
@@ -70063,7 +69728,7 @@ function constructor_type(constr, _cty) do
     do
        if ___conditional___ = 0--[[ Cty_constr ]] then do
           _cty = cty[2];
-          continue ;end end end 
+          ::continue:: ;end end end 
        if ___conditional___ = 1--[[ Cty_signature ]] then do
           return constr;end end end 
        if ___conditional___ = 2--[[ Cty_arrow ]] then do
@@ -70093,7 +69758,7 @@ function class_body(_cty) do
           return cty;end end end 
        if ___conditional___ = 2--[[ Cty_arrow ]] then do
           _cty = cty[2];
-          continue ;end end end 
+          ::continue:: ;end end end 
        do
       
     end
@@ -70171,7 +69836,7 @@ function closed_class$1(cty) do
          if ___conditional___ = 2--[[ Cty_arrow ]] then do
             if (closed_schema(param[1])) then do
               _param = param[2];
-              continue ;
+              ::continue:: ;
             end else do
               return false;
             end end end end end 
@@ -70194,7 +69859,7 @@ function limited_generalize$1(rv, _param) do
                   return limited_generalize(rv, param);
                 end end), param[1]);
           _param = param[2];
-          continue ;end end end 
+          ::continue:: ;end end end 
        if ___conditional___ = 1--[[ Cty_signature ]] then do
           sign = param[0];
           limited_generalize(rv, sign.csig_self);
@@ -70209,7 +69874,7 @@ function limited_generalize$1(rv, _param) do
        if ___conditional___ = 2--[[ Cty_arrow ]] then do
           limited_generalize(rv, param[1]);
           _param = param[2];
-          continue ;end end end 
+          ::continue:: ;end end end 
        do
       
     end
@@ -70250,19 +69915,19 @@ end end
 
 function enter_val(cl_num, vars, inh, lab, mut, virt, ty, val_env, met_env, par_env, loc) do
   match;
-  try do
+  xpcall(function() do
     match$1 = find(lab, vars.contents);
     virt$prime = match$1[2];
     if (match$1[1] ~= mut) then do
-      throw {
-            __Error$9,
-            loc,
-            val_env,
-            --[[ Mutability_mismatch ]]Block.__(22, {
-                lab,
-                mut
-              })
-          };
+      error ({
+        __Error$9,
+        loc,
+        val_env,
+        --[[ Mutability_mismatch ]]Block.__(22, {
+            lab,
+            mut
+          })
+      })
     end
      end 
     unify$2(val_env, instance(undefined, val_env, ty), instance(undefined, val_env, match$1[3]));
@@ -70270,20 +69935,19 @@ function enter_val(cl_num, vars, inh, lab, mut, virt, ty, val_env, met_env, par_
       inh and undefined or match$1[0],
       virt$prime == --[[ Concrete ]]1 and virt$prime or virt
     };
-  end
-  catch (raw_exn)do
+  end end,function(raw_exn) return do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn[0] == Unify) then do
-      throw {
-            __Error$9,
-            loc,
-            val_env,
-            --[[ Field_type_mismatch ]]Block.__(1, {
-                "instance variable",
-                lab,
-                exn[1]
-              })
-          };
+      error ({
+        __Error$9,
+        loc,
+        val_env,
+        --[[ Field_type_mismatch ]]Block.__(1, {
+            "instance variable",
+            lab,
+            exn[1]
+          })
+      })
     end
      end 
     if (exn == Caml_builtin_exceptions.not_found) then do
@@ -70292,9 +69956,9 @@ function enter_val(cl_num, vars, inh, lab, mut, virt, ty, val_env, met_env, par_
         virt
       };
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
   id = match[0];
   result = id ~= undefined and --[[ tuple ]]{
       id,
@@ -70330,10 +69994,9 @@ function inheritance(self_type, env, ovf, concr_meths, warn_vals, loc, parent) d
   do
      if ___conditional___ = 1--[[ Cty_signature ]] then do
         cl_sig = match[0];
-        try do
+        xpcall(function() do
           unify$2(env, self_type, cl_sig.csig_self);
-        end
-        catch (raw_exn)do
+        end end,function(raw_exn) return do
           exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
           if (exn[0] == Unify) then do
             trace = exn[1];
@@ -70349,16 +70012,16 @@ function inheritance(self_type, env, ovf, concr_meths, warn_vals, loc, parent) d
                     if (typeof match$4 == "number" or match$4.tag ~= --[[ Tfield ]]5) then do
                       exit = 1;
                     end else do
-                      throw {
-                            __Error$9,
-                            loc,
-                            env,
-                            --[[ Field_type_mismatch ]]Block.__(1, {
-                                "method",
-                                match$4[0],
-                                match$3[1]
-                              })
-                          };
+                      error ({
+                        __Error$9,
+                        loc,
+                        env,
+                        --[[ Field_type_mismatch ]]Block.__(1, {
+                            "method",
+                            match$4[0],
+                            match$3[1]
+                          })
+                      })
                     end end 
                   end else do
                     exit = 1;
@@ -70373,20 +70036,20 @@ function inheritance(self_type, env, ovf, concr_meths, warn_vals, loc, parent) d
               exit = 1;
             end end 
             if (exit == 1) then do
-              throw {
-                    Caml_builtin_exceptions.assert_failure,
-                    --[[ tuple ]]{
-                      "typeclass.ml",
-                      261,
-                      12
-                    }
-                  };
+              error ({
+                Caml_builtin_exceptions.assert_failure,
+                --[[ tuple ]]{
+                  "typeclass.ml",
+                  261,
+                  12
+                }
+              })
             end
              end 
           end else do
-            throw exn;
+            error (exn)
           end end 
-        end
+        end end)
         over_meths = inter$1(cl_sig.csig_concr, concr_meths);
         concr_vals$1 = concr_vals(cl_sig.csig_vars);
         over_vals = inter$1(concr_vals$1, warn_vals);
@@ -70426,15 +70089,15 @@ function inheritance(self_type, env, ovf, concr_meths, warn_vals, loc, parent) d
             ) and (
               over_vals and false or true
             )) then do
-            throw {
-                  __Error$9,
-                  loc,
-                  env,
-                  --[[ No_overriding ]]Block.__(23, {
-                      "",
-                      ""
-                    })
-                };
+            error ({
+              __Error$9,
+              loc,
+              env,
+              --[[ No_overriding ]]Block.__(23, {
+                  "",
+                  ""
+                })
+            })
           end
            end  end 
         end
@@ -70448,12 +70111,12 @@ function inheritance(self_type, env, ovf, concr_meths, warn_vals, loc, parent) d
               };end end end 
      if ___conditional___ = 0--[[ Cty_constr ]]
      or ___conditional___ = 2--[[ Cty_arrow ]] then do
-        throw {
-              __Error$9,
-              loc,
-              env,
-              --[[ Structure_expected ]]Block.__(2, {parent})
-            };end end end 
+        error ({
+          __Error$9,
+          loc,
+          env,
+          --[[ Structure_expected ]]Block.__(2, {parent})
+        })end end end 
      do
     
   end
@@ -70464,26 +70127,25 @@ function virtual_method(val_env, meths, self_type, lab, priv, sty, loc) do
   sty$1 = force_poly(sty);
   cty = transl_simple_type(val_env, false, sty$1);
   ty = cty.ctyp_type;
-  try do
+  xpcall(function() do
     unify$2(val_env, ty, match[1]);
-  end
-  catch (raw_exn)do
+  end end,function(raw_exn) return do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn[0] == Unify) then do
-      throw {
-            __Error$9,
-            loc,
-            val_env,
-            --[[ Field_type_mismatch ]]Block.__(1, {
-                "method",
-                lab,
-                exn[1]
-              })
-          };
+      error ({
+        __Error$9,
+        loc,
+        val_env,
+        --[[ Field_type_mismatch ]]Block.__(1, {
+            "method",
+            lab,
+            exn[1]
+          })
+      })
     end
      end 
-    throw exn;
-  end
+    error (exn)
+  end end)
   return cty;
 end end
 
@@ -70495,26 +70157,25 @@ function declare_method(val_env, meths, self_type, lab, priv, sty, loc) do
   match = filter_self_method(val_env, lab, priv, meths, self_type);
   ty$prime = match[1];
   unif = function (ty) do
-    try do
+    xpcall(function() do
       return unify$2(val_env, ty, ty$prime);
-    end
-    catch (raw_exn)do
+    end end,function(raw_exn) return do
       exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
       if (exn[0] == Unify) then do
-        throw {
-              __Error$9,
-              loc,
-              val_env,
-              --[[ Field_type_mismatch ]]Block.__(1, {
-                  "method",
-                  lab,
-                  exn[1]
-                })
-            };
+        error ({
+          __Error$9,
+          loc,
+          val_env,
+          --[[ Field_type_mismatch ]]Block.__(1, {
+              "method",
+              lab,
+              exn[1]
+            })
+        })
       end
        end 
-      throw exn;
-    end
+      error (exn)
+    end end)
   end end;
   sty$1 = force_poly(sty);
   match$1 = sty$1.ptyp_desc;
@@ -70549,22 +70210,21 @@ function type_constraint(val_env, sty, sty$prime, loc) do
   ty = cty.ctyp_type;
   cty$prime = transl_simple_type(val_env, false, sty$prime);
   ty$prime = cty$prime.ctyp_type;
-  try do
+  xpcall(function() do
     unify$2(val_env, ty, ty$prime);
-  end
-  catch (raw_exn)do
+  end end,function(raw_exn) return do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn[0] == Unify) then do
-      throw {
-            __Error$9,
-            loc,
-            val_env,
-            --[[ Unconsistent_constraint ]]Block.__(0, {exn[1]})
-          };
+      error ({
+        __Error$9,
+        loc,
+        val_env,
+        --[[ Unconsistent_constraint ]]Block.__(0, {exn[1]})
+      })
     end
      end 
-    throw exn;
-  end
+    error (exn)
+  end end)
   return --[[ tuple ]]{
           cty,
           cty$prime
@@ -70584,18 +70244,17 @@ end end
 function add_val(env, loc, lab, param, val_sig) do
   virt = param[1];
   virt$1;
-  try do
+  xpcall(function() do
     match = find(lab, val_sig);
     virt$prime = match[1];
     virt$1 = virt$prime == --[[ Concrete ]]1 and virt$prime or virt;
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Caml_builtin_exceptions.not_found) then do
       virt$1 = virt;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
   return add$1(lab, --[[ tuple ]]{
               param[0],
               virt$1,
@@ -70619,22 +70278,21 @@ function class_signature$1(env, param) do
   self_type = self_cty$1.ctyp_type;
   dummy_obj = newvar(undefined, --[[ () ]]0);
   unify$2(env, filter_method(env, dummy_method, --[[ Private ]]0, dummy_obj), newty2(current_level.contents, --[[ Ttuple ]]Block.__(2, {--[[ [] ]]0})));
-  try do
+  xpcall(function() do
     unify$2(env, self_type, dummy_obj);
-  end
-  catch (raw_exn)do
+  end end,function(raw_exn) return do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn[0] == Unify) then do
-      throw {
-            __Error$9,
-            sty.ptyp_loc,
-            env,
-            --[[ Pattern_type_clash ]]Block.__(5, {self_type})
-          };
+      error ({
+        __Error$9,
+        sty.ptyp_loc,
+        env,
+        --[[ Pattern_type_clash ]]Block.__(5, {self_type})
+      })
     end
      end 
-    throw exn;
-  end
+    error (exn)
+  end end)
   warning_enter_scope(--[[ () ]]0);
   match = List.fold_left((function (param, param$1) do
           env$1 = env;
@@ -70769,10 +70427,10 @@ function class_signature$1(env, param) do
                         inher
                       };end end end 
              if ___conditional___ = 5--[[ Pctf_extension ]] then do
-                throw {
-                      Error_forward$2,
-                      error_of_extension(match[0])
-                    };end end end 
+                error ({
+                  Error_forward$2,
+                  error_of_extension(match[0])
+                })end end end 
              do
             
           end
@@ -70819,48 +70477,47 @@ function class_type$3(env, scty) do
         decl = match$1[1];
         path = match$1[0];
         if (same(decl.clty_path, unbound_class)) then do
-          throw {
-                __Error$9,
-                scty.pcty_loc,
-                env,
-                --[[ Unbound_class_type_2 ]]Block.__(7, {lid.txt})
-              };
+          error ({
+            __Error$9,
+            scty.pcty_loc,
+            env,
+            --[[ Unbound_class_type_2 ]]Block.__(7, {lid.txt})
+          })
         end
          end 
         match$2 = instance_class(decl.clty_params, decl.clty_type);
         params = match$2[0];
         if (List.length(params) ~= List.length(styl)) then do
-          throw {
-                __Error$9,
-                scty.pcty_loc,
-                env,
-                --[[ Parameter_arity_mismatch ]]Block.__(11, {
-                    lid.txt,
-                    List.length(params),
-                    List.length(styl)
-                  })
-              };
+          error ({
+            __Error$9,
+            scty.pcty_loc,
+            env,
+            --[[ Parameter_arity_mismatch ]]Block.__(11, {
+                lid.txt,
+                List.length(params),
+                List.length(styl)
+              })
+          })
         end
          end 
         ctys = List.map2((function (sty, ty) do
                 cty$prime = transl_simple_type(env, false, sty);
                 ty$prime = cty$prime.ctyp_type;
-                try do
+                xpcall(function() do
                   unify$2(env, ty$prime, ty);
-                end
-                catch (raw_exn)do
+                end end,function(raw_exn) return do
                   exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
                   if (exn[0] == Unify) then do
-                    throw {
-                          __Error$9,
-                          sty.ptyp_loc,
-                          env,
-                          --[[ Parameter_mismatch ]]Block.__(12, {exn[1]})
-                        };
+                    error ({
+                      __Error$9,
+                      sty.ptyp_loc,
+                      env,
+                      --[[ Parameter_mismatch ]]Block.__(12, {exn[1]})
+                    })
                   end
                    end 
-                  throw exn;
-                end
+                  error (exn)
+                end end)
                 return cty$prime;
               end end), styl, params);
         typ_002 = match$2[1];
@@ -70895,10 +70552,10 @@ function class_type$3(env, scty) do
                       clty
                     }), typ$2);end end end 
      if ___conditional___ = 3--[[ Pcty_extension ]] then do
-        throw {
-              Error_forward$2,
-              error_of_extension(match[0])
-            };end end end 
+        error ({
+          Error_forward$2,
+          error_of_extension(match[0])
+        })end end end 
      do
     
   end
@@ -70945,41 +70602,39 @@ function class_structure(cl_num, __final, val_env, met_env, loc, param) do
   end else do
     ty = self_type;
   end end 
-  try do
+  xpcall(function() do
     unify$2(val_env$1, public_self, ty);
-  end
-  catch (raw_exn)do
+  end end,function(raw_exn) return do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn[0] == Unify) then do
-      throw {
-            __Error$9,
-            spat.ppat_loc,
-            val_env$1,
-            --[[ Pattern_type_clash ]]Block.__(5, {public_self})
-          };
+      error ({
+        __Error$9,
+        spat.ppat_loc,
+        val_env$1,
+        --[[ Pattern_type_clash ]]Block.__(5, {public_self})
+      })
     end
      end 
-    throw exn;
-  end
+    error (exn)
+  end end)
   get_methods = function (ty) do
     return flatten_fields(object_fields(expand_head(val_env$1, ty)))[0];
   end end;
   if (__final) then do
     List.iter((function (param) do
             k = field_kind_repr(param[1]) == --[[ Fpresent ]]0 and --[[ Public ]]1 or --[[ Private ]]0;
-            try do
+            xpcall(function() do
               return unify$2(val_env$1, param[2], filter_method(val_env$1, param[0], k, self_type));
-            end
-            catch (exn)do
-              throw {
-                    Caml_builtin_exceptions.assert_failure,
-                    --[[ tuple ]]{
-                      "typeclass.ml",
-                      760,
-                      18
-                    }
-                  };
-            end
+            end end,function(exn) return do
+              error ({
+                Caml_builtin_exceptions.assert_failure,
+                --[[ tuple ]]{
+                  "typeclass.ml",
+                  760,
+                  18
+                }
+              })
+            end end)
           end end), get_methods(public_self));
   end
    end 
@@ -71120,15 +70775,15 @@ function class_structure(cl_num, __final, val_env, met_env, loc, param) do
                 if (match$7.tag) then do
                   ovf$1 = match$7[0];
                   if (mem$2(lab.txt, local_vals)) then do
-                    throw {
-                          __Error$9,
-                          loc,
-                          val_env,
-                          --[[ Duplicate ]]Block.__(24, {
-                              "instance variable",
-                              lab.txt
-                            })
-                        };
+                    error ({
+                      __Error$9,
+                      loc,
+                      val_env,
+                      --[[ Duplicate ]]Block.__(24, {
+                          "instance variable",
+                          lab.txt
+                        })
+                    })
                   end
                    end 
                   if (mem$2(lab.txt, warn_vals)) then do
@@ -71140,15 +70795,15 @@ function class_structure(cl_num, __final, val_env, met_env, loc, param) do
                     end
                      end 
                   end else if (ovf$1 == --[[ Override ]]0) then do
-                    throw {
-                          __Error$9,
-                          loc,
-                          val_env,
-                          --[[ No_overriding ]]Block.__(23, {
-                              "instance variable",
-                              lab.txt
-                            })
-                        };
+                    error ({
+                      __Error$9,
+                      loc,
+                      val_env,
+                      --[[ No_overriding ]]Block.__(23, {
+                          "instance variable",
+                          lab.txt
+                        })
+                    })
                   end
                    end  end 
                   if (principal.contents) then do
@@ -71156,31 +70811,30 @@ function class_structure(cl_num, __final, val_env, met_env, loc, param) do
                   end
                    end 
                   exp;
-                  try do
+                  xpcall(function() do
                     exp = type_exp(val_env, match$7[1]);
-                  end
-                  catch (raw_exn)do
+                  end end,function(raw_exn) return do
                     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
                     if (exn[0] == Unify) then do
                       match$8 = exn[1];
                       if (match$8) then do
                         if (match$8[1]) then do
-                          throw exn;
+                          error (exn)
                         end
                          end 
-                        throw {
-                              __Error$9,
-                              loc,
-                              val_env,
-                              --[[ Make_nongen_seltype ]]Block.__(17, {match$8[0][0]})
-                            };
+                        error ({
+                          __Error$9,
+                          loc,
+                          val_env,
+                          --[[ Make_nongen_seltype ]]Block.__(17, {match$8[0][0]})
+                        })
                       end else do
-                        throw exn;
+                        error (exn)
                       end end 
                     end else do
-                      throw exn;
+                      error (exn)
                     end end 
-                  end
+                  end end)
                   if (principal.contents) then do
                     end_def(--[[ () ]]0);
                     generalize_structure$1(current_level.contents, exp.exp_type);
@@ -71264,15 +70918,15 @@ function class_structure(cl_num, __final, val_env, met_env, loc, param) do
                   expr$1;
                   expr$1 = match$13.tag == --[[ Pexp_poly ]]28 and expr or Curry._4(Ast_helper_Exp.poly, expr.pexp_loc, undefined, expr, undefined);
                   if (mem$2(lab$1.txt, local_meths)) then do
-                    throw {
-                          __Error$9,
-                          loc,
-                          val_env,
-                          --[[ Duplicate ]]Block.__(24, {
-                              "method",
-                              lab$1.txt
-                            })
-                        };
+                    error ({
+                      __Error$9,
+                      loc,
+                      val_env,
+                      --[[ Duplicate ]]Block.__(24, {
+                          "method",
+                          lab$1.txt
+                        })
+                    })
                   end
                    end 
                   if (mem$2(lab$1.txt, concr_meths)) then do
@@ -71284,20 +70938,20 @@ function class_structure(cl_num, __final, val_env, met_env, loc, param) do
                     end
                      end 
                   end else if (ovf$2 == --[[ Override ]]0) then do
-                    throw {
-                          __Error$9,
-                          loc,
-                          val_env,
-                          --[[ No_overriding ]]Block.__(23, {
-                              "method",
-                              lab$1.txt
-                            })
-                        };
+                    error ({
+                      __Error$9,
+                      loc,
+                      val_env,
+                      --[[ No_overriding ]]Block.__(23, {
+                          "method",
+                          lab$1.txt
+                        })
+                    })
                   end
                    end  end 
                   match$14 = filter_self_method(val_env, lab$1.txt, priv, meths$1, self_type$1);
                   ty$1 = match$14[1];
-                  try do
+                  xpcall(function() do
                     match$15 = expr$1.pexp_desc;
                     if (match$15.tag == --[[ Pexp_poly ]]28) then do
                       sty = match$15[1];
@@ -71311,14 +70965,14 @@ function class_structure(cl_num, __final, val_env, met_env, loc, param) do
                        end 
                       match$16 = repr(ty$1).desc;
                       if (typeof match$16 == "number") then do
-                        throw {
-                              Caml_builtin_exceptions.assert_failure,
-                              --[[ tuple ]]{
-                                "typeclass.ml",
-                                662,
-                                17
-                              }
-                            };
+                        error ({
+                          Caml_builtin_exceptions.assert_failure,
+                          --[[ tuple ]]{
+                            "typeclass.ml",
+                            662,
+                            17
+                          }
+                        })
                       end else do
                         local ___conditional___=(match$16.tag | 0);
                         do
@@ -71335,46 +70989,45 @@ function class_structure(cl_num, __final, val_env, met_env, loc, param) do
                               unify$2(val_env, ty2, match$17[1]);end else 
                            do end end end
                           else do
-                            throw {
-                                  Caml_builtin_exceptions.assert_failure,
-                                  --[[ tuple ]]{
-                                    "typeclass.ml",
-                                    662,
-                                    17
-                                  }
-                                };
+                            error ({
+                              Caml_builtin_exceptions.assert_failure,
+                              --[[ tuple ]]{
+                                "typeclass.ml",
+                                662,
+                                17
+                              }
+                            })
                             end end
                             
                         end
                       end end 
                     end else do
-                      throw {
-                            Caml_builtin_exceptions.assert_failure,
-                            --[[ tuple ]]{
-                              "typeclass.ml",
-                              664,
-                              13
-                            }
-                          };
+                      error ({
+                        Caml_builtin_exceptions.assert_failure,
+                        --[[ tuple ]]{
+                          "typeclass.ml",
+                          664,
+                          13
+                        }
+                      })
                     end end 
-                  end
-                  catch (raw_exn$1)do
+                  end end,function(raw_exn$1) return do
                     exn$1 = Caml_js_exceptions.internalToOCamlException(raw_exn$1);
                     if (exn$1[0] == Unify) then do
-                      throw {
-                            __Error$9,
-                            loc,
-                            val_env,
-                            --[[ Field_type_mismatch ]]Block.__(1, {
-                                "method",
-                                lab$1.txt,
-                                exn$1[1]
-                              })
-                          };
+                      error ({
+                        __Error$9,
+                        loc,
+                        val_env,
+                        --[[ Field_type_mismatch ]]Block.__(1, {
+                            "method",
+                            lab$1.txt,
+                            exn$1[1]
+                          })
+                      })
                     end
                      end 
-                    throw exn$1;
-                  end
+                    error (exn$1)
+                  end end)
                   meth_expr = make_method(self_loc$1, cl_num$1, expr$1);
                   vars_local = vars$1.contents;
                   field = Caml_obj.caml_lazy_make((function (param) do
@@ -71513,10 +71166,10 @@ function class_structure(cl_num, __final, val_env, met_env, loc, param) do
                         local_vals
                       };end end end 
              if ___conditional___ = 6--[[ Pcf_extension ]] then do
-                throw {
-                      Error_forward$2,
-                      error_of_extension(match[0])
-                    };end end end 
+                error ({
+                  Error_forward$2,
+                  error_of_extension(match[0])
+                })end end end 
              do
             
           end
@@ -71571,17 +71224,17 @@ function class_structure(cl_num, __final, val_env, met_env, loc, param) do
             end end 
           end end), sign_csig_vars, --[[ [] ]]0);
     if (mets ~= --[[ [] ]]0 or vals ~= --[[ [] ]]0) then do
-      throw {
-            __Error$9,
-            loc,
-            val_env$1,
-            --[[ Virtual_class ]]Block.__(10, {
-                true,
-                __final,
-                mets,
-                vals
-              })
-          };
+      error ({
+        __Error$9,
+        loc,
+        val_env$1,
+        --[[ Virtual_class ]]Block.__(10, {
+            true,
+            __final,
+            mets,
+            vals
+          })
+      })
     end
      end 
     self_methods = List.fold_right((function (param, rem) do
@@ -71607,7 +71260,7 @@ function class_structure(cl_num, __final, val_env, met_env, loc, param) do
               return newty2(current_level.contents, desc);
             end end 
           end end), methods, newty2(current_level.contents, --[[ Tnil ]]0));
-    try do
+    xpcall(function() do
       unify$2(val_env$1, private_self, newty2(current_level.contents, --[[ Tobject ]]Block.__(4, {
                   self_methods,
                   do
@@ -71615,20 +71268,19 @@ function class_structure(cl_num, __final, val_env, met_env, loc, param) do
                   end
                 })));
       unify$2(val_env$1, public_self, self_type);
-    end
-    catch (raw_exn$1)do
+    end end,function(raw_exn$1) return do
       exn$1 = Caml_js_exceptions.internalToOCamlException(raw_exn$1);
       if (exn$1[0] == Unify) then do
-        throw {
-              __Error$9,
-              loc,
-              val_env$1,
-              --[[ Final_self_clash ]]Block.__(21, {exn$1[1]})
-            };
+        error ({
+          __Error$9,
+          loc,
+          val_env$1,
+          --[[ Final_self_clash ]]Block.__(21, {exn$1[1]})
+        })
       end
        end 
-      throw exn$1;
-    end
+      error (exn$1)
+    end end)
   end
    end 
   if (principal.contents) then do
@@ -71693,12 +71345,12 @@ function class_expr(cl_num, val_env, met_env, _scl) do
           decl = match$1[1];
           path = match$1[0];
           if (same(decl.cty_path, unbound_class)) then do
-            throw {
-                  __Error$9,
-                  scl.pcl_loc,
-                  val_env,
-                  --[[ Unbound_class_2 ]]Block.__(6, {lid.txt})
-                };
+            error ({
+              __Error$9,
+              scl.pcl_loc,
+              val_env,
+              --[[ Unbound_class_2 ]]Block.__(6, {lid.txt})
+            })
           end
            end 
           tyl = List.map((function (sty) do
@@ -71709,36 +71361,35 @@ function class_expr(cl_num, val_env, met_env, _scl) do
           params = match$2[0];
           clty$prime = abbreviate_class_type(path, params, clty);
           if (List.length(params) ~= List.length(tyl)) then do
-            throw {
-                  __Error$9,
-                  scl.pcl_loc,
-                  val_env,
-                  --[[ Parameter_arity_mismatch ]]Block.__(11, {
-                      lid.txt,
-                      List.length(params),
-                      List.length(tyl)
-                    })
-                };
+            error ({
+              __Error$9,
+              scl.pcl_loc,
+              val_env,
+              --[[ Parameter_arity_mismatch ]]Block.__(11, {
+                  lid.txt,
+                  List.length(params),
+                  List.length(tyl)
+                })
+            })
           end
            end 
           List.iter2((function (cty$prime, ty) do
                   ty$prime = cty$prime.ctyp_type;
-                  try do
+                  xpcall(function() do
                     return unify$2(val_env, ty$prime, ty);
-                  end
-                  catch (raw_exn)do
+                  end end,function(raw_exn) return do
                     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
                     if (exn[0] == Unify) then do
-                      throw {
-                            __Error$9,
-                            cty$prime.ctyp_loc,
-                            val_env,
-                            --[[ Parameter_mismatch ]]Block.__(12, {exn[1]})
-                          };
+                      error ({
+                        __Error$9,
+                        cty$prime.ctyp_loc,
+                        val_env,
+                        --[[ Parameter_mismatch ]]Block.__(12, {exn[1]})
+                      })
                     end
                      end 
-                    throw exn;
-                  end
+                    error (exn)
+                  end end)
                 end end), tyl, params);
           cl = rc(do
                 cl_desc: --[[ Tcl_ident ]]Block.__(0, {
@@ -71819,7 +71470,7 @@ function class_expr(cl_num, val_env, met_env, _scl) do
                       --[[ [] ]]0
                     }, match[3]));
             _scl = sfun;
-            continue ;
+            ::continue:: ;
           end else do
             if (principal.contents) then do
               begin_def(--[[ () ]]0);
@@ -71945,14 +71596,14 @@ function class_expr(cl_num, val_env, met_env, _scl) do
                     l = ty_fun[0];
                     if (is_optional(l)) then do
                       _ty_fun = ty_res;
-                      continue ;
+                      ::continue:: ;
                     end else do
                       _ty_fun = ty_res;
                       _ls = --[[ :: ]]{
                         l,
                         ls
                       };
-                      continue ;
+                      ::continue:: ;
                     end end end end end 
                  do
                 
@@ -71998,23 +71649,23 @@ function class_expr(cl_num, val_env, met_env, _scl) do
                             if (ignore_labels and not is_optional(l)) then do
                               if (sargs) then do
                                 match$1 = sargs[0];
-                                throw {
-                                      __Error$9,
-                                      match$1[1].pexp_loc,
-                                      val_env,
-                                      --[[ Apply_wrong_label ]]Block.__(4, {match$1[0]})
-                                    };
+                                error ({
+                                  __Error$9,
+                                  match$1[1].pexp_loc,
+                                  val_env,
+                                  --[[ Apply_wrong_label ]]Block.__(4, {match$1[0]})
+                                })
                               end else if (more_sargs) then do
                                 match$2 = more_sargs[0];
                                 sarg0 = match$2[1];
                                 l$prime = match$2[0];
                                 if (l ~= l$prime and l$prime ~= "") then do
-                                  throw {
-                                        __Error$9,
-                                        sarg0.pexp_loc,
-                                        val_env,
-                                        --[[ Apply_wrong_label ]]Block.__(4, {l$prime})
-                                      };
+                                  error ({
+                                    __Error$9,
+                                    sarg0.pexp_loc,
+                                    val_env,
+                                    --[[ Apply_wrong_label ]]Block.__(4, {l$prime})
+                                  })
                                 end
                                  end 
                                 match = --[[ tuple ]]{
@@ -72023,19 +71674,19 @@ function class_expr(cl_num, val_env, met_env, _scl) do
                                   type_argument(val_env, sarg0, ty, ty0)
                                 };
                               end else do
-                                throw {
-                                      Caml_builtin_exceptions.assert_failure,
-                                      --[[ tuple ]]{
-                                        "typeclass.ml",
-                                        1017,
-                                        20
-                                      }
-                                    };
+                                error ({
+                                  Caml_builtin_exceptions.assert_failure,
+                                  --[[ tuple ]]{
+                                    "typeclass.ml",
+                                    1017,
+                                    20
+                                  }
+                                })
                               end end  end 
                             end else do
-                              try do
+                              xpcall(function() do
                                 match$3;
-                                try do
+                                xpcall(function() do
                                   match$4 = extract_label_aux(--[[ [] ]]0, name, sargs);
                                   match$3 = --[[ tuple ]]{
                                     match$4[0],
@@ -72043,8 +71694,7 @@ function class_expr(cl_num, val_env, met_env, _scl) do
                                     Pervasives.$at(match$4[2], match$4[3]),
                                     more_sargs
                                   };
-                                end
-                                catch (exn)do
+                                end end,function(exn) return do
                                   if (exn == Caml_builtin_exceptions.not_found) then do
                                     match$5 = extract_label_aux(--[[ [] ]]0, name, more_sargs);
                                     match$3 = --[[ tuple ]]{
@@ -72054,9 +71704,9 @@ function class_expr(cl_num, val_env, met_env, _scl) do
                                       match$5[3]
                                     };
                                   end else do
-                                    throw exn;
+                                    error (exn)
                                   end end 
-                                end
+                                end end)
                                 sarg0$1 = match$3[1];
                                 l$prime$1 = match$3[0];
                                 if (optional == --[[ Required ]]0 and is_optional(l$prime$1)) then do
@@ -72077,8 +71727,7 @@ function class_expr(cl_num, val_env, met_env, _scl) do
                                   match$3[3],
                                   tmp
                                 };
-                              end
-                              catch (exn$1)do
+                              end end,function(exn$1) return do
                                 if (exn$1 == Caml_builtin_exceptions.not_found) then do
                                   match = --[[ tuple ]]{
                                     sargs,
@@ -72086,9 +71735,9 @@ function class_expr(cl_num, val_env, met_env, _scl) do
                                     is_optional(l) and (List.mem_assoc("", sargs) or List.mem_assoc("", more_sargs)) and option_none(ty0, none) or undefined
                                   };
                                 end else do
-                                  throw exn$1;
+                                  error (exn$1)
                                 end end 
-                              end
+                              end end)
                             end end 
                             arg$1 = match[2];
                             omitted$1 = arg$1 == undefined and --[[ :: ]]{
@@ -72111,7 +71760,7 @@ function class_expr(cl_num, val_env, met_env, _scl) do
                               },
                               args
                             };
-                            continue ;
+                            ::continue:: ;
                           end
                            end end else 
                        do end end
@@ -72124,19 +71773,19 @@ function class_expr(cl_num, val_env, met_env, _scl) do
               if (match$6) then do
                 if (omitted ~= --[[ [] ]]0) then do
                   match$7 = match$6[0];
-                  throw {
-                        __Error$9,
-                        match$7[1].pexp_loc,
-                        val_env,
-                        --[[ Apply_wrong_label ]]Block.__(4, {match$7[0]})
-                      };
+                  error ({
+                    __Error$9,
+                    match$7[1].pexp_loc,
+                    val_env,
+                    --[[ Apply_wrong_label ]]Block.__(4, {match$7[0]})
+                  })
                 end else do
-                  throw {
-                        __Error$9,
-                        cl$2.cl_loc,
-                        val_env,
-                        --[[ Cannot_apply ]]Block.__(3, {cl$2.cl_type})
-                      };
+                  error ({
+                    __Error$9,
+                    cl$2.cl_loc,
+                    val_env,
+                    --[[ Cannot_apply ]]Block.__(3, {cl$2.cl_type})
+                  })
                 end end 
               end else do
                 return --[[ tuple ]]{
@@ -72169,31 +71818,30 @@ function class_expr(cl_num, val_env, met_env, _scl) do
        if ___conditional___ = 4--[[ Pcl_let ]] then do
           rec_flag = match[0];
           match$9;
-          try do
+          xpcall(function() do
             match$9 = type_let$1(val_env, rec_flag, match[1], undefined);
-          end
-          catch (raw_exn)do
+          end end,function(raw_exn) return do
             exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
             if (exn[0] == Unify) then do
               match$10 = exn[1];
               if (match$10) then do
                 if (match$10[1]) then do
-                  throw exn;
+                  error (exn)
                 end
                  end 
-                throw {
-                      __Error$9,
-                      scl.pcl_loc,
-                      val_env,
-                      --[[ Make_nongen_seltype ]]Block.__(17, {match$10[0][0]})
-                    };
+                error ({
+                  __Error$9,
+                  scl.pcl_loc,
+                  val_env,
+                  --[[ Make_nongen_seltype ]]Block.__(17, {match$10[0][0]})
+                })
               end else do
-                throw exn;
+                error (exn)
               end end 
             end else do
-              throw exn;
+              error (exn)
             end end 
-          end
+          end end)
           val_env$1 = match$9[1];
           defs = match$9[0];
           match$11 = List.fold_right((function(val_env$1)do
@@ -72278,12 +71926,12 @@ function class_expr(cl_num, val_env, met_env, _scl) do
           limited_generalize$1(row_variable(repr(signature_of_class_type(clty$1.cltyp_type).csig_self)), clty$1.cltyp_type);
           error = class_types(val_env, cl$4.cl_type, clty$1.cltyp_type);
           if (error) then do
-            throw {
-                  __Error$9,
-                  cl$4.cl_loc,
-                  val_env,
-                  --[[ Class_match_failure ]]Block.__(14, {error})
-                };
+            error ({
+              __Error$9,
+              cl$4.cl_loc,
+              val_env,
+              --[[ Class_match_failure ]]Block.__(14, {error})
+            })
           end
            end 
           match$12 = extract_constraints(clty$1.cltyp_type);
@@ -72301,10 +71949,10 @@ function class_expr(cl_num, val_env, met_env, _scl) do
                       cl_attributes: scl.pcl_attributes
                     end);end end end 
        if ___conditional___ = 6--[[ Pcl_extension ]] then do
-          throw {
-                Error_forward$2,
-                error_of_extension(match[0])
-              };end end end 
+          error ({
+            Error_forward$2,
+            error_of_extension(match[0])
+          })end end end 
        do
       
     end
@@ -72332,10 +71980,10 @@ function approx_declaration(_cl) do
           return newty2(current_level.contents, desc);end end end 
        if ___conditional___ = 4--[[ Pcl_let ]] then do
           _cl = match[2];
-          continue ;end end end 
+          ::continue:: ;end end end 
        if ___conditional___ = 5--[[ Pcl_constraint ]] then do
           _cl = match[0];
-          continue ;end end end 
+          ::continue:: ;end end end 
        do
       else do
         return newvar(undefined, --[[ () ]]0);
@@ -72521,24 +72169,23 @@ function type_classes(define_class, approx, kind, env, cls) do
           begin_class_def(--[[ () ]]0);
           make_param = function (param) do
             sty = param[0];
-            try do
+            xpcall(function() do
               return --[[ tuple ]]{
                       transl_type_param(env, sty),
                       param[1]
                     };
-            end
-            catch (exn)do
+            end end,function(exn) return do
               if (exn == Already_bound) then do
-                throw {
-                      __Error$9,
-                      sty.ptyp_loc,
-                      env,
-                      --[[ Repeated_parameter ]]0
-                    };
+                error ({
+                  __Error$9,
+                  sty.ptyp_loc,
+                  env,
+                  --[[ Repeated_parameter ]]0
+                })
               end
                end 
-              throw exn;
-            end
+              error (exn)
+            end end)
           end end;
           ci_params = List.map(make_param, cl.pci_params);
           params = List.map((function (param) do
@@ -72548,7 +72195,7 @@ function type_classes(define_class, approx, kind, env, cls) do
             contents: --[[ [] ]]0
           end;
           match;
-          try do
+          xpcall(function() do
             self_coercion.contents = --[[ :: ]]{
               --[[ tuple ]]{
                 --[[ Pident ]]Block.__(0, {obj_id}),
@@ -72559,11 +72206,10 @@ function type_classes(define_class, approx, kind, env, cls) do
             res = Curry._2(kind$1, env, cl.pci_expr);
             self_coercion.contents = List.tl(self_coercion.contents);
             match = res;
-          end
-          catch (exn)do
+          end end,function(exn) return do
             self_coercion.contents = --[[ [] ]]0;
-            throw exn;
-          end
+            error (exn)
+          end end)
           typ = match[1];
           end_def(--[[ () ]]0);
           sty = repr(signature_of_class_type(typ).csig_self);
@@ -72589,115 +72235,110 @@ function type_classes(define_class, approx, kind, env, cls) do
           ty = repr(signature_of_class_type(obj_type).csig_self);
           hide_private_methods(ty);
           close_object(ty);
-          try do
+          xpcall(function() do
             List.iter2((function (param, param$1) do
                     return unify$2(env, param, param$1);
                   end end), obj_params, obj_params$prime);
-          end
-          catch (raw_exn)do
+          end end,function(raw_exn) return do
             exn$1 = Caml_js_exceptions.internalToOCamlException(raw_exn);
             if (exn$1[0] == Unify) then do
-              throw {
-                    __Error$9,
-                    cl.pci_loc,
-                    env,
-                    --[[ Bad_parameters ]]Block.__(13, {
-                        obj_id,
-                        constr,
-                        newconstr(--[[ Pident ]]Block.__(0, {obj_id}), obj_params$prime)
-                      })
-                  };
+              error ({
+                __Error$9,
+                cl.pci_loc,
+                env,
+                --[[ Bad_parameters ]]Block.__(13, {
+                    obj_id,
+                    constr,
+                    newconstr(--[[ Pident ]]Block.__(0, {obj_id}), obj_params$prime)
+                  })
+              })
             end
              end 
-            throw exn$1;
-          end
-          try do
+            error (exn$1)
+          end end)
+          xpcall(function() do
             unify$2(env, ty, constr);
-          end
-          catch (raw_exn$1)do
+          end end,function(raw_exn$1) return do
             exn$2 = Caml_js_exceptions.internalToOCamlException(raw_exn$1);
             if (exn$2[0] == Unify) then do
-              throw {
-                    __Error$9,
-                    cl.pci_loc,
-                    env,
-                    --[[ Abbrev_type_clash ]]Block.__(8, {
-                        constr,
-                        ty,
-                        expand_head(env, constr)
-                      })
-                  };
+              error ({
+                __Error$9,
+                cl.pci_loc,
+                env,
+                --[[ Abbrev_type_clash ]]Block.__(8, {
+                    constr,
+                    ty,
+                    expand_head(env, constr)
+                  })
+              })
             end
              end 
-            throw exn$2;
-          end
+            error (exn$2)
+          end end)
           match$3 = instance_class(params, typ);
           cl_params$prime = match$3[0];
           ty$1 = repr(signature_of_class_type(match$3[1]).csig_self);
           hide_private_methods(ty$1);
           set_object_name(obj_id, row_variable(ty$1), cl_params, ty$1);
-          try do
+          xpcall(function() do
             List.iter2((function (param, param$1) do
                     return unify$2(env, param, param$1);
                   end end), cl_params, cl_params$prime);
-          end
-          catch (raw_exn$2)do
+          end end,function(raw_exn$2) return do
             exn$3 = Caml_js_exceptions.internalToOCamlException(raw_exn$2);
             if (exn$3[0] == Unify) then do
-              throw {
-                    __Error$9,
-                    cl.pci_loc,
-                    env,
-                    --[[ Bad_parameters ]]Block.__(13, {
-                        cl_id,
-                        newconstr(--[[ Pident ]]Block.__(0, {cl_id}), cl_params),
-                        newconstr(--[[ Pident ]]Block.__(0, {cl_id}), cl_params$prime)
-                      })
-                  };
+              error ({
+                __Error$9,
+                cl.pci_loc,
+                env,
+                --[[ Bad_parameters ]]Block.__(13, {
+                    cl_id,
+                    newconstr(--[[ Pident ]]Block.__(0, {cl_id}), cl_params),
+                    newconstr(--[[ Pident ]]Block.__(0, {cl_id}), cl_params$prime)
+                  })
+              })
             end
              end 
-            throw exn$3;
-          end
-          try do
+            error (exn$3)
+          end end)
+          xpcall(function() do
             unify$2(env, ty$1, cl_ty);
-          end
-          catch (raw_exn$3)do
+          end end,function(raw_exn$3) return do
             exn$4 = Caml_js_exceptions.internalToOCamlException(raw_exn$3);
             if (exn$4[0] == Unify) then do
               constr$1 = newconstr(--[[ Pident ]]Block.__(0, {cl_id}), params);
-              throw {
-                    __Error$9,
-                    cl.pci_loc,
-                    env,
-                    --[[ Abbrev_type_clash ]]Block.__(8, {
-                        constr$1,
-                        ty$1,
-                        cl_ty
-                      })
-                  };
+              error ({
+                __Error$9,
+                cl.pci_loc,
+                env,
+                --[[ Abbrev_type_clash ]]Block.__(8, {
+                    constr$1,
+                    ty$1,
+                    cl_ty
+                  })
+              })
             end else do
-              throw exn$4;
+              error (exn$4)
             end end 
-          end
-          try do
+          end end)
+          xpcall(function() do
             unify$2(env, constructor_type(constr, obj_type), instance(undefined, env, constr_type));
-          end
-          catch (raw_exn$4)do
+          end end,function(raw_exn$4) return do
             exn$5 = Caml_js_exceptions.internalToOCamlException(raw_exn$4);
             if (exn$5[0] == Unify) then do
-              throw {
-                    __Error$9,
-                    cl.pci_loc,
-                    env,
-                    --[[ Constructor_type_mismatch ]]Block.__(9, {
-                        cl.pci_name.txt,
-                        exn$5[1]
-                      })
-                  };
+              error ({
+                __Error$9,
+                cl.pci_loc,
+                env,
+                --[[ Constructor_type_mismatch ]]Block.__(9, {
+                    cl.pci_name.txt,
+                    exn$5[1]
+                  })
+              })
             end
              end 
-            throw exn$5;
-          end
+            error (exn$5)
+          end end)
           cty_variance = List.map((function (param) do
                   return Types_Variance.full;
                 end end), params);
@@ -72739,17 +72380,17 @@ function type_classes(define_class, approx, kind, env, cls) do
                     end end 
                   end end), sign.csig_vars, --[[ [] ]]0);
             if (mets ~= --[[ [] ]]0 or vals ~= --[[ [] ]]0) then do
-              throw {
-                    __Error$9,
-                    cl.pci_loc,
-                    env$1,
-                    --[[ Virtual_class ]]Block.__(10, {
-                        define_class$1,
-                        false,
-                        mets,
-                        vals
-                      })
-                  };
+              error ({
+                __Error$9,
+                cl.pci_loc,
+                env$1,
+                --[[ Virtual_class ]]Block.__(10, {
+                    define_class$1,
+                    false,
+                    mets,
+                    vals
+                  })
+              })
             end
              end 
           end
@@ -72865,26 +72506,25 @@ function type_classes(define_class, approx, kind, env, cls) do
           clty = param$1[2];
           id = param$1[1];
           cl = param$1[0];
-          try do
+          xpcall(function() do
             collapse_conj_params(env$2, clty.cty_params);
-          end
-          catch (raw_exn)do
+          end end,function(raw_exn) return do
             exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
             if (exn[0] == Unify) then do
-              throw {
-                    __Error$9,
-                    cl.pci_loc,
-                    env$2,
-                    --[[ Non_collapsable_conjunction ]]Block.__(20, {
-                        id,
-                        clty,
-                        exn[1]
-                      })
-                  };
+              error ({
+                __Error$9,
+                cl.pci_loc,
+                env$2,
+                --[[ Non_collapsable_conjunction ]]Block.__(20, {
+                    id,
+                    clty,
+                    exn[1]
+                  })
+              })
             end
              end 
-            throw exn;
-          end
+            error (exn)
+          end end)
           List.iter(generalize, clty.cty_params);
           ((function (param) do
                   return generalize_class_type(generalize, param);
@@ -72895,15 +72535,15 @@ function type_classes(define_class, approx, kind, env, cls) do
           List.iter(generalize, cl_abbr.type_params);
           may(generalize, cl_abbr.type_manifest);
           if (not closed_class$1(clty)) then do
-            throw {
-                  __Error$9,
-                  cl.pci_loc,
-                  env$2,
-                  --[[ Non_generalizable_class ]]Block.__(18, {
-                      id,
-                      clty
-                    })
-                };
+            error ({
+              __Error$9,
+              cl.pci_loc,
+              env$2,
+              --[[ Non_generalizable_class ]]Block.__(18, {
+                  id,
+                  clty
+                })
+            })
           end
            end 
           match = closed_class(clty.cty_params, signature_of_class_type(clty.cty_type));
@@ -72913,15 +72553,15 @@ function type_classes(define_class, approx, kind, env, cls) do
                 end end) or (function (ppf) do
                   return cltype_declaration$1(id, ppf, cltydef);
                 end end);
-            throw {
-                  __Error$9,
-                  cl.pci_loc,
-                  env$2,
-                  --[[ Unbound_type_var ]]Block.__(16, {
-                      printer,
-                      match
-                    })
-                };
+            error ({
+              __Error$9,
+              cl.pci_loc,
+              env$2,
+              --[[ Unbound_type_var ]]Block.__(16, {
+                  printer,
+                  match
+                })
+            })
           end
            end 
           return --[[ tuple ]]{
@@ -72986,53 +72626,52 @@ function type_classes(define_class, approx, kind, env, cls) do
                   match$4[1]
                 };
               end else do
-                throw {
-                      Caml_builtin_exceptions.assert_failure,
-                      --[[ tuple ]]{
-                        "typeclass.ml",
-                        1562,
-                        15
-                      }
-                    };
+                error ({
+                  Caml_builtin_exceptions.assert_failure,
+                  --[[ tuple ]]{
+                    "typeclass.ml",
+                    1562,
+                    15
+                  }
+                })
               end end 
             end else do
-              throw {
-                    Caml_builtin_exceptions.assert_failure,
-                    --[[ tuple ]]{
-                      "typeclass.ml",
-                      1562,
-                      15
-                    }
-                  };
+              error ({
+                Caml_builtin_exceptions.assert_failure,
+                --[[ tuple ]]{
+                  "typeclass.ml",
+                  1562,
+                  15
+                }
+              })
             end end 
             obj_ty = match$2[1];
             cl_ty = match$2[0];
-            try do
+            xpcall(function() do
               subtype(env$3, cl_ty, obj_ty)(--[[ () ]]0);
-            end
-            catch (raw_exn)do
+            end end,function(raw_exn) return do
               exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
               if (exn[0] == Subtype) then do
-                throw {
-                      __Error$7,
-                      loc,
-                      env$3,
-                      --[[ Not_subtype ]]Block.__(23, {
-                          exn[1],
-                          exn[2]
-                        })
-                    };
+                error ({
+                  __Error$7,
+                  loc,
+                  env$3,
+                  --[[ Not_subtype ]]Block.__(23, {
+                      exn[1],
+                      exn[2]
+                    })
+                })
               end
                end 
-              throw exn;
-            end
+              error (exn)
+            end end)
             if (not opened_object(cl_ty)) then do
-              throw {
-                    __Error$9,
-                    loc,
-                    env$3,
-                    --[[ Cannot_coerce_self ]]Block.__(19, {obj_ty})
-                  };
+              error ({
+                __Error$9,
+                loc,
+                env$3,
+                --[[ Cannot_coerce_self ]]Block.__(19, {obj_ty})
+              })
             end
              end 
           end
@@ -73121,35 +72760,34 @@ function unify_parents_struct(env, ty, st) do
                     local ___conditional___=(match$1.tag | 0);
                     do
                        if ___conditional___ = 0--[[ Tcl_ident ]] then do
-                          try do
+                          xpcall(function() do
                             decl = find_class(match$1[0], env$1);
                             match$2 = find_cltype_for_path(env$1, decl.cty_path);
                             return unify$2(env$1, ty$1, instance(undefined, env$1, match$2[1]));
-                          end
-                          catch (exn)do
+                          end end,function(exn) return do
                             if (exn == Caml_builtin_exceptions.not_found) then do
                               return --[[ () ]]0;
                             end else do
-                              throw {
-                                    Caml_builtin_exceptions.assert_failure,
-                                    --[[ tuple ]]{
-                                      "typeclass.ml",
-                                      1639,
-                                      15
-                                    }
-                                  };
+                              error ({
+                                Caml_builtin_exceptions.assert_failure,
+                                --[[ tuple ]]{
+                                  "typeclass.ml",
+                                  1639,
+                                  15
+                                }
+                              })
                             end end 
-                          endend end end 
+                          end end)end end end 
                        if ___conditional___ = 1--[[ Tcl_structure ]] then do
                           return unify_parents_struct(env$1, ty$1, match$1[0]);end end end 
                        if ___conditional___ = 2--[[ Tcl_fun ]]
                        or ___conditional___ = 4--[[ Tcl_let ]] then do
                           _cl = match$1[3];
-                          continue ;end end end 
+                          ::continue:: ;end end end 
                        if ___conditional___ = 3--[[ Tcl_apply ]]
                        or ___conditional___ = 5--[[ Tcl_constraint ]] then do
                           _cl = match$1[0];
-                          continue ;end end end 
+                          ::continue:: ;end end end 
                        do
                       
                     end
@@ -74303,14 +73941,14 @@ function path_concat(head, p) do
                   p[2]
                 });end end end 
      if ___conditional___ = 2--[[ Papply ]] then do
-        throw {
-              Caml_builtin_exceptions.assert_failure,
-              --[[ tuple ]]{
-                "typemod.ml",
-                54,
-                16
-              }
-            };end end end 
+        error ({
+          Caml_builtin_exceptions.assert_failure,
+          --[[ tuple ]]{
+            "typemod.ml",
+            54,
+            16
+          }
+        })end end end 
      do
     
   end
@@ -74321,12 +73959,12 @@ function extract_sig(env, loc, mty) do
   if (match.tag == --[[ Mty_signature ]]1) then do
     return match[0];
   end else do
-    throw {
-          __Error$10,
-          loc,
-          env,
-          --[[ Signature_expected ]]0
-        };
+    error ({
+      __Error$10,
+      loc,
+      env,
+      --[[ Signature_expected ]]0
+    })
   end end 
 end end
 
@@ -74335,12 +73973,12 @@ function extract_sig_open(env, loc, mty) do
   if (match.tag == --[[ Mty_signature ]]1) then do
     return match[0];
   end else do
-    throw {
-          __Error$10,
-          loc,
-          env,
-          --[[ Structure_expected ]]Block.__(3, {mty})
-        };
+    error ({
+      __Error$10,
+      loc,
+      env,
+      --[[ Structure_expected ]]Block.__(3, {mty})
+    })
   end end 
 end end
 
@@ -74377,14 +74015,14 @@ end end
 
 type_module_type_of_fwd = do
   contents: (function (env, m) do
-      throw {
-            Caml_builtin_exceptions.assert_failure,
-            --[[ tuple ]]{
-              "typemod.ml",
-              99,
-              22
-            }
-          };
+      error ({
+        Caml_builtin_exceptions.assert_failure,
+        --[[ tuple ]]{
+          "typemod.ml",
+          99,
+          22
+        }
+      })
     end end)
 end;
 
@@ -74397,7 +74035,7 @@ function add_rec_types(_env, _param) do
       if (match.tag == --[[ Sig_type ]]1 and match[2] >= 2) then do
         _param = param[1];
         _env = add_type$1(true, match[0], match[1], env);
-        continue ;
+        ::continue:: ;
       end else do
         return env;
       end end 
@@ -74630,7 +74268,7 @@ function merge_constraint(initial_env, loc, sg, constr) do
                   if (id.name == s .. "#row") then do
                     _row_id = id;
                     _sg = rem;
-                    continue ;
+                    ::continue:: ;
                   end else if (constr.tag) then do
                     sdecl$1 = constr[0];
                     if (id.name == s) then do
@@ -74774,16 +74412,16 @@ function merge_constraint(initial_env, loc, sg, constr) do
                 }
               };
       end else do
-        throw {
-              __Error$10,
-              loc,
-              env,
-              --[[ With_no_component ]]Block.__(4, {lid.txt})
-            };
+        error ({
+          __Error$10,
+          loc,
+          env,
+          --[[ With_no_component ]]Block.__(4, {lid.txt})
+        })
       end end 
     end;
   end end;
-  try do
+  xpcall(function() do
     names = flat(--[[ [] ]]0, lid.txt);
     match = merge(initial_env, sg, names, undefined);
     sg$1 = match[1];
@@ -74801,85 +74439,83 @@ function merge_constraint(initial_env, loc, sg, constr) do
             if (match$1 ~= undefined) then do
               id = match$1;
             end else do
-              throw {
-                    Caml_builtin_exceptions.assert_failure,
-                    --[[ tuple ]]{
-                      "typemod.ml",
-                      246,
-                      38
-                    }
-                  };
+              error ({
+                Caml_builtin_exceptions.assert_failure,
+                --[[ tuple ]]{
+                  "typemod.ml",
+                  246,
+                  38
+                }
+              })
             end end 
             lid$1;
-            try do
+            xpcall(function() do
               match$2 = sdecl.ptype_manifest;
               if (match$2 ~= undefined) then do
                 match$3 = match$2.ptyp_desc;
                 if (typeof match$3 == "number") then do
-                  throw Pervasives.Exit;
+                  error (Pervasives.Exit)
                 end else if (match$3.tag == --[[ Ptyp_constr ]]3) then do
                   stl = match$3[1];
                   if (List.length(stl) == List.length(sdecl.ptype_params)) then do
                     List.iter2((function (x, param) do
                             match = x.ptyp_desc;
                             if (typeof match == "number") then do
-                              throw Pervasives.Exit;
+                              error (Pervasives.Exit)
                             end else if (match.tag) then do
-                              throw Pervasives.Exit;
+                              error (Pervasives.Exit)
                             end else do
                               match$1 = param[0].ptyp_desc;
                               if (typeof match$1 == "number") then do
-                                throw Pervasives.Exit;
+                                error (Pervasives.Exit)
                               end else if (match$1.tag) then do
-                                throw Pervasives.Exit;
+                                error (Pervasives.Exit)
                               end else if (match[0] == match$1[0]) then do
                                 return --[[ () ]]0;
                               end else do
-                                throw Pervasives.Exit;
+                                error (Pervasives.Exit)
                               end end  end  end 
                             end end  end 
                           end end), stl, sdecl.ptype_params);
                     lid$1 = match$3[0];
                   end else do
-                    throw Pervasives.Exit;
+                    error (Pervasives.Exit)
                   end end 
                 end else do
-                  throw Pervasives.Exit;
+                  error (Pervasives.Exit)
                 end end  end 
               end else do
-                throw Pervasives.Exit;
+                error (Pervasives.Exit)
               end end 
-            end
-            catch (exn)do
+            end end,function(exn) return do
               if (exn == Pervasives.Exit) then do
-                throw {
-                      __Error$10,
-                      sdecl.ptype_loc,
-                      initial_env,
-                      --[[ With_need_typeconstr ]]2
-                    };
+                error ({
+                  __Error$10,
+                  sdecl.ptype_loc,
+                  initial_env,
+                  --[[ With_need_typeconstr ]]2
+                })
               end
                end 
-              throw exn;
-            end
+              error (exn)
+            end end)
             match$4;
-            try do
+            xpcall(function() do
               match$4 = lookup_type$1(lid$1.txt, initial_env);
-            end
-            catch (exn$1)do
+            end end,function(exn$1) return do
               if (exn$1 == Caml_builtin_exceptions.not_found) then do
-                throw {
-                      Caml_builtin_exceptions.assert_failure,
-                      --[[ tuple ]]{
-                        "typemod.ml",
-                        263,
-                        68
-                      }
-                    };
+                error ({
+                  Caml_builtin_exceptions.assert_failure,
+                  --[[ tuple ]]{
+                    "typemod.ml",
+                    263,
+                    68
+                  }
+                })
               end
                end 
-              throw exn$1;
-            end
+              error (exn$1)
+            end end)
             sub = add_type(id, match$4[0], identity);
             sg$2 = signature$2(sub, sg$1);end else 
          if ___conditional___ = 3--[[ Pwith_modsubst ]] then do
@@ -74888,14 +74524,14 @@ function merge_constraint(initial_env, loc, sg, constr) do
             if (match$5 ~= undefined) then do
               id$1 = match$5;
             end else do
-              throw {
-                    Caml_builtin_exceptions.assert_failure,
-                    --[[ tuple ]]{
-                      "typemod.ml",
-                      269,
-                      38
-                    }
-                  };
+              error ({
+                Caml_builtin_exceptions.assert_failure,
+                --[[ tuple ]]{
+                  "typemod.ml",
+                  269,
+                  38
+                }
+              })
             end end 
             path = lookup_module$1(undefined, initial_env, loc, constr[1].txt);
             sub$1 = add_module(id$1, path, identity);
@@ -74910,23 +74546,22 @@ function merge_constraint(initial_env, loc, sg, constr) do
             match[0],
             sg$2
           };
-  end
-  catch (raw_exn)do
+  end end,function(raw_exn) return do
     exn$2 = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn$2[0] == __Error$5) then do
-      throw {
-            __Error$10,
-            loc,
-            initial_env,
-            --[[ With_mismatch ]]Block.__(5, {
-                lid.txt,
-                exn$2[1]
-              })
-          };
+      error ({
+        __Error$10,
+        loc,
+        initial_env,
+        --[[ With_mismatch ]]Block.__(5, {
+            lid.txt,
+            exn$2[1]
+          })
+      })
     end
      end 
-    throw exn$2;
-  end
+    error (exn$2)
+  end end)
 end end
 
 function map_rec(fn, decls, rem) do
@@ -75016,14 +74651,14 @@ function approx_modtype(env, _smty) do
                   });end end end 
        if ___conditional___ = 3--[[ Pmty_with ]] then do
           _smty = match[0];
-          continue ;end end end 
+          ::continue:: ;end end end 
        if ___conditional___ = 4--[[ Pmty_typeof ]] then do
           return Curry._2(type_module_type_of_fwd.contents, env, match[0])[1];end end end 
        if ___conditional___ = 5--[[ Pmty_extension ]] then do
-          throw {
-                Error_forward$3,
-                error_of_extension(match[0])
-              };end end end 
+          error ({
+            Error_forward$3,
+            error_of_extension(match[0])
+          })end end end 
        if ___conditional___ = 6--[[ Pmty_alias ]] then do
           path = lookup_module$1(undefined, env, smty.pmty_loc, match[0].txt);
           return --[[ Mty_alias ]]Block.__(3, {path});end end end 
@@ -75108,7 +74743,7 @@ function approx_sig(_env, _ssg) do
             match$3 = type_open$1(undefined, env, match[0]);
             _ssg = srem;
             _env = match$3[1];
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 8--[[ Psig_include ]] then do
             smty = match[0].pincl_mod;
             mty = approx_modtype(env, smty);
@@ -75120,7 +74755,7 @@ function approx_sig(_env, _ssg) do
          do
         else do
           _ssg = srem;
-          continue ;
+          ::continue:: ;
           end end
           
       end
@@ -75222,16 +74857,16 @@ function bal$12(l, v, r) do
       end else if (lr) then do
         return create$13(create$13(ll, lv, lr[--[[ l ]]0]), lr[--[[ v ]]1], create$13(lr[--[[ r ]]2], v, r));
       end else do
-        throw {
-              Caml_builtin_exceptions.invalid_argument,
-              "Set.bal"
-            };
+        error ({
+          Caml_builtin_exceptions.invalid_argument,
+          "Set.bal"
+        })
       end end  end 
     end else do
-      throw {
-            Caml_builtin_exceptions.invalid_argument,
-            "Set.bal"
-          };
+      error ({
+        Caml_builtin_exceptions.invalid_argument,
+        "Set.bal"
+      })
     end end 
   end else if (hr > (hl + 2 | 0)) then do
     if (r) then do
@@ -75243,16 +74878,16 @@ function bal$12(l, v, r) do
       end else if (rl) then do
         return create$13(create$13(l, v, rl[--[[ l ]]0]), rl[--[[ v ]]1], create$13(rl[--[[ r ]]2], rv, rr));
       end else do
-        throw {
-              Caml_builtin_exceptions.invalid_argument,
-              "Set.bal"
-            };
+        error ({
+          Caml_builtin_exceptions.invalid_argument,
+          "Set.bal"
+        })
       end end  end 
     end else do
-      throw {
-            Caml_builtin_exceptions.invalid_argument,
-            "Set.bal"
-          };
+      error ({
+        Caml_builtin_exceptions.invalid_argument,
+        "Set.bal"
+      })
     end end 
   end else do
     return --[[ Node ]]{
@@ -75306,7 +74941,7 @@ function mem$7(x, _param) do
         return true;
       end else do
         _param = c < 0 and param[--[[ l ]]0] or param[--[[ r ]]2];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return false;
@@ -75316,15 +74951,15 @@ end end
 
 function check(cl, loc, set_ref, name) do
   if (mem$7(name, set_ref.contents)) then do
-    throw {
-          __Error$10,
-          loc,
-          empty,
-          --[[ Repeated_name ]]Block.__(6, {
-              cl,
-              name
-            })
-        };
+    error ({
+      __Error$10,
+      loc,
+      empty,
+      --[[ Repeated_name ]]Block.__(6, {
+          cl,
+          name
+        })
+    })
   end
    end 
   set_ref.contents = add$14(name, set_ref.contents);
@@ -75367,7 +75002,7 @@ function remove_duplicates(val_ids, ext_ids, _param) do
                   end end
                   end(id)), val_ids)) then do
               _param = param[1];
-              continue ;
+              ::continue:: ;
             end
              end end else 
          if ___conditional___ = 2--[[ Sig_typext ]] then do
@@ -75392,7 +75027,7 @@ function remove_duplicates(val_ids, ext_ids, _param) do
                       }),
                     match[1]
                   };
-                  continue ;
+                  ::continue:: ;
                 end else do
                   exit = 2;
                 end end 
@@ -75406,7 +75041,7 @@ function remove_duplicates(val_ids, ext_ids, _param) do
                   end end
                   end(id$1)), ext_ids)) then do
               _param = param[1];
-              continue ;
+              ::continue:: ;
             end
              end end else 
          do end end end
@@ -75431,7 +75066,7 @@ function get_values(_param) do
       f = param[0];
       if (f.tag) then do
         _param = param[1];
-        continue ;
+        ::continue:: ;
       end else do
         return --[[ :: ]]{
                 f[0],
@@ -75456,7 +75091,7 @@ function get_extension_constructors(_param) do
               };
       end else do
         _param = param[1];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return --[[ [] ]]0;
@@ -75556,10 +75191,10 @@ function transl_modtype$1(env, smty) do
         match$3 = Curry._2(type_module_type_of_fwd.contents, env, match[0]);
         return mkmty$1(--[[ Tmty_typeof ]]Block.__(4, {match$3[0]}), match$3[1], env, loc, smty.pmty_attributes);end end end 
      if ___conditional___ = 5--[[ Pmty_extension ]] then do
-        throw {
-              Error_forward$3,
-              error_of_extension(match[0])
-            };end end end 
+        error ({
+          Error_forward$3,
+          error_of_extension(match[0])
+        })end end end 
      if ___conditional___ = 6--[[ Pmty_alias ]] then do
         lid$1 = match[0];
         path$1 = transl_module_alias(loc, env, lid$1.txt);
@@ -75916,10 +75551,10 @@ function transl_signature(env, sg) do
                     match$22[2]
                   };end end end 
          if ___conditional___ = 12--[[ Psig_extension ]] then do
-            throw {
-                  Error_forward$3,
-                  error_of_extension(match[0])
-                };end end end 
+            error ({
+              Error_forward$3,
+              error_of_extension(match[0])
+            })end end end 
          do
         
       end
@@ -76143,14 +75778,14 @@ function path_of_module(_mexp) do
                       path_of_module(match[1])
                     });
           end else do
-            throw Not_a_path;
+            error (Not_a_path)
           end end end end end 
        if ___conditional___ = 4--[[ Tmod_constraint ]] then do
           _mexp = match[0];
-          continue ;end end end 
+          ::continue:: ;end end end 
        do
       else do
-        throw Not_a_path;
+        error (Not_a_path)
         end end
         
     end
@@ -76158,16 +75793,15 @@ function path_of_module(_mexp) do
 end end
 
 function path_of_module$1(mexp) do
-  try do
+  xpcall(function() do
     return path_of_module(mexp);
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Not_a_path) then do
       return ;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 function closed_modtype(_param) do
@@ -76179,7 +75813,7 @@ function closed_modtype(_param) do
           return List.for_all(closed_signature_item, param[0]);end end end 
        if ___conditional___ = 2--[[ Mty_functor ]] then do
           _param = param[2];
-          continue ;end end end 
+          ::continue:: ;end end end 
        if ___conditional___ = 0--[[ Mty_ident ]]
        or ___conditional___ = 3--[[ Mty_alias ]] then do
           return true;end end end 
@@ -76280,7 +75914,7 @@ function check_recmodule_inclusion(env, bindings) do
       _env = env$prime;
       _n = n - 1 | 0;
       _first_time = false;
-      continue ;
+      ::continue:: ;
     end else do
       check_inclusion = (function(env$1,s)do
       return function check_inclusion(param) do
@@ -76290,22 +75924,21 @@ function check_recmodule_inclusion(env, bindings) do
         mty_decl$prime = modtype(s, mty_decl.mty_type);
         mty_actual$prime = subst_and_strengthen(env$1, s, id, param[4]);
         coercion;
-        try do
+        xpcall(function() do
           coercion = modtypes$1(env$1, mty_actual$prime, mty_decl$prime);
-        end
-        catch (raw_exn)do
+        end end,function(raw_exn) return do
           exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
           if (exn[0] == __Error$5) then do
-            throw {
-                  __Error$10,
-                  modl.mod_loc,
-                  env$1,
-                  --[[ Not_included ]]Block.__(1, {exn[1]})
-                };
+            error ({
+              __Error$10,
+              modl.mod_loc,
+              env$1,
+              --[[ Not_included ]]Block.__(1, {exn[1]})
+            })
           end
            end 
-          throw exn;
-        end
+          error (exn)
+        end end)
         modl$prime_mod_desc = --[[ Tmod_constraint ]]Block.__(4, {
             modl,
             mty_decl.mty_type,
@@ -76398,15 +76031,15 @@ function package_constraints(env, loc, mty, constrs) do
                                     };
                             end else do
                               _param = param[1];
-                              continue ;
+                              ::continue:: ;
                             end end 
                           end else do
                             _param = param[1];
-                            continue ;
+                            ::continue:: ;
                           end end 
                         end else do
                           _param = param[1];
-                          continue ;
+                          ::continue:: ;
                         end end 
                       end else do
                         return --[[ [] ]]0;
@@ -76438,7 +76071,7 @@ function package_constraints(env, loc, mty, constrs) do
 end end
 
 function modtype_of_package(env, loc, p, nl, tl) do
-  try do
+  xpcall(function() do
     match = find_modtype(p, env).mtd_type;
     exit = 0;
     if (match ~= undefined and nl ~= --[[ [] ]]0) then do
@@ -76450,29 +76083,28 @@ function modtype_of_package(env, loc, p, nl, tl) do
       if (nl == --[[ [] ]]0) then do
         return --[[ Mty_ident ]]Block.__(0, {p});
       end else do
-        throw {
-              __Error$10,
-              loc,
-              env,
-              --[[ Signature_expected ]]0
-            };
+        error ({
+          __Error$10,
+          loc,
+          env,
+          --[[ Signature_expected ]]0
+        })
       end end 
     end
      end 
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Caml_builtin_exceptions.not_found) then do
       error = --[[ Unbound_modtype ]]Block.__(22, {lid_of_path(undefined, p)});
-      throw {
-            __Error$6,
-            loc,
-            env,
-            error
-          };
+      error ({
+        __Error$6,
+        loc,
+        env,
+        error
+      })
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 function package_subtype$1(env, p1, nl1, tl1, p2, nl2, tl2) do
@@ -76485,39 +76117,37 @@ function package_subtype$1(env, p1, nl1, tl1, p2, nl2, tl2) do
   end end;
   mty1 = mkmty(p1, nl1, tl1);
   mty2 = mkmty(p2, nl2, tl2);
-  try do
+  xpcall(function() do
     return modtypes$1(env, mty1, mty2) == --[[ Tcoerce_none ]]0;
-  end
-  catch (raw_exn)do
+  end end,function(raw_exn) return do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn[0] == __Error$5) then do
       return false;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 package_subtype.contents = package_subtype$1;
 
 function wrap_constraint(env, arg, mty, explicit) do
   coercion;
-  try do
+  xpcall(function() do
     coercion = modtypes$1(env, arg.mod_type, mty);
-  end
-  catch (raw_exn)do
+  end end,function(raw_exn) return do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn[0] == __Error$5) then do
-      throw {
-            __Error$10,
-            arg.mod_loc,
-            env,
-            --[[ Not_included ]]Block.__(1, {exn[1]})
-          };
+      error ({
+        __Error$10,
+        arg.mod_loc,
+        env,
+        --[[ Not_included ]]Block.__(1, {exn[1]})
+      })
     end
      end 
-    throw exn;
-  end
+    error (exn)
+  end end)
   return do
           mod_desc: --[[ Tmod_constraint ]]Block.__(4, {
               arg,
@@ -76675,63 +76305,61 @@ function type_module$1(aliasOpt, sttn, funct_body, anchor, env, smod) do
           mty_param$1 = default_mty(mty_param);
           if (generative) then do
             if (Caml_obj.caml_notequal(sarg.pmod_desc, --[[ Pmod_structure ]]Block.__(1, {--[[ [] ]]0}))) then do
-              throw {
-                    __Error$10,
-                    sfunct.pmod_loc,
-                    env,
-                    --[[ Apply_generative ]]4
-                  };
+              error ({
+                __Error$10,
+                sfunct.pmod_loc,
+                env,
+                --[[ Apply_generative ]]4
+              })
             end
              end 
             if (funct_body and contains_type$1(env, funct.mod_type)) then do
-              throw {
-                    __Error$10,
-                    smod.pmod_loc,
-                    env,
-                    --[[ Not_allowed_in_functor_body ]]1
-                  };
+              error ({
+                __Error$10,
+                smod.pmod_loc,
+                env,
+                --[[ Not_allowed_in_functor_body ]]1
+              })
             end
              end 
           end
            end 
           coercion;
-          try do
+          xpcall(function() do
             coercion = modtypes$1(env, arg.mod_type, mty_param$1);
-          end
-          catch (raw_exn)do
+          end end,function(raw_exn) return do
             exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
             if (exn[0] == __Error$5) then do
-              throw {
-                    __Error$10,
-                    sarg.pmod_loc,
-                    env,
-                    --[[ Not_included ]]Block.__(1, {exn[1]})
-                  };
+              error ({
+                __Error$10,
+                sarg.pmod_loc,
+                env,
+                --[[ Not_included ]]Block.__(1, {exn[1]})
+              })
             end
              end 
-            throw exn;
-          end
+            error (exn)
+          end end)
           mty_appl;
           if (path$1 ~= undefined) then do
             mty_appl = modtype(add_module(param, path$1, identity), mty_res);
           end else if (generative) then do
             mty_appl = mty_res;
           end else do
-            try do
+            xpcall(function() do
               mty_appl = nondep_supertype(add_module$1(true, param, arg.mod_type, env), param, mty_res);
-            end
-            catch (exn$1)do
+            end end,function(exn$1) return do
               if (exn$1 == Caml_builtin_exceptions.not_found) then do
-                throw {
-                      __Error$10,
-                      smod.pmod_loc,
-                      env,
-                      --[[ Cannot_eliminate_dependency ]]Block.__(2, {mty_functor})
-                    };
+                error ({
+                  __Error$10,
+                  smod.pmod_loc,
+                  env,
+                  --[[ Cannot_eliminate_dependency ]]Block.__(2, {mty_functor})
+                })
               end
                end 
-              throw exn$1;
-            end
+              error (exn$1)
+            end end)
           end end  end 
           node_mod_desc$2 = --[[ Tmod_apply ]]Block.__(3, {
               funct,
@@ -76750,12 +76378,12 @@ function type_module$1(aliasOpt, sttn, funct_body, anchor, env, smod) do
           record$2(--[[ Ti_mod ]]Block.__(3, {node$3}));
           return node$3;
         end else do
-          throw {
-                __Error$10,
-                sfunct.pmod_loc,
-                env,
-                --[[ Cannot_apply ]]Block.__(0, {funct.mod_type})
-              };
+          error ({
+            __Error$10,
+            sfunct.pmod_loc,
+            env,
+            --[[ Cannot_apply ]]Block.__(0, {funct.mod_type})
+          })
         end end end end end 
      if ___conditional___ = 4--[[ Pmod_constraint ]] then do
         arg$1 = type_module$1(alias, true, funct_body, anchor, env, match[0]);
@@ -76796,23 +76424,23 @@ function type_module$1(aliasOpt, sttn, funct_body, anchor, env, smod) do
           local ___conditional___=(match$5.tag | 0);
           do
              if ___conditional___ = 0--[[ Tvar ]] then do
-                throw {
-                      __Error$7,
-                      smod.pmod_loc,
-                      env,
-                      --[[ Cannot_infer_signature ]]3
-                    };end end end 
+                error ({
+                  __Error$7,
+                  smod.pmod_loc,
+                  env,
+                  --[[ Cannot_infer_signature ]]3
+                })end end end 
              if ___conditional___ = 11--[[ Tpackage ]] then do
                 tl = match$5[2];
                 if (List.exists((function (t) do
                           return free_variables$1(undefined, t) ~= --[[ [] ]]0;
                         end end), tl)) then do
-                  throw {
-                        __Error$10,
-                        smod.pmod_loc,
-                        env,
-                        --[[ Incomplete_packed_module ]]Block.__(13, {exp.exp_type})
-                      };
+                  error ({
+                    __Error$10,
+                    smod.pmod_loc,
+                    env,
+                    --[[ Incomplete_packed_module ]]Block.__(13, {exp.exp_type})
+                  })
                 end
                  end 
                 if (principal.contents and not generalizable(99999999, exp.exp_type)) then do
@@ -76828,21 +76456,21 @@ function type_module$1(aliasOpt, sttn, funct_body, anchor, env, smod) do
           end
         end end 
         if (exit$1 == 1) then do
-          throw {
-                __Error$10,
-                smod.pmod_loc,
-                env,
-                --[[ Not_a_packed_module ]]Block.__(12, {exp.exp_type})
-              };
+          error ({
+            __Error$10,
+            smod.pmod_loc,
+            env,
+            --[[ Not_a_packed_module ]]Block.__(12, {exp.exp_type})
+          })
         end
          end 
         if (funct_body and contains_type$1(env, mty$5)) then do
-          throw {
-                __Error$10,
-                smod.pmod_loc,
-                env,
-                --[[ Not_allowed_in_functor_body ]]1
-              };
+          error ({
+            __Error$10,
+            smod.pmod_loc,
+            env,
+            --[[ Not_allowed_in_functor_body ]]1
+          })
         end
          end 
         node_mod_desc$4 = --[[ Tmod_unpack ]]Block.__(5, {
@@ -76861,10 +76489,10 @@ function type_module$1(aliasOpt, sttn, funct_body, anchor, env, smod) do
         record$2(--[[ Ti_mod ]]Block.__(3, {node$5}));
         return node$5;end end end 
      if ___conditional___ = 6--[[ Pmod_extension ]] then do
-        throw {
-              Error_forward$3,
-              error_of_extension(match[0])
-            };end end end 
+        error ({
+          Error_forward$3,
+          error_of_extension(match[0])
+        })end end end 
      do
     
   end
@@ -77040,12 +76668,12 @@ function type_structure(toplevelOpt, funct_body, anchor, env, sstr, scope) do
                             mb.pmb_loc
                           };
                   end else do
-                    throw {
-                          __Error$10,
-                          mb.pmb_expr.pmod_loc,
-                          env,
-                          --[[ Recursive_module_require_explicit_type ]]3
-                        };
+                    error ({
+                      __Error$10,
+                      mb.pmb_expr.pmod_loc,
+                      env,
+                      --[[ Recursive_module_require_explicit_type ]]3
+                    })
                   end end 
                 end end), desc[0]);
           List.iter((function (param) do
@@ -77298,10 +76926,10 @@ function type_structure(toplevelOpt, funct_body, anchor, env, sstr, scope) do
                   env
                 };end end end 
        if ___conditional___ = 14--[[ Pstr_extension ]] then do
-          throw {
-                Error_forward$3,
-                error_of_extension(desc[0])
-              };end end end 
+          error ({
+            Error_forward$3,
+            error_of_extension(desc[0])
+          })end end end 
        do
       
     end
@@ -77407,7 +77035,7 @@ function normalize_signature(env) do
                                   return normalize_signature(env$2)(param$2[0]);end end end 
                                if ___conditional___ = 2--[[ Mty_functor ]] then do
                                   _param = param$2[2];
-                                  continue ;end end end 
+                                  ::continue:: ;end end end 
                                if ___conditional___ = 0--[[ Mty_ident ]]
                                or ___conditional___ = 3--[[ Mty_alias ]] then do
                                   return --[[ () ]]0;end end end 
@@ -77453,12 +77081,12 @@ function type_module_type_of(env, smod) do
   mty = tmty.mod_type;
   mty$1 = remove_aliases$1(env, mty);
   if (not closed_modtype(mty$1)) then do
-    throw {
-          __Error$10,
-          smod.pmod_loc,
-          env,
-          --[[ Non_generalizable_module ]]Block.__(9, {mty$1})
-        };
+    error ({
+      __Error$10,
+      smod.pmod_loc,
+      env,
+      --[[ Non_generalizable_module ]]Block.__(9, {mty$1})
+    })
   end
    end 
   return --[[ tuple ]]{
@@ -77507,14 +77135,14 @@ function type_package$1(env, m, p, nl, tl) do
                     -1
                   });end end end 
        if ___conditional___ = 2--[[ Lapply ]] then do
-          throw {
-                Caml_builtin_exceptions.assert_failure,
-                --[[ tuple ]]{
-                  "typemod.ml",
-                  1565,
-                  11
-                }
-              };end end end 
+          error ({
+            Caml_builtin_exceptions.assert_failure,
+            --[[ tuple ]]{
+              "typemod.ml",
+              1565,
+              11
+            }
+          })end end end 
        do
       
     end
@@ -77537,25 +77165,24 @@ function type_package$1(env, m, p, nl, tl) do
   end else do
     mty = modtype_of_package(env$1, modl.mod_loc, p, nl, tl$prime);
     List.iter2((function (n, ty) do
-            try do
+            xpcall(function() do
               return unify$2(env$1, ty, newvar(undefined, --[[ () ]]0));
-            end
-            catch (raw_exn)do
+            end end,function(raw_exn) return do
               exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
               if (exn[0] == Unify) then do
-                throw {
-                      __Error$10,
-                      m.pmod_loc,
-                      env$1,
-                      --[[ Scoping_pack ]]Block.__(14, {
-                          n,
-                          ty
-                        })
-                    };
+                error ({
+                  __Error$10,
+                  m.pmod_loc,
+                  env$1,
+                  --[[ Scoping_pack ]]Block.__(14, {
+                      n,
+                      ty
+                    })
+                })
               end
                end 
-              throw exn;
-            end
+              error (exn)
+            end end)
           end end), nl, tl$prime);
     return --[[ tuple ]]{
             wrap_constraint(env$1, modl, mty, --[[ Tmodtype_implicit ]]0),
@@ -77580,7 +77207,7 @@ type_module_type_of_fwd.contents = type_module_type_of;
 
 function type_implementation_more(sourcefile, outputprefix, modulename, initial_env, ast) do
   clear(--[[ () ]]0);
-  try do
+  xpcall(function() do
     delayed_checks.contents = --[[ [] ]]0;
     required_globals.contents = --[[ [] ]]0;
     Curry._2(newrecord$1.structure, newrecord$1, ast);
@@ -77610,21 +77237,20 @@ function type_implementation_more(sourcefile, outputprefix, modulename, initial_
       mli_status = assume_no_mli.contents;
       if (mli_status == --[[ Mli_na ]]0 and Caml_external_polyfill.resolve("caml_sys_file_exists")(sourceintf) or mli_status == --[[ Mli_exists ]]1) then do
         intf_file;
-        try do
+        xpcall(function() do
           intf_file = find_in_path_uncap(load_path.contents, modulename .. ".cmi");
-        end
-        catch (exn)do
+        end end,function(exn) return do
           if (exn == Caml_builtin_exceptions.not_found) then do
-            throw {
-                  __Error$10,
-                  in_file(sourcefile),
-                  empty,
-                  --[[ Interface_not_compiled ]]Block.__(11, {sourceintf})
-                };
+            error ({
+              __Error$10,
+              in_file(sourcefile),
+              empty,
+              --[[ Interface_not_compiled ]]Block.__(11, {sourceintf})
+            })
           end
            end 
-          throw exn;
-        end
+          error (exn)
+        end end)
         dclsig = read_signature(modulename, intf_file);
         coercion = compunit(initial_env, sourcefile, sg, intf_file, dclsig);
         force_delayed_checks(--[[ () ]]0);
@@ -77648,12 +77274,12 @@ function type_implementation_more(sourcefile, outputprefix, modulename, initial_
                                     if (closed_schema(exp.exp_type)) then do
                                       return 0;
                                     end else do
-                                      throw {
-                                            __Error$10,
-                                            exp.exp_loc,
-                                            env,
-                                            --[[ Non_generalizable ]]Block.__(7, {exp.exp_type})
-                                          };
+                                      error ({
+                                        __Error$10,
+                                        exp.exp_loc,
+                                        env,
+                                        --[[ Non_generalizable ]]Block.__(7, {exp.exp_type})
+                                      })
                                     end end 
                                   end end), match[1]);end end end 
                    if ___conditional___ = 6--[[ Tstr_module ]] then do
@@ -77661,12 +77287,12 @@ function type_implementation_more(sourcefile, outputprefix, modulename, initial_
                       if (closed_modtype(md.mod_type)) then do
                         return 0;
                       end else do
-                        throw {
-                              __Error$10,
-                              md.mod_loc,
-                              env,
-                              --[[ Non_generalizable_module ]]Block.__(9, {md.mod_type})
-                            };
+                        error ({
+                          __Error$10,
+                          md.mod_loc,
+                          env,
+                          --[[ Non_generalizable_module ]]Block.__(9, {md.mod_type})
+                        })
                       end end end end end 
                    do
                   else do
@@ -77691,11 +77317,10 @@ function type_implementation_more(sourcefile, outputprefix, modulename, initial_
               };
       end end 
     end end 
-  end
-  catch (e)do
+  end end,function(e) return do
     save_cmt(outputprefix .. ".cmt", modulename, --[[ Partial_implementation ]]Block.__(3, {__Array.of_list(saved_types.contents)}), sourcefile, initial_env, undefined);
-    throw e;
-  end
+    error (e)
+  end end)
 end end
 
 function type_implementation(sourcefile, outputprefix, modulename, initial_env, ast) do

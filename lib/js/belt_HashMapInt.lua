@@ -1,9 +1,9 @@
 --[['use strict';]]
 
-Caml_option = require "./caml_option.lua";
-Caml_hash_primitive = require "./caml_hash_primitive.lua";
-Belt_internalBuckets = require "./belt_internalBuckets.lua";
-Belt_internalBucketsType = require "./belt_internalBucketsType.lua";
+Caml_option = require "./caml_option";
+Caml_hash_primitive = require "./caml_hash_primitive";
+Belt_internalBuckets = require "./belt_internalBuckets";
+Belt_internalBucketsType = require "./belt_internalBucketsType";
 
 function copyBucketReHash(h_buckets, ndata_tail, _old_bucket) do
   while(true) do
@@ -19,7 +19,7 @@ function copyBucketReHash(h_buckets, ndata_tail, _old_bucket) do
       end end 
       ndata_tail[nidx] = old_bucket;
       _old_bucket = old_bucket.next;
-      continue ;
+      ::continue:: ;
     end else do
       return --[[ () ]]0;
     end end 
@@ -36,7 +36,7 @@ function replaceInBucket(key, info, _cell) do
       match = cell.next;
       if (match ~= undefined) then do
         _cell = match;
-        continue ;
+        ::continue:: ;
       end else do
         return true;
       end end 
@@ -121,7 +121,7 @@ function remove(h, key) do
           end else do
             _buckets = cell_next;
             _prec = buckets;
-            continue ;
+            ::continue:: ;
           end end 
         end else do
           return --[[ () ]]0;
@@ -160,7 +160,7 @@ function get(h, key) do
                     return Caml_option.some(buckets.value);
                   end else do
                     _buckets = buckets.next;
-                    continue ;
+                    ::continue:: ;
                   end end 
                 end else do
                   return ;
@@ -194,7 +194,7 @@ function has(h, key) do
         match = cell.next;
         if (match ~= undefined) then do
           _cell = match;
-          continue ;
+          ::continue:: ;
         end else do
           return false;
         end end 

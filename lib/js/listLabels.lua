@@ -1,6 +1,6 @@
 --[['use strict';]]
 
-List = require "./list.lua";
+List = require "./list";
 
 length = List.length;
 

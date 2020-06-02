@@ -1,7 +1,7 @@
 --[['use strict';]]
 
-Curry = require "./curry.lua";
-Belt_MapDict = require "./belt_MapDict.lua";
+Curry = require "./curry";
+Belt_MapDict = require "./belt_MapDict";
 
 function fromArray(data, id) do
   cmp = id.cmp;

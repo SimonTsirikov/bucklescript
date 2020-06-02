@@ -62,10 +62,10 @@ function from_function(f) do
                 end else do
                   newlen = (#lexbuf.lex_buffer << 1);
                   if (((lexbuf.lex_buffer_len - lexbuf.lex_start_pos | 0) + n | 0) > newlen) then do
-                    throw {
-                          Caml_builtin_exceptions.failure,
-                          "Lexing.lex_refill: cannot grow buffer"
-                        };
+                    error ({
+                      Caml_builtin_exceptions.failure,
+                      "Lexing.lex_refill: cannot grow buffer"
+                    })
                   end
                    end 
                   newbuf = Caml_bytes.caml_create_bytes(newlen);

@@ -37,10 +37,10 @@ let array_conv =
 
  (* https://mathiasbynens.be/notes/javascript-escapes *)
 
- let pp_string f  (* ?(utf=false)*) s =
+ let pp_string extension f  (* ?(utf=false)*) s =
   let pp_raw_string f (* ?(utf=false)*) s = 
     let l = String.length s in
-    for i = 0 to l - 1 do
+    for i = 0 to l - 1 - extension do
       let c = String.unsafe_get s i in
       match c with
       | '\b' -> P.string f "\\b"

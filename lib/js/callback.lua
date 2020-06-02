@@ -1,6 +1,6 @@
 --[['use strict';]]
 
-Obj = require "./obj.lua";
+Obj = require "./obj";
 
 function register(name, v) do
   return --[[ () ]]0;

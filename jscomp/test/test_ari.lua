@@ -1,9 +1,9 @@
 --[['use strict';]]
 
-U = require "U";
-VV = require "VV";
-List = require "../../lib/js/list.lua";
-Curry = require "../../lib/js/curry.lua";
+U = require "";
+VV = require "";
+List = require "../../lib/js/list";
+Curry = require "../../lib/js/curry";
 
 function f(x) do
   return (function (param) do
@@ -38,7 +38,7 @@ function length_aux(_len, _param) do
     if (param) then do
       _param = param[1];
       _len = len + 1 | 0;
-      continue ;
+      ::continue:: ;
     end else do
       return len;
     end end 

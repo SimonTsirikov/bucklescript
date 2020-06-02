@@ -1,15 +1,15 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-List = require "../../lib/js/list.lua";
-__Array = require "../../lib/js/array.lua";
-Block = require "../../lib/js/block.lua";
-Curry = require "../../lib/js/curry.lua";
-Format = require "../../lib/js/format.lua";
-Printf = require "../../lib/js/printf.lua";
-Caml_int32 = require "../../lib/js/caml_int32.lua";
-Caml_int64 = require "../../lib/js/caml_int64.lua";
-Pervasives = require "../../lib/js/pervasives.lua";
+Mt = require "./mt";
+List = require "../../lib/js/list";
+__Array = require "../../lib/js/array";
+Block = require "../../lib/js/block";
+Curry = require "../../lib/js/curry";
+Format = require "../../lib/js/format";
+Printf = require "../../lib/js/printf";
+Caml_int32 = require "../../lib/js/caml_int32";
+Caml_int64 = require "../../lib/js/caml_int64";
+Pervasives = require "../../lib/js/pervasives";
 
 tests_16 = {
   --[[ tuple ]]{

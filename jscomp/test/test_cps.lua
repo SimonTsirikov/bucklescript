@@ -1,7 +1,7 @@
 --[['use strict';]]
 
-Curry = require "../../lib/js/curry.lua";
-Caml_array = require "../../lib/js/caml_array.lua";
+Curry = require "../../lib/js/curry";
+Caml_array = require "../../lib/js/caml_array";
 
 function f(_n, _acc) do
   while(true) do
@@ -17,7 +17,7 @@ function f(_n, _acc) do
       end end
       end(n,acc));
       _n = n - 1 | 0;
-      continue ;
+      ::continue:: ;
     end end 
   end;
 end end

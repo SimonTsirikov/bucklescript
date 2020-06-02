@@ -1,6 +1,6 @@
 --[['use strict';]]
 
-FileJs = require "./File.js";
+FileJs = require "./Fil";
 
 foo = FileJs.foo;
 

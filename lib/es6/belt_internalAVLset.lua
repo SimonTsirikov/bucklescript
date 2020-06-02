@@ -5,7 +5,7 @@ import * as Caml_option from "./caml_option.lua";
 import * as Belt_SortArray from "./belt_SortArray.lua";
 
 function treeHeight(n) do
-  if (n ~= null) then do
+  if (n ~= nil) then do
     return n.height;
   end else do
     return 0;
@@ -13,7 +13,7 @@ function treeHeight(n) do
 end end
 
 function copy(n) do
-  if (n ~= null) then do
+  if (n ~= nil) then do
     l = n.left;
     r = n.right;
     return do
@@ -28,8 +28,8 @@ function copy(n) do
 end end
 
 function create(l, v, r) do
-  hl = l ~= null and l.height or 0;
-  hr = r ~= null and r.height or 0;
+  hl = l ~= nil and l.height or 0;
+  hr = r ~= nil and r.height or 0;
   return do
           value: v,
           height: hl >= hr and hl + 1 | 0 or hr + 1 | 0,
@@ -42,14 +42,14 @@ function singleton(x) do
   return do
           value: x,
           height: 1,
-          left: null,
-          right: null
+          left: nil,
+          right: nil
         end;
 end end
 
 function heightGe(l, r) do
-  if (r ~= null) then do
-    if (l ~= null) then do
+  if (r ~= nil) then do
+    if (l ~= nil) then do
       return l.height >= r.height;
     end else do
       return false;
@@ -60,8 +60,8 @@ function heightGe(l, r) do
 end end
 
 function bal(l, v, r) do
-  hl = l ~= null and l.height or 0;
-  hr = r ~= null and r.height or 0;
+  hl = l ~= nil and l.height or 0;
+  hr = r ~= nil and r.height or 0;
   if (hl > (hr + 2 | 0)) then do
     ll = l.left;
     lv = l.value;
@@ -100,9 +100,9 @@ function min0Aux(_n) do
   while(true) do
     n = _n;
     match = n.left;
-    if (match ~= null) then do
+    if (match ~= nil) then do
       _n = match;
-      continue ;
+      ::continue:: ;
     end else do
       return n.value;
     end end 
@@ -110,14 +110,14 @@ function min0Aux(_n) do
 end end
 
 function minimum(n) do
-  if (n ~= null) then do
+  if (n ~= nil) then do
     return Caml_option.some(min0Aux(n));
   end
    end 
 end end
 
 function minUndefined(n) do
-  if (n ~= null) then do
+  if (n ~= nil) then do
     return min0Aux(n);
   end
    end 
@@ -127,9 +127,9 @@ function max0Aux(_n) do
   while(true) do
     n = _n;
     match = n.right;
-    if (match ~= null) then do
+    if (match ~= nil) then do
       _n = match;
-      continue ;
+      ::continue:: ;
     end else do
       return n.value;
     end end 
@@ -137,14 +137,14 @@ function max0Aux(_n) do
 end end
 
 function maximum(n) do
-  if (n ~= null) then do
+  if (n ~= nil) then do
     return Caml_option.some(max0Aux(n));
   end
    end 
 end end
 
 function maxUndefined(n) do
-  if (n ~= null) then do
+  if (n ~= nil) then do
     return max0Aux(n);
   end
    end 
@@ -154,7 +154,7 @@ function removeMinAuxWithRef(n, v) do
   ln = n.left;
   rn = n.right;
   kn = n.value;
-  if (ln ~= null) then do
+  if (ln ~= nil) then do
     return bal(removeMinAuxWithRef(ln, v), kn, rn);
   end else do
     v.contents = kn;
@@ -163,20 +163,20 @@ function removeMinAuxWithRef(n, v) do
 end end
 
 function isEmpty(n) do
-  return n == null;
+  return n == nil;
 end end
 
 function stackAllLeft(_v, _s) do
   while(true) do
     s = _s;
     v = _v;
-    if (v ~= null) then do
+    if (v ~= nil) then do
       _s = --[[ :: ]]{
         v,
         s
       };
       _v = v.left;
-      continue ;
+      ::continue:: ;
     end else do
       return s;
     end end 
@@ -186,11 +186,11 @@ end end
 function forEachU(_n, f) do
   while(true) do
     n = _n;
-    if (n ~= null) then do
+    if (n ~= nil) then do
       forEachU(n.left, f);
       f(n.value);
       _n = n.right;
-      continue ;
+      ::continue:: ;
     end else do
       return --[[ () ]]0;
     end end 
@@ -205,13 +205,13 @@ function reduceU(_s, _accu, f) do
   while(true) do
     accu = _accu;
     s = _s;
-    if (s ~= null) then do
+    if (s ~= nil) then do
       l = s.left;
       k = s.value;
       r = s.right;
       _accu = f(reduceU(l, accu, f), k);
       _s = r;
-      continue ;
+      ::continue:: ;
     end else do
       return accu;
     end end 
@@ -225,10 +225,10 @@ end end
 function everyU(_n, p) do
   while(true) do
     n = _n;
-    if (n ~= null) then do
+    if (n ~= nil) then do
       if (p(n.value) and everyU(n.left, p)) then do
         _n = n.right;
-        continue ;
+        ::continue:: ;
       end else do
         return false;
       end end 
@@ -245,12 +245,12 @@ end end
 function someU(_n, p) do
   while(true) do
     n = _n;
-    if (n ~= null) then do
+    if (n ~= nil) then do
       if (p(n.value) or someU(n.left, p)) then do
         return true;
       end else do
         _n = n.right;
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return false;
@@ -263,7 +263,7 @@ function some(n, p) do
 end end
 
 function addMinElement(n, v) do
-  if (n ~= null) then do
+  if (n ~= nil) then do
     return bal(addMinElement(n.left, v), n.value, n.right);
   end else do
     return singleton(v);
@@ -271,7 +271,7 @@ function addMinElement(n, v) do
 end end
 
 function addMaxElement(n, v) do
-  if (n ~= null) then do
+  if (n ~= nil) then do
     return bal(n.left, n.value, addMaxElement(n.right, v));
   end else do
     return singleton(v);
@@ -279,8 +279,8 @@ function addMaxElement(n, v) do
 end end
 
 function joinShared(ln, v, rn) do
-  if (ln ~= null) then do
-    if (rn ~= null) then do
+  if (ln ~= nil) then do
+    if (rn ~= nil) then do
       lh = ln.height;
       rh = rn.height;
       if (lh > (rh + 2 | 0)) then do
@@ -299,8 +299,8 @@ function joinShared(ln, v, rn) do
 end end
 
 function concatShared(t1, t2) do
-  if (t1 ~= null) then do
-    if (t2 ~= null) then do
+  if (t1 ~= nil) then do
+    if (t2 ~= nil) then do
       v = do
         contents: t2.value
       end;
@@ -315,7 +315,7 @@ function concatShared(t1, t2) do
 end end
 
 function partitionSharedU(n, p) do
-  if (n ~= null) then do
+  if (n ~= nil) then do
     value = n.value;
     match = partitionSharedU(n.left, p);
     lf = match[1];
@@ -337,8 +337,8 @@ function partitionSharedU(n, p) do
     end end 
   end else do
     return --[[ tuple ]]{
-            null,
-            null
+            nil,
+            nil
           };
   end end 
 end end
@@ -350,13 +350,13 @@ end end
 function lengthNode(n) do
   l = n.left;
   r = n.right;
-  sizeL = l ~= null and lengthNode(l) or 0;
-  sizeR = r ~= null and lengthNode(r) or 0;
+  sizeL = l ~= nil and lengthNode(l) or 0;
+  sizeR = r ~= nil and lengthNode(r) or 0;
   return (1 + sizeL | 0) + sizeR | 0;
 end end
 
 function size(n) do
-  if (n ~= null) then do
+  if (n ~= nil) then do
     return lengthNode(n);
   end else do
     return 0;
@@ -367,13 +367,13 @@ function toListAux(_n, _accu) do
   while(true) do
     accu = _accu;
     n = _n;
-    if (n ~= null) then do
+    if (n ~= nil) then do
       _accu = --[[ :: ]]{
         n.value,
         toListAux(n.right, accu)
       };
       _n = n.left;
-      continue ;
+      ::continue:: ;
     end else do
       return accu;
     end end 
@@ -387,17 +387,17 @@ end end
 function checkInvariantInternal(_v) do
   while(true) do
     v = _v;
-    if (v ~= null) then do
+    if (v ~= nil) then do
       l = v.left;
       r = v.right;
       diff = treeHeight(l) - treeHeight(r) | 0;
       if (not (diff <= 2 and diff >= -2)) then do
-        throw new Error("File \"belt_internalAVLset.ml\", line 304, characters 6-12");
+        error (new Error("File \"belt_internalAVLset.ml\", line 304, characters 6-12"))
       end
        end 
       checkInvariantInternal(l);
       _v = r;
-      continue ;
+      ::continue:: ;
     end else do
       return --[[ () ]]0;
     end end 
@@ -411,13 +411,13 @@ function fillArray(_n, _i, arr) do
     l = n.left;
     v = n.value;
     r = n.right;
-    next = l ~= null and fillArray(l, i, arr) or i;
+    next = l ~= nil and fillArray(l, i, arr) or i;
     arr[next] = v;
     rnext = next + 1 | 0;
-    if (r ~= null) then do
+    if (r ~= nil) then do
       _i = rnext;
       _n = r;
-      continue ;
+      ::continue:: ;
     end else do
       return rnext;
     end end 
@@ -430,7 +430,7 @@ function fillArrayWithPartition(_n, cursor, arr, p) do
     l = n.left;
     v = n.value;
     r = n.right;
-    if (l ~= null) then do
+    if (l ~= nil) then do
       fillArrayWithPartition(l, cursor, arr, p);
     end
      end 
@@ -443,9 +443,9 @@ function fillArrayWithPartition(_n, cursor, arr, p) do
       arr[c$1] = v;
       cursor.backward = c$1 - 1 | 0;
     end end 
-    if (r ~= null) then do
+    if (r ~= nil) then do
       _n = r;
-      continue ;
+      ::continue:: ;
     end else do
       return --[[ () ]]0;
     end end 
@@ -459,12 +459,12 @@ function fillArrayWithFilter(_n, _i, arr, p) do
     l = n.left;
     v = n.value;
     r = n.right;
-    next = l ~= null and fillArrayWithFilter(l, i, arr, p) or i;
+    next = l ~= nil and fillArrayWithFilter(l, i, arr, p) or i;
     rnext = p(v) and (arr[next] = v, next + 1 | 0) or next;
-    if (r ~= null) then do
+    if (r ~= nil) then do
       _i = rnext;
       _n = r;
-      continue ;
+      ::continue:: ;
     end else do
       return rnext;
     end end 
@@ -472,7 +472,7 @@ function fillArrayWithFilter(_n, _i, arr, p) do
 end end
 
 function toArray(n) do
-  if (n ~= null) then do
+  if (n ~= nil) then do
     size = lengthNode(n);
     v = new Array(size);
     fillArray(n, 0, v);
@@ -486,7 +486,7 @@ function fromSortedArrayRevAux(arr, off, len) do
   local ___conditional___=(len);
   do
      if ___conditional___ = 0 then do
-        return null;end end end 
+        return nil;end end end 
      if ___conditional___ = 1 then do
         return singleton(arr[off]);end end end 
      if ___conditional___ = 2 then do
@@ -496,7 +496,7 @@ function fromSortedArrayRevAux(arr, off, len) do
                 value: x1,
                 height: 2,
                 left: singleton(x0),
-                right: null
+                right: nil
               end;end end end 
      if ___conditional___ = 3 then do
         x0$1 = arr[off];
@@ -524,7 +524,7 @@ function fromSortedArrayAux(arr, off, len) do
   local ___conditional___=(len);
   do
      if ___conditional___ = 0 then do
-        return null;end end end 
+        return nil;end end end 
      if ___conditional___ = 1 then do
         return singleton(arr[off]);end end end 
      if ___conditional___ = 2 then do
@@ -534,7 +534,7 @@ function fromSortedArrayAux(arr, off, len) do
                 value: x1,
                 height: 2,
                 left: singleton(x0),
-                right: null
+                right: nil
               end;end end end 
      if ___conditional___ = 3 then do
         x0$1 = arr[off];
@@ -563,7 +563,7 @@ function fromSortedArrayUnsafe(arr) do
 end end
 
 function keepSharedU(n, p) do
-  if (n ~= null) then do
+  if (n ~= nil) then do
     l = n.left;
     v = n.value;
     r = n.right;
@@ -580,7 +580,7 @@ function keepSharedU(n, p) do
       return concatShared(newL, newR);
     end end 
   end else do
-    return null;
+    return nil;
   end end 
 end end
 
@@ -589,13 +589,13 @@ function keepShared(n, p) do
 end end
 
 function keepCopyU(n, p) do
-  if (n ~= null) then do
+  if (n ~= nil) then do
     size = lengthNode(n);
     v = new Array(size);
     last = fillArrayWithFilter(n, 0, v, p);
     return fromSortedArrayAux(v, 0, last);
   end else do
-    return null;
+    return nil;
   end end 
 end end
 
@@ -604,7 +604,7 @@ function keepCopy(n, p) do
 end end
 
 function partitionCopyU(n, p) do
-  if (n ~= null) then do
+  if (n ~= nil) then do
     size = lengthNode(n);
     v = new Array(size);
     backward = size - 1 | 0;
@@ -620,8 +620,8 @@ function partitionCopyU(n, p) do
           };
   end else do
     return --[[ tuple ]]{
-            null,
-            null
+            nil,
+            nil
           };
   end end 
 end end
@@ -633,14 +633,14 @@ end end
 function has(_t, x, cmp) do
   while(true) do
     t = _t;
-    if (t ~= null) then do
+    if (t ~= nil) then do
       v = t.value;
       c = cmp(x, v);
       if (c == 0) then do
         return true;
       end else do
         _t = c < 0 and t.left or t.right;
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return false;
@@ -665,7 +665,7 @@ function cmp(s1, s2, cmp$1) do
         if (c == 0) then do
           _e2 = stackAllLeft(h2.right, e2[1]);
           _e1 = stackAllLeft(h1.right, e1[1]);
-          continue ;
+          ::continue:: ;
         end else do
           return c;
         end end 
@@ -688,8 +688,8 @@ function subset(_s1, _s2, cmp) do
   while(true) do
     s2 = _s2;
     s1 = _s1;
-    if (s1 ~= null) then do
-      if (s2 ~= null) then do
+    if (s1 ~= nil) then do
+      if (s2 ~= nil) then do
         l1 = s1.left;
         v1 = s1.value;
         r1 = s1.right;
@@ -701,20 +701,20 @@ function subset(_s1, _s2, cmp) do
           if (subset(l1, l2, cmp)) then do
             _s2 = r2;
             _s1 = r1;
-            continue ;
+            ::continue:: ;
           end else do
             return false;
           end end 
         end else if (c < 0) then do
-          if (subset(create(l1, v1, null), l2, cmp)) then do
+          if (subset(create(l1, v1, nil), l2, cmp)) then do
             _s1 = r1;
-            continue ;
+            ::continue:: ;
           end else do
             return false;
           end end 
-        end else if (subset(create(null, v1, r1), r2, cmp)) then do
+        end else if (subset(create(nil, v1, r1), r2, cmp)) then do
           _s1 = l1;
-          continue ;
+          ::continue:: ;
         end else do
           return false;
         end end  end  end 
@@ -730,14 +730,14 @@ end end
 function get(_n, x, cmp) do
   while(true) do
     n = _n;
-    if (n ~= null) then do
+    if (n ~= nil) then do
       v = n.value;
       c = cmp(x, v);
       if (c == 0) then do
         return Caml_option.some(v);
       end else do
         _n = c < 0 and n.left or n.right;
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return ;
@@ -748,14 +748,14 @@ end end
 function getUndefined(_n, x, cmp) do
   while(true) do
     n = _n;
-    if (n ~= null) then do
+    if (n ~= nil) then do
       v = n.value;
       c = cmp(x, v);
       if (c == 0) then do
         return v;
       end else do
         _n = c < 0 and n.left or n.right;
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return ;
@@ -766,17 +766,17 @@ end end
 function getExn(_n, x, cmp) do
   while(true) do
     n = _n;
-    if (n ~= null) then do
+    if (n ~= nil) then do
       v = n.value;
       c = cmp(x, v);
       if (c == 0) then do
         return v;
       end else do
         _n = c < 0 and n.left or n.right;
-        continue ;
+        ::continue:: ;
       end end 
     end else do
-      throw new Error("getExn0");
+      error (new Error("getExn0"))
     end end 
   end;
 end end
@@ -866,7 +866,7 @@ function balMutate(nt) do
 end end
 
 function addMutate(cmp, t, x) do
-  if (t ~= null) then do
+  if (t ~= nil) then do
     k = t.value;
     c = cmp(x, k);
     if (c == 0) then do
@@ -890,7 +890,7 @@ end end
 function fromArray(xs, cmp) do
   len = #xs;
   if (len == 0) then do
-    return null;
+    return nil;
   end else do
     next = Belt_SortArray.strictlySortedLengthU(xs, (function (x, y) do
             return cmp(x, y) < 0;
@@ -912,7 +912,7 @@ end end
 function removeMinAuxWithRootMutate(nt, n) do
   rn = n.right;
   ln = n.left;
-  if (ln ~= null) then do
+  if (ln ~= nil) then do
     n.left = removeMinAuxWithRootMutate(nt, ln);
     return balMutate(n);
   end else do

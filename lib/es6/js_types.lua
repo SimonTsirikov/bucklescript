@@ -6,7 +6,7 @@ function classify(x) do
   ty = typeof x;
   if (ty == "undefined") then do
     return --[[ JSUndefined ]]3;
-  end else if (x == null) then do
+  end else if (x == nil) then do
     return --[[ JSNull ]]2;
   end else if (ty == "number") then do
     return --[[ JSNumber ]]Block.__(0, {x});
@@ -33,7 +33,7 @@ function test(x, v) do
      if ___conditional___ = 0--[[ Undefined ]] then do
         return typeof x == "undefined";end end end 
      if ___conditional___ = 1--[[ Null ]] then do
-        return x == null;end end end 
+        return x == nil;end end end 
      if ___conditional___ = 2--[[ Boolean ]] then do
         return typeof x == "boolean";end end end 
      if ___conditional___ = 3--[[ Number ]] then do

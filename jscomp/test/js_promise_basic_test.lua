@@ -1,12 +1,12 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-List = require "../../lib/js/list.lua";
-Block = require "../../lib/js/block.lua";
-Curry = require "../../lib/js/curry.lua";
-Caml_array = require "../../lib/js/caml_array.lua";
-Caml_exceptions = require "../../lib/js/caml_exceptions.lua";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
+Mt = require "./mt";
+List = require "../../lib/js/list";
+Block = require "../../lib/js/block";
+Curry = require "../../lib/js/curry";
+Caml_array = require "../../lib/js/caml_array";
+Caml_exceptions = require "../../lib/js/caml_exceptions";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 suites = do
   contents: --[[ [] ]]0
@@ -37,22 +37,22 @@ function assert_bool(b) do
   if (b) then do
     return --[[ () ]]0;
   end else do
-    throw {
-          Caml_builtin_exceptions.invalid_argument,
-          "Assertion Failure."
-        };
+    error ({
+      Caml_builtin_exceptions.invalid_argument,
+      "Assertion Failure."
+    })
   end end 
 end end
 
 function fail(param) do
-  throw {
-        Caml_builtin_exceptions.assert_failure,
-        --[[ tuple ]]{
-          "js_promise_basic_test.ml",
-          19,
-          2
-        }
-      };
+  error ({
+    Caml_builtin_exceptions.assert_failure,
+    --[[ tuple ]]{
+      "js_promise_basic_test.ml",
+      19,
+      2
+    }
+  })
 end end
 
 function thenTest(param) do
@@ -78,14 +78,14 @@ function assertIsNotFound(x) do
   if (match ~= undefined) then do
     return h;
   end else do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "js_promise_basic_test.ml",
-            36,
-            9
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "js_promise_basic_test.ml",
+        36,
+        9
+      }
+    })
   end end 
 end end
 
@@ -139,14 +139,14 @@ function orElseRejectedRejectTest(param) do
                 if (match ~= undefined) then do
                   return h;
                 end else do
-                  throw {
-                        Caml_builtin_exceptions.assert_failure,
-                        --[[ tuple ]]{
-                          "js_promise_basic_test.ml",
-                          77,
-                          18
-                        }
-                      };
+                  error ({
+                    Caml_builtin_exceptions.assert_failure,
+                    --[[ tuple ]]{
+                      "js_promise_basic_test.ml",
+                      77,
+                      18
+                    }
+                  })
                 end end 
               end end));
 end end

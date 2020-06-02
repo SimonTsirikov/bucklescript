@@ -1,6 +1,6 @@
 --[['use strict';]]
 
-__String = require "../../lib/js/string.lua";
+__String = require "../../lib/js/string";
 
 function v(u) do
   t(do

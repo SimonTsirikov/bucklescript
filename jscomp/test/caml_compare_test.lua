@@ -1,24 +1,23 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-Block = require "../../lib/js/block.lua";
-Caml_obj = require "../../lib/js/caml_obj.lua";
-Caml_js_exceptions = require "../../lib/js/caml_js_exceptions.lua";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
+Mt = require "./mt";
+Block = require "../../lib/js/block";
+Caml_obj = require "../../lib/js/caml_obj";
+Caml_js_exceptions = require "../../lib/js/caml_js_exceptions";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 function_equal_test;
 
-try do
+xpcall(function() do
   function_equal_test = Caml_obj.caml_equal((function (x) do
           return x + 1 | 0;
         end end), (function (x) do
           return x + 2 | 0;
         end end));
-end
-catch (raw_exn)do
+end end,function(raw_exn) return do
   exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
   function_equal_test = exn[0] == Caml_builtin_exceptions.invalid_argument and exn[1] == "equal: functional value" and true or false;
-end
+end end)
 
 suites = do
   contents: --[[ :: ]]{
@@ -915,7 +914,7 @@ suites = do
                                                                                                 "File \"caml_compare_test.ml\", line 87, characters 4-11",
                                                                                                 (function (param) do
                                                                                                     return --[[ Eq ]]Block.__(0, {
-                                                                                                              Caml_obj.caml_compare(null, --[[ :: ]]{
+                                                                                                              Caml_obj.caml_compare(nil, --[[ :: ]]{
                                                                                                                     3,
                                                                                                                     --[[ [] ]]0
                                                                                                                   }),
@@ -931,7 +930,7 @@ suites = do
                                                                                                                 Caml_obj.caml_compare(--[[ :: ]]{
                                                                                                                       3,
                                                                                                                       --[[ [] ]]0
-                                                                                                                    }, null),
+                                                                                                                    }, nil),
                                                                                                                 1
                                                                                                               });
                                                                                                     end end)
@@ -941,7 +940,7 @@ suites = do
                                                                                                     "File \"caml_compare_test.ml\", line 93, characters 4-11",
                                                                                                     (function (param) do
                                                                                                         return --[[ Eq ]]Block.__(0, {
-                                                                                                                  Caml_obj.caml_compare(null, 0),
+                                                                                                                  Caml_obj.caml_compare(nil, 0),
                                                                                                                   -1
                                                                                                                 });
                                                                                                       end end)
@@ -951,7 +950,7 @@ suites = do
                                                                                                       "File \"caml_compare_test.ml\", line 96, characters 4-11",
                                                                                                       (function (param) do
                                                                                                           return --[[ Eq ]]Block.__(0, {
-                                                                                                                    Caml_obj.caml_compare(0, null),
+                                                                                                                    Caml_obj.caml_compare(0, nil),
                                                                                                                     1
                                                                                                                   });
                                                                                                         end end)

@@ -1,32 +1,32 @@
 --[['use strict';]]
 
-Curry = require "../../lib/js/curry.lua";
-Js_exn = require "../../lib/js/js_exn.lua";
-Caml_exceptions = require "../../lib/js/caml_exceptions.lua";
-Caml_js_exceptions = require "../../lib/js/caml_js_exceptions.lua";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
+Curry = require "../../lib/js/curry";
+Js_exn = require "../../lib/js/js_exn";
+Caml_exceptions = require "../../lib/js/caml_exceptions";
+Caml_js_exceptions = require "../../lib/js/caml_js_exceptions";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 function f(param) do
-  throw Caml_builtin_exceptions.not_found;
+  error (Caml_builtin_exceptions.not_found)
 end end
 
 function assert_f(x) do
   if (x <= 3) then do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "exception_value_test.ml",
-            9,
-            12
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "exception_value_test.ml",
+        9,
+        12
+      }
+    })
   end
    end 
   return 3;
 end end
 
 function hh(param) do
-  throw Caml_builtin_exceptions.not_found;
+  error (Caml_builtin_exceptions.not_found)
 end end
 
 A = Caml_exceptions.create("Exception_value_test.A");
@@ -41,41 +41,38 @@ u = {
 };
 
 function test_not_found(f, param) do
-  try do
+  xpcall(function() do
     return Curry._1(f, --[[ () ]]0);
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Caml_builtin_exceptions.not_found) then do
       return 2;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 function test_js_error2(param) do
-  try do
+  xpcall(function() do
     return JSON.parse(" {\"x\" : }");
-  end
-  catch (raw_e)do
+  end end,function(raw_e) return do
     e = Caml_js_exceptions.internalToOCamlException(raw_e);
     if (e[0] == Js_exn.__Error) then do
       console.log(e[1].stack);
-      throw e;
+      error (e)
     end else do
-      throw e;
+      error (e)
     end end 
-  end
+  end end)
 end end
 
 function test_js_error3(param) do
-  try do
+  xpcall(function() do
     JSON.parse(" {\"x\"}");
     return 1;
-  end
-  catch (e)do
+  end end,function(e) return do
     return 0;
-  end
+  end end)
 end end
 
 exports.f = f;

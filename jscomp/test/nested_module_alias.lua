@@ -1,6 +1,6 @@
 --[['use strict';]]
 
-List = require "../../lib/js/list.lua";
+List = require "../../lib/js/list";
 
 function v(x) do
   return --[[ tuple ]]{

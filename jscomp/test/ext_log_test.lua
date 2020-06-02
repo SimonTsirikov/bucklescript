@@ -1,9 +1,9 @@
 --[['use strict';]]
 
-Block = require "../../lib/js/block.lua";
-Curry = require "../../lib/js/curry.lua";
-Format = require "../../lib/js/format.lua";
-Pervasives = require "../../lib/js/pervasives.lua";
+Block = require "../../lib/js/block";
+Curry = require "../../lib/js/curry";
+Format = require "../../lib/js/format";
+Pervasives = require "../../lib/js/pervasives";
 
 function err(str, f) do
   return Curry._1(Format.fprintf(Format.err_formatter, Pervasives.$caret$caret(--[[ Format ]]{

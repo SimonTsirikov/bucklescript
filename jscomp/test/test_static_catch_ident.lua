@@ -1,7 +1,7 @@
 --[['use strict';]]
 
-Caml_exceptions = require "../../lib/js/caml_exceptions.lua";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
+Caml_exceptions = require "../../lib/js/caml_exceptions";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 Scan_failure = Caml_exceptions.create("Test_static_catch_ident.Scan_failure");
 
@@ -10,7 +10,7 @@ function scanf_bad_input(ib, x) do
   if (x[0] == Scan_failure or x[0] == Caml_builtin_exceptions.failure) then do
     s = x[1];
   end else do
-    throw x;
+    error (x)
   end end 
   for i = 0 , 100 , 1 do
     console.log(s);

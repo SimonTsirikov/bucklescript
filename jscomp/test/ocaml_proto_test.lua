@@ -1,26 +1,26 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-Char = require "../../lib/js/char.lua";
-List = require "../../lib/js/list.lua";
-Block = require "../../lib/js/block.lua";
-Bytes = require "../../lib/js/bytes.lua";
-Curry = require "../../lib/js/curry.lua";
-Lexing = require "../../lib/js/lexing.lua";
-Printf = require "../../lib/js/printf.lua";
-__String = require "../../lib/js/string.lua";
-Parsing = require "../../lib/js/parsing.lua";
-Caml_obj = require "../../lib/js/caml_obj.lua";
-Filename = require "../../lib/js/filename.lua";
-Printexc = require "../../lib/js/printexc.lua";
-Caml_bytes = require "../../lib/js/caml_bytes.lua";
-Pervasives = require "../../lib/js/pervasives.lua";
-Caml_format = require "../../lib/js/caml_format.lua";
-Caml_option = require "../../lib/js/caml_option.lua";
-Caml_string = require "../../lib/js/caml_string.lua";
-Caml_exceptions = require "../../lib/js/caml_exceptions.lua";
-Caml_js_exceptions = require "../../lib/js/caml_js_exceptions.lua";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
+Mt = require "./mt";
+Char = require "../../lib/js/char";
+List = require "../../lib/js/list";
+Block = require "../../lib/js/block";
+Bytes = require "../../lib/js/bytes";
+Curry = require "../../lib/js/curry";
+Lexing = require "../../lib/js/lexing";
+Printf = require "../../lib/js/printf";
+__String = require "../../lib/js/string";
+Parsing = require "../../lib/js/parsing";
+Caml_obj = require "../../lib/js/caml_obj";
+Filename = require "../../lib/js/filename";
+Printexc = require "../../lib/js/printexc";
+Caml_bytes = require "../../lib/js/caml_bytes";
+Pervasives = require "../../lib/js/pervasives";
+Caml_format = require "../../lib/js/caml_format";
+Caml_option = require "../../lib/js/caml_option";
+Caml_string = require "../../lib/js/caml_string";
+Caml_exceptions = require "../../lib/js/caml_exceptions";
+Caml_js_exceptions = require "../../lib/js/caml_js_exceptions";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 function field(optionsOpt, label, number, type_, name) do
   options = optionsOpt ~= undefined and optionsOpt or --[[ [] ]]0;
@@ -188,39 +188,37 @@ end end
 
 function file_option(file_options, name) do
   x;
-  try do
+  xpcall(function() do
     x = List.assoc(name, file_options);
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Caml_builtin_exceptions.not_found) then do
       return ;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
   return x;
 end end
 
 function rev_split_by_char(c, s) do
   loop = function (i, l) do
-    try do
+    xpcall(function() do
       i$prime = __String.index_from(s, i, c);
       s$prime = __String.sub(s, i, i$prime - i | 0);
       return loop(i$prime + 1 | 0, s$prime == "" and l or --[[ :: ]]{
                     s$prime,
                     l
                   });
-    end
-    catch (exn)do
+    end end,function(exn) return do
       if (exn == Caml_builtin_exceptions.not_found) then do
         return --[[ :: ]]{
                 __String.sub(s, i, #s - i | 0),
                 l
               };
       end else do
-        throw exn;
+        error (exn)
       end end 
-    end
+    end end)
   end end;
   return loop(0, --[[ [] ]]0);
 end end
@@ -237,10 +235,10 @@ function pop_last(param) do
       return --[[ [] ]]0;
     end end 
   end else do
-    throw {
-          Caml_builtin_exceptions.failure,
-          "Invalid argument [] for pop_last"
-        };
+    error ({
+      Caml_builtin_exceptions.failure,
+      "Invalid argument [] for pop_last"
+    })
   end end 
 end end
 
@@ -253,7 +251,7 @@ function apply_until(f, _param) do
         return x;
       end else do
         _param = param[1];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return ;
@@ -289,7 +287,7 @@ function string_fold_lefti(f, e0, s) do
     end else do
       _i = i + 1 | 0;
       _acc = Curry._3(f, acc, i, s.charCodeAt(i));
-      continue ;
+      ::continue:: ;
     end end 
   end;
 end end
@@ -694,34 +692,34 @@ Printexc.register_printer((function (exn) do
       end end));
 
 function invalid_default_value(field_name, info, param) do
-  throw {
-        Compilation_error,
-        --[[ Invalid_default_value ]]Block.__(2, {do
-              field_name: field_name,
-              info: info
-            end})
-      };
+  error ({
+    Compilation_error,
+    --[[ Invalid_default_value ]]Block.__(2, {do
+          field_name: field_name,
+          info: info
+        end})
+  })
 end end
 
 function unsupported_field_type(field_name, field_type, backend_name, param) do
-  throw {
-        Compilation_error,
-        --[[ Unsupported_field_type ]]Block.__(3, {do
-              field_name: field_name,
-              field_type: field_type,
-              backend_name: backend_name
-            end})
-      };
+  error ({
+    Compilation_error,
+    --[[ Unsupported_field_type ]]Block.__(3, {do
+          field_name: field_name,
+          field_type: field_type,
+          backend_name: backend_name
+        end})
+  })
 end end
 
 function invalid_enum_specification(enum_name, loc) do
-  throw {
-        Compilation_error,
-        --[[ Invalid_enum_specification ]]Block.__(10, {
-            enum_name,
-            loc
-          })
-      };
+  error ({
+    Compilation_error,
+    --[[ Invalid_enum_specification ]]Block.__(10, {
+        enum_name,
+        loc
+      })
+  })
 end end
 
 yytransl_const = {
@@ -766,10 +764,10 @@ yytransl_block = {
 
 yyact = {
   (function (param) do
-      throw {
-            Caml_builtin_exceptions.failure,
-            "parser"
-          };
+      error ({
+        Caml_builtin_exceptions.failure,
+        "parser"
+      })
     end end),
   (function (__caml_parser_env) do
       return Parsing.peek_val(__caml_parser_env, 1);
@@ -891,10 +889,10 @@ yyact = {
       Parsing.peek_val(__caml_parser_env, 2);
       Parsing.peek_val(__caml_parser_env, 1);
       Parsing.peek_val(__caml_parser_env, 0);
-      throw {
-            Compilation_error,
-            --[[ Invalid_import_qualifier ]]Block.__(5, {_1})
-          };
+      error ({
+        Compilation_error,
+        --[[ Invalid_import_qualifier ]]Block.__(5, {_1})
+      })
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 1);
@@ -946,10 +944,10 @@ yyact = {
       return --[[ Message_extension ]]Block.__(5, {Parsing.peek_val(__caml_parser_env, 0)});
     end end),
   (function (__caml_parser_env) do
-      throw {
-            Compilation_error,
-            --[[ Syntax_error ]]0
-          };
+      error ({
+        Compilation_error,
+        --[[ Syntax_error ]]0
+      })
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 3);
@@ -1026,10 +1024,10 @@ yyact = {
       _1 = Parsing.peek_val(__caml_parser_env, 3);
       Parsing.peek_val(__caml_parser_env, 1);
       Parsing.peek_val(__caml_parser_env, 0);
-      throw {
-            Compilation_error,
-            --[[ Missing_one_of_name ]]Block.__(12, {_1})
-          };
+      error ({
+        Compilation_error,
+        --[[ Missing_one_of_name ]]Block.__(12, {_1})
+      })
     end end),
   (function (__caml_parser_env) do
       return --[[ [] ]]0;
@@ -1097,20 +1095,20 @@ yyact = {
       Parsing.peek_val(__caml_parser_env, 2);
       Parsing.peek_val(__caml_parser_env, 1);
       Parsing.peek_val(__caml_parser_env, 0);
-      throw {
-            Compilation_error,
-            --[[ Missing_field_label ]]Block.__(14, {_1[0]})
-          };
+      error ({
+        Compilation_error,
+        --[[ Missing_field_label ]]Block.__(14, {_1[0]})
+      })
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 4);
       Parsing.peek_val(__caml_parser_env, 3);
       Parsing.peek_val(__caml_parser_env, 1);
       Parsing.peek_val(__caml_parser_env, 0);
-      throw {
-            Compilation_error,
-            --[[ Missing_field_label ]]Block.__(14, {_1[0]})
-          };
+      error ({
+        Compilation_error,
+        --[[ Missing_field_label ]]Block.__(14, {_1[0]})
+      })
     end end),
   (function (__caml_parser_env) do
       return Parsing.peek_val(__caml_parser_env, 0)[1];
@@ -1176,10 +1174,10 @@ yyact = {
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      throw {
-            Compilation_error,
-            --[[ Invalid_field_label ]]Block.__(13, {_1[0]})
-          };
+      error ({
+        Compilation_error,
+        --[[ Invalid_field_label ]]Block.__(13, {_1[0]})
+      })
     end end),
   (function (__caml_parser_env) do
       return Parsing.peek_val(__caml_parser_env, 1);
@@ -1308,13 +1306,13 @@ yyact = {
       Parsing.peek_val(__caml_parser_env, 0);
       enum_value = _1[1];
       loc = _1[0];
-      throw {
-            Compilation_error,
-            --[[ Missing_semicolon_for_enum_value ]]Block.__(9, {
-                enum_value,
-                loc
-              })
-          };
+      error ({
+        Compilation_error,
+        --[[ Missing_semicolon_for_enum_value ]]Block.__(9, {
+            enum_value,
+            loc
+          })
+      })
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 3);
@@ -1348,76 +1346,76 @@ yyact = {
       return --[[ () ]]0;
     end end),
   (function (__caml_parser_env) do
-      throw {
-            Parsing.YYexit,
-            Parsing.peek_val(__caml_parser_env, 0)
-          };
+      error ({
+        Parsing.YYexit,
+        Parsing.peek_val(__caml_parser_env, 0)
+      })
     end end),
   (function (__caml_parser_env) do
-      throw {
-            Parsing.YYexit,
-            Parsing.peek_val(__caml_parser_env, 0)
-          };
+      error ({
+        Parsing.YYexit,
+        Parsing.peek_val(__caml_parser_env, 0)
+      })
     end end),
   (function (__caml_parser_env) do
-      throw {
-            Parsing.YYexit,
-            Parsing.peek_val(__caml_parser_env, 0)
-          };
+      error ({
+        Parsing.YYexit,
+        Parsing.peek_val(__caml_parser_env, 0)
+      })
     end end),
   (function (__caml_parser_env) do
-      throw {
-            Parsing.YYexit,
-            Parsing.peek_val(__caml_parser_env, 0)
-          };
+      error ({
+        Parsing.YYexit,
+        Parsing.peek_val(__caml_parser_env, 0)
+      })
     end end),
   (function (__caml_parser_env) do
-      throw {
-            Parsing.YYexit,
-            Parsing.peek_val(__caml_parser_env, 0)
-          };
+      error ({
+        Parsing.YYexit,
+        Parsing.peek_val(__caml_parser_env, 0)
+      })
     end end),
   (function (__caml_parser_env) do
-      throw {
-            Parsing.YYexit,
-            Parsing.peek_val(__caml_parser_env, 0)
-          };
+      error ({
+        Parsing.YYexit,
+        Parsing.peek_val(__caml_parser_env, 0)
+      })
     end end),
   (function (__caml_parser_env) do
-      throw {
-            Parsing.YYexit,
-            Parsing.peek_val(__caml_parser_env, 0)
-          };
+      error ({
+        Parsing.YYexit,
+        Parsing.peek_val(__caml_parser_env, 0)
+      })
     end end),
   (function (__caml_parser_env) do
-      throw {
-            Parsing.YYexit,
-            Parsing.peek_val(__caml_parser_env, 0)
-          };
+      error ({
+        Parsing.YYexit,
+        Parsing.peek_val(__caml_parser_env, 0)
+      })
     end end),
   (function (__caml_parser_env) do
-      throw {
-            Parsing.YYexit,
-            Parsing.peek_val(__caml_parser_env, 0)
-          };
+      error ({
+        Parsing.YYexit,
+        Parsing.peek_val(__caml_parser_env, 0)
+      })
     end end),
   (function (__caml_parser_env) do
-      throw {
-            Parsing.YYexit,
-            Parsing.peek_val(__caml_parser_env, 0)
-          };
+      error ({
+        Parsing.YYexit,
+        Parsing.peek_val(__caml_parser_env, 0)
+      })
     end end),
   (function (__caml_parser_env) do
-      throw {
-            Parsing.YYexit,
-            Parsing.peek_val(__caml_parser_env, 0)
-          };
+      error ({
+        Parsing.YYexit,
+        Parsing.peek_val(__caml_parser_env, 0)
+      })
     end end),
   (function (__caml_parser_env) do
-      throw {
-            Parsing.YYexit,
-            Parsing.peek_val(__caml_parser_env, 0)
-          };
+      error ({
+        Parsing.YYexit,
+        Parsing.peek_val(__caml_parser_env, 0)
+      })
     end end)
 };
 
@@ -1483,7 +1481,7 @@ function __ocaml_lex_string_rec(_l, lexbuf, ___ocaml_lex_state) do
             Char.escaped(c),
             l
           };
-          continue ;end end end 
+          ::continue:: ;end end end 
        if ___conditional___ = 1 then do
           return --[[ String_value ]]{__String.concat("", List.rev(l))};end end end 
        if ___conditional___ = 2 then do
@@ -1492,14 +1490,14 @@ function __ocaml_lex_string_rec(_l, lexbuf, ___ocaml_lex_state) do
             Lexing.lexeme(lexbuf),
             l
           };
-          continue ;end end end 
+          ::continue:: ;end end end 
        if ___conditional___ = 3 then do
           return --[[ String_eof ]]0;end end end 
        do
       else do
         Curry._1(lexbuf.refill_buff, lexbuf);
         ___ocaml_lex_state = __ocaml_lex_state$1;
-        continue ;
+        ::continue:: ;
         end end
         
     end
@@ -1522,14 +1520,14 @@ function __ocaml_lex_comment_rec(_l, lexbuf, ___ocaml_lex_state) do
             Lexing.lexeme(lexbuf),
             l
           };
-          continue ;end end end 
+          ::continue:: ;end end end 
        if ___conditional___ = 2 then do
           return --[[ Comment_eof ]]0;end end end 
        do
       else do
         Curry._1(lexbuf.refill_buff, lexbuf);
         ___ocaml_lex_state = __ocaml_lex_state$1;
-        continue ;
+        ::continue:: ;
         end end
         
     end
@@ -1546,7 +1544,7 @@ function __ocaml_lex_multi_line_comment_rec(_l, lexbuf, ___ocaml_lex_state) do
        if ___conditional___ = 0 then do
           update_loc(lexbuf);
           ___ocaml_lex_state = 47;
-          continue ;end end end 
+          ::continue:: ;end end end 
        if ___conditional___ = 1 then do
           Lexing.lexeme(lexbuf);
           return --[[ Comment_value ]]{__String.concat("", List.rev(l))};end end end 
@@ -1556,14 +1554,14 @@ function __ocaml_lex_multi_line_comment_rec(_l, lexbuf, ___ocaml_lex_state) do
             Lexing.lexeme(lexbuf),
             l
           };
-          continue ;end end end 
+          ::continue:: ;end end end 
        if ___conditional___ = 3 then do
           return --[[ Comment_eof ]]0;end end end 
        do
       else do
         Curry._1(lexbuf.refill_buff, lexbuf);
         ___ocaml_lex_state = __ocaml_lex_state$1;
-        continue ;
+        ::continue:: ;
         end end
         
     end
@@ -1604,7 +1602,7 @@ function lexer(lexbuf) do
           match = __ocaml_lex_comment_rec(--[[ [] ]]0, lexbuf$1, 41);
           if (match) then do
             ___ocaml_lex_state = 0;
-            continue ;
+            ::continue:: ;
           end else do
             return --[[ EOF ]]25;
           end end end end end 
@@ -1612,7 +1610,7 @@ function lexer(lexbuf) do
           match$1 = __ocaml_lex_multi_line_comment_rec(--[[ [] ]]0, lexbuf$1, 47);
           if (match$1) then do
             ___ocaml_lex_state = 0;
-            continue ;
+            ::continue:: ;
           end else do
             return --[[ EOF ]]25;
           end end end end end 
@@ -1632,10 +1630,10 @@ function lexer(lexbuf) do
        if ___conditional___ = 17 then do
           update_loc(lexbuf$1);
           ___ocaml_lex_state = 0;
-          continue ;end end end 
+          ::continue:: ;end end end 
        if ___conditional___ = 18 then do
           ___ocaml_lex_state = 0;
-          continue ;end end end 
+          ::continue:: ;end end end 
        if ___conditional___ = 19 then do
           loc = from_lexbuf(lexbuf$1);
           ident = Lexing.lexeme(lexbuf$1);
@@ -1695,15 +1693,15 @@ function lexer(lexbuf) do
                       }),
                     "Unknown character found %s"
                   }), Lexing.lexeme(lexbuf$1));
-          throw {
-                Caml_builtin_exceptions.failure,
-                s
-              };end end end 
+          error ({
+            Caml_builtin_exceptions.failure,
+            s
+          })end end end 
        do
       else do
         Curry._1(lexbuf$1.refill_buff, lexbuf$1);
         ___ocaml_lex_state = __ocaml_lex_state$1;
-        continue ;
+        ::continue:: ;
         end end
         
     end
@@ -1948,14 +1946,14 @@ function print(scope) do
           sub = loop(--[[ [] ]]0, i + 1 | 0, items);
           _param = param[1];
           _acc = Pervasives.$at(sub, acc);
-          continue ;
+          ::continue:: ;
         end else do
           _param = param[1];
           _acc = --[[ :: ]]{
             indentation_prefix(i) .. match[0],
             acc
           };
-          continue ;
+          ::continue:: ;
         end end 
       end else do
         return acc;
@@ -1969,10 +1967,10 @@ function runtime_function(param) do
   match = param[0];
   if (match ~= 427938126) then do
     if (match ~= 779642422) then do
-      throw {
-            Caml_builtin_exceptions.failure,
-            "Invalid encoding/OCaml type combination"
-          };
+      error ({
+        Caml_builtin_exceptions.failure,
+        "Invalid encoding/OCaml type combination"
+      })
     end
      end 
     match$1 = param[1];
@@ -1992,10 +1990,10 @@ function runtime_function(param) do
                or ___conditional___ = 4--[[ Bt_int64 ]]
                or ___conditional___ = 5--[[ Bt_bytes ]]
                or ___conditional___ = 6--[[ Bt_bool ]] then do
-                  throw {
-                        Caml_builtin_exceptions.failure,
-                        "Invalid encoding/OCaml type combination"
-                      };end end end 
+                  error ({
+                    Caml_builtin_exceptions.failure,
+                    "Invalid encoding/OCaml type combination"
+                  })end end end 
                do
               
             endend end end 
@@ -2012,10 +2010,10 @@ function runtime_function(param) do
                or ___conditional___ = 3--[[ Bt_int32 ]]
                or ___conditional___ = 5--[[ Bt_bytes ]]
                or ___conditional___ = 6--[[ Bt_bool ]] then do
-                  throw {
-                        Caml_builtin_exceptions.failure,
-                        "Invalid encoding/OCaml type combination"
-                      };end end end 
+                  error ({
+                    Caml_builtin_exceptions.failure,
+                    "Invalid encoding/OCaml type combination"
+                  })end end end 
                do
               
             endend end end 
@@ -2023,10 +2021,10 @@ function runtime_function(param) do
             match$2 = param[2];
             if (match$2 ~= 5) then do
               if (match$2 ~= 0) then do
-                throw {
-                      Caml_builtin_exceptions.failure,
-                      "Invalid encoding/OCaml type combination"
-                    };
+                error ({
+                  Caml_builtin_exceptions.failure,
+                  "Invalid encoding/OCaml type combination"
+                })
               end else do
                 return "Pbrt.Encoder.string";
               end end 
@@ -2049,10 +2047,10 @@ function runtime_function(param) do
          or ___conditional___ = 1--[[ Bt_float ]]
          or ___conditional___ = 5--[[ Bt_bytes ]]
          or ___conditional___ = 6--[[ Bt_bool ]] then do
-            throw {
-                  Caml_builtin_exceptions.failure,
-                  "Invalid encoding/OCaml type combination"
-                };end end end 
+            error ({
+              Caml_builtin_exceptions.failure,
+              "Invalid encoding/OCaml type combination"
+            })end end end 
          do
         
       end
@@ -2068,10 +2066,10 @@ function runtime_function(param) do
          if ___conditional___ = 0--[[ Bt_string ]]
          or ___conditional___ = 1--[[ Bt_float ]]
          or ___conditional___ = 5--[[ Bt_bytes ]] then do
-            throw {
-                  Caml_builtin_exceptions.failure,
-                  "Invalid encoding/OCaml type combination"
-                };end end end 
+            error ({
+              Caml_builtin_exceptions.failure,
+              "Invalid encoding/OCaml type combination"
+            })end end end 
          if ___conditional___ = 6--[[ Bt_bool ]] then do
             return "Pbrt.Encoder.bool";end end end 
          do
@@ -2096,10 +2094,10 @@ function runtime_function(param) do
                or ___conditional___ = 4--[[ Bt_int64 ]]
                or ___conditional___ = 5--[[ Bt_bytes ]]
                or ___conditional___ = 6--[[ Bt_bool ]] then do
-                  throw {
-                        Caml_builtin_exceptions.failure,
-                        "Invalid encoding/OCaml type combination"
-                      };end end end 
+                  error ({
+                    Caml_builtin_exceptions.failure,
+                    "Invalid encoding/OCaml type combination"
+                  })end end end 
                do
               
             endend end end 
@@ -2116,10 +2114,10 @@ function runtime_function(param) do
                or ___conditional___ = 3--[[ Bt_int32 ]]
                or ___conditional___ = 5--[[ Bt_bytes ]]
                or ___conditional___ = 6--[[ Bt_bool ]] then do
-                  throw {
-                        Caml_builtin_exceptions.failure,
-                        "Invalid encoding/OCaml type combination"
-                      };end end end 
+                  error ({
+                    Caml_builtin_exceptions.failure,
+                    "Invalid encoding/OCaml type combination"
+                  })end end end 
                do
               
             endend end end 
@@ -2127,10 +2125,10 @@ function runtime_function(param) do
             match$4 = param[2];
             if (match$4 ~= 5) then do
               if (match$4 ~= 0) then do
-                throw {
-                      Caml_builtin_exceptions.failure,
-                      "Invalid encoding/OCaml type combination"
-                    };
+                error ({
+                  Caml_builtin_exceptions.failure,
+                  "Invalid encoding/OCaml type combination"
+                })
               end else do
                 return "Pbrt.Decoder.string";
               end end 
@@ -2153,10 +2151,10 @@ function runtime_function(param) do
          or ___conditional___ = 1--[[ Bt_float ]]
          or ___conditional___ = 5--[[ Bt_bytes ]]
          or ___conditional___ = 6--[[ Bt_bool ]] then do
-            throw {
-                  Caml_builtin_exceptions.failure,
-                  "Invalid encoding/OCaml type combination"
-                };end end end 
+            error ({
+              Caml_builtin_exceptions.failure,
+              "Invalid encoding/OCaml type combination"
+            })end end end 
          do
         
       end
@@ -2172,10 +2170,10 @@ function runtime_function(param) do
          if ___conditional___ = 0--[[ Bt_string ]]
          or ___conditional___ = 1--[[ Bt_float ]]
          or ___conditional___ = 5--[[ Bt_bytes ]] then do
-            throw {
-                  Caml_builtin_exceptions.failure,
-                  "Invalid encoding/OCaml type combination"
-                };end end end 
+            error ({
+              Caml_builtin_exceptions.failure,
+              "Invalid encoding/OCaml type combination"
+            })end end end 
          if ___conditional___ = 6--[[ Bt_bool ]] then do
             return "Pbrt.Decoder.bool";end end end 
          do
@@ -3536,16 +3534,16 @@ function bal(l, x, d, r) do
       end else if (lr) then do
         return create(create(ll, lv, ld, lr[--[[ l ]]0]), lr[--[[ v ]]1], lr[--[[ d ]]2], create(lr[--[[ r ]]3], x, d, r));
       end else do
-        throw {
-              Caml_builtin_exceptions.invalid_argument,
-              "Map.bal"
-            };
+        error ({
+          Caml_builtin_exceptions.invalid_argument,
+          "Map.bal"
+        })
       end end  end 
     end else do
-      throw {
-            Caml_builtin_exceptions.invalid_argument,
-            "Map.bal"
-          };
+      error ({
+        Caml_builtin_exceptions.invalid_argument,
+        "Map.bal"
+      })
     end end 
   end else if (hr > (hl + 2 | 0)) then do
     if (r) then do
@@ -3558,16 +3556,16 @@ function bal(l, x, d, r) do
       end else if (rl) then do
         return create(create(l, x, d, rl[--[[ l ]]0]), rl[--[[ v ]]1], rl[--[[ d ]]2], create(rl[--[[ r ]]3], rv, rd, rr));
       end else do
-        throw {
-              Caml_builtin_exceptions.invalid_argument,
-              "Map.bal"
-            };
+        error ({
+          Caml_builtin_exceptions.invalid_argument,
+          "Map.bal"
+        })
       end end  end 
     end else do
-      throw {
-            Caml_builtin_exceptions.invalid_argument,
-            "Map.bal"
-          };
+      error ({
+        Caml_builtin_exceptions.invalid_argument,
+        "Map.bal"
+      })
     end end 
   end else do
     return --[[ Node ]]{
@@ -3634,10 +3632,10 @@ function find(x, _param) do
         return param[--[[ d ]]2];
       end else do
         _param = c < 0 and param[--[[ l ]]0] or param[--[[ r ]]3];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
-      throw Caml_builtin_exceptions.not_found;
+      error (Caml_builtin_exceptions.not_found)
     end end 
   end;
 end end
@@ -3666,7 +3664,7 @@ function fold(f, _m, _accu) do
     if (m) then do
       _accu = Curry._3(f, m[--[[ v ]]1], m[--[[ d ]]2], fold(f, m[--[[ l ]]0], accu));
       _m = m[--[[ r ]]3];
-      continue ;
+      ::continue:: ;
     end else do
       return accu;
     end end 
@@ -3680,16 +3678,16 @@ function min_value(param) do
     if (match$1 ~= undefined) then do
       return Caml_option.some(Caml_obj.caml_min(Caml_option.valFromOption(match), Caml_option.valFromOption(match$1)));
     end else do
-      throw {
-            Caml_builtin_exceptions.failure,
-            "min_value error"
-          };
+      error ({
+        Caml_builtin_exceptions.failure,
+        "min_value error"
+      })
     end end 
   end else do
-    throw {
-          Caml_builtin_exceptions.failure,
-          "min_value error"
-        };
+    error ({
+      Caml_builtin_exceptions.failure,
+      "min_value error"
+    })
   end end 
 end end
 
@@ -3700,16 +3698,16 @@ function eq_value(param) do
     if (match$1 ~= undefined) then do
       return Caml_obj.caml_equal(Caml_option.valFromOption(match), Caml_option.valFromOption(match$1));
     end else do
-      throw {
-            Caml_builtin_exceptions.failure,
-            "eq_value error"
-          };
+      error ({
+        Caml_builtin_exceptions.failure,
+        "eq_value error"
+      })
     end end 
   end else do
-    throw {
-          Caml_builtin_exceptions.failure,
-          "eq_value error"
-        };
+    error ({
+      Caml_builtin_exceptions.failure,
+      "eq_value error"
+    })
   end end 
 end end
 
@@ -3993,16 +3991,15 @@ end end
 
 function find_field_option(field_options, option_name) do
   x;
-  try do
+  xpcall(function() do
     x = List.assoc(option_name, field_options);
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Caml_builtin_exceptions.not_found) then do
       return ;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
   return Caml_option.some(x);
 end end
 
@@ -4071,10 +4068,10 @@ function unresolved_of_string(s) do
             from_root: Caml_string.get(s, 0) == --[[ "." ]]46
           end;
   end else do
-    throw {
-          Compilation_error,
-          --[[ Programatic_error ]]Block.__(4, {--[[ Invalid_string_split ]]0})
-        };
+    error ({
+      Compilation_error,
+      --[[ Programatic_error ]]Block.__(4, {--[[ Invalid_string_split ]]0})
+    })
   end end 
 end end
 
@@ -4224,16 +4221,15 @@ end end
 
 function get_default(field_name, field_options, field_type) do
   constant;
-  try do
+  xpcall(function() do
     constant = List.assoc("default", field_options);
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Caml_builtin_exceptions.not_found) then do
       return ;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
   return Caml_option.some(constant);
 end end
 
@@ -4267,17 +4263,16 @@ function compile_oneof_p1(param) do
 end end
 
 function not_found(f) do
-  try do
+  xpcall(function() do
     Curry._1(f, --[[ () ]]0);
     return false;
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Caml_builtin_exceptions.not_found) then do
       return true;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 function list_assoc2(x, _param) do
@@ -4289,10 +4284,10 @@ function list_assoc2(x, _param) do
         return match[0];
       end else do
         _param = param[1];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
-      throw Caml_builtin_exceptions.not_found;
+      error (Caml_builtin_exceptions.not_found)
     end end 
   end;
 end end
@@ -4419,14 +4414,14 @@ function compile_message_p1(file_name, file_options, message_scope, param) do
       field_name$1 = name;
       previous_field_name = "";
       message_name$1 = message_name;
-      throw {
-            Compilation_error,
-            --[[ Duplicated_field_number ]]Block.__(1, {do
-                  field_name: field_name$1,
-                  previous_field_name: previous_field_name,
-                  message_name: message_name$1
-                end})
-          };
+      error ({
+        Compilation_error,
+        --[[ Duplicated_field_number ]]Block.__(1, {do
+              field_name: field_name$1,
+              previous_field_name: previous_field_name,
+              message_name: message_name$1
+            end})
+      })
     end end 
   end end;
   List.fold_left((function (number_index, param) do
@@ -4519,7 +4514,7 @@ function compile_message_p2(types, param, message) do
               Pervasives.$at(l, field_scope),
               scopes
             };
-            continue ;
+            ::continue:: ;
           end else do
             return --[[ :: ]]{
                     field_scope,
@@ -4550,10 +4545,10 @@ function compile_message_p2(types, param, message) do
       if (typeof param == "number") then do
         return param;
       end else do
-        throw {
-              Compilation_error,
-              --[[ Programatic_error ]]Block.__(4, {--[[ Unexpected_field_type ]]1})
-            };
+        error ({
+          Compilation_error,
+          --[[ Programatic_error ]]Block.__(4, {--[[ Unexpected_field_type ]]1})
+        })
       end end 
     end else do
       unresolved = field_type[0];
@@ -4604,19 +4599,18 @@ function compile_message_p2(types, param, message) do
               scope$1 = scope;
               type_name$1 = type_name;
               types$2 = find_all_types_in_field_scope(types$1, scope$1);
-              try do
+              xpcall(function() do
                 t = List.find((function (t) do
                         return type_name$1 == type_name_of_type(t);
                       end end), types$2);
                 return type_id_of_type(t);
-              end
-              catch (exn)do
+              end end,function(exn) return do
                 if (exn == Caml_builtin_exceptions.not_found) then do
                   return ;
                 end else do
-                  throw exn;
+                  error (exn)
                 end end 
-              end
+              end end)
             end end), search_scopes$1);
       if (id ~= undefined) then do
         return --[[ Field_type_type ]]{id};
@@ -4624,14 +4618,14 @@ function compile_message_p2(types, param, message) do
         field_name$1 = field_name;
         type_ = type_name;
         message_name$1 = message_name;
-        throw {
-              Compilation_error,
-              --[[ Unresolved_type ]]Block.__(0, {do
-                    field_name: field_name$1,
-                    type_: type_,
-                    message_name: message_name$1
-                  end})
-            };
+        error ({
+          Compilation_error,
+          --[[ Unresolved_type ]]Block.__(0, {do
+                field_name: field_name$1,
+                type_: type_,
+                message_name: message_name$1
+              end})
+        })
       end end 
     end end 
   end end;
@@ -5894,14 +5888,14 @@ function record_field_default_info(record_field) do
                       "%s (%s)"
                     }), vc_constructor, dfvft(vc_field_type[0], undefined)) or vc_constructor;
         end else do
-          throw {
-                Caml_builtin_exceptions.assert_failure,
-                --[[ tuple ]]{
-                  "codegen_default.ml",
-                  74,
-                  15
-                }
-              };
+          error ({
+            Caml_builtin_exceptions.assert_failure,
+            --[[ tuple ]]{
+              "codegen_default.ml",
+              74,
+              15
+            }
+          })
         end end end else 
      do end end end end end end
     
@@ -6116,10 +6110,10 @@ function gen_default_variant(and_, param, sc) do
                         }), decl, v_name, v_name, vc_constructor));
     end end 
   end else do
-    throw {
-          Caml_builtin_exceptions.failure,
-          "programmatic TODO error"
-        };
+    error ({
+      Caml_builtin_exceptions.failure,
+      "programmatic TODO error"
+    })
   end end 
 end end
 
@@ -6130,10 +6124,10 @@ function gen_default_const_variant(and_, param, sc) do
   if (cv_constructors) then do
     first_constructor_name = cv_constructors[0][0];
   end else do
-    throw {
-          Caml_builtin_exceptions.failure,
-          "programmatic TODO error"
-        };
+    error ({
+      Caml_builtin_exceptions.failure,
+      "programmatic TODO error"
+    })
   end end 
   return line$1(sc, Curry._4(Printf.sprintf(--[[ Format ]]{
                       --[[ String ]]Block.__(2, {
@@ -6457,19 +6451,18 @@ end end
 function module_of_file_name(file_name) do
   file_name$1 = Curry._1(Filename.basename, file_name);
   dot_index;
-  try do
+  xpcall(function() do
     dot_index = __String.rindex(file_name$1, --[[ "." ]]46);
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Caml_builtin_exceptions.not_found) then do
-      throw {
-            Compilation_error,
-            --[[ Invalid_file_name ]]Block.__(6, {file_name$1})
-          };
+      error ({
+        Compilation_error,
+        --[[ Invalid_file_name ]]Block.__(6, {file_name$1})
+      })
     end
      end 
-    throw exn;
-  end
+    error (exn)
+  end end)
   return constructor_name(__String.sub(file_name$1, 0, dot_index) .. "_pb");
 end end
 
@@ -6489,10 +6482,10 @@ function type_name(message_scope, name) do
       return fix_ocaml_keyword_conflict(all_names$2[0]);
     end end 
   end else do
-    throw {
-          Caml_builtin_exceptions.failure,
-          "Programmatic error"
-        };
+    error ({
+      Caml_builtin_exceptions.failure,
+      "Programmatic error"
+    })
   end end 
 end end
 
@@ -6542,10 +6535,10 @@ function encoding_of_field(all_types, field) do
       packed = match$1[0];
     end else do
       field_name$1 = field_name(field);
-      throw {
-            Compilation_error,
-            --[[ Invalid_packed_option ]]Block.__(8, {field_name$1})
-          };
+      error ({
+        Compilation_error,
+        --[[ Invalid_packed_option ]]Block.__(8, {field_name$1})
+      })
     end end 
   end else do
     packed = false;
@@ -6627,19 +6620,18 @@ function compile_field_type(field_name, all_types, file_options, field_options, 
     i = field_type[0];
     module_ = module_of_file_name(file_name$1);
     t;
-    try do
+    xpcall(function() do
       t = type_of_id(all_types$1, i);
-    end
-    catch (exn)do
+    end end,function(exn) return do
       if (exn == Caml_builtin_exceptions.not_found) then do
-        throw {
-              Compilation_error,
-              --[[ Programatic_error ]]Block.__(4, {--[[ No_type_found_for_id ]]2})
-            };
+        error ({
+          Compilation_error,
+          --[[ Programatic_error ]]Block.__(4, {--[[ No_type_found_for_id ]]2})
+        })
       end
        end 
-      throw exn;
-    end
+      error (exn)
+    end end)
     if (is_empty_message(t)) then do
       return --[[ Ft_unit ]]0;
     end else do
@@ -6672,10 +6664,10 @@ function is_mutable(field_name, field_options) do
     if (match$1.tag == --[[ Constant_bool ]]1) then do
       return match$1[0];
     end else do
-      throw {
-            Compilation_error,
-            --[[ Invalid_mutable_option ]]Block.__(11, {field_name})
-          };
+      error ({
+        Compilation_error,
+        --[[ Invalid_mutable_option ]]Block.__(11, {field_name})
+      })
     end end 
   end else do
     return false;
@@ -6754,13 +6746,12 @@ all_code_gen = --[[ :: ]]{
 function compile(proto_definition) do
   lexbuf = Lexing.from_string(proto_definition);
   proto;
-  try do
+  xpcall(function() do
     proto = proto_(lexer, lexbuf);
-  end
-  catch (raw_exn)do
+  end end,function(raw_exn) return do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
-    throw add_loc(from_lexbuf(lexbuf), exn);
-  end
+    error (add_loc(from_lexbuf(lexbuf), exn))
+  end end)
   all_pbtt_msgs = compile_proto_p1("tmp.proto", proto);
   all_pbtt_msgs$1 = List.map((function (param) do
           all_types = all_pbtt_msgs;
@@ -6866,10 +6857,10 @@ function compile(proto_definition) do
                                               if (match$2 == "repeated_field") then do
                                                 repeated_type = --[[ Rt_repeated_field ]]1;
                                               end else do
-                                                throw {
-                                                      Caml_builtin_exceptions.failure,
-                                                      "Invalid ocaml_container attribute value"
-                                                    };
+                                                error ({
+                                                  Caml_builtin_exceptions.failure,
+                                                  "Invalid ocaml_container attribute value"
+                                                })
                                               end end 
                                             end else do
                                               repeated_type = --[[ Rt_list ]]0;
@@ -6952,15 +6943,15 @@ function compile(proto_definition) do
                                         key_pk = encoding_info_of_field_type(all_types$1, map_key_type);
                                         key_type$1;
                                         if (typeof key_type == "number") then do
-                                          throw {
-                                                Caml_builtin_exceptions.failure,
-                                                "Only Basic Types are supported for map keys"
-                                              };
+                                          error ({
+                                            Caml_builtin_exceptions.failure,
+                                            "Only Basic Types are supported for map keys"
+                                          })
                                         end else if (key_type.tag) then do
-                                          throw {
-                                                Caml_builtin_exceptions.failure,
-                                                "Only Basic Types are supported for map keys"
-                                              };
+                                          error ({
+                                            Caml_builtin_exceptions.failure,
+                                            "Only Basic Types are supported for map keys"
+                                          })
                                         end else do
                                           key_type$1 = key_type[0];
                                         end end  end 
@@ -6981,10 +6972,10 @@ function compile(proto_definition) do
                                           if (match$3 == "hashtbl") then do
                                             associative_type = --[[ At_hashtable ]]1;
                                           end else do
-                                            throw {
-                                                  Caml_builtin_exceptions.failure,
-                                                  "Invalid ocaml_container attribute value for map"
-                                                };
+                                            error ({
+                                              Caml_builtin_exceptions.failure,
+                                              "Invalid ocaml_container attribute value for map"
+                                            })
                                           end end 
                                         end else do
                                           associative_type = --[[ At_list ]]0;

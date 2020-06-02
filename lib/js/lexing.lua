@@ -1,12 +1,12 @@
 --[['use strict';]]
 
-Bytes = require "./bytes.lua";
-Curry = require "./curry.lua";
-Caml_array = require "./caml_array.lua";
-Caml_bytes = require "./caml_bytes.lua";
-Caml_lexer = require "./caml_lexer.lua";
-Pervasives = require "./pervasives.lua";
-Caml_builtin_exceptions = require "./caml_builtin_exceptions.lua";
+Bytes = require "./bytes";
+Curry = require "./curry";
+Caml_array = require "./caml_array";
+Caml_bytes = require "./caml_bytes";
+Caml_lexer = require "./caml_lexer";
+Pervasives = require "./pervasives";
+Caml_builtin_exceptions = require "./caml_builtin_exceptions";
 
 function engine(tbl, state, buf) do
   result = Caml_lexer.caml_lex_engine(tbl, state, buf);
@@ -62,10 +62,10 @@ function from_function(f) do
                 end else do
                   newlen = (#lexbuf.lex_buffer << 1);
                   if (((lexbuf.lex_buffer_len - lexbuf.lex_start_pos | 0) + n | 0) > newlen) then do
-                    throw {
-                          Caml_builtin_exceptions.failure,
-                          "Lexing.lex_refill: cannot grow buffer"
-                        };
+                    error ({
+                      Caml_builtin_exceptions.failure,
+                      "Lexing.lex_refill: cannot grow buffer"
+                    })
                   end
                    end 
                   newbuf = Caml_bytes.caml_create_bytes(newlen);

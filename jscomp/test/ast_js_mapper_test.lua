@@ -1,6 +1,6 @@
 --[['use strict';]]
 
-Js_mapperRt = require "../../lib/js/js_mapperRt.lua";
+Js_mapperRt = require "../../lib/js/js_mapperRt";
 
 function tToJs(param) do
   return do
@@ -50,7 +50,7 @@ function searchForSureExists(xs, k) do
       return match[1];
     end else do
       _i = i + 1 | 0;
-      continue ;
+      ::continue:: ;
     end end 
   end;
 end end

@@ -1,7 +1,7 @@
 --[['use strict';]]
 
-Block = require "../../lib/js/block.lua";
-Caml_int32 = require "../../lib/js/caml_int32.lua";
+Block = require "../../lib/js/block";
+Caml_int32 = require "../../lib/js/caml_int32";
 
 function $plus$colon(_f, _g) do
   while(true) do
@@ -33,7 +33,7 @@ function $plus$colon(_f, _g) do
        if ___conditional___ = 2--[[ Add ]] then do
           _g = g[1];
           _f = $plus$colon(f, g[0]);
-          continue ;end end end 
+          ::continue:: ;end end end 
        if ___conditional___ = 1--[[ Var ]]
        or ___conditional___ = 3--[[ Mul ]] then do
           return --[[ Add ]]Block.__(2, {
@@ -98,7 +98,7 @@ function $star$colon(_f, _g) do
        if ___conditional___ = 3--[[ Mul ]] then do
           _g = g[1];
           _f = $star$colon(f, g[0]);
-          continue ;end end end 
+          ::continue:: ;end end end 
        do
       
     end

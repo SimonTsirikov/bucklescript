@@ -1,8 +1,8 @@
 --[['use strict';]]
 
-Curry = require "./curry.lua";
-Belt_Array = require "./belt_Array.lua";
-Caml_option = require "./caml_option.lua";
+Curry = require "./curry";
+Belt_Array = require "./belt_Array";
+Caml_option = require "./caml_option";
 
 function copyAuxCont(_c, _prec) do
   while(true) do
@@ -17,7 +17,7 @@ function copyAuxCont(_c, _prec) do
       prec.next = ncopy;
       _prec = ncopy;
       _c = c.next;
-      continue ;
+      ::continue:: ;
     end else do
       return --[[ () ]]0;
     end end 
@@ -63,7 +63,7 @@ function bucketLength(_accu, _buckets) do
     if (buckets ~= undefined) then do
       _buckets = buckets.next;
       _accu = accu + 1 | 0;
-      continue ;
+      ::continue:: ;
     end else do
       return accu;
     end end 
@@ -76,7 +76,7 @@ function do_bucket_iter(f, _buckets) do
     if (buckets ~= undefined) then do
       f(buckets.key, buckets.value);
       _buckets = buckets.next;
-      continue ;
+      ::continue:: ;
     end else do
       return --[[ () ]]0;
     end end 
@@ -102,7 +102,7 @@ function do_bucket_fold(f, _b, _accu) do
     if (b ~= undefined) then do
       _accu = f(accu, b.key, b.value);
       _b = b.next;
-      continue ;
+      ::continue:: ;
     end else do
       return accu;
     end end 
@@ -172,7 +172,7 @@ function filterMapInplaceBucket(f, h, i, _prec, _cell) do
       if (n ~= undefined) then do
         _cell = n;
         _prec = cell;
-        continue ;
+        ::continue:: ;
       end else do
         cell.next = n;
         return --[[ () ]]0;
@@ -181,7 +181,7 @@ function filterMapInplaceBucket(f, h, i, _prec, _cell) do
       h.size = h.size - 1 | 0;
       if (n ~= undefined) then do
         _cell = n;
-        continue ;
+        ::continue:: ;
       end else if (prec ~= undefined) then do
         prec.next = n;
         return --[[ () ]]0;
@@ -221,7 +221,7 @@ function fillArray(_i, arr, _cell) do
     if (match ~= undefined) then do
       _cell = match;
       _i = i + 1 | 0;
-      continue ;
+      ::continue:: ;
     end else do
       return i + 1 | 0;
     end end 
@@ -237,7 +237,7 @@ function fillArrayMap(_i, arr, _cell, f) do
     if (match ~= undefined) then do
       _cell = match;
       _i = i + 1 | 0;
-      continue ;
+      ::continue:: ;
     end else do
       return i + 1 | 0;
     end end 

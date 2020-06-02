@@ -1,10 +1,10 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-Block = require "../../lib/js/block.lua";
-Int64 = require "../../lib/js/int64.lua";
-Caml_int64 = require "../../lib/js/caml_int64.lua";
-Pervasives = require "../../lib/js/pervasives.lua";
+Mt = require "./mt";
+Block = require "../../lib/js/block";
+Int64 = require "../../lib/js/int64";
+Caml_int64 = require "../../lib/js/caml_int64";
+Pervasives = require "../../lib/js/pervasives";
 
 suites = do
   contents: --[[ [] ]]0

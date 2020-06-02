@@ -1,19 +1,18 @@
 --[['use strict';]]
 
-Curry = require "../../lib/js/curry.lua";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
+Curry = require "../../lib/js/curry";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 function f(g, x) do
-  try do
+  xpcall(function() do
     return Curry._1(g, x);
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Caml_builtin_exceptions.not_found) then do
       return 3;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 exports.f = f;

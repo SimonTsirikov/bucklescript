@@ -1,8 +1,8 @@
 --[['use strict';]]
 
-List = require "../../lib/js/list.lua";
-Curry = require "../../lib/js/curry.lua";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
+List = require "../../lib/js/list";
+Curry = require "../../lib/js/curry";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 function Make(Ord) do
   height = function (param) do
@@ -35,16 +35,16 @@ function Make(Ord) do
         end else if (lr) then do
           return create(create(ll, lv, lr[0]), lr[1], create(lr[2], v, r));
         end else do
-          throw {
-                Caml_builtin_exceptions.invalid_argument,
-                "Set.bal"
-              };
+          error ({
+            Caml_builtin_exceptions.invalid_argument,
+            "Set.bal"
+          })
         end end  end 
       end else do
-        throw {
-              Caml_builtin_exceptions.invalid_argument,
-              "Set.bal"
-            };
+        error ({
+          Caml_builtin_exceptions.invalid_argument,
+          "Set.bal"
+        })
       end end 
     end else if (hr > (hl + 2 | 0)) then do
       if (r) then do
@@ -56,16 +56,16 @@ function Make(Ord) do
         end else if (rl) then do
           return create(create(l, v, rl[0]), rl[1], create(rl[2], rv, rr));
         end else do
-          throw {
-                Caml_builtin_exceptions.invalid_argument,
-                "Set.bal"
-              };
+          error ({
+            Caml_builtin_exceptions.invalid_argument,
+            "Set.bal"
+          })
         end end  end 
       end else do
-        throw {
-              Caml_builtin_exceptions.invalid_argument,
-              "Set.bal"
-            };
+        error ({
+          Caml_builtin_exceptions.invalid_argument,
+          "Set.bal"
+        })
       end end 
     end else do
       return --[[ Node ]]{
@@ -146,12 +146,12 @@ function Make(Ord) do
         l = param[0];
         if (l) then do
           _param = l;
-          continue ;
+          ::continue:: ;
         end else do
           return param[1];
         end end 
       end else do
-        throw Caml_builtin_exceptions.not_found;
+        error (Caml_builtin_exceptions.not_found)
       end end 
     end;
   end end;
@@ -162,12 +162,12 @@ function Make(Ord) do
         r = param[2];
         if (r) then do
           _param = r;
-          continue ;
+          ::continue:: ;
         end else do
           return param[1];
         end end 
       end else do
-        throw Caml_builtin_exceptions.not_found;
+        error (Caml_builtin_exceptions.not_found)
       end end 
     end;
   end end;
@@ -180,10 +180,10 @@ function Make(Ord) do
         return param[2];
       end end 
     end else do
-      throw {
-            Caml_builtin_exceptions.invalid_argument,
-            "Set.remove_min_elt"
-          };
+      error ({
+        Caml_builtin_exceptions.invalid_argument,
+        "Set.remove_min_elt"
+      })
     end end 
   end end;
   merge = function (t1, t2) do
@@ -259,7 +259,7 @@ function Make(Ord) do
           return true;
         end else do
           _param = c < 0 and param[0] or param[2];
-          continue ;
+          ::continue:: ;
         end end 
       end else do
         return false;
@@ -357,7 +357,7 @@ function Make(Ord) do
           e
         };
         _s = s[0];
-        continue ;
+        ::continue:: ;
       end else do
         return e;
       end end 
@@ -375,7 +375,7 @@ function Make(Ord) do
           end else do
             _e2 = cons_enum(e2[1], e2[2]);
             _e1 = cons_enum(e1[1], e1[2]);
-            continue ;
+            ::continue:: ;
           end end 
         end else do
           return 1;
@@ -409,7 +409,7 @@ function Make(Ord) do
             if (subset(l1, l2)) then do
               _s2 = r2;
               _s1 = r1;
-              continue ;
+              ::continue:: ;
             end else do
               return false;
             end end 
@@ -421,7 +421,7 @@ function Make(Ord) do
                     0
                   }, l2)) then do
               _s1 = r1;
-              continue ;
+              ::continue:: ;
             end else do
               return false;
             end end 
@@ -432,7 +432,7 @@ function Make(Ord) do
                   0
                 }, r2)) then do
             _s1 = l1;
-            continue ;
+            ::continue:: ;
           end else do
             return false;
           end end  end  end 
@@ -451,7 +451,7 @@ function Make(Ord) do
         iter(f, param[0]);
         Curry._1(f, param[1]);
         _param = param[2];
-        continue ;
+        ::continue:: ;
       end else do
         return --[[ () ]]0;
       end end 
@@ -464,7 +464,7 @@ function Make(Ord) do
       if (s) then do
         _accu = Curry._2(f, s[1], fold(f, s[0], accu));
         _s = s[2];
-        continue ;
+        ::continue:: ;
       end else do
         return accu;
       end end 
@@ -476,7 +476,7 @@ function Make(Ord) do
       if (param) then do
         if (Curry._1(p, param[1]) and for_all(p, param[0])) then do
           _param = param[2];
-          continue ;
+          ::continue:: ;
         end else do
           return false;
         end end 
@@ -493,7 +493,7 @@ function Make(Ord) do
           return true;
         end else do
           _param = param[2];
-          continue ;
+          ::continue:: ;
         end end 
       end else do
         return false;
@@ -560,7 +560,7 @@ function Make(Ord) do
           param[1],
           elements_aux(accu, param[2])
         };
-        continue ;
+        ::continue:: ;
       end else do
         return accu;
       end end 
@@ -579,10 +579,10 @@ function Make(Ord) do
           return v;
         end else do
           _param = c < 0 and param[0] or param[2];
-          continue ;
+          ::continue:: ;
         end end 
       end else do
-        throw Caml_builtin_exceptions.not_found;
+        error (Caml_builtin_exceptions.not_found)
       end end 
     end;
   end end;
@@ -676,14 +676,14 @@ function Make(Ord) do
                 match$4[1]
               };
       end else do
-        throw {
-              Caml_builtin_exceptions.assert_failure,
-              --[[ tuple ]]{
-                "test_set.ml",
-                372,
-                18
-              }
-            };
+        error ({
+          Caml_builtin_exceptions.assert_failure,
+          --[[ tuple ]]{
+            "test_set.ml",
+            372,
+            18
+          }
+        })
       end end 
     end end;
     return sub(List.length(l), l)[0];

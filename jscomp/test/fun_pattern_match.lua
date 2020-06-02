@@ -1,8 +1,8 @@
 --[['use strict';]]
 
-Curry = require "../../lib/js/curry.lua";
-Caml_primitive = require "../../lib/js/caml_primitive.lua";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
+Curry = require "../../lib/js/curry";
+Caml_primitive = require "../../lib/js/caml_primitive";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 function f(param, v) do
   return ((((param.x0 + param.x1 | 0) + param.x2 | 0) + param.x3 | 0) + param.x4 | 0) + v | 0;
@@ -17,25 +17,25 @@ function f3(param) do
   return (function (param) do
       rhs = param.rank;
       if (typeof lhs == "number") then do
-        throw {
-              Caml_builtin_exceptions.assert_failure,
-              --[[ tuple ]]{
-                "fun_pattern_match.ml",
-                44,
-                9
-              }
-            };
+        error ({
+          Caml_builtin_exceptions.assert_failure,
+          --[[ tuple ]]{
+            "fun_pattern_match.ml",
+            44,
+            9
+          }
+        })
       end
        end 
       if (typeof rhs == "number") then do
-        throw {
-              Caml_builtin_exceptions.assert_failure,
-              --[[ tuple ]]{
-                "fun_pattern_match.ml",
-                44,
-                9
-              }
-            };
+        error ({
+          Caml_builtin_exceptions.assert_failure,
+          --[[ tuple ]]{
+            "fun_pattern_match.ml",
+            44,
+            9
+          }
+        })
       end
        end 
       return Caml_primitive.caml_int_compare(lhs[0], rhs[0]);
@@ -47,25 +47,25 @@ function f4(param) do
   return (function (param) do
       rhs = param.rank;
       if (typeof lhs == "number") then do
-        throw {
-              Caml_builtin_exceptions.assert_failure,
-              --[[ tuple ]]{
-                "fun_pattern_match.ml",
-                52,
-                9
-              }
-            };
+        error ({
+          Caml_builtin_exceptions.assert_failure,
+          --[[ tuple ]]{
+            "fun_pattern_match.ml",
+            52,
+            9
+          }
+        })
       end
        end 
       if (typeof rhs == "number") then do
-        throw {
-              Caml_builtin_exceptions.assert_failure,
-              --[[ tuple ]]{
-                "fun_pattern_match.ml",
-                52,
-                9
-              }
-            };
+        error ({
+          Caml_builtin_exceptions.assert_failure,
+          --[[ tuple ]]{
+            "fun_pattern_match.ml",
+            52,
+            9
+          }
+        })
       end
        end 
       return Caml_primitive.caml_int_compare(lhs[0], rhs[0]);

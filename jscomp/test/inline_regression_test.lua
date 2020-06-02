@@ -1,11 +1,11 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-Block = require "../../lib/js/block.lua";
-Curry = require "../../lib/js/curry.lua";
-__String = require "../../lib/js/string.lua";
-Filename = require "../../lib/js/filename.lua";
-Caml_string = require "../../lib/js/caml_string.lua";
+Mt = require "./mt";
+Block = require "../../lib/js/block";
+Curry = require "../../lib/js/curry";
+__String = require "../../lib/js/string";
+Filename = require "../../lib/js/filename";
+Caml_string = require "../../lib/js/caml_string";
 
 function generic_basename(is_dir_sep, current_dir_name, name) do
   if (name == "") then do
@@ -18,7 +18,7 @@ function generic_basename(is_dir_sep, current_dir_name, name) do
         return __String.sub(name, 0, 1);
       end else if (Curry._2(is_dir_sep, name, n)) then do
         _n = n - 1 | 0;
-        continue ;
+        ::continue:: ;
       end else do
         _n$1 = n;
         p = n + 1 | 0;
@@ -30,7 +30,7 @@ function generic_basename(is_dir_sep, current_dir_name, name) do
             return __String.sub(name, n$1 + 1 | 0, (p - n$1 | 0) - 1 | 0);
           end else do
             _n$1 = n$1 - 1 | 0;
-            continue ;
+            ::continue:: ;
           end end  end 
         end;
       end end  end 

@@ -1,8 +1,8 @@
 --[['use strict';]]
 
-Curry = require "../../lib/js/curry.lua";
-Caml_obj = require "../../lib/js/caml_obj.lua";
-Caml_exceptions = require "../../lib/js/caml_exceptions.lua";
+Curry = require "../../lib/js/curry";
+Caml_obj = require "../../lib/js/caml_obj";
+Caml_exceptions = require "../../lib/js/caml_exceptions";
 
 Empty = Caml_exceptions.create("Queue_402.Empty");
 
@@ -43,7 +43,7 @@ end end
 
 function peek(q) do
   if (q.length == 0) then do
-    throw Empty;
+    error (Empty)
   end
    end 
   return q.tail.next.content;
@@ -51,7 +51,7 @@ end end
 
 function take(q) do
   if (q.length == 0) then do
-    throw Empty;
+    error (Empty)
   end
    end 
   q.length = q.length - 1 | 0;
@@ -90,7 +90,7 @@ function copy(q) do
           prev.next = res;
           _cell = cell.next;
           _prev = res;
-          continue ;
+          ::continue:: ;
         end else do
           return 0;
         end end 
@@ -121,7 +121,7 @@ function iter(f, q) do
       Curry._1(f, cell.content);
       if (cell ~= tail) then do
         _cell = cell.next;
-        continue ;
+        ::continue:: ;
       end else do
         return 0;
       end end 
@@ -147,7 +147,7 @@ function fold(f, accu, q) do
       end else do
         _cell = cell.next;
         _accu = accu$2;
-        continue ;
+        ::continue:: ;
       end end 
     end;
   end end 

@@ -1,7 +1,7 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
+Mt = require "./mt";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 suites = do
   contents: --[[ [] ]]0
@@ -18,14 +18,14 @@ end end
 match = {1};
 
 if (#match ~= 1) then do
-  throw {
-        Caml_builtin_exceptions.match_failure,
-        --[[ tuple ]]{
-          "gpr_3595_test.ml",
-          9,
-          4
-        }
-      };
+  error ({
+    Caml_builtin_exceptions.match_failure,
+    --[[ tuple ]]{
+      "gpr_3595_test.ml",
+      9,
+      4
+    }
+  })
 end
  end 
 

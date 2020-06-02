@@ -1,29 +1,29 @@
 --[['use strict';]]
 
-Curry = require "./curry.lua";
-Caml_io = require "./caml_io.lua";
-Caml_sys = require "./caml_sys.lua";
-Caml_bytes = require "./caml_bytes.lua";
-Caml_format = require "./caml_format.lua";
-Caml_string = require "./caml_string.lua";
-Caml_exceptions = require "./caml_exceptions.lua";
-Caml_js_exceptions = require "./caml_js_exceptions.lua";
-Caml_external_polyfill = require "./caml_external_polyfill.lua";
-Caml_builtin_exceptions = require "./caml_builtin_exceptions.lua";
-CamlinternalFormatBasics = require "./camlinternalFormatBasics.lua";
+Curry = require "./curry";
+Caml_io = require "./caml_io";
+Caml_sys = require "./caml_sys";
+Caml_bytes = require "./caml_bytes";
+Caml_format = require "./caml_format";
+Caml_string = require "./caml_string";
+Caml_exceptions = require "./caml_exceptions";
+Caml_js_exceptions = require "./caml_js_exceptions";
+Caml_external_polyfill = require "./caml_external_polyfill";
+Caml_builtin_exceptions = require "./caml_builtin_exceptions";
+CamlinternalFormatBasics = require "./camlinternalFormatBasics";
 
 function failwith(s) do
-  throw {
-        Caml_builtin_exceptions.failure,
-        s
-      };
+  error ({
+    Caml_builtin_exceptions.failure,
+    s
+  })
 end end
 
 function invalid_arg(s) do
-  throw {
-        Caml_builtin_exceptions.invalid_argument,
-        s
-      };
+  error ({
+    Caml_builtin_exceptions.invalid_argument,
+    s
+  })
 end end
 
 Exit = Caml_exceptions.create("Pervasives.Exit");
@@ -60,10 +60,10 @@ end end
 
 function char_of_int(n) do
   if (n < 0 or n > 255) then do
-    throw {
-          Caml_builtin_exceptions.invalid_argument,
-          "char_of_int"
-        };
+    error ({
+      Caml_builtin_exceptions.invalid_argument,
+      "char_of_int"
+    })
   end
    end 
   return n;
@@ -86,10 +86,10 @@ function bool_of_string(param) do
         return true;end end end 
      do
     else do
-      throw {
-            Caml_builtin_exceptions.invalid_argument,
-            "bool_of_string"
-          };
+      error ({
+        Caml_builtin_exceptions.invalid_argument,
+        "bool_of_string"
+      })
       end end
       
   end
@@ -111,17 +111,16 @@ function bool_of_string_opt(param) do
 end end
 
 function int_of_string_opt(s) do
-  try do
+  xpcall(function() do
     return Caml_format.caml_int_of_string(s);
-  end
-  catch (raw_exn)do
+  end end,function(raw_exn) return do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn[0] == Caml_builtin_exceptions.failure) then do
       return ;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 function valid_float_lexem(s) do
@@ -138,13 +137,13 @@ function valid_float_lexem(s) do
           return s;
         end else do
           _i = i + 1 | 0;
-          continue ;
+          ::continue:: ;
         end end 
       end else if (match ~= 45) then do
         return s;
       end else do
         _i = i + 1 | 0;
-        continue ;
+        ::continue:: ;
       end end  end 
     end end 
   end;
@@ -155,17 +154,16 @@ function string_of_float(f) do
 end end
 
 function float_of_string_opt(s) do
-  try do
+  xpcall(function() do
     return Caml_format.caml_float_of_string(s);
-  end
-  catch (raw_exn)do
+  end end,function(raw_exn) return do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn[0] == Caml_builtin_exceptions.failure) then do
       return ;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 function $at(l1, l2) do
@@ -228,18 +226,17 @@ function flush_all(param) do
   while(true) do
     param$1 = _param;
     if (param$1) then do
-      try do
+      xpcall(function() do
         Caml_io.caml_ml_flush(param$1[0]);
-      end
-      catch (raw_exn)do
+      end end,function(raw_exn) return do
         exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
         if (exn[0] ~= Caml_builtin_exceptions.sys_error) then do
-          throw exn;
+          error (exn)
         end
          end 
-      end
+      end end)
       _param = param$1[1];
-      continue ;
+      ::continue:: ;
     end else do
       return --[[ () ]]0;
     end end 
@@ -256,10 +253,10 @@ end end
 
 function output(oc, s, ofs, len) do
   if (ofs < 0 or len < 0 or ofs > (#s - len | 0)) then do
-    throw {
-          Caml_builtin_exceptions.invalid_argument,
-          "output"
-        };
+    error ({
+      Caml_builtin_exceptions.invalid_argument,
+      "output"
+    })
   end
    end 
   return Caml_external_polyfill.resolve("caml_ml_output_bytes")(oc, s, ofs, len);
@@ -267,10 +264,10 @@ end end
 
 function output_substring(oc, s, ofs, len) do
   if (ofs < 0 or len < 0 or ofs > (#s - len | 0)) then do
-    throw {
-          Caml_builtin_exceptions.invalid_argument,
-          "output_substring"
-        };
+    error ({
+      Caml_builtin_exceptions.invalid_argument,
+      "output_substring"
+    })
   end
    end 
   return Caml_io.caml_ml_output(oc, s, ofs, len);
@@ -286,18 +283,16 @@ function close_out(oc) do
 end end
 
 function close_out_noerr(oc) do
-  try do
+  xpcall(function() do
     Caml_io.caml_ml_flush(oc);
-  end
-  catch (exn)do
+  end end,function(exn) return do
     
-  end
-  try do
+  end end)
+  xpcall(function() do
     return Caml_external_polyfill.resolve("caml_ml_close_channel")(oc);
-  end
-  catch (exn$1)do
+  end end,function(exn$1) return do
     return --[[ () ]]0;
-  end
+  end end)
 end end
 
 function open_in_gen(mode, perm, name) do
@@ -328,10 +323,10 @@ end end
 
 function input(ic, s, ofs, len) do
   if (ofs < 0 or len < 0 or ofs > (#s - len | 0)) then do
-    throw {
-          Caml_builtin_exceptions.invalid_argument,
-          "input"
-        };
+    error ({
+      Caml_builtin_exceptions.invalid_argument,
+      "input"
+    })
   end
    end 
   return Caml_external_polyfill.resolve("caml_ml_input")(ic, s, ofs, len);
@@ -346,22 +341,22 @@ function unsafe_really_input(ic, s, _ofs, _len) do
     end else do
       r = Caml_external_polyfill.resolve("caml_ml_input")(ic, s, ofs, len);
       if (r == 0) then do
-        throw Caml_builtin_exceptions.end_of_file;
+        error (Caml_builtin_exceptions.end_of_file)
       end
        end 
       _len = len - r | 0;
       _ofs = ofs + r | 0;
-      continue ;
+      ::continue:: ;
     end end 
   end;
 end end
 
 function really_input(ic, s, ofs, len) do
   if (ofs < 0 or len < 0 or ofs > (#s - len | 0)) then do
-    throw {
-          Caml_builtin_exceptions.invalid_argument,
-          "really_input"
-        };
+    error ({
+      Caml_builtin_exceptions.invalid_argument,
+      "really_input"
+    })
   end
    end 
   return unsafe_really_input(ic, s, ofs, len);
@@ -384,7 +379,7 @@ function input_line(chan) do
         Caml_bytes.caml_blit_bytes(hd, 0, buf, pos - len | 0, len);
         _param = param[1];
         _pos = pos - len | 0;
-        continue ;
+        ::continue:: ;
       end else do
         return buf;
       end end 
@@ -399,7 +394,7 @@ function input_line(chan) do
         if (accu) then do
           return build_result(Caml_bytes.caml_create_bytes(len), len, accu);
         end else do
-          throw Caml_builtin_exceptions.end_of_file;
+          error (Caml_builtin_exceptions.end_of_file)
         end end 
       end else if (n > 0) then do
         res = Caml_bytes.caml_create_bytes(n - 1 | 0);
@@ -422,7 +417,7 @@ function input_line(chan) do
           beg,
           accu
         };
-        continue ;
+        ::continue:: ;
       end end  end 
     end;
   end end;
@@ -430,12 +425,11 @@ function input_line(chan) do
 end end
 
 function close_in_noerr(ic) do
-  try do
+  xpcall(function() do
     return Caml_external_polyfill.resolve("caml_ml_close_channel")(ic);
-  end
-  catch (exn)do
+  end end,function(exn) return do
     return --[[ () ]]0;
-  end
+  end end)
 end end
 
 function print_char(c) do

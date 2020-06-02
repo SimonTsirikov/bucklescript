@@ -1,8 +1,8 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-Block = require "../../lib/js/block.lua";
-Js_mapperRt = require "../../lib/js/js_mapperRt.lua";
+Mt = require "./mt";
+Block = require "../../lib/js/block";
+Js_mapperRt = require "../../lib/js/js_mapperRt";
 
 suites = do
   contents: --[[ [] ]]0
@@ -128,7 +128,7 @@ end end
 
 function bFromJs(param) do
   if (not (param <= 3 and 0 <= param)) then do
-    throw new Error("ASSERT FAILURE");
+    error (new Error("ASSERT FAILURE"))
   end
    end 
   return param - 0 | 0;
@@ -156,7 +156,7 @@ end end
 
 function cFromJs(param) do
   if (not (param <= 6 and 3 <= param)) then do
-    throw new Error("ASSERT FAILURE");
+    error (new Error("ASSERT FAILURE"))
   end
    end 
   return param - 3 | 0;
@@ -182,7 +182,7 @@ end end
 
 function hFromJs(param) do
   if (not (param <= 1 and 0 <= param)) then do
-    throw new Error("ASSERT FAILURE");
+    error (new Error("ASSERT FAILURE"))
   end
    end 
   return param - 0 | 0;

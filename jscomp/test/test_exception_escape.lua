@@ -1,20 +1,19 @@
 --[['use strict';]]
 
-Caml_exceptions = require "../../lib/js/caml_exceptions.lua";
+Caml_exceptions = require "../../lib/js/caml_exceptions";
 
 A = Caml_exceptions.create("Test_exception_escape.N.A");
 
 f;
 
-try do
-  throw {
-        A,
-        3
-      };
-end
-catch (exn)do
+xpcall(function() do
+  error ({
+    A,
+    3
+  })
+end end,function(exn) return do
   f = 3;
-end
+end end)
 
 N = do
   f: f

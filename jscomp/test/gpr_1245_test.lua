@@ -1,7 +1,7 @@
 --[['use strict';]]
 
-Curry = require "../../lib/js/curry.lua";
-Caml_exceptions = require "../../lib/js/caml_exceptions.lua";
+Curry = require "../../lib/js/curry";
+Caml_exceptions = require "../../lib/js/caml_exceptions";
 
 x = do
   contents: 1
@@ -28,7 +28,7 @@ end end
 
 function a0(f) do
   u = Curry._1(f, --[[ () ]]0);
-  if (u ~= null) then do
+  if (u ~= nil) then do
     console.log(u);
     console.log(u);
     return 1;
@@ -39,16 +39,15 @@ end end
 
 function a1(f) do
   E = Caml_exceptions.create("E");
-  try do
+  xpcall(function() do
     return Curry._1(f, --[[ () ]]0);
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == E) then do
       return 1;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 a = 1;

@@ -1,14 +1,14 @@
 --[['use strict';]]
 
-Caml_bytes = require "./caml_bytes.lua";
-Caml_builtin_exceptions = require "./caml_builtin_exceptions.lua";
+Caml_bytes = require "./caml_bytes";
+Caml_builtin_exceptions = require "./caml_builtin_exceptions";
 
 function chr(n) do
   if (n < 0 or n > 255) then do
-    throw {
-          Caml_builtin_exceptions.invalid_argument,
-          "Char.chr"
-        };
+    error ({
+      Caml_builtin_exceptions.invalid_argument,
+      "Char.chr"
+    })
   end
    end 
   return n;

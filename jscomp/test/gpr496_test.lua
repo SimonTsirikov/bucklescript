@@ -1,9 +1,9 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-Block = require "../../lib/js/block.lua";
-Curry = require "../../lib/js/curry.lua";
-Caml_primitive = require "../../lib/js/caml_primitive.lua";
+Mt = require "./mt";
+Block = require "../../lib/js/block";
+Curry = require "../../lib/js/curry";
+Caml_primitive = require "../../lib/js/caml_primitive";
 
 suites = do
   contents: --[[ [] ]]0

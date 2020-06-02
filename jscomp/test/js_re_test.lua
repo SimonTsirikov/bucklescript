@@ -1,22 +1,22 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-Block = require "../../lib/js/block.lua";
-Caml_array = require "../../lib/js/caml_array.lua";
-Caml_option = require "../../lib/js/caml_option.lua";
+Mt = require "./mt";
+Block = require "../../lib/js/block";
+Caml_array = require "../../lib/js/caml_array";
+Caml_option = require "../../lib/js/caml_option";
 
 suites_000 = --[[ tuple ]]{
   "captures",
   (function (param) do
       re = /(\d+)-(?:(\d+))?/g;
       match = re.exec("3-");
-      if (match ~= null) then do
+      if (match ~= nil) then do
         defined = Caml_array.caml_array_get(match, 1);
         __undefined = Caml_array.caml_array_get(match, 2);
         return --[[ Eq ]]Block.__(0, {
                   --[[ tuple ]]{
                     "3",
-                    null
+                    nil
                   },
                   --[[ tuple ]]{
                     defined,
@@ -35,7 +35,7 @@ suites_001 = --[[ :: ]]{
     (function (param) do
         contentOf = function (tag, xmlString) do
           param = new RegExp("<" .. (tag .. (">(.*?)<\\/" .. (tag .. ">")))).exec(xmlString);
-          if (param ~= null) then do
+          if (param ~= nil) then do
             return Caml_option.nullable_to_opt(Caml_array.caml_array_get(param, 1));
           end
            end 
@@ -51,7 +51,7 @@ suites_001 = --[[ :: ]]{
       "exec_literal",
       (function (param) do
           match = /[^.]+/.exec("http://xxx.domain.com");
-          if (match ~= null) then do
+          if (match ~= nil) then do
             return --[[ Eq ]]Block.__(0, {
                       "http://xxx",
                       Caml_array.caml_array_get(match, 0)
@@ -66,7 +66,7 @@ suites_001 = --[[ :: ]]{
         "exec_no_match",
         (function (param) do
             match = /https:\/\/(.*)/.exec("http://xxx.domain.com");
-            if (match ~= null) then do
+            if (match ~= nil) then do
               return --[[ FailWith ]]Block.__(9, {"regex should not match"});
             end else do
               return --[[ Ok ]]Block.__(4, {true});
@@ -100,7 +100,7 @@ suites_001 = --[[ :: ]]{
               "result_index",
               (function (param) do
                   match = new RegExp("zbar").exec("foobarbazbar");
-                  if (match ~= null) then do
+                  if (match ~= nil) then do
                     return --[[ Eq ]]Block.__(0, {
                               8,
                               match.index
@@ -116,7 +116,7 @@ suites_001 = --[[ :: ]]{
                 (function (param) do
                     input = "foobar";
                     match = /foo/g.exec(input);
-                    if (match ~= null) then do
+                    if (match ~= nil) then do
                       return --[[ Eq ]]Block.__(0, {
                                 input,
                                 match.input

@@ -1,7 +1,7 @@
 --[['use strict';]]
 
-Belt_internalSetBuckets = require "./belt_internalSetBuckets.lua";
-Belt_internalBucketsType = require "./belt_internalBucketsType.lua";
+Belt_internalSetBuckets = require "./belt_internalSetBuckets";
+Belt_internalBucketsType = require "./belt_internalBucketsType";
 
 function copyBucket(hash, h_buckets, ndata_tail, _old_bucket) do
   while(true) do
@@ -16,7 +16,7 @@ function copyBucket(hash, h_buckets, ndata_tail, _old_bucket) do
       end end 
       ndata_tail[nidx] = old_bucket;
       _old_bucket = old_bucket.next;
-      continue ;
+      ::continue:: ;
     end else do
       return --[[ () ]]0;
     end end 
@@ -51,7 +51,7 @@ function remove(h, key) do
         end else if (cell_next ~= undefined) then do
           _cell = cell_next;
           _prec = cell;
-          continue ;
+          ::continue:: ;
         end else do
           return --[[ () ]]0;
         end end  end 
@@ -73,7 +73,7 @@ function addBucket(h, key, _cell, eq) do
       n = cell.next;
       if (n ~= undefined) then do
         _cell = n;
-        continue ;
+        ::continue:: ;
       end else do
         h.size = h.size + 1 | 0;
         cell.next = do
@@ -150,7 +150,7 @@ function has(h, key) do
         match = cell.next;
         if (match ~= undefined) then do
           _cell = match;
-          continue ;
+          ::continue:: ;
         end else do
           return false;
         end end 

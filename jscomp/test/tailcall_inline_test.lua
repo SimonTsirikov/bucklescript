@@ -1,9 +1,9 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-__Array = require "../../lib/js/array.lua";
-Block = require "../../lib/js/block.lua";
-Caml_array = require "../../lib/js/caml_array.lua";
+Mt = require "./mt";
+__Array = require "../../lib/js/array";
+Block = require "../../lib/js/block";
+Caml_array = require "../../lib/js/caml_array";
 
 function f(param) do
   f$1 = function (_acc, _n) do
@@ -13,7 +13,7 @@ function f(param) do
       if (n > 0) then do
         _n = n - 1 | 0;
         _acc = acc + n | 0;
-        continue ;
+        ::continue:: ;
       end else do
         return acc;
       end end 

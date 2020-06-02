@@ -1,11 +1,11 @@
 --[['use strict';]]
 
-List = require "../../lib/js/list.lua";
-__Array = require "../../lib/js/array.lua";
-__String = require "../../lib/js/string.lua";
-Set_gen = require "./set_gen.lua";
-Caml_primitive = require "../../lib/js/caml_primitive.lua";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
+List = require "../../lib/js/list";
+__Array = require "../../lib/js/array";
+__String = require "../../lib/js/string";
+Set_gen = require "./set_gen";
+Caml_primitive = require "../../lib/js/caml_primitive";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 function split(x, tree) do
   if (tree) then do
@@ -141,7 +141,7 @@ function mem(x, _tree) do
         return true;
       end else do
         _tree = c < 0 and tree[0] or tree[2];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return false;
@@ -191,7 +191,7 @@ function subset(_s1, _s2) do
           if (subset(l1, l2)) then do
             _s2 = r2;
             _s1 = r1;
-            continue ;
+            ::continue:: ;
           end else do
             return false;
           end end 
@@ -203,7 +203,7 @@ function subset(_s1, _s2) do
                   0
                 }, l2)) then do
             _s1 = r1;
-            continue ;
+            ::continue:: ;
           end else do
             return false;
           end end 
@@ -214,7 +214,7 @@ function subset(_s1, _s2) do
                 0
               }, r2)) then do
           _s1 = l1;
-          continue ;
+          ::continue:: ;
         end else do
           return false;
         end end  end  end 
@@ -237,10 +237,10 @@ function find(x, _tree) do
         return v;
       end else do
         _tree = c < 0 and tree[0] or tree[2];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
-      throw Caml_builtin_exceptions.not_found;
+      error (Caml_builtin_exceptions.not_found)
     end end 
   end;
 end end

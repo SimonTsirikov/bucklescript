@@ -1,26 +1,26 @@
 --[['use strict';]]
 
-Sys = require "./sys.lua";
-List = require "./list.lua";
-__Array = require "./array.lua";
-Block = require "./block.lua";
-Curry = require "./curry.lua";
-Printf = require "./printf.lua";
-__String = require "./string.lua";
-Caml_io = require "./caml_io.lua";
-Hashtbl = require "./hashtbl.lua";
-Callback = require "./callback.lua";
-Caml_sys = require "./caml_sys.lua";
-Filename = require "./filename.lua";
-Printexc = require "./printexc.lua";
-Caml_array = require "./caml_array.lua";
-Caml_bytes = require "./caml_bytes.lua";
-Pervasives = require "./pervasives.lua";
-Caml_format = require "./caml_format.lua";
-Caml_exceptions = require "./caml_exceptions.lua";
-Caml_js_exceptions = require "./caml_js_exceptions.lua";
-Caml_external_polyfill = require "./caml_external_polyfill.lua";
-Caml_builtin_exceptions = require "./caml_builtin_exceptions.lua";
+Sys = require "./sys";
+List = require "./list";
+__Array = require "./array";
+Block = require "./block";
+Curry = require "./curry";
+Printf = require "./printf";
+__String = require "./string";
+Caml_io = require "./caml_io";
+Hashtbl = require "./hashtbl";
+Callback = require "./callback";
+Caml_sys = require "./caml_sys";
+Filename = require "./filename";
+Printexc = require "./printexc";
+Caml_array = require "./caml_array";
+Caml_bytes = require "./caml_bytes";
+Pervasives = require "./pervasives";
+Caml_format = require "./caml_format";
+Caml_exceptions = require "./caml_exceptions";
+Caml_js_exceptions = require "./caml_js_exceptions";
+Caml_external_polyfill = require "./caml_external_polyfill";
+Caml_builtin_exceptions = require "./caml_builtin_exceptions";
 
 Unix_error = Caml_exceptions.create("Unix.Unix_error");
 
@@ -221,10 +221,9 @@ Printexc.register_printer((function (param) do
       end end));
 
 function handle_unix_error(f, arg) do
-  try do
+  xpcall(function() do
     return Curry._1(f, arg);
-  end
-  catch (raw_exn)do
+  end end,function(raw_exn) return do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn[0] == Unix_error) then do
       arg$1 = exn[3];
@@ -242,38 +241,36 @@ function handle_unix_error(f, arg) do
       console.error(Caml_external_polyfill.resolve("unix_error_message")(exn[1]));
       return Pervasives.exit(2);
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 function execvpe(name, args, env) do
-  try do
+  xpcall(function() do
     return Caml_external_polyfill.resolve("unix_execvpe")(name, args, env);
-  end
-  catch (raw_exn)do
+  end end,function(raw_exn) return do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn[0] == Unix_error) then do
       match = exn[1];
       if (typeof match == "number") then do
         if (match ~= 25) then do
-          throw exn;
+          error (exn)
         end
          end 
         name$1 = name;
         args$1 = args;
         env$1 = env;
         exec = function (file) do
-          try do
+          xpcall(function() do
             return Caml_external_polyfill.resolve("unix_execve")(file, args$1, env$1);
-          end
-          catch (raw_exn)do
+          end end,function(raw_exn) return do
             exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
             if (exn[0] == Unix_error) then do
               match = exn[1];
               if (typeof match == "number") then do
                 if (match ~= 21) then do
-                  throw exn;
+                  error (exn)
                 end
                  end 
                 argc = #args$1;
@@ -283,27 +280,26 @@ function execvpe(name, args, env) do
                     }, argc == 0 and args$1 or __Array.sub(args$1, 1, argc - 1 | 0));
                 return Caml_external_polyfill.resolve("unix_execve")(Caml_array.caml_array_get(new_args, 0), new_args, env$1);
               end else do
-                throw exn;
+                error (exn)
               end end 
             end else do
-              throw exn;
+              error (exn)
             end end 
-          end
+          end end)
         end end;
         if (__String.contains(name$1, --[[ "/" ]]47)) then do
           return exec(name$1);
         end else do
           tmp;
-          try do
+          xpcall(function() do
             tmp = Caml_external_polyfill.resolve("caml_sys_unsafe_getenv")("PATH");
-          end
-          catch (exn$1)do
+          end end,function(exn$1) return do
             if (exn$1 == Caml_builtin_exceptions.not_found) then do
               tmp = "/bin:/usr/bin";
             end else do
-              throw exn$1;
+              error (exn$1)
             end end 
-          end
+          end end)
           _eacces = false;
           _param = __String.split_on_char(--[[ ":" ]]58, tmp);
           while(true) do
@@ -313,10 +309,9 @@ function execvpe(name, args, env) do
               rem = param[1];
               dir = param[0];
               dir$1 = dir == "" and Filename.current_dir_name or dir;
-              try do
+              xpcall(function() do
                 return exec(Filename.concat(dir$1, name$1));
-              end
-              catch (raw_exn$1)do
+              end end,function(raw_exn$1) return do
                 exn$2 = Caml_js_exceptions.internalToOCamlException(raw_exn$1);
                 if (exn$2[0] == Unix_error) then do
                   err = exn$2[1];
@@ -324,7 +319,7 @@ function execvpe(name, args, env) do
                     switcher = err - 62 | 0;
                     if (switcher > 4 or switcher < 0) then do
                       if (switcher >= -35) then do
-                        throw exn$2;
+                        error (exn$2)
                       end
                        end 
                       local ___conditional___=(switcher + 62 | 0);
@@ -332,7 +327,7 @@ function execvpe(name, args, env) do
                          if ___conditional___ = 1--[[ EACCES ]] then do
                             _param = rem;
                             _eacces = true;
-                            continue ;end end end 
+                            ::continue:: ;end end end 
                          if ___conditional___ = 0--[[ E2BIG ]]
                          or ___conditional___ = 2--[[ EAGAIN ]]
                          or ___conditional___ = 3--[[ EBADF ]]
@@ -354,55 +349,55 @@ function execvpe(name, args, env) do
                          or ___conditional___ = 23--[[ ENOMEM ]]
                          or ___conditional___ = 24--[[ ENOSPC ]]
                          or ___conditional___ = 25--[[ ENOSYS ]] then do
-                            throw exn$2;end end end 
+                            error (exn$2)end end end 
                          if ___conditional___ = 14--[[ EISDIR ]]
                          or ___conditional___ = 17--[[ ENAMETOOLONG ]]
                          or ___conditional___ = 19--[[ ENODEV ]]
                          or ___conditional___ = 20--[[ ENOENT ]]
                          or ___conditional___ = 26--[[ ENOTDIR ]] then do
                             _param = rem;
-                            continue ;end end end 
+                            ::continue:: ;end end end 
                          do
                         
                       end
                     end else if (switcher > 3 or switcher < 1) then do
                       _param = rem;
-                      continue ;
+                      ::continue:: ;
                     end else do
-                      throw exn$2;
+                      error (exn$2)
                     end end  end 
                   end else do
-                    throw exn$2;
+                    error (exn$2)
                   end end 
                 end else do
-                  throw exn$2;
+                  error (exn$2)
                 end end 
-              end
+              end end)
             end else do
-              throw {
-                    Unix_error,
-                    eacces and --[[ EACCES ]]1 or --[[ ENOENT ]]20,
-                    "execvpe",
-                    name$1
-                  };
+              error ({
+                Unix_error,
+                eacces and --[[ EACCES ]]1 or --[[ ENOENT ]]20,
+                "execvpe",
+                name$1
+              })
             end end 
           end;
         end end 
       end else do
-        throw exn;
+        error (exn)
       end end 
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 function read(fd, buf, ofs, len) do
   if (ofs < 0 or len < 0 or ofs > (#buf - len | 0)) then do
-    throw {
-          Caml_builtin_exceptions.invalid_argument,
-          "Unix.read"
-        };
+    error ({
+      Caml_builtin_exceptions.invalid_argument,
+      "Unix.read"
+    })
   end
    end 
   return Caml_external_polyfill.resolve("unix_read")(fd, buf, ofs, len);
@@ -410,10 +405,10 @@ end end
 
 function write(fd, buf, ofs, len) do
   if (ofs < 0 or len < 0 or ofs > (#buf - len | 0)) then do
-    throw {
-          Caml_builtin_exceptions.invalid_argument,
-          "Unix.write"
-        };
+    error ({
+      Caml_builtin_exceptions.invalid_argument,
+      "Unix.write"
+    })
   end
    end 
   return Caml_external_polyfill.resolve("unix_write")(fd, buf, ofs, len);
@@ -421,10 +416,10 @@ end end
 
 function single_write(fd, buf, ofs, len) do
   if (ofs < 0 or len < 0 or ofs > (#buf - len | 0)) then do
-    throw {
-          Caml_builtin_exceptions.invalid_argument,
-          "Unix.single_write"
-        };
+    error ({
+      Caml_builtin_exceptions.invalid_argument,
+      "Unix.single_write"
+    })
   end
    end 
   return Caml_external_polyfill.resolve("unix_single_write")(fd, buf, ofs, len);
@@ -460,31 +455,29 @@ inet_addr_loopback = Caml_external_polyfill.resolve("unix_inet_addr_of_string")(
 
 inet6_addr_any;
 
-try do
+xpcall(function() do
   inet6_addr_any = Caml_external_polyfill.resolve("unix_inet_addr_of_string")("::");
-end
-catch (raw_exn)do
+end end,function(raw_exn) return do
   exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
   if (exn[0] == Caml_builtin_exceptions.failure) then do
     inet6_addr_any = inet_addr_any;
   end else do
-    throw exn;
+    error (exn)
   end end 
-end
+end end)
 
 inet6_addr_loopback;
 
-try do
+xpcall(function() do
   inet6_addr_loopback = Caml_external_polyfill.resolve("unix_inet_addr_of_string")("::1");
-end
-catch (raw_exn$1)do
+end end,function(raw_exn$1) return do
   exn$1 = Caml_js_exceptions.internalToOCamlException(raw_exn$1);
   if (exn$1[0] == Caml_builtin_exceptions.failure) then do
     inet6_addr_loopback = inet_addr_loopback;
   end else do
-    throw exn$1;
+    error (exn$1)
   end end 
-end
+end end)
 
 function domain_of_sockaddr(param) do
   if (param.tag) then do
@@ -500,10 +493,10 @@ end end
 
 function recv(fd, buf, ofs, len, flags) do
   if (ofs < 0 or len < 0 or ofs > (#buf - len | 0)) then do
-    throw {
-          Caml_builtin_exceptions.invalid_argument,
-          "Unix.recv"
-        };
+    error ({
+      Caml_builtin_exceptions.invalid_argument,
+      "Unix.recv"
+    })
   end
    end 
   return Caml_external_polyfill.resolve("unix_recv")(fd, buf, ofs, len, flags);
@@ -511,10 +504,10 @@ end end
 
 function recvfrom(fd, buf, ofs, len, flags) do
   if (ofs < 0 or len < 0 or ofs > (#buf - len | 0)) then do
-    throw {
-          Caml_builtin_exceptions.invalid_argument,
-          "Unix.recvfrom"
-        };
+    error ({
+      Caml_builtin_exceptions.invalid_argument,
+      "Unix.recvfrom"
+    })
   end
    end 
   return Caml_external_polyfill.resolve("unix_recvfrom")(fd, buf, ofs, len, flags);
@@ -522,10 +515,10 @@ end end
 
 function send(fd, buf, ofs, len, flags) do
   if (ofs < 0 or len < 0 or ofs > (#buf - len | 0)) then do
-    throw {
-          Caml_builtin_exceptions.invalid_argument,
-          "Unix.send"
-        };
+    error ({
+      Caml_builtin_exceptions.invalid_argument,
+      "Unix.send"
+    })
   end
    end 
   return Caml_external_polyfill.resolve("unix_send")(fd, buf, ofs, len, flags);
@@ -533,10 +526,10 @@ end end
 
 function sendto(fd, buf, ofs, len, flags, addr) do
   if (ofs < 0 or len < 0 or ofs > (#buf - len | 0)) then do
-    throw {
-          Caml_builtin_exceptions.invalid_argument,
-          "Unix.sendto"
-        };
+    error ({
+      Caml_builtin_exceptions.invalid_argument,
+      "Unix.sendto"
+    })
   end
    end 
   return Caml_external_polyfill.resolve("unix_sendto")(fd, buf, ofs, len, flags, addr);
@@ -595,10 +588,9 @@ function getsockopt_error(fd) do
 end end
 
 function getaddrinfo(node, service, opts) do
-  try do
+  xpcall(function() do
     return List.rev(Caml_external_polyfill.resolve("unix_getaddrinfo")(node, service, opts));
-  end
-  catch (raw_exn)do
+  end end,function(raw_exn) return do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn[0] == Caml_builtin_exceptions.invalid_argument) then do
       node$1 = node;
@@ -648,7 +640,7 @@ function getaddrinfo(node, service, opts) do
                   --[[ [] ]]0
                 };
         end else do
-          try do
+          xpcall(function() do
             return --[[ :: ]]{
                     --[[ tuple ]]{
                       ty,
@@ -656,11 +648,10 @@ function getaddrinfo(node, service, opts) do
                     },
                     --[[ [] ]]0
                   };
-          end
-          catch (raw_exn)do
+          end end,function(raw_exn) return do
             exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
             if (exn[0] == Caml_builtin_exceptions.failure) then do
-              try do
+              xpcall(function() do
                 return --[[ :: ]]{
                         --[[ tuple ]]{
                           ty,
@@ -668,18 +659,17 @@ function getaddrinfo(node, service, opts) do
                         },
                         --[[ [] ]]0
                       };
-              end
-              catch (exn$1)do
+              end end,function(exn$1) return do
                 if (exn$1 == Caml_builtin_exceptions.not_found) then do
                   return --[[ [] ]]0;
                 end else do
-                  throw exn$1;
+                  error (exn$1)
                 end end 
-              end
+              end end)
             end else do
-              throw exn;
+              error (exn)
             end end 
-          end
+          end end)
         end end 
       end end;
       match = opt_socktype.contents;
@@ -716,7 +706,7 @@ function getaddrinfo(node, service, opts) do
             --[[ [] ]]0
           };
       end else do
-        try do
+        xpcall(function() do
           addresses = --[[ :: ]]{
             --[[ tuple ]]{
               Caml_external_polyfill.resolve("unix_inet_addr_of_string")(node$1),
@@ -724,11 +714,10 @@ function getaddrinfo(node, service, opts) do
             },
             --[[ [] ]]0
           };
-        end
-        catch (raw_exn$1)do
+        end end,function(raw_exn$1) return do
           exn$1 = Caml_js_exceptions.internalToOCamlException(raw_exn$1);
           if (exn$1[0] == Caml_builtin_exceptions.failure) then do
-            try do
+            xpcall(function() do
               he = Caml_external_polyfill.resolve("unix_gethostbyname")(node$1);
               addresses = List.map((function (a) do
                       return --[[ tuple ]]{
@@ -736,18 +725,17 @@ function getaddrinfo(node, service, opts) do
                               he.h_name
                             };
                     end end), __Array.to_list(he.h_addr_list));
-            end
-            catch (exn$2)do
+            end end,function(exn$2) return do
               if (exn$2 == Caml_builtin_exceptions.not_found) then do
                 addresses = --[[ [] ]]0;
               end else do
-                throw exn$2;
+                error (exn$2)
               end end 
-            end
+            end end)
           end else do
-            throw exn$1;
+            error (exn$1)
           end end 
-        end
+        end end)
       end end 
       return List.flatten(List.map((function (param) do
                         port = param[1];
@@ -766,16 +754,15 @@ function getaddrinfo(node, service, opts) do
                                     end end), addresses);
                       end end), ports));
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 function getnameinfo(addr, opts) do
-  try do
+  xpcall(function() do
     return Caml_external_polyfill.resolve("unix_getnameinfo")(addr, opts);
-  end
-  catch (raw_exn)do
+  end end,function(raw_exn) return do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn[0] == Caml_builtin_exceptions.invalid_argument) then do
       addr$1 = addr;
@@ -784,40 +771,38 @@ function getnameinfo(addr, opts) do
         p = addr$1[1];
         a = addr$1[0];
         hostname;
-        try do
+        xpcall(function() do
           if (List.mem(--[[ NI_NUMERICHOST ]]1, opts$1)) then do
-            throw Caml_builtin_exceptions.not_found;
+            error (Caml_builtin_exceptions.not_found)
           end
            end 
           hostname = Caml_external_polyfill.resolve("unix_gethostbyaddr")(a).h_name;
-        end
-        catch (exn$1)do
+        end end,function(exn$1) return do
           if (exn$1 == Caml_builtin_exceptions.not_found) then do
             if (List.mem(--[[ NI_NAMEREQD ]]2, opts$1)) then do
-              throw Caml_builtin_exceptions.not_found;
+              error (Caml_builtin_exceptions.not_found)
             end
              end 
             hostname = Caml_external_polyfill.resolve("unix_string_of_inet_addr")(a);
           end else do
-            throw exn$1;
+            error (exn$1)
           end end 
-        end
+        end end)
         service;
-        try do
+        xpcall(function() do
           if (List.mem(--[[ NI_NUMERICSERV ]]3, opts$1)) then do
-            throw Caml_builtin_exceptions.not_found;
+            error (Caml_builtin_exceptions.not_found)
           end
            end 
           kind = List.mem(--[[ NI_DGRAM ]]4, opts$1) and "udp" or "tcp";
           service = Caml_external_polyfill.resolve("unix_getservbyport")(p, kind).s_name;
-        end
-        catch (exn$2)do
+        end end,function(exn$2) return do
           if (exn$2 == Caml_builtin_exceptions.not_found) then do
             service = String(p);
           end else do
-            throw exn$2;
+            error (exn$2)
           end end 
-        end
+        end end)
         return do
                 ni_hostname: hostname,
                 ni_service: service
@@ -829,33 +814,32 @@ function getnameinfo(addr, opts) do
               end;
       end end 
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 function waitpid_non_intr(pid) do
   while(true) do
-    try do
+    xpcall(function() do
       return Caml_external_polyfill.resolve("unix_waitpid")(--[[ [] ]]0, pid);
-    end
-    catch (raw_exn)do
+    end end,function(raw_exn) return do
       exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
       if (exn[0] == Unix_error) then do
         match = exn[1];
         if (typeof match == "number") then do
           if (match ~= 11) then do
-            throw exn;
+            error (exn)
           end
            end 
-          continue ;
+          ::continue:: ;
         end else do
-          throw exn;
+          error (exn)
         end end 
       end else do
-        throw exn;
+        error (exn)
       end end 
-    end
+    end end)
   end;
 end end
 
@@ -864,16 +848,15 @@ function system(cmd) do
   if (id ~= 0) then do
     return waitpid_non_intr(id)[1];
   end else do
-    try do
+    xpcall(function() do
       return Caml_external_polyfill.resolve("unix_execv")("/bin/sh", {
                   "/bin/sh",
                   "-c",
                   cmd
                 });
-    end
-    catch (exn)do
+    end end,function(exn) return do
       return Caml_sys.caml_sys_exit(127);
-    end
+    end end)
   end end 
 end end
 
@@ -884,23 +867,22 @@ function file_descr_not_standard(_fd) do
       return fd;
     end else do
       _fd = Caml_external_polyfill.resolve("unix_dup")(undefined, fd);
-      continue ;
+      ::continue:: ;
     end end 
   end;
 end end
 
 function safe_close(fd) do
-  try do
+  xpcall(function() do
     return Caml_external_polyfill.resolve("unix_close")(fd);
-  end
-  catch (raw_exn)do
+  end end,function(raw_exn) return do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn[0] == Unix_error) then do
       return --[[ () ]]0;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 function perform_redirections(new_stdin, new_stdout, new_stderr) do
@@ -920,13 +902,12 @@ function create_process(cmd, args, new_stdin, new_stdout, new_stderr) do
   if (id ~= 0) then do
     return id;
   end else do
-    try do
+    xpcall(function() do
       perform_redirections(new_stdin, new_stdout, new_stderr);
       return Caml_external_polyfill.resolve("unix_execvp")(cmd, args);
-    end
-    catch (exn)do
+    end end,function(exn) return do
       return Caml_sys.caml_sys_exit(127);
-    end
+    end end)
   end end 
 end end
 
@@ -935,13 +916,12 @@ function create_process_env(cmd, args, env, new_stdin, new_stdout, new_stderr) d
   if (id ~= 0) then do
     return id;
   end else do
-    try do
+    xpcall(function() do
       perform_redirections(new_stdin, new_stdout, new_stderr);
       return execvpe(cmd, args, env);
-    end
-    catch (exn)do
+    end end,function(exn) return do
       return Caml_sys.caml_sys_exit(127);
-    end
+    end end)
   end end 
 end end
 
@@ -959,16 +939,15 @@ function open_proc(cmd, envopt, proc, input, output, error) do
       "-c",
       cmd
     };
-    try do
+    xpcall(function() do
       if (envopt ~= undefined) then do
         return Caml_external_polyfill.resolve("unix_execve")(shell, argv, envopt);
       end else do
         return Caml_external_polyfill.resolve("unix_execv")(shell, argv);
       end end 
-    end
-    catch (exn)do
+    end end,function(exn) return do
       return Caml_sys.caml_sys_exit(127);
-    end
+    end end)
   end end 
 end end
 
@@ -976,14 +955,13 @@ function open_process_in(cmd) do
   match = Caml_external_polyfill.resolve("unix_pipe")(true, --[[ () ]]0);
   in_write = match[1];
   inchan = Caml_external_polyfill.resolve("caml_ml_open_descriptor_in")(match[0]);
-  try do
+  xpcall(function() do
     open_proc(cmd, undefined, --[[ Process_in ]]Block.__(1, {inchan}), 0, in_write, 2);
-  end
-  catch (e)do
+  end end,function(e) return do
     Caml_external_polyfill.resolve("caml_ml_close_channel")(inchan);
     Caml_external_polyfill.resolve("unix_close")(in_write);
-    throw e;
-  end
+    error (e)
+  end end)
   Caml_external_polyfill.resolve("unix_close")(in_write);
   return inchan;
 end end
@@ -992,15 +970,14 @@ function open_process_out(cmd) do
   match = Caml_external_polyfill.resolve("unix_pipe")(true, --[[ () ]]0);
   out_read = match[0];
   outchan = Caml_external_polyfill.resolve("caml_ml_open_descriptor_out")(match[1]);
-  try do
+  xpcall(function() do
     open_proc(cmd, undefined, --[[ Process_out ]]Block.__(2, {outchan}), out_read, 1, 2);
-  end
-  catch (e)do
+  end end,function(e) return do
     Caml_io.caml_ml_flush(outchan);
     Caml_external_polyfill.resolve("caml_ml_close_channel")(outchan);
     Caml_external_polyfill.resolve("unix_close")(out_read);
-    throw e;
-  end
+    error (e)
+  end end)
   Caml_external_polyfill.resolve("unix_close")(out_read);
   return outchan;
 end end
@@ -1010,31 +987,29 @@ function open_process(cmd) do
   in_write = match[1];
   in_read = match[0];
   match$1;
-  try do
+  xpcall(function() do
     match$1 = Caml_external_polyfill.resolve("unix_pipe")(true, --[[ () ]]0);
-  end
-  catch (e)do
+  end end,function(e) return do
     Caml_external_polyfill.resolve("unix_close")(in_read);
     Caml_external_polyfill.resolve("unix_close")(in_write);
-    throw e;
-  end
+    error (e)
+  end end)
   out_write = match$1[1];
   out_read = match$1[0];
   inchan = Caml_external_polyfill.resolve("caml_ml_open_descriptor_in")(in_read);
   outchan = Caml_external_polyfill.resolve("caml_ml_open_descriptor_out")(out_write);
-  try do
+  xpcall(function() do
     open_proc(cmd, undefined, --[[ Process ]]Block.__(0, {
             inchan,
             outchan
           }), out_read, in_write, 2);
-  end
-  catch (e$1)do
+  end end,function(e$1) return do
     Caml_external_polyfill.resolve("unix_close")(out_read);
     Caml_external_polyfill.resolve("unix_close")(out_write);
     Caml_external_polyfill.resolve("unix_close")(in_read);
     Caml_external_polyfill.resolve("unix_close")(in_write);
-    throw e$1;
-  end
+    error (e$1)
+  end end)
   Caml_external_polyfill.resolve("unix_close")(out_read);
   Caml_external_polyfill.resolve("unix_close")(in_write);
   return --[[ tuple ]]{
@@ -1048,48 +1023,45 @@ function open_process_full(cmd, env) do
   in_write = match[1];
   in_read = match[0];
   match$1;
-  try do
+  xpcall(function() do
     match$1 = Caml_external_polyfill.resolve("unix_pipe")(true, --[[ () ]]0);
-  end
-  catch (e)do
+  end end,function(e) return do
     Caml_external_polyfill.resolve("unix_close")(in_read);
     Caml_external_polyfill.resolve("unix_close")(in_write);
-    throw e;
-  end
+    error (e)
+  end end)
   out_write = match$1[1];
   out_read = match$1[0];
   match$2;
-  try do
+  xpcall(function() do
     match$2 = Caml_external_polyfill.resolve("unix_pipe")(true, --[[ () ]]0);
-  end
-  catch (e$1)do
+  end end,function(e$1) return do
     Caml_external_polyfill.resolve("unix_close")(in_read);
     Caml_external_polyfill.resolve("unix_close")(in_write);
     Caml_external_polyfill.resolve("unix_close")(out_read);
     Caml_external_polyfill.resolve("unix_close")(out_write);
-    throw e$1;
-  end
+    error (e$1)
+  end end)
   err_write = match$2[1];
   err_read = match$2[0];
   inchan = Caml_external_polyfill.resolve("caml_ml_open_descriptor_in")(in_read);
   outchan = Caml_external_polyfill.resolve("caml_ml_open_descriptor_out")(out_write);
   errchan = Caml_external_polyfill.resolve("caml_ml_open_descriptor_in")(err_read);
-  try do
+  xpcall(function() do
     open_proc(cmd, env, --[[ Process_full ]]Block.__(3, {
             inchan,
             outchan,
             errchan
           }), out_read, in_write, err_write);
-  end
-  catch (e$2)do
+  end end,function(e$2) return do
     Caml_external_polyfill.resolve("unix_close")(out_read);
     Caml_external_polyfill.resolve("unix_close")(out_write);
     Caml_external_polyfill.resolve("unix_close")(in_read);
     Caml_external_polyfill.resolve("unix_close")(in_write);
     Caml_external_polyfill.resolve("unix_close")(err_read);
     Caml_external_polyfill.resolve("unix_close")(err_write);
-    throw e$2;
-  end
+    error (e$2)
+  end end)
   Caml_external_polyfill.resolve("unix_close")(out_read);
   Caml_external_polyfill.resolve("unix_close")(in_write);
   Caml_external_polyfill.resolve("unix_close")(err_write);
@@ -1101,23 +1073,22 @@ function open_process_full(cmd, env) do
 end end
 
 function find_proc_id(fun_name, proc) do
-  try do
+  xpcall(function() do
     pid = Hashtbl.find(popen_processes, proc);
     Hashtbl.remove(popen_processes, proc);
     return pid;
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Caml_builtin_exceptions.not_found) then do
-      throw {
-            Unix_error,
-            --[[ EBADF ]]3,
-            fun_name,
-            ""
-          };
+      error ({
+        Unix_error,
+        --[[ EBADF ]]3,
+        fun_name,
+        ""
+      })
     end
      end 
-    throw exn;
-  end
+    error (exn)
+  end end)
 end end
 
 function close_process_in(inchan) do
@@ -1128,17 +1099,16 @@ end end
 
 function close_process_out(outchan) do
   pid = find_proc_id("close_process_out", --[[ Process_out ]]Block.__(2, {outchan}));
-  try do
+  xpcall(function() do
     Caml_io.caml_ml_flush(outchan);
     Caml_external_polyfill.resolve("caml_ml_close_channel")(outchan);
-  end
-  catch (raw_exn)do
+  end end,function(raw_exn) return do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn[0] ~= Caml_builtin_exceptions.sys_error) then do
-      throw exn;
+      error (exn)
     end
      end 
-  end
+  end end)
   return waitpid_non_intr(pid)[1];
 end end
 
@@ -1150,17 +1120,16 @@ function close_process(param) do
           outchan
         }));
   Caml_external_polyfill.resolve("caml_ml_close_channel")(inchan);
-  try do
+  xpcall(function() do
     Caml_io.caml_ml_flush(outchan);
     Caml_external_polyfill.resolve("caml_ml_close_channel")(outchan);
-  end
-  catch (raw_exn)do
+  end end,function(raw_exn) return do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn[0] ~= Caml_builtin_exceptions.sys_error) then do
-      throw exn;
+      error (exn)
     end
      end 
-  end
+  end end)
   return waitpid_non_intr(pid)[1];
 end end
 
@@ -1174,34 +1143,32 @@ function close_process_full(param) do
           errchan
         }));
   Caml_external_polyfill.resolve("caml_ml_close_channel")(inchan);
-  try do
+  xpcall(function() do
     Caml_io.caml_ml_flush(outchan);
     Caml_external_polyfill.resolve("caml_ml_close_channel")(outchan);
-  end
-  catch (raw_exn)do
+  end end,function(raw_exn) return do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn[0] ~= Caml_builtin_exceptions.sys_error) then do
-      throw exn;
+      error (exn)
     end
      end 
-  end
+  end end)
   Caml_external_polyfill.resolve("caml_ml_close_channel")(errchan);
   return waitpid_non_intr(pid)[1];
 end end
 
 function open_connection(sockaddr) do
   sock = Caml_external_polyfill.resolve("unix_socket")(true, domain_of_sockaddr(sockaddr), --[[ SOCK_STREAM ]]0, 0);
-  try do
+  xpcall(function() do
     Caml_external_polyfill.resolve("unix_connect")(sock, sockaddr);
     return --[[ tuple ]]{
             Caml_external_polyfill.resolve("caml_ml_open_descriptor_in")(sock),
             Caml_external_polyfill.resolve("caml_ml_open_descriptor_out")(sock)
           };
-  end
-  catch (exn)do
+  end end,function(exn) return do
     Caml_external_polyfill.resolve("unix_close")(sock);
-    throw exn;
-  end
+    error (exn)
+  end end)
 end end
 
 function shutdown_connection(inchan) do
@@ -1210,26 +1177,25 @@ end end
 
 function accept_non_intr(s) do
   while(true) do
-    try do
+    xpcall(function() do
       return Caml_external_polyfill.resolve("unix_accept")(true, s);
-    end
-    catch (raw_exn)do
+    end end,function(raw_exn) return do
       exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
       if (exn[0] == Unix_error) then do
         match = exn[1];
         if (typeof match == "number") then do
           if (match ~= 11) then do
-            throw exn;
+            error (exn)
           end
            end 
-          continue ;
+          ::continue:: ;
         end else do
-          throw exn;
+          error (exn)
         end end 
       end else do
-        throw exn;
+        error (exn)
       end end 
-    end
+    end end)
   end;
 end end
 

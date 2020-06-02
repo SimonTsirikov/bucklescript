@@ -1,6 +1,6 @@
 --[['use strict';]]
 
-Curry = require "./curry.lua";
+Curry = require "./curry";
 
 stdout = do
   buffer: "",

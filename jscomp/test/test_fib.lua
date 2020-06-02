@@ -1,6 +1,6 @@
 --[['use strict';]]
 
-Curry = require "../../lib/js/curry.lua";
+Curry = require "../../lib/js/curry";
 
 function fib(n) do
   if (n == 0 or n == 1) then do
@@ -82,7 +82,7 @@ function fib3(n) do
       _n = n$1 - 1 | 0;
       _b = a + b | 0;
       _a = b;
-      continue ;
+      ::continue:: ;
     end else do
       return a;
     end end 

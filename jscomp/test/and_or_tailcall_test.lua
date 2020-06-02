@@ -1,7 +1,7 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-Block = require "../../lib/js/block.lua";
+Mt = require "./mt";
+Block = require "../../lib/js/block";
 
 function f(b, x, _n) do
   while(true) do
@@ -10,7 +10,7 @@ function f(b, x, _n) do
       return false;
     end else do
       _n = n + 1 | 0;
-      continue ;
+      ::continue:: ;
     end end 
   end;
 end end
@@ -24,7 +24,7 @@ function or_f(b, x, _n) do
       return true;
     end else do
       _n = n + 1 | 0;
-      continue ;
+      ::continue:: ;
     end end  end 
   end;
 end end

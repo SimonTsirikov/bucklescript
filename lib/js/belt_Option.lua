@@ -1,7 +1,7 @@
 --[['use strict';]]
 
-Curry = require "./curry.lua";
-Caml_option = require "./caml_option.lua";
+Curry = require "./curry";
+Caml_option = require "./caml_option";
 
 function forEachU(opt, f) do
   if (opt ~= undefined) then do
@@ -19,7 +19,7 @@ function getExn(param) do
   if (param ~= undefined) then do
     return Caml_option.valFromOption(param);
   end else do
-    throw new Error("getExn");
+    error (new Error("getExn"))
   end end 
 end end
 

@@ -1,9 +1,9 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-Block = require "../../lib/js/block.lua";
-Caml_int64 = require "../../lib/js/caml_int64.lua";
-Caml_string = require "../../lib/js/caml_string.lua";
+Mt = require "./mt";
+Block = require "../../lib/js/block";
+Caml_int64 = require "../../lib/js/caml_int64";
+Caml_string = require "../../lib/js/caml_string";
 
 Mt.from_pair_suites("String_get_set_test", --[[ :: ]]{
       --[[ tuple ]]{

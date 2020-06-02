@@ -1,8 +1,8 @@
 --[['use strict';]]
 
-Bytes = require "../../lib/js/bytes.lua";
-Caml_char = require "../../lib/js/caml_char.lua";
-Caml_bytes = require "../../lib/js/caml_bytes.lua";
+Bytes = require "../../lib/js/bytes";
+Caml_char = require "../../lib/js/caml_char";
+Caml_bytes = require "../../lib/js/caml_bytes";
 
 function escaped(s) do
   n = 0;

@@ -1,50 +1,50 @@
 --[['use strict';]]
 
-Curry = require "../../lib/js/curry.lua";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
+Curry = require "../../lib/js/curry";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 function peek_queue(param) do
-  throw {
-        Caml_builtin_exceptions.assert_failure,
-        --[[ tuple ]]{
-          "format_regression.ml",
-          10,
-          19
-        }
-      };
+  error ({
+    Caml_builtin_exceptions.assert_failure,
+    --[[ tuple ]]{
+      "format_regression.ml",
+      10,
+      19
+    }
+  })
 end end
 
 function int_of_size(param) do
-  throw {
-        Caml_builtin_exceptions.assert_failure,
-        --[[ tuple ]]{
-          "format_regression.ml",
-          11,
-          20
-        }
-      };
+  error ({
+    Caml_builtin_exceptions.assert_failure,
+    --[[ tuple ]]{
+      "format_regression.ml",
+      11,
+      20
+    }
+  })
 end end
 
 function take_queue(param) do
-  throw {
-        Caml_builtin_exceptions.assert_failure,
-        --[[ tuple ]]{
-          "format_regression.ml",
-          12,
-          19
-        }
-      };
+  error ({
+    Caml_builtin_exceptions.assert_failure,
+    --[[ tuple ]]{
+      "format_regression.ml",
+      12,
+      19
+    }
+  })
 end end
 
 function format_pp_token(param, param$1) do
-  throw {
-        Caml_builtin_exceptions.assert_failure,
-        --[[ tuple ]]{
-          "format_regression.ml",
-          13,
-          26
-        }
-      };
+  error ({
+    Caml_builtin_exceptions.assert_failure,
+    --[[ tuple ]]{
+      "format_regression.ml",
+      13,
+      26
+    }
+  })
 end end
 
 function advance_loop(state) do
@@ -58,7 +58,7 @@ function advance_loop(state) do
       take_queue(state.pp_queue);
       Curry._1(format_pp_token(state, size$1 < 0 and 1000000010 or size$1), match.token);
       state.pp_left_total = match.length + state.pp_left_total | 0;
-      continue ;
+      ::continue:: ;
     end end 
   end;
 end end

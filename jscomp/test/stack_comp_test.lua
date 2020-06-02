@@ -1,11 +1,11 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-List = require "../../lib/js/list.lua";
-Curry = require "../../lib/js/curry.lua";
-Stack = require "../../lib/js/stack.lua";
-Caml_obj = require "../../lib/js/caml_obj.lua";
-Mt_global = require "./mt_global.lua";
+Mt = require "./mt";
+List = require "../../lib/js/list";
+Curry = require "../../lib/js/curry";
+Stack = require "../../lib/js/stack";
+Caml_obj = require "../../lib/js/caml_obj";
+Mt_global = require "./mt_global";
 
 suites = do
   contents: --[[ [] ]]0
@@ -56,17 +56,16 @@ S = do
 end;
 
 function does_raise(f, s) do
-  try do
+  xpcall(function() do
     Curry._1(f, s);
     return false;
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Stack.Empty) then do
       return true;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 s = do

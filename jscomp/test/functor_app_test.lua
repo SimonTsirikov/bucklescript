@@ -1,10 +1,10 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-Block = require "../../lib/js/block.lua";
-Curry = require "../../lib/js/curry.lua";
-Functor_def = require "./functor_def.lua";
-Functor_inst = require "./functor_inst.lua";
+Mt = require "./mt";
+Block = require "../../lib/js/block";
+Curry = require "../../lib/js/curry";
+Functor_def = require "./functor_def";
+Functor_inst = require "./functor_inst";
 
 suites = do
   contents: --[[ [] ]]0

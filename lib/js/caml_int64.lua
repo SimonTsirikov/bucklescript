@@ -1,9 +1,9 @@
 --[['use strict';]]
 
-Caml_int32 = require "./caml_int32.lua";
-Caml_utils = require "./caml_utils.lua";
-Caml_primitive = require "./caml_primitive.lua";
-Caml_builtin_exceptions = require "./caml_builtin_exceptions.lua";
+Caml_int32 = require "./caml_int32";
+Caml_utils = require "./caml_utils";
+Caml_primitive = require "./caml_primitive";
+Caml_builtin_exceptions = require "./caml_builtin_exceptions";
 
 min_int = --[[ Int64 ]]{
   --[[ hi ]]-2147483648,
@@ -64,7 +64,7 @@ function eq(param, param$1) do
 end end
 
 function equal_null(x, y) do
-  if (y ~= null) then do
+  if (y ~= nil) then do
     return eq(x, y);
   end else do
     return false;
@@ -80,7 +80,7 @@ function equal_undefined(x, y) do
 end end
 
 function equal_nullable(x, y) do
-  if (y == null) then do
+  if (y == nil) then do
     return false;
   end else do
     return eq(x, y);
@@ -220,7 +220,7 @@ function mul(_this, _other) do
             if (other_hi < 0) then do
               _other = neg(other);
               _this = neg(__this);
-              continue ;
+              ::continue:: ;
             end else do
               return neg(mul(neg(__this), other));
             end end 
@@ -383,7 +383,7 @@ function div(_self, _other) do
     if (other[--[[ hi ]]0] ~= 0 or other[--[[ lo ]]1] ~= 0) then do
       exit$1 = 3;
     end else do
-      throw Caml_builtin_exceptions.division_by_zero;
+      error (Caml_builtin_exceptions.division_by_zero)
     end end 
     if (exit$1 == 3) then do
       match = self[--[[ hi ]]0];
@@ -428,7 +428,7 @@ function div(_self, _other) do
       if (other_hi < 0) then do
         _other = neg(other);
         _self = neg(self);
-        continue ;
+        ::continue:: ;
       end else do
         return neg(div(neg(self), other));
       end end 

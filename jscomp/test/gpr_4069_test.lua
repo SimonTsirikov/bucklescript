@@ -1,9 +1,9 @@
 --[['use strict';]]
 
-Curry = require "../../lib/js/curry.lua";
+Curry = require "../../lib/js/curry";
 
 function f(value) do
-  if (value == null) then do
+  if (value == nil) then do
     return ;
   end else do
     return value;

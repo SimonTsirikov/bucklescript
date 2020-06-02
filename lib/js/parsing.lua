@@ -1,13 +1,13 @@
 --[['use strict';]]
 
-__Array = require "./array.lua";
-Curry = require "./curry.lua";
-Lexing = require "./lexing.lua";
-Caml_obj = require "./caml_obj.lua";
-Caml_array = require "./caml_array.lua";
-Caml_parser = require "./caml_parser.lua";
-Caml_exceptions = require "./caml_exceptions.lua";
-Caml_js_exceptions = require "./caml_js_exceptions.lua";
+__Array = require "./array";
+Curry = require "./curry";
+Lexing = require "./lexing";
+Caml_obj = require "./caml_obj";
+Caml_array = require "./caml_array";
+Caml_parser = require "./caml_parser";
+Caml_exceptions = require "./caml_exceptions";
+Caml_js_exceptions = require "./caml_js_exceptions";
 
 YYexit = Caml_exceptions.create("Parsing.YYexit");
 
@@ -74,7 +74,7 @@ function yyparse(tables, start, lexer, lexbuf) do
   env.stackbase = env.sp + 1 | 0;
   env.curr_char = start;
   env.symb_end = lexbuf.lex_curr_p;
-  try do
+  xpcall(function() do
     _cmd = --[[ Start ]]0;
     _arg = --[[ () ]]0;
     while(true) do
@@ -89,51 +89,49 @@ function yyparse(tables, start, lexer, lexbuf) do
             env.symb_end = lexbuf.lex_curr_p;
             _arg = t;
             _cmd = --[[ Token_read ]]1;
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 1--[[ Raise_parse_error ]] then do
-            throw Parse_error;end end end 
+            error (Parse_error)end end end 
          if ___conditional___ = 2--[[ Grow_stacks_1 ]] then do
             grow_stacks(--[[ () ]]0);
             _arg = --[[ () ]]0;
             _cmd = --[[ Stacks_grown_1 ]]2;
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 3--[[ Grow_stacks_2 ]] then do
             grow_stacks(--[[ () ]]0);
             _arg = --[[ () ]]0;
             _cmd = --[[ Stacks_grown_2 ]]3;
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 4--[[ Compute_semantic_action ]] then do
             match$1;
-            try do
+            xpcall(function() do
               match$1 = --[[ tuple ]]{
                 --[[ Semantic_action_computed ]]4,
                 Curry._1(Caml_array.caml_array_get(tables.actions, env.rule_number), env)
               };
-            end
-            catch (exn)do
+            end end,function(exn) return do
               if (exn == Parse_error) then do
                 match$1 = --[[ tuple ]]{
                   --[[ Error_detected ]]5,
                   --[[ () ]]0
                 };
               end else do
-                throw exn;
+                error (exn)
               end end 
-            end
+            end end)
             _arg = match$1[1];
             _cmd = match$1[0];
-            continue ;end end end 
+            ::continue:: ;end end end 
          if ___conditional___ = 5--[[ Call_error_function ]] then do
             Curry._1(tables.error_function, "syntax error");
             _arg = --[[ () ]]0;
             _cmd = --[[ Error_detected ]]5;
-            continue ;end end end 
+            ::continue:: ;end end end 
          do
         
       end
     end;
-  end
-  catch (raw_exn)do
+  end end,function(raw_exn) return do
     exn$1 = Caml_js_exceptions.internalToOCamlException(raw_exn);
     curr_char = env.curr_char;
     env.asp = init_asp;
@@ -153,9 +151,9 @@ function yyparse(tables, start, lexer, lexbuf) do
             return Caml_array.caml_array_get(tables.transl_const, tok) == curr_char;
           end end 
         end end);
-      throw exn$1;
+      error (exn$1)
     end end 
-  end
+  end end)
 end end
 
 function peek_val(env, n) do
@@ -175,7 +173,7 @@ function symbol_start_pos(param) do
         return st;
       end else do
         _i = i - 1 | 0;
-        continue ;
+        ::continue:: ;
       end end 
     end end 
   end;

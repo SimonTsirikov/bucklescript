@@ -1,7 +1,7 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-Block = require "../../lib/js/block.lua";
+Mt = require "./mt";
+Block = require "../../lib/js/block";
 
 function f(x) do
   if (x) then do

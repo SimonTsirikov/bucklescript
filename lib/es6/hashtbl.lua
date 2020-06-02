@@ -53,7 +53,7 @@ function power_2_above(_x, n) do
       return x;
     end else do
       _x = (x << 1);
-      continue ;
+      ::continue:: ;
     end end 
   end;
 end end
@@ -111,18 +111,18 @@ function copy_bucketlist(param) do
           if (prec) then do
             prec[--[[ next ]]2] = r;
           end else do
-            throw {
-                  Caml_builtin_exceptions.assert_failure,
-                  --[[ tuple ]]{
-                    "hashtbl.ml",
-                    113,
-                    23
-                  }
-                };
+            error ({
+              Caml_builtin_exceptions.assert_failure,
+              --[[ tuple ]]{
+                "hashtbl.ml",
+                113,
+                23
+              }
+            })
           end end 
           _param = next;
           _prec = r;
-          continue ;
+          ::continue:: ;
         end else do
           return --[[ () ]]0;
         end end 
@@ -183,7 +183,7 @@ function resize(indexfun, h) do
           end end 
           Caml_array.caml_array_set(ndata_tail, nidx, cell$1);
           _cell = next;
-          continue ;
+          ::continue:: ;
         end else do
           return --[[ () ]]0;
         end end 
@@ -253,7 +253,7 @@ function remove(h, key) do
       end else do
         _c = next;
         _prec = c;
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return --[[ () ]]0;
@@ -294,21 +294,21 @@ function find(h, key) do
                 return data;
               end else do
                 _param = next;
-                continue ;
+                ::continue:: ;
               end end 
             end else do
-              throw Caml_builtin_exceptions.not_found;
+              error (Caml_builtin_exceptions.not_found)
             end end 
           end;
         end end 
       end else do
-        throw Caml_builtin_exceptions.not_found;
+        error (Caml_builtin_exceptions.not_found)
       end end  end 
     end else do
-      throw Caml_builtin_exceptions.not_found;
+      error (Caml_builtin_exceptions.not_found)
     end end  end 
   end else do
-    throw Caml_builtin_exceptions.not_found;
+    error (Caml_builtin_exceptions.not_found)
   end end 
 end end
 
@@ -345,7 +345,7 @@ function find_opt(h, key) do
                 return Caml_option.some(data);
               end else do
                 _param = next;
-                continue ;
+                ::continue:: ;
               end end 
             end else do
               return ;
@@ -377,7 +377,7 @@ function find_all(h, key) do
                 };
         end else do
           _param = next;
-          continue ;
+          ::continue:: ;
         end end 
       end else do
         return --[[ [] ]]0;
@@ -399,7 +399,7 @@ function replace_bucket(key, data, _param) do
         return false;
       end else do
         _param = next;
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return true;
@@ -438,7 +438,7 @@ function mem(h, key) do
         return true;
       end else do
         _param = next;
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return false;
@@ -456,7 +456,7 @@ function iter(f, h) do
         next = param[--[[ next ]]2];
         Curry._2(f, key, data);
         _param = next;
-        continue ;
+        ::continue:: ;
       end else do
         return --[[ () ]]0;
       end end 
@@ -467,7 +467,7 @@ function iter(f, h) do
     flip_ongoing_traversal(h);
   end
    end 
-  try do
+  xpcall(function() do
     d = h.data;
     for i = 0 , #d - 1 | 0 , 1 do
       do_bucket(Caml_array.caml_array_get(d, i));
@@ -477,15 +477,14 @@ function iter(f, h) do
     end else do
       return flip_ongoing_traversal(h);
     end end 
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (old_trav) then do
-      throw exn;
+      error (exn)
     end else do
       flip_ongoing_traversal(h);
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 function filter_map_inplace_bucket(f, h, i, _prec, _slot) do
@@ -506,11 +505,11 @@ function filter_map_inplace_bucket(f, h, i, _prec, _slot) do
         slot[--[[ data ]]1] = Caml_option.valFromOption(match);
         _slot = next;
         _prec = slot;
-        continue ;
+        ::continue:: ;
       end else do
         h.size = h.size - 1 | 0;
         _slot = next;
-        continue ;
+        ::continue:: ;
       end end 
     end else if (prec) then do
       prec[--[[ next ]]2] = --[[ Empty ]]0;
@@ -528,20 +527,19 @@ function filter_map_inplace(f, h) do
     flip_ongoing_traversal(h);
   end
    end 
-  try do
+  xpcall(function() do
     for i = 0 , #d - 1 | 0 , 1 do
       filter_map_inplace_bucket(f, h, i, --[[ Empty ]]0, Caml_array.caml_array_get(h.data, i));
     end
     return --[[ () ]]0;
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (old_trav) then do
-      throw exn;
+      error (exn)
     end else do
       flip_ongoing_traversal(h);
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 function fold(f, h, init) do
@@ -555,7 +553,7 @@ function fold(f, h, init) do
         next = b[--[[ next ]]2];
         _accu = Curry._3(f, key, data, accu);
         _b = next;
-        continue ;
+        ::continue:: ;
       end else do
         return accu;
       end end 
@@ -566,7 +564,7 @@ function fold(f, h, init) do
     flip_ongoing_traversal(h);
   end
    end 
-  try do
+  xpcall(function() do
     d = h.data;
     accu = init;
     for i = 0 , #d - 1 | 0 , 1 do
@@ -577,15 +575,14 @@ function fold(f, h, init) do
     end
      end 
     return accu;
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (old_trav) then do
-      throw exn;
+      error (exn)
     end else do
       flip_ongoing_traversal(h);
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 function bucket_length(_accu, _param) do
@@ -596,7 +593,7 @@ function bucket_length(_accu, _param) do
       next = param[--[[ next ]]2];
       _param = next;
       _accu = accu + 1 | 0;
-      continue ;
+      ::continue:: ;
     end else do
       return accu;
     end end 
@@ -663,7 +660,7 @@ function MakeSeeded(H) do
         end else do
           _c = next;
           _prec = c;
-          continue ;
+          ::continue:: ;
         end end 
       end else do
         return --[[ () ]]0;
@@ -703,21 +700,21 @@ function MakeSeeded(H) do
                   return data;
                 end else do
                   _param = next;
-                  continue ;
+                  ::continue:: ;
                 end end 
               end else do
-                throw Caml_builtin_exceptions.not_found;
+                error (Caml_builtin_exceptions.not_found)
               end end 
             end;
           end end 
         end else do
-          throw Caml_builtin_exceptions.not_found;
+          error (Caml_builtin_exceptions.not_found)
         end end  end 
       end else do
-        throw Caml_builtin_exceptions.not_found;
+        error (Caml_builtin_exceptions.not_found)
       end end  end 
     end else do
-      throw Caml_builtin_exceptions.not_found;
+      error (Caml_builtin_exceptions.not_found)
     end end 
   end end;
   find_opt = function (h, key) do
@@ -753,7 +750,7 @@ function MakeSeeded(H) do
                   return Caml_option.some(data);
                 end else do
                   _param = next;
-                  continue ;
+                  ::continue:: ;
                 end end 
               end else do
                 return ;
@@ -784,7 +781,7 @@ function MakeSeeded(H) do
                   };
           end else do
             _param = next;
-            continue ;
+            ::continue:: ;
           end end 
         end else do
           return --[[ [] ]]0;
@@ -805,7 +802,7 @@ function MakeSeeded(H) do
           return false;
         end else do
           _param = next;
-          continue ;
+          ::continue:: ;
         end end 
       end else do
         return true;
@@ -842,7 +839,7 @@ function MakeSeeded(H) do
           return true;
         end else do
           _param = next;
-          continue ;
+          ::continue:: ;
         end end 
       end else do
         return false;
@@ -913,7 +910,7 @@ function Make(H) do
         end else do
           _c = next;
           _prec = c;
-          continue ;
+          ::continue:: ;
         end end 
       end else do
         return --[[ () ]]0;
@@ -953,21 +950,21 @@ function Make(H) do
                   return data;
                 end else do
                   _param = next;
-                  continue ;
+                  ::continue:: ;
                 end end 
               end else do
-                throw Caml_builtin_exceptions.not_found;
+                error (Caml_builtin_exceptions.not_found)
               end end 
             end;
           end end 
         end else do
-          throw Caml_builtin_exceptions.not_found;
+          error (Caml_builtin_exceptions.not_found)
         end end  end 
       end else do
-        throw Caml_builtin_exceptions.not_found;
+        error (Caml_builtin_exceptions.not_found)
       end end  end 
     end else do
-      throw Caml_builtin_exceptions.not_found;
+      error (Caml_builtin_exceptions.not_found)
     end end 
   end end;
   find_opt = function (h, key) do
@@ -1003,7 +1000,7 @@ function Make(H) do
                   return Caml_option.some(data);
                 end else do
                   _param = next;
-                  continue ;
+                  ::continue:: ;
                 end end 
               end else do
                 return ;
@@ -1034,7 +1031,7 @@ function Make(H) do
                   };
           end else do
             _param = next;
-            continue ;
+            ::continue:: ;
           end end 
         end else do
           return --[[ [] ]]0;
@@ -1055,7 +1052,7 @@ function Make(H) do
           return false;
         end else do
           _param = next;
-          continue ;
+          ::continue:: ;
         end end 
       end else do
         return true;
@@ -1092,7 +1089,7 @@ function Make(H) do
           return true;
         end else do
           _param = next;
-          continue ;
+          ::continue:: ;
         end end 
       end else do
         return false;

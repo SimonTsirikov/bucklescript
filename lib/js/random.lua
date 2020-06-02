@@ -1,16 +1,16 @@
 --[['use strict';]]
 
-__Array = require "./array.lua";
-Curry = require "./curry.lua";
-Int32 = require "./int32.lua";
-Int64 = require "./int64.lua";
-Digest = require "./digest.lua";
-Caml_sys = require "./caml_sys.lua";
-Nativeint = require "./nativeint.lua";
-Caml_array = require "./caml_array.lua";
-Caml_int64 = require "./caml_int64.lua";
-Caml_string = require "./caml_string.lua";
-Caml_builtin_exceptions = require "./caml_builtin_exceptions.lua";
+__Array = require "./array";
+Curry = require "./curry";
+Int32 = require "./int32";
+Int64 = require "./int64";
+Digest = require "./digest";
+Caml_sys = require "./caml_sys";
+Nativeint = require "./nativeint";
+Caml_array = require "./caml_array";
+Caml_int64 = require "./caml_int64";
+Caml_string = require "./caml_string";
+Caml_builtin_exceptions = require "./caml_builtin_exceptions";
 
 function assign(st1, st2) do
   __Array.blit(st2.st, 0, st1.st, 0, 55);
@@ -76,10 +76,10 @@ end end
 
 function __int(s, bound) do
   if (bound > 1073741823 or bound <= 0) then do
-    throw {
-          Caml_builtin_exceptions.invalid_argument,
-          "Random.int"
-        };
+    error ({
+      Caml_builtin_exceptions.invalid_argument,
+      "Random.int"
+    })
   end
    end 
   s$1 = s;
@@ -88,7 +88,7 @@ function __int(s, bound) do
     r = bits(s$1);
     v = r % n;
     if ((r - v | 0) > ((1073741823 - n | 0) + 1 | 0)) then do
-      continue ;
+      ::continue:: ;
     end else do
       return v;
     end end 
@@ -97,10 +97,10 @@ end end
 
 function int32(s, bound) do
   if (bound <= 0) then do
-    throw {
-          Caml_builtin_exceptions.invalid_argument,
-          "Random.int32"
-        };
+    error ({
+      Caml_builtin_exceptions.invalid_argument,
+      "Random.int32"
+    })
   end
    end 
   s$1 = s;
@@ -111,7 +111,7 @@ function int32(s, bound) do
     r = b1 | b2;
     v = r % n;
     if ((r - v | 0) > ((Int32.max_int - n | 0) + 1 | 0)) then do
-      continue ;
+      ::continue:: ;
     end else do
       return v;
     end end 
@@ -123,10 +123,10 @@ function int64(s, bound) do
           --[[ hi ]]0,
           --[[ lo ]]0
         })) then do
-    throw {
-          Caml_builtin_exceptions.invalid_argument,
-          "Random.int64"
-        };
+    error ({
+      Caml_builtin_exceptions.invalid_argument,
+      "Random.int64"
+    })
   end
    end 
   s$1 = s;
@@ -141,7 +141,7 @@ function int64(s, bound) do
                 --[[ hi ]]0,
                 --[[ lo ]]1
               }))) then do
-      continue ;
+      ::continue:: ;
     end else do
       return v;
     end end 

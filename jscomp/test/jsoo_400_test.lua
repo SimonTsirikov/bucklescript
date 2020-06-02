@@ -1,17 +1,16 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-Block = require "../../lib/js/block.lua";
-Caml_int32 = require "../../lib/js/caml_int32.lua";
+Mt = require "./mt";
+Block = require "../../lib/js/block";
+Caml_int32 = require "../../lib/js/caml_int32";
 
 function u(param) do
   n;
-  try do
+  xpcall(function() do
     n = 3;
-  end
-  catch (exn)do
+  end end,function(exn) return do
     return 42;
-  end
+  end end)
   return Caml_int32.div(3, 0);
 end end
 

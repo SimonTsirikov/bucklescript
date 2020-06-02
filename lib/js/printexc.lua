@@ -1,16 +1,16 @@
 --[['use strict';]]
 
-Obj = require "./obj.lua";
-Block = require "./block.lua";
-Curry = require "./curry.lua";
-__Buffer = require "./buffer.lua";
-Printf = require "./printf.lua";
-Caml_io = require "./caml_io.lua";
-Caml_array = require "./caml_array.lua";
-Pervasives = require "./pervasives.lua";
-Caml_js_exceptions = require "./caml_js_exceptions.lua";
-Caml_external_polyfill = require "./caml_external_polyfill.lua";
-Caml_builtin_exceptions = require "./caml_builtin_exceptions.lua";
+Obj = require "./obj";
+Block = require "./block";
+Curry = require "./curry";
+__Buffer = require "./buffer";
+Printf = require "./printf";
+Caml_io = require "./caml_io";
+Caml_array = require "./caml_array";
+Pervasives = require "./pervasives";
+Caml_js_exceptions = require "./caml_js_exceptions";
+Caml_external_polyfill = require "./caml_external_polyfill";
+Caml_builtin_exceptions = require "./caml_builtin_exceptions";
 
 printers = do
   contents: --[[ [] ]]0
@@ -154,17 +154,16 @@ function to_string(x) do
     param = _param;
     if (param) then do
       match;
-      try do
+      xpcall(function() do
         match = Curry._1(param[0], x);
-      end
-      catch (exn)do
+      end end,function(exn) return do
         match = undefined;
-      end
+      end end)
       if (match ~= undefined) then do
         return match;
       end else do
         _param = param[1];
-        continue ;
+        ::continue:: ;
       end end 
     end else if (x == Caml_builtin_exceptions.out_of_memory) then do
       return "Out of memory";
@@ -192,10 +191,9 @@ function to_string(x) do
 end end
 
 function print(fct, arg) do
-  try do
+  xpcall(function() do
     return Curry._1(fct, arg);
-  end
-  catch (raw_x)do
+  end end,function(raw_x) return do
     x = Caml_js_exceptions.internalToOCamlException(raw_x);
     Curry._1(Printf.eprintf(--[[ Format ]]{
               --[[ String_literal ]]Block.__(11, {
@@ -211,15 +209,14 @@ function print(fct, arg) do
               "Uncaught exception: %s\n"
             }), to_string(x));
     Caml_io.caml_ml_flush(Pervasives.stderr);
-    throw x;
-  end
+    error (x)
+  end end)
 end end
 
 function __catch(fct, arg) do
-  try do
+  xpcall(function() do
     return Curry._1(fct, arg);
-  end
-  catch (raw_x)do
+  end end,function(raw_x) return do
     x = Caml_js_exceptions.internalToOCamlException(raw_x);
     Caml_io.caml_ml_flush(Pervasives.stdout);
     Curry._1(Printf.eprintf(--[[ Format ]]{
@@ -236,28 +233,27 @@ function __catch(fct, arg) do
               "Uncaught exception: %s\n"
             }), to_string(x));
     return Pervasives.exit(2);
-  end
+  end end)
 end end
 
 function convert_raw_backtrace_slot(param) do
-  throw {
-        Caml_builtin_exceptions.failure,
-        "convert_raw_backtrace_slot not implemented"
-      };
+  error ({
+    Caml_builtin_exceptions.failure,
+    "convert_raw_backtrace_slot not implemented"
+  })
 end end
 
 function convert_raw_backtrace(bt) do
-  try do
+  xpcall(function() do
     return --[[ () ]]0;
-  end
-  catch (raw_exn)do
+  end end,function(raw_exn) return do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn[0] == Caml_builtin_exceptions.failure) then do
       return ;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 function format_backtrace_slot(pos, slot) do
@@ -444,7 +440,7 @@ function backtrace_slots(raw_backtrace) do
             return true;
           end else do
             _i = i - 1 | 0;
-            continue ;
+            ::continue:: ;
           end end 
         end else do
           return false;

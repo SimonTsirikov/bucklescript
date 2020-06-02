@@ -1,7 +1,7 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-Block = require "../../lib/js/block.lua";
+Mt = require "./mt";
+Block = require "../../lib/js/block";
 
 function f(param) do
   v = do
@@ -17,7 +17,7 @@ function f(param) do
     end else do
       acc.contents = acc.contents + v.contents | 0;
       v.contents = v.contents + 1 | 0;
-      continue ;
+      ::continue:: ;
     end end 
   end;
 end end

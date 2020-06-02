@@ -8,7 +8,7 @@ function even(_n) do
       return true;
     end else do
       _n = n - 1 | 0;
-      continue ;
+      ::continue:: ;
     end end 
   end;
 end end

@@ -1,9 +1,9 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-Block = require "../../lib/js/block.lua";
-Js_vector = require "../../lib/js/js_vector.lua";
-Caml_option = require "../../lib/js/caml_option.lua";
+Mt = require "./mt";
+Block = require "../../lib/js/block";
+Js_vector = require "../../lib/js/js_vector";
+Caml_option = require "../../lib/js/caml_option";
 
 suites_000 = --[[ tuple ]]{
   "File \"js_array_test.ml\", line 3, characters 4-11",

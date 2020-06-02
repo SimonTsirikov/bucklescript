@@ -15,7 +15,7 @@ function length(l) do
     if (param) then do
       _param = param[1];
       _len = len + 1 | 0;
-      continue ;
+      ::continue:: ;
     end else do
       return len;
     end end 
@@ -33,10 +33,10 @@ function hd(param) do
   if (param) then do
     return param[0];
   end else do
-    throw {
-          Caml_builtin_exceptions.failure,
-          "hd"
-        };
+    error ({
+      Caml_builtin_exceptions.failure,
+      "hd"
+    })
   end end 
 end end
 
@@ -44,19 +44,19 @@ function tl(param) do
   if (param) then do
     return param[1];
   end else do
-    throw {
-          Caml_builtin_exceptions.failure,
-          "tl"
-        };
+    error ({
+      Caml_builtin_exceptions.failure,
+      "tl"
+    })
   end end 
 end end
 
 function nth(l, n) do
   if (n < 0) then do
-    throw {
-          Caml_builtin_exceptions.invalid_argument,
-          "List.nth"
-        };
+    error ({
+      Caml_builtin_exceptions.invalid_argument,
+      "List.nth"
+    })
   end
    end 
   _l = l;
@@ -70,23 +70,23 @@ function nth(l, n) do
       end else do
         _n = n$1 - 1 | 0;
         _l = l$1[1];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
-      throw {
-            Caml_builtin_exceptions.failure,
-            "nth"
-          };
+      error ({
+        Caml_builtin_exceptions.failure,
+        "nth"
+      })
     end end 
   end;
 end end
 
 function nth_opt(l, n) do
   if (n < 0) then do
-    throw {
-          Caml_builtin_exceptions.invalid_argument,
-          "List.nth"
-        };
+    error ({
+      Caml_builtin_exceptions.invalid_argument,
+      "List.nth"
+    })
   end
    end 
   _l = l;
@@ -100,7 +100,7 @@ function nth_opt(l, n) do
       end else do
         _n = n$1 - 1 | 0;
         _l = l$1[1];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return ;
@@ -118,7 +118,7 @@ function rev_append(_l1, _l2) do
         l2
       };
       _l1 = l1[1];
-      continue ;
+      ::continue:: ;
     end else do
       return l2;
     end end 
@@ -141,7 +141,7 @@ function init_tailrec_aux(_acc, _i, n, f) do
         Curry._1(f, i),
         acc
       };
-      continue ;
+      ::continue:: ;
     end end 
   end;
 end end
@@ -160,10 +160,10 @@ end end
 
 function init(len, f) do
   if (len < 0) then do
-    throw {
-          Caml_builtin_exceptions.invalid_argument,
-          "List.init"
-        };
+    error ({
+      Caml_builtin_exceptions.invalid_argument,
+      "List.init"
+    })
   end
    end 
   if (len > 10000) then do
@@ -221,7 +221,7 @@ function rev_map(f, l) do
         Curry._1(f, param[0]),
         accu
       };
-      continue ;
+      ::continue:: ;
     end else do
       return accu;
     end end 
@@ -234,7 +234,7 @@ function iter(f, _param) do
     if (param) then do
       Curry._1(f, param[0]);
       _param = param[1];
-      continue ;
+      ::continue:: ;
     end else do
       return --[[ () ]]0;
     end end 
@@ -252,7 +252,7 @@ function iteri(f, l) do
       Curry._2(f$1, i, param[0]);
       _param = param[1];
       _i = i + 1 | 0;
-      continue ;
+      ::continue:: ;
     end else do
       return --[[ () ]]0;
     end end 
@@ -266,7 +266,7 @@ function fold_left(f, _accu, _l) do
     if (l) then do
       _l = l[1];
       _accu = Curry._2(f, accu, l[0]);
-      continue ;
+      ::continue:: ;
     end else do
       return accu;
     end end 
@@ -290,16 +290,16 @@ function map2(f, l1, l2) do
               map2(f, l1[1], l2[1])
             };
     end else do
-      throw {
-            Caml_builtin_exceptions.invalid_argument,
-            "List.map2"
-          };
+      error ({
+        Caml_builtin_exceptions.invalid_argument,
+        "List.map2"
+      })
     end end 
   end else if (l2) then do
-    throw {
-          Caml_builtin_exceptions.invalid_argument,
-          "List.map2"
-        };
+    error ({
+      Caml_builtin_exceptions.invalid_argument,
+      "List.map2"
+    })
   end else do
     return --[[ [] ]]0;
   end end  end 
@@ -321,19 +321,19 @@ function rev_map2(f, l1, l2) do
           Curry._2(f, l1$1[0], l2$1[0]),
           accu
         };
-        continue ;
+        ::continue:: ;
       end else do
-        throw {
-              Caml_builtin_exceptions.invalid_argument,
-              "List.rev_map2"
-            };
+        error ({
+          Caml_builtin_exceptions.invalid_argument,
+          "List.rev_map2"
+        })
       end end 
     end else do
       if (l2$1) then do
-        throw {
-              Caml_builtin_exceptions.invalid_argument,
-              "List.rev_map2"
-            };
+        error ({
+          Caml_builtin_exceptions.invalid_argument,
+          "List.rev_map2"
+        })
       end
        end 
       return accu;
@@ -350,18 +350,18 @@ function iter2(f, _l1, _l2) do
         Curry._2(f, l1[0], l2[0]);
         _l2 = l2[1];
         _l1 = l1[1];
-        continue ;
+        ::continue:: ;
       end else do
-        throw {
-              Caml_builtin_exceptions.invalid_argument,
-              "List.iter2"
-            };
+        error ({
+          Caml_builtin_exceptions.invalid_argument,
+          "List.iter2"
+        })
       end end 
     end else if (l2) then do
-      throw {
-            Caml_builtin_exceptions.invalid_argument,
-            "List.iter2"
-          };
+      error ({
+        Caml_builtin_exceptions.invalid_argument,
+        "List.iter2"
+      })
     end else do
       return --[[ () ]]0;
     end end  end 
@@ -378,19 +378,19 @@ function fold_left2(f, _accu, _l1, _l2) do
         _l2 = l2[1];
         _l1 = l1[1];
         _accu = Curry._3(f, accu, l1[0], l2[0]);
-        continue ;
+        ::continue:: ;
       end else do
-        throw {
-              Caml_builtin_exceptions.invalid_argument,
-              "List.fold_left2"
-            };
+        error ({
+          Caml_builtin_exceptions.invalid_argument,
+          "List.fold_left2"
+        })
       end end 
     end else do
       if (l2) then do
-        throw {
-              Caml_builtin_exceptions.invalid_argument,
-              "List.fold_left2"
-            };
+        error ({
+          Caml_builtin_exceptions.invalid_argument,
+          "List.fold_left2"
+        })
       end
        end 
       return accu;
@@ -403,17 +403,17 @@ function fold_right2(f, l1, l2, accu) do
     if (l2) then do
       return Curry._3(f, l1[0], l2[0], fold_right2(f, l1[1], l2[1], accu));
     end else do
-      throw {
-            Caml_builtin_exceptions.invalid_argument,
-            "List.fold_right2"
-          };
+      error ({
+        Caml_builtin_exceptions.invalid_argument,
+        "List.fold_right2"
+      })
     end end 
   end else do
     if (l2) then do
-      throw {
-            Caml_builtin_exceptions.invalid_argument,
-            "List.fold_right2"
-          };
+      error ({
+        Caml_builtin_exceptions.invalid_argument,
+        "List.fold_right2"
+      })
     end
      end 
     return accu;
@@ -426,7 +426,7 @@ function for_all(p, _param) do
     if (param) then do
       if (Curry._1(p, param[0])) then do
         _param = param[1];
-        continue ;
+        ::continue:: ;
       end else do
         return false;
       end end 
@@ -444,7 +444,7 @@ function exists(p, _param) do
         return true;
       end else do
         _param = param[1];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return false;
@@ -461,21 +461,21 @@ function for_all2(p, _l1, _l2) do
         if (Curry._2(p, l1[0], l2[0])) then do
           _l2 = l2[1];
           _l1 = l1[1];
-          continue ;
+          ::continue:: ;
         end else do
           return false;
         end end 
       end else do
-        throw {
-              Caml_builtin_exceptions.invalid_argument,
-              "List.for_all2"
-            };
+        error ({
+          Caml_builtin_exceptions.invalid_argument,
+          "List.for_all2"
+        })
       end end 
     end else if (l2) then do
-      throw {
-            Caml_builtin_exceptions.invalid_argument,
-            "List.for_all2"
-          };
+      error ({
+        Caml_builtin_exceptions.invalid_argument,
+        "List.for_all2"
+      })
     end else do
       return true;
     end end  end 
@@ -493,19 +493,19 @@ function exists2(p, _l1, _l2) do
         end else do
           _l2 = l2[1];
           _l1 = l1[1];
-          continue ;
+          ::continue:: ;
         end end 
       end else do
-        throw {
-              Caml_builtin_exceptions.invalid_argument,
-              "List.exists2"
-            };
+        error ({
+          Caml_builtin_exceptions.invalid_argument,
+          "List.exists2"
+        })
       end end 
     end else if (l2) then do
-      throw {
-            Caml_builtin_exceptions.invalid_argument,
-            "List.exists2"
-          };
+      error ({
+        Caml_builtin_exceptions.invalid_argument,
+        "List.exists2"
+      })
     end else do
       return false;
     end end  end 
@@ -520,7 +520,7 @@ function mem(x, _param) do
         return true;
       end else do
         _param = param[1];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return false;
@@ -536,7 +536,7 @@ function memq(x, _param) do
         return true;
       end else do
         _param = param[1];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return false;
@@ -553,10 +553,10 @@ function assoc(x, _param) do
         return match[1];
       end else do
         _param = param[1];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
-      throw Caml_builtin_exceptions.not_found;
+      error (Caml_builtin_exceptions.not_found)
     end end 
   end;
 end end
@@ -570,7 +570,7 @@ function assoc_opt(x, _param) do
         return Caml_option.some(match[1]);
       end else do
         _param = param[1];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return ;
@@ -587,10 +587,10 @@ function assq(x, _param) do
         return match[1];
       end else do
         _param = param[1];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
-      throw Caml_builtin_exceptions.not_found;
+      error (Caml_builtin_exceptions.not_found)
     end end 
   end;
 end end
@@ -604,7 +604,7 @@ function assq_opt(x, _param) do
         return Caml_option.some(match[1]);
       end else do
         _param = param[1];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return ;
@@ -620,7 +620,7 @@ function mem_assoc(x, _param) do
         return true;
       end else do
         _param = param[1];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return false;
@@ -636,7 +636,7 @@ function mem_assq(x, _param) do
         return true;
       end else do
         _param = param[1];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return false;
@@ -687,10 +687,10 @@ function find(p, _param) do
         return x;
       end else do
         _param = param[1];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
-      throw Caml_builtin_exceptions.not_found;
+      error (Caml_builtin_exceptions.not_found)
     end end 
   end;
 end end
@@ -704,7 +704,7 @@ function find_opt(p, _param) do
         return Caml_option.some(x);
       end else do
         _param = param[1];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return ;
@@ -728,10 +728,10 @@ function find_all(p) do
               x,
               accu
             };
-            continue ;
+            ::continue:: ;
           end else do
             _param = l;
-            continue ;
+            ::continue:: ;
           end end 
         end else do
           return rev_append(accu, --[[ [] ]]0);
@@ -757,14 +757,14 @@ function partition(p, l) do
           x,
           yes
         };
-        continue ;
+        ::continue:: ;
       end else do
         _param = l$1;
         _no = --[[ :: ]]{
           x,
           no
         };
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return --[[ tuple ]]{
@@ -808,16 +808,16 @@ function combine(l1, l2) do
               combine(l1[1], l2[1])
             };
     end else do
-      throw {
-            Caml_builtin_exceptions.invalid_argument,
-            "List.combine"
-          };
+      error ({
+        Caml_builtin_exceptions.invalid_argument,
+        "List.combine"
+      })
     end end 
   end else if (l2) then do
-    throw {
-          Caml_builtin_exceptions.invalid_argument,
-          "List.combine"
-        };
+    error ({
+      Caml_builtin_exceptions.invalid_argument,
+      "List.combine"
+    })
   end else do
     return --[[ [] ]]0;
   end end  end 
@@ -856,16 +856,16 @@ function chop(_k, _l) do
     end else if (l) then do
       _l = l[1];
       _k = k - 1 | 0;
-      continue ;
+      ::continue:: ;
     end else do
-      throw {
-            Caml_builtin_exceptions.assert_failure,
-            --[[ tuple ]]{
-              "list.ml",
-              262,
-              11
-            }
-          };
+      error ({
+        Caml_builtin_exceptions.assert_failure,
+        --[[ tuple ]]{
+          "list.ml",
+          262,
+          11
+        }
+      })
     end end  end 
   end;
 end end
@@ -1004,14 +1004,14 @@ function stable_sort(cmp, l) do
               accu
             };
             _l1 = l1[1];
-            continue ;
+            ::continue:: ;
           end else do
             _accu = --[[ :: ]]{
               h2,
               accu
             };
             _l2 = l2$1[1];
-            continue ;
+            ::continue:: ;
           end end 
         end else do
           return rev_append(l1, accu);
@@ -1154,14 +1154,14 @@ function stable_sort(cmp, l) do
               accu
             };
             _l1 = l1[1];
-            continue ;
+            ::continue:: ;
           end else do
             _accu = --[[ :: ]]{
               h2,
               accu
             };
             _l2 = l2$1[1];
-            continue ;
+            ::continue:: ;
           end end 
         end else do
           return rev_append(l1, accu);
@@ -1390,21 +1390,21 @@ function sort_uniq(cmp, l) do
             };
             _l2 = t2;
             _l1 = t1;
-            continue ;
+            ::continue:: ;
           end else if (c$7 > 0) then do
             _accu = --[[ :: ]]{
               h1,
               accu
             };
             _l1 = t1;
-            continue ;
+            ::continue:: ;
           end else do
             _accu = --[[ :: ]]{
               h2,
               accu
             };
             _l2 = t2;
-            continue ;
+            ::continue:: ;
           end end  end 
         end else do
           return rev_append(l1, accu);
@@ -1624,21 +1624,21 @@ function sort_uniq(cmp, l) do
             };
             _l2 = t2;
             _l1 = t1;
-            continue ;
+            ::continue:: ;
           end else if (c$7 < 0) then do
             _accu = --[[ :: ]]{
               h1,
               accu
             };
             _l1 = t1;
-            continue ;
+            ::continue:: ;
           end else do
             _accu = --[[ :: ]]{
               h2,
               accu
             };
             _l2 = t2;
-            continue ;
+            ::continue:: ;
           end end  end 
         end else do
           return rev_append(l1, accu);
@@ -1664,7 +1664,7 @@ function compare_lengths(_l1, _l2) do
       if (l2) then do
         _l2 = l2[1];
         _l1 = l1[1];
-        continue ;
+        ::continue:: ;
       end else do
         return 1;
       end end 
@@ -1686,7 +1686,7 @@ function compare_length_with(_l, _n) do
       end else do
         _n = n - 1 | 0;
         _l = l[1];
-        continue ;
+        ::continue:: ;
       end end 
     end else if (n == 0) then do
       return 0;

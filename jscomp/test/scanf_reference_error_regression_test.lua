@@ -1,13 +1,13 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-List = require "../../lib/js/list.lua";
-Block = require "../../lib/js/block.lua";
-Curry = require "../../lib/js/curry.lua";
-Scanf = require "../../lib/js/scanf.lua";
-Printf = require "../../lib/js/printf.lua";
-Mt_global = require "./mt_global.lua";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
+Mt = require "./mt";
+List = require "../../lib/js/list";
+Block = require "../../lib/js/block";
+Curry = require "../../lib/js/curry";
+Scanf = require "../../lib/js/scanf";
+Printf = require "../../lib/js/printf";
+Mt_global = require "./mt_global";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 suites = do
   contents: --[[ [] ]]0
@@ -78,10 +78,10 @@ function scan_rest(ib, accu) do
                                                           }),
                                                         "scan_int_list"
                                                       });
-                                                  throw {
-                                                        Caml_builtin_exceptions.failure,
-                                                        s
-                                                      };
+                                                  error ({
+                                                    Caml_builtin_exceptions.failure,
+                                                    s
+                                                  })
                                                   end end
                                                   
                                               end

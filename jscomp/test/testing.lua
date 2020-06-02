@@ -1,14 +1,14 @@
 --[['use strict';]]
 
-Block = require "../../lib/js/block.lua";
-Curry = require "../../lib/js/curry.lua";
-Scanf = require "../../lib/js/scanf.lua";
-Printf = require "../../lib/js/printf.lua";
-Caml_io = require "../../lib/js/caml_io.lua";
-Caml_obj = require "../../lib/js/caml_obj.lua";
-Pervasives = require "../../lib/js/pervasives.lua";
-Caml_js_exceptions = require "../../lib/js/caml_js_exceptions.lua";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
+Block = require "../../lib/js/block";
+Curry = require "../../lib/js/curry";
+Scanf = require "../../lib/js/scanf";
+Printf = require "../../lib/js/printf";
+Caml_io = require "../../lib/js/caml_io";
+Caml_obj = require "../../lib/js/caml_obj";
+Pervasives = require "../../lib/js/pervasives";
+Caml_js_exceptions = require "../../lib/js/caml_js_exceptions";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 all_tests_ok = do
   contents: true
@@ -103,12 +103,11 @@ end end
 function test_raises_exc_p(pred, f, x) do
   test_num.contents = test_num.contents + 1 | 0;
   print_test_number(--[[ () ]]0);
-  try do
+  xpcall(function() do
     Curry._1(f, x);
     print_failure_test_succeed(--[[ () ]]0);
     return false;
-  end
-  catch (raw_x)do
+  end end,function(raw_x) return do
     x$1 = Caml_js_exceptions.internalToOCamlException(raw_x);
     if (Curry._1(pred, x$1)) then do
       return true;
@@ -116,7 +115,7 @@ function test_raises_exc_p(pred, f, x) do
       print_failure_test_fail(--[[ () ]]0);
       return false;
     end end 
-  end
+  end end)
 end end
 
 function test_raises_some_exc(f) do

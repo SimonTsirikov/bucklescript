@@ -1,12 +1,12 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-Block = require "../../lib/js/block.lua";
-Curry = require "../../lib/js/curry.lua";
-Hashtbl = require "../../lib/js/hashtbl.lua";
-Caml_oo_curry = require "../../lib/js/caml_oo_curry.lua";
-CamlinternalOO = require "../../lib/js/camlinternalOO.lua";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
+Mt = require "./mt";
+Block = require "../../lib/js/block";
+Curry = require "../../lib/js/curry";
+Hashtbl = require "../../lib/js/hashtbl";
+Caml_oo_curry = require "../../lib/js/caml_oo_curry";
+CamlinternalOO = require "../../lib/js/camlinternalOO";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 shared = {"calc"};
 
@@ -59,18 +59,17 @@ function memo_fib_init(__class) do
   obj_init = inh[0];
   calc$1 = inh[1];
   CamlinternalOO.set_method(__class, calc, (function (self$2, x) do
-          try do
+          xpcall(function() do
             return Hashtbl.find(self$2[cache], x);
-          end
-          catch (exn)do
+          end end,function(exn) return do
             if (exn == Caml_builtin_exceptions.not_found) then do
               v = Curry._2(calc$1, self$2, x);
               Hashtbl.add(self$2[cache], x, v);
               return v;
             end else do
-              throw exn;
+              error (exn)
             end end 
-          end
+          end end)
         end end));
   return (function (env, self) do
       self$1 = CamlinternalOO.create_object_opt(self, __class);

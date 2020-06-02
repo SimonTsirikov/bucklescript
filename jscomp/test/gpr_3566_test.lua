@@ -1,9 +1,9 @@
 --[['use strict';]]
 
-Block = require "../../lib/js/block.lua";
-Curry = require "../../lib/js/curry.lua";
-Caml_obj = require "../../lib/js/caml_obj.lua";
-Caml_option = require "../../lib/js/caml_option.lua";
+Block = require "../../lib/js/block";
+Curry = require "../../lib/js/curry";
+Caml_obj = require "../../lib/js/caml_obj";
+Caml_option = require "../../lib/js/caml_option";
 
 function eq_A(x, y) do
   if (x.tag or y.tag) then do

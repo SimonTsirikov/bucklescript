@@ -1,8 +1,8 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-Block = require "../../lib/js/block.lua";
-Test_google_closure = require "./test_google_closure.lua";
+Mt = require "./mt";
+Block = require "../../lib/js/block";
+Test_google_closure = require "./test_google_closure";
 
 Mt.from_pair_suites("Closure", --[[ :: ]]{
       --[[ tuple ]]{

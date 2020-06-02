@@ -1,6 +1,6 @@
 --[['use strict';]]
 
-Curry = require "../../lib/js/curry.lua";
+Curry = require "../../lib/js/curry";
 
 function foo(x) do
   if (typeof x == "number" or x[0] ~= 3505894 or x[1] ~= 3) then do

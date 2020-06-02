@@ -21,7 +21,7 @@ function len(_acc, _l) do
     if (l) then do
       _l = l[1];
       _acc = #l[0] + acc | 0;
-      continue ;
+      ::continue:: ;
     end else do
       return acc;
     end end 
@@ -44,7 +44,7 @@ function fill(arr, _i, _l) do
       end;
       _l = l[1];
       _i = k;
-      continue ;
+      ::continue:: ;
     end else do
       return --[[ () ]]0;
     end end 
@@ -60,10 +60,10 @@ end end
 
 function caml_array_set(xs, index, newval) do
   if (index < 0 or index >= #xs) then do
-    throw {
-          Caml_builtin_exceptions.invalid_argument,
-          "index out of bounds"
-        };
+    error ({
+      Caml_builtin_exceptions.invalid_argument,
+      "index out of bounds"
+    })
   end
    end 
   xs[index] = newval;
@@ -72,10 +72,10 @@ end end
 
 function caml_array_get(xs, index) do
   if (index < 0 or index >= #xs) then do
-    throw {
-          Caml_builtin_exceptions.invalid_argument,
-          "index out of bounds"
-        };
+    error ({
+      Caml_builtin_exceptions.invalid_argument,
+      "index out of bounds"
+    })
   end
    end 
   return xs[index];

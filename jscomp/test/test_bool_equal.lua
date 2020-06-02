@@ -1,6 +1,6 @@
 --[['use strict';]]
 
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 function bool_equal(x, y) do
   if (x) then do
@@ -18,47 +18,47 @@ end end
 
 function assertions(param) do
   if (not bool_equal(true, true)) then do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "test_bool_equal.ml",
-            21,
-            2
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "test_bool_equal.ml",
+        21,
+        2
+      }
+    })
   end
    end 
   if (not bool_equal(false, false)) then do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "test_bool_equal.ml",
-            22,
-            2
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "test_bool_equal.ml",
+        22,
+        2
+      }
+    })
   end
    end 
   if (bool_equal(true, false)) then do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "test_bool_equal.ml",
-            23,
-            2
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "test_bool_equal.ml",
+        23,
+        2
+      }
+    })
   end
    end 
   if (bool_equal(false, true)) then do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "test_bool_equal.ml",
-            24,
-            2
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "test_bool_equal.ml",
+        24,
+        2
+      }
+    })
   end
    end 
   return 0;

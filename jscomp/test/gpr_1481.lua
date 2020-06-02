@@ -1,6 +1,6 @@
 --[['use strict';]]
 
-Moduleid = require "#moduleid";
+Moduleid = require "#modu";
 
 function f(param) do
   return Moduleid.name;

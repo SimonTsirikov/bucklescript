@@ -8,7 +8,7 @@ function test3(_n) do
       return (n + 5 | 0) + 4 | 0;
     end else do
       _n = n - 1 | 0;
-      continue ;
+      ::continue:: ;
     end end 
   end;
 end end
@@ -20,7 +20,7 @@ function test2(_n) do
       return test3(n) + 3 | 0;
     end else do
       _n = n - 1 | 0;
-      continue ;
+      ::continue:: ;
     end end 
   end;
 end end
@@ -36,12 +36,12 @@ function test0(_n) do
           return test2(n$1) + 2 | 0;
         end else do
           _n$1 = n$1 - 1 | 0;
-          continue ;
+          ::continue:: ;
         end end 
       end;
     end else do
       _n = n - 1 | 0;
-      continue ;
+      ::continue:: ;
     end end 
   end;
 end end

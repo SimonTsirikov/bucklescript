@@ -1,31 +1,30 @@
 --[['use strict';]]
 
-Obj = require "./obj.lua";
-Curry = require "./curry.lua";
-Caml_obj = require "./caml_obj.lua";
-Caml_exceptions = require "./caml_exceptions.lua";
+Obj = require "./obj";
+Curry = require "./curry";
+Caml_obj = require "./caml_obj";
+Caml_exceptions = require "./caml_exceptions";
 
 Undefined = Caml_exceptions.create("CamlinternalLazy.Undefined");
 
 function raise_undefined(param) do
-  throw Undefined;
+  error (Undefined)
 end end
 
 function force_lazy_block(blk) do
   closure = blk[0];
   blk[0] = raise_undefined;
-  try do
+  xpcall(function() do
     result = Curry._1(closure, --[[ () ]]0);
     blk[0] = result;
     Caml_obj.caml_obj_set_tag(blk, Obj.forward_tag);
     return result;
-  end
-  catch (e)do
+  end end,function(e) return do
     blk[0] = (function (param) do
-        throw e;
+        error (e)
       end end);
-    throw e;
-  end
+    error (e)
+  end end)
 end end
 
 function force_val_lazy_block(blk) do

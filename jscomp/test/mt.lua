@@ -1,12 +1,12 @@
 --[['use strict';]]
 
-List = require "../../lib/js/list.lua";
-Path = require "path";
-__Array = require "../../lib/js/array.lua";
-Block = require "../../lib/js/block.lua";
-Curry = require "../../lib/js/curry.lua";
-Assert = require "assert";
-Process = require "process";
+List = require "../../lib/js/list";
+Path = require "";
+__Array = require "../../lib/js/array";
+Block = require "../../lib/js/block";
+Curry = require "../../lib/js/curry";
+Assert = require "as";
+Process = require "pro";
 
 function assert_fail(msg) do
   Assert.fail(--[[ () ]]0, --[[ () ]]0, msg, "");

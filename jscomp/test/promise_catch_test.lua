@@ -1,12 +1,12 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-Block = require "../../lib/js/block.lua";
-Js_exn = require "../../lib/js/js_exn.lua";
-Js_option = require "../../lib/js/js_option.lua";
-Caml_exceptions = require "../../lib/js/caml_exceptions.lua";
-Caml_js_exceptions = require "../../lib/js/caml_js_exceptions.lua";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
+Mt = require "./mt";
+Block = require "../../lib/js/block";
+Js_exn = require "../../lib/js/js_exn";
+Js_option = require "../../lib/js/js_option";
+Caml_exceptions = require "../../lib/js/caml_exceptions";
+Caml_js_exceptions = require "../../lib/js/caml_js_exceptions";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 suites = do
   contents: --[[ [] ]]0
@@ -41,14 +41,14 @@ function handler(e) do
     console.log("hi");
     return Promise.resolve(0);
   end else do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "promise_catch_test.ml",
-            22,
-            9
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "promise_catch_test.ml",
+        22,
+        9
+      }
+    })
   end end  end 
 end end
 
@@ -73,26 +73,25 @@ exit = 0;
 
 val;
 
-try do
+xpcall(function() do
   val = JSON.parse(" 1. +  ");
   exit = 1;
-end
-catch (raw_e)do
+end end,function(raw_e) return do
   e = Caml_js_exceptions.internalToOCamlException(raw_e);
   eq("File \"promise_catch_test.ml\", line 36, characters 7-14", true, Js_option.isSomeValue((function (xxx, y) do
               return xxx == y;
             end end), 2, myHandler(e)));
-end
+end end)
 
 if (exit == 1) then do
-  throw {
-        Caml_builtin_exceptions.assert_failure,
-        --[[ tuple ]]{
-          "promise_catch_test.ml",
-          39,
-          9
-        }
-      };
+  error ({
+    Caml_builtin_exceptions.assert_failure,
+    --[[ tuple ]]{
+      "promise_catch_test.ml",
+      39,
+      9
+    }
+  })
 end
  end 
 

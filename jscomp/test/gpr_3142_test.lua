@@ -1,7 +1,7 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-Js_mapperRt = require "../../lib/js/js_mapperRt.lua";
+Mt = require "./mt";
+Js_mapperRt = require "../../lib/js/js_mapperRt";
 
 suites = do
   contents: --[[ [] ]]0

@@ -51,32 +51,30 @@ function make_lexer(keywords) do
           return Hashtbl.add(kwd_table, s, --[[ Kwd ]]Block.__(0, {s}));
         end end), keywords);
   ident_or_keyword = function (id) do
-    try do
+    xpcall(function() do
       return Hashtbl.find(kwd_table, id);
-    end
-    catch (exn)do
+    end end,function(exn) return do
       if (exn == Caml_builtin_exceptions.not_found) then do
         return --[[ Ident ]]Block.__(1, {id});
       end else do
-        throw exn;
+        error (exn)
       end end 
-    end
+    end end)
   end end;
   keyword_or_error = function (c) do
     s = Caml_bytes.bytes_to_string(Bytes.make(1, c));
-    try do
+    xpcall(function() do
       return Hashtbl.find(kwd_table, s);
-    end
-    catch (exn)do
+    end end,function(exn) return do
       if (exn == Caml_builtin_exceptions.not_found) then do
-        throw {
-              Stream.__Error,
-              "Illegal character " .. s
-            };
+        error ({
+          Stream.__Error,
+          "Illegal character " .. s
+        })
       end
        end 
-      throw exn;
-    end
+      error (exn)
+    end end)
   end end;
   next_token = function (strm__) do
     while(true) do
@@ -99,7 +97,7 @@ function make_lexer(keywords) do
                  or ___conditional___ = 26
                  or ___conditional___ = 32 then do
                     Stream.junk(strm__);
-                    continue ;end end end 
+                    ::continue:: ;end end end 
                  if ___conditional___ = 34 then do
                     Stream.junk(strm__);
                     reset_buffer(--[[ () ]]0);
@@ -107,35 +105,34 @@ function make_lexer(keywords) do
                  if ___conditional___ = 39 then do
                     Stream.junk(strm__);
                     c$1;
-                    try do
+                    xpcall(function() do
                       c$1 = __char(strm__);
-                    end
-                    catch (exn)do
+                    end end,function(exn) return do
                       if (exn == Stream.Failure) then do
-                        throw {
-                              Stream.__Error,
-                              ""
-                            };
+                        error ({
+                          Stream.__Error,
+                          ""
+                        })
                       end
                        end 
-                      throw exn;
-                    end
+                      error (exn)
+                    end end)
                     match$1 = Stream.peek(strm__);
                     if (match$1 ~= undefined) then do
                       if (match$1 ~= 39) then do
-                        throw {
-                              Stream.__Error,
-                              ""
-                            };
+                        error ({
+                          Stream.__Error,
+                          ""
+                        })
                       end
                        end 
                       Stream.junk(strm__);
                       return --[[ Char ]]Block.__(5, {c$1});
                     end else do
-                      throw {
-                            Stream.__Error,
-                            ""
-                          };
+                      error ({
+                        Stream.__Error,
+                        ""
+                      })
                     end end end end end 
                  if ___conditional___ = 40 then do
                     Stream.junk(strm__);
@@ -294,7 +291,7 @@ function make_lexer(keywords) do
                    end  end  end 
                   Stream.junk(strm__$3);
                   store(c$3);
-                  continue ;
+                  ::continue:: ;
                 end else do
                   return ident_or_keyword(get_string(--[[ () ]]0));
                 end end 
@@ -382,7 +379,7 @@ function make_lexer(keywords) do
         end end  end  end 
         Stream.junk(strm__);
         store(c);
-        continue ;
+        ::continue:: ;
       end else do
         return ident_or_keyword(get_string(--[[ () ]]0));
       end end 
@@ -404,7 +401,7 @@ function make_lexer(keywords) do
           if (c >= 48) then do
             Stream.junk(strm__);
             store(c);
-            continue ;
+            ::continue:: ;
           end
            end 
         end else do
@@ -420,7 +417,7 @@ function make_lexer(keywords) do
                 if ((switcher + 21 >>> 0) <= 9) then do
                   Stream.junk(strm__$1);
                   store(c$1);
-                  continue ;
+                  ::continue:: ;
                 end
                  end 
               end else if (switcher > 31 or switcher < 1) then do
@@ -464,7 +461,7 @@ function make_lexer(keywords) do
         end else do
           Stream.junk(strm__);
           store(c);
-          continue ;
+          ::continue:: ;
         end end 
       end else do
         return --[[ Float ]]Block.__(3, {Caml_format.caml_float_of_string(get_string(--[[ () ]]0))});
@@ -480,30 +477,29 @@ function make_lexer(keywords) do
         if (c ~= 34) then do
           if (c ~= 92) then do
             store(c);
-            continue ;
+            ::continue:: ;
           end else do
             c$1;
-            try do
+            xpcall(function() do
               c$1 = __escape(strm__);
-            end
-            catch (exn)do
+            end end,function(exn) return do
               if (exn == Stream.Failure) then do
-                throw {
-                      Stream.__Error,
-                      ""
-                    };
+                error ({
+                  Stream.__Error,
+                  ""
+                })
               end
                end 
-              throw exn;
-            end
+              error (exn)
+            end end)
             store(c$1);
-            continue ;
+            ::continue:: ;
           end end 
         end else do
           return get_string(--[[ () ]]0);
         end end 
       end else do
-        throw Stream.Failure;
+        error (Stream.Failure)
       end end 
     end;
   end end;
@@ -515,22 +511,21 @@ function make_lexer(keywords) do
       if (c ~= 92) then do
         return c;
       end else do
-        try do
+        xpcall(function() do
           return __escape(strm__);
-        end
-        catch (exn)do
+        end end,function(exn) return do
           if (exn == Stream.Failure) then do
-            throw {
-                  Stream.__Error,
-                  ""
-                };
+            error ({
+              Stream.__Error,
+              ""
+            })
           end
            end 
-          throw exn;
-        end
+          error (exn)
+        end end)
       end end 
     end else do
-      throw Stream.Failure;
+      error (Stream.Failure)
     end end 
   end end;
   __escape = function (strm__) do
@@ -569,10 +564,10 @@ function make_lexer(keywords) do
           if (match$1 ~= undefined) then do
             c2 = match$1;
             if (c2 > 57 or c2 < 48) then do
-              throw {
-                    Stream.__Error,
-                    ""
-                  };
+              error ({
+                Stream.__Error,
+                ""
+              })
             end
              end 
             Stream.junk(strm__);
@@ -580,32 +575,32 @@ function make_lexer(keywords) do
             if (match$2 ~= undefined) then do
               c3 = match$2;
               if (c3 > 57 or c3 < 48) then do
-                throw {
-                      Stream.__Error,
-                      ""
-                    };
+                error ({
+                  Stream.__Error,
+                  ""
+                })
               end
                end 
               Stream.junk(strm__);
               return Char.chr((Caml_int32.imul(c1 - 48 | 0, 100) + Caml_int32.imul(c2 - 48 | 0, 10) | 0) + (c3 - 48 | 0) | 0);
             end else do
-              throw {
-                    Stream.__Error,
-                    ""
-                  };
+              error ({
+                Stream.__Error,
+                ""
+              })
             end end 
           end else do
-            throw {
-                  Stream.__Error,
-                  ""
-                };
+            error ({
+              Stream.__Error,
+              ""
+            })
           end end 
         end else do
           return c1;
         end end 
       end end 
     end else do
-      throw Stream.Failure;
+      error (Stream.Failure)
     end end 
   end end;
   comment = function (strm__) do
@@ -628,11 +623,11 @@ function make_lexer(keywords) do
                   return comment(strm__$1);
                 end end 
               end else do
-                throw Stream.Failure;
+                error (Stream.Failure)
               end end end end end 
            if ___conditional___ = 41 then do
               Stream.junk(strm__);
-              continue ;end end end 
+              ::continue:: ;end end end 
            if ___conditional___ = 42 then do
               Stream.junk(strm__);
               strm__$2 = strm__;
@@ -645,24 +640,24 @@ function make_lexer(keywords) do
                     if (match$3 ~= 42) then do
                       return comment(strm__$2);
                     end else do
-                      continue ;
+                      ::continue:: ;
                     end end 
                   end else do
                     return --[[ () ]]0;
                   end end 
                 end else do
-                  throw Stream.Failure;
+                  error (Stream.Failure)
                 end end 
               end;end end end 
            do
           else do
             Stream.junk(strm__);
-            continue ;
+            ::continue:: ;
             end end
             
         end
       end else do
-        throw Stream.Failure;
+        error (Stream.Failure)
       end end 
     end;
   end end;

@@ -1,8 +1,8 @@
 --[['use strict';]]
 
-Fs = require "fs";
-Path = require "path";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
+Fs = require "";
+Path = require "";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 package_json = "package.json";
 
@@ -14,11 +14,11 @@ function find_package_json(_dir) do
     end else do
       new_dir = Path.dirname(dir);
       if (new_dir == dir) then do
-        throw Caml_builtin_exceptions.not_found;
+        error (Caml_builtin_exceptions.not_found)
       end
        end 
       _dir = new_dir;
-      continue ;
+      ::continue:: ;
     end end 
   end;
 end end

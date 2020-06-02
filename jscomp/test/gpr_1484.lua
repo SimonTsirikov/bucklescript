@@ -2,7 +2,7 @@
 
 
 function test(x) do
-  x.nodeValue = null;
+  x.nodeValue = nil;
   return --[[ () ]]0;
 end end
 

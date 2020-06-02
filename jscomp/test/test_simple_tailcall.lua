@@ -3,7 +3,7 @@
 
 function tailcall(x) do
   while(true) do
-    continue ;
+    ::continue:: ;
   end;
 end end
 
@@ -26,7 +26,7 @@ function length(_acc, _x) do
       end else do
         _x = tl;
         _acc = acc + 1 | 0;
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return acc;

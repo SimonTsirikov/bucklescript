@@ -1,9 +1,9 @@
 --[['use strict';]]
 
-Belt_MutableSetInt = require "../../lib/js/belt_MutableSetInt.lua";
+Belt_MutableSetInt = require "../../lib/js/belt_MutableSetInt";
 
 mySet = do
-  data: null
+  data: nil
 end;
 
 Belt_MutableSetInt.add(mySet, 1);

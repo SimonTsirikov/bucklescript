@@ -1,14 +1,14 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-List = require "../../lib/js/list.lua";
-__Array = require "../../lib/js/array.lua";
-Block = require "../../lib/js/block.lua";
-Curry = require "../../lib/js/curry.lua";
-Caml_obj = require "../../lib/js/caml_obj.lua";
-Caml_array = require "../../lib/js/caml_array.lua";
-Caml_primitive = require "../../lib/js/caml_primitive.lua";
-Caml_exceptions = require "../../lib/js/caml_exceptions.lua";
+Mt = require "./mt";
+List = require "../../lib/js/list";
+__Array = require "../../lib/js/array";
+Block = require "../../lib/js/block";
+Curry = require "../../lib/js/curry";
+Caml_obj = require "../../lib/js/caml_obj";
+Caml_array = require "../../lib/js/caml_array";
+Caml_primitive = require "../../lib/js/caml_primitive";
+Caml_exceptions = require "../../lib/js/caml_exceptions";
 
 function starts_with(xs, prefix, p) do
   H = Caml_exceptions.create("H");
@@ -17,22 +17,21 @@ function starts_with(xs, prefix, p) do
   if (len2 > len1) then do
     return false;
   end else do
-    try do
+    xpcall(function() do
       for i = 0 , len2 - 1 | 0 , 1 do
         if (not Curry._2(p, Caml_array.caml_array_get(xs, i), Caml_array.caml_array_get(prefix, i))) then do
-          throw H;
+          error (H)
         end
          end 
       end
       return true;
-    end
-    catch (exn)do
+    end end,function(exn) return do
       if (exn == H) then do
         return false;
       end else do
-        throw exn;
+        error (exn)
       end end 
-    end
+    end end)
   end end 
 end end
 
@@ -45,7 +44,7 @@ function is_sorted(x) do
       return true;
     end else if (Caml_obj.caml_lessthan(Caml_array.caml_array_get(x, i), Caml_array.caml_array_get(x, i + 1 | 0))) then do
       _i = i + 1 | 0;
-      continue ;
+      ::continue:: ;
     end else do
       return false;
     end end  end 

@@ -1,7 +1,7 @@
 --[['use strict';]]
 
-Block = require "../../lib/js/block.lua";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
+Block = require "../../lib/js/block";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 function is_number(_expr) do
   while(true) do
@@ -16,7 +16,7 @@ function is_number(_expr) do
           end end end end end 
        if ___conditional___ = 1--[[ Neg ]] then do
           _expr = expr[0];
-          continue ;end end end 
+          ::continue:: ;end end end 
        if ___conditional___ = 2--[[ Sum ]]
        or ___conditional___ = 3--[[ Pow ]]
        or ___conditional___ = 4--[[ Frac ]]
@@ -52,14 +52,14 @@ function compare(context, state, _a, _b) do
              if ___conditional___ = 2--[[ Sum ]] then do
                 exit$2 = 4;end else 
              if ___conditional___ = 4--[[ Frac ]] then do
-                throw {
-                      Caml_builtin_exceptions.assert_failure,
-                      --[[ tuple ]]{
-                        "gpr_1698_test.ml",
-                        45,
-                        10
-                      }
-                    };end end end 
+                error ({
+                  Caml_builtin_exceptions.assert_failure,
+                  --[[ tuple ]]{
+                    "gpr_1698_test.ml",
+                    45,
+                    10
+                  }
+                })end end end 
              if ___conditional___ = 3--[[ Pow ]]
              or ___conditional___ = 5--[[ Gcd ]] then do
                 exit = 1;end else 
@@ -68,7 +68,7 @@ function compare(context, state, _a, _b) do
           endend else 
        if ___conditional___ = 1--[[ Neg ]] then do
           _a = a[0];
-          continue ;end end end 
+          ::continue:: ;end end end 
        if ___conditional___ = 2--[[ Sum ]]
        or ___conditional___ = 3--[[ Pow ]] then do
           exit$3 = 5;end else 
@@ -76,14 +76,14 @@ function compare(context, state, _a, _b) do
           local ___conditional___=(b.tag | 0);
           do
              if ___conditional___ = 0--[[ Val ]] then do
-                throw {
-                      Caml_builtin_exceptions.assert_failure,
-                      --[[ tuple ]]{
-                        "gpr_1698_test.ml",
-                        45,
-                        10
-                      }
-                    };end end end 
+                error ({
+                  Caml_builtin_exceptions.assert_failure,
+                  --[[ tuple ]]{
+                    "gpr_1698_test.ml",
+                    45,
+                    10
+                  }
+                })end end end 
              if ___conditional___ = 1--[[ Neg ]] then do
                 exit$3 = 5;end else 
              if ___conditional___ = 2--[[ Sum ]] then do
@@ -125,7 +125,7 @@ function compare(context, state, _a, _b) do
     if (exit$3 == 5) then do
       if (b.tag == --[[ Neg ]]1) then do
         _b = b[0];
-        continue ;
+        ::continue:: ;
       end else if (a.tag == --[[ Sum ]]2 and is_number(b)) then do
         return 1;
       end else do
@@ -177,7 +177,7 @@ function compare(context, state, _a, _b) do
           if (denom == 0) then do
             _b = nb;
             _a = na;
-            continue ;
+            ::continue:: ;
           end else do
             return denom;
           end end end end end 

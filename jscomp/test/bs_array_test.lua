@@ -1,16 +1,16 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-Block = require "../../lib/js/block.lua";
-Curry = require "../../lib/js/curry.lua";
-Js_list = require "../../lib/js/js_list.lua";
-Caml_obj = require "../../lib/js/caml_obj.lua";
-Belt_List = require "../../lib/js/belt_List.lua";
-Js_vector = require "../../lib/js/js_vector.lua";
-Belt_Array = require "../../lib/js/belt_Array.lua";
-Caml_array = require "../../lib/js/caml_array.lua";
-Caml_primitive = require "../../lib/js/caml_primitive.lua";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
+Mt = require "./mt";
+Block = require "../../lib/js/block";
+Curry = require "../../lib/js/curry";
+Js_list = require "../../lib/js/js_list";
+Caml_obj = require "../../lib/js/caml_obj";
+Belt_List = require "../../lib/js/belt_List";
+Js_vector = require "../../lib/js/js_vector";
+Belt_Array = require "../../lib/js/belt_Array";
+Caml_array = require "../../lib/js/caml_array";
+Caml_primitive = require "../../lib/js/caml_primitive";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 suites = do
   contents: --[[ [] ]]0
@@ -139,14 +139,14 @@ v$1 = {
 };
 
 if (not Belt_Array.set(v$1, 0, 0)) then do
-  throw {
-        Caml_builtin_exceptions.assert_failure,
-        --[[ tuple ]]{
-          "bs_array_test.ml",
-          34,
-          33
-        }
-      };
+  error ({
+    Caml_builtin_exceptions.assert_failure,
+    --[[ tuple ]]{
+      "bs_array_test.ml",
+      34,
+      33
+    }
+  })
 end
  end 
 
@@ -158,14 +158,14 @@ v$2 = {
 };
 
 if (not Belt_Array.set(v$2, 1, 0)) then do
-  throw {
-        Caml_builtin_exceptions.assert_failure,
-        --[[ tuple ]]{
-          "bs_array_test.ml",
-          35,
-          32
-        }
-      };
+  error ({
+    Caml_builtin_exceptions.assert_failure,
+    --[[ tuple ]]{
+      "bs_array_test.ml",
+      35,
+      32
+    }
+  })
 end
  end 
 
@@ -391,7 +391,7 @@ end end
 
 function makeMatrixExn(sx, sy, init) do
   if (not (sx >= 0 and sy >= 0)) then do
-    throw new Error("File \"bs_array_test.ml\", line 109, characters 4-10");
+    error (new Error("File \"bs_array_test.ml\", line 109, characters 4-10"))
   end
    end 
   res = new Array(sx);

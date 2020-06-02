@@ -1,14 +1,14 @@
 --[['use strict';]]
 
-Caml_option = require "../../lib/js/caml_option.lua";
-Js_undefined = require "../../lib/js/js_undefined.lua";
-Belt_MutableQueue = require "../../lib/js/belt_MutableQueue.lua";
-Belt_MutableStack = require "../../lib/js/belt_MutableStack.lua";
+Caml_option = require "../../lib/js/caml_option";
+Js_undefined = require "../../lib/js/js_undefined";
+Belt_MutableQueue = require "../../lib/js/belt_MutableQueue";
+Belt_MutableStack = require "../../lib/js/belt_MutableStack";
 
 function inOrder(v) do
   current = v;
   s = do
-    root: null
+    root: nil
   end;
   q = Belt_MutableQueue.make(--[[ () ]]0);
   while(current ~= undefined) do
@@ -16,7 +16,7 @@ function inOrder(v) do
     Belt_MutableStack.push(s, v$1);
     current = v$1.left;
   end;
-  while(s.root ~= null) do
+  while(s.root ~= nil) do
     current = Belt_MutableStack.popUndefined(s);
     v$2 = current;
     Belt_MutableQueue.add(q, v$2.value);
@@ -33,7 +33,7 @@ end end
 function inOrder3(v) do
   current = v;
   s = do
-    root: null
+    root: nil
   end;
   q = Belt_MutableQueue.make(--[[ () ]]0);
   while(current ~= undefined) do
@@ -58,7 +58,7 @@ function inOrder2(v) do
   todo = true;
   cursor = v;
   s = do
-    root: null
+    root: nil
   end;
   q = Belt_MutableQueue.make(--[[ () ]]0);
   while(todo) do
@@ -66,7 +66,7 @@ function inOrder2(v) do
       v$1 = cursor;
       Belt_MutableStack.push(s, v$1);
       cursor = v$1.left;
-    end else if (s.root ~= null) then do
+    end else if (s.root ~= nil) then do
       cursor = Belt_MutableStack.popUndefined(s);
       current = cursor;
       Belt_MutableQueue.add(q, current.value);

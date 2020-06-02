@@ -1,8 +1,8 @@
 --[['use strict';]]
 
-Curry = require "../../lib/js/curry.lua";
-React = require "react";
-ReactDom = require "react-dom";
+Curry = require "../../lib/js/curry";
+React = require "r";
+ReactDom = require "react";
 
 function fib(n) do
   if (n == 2 or n == 1) then do

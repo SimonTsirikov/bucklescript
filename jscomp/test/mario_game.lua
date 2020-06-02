@@ -1,16 +1,16 @@
 --[['use strict';]]
 
-List = require "../../lib/js/list.lua";
-Block = require "../../lib/js/block.lua";
-Curry = require "../../lib/js/curry.lua";
-Printf = require "../../lib/js/printf.lua";
-Random = require "../../lib/js/random.lua";
-Caml_obj = require "../../lib/js/caml_obj.lua";
-Caml_int32 = require "../../lib/js/caml_int32.lua";
-Pervasives = require "../../lib/js/pervasives.lua";
-Caml_option = require "../../lib/js/caml_option.lua";
-Caml_primitive = require "../../lib/js/caml_primitive.lua";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
+List = require "../../lib/js/list";
+Block = require "../../lib/js/block";
+Curry = require "../../lib/js/curry";
+Printf = require "../../lib/js/printf";
+Random = require "../../lib/js/random";
+Caml_obj = require "../../lib/js/caml_obj";
+Caml_int32 = require "../../lib/js/caml_int32";
+Pervasives = require "../../lib/js/pervasives";
+Caml_option = require "../../lib/js/caml_option";
+Caml_primitive = require "../../lib/js/caml_primitive";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 Actors = { };
 
@@ -1510,10 +1510,10 @@ function game_win(ctx) do
   ctx.fillStyle = "white";
   ctx.font = "20px 'Press Start 2P'";
   ctx.fillText("You win!", 180, 128);
-  throw {
-        Caml_builtin_exceptions.failure,
-        "Game over."
-      };
+  error ({
+    Caml_builtin_exceptions.failure,
+    "Game over."
+  })
 end end
 
 function game_loss(ctx) do
@@ -1523,10 +1523,10 @@ function game_loss(ctx) do
   ctx.fillStyle = "white";
   ctx.font = "20px 'Press Start 2P'";
   ctx.fillText("GAME OVER. You lose!", 60, 128);
-  throw {
-        Caml_builtin_exceptions.failure,
-        "Game over."
-      };
+  error ({
+    Caml_builtin_exceptions.failure,
+    "Game over."
+  })
 end end
 
 Draw = do
@@ -2108,7 +2108,7 @@ function check_collisions(collid, all_collids, state) do
         end end 
         _acc = acc$1;
         _cs = cs$1[1];
-        continue ;
+        ::continue:: ;
       end else do
         return acc;
       end end 
@@ -2428,7 +2428,7 @@ function mem_loc(checkloc, _loclist) do
         return true;
       end else do
         _loclist = loclist[1];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return false;
@@ -2465,10 +2465,10 @@ function choose_enemy_typ(typ) do
         return --[[ Goomba ]]0;end end end 
      do
     else do
-      throw {
-            Caml_builtin_exceptions.failure,
-            "Shouldn't reach here"
-          };
+      error ({
+        Caml_builtin_exceptions.failure,
+        "Shouldn't reach here"
+      })
       end end
       
   end
@@ -2489,10 +2489,10 @@ function choose_sblock_typ(typ) do
         return --[[ Ground ]]5;end end end 
      do
     else do
-      throw {
-            Caml_builtin_exceptions.failure,
-            "Shouldn't reach here"
-          };
+      error ({
+        Caml_builtin_exceptions.failure,
+        "Shouldn't reach here"
+      })
       end end
       
   end
@@ -2506,7 +2506,7 @@ function avoid_overlap(_lst, currentLst) do
       h = lst[0];
       if (mem_loc(h[1], currentLst)) then do
         _lst = t;
-        continue ;
+        ::continue:: ;
       end else do
         return Pervasives.$at(--[[ :: ]]{
                     h,
@@ -2531,7 +2531,7 @@ function trim_edges(_lst, blockw, blockh) do
       pixy = blockh * 16;
       if (cx < 128 or pixx - cx < 528 or cy == 0 or pixy - cy < 48) then do
         _lst = t;
-        continue ;
+        ::continue:: ;
       end else do
         return Pervasives.$at(--[[ :: ]]{
                     h,
@@ -2583,7 +2583,7 @@ function generate_coins(_block_coord) do
                   }, generate_coins(t));
       end else do
         _block_coord = t;
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return --[[ [] ]]0;
@@ -3022,10 +3022,10 @@ function choose_block_pattern(blockw, blockh, cbx, cby, prob) do
                 };end end end 
        do
       else do
-        throw {
-              Caml_builtin_exceptions.failure,
-              "Shouldn't reach here"
-            };
+        error ({
+          Caml_builtin_exceptions.failure,
+          "Shouldn't reach here"
+        })
         end end
         
     end
@@ -3041,13 +3041,13 @@ function generate_enemies(blockw, blockh, _cbx, _cby, acc) do
     end else if (cby > blockh - 1 or cbx < 15) then do
       _cby = 0;
       _cbx = cbx + 1;
-      continue ;
+      ::continue:: ;
     end else if (mem_loc(--[[ tuple ]]{
             cbx,
             cby
           }, acc) or cby == 0) then do
       _cby = cby + 1;
-      continue ;
+      ::continue:: ;
     end else do
       prob = Random.__int(30);
       if (prob < 3 and blockh - 1 == cby) then do
@@ -3065,7 +3065,7 @@ function generate_enemies(blockw, blockh, _cbx, _cby, acc) do
         return Pervasives.$at(enemy, generate_enemies(blockw, blockh, cbx, cby + 1, acc));
       end else do
         _cby = cby + 1;
-        continue ;
+        ::continue:: ;
       end end 
     end end  end  end 
   end;
@@ -3094,7 +3094,7 @@ function generate_block_enemies(_block_coord) do
                   }, generate_block_enemies(t));
       end else do
         _block_coord = t;
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return --[[ [] ]]0;
@@ -3112,13 +3112,13 @@ function generate_block_locs(blockw, blockh, _cbx, _cby, _acc) do
     end else if (cby > blockh - 1) then do
       _cby = 0;
       _cbx = cbx + 1;
-      continue ;
+      ::continue:: ;
     end else if (mem_loc(--[[ tuple ]]{
             cbx,
             cby
           }, acc) or cby == 0) then do
       _cby = cby + 1;
-      continue ;
+      ::continue:: ;
     end else do
       prob = Random.__int(100);
       if (prob < 5) then do
@@ -3127,10 +3127,10 @@ function generate_block_locs(blockw, blockh, _cbx, _cby, _acc) do
         called_acc = Pervasives.$at(acc, undup_lst);
         _acc = called_acc;
         _cby = cby + 1;
-        continue ;
+        ::continue:: ;
       end else do
         _cby = cby + 1;
-        continue ;
+        ::continue:: ;
       end end 
     end end  end  end 
   end;
@@ -3163,11 +3163,11 @@ function generate_ground(blockw, blockh, _inc, _acc) do
           });
       if (skip == 7 and blockw - inc > 32) then do
         _inc = inc + 1;
-        continue ;
+        ::continue:: ;
       end else do
         _acc = newacc;
         _inc = inc + 1;
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       newacc$1 = Pervasives.$at(acc, --[[ :: ]]{
@@ -3182,7 +3182,7 @@ function generate_ground(blockw, blockh, _inc, _acc) do
           });
       _acc = newacc$1;
       _inc = inc + 1;
-      continue ;
+      ::continue:: ;
     end end  end 
   end;
 end end
@@ -3286,7 +3286,7 @@ function load(param) do
   canvas_id = "canvas";
   match = document.getElementById(canvas_id);
   canvas;
-  if (match ~= null) then do
+  if (match ~= nil) then do
     canvas = match;
   end else do
     Curry._1(Printf.printf(--[[ Format ]]{
@@ -3302,10 +3302,10 @@ function load(param) do
                 }),
               "cant find canvas %s \n"
             }), canvas_id);
-    throw {
-          Caml_builtin_exceptions.failure,
-          "fail"
-        };
+    error ({
+      Caml_builtin_exceptions.failure,
+      "fail"
+    })
   end end 
   context = canvas.getContext("2d");
   document.addEventListener("keydown", keydown, true);

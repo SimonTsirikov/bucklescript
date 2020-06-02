@@ -1,6 +1,6 @@
 --[['use strict';]]
 
-Nightmare = require "nightmare";
+Nightmare = require "night";
 
 v = Nightmare(do
       show: true

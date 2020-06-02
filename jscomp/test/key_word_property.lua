@@ -1,7 +1,7 @@
 --[['use strict';]]
 
-Vscode = require "vscode";
-SomeEs6Module = require "some-es6-module";
+Vscode = require "vs";
+SomeEs6Module = require "some-es6-mo";
 
 __default = SomeEs6Module.default;
 

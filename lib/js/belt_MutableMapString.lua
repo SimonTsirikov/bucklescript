@@ -1,23 +1,23 @@
 --[['use strict';]]
 
-Curry = require "./curry.lua";
-Caml_option = require "./caml_option.lua";
-Belt_internalAVLtree = require "./belt_internalAVLtree.lua";
-Belt_internalMapString = require "./belt_internalMapString.lua";
+Curry = require "./curry";
+Caml_option = require "./caml_option";
+Belt_internalAVLtree = require "./belt_internalAVLtree";
+Belt_internalMapString = require "./belt_internalMapString";
 
 function make(param) do
   return do
-          data: null
+          data: nil
         end;
 end end
 
 function isEmpty(m) do
   x = m.data;
-  return x == null;
+  return x == nil;
 end end
 
 function clear(m) do
-  m.data = null;
+  m.data = nil;
   return --[[ () ]]0;
 end end
 
@@ -149,8 +149,8 @@ function removeMutateAux(nt, x) do
   if (x == k) then do
     l = nt.left;
     r = nt.right;
-    if (l ~= null) then do
-      if (r ~= null) then do
+    if (l ~= nil) then do
+      if (r ~= nil) then do
         nt.right = Belt_internalAVLtree.removeMinAuxWithRootMutate(nt, r);
         return Belt_internalAVLtree.balMutate(nt);
       end else do
@@ -161,7 +161,7 @@ function removeMutateAux(nt, x) do
     end end 
   end else if (x < k) then do
     match = nt.left;
-    if (match ~= null) then do
+    if (match ~= nil) then do
       nt.left = removeMutateAux(match, x);
       return Belt_internalAVLtree.balMutate(nt);
     end else do
@@ -169,7 +169,7 @@ function removeMutateAux(nt, x) do
     end end 
   end else do
     match$1 = nt.right;
-    if (match$1 ~= null) then do
+    if (match$1 ~= nil) then do
       nt.right = removeMutateAux(match$1, x);
       return Belt_internalAVLtree.balMutate(nt);
     end else do
@@ -180,7 +180,7 @@ end end
 
 function remove(d, v) do
   oldRoot = d.data;
-  if (oldRoot ~= null) then do
+  if (oldRoot ~= nil) then do
     newRoot = removeMutateAux(oldRoot, v);
     if (newRoot ~= oldRoot) then do
       d.data = newRoot;
@@ -194,7 +194,7 @@ function remove(d, v) do
 end end
 
 function updateDone(t, x, f) do
-  if (t ~= null) then do
+  if (t ~= nil) then do
     k = t.key;
     if (k == x) then do
       match = f(Caml_option.some(t.value));
@@ -204,8 +204,8 @@ function updateDone(t, x, f) do
       end else do
         l = t.left;
         r = t.right;
-        if (l ~= null) then do
-          if (r ~= null) then do
+        if (l ~= nil) then do
+          if (r ~= nil) then do
             t.right = Belt_internalAVLtree.removeMinAuxWithRootMutate(t, r);
             return Belt_internalAVLtree.balMutate(t);
           end else do
@@ -258,12 +258,12 @@ function removeArrayMutateAux(_t, xs, _i, len) do
     if (i < len) then do
       ele = xs[i];
       u = removeMutateAux(t, ele);
-      if (u ~= null) then do
+      if (u ~= nil) then do
         _i = i + 1 | 0;
         _t = u;
-        continue ;
+        ::continue:: ;
       end else do
-        return null;
+        return nil;
       end end 
     end else do
       return t;
@@ -273,7 +273,7 @@ end end
 
 function removeMany(d, xs) do
   oldRoot = d.data;
-  if (oldRoot ~= null) then do
+  if (oldRoot ~= nil) then do
     len = #xs;
     newRoot = removeArrayMutateAux(oldRoot, xs, 0, len);
     if (newRoot ~= oldRoot) then do

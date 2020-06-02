@@ -1,13 +1,13 @@
 --[['use strict';]]
 
-Char = require "./char.lua";
-__String = require "./string.lua";
-Caml_md5 = require "./caml_md5.lua";
-Caml_bytes = require "./caml_bytes.lua";
-Pervasives = require "./pervasives.lua";
-Caml_string = require "./caml_string.lua";
-Caml_external_polyfill = require "./caml_external_polyfill.lua";
-Caml_builtin_exceptions = require "./caml_builtin_exceptions.lua";
+Char = require "./char";
+__String = require "./string";
+Caml_md5 = require "./caml_md5";
+Caml_bytes = require "./caml_bytes";
+Pervasives = require "./pervasives";
+Caml_string = require "./caml_string";
+Caml_external_polyfill = require "./caml_external_polyfill";
+Caml_builtin_exceptions = require "./caml_builtin_exceptions";
 
 function string(str) do
   return Caml_md5.caml_md5_string(str, 0, #str);
@@ -19,10 +19,10 @@ end end
 
 function substring(str, ofs, len) do
   if (ofs < 0 or len < 0 or ofs > (#str - len | 0)) then do
-    throw {
-          Caml_builtin_exceptions.invalid_argument,
-          "Digest.substring"
-        };
+    error ({
+      Caml_builtin_exceptions.invalid_argument,
+      "Digest.substring"
+    })
   end
    end 
   return Caml_md5.caml_md5_string(str, ofs, len);
@@ -35,13 +35,12 @@ end end
 function file(filename) do
   ic = Pervasives.open_in_bin(filename);
   d;
-  try do
+  xpcall(function() do
     d = Caml_external_polyfill.resolve("caml_md5_chan")(ic, -1);
-  end
-  catch (e)do
+  end end,function(e) return do
     Caml_external_polyfill.resolve("caml_ml_close_channel")(ic);
-    throw e;
-  end
+    error (e)
+  end end)
   Caml_external_polyfill.resolve("caml_ml_close_channel")(ic);
   return d;
 end end
@@ -60,10 +59,10 @@ end end
 
 function to_hex(d) do
   if (#d ~= 16) then do
-    throw {
-          Caml_builtin_exceptions.invalid_argument,
-          "Digest.to_hex"
-        };
+    error ({
+      Caml_builtin_exceptions.invalid_argument,
+      "Digest.to_hex"
+    })
   end
    end 
   result = Caml_bytes.caml_create_bytes(32);
@@ -77,39 +76,39 @@ end end
 
 function from_hex(s) do
   if (#s ~= 32) then do
-    throw {
-          Caml_builtin_exceptions.invalid_argument,
-          "Digest.from_hex"
-        };
+    error ({
+      Caml_builtin_exceptions.invalid_argument,
+      "Digest.from_hex"
+    })
   end
    end 
   digit = function (c) do
     if (c >= 65) then do
       if (c >= 97) then do
         if (c >= 103) then do
-          throw {
-                Caml_builtin_exceptions.invalid_argument,
-                "Digest.from_hex"
-              };
+          error ({
+            Caml_builtin_exceptions.invalid_argument,
+            "Digest.from_hex"
+          })
         end
          end 
         return (c - --[[ "a" ]]97 | 0) + 10 | 0;
       end else do
         if (c >= 71) then do
-          throw {
-                Caml_builtin_exceptions.invalid_argument,
-                "Digest.from_hex"
-              };
+          error ({
+            Caml_builtin_exceptions.invalid_argument,
+            "Digest.from_hex"
+          })
         end
          end 
         return (c - --[[ "A" ]]65 | 0) + 10 | 0;
       end end 
     end else do
       if (c > 57 or c < 48) then do
-        throw {
-              Caml_builtin_exceptions.invalid_argument,
-              "Digest.from_hex"
-            };
+        error ({
+          Caml_builtin_exceptions.invalid_argument,
+          "Digest.from_hex"
+        })
       end
        end 
       return c - --[[ "0" ]]48 | 0;

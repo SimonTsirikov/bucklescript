@@ -1,12 +1,12 @@
 --[['use strict';]]
 
-__Array = require "../../lib/js/array.lua";
-Block = require "../../lib/js/block.lua";
-Curry = require "../../lib/js/curry.lua";
-Format = require "../../lib/js/format.lua";
-Caml_obj = require "../../lib/js/caml_obj.lua";
-Caml_array = require "../../lib/js/caml_array.lua";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
+__Array = require "../../lib/js/array";
+Block = require "../../lib/js/block";
+Curry = require "../../lib/js/curry";
+Format = require "../../lib/js/format";
+Caml_obj = require "../../lib/js/caml_obj";
+Caml_array = require "../../lib/js/caml_array";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 function sub(_tr, _k) do
   while(true) do
@@ -19,14 +19,14 @@ function sub(_tr, _k) do
         _k = k / 2 | 0;
         if (k % 2 == 0) then do
           _tr = tr[1];
-          continue ;
+          ::continue:: ;
         end else do
           _tr = tr[2];
-          continue ;
+          ::continue:: ;
         end end 
       end end 
     end else do
-      throw Caml_builtin_exceptions.not_found;
+      error (Caml_builtin_exceptions.not_found)
     end end 
   end;
 end end
@@ -64,7 +64,7 @@ function update(tr, k, w) do
             --[[ Lf ]]0
           };
   end else do
-    throw Caml_builtin_exceptions.not_found;
+    error (Caml_builtin_exceptions.not_found)
   end end  end 
 end end
 
@@ -91,7 +91,7 @@ function __delete(tr, n) do
       end end 
     end end 
   end else do
-    throw Caml_builtin_exceptions.not_found;
+    error (Caml_builtin_exceptions.not_found)
   end end 
 end end
 
@@ -121,19 +121,19 @@ function lorem(tr) do
               lorem(l)
             };
     end else if (tr[2]) then do
-      throw {
-            Caml_builtin_exceptions.assert_failure,
-            --[[ tuple ]]{
-              "flexible_array_test.ml",
-              66,
-              9
-            }
-          };
+      error ({
+        Caml_builtin_exceptions.assert_failure,
+        --[[ tuple ]]{
+          "flexible_array_test.ml",
+          66,
+          9
+        }
+      })
     end else do
       return --[[ Lf ]]0;
     end end  end 
   end else do
-    throw Caml_builtin_exceptions.not_found;
+    error (Caml_builtin_exceptions.not_found)
   end end 
 end end
 
@@ -150,10 +150,10 @@ function get(param, i) do
   if (i >= 0 and i < param[1]) then do
     return sub(param[0], i + 1 | 0);
   end else do
-    throw {
-          Caml_builtin_exceptions.invalid_argument,
-          "Array.get"
-        };
+    error ({
+      Caml_builtin_exceptions.invalid_argument,
+      "Array.get"
+    })
   end end 
 end end
 
@@ -165,10 +165,10 @@ function set(param, i, v) do
             k
           };
   end else do
-    throw {
-          Caml_builtin_exceptions.invalid_argument,
-          "Array.set"
-        };
+    error ({
+      Caml_builtin_exceptions.invalid_argument,
+      "Array.set"
+    })
   end end 
 end end
 
@@ -187,10 +187,10 @@ function pop_front(param) do
             k - 1 | 0
           };
   end else do
-    throw {
-          Caml_builtin_exceptions.invalid_argument,
-          "Array.pop_front"
-        };
+    error ({
+      Caml_builtin_exceptions.invalid_argument,
+      "Array.pop_front"
+    })
   end end 
 end end
 
@@ -210,10 +210,10 @@ function pop_back(param) do
             k - 1 | 0
           };
   end else do
-    throw {
-          Caml_builtin_exceptions.invalid_argument,
-          "Array.pop_back"
-        };
+    error ({
+      Caml_builtin_exceptions.invalid_argument,
+      "Array.pop_back"
+    })
   end end 
 end end
 
@@ -319,14 +319,14 @@ if (not Caml_obj.caml_equal(x, of_array({
             5,
             6
           }))) then do
-  throw {
-        Caml_builtin_exceptions.assert_failure,
-        --[[ tuple ]]{
-          "flexible_array_test.ml",
-          166,
-          4
-        }
-      };
+  error ({
+    Caml_builtin_exceptions.assert_failure,
+    --[[ tuple ]]{
+      "flexible_array_test.ml",
+      166,
+      4
+    }
+  })
 end
  end 
 

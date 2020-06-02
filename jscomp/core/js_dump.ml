@@ -129,7 +129,7 @@ let dbg_variant f =
 
 let return_indent = String.length L.return / Ext_pp.indent_length
 
-let throw_indent = String.length L.throw / Ext_pp.indent_length
+
 
 type cxt = Ext_pp_scope.t
 
@@ -672,7 +672,7 @@ and expression_desc cxt ~(level:int) f x : cxt  =
     (*TODO --
        when utf8-> it will not escape '\\' which is definitely not we want
     *)
-    Js_dump_string.pp_string f  s;
+    Js_dump_string.pp_string 0  f  s;
     cxt
   | Raw_js_function (s,params) ->   
     P.string f L.function_; 
@@ -1280,7 +1280,7 @@ and statement_desc top cxt f (s : J.statement_desc) : cxt =
     semi f;
     P.newline f; 
     P.brace_vgroup f 1 (fun _ ->
-        let cxt = loop_case_clauses cxt f Js_dump_string.pp_string  cc in
+        let cxt = loop_case_clauses cxt f (Js_dump_string.pp_string 0)   cc in
         match def with
         | None -> cxt
         | Some def ->
@@ -1299,35 +1299,56 @@ and statement_desc top cxt f (s : J.statement_desc) : cxt =
   | Throw e ->
     P.string f L.throw;
     P.space f ;
-    P.group f throw_indent  (fun _ ->
+    P.paren f  (fun _ ->
         let cxt = expression ~level:0 cxt f e in
-        semi f ; cxt)
+        cxt)
 
   (* There must be a space between the return and its
      argument. A line return would not work *)
   | Try (b, ctch, fin) ->
     P.vgroup f 0 (
       fun _->
+        let cxt = (
         P.string f L.try_;
-        P.space f ;
-        let cxt = block cxt f b in
-        let cxt =
+        P.paren f (fun _ ->
+          P.string f L.function_;
+          P.string f L.lparen;
+          P.string f L.rparen;
+          P.space f;
+          let cxt = block cxt f b in
+          P.space f;
+          P.string f L.end_;
+          comma f;
           match ctch with
-          | None ->
+          | None ->  
+            P.string f L.function_;
+            P.string f L.lparen;
+            P.string f L.rparen;
+            P.space f;
+            P.string f L.return;
+            P.space f;
+            P.string f L.null;
+            P.space f;
+            P.string f L.end_;
             cxt
           | Some (i, b) ->
-            P.newline f;
-            P.string f "catch (";
+            P.string f L.function_;
+            P.string f L.lparen;
             let cxt = Ext_pp_scope.ident cxt f i in
-            P.string f ")";
-            block cxt f b in
+              P.string f L.rparen;
+              P.space f;
+              P.string f L.return;
+              P.space f;
+              let cxt = block cxt f b in
+                P.space f;
+                P.string f L.end_;
+                cxt)) in
         match fin with
         | None -> cxt
         | Some b ->
           P.group f 1 (fun _ ->
-              P.string f L.finally;
-              P.space f;
-              block cxt f b))
+            P.newline f;
+            block cxt f b))
 
 and function_body (cxt : cxt) f (b : J.block) : unit =
   match b with

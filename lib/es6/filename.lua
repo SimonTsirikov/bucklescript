@@ -29,7 +29,7 @@ function generic_basename(is_dir_sep, current_dir_name, name) do
         return __String.sub(name, 0, 1);
       end else if (Curry._2(is_dir_sep, name, n)) then do
         _n = n - 1 | 0;
-        continue ;
+        ::continue:: ;
       end else do
         _n$1 = n;
         p = n + 1 | 0;
@@ -41,7 +41,7 @@ function generic_basename(is_dir_sep, current_dir_name, name) do
             return __String.sub(name, n$1 + 1 | 0, (p - n$1 | 0) - 1 | 0);
           end else do
             _n$1 = n$1 - 1 | 0;
-            continue ;
+            ::continue:: ;
           end end  end 
         end;
       end end  end 
@@ -60,7 +60,7 @@ function generic_dirname(is_dir_sep, current_dir_name, name) do
         return __String.sub(name, 0, 1);
       end else if (Curry._2(is_dir_sep, name, n)) then do
         _n = n - 1 | 0;
-        continue ;
+        ::continue:: ;
       end else do
         _n$1 = n;
         while(true) do
@@ -75,14 +75,14 @@ function generic_dirname(is_dir_sep, current_dir_name, name) do
                 return __String.sub(name, 0, 1);
               end else if (Curry._2(is_dir_sep, name, n$2)) then do
                 _n$2 = n$2 - 1 | 0;
-                continue ;
+                ::continue:: ;
               end else do
                 return __String.sub(name, 0, n$2 + 1 | 0);
               end end  end 
             end;
           end else do
             _n$1 = n$1 - 1 | 0;
-            continue ;
+            ::continue:: ;
           end end  end 
         end;
       end end  end 
@@ -126,16 +126,15 @@ end end
 
 temp_dir_name;
 
-try do
+xpcall(function() do
   temp_dir_name = Caml_sys.caml_sys_getenv("TMPDIR");
-end
-catch (exn)do
+end end,function(exn) return do
   if (exn == Caml_builtin_exceptions.not_found) then do
     temp_dir_name = "/tmp";
   end else do
-    throw exn;
+    error (exn)
   end end 
-end
+end end)
 
 function quote(param) do
   quotequote = "'\\''";
@@ -208,16 +207,15 @@ end end
 
 temp_dir_name$1;
 
-try do
+xpcall(function() do
   temp_dir_name$1 = Caml_sys.caml_sys_getenv("TEMP");
-end
-catch (exn$1)do
+end end,function(exn$1) return do
   if (exn$1 == Caml_builtin_exceptions.not_found) then do
     temp_dir_name$1 = ".";
   end else do
-    throw exn$1;
+    error (exn$1)
   end end 
-end
+end end)
 
 function quote$1(s) do
   l = #s;
@@ -233,7 +231,7 @@ function quote$1(s) do
         if (c ~= 34 and c ~= 92) then do
           __Buffer.add_char(b, c);
           _i = i + 1 | 0;
-          continue ;
+          ::continue:: ;
         end else do
           _n = 0;
           _i$1 = i;
@@ -252,7 +250,7 @@ function quote$1(s) do
                 end else do
                   _i$1 = i$1 + 1 | 0;
                   _n = n + 1 | 0;
-                  continue ;
+                  ::continue:: ;
                 end end 
               end else do
                 add_bs((n << 1) + 1 | 0);
@@ -394,10 +392,10 @@ end end
 function chop_suffix(name, suff) do
   n = #name - #suff | 0;
   if (n < 0) then do
-    throw {
-          Caml_builtin_exceptions.invalid_argument,
-          "Filename.chop_suffix"
-        };
+    error ({
+      Caml_builtin_exceptions.invalid_argument,
+      "Filename.chop_suffix"
+    })
   end
    end 
   return __String.sub(name, 0, n);
@@ -418,14 +416,14 @@ function extension_len(name) do
           return 0;
         end else if (Caml_string.get(name, i$1) == --[[ "." ]]46) then do
           _i$1 = i$1 - 1 | 0;
-          continue ;
+          ::continue:: ;
         end else do
           return #name - i0 | 0;
         end end  end 
       end;
     end else do
       _i = i - 1 | 0;
-      continue ;
+      ::continue:: ;
     end end  end 
   end;
 end end
@@ -442,10 +440,10 @@ end end
 function chop_extension(name) do
   l = extension_len(name);
   if (l == 0) then do
-    throw {
-          Caml_builtin_exceptions.invalid_argument,
-          "Filename.chop_extension"
-        };
+    error ({
+      Caml_builtin_exceptions.invalid_argument,
+      "Filename.chop_extension"
+    })
   end
    end 
   return __String.sub(name, 0, #name - l | 0);
@@ -505,7 +503,7 @@ function temp_file(temp_dirOpt, prefix, suffix) do
   while(true) do
     counter = _counter;
     name = temp_file_name(temp_dir, prefix, suffix);
-    try do
+    xpcall(function() do
       Caml_external_polyfill.resolve("caml_sys_close")(Caml_external_polyfill.resolve("caml_sys_open")(name, --[[ :: ]]{
                 --[[ Open_wronly ]]1,
                 --[[ :: ]]{
@@ -517,20 +515,19 @@ function temp_file(temp_dirOpt, prefix, suffix) do
                 }
               }, 384));
       return name;
-    end
-    catch (raw_e)do
+    end end,function(raw_e) return do
       e = Caml_js_exceptions.internalToOCamlException(raw_e);
       if (e[0] == Caml_builtin_exceptions.sys_error) then do
         if (counter >= 1000) then do
-          throw e;
+          error (e)
         end
          end 
         _counter = counter + 1 | 0;
-        continue ;
+        ::continue:: ;
       end else do
-        throw e;
+        error (e)
       end end 
-    end
+    end end)
   end;
 end end
 
@@ -545,7 +542,7 @@ function open_temp_file(modeOpt, permsOpt, temp_dirOpt, prefix, suffix) do
   while(true) do
     counter = _counter;
     name = temp_file_name(temp_dir, prefix, suffix);
-    try do
+    xpcall(function() do
       return --[[ tuple ]]{
               name,
               Pervasives.open_out_gen(--[[ :: ]]{
@@ -559,20 +556,19 @@ function open_temp_file(modeOpt, permsOpt, temp_dirOpt, prefix, suffix) do
                     }
                   }, perms, name)
             };
-    end
-    catch (raw_e)do
+    end end,function(raw_e) return do
       e = Caml_js_exceptions.internalToOCamlException(raw_e);
       if (e[0] == Caml_builtin_exceptions.sys_error) then do
         if (counter >= 1000) then do
-          throw e;
+          error (e)
         end
          end 
         _counter = counter + 1 | 0;
-        continue ;
+        ::continue:: ;
       end else do
-        throw e;
+        error (e)
       end end 
-    end
+    end end)
   end;
 end end
 

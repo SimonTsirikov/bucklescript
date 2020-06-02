@@ -1,10 +1,10 @@
 --[['use strict';]]
 
-Curry = require "../../lib/js/curry.lua";
+Curry = require "../../lib/js/curry";
 
 v = do
   hd: 3,
-  tl: null
+  tl: nil
 end;
 
 v.tl = v;

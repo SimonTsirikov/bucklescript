@@ -1,7 +1,7 @@
 --[['use strict';]]
 
-Hashtbl = require "../../lib/js/hashtbl.lua";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
+Hashtbl = require "../../lib/js/hashtbl";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 function bench(param) do
   table = Hashtbl.create(undefined, 1000000);
@@ -10,14 +10,14 @@ function bench(param) do
   end
   for i$1 = 0 , 1000000 , 1 do
     if (not Hashtbl.mem(table, i$1)) then do
-      throw {
-            Caml_builtin_exceptions.assert_failure,
-            --[[ tuple ]]{
-              "raw_hash_tbl_bench.ml",
-              9,
-              4
-            }
-          };
+      error ({
+        Caml_builtin_exceptions.assert_failure,
+        --[[ tuple ]]{
+          "raw_hash_tbl_bench.ml",
+          9,
+          4
+        }
+      })
     end
      end 
   end

@@ -1,8 +1,8 @@
 --[['use strict';]]
 
-Caml_oo_curry = require "../../lib/js/caml_oo_curry.lua";
-CamlinternalOO = require "../../lib/js/camlinternalOO.lua";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
+Caml_oo_curry = require "../../lib/js/caml_oo_curry";
+CamlinternalOO = require "../../lib/js/camlinternalOO";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 shared = {"add"};
 
@@ -89,82 +89,82 @@ v = CamlinternalOO.create_object_opt(0, __class$3);
 
 function test(param) do
   if (Caml_oo_curry.js1(23515, 1, uu) ~= "uu") then do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "test_simple_obj.ml",
-            21,
-            4
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "test_simple_obj.ml",
+        21,
+        4
+      }
+    })
   end
    end 
   if (Caml_oo_curry.js3(4846113, 2, uuu, 1, 20) ~= 21) then do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "test_simple_obj.ml",
-            22,
-            4
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "test_simple_obj.ml",
+        22,
+        4
+      }
+    })
   end
    end 
   if (Caml_oo_curry.js3(4846113, 3, v, 3, 7) ~= 10) then do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "test_simple_obj.ml",
-            23,
-            4
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "test_simple_obj.ml",
+        23,
+        4
+      }
+    })
   end
    end 
   if (Caml_oo_curry.js1(5243894, 4, u) ~= 3) then do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "test_simple_obj.ml",
-            25,
-            4
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "test_simple_obj.ml",
+        25,
+        4
+      }
+    })
   end
    end 
   if (Caml_oo_curry.js1(5243895, 5, u) ~= 4) then do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "test_simple_obj.ml",
-            26,
-            4
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "test_simple_obj.ml",
+        26,
+        4
+      }
+    })
   end
    end 
   if (Caml_oo_curry.js3(23297, 6, u, 1, 2) ~= 3) then do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "test_simple_obj.ml",
-            27,
-            4
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "test_simple_obj.ml",
+        27,
+        4
+      }
+    })
   end
    end 
   if (Caml_oo_curry.js2(616641298, 7, u, 32) == 32) then do
     return 0;
   end else do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "test_simple_obj.ml",
-            28,
-            4
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "test_simple_obj.ml",
+        28,
+        4
+      }
+    })
   end end 
 end end
 

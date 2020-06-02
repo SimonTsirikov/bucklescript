@@ -1,8 +1,8 @@
 --[['use strict';]]
 
-Block = require "../../lib/js/block.lua";
-Parsing = require "../../lib/js/parsing.lua";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
+Block = require "../../lib/js/block";
+Parsing = require "../../lib/js/parsing";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 yytransl_const = {
   259,
@@ -46,10 +46,10 @@ yynames_block = "NUMERAL\0IDENT\0";
 
 yyact = {
   (function (param) do
-      throw {
-            Caml_builtin_exceptions.failure,
-            "parser"
-          };
+      error ({
+        Caml_builtin_exceptions.failure,
+        "parser"
+      })
     end end),
   (function (__caml_parser_env) do
       return Parsing.peek_val(__caml_parser_env, 1);
@@ -102,10 +102,10 @@ yyact = {
       return Parsing.peek_val(__caml_parser_env, 1);
     end end),
   (function (__caml_parser_env) do
-      throw {
-            Parsing.YYexit,
-            Parsing.peek_val(__caml_parser_env, 0)
-          };
+      error ({
+        Parsing.YYexit,
+        Parsing.peek_val(__caml_parser_env, 0)
+      })
     end end)
 };
 

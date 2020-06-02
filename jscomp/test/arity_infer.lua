@@ -1,7 +1,7 @@
 --[['use strict';]]
 
-Curry = require "../../lib/js/curry.lua";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
+Curry = require "../../lib/js/curry";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 function f0(x) do
   tmp;
@@ -10,13 +10,13 @@ function f0(x) do
         return x + 1 | 0;
       end end);
   end else do
-    throw Caml_builtin_exceptions.not_found;
+    error (Caml_builtin_exceptions.not_found)
   end end 
   return tmp(3);
 end end
 
 function f1(x) do
-  throw Caml_builtin_exceptions.not_found;
+  error (Caml_builtin_exceptions.not_found)
   return Curry._1(undefined, x);
 end end
 
@@ -42,7 +42,7 @@ function f3(x) do
           end end);end else 
      do end end end end end
     else do
-      throw Caml_builtin_exceptions.not_found;
+      error (Caml_builtin_exceptions.not_found)
       end end
       
   end

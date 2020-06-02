@@ -1,8 +1,8 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-Caml_obj = require "../../lib/js/caml_obj.lua";
-Caml_int64 = require "../../lib/js/caml_int64.lua";
+Mt = require "./mt";
+Caml_obj = require "../../lib/js/caml_obj";
+Caml_int64 = require "../../lib/js/caml_int64";
 
 aa = Caml_obj.caml_equal_null;
 
@@ -31,29 +31,29 @@ function f(param) do
 end end
 
 function shouldBeNull(param) do
-  return null;
+  return nil;
 end end
 
-b("File \"equal_box_test.ml\", line 24, characters 4-11", 3 ~= null);
+b("File \"equal_box_test.ml\", line 24, characters 4-11", 3 ~= nil);
 
-b("File \"equal_box_test.ml\", line 25, characters 4-11", undefined ~= null);
+b("File \"equal_box_test.ml\", line 25, characters 4-11", undefined ~= nil);
 
-b("File \"equal_box_test.ml\", line 26, characters 4-11", "3" ~= null);
+b("File \"equal_box_test.ml\", line 26, characters 4-11", "3" ~= nil);
 
-b("File \"equal_box_test.ml\", line 27, characters 4-11", --[[ "3" ]]51 ~= null);
+b("File \"equal_box_test.ml\", line 27, characters 4-11", --[[ "3" ]]51 ~= nil);
 
 b("File \"equal_box_test.ml\", line 28, characters 4-11", not Caml_int64.equal_null(--[[ int64 ]]{
           --[[ hi ]]0,
           --[[ lo ]]0
-        }, null));
+        }, nil));
 
-b("File \"equal_box_test.ml\", line 29, characters 4-11", 0 ~= null);
+b("File \"equal_box_test.ml\", line 29, characters 4-11", 0 ~= nil);
 
 b("File \"equal_box_test.ml\", line 30, characters 4-11", true);
 
-b("File \"equal_box_test.ml\", line 31, characters 4-11", not Caml_obj.caml_equal_null(undefined, null));
+b("File \"equal_box_test.ml\", line 31, characters 4-11", not Caml_obj.caml_equal_null(undefined, nil));
 
-b("File \"equal_box_test.ml\", line 32, characters 4-11", Caml_obj.caml_equal_null(null, null));
+b("File \"equal_box_test.ml\", line 32, characters 4-11", Caml_obj.caml_equal_null(nil, nil));
 
 b("File \"equal_box_test.ml\", line 33, characters 4-11", true);
 
@@ -61,7 +61,7 @@ b("File \"equal_box_test.ml\", line 34, characters 4-11", undefined == undefined
 
 b("File \"equal_box_test.ml\", line 35, characters 4-11", not Caml_obj.caml_equal_null(3, undefined));
 
-v = null;
+v = nil;
 
 b("File \"equal_box_test.ml\", line 39, characters 4-11", 3 ~= v);
 
@@ -82,7 +82,7 @@ b("File \"equal_box_test.ml\", line 45, characters 4-11", 0 ~= v);
 
 b("File \"equal_box_test.ml\", line 46, characters 4-11", not Caml_obj.caml_equal_nullable(undefined, v));
 
-b("File \"equal_box_test.ml\", line 47, characters 4-11", Caml_obj.caml_equal_nullable(null, v));
+b("File \"equal_box_test.ml\", line 47, characters 4-11", Caml_obj.caml_equal_nullable(nil, v));
 
 b("File \"equal_box_test.ml\", line 48, characters 4-11", true);
 
@@ -109,7 +109,7 @@ b("File \"equal_box_test.ml\", line 61, characters 4-11", true);
 
 b("File \"equal_box_test.ml\", line 62, characters 4-11", Caml_obj.caml_equal_undefined(undefined, undefined));
 
-b("File \"equal_box_test.ml\", line 66, characters 4-11", not Caml_obj.caml_equal_undefined(null, undefined));
+b("File \"equal_box_test.ml\", line 66, characters 4-11", not Caml_obj.caml_equal_undefined(nil, undefined));
 
 b("File \"equal_box_test.ml\", line 67, characters 4-11", true);
 

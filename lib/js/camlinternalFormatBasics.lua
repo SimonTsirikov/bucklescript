@@ -1,6 +1,6 @@
 --[['use strict';]]
 
-Block = require "./block.lua";
+Block = require "./block";
 
 function erase_rel(param) do
   if (typeof param == "number") then do

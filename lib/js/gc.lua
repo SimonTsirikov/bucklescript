@@ -1,9 +1,9 @@
 --[['use strict';]]
 
-Block = require "./block.lua";
-Curry = require "./curry.lua";
-Printf = require "./printf.lua";
-Caml_gc = require "./caml_gc.lua";
+Block = require "./block";
+Curry = require "./curry";
+Printf = require "./printf";
+Caml_gc = require "./caml_gc";
 
 dummy_stat = do
   minor_words: 0,

@@ -59,7 +59,7 @@ function toList(a) do
         res
       };
       _i = i - 1 | 0;
-      continue ;
+      ::continue:: ;
     end end 
   end;
 end end

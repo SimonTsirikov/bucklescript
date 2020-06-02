@@ -1,12 +1,12 @@
 --[['use strict';]]
 
-Curry = require "./curry.lua";
-Caml_option = require "./caml_option.lua";
-Belt_internalMapInt = require "./belt_internalMapInt.lua";
-Belt_internalAVLtree = require "./belt_internalAVLtree.lua";
+Curry = require "./curry";
+Caml_option = require "./caml_option";
+Belt_internalMapInt = require "./belt_internalMapInt";
+Belt_internalAVLtree = require "./belt_internalAVLtree";
 
 function set(t, newK, newD) do
-  if (t ~= null) then do
+  if (t ~= nil) then do
     k = t.key;
     if (newK == k) then do
       return Belt_internalAVLtree.updateValue(t, newD);
@@ -24,7 +24,7 @@ function set(t, newK, newD) do
 end end
 
 function updateU(t, x, f) do
-  if (t ~= null) then do
+  if (t ~= nil) then do
     k = t.key;
     if (x == k) then do
       match = f(Caml_option.some(t.value));
@@ -33,8 +33,8 @@ function updateU(t, x, f) do
       end else do
         l = t.left;
         r = t.right;
-        if (l ~= null) then do
-          if (r ~= null) then do
+        if (l ~= nil) then do
+          if (r ~= nil) then do
             kr = do
               contents: r.key
             end;
@@ -89,8 +89,8 @@ function removeAux(n, x) do
   v = n.key;
   r = n.right;
   if (x == v) then do
-    if (l ~= null) then do
-      if (r ~= null) then do
+    if (l ~= nil) then do
+      if (r ~= nil) then do
         kr = do
           contents: r.key
         end;
@@ -106,7 +106,7 @@ function removeAux(n, x) do
       return r;
     end end 
   end else if (x < v) then do
-    if (l ~= null) then do
+    if (l ~= nil) then do
       ll = removeAux(l, x);
       if (ll == l) then do
         return n;
@@ -116,7 +116,7 @@ function removeAux(n, x) do
     end else do
       return n;
     end end 
-  end else if (r ~= null) then do
+  end else if (r ~= nil) then do
     rr = removeAux(r, x);
     return Belt_internalAVLtree.bal(l, v, n.value, rr);
   end else do
@@ -125,16 +125,16 @@ function removeAux(n, x) do
 end end
 
 function remove(n, x) do
-  if (n ~= null) then do
+  if (n ~= nil) then do
     return removeAux(n, x);
   end else do
-    return null;
+    return nil;
   end end 
 end end
 
 function removeMany(t, keys) do
   len = #keys;
-  if (t ~= null) then do
+  if (t ~= nil) then do
     _t = t;
     xs = keys;
     _i = 0;
@@ -145,10 +145,10 @@ function removeMany(t, keys) do
       if (i < len$1) then do
         ele = xs[i];
         u = removeAux(t$1, ele);
-        if (u ~= null) then do
+        if (u ~= nil) then do
           _i = i + 1 | 0;
           _t = u;
-          continue ;
+          ::continue:: ;
         end else do
           return u;
         end end 
@@ -157,7 +157,7 @@ function removeMany(t, keys) do
       end end 
     end;
   end else do
-    return null;
+    return nil;
   end end 
 end end
 
@@ -171,7 +171,7 @@ function mergeMany(h, arr) do
   return v;
 end end
 
-empty = null;
+empty = nil;
 
 isEmpty = Belt_internalAVLtree.isEmpty;
 

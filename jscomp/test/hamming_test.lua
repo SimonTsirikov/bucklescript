@@ -1,14 +1,14 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-Block = require "../../lib/js/block.lua";
-Curry = require "../../lib/js/curry.lua";
-__Buffer = require "../../lib/js/buffer.lua";
-Printf = require "../../lib/js/printf.lua";
-Caml_obj = require "../../lib/js/caml_obj.lua";
-Caml_int64 = require "../../lib/js/caml_int64.lua";
-Caml_format = require "../../lib/js/caml_format.lua";
-CamlinternalLazy = require "../../lib/js/camlinternalLazy.lua";
+Mt = require "./mt";
+Block = require "../../lib/js/block";
+Curry = require "../../lib/js/curry";
+__Buffer = require "../../lib/js/buffer";
+Printf = require "../../lib/js/printf";
+Caml_obj = require "../../lib/js/caml_obj";
+Caml_int64 = require "../../lib/js/caml_int64";
+Caml_format = require "../../lib/js/caml_format";
+CamlinternalLazy = require "../../lib/js/camlinternalLazy";
 
 n0 = --[[ int64 ]]{
   --[[ hi ]]0,
@@ -189,7 +189,7 @@ function iter_interval(f, _l, _param) do
         stop - 1 | 0
       };
       _l = match[1];
-      continue ;
+      ::continue:: ;
     end end 
   end;
 end end

@@ -1,10 +1,10 @@
 --[['use strict';]]
 
-Caml_gc = require "./caml_gc.lua";
-Caml_io = require "./caml_io.lua";
-Pervasives = require "./pervasives.lua";
-Caml_external_polyfill = require "./caml_external_polyfill.lua";
-Caml_builtin_exceptions = require "./caml_builtin_exceptions.lua";
+Caml_gc = require "./caml_gc";
+Caml_io = require "./caml_io";
+Pervasives = require "./pervasives";
+Caml_external_polyfill = require "./caml_external_polyfill";
+Caml_builtin_exceptions = require "./caml_builtin_exceptions";
 
 function if_spacetime_enabled(f) do
   return --[[ () ]]0;
@@ -26,10 +26,10 @@ end end
 function save_and_close(time, t) do
   return if_spacetime_enabled((function (param) do
                 if (t.closed) then do
-                  throw {
-                        Caml_builtin_exceptions.failure,
-                        "Series is closed"
-                      };
+                  error ({
+                    Caml_builtin_exceptions.failure,
+                    "Series is closed"
+                  })
                 end
                  end 
                 Caml_external_polyfill.resolve("caml_spacetime_only_works_for_native_code")(time, t.channel);
@@ -52,10 +52,10 @@ function take(time, param) do
   closed = param.closed;
   return if_spacetime_enabled((function (param) do
                 if (closed) then do
-                  throw {
-                        Caml_builtin_exceptions.failure,
-                        "Series is closed"
-                      };
+                  error ({
+                    Caml_builtin_exceptions.failure,
+                    "Series is closed"
+                  })
                 end
                  end 
                 Caml_gc.caml_gc_minor(--[[ () ]]0);

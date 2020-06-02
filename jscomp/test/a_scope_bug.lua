@@ -1,6 +1,6 @@
 --[['use strict';]]
 
-Caml_int32 = require "../../lib/js/caml_int32.lua";
+Caml_int32 = require "../../lib/js/caml_int32";
 
 function odd(_z) do
   while(true) do
@@ -9,7 +9,7 @@ function odd(_z) do
     a = (even + 4 | 0) + even | 0;
     console.log(String(a));
     _z = 32;
-    continue ;
+    ::continue:: ;
   end;
 end end
 

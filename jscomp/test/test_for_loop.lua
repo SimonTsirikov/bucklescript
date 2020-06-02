@@ -1,9 +1,9 @@
 --[['use strict';]]
 
-__Array = require "../../lib/js/array.lua";
-Curry = require "../../lib/js/curry.lua";
-Caml_array = require "../../lib/js/caml_array.lua";
-Caml_int32 = require "../../lib/js/caml_int32.lua";
+__Array = require "../../lib/js/array";
+Curry = require "../../lib/js/curry";
+Caml_array = require "../../lib/js/caml_array";
+Caml_int32 = require "../../lib/js/caml_int32";
 
 function for_(x) do
   for i = 0 , console.log("hi"), #x , 1 do

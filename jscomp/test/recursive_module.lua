@@ -1,15 +1,15 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-Lazy = require "../../lib/js/lazy.lua";
-Block = require "../../lib/js/block.lua";
-Curry = require "../../lib/js/curry.lua";
-Caml_obj = require "../../lib/js/caml_obj.lua";
-Caml_module = require "../../lib/js/caml_module.lua";
-CamlinternalLazy = require "../../lib/js/camlinternalLazy.lua";
-Caml_js_exceptions = require "../../lib/js/caml_js_exceptions.lua";
-Caml_external_polyfill = require "../../lib/js/caml_external_polyfill.lua";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
+Mt = require "./mt";
+Lazy = require "../../lib/js/lazy";
+Block = require "../../lib/js/block";
+Curry = require "../../lib/js/curry";
+Caml_obj = require "../../lib/js/caml_obj";
+Caml_module = require "../../lib/js/caml_module";
+CamlinternalLazy = require "../../lib/js/camlinternalLazy";
+Caml_js_exceptions = require "../../lib/js/caml_js_exceptions";
+Caml_external_polyfill = require "../../lib/js/caml_external_polyfill";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 suites = do
   contents: --[[ [] ]]0
@@ -85,16 +85,15 @@ Caml_module.update_mod(--[[ Module ]]Block.__(0, {{--[[ tuple ]]{
 
 tmp;
 
-try do
+xpcall(function() do
   tmp = CamlinternalLazy.force(Intb.a);
-end
-catch (exn)do
+end end,function(exn) return do
   if (exn == Lazy.Undefined) then do
     tmp = -1;
   end else do
-    throw exn;
+    error (exn)
   end end 
-end
+end end)
 
 eq("File \"recursive_module.ml\", line 41, characters 3-10", -1, tmp);
 
@@ -143,18 +142,17 @@ eq("File \"recursive_module.ml\", line 58, characters 6-13", CamlinternalLazy.fo
 
 tmp$1;
 
-try do
+xpcall(function() do
   Curry._1(Int3.u, 3);
   tmp$1 = 3;
-end
-catch (raw_exn)do
+end end,function(raw_exn) return do
   exn$1 = Caml_js_exceptions.internalToOCamlException(raw_exn);
   if (exn$1[0] == Caml_builtin_exceptions.undefined_recursive_module) then do
     tmp$1 = 4;
   end else do
-    throw exn$1;
+    error (exn$1)
   end end 
-end
+end end)
 
 eq("File \"recursive_module.ml\", line 60, characters 6-13", 4, tmp$1);
 

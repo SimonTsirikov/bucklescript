@@ -1,10 +1,10 @@
 --[['use strict';]]
 
-List = require "../../lib/js/list.lua";
-Curry = require "../../lib/js/curry.lua";
-Pervasives = require "../../lib/js/pervasives.lua";
-Caml_exceptions = require "../../lib/js/caml_exceptions.lua";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
+List = require "../../lib/js/list";
+Curry = require "../../lib/js/curry";
+Pervasives = require "../../lib/js/pervasives";
+Caml_exceptions = require "../../lib/js/caml_exceptions";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 function cons_enum(_s, _e) do
   while(true) do
@@ -17,7 +17,7 @@ function cons_enum(_s, _e) do
         e
       };
       _s = s[0];
-      continue ;
+      ::continue:: ;
     end else do
       return e;
     end end 
@@ -39,12 +39,12 @@ function min_elt(_param) do
       l = param[0];
       if (l) then do
         _param = l;
-        continue ;
+        ::continue:: ;
       end else do
         return param[1];
       end end 
     end else do
-      throw Caml_builtin_exceptions.not_found;
+      error (Caml_builtin_exceptions.not_found)
     end end 
   end;
 end end
@@ -56,12 +56,12 @@ function max_elt(_param) do
       r = param[2];
       if (r) then do
         _param = r;
-        continue ;
+        ::continue:: ;
       end else do
         return param[1];
       end end 
     end else do
-      throw Caml_builtin_exceptions.not_found;
+      error (Caml_builtin_exceptions.not_found)
     end end 
   end;
 end end
@@ -81,7 +81,7 @@ function cardinal_aux(_acc, _param) do
     if (param) then do
       _param = param[0];
       _acc = cardinal_aux(acc + 1 | 0, param[2]);
-      continue ;
+      ::continue:: ;
     end else do
       return acc;
     end end 
@@ -102,7 +102,7 @@ function elements_aux(_accu, _param) do
         param[1],
         elements_aux(accu, param[2])
       };
-      continue ;
+      ::continue:: ;
     end else do
       return accu;
     end end 
@@ -120,7 +120,7 @@ function iter(f, _param) do
       iter(f, param[0]);
       Curry._1(f, param[1]);
       _param = param[2];
-      continue ;
+      ::continue:: ;
     end else do
       return --[[ () ]]0;
     end end 
@@ -134,7 +134,7 @@ function fold(f, _s, _accu) do
     if (s) then do
       _accu = Curry._2(f, s[1], fold(f, s[0], accu));
       _s = s[2];
-      continue ;
+      ::continue:: ;
     end else do
       return accu;
     end end 
@@ -147,7 +147,7 @@ function for_all(p, _param) do
     if (param) then do
       if (Curry._1(p, param[1]) and for_all(p, param[0])) then do
         _param = param[2];
-        continue ;
+        ::continue:: ;
       end else do
         return false;
       end end 
@@ -165,7 +165,7 @@ function exists(p, _param) do
         return true;
       end else do
         _param = param[2];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return false;
@@ -205,12 +205,12 @@ function check_height_and_diff(param) do
     hl = check_height_and_diff(param[0]);
     hr = check_height_and_diff(param[2]);
     if (h ~= (max_int_2(hl, hr) + 1 | 0)) then do
-      throw Height_invariant_broken;
+      error (Height_invariant_broken)
     end
      end 
     diff = Pervasives.abs(hl - hr | 0);
     if (diff > 2) then do
-      throw Height_diff_borken;
+      error (Height_diff_borken)
     end
      end 
     return h;
@@ -248,24 +248,24 @@ function internal_bal(l, v, r) do
       end else if (lr) then do
         return create(create(ll, lv, lr[0]), lr[1], create(lr[2], v, r));
       end else do
-        throw {
-              Caml_builtin_exceptions.assert_failure,
-              --[[ tuple ]]{
-                "set_gen.ml",
-                235,
-                19
-              }
-            };
+        error ({
+          Caml_builtin_exceptions.assert_failure,
+          --[[ tuple ]]{
+            "set_gen.ml",
+            235,
+            19
+          }
+        })
       end end  end 
     end else do
-      throw {
-            Caml_builtin_exceptions.assert_failure,
-            --[[ tuple ]]{
-              "set_gen.ml",
-              225,
-              15
-            }
-          };
+      error ({
+        Caml_builtin_exceptions.assert_failure,
+        --[[ tuple ]]{
+          "set_gen.ml",
+          225,
+          15
+        }
+      })
     end end 
   end else if (hr > (hl + 2 | 0)) then do
     if (r) then do
@@ -277,24 +277,24 @@ function internal_bal(l, v, r) do
       end else if (rl) then do
         return create(create(l, v, rl[0]), rl[1], create(rl[2], rv, rr));
       end else do
-        throw {
-              Caml_builtin_exceptions.assert_failure,
-              --[[ tuple ]]{
-                "set_gen.ml",
-                251,
-                19
-              }
-            };
+        error ({
+          Caml_builtin_exceptions.assert_failure,
+          --[[ tuple ]]{
+            "set_gen.ml",
+            251,
+            19
+          }
+        })
       end end  end 
     end else do
-      throw {
-            Caml_builtin_exceptions.assert_failure,
-            --[[ tuple ]]{
-              "set_gen.ml",
-              245,
-              15
-            }
-          };
+      error ({
+        Caml_builtin_exceptions.assert_failure,
+        --[[ tuple ]]{
+          "set_gen.ml",
+          245,
+          15
+        }
+      })
     end end 
   end else do
     return --[[ Node ]]{
@@ -315,10 +315,10 @@ function remove_min_elt(param) do
       return param[2];
     end end 
   end else do
-    throw {
-          Caml_builtin_exceptions.invalid_argument,
-          "Set.remove_min_elt"
-        };
+    error ({
+      Caml_builtin_exceptions.invalid_argument,
+      "Set.remove_min_elt"
+    })
   end end 
 end end
 
@@ -526,14 +526,14 @@ function of_sorted_list(l) do
               match$4[1]
             };
     end else do
-      throw {
-            Caml_builtin_exceptions.assert_failure,
-            --[[ tuple ]]{
-              "set_gen.ml",
-              361,
-              14
-            }
-          };
+      error ({
+        Caml_builtin_exceptions.assert_failure,
+        --[[ tuple ]]{
+          "set_gen.ml",
+          361,
+          14
+        }
+      })
     end end 
   end end;
   return sub(List.length(l), l)[0];
@@ -691,7 +691,7 @@ function compare_aux(cmp, _e1, _e2) do
         end else do
           _e2 = cons_enum(e2[1], e2[2]);
           _e1 = cons_enum(e1[1], e1[2]);
-          continue ;
+          ::continue:: ;
         end end 
       end else do
         return 1;

@@ -1,24 +1,24 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-List = require "../../lib/js/list.lua";
-Block = require "../../lib/js/block.lua";
-Bytes = require "../../lib/js/bytes.lua";
-Curry = require "../../lib/js/curry.lua";
-Scanf = require "../../lib/js/scanf.lua";
-__Buffer = require "../../lib/js/buffer.lua";
-Printf = require "../../lib/js/printf.lua";
-__String = require "../../lib/js/string.lua";
-Testing = require "./testing.lua";
-Caml_obj = require "../../lib/js/caml_obj.lua";
-Mt_global = require "./mt_global.lua";
-Caml_bytes = require "../../lib/js/caml_bytes.lua";
-Caml_int64 = require "../../lib/js/caml_int64.lua";
-Pervasives = require "../../lib/js/pervasives.lua";
-Caml_format = require "../../lib/js/caml_format.lua";
-Caml_string = require "../../lib/js/caml_string.lua";
-Caml_js_exceptions = require "../../lib/js/caml_js_exceptions.lua";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
+Mt = require "./mt";
+List = require "../../lib/js/list";
+Block = require "../../lib/js/block";
+Bytes = require "../../lib/js/bytes";
+Curry = require "../../lib/js/curry";
+Scanf = require "../../lib/js/scanf";
+__Buffer = require "../../lib/js/buffer";
+Printf = require "../../lib/js/printf";
+__String = require "../../lib/js/string";
+Testing = require "./testing";
+Caml_obj = require "../../lib/js/caml_obj";
+Mt_global = require "./mt_global";
+Caml_bytes = require "../../lib/js/caml_bytes";
+Caml_int64 = require "../../lib/js/caml_int64";
+Pervasives = require "../../lib/js/pervasives";
+Caml_format = require "../../lib/js/caml_format";
+Caml_string = require "../../lib/js/caml_string";
+Caml_js_exceptions = require "../../lib/js/caml_js_exceptions";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 suites = do
   contents: --[[ [] ]]0
@@ -706,14 +706,14 @@ function verify_read(c) do
             }), id) == c) then do
     return 0;
   end else do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "tscanf_test.ml",
-            174,
-            2
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "tscanf_test.ml",
+        174,
+        2
+      }
+    })
   end end 
 end end
 
@@ -1307,7 +1307,7 @@ end end
 test("File \"tscanf_test.ml\", line 311, characters 5-12", test12(--[[ () ]]0));
 
 function scan_elems(ib, accu) do
-  try do
+  xpcall(function() do
     return Curry._1(Scanf.bscanf(ib, --[[ Format ]]{
                     --[[ Char_literal ]]Block.__(12, {
                         --[[ " " ]]32,
@@ -1328,10 +1328,9 @@ function scan_elems(ib, accu) do
                               accu
                             });
                 end end));
-  end
-  catch (exn)do
+  end end,function(exn) return do
     return accu;
-  end
+  end end)
 end end
 
 function g(ib) do
@@ -1418,10 +1417,10 @@ function scan_elems$1(ib, accu) do
                 }), (function (i, c) do
                 if (c ~= 59) then do
                   if (c ~= 93) then do
-                    throw {
-                          Caml_builtin_exceptions.failure,
-                          "scan_elems"
-                        };
+                    error ({
+                      Caml_builtin_exceptions.failure,
+                      "scan_elems"
+                    })
                   end
                    end 
                   return List.rev(--[[ :: ]]{
@@ -1467,7 +1466,7 @@ end end
 test("File \"tscanf_test.ml\", line 357, characters 5-12", test15(--[[ () ]]0));
 
 function scan_elems$2(ib, accu) do
-  try do
+  xpcall(function() do
     return Curry._1(Scanf.bscanf(ib, --[[ Format ]]{
                     --[[ Char ]]Block.__(0, {--[[ Char_literal ]]Block.__(12, {
                             --[[ " " ]]32,
@@ -1511,13 +1510,12 @@ function scan_elems$2(ib, accu) do
                   end
                    end  end 
                   console.log(Caml_bytes.bytes_to_string(Bytes.make(1, c)));
-                  throw {
-                        Caml_builtin_exceptions.failure,
-                        "scan_elems"
-                      };
+                  error ({
+                    Caml_builtin_exceptions.failure,
+                    "scan_elems"
+                  })
                 end end));
-  end
-  catch (raw_exn)do
+  end end,function(raw_exn) return do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn[0] == Scanf.Scan_failure) then do
       Curry._1(Scanf.bscanf(ib, --[[ Format ]]{
@@ -1531,9 +1529,9 @@ function scan_elems$2(ib, accu) do
     end else if (exn == Caml_builtin_exceptions.end_of_file) then do
       return accu;
     end else do
-      throw exn;
+      error (exn)
     end end  end 
-  end
+  end end)
 end end
 
 function test16(param) do
@@ -1693,10 +1691,10 @@ function scan_rest(ib, accu) do
                 }), (function (c) do
                 if (c ~= 59) then do
                   if (c ~= 93) then do
-                    throw {
-                          Caml_builtin_exceptions.failure,
-                          "scan_rest"
-                        };
+                    error ({
+                      Caml_builtin_exceptions.failure,
+                      "scan_rest"
+                    })
                   end
                    end 
                   return accu;
@@ -1750,10 +1748,10 @@ function scan_elems$4(ib, accu) do
                   " %c "
                 }), (function (c) do
                 if (c ~= 91) then do
-                  throw {
-                        Caml_builtin_exceptions.failure,
-                        "scan_elems"
-                      };
+                  error ({
+                    Caml_builtin_exceptions.failure,
+                    "scan_elems"
+                  })
                 end
                  end 
                 if (accu == --[[ [] ]]0) then do
@@ -1791,10 +1789,10 @@ function scan_elems$4(ib, accu) do
                                 end end 
                               end end));
                 end else do
-                  throw {
-                        Caml_builtin_exceptions.failure,
-                        "scan_elems"
-                      };
+                  error ({
+                    Caml_builtin_exceptions.failure,
+                    "scan_elems"
+                  })
                 end end 
               end end));
 end end
@@ -1924,10 +1922,10 @@ function scan_rest$1(ib, accu) do
                                                           }),
                                                         "scan_int_list"
                                                       });
-                                                  throw {
-                                                        Caml_builtin_exceptions.failure,
-                                                        s
-                                                      };
+                                                  error ({
+                                                    Caml_builtin_exceptions.failure,
+                                                    s
+                                                  })
                                                   end end
                                                   
                                               end
@@ -1986,7 +1984,7 @@ end end
 test("File \"tscanf_test.ml\", line 506, characters 5-12", test22(--[[ () ]]0));
 
 function scan_elems$5(ib, scan_elem, accu) do
-  try do
+  xpcall(function() do
     return Curry._2(scan_elem, ib, (function (i, s) do
                   accu$1 = --[[ :: ]]{
                     i,
@@ -1998,15 +1996,14 @@ function scan_elems$5(ib, scan_elem, accu) do
                     return scan_elems$5(ib, scan_elem, accu$1);
                   end end 
                 end end));
-  end
-  catch (raw_exn)do
+  end end,function(raw_exn) return do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn[0] == Scanf.Scan_failure) then do
       return accu;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 function scan_list(scan_elem, ib) do
@@ -3711,7 +3708,7 @@ function next_char(ob, param) do
   s = __Buffer.contents(ob);
   len = #s;
   if (len == 0) then do
-    throw Caml_builtin_exceptions.end_of_file;
+    error (Caml_builtin_exceptions.end_of_file)
   end
    end 
   c = Caml_string.get(s, 0);

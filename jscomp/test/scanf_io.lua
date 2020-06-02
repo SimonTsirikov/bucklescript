@@ -1,20 +1,20 @@
 --[['use strict';]]
 
-List = require "../../lib/js/list.lua";
-Block = require "../../lib/js/block.lua";
-Bytes = require "../../lib/js/bytes.lua";
-Curry = require "../../lib/js/curry.lua";
-Scanf = require "../../lib/js/scanf.lua";
-__Buffer = require "../../lib/js/buffer.lua";
-Digest = require "../../lib/js/digest.lua";
-Printf = require "../../lib/js/printf.lua";
-Caml_io = require "../../lib/js/caml_io.lua";
-Caml_obj = require "../../lib/js/caml_obj.lua";
-Caml_bytes = require "../../lib/js/caml_bytes.lua";
-Pervasives = require "../../lib/js/pervasives.lua";
-Caml_js_exceptions = require "../../lib/js/caml_js_exceptions.lua";
-Caml_external_polyfill = require "../../lib/js/caml_external_polyfill.lua";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
+List = require "../../lib/js/list";
+Block = require "../../lib/js/block";
+Bytes = require "../../lib/js/bytes";
+Curry = require "../../lib/js/curry";
+Scanf = require "../../lib/js/scanf";
+__Buffer = require "../../lib/js/buffer";
+Digest = require "../../lib/js/digest";
+Printf = require "../../lib/js/printf";
+Caml_io = require "../../lib/js/caml_io";
+Caml_obj = require "../../lib/js/caml_obj";
+Caml_bytes = require "../../lib/js/caml_bytes";
+Pervasives = require "../../lib/js/pervasives";
+Caml_js_exceptions = require "../../lib/js/caml_js_exceptions";
+Caml_external_polyfill = require "../../lib/js/caml_external_polyfill";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 tscanf_data_file = "tscanf_data";
 
@@ -62,7 +62,7 @@ function get_lines(fname) do
   l = do
     contents: --[[ [] ]]0
   end;
-  try do
+  xpcall(function() do
     while(not Scanf.Scanning.end_of_input(ib)) do
       Curry._1(Scanf.bscanf(ib, --[[ Format ]]{
                 --[[ Char_literal ]]Block.__(12, {
@@ -94,8 +94,7 @@ function get_lines(fname) do
             end end));
     end;
     return List.rev(l.contents);
-  end
-  catch (raw_exn)do
+  end end,function(raw_exn) return do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn[0] == Scanf.Scan_failure) then do
       s = Curry._2(Printf.sprintf(--[[ Format ]]{
@@ -114,10 +113,10 @@ function get_lines(fname) do
                   }),
                 "in file %s, %s"
               }), fname, exn[1]);
-      throw {
-            Caml_builtin_exceptions.failure,
-            s
-          };
+      error ({
+        Caml_builtin_exceptions.failure,
+        s
+      })
     end else if (exn == Caml_builtin_exceptions.end_of_file) then do
       s$1 = Curry._1(Printf.sprintf(--[[ Format ]]{
                 --[[ String_literal ]]Block.__(11, {
@@ -132,14 +131,14 @@ function get_lines(fname) do
                   }),
                 "in file %s, unexpected end of file"
               }), fname);
-      throw {
-            Caml_builtin_exceptions.failure,
-            s$1
-          };
+      error ({
+        Caml_builtin_exceptions.failure,
+        s$1
+      })
     end else do
-      throw exn;
+      error (exn)
     end end  end 
-  end
+  end end)
 end end
 
 function add_digest_ib(ob, ib) do
@@ -163,19 +162,18 @@ function add_digest_ib(ob, ib) do
     __Buffer.add_string(ob, Caml_bytes.bytes_to_string(Bytes.uppercase(Caml_bytes.bytes_of_string(s$1))));
     return __Buffer.add_char(ob, --[[ "\n" ]]10);
   end end;
-  try do
+  xpcall(function() do
     while(true) do
       scan_line(ib, output_line_digest);
     end;
     return --[[ () ]]0;
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Caml_builtin_exceptions.end_of_file) then do
       return --[[ () ]]0;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 function digest_file(fname) do

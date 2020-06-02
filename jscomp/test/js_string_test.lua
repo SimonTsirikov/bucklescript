@@ -1,15 +1,15 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-Block = require "../../lib/js/block.lua";
-Caml_option = require "../../lib/js/caml_option.lua";
+Mt = require "./mt";
+Block = require "../../lib/js/block";
+Caml_option = require "../../lib/js/caml_option";
 
 suites_000 = --[[ tuple ]]{
   "make",
   (function (param) do
       return --[[ Eq ]]Block.__(0, {
                 "null",
-                String(null).concat("")
+                String(nil).concat("")
               });
     end end)
 };

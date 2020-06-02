@@ -1,12 +1,12 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-Lazy = require "../../lib/js/lazy.lua";
-Block = require "../../lib/js/block.lua";
-Caml_obj = require "../../lib/js/caml_obj.lua";
-CamlinternalLazy = require "../../lib/js/camlinternalLazy.lua";
-Caml_js_exceptions = require "../../lib/js/caml_js_exceptions.lua";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
+Mt = require "./mt";
+Lazy = require "../../lib/js/lazy";
+Block = require "../../lib/js/block";
+Caml_obj = require "../../lib/js/caml_obj";
+CamlinternalLazy = require "../../lib/js/camlinternalLazy";
+Caml_js_exceptions = require "../../lib/js/caml_js_exceptions";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 u = do
   contents: 3
@@ -36,14 +36,14 @@ function f(param) do
     if (match$1 ~= undefined) then do
       return 1;
     end else do
-      throw {
-            Caml_builtin_exceptions.match_failure,
-            --[[ tuple ]]{
-              "lazy_test.ml",
-              11,
-              8
-            }
-          };
+      error ({
+        Caml_builtin_exceptions.match_failure,
+        --[[ tuple ]]{
+          "lazy_test.ml",
+          11,
+          8
+        }
+      })
     end end 
   end else do
     return 0;
@@ -66,21 +66,20 @@ set_false = Caml_obj.caml_lazy_make((function (param) do
 
 h;
 
-try do
+xpcall(function() do
   h = f(--[[ tuple ]]{
         set_true,
         set_false,
         s
       });
-end
-catch (raw_exn)do
+end end,function(raw_exn) return do
   exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
   if (exn[0] == Caml_builtin_exceptions.match_failure) then do
     h = 2;
   end else do
-    throw exn;
+    error (exn)
   end end 
-end
+end end)
 
 u_v = do
   contents: 0
@@ -116,12 +115,12 @@ f006 = Caml_obj.caml_lazy_make((function (param) do
       end end));
 
 f007 = Caml_obj.caml_lazy_make((function (param) do
-        throw Caml_builtin_exceptions.not_found;
+        error (Caml_builtin_exceptions.not_found)
       end end));
 
 f008 = Caml_obj.caml_lazy_make((function (param) do
         console.log("hi");
-        throw Caml_builtin_exceptions.not_found;
+        error (Caml_builtin_exceptions.not_found)
       end end));
 
 Mt.from_pair_suites("Lazy_test", --[[ :: ]]{

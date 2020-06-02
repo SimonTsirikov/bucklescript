@@ -1,16 +1,16 @@
 --[['use strict';]]
 
-List = require "../../lib/js/list.lua";
-Block = require "../../lib/js/block.lua";
-Curry = require "../../lib/js/curry.lua";
-Printf = require "../../lib/js/printf.lua";
-__String = require "../../lib/js/string.lua";
-Caml_obj = require "../../lib/js/caml_obj.lua";
-Pervasives = require "../../lib/js/pervasives.lua";
-Caml_format = require "../../lib/js/caml_format.lua";
-Caml_option = require "../../lib/js/caml_option.lua";
-Caml_primitive = require "../../lib/js/caml_primitive.lua";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
+List = require "../../lib/js/list";
+Block = require "../../lib/js/block";
+Curry = require "../../lib/js/curry";
+Printf = require "../../lib/js/printf";
+__String = require "../../lib/js/string";
+Caml_obj = require "../../lib/js/caml_obj";
+Pervasives = require "../../lib/js/pervasives";
+Caml_format = require "../../lib/js/caml_format";
+Caml_option = require "../../lib/js/caml_option";
+Caml_primitive = require "../../lib/js/caml_primitive";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 function split(delim, s) do
   len = #s;
@@ -22,19 +22,18 @@ function split(delim, s) do
       l = _l;
       if (i ~= 0) then do
         i$prime;
-        try do
+        xpcall(function() do
           i$prime = __String.rindex_from(s, i - 1 | 0, delim);
-        end
-        catch (exn)do
+        end end,function(exn) return do
           if (exn == Caml_builtin_exceptions.not_found) then do
             return --[[ :: ]]{
                     __String.sub(s, 0, i),
                     l
                   };
           end else do
-            throw exn;
+            error (exn)
           end end 
-        end
+        end end)
         l_000 = __String.sub(s, i$prime + 1 | 0, (i - i$prime | 0) - 1 | 0);
         l$1 = --[[ :: ]]{
           l_000,
@@ -46,7 +45,7 @@ function split(delim, s) do
           } or l$1;
         _i = i$prime;
         _l = l$2;
-        continue ;
+        ::continue:: ;
       end else do
         return l;
       end end 
@@ -156,16 +155,16 @@ function bal(l, x, d, r) do
       end else if (lr) then do
         return create(create(ll, lv, ld, lr[--[[ l ]]0]), lr[--[[ v ]]1], lr[--[[ d ]]2], create(lr[--[[ r ]]3], x, d, r));
       end else do
-        throw {
-              Caml_builtin_exceptions.invalid_argument,
-              "Map.bal"
-            };
+        error ({
+          Caml_builtin_exceptions.invalid_argument,
+          "Map.bal"
+        })
       end end  end 
     end else do
-      throw {
-            Caml_builtin_exceptions.invalid_argument,
-            "Map.bal"
-          };
+      error ({
+        Caml_builtin_exceptions.invalid_argument,
+        "Map.bal"
+      })
     end end 
   end else if (hr > (hl + 2 | 0)) then do
     if (r) then do
@@ -178,16 +177,16 @@ function bal(l, x, d, r) do
       end else if (rl) then do
         return create(create(l, x, d, rl[--[[ l ]]0]), rl[--[[ v ]]1], rl[--[[ d ]]2], create(rl[--[[ r ]]3], rv, rd, rr));
       end else do
-        throw {
-              Caml_builtin_exceptions.invalid_argument,
-              "Map.bal"
-            };
+        error ({
+          Caml_builtin_exceptions.invalid_argument,
+          "Map.bal"
+        })
       end end  end 
     end else do
-      throw {
-            Caml_builtin_exceptions.invalid_argument,
-            "Map.bal"
-          };
+      error ({
+        Caml_builtin_exceptions.invalid_argument,
+        "Map.bal"
+      })
     end end 
   end else do
     return --[[ Node ]]{
@@ -262,10 +261,10 @@ function find(x, _param) do
         return param[--[[ d ]]2];
       end else do
         _param = c < 0 and param[--[[ l ]]0] or param[--[[ r ]]3];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
-      throw Caml_builtin_exceptions.not_found;
+      error (Caml_builtin_exceptions.not_found)
     end end 
   end;
 end end
@@ -290,10 +289,10 @@ function find_first(f, _param) do
               _param$1 = param$1[--[[ l ]]0];
               _d0 = param$1[--[[ d ]]2];
               _v0 = v$1;
-              continue ;
+              ::continue:: ;
             end else do
               _param$1 = param$1[--[[ r ]]3];
-              continue ;
+              ::continue:: ;
             end end 
           end else do
             return --[[ tuple ]]{
@@ -304,10 +303,10 @@ function find_first(f, _param) do
         end;
       end else do
         _param = param[--[[ r ]]3];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
-      throw Caml_builtin_exceptions.not_found;
+      error (Caml_builtin_exceptions.not_found)
     end end 
   end;
 end end
@@ -332,10 +331,10 @@ function find_first_opt(f, _param) do
               _param$1 = param$1[--[[ l ]]0];
               _d0 = param$1[--[[ d ]]2];
               _v0 = v$1;
-              continue ;
+              ::continue:: ;
             end else do
               _param$1 = param$1[--[[ r ]]3];
-              continue ;
+              ::continue:: ;
             end end 
           end else do
             return --[[ tuple ]]{
@@ -346,7 +345,7 @@ function find_first_opt(f, _param) do
         end;
       end else do
         _param = param[--[[ r ]]3];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return ;
@@ -374,10 +373,10 @@ function find_last(f, _param) do
               _param$1 = param$1[--[[ r ]]3];
               _d0 = param$1[--[[ d ]]2];
               _v0 = v$1;
-              continue ;
+              ::continue:: ;
             end else do
               _param$1 = param$1[--[[ l ]]0];
-              continue ;
+              ::continue:: ;
             end end 
           end else do
             return --[[ tuple ]]{
@@ -388,10 +387,10 @@ function find_last(f, _param) do
         end;
       end else do
         _param = param[--[[ l ]]0];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
-      throw Caml_builtin_exceptions.not_found;
+      error (Caml_builtin_exceptions.not_found)
     end end 
   end;
 end end
@@ -416,10 +415,10 @@ function find_last_opt(f, _param) do
               _param$1 = param$1[--[[ r ]]3];
               _d0 = param$1[--[[ d ]]2];
               _v0 = v$1;
-              continue ;
+              ::continue:: ;
             end else do
               _param$1 = param$1[--[[ l ]]0];
-              continue ;
+              ::continue:: ;
             end end 
           end else do
             return --[[ tuple ]]{
@@ -430,7 +429,7 @@ function find_last_opt(f, _param) do
         end;
       end else do
         _param = param[--[[ l ]]0];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return ;
@@ -447,7 +446,7 @@ function find_opt(x, _param) do
         return Caml_option.some(param[--[[ d ]]2]);
       end else do
         _param = c < 0 and param[--[[ l ]]0] or param[--[[ r ]]3];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return ;
@@ -464,7 +463,7 @@ function mem(x, _param) do
         return true;
       end else do
         _param = c < 0 and param[--[[ l ]]0] or param[--[[ r ]]3];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return false;
@@ -479,7 +478,7 @@ function min_binding(_param) do
       l = param[--[[ l ]]0];
       if (l) then do
         _param = l;
-        continue ;
+        ::continue:: ;
       end else do
         return --[[ tuple ]]{
                 param[--[[ v ]]1],
@@ -487,7 +486,7 @@ function min_binding(_param) do
               };
       end end 
     end else do
-      throw Caml_builtin_exceptions.not_found;
+      error (Caml_builtin_exceptions.not_found)
     end end 
   end;
 end end
@@ -499,7 +498,7 @@ function min_binding_opt(_param) do
       l = param[--[[ l ]]0];
       if (l) then do
         _param = l;
-        continue ;
+        ::continue:: ;
       end else do
         return --[[ tuple ]]{
                 param[--[[ v ]]1],
@@ -519,7 +518,7 @@ function max_binding(_param) do
       r = param[--[[ r ]]3];
       if (r) then do
         _param = r;
-        continue ;
+        ::continue:: ;
       end else do
         return --[[ tuple ]]{
                 param[--[[ v ]]1],
@@ -527,7 +526,7 @@ function max_binding(_param) do
               };
       end end 
     end else do
-      throw Caml_builtin_exceptions.not_found;
+      error (Caml_builtin_exceptions.not_found)
     end end 
   end;
 end end
@@ -539,7 +538,7 @@ function max_binding_opt(_param) do
       r = param[--[[ r ]]3];
       if (r) then do
         _param = r;
-        continue ;
+        ::continue:: ;
       end else do
         return --[[ tuple ]]{
                 param[--[[ v ]]1],
@@ -561,10 +560,10 @@ function remove_min_binding(param) do
       return param[--[[ r ]]3];
     end end 
   end else do
-    throw {
-          Caml_builtin_exceptions.invalid_argument,
-          "Map.remove_min_elt"
-        };
+    error ({
+      Caml_builtin_exceptions.invalid_argument,
+      "Map.remove_min_elt"
+    })
   end end 
 end end
 
@@ -673,7 +672,7 @@ function iter(f, _param) do
       iter(f, param[--[[ l ]]0]);
       Curry._2(f, param[--[[ v ]]1], param[--[[ d ]]2]);
       _param = param[--[[ r ]]3];
-      continue ;
+      ::continue:: ;
     end else do
       return --[[ () ]]0;
     end end 
@@ -722,7 +721,7 @@ function fold(f, _m, _accu) do
     if (m) then do
       _accu = Curry._3(f, m[--[[ v ]]1], m[--[[ d ]]2], fold(f, m[--[[ l ]]0], accu));
       _m = m[--[[ r ]]3];
-      continue ;
+      ::continue:: ;
     end else do
       return accu;
     end end 
@@ -735,7 +734,7 @@ function for_all(p, _param) do
     if (param) then do
       if (Curry._2(p, param[--[[ v ]]1], param[--[[ d ]]2]) and for_all(p, param[--[[ l ]]0])) then do
         _param = param[--[[ r ]]3];
-        continue ;
+        ::continue:: ;
       end else do
         return false;
       end end 
@@ -753,7 +752,7 @@ function exists(p, _param) do
         return true;
       end else do
         _param = param[--[[ r ]]3];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return false;
@@ -872,14 +871,14 @@ function merge$1(f, s1, s2) do
     match$1 = split$1(v2, s1);
     return concat_or_join(merge$1(f, match$1[0], s2[--[[ l ]]0]), v2, Curry._3(f, v2, match$1[1], Caml_option.some(s2[--[[ d ]]2])), merge$1(f, match$1[2], s2[--[[ r ]]3]));
   end else do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "map.ml",
-            393,
-            10
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "map.ml",
+        393,
+        10
+      }
+    })
   end end 
 end end
 
@@ -984,7 +983,7 @@ function cons_enum(_m, _e) do
         e
       };
       _m = m[--[[ l ]]0];
-      continue ;
+      ::continue:: ;
     end else do
       return e;
     end end 
@@ -1009,7 +1008,7 @@ function compare(cmp, m1, m2) do
           end else do
             _e2 = cons_enum(e2[2], e2[3]);
             _e1 = cons_enum(e1[2], e1[3]);
-            continue ;
+            ::continue:: ;
           end end 
         end end 
       end else do
@@ -1033,7 +1032,7 @@ function equal(cmp, m1, m2) do
       if (e2 and Caml_obj.caml_equal(e1[0], e2[0]) and Curry._2(cmp, e1[1], e2[1])) then do
         _e2 = cons_enum(e2[2], e2[3]);
         _e1 = cons_enum(e1[2], e1[3]);
-        continue ;
+        ::continue:: ;
       end else do
         return false;
       end end 
@@ -1066,7 +1065,7 @@ function bindings_aux(_accu, _param) do
         },
         bindings_aux(accu, param[--[[ r ]]3])
       };
-      continue ;
+      ::continue:: ;
     end else do
       return accu;
     end end 
@@ -1160,7 +1159,7 @@ function compute_update_sequences(all_tickers) do
                     ticker,
                     up
                   };
-                  continue ;
+                  ::continue:: ;
                 end else do
                   l = find(ticker_name, map);
                   return add(ticker_name, Pervasives.$at(up, l), map);
@@ -1179,18 +1178,18 @@ function compute_update_sequences(all_tickers) do
                 l$1 = List.sort_uniq((function (lhs, rhs) do
                         match = lhs.rank;
                         if (typeof match == "number") then do
-                          throw {
-                                Caml_builtin_exceptions.failure,
-                                "All nodes should be ranked"
-                              };
+                          error ({
+                            Caml_builtin_exceptions.failure,
+                            "All nodes should be ranked"
+                          })
                         end
                          end 
                         match$1 = rhs.rank;
                         if (typeof match$1 == "number") then do
-                          throw {
-                                Caml_builtin_exceptions.failure,
-                                "All nodes should be ranked"
-                              };
+                          error ({
+                            Caml_builtin_exceptions.failure,
+                            "All nodes should be ranked"
+                          })
                         end
                          end 
                         return Caml_primitive.caml_int_compare(match[0], match$1[0]);
@@ -1221,10 +1220,10 @@ function process_quote(ticker_map, new_ticker, new_value) do
                   ticker.value = new_value;
                   return --[[ () ]]0;
                 end else do
-                  throw {
-                        Caml_builtin_exceptions.failure,
-                        "Only single Market ticker should be udpated upon a new quote"
-                      };
+                  error ({
+                    Caml_builtin_exceptions.failure,
+                    "Only single Market ticker should be udpated upon a new quote"
+                  })
                 end end  end 
               end end), update_sequence);
 end end
@@ -1254,10 +1253,10 @@ function process_input_line(ticker_map, all_tickers, line) do
             match$1 = match[1];
             if (match$1) then do
               if (match$1[1]) then do
-                throw {
-                      Caml_builtin_exceptions.failure,
-                      "Invalid input line"
-                    };
+                error ({
+                  Caml_builtin_exceptions.failure,
+                  "Invalid input line"
+                })
               end
                end 
               ticker_map$1 = ticker_map ~= undefined and Caml_option.valFromOption(ticker_map) or compute_update_sequences(all_tickers);
@@ -1268,16 +1267,16 @@ function process_input_line(ticker_map, all_tickers, line) do
                       Caml_option.some(ticker_map$1)
                     };
             end else do
-              throw {
-                    Caml_builtin_exceptions.failure,
-                    "Invalid input line"
-                  };
+              error ({
+                Caml_builtin_exceptions.failure,
+                "Invalid input line"
+              })
             end end 
           end else do
-            throw {
-                  Caml_builtin_exceptions.failure,
-                  "Invalid input line"
-                };
+            error ({
+              Caml_builtin_exceptions.failure,
+              "Invalid input line"
+            })
           end end end end end 
        if ___conditional___ = "R" then do
           match$2 = tokens[1];
@@ -1293,10 +1292,10 @@ function process_input_line(ticker_map, all_tickers, line) do
                       match$5 = match$4[1];
                       if (match$5) then do
                         if (match$5[1]) then do
-                          throw {
-                                Caml_builtin_exceptions.failure,
-                                "Invalid input line"
-                              };
+                          error ({
+                            Caml_builtin_exceptions.failure,
+                            "Invalid input line"
+                          })
                         end
                          end 
                         return --[[ tuple ]]{
@@ -1307,16 +1306,16 @@ function process_input_line(ticker_map, all_tickers, line) do
                                 ticker_map
                               };
                       end else do
-                        throw {
-                              Caml_builtin_exceptions.failure,
-                              "Invalid input line"
-                            };
+                        error ({
+                          Caml_builtin_exceptions.failure,
+                          "Invalid input line"
+                        })
                       end end 
                     end else do
-                      throw {
-                            Caml_builtin_exceptions.failure,
-                            "Invalid input line"
-                          };
+                      error ({
+                        Caml_builtin_exceptions.failure,
+                        "Invalid input line"
+                      })
                     end end end end end 
                  if ___conditional___ = "-" then do
                     match$6 = match$3[1];
@@ -1324,10 +1323,10 @@ function process_input_line(ticker_map, all_tickers, line) do
                       match$7 = match$6[1];
                       if (match$7) then do
                         if (match$7[1]) then do
-                          throw {
-                                Caml_builtin_exceptions.failure,
-                                "Invalid input line"
-                              };
+                          error ({
+                            Caml_builtin_exceptions.failure,
+                            "Invalid input line"
+                          })
                         end
                          end 
                         return --[[ tuple ]]{
@@ -1338,23 +1337,23 @@ function process_input_line(ticker_map, all_tickers, line) do
                                 ticker_map
                               };
                       end else do
-                        throw {
-                              Caml_builtin_exceptions.failure,
-                              "Invalid input line"
-                            };
+                        error ({
+                          Caml_builtin_exceptions.failure,
+                          "Invalid input line"
+                        })
                       end end 
                     end else do
-                      throw {
-                            Caml_builtin_exceptions.failure,
-                            "Invalid input line"
-                          };
+                      error ({
+                        Caml_builtin_exceptions.failure,
+                        "Invalid input line"
+                      })
                     end end end end end 
                  if ___conditional___ = "S" then do
                     if (match$3[1]) then do
-                      throw {
-                            Caml_builtin_exceptions.failure,
-                            "Invalid input line"
-                          };
+                      error ({
+                        Caml_builtin_exceptions.failure,
+                        "Invalid input line"
+                      })
                     end
                      end 
                     return --[[ tuple ]]{
@@ -1371,39 +1370,39 @@ function process_input_line(ticker_map, all_tickers, line) do
                           };end end end 
                  do
                 else do
-                  throw {
-                        Caml_builtin_exceptions.failure,
-                        "Invalid input line"
-                      };
+                  error ({
+                    Caml_builtin_exceptions.failure,
+                    "Invalid input line"
+                  })
                   end end
                   
               end
             end else do
-              throw {
-                    Caml_builtin_exceptions.failure,
-                    "Invalid input line"
-                  };
+              error ({
+                Caml_builtin_exceptions.failure,
+                "Invalid input line"
+              })
             end end 
           end else do
-            throw {
-                  Caml_builtin_exceptions.failure,
-                  "Invalid input line"
-                };
+            error ({
+              Caml_builtin_exceptions.failure,
+              "Invalid input line"
+            })
           end end end end end 
        do
       else do
-        throw {
-              Caml_builtin_exceptions.failure,
-              "Invalid input line"
-            };
+        error ({
+          Caml_builtin_exceptions.failure,
+          "Invalid input line"
+        })
         end end
         
     end
   end else do
-    throw {
-          Caml_builtin_exceptions.failure,
-          "Invalid input line"
-        };
+    error ({
+      Caml_builtin_exceptions.failure,
+      "Invalid input line"
+    })
   end end 
 end end
 
@@ -1415,7 +1414,7 @@ function loop(_lines, _param) do
     if (lines) then do
       _param = process_input_line(param[1], all_tickers, lines[0]);
       _lines = lines[1];
-      continue ;
+      ::continue:: ;
     end else do
       return print_all_composite(all_tickers);
     end end 

@@ -1,6 +1,6 @@
 --[['use strict';]]
 
-Fs = require "fs";
+Fs = require "";
 
 match = typeof __filename == "undefined" and undefined or __filename;
 

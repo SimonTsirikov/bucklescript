@@ -1,15 +1,15 @@
 --[['use strict';]]
 
-List = require "../../lib/js/list.lua";
-Bytes = require "../../lib/js/bytes.lua";
-Curry = require "../../lib/js/curry.lua";
-__String = require "../../lib/js/string.lua";
-Caml_bytes = require "../../lib/js/caml_bytes.lua";
-Caml_int32 = require "../../lib/js/caml_int32.lua";
-Caml_string = require "../../lib/js/caml_string.lua";
-Ext_bytes_test = require "./ext_bytes_test.lua";
-Caml_exceptions = require "../../lib/js/caml_exceptions.lua";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
+List = require "../../lib/js/list";
+Bytes = require "../../lib/js/bytes";
+Curry = require "../../lib/js/curry";
+__String = require "../../lib/js/string";
+Caml_bytes = require "../../lib/js/caml_bytes";
+Caml_int32 = require "../../lib/js/caml_int32";
+Caml_string = require "../../lib/js/caml_string";
+Ext_bytes_test = require "./ext_bytes_test";
+Caml_exceptions = require "../../lib/js/caml_exceptions";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 function split_by(keep_emptyOpt, is_delim, str) do
   keep_empty = keep_emptyOpt ~= undefined and keep_emptyOpt or false;
@@ -40,15 +40,15 @@ function split_by(keep_emptyOpt, is_delim, str) do
           v,
           acc
         };
-        continue ;
+        ::continue:: ;
       end else do
         _pos = pos - 1 | 0;
         _last_pos = pos;
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       _pos = pos - 1 | 0;
-      continue ;
+      ::continue:: ;
     end end  end 
   end;
 end end
@@ -132,7 +132,7 @@ function ends_with_index(s, end_) do
       end else if (s[j] == end_[k]) then do
         _k = k - 1 | 0;
         _j = j - 1 | 0;
-        continue ;
+        ::continue:: ;
       end else do
         return -1;
       end end  end 
@@ -168,7 +168,7 @@ function check_any_suffix_case_then_chop(s, suffixes) do
         return __String.sub(s, 0, id);
       end else do
         _suffixes = suffixes$1[1];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return ;
@@ -191,13 +191,13 @@ function escaped(s) do
               return true;
             end else do
               _i = i + 1 | 0;
-              continue ;
+              ::continue:: ;
             end end 
           end else if (switcher > 57 or switcher < 1) then do
             return true;
           end else do
             _i = i + 1 | 0;
-            continue ;
+            ::continue:: ;
           end end  end 
         end else do
           return true;
@@ -219,7 +219,7 @@ function unsafe_for_all_range(s, _start, finish, p) do
       return true;
     end else if (Curry._1(p, s.charCodeAt(start))) then do
       _start = start + 1 | 0;
-      continue ;
+      ::continue:: ;
     end else do
       return false;
     end end  end 
@@ -229,10 +229,10 @@ end end
 function for_all_range(s, start, finish, p) do
   len = #s;
   if (start < 0 or finish >= len) then do
-    throw {
-          Caml_builtin_exceptions.invalid_argument,
-          "Ext_string_test.for_all_range"
-        };
+    error ({
+      Caml_builtin_exceptions.invalid_argument,
+      "Ext_string_test.for_all_range"
+    })
   end
    end 
   return unsafe_for_all_range(s, start, finish, p);
@@ -264,7 +264,7 @@ function unsafe_is_sub(sub, i, s, j, len) do
         return true;
       end else if (sub[i + k | 0] == s[j + k | 0]) then do
         _k = k + 1 | 0;
-        continue ;
+        ::continue:: ;
       end else do
         return false;
       end end  end 
@@ -281,23 +281,22 @@ function find(startOpt, sub, s) do
   n = #sub;
   s_len = #s;
   i = start;
-  try do
+  xpcall(function() do
     while((i + n | 0) <= s_len) do
       if (unsafe_is_sub(sub, 0, s, i, n)) then do
-        throw Local_exit;
+        error (Local_exit)
       end
        end 
       i = i + 1 | 0;
     end;
     return -1;
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Local_exit) then do
       return i;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 function contain_substring(s, sub) do
@@ -307,10 +306,10 @@ end end
 function non_overlap_count(sub, s) do
   sub_len = #sub;
   if (#sub == 0) then do
-    throw {
-          Caml_builtin_exceptions.invalid_argument,
-          "Ext_string_test.non_overlap_count"
-        };
+    error ({
+      Caml_builtin_exceptions.invalid_argument,
+      "Ext_string_test.non_overlap_count"
+    })
   end
    end 
   _acc = 0;
@@ -324,7 +323,7 @@ function non_overlap_count(sub, s) do
     end else do
       _off = i + sub_len | 0;
       _acc = acc + 1 | 0;
-      continue ;
+      ::continue:: ;
     end end 
   end;
 end end
@@ -332,33 +331,32 @@ end end
 function rfind(sub, s) do
   n = #sub;
   i = #s - n | 0;
-  try do
+  xpcall(function() do
     while(i >= 0) do
       if (unsafe_is_sub(sub, 0, s, i, n)) then do
-        throw Local_exit;
+        error (Local_exit)
       end
        end 
       i = i - 1 | 0;
     end;
     return -1;
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Local_exit) then do
       return i;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 function tail_from(s, x) do
   len = #s;
   if (x > len) then do
     s$1 = "Ext_string_test.tail_from " .. (s .. (" : " .. String(x)));
-    throw {
-          Caml_builtin_exceptions.invalid_argument,
-          s$1
-        };
+    error ({
+      Caml_builtin_exceptions.invalid_argument,
+      s$1
+    })
   end else do
     return __String.sub(s, x, len - x | 0);
   end end 
@@ -377,7 +375,7 @@ function digits_of_str(s, offset, x) do
     end else do
       _acc = (Caml_int32.imul(10, acc) + Caml_string.get(s$1, offset + i | 0) | 0) - 48 | 0;
       _i = i + 1 | 0;
-      continue ;
+      ::continue:: ;
     end end 
   end;
 end end
@@ -436,7 +434,7 @@ function rindex_rec(s, _i, c) do
       return i;
     end else do
       _i = i - 1 | 0;
-      continue ;
+      ::continue:: ;
     end end 
   end;
 end end
@@ -450,7 +448,7 @@ function rindex_rec_opt(s, _i, c) do
       return i;
     end else do
       _i = i - 1 | 0;
-      continue ;
+      ::continue:: ;
     end end  end 
   end;
 end end
@@ -558,7 +556,7 @@ function unsafe_no_char(x, ch, _i, last_idx) do
       return true;
     end else if (x.charCodeAt(i) ~= ch) then do
       _i = i + 1 | 0;
-      continue ;
+      ::continue:: ;
     end else do
       return false;
     end end  end 
@@ -572,7 +570,7 @@ function unsafe_no_char_idx(x, ch, _i, last_idx) do
       return -1;
     end else if (x.charCodeAt(i) ~= ch) then do
       _i = i + 1 | 0;
-      continue ;
+      ::continue:: ;
     end else do
       return i;
     end end  end 
@@ -582,10 +580,10 @@ end end
 function no_char(x, ch, i, len) do
   str_len = #x;
   if (i < 0 or i >= str_len or len >= str_len) then do
-    throw {
-          Caml_builtin_exceptions.invalid_argument,
-          "Ext_string_test.no_char"
-        };
+    error ({
+      Caml_builtin_exceptions.invalid_argument,
+      "Ext_string_test.no_char"
+    })
   end
    end 
   return unsafe_no_char(x, ch, i, len);

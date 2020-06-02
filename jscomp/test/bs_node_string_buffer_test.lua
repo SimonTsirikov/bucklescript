@@ -1,6 +1,6 @@
 --[['use strict';]]
 
-__Node = require "../../lib/js/node.lua";
+__Node = require "../../lib/js/node";
 
 function f(str) do
   match = __Node.test(str);

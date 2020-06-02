@@ -1,12 +1,12 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-Arg = require "../../lib/js/arg.lua";
-List = require "../../lib/js/list.lua";
-Block = require "../../lib/js/block.lua";
-Curry = require "../../lib/js/curry.lua";
-Printf = require "../../lib/js/printf.lua";
-Caml_obj = require "../../lib/js/caml_obj.lua";
+Mt = require "./mt";
+Arg = require "../../lib/js/arg";
+List = require "../../lib/js/list";
+Block = require "../../lib/js/block";
+Curry = require "../../lib/js/curry";
+Printf = require "../../lib/js/printf";
+Caml_obj = require "../../lib/js/caml_obj";
 
 current = do
   contents: 0

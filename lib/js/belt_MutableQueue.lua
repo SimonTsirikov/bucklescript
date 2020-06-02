@@ -1,9 +1,9 @@
 --[['use strict';]]
 
-Curry = require "./curry.lua";
-Caml_option = require "./caml_option.lua";
+Curry = require "./curry";
+Caml_option = require "./caml_option";
 
-__null = null;
+__null = nil;
 
 function make(param) do
   return do
@@ -26,7 +26,7 @@ function add(q, x) do
     next: __null
   end;
   match = q.last;
-  if (match ~= null) then do
+  if (match ~= nil) then do
     q.length = q.length + 1 | 0;
     match.next = cell;
     q.last = cell;
@@ -41,7 +41,7 @@ end end
 
 function peek(q) do
   match = q.first;
-  if (match ~= null) then do
+  if (match ~= nil) then do
     return Caml_option.some(match.content);
   end
    end 
@@ -49,7 +49,7 @@ end end
 
 function peekUndefined(q) do
   match = q.first;
-  if (match ~= null) then do
+  if (match ~= nil) then do
     return match.content;
   end
    end 
@@ -57,18 +57,18 @@ end end
 
 function peekExn(q) do
   match = q.first;
-  if (match ~= null) then do
+  if (match ~= nil) then do
     return match.content;
   end else do
-    throw new Error("Belt.Queue.Empty");
+    error (new Error("Belt.Queue.Empty"))
   end end 
 end end
 
 function pop(q) do
   match = q.first;
-  if (match ~= null) then do
+  if (match ~= nil) then do
     next = match.next;
-    if (next == null) then do
+    if (next == nil) then do
       clear(q);
       return Caml_option.some(match.content);
     end else do
@@ -82,9 +82,9 @@ end end
 
 function popExn(q) do
   match = q.first;
-  if (match ~= null) then do
+  if (match ~= nil) then do
     next = match.next;
-    if (next == null) then do
+    if (next == nil) then do
       clear(q);
       return match.content;
     end else do
@@ -93,15 +93,15 @@ function popExn(q) do
       return match.content;
     end end 
   end else do
-    throw new Error("Empty");
+    error (new Error("Empty"))
   end end 
 end end
 
 function popUndefined(q) do
   match = q.first;
-  if (match ~= null) then do
+  if (match ~= nil) then do
     next = match.next;
-    if (next == null) then do
+    if (next == nil) then do
       clear(q);
       return match.content;
     end else do
@@ -124,20 +124,20 @@ function copy(q) do
   while(true) do
     cell = _cell;
     prev = _prev;
-    if (cell ~= null) then do
+    if (cell ~= nil) then do
       content = cell.content;
       res = do
         content: content,
         next: __null
       end;
-      if (prev ~= null) then do
+      if (prev ~= nil) then do
         prev.next = res;
       end else do
         qRes.first = res;
       end end 
       _cell = cell.next;
       _prev = res;
-      continue ;
+      ::continue:: ;
     end else do
       qRes.last = prev;
       return qRes;
@@ -157,20 +157,20 @@ function mapU(q, f) do
   while(true) do
     cell = _cell;
     prev = _prev;
-    if (cell ~= null) then do
+    if (cell ~= nil) then do
       content = f$1(cell.content);
       res = do
         content: content,
         next: __null
       end;
-      if (prev ~= null) then do
+      if (prev ~= nil) then do
         prev.next = res;
       end else do
         qRes.first = res;
       end end 
       _cell = cell.next;
       _prev = res;
-      continue ;
+      ::continue:: ;
     end else do
       qRes.last = prev;
       return qRes;
@@ -195,10 +195,10 @@ function forEachU(q, f) do
   f$1 = f;
   while(true) do
     cell = _cell;
-    if (cell ~= null) then do
+    if (cell ~= nil) then do
       f$1(cell.content);
       _cell = cell.next;
-      continue ;
+      ::continue:: ;
     end else do
       return --[[ () ]]0;
     end end 
@@ -216,11 +216,11 @@ function reduceU(q, accu, f) do
   while(true) do
     cell = _cell;
     accu$1 = _accu;
-    if (cell ~= null) then do
+    if (cell ~= nil) then do
       accu$2 = f$1(accu$1, cell.content);
       _cell = cell.next;
       _accu = accu$2;
-      continue ;
+      ::continue:: ;
     end else do
       return accu$1;
     end end 
@@ -234,7 +234,7 @@ end end
 function transfer(q1, q2) do
   if (q1.length > 0) then do
     match = q2.last;
-    if (match ~= null) then do
+    if (match ~= nil) then do
       q2.length = q2.length + q1.length | 0;
       match.next = q1.first;
       q2.last = q1.last;
@@ -254,11 +254,11 @@ function fillAux(_i, arr, _cell) do
   while(true) do
     cell = _cell;
     i = _i;
-    if (cell ~= null) then do
+    if (cell ~= nil) then do
       arr[i] = cell.content;
       _cell = cell.next;
       _i = i + 1 | 0;
-      continue ;
+      ::continue:: ;
     end else do
       return --[[ () ]]0;
     end end 

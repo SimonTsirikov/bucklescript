@@ -5,10 +5,10 @@ import * as Caml_builtin_exceptions from "./caml_builtin_exceptions.lua";
 
 function init_mod(loc, shape) do
   undef_module = function (param) do
-    throw {
-          Caml_builtin_exceptions.undefined_recursive_module,
-          loc
-        };
+    error ({
+      Caml_builtin_exceptions.undefined_recursive_module,
+      loc
+    })
   end end;
   loop = function (shape, struct_, idx) do
     if (typeof shape == "number") then do
@@ -77,23 +77,23 @@ function update_mod(shape, o, n) do
     end end  end 
   end end;
   if (typeof shape == "number") then do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "caml_module.ml",
-            107,
-            10
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "caml_module.ml",
+        107,
+        10
+      }
+    })
   end else if (shape.tag) then do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "caml_module.ml",
-            107,
-            10
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "caml_module.ml",
+        107,
+        10
+      }
+    })
   end else do
     comps = shape[0];
     for i = 0 , #comps - 1 | 0 , 1 do

@@ -1,11 +1,11 @@
 --[['use strict';]]
 
-List = require "../../lib/js/list.lua";
-__Array = require "../../lib/js/array.lua";
-Curry = require "../../lib/js/curry.lua";
-Caml_array = require "../../lib/js/caml_array.lua";
-Caml_option = require "../../lib/js/caml_option.lua";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
+List = require "../../lib/js/list";
+__Array = require "../../lib/js/array";
+Curry = require "../../lib/js/curry";
+Caml_array = require "../../lib/js/caml_array";
+Caml_option = require "../../lib/js/caml_option";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 function reverse_range(a, i, len) do
   if (len == 0) then do
@@ -50,7 +50,7 @@ function reverse_of_list(l) do
         a[(len - i | 0) - 2 | 0] = param[0];
         _param = param[1];
         _i = i + 1 | 0;
-        continue ;
+        ::continue:: ;
       end else do
         return a;
       end end 
@@ -77,10 +77,10 @@ function filter(f, a) do
           v,
           acc
         };
-        continue ;
+        ::continue:: ;
       end else do
         _i = i + 1 | 0;
-        continue ;
+        ::continue:: ;
       end end 
     end end 
   end;
@@ -104,9 +104,9 @@ function filter_map(f, a) do
           Caml_option.valFromOption(match),
           acc
         };
-        continue ;
+        ::continue:: ;
       end else do
-        continue ;
+        ::continue:: ;
       end end 
     end end 
   end;
@@ -114,10 +114,10 @@ end end
 
 function range(from, to_) do
   if (from > to_) then do
-    throw {
-          Caml_builtin_exceptions.invalid_argument,
-          "Ext_array_test.range"
-        };
+    error ({
+      Caml_builtin_exceptions.invalid_argument,
+      "Ext_array_test.range"
+    })
   end
    end 
   return __Array.init((to_ - from | 0) + 1 | 0, (function (i) do
@@ -128,10 +128,10 @@ end end
 function map2i(f, a, b) do
   len = #a;
   if (len ~= #b) then do
-    throw {
-          Caml_builtin_exceptions.invalid_argument,
-          "Ext_array_test.map2i"
-        };
+    error ({
+      Caml_builtin_exceptions.invalid_argument,
+      "Ext_array_test.map2i"
+    })
   end
    end 
   return __Array.mapi((function (i, a) do
@@ -153,7 +153,7 @@ function tolist_aux(a, f, _i, _res) do
           res
         } or res;
       _i = i - 1 | 0;
-      continue ;
+      ::continue:: ;
     end end 
   end;
 end end
@@ -181,7 +181,7 @@ function of_list_map(f, a) do
         arr[i] = Curry._1(f, param[0]);
         _param = param[1];
         _i = i + 1 | 0;
-        continue ;
+        ::continue:: ;
       end else do
         return arr;
       end end 
@@ -200,7 +200,7 @@ function rfind_with_index(arr, cmp, v) do
       return i;
     end else do
       _i = i - 1 | 0;
-      continue ;
+      ::continue:: ;
     end end 
   end;
 end end
@@ -232,7 +232,7 @@ function find_with_index(arr, cmp, v) do
       return i;
     end else do
       _i = i + 1 | 0;
-      continue ;
+      ::continue:: ;
     end end  end 
   end;
 end end
@@ -263,7 +263,7 @@ function exists(p, a) do
       return true;
     end else do
       _i = i + 1 | 0;
-      continue ;
+      ::continue:: ;
     end end  end 
   end;
 end end
@@ -279,7 +279,7 @@ function unsafe_loop(_index, len, p, xs, ys) do
       return true;
     end else if (Curry._2(p, xs[index], ys[index])) then do
       _index = index + 1 | 0;
-      continue ;
+      ::continue:: ;
     end else do
       return false;
     end end  end 

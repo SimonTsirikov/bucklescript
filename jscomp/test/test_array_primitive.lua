@@ -1,7 +1,7 @@
 --[['use strict';]]
 
-Caml_array = require "../../lib/js/caml_array.lua";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
+Caml_array = require "../../lib/js/caml_array";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 function caml_array_sub(x, offset, len) do
   result = new Array(len);
@@ -13,10 +13,10 @@ end end
 
 function caml_array_set(xs, index, newval) do
   if (index < 0 or index >= #xs) then do
-    throw {
-          Caml_builtin_exceptions.invalid_argument,
-          "index out of bounds"
-        };
+    error ({
+      Caml_builtin_exceptions.invalid_argument,
+      "index out of bounds"
+    })
   end
    end 
   return Caml_array.caml_array_set(xs, index, newval);
@@ -24,10 +24,10 @@ end end
 
 function caml_array_get(xs, index) do
   if (index < 0 or index >= #xs) then do
-    throw {
-          Caml_builtin_exceptions.invalid_argument,
-          "index out of bounds"
-        };
+    error ({
+      Caml_builtin_exceptions.invalid_argument,
+      "index out of bounds"
+    })
   end
    end 
   return Caml_array.caml_array_get(xs, index);

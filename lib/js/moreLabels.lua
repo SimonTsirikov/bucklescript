@@ -1,8 +1,8 @@
 --[['use strict';]]
 
-__Map = require "./map.lua";
-__Set = require "./set.lua";
-Hashtbl = require "./hashtbl.lua";
+__Map = require "./map";
+__Set = require "./set";
+Hashtbl = require "./hashtbl";
 
 Hashtbl$1 = Hashtbl;
 

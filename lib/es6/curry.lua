@@ -11,11 +11,11 @@ function app(_f, _args) do
     len = #args;
     d = arity - len | 0;
     if (d == 0) then do
-      return f.apply(null, args);
+      return f.apply(nil, args);
     end else if (d < 0) then do
       _args = Caml_array.caml_array_sub(args, arity, -d | 0);
-      _f = f.apply(null, Caml_array.caml_array_sub(args, 0, arity));
-      continue ;
+      _f = f.apply(nil, Caml_array.caml_array_sub(args, 0, arity));
+      ::continue:: ;
     end else do
       return (function(f,args)do
       return function (x) do

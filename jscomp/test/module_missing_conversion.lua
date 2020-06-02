@@ -1,9 +1,9 @@
 --[['use strict';]]
 
-__Array = require "../../lib/js/array.lua";
-Curry = require "../../lib/js/curry.lua";
-__String = require "../../lib/js/string.lua";
-MoreLabels = require "../../lib/js/moreLabels.lua";
+__Array = require "../../lib/js/array";
+Curry = require "../../lib/js/curry";
+__String = require "../../lib/js/string";
+MoreLabels = require "../../lib/js/moreLabels";
 
 function f(x) do
   return x;

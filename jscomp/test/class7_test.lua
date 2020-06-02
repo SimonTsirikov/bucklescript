@@ -1,14 +1,14 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-Oo = require "../../lib/js/oo.lua";
-Block = require "../../lib/js/block.lua";
-Curry = require "../../lib/js/curry.lua";
-Caml_obj = require "../../lib/js/caml_obj.lua";
-Caml_option = require "../../lib/js/caml_option.lua";
-Caml_oo_curry = require "../../lib/js/caml_oo_curry.lua";
-CamlinternalOO = require "../../lib/js/camlinternalOO.lua";
-Caml_exceptions = require "../../lib/js/caml_exceptions.lua";
+Mt = require "./mt";
+Oo = require "../../lib/js/oo";
+Block = require "../../lib/js/block";
+Curry = require "../../lib/js/curry";
+Caml_obj = require "../../lib/js/caml_obj";
+Caml_option = require "../../lib/js/caml_option";
+Caml_oo_curry = require "../../lib/js/caml_oo_curry";
+CamlinternalOO = require "../../lib/js/camlinternalOO";
+Caml_exceptions = require "../../lib/js/caml_exceptions";
 
 shared = {"window"};
 
@@ -194,7 +194,7 @@ function get(_p, _n) do
     end else do
       _n = n - 1 | 0;
       _p = Caml_oo_curry.js1(-357537970, 7, p);
-      continue ;
+      ::continue:: ;
     end end 
   end;
 end end

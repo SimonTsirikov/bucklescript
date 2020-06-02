@@ -1,11 +1,11 @@
 --[['use strict';]]
 
-Block = require "../../lib/js/block.lua";
-Curry = require "../../lib/js/curry.lua";
-Caml_obj = require "../../lib/js/caml_obj.lua";
-Pervasives = require "../../lib/js/pervasives.lua";
-Caml_exceptions = require "../../lib/js/caml_exceptions.lua";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
+Block = require "../../lib/js/block";
+Curry = require "../../lib/js/curry";
+Caml_obj = require "../../lib/js/caml_obj";
+Pervasives = require "../../lib/js/pervasives";
+Caml_exceptions = require "../../lib/js/caml_exceptions";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 Bad = Caml_exceptions.create("Test_seq.Bad");
 
@@ -22,19 +22,19 @@ function assoc3(x, _l) do
         return match[1];
       end else do
         _l = l[1];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
-      throw Caml_builtin_exceptions.not_found;
+      error (Caml_builtin_exceptions.not_found)
     end end 
   end;
 end end
 
 function help_action(param) do
-  throw {
-        Stop,
-        --[[ Unknown ]]Block.__(0, {"-help"})
-      };
+  error ({
+    Stop,
+    --[[ Unknown ]]Block.__(0, {"-help"})
+  })
 end end
 
 function v(speclist) do
@@ -48,11 +48,10 @@ end end
 
 function add_help(speclist) do
   add1;
-  try do
+  xpcall(function() do
     assoc3("-help", speclist);
     add1 = --[[ [] ]]0;
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Caml_builtin_exceptions.not_found) then do
       add1 = --[[ :: ]]{
         --[[ tuple ]]{
@@ -63,15 +62,14 @@ function add_help(speclist) do
         --[[ [] ]]0
       };
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
   add2;
-  try do
+  xpcall(function() do
     assoc3("--help", speclist);
     add2 = --[[ [] ]]0;
-  end
-  catch (exn$1)do
+  end end,function(exn$1) return do
     if (exn$1 == Caml_builtin_exceptions.not_found) then do
       add2 = --[[ :: ]]{
         --[[ tuple ]]{
@@ -82,9 +80,9 @@ function add_help(speclist) do
         --[[ [] ]]0
       };
     end else do
-      throw exn$1;
+      error (exn$1)
     end end 
-  end
+  end end)
   return Pervasives.$at(speclist, Pervasives.$at(add1, add2));
 end end
 

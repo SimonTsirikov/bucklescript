@@ -1,6 +1,6 @@
 --[['use strict';]]
 
-Caml_int32 = require "./caml_int32.lua";
+Caml_int32 = require "./caml_int32";
 
 function rotl32(x, n) do
   return (x << n) | (x >>> (32 - n | 0));

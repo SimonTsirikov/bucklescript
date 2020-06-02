@@ -1,8 +1,8 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-Block = require "../../lib/js/block.lua";
-Pervasives = require "../../lib/js/pervasives.lua";
+Mt = require "./mt";
+Block = require "../../lib/js/block";
+Pervasives = require "../../lib/js/pervasives";
 
 ff = Pervasives.string_of_float;
 

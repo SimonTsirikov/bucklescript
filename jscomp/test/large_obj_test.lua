@@ -1,10 +1,10 @@
 --[['use strict';]]
 
-Curry = require "../../lib/js/curry.lua";
-Caml_int32 = require "../../lib/js/caml_int32.lua";
-Caml_oo_curry = require "../../lib/js/caml_oo_curry.lua";
-CamlinternalOO = require "../../lib/js/camlinternalOO.lua";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
+Curry = require "../../lib/js/curry";
+Caml_int32 = require "../../lib/js/caml_int32";
+Caml_oo_curry = require "../../lib/js/caml_oo_curry";
+CamlinternalOO = require "../../lib/js/camlinternalOO";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 shared = {
   "get0",
@@ -592,14 +592,14 @@ CamlinternalOO.init_class(__class);
 raw_object = obj_init(0);
 
 if (Caml_oo_curry.js1(291536124, 1, raw_object) ~= 34) then do
-  throw {
-        Caml_builtin_exceptions.assert_failure,
-        --[[ tuple ]]{
-          "large_obj_test.ml",
-          124,
-          10
-        }
-      };
+  error ({
+    Caml_builtin_exceptions.assert_failure,
+    --[[ tuple ]]{
+      "large_obj_test.ml",
+      124,
+      10
+    }
+  })
 end
  end 
 
@@ -920,14 +920,14 @@ raw_class = CamlinternalOO.make_class(shared, raw_class_init);
 v = Curry._2(raw_class[0], 0, 3);
 
 if (Caml_oo_curry.js1(291536121, 2, v) ~= 56) then do
-  throw {
-        Caml_builtin_exceptions.assert_failure,
-        --[[ tuple ]]{
-          "large_obj_test.ml",
-          251,
-          2
-        }
-      };
+  error ({
+    Caml_builtin_exceptions.assert_failure,
+    --[[ tuple ]]{
+      "large_obj_test.ml",
+      251,
+      2
+    }
+  })
 end
  end 
 

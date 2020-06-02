@@ -14,7 +14,7 @@ end end
 
 function getExn(arr, i) do
   if (not (i >= 0 and i < #arr)) then do
-    throw new Error("File \"belt_Array.ml\", line 25, characters 6-12");
+    error (new Error("File \"belt_Array.ml\", line 25, characters 6-12"))
   end
    end 
   return arr[i];
@@ -31,7 +31,7 @@ end end
 
 function setExn(arr, i, v) do
   if (not (i >= 0 and i < #arr)) then do
-    throw new Error("File \"belt_Array.ml\", line 31, characters 4-10");
+    error (new Error("File \"belt_Array.ml\", line 31, characters 4-10"))
   end
    end 
   arr[i] = v;
@@ -497,7 +497,7 @@ function everyU(arr, b) do
       return true;
     end else if (b$1(arr$1[i])) then do
       _i = i + 1 | 0;
-      continue ;
+      ::continue:: ;
     end else do
       return false;
     end end  end 
@@ -522,7 +522,7 @@ function someU(arr, b) do
       return true;
     end else do
       _i = i + 1 | 0;
-      continue ;
+      ::continue:: ;
     end end  end 
   end;
 end end
@@ -538,7 +538,7 @@ function everyAux2(arr1, arr2, _i, b, len) do
       return true;
     end else if (b(arr1[i], arr2[i])) then do
       _i = i + 1 | 0;
-      continue ;
+      ::continue:: ;
     end else do
       return false;
     end end  end 
@@ -567,7 +567,7 @@ function some2U(a, b, p) do
       return true;
     end else do
       _i = i + 1 | 0;
-      continue ;
+      ::continue:: ;
     end end  end 
   end;
 end end
@@ -611,7 +611,7 @@ function cmpU(a, b, p) do
         c = b$1(arr1[i], arr2[i]);
         if (c == 0) then do
           _i = i + 1 | 0;
-          continue ;
+          ::continue:: ;
         end else do
           return c;
         end end 

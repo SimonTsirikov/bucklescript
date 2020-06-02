@@ -1,9 +1,9 @@
 --[['use strict';]]
 
-Curry = require "../../lib/js/curry.lua";
-Caml_array = require "../../lib/js/caml_array.lua";
-Pervasives = require "../../lib/js/pervasives.lua";
-CamlinternalLazy = require "../../lib/js/camlinternalLazy.lua";
+Curry = require "../../lib/js/curry";
+Caml_array = require "../../lib/js/caml_array";
+Pervasives = require "../../lib/js/pervasives";
+CamlinternalLazy = require "../../lib/js/camlinternalLazy";
 
 function a4(prim) do
   return --[[ tuple ]]{

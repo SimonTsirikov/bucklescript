@@ -1,10 +1,10 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-List = require "../../lib/js/list.lua";
-Caml_obj = require "../../lib/js/caml_obj.lua";
-Caml_int32 = require "../../lib/js/caml_int32.lua";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
+Mt = require "./mt";
+List = require "../../lib/js/list";
+Caml_obj = require "../../lib/js/caml_obj";
+Caml_int32 = require "../../lib/js/caml_int32";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 suites = do
   contents: --[[ [] ]]0
@@ -68,14 +68,14 @@ function tl_exn(x) do
   if (x) then do
     return x[--[[ next ]]1];
   end else do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "recursive_records_test.ml",
-            52,
-            11
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "recursive_records_test.ml",
+        52,
+        11
+      }
+    })
   end end 
 end end
 

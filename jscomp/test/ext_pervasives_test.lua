@@ -1,30 +1,29 @@
 --[['use strict';]]
 
-Arg = require "../../lib/js/arg.lua";
-Obj = require "../../lib/js/obj.lua";
-List = require "../../lib/js/list.lua";
-__Array = require "../../lib/js/array.lua";
-Block = require "../../lib/js/block.lua";
-Curry = require "../../lib/js/curry.lua";
-Format = require "../../lib/js/format.lua";
-Printf = require "../../lib/js/printf.lua";
-__String = require "../../lib/js/string.lua";
-Caml_obj = require "../../lib/js/caml_obj.lua";
-Caml_int32 = require "../../lib/js/caml_int32.lua";
-Pervasives = require "../../lib/js/pervasives.lua";
-Caml_string = require "../../lib/js/caml_string.lua";
-Caml_exceptions = require "../../lib/js/caml_exceptions.lua";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
+Arg = require "../../lib/js/arg";
+Obj = require "../../lib/js/obj";
+List = require "../../lib/js/list";
+__Array = require "../../lib/js/array";
+Block = require "../../lib/js/block";
+Curry = require "../../lib/js/curry";
+Format = require "../../lib/js/format";
+Printf = require "../../lib/js/printf";
+__String = require "../../lib/js/string";
+Caml_obj = require "../../lib/js/caml_obj";
+Caml_int32 = require "../../lib/js/caml_int32";
+Pervasives = require "../../lib/js/pervasives";
+Caml_string = require "../../lib/js/caml_string";
+Caml_exceptions = require "../../lib/js/caml_exceptions";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 function __finally(v, action, f) do
   e;
-  try do
+  xpcall(function() do
     e = Curry._1(f, v);
-  end
-  catch (e$1)do
+  end end,function(e$1) return do
     Curry._1(action, v);
-    throw e$1;
-  end
+    error (e$1)
+  end end)
   Curry._1(action, v);
   return e;
 end end
@@ -44,7 +43,7 @@ end end
 
 function is_pos_pow(n) do
   E = Caml_exceptions.create("E");
-  try do
+  xpcall(function() do
     _c = 0;
     _n = n;
     while(true) do
@@ -57,28 +56,27 @@ function is_pos_pow(n) do
       end else if ((n$1 & 1) == 0) then do
         _n = (n$1 >> 1);
         _c = c + 1 | 0;
-        continue ;
+        ::continue:: ;
       end else do
-        throw E;
+        error (E)
       end end  end  end 
     end;
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == E) then do
       return -1;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 function failwithf(loc, fmt) do
   return Format.ksprintf((function (s) do
                 s$1 = loc .. s;
-                throw {
-                      Caml_builtin_exceptions.failure,
-                      s$1
-                    };
+                error ({
+                  Caml_builtin_exceptions.failure,
+                  s$1
+                })
               end end), fmt);
 end end
 
@@ -88,10 +86,10 @@ end end
 
 function bad_argf(fmt) do
   return Format.ksprintf((function (x) do
-                throw {
-                      Arg.Bad,
-                      x
-                    };
+                error ({
+                  Arg.Bad,
+                  x
+                })
               end end), fmt);
 end end
 
@@ -110,7 +108,7 @@ function dump(r) do
             r[n$1],
             acc
           };
-          continue ;
+          ::continue:: ;
         end else do
           return acc;
         end end 
@@ -126,7 +124,7 @@ function dump(r) do
           t = r.tag | 0;
           if (t == 0 and s == 2) then do
             _r = r[1];
-            continue ;
+            ::continue:: ;
           end else do
             return false;
           end end 
@@ -167,24 +165,24 @@ function dump(r) do
               match$1[1]
             };
           end else do
-            throw {
-                  Caml_builtin_exceptions.assert_failure,
-                  --[[ tuple ]]{
-                    "ext_pervasives_test.ml",
-                    118,
-                    15
-                  }
-                };
+            error ({
+              Caml_builtin_exceptions.assert_failure,
+              --[[ tuple ]]{
+                "ext_pervasives_test.ml",
+                118,
+                15
+              }
+            })
           end end 
         end else do
-          throw {
-                Caml_builtin_exceptions.assert_failure,
-                --[[ tuple ]]{
-                  "ext_pervasives_test.ml",
-                  118,
-                  15
-                }
-              };
+          error ({
+            Caml_builtin_exceptions.assert_failure,
+            --[[ tuple ]]{
+              "ext_pervasives_test.ml",
+              118,
+              15
+            }
+          })
         end end 
         return "Object #" .. (dump(match[1]) .. (" (" .. (__String.concat(", ", List.map(dump, match[2])) .. ")")));
       end else if (t == Obj.infix_tag) then do

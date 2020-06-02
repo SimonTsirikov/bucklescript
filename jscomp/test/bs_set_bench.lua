@@ -1,7 +1,7 @@
 --[['use strict';]]
 
-Belt_SetInt = require "../../lib/js/belt_SetInt.lua";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
+Belt_SetInt = require "../../lib/js/belt_SetInt";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 function bench(param) do
   data = Belt_SetInt.empty;
@@ -13,14 +13,14 @@ function bench(param) do
   console.time("test/bs_set_bench.ml 11");
   for i$1 = 0 , 1000000 , 1 do
     if (not Belt_SetInt.has(data, i$1)) then do
-      throw {
-            Caml_builtin_exceptions.assert_failure,
-            --[[ tuple ]]{
-              "bs_set_bench.ml",
-              12,
-              4
-            }
-          };
+      error ({
+        Caml_builtin_exceptions.assert_failure,
+        --[[ tuple ]]{
+          "bs_set_bench.ml",
+          12,
+          4
+        }
+      })
     end
      end 
   end
@@ -33,14 +33,14 @@ function bench(param) do
   if (Belt_SetInt.size(data) == 0) then do
     return 0;
   end else do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "bs_set_bench.ml",
-            17,
-            2
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "bs_set_bench.ml",
+        17,
+        2
+      }
+    })
   end end 
 end end
 

@@ -1,9 +1,9 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-Block = require "../../lib/js/block.lua";
-Int32 = require "../../lib/js/int32.lua";
-Pervasives = require "../../lib/js/pervasives.lua";
+Mt = require "./mt";
+Block = require "../../lib/js/block";
+Int32 = require "../../lib/js/int32";
+Pervasives = require "../../lib/js/pervasives";
 
 suites = do
   contents: --[[ [] ]]0

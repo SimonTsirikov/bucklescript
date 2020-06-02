@@ -40,7 +40,7 @@ function peek_queue(param) do
   if (match) then do
     return match[--[[ head ]]0];
   end else do
-    throw Empty_queue;
+    error (Empty_queue)
   end end 
 end end
 
@@ -55,7 +55,7 @@ function take_queue(q) do
      end 
     return match[--[[ head ]]0];
   end else do
-    throw Empty_queue;
+    error (Empty_queue)
   end end 
 end end
 
@@ -243,26 +243,25 @@ function format_pp_token(state, size, param) do
                     return x;
                   end else do
                     _param = param[1];
-                    continue ;
+                    ::continue:: ;
                   end end 
                 end else do
-                  throw Caml_builtin_exceptions.not_found;
+                  error (Caml_builtin_exceptions.not_found)
                 end end 
               end;
             end end;
             match$9 = tabs$1.contents;
             tab;
             if (match$9) then do
-              try do
+              xpcall(function() do
                 tab = find(insertion_point, tabs$1.contents);
-              end
-              catch (exn)do
+              end end,function(exn) return do
                 if (exn == Caml_builtin_exceptions.not_found) then do
                   tab = match$9[0];
                 end else do
-                  throw exn;
+                  error (exn)
                 end end 
-              end
+              end end)
             end else do
               tab = insertion_point;
             end end 
@@ -316,7 +315,7 @@ function format_pp_token(state, size, param) do
 end end
 
 function advance_left(state) do
-  try do
+  xpcall(function() do
     state$1 = state;
     while(true) do
       match = peek_queue(state$1.pp_queue);
@@ -327,17 +326,16 @@ function advance_left(state) do
         take_queue(state$1.pp_queue);
         format_pp_token(state$1, size < 0 and 1000000010 or size, match.token);
         state$1.pp_left_total = match.length + state$1.pp_left_total | 0;
-        continue ;
+        ::continue:: ;
       end end 
     end;
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Empty_queue) then do
       return --[[ () ]]0;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
 end end
 
 function enqueue_advance(state, tok) do
@@ -875,7 +873,7 @@ function display_blanks(state, _n) do
       end else do
         Curry._3(state.pp_out_string, blank_line, 0, 80);
         _n = n - 80 | 0;
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return 0;
@@ -1287,7 +1285,7 @@ function pp_print_list(_$staropt$star, pp_v, ppf, _param) do
         Curry._2(pp_sep, ppf, --[[ () ]]0);
         _param = vs;
         _$staropt$star = pp_sep;
-        continue ;
+        ::continue:: ;
       end else do
         return Curry._2(pp_v, ppf, v);
       end end 
@@ -1476,10 +1474,10 @@ function output_acc(ppf, acc) do
           return pp_print_flush(ppf, --[[ () ]]0);end end end 
        if ___conditional___ = 8--[[ Acc_invalid_arg ]] then do
           output_acc(ppf, acc[0]);
-          throw {
-                Caml_builtin_exceptions.invalid_argument,
-                acc[1]
-              };end end end 
+          error ({
+            Caml_builtin_exceptions.invalid_argument,
+            acc[1]
+          })end end end 
        do
       
     end
@@ -1601,10 +1599,10 @@ function strput_acc(ppf, acc) do
           return pp_print_flush(ppf, --[[ () ]]0);end end end 
        if ___conditional___ = 8--[[ Acc_invalid_arg ]] then do
           strput_acc(ppf, acc[0]);
-          throw {
-                Caml_builtin_exceptions.invalid_argument,
-                acc[1]
-              };end end end 
+          error ({
+            Caml_builtin_exceptions.invalid_argument,
+            acc[1]
+          })end end end 
        do
       
     end

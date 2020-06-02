@@ -1,6 +1,6 @@
 --[['use strict';]]
 
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 function f(children) do
   if (children) then do
@@ -50,14 +50,14 @@ function f(children) do
                                 a14 = children$14[0];
                                 if (children$15) then do
                                   if (children$15[1]) then do
-                                    throw {
-                                          Caml_builtin_exceptions.assert_failure,
-                                          --[[ tuple ]]{
-                                            "gpr_1150.ml",
-                                            56,
-                                            34
-                                          }
-                                        };
+                                    error ({
+                                      Caml_builtin_exceptions.assert_failure,
+                                      --[[ tuple ]]{
+                                        "gpr_1150.ml",
+                                        56,
+                                        34
+                                      }
+                                    })
                                   end
                                    end 
                                   return {

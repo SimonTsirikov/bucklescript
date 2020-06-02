@@ -1,11 +1,11 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-Char = require "../../lib/js/char.lua";
-Bytes = require "../../lib/js/bytes.lua";
-Curry = require "../../lib/js/curry.lua";
-Caml_bytes = require "../../lib/js/caml_bytes.lua";
-Caml_exceptions = require "../../lib/js/caml_exceptions.lua";
+Mt = require "./mt";
+Char = require "../../lib/js/char";
+Bytes = require "../../lib/js/bytes";
+Curry = require "../../lib/js/curry";
+Caml_bytes = require "../../lib/js/caml_bytes";
+Caml_exceptions = require "../../lib/js/caml_exceptions";
 
 suites = do
   contents: --[[ [] ]]0
@@ -130,22 +130,21 @@ function starts_with(xs, prefix, p) do
   if (len2 > len1) then do
     return false;
   end else do
-    try do
+    xpcall(function() do
       for i = 0 , len2 - 1 | 0 , 1 do
         if (not Curry._2(p, Caml_bytes.get(xs, i), Caml_bytes.get(prefix, i))) then do
-          throw H;
+          error (H)
         end
          end 
       end
       return true;
-    end
-    catch (exn)do
+    end end,function(exn) return do
       if (exn == H) then do
         return false;
       end else do
-        throw exn;
+        error (exn)
       end end 
-    end
+    end end)
   end end 
 end end
 

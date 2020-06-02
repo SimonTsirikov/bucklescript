@@ -1,12 +1,12 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-__Array = require "../../lib/js/array.lua";
-Block = require "../../lib/js/block.lua";
-Curry = require "../../lib/js/curry.lua";
-Queue = require "../../lib/js/queue.lua";
-Queue_402 = require "./queue_402.lua";
-Caml_array = require "../../lib/js/caml_array.lua";
+Mt = require "./mt";
+__Array = require "../../lib/js/array";
+Block = require "../../lib/js/block";
+Curry = require "../../lib/js/curry";
+Queue = require "../../lib/js/queue";
+Queue_402 = require "./queue_402";
+Caml_array = require "../../lib/js/caml_array";
 
 function Test(Queue) do
   to_array = function (q) do

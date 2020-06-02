@@ -1,6 +1,6 @@
 --[['use strict';]]
 
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 function f(param) do
   local ___conditional___=(param);
@@ -11,14 +11,14 @@ function f(param) do
         return 1;end end end 
      do
     else do
-      throw {
-            Caml_builtin_exceptions.assert_failure,
-            --[[ tuple ]]{
-              "test_string_case.ml",
-              4,
-              9
-            }
-          };
+      error ({
+        Caml_builtin_exceptions.assert_failure,
+        --[[ tuple ]]{
+          "test_string_case.ml",
+          4,
+          9
+        }
+      })
       end end
       
   end

@@ -1,9 +1,9 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-Block = require "../../lib/js/block.lua";
-Caml_js_exceptions = require "../../lib/js/caml_js_exceptions.lua";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
+Mt = require "./mt";
+Block = require "../../lib/js/block";
+Caml_js_exceptions = require "../../lib/js/caml_js_exceptions";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 suites = do
   contents: --[[ [] ]]0
@@ -32,39 +32,37 @@ end end
 
 y;
 
-try do
-  throw {
-        Caml_builtin_exceptions.failure,
-        "boo"
-      };
-end
-catch (raw_exn)do
+xpcall(function() do
+  error ({
+    Caml_builtin_exceptions.failure,
+    "boo"
+  })
+end end,function(raw_exn) return do
   exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
   if (exn[0] == Caml_builtin_exceptions.failure) then do
     y = exn[1];
   end else do
-    throw exn;
+    error (exn)
   end end 
-end
+end end)
 
 x;
 
 exit = 0;
 
-try do
-  throw {
-        Caml_builtin_exceptions.failure,
-        "boo"
-      };
-end
-catch (raw_exn$1)do
+xpcall(function() do
+  error ({
+    Caml_builtin_exceptions.failure,
+    "boo"
+  })
+end end,function(raw_exn$1) return do
   exn$1 = Caml_js_exceptions.internalToOCamlException(raw_exn$1);
   if (exn$1[0] == Caml_builtin_exceptions.failure) then do
     x = exn$1[1];
   end else do
-    throw exn$1;
+    error (exn$1)
   end end 
-end
+end end)
 
 if (exit == 1) then do
   console.log("ok");

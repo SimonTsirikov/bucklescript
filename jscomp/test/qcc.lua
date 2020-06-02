@@ -1,23 +1,23 @@
 --[['use strict';]]
 
-Sys = require "../../lib/js/sys.lua";
-Char = require "../../lib/js/char.lua";
-List = require "../../lib/js/list.lua";
-Block = require "../../lib/js/block.lua";
-Bytes = require "../../lib/js/bytes.lua";
-Curry = require "../../lib/js/curry.lua";
-Printf = require "../../lib/js/printf.lua";
-__String = require "../../lib/js/string.lua";
-Caml_io = require "../../lib/js/caml_io.lua";
-Caml_obj = require "../../lib/js/caml_obj.lua";
-Caml_array = require "../../lib/js/caml_array.lua";
-Caml_bytes = require "../../lib/js/caml_bytes.lua";
-Caml_int32 = require "../../lib/js/caml_int32.lua";
-Pervasives = require "../../lib/js/pervasives.lua";
-Caml_option = require "../../lib/js/caml_option.lua";
-Caml_string = require "../../lib/js/caml_string.lua";
-Caml_external_polyfill = require "../../lib/js/caml_external_polyfill.lua";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
+Sys = require "../../lib/js/sys";
+Char = require "../../lib/js/char";
+List = require "../../lib/js/list";
+Block = require "../../lib/js/block";
+Bytes = require "../../lib/js/bytes";
+Curry = require "../../lib/js/curry";
+Printf = require "../../lib/js/printf";
+__String = require "../../lib/js/string";
+Caml_io = require "../../lib/js/caml_io";
+Caml_obj = require "../../lib/js/caml_obj";
+Caml_array = require "../../lib/js/caml_array";
+Caml_bytes = require "../../lib/js/caml_bytes";
+Caml_int32 = require "../../lib/js/caml_int32";
+Pervasives = require "../../lib/js/pervasives";
+Caml_option = require "../../lib/js/caml_option";
+Caml_string = require "../../lib/js/caml_string";
+Caml_external_polyfill = require "../../lib/js/caml_external_polyfill";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 dbg = do
   contents: true
@@ -43,14 +43,14 @@ function bufferize(f) do
             end end),
           (function (x) do
               if (buf.contents ~= undefined) then do
-                throw {
-                      Caml_builtin_exceptions.assert_failure,
-                      --[[ tuple ]]{
-                        "qcc.ml",
-                        17,
-                        4
-                      }
-                    };
+                error ({
+                  Caml_builtin_exceptions.assert_failure,
+                  --[[ tuple ]]{
+                    "qcc.ml",
+                    17,
+                    4
+                  }
+                })
               end
                end 
               buf.contents = Caml_option.some(x);
@@ -89,7 +89,7 @@ function find(s, _n) do
       return n;
     end else do
       _n = n + 1 | 0;
-      continue ;
+      ::continue:: ;
     end end  end 
   end;
 end end
@@ -102,14 +102,14 @@ end end
 
 function symstr(n) do
   if (n >= syms.contents) then do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "qcc.ml",
-            40,
-            4
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "qcc.ml",
+        40,
+        4
+      }
+    })
   end
    end 
   return Caml_array.caml_array_get(symtab, n);
@@ -162,29 +162,29 @@ function skip(_param) do
             match = Curry._1(getch, --[[ () ]]0);
             if (match ~= 42) then do
               _param$1 = --[[ () ]]0;
-              continue ;
+              ::continue:: ;
             end else if (peekch(--[[ () ]]0) == --[[ "/" ]]47) then do
               return skip((Curry._1(getch, --[[ () ]]0), --[[ () ]]0));
             end else do
               _param$1 = --[[ () ]]0;
-              continue ;
+              ::continue:: ;
             end end  end 
           end;
         end end 
       end else do
         _param = --[[ () ]]0;
-        continue ;
+        ::continue:: ;
       end end 
     end else if (ch >= 11) then do
       if (ch >= 13) then do
         _param = --[[ () ]]0;
-        continue ;
+        ::continue:: ;
       end else do
         return ch;
       end end 
     end else if (ch >= 9) then do
       _param = --[[ () ]]0;
-      continue ;
+      ::continue:: ;
     end else do
       return ch;
     end end  end  end 
@@ -193,16 +193,15 @@ end end
 
 function next(param) do
   match;
-  try do
+  xpcall(function() do
     match = skip(--[[ () ]]0);
-  end
-  catch (exn)do
+  end end,function(exn) return do
     if (exn == Caml_builtin_exceptions.end_of_file) then do
       match = undefined;
     end else do
-      throw exn;
+      error (exn)
     end end 
-  end
+  end end)
   if (match ~= undefined) then do
     c = match;
     if (c ~= 34) then do
@@ -216,7 +215,7 @@ function next(param) do
               return --[[ ILit ]]Block.__(1, {n});
             end else do
               _n = (Caml_int32.imul(10, n) + Curry._1(getch, --[[ () ]]0) | 0) - 48 | 0;
-              continue ;
+              ::continue:: ;
             end end 
           end;
         end
@@ -225,10 +224,10 @@ function next(param) do
         ch = getq(--[[ () ]]0);
         qt = Curry._1(getch, --[[ () ]]0);
         if (qt ~= --[[ "'" ]]39) then do
-          throw {
-                Caml_builtin_exceptions.failure,
-                "syntax error"
-              };
+          error ({
+            Caml_builtin_exceptions.failure,
+            "syntax error"
+          })
         end
          end 
         return --[[ ILit ]]Block.__(1, {ch});
@@ -243,7 +242,7 @@ function next(param) do
         if (match$2 ~= 34) then do
           glo[e] = getq(--[[ () ]]0);
           _e = e + 1 | 0;
-          continue ;
+          ::continue:: ;
         end else do
           Curry._1(getch, --[[ () ]]0);
           gpos.contents = e + 8 & -8;
@@ -264,7 +263,7 @@ function next(param) do
         if (isid(peekch(--[[ () ]]0))) then do
           _ch = Curry._1(getch, --[[ () ]]0);
           _n$1 = n$1 + 1 | 0;
-          continue ;
+          ::continue:: ;
         end else do
           return --[[ Sym ]]Block.__(3, {addsym(Bytes.to_string(Bytes.sub(s, 0, n$1 + 1 | 0)))});
         end end 
@@ -311,7 +310,7 @@ function next(param) do
             return --[[ Op ]]Block.__(0, {lop});
           end else do
             _param = param$1[1];
-            continue ;
+            ::continue:: ;
           end end 
         end else do
           return --[[ Op ]]Block.__(0, {Caml_bytes.bytes_to_string(Bytes.make(1, ch$2))});
@@ -367,14 +366,14 @@ end end
 
 function patch(rel, loc, n) do
   if (n >= 0) then do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "qcc.ml",
-            157,
-            2
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "qcc.ml",
+        157,
+        2
+      }
+    })
   end
    end 
   if (loc ~= 0) then do
@@ -808,7 +807,7 @@ function binary(stk, lvl) do
           loc$prime = test(lvl - 8 | 0, loc);
           binary(stk, lvl - 1 | 0);
           _loc = loc$prime;
-          continue ;
+          ::continue:: ;
         end end 
       end;
     end end;
@@ -833,7 +832,7 @@ function binary(stk, lvl) do
               List.iter(out, match[0]);
             end end 
             _param = --[[ () ]]0;
-            continue ;
+            ::continue:: ;
           end else do
             return Curry._1(unnext, t);
           end end 
@@ -879,10 +878,10 @@ function unary(stk) do
                   2
                 };
               end else do
-                throw {
-                      Caml_builtin_exceptions.failure,
-                      "[cast] expected"
-                    };
+                error ({
+                  Caml_builtin_exceptions.failure,
+                  "[cast] expected"
+                })
               end end  end 
               for k = 1 , match$1[1] , 1 do
                 Curry._1(next$1, --[[ () ]]0);
@@ -928,10 +927,10 @@ function unary(stk) do
                           }),
                         "unknown operator %s"
                       }), o);
-              throw {
-                    Caml_builtin_exceptions.failure,
-                    s
-                  };
+              error ({
+                Caml_builtin_exceptions.failure,
+                s
+              })
             end
              end 
             out(List.assoc(o, unops));
@@ -953,14 +952,14 @@ function unary(stk) do
         if (List.mem_assoc(i, stk)) then do
           l = List.assoc(i, stk);
           if (l <= -256) then do
-            throw {
-                  Caml_builtin_exceptions.assert_failure,
-                  --[[ tuple ]]{
-                    "qcc.ml",
-                    295,
-                    6
-                  }
-                };
+            error ({
+              Caml_builtin_exceptions.assert_failure,
+              --[[ tuple ]]{
+                "qcc.ml",
+                295,
+                6
+              }
+            })
           end
            end 
           out(4754245);
@@ -1014,7 +1013,7 @@ function postfix(stk) do
                   List.hd(rl),
                   l
                 };
-                continue ;
+                ::continue:: ;
               end end 
             end;
           end end;
@@ -1123,7 +1122,7 @@ function expr(stk) do
         out(34817);
       end end 
       _param = --[[ () ]]0;
-      continue ;
+      ::continue:: ;
     end end 
   end;
 end end
@@ -1157,10 +1156,10 @@ function decl(g, _n, _stk) do
               if (g) then do
                 glo = Caml_array.caml_array_get(globs, s);
                 if (glo.va >= 0) then do
-                  throw {
-                        Caml_builtin_exceptions.failure,
-                        "symbol defined twice"
-                      };
+                  error ({
+                    Caml_builtin_exceptions.failure,
+                    "symbol defined twice"
+                  })
                 end
                  end 
                 va = (gpos.contents + 232 | 0) + 4194304 | 0;
@@ -1183,7 +1182,7 @@ function decl(g, _n, _stk) do
                 Curry._1(next$1, --[[ () ]]0);
                 _stk = stk$prime;
                 _n = n$prime;
-                continue ;
+                ::continue:: ;
               end else do
                 return --[[ tuple ]]{
                         n$prime,
@@ -1191,10 +1190,10 @@ function decl(g, _n, _stk) do
                       };
               end end 
             end else do
-              throw {
-                    Caml_builtin_exceptions.failure,
-                    "[var] expected in [decl]"
-                  };
+              error ({
+                Caml_builtin_exceptions.failure,
+                "[var] expected in [decl]"
+              })
             end end 
           end end 
         end;
@@ -1222,19 +1221,19 @@ function decl(g, _n, _stk) do
        end 
       _stk = match[1];
       _n = n + match[0] | 0;
-      continue ;
+      ::continue:: ;
     end else do
       Curry._1(unnext, t);
       if (not g and n ~= 0) then do
         if ((n << 3) >= 256) then do
-          throw {
-                Caml_builtin_exceptions.assert_failure,
-                --[[ tuple ]]{
-                  "qcc.ml",
-                  436,
-                  6
-                }
-              };
+          error ({
+            Caml_builtin_exceptions.assert_failure,
+            --[[ tuple ]]{
+              "qcc.ml",
+              436,
+              6
+            }
+          })
         end
          end 
         out(4752364);
@@ -1349,14 +1348,14 @@ function stmt(brk, stk) do
     brkl = brk[0];
     n = align.contents - brk[1] | 0;
     if (n < 0) then do
-      throw {
-            Caml_builtin_exceptions.assert_failure,
-            --[[ tuple ]]{
-              "qcc.ml",
-              515,
-              4
-            }
-          };
+      error ({
+        Caml_builtin_exceptions.assert_failure,
+        --[[ tuple ]]{
+          "qcc.ml",
+          515,
+          4
+        }
+      })
     end
      end 
     if (n ~= 0) then do
@@ -1414,17 +1413,17 @@ function top(_param) do
     end else if (nextis(tokint)) then do
       decl(true, 0, --[[ [] ]]0);
       _param = --[[ () ]]0;
-      continue ;
+      ::continue:: ;
     end else do
       match = Curry._1(next$1, --[[ () ]]0);
       if (match.tag == --[[ Sym ]]3) then do
         f = match[0];
         g = Caml_array.caml_array_get(globs, f);
         if (g.va >= 0) then do
-          throw {
-                Caml_builtin_exceptions.failure,
-                "symbol defined twice"
-              };
+          error ({
+            Caml_builtin_exceptions.failure,
+            "symbol defined twice"
+          })
         end
          end 
         Caml_array.caml_array_set(globs, f, do
@@ -1443,17 +1442,17 @@ function top(_param) do
                   if (match[0] == ")") then do
                     return stk;
                   end else do
-                    throw {
-                          Caml_builtin_exceptions.failure,
-                          "[var] or ) expected"
-                        };
+                    error ({
+                      Caml_builtin_exceptions.failure,
+                      "[var] or ) expected"
+                    })
                   end end end end end 
                if ___conditional___ = 1--[[ ILit ]]
                or ___conditional___ = 2--[[ SLit ]] then do
-                  throw {
-                        Caml_builtin_exceptions.failure,
-                        "[var] or ) expected"
-                      };end end end 
+                  error ({
+                    Caml_builtin_exceptions.failure,
+                    "[var] or ) expected"
+                  })end end end 
                if ___conditional___ = 3--[[ Sym ]] then do
                   r = List.hd(regs);
                   push(r);
@@ -1472,7 +1471,7 @@ function top(_param) do
                   _stk = stk$prime;
                   _n = n + 1 | 0;
                   _regs = List.tl(regs);
-                  continue ;end end end 
+                  ::continue:: ;end end end 
                do
               
             end
@@ -1530,12 +1529,12 @@ function top(_param) do
         end
          end 
         _param = --[[ () ]]0;
-        continue ;
+        ::continue:: ;
       end else do
-        throw {
-              Caml_builtin_exceptions.failure,
-              "[decl] or [fun] expected"
-            };
+        error ({
+          Caml_builtin_exceptions.failure,
+          "[decl] or [fun] expected"
+        })
       end end 
     end end  end 
   end;
@@ -1676,7 +1675,7 @@ function elfgen(outf) do
                 le(64, 1 + (n$1.contents << 32) | 0);
                 le(64, 0);
                 _l = get32(l);
-                continue ;
+                ::continue:: ;
               end else do
                 return 0;
               end end 
@@ -1765,14 +1764,14 @@ function elfgen(outf) do
   elfphdr(1, 0, tend + off | 0, 2097152);
   elfphdr(2, dyn + off | 0, tend - dyn | 0, 8);
   if (opos.contents ~= 232) then do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "qcc.ml",
-            698,
-            2
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "qcc.ml",
+        698,
+        2
+      }
+    })
   end
    end 
   patch(false, 24, va(entry));
@@ -1879,7 +1878,7 @@ function main(param) do
           if (tok.tag) then do
             ppsym(tok);
             _param = --[[ () ]]0;
-            continue ;
+            ::continue:: ;
           end else if (tok[0] == "EOF!") then do
             return Printf.printf(--[[ Format ]]{
                         --[[ String_literal ]]Block.__(11, {
@@ -1891,7 +1890,7 @@ function main(param) do
           end else do
             ppsym(tok);
             _param = --[[ () ]]0;
-            continue ;
+            ::continue:: ;
           end end  end 
         end;end end end 
      do

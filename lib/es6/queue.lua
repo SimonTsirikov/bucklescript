@@ -44,7 +44,7 @@ function peek(q) do
   if (match) then do
     return match[--[[ content ]]0];
   end else do
-    throw Empty;
+    error (Empty)
   end end 
 end end
 
@@ -62,7 +62,7 @@ function take(q) do
       return content;
     end end 
   end else do
-    throw Empty;
+    error (Empty)
   end end 
 end end
 
@@ -90,7 +90,7 @@ function copy(q) do
       end end 
       _cell = next;
       _prev = res;
-      continue ;
+      ::continue:: ;
     end else do
       q_res.last = prev;
       return q_res;
@@ -115,7 +115,7 @@ function iter(f, q) do
       next = cell[--[[ next ]]1];
       Curry._1(f$1, cell[--[[ content ]]0]);
       _cell = next;
-      continue ;
+      ::continue:: ;
     end else do
       return --[[ () ]]0;
     end end 
@@ -134,7 +134,7 @@ function fold(f, accu, q) do
       accu$2 = Curry._2(f$1, accu$1, cell[--[[ content ]]0]);
       _cell = next;
       _accu = accu$2;
-      continue ;
+      ::continue:: ;
     end else do
       return accu$1;
     end end 

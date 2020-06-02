@@ -1,23 +1,23 @@
 --[['use strict';]]
 
-Sys = require "./sys.lua";
-__Array = require "./array.lua";
-Curry = require "./curry.lua";
-Caml_obj = require "./caml_obj.lua";
-Caml_weak = require "./caml_weak.lua";
-Caml_array = require "./caml_array.lua";
-Caml_int32 = require "./caml_int32.lua";
-Pervasives = require "./pervasives.lua";
-Caml_option = require "./caml_option.lua";
-Caml_primitive = require "./caml_primitive.lua";
-Caml_builtin_exceptions = require "./caml_builtin_exceptions.lua";
+Sys = require "./sys";
+__Array = require "./array";
+Curry = require "./curry";
+Caml_obj = require "./caml_obj";
+Caml_weak = require "./caml_weak";
+Caml_array = require "./caml_array";
+Caml_int32 = require "./caml_int32";
+Pervasives = require "./pervasives";
+Caml_option = require "./caml_option";
+Caml_primitive = require "./caml_primitive";
+Caml_builtin_exceptions = require "./caml_builtin_exceptions";
 
 function fill(ar, ofs, len, x) do
   if (ofs < 0 or len < 0 or (ofs + len | 0) > #ar) then do
-    throw {
-          Caml_builtin_exceptions.invalid_argument,
-          "Weak.fill"
-        };
+    error ({
+      Caml_builtin_exceptions.invalid_argument,
+      "Weak.fill"
+    })
   end
    end 
   for i = ofs , (ofs + len | 0) - 1 | 0 , 1 do
@@ -66,10 +66,10 @@ function Make(H) do
                       if (match ~= undefined) then do
                         _accu = Curry._2(f, Caml_option.valFromOption(match), accu);
                         _i = i + 1 | 0;
-                        continue ;
+                        ::continue:: ;
                       end else do
                         _i = i + 1 | 0;
-                        continue ;
+                        ::continue:: ;
                       end end 
                     end end 
                   end;
@@ -88,10 +88,10 @@ function Make(H) do
                       if (match ~= undefined) then do
                         Curry._1(f, Caml_option.valFromOption(match));
                         _i = i + 1 | 0;
-                        continue ;
+                        ::continue:: ;
                       end else do
                         _i = i + 1 | 0;
-                        continue ;
+                        ::continue:: ;
                       end end 
                     end end 
                   end;
@@ -109,10 +109,10 @@ function Make(H) do
                     end else if (Caml_weak.caml_weak_check(b, i)) then do
                       Curry._3(f, b, Caml_array.caml_array_get(t.hashes, j), i);
                       _i = i + 1 | 0;
-                      continue ;
+                      ::continue:: ;
                     end else do
                       _i = i + 1 | 0;
-                      continue ;
+                      ::continue:: ;
                     end end  end 
                   end;
                 end end), t.table);
@@ -128,7 +128,7 @@ function Make(H) do
           Caml_weak.caml_weak_check(b, i) and 1 or 0
         ) | 0;
         _i = i + 1 | 0;
-        continue ;
+        ::continue:: ;
       end end 
     end;
   end end;
@@ -157,16 +157,16 @@ function Make(H) do
           if (j >= prev_len) then do
             if (Caml_weak.caml_weak_check(bucket, i)) then do
               _i = i + 1 | 0;
-              continue ;
+              ::continue:: ;
             end else if (Caml_weak.caml_weak_check(bucket, j)) then do
               Caml_weak.caml_weak_blit(bucket, j, bucket, i, 1);
               Caml_array.caml_array_set(hbucket, i, Caml_array.caml_array_get(hbucket, j));
               _j = j - 1 | 0;
               _i = i + 1 | 0;
-              continue ;
+              ::continue:: ;
             end else do
               _j = j - 1 | 0;
-              continue ;
+              ::continue:: ;
             end end  end 
           end else do
             return 0;
@@ -200,10 +200,10 @@ function Make(H) do
       if (i >= sz) then do
         newsz = Caml_primitive.caml_int_min((Caml_int32.imul(3, sz) / 2 | 0) + 3 | 0, Sys.max_array_length - 0 | 0);
         if (newsz <= sz) then do
-          throw {
-                Caml_builtin_exceptions.failure,
-                "Weak.Make: hash bucket cannot grow more"
-              };
+          error ({
+            Caml_builtin_exceptions.failure,
+            "Weak.Make: hash bucket cannot grow more"
+          })
         end
          end 
         newbucket = Caml_weak.caml_weak_create(newsz);
@@ -253,7 +253,7 @@ function Make(H) do
         end end 
       end else if (Caml_weak.caml_weak_check(bucket, i)) then do
         _i = i + 1 | 0;
-        continue ;
+        ::continue:: ;
       end else do
         Curry._3(setter, bucket, i, d);
         return Caml_array.caml_array_set(hashes, i, h);
@@ -284,19 +284,19 @@ function Make(H) do
               return Caml_option.valFromOption(match$1);
             end else do
               _i = i + 1 | 0;
-              continue ;
+              ::continue:: ;
             end end 
           end else do
             _i = i + 1 | 0;
-            continue ;
+            ::continue:: ;
           end end 
         end else do
           _i = i + 1 | 0;
-          continue ;
+          ::continue:: ;
         end end 
       end else do
         _i = i + 1 | 0;
-        continue ;
+        ::continue:: ;
       end end  end 
     end;
   end end;
@@ -308,7 +308,7 @@ function Make(H) do
   end end;
   find = function (t, d) do
     return find_or(t, d, (function (_h, _index) do
-                  throw Caml_builtin_exceptions.not_found;
+                  error (Caml_builtin_exceptions.not_found)
                 end end));
   end end;
   find_opt = function (t, d) do
@@ -331,19 +331,19 @@ function Make(H) do
               return v;
             end else do
               _i = i + 1 | 0;
-              continue ;
+              ::continue:: ;
             end end 
           end else do
             _i = i + 1 | 0;
-            continue ;
+            ::continue:: ;
           end end 
         end else do
           _i = i + 1 | 0;
-          continue ;
+          ::continue:: ;
         end end 
       end else do
         _i = i + 1 | 0;
-        continue ;
+        ::continue:: ;
       end end  end 
     end;
   end end;
@@ -365,15 +365,15 @@ function Make(H) do
             return Curry._2(iffound, bucket, i);
           end else do
             _i = i + 1 | 0;
-            continue ;
+            ::continue:: ;
           end end 
         end else do
           _i = i + 1 | 0;
-          continue ;
+          ::continue:: ;
         end end 
       end else do
         _i = i + 1 | 0;
-        continue ;
+        ::continue:: ;
       end end  end 
     end;
   end end;
@@ -411,22 +411,22 @@ function Make(H) do
                 accu
               };
               _i = i + 1 | 0;
-              continue ;
+              ::continue:: ;
             end else do
               _i = i + 1 | 0;
-              continue ;
+              ::continue:: ;
             end end 
           end else do
             _i = i + 1 | 0;
-            continue ;
+            ::continue:: ;
           end end 
         end else do
           _i = i + 1 | 0;
-          continue ;
+          ::continue:: ;
         end end 
       end else do
         _i = i + 1 | 0;
-        continue ;
+        ::continue:: ;
       end end  end 
     end;
   end end;

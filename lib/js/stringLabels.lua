@@ -1,6 +1,6 @@
 --[['use strict';]]
 
-__String = require "./string.lua";
+__String = require "./string";
 
 make = __String.make;
 

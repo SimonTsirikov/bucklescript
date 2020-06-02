@@ -4,7 +4,7 @@
 // hello
 --[['use strict';]]
 
-List = require "../../lib/js/list.lua";
+List = require "../../lib/js/list";
 
 x0 = null;
 

@@ -1,6 +1,6 @@
 --[['use strict';]]
 
-Caml_obj = require "../../lib/js/caml_obj.lua";
+Caml_obj = require "../../lib/js/caml_obj";
 
 function min_int(prim, prim$1) do
   return Math.min(prim, prim$1);

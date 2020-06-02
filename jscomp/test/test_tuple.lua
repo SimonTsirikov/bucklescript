@@ -1,6 +1,6 @@
 --[['use strict';]]
 
-Caml_int32 = require "../../lib/js/caml_int32.lua";
+Caml_int32 = require "../../lib/js/caml_int32";
 
 r = 0;
 

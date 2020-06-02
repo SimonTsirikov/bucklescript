@@ -1,16 +1,16 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-__Array = require "../../lib/js/array.lua";
-Block = require "../../lib/js/block.lua";
-Curry = require "../../lib/js/curry.lua";
-Int32 = require "../../lib/js/int32.lua";
-Int64 = require "../../lib/js/int64.lua";
-Format = require "../../lib/js/format.lua";
-Caml_obj = require "../../lib/js/caml_obj.lua";
-Caml_int64 = require "../../lib/js/caml_int64.lua";
-Pervasives = require "../../lib/js/pervasives.lua";
-Ext_array_test = require "./ext_array_test.lua";
+Mt = require "./mt";
+__Array = require "../../lib/js/array";
+Block = require "../../lib/js/block";
+Curry = require "../../lib/js/curry";
+Int32 = require "../../lib/js/int32";
+Int64 = require "../../lib/js/int64";
+Format = require "../../lib/js/format";
+Caml_obj = require "../../lib/js/caml_obj";
+Caml_int64 = require "../../lib/js/caml_int64";
+Pervasives = require "../../lib/js/pervasives";
+Ext_array_test = require "./ext_array_test";
 
 function f(u, v) do
   return u > v;
@@ -864,7 +864,7 @@ function fib(_n, _a, _b) do
       _b = Caml_int64.add(a, b);
       _a = b;
       _n = n - 1 | 0;
-      continue ;
+      ::continue:: ;
     end end 
   end;
 end end
@@ -878,7 +878,7 @@ function fac(_n, _acc) do
     end else do
       _acc = Caml_int64.mul(acc, Caml_int64.of_int32(n));
       _n = n - 1 | 0;
-      continue ;
+      ::continue:: ;
     end end 
   end;
 end end

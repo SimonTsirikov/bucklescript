@@ -1,9 +1,9 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-Block = require "../../lib/js/block.lua";
-Js_null = require "../../lib/js/js_null.lua";
-Caml_option = require "../../lib/js/caml_option.lua";
+Mt = require "./mt";
+Block = require "../../lib/js/block";
+Js_null = require "../../lib/js/js_null";
+Caml_option = require "../../lib/js/caml_option";
 
 suites_000 = --[[ tuple ]]{
   "toOption - empty",
@@ -60,8 +60,8 @@ suites_001 = --[[ :: ]]{
             "bind - empty",
             (function (param) do
                 return --[[ StrictEq ]]Block.__(2, {
-                          null,
-                          Js_null.bind(null, (function (v) do
+                          nil,
+                          Js_null.bind(nil, (function (v) do
                                   return v;
                                 end end))
                         });
@@ -86,7 +86,7 @@ suites_001 = --[[ :: ]]{
                     hit = do
                       contents: false
                     end;
-                    Js_null.iter(null, (function (param) do
+                    Js_null.iter(nil, (function (param) do
                             hit.contents = true;
                             return --[[ () ]]0;
                           end end));
@@ -118,7 +118,7 @@ suites_001 = --[[ :: ]]{
                     "fromOption - None",
                     (function (param) do
                         return --[[ Eq ]]Block.__(0, {
-                                  null,
+                                  nil,
                                   Js_null.fromOption(undefined)
                                 });
                       end end)

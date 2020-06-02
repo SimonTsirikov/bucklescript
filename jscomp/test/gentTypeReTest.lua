@@ -1,6 +1,6 @@
 --[['use strict';]]
 
-GentTypeReTestGen = require "./gentTypeReTest.gen";
+GentTypeReTestGen = require "./gentTypeReTest";
 
 function f(prim) do
   return GentTypeReTestGen.f(prim);

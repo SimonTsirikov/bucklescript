@@ -1,13 +1,13 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-Block = require "../../lib/js/block.lua";
-Curry = require "../../lib/js/curry.lua";
-Queue = require "../../lib/js/queue.lua";
-Genlex = require "../../lib/js/genlex.lua";
-Stream = require "../../lib/js/stream.lua";
-Caml_int32 = require "../../lib/js/caml_int32.lua";
-Caml_exceptions = require "../../lib/js/caml_exceptions.lua";
+Mt = require "./mt";
+Block = require "../../lib/js/block";
+Curry = require "../../lib/js/curry";
+Queue = require "../../lib/js/queue";
+Genlex = require "../../lib/js/genlex";
+Stream = require "../../lib/js/stream";
+Caml_int32 = require "../../lib/js/caml_int32";
+Caml_exceptions = require "../../lib/js/caml_exceptions";
 
 Parse_error = Caml_exceptions.create("Stream_parser_test.Parse_error");
 
@@ -19,12 +19,11 @@ function parse(token) do
   end;
   token$1 = function (param) do
     if (look_ahead.length == 0) then do
-      try do
+      xpcall(function() do
         return Curry._1(token, --[[ () ]]0);
-      end
-      catch (exn)do
+      end end,function(exn) return do
         return --[[ Kwd ]]Block.__(0, {"=="});
-      end
+      end end)
     end else do
       return Queue.pop(look_ahead);
     end end 
@@ -38,34 +37,34 @@ function parse(token) do
             v = parse_expr_aux(parse_term_aux(parse_atom(--[[ () ]]0)));
             match = token$1(--[[ () ]]0);
             if (match.tag) then do
-              throw {
-                    Parse_error,
-                    "Unbalanced parens"
-                  };
+              error ({
+                Parse_error,
+                "Unbalanced parens"
+              })
             end else if (match[0] == ")") then do
               return v;
             end else do
-              throw {
-                    Parse_error,
-                    "Unbalanced parens"
-                  };
+              error ({
+                Parse_error,
+                "Unbalanced parens"
+              })
             end end  end 
           end else do
             Queue.push(e, look_ahead);
-            throw {
-                  Parse_error,
-                  "unexpected token"
-                };
+            error ({
+              Parse_error,
+              "unexpected token"
+            })
           end end end end end 
        if ___conditional___ = 2--[[ Int ]] then do
           return e[0];end end end 
        do
       else do
         Queue.push(e, look_ahead);
-        throw {
-              Parse_error,
-              "unexpected token"
-            };
+        error ({
+          Parse_error,
+          "unexpected token"
+        })
         end end
         
     end
@@ -159,12 +158,11 @@ function l_parse(token) do
   end;
   token$1 = function (param) do
     if (look_ahead.length == 0) then do
-      try do
+      xpcall(function() do
         return Curry._1(token, --[[ () ]]0);
-      end
-      catch (exn)do
+      end end,function(exn) return do
         return --[[ Kwd ]]Block.__(0, {"=="});
-      end
+      end end)
     end else do
       return Queue.pop(look_ahead);
     end end 
@@ -181,10 +179,10 @@ function l_parse(token) do
         do
            if ___conditional___ = "*" then do
               _a = Caml_int32.imul(a, parse_f(--[[ () ]]0));
-              continue ;end end end 
+              ::continue:: ;end end end 
            if ___conditional___ = "/" then do
               _a = Caml_int32.div(a, parse_f(--[[ () ]]0));
-              continue ;end end end 
+              ::continue:: ;end end end 
            do
           else do
             Queue.push(t, look_ahead);
@@ -204,32 +202,32 @@ function l_parse(token) do
             v = parse_t_aux(parse_f_aux(parse_f(--[[ () ]]0)));
             t$1 = token$1(--[[ () ]]0);
             if (t$1.tag) then do
-              throw {
-                    Parse_error,
-                    "Unbalanced )"
-                  };
+              error ({
+                Parse_error,
+                "Unbalanced )"
+              })
             end else if (t$1[0] == ")") then do
               return v;
             end else do
-              throw {
-                    Parse_error,
-                    "Unbalanced )"
-                  };
+              error ({
+                Parse_error,
+                "Unbalanced )"
+              })
             end end  end 
           end else do
-            throw {
-                  Parse_error,
-                  "Unexpected token"
-                };
+            error ({
+              Parse_error,
+              "Unexpected token"
+            })
           end end end end end 
        if ___conditional___ = 2--[[ Int ]] then do
           return t[0];end end end 
        do
       else do
-        throw {
-              Parse_error,
-              "Unexpected token"
-            };
+        error ({
+          Parse_error,
+          "Unexpected token"
+        })
         end end
         
     end
@@ -246,10 +244,10 @@ function l_parse(token) do
         do
            if ___conditional___ = "+" then do
               _a = a + parse_f_aux(parse_f(--[[ () ]]0)) | 0;
-              continue ;end end end 
+              ::continue:: ;end end end 
            if ___conditional___ = "-" then do
               _a = a - parse_f_aux(parse_f(--[[ () ]]0)) | 0;
-              continue ;end end end 
+              ::continue:: ;end end end 
            do
           else do
             Queue.push(t, look_ahead);

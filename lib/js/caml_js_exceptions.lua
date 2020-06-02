@@ -1,7 +1,7 @@
 --[['use strict';]]
 
-Caml_option = require "./caml_option.lua";
-Caml_exceptions = require "./caml_exceptions.lua";
+Caml_option = require "./caml_option";
+Caml_exceptions = require "./caml_exceptions";
 
 __Error = Caml_exceptions.create("Caml_js_exceptions.Error");
 

@@ -1,6 +1,6 @@
 --[['use strict';]]
 
-Rebind_module = require "./rebind_module.lua";
+Rebind_module = require "./rebind_module";
 
 function x(v) do
   if (v == Rebind_module.AA) then do

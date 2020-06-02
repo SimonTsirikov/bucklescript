@@ -29,10 +29,10 @@ end end
 
 function sub(b, ofs, len) do
   if (ofs < 0 or len < 0 or ofs > (b.position - len | 0)) then do
-    throw {
-          Caml_builtin_exceptions.invalid_argument,
-          "Buffer.sub"
-        };
+    error ({
+      Caml_builtin_exceptions.invalid_argument,
+      "Buffer.sub"
+    })
   end
    end 
   return Bytes.sub_string(b.buffer, ofs, len);
@@ -40,10 +40,10 @@ end end
 
 function blit(src, srcoff, dst, dstoff, len) do
   if (len < 0 or srcoff < 0 or srcoff > (src.position - len | 0) or dstoff < 0 or dstoff > (#dst - len | 0)) then do
-    throw {
-          Caml_builtin_exceptions.invalid_argument,
-          "Buffer.blit"
-        };
+    error ({
+      Caml_builtin_exceptions.invalid_argument,
+      "Buffer.blit"
+    })
   end
    end 
   return Caml_bytes.caml_blit_bytes(src.buffer, srcoff, dst, dstoff, len);
@@ -51,10 +51,10 @@ end end
 
 function nth(b, ofs) do
   if (ofs < 0 or ofs >= b.position) then do
-    throw {
-          Caml_builtin_exceptions.invalid_argument,
-          "Buffer.nth"
-        };
+    error ({
+      Caml_builtin_exceptions.invalid_argument,
+      "Buffer.nth"
+    })
   end
    end 
   return b.buffer[ofs];
@@ -103,14 +103,14 @@ end end
 function add_utf_8_uchar(b, u) do
   u$1 = u;
   if (u$1 < 0) then do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "buffer.ml",
-            90,
-            19
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "buffer.ml",
+        90,
+        19
+      }
+    })
   end
    end 
   if (u$1 <= 127) then do
@@ -149,28 +149,28 @@ function add_utf_8_uchar(b, u) do
     b.position = pos$2 + 4 | 0;
     return --[[ () ]]0;
   end else do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "buffer.ml",
-            123,
-            8
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "buffer.ml",
+        123,
+        8
+      }
+    })
   end end  end  end  end 
 end end
 
 function add_utf_16be_uchar(b, u) do
   u$1 = u;
   if (u$1 < 0) then do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "buffer.ml",
-            126,
-            19
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "buffer.ml",
+        126,
+        19
+      }
+    })
   end
    end 
   if (u$1 <= 65535) then do
@@ -199,28 +199,28 @@ function add_utf_16be_uchar(b, u) do
     b.position = pos$1 + 4 | 0;
     return --[[ () ]]0;
   end else do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "buffer.ml",
-            144,
-            8
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "buffer.ml",
+        144,
+        8
+      }
+    })
   end end  end 
 end end
 
 function add_utf_16le_uchar(b, u) do
   u$1 = u;
   if (u$1 < 0) then do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "buffer.ml",
-            147,
-            19
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "buffer.ml",
+        147,
+        19
+      }
+    })
   end
    end 
   if (u$1 <= 65535) then do
@@ -249,23 +249,23 @@ function add_utf_16le_uchar(b, u) do
     b.position = pos$1 + 4 | 0;
     return --[[ () ]]0;
   end else do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "buffer.ml",
-            165,
-            8
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "buffer.ml",
+        165,
+        8
+      }
+    })
   end end  end 
 end end
 
 function add_substring(b, s, offset, len) do
   if (offset < 0 or len < 0 or offset > (#s - len | 0)) then do
-    throw {
-          Caml_builtin_exceptions.invalid_argument,
-          "Buffer.add_substring/add_subbytes"
-        };
+    error ({
+      Caml_builtin_exceptions.invalid_argument,
+      "Buffer.add_substring/add_subbytes"
+    })
   end
    end 
   new_position = b.position + len | 0;
@@ -304,10 +304,10 @@ end end
 
 function add_channel(b, ic, len) do
   if (len < 0) then do
-    throw {
-          Caml_builtin_exceptions.invalid_argument,
-          "Buffer.add_channel"
-        };
+    error ({
+      Caml_builtin_exceptions.invalid_argument,
+      "Buffer.add_channel"
+    })
   end
    end 
   if ((b.position + len | 0) > b.length) then do
@@ -323,11 +323,11 @@ function add_channel(b, ic, len) do
       n = Pervasives.input(ic$1, b$1.buffer, b$1.position, len$1);
       b$1.position = b$1.position + n | 0;
       if (n == 0) then do
-        throw Caml_builtin_exceptions.end_of_file;
+        error (Caml_builtin_exceptions.end_of_file)
       end
        end 
       _len = len$1 - n | 0;
-      continue ;
+      ::continue:: ;
     end else do
       return 0;
     end end 
@@ -341,14 +341,14 @@ end end
 function closing(param) do
   if (param ~= 40) then do
     if (param ~= 123) then do
-      throw {
-            Caml_builtin_exceptions.assert_failure,
-            --[[ tuple ]]{
-              "buffer.ml",
-              216,
-              9
-            }
-          };
+      error ({
+        Caml_builtin_exceptions.assert_failure,
+        --[[ tuple ]]{
+          "buffer.ml",
+          216,
+          9
+        }
+      })
     end else do
       return --[[ "}" ]]125;
     end end 
@@ -365,24 +365,24 @@ function advance_to_closing(opening, closing, k, s, start) do
     i = _i;
     k$1 = _k;
     if (i >= lim) then do
-      throw Caml_builtin_exceptions.not_found;
+      error (Caml_builtin_exceptions.not_found)
     end
      end 
     if (Caml_string.get(s, i) == opening) then do
       _i = i + 1 | 0;
       _k = k$1 + 1 | 0;
-      continue ;
+      ::continue:: ;
     end else if (Caml_string.get(s, i) == closing) then do
       if (k$1 == 0) then do
         return i;
       end else do
         _i = i + 1 | 0;
         _k = k$1 - 1 | 0;
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       _i = i + 1 | 0;
-      continue ;
+      ::continue:: ;
     end end  end 
   end;
 end end
@@ -416,14 +416,14 @@ function advance_to_non_alpha(s, start) do
       end
        end  end  end 
       _i = i + 1 | 0;
-      continue ;
+      ::continue:: ;
     end end 
   end;
 end end
 
 function find_ident(s, start, lim) do
   if (start >= lim) then do
-    throw Caml_builtin_exceptions.not_found;
+    error (Caml_builtin_exceptions.not_found)
   end
    end 
   c = Caml_string.get(s, start);
@@ -458,29 +458,29 @@ function add_substitute(b, f, s) do
           add_char(b, current);
           _i = i + 1 | 0;
           _previous = --[[ " " ]]32;
-          continue ;
+          ::continue:: ;
         end else if (current ~= 92) then do
           add_char(b, current);
           _i = i + 1 | 0;
           _previous = current;
-          continue ;
+          ::continue:: ;
         end else do
           _i = i + 1 | 0;
           _previous = current;
-          continue ;
+          ::continue:: ;
         end end  end 
       end else if (previous == --[[ "\\" ]]92) then do
         add_char(b, current);
         _i = i + 1 | 0;
         _previous = --[[ " " ]]32;
-        continue ;
+        ::continue:: ;
       end else do
         j = i + 1 | 0;
         match = find_ident(s, j, lim);
         add_string(b, Curry._1(f, match[0]));
         _i = match[1];
         _previous = --[[ " " ]]32;
-        continue ;
+        ::continue:: ;
       end end  end 
     end else if (previous == --[[ "\\" ]]92) then do
       return add_char(b, previous);
@@ -492,10 +492,10 @@ end end
 
 function truncate(b, len) do
   if (len < 0 or len > b.position) then do
-    throw {
-          Caml_builtin_exceptions.invalid_argument,
-          "Buffer.truncate"
-        };
+    error ({
+      Caml_builtin_exceptions.invalid_argument,
+      "Buffer.truncate"
+    })
   end
    end 
   b.position = len;

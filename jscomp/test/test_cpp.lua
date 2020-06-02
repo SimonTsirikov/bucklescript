@@ -1,6 +1,6 @@
 --[['use strict';]]
 
-Caml_primitive = require "../../lib/js/caml_primitive.lua";
+Caml_primitive = require "../../lib/js/caml_primitive";
 
 f = Caml_primitive.caml_int_compare;
 

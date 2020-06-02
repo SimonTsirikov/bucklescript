@@ -1,6 +1,6 @@
 --[['use strict';]]
 
-Caml_utils = require "../../lib/js/caml_utils.lua";
+Caml_utils = require "../../lib/js/caml_utils";
 
 v = Caml_utils.repeat(100, "x");
 

@@ -1,6 +1,6 @@
 --[['use strict';]]
 
-Fs = require "fs";
+Fs = require "";
 
 function test(path) do
   Fs.watch(path, do

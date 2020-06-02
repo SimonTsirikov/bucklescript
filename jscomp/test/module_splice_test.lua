@@ -1,9 +1,9 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-Block = require "../../lib/js/block.lua";
-JoinClasses = require "./joinClasses";
-Caml_splice_call = require "../../lib/js/caml_splice_call.lua";
+Mt = require "./mt";
+Block = require "../../lib/js/block";
+JoinClasses = require "./joinCla";
+Caml_splice_call = require "../../lib/js/caml_splice_call";
 
 suites = do
   contents: --[[ [] ]]0

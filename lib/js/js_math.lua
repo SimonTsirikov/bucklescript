@@ -1,6 +1,6 @@
 --[['use strict';]]
 
-Js_int = require "./js_int.lua";
+Js_int = require "./js_int";
 
 function unsafe_ceil(prim) do
   return Math.ceil(prim);

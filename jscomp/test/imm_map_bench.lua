@@ -1,8 +1,8 @@
 --[['use strict';]]
 
-Immutable = require "immutable";
-Belt_Array = require "../../lib/js/belt_Array.lua";
-Belt_MapInt = require "../../lib/js/belt_MapInt.lua";
+Immutable = require "immut";
+Belt_Array = require "../../lib/js/belt_Array";
+Belt_MapInt = require "../../lib/js/belt_MapInt";
 
 empty = new Immutable.OrderedMap();
 
@@ -19,7 +19,7 @@ function should(b) do
   if (b) then do
     return 0;
   end else do
-    throw new Error("impossible");
+    error (new Error("impossible"))
   end end 
 end end
 

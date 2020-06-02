@@ -107,7 +107,7 @@ let requires require_lit cxt f (modules : (Ident.t * string) list ) =
       P.space f;
       P.string f require_lit;
       P.space f;
-      Js_dump_string.pp_string f file;
+      Js_dump_string.pp_string 4  f file;
       P.string f L.semi;
       P.newline f ;
     ) ;
@@ -136,7 +136,7 @@ let imports  cxt f (modules : (Ident.t * string) list ) =
       P.space f ;
       P.string f L.from;
       P.space f;
-      Js_dump_string.pp_string f file ;
+      Js_dump_string.pp_string 0  f file ;
       P.string f L.semi ;
       P.newline f ;
     ) ;

@@ -1,9 +1,9 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-Block = require "../../lib/js/block.lua";
-Caml_option = require "../../lib/js/caml_option.lua";
-Js_null_undefined = require "../../lib/js/js_null_undefined.lua";
+Mt = require "./mt";
+Block = require "../../lib/js/block";
+Caml_option = require "../../lib/js/caml_option";
+Js_null_undefined = require "../../lib/js/js_null_undefined";
 
 suites_000 = --[[ tuple ]]{
   "toOption - null",
@@ -100,8 +100,8 @@ suites_001 = --[[ :: ]]{
                     "bind - null",
                     (function (param) do
                         return --[[ StrictEq ]]Block.__(2, {
-                                  null,
-                                  Js_null_undefined.bind(null, (function (v) do
+                                  nil,
+                                  Js_null_undefined.bind(nil, (function (v) do
                                           return v;
                                         end end))
                                 });
@@ -150,7 +150,7 @@ suites_001 = --[[ :: ]]{
                                 hit = do
                                   contents: false
                                 end;
-                                Js_null_undefined.iter(null, (function (param) do
+                                Js_null_undefined.iter(nil, (function (param) do
                                         hit.contents = true;
                                         return --[[ () ]]0;
                                       end end));

@@ -1,7 +1,7 @@
 --[['use strict';]]
 
-Caml_bytes = require "../../lib/js/caml_bytes.lua";
-Caml_string = require "../../lib/js/caml_string.lua";
+Caml_bytes = require "../../lib/js/caml_bytes";
+Caml_string = require "../../lib/js/caml_string";
 
 v = "ghos";
 

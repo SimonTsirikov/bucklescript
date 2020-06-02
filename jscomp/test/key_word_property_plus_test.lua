@@ -1,8 +1,8 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-Block = require "../../lib/js/block.lua";
-Global_mangles = require "./global_mangles.lua";
+Mt = require "./mt";
+Block = require "../../lib/js/block";
+Global_mangles = require "./global_mangles";
 
 suites = do
   contents: --[[ [] ]]0

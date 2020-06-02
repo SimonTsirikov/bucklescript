@@ -1,11 +1,11 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-List = require "../../lib/js/list.lua";
-Block = require "../../lib/js/block.lua";
-Bytes = require "../../lib/js/bytes.lua";
-Caml_char = require "../../lib/js/caml_char.lua";
-Caml_bytes = require "../../lib/js/caml_bytes.lua";
+Mt = require "./mt";
+List = require "../../lib/js/list";
+Block = require "../../lib/js/block";
+Bytes = require "../../lib/js/bytes";
+Caml_char = require "../../lib/js/caml_char";
+Caml_bytes = require "../../lib/js/caml_bytes";
 
 suites_000 = --[[ tuple ]]{
   "caml_is_printable",

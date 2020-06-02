@@ -1,7 +1,7 @@
 --[['use strict';]]
 
-List = require "../../lib/js/list.lua";
-Curry = require "../../lib/js/curry.lua";
+List = require "../../lib/js/list";
+Curry = require "../../lib/js/curry";
 
 function fib(n) do
   if (n == 2 or n == 1) then do

@@ -1,10 +1,10 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-Block = require "../../lib/js/block.lua";
-Bytes = require "../../lib/js/bytes.lua";
-__Buffer = require "../../lib/js/buffer.lua";
-Caml_bytes = require "../../lib/js/caml_bytes.lua";
+Mt = require "./mt";
+Block = require "../../lib/js/block";
+Bytes = require "../../lib/js/bytes";
+__Buffer = require "../../lib/js/buffer";
+Caml_bytes = require "../../lib/js/caml_bytes";
 
 v = "gso";
 

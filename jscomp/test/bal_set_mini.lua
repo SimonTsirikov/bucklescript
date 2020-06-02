@@ -105,7 +105,7 @@ function min_elt(_def, _param) do
       if (l) then do
         _param = l;
         _def = param[1];
-        continue ;
+        ::continue:: ;
       end else do
         return param[1];
       end end 
@@ -163,7 +163,7 @@ function mem(x, _param) do
         return true;
       end else do
         _param = c < 0 and param[0] or param[2];
-        continue ;
+        ::continue:: ;
       end end 
     end else do
       return false;

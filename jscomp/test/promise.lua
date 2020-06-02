@@ -1,6 +1,6 @@
 --[['use strict';]]
 
-SysBluebird = require "sys-bluebird";
+SysBluebird = require "sys-blue";
 
 function f(p) do
   return p.catch(3);

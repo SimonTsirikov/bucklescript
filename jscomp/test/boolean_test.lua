@@ -1,7 +1,7 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-Test_bool_equal = require "./test_bool_equal.lua";
+Mt = require "./mt";
+Test_bool_equal = require "./test_bool_equal";
 
 Mt.from_suites("boolean", --[[ :: ]]{
       --[[ tuple ]]{

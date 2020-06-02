@@ -4,10 +4,10 @@ import * as Caml_builtin_exceptions from "./caml_builtin_exceptions.lua";
 
 function get(s, i) do
   if (i < 0 or i >= #s) then do
-    throw {
-          Caml_builtin_exceptions.invalid_argument,
-          "index out of bounds"
-        };
+    error ({
+      Caml_builtin_exceptions.invalid_argument,
+      "index out of bounds"
+    })
   end
    end 
   return s[i];
@@ -26,10 +26,10 @@ end end
 
 function caml_create_bytes(len) do
   if (len < 0) then do
-    throw {
-          Caml_builtin_exceptions.invalid_argument,
-          "String.create"
-        };
+    error ({
+      Caml_builtin_exceptions.invalid_argument,
+      "String.create"
+    })
   end
    end 
   result = new Array(len);
@@ -94,14 +94,14 @@ function bytes_to_string(a) do
   s = "";
   s_len = len;
   if (i == 0 and len <= 4096 and len == #bytes) then do
-    return String.fromCharCode.apply(null, bytes);
+    return String.fromCharCode.apply(nil, bytes);
   end else do
     offset = 0;
     while(s_len > 0) do
       next = s_len < 1024 and s_len or 1024;
       tmp_bytes = new Array(next);
       caml_blit_bytes(bytes, offset, tmp_bytes, 0, next);
-      s = s .. String.fromCharCode.apply(null, tmp_bytes);
+      s = s .. String.fromCharCode.apply(nil, tmp_bytes);
       s_len = s_len - next | 0;
       offset = offset + next | 0;
     end;

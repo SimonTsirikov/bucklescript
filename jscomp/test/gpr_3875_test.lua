@@ -1,7 +1,7 @@
 --[['use strict';]]
 
-Mt = require "./mt.lua";
-Curry = require "../../lib/js/curry.lua";
+Mt = require "./mt";
+Curry = require "../../lib/js/curry";
 
 result = do
   contents: ""

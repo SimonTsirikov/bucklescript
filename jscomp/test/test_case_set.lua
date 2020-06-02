@@ -1,6 +1,6 @@
 --[['use strict';]]
 
-Caml_oo_curry = require "../../lib/js/caml_oo_curry.lua";
+Caml_oo_curry = require "../../lib/js/caml_oo_curry";
 
 function f(x) do
   x.case = 3;

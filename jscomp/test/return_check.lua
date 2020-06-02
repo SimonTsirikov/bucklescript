@@ -1,11 +1,11 @@
 --[['use strict';]]
 
-Caml_option = require "../../lib/js/caml_option.lua";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
+Caml_option = require "../../lib/js/caml_option";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 function test(dom) do
   elem = dom.getElementById("haha");
-  if (elem ~= null) then do
+  if (elem ~= nil) then do
     console.log(elem);
     return 2;
   end else do
@@ -18,14 +18,14 @@ function f_undefined(xs, i) do
   if (match ~= undefined) then do
     return match;
   end else do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "return_check.ml",
-            31,
-            14
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "return_check.ml",
+        31,
+        14
+      }
+    })
   end end 
 end end
 
@@ -57,31 +57,31 @@ end end
 
 function f_null(xs, i) do
   match = xs[i];
-  if (match ~= null) then do
+  if (match ~= nil) then do
     return match;
   end else do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "return_check.ml",
-            59,
-            14
-          }
-        };
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "return_check.ml",
+        59,
+        14
+      }
+    })
   end end 
 end end
 
 function f_null_undefined(xs, i) do
   match = xs[i];
-  if (match == null) then do
-    throw {
-          Caml_builtin_exceptions.assert_failure,
-          --[[ tuple ]]{
-            "return_check.ml",
-            68,
-            14
-          }
-        };
+  if (match == nil) then do
+    error ({
+      Caml_builtin_exceptions.assert_failure,
+      --[[ tuple ]]{
+        "return_check.ml",
+        68,
+        14
+      }
+    })
   end else do
     return match;
   end end 

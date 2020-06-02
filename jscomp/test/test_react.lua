@@ -1,11 +1,11 @@
 --[['use strict';]]
 
-C = require "c";
-C$1 = require "b/c";
-Xxx = require "xxx";
-C$2 = require "a/b/c";
-React = require "react";
-ReactDom = require "react-dom";
+C = require "";
+C$1 = require "";
+Xxx = require "";
+C$2 = require "a";
+React = require "r";
+ReactDom = require "react";
 
 console.log("hey");
 
