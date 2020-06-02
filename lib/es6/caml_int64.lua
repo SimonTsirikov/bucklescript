@@ -180,11 +180,11 @@ end end
 function mul(_this, _other) do
   while(true) do
     other = _other;
-    $$this = _this;
+    __this = _this;
     lo;
     exit = 0;
     exit$1 = 0;
-    if ($$this[--[[ hi ]]0] ~= 0 or $$this[--[[ lo ]]1] ~= 0) then do
+    if (__this[--[[ hi ]]0] ~= 0 or __this[--[[ lo ]]1] ~= 0) then do
       exit$1 = 3;
     end else do
       return zero;
@@ -198,16 +198,16 @@ function mul(_this, _other) do
     end
      end 
     if (exit == 2) then do
-      this_hi = $$this[--[[ hi ]]0];
+      this_hi = __this[--[[ hi ]]0];
       exit$2 = 0;
-      if (this_hi ~= -2147483648 or $$this[--[[ lo ]]1] ~= 0) then do
+      if (this_hi ~= -2147483648 or __this[--[[ lo ]]1] ~= 0) then do
         exit$2 = 3;
       end else do
         lo = other[--[[ lo ]]1];
       end end 
       if (exit$2 == 3) then do
         other_hi = other[--[[ hi ]]0];
-        lo$1 = $$this[--[[ lo ]]1];
+        lo$1 = __this[--[[ lo ]]1];
         exit$3 = 0;
         if (other_hi ~= -2147483648 or other[--[[ lo ]]1] ~= 0) then do
           exit$3 = 4;
@@ -219,13 +219,13 @@ function mul(_this, _other) do
           if (this_hi < 0) then do
             if (other_hi < 0) then do
               _other = neg(other);
-              _this = neg($$this);
+              _this = neg(__this);
               continue ;
             end else do
-              return neg(mul(neg($$this), other));
+              return neg(mul(neg(__this), other));
             end end 
           end else if (other_hi < 0) then do
-            return neg(mul($$this, neg(other)));
+            return neg(mul(__this, neg(other)));
           end else do
             a48 = (this_hi >>> 16);
             a32 = this_hi & 65535;

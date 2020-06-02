@@ -2,7 +2,7 @@
 
 Mt = require "./mt.lua";
 List = require "../../lib/js/list.lua";
-$$Array = require "../../lib/js/array.lua";
+__Array = require "../../lib/js/array.lua";
 Block = require "../../lib/js/block.lua";
 Curry = require "../../lib/js/curry.lua";
 Int64 = require "../../lib/js/int64.lua";
@@ -308,7 +308,7 @@ pairs = [
 ];
 
 function from_pairs(prefix, pairs) do
-  return $$Array.to_list($$Array.mapi((function (i, param) do
+  return __Array.to_list(__Array.mapi((function (i, param) do
                     b = param[2];
                     a = param[1];
                     result = param[0];
@@ -1614,7 +1614,7 @@ function from(xs) do
                                     ]);
                           end end)
                       ];
-              end end), $$Array.to_list(xs));
+              end end), __Array.to_list(xs));
 end end
 
 to_string = [--[[ tuple ]][
@@ -1684,7 +1684,7 @@ function from_compare(xs) do
                                     ]);
                           end end)
                       ];
-              end end), $$Array.to_list(xs));
+              end end), __Array.to_list(xs));
 end end
 
 function from_to_string(xs) do
@@ -1709,7 +1709,7 @@ function from_to_string(xs) do
                                     ]);
                           end end)
                       ];
-              end end), $$Array.to_list(xs));
+              end end), __Array.to_list(xs));
 end end
 
 Mt.from_pair_suites("Int64_mul_div_test", Pervasives.$at(from_pairs("random", pairs), Pervasives.$at(from_pairs("small", small_pairs), Pervasives.$at(List.mapi((function (i, param) do
@@ -1735,7 +1735,7 @@ Mt.from_pair_suites("Int64_mul_div_test", Pervasives.$at(from_pairs("random", pa
                                             ]);
                                   end end)
                               ];
-                      end end), $$Array.to_list(to_floats)), Pervasives.$at(List.mapi((function (i, param) do
+                      end end), __Array.to_list(to_floats)), Pervasives.$at(List.mapi((function (i, param) do
                             i64 = param[1];
                             f = param[0];
                             return --[[ tuple ]][
@@ -1758,12 +1758,12 @@ Mt.from_pair_suites("Int64_mul_div_test", Pervasives.$at(from_pairs("random", pa
                                                 ]);
                                       end end)
                                   ];
-                          end end), $$Array.to_list(of_float_pairs)), Pervasives.$at(--[[ :: ]][
+                          end end), __Array.to_list(of_float_pairs)), Pervasives.$at(--[[ :: ]][
                           --[[ tuple ]][
                             "compare_check_complete",
                             (function (param) do
                                 return --[[ Eq ]]Block.__(0, [
-                                          $$Array.map((function (param) do
+                                          __Array.map((function (param) do
                                                   return true;
                                                 end end), check_complete_compare),
                                           check_complete_compare

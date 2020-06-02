@@ -97,7 +97,7 @@ try do
 end
 catch (raw_exn$3)do
   exn$3 = Caml_js_exceptions.internalToOCamlException(raw_exn$3);
-  if (exn$3[0] == A or exn$3[0] == Js_exn.$$Error) then do
+  if (exn$3[0] == A or exn$3[0] == Js_exn.__Error) then do
     a0 = exn$3[1];
   end else do
     throw [
@@ -154,7 +154,7 @@ suites = do
       --[[ tuple ]][
         "File \"exception_raise_test.ml\", line 116, characters 4-11",
         (function (param) do
-            if (a1[0] == Js_exn.$$Error) then do
+            if (a1[0] == Js_exn.__Error) then do
               return --[[ Eq ]]Block.__(0, [
                         a1[1],
                         2

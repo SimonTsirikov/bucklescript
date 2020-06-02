@@ -35,9 +35,9 @@ function eq(loc, x, y) do
   return --[[ () ]]0;
 end end
 
-function fib_init($$class) do
-  calc = CamlinternalOO.get_method_label($$class, "calc");
-  CamlinternalOO.set_method($$class, calc, (function (self$1, x) do
+function fib_init(__class) do
+  calc = CamlinternalOO.get_method_label(__class, "calc");
+  CamlinternalOO.set_method(__class, calc, (function (self$1, x) do
           if (x == 0 or x == 1) then do
             return 1;
           end else do
@@ -45,20 +45,20 @@ function fib_init($$class) do
           end end 
         end end));
   return (function (env, self) do
-      return CamlinternalOO.create_object_opt(self, $$class);
+      return CamlinternalOO.create_object_opt(self, __class);
     end end);
 end end
 
 fib = CamlinternalOO.make_class(shared, fib_init);
 
-function memo_fib_init($$class) do
-  ids = CamlinternalOO.new_methods_variables($$class, shared, ["cache"]);
+function memo_fib_init(__class) do
+  ids = CamlinternalOO.new_methods_variables(__class, shared, ["cache"]);
   calc = ids[0];
   cache = ids[1];
-  inh = CamlinternalOO.inherits($$class, 0, 0, shared, fib, true);
+  inh = CamlinternalOO.inherits(__class, 0, 0, shared, fib, true);
   obj_init = inh[0];
   calc$1 = inh[1];
-  CamlinternalOO.set_method($$class, calc, (function (self$2, x) do
+  CamlinternalOO.set_method(__class, calc, (function (self$2, x) do
           try do
             return Hashtbl.find(self$2[cache], x);
           end
@@ -73,10 +73,10 @@ function memo_fib_init($$class) do
           end
         end end));
   return (function (env, self) do
-      self$1 = CamlinternalOO.create_object_opt(self, $$class);
+      self$1 = CamlinternalOO.create_object_opt(self, __class);
       self$1[cache] = Hashtbl.create(undefined, 31);
       Curry._1(obj_init, self$1);
-      return CamlinternalOO.run_initializers_opt(self, self$1, $$class);
+      return CamlinternalOO.run_initializers_opt(self, self$1, __class);
     end end);
 end end
 

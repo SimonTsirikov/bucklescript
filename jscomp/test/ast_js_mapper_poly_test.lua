@@ -1,7 +1,7 @@
 --[['use strict';]]
 
 Mt = require "./mt.lua";
-$$Array = require "../../lib/js/array.lua";
+__Array = require "../../lib/js/array.lua";
 Block = require "../../lib/js/block.lua";
 Js_mapperRt = require "../../lib/js/js_mapperRt.lua";
 
@@ -77,7 +77,7 @@ eq("File \"ast_js_mapper_poly_test.ml\", line 27, characters 5-12", eqUOpt(uFrom
 
 eq("File \"ast_js_mapper_poly_test.ml\", line 28, characters 5-12", eqUOpt(uFromJs("f"), undefined), true);
 
-eq("File \"ast_js_mapper_poly_test.ml\", line 29, characters 5-12", $$Array.map(uToJs, [
+eq("File \"ast_js_mapper_poly_test.ml\", line 29, characters 5-12", __Array.map(uToJs, [
           --[[ D ]]68,
           --[[ C ]]67,
           --[[ f ]]102
@@ -134,7 +134,7 @@ function s(param) do
   end
 end end
 
-eq("File \"ast_js_mapper_poly_test.ml\", line 54, characters 5-12", $$Array.map(vToJs, [
+eq("File \"ast_js_mapper_poly_test.ml\", line 54, characters 5-12", __Array.map(vToJs, [
           --[[ A0 ]]0,
           --[[ A1 ]]1,
           --[[ A2 ]]2,
@@ -146,7 +146,7 @@ eq("File \"ast_js_mapper_poly_test.ml\", line 54, characters 5-12", $$Array.map(
       5
     ]);
 
-eq("File \"ast_js_mapper_poly_test.ml\", line 55, characters 5-12", $$Array.map(vFromJs, [
+eq("File \"ast_js_mapper_poly_test.ml\", line 55, characters 5-12", __Array.map(vFromJs, [
           0,
           1,
           2,
@@ -175,7 +175,7 @@ function v1FromJs(param) do
    end 
 end end
 
-eq("File \"ast_js_mapper_poly_test.ml\", line 68, characters 5-12", $$Array.map(v1ToJs, [
+eq("File \"ast_js_mapper_poly_test.ml\", line 68, characters 5-12", __Array.map(v1ToJs, [
           --[[ B0 ]]0,
           --[[ B1 ]]1,
           --[[ B2 ]]2,
@@ -191,7 +191,7 @@ eq("File \"ast_js_mapper_poly_test.ml\", line 68, characters 5-12", $$Array.map(
       5
     ]);
 
-eq("File \"ast_js_mapper_poly_test.ml\", line 69, characters 5-12", $$Array.map(v1FromJs, [
+eq("File \"ast_js_mapper_poly_test.ml\", line 69, characters 5-12", __Array.map(v1FromJs, [
           -1,
           0,
           1,
@@ -222,7 +222,7 @@ function v2FromJs(param) do
    end 
 end end
 
-eq("File \"ast_js_mapper_poly_test.ml\", line 86, characters 5-12", $$Array.map(v2ToJs, [
+eq("File \"ast_js_mapper_poly_test.ml\", line 86, characters 5-12", __Array.map(v2ToJs, [
           --[[ C0 ]]0,
           --[[ C1 ]]1,
           --[[ C2 ]]2,
@@ -238,7 +238,7 @@ eq("File \"ast_js_mapper_poly_test.ml\", line 86, characters 5-12", $$Array.map(
       7
     ]);
 
-eq("File \"ast_js_mapper_poly_test.ml\", line 89, characters 5-12", $$Array.map(v2FromJs, [
+eq("File \"ast_js_mapper_poly_test.ml\", line 89, characters 5-12", __Array.map(v2FromJs, [
           0,
           1,
           2,
@@ -248,10 +248,10 @@ eq("File \"ast_js_mapper_poly_test.ml\", line 89, characters 5-12", $$Array.map(
           6,
           7,
           8
-        ]), $$Array.append($$Array.append([
+        ]), __Array.append(__Array.append([
               undefined,
               undefined
-            ], $$Array.map((function (x) do
+            ], __Array.map((function (x) do
                     return x;
                   end end), [
                   --[[ C0 ]]0,
@@ -264,7 +264,7 @@ eq("File \"ast_js_mapper_poly_test.ml\", line 89, characters 5-12", $$Array.map(
 
 Mt.from_pair_suites("Ast_js_mapper_poly_test", suites.contents);
 
-$plus$great = $$Array.append;
+$plus$great = __Array.append;
 
 exports.suites = suites;
 exports.test_id = test_id;

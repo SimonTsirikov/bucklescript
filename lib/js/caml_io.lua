@@ -60,8 +60,8 @@ function caml_ml_output(oc, str, offset, len) do
   end end 
 end end
 
-function caml_ml_output_char(oc, $$char) do
-  return caml_ml_output(oc, String.fromCharCode($$char), 0, 1);
+function caml_ml_output_char(oc, __char) do
+  return caml_ml_output(oc, String.fromCharCode(__char), 0, 1);
 end end
 
 function caml_ml_out_channels_list(param) do

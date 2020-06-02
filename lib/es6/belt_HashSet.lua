@@ -192,7 +192,7 @@ end end
 
 Int = --[[ alias ]]0;
 
-$$String = --[[ alias ]]0;
+__String = --[[ alias ]]0;
 
 clear = Belt_internalBucketsType.clear;
 
@@ -216,7 +216,7 @@ getBucketHistogram = Belt_internalSetBuckets.getBucketHistogram;
 
 export do
   Int ,
-  $$String ,
+  __String ,
   make ,
   clear ,
   isEmpty ,

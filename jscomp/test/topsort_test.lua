@@ -2,7 +2,7 @@
 
 List = require "../../lib/js/list.lua";
 Curry = require "../../lib/js/curry.lua";
-$$String = require "../../lib/js/string.lua";
+__String = require "../../lib/js/string.lua";
 Caml_obj = require "../../lib/js/caml_obj.lua";
 Pervasives = require "../../lib/js/pervasives.lua";
 Caml_option = require "../../lib/js/caml_option.lua";
@@ -1332,7 +1332,7 @@ function of_list(l) do
           x3 = match$2[0];
           if (match$3) then do
             if (match$3[1]) then do
-              l$1 = List.sort_uniq($$String.compare, l);
+              l$1 = List.sort_uniq(__String.compare, l);
               sub = function (n, l) do
                 local ___conditional___=(n);
                 do

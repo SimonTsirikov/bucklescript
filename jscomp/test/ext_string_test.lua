@@ -3,7 +3,7 @@
 List = require "../../lib/js/list.lua";
 Bytes = require "../../lib/js/bytes.lua";
 Curry = require "../../lib/js/curry.lua";
-$$String = require "../../lib/js/string.lua";
+__String = require "../../lib/js/string.lua";
 Caml_bytes = require "../../lib/js/caml_bytes.lua";
 Caml_int32 = require "../../lib/js/caml_int32.lua";
 Caml_string = require "../../lib/js/caml_string.lua";
@@ -26,14 +26,14 @@ function split_by(keep_emptyOpt, is_delim, str) do
         return acc;
       end else do
         return --[[ :: ]][
-                $$String.sub(str, 0, last_pos),
+                __String.sub(str, 0, last_pos),
                 acc
               ];
       end end 
     end else if (Curry._1(is_delim, Caml_string.get(str, pos))) then do
       new_len = (last_pos - pos | 0) - 1 | 0;
       if (new_len ~= 0 or keep_empty) then do
-        v = $$String.sub(str, pos + 1 | 0, new_len);
+        v = __String.sub(str, pos + 1 | 0, new_len);
         _pos = pos - 1 | 0;
         _last_pos = pos;
         _acc = --[[ :: ]][
@@ -79,7 +79,7 @@ function trim(s) do
         end end)()) do
     k = k - 1 | 0;
   end;
-  return $$String.sub(s, i, (k - i | 0) + 1 | 0);
+  return __String.sub(s, i, (k - i | 0) + 1 | 0);
 end end
 
 function split(keep_empty, str, on) do
@@ -147,7 +147,7 @@ end end
 function ends_with_then_chop(s, beg) do
   i = ends_with_index(s, beg);
   if (i >= 0) then do
-    return $$String.sub(s, 0, i);
+    return __String.sub(s, 0, i);
   end
    end 
 end end
@@ -165,7 +165,7 @@ function check_any_suffix_case_then_chop(s, suffixes) do
     if (suffixes$1) then do
       id = ends_with_index(s, suffixes$1[0]);
       if (id >= 0) then do
-        return $$String.sub(s, 0, id);
+        return __String.sub(s, 0, id);
       end else do
         _suffixes = suffixes$1[1];
         continue ;
@@ -250,7 +250,7 @@ function repeat(n, s) do
   len = #s;
   res = Caml_bytes.caml_create_bytes(Caml_int32.imul(n, len));
   for i = 0 , n - 1 | 0 , 1 do
-    $$String.blit(s, 0, res, Caml_int32.imul(i, len), len);
+    __String.blit(s, 0, res, Caml_int32.imul(i, len), len);
   end
   return Bytes.to_string(res);
 end end
@@ -360,7 +360,7 @@ function tail_from(s, x) do
           s$1
         ];
   end else do
-    return $$String.sub(s, x, len - x | 0);
+    return __String.sub(s, x, len - x | 0);
   end end 
 end end
 
@@ -604,7 +604,7 @@ function replace_slash_backward(x) do
   if (unsafe_no_char(x, --[[ "/" ]]47, 0, len - 1 | 0)) then do
     return x;
   end else do
-    return $$String.map((function (x) do
+    return __String.map((function (x) do
                   if (x ~= 47) then do
                     return x;
                   end else do
@@ -619,7 +619,7 @@ function replace_backward_slash(x) do
   if (unsafe_no_char(x, --[[ "\\" ]]92, 0, len - 1 | 0)) then do
     return x;
   end else do
-    return $$String.map((function (x) do
+    return __String.map((function (x) do
                   if (x ~= 92) then do
                     return x;
                   end else do

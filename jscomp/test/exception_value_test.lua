@@ -59,7 +59,7 @@ function test_js_error2(param) do
   end
   catch (raw_e)do
     e = Caml_js_exceptions.internalToOCamlException(raw_e);
-    if (e[0] == Js_exn.$$Error) then do
+    if (e[0] == Js_exn.__Error) then do
       console.log(e[1].stack);
       throw e;
     end else do

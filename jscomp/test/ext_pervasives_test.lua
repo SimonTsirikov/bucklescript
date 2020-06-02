@@ -3,12 +3,12 @@
 Arg = require "../../lib/js/arg.lua";
 Obj = require "../../lib/js/obj.lua";
 List = require "../../lib/js/list.lua";
-$$Array = require "../../lib/js/array.lua";
+__Array = require "../../lib/js/array.lua";
 Block = require "../../lib/js/block.lua";
 Curry = require "../../lib/js/curry.lua";
 Format = require "../../lib/js/format.lua";
 Printf = require "../../lib/js/printf.lua";
-$$String = require "../../lib/js/string.lua";
+__String = require "../../lib/js/string.lua";
 Caml_obj = require "../../lib/js/caml_obj.lua";
 Caml_int32 = require "../../lib/js/caml_int32.lua";
 Pervasives = require "../../lib/js/pervasives.lua";
@@ -16,7 +16,7 @@ Caml_string = require "../../lib/js/caml_string.lua";
 Caml_exceptions = require "../../lib/js/caml_exceptions.lua";
 Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
 
-function $$finally(v, action, f) do
+function __finally(v, action, f) do
   e;
   try do
     e = Curry._1(f, v);
@@ -30,11 +30,11 @@ function $$finally(v, action, f) do
 end end
 
 function with_file_as_chan(filename, f) do
-  return $$finally(Pervasives.open_out_bin(filename), Pervasives.close_out, f);
+  return __finally(Pervasives.open_out_bin(filename), Pervasives.close_out, f);
 end end
 
 function with_file_as_pp(filename, f) do
-  return $$finally(Pervasives.open_out_bin(filename), Pervasives.close_out, (function (chan) do
+  return __finally(Pervasives.open_out_bin(filename), Pervasives.close_out, (function (chan) do
                 fmt = Format.formatter_of_out_channel(chan);
                 v = Curry._1(f, fmt);
                 Format.pp_print_flush(fmt, --[[ () ]]0);
@@ -149,7 +149,7 @@ function dump(r) do
     t = r.tag | 0;
     if (is_list(r)) then do
       fields = get_list(r);
-      return "[" .. ($$String.concat("; ", List.map(dump, fields)) .. "]");
+      return "[" .. (__String.concat("; ", List.map(dump, fields)) .. "]");
     end else if (t ~= 0) then do
       if (t == Obj.lazy_tag) then do
         return "<lazy>";
@@ -186,16 +186,16 @@ function dump(r) do
                 ]
               ];
         end end 
-        return "Object #" .. (dump(match[1]) .. (" (" .. ($$String.concat(", ", List.map(dump, match[2])) .. ")")));
+        return "Object #" .. (dump(match[1]) .. (" (" .. (__String.concat(", ", List.map(dump, match[2])) .. ")")));
       end else if (t == Obj.infix_tag) then do
         return "<infix>";
       end else if (t == Obj.forward_tag) then do
         return "<forward>";
       end else if (t < Obj.no_scan_tag) then do
         fields$2 = get_fields(--[[ [] ]]0, s);
-        return "Tag" .. (String(t) .. (" (" .. ($$String.concat(", ", List.map(dump, fields$2)) .. ")")));
+        return "Tag" .. (String(t) .. (" (" .. (__String.concat(", ", List.map(dump, fields$2)) .. ")")));
       end else if (t == Obj.string_tag) then do
-        return "\"" .. ($$String.escaped(r) .. "\"");
+        return "\"" .. (__String.escaped(r) .. "\"");
       end else if (t == Obj.double_tag) then do
         return Pervasives.string_of_float(r);
       end else if (t == Obj.abstract_tag) then do
@@ -205,7 +205,7 @@ function dump(r) do
       end else if (t == Obj.custom_tag) then do
         return "<final>";
       end else if (t == Obj.double_array_tag) then do
-        return "[|" .. ($$String.concat(";", $$Array.to_list($$Array.map(Pervasives.string_of_float, r))) .. "|]");
+        return "[|" .. (__String.concat(";", __Array.to_list(__Array.map(Pervasives.string_of_float, r))) .. "|]");
       end else do
         name = Curry._2(Printf.sprintf(--[[ Format ]][
                   --[[ String_literal ]]Block.__(11, [
@@ -231,7 +231,7 @@ function dump(r) do
       end end  end  end  end  end  end  end  end  end  end  end  end 
     end else do
       fields$3 = get_fields(--[[ [] ]]0, s);
-      return "(" .. ($$String.concat(", ", List.map(dump, fields$3)) .. ")");
+      return "(" .. (__String.concat(", ", List.map(dump, fields$3)) .. ")");
     end end  end 
   end end 
 end end
@@ -270,7 +270,7 @@ function hash_variant(s) do
   end end 
 end end
 
-exports.$$finally = $$finally;
+exports.__finally = __finally;
 exports.with_file_as_chan = with_file_as_chan;
 exports.with_file_as_pp = with_file_as_pp;
 exports.is_pos_pow = is_pos_pow;

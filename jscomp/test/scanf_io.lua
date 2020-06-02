@@ -5,7 +5,7 @@ Block = require "../../lib/js/block.lua";
 Bytes = require "../../lib/js/bytes.lua";
 Curry = require "../../lib/js/curry.lua";
 Scanf = require "../../lib/js/scanf.lua";
-$$Buffer = require "../../lib/js/buffer.lua";
+__Buffer = require "../../lib/js/buffer.lua";
 Digest = require "../../lib/js/digest.lua";
 Printf = require "../../lib/js/printf.lua";
 Caml_io = require "../../lib/js/caml_io.lua";
@@ -28,31 +28,31 @@ tscanf_data_file_lines = --[[ :: ]][
 
 function create_tscanf_data(ob, lines) do
   add_line = function (param) do
-    $$Buffer.add_string(ob, Curry._1(Printf.sprintf(--[[ Format ]][
+    __Buffer.add_string(ob, Curry._1(Printf.sprintf(--[[ Format ]][
                   --[[ Caml_string ]]Block.__(3, [
                       --[[ No_padding ]]0,
                       --[[ End_of_format ]]0
                     ]),
                   "%S"
                 ]), param[0]));
-    $$Buffer.add_string(ob, " -> ");
-    $$Buffer.add_string(ob, Curry._1(Printf.sprintf(--[[ Format ]][
+    __Buffer.add_string(ob, " -> ");
+    __Buffer.add_string(ob, Curry._1(Printf.sprintf(--[[ Format ]][
                   --[[ Caml_string ]]Block.__(3, [
                       --[[ No_padding ]]0,
                       --[[ End_of_format ]]0
                     ]),
                   "%S"
                 ]), param[1]));
-    return $$Buffer.add_string(ob, ";\n");
+    return __Buffer.add_string(ob, ";\n");
   end end;
   return List.iter(add_line, lines);
 end end
 
 function write_tscanf_data_file(fname, lines) do
   oc = Pervasives.open_out(fname);
-  ob = $$Buffer.create(42);
+  ob = __Buffer.create(42);
   create_tscanf_data(ob, lines);
-  $$Buffer.output_buffer(oc, ob);
+  __Buffer.output_buffer(oc, ob);
   Caml_io.caml_ml_flush(oc);
   return Caml_external_polyfill.resolve("caml_ml_close_channel")(oc);
 end end
@@ -157,11 +157,11 @@ function add_digest_ib(ob, ib) do
                   ]), f);
   end end;
   output_line_digest = function (s) do
-    $$Buffer.add_string(ob, s);
-    $$Buffer.add_char(ob, --[[ "#" ]]35);
+    __Buffer.add_string(ob, s);
+    __Buffer.add_char(ob, --[[ "#" ]]35);
     s$1 = Digest.to_hex(Digest.string(s));
-    $$Buffer.add_string(ob, Caml_bytes.bytes_to_string(Bytes.uppercase(Caml_bytes.bytes_of_string(s$1))));
-    return $$Buffer.add_char(ob, --[[ "\n" ]]10);
+    __Buffer.add_string(ob, Caml_bytes.bytes_to_string(Bytes.uppercase(Caml_bytes.bytes_of_string(s$1))));
+    return __Buffer.add_char(ob, --[[ "\n" ]]10);
   end end;
   try do
     while(true) do
@@ -180,9 +180,9 @@ end end
 
 function digest_file(fname) do
   ib = Scanf.Scanning.from_file(fname);
-  ob = $$Buffer.create(42);
+  ob = __Buffer.create(42);
   add_digest_ib(ob, ib);
-  return $$Buffer.contents(ob);
+  return __Buffer.contents(ob);
 end end
 
 function test54(param) do
@@ -190,13 +190,13 @@ function test54(param) do
 end end
 
 function test55(param) do
-  ob = $$Buffer.create(42);
+  ob = __Buffer.create(42);
   create_tscanf_data(ob, tscanf_data_file_lines);
-  s = $$Buffer.contents(ob);
+  s = __Buffer.contents(ob);
   ob.position = 0;
   ib = Scanf.Scanning.from_string(s);
   add_digest_ib(ob, ib);
-  tscanf_data_file_lines_digest = $$Buffer.contents(ob);
+  tscanf_data_file_lines_digest = __Buffer.contents(ob);
   return digest_file(tscanf_data_file) == tscanf_data_file_lines_digest;
 end end
 

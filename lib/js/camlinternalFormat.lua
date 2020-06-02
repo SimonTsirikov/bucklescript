@@ -4,8 +4,8 @@ Char = require "./char.lua";
 Block = require "./block.lua";
 Bytes = require "./bytes.lua";
 Curry = require "./curry.lua";
-$$Buffer = require "./buffer.lua";
-$$String = require "./string.lua";
+__Buffer = require "./buffer.lua";
+__String = require "./string.lua";
 Caml_io = require "./caml_io.lua";
 Caml_obj = require "./caml_obj.lua";
 Caml_bytes = require "./caml_bytes.lua";
@@ -186,7 +186,7 @@ end end
 function buffer_add_string(buf, s) do
   str_len = #s;
   buffer_check_size(buf, str_len);
-  $$String.blit(s, 0, buf.bytes, buf.ind, str_len);
+  __String.blit(s, 0, buf.bytes, buf.ind, str_len);
   buf.ind = buf.ind + str_len | 0;
   return --[[ () ]]0;
 end end
@@ -2630,18 +2630,18 @@ function fix_padding(padty, width, str) do
     local ___conditional___=(padty$1);
     do
        if ___conditional___ = 0--[[ Left ]] then do
-          $$String.blit(str, 0, res, 0, len);end else 
+          __String.blit(str, 0, res, 0, len);end else 
        if ___conditional___ = 1--[[ Right ]] then do
-          $$String.blit(str, 0, res, width$1 - len | 0, len);end else 
+          __String.blit(str, 0, res, width$1 - len | 0, len);end else 
        if ___conditional___ = 2--[[ Zeros ]] then do
           if (len > 0 and (Caml_string.get(str, 0) == --[[ "+" ]]43 or Caml_string.get(str, 0) == --[[ "-" ]]45 or Caml_string.get(str, 0) == --[[ " " ]]32)) then do
             res[0] = Caml_string.get(str, 0);
-            $$String.blit(str, 1, res, (width$1 - len | 0) + 1 | 0, len - 1 | 0);
+            __String.blit(str, 1, res, (width$1 - len | 0) + 1 | 0, len - 1 | 0);
           end else if (len > 1 and Caml_string.get(str, 0) == --[[ "0" ]]48 and (Caml_string.get(str, 1) == --[[ "x" ]]120 or Caml_string.get(str, 1) == --[[ "X" ]]88)) then do
             res[1] = Caml_string.get(str, 1);
-            $$String.blit(str, 2, res, (width$1 - len | 0) + 2 | 0, len - 2 | 0);
+            __String.blit(str, 2, res, (width$1 - len | 0) + 2 | 0, len - 2 | 0);
           end else do
-            $$String.blit(str, 0, res, width$1 - len | 0, len);
+            __String.blit(str, 0, res, width$1 - len | 0, len);
           end end  end end else 
        do end end end end
       
@@ -2682,7 +2682,7 @@ function fix_int_precision(prec, str) do
             if ((prec$1 + 2 | 0) > len and len > 1 and (Caml_string.get(str, 1) == --[[ "x" ]]120 or Caml_string.get(str, 1) == --[[ "X" ]]88)) then do
               res = Bytes.make(prec$1 + 2 | 0, --[[ "0" ]]48);
               res[1] = Caml_string.get(str, 1);
-              $$String.blit(str, 2, res, (prec$1 - len | 0) + 4 | 0, len - 2 | 0);
+              __String.blit(str, 2, res, (prec$1 - len | 0) + 4 | 0, len - 2 | 0);
               return Caml_bytes.bytes_to_string(res);
             end else do
               exit = 2;
@@ -2712,7 +2712,7 @@ function fix_int_precision(prec, str) do
         if ((prec$1 + 1 | 0) > len) then do
           res$1 = Bytes.make(prec$1 + 1 | 0, --[[ "0" ]]48);
           res$1[0] = c;
-          $$String.blit(str, 1, res$1, (prec$1 - len | 0) + 2 | 0, len - 1 | 0);
+          __String.blit(str, 1, res$1, (prec$1 - len | 0) + 2 | 0, len - 1 | 0);
           return Caml_bytes.bytes_to_string(res$1);
         end else do
           return str;
@@ -2720,7 +2720,7 @@ function fix_int_precision(prec, str) do
      if ___conditional___ = 2 then do
         if (prec$1 > len) then do
           res$2 = Bytes.make(prec$1, --[[ "0" ]]48);
-          $$String.blit(str, 0, res$2, prec$1 - len | 0, len);
+          __String.blit(str, 0, res$2, prec$1 - len | 0, len);
           return Caml_bytes.bytes_to_string(res$2);
         end else do
           return str;
@@ -2731,7 +2731,7 @@ function fix_int_precision(prec, str) do
 end end
 
 function string_to_caml_string(str) do
-  str$1 = $$String.escaped(str);
+  str$1 = __String.escaped(str);
   l = #str$1;
   res = Bytes.make(l + 2 | 0, --[[ "\"" ]]34);
   Caml_bytes.caml_blit_string(str$1, 0, res, 1, l);
@@ -3946,17 +3946,17 @@ function bufput_acc(b, _acc) do
          if ___conditional___ = 0--[[ Acc_formatting_lit ]] then do
             s = string_of_formatting_lit(acc[1]);
             bufput_acc(b, acc[0]);
-            return $$Buffer.add_string(b, s);end end end 
+            return __Buffer.add_string(b, s);end end end 
          if ___conditional___ = 1--[[ Acc_formatting_gen ]] then do
             match = acc[1];
             p = acc[0];
             bufput_acc(b, p);
             if (match.tag) then do
-              $$Buffer.add_string(b, "@[");
+              __Buffer.add_string(b, "@[");
               _acc = match[0];
               continue ;
             end else do
-              $$Buffer.add_string(b, "@{");
+              __Buffer.add_string(b, "@{");
               _acc = match[0];
               continue ;
             end end end end end 
@@ -3986,10 +3986,10 @@ function bufput_acc(b, _acc) do
     do
        if ___conditional___ = 1 then do
           bufput_acc(b, acc[0]);
-          return $$Buffer.add_string(b, acc[1]);end end end 
+          return __Buffer.add_string(b, acc[1]);end end end 
        if ___conditional___ = 2 then do
           bufput_acc(b, acc[0]);
-          return $$Buffer.add_char(b, acc[1]);end end end 
+          return __Buffer.add_char(b, acc[1]);end end end 
        do
       
     end
@@ -4008,17 +4008,17 @@ function strput_acc(b, _acc) do
          if ___conditional___ = 0--[[ Acc_formatting_lit ]] then do
             s = string_of_formatting_lit(acc[1]);
             strput_acc(b, acc[0]);
-            return $$Buffer.add_string(b, s);end end end 
+            return __Buffer.add_string(b, s);end end end 
          if ___conditional___ = 1--[[ Acc_formatting_gen ]] then do
             match = acc[1];
             p = acc[0];
             strput_acc(b, p);
             if (match.tag) then do
-              $$Buffer.add_string(b, "@[");
+              __Buffer.add_string(b, "@[");
               _acc = match[0];
               continue ;
             end else do
-              $$Buffer.add_string(b, "@{");
+              __Buffer.add_string(b, "@{");
               _acc = match[0];
               continue ;
             end end end end end 
@@ -4030,7 +4030,7 @@ function strput_acc(b, _acc) do
             exit = 2;end else 
          if ___conditional___ = 6--[[ Acc_delay ]] then do
             strput_acc(b, acc[0]);
-            return $$Buffer.add_string(b, Curry._1(acc[1], --[[ () ]]0));end end end 
+            return __Buffer.add_string(b, Curry._1(acc[1], --[[ () ]]0));end end end 
          if ___conditional___ = 7--[[ Acc_flush ]] then do
             _acc = acc[0];
             continue ;end end end 
@@ -4048,10 +4048,10 @@ function strput_acc(b, _acc) do
     do
        if ___conditional___ = 1 then do
           strput_acc(b, acc[0]);
-          return $$Buffer.add_string(b, acc[1]);end end end 
+          return __Buffer.add_string(b, acc[1]);end end end 
        if ___conditional___ = 2 then do
           strput_acc(b, acc[0]);
-          return $$Buffer.add_char(b, acc[1]);end end end 
+          return __Buffer.add_char(b, acc[1]);end end end 
        do
       
     end
@@ -4059,10 +4059,10 @@ function strput_acc(b, _acc) do
 end end
 
 function failwith_message(param) do
-  buf = $$Buffer.create(256);
+  buf = __Buffer.create(256);
   k = function (param, acc) do
     strput_acc(buf, acc);
-    s = $$Buffer.contents(buf);
+    s = __Buffer.contents(buf);
     throw [
           Caml_builtin_exceptions.failure,
           s
@@ -4153,7 +4153,7 @@ function open_box_of_string(str) do
     end end;
     wstart = parse_spaces(0);
     wend = parse_lword(wstart, wstart);
-    box_name = $$String.sub(str, wstart, wend - wstart | 0);
+    box_name = __String.sub(str, wstart, wend - wstart | 0);
     nstart = parse_spaces(wend);
     nend = parse_int(nstart, nstart);
     indent;
@@ -4161,7 +4161,7 @@ function open_box_of_string(str) do
       indent = 0;
     end else do
       try do
-        indent = Caml_format.caml_int_of_string($$String.sub(str, nstart, nend - nstart | 0));
+        indent = Caml_format.caml_int_of_string(__String.sub(str, nstart, nend - nstart | 0));
       end
       catch (raw_exn)do
         exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
@@ -4490,7 +4490,7 @@ function fmt_ebb_of_string(legacy_behavior, str) do
                         throw Caml_builtin_exceptions.not_found;
                       end
                        end 
-                      s = $$String.sub(str, str_ind$1 - 2 | 0, (str_ind_3 - str_ind$1 | 0) + 3 | 0);
+                      s = __String.sub(str, str_ind$1 - 2 | 0, (str_ind_3 - str_ind$1 | 0) + 3 | 0);
                       match$7 = --[[ tuple ]][
                         str_ind_3 + 1 | 0,
                         --[[ Break ]]Block.__(0, [
@@ -4508,7 +4508,7 @@ function fmt_ebb_of_string(legacy_behavior, str) do
                         throw Caml_builtin_exceptions.not_found;
                       end
                        end 
-                      s$1 = $$String.sub(str, str_ind$1 - 2 | 0, (str_ind_5 - str_ind$1 | 0) + 3 | 0);
+                      s$1 = __String.sub(str, str_ind$1 - 2 | 0, (str_ind_5 - str_ind$1 | 0) + 3 | 0);
                       match$7 = --[[ tuple ]][
                         str_ind_5 + 1 | 0,
                         --[[ Break ]]Block.__(0, [
@@ -4568,7 +4568,7 @@ function fmt_ebb_of_string(legacy_behavior, str) do
                       throw Caml_builtin_exceptions.not_found;
                     end
                      end 
-                    s$2 = $$String.sub(str, str_ind$2 - 2 | 0, (str_ind_3$1 - str_ind$2 | 0) + 3 | 0);
+                    s$2 = __String.sub(str, str_ind$2 - 2 | 0, (str_ind_3$1 - str_ind$2 | 0) + 3 | 0);
                     match$13 = --[[ tuple ]][
                       str_ind_3$1 + 1 | 0,
                       --[[ Magic_size ]]Block.__(1, [
@@ -4667,7 +4667,7 @@ function fmt_ebb_of_string(legacy_behavior, str) do
     if (size ~= 0) then do
       if (size ~= 1) then do
         return --[[ Fmt_EBB ]][--[[ String_literal ]]Block.__(11, [
-                    $$String.sub(str, lit_start, size),
+                    __String.sub(str, lit_start, size),
                     fmt
                   ])];
       end else do
@@ -5797,7 +5797,7 @@ function fmt_ebb_of_string(legacy_behavior, str) do
     end end 
   end end;
   incompatible_flag = function (pct_ind, str_ind, symb, option) do
-    subfmt = $$String.sub(str, pct_ind, str_ind - pct_ind | 0);
+    subfmt = __String.sub(str, pct_ind, str_ind - pct_ind | 0);
     return Curry._5(failwith_message(--[[ Format ]][
                     --[[ String_literal ]]Block.__(11, [
                         "invalid format ",
@@ -6511,12 +6511,12 @@ function fmt_ebb_of_string(legacy_behavior, str) do
         throw Caml_builtin_exceptions.not_found;
       end
        end 
-      ind = $$String.index_from(str, str_ind + 1 | 0, --[[ ">" ]]62);
+      ind = __String.index_from(str, str_ind + 1 | 0, --[[ ">" ]]62);
       if (ind >= end_ind) then do
         throw Caml_builtin_exceptions.not_found;
       end
        end 
-      sub_str = $$String.sub(str, str_ind, (ind - str_ind | 0) + 1 | 0);
+      sub_str = __String.sub(str, str_ind, (ind - str_ind | 0) + 1 | 0);
       beg_ind = ind + 1 | 0;
       match$1 = parse_literal(beg_ind, beg_ind, end_ind);
       match$2 = parse_literal(str_ind, str_ind, ind + 1 | 0);

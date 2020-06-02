@@ -5,9 +5,9 @@ Fs = require "fs";
 function test(path) do
   Fs.watch(path, do
             recursive: true
-          end).on("change", (function ($$event, string_buffer) do
+          end).on("change", (function (__event, string_buffer) do
             console.log(--[[ tuple ]][
-                  $$event,
+                  __event,
                   string_buffer
                 ]);
             return --[[ () ]]0;

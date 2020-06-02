@@ -86,7 +86,7 @@ function firstSome(a, b) do
   end end  end 
 end end
 
-$$default = getWithDefault;
+__default = getWithDefault;
 
 export do
   some ,
@@ -98,8 +98,8 @@ export do
   andThen ,
   map ,
   getWithDefault ,
-  $$default ,
-  $$default as default,
+  __default ,
+  __default as default,
   filter ,
   firstSome ,
   

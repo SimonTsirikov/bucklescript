@@ -3,12 +3,12 @@
 Mt = require "./mt.lua";
 Char = require "../../lib/js/char.lua";
 List = require "../../lib/js/list.lua";
-$$Array = require "../../lib/js/array.lua";
+__Array = require "../../lib/js/array.lua";
 Block = require "../../lib/js/block.lua";
 Bytes = require "../../lib/js/bytes.lua";
 Curry = require "../../lib/js/curry.lua";
 Format = require "../../lib/js/format.lua";
-$$String = require "../../lib/js/string.lua";
+__String = require "../../lib/js/string.lua";
 Hashtbl = require "../../lib/js/hashtbl.lua";
 Caml_obj = require "../../lib/js/caml_obj.lua";
 Caml_array = require "../../lib/js/caml_array.lua";
@@ -978,7 +978,7 @@ Table = Hashtbl.Make(do
     end);
 
 function reset_table(a) do
-  return $$Array.fill(a, 0, #a, false);
+  return __Array.fill(a, 0, #a, false);
 end end
 
 function mark_used_indices(tbl) do
@@ -1387,9 +1387,9 @@ function delta_4(c, next_cat, prev_cat, l, rem) do
   end end 
 end end
 
-function delta(tbl_ref, next_cat, $$char, st) do
+function delta(tbl_ref, next_cat, __char, st) do
   prev_cat = st.category;
-  match = remove_duplicates(--[[ [] ]]0, delta_4($$char, next_cat, prev_cat, st.desc, --[[ [] ]]0), eps_expr);
+  match = remove_duplicates(--[[ [] ]]0, delta_4(__char, next_cat, prev_cat, st.desc, --[[ [] ]]0), eps_expr);
   expr$prime = match[0];
   idx = free_index(tbl_ref, expr$prime);
   expr$prime$prime = set_idx(idx, expr$prime);
@@ -1522,7 +1522,7 @@ function delta$1(info, cat, c, st) do
   if (desc.idx == len and len > 0) then do
     pos = info.positions;
     info.positions = Caml_array.caml_make_vect((len << 1), 0);
-    $$Array.blit(pos, 0, info.positions, 0, len);
+    __Array.blit(pos, 0, info.positions, 0, len);
   end
    end 
   return desc;
@@ -1574,7 +1574,7 @@ function loop(info, s, pos, st) do
   end end 
 end end
 
-function $$final(info, st, cat) do
+function __final(info, st, cat) do
   try do
     return List.assq(cat, st.final);
   end
@@ -3022,7 +3022,7 @@ function exec_internal(name, posOpt, lenOpt, groups, re, s) do
     res = status(st.desc);
   end else do
     final_cat = last == slen and Curry._2(Re_automata_Category.$plus$plus, Re_automata_Category.search_boundary, Re_automata_Category.inexistant) or Curry._2(Re_automata_Category.$plus$plus, Re_automata_Category.search_boundary, category(re$1, get_color(re$1, s$1, last)));
-    match = $$final(info, st, final_cat);
+    match = __final(info, st, final_cat);
     if (groups$1) then do
       Caml_array.caml_array_set(info.positions, match[0], last + 1 | 0);
     end
@@ -3067,7 +3067,7 @@ end end
 function get(t, i) do
   match = offset$1(t, i);
   p1 = match[0];
-  return $$String.sub(t.s, p1, match[1] - p1 | 0);
+  return __String.sub(t.s, p1, match[1] - p1 | 0);
 end end
 
 Parse_error = Caml_exceptions.create("Parse_error");
@@ -3479,7 +3479,7 @@ function parse(multiline, dollar_endonly, dotall, ungreedy, s) do
       if (s ~= --[[ [] ]]0 and accept(--[[ "]" ]]93)) then do
         return s;
       end else do
-        match = $$char(--[[ () ]]0);
+        match = __char(--[[ () ]]0);
         if (match[0] >= 748194550) then do
           c = match[1];
           if (accept(--[[ "-" ]]45)) then do
@@ -3498,7 +3498,7 @@ function parse(multiline, dollar_endonly, dotall, ungreedy, s) do
                       ]
                     ];
             end else do
-              match$1 = $$char(--[[ () ]]0);
+              match$1 = __char(--[[ () ]]0);
               if (match$1[0] >= 748194550) then do
                 _s = --[[ :: ]][
                   --[[ Set ]]Block.__(0, [seq(c, match$1[1])]),
@@ -3541,7 +3541,7 @@ function parse(multiline, dollar_endonly, dotall, ungreedy, s) do
       end end 
     end;
   end end;
-  $$char = function (param) do
+  __char = function (param) do
     if (i.contents == l) then do
       throw Parse_error;
     end

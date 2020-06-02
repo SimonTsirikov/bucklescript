@@ -1,6 +1,6 @@
 
 
-import * as $$Array from "./array.lua";
+import * as __Array from "./array.lua";
 import * as Curry from "./curry.lua";
 import * as Int32 from "./int32.lua";
 import * as Int64 from "./int64.lua";
@@ -13,7 +13,7 @@ import * as Caml_string from "./caml_string.lua";
 import * as Caml_builtin_exceptions from "./caml_builtin_exceptions.lua";
 
 function assign(st1, st2) do
-  $$Array.blit(st2.st, 0, st1.st, 0, 55);
+  __Array.blit(st2.st, 0, st1.st, 0, 55);
   st1.idx = st2.idx;
   return --[[ () ]]0;
 end end
@@ -74,7 +74,7 @@ function bits(s) do
   return newval30;
 end end
 
-function $$int(s, bound) do
+function __int(s, bound) do
   if (bound > 1073741823 or bound <= 0) then do
     throw [
           Caml_builtin_exceptions.invalid_argument,
@@ -158,7 +158,7 @@ function rawfloat(s) do
   return (r1 / 1073741824.0 + r2) / 1073741824.0;
 end end
 
-function $$float(s, bound) do
+function __float(s, bound) do
   return rawfloat(s) * bound;
 end end
 
@@ -166,7 +166,7 @@ function bool(s) do
   return (bits(s) & 1) == 0;
 end end
 
-$$default = do
+__default = do
   st: [
     987910699,
     495797812,
@@ -228,39 +228,39 @@ $$default = do
 end;
 
 function bits$1(param) do
-  return bits($$default);
+  return bits(__default);
 end end
 
-function $$int$1(bound) do
-  return $$int($$default, bound);
+function __int$1(bound) do
+  return __int(__default, bound);
 end end
 
 function int32$1(bound) do
-  return int32($$default, bound);
+  return int32(__default, bound);
 end end
 
 function nativeint$1(bound) do
-  return Curry._2(nativeint, $$default, bound);
+  return Curry._2(nativeint, __default, bound);
 end end
 
 function int64$1(bound) do
-  return int64($$default, bound);
+  return int64(__default, bound);
 end end
 
-function $$float$1(scale) do
-  return rawfloat($$default) * scale;
+function __float$1(scale) do
+  return rawfloat(__default) * scale;
 end end
 
 function bool$1(param) do
-  return bool($$default);
+  return bool(__default);
 end end
 
 function full_init$1(seed) do
-  return full_init($$default, seed);
+  return full_init(__default, seed);
 end end
 
 function init(seed) do
-  return full_init($$default, [seed]);
+  return full_init(__default, [seed]);
 end end
 
 function self_init(param) do
@@ -268,11 +268,11 @@ function self_init(param) do
 end end
 
 function get_state(param) do
-  return copy($$default);
+  return copy(__default);
 end end
 
 function set_state(s) do
-  return assign($$default, s);
+  return assign(__default, s);
 end end
 
 State = do
@@ -280,11 +280,11 @@ State = do
   make_self_init: make_self_init,
   copy: copy,
   bits: bits,
-  $$int: $$int,
+  __int: __int,
   int32: int32,
   nativeint: nativeint,
   int64: int64,
-  $$float: $$float,
+  __float: __float,
   bool: bool
 end;
 
@@ -293,11 +293,11 @@ export do
   full_init$1 as full_init,
   self_init ,
   bits$1 as bits,
-  $$int$1 as $$int,
+  __int$1 as __int,
   int32$1 as int32,
   nativeint$1 as nativeint,
   int64$1 as int64,
-  $$float$1 as $$float,
+  __float$1 as __float,
   bool$1 as bool,
   State ,
   get_state ,

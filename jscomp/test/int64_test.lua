@@ -1,7 +1,7 @@
 --[['use strict';]]
 
 Mt = require "./mt.lua";
-$$Array = require "../../lib/js/array.lua";
+__Array = require "../../lib/js/array.lua";
 Block = require "../../lib/js/block.lua";
 Curry = require "../../lib/js/curry.lua";
 Int32 = require "../../lib/js/int32.lua";
@@ -40,7 +40,7 @@ end end
 
 generic_compare = Caml_obj.caml_compare;
 
-shift_left_tests_000 = $$Array.map((function (i) do
+shift_left_tests_000 = __Array.map((function (i) do
         return Caml_int64.lsl_(--[[ int64 ]][
                     --[[ hi ]]0,
                     --[[ lo ]]1
@@ -311,7 +311,7 @@ shift_left_tests = --[[ tuple ]][
   shift_left_tests_001
 ];
 
-shift_right_tests_000 = $$Array.map((function (i) do
+shift_right_tests_000 = __Array.map((function (i) do
         return Caml_int64.asr_(--[[ int64 ]][
                     --[[ hi ]]-2147483648,
                     --[[ lo ]]0
@@ -582,7 +582,7 @@ shift_right_tests = --[[ tuple ]][
   shift_right_tests_001
 ];
 
-shift_right_logical_suites_000 = $$Array.map((function (i) do
+shift_right_logical_suites_000 = __Array.map((function (i) do
         return Caml_int64.lsr_(--[[ int64 ]][
                     --[[ hi ]]-2147483648,
                     --[[ lo ]]0
@@ -1208,12 +1208,12 @@ suites = Pervasives.$at(--[[ :: ]][
                                                 "lsl",
                                                 (function (param) do
                                                     return --[[ Eq ]]Block.__(0, [
-                                                              $$Array.map((function (x) do
+                                                              __Array.map((function (x) do
                                                                       return Caml_int64.lsl_(--[[ int64 ]][
                                                                                   --[[ hi ]]0,
                                                                                   --[[ lo ]]1
                                                                                 ], x);
-                                                                    end end), $$Array.init(64, (function (i) do
+                                                                    end end), __Array.init(64, (function (i) do
                                                                           return i;
                                                                         end end))),
                                                               [
@@ -1482,12 +1482,12 @@ suites = Pervasives.$at(--[[ :: ]][
                                                   "lsr",
                                                   (function (param) do
                                                       return --[[ Eq ]]Block.__(0, [
-                                                                $$Array.map((function (x) do
+                                                                __Array.map((function (x) do
                                                                         return Caml_int64.lsr_(--[[ int64 ]][
                                                                                     --[[ hi ]]-1,
                                                                                     --[[ lo ]]4294967295
                                                                                   ], x);
-                                                                      end end), $$Array.init(64, (function (i) do
+                                                                      end end), __Array.init(64, (function (i) do
                                                                             return i;
                                                                           end end))),
                                                                 [
@@ -1756,12 +1756,12 @@ suites = Pervasives.$at(--[[ :: ]][
                                                     "asr",
                                                     (function (param) do
                                                         return --[[ Eq ]]Block.__(0, [
-                                                                  $$Array.map((function (x) do
+                                                                  __Array.map((function (x) do
                                                                           return Caml_int64.asr_(--[[ int64 ]][
                                                                                       --[[ hi ]]-1,
                                                                                       --[[ lo ]]4294967295
                                                                                     ], x);
-                                                                        end end), $$Array.init(64, (function (i) do
+                                                                        end end), __Array.init(64, (function (i) do
                                                                               return i;
                                                                             end end))),
                                                                   [
@@ -2046,7 +2046,7 @@ suites = Pervasives.$at(--[[ :: ]][
                                                         "of_int32",
                                                         (function (param) do
                                                             return --[[ Eq ]]Block.__(0, [
-                                                                      $$Array.map(Caml_int64.of_int32, [
+                                                                      __Array.map(Caml_int64.of_int32, [
                                                                             0,
                                                                             -2147483648
                                                                           ]),
@@ -2100,7 +2100,7 @@ suites = Pervasives.$at(--[[ :: ]][
                                                               "to_int32",
                                                               (function (param) do
                                                                   return --[[ Eq ]]Block.__(0, [
-                                                                            $$Array.map(Caml_int64.to_int32, [
+                                                                            __Array.map(Caml_int64.to_int32, [
                                                                                   --[[ int64 ]][
                                                                                     --[[ hi ]]0,
                                                                                     --[[ lo ]]0
@@ -2318,7 +2318,7 @@ suites = Pervasives.$at(--[[ :: ]][
           ]
         ]
       ]
-    ], Pervasives.$at($$Array.to_list(Ext_array_test.map2i((function (i, a, b) do
+    ], Pervasives.$at(__Array.to_list(Ext_array_test.map2i((function (i, a, b) do
                     return --[[ tuple ]][
                             Curry._1(Format.asprintf(--[[ Format ]][
                                       --[[ String_literal ]]Block.__(11, [
@@ -2339,7 +2339,7 @@ suites = Pervasives.$at(--[[ :: ]][
                                         ]);
                               end end)
                           ];
-                  end end), shift_left_tests_000, shift_left_tests_001)), Pervasives.$at($$Array.to_list(Ext_array_test.map2i((function (i, a, b) do
+                  end end), shift_left_tests_000, shift_left_tests_001)), Pervasives.$at(__Array.to_list(Ext_array_test.map2i((function (i, a, b) do
                         return --[[ tuple ]][
                                 Curry._1(Format.asprintf(--[[ Format ]][
                                           --[[ String_literal ]]Block.__(11, [
@@ -2360,7 +2360,7 @@ suites = Pervasives.$at(--[[ :: ]][
                                             ]);
                                   end end)
                               ];
-                      end end), shift_right_tests_000, shift_right_tests_001)), $$Array.to_list(Ext_array_test.map2i((function (i, a, b) do
+                      end end), shift_right_tests_000, shift_right_tests_001)), __Array.to_list(Ext_array_test.map2i((function (i, a, b) do
                         return --[[ tuple ]][
                                 Curry._1(Format.asprintf(--[[ Format ]][
                                           --[[ String_literal ]]Block.__(11, [

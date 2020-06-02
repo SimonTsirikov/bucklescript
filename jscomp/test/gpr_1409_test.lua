@@ -1,7 +1,7 @@
 --[['use strict';]]
 
 Mt = require "./mt.lua";
-$$Array = require "../../lib/js/array.lua";
+__Array = require "../../lib/js/array.lua";
 Block = require "../../lib/js/block.lua";
 Curry = require "../../lib/js/curry.lua";
 String_set = require "./string_set.lua";
@@ -144,7 +144,7 @@ function test6(f, x) do
 end end
 
 function keys(xs, ys) do
-  return String_set.equal(String_set.of_list(xs), String_set.of_list($$Array.to_list(ys)));
+  return String_set.equal(String_set.of_list(xs), String_set.of_list(__Array.to_list(ys)));
 end end
 
 eq("File \"gpr_1409_test.ml\", line 69, characters 6-13", keys(--[[ :: ]][

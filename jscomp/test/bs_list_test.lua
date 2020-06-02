@@ -23,7 +23,7 @@ function b(loc, x) do
   return Mt.bool_suites(test_id, suites, loc, x);
 end end
 
-function $$throw(loc, x) do
+function __throw(loc, x) do
   return Mt.throw_suites(test_id, suites, loc, x);
 end end
 
@@ -1553,16 +1553,16 @@ eq("File \"bs_list_test.ml\", line 216, characters 5-12", --[[ tuple ]][
 
 eq("File \"bs_list_test.ml\", line 219, characters 5-12", Belt_List.head(--[[ [] ]]0), undefined);
 
-$$throw("File \"bs_list_test.ml\", line 220, characters 8-15", (function (param) do
+__throw("File \"bs_list_test.ml\", line 220, characters 8-15", (function (param) do
         return Belt_List.headExn(--[[ [] ]]0);
       end end));
 
-$$throw("File \"bs_list_test.ml\", line 221, characters 8-15", (function (param) do
+__throw("File \"bs_list_test.ml\", line 221, characters 8-15", (function (param) do
         Belt_List.tailExn(--[[ [] ]]0);
         return --[[ () ]]0;
       end end));
 
-$$throw("File \"bs_list_test.ml\", line 222, characters 8-15", (function (param) do
+__throw("File \"bs_list_test.ml\", line 222, characters 8-15", (function (param) do
         Belt_List.getExn(--[[ :: ]][
               0,
               --[[ :: ]][
@@ -1573,7 +1573,7 @@ $$throw("File \"bs_list_test.ml\", line 222, characters 8-15", (function (param)
         return --[[ () ]]0;
       end end));
 
-$$throw("File \"bs_list_test.ml\", line 223, characters 8-15", (function (param) do
+__throw("File \"bs_list_test.ml\", line 223, characters 8-15", (function (param) do
         Belt_List.getExn(--[[ :: ]][
               0,
               --[[ :: ]][
@@ -2527,7 +2527,7 @@ exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
 exports.b = b;
-exports.$$throw = $$throw;
+exports.__throw = __throw;
 exports.N = N;
 exports.A = A;
 exports.J = J;

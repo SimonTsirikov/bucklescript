@@ -5,15 +5,15 @@ Sys = require "../../lib/js/sys.lua";
 Char = require "../../lib/js/char.lua";
 List = require "../../lib/js/list.lua";
 Path = require "path";
-$$Array = require "../../lib/js/array.lua";
+__Array = require "../../lib/js/array.lua";
 Block = require "../../lib/js/block.lua";
 Bytes = require "../../lib/js/bytes.lua";
 Curry = require "../../lib/js/curry.lua";
-$$Buffer = require "../../lib/js/buffer.lua";
+__Buffer = require "../../lib/js/buffer.lua";
 Format = require "../../lib/js/format.lua";
 Lexing = require "../../lib/js/lexing.lua";
 Printf = require "../../lib/js/printf.lua";
-$$String = require "../../lib/js/string.lua";
+__String = require "../../lib/js/string.lua";
 Assert = require "assert";
 Caml_io = require "../../lib/js/caml_io.lua";
 Hashtbl = require "../../lib/js/hashtbl.lua";
@@ -121,7 +121,7 @@ end end
 
 function ansi_of_style_l(l) do
   s = l and (
-      l[1] and $$String.concat(";", List.map(code_of_style, l)) or code_of_style(l[0])
+      l[1] and __String.concat(";", List.map(code_of_style, l)) or code_of_style(l[0])
     ) or "0";
   return "\x1b[" .. (s .. "m");
 end end
@@ -801,8 +801,8 @@ function parse_opt(error, active, flags, s) do
 end end
 
 function parse_options(errflag, s) do
-  error = $$Array.copy(current.contents.error);
-  active = $$Array.copy(current.contents.active);
+  error = __Array.copy(current.contents.error);
+  active = __Array.copy(current.contents.active);
   parse_opt(error, active, errflag and error or active, s);
   current.contents = do
     active: active,
@@ -874,7 +874,7 @@ function message(param) do
             slist = match[1];
             lab = match[0];
             if (slist) then do
-              return $$String.concat(" ", --[[ :: ]][
+              return __String.concat(" ", --[[ :: ]][
                           "the following methods are overridden by the class",
                           --[[ :: ]][
                             lab,
@@ -912,7 +912,7 @@ function message(param) do
             slist$1 = match$1[1];
             lab$1 = match$1[0];
             if (slist$1) then do
-              return $$String.concat(" ", --[[ :: ]][
+              return __String.concat(" ", --[[ :: ]][
                           "the following instance variables are overridden by the class",
                           --[[ :: ]][
                             lab$1,
@@ -936,7 +936,7 @@ function message(param) do
                 ];
           end end end end end 
        if ___conditional___ = 6--[[ Implicit_public_methods ]] then do
-          return "the following private methods were made public implicitly:\n " .. ($$String.concat(" ", param[0]) .. ".");end end end 
+          return "the following private methods were made public implicitly:\n " .. (__String.concat(" ", param[0]) .. ".");end end end 
        if ___conditional___ = 7--[[ Undeclared_virtual_method ]] then do
           return "the virtual method " .. (param[0] .. " is not declared.");end end end 
        if ___conditional___ = 8--[[ Not_principal ]] then do
@@ -1041,7 +1041,7 @@ function message(param) do
           end
            end 
           if (param[2]) then do
-            return "this record of type " .. (ty .. (" contains fields that are \nnot visible in the current scope: " .. ($$String.concat(" ", slist$2) .. ".\nThey will not be selected if the type becomes unknown.")));
+            return "this record of type " .. (ty .. (" contains fields that are \nnot visible in the current scope: " .. (__String.concat(" ", slist$2) .. ".\nThey will not be selected if the type becomes unknown.")));
           end else do
             throw [
                   Caml_builtin_exceptions.assert_failure,
@@ -1055,11 +1055,11 @@ function message(param) do
        if ___conditional___ = 24--[[ Ambiguous_name ]] then do
           slist$3 = param[0];
           if (slist$3 and not slist$3[1] and not param[2]) then do
-            return slist$3[0] .. (" belongs to several types: " .. ($$String.concat(" ", param[1]) .. "\nThe first one was selected. Please disambiguate if this is wrong."));
+            return slist$3[0] .. (" belongs to several types: " .. (__String.concat(" ", param[1]) .. "\nThe first one was selected. Please disambiguate if this is wrong."));
           end
            end 
           if (param[2]) then do
-            return "these field labels belong to several types: " .. ($$String.concat(" ", param[1]) .. "\nThe first one was selected. Please disambiguate if this is wrong.");
+            return "these field labels belong to several types: " .. (__String.concat(" ", param[1]) .. "\nThe first one was selected. Please disambiguate if this is wrong.");
           end else do
             throw [
                   Caml_builtin_exceptions.assert_failure,
@@ -1165,7 +1165,7 @@ function message(param) do
                                 ])
                             ]),
                           "implicit elimination of optional argument%s %s"
-                        ]), List.length(sl) == 1 and "" or "s", $$String.concat(", ", sl));end end end 
+                        ]), List.length(sl) == 1 and "" or "s", __String.concat(", ", sl));end end end 
        if ___conditional___ = 32--[[ No_cmi_file ]] then do
           return "no cmi file was found in path for module " .. param[0];end end end 
        if ___conditional___ = 33--[[ Bad_docstring ]] then do
@@ -1820,7 +1820,7 @@ function errorf(locOpt, subOpt, if_highlightOpt, fmt) do
           end;
   end end;
   fmt$1 = fmt;
-  buf = $$Buffer.create(64);
+  buf = __Buffer.create(64);
   ppf = Format.formatter_of_buffer(buf);
   Curry._1(Misc_Color.set_color_tag_handling, ppf);
   if (before ~= undefined) then do
@@ -1829,7 +1829,7 @@ function errorf(locOpt, subOpt, if_highlightOpt, fmt) do
    end 
   return Format.kfprintf((function (param) do
                 Format.pp_print_flush(ppf, --[[ () ]]0);
-                return Curry._1(k, $$Buffer.contents(buf));
+                return Curry._1(k, __Buffer.contents(buf));
               end end), ppf, fmt$1);
 end end
 
@@ -1888,10 +1888,10 @@ register_error_of_exn((function (param) do
         end end  end 
       end end));
 
-$$Error = Caml_exceptions.create("Ocaml_parsetree_test.Location.Error");
+__Error = Caml_exceptions.create("Ocaml_parsetree_test.Location.Error");
 
 register_error_of_exn((function (param) do
-        if (param[0] == $$Error) then do
+        if (param[0] == __Error) then do
           return param[1];
         end
          end 
@@ -1917,7 +1917,7 @@ function assert_fail(msg) do
 end end
 
 function is_mocha(param) do
-  match = $$Array.to_list(Process.argv);
+  match = __Array.to_list(Process.argv);
   if (match) then do
     match$1 = match[1];
     if (match$1) then do
@@ -1941,7 +1941,7 @@ function close_enough(thresholdOpt, a, b) do
 end end
 
 function from_pair_suites(name, suites) do
-  match = $$Array.to_list(Process.argv);
+  match = __Array.to_list(Process.argv);
   if (match) then do
     if (is_mocha(--[[ () ]]0)) then do
       describe(name, (function () do
@@ -2781,7 +2781,7 @@ function extension(loc, attrs, a) do
   return mk$2(loc, attrs, --[[ Pexp_extension ]]Block.__(33, [a]));
 end end
 
-function $$case(lhs, guard, rhs) do
+function __case(lhs, guard, rhs) do
   return do
           pc_lhs: lhs,
           pc_guard: guard,
@@ -3293,7 +3293,7 @@ Ast_helper_Exp = do
   pack: pack,
   open_: open_,
   extension: extension,
-  $$case: $$case
+  __case: __case
 end;
 
 Ast_helper_Ctf = do
@@ -3323,7 +3323,7 @@ Ast_helper_Cf = do
   concrete: concrete
 end;
 
-$$Error$1 = Caml_exceptions.create("Ocaml_parsetree_test.Syntaxerr.Error");
+__Error$1 = Caml_exceptions.create("Ocaml_parsetree_test.Syntaxerr.Error");
 
 Escape_error = Caml_exceptions.create("Ocaml_parsetree_test.Syntaxerr.Escape_error");
 
@@ -3416,7 +3416,7 @@ function prepare_error(param) do
                     "Syntax error: applicative paths of the form F(X).t are not supported when the option -no-app-func is set."
                   ]);end end end 
      if ___conditional___ = 4--[[ Variable_in_scope ]] then do
-        $$var = param[1];
+        __var = param[1];
         return Curry._2(errorf(param[0], undefined, undefined, --[[ Format ]][
                         --[[ String_literal ]]Block.__(11, [
                             "In this scoped type, variable '",
@@ -3435,7 +3435,7 @@ function prepare_error(param) do
                               ])
                           ]),
                         "In this scoped type, variable '%s is reserved for the local type %s."
-                      ]), $$var, $$var);end end end 
+                      ]), __var, __var);end end end 
      if ___conditional___ = 5--[[ Other ]] then do
         return errorf(param[0], undefined, undefined, --[[ Format ]][
                     --[[ String_literal ]]Block.__(11, [
@@ -3461,7 +3461,7 @@ function prepare_error(param) do
 end end
 
 register_error_of_exn((function (param) do
-        if (param[0] == $$Error$1) then do
+        if (param[0] == __Error$1) then do
           return prepare_error(param[1]);
         end
          end 
@@ -3599,7 +3599,7 @@ end end
 
 function neg_float_string(f) do
   if (#f ~= 0 and Caml_string.get(f, 0) == --[[ "-" ]]45) then do
-    return $$String.sub(f, 1, #f - 1 | 0);
+    return __String.sub(f, 1, #f - 1 | 0);
   end else do
     return "-" .. f;
   end end 
@@ -3767,7 +3767,7 @@ end end
 
 function unclosed(opening_name, opening_num, closing_name, closing_num) do
   throw [
-        $$Error$1,
+        __Error$1,
         --[[ Unclosed ]]Block.__(0, [
             rhs_loc(opening_num),
             opening_name,
@@ -3779,7 +3779,7 @@ end end
 
 function expecting(pos, nonterm) do
   throw [
-        $$Error$1,
+        __Error$1,
         --[[ Expecting ]]Block.__(1, [
             rhs_loc(pos),
             nonterm
@@ -3789,7 +3789,7 @@ end end
 
 function not_expecting(pos, nonterm) do
   throw [
-        $$Error$1,
+        __Error$1,
         --[[ Not_expecting ]]Block.__(2, [
             rhs_loc(pos),
             nonterm
@@ -3841,7 +3841,7 @@ end end
 function check_variable(vl, loc, v) do
   if (List.mem(v, vl)) then do
     throw [
-          $$Error$1,
+          __Error$1,
           --[[ Variable_in_scope ]]Block.__(4, [
               loc,
               v
@@ -4560,7 +4560,7 @@ yyact = [
       if (exit == 1) then do
         if (lbs.lbs_attributes ~= --[[ [] ]]0) then do
           throw [
-                $$Error$1,
+                __Error$1,
                 --[[ Not_expecting ]]Block.__(2, [
                     lbs.lbs_loc,
                     "attributes"
@@ -5068,7 +5068,7 @@ yyact = [
       bindings = List.map((function (lb) do
               if (lb.lb_attributes ~= --[[ [] ]]0) then do
                 throw [
-                      $$Error$1,
+                      __Error$1,
                       --[[ Not_expecting ]]Block.__(2, [
                           lb.lb_loc,
                           "item attribute"
@@ -5080,7 +5080,7 @@ yyact = [
             end end), lbs.lbs_bindings);
       if (lbs.lbs_extension ~= undefined) then do
         throw [
-              $$Error$1,
+              __Error$1,
               --[[ Not_expecting ]]Block.__(2, [
                   lbs.lbs_loc,
                   "extension"
@@ -5090,7 +5090,7 @@ yyact = [
        end 
       if (lbs.lbs_attributes ~= --[[ [] ]]0) then do
         throw [
-              $$Error$1,
+              __Error$1,
               --[[ Not_expecting ]]Block.__(2, [
                   lbs.lbs_loc,
                   "attributes"
@@ -5825,7 +5825,7 @@ yyact = [
       bindings = List.map((function (lb) do
               if (lb.lb_attributes ~= --[[ [] ]]0) then do
                 throw [
-                      $$Error$1,
+                      __Error$1,
                       --[[ Not_expecting ]]Block.__(2, [
                           lb.lb_loc,
                           "item attribute"
@@ -7162,13 +7162,13 @@ yyact = [
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return Curry._3(Ast_helper_Exp.$$case, _1, undefined, _3);
+      return Curry._3(Ast_helper_Exp.__case, _1, undefined, _3);
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 4);
       _3 = Parsing.peek_val(__caml_parser_env, 2);
       _5 = Parsing.peek_val(__caml_parser_env, 0);
-      return Curry._3(Ast_helper_Exp.$$case, _1, _3, _5);
+      return Curry._3(Ast_helper_Exp.__case, _1, _3, _5);
     end end),
   (function (__caml_parser_env) do
       return Parsing.peek_val(__caml_parser_env, 0);
@@ -9079,7 +9079,7 @@ yyact = [
                 ]);
       end else do
         throw [
-              $$Error$1,
+              __Error$1,
               --[[ Applicative_path ]]Block.__(3, [symbol_rloc(--[[ () ]]0)])
             ];
       end end 
@@ -9652,14 +9652,14 @@ function string_of_type_directive(x) do
   end
 end end
 
-$$Error$2 = Caml_exceptions.create("Ocaml_parsetree_test.Lexer.Error");
+__Error$2 = Caml_exceptions.create("Ocaml_parsetree_test.Lexer.Error");
 
 function assert_same_type(lexbuf, x, y) do
   lhs = type_of_directive(x);
   rhs = type_of_directive(y);
   if (lhs ~= rhs) then do
     throw [
-          $$Error$2,
+          __Error$2,
           --[[ Conditional_expr_expected_type ]]Block.__(7, [
               lhs,
               rhs
@@ -9682,7 +9682,7 @@ exit = 0;
 i;
 
 try do
-  i = $$String.rindex(Sys.ocaml_version, --[[ "+" ]]43);
+  i = __String.rindex(Sys.ocaml_version, --[[ "+" ]]43);
   exit = 1;
 end
 catch (exn$1)do
@@ -9694,7 +9694,7 @@ catch (exn$1)do
 end
 
 if (exit == 1) then do
-  tmp = $$String.sub(Sys.ocaml_version, i + 1 | 0, (#Sys.ocaml_version - i | 0) - 1 | 0);
+  tmp = __String.sub(Sys.ocaml_version, i + 1 | 0, (#Sys.ocaml_version - i | 0) - 1 | 0);
 end
  end 
 
@@ -9745,7 +9745,7 @@ function semantic_version_parse(str, start, last_index) do
   match$1 = aux(match[1], 0, last_index);
   match$2 = aux(match$1[1], 0, last_index);
   patch_end = match$2[1];
-  additional = $$String.sub(str, patch_end, (last_index - patch_end | 0) + 1 | 0);
+  additional = __String.sub(str, patch_end, (last_index - patch_end | 0) + 1 | 0);
   return --[[ tuple ]][
           --[[ tuple ]][
             match[0],
@@ -9838,7 +9838,7 @@ function value_of_token(loc, t) do
        do
       else do
         throw [
-              $$Error$2,
+              __Error$2,
               --[[ Unexpected_token_in_conditional ]]4,
               loc
             ];
@@ -9859,7 +9859,7 @@ function value_of_token(loc, t) do
        do
       else do
         throw [
-              $$Error$2,
+              __Error$2,
               --[[ Unexpected_token_in_conditional ]]4,
               loc
             ];
@@ -9887,7 +9887,7 @@ function directive_parse(token_with_comments, lexbuf) do
           do
              if ___conditional___ = 25--[[ EOF ]] then do
                 throw [
-                      $$Error$2,
+                      __Error$2,
                       --[[ Unterminated_if ]]2,
                       curr(lexbuf)
                     ];end end end 
@@ -9966,7 +9966,7 @@ function directive_parse(token_with_comments, lexbuf) do
                   last_index = #str - 1 | 0;
                   if (last_index < 0) then do
                     throw [
-                          $$Error$2,
+                          __Error$2,
                           --[[ Illegal_semver ]]Block.__(6, [str]),
                           loc
                         ];
@@ -9991,7 +9991,7 @@ function directive_parse(token_with_comments, lexbuf) do
                          if ___conditional___ = 0 then do
                             if (last_index == 0) then do
                               throw [
-                                    $$Error$2,
+                                    __Error$2,
                                     --[[ Illegal_semver ]]Block.__(6, [str]),
                                     loc
                                   ];
@@ -10009,7 +10009,7 @@ function directive_parse(token_with_comments, lexbuf) do
                          if ___conditional___ = 2 then do
                             if (last_index == 0) then do
                               throw [
-                                    $$Error$2,
+                                    __Error$2,
                                     --[[ Illegal_semver ]]Block.__(6, [str]),
                                     loc
                                   ];
@@ -10073,7 +10073,7 @@ function directive_parse(token_with_comments, lexbuf) do
                 end end 
                 if (exit$1 == 3) then do
                   throw [
-                        $$Error$2,
+                        __Error$2,
                         --[[ Conditional_expr_expected_type ]]Block.__(7, [
                             --[[ Dir_type_string ]]3,
                             type_of_directive(lhs)
@@ -10085,7 +10085,7 @@ function directive_parse(token_with_comments, lexbuf) do
               end
                end 
               throw [
-                    $$Error$2,
+                    __Error$2,
                     --[[ Conditional_expr_expected_type ]]Block.__(7, [
                         --[[ Dir_type_string ]]3,
                         type_of_directive(lhs)
@@ -10207,7 +10207,7 @@ function directive_parse(token_with_comments, lexbuf) do
             if (typeof match == "number") then do
               if (match ~= 81) then do
                 throw [
-                      $$Error$2,
+                      __Error$2,
                       --[[ Unterminated_paren_in_conditional ]]1,
                       curr(lexbuf)
                     ];
@@ -10216,7 +10216,7 @@ function directive_parse(token_with_comments, lexbuf) do
               return v;
             end else do
               throw [
-                    $$Error$2,
+                    __Error$2,
                     --[[ Unterminated_paren_in_conditional ]]1,
                     curr(lexbuf)
                   ];
@@ -10226,7 +10226,7 @@ function directive_parse(token_with_comments, lexbuf) do
          do
         else do
           throw [
-                $$Error$2,
+                __Error$2,
                 --[[ Unexpected_token_in_conditional ]]4,
                 curr_loc
               ];
@@ -10239,7 +10239,7 @@ function directive_parse(token_with_comments, lexbuf) do
          if ___conditional___ = 1--[[ FLOAT ]] then do
             return token_op(calc, (function (e) do
                           throw [
-                                $$Error$2,
+                                __Error$2,
                                 --[[ Conditional_expr_expected_type ]]Block.__(7, [
                                     --[[ Dir_type_bool ]]0,
                                     --[[ Dir_type_float ]]1
@@ -10262,7 +10262,7 @@ function directive_parse(token_with_comments, lexbuf) do
                do end
               else do
                 throw [
-                      $$Error$2,
+                      __Error$2,
                       --[[ Unexpected_token_in_conditional ]]4,
                       curr_loc
                     ];
@@ -10273,7 +10273,7 @@ function directive_parse(token_with_comments, lexbuf) do
             loc = curr(lexbuf);
             if (typeof t == "number") then do
               throw [
-                    $$Error$2,
+                    __Error$2,
                     --[[ Unexpected_token_in_conditional ]]4,
                     loc
                   ];
@@ -10290,7 +10290,7 @@ function directive_parse(token_with_comments, lexbuf) do
               end end 
             end else do
               throw [
-                    $$Error$2,
+                    __Error$2,
                     --[[ Unexpected_token_in_conditional ]]4,
                     loc
                   ];
@@ -10298,7 +10298,7 @@ function directive_parse(token_with_comments, lexbuf) do
          if ___conditional___ = 16--[[ STRING ]] then do
             return token_op(calc, (function (e) do
                           throw [
-                                $$Error$2,
+                                __Error$2,
                                 --[[ Conditional_expr_expected_type ]]Block.__(7, [
                                     --[[ Dir_type_bool ]]0,
                                     --[[ Dir_type_string ]]3
@@ -10316,7 +10316,7 @@ function directive_parse(token_with_comments, lexbuf) do
                            end 
                           ty = type_of_directive(value_v);
                           throw [
-                                $$Error$2,
+                                __Error$2,
                                 --[[ Conditional_expr_expected_type ]]Block.__(7, [
                                     --[[ Dir_type_bool ]]0,
                                     ty
@@ -10327,7 +10327,7 @@ function directive_parse(token_with_comments, lexbuf) do
          do
         else do
           throw [
-                $$Error$2,
+                __Error$2,
                 --[[ Unexpected_token_in_conditional ]]4,
                 curr_loc
               ];
@@ -10341,7 +10341,7 @@ function directive_parse(token_with_comments, lexbuf) do
   if (typeof match == "number") then do
     if (match ~= 88) then do
       throw [
-            $$Error$2,
+            __Error$2,
             --[[ Expect_hash_then_in_conditional ]]5,
             curr(lexbuf)
           ];
@@ -10350,7 +10350,7 @@ function directive_parse(token_with_comments, lexbuf) do
     return v;
   end else do
     throw [
-          $$Error$2,
+          __Error$2,
           --[[ Expect_hash_then_in_conditional ]]5,
           curr(lexbuf)
         ];
@@ -10828,7 +10828,7 @@ function char_for_decimal_code(lexbuf, i) do
       return --[[ "x" ]]120;
     end else do
       throw [
-            $$Error$2,
+            __Error$2,
             --[[ Illegal_escape ]]Block.__(1, [Lexing.lexeme(lexbuf)]),
             curr(lexbuf)
           ];
@@ -10855,15 +10855,15 @@ function cvt_int_literal(s) do
 end end
 
 function cvt_int32_literal(s) do
-  return -Caml_format.caml_int32_of_string("-" .. $$String.sub(s, 0, #s - 1 | 0)) | 0;
+  return -Caml_format.caml_int32_of_string("-" .. __String.sub(s, 0, #s - 1 | 0)) | 0;
 end end
 
 function cvt_int64_literal(s) do
-  return Caml_int64.neg(Caml_format.caml_int64_of_string("-" .. $$String.sub(s, 0, #s - 1 | 0)));
+  return Caml_int64.neg(Caml_format.caml_int64_of_string("-" .. __String.sub(s, 0, #s - 1 | 0)));
 end end
 
 function cvt_nativeint_literal(s) do
-  return -Caml_format.caml_nativeint_of_string("-" .. $$String.sub(s, 0, #s - 1 | 0));
+  return -Caml_format.caml_nativeint_of_string("-" .. __String.sub(s, 0, #s - 1 | 0));
 end end
 
 function remove_underscores(s) do
@@ -10897,10 +10897,10 @@ end end
 
 function get_label_name(lexbuf) do
   s = Lexing.lexeme(lexbuf);
-  name = $$String.sub(s, 1, #s - 2 | 0);
+  name = __String.sub(s, 1, #s - 2 | 0);
   if (Hashtbl.mem(keyword_table, name)) then do
     throw [
-          $$Error$2,
+          __Error$2,
           --[[ Keyword_as_label ]]Block.__(4, [name]),
           curr(lexbuf)
         ];
@@ -11127,7 +11127,7 @@ function report_error(ppf, param) do
 end end
 
 register_error_of_exn((function (param) do
-        if (param[0] == $$Error$2) then do
+        if (param[0] == __Error$2) then do
           return error_of_printer(param[2], report_error, param[1]);
         end
          end 
@@ -11159,7 +11159,7 @@ function token(lexbuf) do
        if ___conditional___ = 0 then do
           if (not escaped_newlines.contents) then do
             throw [
-                  $$Error$2,
+                  __Error$2,
                   --[[ Illegal_character ]]Block.__(0, [Lexing.lexeme_char(lexbuf$1, 0)]),
                   curr(lexbuf$1)
                 ];
@@ -11216,7 +11216,7 @@ function token(lexbuf) do
             exn$1 = Caml_js_exceptions.internalToOCamlException(raw_exn);
             if (exn$1[0] == Caml_builtin_exceptions.failure) then do
               throw [
-                    $$Error$2,
+                    __Error$2,
                     --[[ Literal_overflow ]]Block.__(5, ["int"]),
                     curr(lexbuf$1)
                   ];
@@ -11234,7 +11234,7 @@ function token(lexbuf) do
             exn$2 = Caml_js_exceptions.internalToOCamlException(raw_exn$1);
             if (exn$2[0] == Caml_builtin_exceptions.failure) then do
               throw [
-                    $$Error$2,
+                    __Error$2,
                     --[[ Literal_overflow ]]Block.__(5, ["int32"]),
                     curr(lexbuf$1)
                   ];
@@ -11250,7 +11250,7 @@ function token(lexbuf) do
             exn$3 = Caml_js_exceptions.internalToOCamlException(raw_exn$2);
             if (exn$3[0] == Caml_builtin_exceptions.failure) then do
               throw [
-                    $$Error$2,
+                    __Error$2,
                     --[[ Literal_overflow ]]Block.__(5, ["int64"]),
                     curr(lexbuf$1)
                   ];
@@ -11266,7 +11266,7 @@ function token(lexbuf) do
             exn$4 = Caml_js_exceptions.internalToOCamlException(raw_exn$3);
             if (exn$4[0] == Caml_builtin_exceptions.failure) then do
               throw [
-                    $$Error$2,
+                    __Error$2,
                     --[[ Literal_overflow ]]Block.__(5, ["nativeint"]),
                     curr(lexbuf$1)
                   ];
@@ -11289,7 +11289,7 @@ function token(lexbuf) do
        if ___conditional___ = 20 then do
           reset_string_buffer(--[[ () ]]0);
           delim = Lexing.lexeme(lexbuf$1);
-          delim$1 = $$String.sub(delim, 1, #delim - 2 | 0);
+          delim$1 = __String.sub(delim, 1, #delim - 2 | 0);
           is_in_string.contents = true;
           string_start$1 = lexbuf$1.lex_start_p;
           string_start_loc.contents = curr(lexbuf$1);
@@ -11313,9 +11313,9 @@ function token(lexbuf) do
           return --[[ CHAR ]]Block.__(0, [char_for_hexadecimal_code(lexbuf$1, 3)]);end end end 
        if ___conditional___ = 26 then do
           l = Lexing.lexeme(lexbuf$1);
-          esc = $$String.sub(l, 1, #l - 1 | 0);
+          esc = __String.sub(l, 1, #l - 1 | 0);
           throw [
-                $$Error$2,
+                __Error$2,
                 --[[ Illegal_escape ]]Block.__(1, [esc]),
                 curr(lexbuf$1)
               ];end end end 
@@ -11488,14 +11488,14 @@ function token(lexbuf) do
           if (if_then_else.contents ~= --[[ Dir_out ]]2) then do
             if (if_then_else.contents == --[[ Dir_if_true ]]0) then do
               throw [
-                    $$Error$2,
+                    __Error$2,
                     --[[ Unterminated_if ]]2,
                     curr(lexbuf$1)
                   ];
             end
              end 
             throw [
-                  $$Error$2,
+                  __Error$2,
                   --[[ Unterminated_else ]]3,
                   curr(lexbuf$1)
                 ];
@@ -11504,7 +11504,7 @@ function token(lexbuf) do
           end end end end end 
        if ___conditional___ = 91 then do
           throw [
-                $$Error$2,
+                __Error$2,
                 --[[ Illegal_character ]]Block.__(0, [Lexing.lexeme_char(lexbuf$1, 0)]),
                 curr(lexbuf$1)
               ];end end end 
@@ -11533,13 +11533,13 @@ function __ocaml_lex_quoted_string_rec(delim, lexbuf, ___ocaml_lex_state) do
        if ___conditional___ = 1 then do
           is_in_string.contents = false;
           throw [
-                $$Error$2,
+                __Error$2,
                 --[[ Unterminated_string ]]0,
                 string_start_loc.contents
               ];end end end 
        if ___conditional___ = 2 then do
           edelim = Lexing.lexeme(lexbuf);
-          edelim$1 = $$String.sub(edelim, 1, #edelim - 2 | 0);
+          edelim$1 = __String.sub(edelim, 1, #edelim - 2 | 0);
           if (delim == edelim$1) then do
             return --[[ () ]]0;
           end else do
@@ -11607,7 +11607,7 @@ function string(lexbuf) do
        if ___conditional___ = 7 then do
           is_in_string.contents = false;
           throw [
-                $$Error$2,
+                __Error$2,
                 --[[ Unterminated_string ]]0,
                 string_start_loc.contents
               ];end end end 
@@ -11671,7 +11671,7 @@ function __ocaml_lex_comment_rec(lexbuf, ___ocaml_lex_state) do
           end
           catch (raw_exn)do
             exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
-            if (exn[0] == $$Error$2) then do
+            if (exn[0] == __Error$2) then do
               match$1 = exn[1];
               if (typeof match$1 == "number") then do
                 if (match$1 ~= 0) then do
@@ -11683,7 +11683,7 @@ function __ocaml_lex_comment_rec(lexbuf, ___ocaml_lex_state) do
                   start = List.hd(List.rev(comment_start_loc.contents));
                   comment_start_loc.contents = --[[ [] ]]0;
                   throw [
-                        $$Error$2,
+                        __Error$2,
                         --[[ Unterminated_string_in_comment ]]Block.__(3, [
                             start,
                             exn[2]
@@ -11713,7 +11713,7 @@ function __ocaml_lex_comment_rec(lexbuf, ___ocaml_lex_state) do
           continue ;end end end 
        if ___conditional___ = 3 then do
           delim = Lexing.lexeme(lexbuf);
-          delim$1 = $$String.sub(delim, 1, #delim - 2 | 0);
+          delim$1 = __String.sub(delim, 1, #delim - 2 | 0);
           string_start_loc.contents = curr(lexbuf);
           store_string(Lexing.lexeme(lexbuf));
           is_in_string.contents = true;
@@ -11722,7 +11722,7 @@ function __ocaml_lex_comment_rec(lexbuf, ___ocaml_lex_state) do
           end
           catch (raw_exn$1)do
             exn$1 = Caml_js_exceptions.internalToOCamlException(raw_exn$1);
-            if (exn$1[0] == $$Error$2) then do
+            if (exn$1[0] == __Error$2) then do
               match$3 = exn$1[1];
               if (typeof match$3 == "number") then do
                 if (match$3 ~= 0) then do
@@ -11734,7 +11734,7 @@ function __ocaml_lex_comment_rec(lexbuf, ___ocaml_lex_state) do
                   start$1 = List.hd(List.rev(comment_start_loc.contents));
                   comment_start_loc.contents = --[[ [] ]]0;
                   throw [
-                        $$Error$2,
+                        __Error$2,
                         --[[ Unterminated_string_in_comment ]]Block.__(3, [
                             start$1,
                             exn$1[2]
@@ -11775,7 +11775,7 @@ function __ocaml_lex_comment_rec(lexbuf, ___ocaml_lex_state) do
             start$2 = List.hd(List.rev(comment_start_loc.contents));
             comment_start_loc.contents = --[[ [] ]]0;
             throw [
-                  $$Error$2,
+                  __Error$2,
                   --[[ Unterminated_comment ]]Block.__(2, [start$2]),
                   match$5[0]
                 ];
@@ -11892,7 +11892,7 @@ function token$1(lexbuf) do
                      if ___conditional___ = 23--[[ ELSE ]] then do
                         if (if_then_else$1 ~= 0) then do
                           throw [
-                                $$Error$2,
+                                __Error$2,
                                 --[[ Unexpected_directive ]]6,
                                 curr(lexbuf$1)
                               ];
@@ -11901,7 +11901,7 @@ function token$1(lexbuf) do
                      if ___conditional___ = 24--[[ END ]] then do
                         if (if_then_else$1 >= 2) then do
                           throw [
-                                $$Error$2,
+                                __Error$2,
                                 --[[ Unexpected_directive ]]6,
                                 curr(lexbuf$1)
                               ];
@@ -11920,7 +11920,7 @@ function token$1(lexbuf) do
                               token = token_with_comments(lexbuf$1);
                               if (token == --[[ EOF ]]25) then do
                                 throw [
-                                      $$Error$2,
+                                      __Error$2,
                                       --[[ Unterminated_if ]]2,
                                       curr(lexbuf$1)
                                     ];
@@ -11940,7 +11940,7 @@ function token$1(lexbuf) do
                                     end end 
                                   end else if (switcher == 14) then do
                                     throw [
-                                          $$Error$2,
+                                          __Error$2,
                                           --[[ Unexpected_directive ]]6,
                                           curr(lexbuf$1)
                                         ];
@@ -11963,7 +11963,7 @@ function token$1(lexbuf) do
                           end end 
                         end else do
                           throw [
-                                $$Error$2,
+                                __Error$2,
                                 --[[ Unexpected_directive ]]6,
                                 curr(lexbuf$1)
                               ];
@@ -11977,7 +11977,7 @@ function token$1(lexbuf) do
                 end else if (match.tag == --[[ LIDENT ]]11 and match[0] == "elif") then do
                   if (if_then_else$1 ~= 0) then do
                     throw [
-                          $$Error$2,
+                          __Error$2,
                           --[[ Unexpected_directive ]]6,
                           curr(lexbuf$1)
                         ];
@@ -11995,7 +11995,7 @@ function token$1(lexbuf) do
                     token$2 = token_with_comments(lexbuf$1);
                     if (token$2 == --[[ EOF ]]25) then do
                       throw [
-                            $$Error$2,
+                            __Error$2,
                             --[[ Unterminated_else ]]3,
                             curr(lexbuf$1)
                           ];
@@ -12012,7 +12012,7 @@ function token$1(lexbuf) do
                           end else do
                             if (else_seen) then do
                               throw [
-                                    $$Error$2,
+                                    __Error$2,
                                     --[[ Unexpected_directive ]]6,
                                     curr(lexbuf$1)
                                   ];
@@ -12023,7 +12023,7 @@ function token$1(lexbuf) do
                           end end 
                         end else if (switcher$1 == 14) then do
                           throw [
-                                $$Error$2,
+                                __Error$2,
                                 --[[ Unexpected_directive ]]6,
                                 curr(lexbuf$1)
                               ];
@@ -12033,7 +12033,7 @@ function token$1(lexbuf) do
                        end 
                       if (else_seen and is_elif(token$3)) then do
                         throw [
-                              $$Error$2,
+                              __Error$2,
                               --[[ Unexpected_directive ]]6,
                               curr(lexbuf$1)
                             ];
@@ -12165,7 +12165,7 @@ function skip_phrase(lexbuf) do
     end
     catch (raw_exn)do
       exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
-      if (exn[0] == $$Error$2) then do
+      if (exn[0] == __Error$2) then do
         tmp = exn[1];
         if (typeof tmp == "number") then do
           if (tmp == --[[ Unterminated_string ]]0) then do
@@ -12213,7 +12213,7 @@ function wrap(parsing_fun, lexbuf) do
   end
   catch (raw_err)do
     err = Caml_js_exceptions.internalToOCamlException(raw_err);
-    if (err[0] == $$Error$2) then do
+    if (err[0] == __Error$2) then do
       tmp = err[1];
       if (typeof tmp == "number") then do
         throw err;
@@ -12225,7 +12225,7 @@ function wrap(parsing_fun, lexbuf) do
       end else do
         throw err;
       end end  end  end 
-    end else if (err[0] == $$Error$1) then do
+    end else if (err[0] == __Error$1) then do
       if (input_name.contents == "//toplevel//") then do
         maybe_skip_phrase(lexbuf);
         throw err;
@@ -12242,7 +12242,7 @@ function wrap(parsing_fun, lexbuf) do
     end
      end 
     throw [
-          $$Error$1,
+          __Error$1,
           --[[ Other ]]Block.__(5, [loc])
         ];
   end

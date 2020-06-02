@@ -1,13 +1,13 @@
 --[['use strict';]]
 
 
-$$case = 3;
+__case = 3;
 
-$$window = 2;
+__window = 2;
 
-$$switch = 3;
+__switch = 3;
 
-exports.$$case = $$case;
-exports.$$window = $$window;
-exports.$$switch = $$switch;
+exports.__case = __case;
+exports.__window = __window;
+exports.__switch = __switch;
 --[[ No side effect ]]

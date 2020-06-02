@@ -17,11 +17,11 @@ shared$2 = [
   "get_money"
 ];
 
-function x0_init($$class) do
-  v = CamlinternalOO.new_variable($$class, "");
-  x = CamlinternalOO.new_variable($$class, "x");
+function x0_init(__class) do
+  v = CamlinternalOO.new_variable(__class, "");
+  x = CamlinternalOO.new_variable(__class, "x");
   return (function (env, self, v$1) do
-      self$1 = CamlinternalOO.create_object_opt(self, $$class);
+      self$1 = CamlinternalOO.create_object_opt(self, __class);
       self$1[v] = v$1;
       self$1[x] = v$1 + 2 | 0;
       return self$1;
@@ -30,16 +30,16 @@ end end
 
 x0 = CamlinternalOO.make_class(0, x0_init);
 
-function x_init($$class) do
-  v = CamlinternalOO.new_variable($$class, "");
-  ids = CamlinternalOO.new_methods_variables($$class, shared$1, shared);
+function x_init(__class) do
+  v = CamlinternalOO.new_variable(__class, "");
+  ids = CamlinternalOO.new_methods_variables(__class, shared$1, shared);
   get_x = ids[0];
   x = ids[1];
-  CamlinternalOO.set_method($$class, get_x, (function (self$2) do
+  CamlinternalOO.set_method(__class, get_x, (function (self$2) do
           return self$2[x];
         end end));
   return (function (env, self, v$1) do
-      self$1 = CamlinternalOO.create_object_opt(self, $$class);
+      self$1 = CamlinternalOO.create_object_opt(self, __class);
       self$1[v] = v$1;
       self$1[x] = v$1;
       return self$1;
@@ -76,13 +76,13 @@ if (Caml_oo_curry.js1(291546447, 2, u) ~= 3) then do
 end
  end 
 
-function xx_init($$class) do
-  x = CamlinternalOO.new_variable($$class, "");
-  ids = CamlinternalOO.new_methods_variables($$class, shared$2, ["money"]);
+function xx_init(__class) do
+  x = CamlinternalOO.new_variable(__class, "");
+  ids = CamlinternalOO.new_methods_variables(__class, shared$2, ["money"]);
   incr = ids[0];
   get_money = ids[1];
   money = ids[2];
-  CamlinternalOO.set_methods($$class, [
+  CamlinternalOO.set_methods(__class, [
         get_money,
         (function (self$3) do
             return self$3[money];
@@ -95,7 +95,7 @@ function xx_init($$class) do
           end end)
       ]);
   return (function (env, self, x$1) do
-      self$1 = CamlinternalOO.create_object_opt(self, $$class);
+      self$1 = CamlinternalOO.create_object_opt(self, __class);
       self$1[x] = x$1;
       self$1[money] = x$1;
       return self$1;
@@ -137,15 +137,15 @@ if (Caml_oo_curry.js1(-804710761, 7, v2) ~= 9) then do
 end
  end 
 
-function point_init($$class) do
-  ids = CamlinternalOO.new_methods_variables($$class, [
+function point_init(__class) do
+  ids = CamlinternalOO.new_methods_variables(__class, [
         "get_x5",
         "get_x"
       ], shared);
   get_x5 = ids[0];
   get_x = ids[1];
   x = ids[2];
-  CamlinternalOO.set_methods($$class, [
+  CamlinternalOO.set_methods(__class, [
         get_x,
         (function (self$4) do
             return self$4[x];
@@ -156,7 +156,7 @@ function point_init($$class) do
           end end)
       ]);
   return (function (env, self) do
-      self$1 = CamlinternalOO.create_object_opt(self, $$class);
+      self$1 = CamlinternalOO.create_object_opt(self, __class);
       self$1[x] = 0;
       return self$1;
     end end);
@@ -181,9 +181,9 @@ if (Caml_oo_curry.js1(590348294, 8, v$1) ~= 5) then do
 end
  end 
 
-function xx0_init($$class) do
-  x = CamlinternalOO.new_variable($$class, "");
-  ids = CamlinternalOO.new_methods_variables($$class, shared$2, [
+function xx0_init(__class) do
+  x = CamlinternalOO.new_variable(__class, "");
+  ids = CamlinternalOO.new_methods_variables(__class, shared$2, [
         "money",
         "a0",
         "a1",
@@ -195,7 +195,7 @@ function xx0_init($$class) do
   a0 = ids[3];
   a1 = ids[4];
   a2 = ids[5];
-  CamlinternalOO.set_methods($$class, [
+  CamlinternalOO.set_methods(__class, [
         get_money,
         (function (self$5) do
             return self$5[money];
@@ -209,7 +209,7 @@ function xx0_init($$class) do
           end end)
       ]);
   return (function (env, self, x$1) do
-      self$1 = CamlinternalOO.create_object_opt(self, $$class);
+      self$1 = CamlinternalOO.create_object_opt(self, __class);
       self$1[x] = x$1;
       self$1[money] = x$1;
       self$1[a0] = 0;

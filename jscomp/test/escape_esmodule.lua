@@ -1,12 +1,12 @@
 --[['use strict';]]
 
 
-$$__esModule = false;
+____esModule = false;
 
-$$default = 4;
+__default = 4;
 
-exports.$$__esModule = $$__esModule;
-exports.$$default = $$default;
-exports.default = $$default;
+exports.____esModule = ____esModule;
+exports.__default = __default;
+exports.default = __default;
 exports.__esModule = true;
 --[[ No side effect ]]

@@ -34,7 +34,7 @@ function eq(loc, x, y) do
 end end
 
 function handler(e) do
-  if (e[0] == Js_exn.$$Error) then do
+  if (e[0] == Js_exn.__Error) then do
     console.log("js error");
     return Promise.resolve(0);
   end else if (e == Caml_builtin_exceptions.not_found) then do
@@ -56,7 +56,7 @@ function myHandler(match) do
   if (Caml_exceptions.caml_is_extension(match)) then do
     if (match == Caml_builtin_exceptions.not_found) then do
       return 1;
-    end else if (match[0] == Js_exn.$$Error) then do
+    end else if (match[0] == Js_exn.__Error) then do
       return 2;
     end else do
       return ;

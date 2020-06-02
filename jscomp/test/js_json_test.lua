@@ -1,7 +1,7 @@
 --[['use strict';]]
 
 Mt = require "./mt.lua";
-$$Array = require "../../lib/js/array.lua";
+__Array = require "../../lib/js/array.lua";
 Block = require "../../lib/js/block.lua";
 Js_dict = require "../../lib/js/js_dict.lua";
 Js_json = require "../../lib/js/js_json.lua";
@@ -376,7 +376,7 @@ function eq_at_i(loc, json, i, kind, expected) do
   end end  end 
 end end
 
-json$5 = JSON.parse(JSON.stringify($$Array.map((function (prim) do
+json$5 = JSON.parse(JSON.stringify(__Array.map((function (prim) do
                 return prim;
               end end), [
               "string 0",
@@ -422,7 +422,7 @@ a$1 = [
   -268391749
 ];
 
-json$8 = JSON.parse(JSON.stringify($$Array.map((function (prim) do
+json$8 = JSON.parse(JSON.stringify(__Array.map((function (prim) do
                 return prim;
               end end), a$1)));
 

@@ -143,7 +143,7 @@ function of_record(l) do
         ];
 end end
 
-function $$return(x) do
+function __return(x) do
   return Caml_option.some(x);
 end end
 
@@ -536,7 +536,7 @@ Traverse = do
   field_list: field_list,
   $great$great$eq: $great$great$eq,
   $great$pipe$eq: $great$pipe$eq,
-  $$return: $$return,
+  __return: __return,
   get_exn: get_exn
 end;
 

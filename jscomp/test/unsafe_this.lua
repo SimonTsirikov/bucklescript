@@ -4,11 +4,11 @@
 u = do
   x: 3,
   y: 32,
-  bark: (function ($$this, x, y) do
+  bark: (function (__this, x, y) do
       console.log(--[[ tuple ]][
-            $$this.length,
-            $$this.x,
-            $$this.y
+            __this.length,
+            __this.x,
+            __this.y
           ]);
       return --[[ () ]]0;
     end end),

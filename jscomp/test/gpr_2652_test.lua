@@ -1,8 +1,8 @@
 --[['use strict';]]
 
-$$Buffer = require "../../lib/js/buffer.lua";
+__Buffer = require "../../lib/js/buffer.lua";
 
-foo = $$Buffer.contents;
+foo = __Buffer.contents;
 
 function bar(str) do
   return Buffer.from(str);

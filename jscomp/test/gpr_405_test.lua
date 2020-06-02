@@ -6,10 +6,10 @@ Caml_primitive = require "../../lib/js/caml_primitive.lua";
 Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
 
 function Make(funarg) do
-  $$let = funarg.V;
+  __let = funarg.V;
   H = Hashtbl.Make(do
-        equal: $$let.equal,
-        hash: $$let.hash
+        equal: __let.equal,
+        hash: __let.hash
       end);
   find_default = function (htbl, x) do
     try do

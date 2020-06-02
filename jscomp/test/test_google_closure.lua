@@ -1,6 +1,6 @@
 --[['use strict';]]
 
-$$Array = require "../../lib/js/array.lua";
+__Array = require "../../lib/js/array.lua";
 Caml_array = require "../../lib/js/caml_array.lua";
 
 function f(a, b, param) do
@@ -17,7 +17,7 @@ a = String(3);
 
 b = 101;
 
-arr = $$Array.init(2, (function (param) do
+arr = __Array.init(2, (function (param) do
         return 0;
       end end));
 

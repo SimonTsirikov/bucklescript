@@ -1,9 +1,9 @@
 --[['use strict';]]
 
-$$Node = require "../../lib/js/node.lua";
+__Node = require "../../lib/js/node.lua";
 
 function f(str) do
-  match = $$Node.test(str);
+  match = __Node.test(str);
   if (match[0]) then do
     console.log(--[[ tuple ]][
           "buffer",

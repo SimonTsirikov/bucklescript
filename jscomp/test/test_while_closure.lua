@@ -1,6 +1,6 @@
 --[['use strict';]]
 
-$$Array = require "../../lib/js/array.lua";
+__Array = require "../../lib/js/array.lua";
 Curry = require "../../lib/js/curry.lua";
 Caml_array = require "../../lib/js/caml_array.lua";
 Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
@@ -30,7 +30,7 @@ end end
 
 f(--[[ () ]]0);
 
-$$Array.iter((function (x) do
+__Array.iter((function (x) do
         return Curry._1(x, --[[ () ]]0);
       end end), arr);
 

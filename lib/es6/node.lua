@@ -23,7 +23,7 @@ Process = --[[ alias ]]0;
 
 Module = --[[ alias ]]0;
 
-$$Buffer = --[[ alias ]]0;
+__Buffer = --[[ alias ]]0;
 
 Child_process = --[[ alias ]]0;
 
@@ -32,7 +32,7 @@ export do
   Fs ,
   Process ,
   Module ,
-  $$Buffer ,
+  __Buffer ,
   Child_process ,
   test ,
   

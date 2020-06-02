@@ -1,6 +1,6 @@
 --[['use strict';]]
 
-$$Array = require "../../lib/js/array.lua";
+__Array = require "../../lib/js/array.lua";
 Block = require "../../lib/js/block.lua";
 Curry = require "../../lib/js/curry.lua";
 Caml_module = require "../../lib/js/caml_module.lua";
@@ -24,7 +24,7 @@ P = Caml_module.init_mod(--[[ tuple ]][
           ]]]));
 
 function print(a) do
-  return $$Array.iter(P.print, a);
+  return __Array.iter(P.print, a);
 end end
 
 Caml_module.update_mod(--[[ Module ]]Block.__(0, [[--[[ tuple ]][

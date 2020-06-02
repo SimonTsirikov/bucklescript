@@ -1,7 +1,7 @@
 --[['use strict';]]
 
 List = require "../../lib/js/list.lua";
-$$Array = require "../../lib/js/array.lua";
+__Array = require "../../lib/js/array.lua";
 Block = require "../../lib/js/block.lua";
 Curry = require "../../lib/js/curry.lua";
 Caml_array = require "../../lib/js/caml_array.lua";
@@ -11,7 +11,7 @@ function for_3(x) do
   v = do
     contents: 0
   end;
-  arr = $$Array.map((function (param, param$1) do
+  arr = __Array.map((function (param, param$1) do
           return --[[ () ]]0;
         end end), x);
   for i = 0 , #x - 1 | 0 , 1 do
@@ -23,7 +23,7 @@ function for_3(x) do
         end end
         end(j)));
   end
-  $$Array.iter((function (x) do
+  __Array.iter((function (x) do
           return Curry._1(x, --[[ () ]]0);
         end end), arr);
   return v.contents;
@@ -33,7 +33,7 @@ function for_4(x) do
   v = do
     contents: 0
   end;
-  arr = $$Array.map((function (param, param$1) do
+  arr = __Array.map((function (param, param$1) do
           return --[[ () ]]0;
         end end), x);
   for i = 0 , #x - 1 | 0 , 1 do
@@ -46,7 +46,7 @@ function for_4(x) do
         end end
         end(k)));
   end
-  $$Array.iter((function (x) do
+  __Array.iter((function (x) do
           return Curry._1(x, --[[ () ]]0);
         end end), arr);
   return v.contents;
@@ -56,7 +56,7 @@ function for_5(x, u) do
   v = do
     contents: 0
   end;
-  arr = $$Array.map((function (param, param$1) do
+  arr = __Array.map((function (param, param$1) do
           return --[[ () ]]0;
         end end), x);
   for i = 0 , #x - 1 | 0 , 1 do
@@ -68,7 +68,7 @@ function for_5(x, u) do
         end end
         end(k)));
   end
-  $$Array.iter((function (x) do
+  __Array.iter((function (x) do
           return Curry._1(x, --[[ () ]]0);
         end end), arr);
   return v.contents;
@@ -78,7 +78,7 @@ function for_6(x, u) do
   v = do
     contents: 0
   end;
-  arr = $$Array.map((function (param, param$1) do
+  arr = __Array.map((function (param, param$1) do
           return --[[ () ]]0;
         end end), x);
   v4 = do
@@ -109,7 +109,7 @@ function for_6(x, u) do
     end(v2));
     inspect_3 = v2.contents;
   end
-  $$Array.iter((function (x) do
+  __Array.iter((function (x) do
           return Curry._1(x, --[[ () ]]0);
         end end), arr);
   return [
@@ -139,7 +139,7 @@ function for_7(param) do
     end
     end(i));
   end
-  $$Array.iter((function (f) do
+  __Array.iter((function (f) do
           return Curry._1(f, --[[ () ]]0);
         end end), arr);
   return v.contents;
@@ -166,7 +166,7 @@ function for_8(param) do
     end
     end(i,k));
   end
-  $$Array.iter((function (f) do
+  __Array.iter((function (f) do
           return Curry._1(f, --[[ () ]]0);
         end end), arr);
   return v.contents;
@@ -217,15 +217,15 @@ function for_9(param) do
         end end
         end(v$1)));
   end
-  $$Array.iter((function (f) do
+  __Array.iter((function (f) do
           return Curry._1(f, --[[ () ]]0);
         end end), arr);
-  $$Array.iter((function (f) do
+  __Array.iter((function (f) do
           return Curry._1(f, --[[ () ]]0);
         end end), arr2);
   return [--[[ tuple ]][
             vv.contents,
-            $$Array.of_list(List.rev(v.contents)),
+            __Array.of_list(List.rev(v.contents)),
             vv2.contents
           ]];
 end end

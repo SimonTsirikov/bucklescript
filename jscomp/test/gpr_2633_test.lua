@@ -2,9 +2,9 @@
 
 Curry = require "../../lib/js/curry.lua";
 
-function on1(foo, $$event) do
+function on1(foo, __event) do
   foo.on((function () do
-            local ___conditional___=($$event[0]);
+            local ___conditional___=(__event[0]);
             do
                if ___conditional___ = 4895187 then do
                   return "bar";end end end 
@@ -13,13 +13,13 @@ function on1(foo, $$event) do
                do
               
             end
-          end end)(), $$event[1]);
+          end end)(), __event[1]);
   return --[[ () ]]0;
 end end
 
-function on2(foo, h, $$event) do
+function on2(foo, h, __event) do
   foo.on((function () do
-            local ___conditional___=(Curry._1(h, $$event)[0]);
+            local ___conditional___=(Curry._1(h, __event)[0]);
             do
                if ___conditional___ = 4895187 then do
                   return "bar";end end end 
@@ -28,7 +28,7 @@ function on2(foo, h, $$event) do
                do
               
             end
-          end end)(), Curry._1(h, $$event)[1]);
+          end end)(), Curry._1(h, __event)[1]);
   return --[[ () ]]0;
 end end
 

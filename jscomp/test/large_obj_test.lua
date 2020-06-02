@@ -155,9 +155,9 @@ shared$2 = [
   "field99"
 ];
 
-$$class = CamlinternalOO.create_table(shared);
+__class = CamlinternalOO.create_table(shared);
 
-ids = CamlinternalOO.new_methods_variables($$class, shared$1, shared$2);
+ids = CamlinternalOO.new_methods_variables(__class, shared$1, shared$2);
 
 get9 = ids[0];
 
@@ -399,7 +399,7 @@ field98 = ids[118];
 
 field99 = ids[119];
 
-CamlinternalOO.set_methods($$class, [
+CamlinternalOO.set_methods(__class, [
       get0,
       (function (self$1) do
           return self$1[field0] + 0 | 0;
@@ -483,7 +483,7 @@ CamlinternalOO.set_methods($$class, [
     ]);
 
 function obj_init(env) do
-  self = CamlinternalOO.create_object_opt(0, $$class);
+  self = CamlinternalOO.create_object_opt(0, __class);
   self[field0] = 0;
   self[field1] = 1;
   self[field2] = 2;
@@ -587,7 +587,7 @@ function obj_init(env) do
   return self;
 end end
 
-CamlinternalOO.init_class($$class);
+CamlinternalOO.init_class(__class);
 
 raw_object = obj_init(0);
 
@@ -603,9 +603,9 @@ if (Caml_oo_curry.js1(291536124, 1, raw_object) ~= 34) then do
 end
  end 
 
-function raw_class_init($$class) do
-  value = CamlinternalOO.new_variable($$class, "");
-  ids = CamlinternalOO.new_methods_variables($$class, shared$1, shared$2);
+function raw_class_init(__class) do
+  value = CamlinternalOO.new_variable(__class, "");
+  ids = CamlinternalOO.new_methods_variables(__class, shared$1, shared$2);
   get9 = ids[0];
   get8 = ids[1];
   get7 = ids[2];
@@ -726,7 +726,7 @@ function raw_class_init($$class) do
   field97 = ids[117];
   field98 = ids[118];
   field99 = ids[119];
-  CamlinternalOO.set_methods($$class, [
+  CamlinternalOO.set_methods(__class, [
         get0,
         (function (self$2) do
             return self$2[field0] + 0 | 0;
@@ -809,7 +809,7 @@ function raw_class_init($$class) do
           end end)
       ]);
   return (function (env, self, value$1) do
-      self$1 = CamlinternalOO.create_object_opt(self, $$class);
+      self$1 = CamlinternalOO.create_object_opt(self, __class);
       self$1[value] = value$1;
       self$1[field0] = 0;
       self$1[field1] = (value$1 << 0);

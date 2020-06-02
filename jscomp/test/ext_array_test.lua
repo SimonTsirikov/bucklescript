@@ -1,7 +1,7 @@
 --[['use strict';]]
 
 List = require "../../lib/js/list.lua";
-$$Array = require "../../lib/js/array.lua";
+__Array = require "../../lib/js/array.lua";
 Curry = require "../../lib/js/curry.lua";
 Caml_array = require "../../lib/js/caml_array.lua";
 Caml_option = require "../../lib/js/caml_option.lua";
@@ -29,7 +29,7 @@ function reverse(a) do
   if (b_len == 0) then do
     return [];
   end else do
-    b = $$Array.copy(a);
+    b = __Array.copy(a);
     for i = 0 , b_len - 1 | 0 , 1 do
       b[i] = a[(b_len - 1 | 0) - i | 0];
     end
@@ -120,7 +120,7 @@ function range(from, to_) do
         ];
   end
    end 
-  return $$Array.init((to_ - from | 0) + 1 | 0, (function (i) do
+  return __Array.init((to_ - from | 0) + 1 | 0, (function (i) do
                 return i + from | 0;
               end end));
 end end
@@ -134,7 +134,7 @@ function map2i(f, a, b) do
         ];
   end
    end 
-  return $$Array.mapi((function (i, a) do
+  return __Array.mapi((function (i, a) do
                 return Curry._3(f, i, a, b[i]);
               end end), a);
 end end
@@ -213,8 +213,8 @@ function rfind_and_split(arr, cmp, v) do
     return --[[ `Split ]][
             345791162,
             --[[ tuple ]][
-              $$Array.sub(arr, 0, i),
-              $$Array.sub(arr, i + 1 | 0, (#arr - i | 0) - 1 | 0)
+              __Array.sub(arr, 0, i),
+              __Array.sub(arr, i + 1 | 0, (#arr - i | 0) - 1 | 0)
             ]
           ];
   end end 
@@ -245,8 +245,8 @@ function find_and_split(arr, cmp, v) do
     return --[[ `Split ]][
             345791162,
             --[[ tuple ]][
-              $$Array.sub(arr, 0, i),
-              $$Array.sub(arr, i + 1 | 0, (#arr - i | 0) - 1 | 0)
+              __Array.sub(arr, 0, i),
+              __Array.sub(arr, i + 1 | 0, (#arr - i | 0) - 1 | 0)
             ]
           ];
   end end 

@@ -37,11 +37,11 @@ end end
 
 Random.self_init(--[[ () ]]0);
 
-param = Random.$$int(1000);
+param = Random.__int(1000);
 
 Random.self_init(--[[ () ]]0);
 
-param$1 = Random.$$int(10000);
+param$1 = Random.__int(10000);
 
 Mt_global.collect_neq(id, suites, "File \"random_test.ml\", line 12, characters 6-13", param$1, param);
 
@@ -77,7 +77,7 @@ h = Random.int64(--[[ int64 ]][
 
 vv = Random.bits(--[[ () ]]0);
 
-xx = Random.$$float(3.0);
+xx = Random.__float(3.0);
 
 xxx = Random.int32(103);
 

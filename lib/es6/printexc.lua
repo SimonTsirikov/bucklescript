@@ -3,7 +3,7 @@
 import * as Obj from "./obj.lua";
 import * as Block from "./block.lua";
 import * as Curry from "./curry.lua";
-import * as $$Buffer from "./buffer.lua";
+import * as __Buffer from "./buffer.lua";
 import * as Printf from "./printf.lua";
 import * as Caml_io from "./caml_io.lua";
 import * as Caml_array from "./caml_array.lua";
@@ -172,16 +172,16 @@ function to_string(x) do
       return "Stack overflow";
     end else if (x[0] == Caml_builtin_exceptions.match_failure) then do
       match$1 = x[1];
-      $$char = match$1[2];
-      return Curry._5(Printf.sprintf(locfmt), match$1[0], match$1[1], $$char, $$char + 5 | 0, "Pattern matching failed");
+      __char = match$1[2];
+      return Curry._5(Printf.sprintf(locfmt), match$1[0], match$1[1], __char, __char + 5 | 0, "Pattern matching failed");
     end else if (x[0] == Caml_builtin_exceptions.assert_failure) then do
       match$2 = x[1];
-      $$char$1 = match$2[2];
-      return Curry._5(Printf.sprintf(locfmt), match$2[0], match$2[1], $$char$1, $$char$1 + 6 | 0, "Assertion failed");
+      __char$1 = match$2[2];
+      return Curry._5(Printf.sprintf(locfmt), match$2[0], match$2[1], __char$1, __char$1 + 6 | 0, "Assertion failed");
     end else if (x[0] == Caml_builtin_exceptions.undefined_recursive_module) then do
       match$3 = x[1];
-      $$char$2 = match$3[2];
-      return Curry._5(Printf.sprintf(locfmt), match$3[0], match$3[1], $$char$2, $$char$2 + 6 | 0, "Undefined recursive module");
+      __char$2 = match$3[2];
+      return Curry._5(Printf.sprintf(locfmt), match$3[0], match$3[1], __char$2, __char$2 + 6 | 0, "Undefined recursive module");
     end else if ((x.tag | 0) ~= 0) then do
       return x[0];
     end else do
@@ -215,7 +215,7 @@ function print(fct, arg) do
   end
 end end
 
-function $$catch(fct, arg) do
+function __catch(fct, arg) do
   try do
     return Curry._1(fct, arg);
   end
@@ -377,7 +377,7 @@ function raw_backtrace_to_string(raw_backtrace) do
   backtrace = convert_raw_backtrace(raw_backtrace);
   if (backtrace ~= undefined) then do
     a = backtrace;
-    b = $$Buffer.create(1024);
+    b = __Buffer.create(1024);
     for i = 0 , #a - 1 | 0 , 1 do
       match = format_backtrace_slot(i, Caml_array.caml_array_get(a, i));
       if (match ~= undefined) then do
@@ -394,7 +394,7 @@ function raw_backtrace_to_string(raw_backtrace) do
       end
        end 
     end
-    return $$Buffer.contents(b);
+    return __Buffer.contents(b);
   end else do
     return "(Program not linked with -g, cannot print stack backtrace)\n";
   end end 
@@ -518,7 +518,7 @@ end end
 Slot = do
   is_raise: backtrace_slot_is_raise,
   is_inline: backtrace_slot_is_inline,
-  $$location: backtrace_slot_location,
+  __location: backtrace_slot_location,
   format: format_backtrace_slot
 end;
 
@@ -537,7 +537,7 @@ end end
 export do
   to_string ,
   print ,
-  $$catch ,
+  __catch ,
   print_backtrace ,
   get_backtrace ,
   record_backtrace ,

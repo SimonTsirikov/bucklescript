@@ -39,19 +39,19 @@ class_tables = --[[ Cons ]][
 
 function create(param) do
   if (not class_tables[0]) then do
-    $$class = CamlinternalOO.create_table([
+    __class = CamlinternalOO.create_table([
           "add",
           "get"
         ]);
-    env = CamlinternalOO.new_variable($$class, "");
-    ids = CamlinternalOO.new_methods_variables($$class, [
+    env = CamlinternalOO.new_variable(__class, "");
+    ids = CamlinternalOO.new_methods_variables(__class, [
           "get",
           "add"
         ], ["data"]);
     get = ids[0];
     add = ids[1];
     data = ids[2];
-    CamlinternalOO.set_methods($$class, [
+    CamlinternalOO.set_methods(__class, [
           add,
           (function (self$1, param) do
               self$1[data] = self$1[data] + 1 | 0;
@@ -63,12 +63,12 @@ function create(param) do
             end end)
         ]);
     env_init = function (env$1) do
-      self = CamlinternalOO.create_object_opt(0, $$class);
+      self = CamlinternalOO.create_object_opt(0, __class);
       self[data] = 0;
       self[env] = env$1;
       return self;
     end end;
-    CamlinternalOO.init_class($$class);
+    CamlinternalOO.init_class(__class);
     class_tables[0] = env_init;
   end
    end 

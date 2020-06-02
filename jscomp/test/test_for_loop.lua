@@ -1,6 +1,6 @@
 --[['use strict';]]
 
-$$Array = require "../../lib/js/array.lua";
+__Array = require "../../lib/js/array.lua";
 Curry = require "../../lib/js/curry.lua";
 Caml_array = require "../../lib/js/caml_array.lua";
 Caml_int32 = require "../../lib/js/caml_int32.lua";
@@ -23,7 +23,7 @@ function for_3(x) do
   v = do
     contents: 0
   end;
-  arr = $$Array.map((function (param, param$1) do
+  arr = __Array.map((function (param, param$1) do
           return --[[ () ]]0;
         end end), x);
   for i = 0 , #x , 1 do
@@ -35,7 +35,7 @@ function for_3(x) do
         end end
         end(j)));
   end
-  $$Array.iter((function (x) do
+  __Array.iter((function (x) do
           return Curry._1(x, --[[ () ]]0);
         end end), arr);
   return v.contents;
@@ -45,7 +45,7 @@ function for_4(x) do
   v = do
     contents: 0
   end;
-  arr = $$Array.map((function (param, param$1) do
+  arr = __Array.map((function (param, param$1) do
           return --[[ () ]]0;
         end end), x);
   for i = 0 , #x , 1 do
@@ -58,7 +58,7 @@ function for_4(x) do
         end end
         end(k)));
   end
-  $$Array.iter((function (x) do
+  __Array.iter((function (x) do
           return Curry._1(x, --[[ () ]]0);
         end end), arr);
   return v.contents;
@@ -68,7 +68,7 @@ function for_5(x, u) do
   v = do
     contents: 0
   end;
-  arr = $$Array.map((function (param, param$1) do
+  arr = __Array.map((function (param, param$1) do
           return --[[ () ]]0;
         end end), x);
   for i = 0 , #x , 1 do
@@ -80,7 +80,7 @@ function for_5(x, u) do
         end end
         end(k)));
   end
-  $$Array.iter((function (x) do
+  __Array.iter((function (x) do
           return Curry._1(x, --[[ () ]]0);
         end end), arr);
   return v.contents;
@@ -90,7 +90,7 @@ function for_6(x, u) do
   v = do
     contents: 0
   end;
-  arr = $$Array.map((function (param, param$1) do
+  arr = __Array.map((function (param, param$1) do
           return --[[ () ]]0;
         end end), x);
   v4 = do
@@ -119,7 +119,7 @@ function for_6(x, u) do
     end
     end(v2));
   end
-  $$Array.iter((function (x) do
+  __Array.iter((function (x) do
           return Curry._1(x, --[[ () ]]0);
         end end), arr);
   return v.contents;

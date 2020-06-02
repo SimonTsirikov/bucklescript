@@ -4,10 +4,10 @@ import * as Sys from "./sys.lua";
 import * as Block from "./block.lua";
 import * as Bytes from "./bytes.lua";
 import * as Curry from "./curry.lua";
-import * as $$Buffer from "./buffer.lua";
+import * as __Buffer from "./buffer.lua";
 import * as Printf from "./printf.lua";
 import * as Random from "./random.lua";
-import * as $$String from "./string.lua";
+import * as __String from "./string.lua";
 import * as Caml_obj from "./caml_obj.lua";
 import * as Caml_sys from "./caml_sys.lua";
 import * as Caml_bytes from "./caml_bytes.lua";
@@ -26,7 +26,7 @@ function generic_basename(is_dir_sep, current_dir_name, name) do
     while(true) do
       n = _n;
       if (n < 0) then do
-        return $$String.sub(name, 0, 1);
+        return __String.sub(name, 0, 1);
       end else if (Curry._2(is_dir_sep, name, n)) then do
         _n = n - 1 | 0;
         continue ;
@@ -36,9 +36,9 @@ function generic_basename(is_dir_sep, current_dir_name, name) do
         while(true) do
           n$1 = _n$1;
           if (n$1 < 0) then do
-            return $$String.sub(name, 0, p);
+            return __String.sub(name, 0, p);
           end else if (Curry._2(is_dir_sep, name, n$1)) then do
-            return $$String.sub(name, n$1 + 1 | 0, (p - n$1 | 0) - 1 | 0);
+            return __String.sub(name, n$1 + 1 | 0, (p - n$1 | 0) - 1 | 0);
           end else do
             _n$1 = n$1 - 1 | 0;
             continue ;
@@ -57,7 +57,7 @@ function generic_dirname(is_dir_sep, current_dir_name, name) do
     while(true) do
       n = _n;
       if (n < 0) then do
-        return $$String.sub(name, 0, 1);
+        return __String.sub(name, 0, 1);
       end else if (Curry._2(is_dir_sep, name, n)) then do
         _n = n - 1 | 0;
         continue ;
@@ -72,12 +72,12 @@ function generic_dirname(is_dir_sep, current_dir_name, name) do
             while(true) do
               n$2 = _n$2;
               if (n$2 < 0) then do
-                return $$String.sub(name, 0, 1);
+                return __String.sub(name, 0, 1);
               end else if (Curry._2(is_dir_sep, name, n$2)) then do
                 _n$2 = n$2 - 1 | 0;
                 continue ;
               end else do
-                return $$String.sub(name, 0, n$2 + 1 | 0);
+                return __String.sub(name, 0, n$2 + 1 | 0);
               end end  end 
             end;
           end else do
@@ -105,11 +105,11 @@ function is_relative(n) do
 end end
 
 function is_implicit(n) do
-  if (is_relative(n) and (#n < 2 or $$String.sub(n, 0, 2) ~= "./")) then do
+  if (is_relative(n) and (#n < 2 or __String.sub(n, 0, 2) ~= "./")) then do
     if (#n < 3) then do
       return true;
     end else do
-      return $$String.sub(n, 0, 3) ~= "../";
+      return __String.sub(n, 0, 3) ~= "../";
     end end 
   end else do
     return false;
@@ -118,7 +118,7 @@ end end
 
 function check_suffix(name, suff) do
   if (#name >= #suff) then do
-    return $$String.sub(name, #name - #suff | 0, #suff) == suff;
+    return __String.sub(name, #name - #suff | 0, #suff) == suff;
   end else do
     return false;
   end end 
@@ -141,17 +141,17 @@ function quote(param) do
   quotequote = "'\\''";
   s = param;
   l = #s;
-  b = $$Buffer.create(l + 20 | 0);
-  $$Buffer.add_char(b, --[[ "'" ]]39);
+  b = __Buffer.create(l + 20 | 0);
+  __Buffer.add_char(b, --[[ "'" ]]39);
   for i = 0 , l - 1 | 0 , 1 do
     if (Caml_string.get(s, i) == --[[ "'" ]]39) then do
-      $$Buffer.add_string(b, quotequote);
+      __Buffer.add_string(b, quotequote);
     end else do
-      $$Buffer.add_char(b, Caml_string.get(s, i));
+      __Buffer.add_char(b, Caml_string.get(s, i));
     end end 
   end
-  $$Buffer.add_char(b, --[[ "'" ]]39);
-  return $$Buffer.contents(b);
+  __Buffer.add_char(b, --[[ "'" ]]39);
+  return __Buffer.contents(b);
 end end
 
 function basename(param) do
@@ -186,11 +186,11 @@ function is_relative$1(n) do
 end end
 
 function is_implicit$1(n) do
-  if (is_relative$1(n) and (#n < 2 or $$String.sub(n, 0, 2) ~= "./") and (#n < 2 or $$String.sub(n, 0, 2) ~= ".\\") and (#n < 3 or $$String.sub(n, 0, 3) ~= "../")) then do
+  if (is_relative$1(n) and (#n < 2 or __String.sub(n, 0, 2) ~= "./") and (#n < 2 or __String.sub(n, 0, 2) ~= ".\\") and (#n < 3 or __String.sub(n, 0, 3) ~= "../")) then do
     if (#n < 3) then do
       return true;
     end else do
-      return $$String.sub(n, 0, 3) ~= "..\\";
+      return __String.sub(n, 0, 3) ~= "..\\";
     end end 
   end else do
     return false;
@@ -199,7 +199,7 @@ end end
 
 function check_suffix$1(name, suff) do
   if (#name >= #suff) then do
-    s = $$String.sub(name, #name - #suff | 0, #suff);
+    s = __String.sub(name, #name - #suff | 0, #suff);
     return Caml_bytes.bytes_to_string(Bytes.lowercase_ascii(Caml_bytes.bytes_of_string(s))) == Caml_bytes.bytes_to_string(Bytes.lowercase_ascii(Caml_bytes.bytes_of_string(suff)));
   end else do
     return false;
@@ -221,17 +221,17 @@ end
 
 function quote$1(s) do
   l = #s;
-  b = $$Buffer.create(l + 20 | 0);
-  $$Buffer.add_char(b, --[[ "\"" ]]34);
+  b = __Buffer.create(l + 20 | 0);
+  __Buffer.add_char(b, --[[ "\"" ]]34);
   loop = function (_i) do
     while(true) do
       i = _i;
       if (i == l) then do
-        return $$Buffer.add_char(b, --[[ "\"" ]]34);
+        return __Buffer.add_char(b, --[[ "\"" ]]34);
       end else do
         c = Caml_string.get(s, i);
         if (c ~= 34 and c ~= 92) then do
-          $$Buffer.add_char(b, c);
+          __Buffer.add_char(b, c);
           _i = i + 1 | 0;
           continue ;
         end else do
@@ -241,7 +241,7 @@ function quote$1(s) do
             i$1 = _i$1;
             n = _n;
             if (i$1 == l) then do
-              $$Buffer.add_char(b, --[[ "\"" ]]34);
+              __Buffer.add_char(b, --[[ "\"" ]]34);
               return add_bs(n);
             end else do
               match = Caml_string.get(s, i$1);
@@ -256,7 +256,7 @@ function quote$1(s) do
                 end end 
               end else do
                 add_bs((n << 1) + 1 | 0);
-                $$Buffer.add_char(b, --[[ "\"" ]]34);
+                __Buffer.add_char(b, --[[ "\"" ]]34);
                 return loop(i$1 + 1 | 0);
               end end 
             end end 
@@ -267,12 +267,12 @@ function quote$1(s) do
   end end;
   add_bs = function (n) do
     for _j = 1 , n , 1 do
-      $$Buffer.add_char(b, --[[ "\\" ]]92);
+      __Buffer.add_char(b, --[[ "\\" ]]92);
     end
     return --[[ () ]]0;
   end end;
   loop(0);
-  return $$Buffer.contents(b);
+  return __Buffer.contents(b);
 end end
 
 function has_drive(s) do
@@ -293,8 +293,8 @@ end end
 function drive_and_path(s) do
   if (has_drive(s)) then do
     return --[[ tuple ]][
-            $$String.sub(s, 0, 2),
-            $$String.sub(s, 2, #s - 2 | 0)
+            __String.sub(s, 0, 2),
+            __String.sub(s, 2, #s - 2 | 0)
           ];
   end else do
     return --[[ tuple ]][
@@ -400,7 +400,7 @@ function chop_suffix(name, suff) do
         ];
   end
    end 
-  return $$String.sub(name, 0, n);
+  return __String.sub(name, 0, n);
 end end
 
 function extension_len(name) do
@@ -435,7 +435,7 @@ function extension(name) do
   if (l == 0) then do
     return "";
   end else do
-    return $$String.sub(name, #name - l | 0, l);
+    return __String.sub(name, #name - l | 0, l);
   end end 
 end end
 
@@ -448,7 +448,7 @@ function chop_extension(name) do
         ];
   end
    end 
-  return $$String.sub(name, 0, #name - l | 0);
+  return __String.sub(name, 0, #name - l | 0);
 end end
 
 function remove_extension(name) do
@@ -456,7 +456,7 @@ function remove_extension(name) do
   if (l == 0) then do
     return name;
   end else do
-    return $$String.sub(name, 0, #name - l | 0);
+    return __String.sub(name, 0, #name - l | 0);
   end end 
 end end
 

@@ -2,7 +2,7 @@
 
 Mt = require "./mt.lua";
 List = require "../../lib/js/list.lua";
-$$Array = require "../../lib/js/array.lua";
+__Array = require "../../lib/js/array.lua";
 Block = require "../../lib/js/block.lua";
 Curry = require "../../lib/js/curry.lua";
 Caml_obj = require "../../lib/js/caml_obj.lua";
@@ -56,7 +56,7 @@ array_suites_000 = --[[ tuple ]][
   "init",
   (function (param) do
       return --[[ Eq ]]Block.__(0, [
-                $$Array.init(5, (function (x) do
+                __Array.init(5, (function (x) do
                         return x;
                       end end)),
                 [
@@ -78,7 +78,7 @@ array_suites_001 = --[[ :: ]][
           return List.fold_left((function (acc, param) do
                         return --[[ :: ]][
                                 --[[ tuple ]][
-                                  $$Array.to_list(param[0]),
+                                  __Array.to_list(param[0]),
                                   param[1]
                                 ],
                                 acc
@@ -144,10 +144,10 @@ array_suites_001 = --[[ :: ]][
                         Caml_array.caml_make_float_vect(100)
                       ],
                       --[[ tuple ]][
-                        $$Array.init(100, (function (param) do
+                        __Array.init(100, (function (param) do
                                 return --[[ "a" ]]97;
                               end end)),
-                        $$Array.init(100, (function (param) do
+                        __Array.init(100, (function (param) do
                                 return 0;
                               end end))
                       ]
@@ -159,7 +159,7 @@ array_suites_001 = --[[ :: ]][
           "sub",
           (function (param) do
               return --[[ Eq ]]Block.__(0, [
-                        $$Array.sub([
+                        __Array.sub([
                               0,
                               1,
                               2,
@@ -182,10 +182,10 @@ array_suites_001 = --[[ :: ]][
                   0,
                   0
                 ];
-                v = $$Array.init(3, (function (x) do
+                v = __Array.init(3, (function (x) do
                         return (x << 1);
                       end end));
-                $$Array.blit(v, 1, u, 1, 2);
+                __Array.blit(v, 1, u, 1, 2);
                 return --[[ Eq ]]Block.__(0, [
                           --[[ tuple ]][
                             [
@@ -210,10 +210,10 @@ array_suites_001 = --[[ :: ]][
             --[[ tuple ]][
               "File \"array_test.ml\", line 63, characters 2-9",
               (function (param) do
-                  a0 = $$Array.init(100, (function (i) do
+                  a0 = __Array.init(100, (function (i) do
                           return (i << 0);
                         end end));
-                  $$Array.blit(a0, 10, a0, 5, 20);
+                  __Array.blit(a0, 10, a0, 5, 20);
                   return --[[ Eq ]]Block.__(0, [
                             true,
                             starts_with(a0, [
@@ -251,10 +251,10 @@ array_suites_001 = --[[ :: ]][
               --[[ tuple ]][
                 "File \"array_test.ml\", line 72, characters 2-9",
                 (function (param) do
-                    a0 = $$Array.init(100, (function (i) do
+                    a0 = __Array.init(100, (function (i) do
                             return (i << 0);
                           end end));
-                    $$Array.blit(a0, 5, a0, 10, 20);
+                    __Array.blit(a0, 5, a0, 10, 20);
                     return --[[ Eq ]]Block.__(0, [
                               true,
                               starts_with(a0, [
@@ -312,7 +312,7 @@ array_suites_001 = --[[ :: ]][
                           0,
                           1
                         ];
-                        $$Array.sort(Caml_primitive.caml_int_compare, u);
+                        __Array.sort(Caml_primitive.caml_int_compare, u);
                         return --[[ Eq ]]Block.__(0, [
                                   Caml_obj.caml_equal([
                                         0,
@@ -327,10 +327,10 @@ array_suites_001 = --[[ :: ]][
                     --[[ tuple ]][
                       "sort_large",
                       (function (param) do
-                          v = $$Array.init(4, (function (i) do
+                          v = __Array.init(4, (function (i) do
                                   return i % 17;
                                 end end));
-                          $$Array.sort(Caml_primitive.caml_int_compare, v);
+                          __Array.sort(Caml_primitive.caml_int_compare, v);
                           return --[[ Eq ]]Block.__(0, [
                                     true,
                                     is_sorted(v)

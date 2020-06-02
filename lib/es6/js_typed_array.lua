@@ -1,27 +1,27 @@
 
 
 
-$$ArrayBuffer = { };
+__ArrayBuffer = { };
 
-$$Int8Array = { };
+__Int8Array = { };
 
-$$Uint8Array = { };
+__Uint8Array = { };
 
-$$Uint8ClampedArray = { };
+__Uint8ClampedArray = { };
 
-$$Int16Array = { };
+__Int16Array = { };
 
-$$Uint16Array = { };
+__Uint16Array = { };
 
-$$Int32Array = { };
+__Int32Array = { };
 
-$$Uint32Array = { };
+__Uint32Array = { };
 
-$$Float32Array = { };
+__Float32Array = { };
 
-$$Float64Array = { };
+__Float64Array = { };
 
-$$DataView = { };
+__DataView = { };
 
 Int32_array = --[[ alias ]]0;
 
@@ -30,20 +30,20 @@ Float32_array = --[[ alias ]]0;
 Float64_array = --[[ alias ]]0;
 
 export do
-  $$ArrayBuffer ,
-  $$Int8Array ,
-  $$Uint8Array ,
-  $$Uint8ClampedArray ,
-  $$Int16Array ,
-  $$Uint16Array ,
-  $$Int32Array ,
+  __ArrayBuffer ,
+  __Int8Array ,
+  __Uint8Array ,
+  __Uint8ClampedArray ,
+  __Int16Array ,
+  __Uint16Array ,
+  __Int32Array ,
   Int32_array ,
-  $$Uint32Array ,
-  $$Float32Array ,
+  __Uint32Array ,
+  __Float32Array ,
   Float32_array ,
-  $$Float64Array ,
+  __Float64Array ,
   Float64_array ,
-  $$DataView ,
+  __DataView ,
   
 end
 --[[ No side effect ]]

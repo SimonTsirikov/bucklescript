@@ -30,10 +30,10 @@ function raiseUriError(str) do
   throw new URIError(str);
 end end
 
-$$Error$1 = Caml_js_exceptions.$$Error;
+__Error$1 = Caml_js_exceptions.__Error;
 
 export do
-  $$Error$1 as $$Error,
+  __Error$1 as __Error,
   raiseError ,
   raiseEvalError ,
   raiseRangeError ,

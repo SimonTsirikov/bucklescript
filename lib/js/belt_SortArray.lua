@@ -428,10 +428,10 @@ end end
 
 Int = --[[ alias ]]0;
 
-$$String = --[[ alias ]]0;
+__String = --[[ alias ]]0;
 
 exports.Int = Int;
-exports.$$String = $$String;
+exports.__String = __String;
 exports.strictlySortedLengthU = strictlySortedLengthU;
 exports.strictlySortedLength = strictlySortedLength;
 exports.isSortedU = isSortedU;

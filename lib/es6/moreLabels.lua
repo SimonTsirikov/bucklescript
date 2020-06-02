@@ -1,19 +1,19 @@
 
 
-import * as $$Map from "./map.lua";
-import * as $$Set from "./set.lua";
+import * as __Map from "./map.lua";
+import * as __Set from "./set.lua";
 import * as Hashtbl from "./hashtbl.lua";
 
 Hashtbl$1 = Hashtbl;
 
-$$Map$1 = $$Map;
+__Map$1 = __Map;
 
-$$Set$1 = $$Set;
+__Set$1 = __Set;
 
 export do
   Hashtbl$1 as Hashtbl,
-  $$Map$1 as $$Map,
-  $$Set$1 as $$Set,
+  __Map$1 as __Map,
+  __Set$1 as __Set,
   
 end
 --[[ No side effect ]]

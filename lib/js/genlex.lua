@@ -70,7 +70,7 @@ function make_lexer(keywords) do
     catch (exn)do
       if (exn == Caml_builtin_exceptions.not_found) then do
         throw [
-              Stream.$$Error,
+              Stream.__Error,
               "Illegal character " .. s
             ];
       end
@@ -108,12 +108,12 @@ function make_lexer(keywords) do
                     Stream.junk(strm__);
                     c$1;
                     try do
-                      c$1 = $$char(strm__);
+                      c$1 = __char(strm__);
                     end
                     catch (exn)do
                       if (exn == Stream.Failure) then do
                         throw [
-                              Stream.$$Error,
+                              Stream.__Error,
                               ""
                             ];
                       end
@@ -124,7 +124,7 @@ function make_lexer(keywords) do
                     if (match$1 ~= undefined) then do
                       if (match$1 ~= 39) then do
                         throw [
-                              Stream.$$Error,
+                              Stream.__Error,
                               ""
                             ];
                       end
@@ -133,7 +133,7 @@ function make_lexer(keywords) do
                       return --[[ Char ]]Block.__(5, [c$1]);
                     end else do
                       throw [
-                            Stream.$$Error,
+                            Stream.__Error,
                             ""
                           ];
                     end end end end end 
@@ -484,12 +484,12 @@ function make_lexer(keywords) do
           end else do
             c$1;
             try do
-              c$1 = $$escape(strm__);
+              c$1 = __escape(strm__);
             end
             catch (exn)do
               if (exn == Stream.Failure) then do
                 throw [
-                      Stream.$$Error,
+                      Stream.__Error,
                       ""
                     ];
               end
@@ -507,7 +507,7 @@ function make_lexer(keywords) do
       end end 
     end;
   end end;
-  $$char = function (strm__) do
+  __char = function (strm__) do
     match = Stream.peek(strm__);
     if (match ~= undefined) then do
       c = match;
@@ -516,12 +516,12 @@ function make_lexer(keywords) do
         return c;
       end else do
         try do
-          return $$escape(strm__);
+          return __escape(strm__);
         end
         catch (exn)do
           if (exn == Stream.Failure) then do
             throw [
-                  Stream.$$Error,
+                  Stream.__Error,
                   ""
                 ];
           end
@@ -533,7 +533,7 @@ function make_lexer(keywords) do
       throw Stream.Failure;
     end end 
   end end;
-  $$escape = function (strm__) do
+  __escape = function (strm__) do
     match = Stream.peek(strm__);
     if (match ~= undefined) then do
       c1 = match;
@@ -570,7 +570,7 @@ function make_lexer(keywords) do
             c2 = match$1;
             if (c2 > 57 or c2 < 48) then do
               throw [
-                    Stream.$$Error,
+                    Stream.__Error,
                     ""
                   ];
             end
@@ -581,7 +581,7 @@ function make_lexer(keywords) do
               c3 = match$2;
               if (c3 > 57 or c3 < 48) then do
                 throw [
-                      Stream.$$Error,
+                      Stream.__Error,
                       ""
                     ];
               end
@@ -590,13 +590,13 @@ function make_lexer(keywords) do
               return Char.chr((Caml_int32.imul(c1 - 48 | 0, 100) + Caml_int32.imul(c2 - 48 | 0, 10) | 0) + (c3 - 48 | 0) | 0);
             end else do
               throw [
-                    Stream.$$Error,
+                    Stream.__Error,
                     ""
                   ];
             end end 
           end else do
             throw [
-                  Stream.$$Error,
+                  Stream.__Error,
                   ""
                 ];
           end end 

@@ -246,7 +246,7 @@ end end
 
 Int = --[[ alias ]]0;
 
-$$String = --[[ alias ]]0;
+__String = --[[ alias ]]0;
 
 clear = Belt_internalBucketsType.clear;
 
@@ -278,7 +278,7 @@ logStats = Belt_internalBuckets.logStats;
 
 export do
   Int ,
-  $$String ,
+  __String ,
   make ,
   clear ,
   isEmpty ,

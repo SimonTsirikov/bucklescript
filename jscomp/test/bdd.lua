@@ -4,7 +4,7 @@ Caml_array = require "../../lib/js/caml_array.lua";
 Caml_int32 = require "../../lib/js/caml_int32.lua";
 Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
 
-function $$eval(_bdd, vars) do
+function __eval(_bdd, vars) do
   while(true) do
     bdd = _bdd;
     if (typeof bdd == "number") then do
@@ -372,7 +372,7 @@ function test_hwb(bdd, vars) do
     end
      end 
   end
-  return bool_equal($$eval(bdd, vars), ntrue > 0 and Caml_array.caml_array_get(vars, ntrue - 1 | 0) or false);
+  return bool_equal(__eval(bdd, vars), ntrue > 0 and Caml_array.caml_array_get(vars, ntrue - 1 | 0) or false);
 end end
 
 function main(param) do
@@ -405,7 +405,7 @@ one = --[[ One ]]0;
 
 cacheSize = 1999;
 
-exports.$$eval = $$eval;
+exports.__eval = __eval;
 exports.getId = getId;
 exports.initSize_1 = initSize_1;
 exports.nodeC = nodeC;

@@ -1,62 +1,62 @@
 
 
-import * as $$Array from "./array.lua";
+import * as __Array from "./array.lua";
 
-init = $$Array.init;
+init = __Array.init;
 
-make_matrix = $$Array.make_matrix;
+make_matrix = __Array.make_matrix;
 
-create_matrix = $$Array.create_matrix;
+create_matrix = __Array.create_matrix;
 
-append = $$Array.append;
+append = __Array.append;
 
-concat = $$Array.concat;
+concat = __Array.concat;
 
-sub = $$Array.sub;
+sub = __Array.sub;
 
-copy = $$Array.copy;
+copy = __Array.copy;
 
-fill = $$Array.fill;
+fill = __Array.fill;
 
-blit = $$Array.blit;
+blit = __Array.blit;
 
-to_list = $$Array.to_list;
+to_list = __Array.to_list;
 
-of_list = $$Array.of_list;
+of_list = __Array.of_list;
 
-iter = $$Array.iter;
+iter = __Array.iter;
 
-map = $$Array.map;
+map = __Array.map;
 
-iteri = $$Array.iteri;
+iteri = __Array.iteri;
 
-mapi = $$Array.mapi;
+mapi = __Array.mapi;
 
-fold_left = $$Array.fold_left;
+fold_left = __Array.fold_left;
 
-fold_right = $$Array.fold_right;
+fold_right = __Array.fold_right;
 
-iter2 = $$Array.iter2;
+iter2 = __Array.iter2;
 
-map2 = $$Array.map2;
+map2 = __Array.map2;
 
-exists = $$Array.exists;
+exists = __Array.exists;
 
-for_all = $$Array.for_all;
+for_all = __Array.for_all;
 
-mem = $$Array.mem;
+mem = __Array.mem;
 
-memq = $$Array.memq;
+memq = __Array.memq;
 
-make_float = $$Array.make_float;
+make_float = __Array.make_float;
 
-sort = $$Array.sort;
+sort = __Array.sort;
 
-stable_sort = $$Array.stable_sort;
+stable_sort = __Array.stable_sort;
 
-fast_sort = $$Array.fast_sort;
+fast_sort = __Array.fast_sort;
 
-Floatarray = $$Array.Floatarray;
+Floatarray = __Array.Floatarray;
 
 export do
   init ,

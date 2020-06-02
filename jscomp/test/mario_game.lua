@@ -795,7 +795,7 @@ function update_vel(part) do
   return --[[ () ]]0;
 end end
 
-function $$process(part) do
+function __process(part) do
   part.life = part.life - 1 | 0;
   if (part.life == 0) then do
     part.kill = true;
@@ -811,7 +811,7 @@ end end
 Particle = do
   make: make$1,
   make_score: make_score,
-  $$process: $$process
+  __process: __process
 end;
 
 id_counter = do
@@ -1425,7 +1425,7 @@ function kill(collid, ctx) do
   end
 end end
 
-$$Object = do
+__Object = do
   invuln: 60,
   dampen_jump: 4,
   get_sprite: get_sprite,
@@ -2278,7 +2278,7 @@ function update_loop(canvas, param, map_dim) do
         List.iter((function (part) do
                 state$2 = state$1;
                 part$1 = part;
-                $$process(part$1);
+                __process(part$1);
                 x = part$1.pos.x - state$2.vpt.pos.x;
                 y = part$1.pos.y - state$2.vpt.pos.y;
                 render(part$1.params.sprite, --[[ tuple ]][
@@ -2564,7 +2564,7 @@ end end
 function generate_coins(_block_coord) do
   while(true) do
     block_coord = _block_coord;
-    place_coin = Random.$$int(2);
+    place_coin = Random.__int(2);
     if (block_coord) then do
       t = block_coord[1];
       h = block_coord[0];
@@ -2595,9 +2595,9 @@ function choose_block_pattern(blockw, blockh, cbx, cby, prob) do
   if (cbx > blockw or cby > blockh) then do
     return --[[ [] ]]0;
   end else do
-    block_typ = Random.$$int(4);
-    stair_typ = Random.$$int(2);
-    life_block_chance = Random.$$int(5);
+    block_typ = Random.__int(4);
+    stair_typ = Random.__int(2);
+    life_block_chance = Random.__int(5);
     middle_block = life_block_chance == 0 and 3 or stair_typ;
     local ___conditional___=(prob);
     do
@@ -2664,7 +2664,7 @@ function choose_block_pattern(blockw, blockh, cbx, cby, prob) do
                   ];
           end end  end end end end 
        if ___conditional___ = 1 then do
-          num_clouds = Random.$$int(5) + 5 | 0;
+          num_clouds = Random.__int(5) + 5 | 0;
           if (cby < 5) then do
             return generate_clouds(cbx, cby, 2, num_clouds);
           end else do
@@ -3049,7 +3049,7 @@ function generate_enemies(blockw, blockh, _cbx, _cby, acc) do
       _cby = cby + 1;
       continue ;
     end else do
-      prob = Random.$$int(30);
+      prob = Random.__int(30);
       if (prob < 3 and blockh - 1 == cby) then do
         enemy_000 = --[[ tuple ]][
           prob,
@@ -3074,8 +3074,8 @@ end end
 function generate_block_enemies(_block_coord) do
   while(true) do
     block_coord = _block_coord;
-    place_enemy = Random.$$int(20);
-    enemy_typ = Random.$$int(3);
+    place_enemy = Random.__int(20);
+    enemy_typ = Random.__int(3);
     if (block_coord) then do
       t = block_coord[1];
       h = block_coord[0];
@@ -3120,7 +3120,7 @@ function generate_block_locs(blockw, blockh, _cbx, _cby, _acc) do
       _cby = cby + 1;
       continue ;
     end else do
-      prob = Random.$$int(100);
+      prob = Random.__int(100);
       if (prob < 5) then do
         newacc = choose_block_pattern(blockw, blockh, cbx, cby, prob);
         undup_lst = avoid_overlap(newacc, acc);
@@ -3150,7 +3150,7 @@ function generate_ground(blockw, blockh, _inc, _acc) do
     if (inc > blockw) then do
       return acc;
     end else if (inc > 10) then do
-      skip = Random.$$int(10);
+      skip = Random.__int(10);
       newacc = Pervasives.$at(acc, --[[ :: ]][
             --[[ tuple ]][
               4,
@@ -3374,7 +3374,7 @@ exports.Actors = Actors;
 exports.Dom_html = Dom_html;
 exports.Sprite = Sprite;
 exports.Particle = Particle;
-exports.$$Object = $$Object;
+exports.__Object = __Object;
 exports.Draw = Draw;
 exports.Viewport = Viewport;
 exports.Director = Director;

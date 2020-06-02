@@ -7,7 +7,7 @@ end end
 
 Textarea = { };
 
-$$Int32Array = { };
+__Int32Array = { };
 
 function v(param) do
   u = new TextArea();
@@ -35,7 +35,7 @@ exports.b = b;
 exports.c = c;
 exports.d = d;
 exports.Textarea = Textarea;
-exports.$$Int32Array = $$Int32Array;
+exports.__Int32Array = __Int32Array;
 exports.v = v;
 exports.f = f;
 --[[ No side effect ]]

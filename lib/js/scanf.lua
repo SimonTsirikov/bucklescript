@@ -3,9 +3,9 @@
 List = require "./list.lua";
 Block = require "./block.lua";
 Curry = require "./curry.lua";
-$$Buffer = require "./buffer.lua";
+__Buffer = require "./buffer.lua";
 Printf = require "./printf.lua";
-$$String = require "./string.lua";
+__String = require "./string.lua";
 Caml_bytes = require "./caml_bytes.lua";
 Caml_int32 = require "./caml_int32.lua";
 Pervasives = require "./pervasives.lua";
@@ -93,7 +93,7 @@ end end
 
 function token(ib) do
   token_buffer = ib.ic_token_buffer;
-  tok = $$Buffer.contents(token_buffer);
+  tok = __Buffer.contents(token_buffer);
   token_buffer.position = 0;
   ib.ic_token_count = ib.ic_token_count + 1 | 0;
   return tok;
@@ -106,7 +106,7 @@ function ignore_char(width, ib) do
 end end
 
 function store_char(width, ib, c) do
-  $$Buffer.add_char(ib.ic_token_buffer, c);
+  __Buffer.add_char(ib.ic_token_buffer, c);
   return ignore_char(width, ib);
 end end
 
@@ -119,7 +119,7 @@ function create(iname, next) do
           ic_line_count: 0,
           ic_token_count: 0,
           ic_get_next_char: next,
-          ic_token_buffer: $$Buffer.create(1024),
+          ic_token_buffer: __Buffer.create(1024),
           ic_input_name: iname
         end;
 end end
@@ -488,7 +488,7 @@ function token_int_literal(conv, ib) do
   if (l == 0 or Caml_string.get(tok, 0) ~= --[[ "+" ]]43) then do
     return tok;
   end else do
-    return $$String.sub(tok, 1, l - 1 | 0);
+    return __String.sub(tok, 1, l - 1 | 0);
   end end 
 end end
 
@@ -1513,7 +1513,7 @@ function stopper_of_formatting_lit(fmting) do
   end else do
     str = CamlinternalFormat.string_of_formatting_lit(fmting);
     stp = Caml_string.get(str, 1);
-    sub_str = $$String.sub(str, 2, #str - 2 | 0);
+    sub_str = __String.sub(str, 2, #str - 2 | 0);
     return --[[ tuple ]][
             stp,
             sub_str
@@ -1827,7 +1827,7 @@ function make_scanf(ib, _fmt, readers) do
                   ];
             end end end end end 
          if ___conditional___ = 11--[[ String_literal ]] then do
-            $$String.iter((function (param) do
+            __String.iter((function (param) do
                     return check_char(ib, param);
                   end end), fmt[0]);
             _fmt = fmt[1];
@@ -1900,7 +1900,7 @@ function make_scanf(ib, _fmt, readers) do
                   "scanf: bad conversion \"%t\""
                 ];end end end 
          if ___conditional___ = 17--[[ Formatting_lit ]] then do
-            $$String.iter((function (param) do
+            __String.iter((function (param) do
                     return check_char(ib, param);
                   end end), CamlinternalFormat.string_of_formatting_lit(fmt[0]));
             _fmt = fmt[1];
@@ -2062,7 +2062,7 @@ function kscanf(ib, ef, param) do
   str = param[1];
   fmt = param[0];
   k = function (readers, f) do
-    $$Buffer.reset(ib.ic_token_buffer);
+    __Buffer.reset(ib.ic_token_buffer);
     match;
     try do
       match = --[[ Args ]]Block.__(0, [make_scanf(ib, fmt, readers)]);
@@ -2072,7 +2072,7 @@ function kscanf(ib, ef, param) do
       if (exc[0] == Scan_failure or exc[0] == Caml_builtin_exceptions.failure or exc == Caml_builtin_exceptions.end_of_file) then do
         match = --[[ Exc ]]Block.__(1, [exc]);
       end else if (exc[0] == Caml_builtin_exceptions.invalid_argument) then do
-        s = exc[1] .. (" in format \"" .. ($$String.escaped(str) .. "\""));
+        s = exc[1] .. (" in format \"" .. (__String.escaped(str) .. "\""));
         throw [
               Caml_builtin_exceptions.invalid_argument,
               s
@@ -2145,18 +2145,18 @@ end end
 
 function string_to_String(s) do
   l = #s;
-  b = $$Buffer.create(l + 2 | 0);
-  $$Buffer.add_char(b, --[[ "\"" ]]34);
+  b = __Buffer.create(l + 2 | 0);
+  __Buffer.add_char(b, --[[ "\"" ]]34);
   for i = 0 , l - 1 | 0 , 1 do
     c = Caml_string.get(s, i);
     if (c == --[[ "\"" ]]34) then do
-      $$Buffer.add_char(b, --[[ "\\" ]]92);
+      __Buffer.add_char(b, --[[ "\\" ]]92);
     end
      end 
-    $$Buffer.add_char(b, c);
+    __Buffer.add_char(b, c);
   end
-  $$Buffer.add_char(b, --[[ "\"" ]]34);
-  return $$Buffer.contents(b);
+  __Buffer.add_char(b, --[[ "\"" ]]34);
+  return __Buffer.contents(b);
 end end
 
 function format_from_string(s, fmt) do

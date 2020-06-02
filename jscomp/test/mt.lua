@@ -2,7 +2,7 @@
 
 List = require "../../lib/js/list.lua";
 Path = require "path";
-$$Array = require "../../lib/js/array.lua";
+__Array = require "../../lib/js/array.lua";
 Block = require "../../lib/js/block.lua";
 Curry = require "../../lib/js/curry.lua";
 Assert = require "assert";
@@ -14,7 +14,7 @@ function assert_fail(msg) do
 end end
 
 function is_mocha(param) do
-  match = $$Array.to_list(Process.argv);
+  match = __Array.to_list(Process.argv);
   if (match) then do
     match$1 = match[1];
     if (match$1) then do
@@ -33,7 +33,7 @@ function is_mocha(param) do
 end end
 
 function from_suites(name, suite) do
-  match = $$Array.to_list(Process.argv);
+  match = __Array.to_list(Process.argv);
   if (match and is_mocha(--[[ () ]]0)) then do
     describe(name, (function () do
             return List.iter((function (param) do
@@ -104,7 +104,7 @@ function handleCode(spec) do
 end end
 
 function from_pair_suites(name, suites) do
-  match = $$Array.to_list(Process.argv);
+  match = __Array.to_list(Process.argv);
   if (match) then do
     if (is_mocha(--[[ () ]]0)) then do
       describe(name, (function () do
@@ -208,7 +208,7 @@ end end
 val_unit = Promise.resolve(--[[ () ]]0);
 
 function from_promise_suites(name, suites) do
-  match = $$Array.to_list(Process.argv);
+  match = __Array.to_list(Process.argv);
   if (match) then do
     if (is_mocha(--[[ () ]]0)) then do
       describe(name, (function () do

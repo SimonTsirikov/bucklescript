@@ -3,27 +3,27 @@
 Curry = require "./curry.lua";
 Caml_option = require "./caml_option.lua";
 
-$$null = null;
+__null = null;
 
 function make(param) do
   return do
           length: 0,
-          first: $$null,
-          last: $$null
+          first: __null,
+          last: __null
         end;
 end end
 
 function clear(q) do
   q.length = 0;
-  q.first = $$null;
-  q.last = $$null;
+  q.first = __null;
+  q.last = __null;
   return --[[ () ]]0;
 end end
 
 function add(q, x) do
   cell = do
     content: x,
-    next: $$null
+    next: __null
   end;
   match = q.last;
   if (match ~= null) then do
@@ -116,10 +116,10 @@ end end
 function copy(q) do
   qRes = do
     length: q.length,
-    first: $$null,
-    last: $$null
+    first: __null,
+    last: __null
   end;
-  _prev = $$null;
+  _prev = __null;
   _cell = q.first;
   while(true) do
     cell = _cell;
@@ -128,7 +128,7 @@ function copy(q) do
       content = cell.content;
       res = do
         content: content,
-        next: $$null
+        next: __null
       end;
       if (prev ~= null) then do
         prev.next = res;
@@ -148,10 +148,10 @@ end end
 function mapU(q, f) do
   qRes = do
     length: q.length,
-    first: $$null,
-    last: $$null
+    first: __null,
+    last: __null
   end;
-  _prev = $$null;
+  _prev = __null;
   _cell = q.first;
   f$1 = f;
   while(true) do
@@ -161,7 +161,7 @@ function mapU(q, f) do
       content = f$1(cell.content);
       res = do
         content: content,
-        next: $$null
+        next: __null
       end;
       if (prev ~= null) then do
         prev.next = res;

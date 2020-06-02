@@ -1,7 +1,7 @@
 --[['use strict';]]
 
 List = require "../../lib/js/list.lua";
-$$String = require "../../lib/js/string.lua";
+__String = require "../../lib/js/string.lua";
 Test_order = require "./test_order.lua";
 
 function Make(U) do
@@ -13,8 +13,8 @@ function Make(U) do
 end end
 
 X = do
-  compare: $$String.compare,
-  v: $$String.compare
+  compare: __String.compare,
+  v: __String.compare
 end;
 
 U = do

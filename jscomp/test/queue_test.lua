@@ -1,7 +1,7 @@
 --[['use strict';]]
 
 Mt = require "./mt.lua";
-$$Array = require "../../lib/js/array.lua";
+__Array = require "../../lib/js/array.lua";
 Block = require "../../lib/js/block.lua";
 Curry = require "../../lib/js/curry.lua";
 Queue = require "../../lib/js/queue.lua";
@@ -19,7 +19,7 @@ function Test(Queue) do
   end end;
   queue_1 = function (x) do
     q = Curry._1(Queue.create, --[[ () ]]0);
-    $$Array.iter((function (x) do
+    __Array.iter((function (x) do
             return Curry._2(Queue.add, x, q);
           end end), x);
     return to_array(q);
@@ -45,7 +45,7 @@ function queue_1(x) do
     first: --[[ Nil ]]0,
     last: --[[ Nil ]]0
   end;
-  $$Array.iter((function (x) do
+  __Array.iter((function (x) do
           return Queue.add(x, q);
         end end), x);
   return to_array(q);
@@ -70,7 +70,7 @@ function queue_1$1(x) do
     length: 0,
     tail: undefined
   end;
-  $$Array.iter((function (x) do
+  __Array.iter((function (x) do
           return Queue_402.add(x, q);
         end end), x);
   return to_array$1(q);

@@ -1,15 +1,15 @@
 --[['use strict';]]
 
-$$Array = require "../../lib/js/array.lua";
+__Array = require "../../lib/js/array.lua";
 Caml_array = require "../../lib/js/caml_array.lua";
 
 v = Caml_array.caml_make_vect(6, 5);
 
 Caml_array.caml_make_float_vect(30);
 
-h = $$Array.sub(v, 0, 2);
+h = __Array.sub(v, 0, 2);
 
-hhh = $$Array.append([
+hhh = __Array.append([
       1,
       2,
       3,
@@ -41,7 +41,7 @@ u = Caml_array.caml_array_concat(--[[ :: ]][
       ]
     ]);
 
-hh = $$Array.blit;
+hh = __Array.blit;
 
 exports.v = v;
 exports.h = h;

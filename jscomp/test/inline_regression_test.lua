@@ -3,7 +3,7 @@
 Mt = require "./mt.lua";
 Block = require "../../lib/js/block.lua";
 Curry = require "../../lib/js/curry.lua";
-$$String = require "../../lib/js/string.lua";
+__String = require "../../lib/js/string.lua";
 Filename = require "../../lib/js/filename.lua";
 Caml_string = require "../../lib/js/caml_string.lua";
 
@@ -15,7 +15,7 @@ function generic_basename(is_dir_sep, current_dir_name, name) do
     while(true) do
       n = _n;
       if (n < 0) then do
-        return $$String.sub(name, 0, 1);
+        return __String.sub(name, 0, 1);
       end else if (Curry._2(is_dir_sep, name, n)) then do
         _n = n - 1 | 0;
         continue ;
@@ -25,9 +25,9 @@ function generic_basename(is_dir_sep, current_dir_name, name) do
         while(true) do
           n$1 = _n$1;
           if (n$1 < 0) then do
-            return $$String.sub(name, 0, p);
+            return __String.sub(name, 0, p);
           end else if (Curry._2(is_dir_sep, name, n$1)) then do
-            return $$String.sub(name, n$1 + 1 | 0, (p - n$1 | 0) - 1 | 0);
+            return __String.sub(name, n$1 + 1 | 0, (p - n$1 | 0) - 1 | 0);
           end else do
             _n$1 = n$1 - 1 | 0;
             continue ;

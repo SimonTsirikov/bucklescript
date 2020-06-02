@@ -2,13 +2,13 @@
 
 Mt = require "./mt.lua";
 Block = require "../../lib/js/block.lua";
-$$String = require "../../lib/js/string.lua";
+__String = require "../../lib/js/string.lua";
 
 function u(v) do
   return v;
 end end
 
-s = $$String;
+s = __String;
 
 N = do
   s: s

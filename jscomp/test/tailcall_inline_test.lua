@@ -1,7 +1,7 @@
 --[['use strict';]]
 
 Mt = require "./mt.lua";
-$$Array = require "../../lib/js/array.lua";
+__Array = require "../../lib/js/array.lua";
 Block = require "../../lib/js/block.lua";
 Caml_array = require "../../lib/js/caml_array.lua";
 
@@ -62,7 +62,7 @@ suites_001 = --[[ :: ]][
                       ]
                     ]
                   ],
-                  $$Array.to_list([
+                  __Array.to_list([
                         1,
                         2,
                         3

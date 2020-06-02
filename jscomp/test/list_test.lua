@@ -2,7 +2,7 @@
 
 Mt = require "./mt.lua";
 List = require "../../lib/js/list.lua";
-$$Array = require "../../lib/js/array.lua";
+__Array = require "../../lib/js/array.lua";
 Block = require "../../lib/js/block.lua";
 Caml_primitive = require "../../lib/js/caml_primitive.lua";
 
@@ -56,7 +56,7 @@ list_suites_001 = --[[ :: ]][
       (function (param) do
           return --[[ Eq ]]Block.__(0, [
                     30000,
-                    List.length($$Array.to_list($$Array.init(30000, (function (param) do
+                    List.length(__Array.to_list(__Array.init(30000, (function (param) do
                                     return 0;
                                   end end))))
                   ]);

@@ -2,7 +2,7 @@
 
 Obj = require "./obj.lua";
 Sys = require "./sys.lua";
-$$Array = require "./array.lua";
+__Array = require "./array.lua";
 Curry = require "./curry.lua";
 Random = require "./random.lua";
 Hashtbl = require "./hashtbl.lua";
@@ -137,7 +137,7 @@ function MakeSeeded(H) do
   copy = function (h) do
     return do
             size: h.size,
-            data: $$Array.copy(h.data),
+            data: __Array.copy(h.data),
             seed: h.seed,
             initial_size: h.initial_size
           end;
@@ -552,11 +552,11 @@ function MakeSeeded(H) do
     end;
   end end;
   stats = function (h) do
-    mbl = $$Array.fold_left((function (m, b) do
+    mbl = __Array.fold_left((function (m, b) do
             return Caml_primitive.caml_int_max(m, bucket_length(0, b));
           end end), 0, h.data);
     histo = Caml_array.caml_make_vect(mbl + 1 | 0, 0);
-    $$Array.iter((function (b) do
+    __Array.iter((function (b) do
             l = bucket_length(0, b);
             return Caml_array.caml_array_set(histo, l, Caml_array.caml_array_get(histo, l) + 1 | 0);
           end end), h.data);
@@ -590,11 +590,11 @@ function MakeSeeded(H) do
     size = do
       contents: 0
     end;
-    mbl = $$Array.fold_left((function (m, b) do
+    mbl = __Array.fold_left((function (m, b) do
             return Caml_primitive.caml_int_max(m, bucket_length_alive(0, b));
           end end), 0, h.data);
     histo = Caml_array.caml_make_vect(mbl + 1 | 0, 0);
-    $$Array.iter((function (b) do
+    __Array.iter((function (b) do
             l = bucket_length_alive(0, b);
             size.contents = size.contents + l | 0;
             return Caml_array.caml_array_set(histo, l, Caml_array.caml_array_get(histo, l) + 1 | 0);
@@ -691,7 +691,7 @@ function Make(H) do
   copy = function (h) do
     return do
             size: h.size,
-            data: $$Array.copy(h.data),
+            data: __Array.copy(h.data),
             seed: h.seed,
             initial_size: h.initial_size
           end;
@@ -1106,11 +1106,11 @@ function Make(H) do
     end;
   end end;
   stats = function (h) do
-    mbl = $$Array.fold_left((function (m, b) do
+    mbl = __Array.fold_left((function (m, b) do
             return Caml_primitive.caml_int_max(m, bucket_length(0, b));
           end end), 0, h.data);
     histo = Caml_array.caml_make_vect(mbl + 1 | 0, 0);
-    $$Array.iter((function (b) do
+    __Array.iter((function (b) do
             l = bucket_length(0, b);
             return Caml_array.caml_array_set(histo, l, Caml_array.caml_array_get(histo, l) + 1 | 0);
           end end), h.data);
@@ -1144,11 +1144,11 @@ function Make(H) do
     size = do
       contents: 0
     end;
-    mbl = $$Array.fold_left((function (m, b) do
+    mbl = __Array.fold_left((function (m, b) do
             return Caml_primitive.caml_int_max(m, bucket_length_alive(0, b));
           end end), 0, h.data);
     histo = Caml_array.caml_make_vect(mbl + 1 | 0, 0);
-    $$Array.iter((function (b) do
+    __Array.iter((function (b) do
             l = bucket_length_alive(0, b);
             size.contents = size.contents + l | 0;
             return Caml_array.caml_array_set(histo, l, Caml_array.caml_array_get(histo, l) + 1 | 0);
@@ -1369,7 +1369,7 @@ function MakeSeeded$1(H1, H2) do
   copy = function (h) do
     return do
             size: h.size,
-            data: $$Array.copy(h.data),
+            data: __Array.copy(h.data),
             seed: h.seed,
             initial_size: h.initial_size
           end;
@@ -1784,11 +1784,11 @@ function MakeSeeded$1(H1, H2) do
     end;
   end end;
   stats = function (h) do
-    mbl = $$Array.fold_left((function (m, b) do
+    mbl = __Array.fold_left((function (m, b) do
             return Caml_primitive.caml_int_max(m, bucket_length(0, b));
           end end), 0, h.data);
     histo = Caml_array.caml_make_vect(mbl + 1 | 0, 0);
-    $$Array.iter((function (b) do
+    __Array.iter((function (b) do
             l = bucket_length(0, b);
             return Caml_array.caml_array_set(histo, l, Caml_array.caml_array_get(histo, l) + 1 | 0);
           end end), h.data);
@@ -1822,11 +1822,11 @@ function MakeSeeded$1(H1, H2) do
     size = do
       contents: 0
     end;
-    mbl = $$Array.fold_left((function (m, b) do
+    mbl = __Array.fold_left((function (m, b) do
             return Caml_primitive.caml_int_max(m, bucket_length_alive(0, b));
           end end), 0, h.data);
     histo = Caml_array.caml_make_vect(mbl + 1 | 0, 0);
-    $$Array.iter((function (b) do
+    __Array.iter((function (b) do
             l = bucket_length_alive(0, b);
             size.contents = size.contents + l | 0;
             return Caml_array.caml_array_set(histo, l, Caml_array.caml_array_get(histo, l) + 1 | 0);
@@ -1962,7 +1962,7 @@ function Make$1(H1, H2) do
         copy = function (h) do
           return do
                   size: h.size,
-                  data: $$Array.copy(h.data),
+                  data: __Array.copy(h.data),
                   seed: h.seed,
                   initial_size: h.initial_size
                 end;
@@ -2377,11 +2377,11 @@ function Make$1(H1, H2) do
           end;
         end end;
         stats = function (h) do
-          mbl = $$Array.fold_left((function (m, b) do
+          mbl = __Array.fold_left((function (m, b) do
                   return Caml_primitive.caml_int_max(m, bucket_length(0, b));
                 end end), 0, h.data);
           histo = Caml_array.caml_make_vect(mbl + 1 | 0, 0);
-          $$Array.iter((function (b) do
+          __Array.iter((function (b) do
                   l = bucket_length(0, b);
                   return Caml_array.caml_array_set(histo, l, Caml_array.caml_array_get(histo, l) + 1 | 0);
                 end end), h.data);
@@ -2415,11 +2415,11 @@ function Make$1(H1, H2) do
           size = do
             contents: 0
           end;
-          mbl = $$Array.fold_left((function (m, b) do
+          mbl = __Array.fold_left((function (m, b) do
                   return Caml_primitive.caml_int_max(m, bucket_length_alive(0, b));
                 end end), 0, h.data);
           histo = Caml_array.caml_make_vect(mbl + 1 | 0, 0);
-          $$Array.iter((function (b) do
+          __Array.iter((function (b) do
                   l = bucket_length_alive(0, b);
                   size.contents = size.contents + l | 0;
                   return Caml_array.caml_array_set(histo, l, Caml_array.caml_array_get(histo, l) + 1 | 0);
@@ -2676,7 +2676,7 @@ function MakeSeeded$2(H) do
   copy = function (h) do
     return do
             size: h.size,
-            data: $$Array.copy(h.data),
+            data: __Array.copy(h.data),
             seed: h.seed,
             initial_size: h.initial_size
           end;
@@ -3091,11 +3091,11 @@ function MakeSeeded$2(H) do
     end;
   end end;
   stats = function (h) do
-    mbl = $$Array.fold_left((function (m, b) do
+    mbl = __Array.fold_left((function (m, b) do
             return Caml_primitive.caml_int_max(m, bucket_length(0, b));
           end end), 0, h.data);
     histo = Caml_array.caml_make_vect(mbl + 1 | 0, 0);
-    $$Array.iter((function (b) do
+    __Array.iter((function (b) do
             l = bucket_length(0, b);
             return Caml_array.caml_array_set(histo, l, Caml_array.caml_array_get(histo, l) + 1 | 0);
           end end), h.data);
@@ -3129,11 +3129,11 @@ function MakeSeeded$2(H) do
     size = do
       contents: 0
     end;
-    mbl = $$Array.fold_left((function (m, b) do
+    mbl = __Array.fold_left((function (m, b) do
             return Caml_primitive.caml_int_max(m, bucket_length_alive(0, b));
           end end), 0, h.data);
     histo = Caml_array.caml_make_vect(mbl + 1 | 0, 0);
-    $$Array.iter((function (b) do
+    __Array.iter((function (b) do
             l = bucket_length_alive(0, b);
             size.contents = size.contents + l | 0;
             return Caml_array.caml_array_set(histo, l, Caml_array.caml_array_get(histo, l) + 1 | 0);
@@ -3300,7 +3300,7 @@ function Make$2(H) do
   copy = function (h) do
     return do
             size: h.size,
-            data: $$Array.copy(h.data),
+            data: __Array.copy(h.data),
             seed: h.seed,
             initial_size: h.initial_size
           end;
@@ -3715,11 +3715,11 @@ function Make$2(H) do
     end;
   end end;
   stats = function (h) do
-    mbl = $$Array.fold_left((function (m, b) do
+    mbl = __Array.fold_left((function (m, b) do
             return Caml_primitive.caml_int_max(m, bucket_length(0, b));
           end end), 0, h.data);
     histo = Caml_array.caml_make_vect(mbl + 1 | 0, 0);
-    $$Array.iter((function (b) do
+    __Array.iter((function (b) do
             l = bucket_length(0, b);
             return Caml_array.caml_array_set(histo, l, Caml_array.caml_array_get(histo, l) + 1 | 0);
           end end), h.data);
@@ -3753,11 +3753,11 @@ function Make$2(H) do
     size = do
       contents: 0
     end;
-    mbl = $$Array.fold_left((function (m, b) do
+    mbl = __Array.fold_left((function (m, b) do
             return Caml_primitive.caml_int_max(m, bucket_length_alive(0, b));
           end end), 0, h.data);
     histo = Caml_array.caml_make_vect(mbl + 1 | 0, 0);
-    $$Array.iter((function (b) do
+    __Array.iter((function (b) do
             l = bucket_length_alive(0, b);
             size.contents = size.contents + l | 0;
             return Caml_array.caml_array_set(histo, l, Caml_array.caml_array_get(histo, l) + 1 | 0);
@@ -3922,7 +3922,7 @@ GenHashTable = do
       copy = function (h) do
         return do
                 size: h.size,
-                data: $$Array.copy(h.data),
+                data: __Array.copy(h.data),
                 seed: h.seed,
                 initial_size: h.initial_size
               end;
@@ -4337,11 +4337,11 @@ GenHashTable = do
         end;
       end end;
       stats = function (h) do
-        mbl = $$Array.fold_left((function (m, b) do
+        mbl = __Array.fold_left((function (m, b) do
                 return Caml_primitive.caml_int_max(m, bucket_length(0, b));
               end end), 0, h.data);
         histo = Caml_array.caml_make_vect(mbl + 1 | 0, 0);
-        $$Array.iter((function (b) do
+        __Array.iter((function (b) do
                 l = bucket_length(0, b);
                 return Caml_array.caml_array_set(histo, l, Caml_array.caml_array_get(histo, l) + 1 | 0);
               end end), h.data);
@@ -4375,11 +4375,11 @@ GenHashTable = do
         size = do
           contents: 0
         end;
-        mbl = $$Array.fold_left((function (m, b) do
+        mbl = __Array.fold_left((function (m, b) do
                 return Caml_primitive.caml_int_max(m, bucket_length_alive(0, b));
               end end), 0, h.data);
         histo = Caml_array.caml_make_vect(mbl + 1 | 0, 0);
-        $$Array.iter((function (b) do
+        __Array.iter((function (b) do
                 l = bucket_length_alive(0, b);
                 size.contents = size.contents + l | 0;
                 return Caml_array.caml_array_set(histo, l, Caml_array.caml_array_get(histo, l) + 1 | 0);

@@ -11330,7 +11330,7 @@ let name_mangle name =
 *)
 let convert (name : string) =
   if  Js_reserved_map.is_reserved name  then
-    "$$" ^ name
+    "__" ^ name
   else name_mangle name
 
 (** keyword could be used in property *)

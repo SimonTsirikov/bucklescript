@@ -1,7 +1,7 @@
 --[['use strict';]]
 
 Sys = require "./sys.lua";
-$$Array = require "./array.lua";
+__Array = require "./array.lua";
 Caml_array = require "./caml_array.lua";
 Caml_int32 = require "./caml_int32.lua";
 Caml_external_polyfill = require "./caml_external_polyfill.lua";
@@ -44,7 +44,7 @@ function dims(a) do
 end end
 
 function size_in_bytes(arr) do
-  return Caml_int32.imul(kind_size_in_bytes(Caml_external_polyfill.resolve("caml_ba_kind")(arr)), $$Array.fold_left(Caml_int32.imul, 1, dims(arr)));
+  return Caml_int32.imul(kind_size_in_bytes(Caml_external_polyfill.resolve("caml_ba_kind")(arr)), __Array.fold_left(Caml_int32.imul, 1, dims(arr)));
 end end
 
 function map_file(fd, posOpt, kind, layout, shared, dims) do
@@ -316,7 +316,7 @@ int16_signed = --[[ Int16_signed ]]4;
 
 int16_unsigned = --[[ Int16_unsigned ]]5;
 
-$$int = --[[ Int ]]8;
+__int = --[[ Int ]]8;
 
 int32 = --[[ Int32 ]]6;
 
@@ -324,7 +324,7 @@ int64 = --[[ Int64 ]]7;
 
 nativeint = --[[ Nativeint ]]9;
 
-$$char = --[[ Char ]]12;
+__char = --[[ Char ]]12;
 
 c_layout = --[[ C_layout ]]0;
 
@@ -398,11 +398,11 @@ exports.int8_signed = int8_signed;
 exports.int8_unsigned = int8_unsigned;
 exports.int16_signed = int16_signed;
 exports.int16_unsigned = int16_unsigned;
-exports.$$int = $$int;
+exports.__int = __int;
 exports.int32 = int32;
 exports.int64 = int64;
 exports.nativeint = nativeint;
-exports.$$char = $$char;
+exports.__char = __char;
 exports.kind_size_in_bytes = kind_size_in_bytes;
 exports.c_layout = c_layout;
 exports.fortran_layout = fortran_layout;

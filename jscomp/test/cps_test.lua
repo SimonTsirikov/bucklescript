@@ -1,7 +1,7 @@
 --[['use strict';]]
 
 Mt = require "./mt.lua";
-$$Array = require "../../lib/js/array.lua";
+__Array = require "../../lib/js/array.lua";
 Block = require "../../lib/js/block.lua";
 Curry = require "../../lib/js/curry.lua";
 Caml_array = require "../../lib/js/caml_array.lua";
@@ -48,7 +48,7 @@ function test_closure(param) do
         end end
         end(i)));
   end
-  $$Array.iter((function (i) do
+  __Array.iter((function (i) do
           v.contents = v.contents + Curry._1(i, 0) | 0;
           return --[[ () ]]0;
         end end), arr);
@@ -70,7 +70,7 @@ function test_closure2(param) do
         end end
         end(j)));
   end
-  $$Array.iter((function (i) do
+  __Array.iter((function (i) do
           v.contents = v.contents + Curry._1(i, 0) | 0;
           return --[[ () ]]0;
         end end), arr);

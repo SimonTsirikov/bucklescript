@@ -2,7 +2,7 @@
 
 Mt = require "./mt.lua";
 List = require "../../lib/js/list.lua";
-$$Array = require "../../lib/js/array.lua";
+__Array = require "../../lib/js/array.lua";
 Belt_Array = require "../../lib/js/belt_Array.lua";
 Belt_SetInt = require "../../lib/js/belt_SetInt.lua";
 Array_data_util = require "./array_data_util.lua";
@@ -54,18 +54,18 @@ u = Belt_SetInt.intersect(Belt_SetInt.fromArray([
 b("File \"bs_set_int_test.ml\", line 23, characters 4-11", Belt_SetInt.eq(Belt_SetInt.fromArray([3]), u));
 
 function range(i, j) do
-  return $$Array.init((j - i | 0) + 1 | 0, (function (k) do
+  return __Array.init((j - i | 0) + 1 | 0, (function (k) do
                 return k + i | 0;
               end end));
 end end
 
 function revRange(i, j) do
-  return $$Array.of_list(List.rev($$Array.to_list($$Array.init((j - i | 0) + 1 | 0, (function (k) do
+  return __Array.of_list(List.rev(__Array.to_list(__Array.init((j - i | 0) + 1 | 0, (function (k) do
                             return k + i | 0;
                           end end)))));
 end end
 
-v = Belt_SetInt.fromArray($$Array.append(range(100, 1000), revRange(400, 1500)));
+v = Belt_SetInt.fromArray(__Array.append(range(100, 1000), revRange(400, 1500)));
 
 i = range(100, 1500);
 

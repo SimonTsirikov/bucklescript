@@ -2,7 +2,7 @@
 
 Bytes = require "./bytes.lua";
 Curry = require "./curry.lua";
-$$String = require "./string.lua";
+__String = require "./string.lua";
 Caml_bytes = require "./caml_bytes.lua";
 Pervasives = require "./pervasives.lua";
 Caml_string = require "./caml_string.lua";
@@ -430,7 +430,7 @@ function find_ident(s, start, lim) do
   if (c ~= 40 and c ~= 123) then do
     stop = advance_to_non_alpha(s, start + 1 | 0);
     return --[[ tuple ]][
-            $$String.sub(s, start, stop - start | 0),
+            __String.sub(s, start, stop - start | 0),
             stop
           ];
   end
@@ -438,7 +438,7 @@ function find_ident(s, start, lim) do
   new_start = start + 1 | 0;
   stop$1 = advance_to_closing(c, closing(c), 0, s, new_start);
   return --[[ tuple ]][
-          $$String.sub(s, new_start, (stop$1 - start | 0) - 1 | 0),
+          __String.sub(s, new_start, (stop$1 - start | 0) - 1 | 0),
           stop$1 + 1 | 0
         ];
 end end

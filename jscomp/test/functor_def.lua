@@ -11,7 +11,7 @@ function f(x, x$1) do
   return x$1 + x$1 | 0;
 end end
 
-function $$return(param) do
+function __return(param) do
   return v.contents;
 end end
 
@@ -27,6 +27,6 @@ end end
 
 exports.v = v;
 exports.f = f;
-exports.$$return = $$return;
+exports.__return = __return;
 exports.Make = Make;
 --[[ No side effect ]]

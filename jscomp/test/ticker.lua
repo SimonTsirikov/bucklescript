@@ -4,7 +4,7 @@ List = require "../../lib/js/list.lua";
 Block = require "../../lib/js/block.lua";
 Curry = require "../../lib/js/curry.lua";
 Printf = require "../../lib/js/printf.lua";
-$$String = require "../../lib/js/string.lua";
+__String = require "../../lib/js/string.lua";
 Caml_obj = require "../../lib/js/caml_obj.lua";
 Pervasives = require "../../lib/js/pervasives.lua";
 Caml_format = require "../../lib/js/caml_format.lua";
@@ -23,19 +23,19 @@ function split(delim, s) do
       if (i ~= 0) then do
         i$prime;
         try do
-          i$prime = $$String.rindex_from(s, i - 1 | 0, delim);
+          i$prime = __String.rindex_from(s, i - 1 | 0, delim);
         end
         catch (exn)do
           if (exn == Caml_builtin_exceptions.not_found) then do
             return --[[ :: ]][
-                    $$String.sub(s, 0, i),
+                    __String.sub(s, 0, i),
                     l
                   ];
           end else do
             throw exn;
           end end 
         end
-        l_000 = $$String.sub(s, i$prime + 1 | 0, (i - i$prime | 0) - 1 | 0);
+        l_000 = __String.sub(s, i$prime + 1 | 0, (i - i$prime | 0) - 1 | 0);
         l$1 = --[[ :: ]][
           l_000,
           l

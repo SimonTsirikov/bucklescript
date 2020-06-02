@@ -1,7 +1,7 @@
 --[['use strict';]]
 
 Mt = require "./mt.lua";
-$$Array = require "../../lib/js/array.lua";
+__Array = require "../../lib/js/array.lua";
 Block = require "../../lib/js/block.lua";
 Bytes = require "../../lib/js/bytes.lua";
 Curry = require "../../lib/js/curry.lua";
@@ -215,7 +215,7 @@ Mt.from_pair_suites("Digest_test", Pervasives.$at(--[[ :: ]][
               ]
             ]
           ]
-        ], $$Array.to_list($$Array.map((function (i) do
+        ], __Array.to_list(__Array.map((function (i) do
                     return --[[ tuple ]][
                             Curry._1(Printf.sprintf(--[[ Format ]][
                                       --[[ Int ]]Block.__(4, [

@@ -1,7 +1,7 @@
 --[['use strict';]]
 
 Mt = require "./mt.lua";
-$$Array = require "../../lib/js/array.lua";
+__Array = require "../../lib/js/array.lua";
 Block = require "../../lib/js/block.lua";
 Caml_string = require "../../lib/js/caml_string.lua";
 Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
@@ -36,7 +36,7 @@ console.log("你好，\n世界");
 console.log("\x3f\u003f\b\t\n\v\f\r\0\"\'");
 
 function convert(s) do
-  return $$Array.to_list(Array.from(s, (function (x) do
+  return __Array.to_list(Array.from(s, (function (x) do
                     match = x.codePointAt(0);
                     if (match ~= undefined) then do
                       return match;

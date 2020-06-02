@@ -74,8 +74,8 @@ function toInt(i, xs) do
   return xs[i];
 end end
 
-function fromInt(len, xs, $$enum) do
-  $$enum$1 = $$enum;
+function fromInt(len, xs, __enum) do
+  __enum$1 = __enum;
   _i = 0;
   len$1 = len;
   xs$1 = xs;
@@ -85,7 +85,7 @@ function fromInt(len, xs, $$enum) do
       return ;
     end else do
       k = xs$1[i];
-      if (k == $$enum$1) then do
+      if (k == __enum$1) then do
         return i;
       end else do
         _i = i + 1 | 0;
@@ -95,9 +95,9 @@ function fromInt(len, xs, $$enum) do
   end;
 end end
 
-function fromIntAssert(len, xs, $$enum) do
+function fromIntAssert(len, xs, __enum) do
   len$1 = len;
-  $$enum$1 = $$enum;
+  __enum$1 = __enum;
   _i = 0;
   xs$1 = xs;
   while(true) do
@@ -107,7 +107,7 @@ function fromIntAssert(len, xs, $$enum) do
     end
      end 
     k = xs$1[i];
-    if (k == $$enum$1) then do
+    if (k == __enum$1) then do
       return i;
     end else do
       _i = i + 1 | 0;

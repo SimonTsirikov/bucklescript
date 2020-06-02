@@ -1,7 +1,7 @@
 --[['use strict';]]
 
 Mt = require "./mt.lua";
-$$Array = require "../../lib/js/array.lua";
+__Array = require "../../lib/js/array.lua";
 Block = require "../../lib/js/block.lua";
 Curry = require "../../lib/js/curry.lua";
 
@@ -1395,7 +1395,7 @@ suites_001 = --[[ :: ]][
                                                                                                                                                                                     (function (param) do
                                                                                                                                                                                         return --[[ Eq ]]Block.__(0, [
                                                                                                                                                                                                   12,
-                                                                                                                                                                                                  new Int32Array($$Array.map((function (prim) do
+                                                                                                                                                                                                  new Int32Array(__Array.map((function (prim) do
                                                                                                                                                                                                               return prim;
                                                                                                                                                                                                             end end), [
                                                                                                                                                                                                             1,
@@ -1451,7 +1451,7 @@ suites_001 = --[[ :: ]][
                                                                                                                                                                                             --[[ tuple ]][
                                                                                                                                                                                               "int32_array - unsafe_set - typed_array sanity check",
                                                                                                                                                                                               (function (param) do
-                                                                                                                                                                                                  a = new Int32Array($$Array.map((function (prim) do
+                                                                                                                                                                                                  a = new Int32Array(__Array.map((function (prim) do
                                                                                                                                                                                                               return prim;
                                                                                                                                                                                                             end end), [
                                                                                                                                                                                                             1,

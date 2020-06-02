@@ -6,9 +6,9 @@ Block = require "../../lib/js/block.lua";
 Bytes = require "../../lib/js/bytes.lua";
 Curry = require "../../lib/js/curry.lua";
 Scanf = require "../../lib/js/scanf.lua";
-$$Buffer = require "../../lib/js/buffer.lua";
+__Buffer = require "../../lib/js/buffer.lua";
 Printf = require "../../lib/js/printf.lua";
-$$String = require "../../lib/js/string.lua";
+__String = require "../../lib/js/string.lua";
 Testing = require "./testing.lua";
 Caml_obj = require "../../lib/js/caml_obj.lua";
 Mt_global = require "./mt_global.lua";
@@ -3708,7 +3708,7 @@ end end
 test("File \"tscanf_test.ml\", line 1176, characters 5-12", test49(--[[ () ]]0));
 
 function next_char(ob, param) do
-  s = $$Buffer.contents(ob);
+  s = __Buffer.contents(ob);
   len = #s;
   if (len == 0) then do
     throw Caml_builtin_exceptions.end_of_file;
@@ -3716,13 +3716,13 @@ function next_char(ob, param) do
    end 
   c = Caml_string.get(s, 0);
   ob.position = 0;
-  $$Buffer.add_string(ob, $$String.sub(s, 1, len - 1 | 0));
+  __Buffer.add_string(ob, __String.sub(s, 1, len - 1 | 0));
   return c;
 end end
 
 function send_string(ob, s) do
-  $$Buffer.add_string(ob, s);
-  return $$Buffer.add_char(ob, --[[ "\n" ]]10);
+  __Buffer.add_string(ob, s);
+  return __Buffer.add_char(ob, --[[ "\n" ]]10);
 end end
 
 function send_int(ob, i) do
@@ -3808,7 +3808,7 @@ function reader(ib, ob) do
 end end
 
 function go(param) do
-  ob = $$Buffer.create(17);
+  ob = __Buffer.create(17);
   ib = Scanf.Scanning.from_function((function (param) do
           return next_char(ob, param);
         end end));

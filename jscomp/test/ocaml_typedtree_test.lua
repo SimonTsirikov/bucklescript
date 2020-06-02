@@ -5,18 +5,18 @@ Sys = require "../../lib/js/sys.lua";
 Char = require "../../lib/js/char.lua";
 List = require "../../lib/js/list.lua";
 Path = require "path";
-$$Array = require "../../lib/js/array.lua";
+__Array = require "../../lib/js/array.lua";
 Block = require "../../lib/js/block.lua";
 Bytes = require "../../lib/js/bytes.lua";
 Curry = require "../../lib/js/curry.lua";
 Int32 = require "../../lib/js/int32.lua";
 Int64 = require "../../lib/js/int64.lua";
-$$Buffer = require "../../lib/js/buffer.lua";
+__Buffer = require "../../lib/js/buffer.lua";
 Digest = require "../../lib/js/digest.lua";
 Format = require "../../lib/js/format.lua";
 Lexing = require "../../lib/js/lexing.lua";
 Printf = require "../../lib/js/printf.lua";
-$$String = require "../../lib/js/string.lua";
+__String = require "../../lib/js/string.lua";
 Assert = require "assert";
 Caml_io = require "../../lib/js/caml_io.lua";
 Hashtbl = require "../../lib/js/hashtbl.lua";
@@ -332,7 +332,7 @@ function edit_distance(a, b, cutoff) do
   if (Pervasives.abs(la - lb | 0) > cutoff$1) then do
     return ;
   end else do
-    m = $$Array.make_matrix(la + 1 | 0, lb + 1 | 0, cutoff$1 + 1 | 0);
+    m = __Array.make_matrix(la + 1 | 0, lb + 1 | 0, cutoff$1 + 1 | 0);
     Caml_array.caml_array_set(Caml_array.caml_array_get(m, 0), 0, 0);
     for i = 1 , la , 1 do
       Caml_array.caml_array_set(Caml_array.caml_array_get(m, i), 0, i);
@@ -403,7 +403,7 @@ end end
 
 function ansi_of_style_l(l) do
   s = l and (
-      l[1] and $$String.concat(";", List.map(code_of_style, l)) or code_of_style(l[0])
+      l[1] and __String.concat(";", List.map(code_of_style, l)) or code_of_style(l[0])
     ) or "0";
   return "\x1b[" .. (s .. "m");
 end end
@@ -1083,8 +1083,8 @@ function parse_opt(error, active, flags, s) do
 end end
 
 function parse_options(errflag, s) do
-  error = $$Array.copy(current.contents.error);
-  active = $$Array.copy(current.contents.active);
+  error = __Array.copy(current.contents.error);
+  active = __Array.copy(current.contents.active);
   parse_opt(error, active, errflag and error or active, s);
   current.contents = do
     active: active,
@@ -1156,7 +1156,7 @@ function message(param) do
             slist = match[1];
             lab = match[0];
             if (slist) then do
-              return $$String.concat(" ", --[[ :: ]][
+              return __String.concat(" ", --[[ :: ]][
                           "the following methods are overridden by the class",
                           --[[ :: ]][
                             lab,
@@ -1194,7 +1194,7 @@ function message(param) do
             slist$1 = match$1[1];
             lab$1 = match$1[0];
             if (slist$1) then do
-              return $$String.concat(" ", --[[ :: ]][
+              return __String.concat(" ", --[[ :: ]][
                           "the following instance variables are overridden by the class",
                           --[[ :: ]][
                             lab$1,
@@ -1218,7 +1218,7 @@ function message(param) do
                 ];
           end end end end end 
        if ___conditional___ = 6--[[ Implicit_public_methods ]] then do
-          return "the following private methods were made public implicitly:\n " .. ($$String.concat(" ", param[0]) .. ".");end end end 
+          return "the following private methods were made public implicitly:\n " .. (__String.concat(" ", param[0]) .. ".");end end end 
        if ___conditional___ = 7--[[ Undeclared_virtual_method ]] then do
           return "the virtual method " .. (param[0] .. " is not declared.");end end end 
        if ___conditional___ = 8--[[ Not_principal ]] then do
@@ -1323,7 +1323,7 @@ function message(param) do
           end
            end 
           if (param[2]) then do
-            return "this record of type " .. (ty .. (" contains fields that are \nnot visible in the current scope: " .. ($$String.concat(" ", slist$2) .. ".\nThey will not be selected if the type becomes unknown.")));
+            return "this record of type " .. (ty .. (" contains fields that are \nnot visible in the current scope: " .. (__String.concat(" ", slist$2) .. ".\nThey will not be selected if the type becomes unknown.")));
           end else do
             throw [
                   Caml_builtin_exceptions.assert_failure,
@@ -1337,11 +1337,11 @@ function message(param) do
        if ___conditional___ = 24--[[ Ambiguous_name ]] then do
           slist$3 = param[0];
           if (slist$3 and not slist$3[1] and not param[2]) then do
-            return slist$3[0] .. (" belongs to several types: " .. ($$String.concat(" ", param[1]) .. "\nThe first one was selected. Please disambiguate if this is wrong."));
+            return slist$3[0] .. (" belongs to several types: " .. (__String.concat(" ", param[1]) .. "\nThe first one was selected. Please disambiguate if this is wrong."));
           end
            end 
           if (param[2]) then do
-            return "these field labels belong to several types: " .. ($$String.concat(" ", param[1]) .. "\nThe first one was selected. Please disambiguate if this is wrong.");
+            return "these field labels belong to several types: " .. (__String.concat(" ", param[1]) .. "\nThe first one was selected. Please disambiguate if this is wrong.");
           end else do
             throw [
                   Caml_builtin_exceptions.assert_failure,
@@ -1447,7 +1447,7 @@ function message(param) do
                                 ])
                             ]),
                           "implicit elimination of optional argument%s %s"
-                        ]), List.length(sl) == 1 and "" or "s", $$String.concat(", ", sl));end end end 
+                        ]), List.length(sl) == 1 and "" or "s", __String.concat(", ", sl));end end end 
        if ___conditional___ = 32--[[ No_cmi_file ]] then do
           return "no cmi file was found in path for module " .. param[0];end end end 
        if ___conditional___ = 33--[[ Bad_docstring ]] then do
@@ -2102,7 +2102,7 @@ function errorf(locOpt, subOpt, if_highlightOpt, fmt) do
           end;
   end end;
   fmt$1 = fmt;
-  buf = $$Buffer.create(64);
+  buf = __Buffer.create(64);
   ppf = Format.formatter_of_buffer(buf);
   Curry._1(Misc_Color.set_color_tag_handling, ppf);
   if (before ~= undefined) then do
@@ -2111,7 +2111,7 @@ function errorf(locOpt, subOpt, if_highlightOpt, fmt) do
    end 
   return Format.kfprintf((function (param) do
                 Format.pp_print_flush(ppf, --[[ () ]]0);
-                return Curry._1(k, $$Buffer.contents(buf));
+                return Curry._1(k, __Buffer.contents(buf));
               end end), ppf, fmt$1);
 end end
 
@@ -2186,10 +2186,10 @@ register_error_of_exn((function (param) do
         end end  end 
       end end));
 
-$$Error = Caml_exceptions.create("Ocaml_typedtree_test.Location.Error");
+__Error = Caml_exceptions.create("Ocaml_typedtree_test.Location.Error");
 
 register_error_of_exn((function (param) do
-        if (param[0] == $$Error) then do
+        if (param[0] == __Error) then do
           return param[1];
         end
          end 
@@ -2252,7 +2252,7 @@ function make_global(i) do
   return --[[ () ]]0;
 end end
 
-function $$global(i) do
+function __global(i) do
   return (i.flags & 1) ~= 0;
 end end
 
@@ -2277,7 +2277,7 @@ function print$2(ppf, i) do
                             ])
                         ]),
                       "%s/%i%s"
-                    ]), i.name, n, $$global(i) and "g" or "");
+                    ]), i.name, n, __global(i) and "g" or "");
     end else do
       return Curry._1(Format.fprintf(ppf, --[[ Format ]][
                       --[[ String ]]Block.__(2, [
@@ -3564,7 +3564,7 @@ Types_TypeOps = do
 end;
 
 Types_Variance = do
-  $$null: 0,
+  __null: 0,
   full: 127,
   covariant: 25,
   may_inv: 7,
@@ -4151,11 +4151,11 @@ function fold$3(f, _m, _accu) do
   end;
 end end
 
-$$let = Types_TypeOps;
+__let = Types_TypeOps;
 
 TypeHash = Hashtbl.Make(do
-      equal: $$let.equal,
-      hash: $$let.hash
+      equal: __let.equal,
+      hash: __let.hash
     end);
 
 function print_raw(param) do
@@ -4560,7 +4560,7 @@ function is_row_name(s) do
   if (l < 4) then do
     return false;
   end else do
-    return $$String.sub(s, l - 4 | 0, 4) == "#row";
+    return __String.sub(s, l - 4 | 0, 4) == "#row";
   end end 
 end end
 
@@ -5333,7 +5333,7 @@ end end
 
 function label_name(l) do
   if (is_optional(l)) then do
-    return $$String.sub(l, 1, #l - 1 | 0);
+    return __String.sub(l, 1, #l - 1 | 0);
   end else do
     return l;
   end end 
@@ -5588,7 +5588,7 @@ function backtrack(param) do
   end end 
 end end
 
-$$Error$1 = Caml_exceptions.create("Ocaml_typedtree_test.Cmi_format.Error");
+__Error$1 = Caml_exceptions.create("Ocaml_typedtree_test.Cmi_format.Error");
 
 function input_cmi(ic) do
   match = Caml_external_polyfill.resolve("caml_input_value")(ic);
@@ -5609,10 +5609,10 @@ function read_cmi(filename) do
     if (buffer ~= cmi_magic_number) then do
       Caml_external_polyfill.resolve("caml_ml_close_channel")(ic);
       pre_len = #cmi_magic_number - 3 | 0;
-      if ($$String.sub(buffer, 0, pre_len) == $$String.sub(cmi_magic_number, 0, pre_len)) then do
+      if (__String.sub(buffer, 0, pre_len) == __String.sub(cmi_magic_number, 0, pre_len)) then do
         msg = buffer < cmi_magic_number and "an older" or "a newer";
         throw [
-              $$Error$1,
+              __Error$1,
               --[[ Wrong_version_interface ]]Block.__(1, [
                   filename,
                   msg
@@ -5620,7 +5620,7 @@ function read_cmi(filename) do
             ];
       end else do
         throw [
-              $$Error$1,
+              __Error$1,
               --[[ Not_an_interface ]]Block.__(0, [filename])
             ];
       end end 
@@ -5635,19 +5635,19 @@ function read_cmi(filename) do
     if (exn == Caml_builtin_exceptions.end_of_file) then do
       Caml_external_polyfill.resolve("caml_ml_close_channel")(ic);
       throw [
-            $$Error$1,
+            __Error$1,
             --[[ Corrupted_interface ]]Block.__(2, [filename])
           ];
     end else if (exn[0] == Caml_builtin_exceptions.failure) then do
       Caml_external_polyfill.resolve("caml_ml_close_channel")(ic);
       throw [
-            $$Error$1,
+            __Error$1,
             --[[ Corrupted_interface ]]Block.__(2, [filename])
           ];
-    end else if (exn[0] == $$Error$1) then do
+    end else if (exn[0] == __Error$1) then do
       Caml_external_polyfill.resolve("caml_ml_close_channel")(ic);
       throw [
-            $$Error$1,
+            __Error$1,
             exn[1]
           ];
     end else do
@@ -5744,7 +5744,7 @@ function report_error(ppf, param) do
 end end
 
 register_error_of_exn((function (param) do
-        if (param[0] == $$Error$1) then do
+        if (param[0] == __Error$1) then do
           return error_of_printer_file(report_error, param[1]);
         end
          end 
@@ -5760,7 +5760,7 @@ function set$1(tbl, name, crc, source) do
 end end
 
 function extract(l, tbl) do
-  l$1 = List.sort_uniq($$String.compare, l);
+  l$1 = List.sort_uniq(__String.compare, l);
   return List.fold_left((function (assc, name) do
                 try do
                   match = Hashtbl.find(tbl, name);
@@ -6896,7 +6896,7 @@ function attr(d, a) do
         end;
 end end
 
-function $$var(loc, attrs, a) do
+function __var(loc, attrs, a) do
   return mk(loc, attrs, --[[ Ptyp_var ]]Block.__(0, [a]));
 end end
 
@@ -6955,7 +6955,7 @@ function poly(loc, attrs, a, b) do
               ]));
 end end
 
-function $$package(loc, attrs, a, b) do
+function __package(loc, attrs, a, b) do
   return mk(loc, attrs, --[[ Ptyp_package ]]Block.__(9, [--[[ tuple ]][
                   a,
                   b
@@ -6996,7 +6996,7 @@ function attr$1(d, a) do
         end;
 end end
 
-function $$var$1(loc, attrs, a) do
+function __var$1(loc, attrs, a) do
   return mk$1(loc, attrs, --[[ Ppat_var ]]Block.__(0, [a]));
 end end
 
@@ -7315,7 +7315,7 @@ function extension$2(loc, attrs, a) do
   return mk$2(loc, attrs, --[[ Pexp_extension ]]Block.__(33, [a]));
 end end
 
-function $$case(lhs, guard, rhs) do
+function __case(lhs, guard, rhs) do
   return do
           pc_lhs: lhs,
           pc_guard: guard,
@@ -7470,7 +7470,7 @@ function mk$6(locOpt, d) do
         end;
 end end
 
-function $$eval(loc, attrsOpt, a) do
+function __eval(loc, attrsOpt, a) do
   attrs = attrsOpt ~= undefined and attrsOpt or --[[ [] ]]0;
   return mk$6(loc, --[[ Pstr_eval ]]Block.__(0, [
                 a,
@@ -8009,7 +8009,7 @@ Ast_helper_Exp = do
   pack: pack,
   open_: open_,
   extension: extension$2,
-  $$case: $$case
+  __case: __case
 end;
 
 Ast_helper_Ctf = do
@@ -8084,7 +8084,7 @@ function map$1(sub, param) do
     local ___conditional___=(desc.tag | 0);
     do
        if ___conditional___ = 0--[[ Ptyp_var ]] then do
-          return $$var(loc, attrs, desc[0]);end end end 
+          return __var(loc, attrs, desc[0]);end end end 
        if ___conditional___ = 1--[[ Ptyp_arrow ]] then do
           return arrow(loc, attrs, desc[0], Curry._2(sub.typ, sub, desc[1]), Curry._2(sub.typ, sub, desc[2]));end end end 
        if ___conditional___ = 2--[[ Ptyp_tuple ]] then do
@@ -8124,7 +8124,7 @@ function map$1(sub, param) do
        if ___conditional___ = 9--[[ Ptyp_package ]] then do
           match = desc[0];
           partial_arg = Curry._1(sub.typ, sub);
-          return $$package(loc, attrs, map_loc(sub, match[0]), List.map((function (param) do
+          return __package(loc, attrs, map_loc(sub, match[0]), List.map((function (param) do
                             return map_tuple((function (param) do
                                           return map_loc(sub, param);
                                         end end), partial_arg, param);
@@ -8374,7 +8374,7 @@ function map_structure_item(sub, param) do
   local ___conditional___=(desc.tag | 0);
   do
      if ___conditional___ = 0--[[ Pstr_eval ]] then do
-        return $$eval(loc, Curry._2(sub.attributes, sub, desc[1]), Curry._2(sub.expr, sub, desc[0]));end end end 
+        return __eval(loc, Curry._2(sub.attributes, sub, desc[1]), Curry._2(sub.expr, sub, desc[0]));end end end 
      if ___conditional___ = 1--[[ Pstr_value ]] then do
         return value(loc, desc[0], List.map(Curry._1(sub.value_binding, sub), desc[1]));end end end 
      if ___conditional___ = 2--[[ Pstr_primitive ]] then do
@@ -8522,7 +8522,7 @@ function map$6(sub, param) do
     local ___conditional___=(desc.tag | 0);
     do
        if ___conditional___ = 0--[[ Ppat_var ]] then do
-          return $$var$1(loc, attrs, map_loc(sub, desc[0]));end end end 
+          return __var$1(loc, attrs, map_loc(sub, desc[0]));end end end 
        if ___conditional___ = 1--[[ Ppat_alias ]] then do
           return alias$1(loc, attrs, Curry._2(sub.pat, sub, desc[0]), map_loc(sub, desc[1]));end end end 
        if ___conditional___ = 2--[[ Ppat_constant ]] then do
@@ -8645,124 +8645,124 @@ function class_infos(sub, f, param) do
                   end end), param.pci_params), map_loc(sub, param.pci_name), Curry._1(f, param.pci_expr));
 end end
 
-function default_mapper_attribute($$this, param) do
+function default_mapper_attribute(__this, param) do
   return --[[ tuple ]][
-          map_loc($$this, param[0]),
-          Curry._2($$this.payload, $$this, param[1])
+          map_loc(__this, param[0]),
+          Curry._2(__this.payload, __this, param[1])
         ];
 end end
 
-function default_mapper_attributes($$this, l) do
-  return List.map(Curry._1($$this.attribute, $$this), l);
+function default_mapper_attributes(__this, l) do
+  return List.map(Curry._1(__this.attribute, __this), l);
 end end
 
-function default_mapper_case($$this, param) do
+function default_mapper_case(__this, param) do
   return do
-          pc_lhs: Curry._2($$this.pat, $$this, param.pc_lhs),
-          pc_guard: map_opt(Curry._1($$this.expr, $$this), param.pc_guard),
-          pc_rhs: Curry._2($$this.expr, $$this, param.pc_rhs)
+          pc_lhs: Curry._2(__this.pat, __this, param.pc_lhs),
+          pc_guard: map_opt(Curry._1(__this.expr, __this), param.pc_guard),
+          pc_rhs: Curry._2(__this.expr, __this, param.pc_rhs)
         end;
 end end
 
-function default_mapper_cases($$this, l) do
-  return List.map(Curry._1($$this.case, $$this), l);
+function default_mapper_cases(__this, l) do
+  return List.map(Curry._1(__this.case, __this), l);
 end end
 
-function default_mapper_class_declaration($$this) do
-  partial_arg = Curry._1($$this.class_expr, $$this);
+function default_mapper_class_declaration(__this) do
+  partial_arg = Curry._1(__this.class_expr, __this);
   return (function (param) do
-      return class_infos($$this, partial_arg, param);
+      return class_infos(__this, partial_arg, param);
     end end);
 end end
 
-function default_mapper_class_description($$this) do
-  partial_arg = Curry._1($$this.class_type, $$this);
+function default_mapper_class_description(__this) do
+  partial_arg = Curry._1(__this.class_type, __this);
   return (function (param) do
-      return class_infos($$this, partial_arg, param);
+      return class_infos(__this, partial_arg, param);
     end end);
 end end
 
-function default_mapper_class_type_declaration($$this) do
-  partial_arg = Curry._1($$this.class_type, $$this);
+function default_mapper_class_type_declaration(__this) do
+  partial_arg = Curry._1(__this.class_type, __this);
   return (function (param) do
-      return class_infos($$this, partial_arg, param);
+      return class_infos(__this, partial_arg, param);
     end end);
 end end
 
-function default_mapper_constructor_declaration($$this, param) do
-  return constructor(Curry._2($$this.location, $$this, param.pcd_loc), Curry._2($$this.attributes, $$this, param.pcd_attributes), undefined, List.map(Curry._1($$this.typ, $$this), param.pcd_args), map_opt(Curry._1($$this.typ, $$this), param.pcd_res), map_loc($$this, param.pcd_name));
+function default_mapper_constructor_declaration(__this, param) do
+  return constructor(Curry._2(__this.location, __this, param.pcd_loc), Curry._2(__this.attributes, __this, param.pcd_attributes), undefined, List.map(Curry._1(__this.typ, __this), param.pcd_args), map_opt(Curry._1(__this.typ, __this), param.pcd_res), map_loc(__this, param.pcd_name));
 end end
 
-function default_mapper_extension($$this, param) do
+function default_mapper_extension(__this, param) do
   return --[[ tuple ]][
-          map_loc($$this, param[0]),
-          Curry._2($$this.payload, $$this, param[1])
+          map_loc(__this, param[0]),
+          Curry._2(__this.payload, __this, param[1])
         ];
 end end
 
-function default_mapper_include_declaration($$this, param) do
-  return mk$16(Curry._2($$this.location, $$this, param.pincl_loc), Curry._2($$this.attributes, $$this, param.pincl_attributes), undefined, Curry._2($$this.module_expr, $$this, param.pincl_mod));
+function default_mapper_include_declaration(__this, param) do
+  return mk$16(Curry._2(__this.location, __this, param.pincl_loc), Curry._2(__this.attributes, __this, param.pincl_attributes), undefined, Curry._2(__this.module_expr, __this, param.pincl_mod));
 end end
 
-function default_mapper_include_description($$this, param) do
-  return mk$16(Curry._2($$this.location, $$this, param.pincl_loc), Curry._2($$this.attributes, $$this, param.pincl_attributes), undefined, Curry._2($$this.module_type, $$this, param.pincl_mod));
+function default_mapper_include_description(__this, param) do
+  return mk$16(Curry._2(__this.location, __this, param.pincl_loc), Curry._2(__this.attributes, __this, param.pincl_attributes), undefined, Curry._2(__this.module_type, __this, param.pincl_mod));
 end end
 
-function default_mapper_label_declaration($$this, param) do
-  return field$1(Curry._2($$this.location, $$this, param.pld_loc), Curry._2($$this.attributes, $$this, param.pld_attributes), undefined, param.pld_mutable, map_loc($$this, param.pld_name), Curry._2($$this.typ, $$this, param.pld_type));
+function default_mapper_label_declaration(__this, param) do
+  return field$1(Curry._2(__this.location, __this, param.pld_loc), Curry._2(__this.attributes, __this, param.pld_attributes), undefined, param.pld_mutable, map_loc(__this, param.pld_name), Curry._2(__this.typ, __this, param.pld_type));
 end end
 
-function default_mapper_location($$this, l) do
+function default_mapper_location(__this, l) do
   return l;
 end end
 
-function default_mapper_module_binding($$this, param) do
-  return mk$14(Curry._2($$this.location, $$this, param.pmb_loc), Curry._2($$this.attributes, $$this, param.pmb_attributes), undefined, undefined, map_loc($$this, param.pmb_name), Curry._2($$this.module_expr, $$this, param.pmb_expr));
+function default_mapper_module_binding(__this, param) do
+  return mk$14(Curry._2(__this.location, __this, param.pmb_loc), Curry._2(__this.attributes, __this, param.pmb_attributes), undefined, undefined, map_loc(__this, param.pmb_name), Curry._2(__this.module_expr, __this, param.pmb_expr));
 end end
 
-function default_mapper_module_declaration($$this, param) do
-  return mk$12(Curry._2($$this.location, $$this, param.pmd_loc), Curry._2($$this.attributes, $$this, param.pmd_attributes), undefined, undefined, map_loc($$this, param.pmd_name), Curry._2($$this.module_type, $$this, param.pmd_type));
+function default_mapper_module_declaration(__this, param) do
+  return mk$12(Curry._2(__this.location, __this, param.pmd_loc), Curry._2(__this.attributes, __this, param.pmd_attributes), undefined, undefined, map_loc(__this, param.pmd_name), Curry._2(__this.module_type, __this, param.pmd_type));
 end end
 
-function default_mapper_module_type_declaration($$this, param) do
-  return mk$13(Curry._2($$this.location, $$this, param.pmtd_loc), Curry._2($$this.attributes, $$this, param.pmtd_attributes), undefined, undefined, map_opt(Curry._1($$this.module_type, $$this), param.pmtd_type), map_loc($$this, param.pmtd_name));
+function default_mapper_module_type_declaration(__this, param) do
+  return mk$13(Curry._2(__this.location, __this, param.pmtd_loc), Curry._2(__this.attributes, __this, param.pmtd_attributes), undefined, undefined, map_opt(Curry._1(__this.module_type, __this), param.pmtd_type), map_loc(__this, param.pmtd_name));
 end end
 
-function default_mapper_open_description($$this, param) do
-  return mk$15(Curry._2($$this.location, $$this, param.popen_loc), Curry._2($$this.attributes, $$this, param.popen_attributes), undefined, param.popen_override, map_loc($$this, param.popen_lid));
+function default_mapper_open_description(__this, param) do
+  return mk$15(Curry._2(__this.location, __this, param.popen_loc), Curry._2(__this.attributes, __this, param.popen_attributes), undefined, param.popen_override, map_loc(__this, param.popen_lid));
 end end
 
-function default_mapper_payload($$this, param) do
+function default_mapper_payload(__this, param) do
   local ___conditional___=(param.tag | 0);
   do
      if ___conditional___ = 0--[[ PStr ]] then do
-        return --[[ PStr ]]Block.__(0, [Curry._2($$this.structure, $$this, param[0])]);end end end 
+        return --[[ PStr ]]Block.__(0, [Curry._2(__this.structure, __this, param[0])]);end end end 
      if ___conditional___ = 1--[[ PTyp ]] then do
-        return --[[ PTyp ]]Block.__(1, [Curry._2($$this.typ, $$this, param[0])]);end end end 
+        return --[[ PTyp ]]Block.__(1, [Curry._2(__this.typ, __this, param[0])]);end end end 
      if ___conditional___ = 2--[[ PPat ]] then do
         return --[[ PPat ]]Block.__(2, [
-                  Curry._2($$this.pat, $$this, param[0]),
-                  map_opt(Curry._1($$this.expr, $$this), param[1])
+                  Curry._2(__this.pat, __this, param[0]),
+                  map_opt(Curry._1(__this.expr, __this), param[1])
                 ]);end end end 
      do
     
   end
 end end
 
-function default_mapper_signature($$this, l) do
-  return List.map(Curry._1($$this.signature_item, $$this), l);
+function default_mapper_signature(__this, l) do
+  return List.map(Curry._1(__this.signature_item, __this), l);
 end end
 
-function default_mapper_structure($$this, l) do
-  return List.map(Curry._1($$this.structure_item, $$this), l);
+function default_mapper_structure(__this, l) do
+  return List.map(Curry._1(__this.structure_item, __this), l);
 end end
 
-function default_mapper_value_binding($$this, param) do
-  return mk$17(Curry._2($$this.location, $$this, param.pvb_loc), Curry._2($$this.attributes, $$this, param.pvb_attributes), undefined, undefined, Curry._2($$this.pat, $$this, param.pvb_pat), Curry._2($$this.expr, $$this, param.pvb_expr));
+function default_mapper_value_binding(__this, param) do
+  return mk$17(Curry._2(__this.location, __this, param.pvb_loc), Curry._2(__this.attributes, __this, param.pvb_attributes), undefined, undefined, Curry._2(__this.pat, __this, param.pvb_pat), Curry._2(__this.expr, __this, param.pvb_expr));
 end end
 
-function default_mapper_value_description($$this, param) do
-  return mk$11(Curry._2($$this.location, $$this, param.pval_loc), Curry._2($$this.attributes, $$this, param.pval_attributes), undefined, param.pval_prim, map_loc($$this, param.pval_name), Curry._2($$this.typ, $$this, param.pval_type));
+function default_mapper_value_description(__this, param) do
+  return mk$11(Curry._2(__this.location, __this, param.pval_loc), Curry._2(__this.attributes, __this, param.pval_attributes), undefined, param.pval_prim, map_loc(__this, param.pval_name), Curry._2(__this.typ, __this, param.pval_type));
 end end
 
 default_mapper = do
@@ -9837,7 +9837,7 @@ used_constructors = Hashtbl.create(undefined, 16);
 
 prefixed_sg = Hashtbl.create(undefined, 113);
 
-$$Error$2 = Caml_exceptions.create("Ocaml_typedtree_test.Env.Error");
+__Error$2 = Caml_exceptions.create("Ocaml_typedtree_test.Env.Error");
 
 function force(f, x) do
   match = x.contents;
@@ -10295,7 +10295,7 @@ function check_consistency(ps) do
       exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
       if (exn[0] == Inconsistency) then do
         throw [
-              $$Error$2,
+              __Error$2,
               --[[ Inconsistent_import ]]Block.__(1, [
                   exn[1],
                   exn[3],
@@ -10338,7 +10338,7 @@ function read_pers_struct(modname, filename) do
   end;
   if (ps.ps_name ~= modname) then do
     throw [
-          $$Error$2,
+          __Error$2,
           --[[ Illegal_renaming ]]Block.__(0, [
               modname,
               ps.ps_name,
@@ -10353,7 +10353,7 @@ function read_pers_struct(modname, filename) do
             return 0;
           end else do
             throw [
-                  $$Error$2,
+                  __Error$2,
                   --[[ Need_recursive_types ]]Block.__(2, [
                       ps.ps_name,
                       current_unit.contents
@@ -10584,7 +10584,7 @@ required_globals = do
 end;
 
 function add_required_global(id) do
-  if ($$global(id) and not transparent_modules.contents and not List.exists((function (param) do
+  if (__global(id) and not transparent_modules.contents and not List.exists((function (param) do
             return Caml_obj.caml_equal(id, param);
           end end), required_globals.contents)) then do
     required_globals.contents = --[[ :: ]][
@@ -10626,7 +10626,7 @@ function normalize_path(lax, env, path) do
         return path$prime;
       end else do
         id = head(path$1);
-        if ($$global(id) and not Caml_obj.caml_equal(id, head(path$prime))) then do
+        if (__global(id) and not Caml_obj.caml_equal(id, head(path$prime))) then do
           add_required_global(id);
         end
          end 
@@ -10673,7 +10673,7 @@ function normalize_path$1(oloc, env, path) do
     if (exn == Caml_builtin_exceptions.not_found) then do
       if (oloc ~= undefined) then do
         throw [
-              $$Error$2,
+              __Error$2,
               --[[ Missing_module ]]Block.__(3, [
                   oloc,
                   path,
@@ -12431,7 +12431,7 @@ end end
 function check_value_name(name, loc) do
   if (bs_only.contents and name == "|.") then do
     throw [
-          $$Error$2,
+          __Error$2,
           --[[ Illegal_value_name ]]Block.__(4, [
               loc,
               name
@@ -12443,7 +12443,7 @@ function check_value_name(name, loc) do
     for i = 1 , #name - 1 | 0 , 1 do
       if (Caml_string.get(name, i) == --[[ "#" ]]35) then do
         throw [
-              $$Error$2,
+              __Error$2,
               --[[ Illegal_value_name ]]Block.__(4, [
                   loc,
                   name
@@ -13875,7 +13875,7 @@ function report_error$1(ppf, param) do
 end end
 
 register_error_of_exn((function (param) do
-        if (param[0] == $$Error$2) then do
+        if (param[0] == __Error$2) then do
           err = param[1];
           local ___conditional___=(err.tag | 0);
           do
@@ -13903,7 +13903,7 @@ function assert_fail(msg) do
 end end
 
 function is_mocha(param) do
-  match = $$Array.to_list(Process.argv);
+  match = __Array.to_list(Process.argv);
   if (match) then do
     match$1 = match[1];
     if (match$1) then do
@@ -13927,7 +13927,7 @@ function close_enough(thresholdOpt, a, b) do
 end end
 
 function from_pair_suites(name, suites) do
-  match = $$Array.to_list(Process.argv);
+  match = __Array.to_list(Process.argv);
   if (match) then do
     if (is_mocha(--[[ () ]]0)) then do
       describe(name, (function () do
@@ -14075,7 +14075,7 @@ end end
 
 Promise.resolve(--[[ () ]]0);
 
-$$Error$3 = Caml_exceptions.create("Ocaml_typedtree_test.Syntaxerr.Error");
+__Error$3 = Caml_exceptions.create("Ocaml_typedtree_test.Syntaxerr.Error");
 
 Escape_error = Caml_exceptions.create("Ocaml_typedtree_test.Syntaxerr.Escape_error");
 
@@ -14168,7 +14168,7 @@ function prepare_error(param) do
                     "Syntax error: applicative paths of the form F(X).t are not supported when the option -no-app-func is set."
                   ]);end end end 
      if ___conditional___ = 4--[[ Variable_in_scope ]] then do
-        $$var = param[1];
+        __var = param[1];
         return Curry._2(errorf(param[0], undefined, undefined, --[[ Format ]][
                         --[[ String_literal ]]Block.__(11, [
                             "In this scoped type, variable '",
@@ -14187,7 +14187,7 @@ function prepare_error(param) do
                               ])
                           ]),
                         "In this scoped type, variable '%s is reserved for the local type %s."
-                      ]), $$var, $$var);end end end 
+                      ]), __var, __var);end end end 
      if ___conditional___ = 5--[[ Other ]] then do
         return errorf(param[0], undefined, undefined, --[[ Format ]][
                     --[[ String_literal ]]Block.__(11, [
@@ -14213,7 +14213,7 @@ function prepare_error(param) do
 end end
 
 register_error_of_exn((function (param) do
-        if (param[0] == $$Error$3) then do
+        if (param[0] == __Error$3) then do
           return prepare_error(param[1]);
         end
          end 
@@ -14221,7 +14221,7 @@ register_error_of_exn((function (param) do
 
 function ill_formed_ast(loc, s) do
   throw [
-        $$Error$3,
+        __Error$3,
         --[[ Ill_formed_ast ]]Block.__(6, [
             loc,
             s
@@ -14361,7 +14361,7 @@ end end
 
 function neg_float_string(f) do
   if (#f ~= 0 and Caml_string.get(f, 0) == --[[ "-" ]]45) then do
-    return $$String.sub(f, 1, #f - 1 | 0);
+    return __String.sub(f, 1, #f - 1 | 0);
   end else do
     return "-" .. f;
   end end 
@@ -14529,7 +14529,7 @@ end end
 
 function unclosed(opening_name, opening_num, closing_name, closing_num) do
   throw [
-        $$Error$3,
+        __Error$3,
         --[[ Unclosed ]]Block.__(0, [
             rhs_loc(opening_num),
             opening_name,
@@ -14541,7 +14541,7 @@ end end
 
 function expecting(pos, nonterm) do
   throw [
-        $$Error$3,
+        __Error$3,
         --[[ Expecting ]]Block.__(1, [
             rhs_loc(pos),
             nonterm
@@ -14551,7 +14551,7 @@ end end
 
 function not_expecting(pos, nonterm) do
   throw [
-        $$Error$3,
+        __Error$3,
         --[[ Not_expecting ]]Block.__(2, [
             rhs_loc(pos),
             nonterm
@@ -14603,7 +14603,7 @@ end end
 function check_variable(vl, loc, v) do
   if (List.mem(v, vl)) then do
     throw [
-          $$Error$3,
+          __Error$3,
           --[[ Variable_in_scope ]]Block.__(4, [
               loc,
               v
@@ -15322,7 +15322,7 @@ yyact = [
       if (exit == 1) then do
         if (lbs.lbs_attributes ~= --[[ [] ]]0) then do
           throw [
-                $$Error$3,
+                __Error$3,
                 --[[ Not_expecting ]]Block.__(2, [
                     lbs.lbs_loc,
                     "attributes"
@@ -15830,7 +15830,7 @@ yyact = [
       bindings = List.map((function (lb) do
               if (lb.lb_attributes ~= --[[ [] ]]0) then do
                 throw [
-                      $$Error$3,
+                      __Error$3,
                       --[[ Not_expecting ]]Block.__(2, [
                           lb.lb_loc,
                           "item attribute"
@@ -15842,7 +15842,7 @@ yyact = [
             end end), lbs.lbs_bindings);
       if (lbs.lbs_extension ~= undefined) then do
         throw [
-              $$Error$3,
+              __Error$3,
               --[[ Not_expecting ]]Block.__(2, [
                   lbs.lbs_loc,
                   "extension"
@@ -15852,7 +15852,7 @@ yyact = [
        end 
       if (lbs.lbs_attributes ~= --[[ [] ]]0) then do
         throw [
-              $$Error$3,
+              __Error$3,
               --[[ Not_expecting ]]Block.__(2, [
                   lbs.lbs_loc,
                   "attributes"
@@ -16587,7 +16587,7 @@ yyact = [
       bindings = List.map((function (lb) do
               if (lb.lb_attributes ~= --[[ [] ]]0) then do
                 throw [
-                      $$Error$3,
+                      __Error$3,
                       --[[ Not_expecting ]]Block.__(2, [
                           lb.lb_loc,
                           "item attribute"
@@ -17924,13 +17924,13 @@ yyact = [
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return Curry._3(Ast_helper_Exp.$$case, _1, undefined, _3);
+      return Curry._3(Ast_helper_Exp.__case, _1, undefined, _3);
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 4);
       _3 = Parsing.peek_val(__caml_parser_env, 2);
       _5 = Parsing.peek_val(__caml_parser_env, 0);
-      return Curry._3(Ast_helper_Exp.$$case, _1, _3, _5);
+      return Curry._3(Ast_helper_Exp.__case, _1, _3, _5);
     end end),
   (function (__caml_parser_env) do
       return Parsing.peek_val(__caml_parser_env, 0);
@@ -19841,7 +19841,7 @@ yyact = [
                 ]);
       end else do
         throw [
-              $$Error$3,
+              __Error$3,
               --[[ Applicative_path ]]Block.__(3, [symbol_rloc(--[[ () ]]0)])
             ];
       end end 
@@ -20414,14 +20414,14 @@ function string_of_type_directive(x) do
   end
 end end
 
-$$Error$4 = Caml_exceptions.create("Ocaml_typedtree_test.Lexer.Error");
+__Error$4 = Caml_exceptions.create("Ocaml_typedtree_test.Lexer.Error");
 
 function assert_same_type(lexbuf, x, y) do
   lhs = type_of_directive(x);
   rhs = type_of_directive(y);
   if (lhs ~= rhs) then do
     throw [
-          $$Error$4,
+          __Error$4,
           --[[ Conditional_expr_expected_type ]]Block.__(7, [
               lhs,
               rhs
@@ -20444,7 +20444,7 @@ exit = 0;
 i;
 
 try do
-  i = $$String.rindex(Sys.ocaml_version, --[[ "+" ]]43);
+  i = __String.rindex(Sys.ocaml_version, --[[ "+" ]]43);
   exit = 1;
 end
 catch (exn$1)do
@@ -20456,7 +20456,7 @@ catch (exn$1)do
 end
 
 if (exit == 1) then do
-  tmp = $$String.sub(Sys.ocaml_version, i + 1 | 0, (#Sys.ocaml_version - i | 0) - 1 | 0);
+  tmp = __String.sub(Sys.ocaml_version, i + 1 | 0, (#Sys.ocaml_version - i | 0) - 1 | 0);
 end
  end 
 
@@ -20507,7 +20507,7 @@ function semantic_version_parse(str, start, last_index) do
   match$1 = aux(match[1], 0, last_index);
   match$2 = aux(match$1[1], 0, last_index);
   patch_end = match$2[1];
-  additional = $$String.sub(str, patch_end, (last_index - patch_end | 0) + 1 | 0);
+  additional = __String.sub(str, patch_end, (last_index - patch_end | 0) + 1 | 0);
   return --[[ tuple ]][
           --[[ tuple ]][
             match[0],
@@ -20600,7 +20600,7 @@ function value_of_token(loc, t) do
        do
       else do
         throw [
-              $$Error$4,
+              __Error$4,
               --[[ Unexpected_token_in_conditional ]]4,
               loc
             ];
@@ -20621,7 +20621,7 @@ function value_of_token(loc, t) do
        do
       else do
         throw [
-              $$Error$4,
+              __Error$4,
               --[[ Unexpected_token_in_conditional ]]4,
               loc
             ];
@@ -20649,7 +20649,7 @@ function directive_parse(token_with_comments, lexbuf) do
           do
              if ___conditional___ = 25--[[ EOF ]] then do
                 throw [
-                      $$Error$4,
+                      __Error$4,
                       --[[ Unterminated_if ]]2,
                       curr(lexbuf)
                     ];end end end 
@@ -20728,7 +20728,7 @@ function directive_parse(token_with_comments, lexbuf) do
                   last_index = #str - 1 | 0;
                   if (last_index < 0) then do
                     throw [
-                          $$Error$4,
+                          __Error$4,
                           --[[ Illegal_semver ]]Block.__(6, [str]),
                           loc
                         ];
@@ -20753,7 +20753,7 @@ function directive_parse(token_with_comments, lexbuf) do
                          if ___conditional___ = 0 then do
                             if (last_index == 0) then do
                               throw [
-                                    $$Error$4,
+                                    __Error$4,
                                     --[[ Illegal_semver ]]Block.__(6, [str]),
                                     loc
                                   ];
@@ -20771,7 +20771,7 @@ function directive_parse(token_with_comments, lexbuf) do
                          if ___conditional___ = 2 then do
                             if (last_index == 0) then do
                               throw [
-                                    $$Error$4,
+                                    __Error$4,
                                     --[[ Illegal_semver ]]Block.__(6, [str]),
                                     loc
                                   ];
@@ -20835,7 +20835,7 @@ function directive_parse(token_with_comments, lexbuf) do
                 end end 
                 if (exit$1 == 3) then do
                   throw [
-                        $$Error$4,
+                        __Error$4,
                         --[[ Conditional_expr_expected_type ]]Block.__(7, [
                             --[[ Dir_type_string ]]3,
                             type_of_directive(lhs)
@@ -20847,7 +20847,7 @@ function directive_parse(token_with_comments, lexbuf) do
               end
                end 
               throw [
-                    $$Error$4,
+                    __Error$4,
                     --[[ Conditional_expr_expected_type ]]Block.__(7, [
                         --[[ Dir_type_string ]]3,
                         type_of_directive(lhs)
@@ -20954,7 +20954,7 @@ function directive_parse(token_with_comments, lexbuf) do
             if (typeof match == "number") then do
               if (match ~= 81) then do
                 throw [
-                      $$Error$4,
+                      __Error$4,
                       --[[ Unterminated_paren_in_conditional ]]1,
                       curr(lexbuf)
                     ];
@@ -20963,7 +20963,7 @@ function directive_parse(token_with_comments, lexbuf) do
               return v;
             end else do
               throw [
-                    $$Error$4,
+                    __Error$4,
                     --[[ Unterminated_paren_in_conditional ]]1,
                     curr(lexbuf)
                   ];
@@ -20973,7 +20973,7 @@ function directive_parse(token_with_comments, lexbuf) do
          do
         else do
           throw [
-                $$Error$4,
+                __Error$4,
                 --[[ Unexpected_token_in_conditional ]]4,
                 curr_loc
               ];
@@ -20986,7 +20986,7 @@ function directive_parse(token_with_comments, lexbuf) do
          if ___conditional___ = 1--[[ FLOAT ]] then do
             return token_op(calc, (function (e) do
                           throw [
-                                $$Error$4,
+                                __Error$4,
                                 --[[ Conditional_expr_expected_type ]]Block.__(7, [
                                     --[[ Dir_type_bool ]]0,
                                     --[[ Dir_type_float ]]1
@@ -20997,7 +20997,7 @@ function directive_parse(token_with_comments, lexbuf) do
          if ___conditional___ = 7--[[ INT ]] then do
             return token_op(calc, (function (e) do
                           throw [
-                                $$Error$4,
+                                __Error$4,
                                 --[[ Conditional_expr_expected_type ]]Block.__(7, [
                                     --[[ Dir_type_bool ]]0,
                                     --[[ Dir_type_int ]]2
@@ -21014,7 +21014,7 @@ function directive_parse(token_with_comments, lexbuf) do
                do end
               else do
                 throw [
-                      $$Error$4,
+                      __Error$4,
                       --[[ Unexpected_token_in_conditional ]]4,
                       curr_loc
                     ];
@@ -21025,7 +21025,7 @@ function directive_parse(token_with_comments, lexbuf) do
             loc = curr(lexbuf);
             if (typeof t == "number") then do
               throw [
-                    $$Error$4,
+                    __Error$4,
                     --[[ Unexpected_token_in_conditional ]]4,
                     loc
                   ];
@@ -21042,7 +21042,7 @@ function directive_parse(token_with_comments, lexbuf) do
               end end 
             end else do
               throw [
-                    $$Error$4,
+                    __Error$4,
                     --[[ Unexpected_token_in_conditional ]]4,
                     loc
                   ];
@@ -21050,7 +21050,7 @@ function directive_parse(token_with_comments, lexbuf) do
          if ___conditional___ = 16--[[ STRING ]] then do
             return token_op(calc, (function (e) do
                           throw [
-                                $$Error$4,
+                                __Error$4,
                                 --[[ Conditional_expr_expected_type ]]Block.__(7, [
                                     --[[ Dir_type_bool ]]0,
                                     --[[ Dir_type_string ]]3
@@ -21068,7 +21068,7 @@ function directive_parse(token_with_comments, lexbuf) do
                            end 
                           ty = type_of_directive(value_v);
                           throw [
-                                $$Error$4,
+                                __Error$4,
                                 --[[ Conditional_expr_expected_type ]]Block.__(7, [
                                     --[[ Dir_type_bool ]]0,
                                     ty
@@ -21079,7 +21079,7 @@ function directive_parse(token_with_comments, lexbuf) do
          do
         else do
           throw [
-                $$Error$4,
+                __Error$4,
                 --[[ Unexpected_token_in_conditional ]]4,
                 curr_loc
               ];
@@ -21108,7 +21108,7 @@ function directive_parse(token_with_comments, lexbuf) do
   if (typeof match == "number") then do
     if (match ~= 88) then do
       throw [
-            $$Error$4,
+            __Error$4,
             --[[ Expect_hash_then_in_conditional ]]5,
             curr(lexbuf)
           ];
@@ -21117,7 +21117,7 @@ function directive_parse(token_with_comments, lexbuf) do
     return v;
   end else do
     throw [
-          $$Error$4,
+          __Error$4,
           --[[ Expect_hash_then_in_conditional ]]5,
           curr(lexbuf)
         ];
@@ -21595,7 +21595,7 @@ function char_for_decimal_code(lexbuf, i) do
       return --[[ "x" ]]120;
     end else do
       throw [
-            $$Error$4,
+            __Error$4,
             --[[ Illegal_escape ]]Block.__(1, [Lexing.lexeme(lexbuf)]),
             curr(lexbuf)
           ];
@@ -21622,15 +21622,15 @@ function cvt_int_literal(s) do
 end end
 
 function cvt_int32_literal(s) do
-  return -Caml_format.caml_int32_of_string("-" .. $$String.sub(s, 0, #s - 1 | 0)) | 0;
+  return -Caml_format.caml_int32_of_string("-" .. __String.sub(s, 0, #s - 1 | 0)) | 0;
 end end
 
 function cvt_int64_literal(s) do
-  return Caml_int64.neg(Caml_format.caml_int64_of_string("-" .. $$String.sub(s, 0, #s - 1 | 0)));
+  return Caml_int64.neg(Caml_format.caml_int64_of_string("-" .. __String.sub(s, 0, #s - 1 | 0)));
 end end
 
 function cvt_nativeint_literal(s) do
-  return -Caml_format.caml_nativeint_of_string("-" .. $$String.sub(s, 0, #s - 1 | 0));
+  return -Caml_format.caml_nativeint_of_string("-" .. __String.sub(s, 0, #s - 1 | 0));
 end end
 
 function remove_underscores(s) do
@@ -21664,10 +21664,10 @@ end end
 
 function get_label_name(lexbuf) do
   s = Lexing.lexeme(lexbuf);
-  name = $$String.sub(s, 1, #s - 2 | 0);
+  name = __String.sub(s, 1, #s - 2 | 0);
   if (Hashtbl.mem(keyword_table, name)) then do
     throw [
-          $$Error$4,
+          __Error$4,
           --[[ Keyword_as_label ]]Block.__(4, [name]),
           curr(lexbuf)
         ];
@@ -21894,7 +21894,7 @@ function report_error$2(ppf, param) do
 end end
 
 register_error_of_exn((function (param) do
-        if (param[0] == $$Error$4) then do
+        if (param[0] == __Error$4) then do
           return error_of_printer(param[2], report_error$2, param[1]);
         end
          end 
@@ -21926,7 +21926,7 @@ function token(lexbuf) do
        if ___conditional___ = 0 then do
           if (not escaped_newlines.contents) then do
             throw [
-                  $$Error$4,
+                  __Error$4,
                   --[[ Illegal_character ]]Block.__(0, [Lexing.lexeme_char(lexbuf$1, 0)]),
                   curr(lexbuf$1)
                 ];
@@ -21983,7 +21983,7 @@ function token(lexbuf) do
             exn$1 = Caml_js_exceptions.internalToOCamlException(raw_exn);
             if (exn$1[0] == Caml_builtin_exceptions.failure) then do
               throw [
-                    $$Error$4,
+                    __Error$4,
                     --[[ Literal_overflow ]]Block.__(5, ["int"]),
                     curr(lexbuf$1)
                   ];
@@ -22001,7 +22001,7 @@ function token(lexbuf) do
             exn$2 = Caml_js_exceptions.internalToOCamlException(raw_exn$1);
             if (exn$2[0] == Caml_builtin_exceptions.failure) then do
               throw [
-                    $$Error$4,
+                    __Error$4,
                     --[[ Literal_overflow ]]Block.__(5, ["int32"]),
                     curr(lexbuf$1)
                   ];
@@ -22017,7 +22017,7 @@ function token(lexbuf) do
             exn$3 = Caml_js_exceptions.internalToOCamlException(raw_exn$2);
             if (exn$3[0] == Caml_builtin_exceptions.failure) then do
               throw [
-                    $$Error$4,
+                    __Error$4,
                     --[[ Literal_overflow ]]Block.__(5, ["int64"]),
                     curr(lexbuf$1)
                   ];
@@ -22033,7 +22033,7 @@ function token(lexbuf) do
             exn$4 = Caml_js_exceptions.internalToOCamlException(raw_exn$3);
             if (exn$4[0] == Caml_builtin_exceptions.failure) then do
               throw [
-                    $$Error$4,
+                    __Error$4,
                     --[[ Literal_overflow ]]Block.__(5, ["nativeint"]),
                     curr(lexbuf$1)
                   ];
@@ -22056,7 +22056,7 @@ function token(lexbuf) do
        if ___conditional___ = 20 then do
           reset_string_buffer(--[[ () ]]0);
           delim = Lexing.lexeme(lexbuf$1);
-          delim$1 = $$String.sub(delim, 1, #delim - 2 | 0);
+          delim$1 = __String.sub(delim, 1, #delim - 2 | 0);
           is_in_string.contents = true;
           string_start$1 = lexbuf$1.lex_start_p;
           string_start_loc.contents = curr(lexbuf$1);
@@ -22080,9 +22080,9 @@ function token(lexbuf) do
           return --[[ CHAR ]]Block.__(0, [char_for_hexadecimal_code(lexbuf$1, 3)]);end end end 
        if ___conditional___ = 26 then do
           l = Lexing.lexeme(lexbuf$1);
-          esc = $$String.sub(l, 1, #l - 1 | 0);
+          esc = __String.sub(l, 1, #l - 1 | 0);
           throw [
-                $$Error$4,
+                __Error$4,
                 --[[ Illegal_escape ]]Block.__(1, [esc]),
                 curr(lexbuf$1)
               ];end end end 
@@ -22255,14 +22255,14 @@ function token(lexbuf) do
           if (if_then_else.contents ~= --[[ Dir_out ]]2) then do
             if (if_then_else.contents == --[[ Dir_if_true ]]0) then do
               throw [
-                    $$Error$4,
+                    __Error$4,
                     --[[ Unterminated_if ]]2,
                     curr(lexbuf$1)
                   ];
             end
              end 
             throw [
-                  $$Error$4,
+                  __Error$4,
                   --[[ Unterminated_else ]]3,
                   curr(lexbuf$1)
                 ];
@@ -22271,7 +22271,7 @@ function token(lexbuf) do
           end end end end end 
        if ___conditional___ = 91 then do
           throw [
-                $$Error$4,
+                __Error$4,
                 --[[ Illegal_character ]]Block.__(0, [Lexing.lexeme_char(lexbuf$1, 0)]),
                 curr(lexbuf$1)
               ];end end end 
@@ -22300,13 +22300,13 @@ function __ocaml_lex_quoted_string_rec(delim, lexbuf, ___ocaml_lex_state) do
        if ___conditional___ = 1 then do
           is_in_string.contents = false;
           throw [
-                $$Error$4,
+                __Error$4,
                 --[[ Unterminated_string ]]0,
                 string_start_loc.contents
               ];end end end 
        if ___conditional___ = 2 then do
           edelim = Lexing.lexeme(lexbuf);
-          edelim$1 = $$String.sub(edelim, 1, #edelim - 2 | 0);
+          edelim$1 = __String.sub(edelim, 1, #edelim - 2 | 0);
           if (delim == edelim$1) then do
             return --[[ () ]]0;
           end else do
@@ -22375,7 +22375,7 @@ function __ocaml_lex_comment_rec(lexbuf, ___ocaml_lex_state) do
           end
           catch (raw_exn)do
             exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
-            if (exn[0] == $$Error$4) then do
+            if (exn[0] == __Error$4) then do
               match$1 = exn[1];
               if (typeof match$1 == "number") then do
                 if (match$1 ~= 0) then do
@@ -22387,7 +22387,7 @@ function __ocaml_lex_comment_rec(lexbuf, ___ocaml_lex_state) do
                   start = List.hd(List.rev(comment_start_loc.contents));
                   comment_start_loc.contents = --[[ [] ]]0;
                   throw [
-                        $$Error$4,
+                        __Error$4,
                         --[[ Unterminated_string_in_comment ]]Block.__(3, [
                             start,
                             exn[2]
@@ -22417,7 +22417,7 @@ function __ocaml_lex_comment_rec(lexbuf, ___ocaml_lex_state) do
           continue ;end end end 
        if ___conditional___ = 3 then do
           delim = Lexing.lexeme(lexbuf);
-          delim$1 = $$String.sub(delim, 1, #delim - 2 | 0);
+          delim$1 = __String.sub(delim, 1, #delim - 2 | 0);
           string_start_loc.contents = curr(lexbuf);
           store_string(Lexing.lexeme(lexbuf));
           is_in_string.contents = true;
@@ -22426,7 +22426,7 @@ function __ocaml_lex_comment_rec(lexbuf, ___ocaml_lex_state) do
           end
           catch (raw_exn$1)do
             exn$1 = Caml_js_exceptions.internalToOCamlException(raw_exn$1);
-            if (exn$1[0] == $$Error$4) then do
+            if (exn$1[0] == __Error$4) then do
               match$3 = exn$1[1];
               if (typeof match$3 == "number") then do
                 if (match$3 ~= 0) then do
@@ -22438,7 +22438,7 @@ function __ocaml_lex_comment_rec(lexbuf, ___ocaml_lex_state) do
                   start$1 = List.hd(List.rev(comment_start_loc.contents));
                   comment_start_loc.contents = --[[ [] ]]0;
                   throw [
-                        $$Error$4,
+                        __Error$4,
                         --[[ Unterminated_string_in_comment ]]Block.__(3, [
                             start$1,
                             exn$1[2]
@@ -22479,7 +22479,7 @@ function __ocaml_lex_comment_rec(lexbuf, ___ocaml_lex_state) do
             start$2 = List.hd(List.rev(comment_start_loc.contents));
             comment_start_loc.contents = --[[ [] ]]0;
             throw [
-                  $$Error$4,
+                  __Error$4,
                   --[[ Unterminated_comment ]]Block.__(2, [start$2]),
                   match$5[0]
                 ];
@@ -22563,7 +22563,7 @@ function string(lexbuf) do
        if ___conditional___ = 7 then do
           is_in_string.contents = false;
           throw [
-                $$Error$4,
+                __Error$4,
                 --[[ Unterminated_string ]]0,
                 string_start_loc.contents
               ];end end end 
@@ -22659,7 +22659,7 @@ function token$1(lexbuf) do
                      if ___conditional___ = 23--[[ ELSE ]] then do
                         if (if_then_else$1 ~= 0) then do
                           throw [
-                                $$Error$4,
+                                __Error$4,
                                 --[[ Unexpected_directive ]]6,
                                 curr(lexbuf$1)
                               ];
@@ -22668,7 +22668,7 @@ function token$1(lexbuf) do
                      if ___conditional___ = 24--[[ END ]] then do
                         if (if_then_else$1 >= 2) then do
                           throw [
-                                $$Error$4,
+                                __Error$4,
                                 --[[ Unexpected_directive ]]6,
                                 curr(lexbuf$1)
                               ];
@@ -22687,7 +22687,7 @@ function token$1(lexbuf) do
                               token = token_with_comments(lexbuf$1);
                               if (token == --[[ EOF ]]25) then do
                                 throw [
-                                      $$Error$4,
+                                      __Error$4,
                                       --[[ Unterminated_if ]]2,
                                       curr(lexbuf$1)
                                     ];
@@ -22707,7 +22707,7 @@ function token$1(lexbuf) do
                                     end end 
                                   end else if (switcher == 14) then do
                                     throw [
-                                          $$Error$4,
+                                          __Error$4,
                                           --[[ Unexpected_directive ]]6,
                                           curr(lexbuf$1)
                                         ];
@@ -22730,7 +22730,7 @@ function token$1(lexbuf) do
                           end end 
                         end else do
                           throw [
-                                $$Error$4,
+                                __Error$4,
                                 --[[ Unexpected_directive ]]6,
                                 curr(lexbuf$1)
                               ];
@@ -22744,7 +22744,7 @@ function token$1(lexbuf) do
                 end else if (match.tag == --[[ LIDENT ]]11 and match[0] == "elif") then do
                   if (if_then_else$1 ~= 0) then do
                     throw [
-                          $$Error$4,
+                          __Error$4,
                           --[[ Unexpected_directive ]]6,
                           curr(lexbuf$1)
                         ];
@@ -22762,7 +22762,7 @@ function token$1(lexbuf) do
                     token$2 = token_with_comments(lexbuf$1);
                     if (token$2 == --[[ EOF ]]25) then do
                       throw [
-                            $$Error$4,
+                            __Error$4,
                             --[[ Unterminated_else ]]3,
                             curr(lexbuf$1)
                           ];
@@ -22779,7 +22779,7 @@ function token$1(lexbuf) do
                           end else do
                             if (else_seen) then do
                               throw [
-                                    $$Error$4,
+                                    __Error$4,
                                     --[[ Unexpected_directive ]]6,
                                     curr(lexbuf$1)
                                   ];
@@ -22790,7 +22790,7 @@ function token$1(lexbuf) do
                           end end 
                         end else if (switcher$1 == 14) then do
                           throw [
-                                $$Error$4,
+                                __Error$4,
                                 --[[ Unexpected_directive ]]6,
                                 curr(lexbuf$1)
                               ];
@@ -22800,7 +22800,7 @@ function token$1(lexbuf) do
                        end 
                       if (else_seen and is_elif(token$3)) then do
                         throw [
-                              $$Error$4,
+                              __Error$4,
                               --[[ Unexpected_directive ]]6,
                               curr(lexbuf$1)
                             ];
@@ -22932,7 +22932,7 @@ function skip_phrase(lexbuf) do
     end
     catch (raw_exn)do
       exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
-      if (exn[0] == $$Error$4) then do
+      if (exn[0] == __Error$4) then do
         tmp = exn[1];
         if (typeof tmp == "number") then do
           if (tmp == --[[ Unterminated_string ]]0) then do
@@ -22980,7 +22980,7 @@ function wrap$1(parsing_fun, lexbuf) do
   end
   catch (raw_err)do
     err = Caml_js_exceptions.internalToOCamlException(raw_err);
-    if (err[0] == $$Error$4) then do
+    if (err[0] == __Error$4) then do
       tmp = err[1];
       if (typeof tmp == "number") then do
         throw err;
@@ -22992,7 +22992,7 @@ function wrap$1(parsing_fun, lexbuf) do
       end else do
         throw err;
       end end  end  end 
-    end else if (err[0] == $$Error$3) then do
+    end else if (err[0] == __Error$3) then do
       if (input_name.contents == "//toplevel//") then do
         maybe_skip_phrase(lexbuf);
         throw err;
@@ -23009,7 +23009,7 @@ function wrap$1(parsing_fun, lexbuf) do
     end
      end 
     throw [
-          $$Error$3,
+          __Error$3,
           --[[ Other ]]Block.__(5, [loc])
         ];
   end
@@ -24749,9 +24749,9 @@ function clear_env(binary_annots) do
        if ___conditional___ = 2--[[ Interface ]] then do
           return --[[ Interface ]]Block.__(2, [Curry._1(ClearEnv.map_signature, binary_annots[0])]);end end end 
        if ___conditional___ = 3--[[ Partial_implementation ]] then do
-          return --[[ Partial_implementation ]]Block.__(3, [$$Array.map(clear_part, binary_annots[0])]);end end end 
+          return --[[ Partial_implementation ]]Block.__(3, [__Array.map(clear_part, binary_annots[0])]);end end end 
        if ___conditional___ = 4--[[ Partial_interface ]] then do
-          return --[[ Partial_interface ]]Block.__(4, [$$Array.map(clear_part, binary_annots[0])]);end end end 
+          return --[[ Partial_interface ]]Block.__(4, [__Array.map(clear_part, binary_annots[0])]);end end end 
        do
       
     end
@@ -27071,7 +27071,7 @@ function instance_constructor(in_pattern, cstr) do
     match = in_pattern;
     newtype_lev = match[1];
     env = match[0];
-    $$process = function (existential) do
+    __process = function (existential) do
       decl = new_declaration(--[[ tuple ]][
             newtype_lev,
             newtype_lev
@@ -27108,7 +27108,7 @@ function instance_constructor(in_pattern, cstr) do
        end 
       return link_type(tv, to_unify);
     end end;
-    List.iter($$process, cstr.cstr_existentials);
+    List.iter(__process, cstr.cstr_existentials);
   end
    end 
   ty_res = copy(undefined, undefined, undefined, cstr.cstr_res);
@@ -30296,9 +30296,9 @@ function unify_row(env, row1, row2) do
       );
     fixed = fixed1 or fixed2;
     closed = row1$1.row_closed or row2$1.row_closed;
-    keep = function ($$switch) do
+    keep = function (__switch) do
       return List.for_all((function (param) do
-                    match = Curry._2($$switch, param[1], param[2]);
+                    match = Curry._2(__switch, param[1], param[2]);
                     if (row_field_repr_aux(--[[ [] ]]0, match[0]) == --[[ Rabsent ]]0) then do
                       return true;
                     end else do
@@ -35861,8 +35861,8 @@ function nondep_type_rec(env, id, _ty) do
                   catch (exn$2)do
                     if (exn$2 == Caml_builtin_exceptions.not_found) then do
                       Curry._3(TypeHash.add, nondep_variants, more, ty$prime);
-                      $$static = static_row(row);
-                      more$prime = $$static and newty2(100000000, --[[ Tnil ]]0) or more;
+                      __static = static_row(row);
+                      more$prime = __static and newty2(100000000, --[[ Tnil ]]0) or more;
                       row$1 = copy_row((function (param) do
                               return nondep_type_rec(env, id, param);
                             end end), true, row, true, more$prime);
@@ -39341,7 +39341,7 @@ function string_of_out_ident(param) do
   local ___conditional___=(param.tag | 0);
   do
      if ___conditional___ = 0--[[ Oide_apply ]] then do
-        return $$String.concat("", --[[ :: ]][
+        return __String.concat("", --[[ :: ]][
                     string_of_out_ident(param[0]),
                     --[[ :: ]][
                       "(",
@@ -39355,7 +39355,7 @@ function string_of_out_ident(param) do
                     ]
                   ]);end end end 
      if ___conditional___ = 1--[[ Oide_dot ]] then do
-        return $$String.concat(".", --[[ :: ]][
+        return __String.concat(".", --[[ :: ]][
                     string_of_out_ident(param[0]),
                     --[[ :: ]][
                       param[1],
@@ -41676,7 +41676,7 @@ function tree_of_typexp(sch, ty) do
               end end end end end 
            if ___conditional___ = 11--[[ Tpackage ]] then do
               n = List.map((function (li) do
-                      return $$String.concat(".", flat(--[[ [] ]]0, li));
+                      return __String.concat(".", flat(--[[ [] ]]0, li));
                     end end), match[1]);
               return --[[ Otyp_module ]]Block.__(13, [
                         name(undefined, match[0]),
@@ -46979,7 +46979,7 @@ function remove_aliases$1(env, sg) do
   return remove_aliases(env, excl, sg);
 end end
 
-$$Error$5 = Caml_exceptions.create("Ocaml_typedtree_test.Includemod.Error");
+__Error$5 = Caml_exceptions.create("Ocaml_typedtree_test.Includemod.Error");
 
 function value_descriptions(env, cxt, subst, id, vd1, vd2) do
   record_value_dependency(vd1, vd2);
@@ -47019,7 +47019,7 @@ function value_descriptions(env, cxt, subst, id, vd1, vd2) do
   catch (exn)do
     if (exn == Dont_match) then do
       throw [
-            $$Error$5,
+            __Error$5,
             --[[ :: ]][
               --[[ tuple ]][
                 cxt,
@@ -47046,7 +47046,7 @@ function type_declarations$2(env, old_envOpt, cxt, subst, id, decl1, decl2) do
   err = type_declarations$1(undefined, env, id.name, decl1, id, decl2$1);
   if (err ~= --[[ [] ]]0) then do
     throw [
-          $$Error$5,
+          __Error$5,
           --[[ :: ]][
             --[[ tuple ]][
               cxt,
@@ -47072,7 +47072,7 @@ function extension_constructors$1(env, cxt, subst, id, ext1, ext2) do
     return --[[ () ]]0;
   end else do
     throw [
-          $$Error$5,
+          __Error$5,
           --[[ :: ]][
             --[[ tuple ]][
               cxt,
@@ -47094,7 +47094,7 @@ function class_type_declarations$1(old_env, env, cxt, subst, id, decl1, decl2) d
   reason = class_type_declarations(env, decl1, decl2$1);
   if (reason) then do
     throw [
-          $$Error$5,
+          __Error$5,
           --[[ :: ]][
             --[[ tuple ]][
               cxt,
@@ -47119,7 +47119,7 @@ function class_declarations$1(old_env, env, cxt, subst, id, decl1, decl2) do
   reason = class_declarations(env, decl1, decl2$1);
   if (reason) then do
     throw [
-          $$Error$5,
+          __Error$5,
           --[[ :: ]][
             --[[ tuple ]][
               cxt,
@@ -47162,7 +47162,7 @@ function expand_module_path(env, cxt, path) do
   catch (exn)do
     if (exn == Caml_builtin_exceptions.not_found) then do
       throw [
-            $$Error$5,
+            __Error$5,
             --[[ :: ]][
               --[[ tuple ]][
                 cxt,
@@ -47185,7 +47185,7 @@ function expand_module_alias(env, cxt, path) do
   catch (exn)do
     if (exn == Caml_builtin_exceptions.not_found) then do
       throw [
-            $$Error$5,
+            __Error$5,
             --[[ :: ]][
               --[[ tuple ]][
                 cxt,
@@ -47310,7 +47310,7 @@ function modtypes(env, cxt, subst, mty1, mty2) do
     err = Caml_js_exceptions.internalToOCamlException(raw_err);
     if (err == Dont_match$1) then do
       throw [
-            $$Error$5,
+            __Error$5,
             --[[ :: ]][
               --[[ tuple ]][
                 cxt,
@@ -47325,14 +47325,14 @@ function modtypes(env, cxt, subst, mty1, mty2) do
           ];
     end
      end 
-    if (err[0] == $$Error$5) then do
+    if (err[0] == __Error$5) then do
       if (mty1.tag == --[[ Mty_alias ]]3) then do
         throw err;
       end else if (mty2.tag == --[[ Mty_alias ]]3) then do
         throw err;
       end else do
         throw [
-              $$Error$5,
+              __Error$5,
               --[[ :: ]][
                 --[[ tuple ]][
                   cxt,
@@ -47446,7 +47446,7 @@ function try_modtypes(env, cxt, subst, _mty1, mty2) do
             p2 = mty2[0];
             if (is_functor_arg(p2, env)) then do
               throw [
-                    $$Error$5,
+                    __Error$5,
                     --[[ :: ]][
                       --[[ tuple ]][
                         cxt,
@@ -47476,11 +47476,11 @@ function try_modtypes(env, cxt, subst, _mty1, mty2) do
             end
             catch (raw_exn)do
               exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
-              if (exn[0] == $$Error$2) then do
+              if (exn[0] == __Error$2) then do
                 match$2 = exn[1];
                 if (match$2.tag == --[[ Missing_module ]]3) then do
                   throw [
-                        $$Error$5,
+                        __Error$5,
                         --[[ :: ]][
                           --[[ tuple ]][
                             cxt,
@@ -47622,8 +47622,8 @@ function signatures(env, cxt, subst, sig1, sig2) do
         if (item2.tag == --[[ Sig_type ]]1 and not (item2[1].type_manifest ~= undefined or name2.tag ~= --[[ Field_type ]]1)) then do
           s = name2[0];
           l = #s;
-          match$1 = l >= 4 and $$String.sub(s, l - 4 | 0, 4) == "#row" and --[[ tuple ]][
-              --[[ Field_type ]]Block.__(1, [$$String.sub(s, 0, #s - 4 | 0)]),
+          match$1 = l >= 4 and __String.sub(s, l - 4 | 0, 4) == "#row" and --[[ tuple ]][
+              --[[ Field_type ]]Block.__(1, [__String.sub(s, 0, #s - 4 | 0)]),
               false
             ] or --[[ tuple ]][
               name2,
@@ -47687,7 +47687,7 @@ function signatures(env, cxt, subst, sig1, sig2) do
       end else do
         if (unpaired) then do
           throw [
-                $$Error$5,
+                __Error$5,
                 unpaired
               ];
         end
@@ -47868,9 +47868,9 @@ function modtype_infos(env, cxt, subst, id, info1, info2) do
   end
   catch (raw_exn)do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
-    if (exn[0] == $$Error$5) then do
+    if (exn[0] == __Error$5) then do
       throw [
-            $$Error$5,
+            __Error$5,
             --[[ :: ]][
               --[[ tuple ]][
                 cxt,
@@ -47898,7 +47898,7 @@ function check_modtype_equiv(env, cxt, mty1, mty2) do
   end
    end 
   throw [
-        $$Error$5,
+        __Error$5,
         --[[ :: ]][
           --[[ tuple ]][
             cxt,
@@ -47917,7 +47917,7 @@ function check_modtype_inclusion$1(env, mty1, path1, mty2) do
   end
   catch (raw_exn)do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
-    if (exn[0] == $$Error$5) then do
+    if (exn[0] == __Error$5) then do
       throw Caml_builtin_exceptions.not_found;
     end
      end 
@@ -47933,9 +47933,9 @@ function compunit(env, impl_name, impl_sig, intf_name, intf_sig) do
   end
   catch (raw_exn)do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
-    if (exn[0] == $$Error$5) then do
+    if (exn[0] == __Error$5) then do
       throw [
-            $$Error$5,
+            __Error$5,
             --[[ :: ]][
               --[[ tuple ]][
                 --[[ [] ]]0,
@@ -48969,7 +48969,7 @@ function report_error$4(ppf, errs) do
 end end
 
 register_error_of_exn((function (param) do
-        if (param[0] == $$Error$5) then do
+        if (param[0] == __Error$5) then do
           return error_of_printer_file(report_error$4, param[1]);
         end
          end 
@@ -51895,8 +51895,8 @@ function build_other(ext, env) do
                     end end  end 
                   end end), env);
             row = row_of_pat(p);
-            make_other_pat = function (tag, $$const) do
-              arg = $$const and undefined or omega;
+            make_other_pat = function (tag, __const) do
+              arg = __const and undefined or omega;
               return make_pat(--[[ Tpat_variant ]]Block.__(5, [
                             tag,
                             arg,
@@ -53699,15 +53699,15 @@ function do_check_partial(pred, exhaust, loc, casel, pss) do
           end end 
           if (exit == 1) then do
             try do
-              buf = $$Buffer.create(16);
+              buf = __Buffer.create(16);
               fmt = Format.formatter_of_buffer(buf);
               top_pretty(fmt, v$1);
               match$4 = check_partial_all(v$1, casel);
               if (match$4 ~= undefined) then do
-                $$Buffer.add_string(buf, "\n(However, some guarded clause may match this value.)");
+                __Buffer.add_string(buf, "\n(However, some guarded clause may match this value.)");
               end
                end 
-              errmsg = $$Buffer.contents(buf);
+              errmsg = __Buffer.contents(buf);
             end
             catch (exn)do
               errmsg = "";
@@ -53864,7 +53864,7 @@ end end
 
 Already_bound = Caml_exceptions.create("Ocaml_typedtree_test.Typetexp.Already_bound");
 
-$$Error$6 = Caml_exceptions.create("Ocaml_typedtree_test.Typetexp.Error");
+__Error$6 = Caml_exceptions.create("Ocaml_typedtree_test.Typetexp.Error");
 
 Error_forward = Caml_exceptions.create("Ocaml_typedtree_test.Typetexp.Error_forward");
 
@@ -54133,7 +54133,7 @@ function warning_leave_scope(param) do
 end end
 
 function warning_attribute(attrs) do
-  $$process = function (loc, txt, errflag, payload) do
+  __process = function (loc, txt, errflag, payload) do
     match = string_of_payload(payload);
     if (match ~= undefined) then do
       try do
@@ -54178,9 +54178,9 @@ function warning_attribute(attrs) do
                 local ___conditional___=(exit);
                 do
                    if ___conditional___ = 1 then do
-                      return $$process(match.loc, txt, false, param[1]);end end end 
+                      return __process(match.loc, txt, false, param[1]);end end end 
                    if ___conditional___ = 2 then do
-                      return $$process(match.loc, txt, true, param[1]);end end end 
+                      return __process(match.loc, txt, true, param[1]);end end end 
                    do
                   
                 end
@@ -54201,7 +54201,7 @@ function narrow_unbound_lid_error(env, loc, lid, make_error) do
       end else do
         if (exn == Recmodule) then do
           throw [
-                $$Error$6,
+                __Error$6,
                 loc,
                 env,
                 --[[ Illegal_reference_to_recursive_module ]]1
@@ -54222,7 +54222,7 @@ function narrow_unbound_lid_error(env, loc, lid, make_error) do
         match = scrape_alias(env, undefined, md.md_type);
         if (match.tag == --[[ Mty_functor ]]2) then do
           throw [
-                $$Error$6,
+                __Error$6,
                 loc,
                 env,
                 --[[ Access_functor_as_structure ]]Block.__(25, [mlid])
@@ -54233,7 +54233,7 @@ function narrow_unbound_lid_error(env, loc, lid, make_error) do
         check_module(lid[0]);
         check_module(lid[1]);
         throw [
-              $$Error$6,
+              __Error$6,
               loc,
               env,
               --[[ Ill_typed_functor_application ]]Block.__(24, [lid])
@@ -54242,7 +54242,7 @@ function narrow_unbound_lid_error(env, loc, lid, make_error) do
     
   end
   throw [
-        $$Error$6,
+        __Error$6,
         loc,
         env,
         Curry._1(make_error, lid)
@@ -54282,7 +54282,7 @@ function find_component(lookup, make_error, env, loc, lid) do
     end else do
       if (exn == Recmodule) then do
         throw [
-              $$Error$6,
+              __Error$6,
               loc,
               env,
               --[[ Illegal_reference_to_recursive_module ]]1
@@ -54419,7 +54419,7 @@ function create_package_mty(fake, loc, env, param) do
           s1 = param[0];
           if (Caml_obj.caml_equal(s1.txt, s2.txt)) then do
             throw [
-                  $$Error$6,
+                  __Error$6,
                   loc,
                   env,
                   --[[ Multiple_constraints_on_type ]]Block.__(15, [s1.txt])
@@ -54548,7 +54548,7 @@ function transl_type_param(env, styp) do
     try do
       if (name ~= "" and Caml_string.get(name, 0) == --[[ "_" ]]95) then do
         throw [
-              $$Error$6,
+              __Error$6,
               loc,
               empty,
               --[[ Invalid_variable_name ]]Block.__(13, ["'" .. name])
@@ -54624,7 +54624,7 @@ function transl_type(env, policy, styp) do
     end else do
       if (policy == --[[ Fixed ]]0) then do
         throw [
-              $$Error$6,
+              __Error$6,
               styp.ptyp_loc,
               env,
               --[[ Unbound_type_variable ]]Block.__(0, ["_"])
@@ -54641,7 +54641,7 @@ function transl_type(env, policy, styp) do
           name = match[0];
           if (name ~= "" and Caml_string.get(name, 0) == --[[ "_" ]]95) then do
             throw [
-                  $$Error$6,
+                  __Error$6,
                   styp.ptyp_loc,
                   env,
                   --[[ Invalid_variable_name ]]Block.__(13, ["'" .. name])
@@ -54720,7 +54720,7 @@ function transl_type(env, policy, styp) do
           end end 
           if (List.length(stl$2) ~= decl.type_arity) then do
             throw [
-                  $$Error$6,
+                  __Error$6,
                   styp.ptyp_loc,
                   env,
                   --[[ Type_arity_mismatch ]]Block.__(3, [
@@ -54745,7 +54745,7 @@ function transl_type(env, policy, styp) do
                     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
                     if (exn[0] == Unify) then do
                       throw [
-                            $$Error$6,
+                            __Error$6,
                             param[0].ptyp_loc,
                             env,
                             --[[ Type_mismatch ]]Block.__(6, [swap_list(exn[1])])
@@ -54765,7 +54765,7 @@ function transl_type(env, policy, styp) do
             exn$2 = Caml_js_exceptions.internalToOCamlException(raw_exn);
             if (exn$2[0] == Unify) then do
               throw [
-                    $$Error$6,
+                    __Error$6,
                     styp.ptyp_loc,
                     env,
                     --[[ Type_mismatch ]]Block.__(6, [exn$2[1]])
@@ -54889,7 +54889,7 @@ function transl_type(env, policy, styp) do
           path$1 = match$3[0];
           if (List.length(stl$3) ~= decl$2.type_arity) then do
             throw [
-                  $$Error$6,
+                  __Error$6,
                   styp.ptyp_loc,
                   env,
                   --[[ Type_arity_mismatch ]]Block.__(3, [
@@ -54912,7 +54912,7 @@ function transl_type(env, policy, styp) do
                     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
                     if (exn[0] == Unify) then do
                       throw [
-                            $$Error$6,
+                            __Error$6,
                             param[0].ptyp_loc,
                             env,
                             --[[ Type_mismatch ]]Block.__(6, [swap_list(exn[1])])
@@ -54933,7 +54933,7 @@ function transl_type(env, policy, styp) do
             exn$5 = Caml_js_exceptions.internalToOCamlException(raw_exn$1);
             if (exn$5[0] == Unify) then do
               throw [
-                    $$Error$6,
+                    __Error$6,
                     styp.ptyp_loc,
                     env,
                     --[[ Type_mismatch ]]Block.__(6, [exn$5[1]])
@@ -55013,8 +55013,8 @@ function transl_type(env, policy, styp) do
                     row_fixed: false,
                     row_name: row_row_name
                   end;
-                  $$static = static_row(row$1);
-                  row$2 = $$static and (do
+                  __static = static_row(row$1);
+                  row$2 = __static and (do
                         row_fields: fields$1,
                         row_more: newty2(current_level.contents, --[[ Tnil ]]0),
                         row_bound: --[[ () ]]0,
@@ -55076,7 +55076,7 @@ function transl_type(env, policy, styp) do
               if (exn$7[0] == Unify) then do
                 trace = swap_list(exn$7[1]);
                 throw [
-                      $$Error$6,
+                      __Error$6,
                       styp.ptyp_loc,
                       env,
                       --[[ Alias_type_mismatch ]]Block.__(7, [trace])
@@ -55107,7 +55107,7 @@ function transl_type(env, policy, styp) do
                 if (exn$9[0] == Unify) then do
                   trace$1 = swap_list(exn$9[1]);
                   throw [
-                        $$Error$6,
+                        __Error$6,
                         styp.ptyp_loc,
                         env,
                         --[[ Alias_type_mismatch ]]Block.__(7, [trace$1])
@@ -55192,7 +55192,7 @@ function transl_type(env, policy, styp) do
               l$prime = match[0];
               if (l ~= l$prime) then do
                 throw [
-                      $$Error$6,
+                      __Error$6,
                       styp.ptyp_loc,
                       env,
                       --[[ Variant_tags ]]Block.__(12, [
@@ -55220,7 +55220,7 @@ function transl_type(env, policy, styp) do
                   exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
                   if (exn[0] == Unify) then do
                     throw [
-                          $$Error$6,
+                          __Error$6,
                           loc,
                           env,
                           --[[ Constructor_mismatch ]]Block.__(10, [
@@ -55282,7 +55282,7 @@ function transl_type(env, policy, styp) do
                    if ___conditional___ = 0--[[ Tvar ]] then do
                       if (nm ~= undefined) then do
                         throw [
-                              $$Error$6,
+                              __Error$6,
                               sty.ptyp_loc,
                               env,
                               --[[ Unbound_type_constructor_2 ]]Block.__(2, [nm[0]])
@@ -55306,7 +55306,7 @@ function transl_type(env, policy, styp) do
               end end 
               if (exit == 1) then do
                 throw [
-                      $$Error$6,
+                      __Error$6,
                       sty.ptyp_loc,
                       env,
                       --[[ Not_a_variant ]]Block.__(11, [ty])
@@ -55391,7 +55391,7 @@ function transl_type(env, policy, styp) do
               if (exit$1 == 1) then do
                 if (List.length(stl) > 1 or c and stl ~= --[[ [] ]]0) then do
                   throw [
-                        $$Error$6,
+                        __Error$6,
                         styp.ptyp_loc,
                         env,
                         --[[ Present_has_conjunction ]]Block.__(8, [l])
@@ -55423,7 +55423,7 @@ function transl_type(env, policy, styp) do
                       return 0;
                     end else do
                       throw [
-                            $$Error$6,
+                            __Error$6,
                             styp.ptyp_loc,
                             env,
                             --[[ Present_has_no_type ]]Block.__(9, [l])
@@ -55444,8 +55444,8 @@ function transl_type(env, policy, styp) do
             row_fixed: false,
             row_name: row_row_name$1
           end;
-          $$static$1 = static_row(row$3);
-          row$4 = $$static$1 and (do
+          __static$1 = static_row(row$3);
+          row$4 = __static$1 and (do
                 row_fields: row_row_fields,
                 row_more: newty2(current_level.contents, --[[ Tnil ]]0),
                 row_bound: --[[ () ]]0,
@@ -55499,7 +55499,7 @@ function transl_type(env, policy, styp) do
                     end
                      end 
                     throw [
-                          $$Error$6,
+                          __Error$6,
                           styp.ptyp_loc,
                           env,
                           --[[ Cannot_quantify ]]Block.__(14, [
@@ -55577,7 +55577,7 @@ function transl_fields(loc, env, policy, seen, o, param) do
     s = match[0];
     if (List.mem(s, seen)) then do
       throw [
-            $$Error$6,
+            __Error$6,
             loc,
             env,
             --[[ Repeated_method_label ]]Block.__(16, [s])
@@ -55681,7 +55681,7 @@ function globalize_used_variables(env, fixed) do
               if (exn$1 == Caml_builtin_exceptions.not_found) then do
                 if (fixed and is_Tvar(repr(ty))) then do
                   throw [
-                        $$Error$6,
+                        __Error$6,
                         loc,
                         env,
                         --[[ Unbound_type_variable ]]Block.__(0, ["'" .. name])
@@ -55717,7 +55717,7 @@ function globalize_used_variables(env, fixed) do
                       exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
                       if (exn[0] == Unify) then do
                         throw [
-                              $$Error$6,
+                              __Error$6,
                               param[0],
                               env,
                               --[[ Type_mismatch ]]Block.__(6, [exn[1]])
@@ -55877,7 +55877,7 @@ function spellcheck(ppf, fold, env, lid) do
                             ])
                         ]),
                       "@\nHint: Did you mean %s%s%s?"
-                    ]), $$String.concat(", ", List.rev(rev_rest)), rev_rest == --[[ [] ]]0 and "" or " or ", match[0]);
+                    ]), __String.concat(", ", List.rev(rev_rest)), rev_rest == --[[ [] ]]0 and "" or " or ", match[0]);
     end else do
       return --[[ () ]]0;
     end end 
@@ -55929,7 +55929,7 @@ function spellcheck$1(ppf, fold) do
 end end
 
 register_error_of_exn((function (param) do
-        if (param[0] == $$Error$6) then do
+        if (param[0] == __Error$6) then do
           env = param[2];
           return error_of_printer(param[1], (function (param, param$1) do
                         env$1 = env;
@@ -56470,7 +56470,7 @@ register_error_of_exn((function (param) do
         end end  end 
       end end));
 
-$$Error$7 = Caml_exceptions.create("Ocaml_typedtree_test.Typecore.Error");
+__Error$7 = Caml_exceptions.create("Ocaml_typedtree_test.Typecore.Error");
 
 Error_forward$1 = Caml_exceptions.create("Ocaml_typedtree_test.Typecore.Error_forward");
 
@@ -56554,7 +56554,7 @@ function iter_expression(f, e) do
             expr(match[2]);
             return List.iter(binding, match[1]);end end end 
          if ___conditional___ = 3--[[ Pexp_function ]] then do
-            return List.iter($$case, match[0]);end end end 
+            return List.iter(__case, match[0]);end end end 
          if ___conditional___ = 4--[[ Pexp_fun ]] then do
             may(expr, match[1]);
             _e = match[3];
@@ -56626,10 +56626,10 @@ function iter_expression(f, e) do
           
       end
       expr(match[0]);
-      return List.iter($$case, match[1]);
+      return List.iter(__case, match[1]);
     end;
   end end;
-  $$case = function (param) do
+  __case = function (param) do
     may(expr, param.pc_guard);
     return expr(param.pc_rhs);
   end end;
@@ -56975,7 +56975,7 @@ function unify_pat_types(loc, env, ty, ty$prime) do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn[0] == Unify) then do
       throw [
-            $$Error$7,
+            __Error$7,
             loc,
             env,
             --[[ Pattern_type_clash ]]Block.__(3, [exn[1]])
@@ -56984,7 +56984,7 @@ function unify_pat_types(loc, env, ty, ty$prime) do
      end 
     if (exn[0] == Tags) then do
       throw [
-            $$Error$6,
+            __Error$6,
             loc,
             env,
             --[[ Variant_tags ]]Block.__(12, [
@@ -57006,7 +57006,7 @@ function unify_exp_types(loc, env, ty, expected_ty) do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn[0] == Unify) then do
       throw [
-            $$Error$7,
+            __Error$7,
             loc,
             env,
             --[[ Expr_type_clash ]]Block.__(7, [exn[1]])
@@ -57015,7 +57015,7 @@ function unify_exp_types(loc, env, ty, expected_ty) do
      end 
     if (exn[0] == Tags) then do
       throw [
-            $$Error$6,
+            __Error$6,
             loc,
             env,
             --[[ Variant_tags ]]Block.__(12, [
@@ -57096,7 +57096,7 @@ function unify_pat_types_gadt(loc, env, ty, ty$prime) do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn[0] == Unify) then do
       throw [
-            $$Error$7,
+            __Error$7,
             loc,
             env.contents,
             --[[ Pattern_type_clash ]]Block.__(3, [exn[1]])
@@ -57105,7 +57105,7 @@ function unify_pat_types_gadt(loc, env, ty, ty$prime) do
      end 
     if (exn[0] == Tags) then do
       throw [
-            $$Error$6,
+            __Error$6,
             loc,
             env.contents,
             --[[ Variant_tags ]]Block.__(12, [
@@ -57117,7 +57117,7 @@ function unify_pat_types_gadt(loc, env, ty, ty$prime) do
      end 
     if (exn[0] == Unification_recursive_abbrev) then do
       throw [
-            $$Error$7,
+            __Error$7,
             loc,
             env.contents,
             --[[ Recursive_local_constraint ]]Block.__(33, [exn[1]])
@@ -57281,7 +57281,7 @@ function enter_variable(is_moduleOpt, is_as_variableOpt, loc, name, ty) do
             return param[0].name == name.txt;
           end end), pattern_variables.contents)) then do
     throw [
-          $$Error$7,
+          __Error$7,
           loc,
           empty,
           --[[ Multiply_bound_variable ]]Block.__(5, [name.txt])
@@ -57302,7 +57302,7 @@ function enter_variable(is_moduleOpt, is_as_variableOpt, loc, name, ty) do
   if (is_module) then do
     if (not allow_modules.contents) then do
       throw [
-            $$Error$7,
+            __Error$7,
             loc,
             empty,
             --[[ Modules_not_allowed ]]2
@@ -57362,7 +57362,7 @@ function enter_orpat_variables(loc, env, p1_vs, p2_vs) do
                 exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
                 if (exn[0] == Unify) then do
                   throw [
-                        $$Error$7,
+                        __Error$7,
                         loc,
                         env,
                         --[[ Or_pattern_type_clash ]]Block.__(4, [
@@ -57385,7 +57385,7 @@ function enter_orpat_variables(loc, env, p1_vs, p2_vs) do
           end else do
             min_var = x1.name < x2.name and x1 or x2;
             throw [
-                  $$Error$7,
+                  __Error$7,
                   loc,
                   env,
                   --[[ Orpat_vars ]]Block.__(6, [min_var])
@@ -57393,7 +57393,7 @@ function enter_orpat_variables(loc, env, p1_vs, p2_vs) do
           end end 
         end else do
           throw [
-                $$Error$7,
+                __Error$7,
                 loc,
                 env,
                 --[[ Orpat_vars ]]Block.__(6, [x1])
@@ -57401,7 +57401,7 @@ function enter_orpat_variables(loc, env, p1_vs, p2_vs) do
         end end 
       end else if (p2_vs) then do
         throw [
-              $$Error$7,
+              __Error$7,
               loc,
               env,
               --[[ Orpat_vars ]]Block.__(6, [p2_vs[0][0]])
@@ -57532,7 +57532,7 @@ function build_as_type(env, _p) do
                 end end 
               end end
               end(p,ty$1,ppl));
-              $$Array.iter(do_label, lbl.lbl_all);
+              __Array.iter(do_label, lbl.lbl_all);
               return ty$1;
             end end end end end 
          if ___conditional___ = 8--[[ Tpat_or ]] then do
@@ -57600,7 +57600,7 @@ function build_or_pat(env, loc, lid) do
   end end 
   if (exit == 1) then do
     throw [
-          $$Error$7,
+          __Error$7,
           loc,
           env,
           --[[ Not_a_variant_type ]]Block.__(30, [lid])
@@ -57759,7 +57759,7 @@ function build_or_pat(env, loc, lid) do
           ];
   end else do
     throw [
-          $$Error$7,
+          __Error$7,
           loc,
           env,
           --[[ Not_a_variant_type ]]Block.__(30, [lid])
@@ -57816,13 +57816,13 @@ function wrap_disambiguate(kind, ty, f, x) do
   end
   catch (raw_exn)do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
-    if (exn[0] == $$Error$7) then do
+    if (exn[0] == __Error$7) then do
       match = exn[3];
       if (typeof match == "number") then do
         throw exn;
       end else if (match.tag == --[[ Wrong_name ]]13) then do
         throw [
-              $$Error$7,
+              __Error$7,
               exn[1],
               exn[2],
               --[[ Wrong_name ]]Block.__(13, [
@@ -57885,7 +57885,7 @@ function lookup_from_type(env, tpath, lid) do
         catch (exn)do
           if (exn == Caml_builtin_exceptions.not_found) then do
             throw [
-                  $$Error$7,
+                  __Error$7,
                   lid.loc,
                   env,
                   --[[ Wrong_name ]]Block.__(13, [
@@ -58043,7 +58043,7 @@ function disambiguate(warnOpt, check_lkOpt, scope, lid, env, opath, lbls) do
                             ];
                     end end), lbls);
               throw [
-                    $$Error$7,
+                    __Error$7,
                     lid.loc,
                     env,
                     --[[ Name_type_mismatch ]]Block.__(14, [
@@ -58093,7 +58093,7 @@ end end
 function disambiguate_label_by_ids(keep, env, closed, ids, labels) do
   check_ids = function (param) do
     lbls = Hashtbl.create(undefined, 8);
-    $$Array.iter((function (lbl) do
+    __Array.iter((function (lbl) do
             return Hashtbl.add(lbls, lbl.lbl_name, --[[ () ]]0);
           end end), param[0].lbl_all);
     return List.for_all((function (param) do
@@ -58389,7 +58389,7 @@ function check_recordpat_labels(loc, lbl_pat_list, closed) do
       label = param[1];
       if (Caml_array.caml_array_get(defined, label.lbl_pos)) then do
         throw [
-              $$Error$7,
+              __Error$7,
               loc,
               empty,
               --[[ Label_multiply_defined ]]Block.__(10, [label.lbl_name])
@@ -58400,18 +58400,18 @@ function check_recordpat_labels(loc, lbl_pat_list, closed) do
     end end;
     List.iter(check_defined, lbl_pat_list);
     if (closed == --[[ Closed ]]0 and is_active(--[[ Non_closed_record_pattern ]]Block.__(4, [""]))) then do
-      $$undefined = --[[ [] ]]0;
+      __undefined = --[[ [] ]]0;
       for i = 0 , #all - 1 | 0 , 1 do
         if (not Caml_array.caml_array_get(defined, i)) then do
-          $$undefined = --[[ :: ]][
+          __undefined = --[[ :: ]][
             Caml_array.caml_array_get(all, i).lbl_name,
-            $$undefined
+            __undefined
           ];
         end
          end 
       end
-      if ($$undefined ~= --[[ [] ]]0) then do
-        u = $$String.concat(", ", List.rev($$undefined));
+      if (__undefined ~= --[[ [] ]]0) then do
+        u = __String.concat(", ", List.rev(__undefined));
         return prerr_warning(loc, --[[ Non_closed_record_pattern ]]Block.__(4, [u]));
       end else do
         return 0;
@@ -58467,7 +58467,7 @@ function lookup_from_type$1(env, tpath, lid) do
         catch (exn)do
           if (exn == Caml_builtin_exceptions.not_found) then do
             throw [
-                  $$Error$7,
+                  __Error$7,
                   lid.loc,
                   env,
                   --[[ Wrong_name ]]Block.__(13, [
@@ -58625,7 +58625,7 @@ function disambiguate$1(warnOpt, check_lkOpt, scope, lid, env, opath, lbls) do
                             ];
                     end end), lbls);
               throw [
-                    $$Error$7,
+                    __Error$7,
                     lid.loc,
                     env,
                     --[[ Name_type_mismatch ]]Block.__(14, [
@@ -58808,7 +58808,7 @@ function type_pat(constrs, labels, no_existentials, mode, env, sp, expected_ty) 
               return type_pat$1(undefined, undefined)(p$1, expected_ty);
             end else do
               throw [
-                    $$Error$7,
+                    __Error$7,
                     loc,
                     env.contents,
                     --[[ Invalid_interval ]]5
@@ -58816,7 +58816,7 @@ function type_pat(constrs, labels, no_existentials, mode, env, sp, expected_ty) 
             end end 
           end else do
             throw [
-                  $$Error$7,
+                  __Error$7,
                   loc,
                   env.contents,
                   --[[ Invalid_interval ]]5
@@ -58907,7 +58907,7 @@ function type_pat(constrs, labels, no_existentials, mode, env, sp, expected_ty) 
           check_lk = function (tpath, constr) do
             if (constr.cstr_generalized) then do
               throw [
-                    $$Error$7,
+                    __Error$7,
                     lid.loc,
                     env.contents,
                     --[[ Unqualified_gadt_pattern ]]Block.__(34, [
@@ -58928,7 +58928,7 @@ function type_pat(constrs, labels, no_existentials, mode, env, sp, expected_ty) 
           check_deprecated(loc, constr.cstr_attributes, constr.cstr_name);
           if (no_existentials and constr.cstr_existentials ~= --[[ [] ]]0) then do
             throw [
-                  $$Error$7,
+                  __Error$7,
                   loc,
                   env.contents,
                   --[[ Unexpected_existential ]]4
@@ -58967,7 +58967,7 @@ function type_pat(constrs, labels, no_existentials, mode, env, sp, expected_ty) 
           end end 
           if (List.length(sargs) ~= constr.cstr_arity) then do
             throw [
-                  $$Error$7,
+                  __Error$7,
                   loc,
                   env.contents,
                   --[[ Constructor_arity_mismatch ]]Block.__(1, [
@@ -59105,7 +59105,7 @@ function type_pat(constrs, labels, no_existentials, mode, env, sp, expected_ty) 
               exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
               if (exn[0] == Unify) then do
                 throw [
-                      $$Error$7,
+                      __Error$7,
                       label_lid.loc,
                       env.contents,
                       --[[ Label_mismatch ]]Block.__(2, [
@@ -59134,7 +59134,7 @@ function type_pat(constrs, labels, no_existentials, mode, env, sp, expected_ty) 
               end end;
               if (List.exists(instantiated, vars)) then do
                 throw [
-                      $$Error$7,
+                      __Error$7,
                       label_lid.loc,
                       env.contents,
                       --[[ Polymorphic_label ]]Block.__(0, [label_lid.txt])
@@ -59398,7 +59398,7 @@ function type_pat(constrs, labels, no_existentials, mode, env, sp, expected_ty) 
                     end);end end end 
        if ___conditional___ = 14--[[ Ppat_exception ]] then do
           throw [
-                $$Error$7,
+                __Error$7,
                 loc,
                 env.contents,
                 --[[ Exception_pattern_below_toplevel ]]8
@@ -60065,7 +60065,7 @@ function type_approx(env, _sexp) do
             exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
             if (exn[0] == Unify) then do
               throw [
-                    $$Error$7,
+                    __Error$7,
                     sexp.pexp_loc,
                     env,
                     --[[ Expr_type_clash ]]Block.__(7, [exn[1]])
@@ -60093,7 +60093,7 @@ function type_approx(env, _sexp) do
             exn$1 = Caml_js_exceptions.internalToOCamlException(raw_exn$1);
             if (exn$1[0] == Unify) then do
               throw [
-                    $$Error$7,
+                    __Error$7,
                     sexp.pexp_loc,
                     env,
                     --[[ Expr_type_clash ]]Block.__(7, [exn$1[1]])
@@ -60186,7 +60186,7 @@ function check_univars(env, expans, kind, exp, ty_expected, vars) do
           ]));
     ty_expected$1 = repr(ty_expected);
     throw [
-          $$Error$7,
+          __Error$7,
           exp.exp_loc,
           env,
           --[[ Less_general ]]Block.__(31, [
@@ -60579,7 +60579,7 @@ function type_expect_(in_function, env, sexp, ty_expected) do
         if (typeof match$2 == "number") then do
           if (match$2 == --[[ Val_unbound ]]1) then do
             throw [
-                  $$Error$7,
+                  __Error$7,
                   loc,
                   env,
                   --[[ Masked_instance_variable ]]Block.__(29, [lid.txt])
@@ -60723,7 +60723,7 @@ function type_expect_(in_function, env, sexp, ty_expected) do
                             pexp_desc: --[[ Pexp_match ]]Block.__(6, [
                                 match$8.pvb_expr,
                                 --[[ :: ]][
-                                  Curry._3(Ast_helper_Exp.$$case, spat, undefined, match[2]),
+                                  Curry._3(Ast_helper_Exp.__case, spat, undefined, match[2]),
                                   --[[ [] ]]0
                                 ]
                               ]),
@@ -60774,7 +60774,7 @@ function type_expect_(in_function, env, sexp, ty_expected) do
         match$11 = match[1];
         l = match[0];
         if (match$11 ~= undefined) then do
-          $$default = match$11;
+          __default = match$11;
           if (not is_optional(l)) then do
             throw [
                   Caml_builtin_exceptions.assert_failure,
@@ -60786,14 +60786,14 @@ function type_expect_(in_function, env, sexp, ty_expected) do
                 ];
           end
            end 
-          default_loc = $$default.pexp_loc;
-          scases_000 = Curry._3(Ast_helper_Exp.$$case, construct(default_loc, undefined, do
+          default_loc = __default.pexp_loc;
+          scases_000 = Curry._3(Ast_helper_Exp.__case, construct(default_loc, undefined, do
                     txt: --[[ Ldot ]]Block.__(1, [
                         --[[ Lident ]]Block.__(0, ["*predef*"]),
                         "Some"
                       ]),
                     loc: none
-                  end, $$var$1(default_loc, undefined, do
+                  end, __var$1(default_loc, undefined, do
                         txt: "*sth*",
                         loc: none
                       end)), undefined, Curry._3(Ast_helper_Exp.ident, default_loc, undefined, do
@@ -60801,13 +60801,13 @@ function type_expect_(in_function, env, sexp, ty_expected) do
                     loc: none
                   end));
           scases_001 = --[[ :: ]][
-            Curry._3(Ast_helper_Exp.$$case, construct(default_loc, undefined, do
+            Curry._3(Ast_helper_Exp.__case, construct(default_loc, undefined, do
                       txt: --[[ Ldot ]]Block.__(1, [
                           --[[ Lident ]]Block.__(0, ["*predef*"]),
                           "None"
                         ]),
                       loc: none
-                    end, undefined), undefined, $$default),
+                    end, undefined), undefined, __default),
             --[[ [] ]]0
           ];
           scases = --[[ :: ]][
@@ -60818,7 +60818,7 @@ function type_expect_(in_function, env, sexp, ty_expected) do
                     txt: --[[ Lident ]]Block.__(0, ["*opt*"]),
                     loc: none
                   end), scases);
-          sfun = Curry._6(Ast_helper_Exp.fun_, loc, undefined, l, undefined, $$var$1(loc, undefined, do
+          sfun = Curry._6(Ast_helper_Exp.fun_, loc, undefined, l, undefined, __var$1(loc, undefined, do
                     txt: "*opt*",
                     loc: none
                   end), Curry._5(Ast_helper_Exp.let_, loc, --[[ :: ]][
@@ -60973,7 +60973,7 @@ function type_expect_(in_function, env, sexp, ty_expected) do
         val_caselist = match$13[0];
         if (val_caselist == --[[ [] ]]0 and exn_caselist ~= --[[ [] ]]0) then do
           throw [
-                $$Error$7,
+                __Error$7,
                 loc,
                 env,
                 --[[ No_value_clauses ]]7
@@ -61076,7 +61076,7 @@ function type_expect_(in_function, env, sexp, ty_expected) do
         end end 
         if (List.length(sargs$1) ~= constr.cstr_arity) then do
           throw [
-                $$Error$7,
+                __Error$7,
                 loc$1,
                 env$1,
                 --[[ Constructor_arity_mismatch ]]Block.__(1, [
@@ -61167,7 +61167,7 @@ function type_expect_(in_function, env, sexp, ty_expected) do
               end end), sargs$1, List.combine(ty_args, match$21[0]));
         if (constr.cstr_private == --[[ Private ]]0) then do
           throw [
-                $$Error$7,
+                __Error$7,
                 loc$1,
                 env$1,
                 --[[ Private_type ]]Block.__(19, [ty_res$1])
@@ -61376,7 +61376,7 @@ function type_expect_(in_function, env, sexp, ty_expected) do
               if (rem) then do
                 if (lbl1.lbl_pos == rem[0][1].lbl_pos) then do
                   throw [
-                        $$Error$7,
+                        __Error$7,
                         loc,
                         env,
                         --[[ Label_multiply_defined ]]Block.__(10, [lbl1.lbl_name])
@@ -61413,7 +61413,7 @@ function type_expect_(in_function, env, sexp, ty_expected) do
                 return 0;
               end end 
             end end;
-            $$Array.iter(unify_kept, lbl_exp_list[0][1].lbl_all);
+            __Array.iter(unify_kept, lbl_exp_list[0][1].lbl_all);
             opt_exp$1 = do
               exp_desc: exp$1.exp_desc,
               exp_loc: exp$1.exp_loc,
@@ -61476,7 +61476,7 @@ function type_expect_(in_function, env, sexp, ty_expected) do
           end end;
           missing = missing_labels(0, label_names);
           throw [
-                $$Error$7,
+                __Error$7,
                 loc,
                 env,
                 --[[ Label_missing ]]Block.__(11, [missing])
@@ -61529,7 +61529,7 @@ function type_expect_(in_function, env, sexp, ty_expected) do
         unify_exp(env, record$4, ty_record$1);
         if (label$1.lbl_mut == --[[ Immutable ]]0) then do
           throw [
-                $$Error$7,
+                __Error$7,
                 loc,
                 env,
                 --[[ Label_not_mutable ]]Block.__(12, [lid$3.txt])
@@ -61640,7 +61640,7 @@ function type_expect_(in_function, env, sexp, ty_expected) do
           ];
         end else if (match$35.tag) then do
           throw [
-                $$Error$7,
+                __Error$7,
                 param.ppat_loc,
                 env,
                 --[[ Invalid_for_loop_index ]]6
@@ -61719,7 +61719,7 @@ function type_expect_(in_function, env, sexp, ty_expected) do
             exn$2 = Caml_js_exceptions.internalToOCamlException(raw_exn);
             if (exn$2[0] == Subtype) then do
               throw [
-                    $$Error$7,
+                    __Error$7,
                     loc,
                     env,
                     --[[ Not_subtype ]]Block.__(23, [
@@ -61814,7 +61814,7 @@ function type_expect_(in_function, env, sexp, ty_expected) do
                   exn$4 = Caml_js_exceptions.internalToOCamlException(raw_exn$2);
                   if (exn$4[0] == Subtype) then do
                     throw [
-                          $$Error$7,
+                          __Error$7,
                           loc,
                           env,
                           --[[ Not_subtype ]]Block.__(23, [
@@ -61838,7 +61838,7 @@ function type_expect_(in_function, env, sexp, ty_expected) do
                 exn$5 = Caml_js_exceptions.internalToOCamlException(raw_exn$3);
                 if (exn$5[0] == Unify) then do
                   throw [
-                        $$Error$7,
+                        __Error$7,
                         sarg$3.pexp_loc,
                         env,
                         --[[ Coercion_failure ]]Block.__(25, [
@@ -61924,7 +61924,7 @@ function type_expect_(in_function, env, sexp, ty_expected) do
                     catch (exn$6)do
                       if (exn$6 == Caml_builtin_exceptions.not_found) then do
                         throw [
-                              $$Error$7,
+                              __Error$7,
                               e.pexp_loc,
                               env,
                               --[[ Undefined_inherited_method ]]Block.__(17, [met])
@@ -62103,7 +62103,7 @@ function type_expect_(in_function, env, sexp, ty_expected) do
           exn$7 = Caml_js_exceptions.internalToOCamlException(raw_exn$4);
           if (exn$7[0] == Unify) then do
             throw [
-                  $$Error$7,
+                  __Error$7,
                   e.pexp_loc,
                   env,
                   --[[ Undefined_method ]]Block.__(16, [
@@ -62135,7 +62135,7 @@ function type_expect_(in_function, env, sexp, ty_expected) do
                     end);
         end else do
           throw [
-                $$Error$7,
+                __Error$7,
                 loc,
                 env,
                 --[[ Virtual_class ]]Block.__(18, [cl.txt])
@@ -62168,7 +62168,7 @@ function type_expect_(in_function, env, sexp, ty_expected) do
                       end);
           end else do
             throw [
-                  $$Error$7,
+                  __Error$7,
                   loc,
                   env,
                   --[[ Instance_variable_not_mutable ]]Block.__(22, [
@@ -62179,7 +62179,7 @@ function type_expect_(in_function, env, sexp, ty_expected) do
           end end  end 
           if (exit$4 == 1) then do
             throw [
-                  $$Error$7,
+                  __Error$7,
                   loc,
                   env,
                   --[[ Instance_variable_not_mutable ]]Block.__(22, [
@@ -62193,7 +62193,7 @@ function type_expect_(in_function, env, sexp, ty_expected) do
         catch (exn$8)do
           if (exn$8 == Caml_builtin_exceptions.not_found) then do
             throw [
-                  $$Error$7,
+                  __Error$7,
                   loc,
                   env,
                   --[[ Unbound_instance_variable ]]Block.__(21, [lab.txt])
@@ -62210,7 +62210,7 @@ function type_expect_(in_function, env, sexp, ty_expected) do
                           return l.txt == lab.txt;
                         end end), l)) then do
                   throw [
-                        $$Error$7,
+                        __Error$7,
                         loc,
                         env,
                         --[[ Value_multiply_overridden ]]Block.__(24, [lab.txt])
@@ -62232,7 +62232,7 @@ function type_expect_(in_function, env, sexp, ty_expected) do
         catch (exn$9)do
           if (exn$9 == Caml_builtin_exceptions.not_found) then do
             throw [
-                  $$Error$7,
+                  __Error$7,
                   loc,
                   env,
                   --[[ Outside_class ]]0
@@ -62267,7 +62267,7 @@ function type_expect_(in_function, env, sexp, ty_expected) do
             catch (exn)do
               if (exn == Caml_builtin_exceptions.not_found) then do
                 throw [
-                      $$Error$7,
+                      __Error$7,
                       loc,
                       env,
                       --[[ Unbound_instance_variable ]]Block.__(21, [lab.txt])
@@ -62319,7 +62319,7 @@ function type_expect_(in_function, env, sexp, ty_expected) do
           exn$10 = Caml_js_exceptions.internalToOCamlException(raw_exn$5);
           if (exn$10[0] == Unify) then do
             throw [
-                  $$Error$7,
+                  __Error$7,
                   loc,
                   env,
                   --[[ Scoping_let_module ]]Block.__(28, [
@@ -62593,7 +62593,7 @@ function type_expect_(in_function, env, sexp, ty_expected) do
         match$74;
         if (typeof match$73 == "number") then do
           throw [
-                $$Error$7,
+                __Error$7,
                 loc,
                 env,
                 --[[ Not_a_packed_module ]]Block.__(32, [ty_expected])
@@ -62603,7 +62603,7 @@ function type_expect_(in_function, env, sexp, ty_expected) do
           do
              if ___conditional___ = 0--[[ Tvar ]] then do
                 throw [
-                      $$Error$7,
+                      __Error$7,
                       loc,
                       env,
                       --[[ Cannot_infer_signature ]]3
@@ -62621,7 +62621,7 @@ function type_expect_(in_function, env, sexp, ty_expected) do
              do end
             else do
               throw [
-                    $$Error$7,
+                    __Error$7,
                     loc,
                     env,
                     --[[ Not_a_packed_module ]]Block.__(32, [ty_expected])
@@ -62707,7 +62707,7 @@ function type_function(in_function, loc, attrs, env, ty_expected, l, caselist) d
         exit = 1;
       end else do
         throw [
-              $$Error$7,
+              __Error$7,
               loc,
               env,
               --[[ Abstract_wrong_label ]]Block.__(27, [
@@ -62718,7 +62718,7 @@ function type_function(in_function, loc, attrs, env, ty_expected, l, caselist) d
       end end 
       if (exit == 1) then do
         throw [
-              $$Error$7,
+              __Error$7,
               loc_fun,
               env,
               --[[ Too_many_arguments ]]Block.__(26, [
@@ -62879,7 +62879,7 @@ function type_label_exp(create, env, loc, ty_expected, param) do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn[0] == Unify) then do
       throw [
-            $$Error$7,
+            __Error$7,
             lid.loc,
             env,
             --[[ Label_mismatch ]]Block.__(2, [
@@ -62900,7 +62900,7 @@ function type_label_exp(create, env, loc, ty_expected, param) do
   if (label.lbl_private == --[[ Private ]]0) then do
     if (create) then do
       throw [
-            $$Error$7,
+            __Error$7,
             loc,
             env,
             --[[ Private_type ]]Block.__(19, [ty_expected])
@@ -62908,7 +62908,7 @@ function type_label_exp(create, env, loc, ty_expected, param) do
     end
      end 
     throw [
-          $$Error$7,
+          __Error$7,
           lid.loc,
           env,
           --[[ Private_label ]]Block.__(20, [
@@ -62942,7 +62942,7 @@ function type_label_exp(create, env, loc, ty_expected, param) do
       end
       catch (raw_e)do
         e = Caml_js_exceptions.internalToOCamlException(raw_e);
-        if (e[0] == $$Error$7) then do
+        if (e[0] == __Error$7) then do
           tmp = e[3];
           if (typeof tmp == "number") then do
             throw exn$1;
@@ -63334,7 +63334,7 @@ function type_application(env, funct, sargs) do
               if (sargs) then do
                 match$5 = sargs[0];
                 throw [
-                      $$Error$7,
+                      __Error$7,
                       match$5[1].pexp_loc,
                       env,
                       --[[ Apply_wrong_label ]]Block.__(9, [
@@ -63348,7 +63348,7 @@ function type_application(env, funct, sargs) do
                 l$prime = match$6[0];
                 if (l ~= l$prime and l$prime ~= "") then do
                   throw [
-                        $$Error$7,
+                        __Error$7,
                         sarg0.pexp_loc,
                         env,
                         --[[ Apply_wrong_label ]]Block.__(9, [
@@ -63492,7 +63492,7 @@ function type_application(env, funct, sargs) do
         if (sargs and ignore_labels) then do
           match$10 = sargs[0];
           throw [
-                $$Error$7,
+                __Error$7,
                 match$10[1].pexp_loc,
                 env,
                 --[[ Apply_wrong_label ]]Block.__(9, [
@@ -63582,7 +63582,7 @@ function type_application(env, funct, sargs) do
               end else do
                 if (classic.contents or not has_label(l1, ty_fun$4)) then do
                   throw [
-                        $$Error$7,
+                        __Error$7,
                         sarg1.pexp_loc,
                         env,
                         --[[ Apply_wrong_label ]]Block.__(9, [
@@ -63593,7 +63593,7 @@ function type_application(env, funct, sargs) do
                 end
                  end 
                 throw [
-                      $$Error$7,
+                      __Error$7,
                       funct.exp_loc,
                       env,
                       --[[ Incoherent_label_order ]]1
@@ -63601,7 +63601,7 @@ function type_application(env, funct, sargs) do
               end end 
               if (exit$2 == 2) then do
                 throw [
-                      $$Error$7,
+                      __Error$7,
                       funct.exp_loc,
                       env,
                       --[[ Apply_non_function ]]Block.__(8, [expand_head(env, funct.exp_type)])
@@ -64349,7 +64349,7 @@ function type_expression(env, sexp) do
 end end
 
 register_error_of_exn((function (param) do
-        if (param[0] == $$Error$7) then do
+        if (param[0] == __Error$7) then do
           env = param[2];
           return error_of_printer(param[1], (function (param, param$1) do
                         env$1 = env;
@@ -65857,7 +65857,7 @@ register_error_of_exn((function (param) do
 
 add_delayed_check_forward.contents = add_delayed_check;
 
-$$Error$8 = Caml_exceptions.create("Ocaml_typedtree_test.Typedecl.Error");
+__Error$8 = Caml_exceptions.create("Ocaml_typedtree_test.Typedecl.Error");
 
 function enter_type$1(env, sdecl, id) do
   match = sdecl.ptype_manifest;
@@ -65947,7 +65947,7 @@ function set_fixed_row(env, loc, p, decl) do
   rv;
   if (typeof match$1 == "number") then do
     throw [
-          $$Error$8,
+          __Error$8,
           loc,
           --[[ Bad_fixed_type ]]Block.__(18, ["is not an object or variant"])
         ];
@@ -65970,7 +65970,7 @@ function set_fixed_row(env, loc, p, decl) do
        do end end end
       else do
         throw [
-              $$Error$8,
+              __Error$8,
               loc,
               --[[ Bad_fixed_type ]]Block.__(18, ["is not an object or variant"])
             ];
@@ -65980,7 +65980,7 @@ function set_fixed_row(env, loc, p, decl) do
   end end 
   if (not is_Tvar(rv)) then do
     throw [
-          $$Error$8,
+          __Error$8,
           loc,
           --[[ Bad_fixed_type ]]Block.__(18, ["has no row variable"])
         ];
@@ -66132,7 +66132,7 @@ function make_params(env, params) do
     catch (exn)do
       if (exn == Already_bound) then do
         throw [
-              $$Error$8,
+              __Error$8,
               sty.ptyp_loc,
               --[[ Repeated_parameter ]]0
             ];
@@ -66165,7 +66165,7 @@ function make_constructor(env, type_path, type_params, sargs, sret_type) do
      end 
     if (exit == 1) then do
       throw [
-            $$Error$8,
+            __Error$8,
             sret_type$1.ptyp_loc,
             --[[ Constraint_failed ]]Block.__(5, [
                 ret_type,
@@ -66265,7 +66265,7 @@ function check_constraints_rec(env, loc, visited, _ty) do
                  end 
                 if (exn == Caml_builtin_exceptions.not_found) then do
                   throw [
-                        $$Error$8,
+                        __Error$8,
                         loc,
                         --[[ Unavailable_type_constructor ]]Block.__(17, [path])
                       ];
@@ -66275,7 +66275,7 @@ function check_constraints_rec(env, loc, visited, _ty) do
               end
               if (not matches(env, ty$1, ty$prime)) then do
                 throw [
-                      $$Error$8,
+                      __Error$8,
                       loc,
                       --[[ Constraint_failed ]]Block.__(5, [
                           ty$1,
@@ -66456,7 +66456,7 @@ function check_coherence(env, loc, id, decl) do
     match$2 = repr(ty).desc;
     if (typeof match$2 == "number") then do
       throw [
-            $$Error$8,
+            __Error$8,
             loc,
             --[[ Definition_mismatch ]]Block.__(4, [
                 ty,
@@ -66479,7 +66479,7 @@ function check_coherence(env, loc, id, decl) do
           );
         if (err ~= --[[ [] ]]0) then do
           throw [
-                $$Error$8,
+                __Error$8,
                 loc,
                 --[[ Definition_mismatch ]]Block.__(4, [
                     ty,
@@ -66493,7 +66493,7 @@ function check_coherence(env, loc, id, decl) do
       catch (exn)do
         if (exn == Caml_builtin_exceptions.not_found) then do
           throw [
-                $$Error$8,
+                __Error$8,
                 loc,
                 --[[ Unavailable_type_constructor ]]Block.__(17, [path])
               ];
@@ -66503,7 +66503,7 @@ function check_coherence(env, loc, id, decl) do
       end
     end else do
       throw [
-            $$Error$8,
+            __Error$8,
             loc,
             --[[ Definition_mismatch ]]Block.__(4, [
                 ty,
@@ -66528,14 +66528,14 @@ function check_well_founded(env, loc, path, to_check, ty) do
       tmp = typeof match == "number" or match.tag ~= --[[ Tconstr ]]3 and false or same(match[0], path);
       if (tmp) then do
         throw [
-              $$Error$8,
+              __Error$8,
               loc,
               --[[ Recursive_abbrev ]]Block.__(2, [name(undefined, path)])
             ];
       end
        end 
       throw [
-            $$Error$8,
+            __Error$8,
             loc,
             --[[ Cycle_in_def ]]Block.__(3, [
                 name(undefined, path),
@@ -66691,7 +66691,7 @@ function check_recursion(env, loc, path, decl, to_check) do
                   if (same(path, path$prime)) then do
                     if (not equal$4(env, false, args, args$prime)) then do
                       throw [
-                            $$Error$8,
+                            __Error$8,
                             loc,
                             --[[ Parameters_differ ]]Block.__(8, [
                                 cpath,
@@ -66715,7 +66715,7 @@ function check_recursion(env, loc, path, decl, to_check) do
                         exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
                         if (exn[0] == Unify) then do
                           throw [
-                                $$Error$8,
+                                __Error$8,
                                 loc,
                                 --[[ Constraint_failed ]]Block.__(5, [
                                     ty$1,
@@ -66771,7 +66771,7 @@ function get_variance(ty, visited) do
   end
   catch (exn)do
     if (exn == Caml_builtin_exceptions.not_found) then do
-      return Types_Variance.$$null;
+      return Types_Variance.__null;
     end else do
       throw exn;
     end end 
@@ -66858,7 +66858,7 @@ function compute_variance(env, visited, vari, ty) do
                       end else if (match.tag) then do
                         upper = List.fold_left((function (s, f) do
                                 return Curry._3(Types_Variance.set, f, true, s);
-                              end end), Types_Variance.$$null, --[[ :: ]][
+                              end end), Types_Variance.__null, --[[ :: ]][
                               --[[ May_pos ]]0,
                               --[[ :: ]][
                                 --[[ May_neg ]]1,
@@ -66912,7 +66912,7 @@ function compute_variance(env, visited, vari, ty) do
 end end
 
 function make(p, n, i) do
-  return Curry._3(Types_Variance.set, --[[ May_pos ]]0, p, Curry._3(Types_Variance.set, --[[ May_neg ]]1, n, Curry._3(Types_Variance.set, --[[ May_weak ]]2, n, Curry._3(Types_Variance.set, --[[ Inj ]]3, i, Types_Variance.$$null))));
+  return Curry._3(Types_Variance.set, --[[ May_pos ]]0, p, Curry._3(Types_Variance.set, --[[ May_neg ]]1, n, Curry._3(Types_Variance.set, --[[ May_weak ]]2, n, Curry._3(Types_Variance.set, --[[ Inj ]]3, i, Types_Variance.__null))));
 end end
 
 function compute_variance_type(env, check, param, decl, tyl) do
@@ -66951,14 +66951,14 @@ function compute_variance_type(env, check, param, decl, tyl) do
             n = param[1];
             c = param[0];
             pos.contents = pos.contents + 1 | 0;
-            $$var = get_variance(ty, tvl);
-            match = Curry._1(Types_Variance.get_upper, $$var);
+            __var = get_variance(ty, tvl);
+            match = Curry._1(Types_Variance.get_upper, __var);
             cn = match[1];
             co = match[0];
-            ij = Curry._2(Types_Variance.mem, --[[ Inj ]]3, $$var);
+            ij = Curry._2(Types_Variance.mem, --[[ Inj ]]3, __var);
             if (is_Tvar(ty) and (co and not c or cn and not n or not ij and i)) then do
               throw [
-                    $$Error$8,
+                    __Error$8,
                     loc,
                     --[[ Bad_variance ]]Block.__(16, [
                         pos.contents,
@@ -67021,7 +67021,7 @@ function compute_variance_type(env, check, param, decl, tyl) do
                   end else do
                     return v;
                   end end 
-                end end), tvl2.contents, Types_Variance.$$null);
+                end end), tvl2.contents, Types_Variance.__null);
           backtrack(snap);
           match = Curry._1(Types_Variance.get_upper, v1);
           n1 = match[1];
@@ -67035,7 +67035,7 @@ function compute_variance_type(env, check, param, decl, tyl) do
                   c2 or n2 and -1 or -3
                 ) or -2;
               throw [
-                    $$Error$8,
+                    __Error$8,
                     loc,
                     --[[ Bad_variance ]]Block.__(16, [
                         code,
@@ -67144,7 +67144,7 @@ function compute_variance_gadt(env, check, rloc, decl, param) do
                 fv1 = param[0];
                 if ((param$1[0] or param$1[1]) and constrained(env, Pervasives.$at(fv1, fv2$1), ty)) then do
                   throw [
-                        $$Error$8,
+                        __Error$8,
                         loc,
                         --[[ Varying_anonymous ]]4
                       ];
@@ -67368,7 +67368,7 @@ end end
 
 function init_variance(param) do
   return List.map((function (param) do
-                return Types_Variance.$$null;
+                return Types_Variance.__null;
               end end), param[1].type_params);
 end end
 
@@ -67668,7 +67668,7 @@ function transl_type_decl(env, rec_flag, sdecl_list) do
               name = param.pld_name.txt;
               if (mem$6(name, all_labels.contents)) then do
                 throw [
-                      $$Error$8,
+                      __Error$8,
                       sdecl.ptype_loc,
                       --[[ Duplicate_label ]]Block.__(1, [name])
                     ];
@@ -67734,7 +67734,7 @@ function transl_type_decl(env, rec_flag, sdecl_list) do
               name = param.pcd_name.txt;
               if (mem$6(name, all_constrs.contents)) then do
                 throw [
-                      $$Error$8,
+                      __Error$8,
                       sdecl.ptype_loc,
                       --[[ Duplicate_constructor ]]Block.__(0, [name])
                     ];
@@ -67747,7 +67747,7 @@ function transl_type_decl(env, rec_flag, sdecl_list) do
                       return cd.pcd_args ~= --[[ [] ]]0;
                     end end))(scstrs)) > 246) then do
         throw [
-              $$Error$8,
+              __Error$8,
               sdecl.ptype_loc,
               --[[ Too_many_constructors ]]1
             ];
@@ -67836,7 +67836,7 @@ function transl_type_decl(env, rec_flag, sdecl_list) do
               exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
               if (exn[0] == Unify) then do
                 throw [
-                      $$Error$8,
+                      __Error$8,
                       param[2],
                       --[[ Inconsistent_constraint ]]Block.__(6, [
                           env,
@@ -67873,7 +67873,7 @@ function transl_type_decl(env, rec_flag, sdecl_list) do
      end 
     if (man ~= undefined and cyclic_abbrev(env, id, man)) then do
       throw [
-            $$Error$8,
+            __Error$8,
             sdecl.ptype_loc,
             --[[ Recursive_abbrev ]]Block.__(2, [sdecl.ptype_name.txt])
           ];
@@ -67924,7 +67924,7 @@ function transl_type_decl(env, rec_flag, sdecl_list) do
                 exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
                 if (exn[0] == Unify) then do
                   throw [
-                        $$Error$8,
+                        __Error$8,
                         loc,
                         --[[ Type_clash ]]Block.__(7, [
                             env,
@@ -67998,7 +67998,7 @@ function transl_type_decl(env, rec_flag, sdecl_list) do
           match = closed_type_decl(decl);
           if (match ~= undefined) then do
             throw [
-                  $$Error$8,
+                  __Error$8,
                   sdecl.ptype_loc,
                   --[[ Unbound_type_var ]]Block.__(9, [
                       match,
@@ -68229,7 +68229,7 @@ function transl_extension_constructor(env, check_open, type_path, type_params, t
       exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
       if (exn[0] == Unify) then do
         throw [
-              $$Error$8,
+              __Error$8,
               lid.loc,
               --[[ Rebind_wrong_type ]]Block.__(13, [
                   lid.txt,
@@ -68313,7 +68313,7 @@ function transl_extension_constructor(env, check_open, type_path, type_params, t
     ];
     if (not equal$4(env, true, cstr_types, ext_types)) then do
       throw [
-            $$Error$8,
+            __Error$8,
             lid.loc,
             --[[ Rebind_mismatch ]]Block.__(14, [
                 lid.txt,
@@ -68326,7 +68326,7 @@ function transl_extension_constructor(env, check_open, type_path, type_params, t
     match$6 = cdescr.cstr_private;
     if (not match$6 and priv) then do
       throw [
-            $$Error$8,
+            __Error$8,
             lid.loc,
             --[[ Rebind_private ]]Block.__(15, [lid.txt])
           ];
@@ -68411,7 +68411,7 @@ function transl_type_extension(check_open, env, loc, styext) do
                 end end 
               end end), styext.ptyext_constructors);
         throw [
-              $$Error$8,
+              __Error$8,
               match$2.pext_loc,
               --[[ Not_open_type ]]Block.__(10, [type_path])
             ];
@@ -68426,7 +68426,7 @@ function transl_type_extension(check_open, env, loc, styext) do
      end 
   end else do
     throw [
-          $$Error$8,
+          __Error$8,
           loc,
           --[[ Not_extensible_type ]]Block.__(11, [type_path])
         ];
@@ -68462,7 +68462,7 @@ function transl_type_extension(check_open, env, loc, styext) do
     );
   if (err ~= --[[ [] ]]0) then do
     throw [
-          $$Error$8,
+          __Error$8,
           loc,
           --[[ Extension_mismatch ]]Block.__(12, [
               type_path,
@@ -68493,7 +68493,7 @@ function transl_type_extension(check_open, env, loc, styext) do
           match = closed_extension_constructor(ext.ext_type);
           if (match ~= undefined) then do
             throw [
-                  $$Error$8,
+                  __Error$8,
                   ext.ext_loc,
                   --[[ Unbound_type_var_ext ]]Block.__(19, [
                       match,
@@ -68541,7 +68541,7 @@ function transl_exception(env, sext) do
   match = closed_extension_constructor(ext.ext_type);
   if (match ~= undefined) then do
     throw [
-          $$Error$8,
+          __Error$8,
           ext.ext_loc,
           --[[ Unbound_type_var_ext ]]Block.__(19, [
               match,
@@ -68618,7 +68618,7 @@ function transl_value_decl(env, loc, valdecl) do
     prim_native_name = prim.prim_native_name;
     if (arity$1 == 0 and not (#prim_native_name > 3 and prim_native_name[0] == "B" and prim_native_name[1] == "S" and prim_native_name[2] == ":") and (#prim.prim_name == 0 or Caml_string.get(prim.prim_name, 0) ~= --[[ "%" ]]37 and Caml_string.get(prim.prim_name, 0) ~= --[[ "#" ]]35)) then do
       throw [
-            $$Error$8,
+            __Error$8,
             valdecl.pval_type.ptyp_loc,
             --[[ Null_arity_external ]]2
           ];
@@ -68626,7 +68626,7 @@ function transl_value_decl(env, loc, valdecl) do
      end 
     if (native_code.contents and prim.prim_arity > 5 and prim_native_name == "") then do
       throw [
-            $$Error$8,
+            __Error$8,
             valdecl.pval_type.ptyp_loc,
             --[[ Missing_native_external ]]3
           ];
@@ -68703,7 +68703,7 @@ function transl_with_constraint(env, id, row_path, orig_decl, sdecl) do
             exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
             if (exn[0] == Unify) then do
               throw [
-                    $$Error$8,
+                    __Error$8,
                     loc,
                     --[[ Inconsistent_constraint ]]Block.__(6, [
                         env,
@@ -68760,7 +68760,7 @@ function transl_with_constraint(env, id, row_path, orig_decl, sdecl) do
   match$2 = closed_type_decl(decl);
   if (match$2 ~= undefined) then do
     throw [
-          $$Error$8,
+          __Error$8,
           sdecl.ptype_loc,
           --[[ Unbound_type_var ]]Block.__(9, [
               match$2,
@@ -69974,13 +69974,13 @@ function report_error$5(ppf, param) do
 end end
 
 register_error_of_exn((function (param) do
-        if (param[0] == $$Error$8) then do
+        if (param[0] == __Error$8) then do
           return error_of_printer(param[1], report_error$5, param[2]);
         end
          end 
       end end));
 
-$$Error$9 = Caml_exceptions.create("Ocaml_typedtree_test.Typeclass.Error");
+__Error$9 = Caml_exceptions.create("Ocaml_typedtree_test.Typeclass.Error");
 
 Error_forward$2 = Caml_exceptions.create("Ocaml_typedtree_test.Typeclass.Error_forward");
 
@@ -70255,7 +70255,7 @@ function enter_val(cl_num, vars, inh, lab, mut, virt, ty, val_env, met_env, par_
     virt$prime = match$1[2];
     if (match$1[1] ~= mut) then do
       throw [
-            $$Error$9,
+            __Error$9,
             loc,
             val_env,
             --[[ Mutability_mismatch ]]Block.__(22, [
@@ -70275,7 +70275,7 @@ function enter_val(cl_num, vars, inh, lab, mut, virt, ty, val_env, met_env, par_
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn[0] == Unify) then do
       throw [
-            $$Error$9,
+            __Error$9,
             loc,
             val_env,
             --[[ Field_type_mismatch ]]Block.__(1, [
@@ -70350,7 +70350,7 @@ function inheritance(self_type, env, ovf, concr_meths, warn_vals, loc, parent) d
                       exit = 1;
                     end else do
                       throw [
-                            $$Error$9,
+                            __Error$9,
                             loc,
                             env,
                             --[[ Field_type_mismatch ]]Block.__(1, [
@@ -70427,7 +70427,7 @@ function inheritance(self_type, env, ovf, concr_meths, warn_vals, loc, parent) d
               over_vals and false or true
             )) then do
             throw [
-                  $$Error$9,
+                  __Error$9,
                   loc,
                   env,
                   --[[ No_overriding ]]Block.__(23, [
@@ -70449,7 +70449,7 @@ function inheritance(self_type, env, ovf, concr_meths, warn_vals, loc, parent) d
      if ___conditional___ = 0--[[ Cty_constr ]]
      or ___conditional___ = 2--[[ Cty_arrow ]] then do
         throw [
-              $$Error$9,
+              __Error$9,
               loc,
               env,
               --[[ Structure_expected ]]Block.__(2, [parent])
@@ -70471,7 +70471,7 @@ function virtual_method(val_env, meths, self_type, lab, priv, sty, loc) do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn[0] == Unify) then do
       throw [
-            $$Error$9,
+            __Error$9,
             loc,
             val_env,
             --[[ Field_type_mismatch ]]Block.__(1, [
@@ -70502,7 +70502,7 @@ function declare_method(val_env, meths, self_type, lab, priv, sty, loc) do
       exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
       if (exn[0] == Unify) then do
         throw [
-              $$Error$9,
+              __Error$9,
               loc,
               val_env,
               --[[ Field_type_mismatch ]]Block.__(1, [
@@ -70556,7 +70556,7 @@ function type_constraint(val_env, sty, sty$prime, loc) do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn[0] == Unify) then do
       throw [
-            $$Error$9,
+            __Error$9,
             loc,
             val_env,
             --[[ Unconsistent_constraint ]]Block.__(0, [exn[1]])
@@ -70572,7 +70572,7 @@ function type_constraint(val_env, sty, sty$prime, loc) do
 end end
 
 function make_method(loc, cl_num, expr) do
-  return Curry._6(Ast_helper_Exp.fun_, expr.pexp_loc, undefined, "", undefined, alias$1(loc, undefined, $$var$1(loc, undefined, do
+  return Curry._6(Ast_helper_Exp.fun_, expr.pexp_loc, undefined, "", undefined, alias$1(loc, undefined, __var$1(loc, undefined, do
                       txt: "self-*",
                       loc: loc
                     end), do
@@ -70626,7 +70626,7 @@ function class_signature$1(env, param) do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn[0] == Unify) then do
       throw [
-            $$Error$9,
+            __Error$9,
             sty.ptyp_loc,
             env,
             --[[ Pattern_type_clash ]]Block.__(5, [self_type])
@@ -70820,7 +70820,7 @@ function class_type$3(env, scty) do
         path = match$1[0];
         if (same(decl.clty_path, unbound_class)) then do
           throw [
-                $$Error$9,
+                __Error$9,
                 scty.pcty_loc,
                 env,
                 --[[ Unbound_class_type_2 ]]Block.__(7, [lid.txt])
@@ -70831,7 +70831,7 @@ function class_type$3(env, scty) do
         params = match$2[0];
         if (List.length(params) ~= List.length(styl)) then do
           throw [
-                $$Error$9,
+                __Error$9,
                 scty.pcty_loc,
                 env,
                 --[[ Parameter_arity_mismatch ]]Block.__(11, [
@@ -70852,7 +70852,7 @@ function class_type$3(env, scty) do
                   exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
                   if (exn[0] == Unify) then do
                     throw [
-                          $$Error$9,
+                          __Error$9,
                           sty.ptyp_loc,
                           env,
                           --[[ Parameter_mismatch ]]Block.__(12, [exn[1]])
@@ -70912,7 +70912,7 @@ function class_type$4(env, scty) do
   return cty;
 end end
 
-function class_structure(cl_num, $$final, val_env, met_env, loc, param) do
+function class_structure(cl_num, __final, val_env, met_env, loc, param) do
   spat = param.pcstr_self;
   init = spat.ppat_loc;
   self_loc_loc_start = init.loc_start;
@@ -70924,7 +70924,7 @@ function class_structure(cl_num, $$final, val_env, met_env, loc, param) do
   end;
   self_type = newvar(undefined, --[[ () ]]0);
   unify$2(val_env, filter_method(val_env, dummy_method, --[[ Private ]]0, self_type), newty2(current_level.contents, --[[ Ttuple ]]Block.__(2, [--[[ [] ]]0])));
-  private_self = $$final and newvar(undefined, --[[ () ]]0) or self_type;
+  private_self = __final and newvar(undefined, --[[ () ]]0) or self_type;
   match = type_self_pattern(cl_num, private_self, val_env, met_env, met_env, spat);
   val_env$1 = match[3];
   vars = match[2];
@@ -70932,7 +70932,7 @@ function class_structure(cl_num, $$final, val_env, met_env, loc, param) do
   pat = match[0];
   public_self = pat.pat_type;
   ty;
-  if ($$final) then do
+  if (__final) then do
     desc_000 = newvar(undefined, --[[ () ]]0);
     desc_001 = do
       contents: undefined
@@ -70952,7 +70952,7 @@ function class_structure(cl_num, $$final, val_env, met_env, loc, param) do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn[0] == Unify) then do
       throw [
-            $$Error$9,
+            __Error$9,
             spat.ppat_loc,
             val_env$1,
             --[[ Pattern_type_clash ]]Block.__(5, [public_self])
@@ -70964,7 +70964,7 @@ function class_structure(cl_num, $$final, val_env, met_env, loc, param) do
   get_methods = function (ty) do
     return flatten_fields(object_fields(expand_head(val_env$1, ty)))[0];
   end end;
-  if ($$final) then do
+  if (__final) then do
     List.iter((function (param) do
             k = field_kind_repr(param[1]) == --[[ Fpresent ]]0 and --[[ Public ]]1 or --[[ Private ]]0;
             try do
@@ -71013,7 +71013,7 @@ function class_structure(cl_num, $$final, val_env, met_env, loc, param) do
           local ___conditional___=(match.tag | 0);
           do
              if ___conditional___ = 0--[[ Pcf_inherit ]] then do
-                $$super = match[2];
+                __super = match[2];
                 sparent = match[1];
                 ovf = match[0];
                 parent = class_expr(cl_num$1, val_env, par_env, sparent);
@@ -71071,10 +71071,10 @@ function class_structure(cl_num, $$final, val_env, met_env, loc, param) do
                               ];
                       end end), cl_sig.csig_concr, --[[ [] ]]0);
                 match$4;
-                if ($$super ~= undefined) then do
+                if (__super ~= undefined) then do
                   match$5 = enter_met_env((function (s) do
                           return --[[ Unused_ancestor ]]Block.__(20, [s]);
-                        end end), sparent.pcl_loc, $$super, --[[ Val_anc ]]Block.__(3, [
+                        end end), sparent.pcl_loc, __super, --[[ Val_anc ]]Block.__(3, [
                           inh_meths,
                           cl_num$1
                         ]), self_type$1, val_env$1, met_env$1, par_env$1);
@@ -71099,7 +71099,7 @@ function class_structure(cl_num, $$final, val_env, met_env, loc, param) do
                                   return mkcf(--[[ Tcf_inherit ]]Block.__(0, [
                                                 ovf,
                                                 parent,
-                                                $$super,
+                                                __super,
                                                 inh_vars,
                                                 inh_meths
                                               ]));
@@ -71121,7 +71121,7 @@ function class_structure(cl_num, $$final, val_env, met_env, loc, param) do
                   ovf$1 = match$7[0];
                   if (mem$2(lab.txt, local_vals)) then do
                     throw [
-                          $$Error$9,
+                          __Error$9,
                           loc,
                           val_env,
                           --[[ Duplicate ]]Block.__(24, [
@@ -71141,7 +71141,7 @@ function class_structure(cl_num, $$final, val_env, met_env, loc, param) do
                      end 
                   end else if (ovf$1 == --[[ Override ]]0) then do
                     throw [
-                          $$Error$9,
+                          __Error$9,
                           loc,
                           val_env,
                           --[[ No_overriding ]]Block.__(23, [
@@ -71169,7 +71169,7 @@ function class_structure(cl_num, $$final, val_env, met_env, loc, param) do
                         end
                          end 
                         throw [
-                              $$Error$9,
+                              __Error$9,
                               loc,
                               val_env,
                               --[[ Make_nongen_seltype ]]Block.__(17, [match$8[0][0]])
@@ -71265,7 +71265,7 @@ function class_structure(cl_num, $$final, val_env, met_env, loc, param) do
                   expr$1 = match$13.tag == --[[ Pexp_poly ]]28 and expr or Curry._4(Ast_helper_Exp.poly, expr.pexp_loc, undefined, expr, undefined);
                   if (mem$2(lab$1.txt, local_meths)) then do
                     throw [
-                          $$Error$9,
+                          __Error$9,
                           loc,
                           val_env,
                           --[[ Duplicate ]]Block.__(24, [
@@ -71285,7 +71285,7 @@ function class_structure(cl_num, $$final, val_env, met_env, loc, param) do
                      end 
                   end else if (ovf$2 == --[[ Override ]]0) then do
                     throw [
-                          $$Error$9,
+                          __Error$9,
                           loc,
                           val_env,
                           --[[ No_overriding ]]Block.__(23, [
@@ -71362,7 +71362,7 @@ function class_structure(cl_num, $$final, val_env, met_env, loc, param) do
                     exn$1 = Caml_js_exceptions.internalToOCamlException(raw_exn$1);
                     if (exn$1[0] == Unify) then do
                       throw [
-                            $$Error$9,
+                            __Error$9,
                             loc,
                             val_env,
                             --[[ Field_type_mismatch ]]Block.__(1, [
@@ -71552,7 +71552,7 @@ function class_structure(cl_num, $$final, val_env, met_env, loc, param) do
   priv_meths = List.filter((function (param) do
             return field_kind_repr(param[1]) ~= --[[ Fpresent ]]0;
           end end))(methods);
-  if ($$final) then do
+  if (__final) then do
     close_object(self_type);
     mets = virtual_methods(do
           csig_self: self_type,
@@ -71572,12 +71572,12 @@ function class_structure(cl_num, $$final, val_env, met_env, loc, param) do
           end end), sign_csig_vars, --[[ [] ]]0);
     if (mets ~= --[[ [] ]]0 or vals ~= --[[ [] ]]0) then do
       throw [
-            $$Error$9,
+            __Error$9,
             loc,
             val_env$1,
             --[[ Virtual_class ]]Block.__(10, [
                 true,
-                $$final,
+                __final,
                 mets,
                 vals
               ])
@@ -71620,7 +71620,7 @@ function class_structure(cl_num, $$final, val_env, met_env, loc, param) do
       exn$1 = Caml_js_exceptions.internalToOCamlException(raw_exn$1);
       if (exn$1[0] == Unify) then do
         throw [
-              $$Error$9,
+              __Error$9,
               loc,
               val_env$1,
               --[[ Final_self_clash ]]Block.__(21, [exn$1[1]])
@@ -71664,7 +71664,7 @@ function class_structure(cl_num, $$final, val_env, met_env, loc, param) do
     prerr_warning(loc, --[[ Implicit_public_methods ]]Block.__(6, [added]));
   end
    end 
-  sign$1 = $$final and sign or (do
+  sign$1 = __final and sign or (do
         csig_self: expand_head(val_env$1, public_self),
         csig_vars: sign_csig_vars,
         csig_concr: concr_meths,
@@ -71694,7 +71694,7 @@ function class_expr(cl_num, val_env, met_env, _scl) do
           path = match$1[0];
           if (same(decl.cty_path, unbound_class)) then do
             throw [
-                  $$Error$9,
+                  __Error$9,
                   scl.pcl_loc,
                   val_env,
                   --[[ Unbound_class_2 ]]Block.__(6, [lid.txt])
@@ -71710,7 +71710,7 @@ function class_expr(cl_num, val_env, met_env, _scl) do
           clty$prime = abbreviate_class_type(path, params, clty);
           if (List.length(params) ~= List.length(tyl)) then do
             throw [
-                  $$Error$9,
+                  __Error$9,
                   scl.pcl_loc,
                   val_env,
                   --[[ Parameter_arity_mismatch ]]Block.__(11, [
@@ -71730,7 +71730,7 @@ function class_expr(cl_num, val_env, met_env, _scl) do
                     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
                     if (exn[0] == Unify) then do
                       throw [
-                            $$Error$9,
+                            __Error$9,
                             cty$prime.ctyp_loc,
                             val_env,
                             --[[ Parameter_mismatch ]]Block.__(12, [exn[1]])
@@ -71778,15 +71778,15 @@ function class_expr(cl_num, val_env, met_env, _scl) do
           match$5 = match[1];
           l = match[0];
           if (match$5 ~= undefined) then do
-            $$default = match$5;
-            loc = $$default.pexp_loc;
-            scases_000 = Curry._3(Ast_helper_Exp.$$case, construct(loc, undefined, do
+            __default = match$5;
+            loc = __default.pexp_loc;
+            scases_000 = Curry._3(Ast_helper_Exp.__case, construct(loc, undefined, do
                       txt: --[[ Ldot ]]Block.__(1, [
                           --[[ Lident ]]Block.__(0, ["*predef*"]),
                           "Some"
                         ]),
                       loc: none
-                    end, $$var$1(loc, undefined, do
+                    end, __var$1(loc, undefined, do
                           txt: "*sth*",
                           loc: none
                         end)), undefined, Curry._3(Ast_helper_Exp.ident, loc, undefined, do
@@ -71794,13 +71794,13 @@ function class_expr(cl_num, val_env, met_env, _scl) do
                       loc: none
                     end));
             scases_001 = --[[ :: ]][
-              Curry._3(Ast_helper_Exp.$$case, construct(loc, undefined, do
+              Curry._3(Ast_helper_Exp.__case, construct(loc, undefined, do
                         txt: --[[ Ldot ]]Block.__(1, [
                             --[[ Lident ]]Block.__(0, ["*predef*"]),
                             "None"
                           ]),
                         loc: none
-                      end, undefined), undefined, $$default),
+                      end, undefined), undefined, __default),
               --[[ [] ]]0
             ];
             scases = --[[ :: ]][
@@ -71811,7 +71811,7 @@ function class_expr(cl_num, val_env, met_env, _scl) do
                       txt: --[[ Lident ]]Block.__(0, ["*opt*"]),
                       loc: none
                     end), scases);
-            sfun = fun_$1(scl.pcl_loc, undefined, l, undefined, $$var$1(loc, undefined, do
+            sfun = fun_$1(scl.pcl_loc, undefined, l, undefined, __var$1(loc, undefined, do
                       txt: "*opt*",
                       loc: none
                     end), let_$1(scl.pcl_loc, undefined, --[[ Nonrecursive ]]0, --[[ :: ]][
@@ -71999,7 +71999,7 @@ function class_expr(cl_num, val_env, met_env, _scl) do
                               if (sargs) then do
                                 match$1 = sargs[0];
                                 throw [
-                                      $$Error$9,
+                                      __Error$9,
                                       match$1[1].pexp_loc,
                                       val_env,
                                       --[[ Apply_wrong_label ]]Block.__(4, [match$1[0]])
@@ -72010,7 +72010,7 @@ function class_expr(cl_num, val_env, met_env, _scl) do
                                 l$prime = match$2[0];
                                 if (l ~= l$prime and l$prime ~= "") then do
                                   throw [
-                                        $$Error$9,
+                                        __Error$9,
                                         sarg0.pexp_loc,
                                         val_env,
                                         --[[ Apply_wrong_label ]]Block.__(4, [l$prime])
@@ -72125,14 +72125,14 @@ function class_expr(cl_num, val_env, met_env, _scl) do
                 if (omitted ~= --[[ [] ]]0) then do
                   match$7 = match$6[0];
                   throw [
-                        $$Error$9,
+                        __Error$9,
                         match$7[1].pexp_loc,
                         val_env,
                         --[[ Apply_wrong_label ]]Block.__(4, [match$7[0]])
                       ];
                 end else do
                   throw [
-                        $$Error$9,
+                        __Error$9,
                         cl$2.cl_loc,
                         val_env,
                         --[[ Cannot_apply ]]Block.__(3, [cl$2.cl_type])
@@ -72182,7 +72182,7 @@ function class_expr(cl_num, val_env, met_env, _scl) do
                 end
                  end 
                 throw [
-                      $$Error$9,
+                      __Error$9,
                       scl.pcl_loc,
                       val_env,
                       --[[ Make_nongen_seltype ]]Block.__(17, [match$10[0][0]])
@@ -72279,7 +72279,7 @@ function class_expr(cl_num, val_env, met_env, _scl) do
           error = class_types(val_env, cl$4.cl_type, clty$1.cltyp_type);
           if (error) then do
             throw [
-                  $$Error$9,
+                  __Error$9,
                   cl$4.cl_loc,
                   val_env,
                   --[[ Class_match_failure ]]Block.__(14, [error])
@@ -72530,7 +72530,7 @@ function type_classes(define_class, approx, kind, env, cls) do
             catch (exn)do
               if (exn == Already_bound) then do
                 throw [
-                      $$Error$9,
+                      __Error$9,
                       sty.ptyp_loc,
                       env,
                       --[[ Repeated_parameter ]]0
@@ -72598,7 +72598,7 @@ function type_classes(define_class, approx, kind, env, cls) do
             exn$1 = Caml_js_exceptions.internalToOCamlException(raw_exn);
             if (exn$1[0] == Unify) then do
               throw [
-                    $$Error$9,
+                    __Error$9,
                     cl.pci_loc,
                     env,
                     --[[ Bad_parameters ]]Block.__(13, [
@@ -72618,7 +72618,7 @@ function type_classes(define_class, approx, kind, env, cls) do
             exn$2 = Caml_js_exceptions.internalToOCamlException(raw_exn$1);
             if (exn$2[0] == Unify) then do
               throw [
-                    $$Error$9,
+                    __Error$9,
                     cl.pci_loc,
                     env,
                     --[[ Abbrev_type_clash ]]Block.__(8, [
@@ -72645,7 +72645,7 @@ function type_classes(define_class, approx, kind, env, cls) do
             exn$3 = Caml_js_exceptions.internalToOCamlException(raw_exn$2);
             if (exn$3[0] == Unify) then do
               throw [
-                    $$Error$9,
+                    __Error$9,
                     cl.pci_loc,
                     env,
                     --[[ Bad_parameters ]]Block.__(13, [
@@ -72666,7 +72666,7 @@ function type_classes(define_class, approx, kind, env, cls) do
             if (exn$4[0] == Unify) then do
               constr$1 = newconstr(--[[ Pident ]]Block.__(0, [cl_id]), params);
               throw [
-                    $$Error$9,
+                    __Error$9,
                     cl.pci_loc,
                     env,
                     --[[ Abbrev_type_clash ]]Block.__(8, [
@@ -72686,7 +72686,7 @@ function type_classes(define_class, approx, kind, env, cls) do
             exn$5 = Caml_js_exceptions.internalToOCamlException(raw_exn$4);
             if (exn$5[0] == Unify) then do
               throw [
-                    $$Error$9,
+                    __Error$9,
                     cl.pci_loc,
                     env,
                     --[[ Constructor_type_mismatch ]]Block.__(9, [
@@ -72740,7 +72740,7 @@ function type_classes(define_class, approx, kind, env, cls) do
                   end end), sign.csig_vars, --[[ [] ]]0);
             if (mets ~= --[[ [] ]]0 or vals ~= --[[ [] ]]0) then do
               throw [
-                    $$Error$9,
+                    __Error$9,
                     cl.pci_loc,
                     env$1,
                     --[[ Virtual_class ]]Block.__(10, [
@@ -72872,7 +72872,7 @@ function type_classes(define_class, approx, kind, env, cls) do
             exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
             if (exn[0] == Unify) then do
               throw [
-                    $$Error$9,
+                    __Error$9,
                     cl.pci_loc,
                     env$2,
                     --[[ Non_collapsable_conjunction ]]Block.__(20, [
@@ -72896,7 +72896,7 @@ function type_classes(define_class, approx, kind, env, cls) do
           may(generalize, cl_abbr.type_manifest);
           if (not closed_class$1(clty)) then do
             throw [
-                  $$Error$9,
+                  __Error$9,
                   cl.pci_loc,
                   env$2,
                   --[[ Non_generalizable_class ]]Block.__(18, [
@@ -72914,7 +72914,7 @@ function type_classes(define_class, approx, kind, env, cls) do
                   return cltype_declaration$1(id, ppf, cltydef);
                 end end);
             throw [
-                  $$Error$9,
+                  __Error$9,
                   cl.pci_loc,
                   env$2,
                   --[[ Unbound_type_var ]]Block.__(16, [
@@ -73014,7 +73014,7 @@ function type_classes(define_class, approx, kind, env, cls) do
               exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
               if (exn[0] == Subtype) then do
                 throw [
-                      $$Error$7,
+                      __Error$7,
                       loc,
                       env$3,
                       --[[ Not_subtype ]]Block.__(23, [
@@ -73028,7 +73028,7 @@ function type_classes(define_class, approx, kind, env, cls) do
             end
             if (not opened_object(cl_ty)) then do
               throw [
-                    $$Error$9,
+                    __Error$9,
                     loc,
                     env$3,
                     --[[ Cannot_coerce_self ]]Block.__(19, [obj_ty])
@@ -73200,7 +73200,7 @@ function approx_class_declarations(env, sdecls) do
 end end
 
 register_error_of_exn((function (param) do
-        if (param[0] == $$Error$9) then do
+        if (param[0] == __Error$9) then do
           env = param[2];
           return error_of_printer(param[1], (function (param, param$1) do
                         env$1 = env;
@@ -74279,7 +74279,7 @@ register_error_of_exn((function (param) do
         end end  end 
       end end));
 
-$$Error$10 = Caml_exceptions.create("Ocaml_typedtree_test.Typemod.Error");
+__Error$10 = Caml_exceptions.create("Ocaml_typedtree_test.Typemod.Error");
 
 Error_forward$3 = Caml_exceptions.create("Ocaml_typedtree_test.Typemod.Error_forward");
 
@@ -74322,7 +74322,7 @@ function extract_sig(env, loc, mty) do
     return match[0];
   end else do
     throw [
-          $$Error$10,
+          __Error$10,
           loc,
           env,
           --[[ Signature_expected ]]0
@@ -74336,7 +74336,7 @@ function extract_sig_open(env, loc, mty) do
     return match[0];
   end else do
     throw [
-          $$Error$10,
+          __Error$10,
           loc,
           env,
           --[[ Structure_expected ]]Block.__(3, [mty])
@@ -74534,7 +74534,7 @@ function merge_constraint(initial_env, loc, sg, constr) do
                                 p = not match[1];
                                 n = not match[0];
                                 i = false;
-                                return Curry._3(Types_Variance.set, --[[ May_pos ]]0, p, Curry._3(Types_Variance.set, --[[ May_neg ]]1, n, Curry._3(Types_Variance.set, --[[ May_weak ]]2, n, Curry._3(Types_Variance.set, --[[ Inj ]]3, i, Types_Variance.$$null))));
+                                return Curry._3(Types_Variance.set, --[[ May_pos ]]0, p, Curry._3(Types_Variance.set, --[[ May_neg ]]1, n, Curry._3(Types_Variance.set, --[[ May_weak ]]2, n, Curry._3(Types_Variance.set, --[[ Inj ]]3, i, Types_Variance.__null))));
                               end end), sdecl.ptype_params);
                         decl_row_type_loc = sdecl.ptype_loc;
                         decl_row = do
@@ -74775,7 +74775,7 @@ function merge_constraint(initial_env, loc, sg, constr) do
               ];
       end else do
         throw [
-              $$Error$10,
+              __Error$10,
               loc,
               env,
               --[[ With_no_component ]]Block.__(4, [lid.txt])
@@ -74853,7 +74853,7 @@ function merge_constraint(initial_env, loc, sg, constr) do
             catch (exn)do
               if (exn == Pervasives.Exit) then do
                 throw [
-                      $$Error$10,
+                      __Error$10,
                       sdecl.ptype_loc,
                       initial_env,
                       --[[ With_need_typeconstr ]]2
@@ -74913,9 +74913,9 @@ function merge_constraint(initial_env, loc, sg, constr) do
   end
   catch (raw_exn)do
     exn$2 = Caml_js_exceptions.internalToOCamlException(raw_exn);
-    if (exn$2[0] == $$Error$5) then do
+    if (exn$2[0] == __Error$5) then do
       throw [
-            $$Error$10,
+            __Error$10,
             loc,
             initial_env,
             --[[ With_mismatch ]]Block.__(5, [
@@ -75317,7 +75317,7 @@ end end
 function check(cl, loc, set_ref, name) do
   if (mem$7(name, set_ref.contents)) then do
     throw [
-          $$Error$10,
+          __Error$10,
           loc,
           empty,
           --[[ Repeated_name ]]Block.__(6, [
@@ -76295,9 +76295,9 @@ function check_recmodule_inclusion(env, bindings) do
         end
         catch (raw_exn)do
           exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
-          if (exn[0] == $$Error$5) then do
+          if (exn[0] == __Error$5) then do
             throw [
-                  $$Error$10,
+                  __Error$10,
                   modl.mod_loc,
                   env$1,
                   --[[ Not_included ]]Block.__(1, [exn[1]])
@@ -76451,7 +76451,7 @@ function modtype_of_package(env, loc, p, nl, tl) do
         return --[[ Mty_ident ]]Block.__(0, [p]);
       end else do
         throw [
-              $$Error$10,
+              __Error$10,
               loc,
               env,
               --[[ Signature_expected ]]0
@@ -76464,7 +76464,7 @@ function modtype_of_package(env, loc, p, nl, tl) do
     if (exn == Caml_builtin_exceptions.not_found) then do
       error = --[[ Unbound_modtype ]]Block.__(22, [lid_of_path(undefined, p)]);
       throw [
-            $$Error$6,
+            __Error$6,
             loc,
             env,
             error
@@ -76490,7 +76490,7 @@ function package_subtype$1(env, p1, nl1, tl1, p2, nl2, tl2) do
   end
   catch (raw_exn)do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
-    if (exn[0] == $$Error$5) then do
+    if (exn[0] == __Error$5) then do
       return false;
     end else do
       throw exn;
@@ -76507,9 +76507,9 @@ function wrap_constraint(env, arg, mty, explicit) do
   end
   catch (raw_exn)do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
-    if (exn[0] == $$Error$5) then do
+    if (exn[0] == __Error$5) then do
       throw [
-            $$Error$10,
+            __Error$10,
             arg.mod_loc,
             env,
             --[[ Not_included ]]Block.__(1, [exn[1]])
@@ -76676,7 +76676,7 @@ function type_module$1(aliasOpt, sttn, funct_body, anchor, env, smod) do
           if (generative) then do
             if (Caml_obj.caml_notequal(sarg.pmod_desc, --[[ Pmod_structure ]]Block.__(1, [--[[ [] ]]0]))) then do
               throw [
-                    $$Error$10,
+                    __Error$10,
                     sfunct.pmod_loc,
                     env,
                     --[[ Apply_generative ]]4
@@ -76685,7 +76685,7 @@ function type_module$1(aliasOpt, sttn, funct_body, anchor, env, smod) do
              end 
             if (funct_body and contains_type$1(env, funct.mod_type)) then do
               throw [
-                    $$Error$10,
+                    __Error$10,
                     smod.pmod_loc,
                     env,
                     --[[ Not_allowed_in_functor_body ]]1
@@ -76700,9 +76700,9 @@ function type_module$1(aliasOpt, sttn, funct_body, anchor, env, smod) do
           end
           catch (raw_exn)do
             exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
-            if (exn[0] == $$Error$5) then do
+            if (exn[0] == __Error$5) then do
               throw [
-                    $$Error$10,
+                    __Error$10,
                     sarg.pmod_loc,
                     env,
                     --[[ Not_included ]]Block.__(1, [exn[1]])
@@ -76723,7 +76723,7 @@ function type_module$1(aliasOpt, sttn, funct_body, anchor, env, smod) do
             catch (exn$1)do
               if (exn$1 == Caml_builtin_exceptions.not_found) then do
                 throw [
-                      $$Error$10,
+                      __Error$10,
                       smod.pmod_loc,
                       env,
                       --[[ Cannot_eliminate_dependency ]]Block.__(2, [mty_functor])
@@ -76751,7 +76751,7 @@ function type_module$1(aliasOpt, sttn, funct_body, anchor, env, smod) do
           return node$3;
         end else do
           throw [
-                $$Error$10,
+                __Error$10,
                 sfunct.pmod_loc,
                 env,
                 --[[ Cannot_apply ]]Block.__(0, [funct.mod_type])
@@ -76797,7 +76797,7 @@ function type_module$1(aliasOpt, sttn, funct_body, anchor, env, smod) do
           do
              if ___conditional___ = 0--[[ Tvar ]] then do
                 throw [
-                      $$Error$7,
+                      __Error$7,
                       smod.pmod_loc,
                       env,
                       --[[ Cannot_infer_signature ]]3
@@ -76808,7 +76808,7 @@ function type_module$1(aliasOpt, sttn, funct_body, anchor, env, smod) do
                           return free_variables$1(undefined, t) ~= --[[ [] ]]0;
                         end end), tl)) then do
                   throw [
-                        $$Error$10,
+                        __Error$10,
                         smod.pmod_loc,
                         env,
                         --[[ Incomplete_packed_module ]]Block.__(13, [exp.exp_type])
@@ -76829,7 +76829,7 @@ function type_module$1(aliasOpt, sttn, funct_body, anchor, env, smod) do
         end end 
         if (exit$1 == 1) then do
           throw [
-                $$Error$10,
+                __Error$10,
                 smod.pmod_loc,
                 env,
                 --[[ Not_a_packed_module ]]Block.__(12, [exp.exp_type])
@@ -76838,7 +76838,7 @@ function type_module$1(aliasOpt, sttn, funct_body, anchor, env, smod) do
          end 
         if (funct_body and contains_type$1(env, mty$5)) then do
           throw [
-                $$Error$10,
+                __Error$10,
                 smod.pmod_loc,
                 env,
                 --[[ Not_allowed_in_functor_body ]]1
@@ -77041,7 +77041,7 @@ function type_structure(toplevelOpt, funct_body, anchor, env, sstr, scope) do
                           ];
                   end else do
                     throw [
-                          $$Error$10,
+                          __Error$10,
                           mb.pmb_expr.pmod_loc,
                           env,
                           --[[ Recursive_module_require_explicit_type ]]3
@@ -77454,7 +77454,7 @@ function type_module_type_of(env, smod) do
   mty$1 = remove_aliases$1(env, mty);
   if (not closed_modtype(mty$1)) then do
     throw [
-          $$Error$10,
+          __Error$10,
           smod.pmod_loc,
           env,
           --[[ Non_generalizable_module ]]Block.__(9, [mty$1])
@@ -77544,7 +77544,7 @@ function type_package$1(env, m, p, nl, tl) do
               exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
               if (exn[0] == Unify) then do
                 throw [
-                      $$Error$10,
+                      __Error$10,
                       m.pmod_loc,
                       env$1,
                       --[[ Scoping_pack ]]Block.__(14, [
@@ -77616,7 +77616,7 @@ function type_implementation_more(sourcefile, outputprefix, modulename, initial_
         catch (exn)do
           if (exn == Caml_builtin_exceptions.not_found) then do
             throw [
-                  $$Error$10,
+                  __Error$10,
                   in_file(sourcefile),
                   empty,
                   --[[ Interface_not_compiled ]]Block.__(11, [sourceintf])
@@ -77649,7 +77649,7 @@ function type_implementation_more(sourcefile, outputprefix, modulename, initial_
                                       return 0;
                                     end else do
                                       throw [
-                                            $$Error$10,
+                                            __Error$10,
                                             exp.exp_loc,
                                             env,
                                             --[[ Non_generalizable ]]Block.__(7, [exp.exp_type])
@@ -77662,7 +77662,7 @@ function type_implementation_more(sourcefile, outputprefix, modulename, initial_
                         return 0;
                       end else do
                         throw [
-                              $$Error$10,
+                              __Error$10,
                               md.mod_loc,
                               env,
                               --[[ Non_generalizable_module ]]Block.__(9, [md.mod_type])
@@ -77693,7 +77693,7 @@ function type_implementation_more(sourcefile, outputprefix, modulename, initial_
     end end 
   end
   catch (e)do
-    save_cmt(outputprefix .. ".cmt", modulename, --[[ Partial_implementation ]]Block.__(3, [$$Array.of_list(saved_types.contents)]), sourcefile, initial_env, undefined);
+    save_cmt(outputprefix .. ".cmt", modulename, --[[ Partial_implementation ]]Block.__(3, [__Array.of_list(saved_types.contents)]), sourcefile, initial_env, undefined);
     throw e;
   end
 end end
@@ -77707,7 +77707,7 @@ function type_implementation(sourcefile, outputprefix, modulename, initial_env, 
 end end
 
 register_error_of_exn((function (param) do
-        if (param[0] == $$Error$10) then do
+        if (param[0] == __Error$10) then do
           env = param[2];
           return error_of_printer(param[1], (function (param, param$1) do
                         env$1 = env;

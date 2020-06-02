@@ -1,6 +1,6 @@
 
 
-import * as $$Array from "./array.lua";
+import * as __Array from "./array.lua";
 import * as Curry from "./curry.lua";
 import * as Lexing from "./lexing.lua";
 import * as Caml_obj from "./caml_obj.lua";
@@ -39,20 +39,20 @@ function grow_stacks(param) do
   new_v = Caml_array.caml_make_vect(newsize, --[[ () ]]0);
   new_start = Caml_array.caml_make_vect(newsize, Lexing.dummy_pos);
   new_end = Caml_array.caml_make_vect(newsize, Lexing.dummy_pos);
-  $$Array.blit(env.s_stack, 0, new_s, 0, oldsize);
+  __Array.blit(env.s_stack, 0, new_s, 0, oldsize);
   env.s_stack = new_s;
-  $$Array.blit(env.v_stack, 0, new_v, 0, oldsize);
+  __Array.blit(env.v_stack, 0, new_v, 0, oldsize);
   env.v_stack = new_v;
-  $$Array.blit(env.symb_start_stack, 0, new_start, 0, oldsize);
+  __Array.blit(env.symb_start_stack, 0, new_start, 0, oldsize);
   env.symb_start_stack = new_start;
-  $$Array.blit(env.symb_end_stack, 0, new_end, 0, oldsize);
+  __Array.blit(env.symb_end_stack, 0, new_end, 0, oldsize);
   env.symb_end_stack = new_end;
   env.stacksize = newsize;
   return --[[ () ]]0;
 end end
 
 function clear_parser(param) do
-  $$Array.fill(env.v_stack, 0, env.stacksize, --[[ () ]]0);
+  __Array.fill(env.v_stack, 0, env.stacksize, --[[ () ]]0);
   env.lval = --[[ () ]]0;
   return --[[ () ]]0;
 end end

@@ -86,7 +86,7 @@ function firstSome(a, b) do
   end end  end 
 end end
 
-$$default = getWithDefault;
+__default = getWithDefault;
 
 exports.some = some;
 exports.isSome = isSome;
@@ -97,8 +97,8 @@ exports.equal = equal;
 exports.andThen = andThen;
 exports.map = map;
 exports.getWithDefault = getWithDefault;
-exports.$$default = $$default;
-exports.default = $$default;
+exports.__default = __default;
+exports.default = __default;
 exports.__esModule = true;
 exports.filter = filter;
 exports.firstSome = firstSome;

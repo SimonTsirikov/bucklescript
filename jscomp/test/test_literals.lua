@@ -37,7 +37,7 @@ stdlib = "stdlib";
 
 imul = "imul";
 
-$$debugger = "debugger";
+__debugger = "debugger";
 
 raw_expr = "raw_expr";
 
@@ -137,7 +137,7 @@ escaped_j_delimiter = "*j";
 
 unescaped_js_delimiter = "js";
 
-$$native = "native";
+__native = "native";
 
 bytecode = "bytecode";
 
@@ -161,7 +161,7 @@ exports.stdlib = stdlib;
 exports.imul = imul;
 exports.setter_suffix = setter_suffix;
 exports.setter_suffix_len = setter_suffix_len;
-exports.$$debugger = $$debugger;
+exports.__debugger = __debugger;
 exports.raw_expr = raw_expr;
 exports.raw_stmt = raw_stmt;
 exports.unsafe_downgrade = unsafe_downgrade;
@@ -211,7 +211,7 @@ exports.reactjs_jsx_ppx_3_exe = reactjs_jsx_ppx_3_exe;
 exports.unescaped_j_delimiter = unescaped_j_delimiter;
 exports.escaped_j_delimiter = escaped_j_delimiter;
 exports.unescaped_js_delimiter = unescaped_js_delimiter;
-exports.$$native = $$native;
+exports.__native = __native;
 exports.bytecode = bytecode;
 exports.js = js;
 --[[ No side effect ]]

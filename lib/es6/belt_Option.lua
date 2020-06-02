@@ -23,16 +23,16 @@ function getExn(param) do
   end end 
 end end
 
-function mapWithDefaultU(opt, $$default, f) do
+function mapWithDefaultU(opt, __default, f) do
   if (opt ~= undefined) then do
     return f(Caml_option.valFromOption(opt));
   end else do
-    return $$default;
+    return __default;
   end end 
 end end
 
-function mapWithDefault(opt, $$default, f) do
-  return mapWithDefaultU(opt, $$default, Curry.__1(f));
+function mapWithDefault(opt, __default, f) do
+  return mapWithDefaultU(opt, __default, Curry.__1(f));
 end end
 
 function mapU(opt, f) do
@@ -57,11 +57,11 @@ function flatMap(opt, f) do
   return flatMapU(opt, Curry.__1(f));
 end end
 
-function getWithDefault(opt, $$default) do
+function getWithDefault(opt, __default) do
   if (opt ~= undefined) then do
     return Caml_option.valFromOption(opt);
   end else do
-    return $$default;
+    return __default;
   end end 
 end end
 

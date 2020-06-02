@@ -2,7 +2,7 @@
 
 
 React = do
-  $$null: --[[ () ]]0
+  __null: --[[ () ]]0
 end;
 
 function make(param, param$1) do

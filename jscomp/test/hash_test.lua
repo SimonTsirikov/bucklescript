@@ -2,7 +2,7 @@
 
 Mt = require "./mt.lua";
 Char = require "../../lib/js/char.lua";
-$$Array = require "../../lib/js/array.lua";
+__Array = require "../../lib/js/array.lua";
 Bytes = require "../../lib/js/bytes.lua";
 Hashtbl = require "../../lib/js/hashtbl.lua";
 Mt_global = require "./mt_global.lua";
@@ -22,7 +22,7 @@ function eq(f) do
     end end);
 end end
 
-test_strings = $$Array.init(32, (function (i) do
+test_strings = __Array.init(32, (function (i) do
         c = Char.chr(i);
         return Caml_bytes.bytes_to_string(Bytes.make(i, c));
       end end));
@@ -70,7 +70,7 @@ function caml_hash(x) do
   return Hashtbl.hash(x) & 1073741823;
 end end
 
-param = $$Array.map(caml_hash, test_strings);
+param = __Array.map(caml_hash, test_strings);
 
 Mt_global.collect_eq(test_id, suites, "File \"hash_test.ml\", line 18, characters 5-12", param, test_strings_hash_results);
 

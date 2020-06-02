@@ -6,14 +6,14 @@ Sys = require "../../lib/js/sys.lua";
 Char = require "../../lib/js/char.lua";
 List = require "../../lib/js/list.lua";
 Path = require "path";
-$$Array = require "../../lib/js/array.lua";
+__Array = require "../../lib/js/array.lua";
 Block = require "../../lib/js/block.lua";
 Curry = require "../../lib/js/curry.lua";
 Queue = require "../../lib/js/queue.lua";
-$$Buffer = require "../../lib/js/buffer.lua";
+__Buffer = require "../../lib/js/buffer.lua";
 Lexing = require "../../lib/js/lexing.lua";
 Printf = require "../../lib/js/printf.lua";
-$$String = require "../../lib/js/string.lua";
+__String = require "../../lib/js/string.lua";
 Hashtbl = require "../../lib/js/hashtbl.lua";
 Caml_obj = require "../../lib/js/caml_obj.lua";
 Filename = require "../../lib/js/filename.lua";
@@ -155,7 +155,7 @@ function compare(loc1, loc2) do
   end end 
 end end
 
-$$Error = Caml_exceptions.create("Flow_parser_reg_test.Parse_error.Error");
+__Error = Caml_exceptions.create("Flow_parser_reg_test.Parse_error.Error");
 
 function error(param) do
   if (typeof param == "number") then do
@@ -1561,7 +1561,7 @@ function start(str) do
   todo = do
     contents: --[[ [] ]]0
   end;
-  $$String.iter((function (c) do
+  __String.iter((function (c) do
           todo.contents = --[[ :: ]][
             c,
             todo.contents
@@ -1634,7 +1634,7 @@ function parse_hex_symbol(f) do
 end end
 
 function parse_exponent(f) do
-  todo_str = $$String.concat("", List.map(Char.escaped, f.todo));
+  todo_str = __String.concat("", List.map(Char.escaped, f.todo));
   exponent;
   try do
     exponent = Caml_format.caml_int_of_string(todo_str);
@@ -1763,7 +1763,7 @@ end end
 
 function save_comment(env, start, _end, buf, multiline) do
   loc = btwn(start, _end);
-  s = $$Buffer.contents(buf);
+  s = __Buffer.contents(buf);
   c = multiline and --[[ Block ]]Block.__(0, [s]) or --[[ Line ]]Block.__(1, [s]);
   lex_comments_acc_000 = --[[ tuple ]][
     loc,
@@ -2334,7 +2334,7 @@ function token(env, lexbuf) do
           return token(env$1, lexbuf$1);end end end 
        if ___conditional___ = 3 then do
           start = from_lb(env$1.lex_source, lexbuf$1);
-          buf = $$Buffer.create(127);
+          buf = __Buffer.create(127);
           match = comment(env$1, buf, lexbuf$1);
           env$3 = save_comment(match[0], start, match[1], buf, true);
           return token(env$3, lexbuf$1);end end end 
@@ -2361,9 +2361,9 @@ function token(env, lexbuf) do
             end end 
           end else do
             start$1 = from_lb(env$1.lex_source, lexbuf$1);
-            buf$1 = $$Buffer.create(127);
-            $$Buffer.add_string(buf$1, sp);
-            $$Buffer.add_string(buf$1, escape_type);
+            buf$1 = __Buffer.create(127);
+            __Buffer.add_string(buf$1, sp);
+            __Buffer.add_string(buf$1, escape_type);
             match$1 = comment(env$1, buf$1, lexbuf$1);
             env$6 = save_comment(match$1[0], start$1, match$1[1], buf$1, true);
             return token(env$6, lexbuf$1);
@@ -2381,13 +2381,13 @@ function token(env, lexbuf) do
           end end end end end 
        if ___conditional___ = 6 then do
           start$2 = from_lb(env$1.lex_source, lexbuf$1);
-          buf$2 = $$Buffer.create(127);
+          buf$2 = __Buffer.create(127);
           match$2 = line_comment(env$1, buf$2, lexbuf$1);
           env$8 = save_comment(match$2[0], start$2, match$2[1], buf$2, false);
           return token(env$8, lexbuf$1);end end end 
        if ___conditional___ = 7 then do
           if (lexbuf$1.lex_start_pos == 0) then do
-            match$3 = line_comment(env$1, $$Buffer.create(127), lexbuf$1);
+            match$3 = line_comment(env$1, __Buffer.create(127), lexbuf$1);
             return token(match$3[0], lexbuf$1);
           end else do
             return --[[ tuple ]][
@@ -2398,24 +2398,24 @@ function token(env, lexbuf) do
        if ___conditional___ = 8 then do
           quote = Caml_bytes.get(lexbuf$1.lex_buffer, lexbuf$1.lex_start_pos);
           start$3 = from_lb(env$1.lex_source, lexbuf$1);
-          buf$3 = $$Buffer.create(127);
-          raw = $$Buffer.create(127);
-          $$Buffer.add_char(raw, quote);
+          buf$3 = __Buffer.create(127);
+          raw = __Buffer.create(127);
+          __Buffer.add_char(raw, quote);
           match$4 = string_quote(env$1, quote, buf$3, raw, false, lexbuf$1);
           return --[[ tuple ]][
                   match$4[0],
                   --[[ T_STRING ]]Block.__(1, [--[[ tuple ]][
                         btwn(start$3, match$4[1]),
-                        $$Buffer.contents(buf$3),
-                        $$Buffer.contents(raw),
+                        __Buffer.contents(buf$3),
+                        __Buffer.contents(raw),
                         match$4[2]
                       ]])
                 ];end end end 
        if ___conditional___ = 9 then do
-          cooked = $$Buffer.create(127);
-          raw$1 = $$Buffer.create(127);
-          literal = $$Buffer.create(127);
-          $$Buffer.add_string(literal, Lexing.lexeme(lexbuf$1));
+          cooked = __Buffer.create(127);
+          raw$1 = __Buffer.create(127);
+          literal = __Buffer.create(127);
+          __Buffer.add_string(literal, Lexing.lexeme(lexbuf$1));
           start$4 = from_lb(env$1.lex_source, lexbuf$1);
           match$5 = template_part(env$1, start$4, cooked, raw$1, literal, lexbuf$1);
           return --[[ tuple ]][
@@ -2423,9 +2423,9 @@ function token(env, lexbuf) do
                   --[[ T_TEMPLATE_PART ]]Block.__(2, [--[[ tuple ]][
                         match$5[1],
                         do
-                          cooked: $$Buffer.contents(cooked),
-                          raw: $$Buffer.contents(raw$1),
-                          literal: $$Buffer.contents(literal)
+                          cooked: __Buffer.contents(cooked),
+                          raw: __Buffer.contents(raw$1),
+                          literal: __Buffer.contents(literal)
                         end,
                         match$5[2]
                       ]])
@@ -2805,7 +2805,7 @@ function regexp_body(env, buf, lexbuf) do
                 ];end end end 
        if ___conditional___ = 2 then do
           s = Lexing.sub_lexeme(lexbuf$1, lexbuf$1.lex_start_pos, lexbuf$1.lex_start_pos + 2 | 0);
-          $$Buffer.add_string(buf$1, s);
+          __Buffer.add_string(buf$1, s);
           return regexp_body(env$1, buf$1, lexbuf$1);end end end 
        if ___conditional___ = 3 then do
           flags = Lexing.sub_lexeme(lexbuf$1, lexbuf$1.lex_start_pos + 1 | 0, lexbuf$1.lex_curr_pos);
@@ -2820,7 +2820,7 @@ function regexp_body(env, buf, lexbuf) do
                 ];end end end 
        if ___conditional___ = 5 then do
           c = Caml_bytes.get(lexbuf$1.lex_buffer, lexbuf$1.lex_start_pos);
-          $$Buffer.add_char(buf$1, c);
+          __Buffer.add_char(buf$1, c);
           env$4 = regexp_class(env$1, buf$1, lexbuf$1);
           return regexp_body(env$4, buf$1, lexbuf$1);end end end 
        if ___conditional___ = 6 then do
@@ -2832,7 +2832,7 @@ function regexp_body(env, buf, lexbuf) do
                 ];end end end 
        if ___conditional___ = 7 then do
           c$1 = Caml_bytes.get(lexbuf$1.lex_buffer, lexbuf$1.lex_start_pos);
-          $$Buffer.add_char(buf$1, c$1);
+          __Buffer.add_char(buf$1, c$1);
           return regexp_body(env$1, buf$1, lexbuf$1);end end end 
        do
       else do
@@ -2861,11 +2861,11 @@ function regexp_class(env, buf, lexbuf) do
        or ___conditional___ = 2
        or ___conditional___ = 3 then do
           c = Caml_bytes.get(lexbuf$1.lex_buffer, lexbuf$1.lex_start_pos);
-          $$Buffer.add_char(buf$1, c);
+          __Buffer.add_char(buf$1, c);
           return env$1;end end end 
        if ___conditional___ = 4 then do
           c$1 = Caml_bytes.get(lexbuf$1.lex_buffer, lexbuf$1.lex_start_pos);
-          $$Buffer.add_char(buf$1, c$1);
+          __Buffer.add_char(buf$1, c$1);
           return regexp_class(env$1, buf$1, lexbuf$1);end end end 
        do
       else do
@@ -2876,7 +2876,7 @@ function regexp_class(env, buf, lexbuf) do
         
     end
     s = Lexing.sub_lexeme(lexbuf$1, lexbuf$1.lex_start_pos, lexbuf$1.lex_start_pos + 2 | 0);
-    $$Buffer.add_string(buf$1, s);
+    __Buffer.add_string(buf$1, s);
     return regexp_class(env$1, buf$1, lexbuf$1);
   end;
 end end
@@ -2918,7 +2918,7 @@ function line_comment(env, buf, lexbuf) do
                 ];end end end 
        if ___conditional___ = 2 then do
           c = Caml_bytes.get(lexbuf$1.lex_buffer, lexbuf$1.lex_start_pos);
-          $$Buffer.add_char(buf$1, c);
+          __Buffer.add_char(buf$1, c);
           return line_comment(env$1, buf$1, lexbuf$1);end end end 
        do
       else do
@@ -2949,7 +2949,7 @@ function comment(env, buf, lexbuf) do
                 ];end end end 
        if ___conditional___ = 1 then do
           Lexing.new_line(lexbuf$1);
-          $$Buffer.add_char(buf$1, --[[ "\n" ]]10);
+          __Buffer.add_char(buf$1, --[[ "\n" ]]10);
           return comment(env$1, buf$1, lexbuf$1);end end end 
        if ___conditional___ = 2 then do
           loc = from_lb(env$1.lex_source, lexbuf$1);
@@ -2965,12 +2965,12 @@ function comment(env, buf, lexbuf) do
                     from_lb(env$1.lex_source, lexbuf$1)
                   ];
           end else do
-            $$Buffer.add_string(buf$1, "*-/");
+            __Buffer.add_string(buf$1, "*-/");
             return comment(env$1, buf$1, lexbuf$1);
           end end end end end 
        if ___conditional___ = 4 then do
           c = Caml_bytes.get(lexbuf$1.lex_buffer, lexbuf$1.lex_start_pos);
-          $$Buffer.add_char(buf$1, c);
+          __Buffer.add_char(buf$1, c);
           return comment(env$1, buf$1, lexbuf$1);end end end 
        do
       else do
@@ -3004,46 +3004,46 @@ function template_part(env, start, cooked, raw, literal, lexbuf) do
                   true
                 ];end end end 
        if ___conditional___ = 1 then do
-          $$Buffer.add_char(literal$1, --[[ "`" ]]96);
+          __Buffer.add_char(literal$1, --[[ "`" ]]96);
           return --[[ tuple ]][
                   env$1,
                   btwn(start$1, from_lb(env$1.lex_source, lexbuf$1)),
                   true
                 ];end end end 
        if ___conditional___ = 2 then do
-          $$Buffer.add_string(literal$1, "${");
+          __Buffer.add_string(literal$1, "${");
           return --[[ tuple ]][
                   env$1,
                   btwn(start$1, from_lb(env$1.lex_source, lexbuf$1)),
                   false
                 ];end end end 
        if ___conditional___ = 3 then do
-          $$Buffer.add_char(raw$1, --[[ "\\" ]]92);
-          $$Buffer.add_char(literal$1, --[[ "\\" ]]92);
+          __Buffer.add_char(raw$1, --[[ "\\" ]]92);
+          __Buffer.add_char(literal$1, --[[ "\\" ]]92);
           match = string_escape(env$1, cooked$1, lexbuf$1);
           str = Lexing.lexeme(lexbuf$1);
-          $$Buffer.add_string(raw$1, str);
-          $$Buffer.add_string(literal$1, str);
+          __Buffer.add_string(raw$1, str);
+          __Buffer.add_string(literal$1, str);
           return template_part(match[0], start$1, cooked$1, raw$1, literal$1, lexbuf$1);end end end 
        if ___conditional___ = 4 then do
           lf = Lexing.sub_lexeme(lexbuf$1, lexbuf$1.lex_start_pos, lexbuf$1.lex_start_pos + 2 | 0);
-          $$Buffer.add_string(raw$1, lf);
-          $$Buffer.add_string(literal$1, lf);
-          $$Buffer.add_string(cooked$1, "\n");
+          __Buffer.add_string(raw$1, lf);
+          __Buffer.add_string(literal$1, lf);
+          __Buffer.add_string(cooked$1, "\n");
           Lexing.new_line(lexbuf$1);
           return template_part(env$1, start$1, cooked$1, raw$1, literal$1, lexbuf$1);end end end 
        if ___conditional___ = 5 then do
           lf$1 = Caml_bytes.get(lexbuf$1.lex_buffer, lexbuf$1.lex_start_pos);
-          $$Buffer.add_char(raw$1, lf$1);
-          $$Buffer.add_char(literal$1, lf$1);
-          $$Buffer.add_char(cooked$1, --[[ "\n" ]]10);
+          __Buffer.add_char(raw$1, lf$1);
+          __Buffer.add_char(literal$1, lf$1);
+          __Buffer.add_char(cooked$1, --[[ "\n" ]]10);
           Lexing.new_line(lexbuf$1);
           return template_part(env$1, start$1, cooked$1, raw$1, literal$1, lexbuf$1);end end end 
        if ___conditional___ = 6 then do
           c = Caml_bytes.get(lexbuf$1.lex_buffer, lexbuf$1.lex_start_pos);
-          $$Buffer.add_char(raw$1, c);
-          $$Buffer.add_char(literal$1, c);
-          $$Buffer.add_char(cooked$1, c);
+          __Buffer.add_char(raw$1, c);
+          __Buffer.add_char(literal$1, c);
+          __Buffer.add_char(cooked$1, c);
           return template_part(env$1, start$1, cooked$1, raw$1, literal$1, lexbuf$1);end end end 
        do
       else do
@@ -3071,7 +3071,7 @@ function string_quote(env, q, buf, raw, octal, lexbuf) do
     do
        if ___conditional___ = 0 then do
           q$prime = Caml_bytes.get(lexbuf$1.lex_buffer, lexbuf$1.lex_start_pos);
-          $$Buffer.add_char(raw$1, q$prime);
+          __Buffer.add_char(raw$1, q$prime);
           if (q$1 == q$prime) then do
             return --[[ tuple ]][
                     env$1,
@@ -3079,21 +3079,21 @@ function string_quote(env, q, buf, raw, octal, lexbuf) do
                     octal$1
                   ];
           end else do
-            $$Buffer.add_char(buf$1, q$prime);
+            __Buffer.add_char(buf$1, q$prime);
             return string_quote(env$1, q$1, buf$1, raw$1, octal$1, lexbuf$1);
           end end end end end 
        if ___conditional___ = 1 then do
           e = Caml_bytes.get(lexbuf$1.lex_buffer, lexbuf$1.lex_start_pos);
-          $$Buffer.add_char(raw$1, e);
+          __Buffer.add_char(raw$1, e);
           match = string_escape(env$1, buf$1, lexbuf$1);
           octal$2 = match[1] or octal$1;
-          $$Buffer.add_string(raw$1, Lexing.lexeme(lexbuf$1));
+          __Buffer.add_string(raw$1, Lexing.lexeme(lexbuf$1));
           return string_quote(match[0], q$1, buf$1, raw$1, octal$2, lexbuf$1);end end end 
        if ___conditional___ = 2 then do
           x = Lexing.sub_lexeme(lexbuf$1, lexbuf$1.lex_start_pos, lexbuf$1.lex_curr_pos);
-          $$Buffer.add_string(raw$1, x);
+          __Buffer.add_string(raw$1, x);
           env$2 = lex_error(env$1, from_lb(env$1.lex_source, lexbuf$1), --[[ UnexpectedToken ]]Block.__(1, ["ILLEGAL"]));
-          $$Buffer.add_string(buf$1, x);
+          __Buffer.add_string(buf$1, x);
           return --[[ tuple ]][
                   env$2,
                   from_lb(env$2.lex_source, lexbuf$1),
@@ -3101,8 +3101,8 @@ function string_quote(env, q, buf, raw, octal, lexbuf) do
                 ];end end end 
        if ___conditional___ = 3 then do
           x$1 = Caml_bytes.get(lexbuf$1.lex_buffer, lexbuf$1.lex_start_pos);
-          $$Buffer.add_char(raw$1, x$1);
-          $$Buffer.add_char(buf$1, x$1);
+          __Buffer.add_char(raw$1, x$1);
+          __Buffer.add_char(buf$1, x$1);
           return string_quote(env$1, q$1, buf$1, raw$1, octal$1, lexbuf$1);end end end 
        do
       else do
@@ -3132,7 +3132,7 @@ function __ocaml_lex_template_tail_rec(_env, lexbuf, ___ocaml_lex_state) do
           continue ;end end end 
        if ___conditional___ = 2 then do
           start = from_lb(env.lex_source, lexbuf);
-          buf = $$Buffer.create(127);
+          buf = __Buffer.create(127);
           match = line_comment(env, buf, lexbuf);
           env$1 = save_comment(match[0], start, match[1], buf, true);
           ___ocaml_lex_state = 393;
@@ -3140,7 +3140,7 @@ function __ocaml_lex_template_tail_rec(_env, lexbuf, ___ocaml_lex_state) do
           continue ;end end end 
        if ___conditional___ = 3 then do
           start$1 = from_lb(env.lex_source, lexbuf);
-          buf$1 = $$Buffer.create(127);
+          buf$1 = __Buffer.create(127);
           match$1 = comment(env, buf$1, lexbuf);
           env$2 = save_comment(match$1[0], start$1, match$1[1], buf$1, true);
           ___ocaml_lex_state = 393;
@@ -3148,19 +3148,19 @@ function __ocaml_lex_template_tail_rec(_env, lexbuf, ___ocaml_lex_state) do
           continue ;end end end 
        if ___conditional___ = 4 then do
           start$2 = from_lb(env.lex_source, lexbuf);
-          cooked = $$Buffer.create(127);
-          raw = $$Buffer.create(127);
-          literal = $$Buffer.create(127);
-          $$Buffer.add_string(literal, "}");
+          cooked = __Buffer.create(127);
+          raw = __Buffer.create(127);
+          literal = __Buffer.create(127);
+          __Buffer.add_string(literal, "}");
           match$2 = template_part(env, start$2, cooked, raw, literal, lexbuf);
           return --[[ tuple ]][
                   match$2[0],
                   --[[ T_TEMPLATE_PART ]]Block.__(2, [--[[ tuple ]][
                         match$2[1],
                         do
-                          cooked: $$Buffer.contents(cooked),
-                          raw: $$Buffer.contents(raw),
-                          literal: $$Buffer.contents(literal)
+                          cooked: __Buffer.contents(cooked),
+                          raw: __Buffer.contents(raw),
+                          literal: __Buffer.contents(literal)
                         end,
                         match$2[2]
                       ]])
@@ -3212,7 +3212,7 @@ function __ocaml_lex_jsx_tag_rec(_env, lexbuf, ___ocaml_lex_state) do
           continue ;end end end 
        if ___conditional___ = 3 then do
           start = from_lb(env.lex_source, lexbuf);
-          buf = $$Buffer.create(127);
+          buf = __Buffer.create(127);
           match = line_comment(env, buf, lexbuf);
           env$1 = save_comment(match[0], start, match[1], buf, true);
           ___ocaml_lex_state = 333;
@@ -3220,7 +3220,7 @@ function __ocaml_lex_jsx_tag_rec(_env, lexbuf, ___ocaml_lex_state) do
           continue ;end end end 
        if ___conditional___ = 4 then do
           start$1 = from_lb(env.lex_source, lexbuf);
-          buf$1 = $$Buffer.create(127);
+          buf$1 = __Buffer.create(127);
           match$1 = comment(env, buf$1, lexbuf);
           env$2 = save_comment(match$1[0], start$1, match$1[1], buf$1, true);
           ___ocaml_lex_state = 333;
@@ -3270,14 +3270,14 @@ function __ocaml_lex_jsx_tag_rec(_env, lexbuf, ___ocaml_lex_state) do
        if ___conditional___ = 13 then do
           quote = Caml_bytes.get(lexbuf.lex_buffer, lexbuf.lex_start_pos);
           start$2 = from_lb(env.lex_source, lexbuf);
-          buf$2 = $$Buffer.create(127);
-          raw = $$Buffer.create(127);
-          $$Buffer.add_char(raw, quote);
+          buf$2 = __Buffer.create(127);
+          raw = __Buffer.create(127);
+          __Buffer.add_char(raw, quote);
           mode = quote == --[[ "'" ]]39 and --[[ JSX_SINGLE_QUOTED_TEXT ]]0 or --[[ JSX_DOUBLE_QUOTED_TEXT ]]1;
           match$2 = jsx_text(env, mode, buf$2, raw, lexbuf);
-          $$Buffer.add_char(raw, quote);
-          value = $$Buffer.contents(buf$2);
-          raw$1 = $$Buffer.contents(raw);
+          __Buffer.add_char(raw, quote);
+          value = __Buffer.contents(buf$2);
+          raw$1 = __Buffer.contents(raw);
           return --[[ tuple ]][
                   match$2[0],
                   --[[ T_JSX_TEXT ]]Block.__(4, [--[[ tuple ]][
@@ -3351,8 +3351,8 @@ function jsx_text(env, mode, buf, raw, lexbuf) do
              do end end end end
             
           end
-          $$Buffer.add_char(raw$1, c);
-          $$Buffer.add_char(buf$1, c);
+          __Buffer.add_char(raw$1, c);
+          __Buffer.add_char(buf$1, c);
           return jsx_text(env$1, mode$1, buf$1, raw$1, lexbuf$1);end end end 
        if ___conditional___ = 1 then do
           env$2 = lex_error(env$1, from_lb(env$1.lex_source, lexbuf$1), --[[ UnexpectedToken ]]Block.__(1, ["ILLEGAL"]));
@@ -3362,32 +3362,32 @@ function jsx_text(env, mode, buf, raw, lexbuf) do
                 ];end end end 
        if ___conditional___ = 2 then do
           lt = Lexing.sub_lexeme(lexbuf$1, lexbuf$1.lex_start_pos, lexbuf$1.lex_curr_pos);
-          $$Buffer.add_string(raw$1, lt);
-          $$Buffer.add_string(buf$1, lt);
+          __Buffer.add_string(raw$1, lt);
+          __Buffer.add_string(buf$1, lt);
           Lexing.new_line(lexbuf$1);
           return jsx_text(env$1, mode$1, buf$1, raw$1, lexbuf$1);end end end 
        if ___conditional___ = 3 then do
           n = Lexing.sub_lexeme(lexbuf$1, lexbuf$1.lex_start_pos + 3 | 0, lexbuf$1.lex_curr_pos - 1 | 0);
           s = Lexing.sub_lexeme(lexbuf$1, lexbuf$1.lex_start_pos, lexbuf$1.lex_curr_pos);
-          $$Buffer.add_string(raw$1, s);
+          __Buffer.add_string(raw$1, s);
           code = Caml_format.caml_int_of_string("0x" .. n);
           List.iter((function (param) do
-                  return $$Buffer.add_char(buf$1, param);
+                  return __Buffer.add_char(buf$1, param);
                 end end), utf16to8(code));
           return jsx_text(env$1, mode$1, buf$1, raw$1, lexbuf$1);end end end 
        if ___conditional___ = 4 then do
           n$1 = Lexing.sub_lexeme(lexbuf$1, lexbuf$1.lex_start_pos + 2 | 0, lexbuf$1.lex_curr_pos - 1 | 0);
           s$1 = Lexing.sub_lexeme(lexbuf$1, lexbuf$1.lex_start_pos, lexbuf$1.lex_curr_pos);
-          $$Buffer.add_string(raw$1, s$1);
+          __Buffer.add_string(raw$1, s$1);
           code$1 = Caml_format.caml_int_of_string(n$1);
           List.iter((function (param) do
-                  return $$Buffer.add_char(buf$1, param);
+                  return __Buffer.add_char(buf$1, param);
                 end end), utf16to8(code$1));
           return jsx_text(env$1, mode$1, buf$1, raw$1, lexbuf$1);end end end 
        if ___conditional___ = 5 then do
           entity = Lexing.sub_lexeme(lexbuf$1, lexbuf$1.lex_start_pos + 1 | 0, lexbuf$1.lex_curr_pos - 1 | 0);
           s$2 = Lexing.sub_lexeme(lexbuf$1, lexbuf$1.lex_start_pos, lexbuf$1.lex_curr_pos);
-          $$Buffer.add_string(raw$1, s$2);
+          __Buffer.add_string(raw$1, s$2);
           code$2;
           local ___conditional___=(entity);
           do
@@ -3905,16 +3905,16 @@ function jsx_text(env, mode, buf, raw, lexbuf) do
           end
           if (code$2 ~= undefined) then do
             List.iter((function (param) do
-                    return $$Buffer.add_char(buf$1, param);
+                    return __Buffer.add_char(buf$1, param);
                   end end), utf16to8(code$2));
           end else do
-            $$Buffer.add_string(buf$1, "&" .. (entity .. ";"));
+            __Buffer.add_string(buf$1, "&" .. (entity .. ";"));
           end end 
           return jsx_text(env$1, mode$1, buf$1, raw$1, lexbuf$1);end end end 
        if ___conditional___ = 6 then do
           c$1 = Caml_bytes.get(lexbuf$1.lex_buffer, lexbuf$1.lex_start_pos);
-          $$Buffer.add_char(raw$1, c$1);
-          $$Buffer.add_char(buf$1, c$1);
+          __Buffer.add_char(raw$1, c$1);
+          __Buffer.add_char(buf$1, c$1);
           return jsx_text(env$1, mode$1, buf$1, raw$1, lexbuf$1);end end end 
        do
       else do
@@ -3959,7 +3959,7 @@ function type_token(env, lexbuf) do
           return type_token(env$1, lexbuf$1);end end end 
        if ___conditional___ = 2 then do
           start = from_lb(env$1.lex_source, lexbuf$1);
-          buf = $$Buffer.create(127);
+          buf = __Buffer.create(127);
           match = comment(env$1, buf, lexbuf$1);
           env$2 = save_comment(match[0], start, match[1], buf, true);
           return type_token(env$2, lexbuf$1);end end end 
@@ -3986,9 +3986,9 @@ function type_token(env, lexbuf) do
             end end 
           end else do
             start$1 = from_lb(env$1.lex_source, lexbuf$1);
-            buf$1 = $$Buffer.create(127);
-            $$Buffer.add_string(buf$1, sp);
-            $$Buffer.add_string(buf$1, escape_type);
+            buf$1 = __Buffer.create(127);
+            __Buffer.add_string(buf$1, sp);
+            __Buffer.add_string(buf$1, escape_type);
             match$1 = comment(env$1, buf$1, lexbuf$1);
             env$5 = save_comment(match$1[0], start$1, match$1[1], buf$1, true);
             return type_token(env$5, lexbuf$1);
@@ -4006,23 +4006,23 @@ function type_token(env, lexbuf) do
           end end end end end 
        if ___conditional___ = 5 then do
           start$2 = from_lb(env$1.lex_source, lexbuf$1);
-          buf$2 = $$Buffer.create(127);
+          buf$2 = __Buffer.create(127);
           match$2 = line_comment(env$1, buf$2, lexbuf$1);
           env$7 = save_comment(match$2[0], start$2, match$2[1], buf$2, true);
           return type_token(env$7, lexbuf$1);end end end 
        if ___conditional___ = 6 then do
           quote = Caml_bytes.get(lexbuf$1.lex_buffer, lexbuf$1.lex_start_pos);
           start$3 = from_lb(env$1.lex_source, lexbuf$1);
-          buf$3 = $$Buffer.create(127);
-          raw = $$Buffer.create(127);
-          $$Buffer.add_char(raw, quote);
+          buf$3 = __Buffer.create(127);
+          raw = __Buffer.create(127);
+          __Buffer.add_char(raw, quote);
           match$3 = string_quote(env$1, quote, buf$3, raw, false, lexbuf$1);
           return --[[ tuple ]][
                   match$3[0],
                   --[[ T_STRING ]]Block.__(1, [--[[ tuple ]][
                         btwn(start$3, match$3[1]),
-                        $$Buffer.contents(buf$3),
-                        $$Buffer.contents(raw),
+                        __Buffer.contents(buf$3),
+                        __Buffer.contents(raw),
                         match$3[2]
                       ]])
                 ];end end end 
@@ -4315,7 +4315,7 @@ function string_escape(env, buf, lexbuf) do
                   false
                 ];end end end 
        if ___conditional___ = 1 then do
-          $$Buffer.add_string(buf$1, "\\");
+          __Buffer.add_string(buf$1, "\\");
           return --[[ tuple ]][
                   env$1,
                   false
@@ -4325,7 +4325,7 @@ function string_escape(env, buf, lexbuf) do
           b = Caml_bytes.get(lexbuf$1.lex_buffer, lexbuf$1.lex_start_pos + 2 | 0);
           code = (hexa_to_int(a) << 4) + hexa_to_int(b) | 0;
           List.iter((function (param) do
-                  return $$Buffer.add_char(buf$1, param);
+                  return __Buffer.add_char(buf$1, param);
                 end end), utf16to8(code));
           return --[[ tuple ]][
                   env$1,
@@ -4338,14 +4338,14 @@ function string_escape(env, buf, lexbuf) do
           code$1 = ((oct_to_int(a$1) << 6) + (oct_to_int(b$1) << 3) | 0) + oct_to_int(c) | 0;
           if (code$1 < 256) then do
             List.iter((function (param) do
-                    return $$Buffer.add_char(buf$1, param);
+                    return __Buffer.add_char(buf$1, param);
                   end end), utf16to8(code$1));
           end else do
             code$2 = (oct_to_int(a$1) << 3) + oct_to_int(b$1) | 0;
             List.iter((function (param) do
-                    return $$Buffer.add_char(buf$1, param);
+                    return __Buffer.add_char(buf$1, param);
                   end end), utf16to8(code$2));
-            $$Buffer.add_char(buf$1, c);
+            __Buffer.add_char(buf$1, c);
           end end 
           return --[[ tuple ]][
                   env$1,
@@ -4356,50 +4356,50 @@ function string_escape(env, buf, lexbuf) do
           b$2 = Caml_bytes.get(lexbuf$1.lex_buffer, lexbuf$1.lex_start_pos + 1 | 0);
           code$3 = (oct_to_int(a$2) << 3) + oct_to_int(b$2) | 0;
           List.iter((function (param) do
-                  return $$Buffer.add_char(buf$1, param);
+                  return __Buffer.add_char(buf$1, param);
                 end end), utf16to8(code$3));
           return --[[ tuple ]][
                   env$1,
                   true
                 ];end end end 
        if ___conditional___ = 5 then do
-          $$Buffer.add_char(buf$1, Char.chr(0));
+          __Buffer.add_char(buf$1, Char.chr(0));
           return --[[ tuple ]][
                   env$1,
                   false
                 ];end end end 
        if ___conditional___ = 6 then do
-          $$Buffer.add_char(buf$1, Char.chr(8));
+          __Buffer.add_char(buf$1, Char.chr(8));
           return --[[ tuple ]][
                   env$1,
                   false
                 ];end end end 
        if ___conditional___ = 7 then do
-          $$Buffer.add_char(buf$1, Char.chr(12));
+          __Buffer.add_char(buf$1, Char.chr(12));
           return --[[ tuple ]][
                   env$1,
                   false
                 ];end end end 
        if ___conditional___ = 8 then do
-          $$Buffer.add_char(buf$1, Char.chr(10));
+          __Buffer.add_char(buf$1, Char.chr(10));
           return --[[ tuple ]][
                   env$1,
                   false
                 ];end end end 
        if ___conditional___ = 9 then do
-          $$Buffer.add_char(buf$1, Char.chr(13));
+          __Buffer.add_char(buf$1, Char.chr(13));
           return --[[ tuple ]][
                   env$1,
                   false
                 ];end end end 
        if ___conditional___ = 10 then do
-          $$Buffer.add_char(buf$1, Char.chr(9));
+          __Buffer.add_char(buf$1, Char.chr(9));
           return --[[ tuple ]][
                   env$1,
                   false
                 ];end end end 
        if ___conditional___ = 11 then do
-          $$Buffer.add_char(buf$1, Char.chr(11));
+          __Buffer.add_char(buf$1, Char.chr(11));
           return --[[ tuple ]][
                   env$1,
                   false
@@ -4408,7 +4408,7 @@ function string_escape(env, buf, lexbuf) do
           a$3 = Caml_bytes.get(lexbuf$1.lex_buffer, lexbuf$1.lex_start_pos);
           code$4 = oct_to_int(a$3);
           List.iter((function (param) do
-                  return $$Buffer.add_char(buf$1, param);
+                  return __Buffer.add_char(buf$1, param);
                 end end), utf16to8(code$4));
           return --[[ tuple ]][
                   env$1,
@@ -4421,7 +4421,7 @@ function string_escape(env, buf, lexbuf) do
           d = Caml_bytes.get(lexbuf$1.lex_buffer, lexbuf$1.lex_start_pos + 4 | 0);
           code$5 = (((hexa_to_int(a$4) << 12) + (hexa_to_int(b$3) << 8) | 0) + (hexa_to_int(c$1) << 4) | 0) + hexa_to_int(d) | 0;
           List.iter((function (param) do
-                  return $$Buffer.add_char(buf$1, param);
+                  return __Buffer.add_char(buf$1, param);
                 end end), utf16to8(code$5));
           return --[[ tuple ]][
                   env$1,
@@ -4432,7 +4432,7 @@ function string_escape(env, buf, lexbuf) do
           code$6 = Caml_format.caml_int_of_string("0x" .. hex_code);
           env$2 = code$6 > 1114111 and lex_error(env$1, from_lb(env$1.lex_source, lexbuf$1), --[[ UnexpectedToken ]]Block.__(1, ["ILLEGAL"])) or env$1;
           List.iter((function (param) do
-                  return $$Buffer.add_char(buf$1, param);
+                  return __Buffer.add_char(buf$1, param);
                 end end), utf16to8(code$6));
           return --[[ tuple ]][
                   env$2,
@@ -4441,7 +4441,7 @@ function string_escape(env, buf, lexbuf) do
        if ___conditional___ = 15 then do
           c$2 = Caml_bytes.get(lexbuf$1.lex_buffer, lexbuf$1.lex_start_pos);
           env$3 = lex_error(env$1, from_lb(env$1.lex_source, lexbuf$1), --[[ UnexpectedToken ]]Block.__(1, ["ILLEGAL"]));
-          $$Buffer.add_char(buf$1, c$2);
+          __Buffer.add_char(buf$1, c$2);
           return --[[ tuple ]][
                   env$3,
                   false
@@ -4454,7 +4454,7 @@ function string_escape(env, buf, lexbuf) do
                 ];end end end 
        if ___conditional___ = 17 then do
           c$3 = Caml_bytes.get(lexbuf$1.lex_buffer, lexbuf$1.lex_start_pos);
-          $$Buffer.add_char(buf$1, c$3);
+          __Buffer.add_char(buf$1, c$3);
           return --[[ tuple ]][
                   env$1,
                   false
@@ -4492,7 +4492,7 @@ function __ocaml_lex_regexp_rec(_env, lexbuf, ___ocaml_lex_state) do
           continue ;end end end 
        if ___conditional___ = 3 then do
           start = from_lb(env.lex_source, lexbuf);
-          buf = $$Buffer.create(127);
+          buf = __Buffer.create(127);
           match = line_comment(env, buf, lexbuf);
           env$1 = save_comment(match[0], start, match[1], buf, true);
           ___ocaml_lex_state = 291;
@@ -4500,7 +4500,7 @@ function __ocaml_lex_regexp_rec(_env, lexbuf, ___ocaml_lex_state) do
           continue ;end end end 
        if ___conditional___ = 4 then do
           start$1 = from_lb(env.lex_source, lexbuf);
-          buf$1 = $$Buffer.create(127);
+          buf$1 = __Buffer.create(127);
           match$1 = comment(env, buf$1, lexbuf);
           env$2 = save_comment(match$1[0], start$1, match$1[1], buf$1, true);
           ___ocaml_lex_state = 291;
@@ -4508,7 +4508,7 @@ function __ocaml_lex_regexp_rec(_env, lexbuf, ___ocaml_lex_state) do
           continue ;end end end 
        if ___conditional___ = 5 then do
           start$2 = from_lb(env.lex_source, lexbuf);
-          buf$2 = $$Buffer.create(127);
+          buf$2 = __Buffer.create(127);
           match$2 = regexp_body(env, buf$2, lexbuf);
           env$3 = match$2[0];
           end_ = from_lb(env$3.lex_source, lexbuf);
@@ -4517,7 +4517,7 @@ function __ocaml_lex_regexp_rec(_env, lexbuf, ___ocaml_lex_state) do
                   env$3,
                   --[[ T_REGEXP ]]Block.__(3, [--[[ tuple ]][
                         loc,
-                        $$Buffer.contents(buf$2),
+                        __Buffer.contents(buf$2),
                         match$2[1]
                       ]])
                 ];end end end 
@@ -4552,12 +4552,12 @@ function jsx_child(env, start, buf, raw, lexbuf) do
     do
        if ___conditional___ = 0 then do
           lt = Lexing.sub_lexeme(lexbuf$1, lexbuf$1.lex_start_pos, lexbuf$1.lex_curr_pos);
-          $$Buffer.add_string(raw$1, lt);
-          $$Buffer.add_string(buf$1, lt);
+          __Buffer.add_string(raw$1, lt);
+          __Buffer.add_string(buf$1, lt);
           Lexing.new_line(lexbuf$1);
           match = jsx_text(env$1, --[[ JSX_CHILD_TEXT ]]2, buf$1, raw$1, lexbuf$1);
-          value = $$Buffer.contents(buf$1);
-          raw$2 = $$Buffer.contents(raw$1);
+          value = __Buffer.contents(buf$1);
+          raw$2 = __Buffer.contents(raw$1);
           return --[[ tuple ]][
                   match[0],
                   --[[ T_JSX_TEXT ]]Block.__(4, [--[[ tuple ]][
@@ -4583,11 +4583,11 @@ function jsx_child(env, start, buf, raw, lexbuf) do
                 ];end end end 
        if ___conditional___ = 4 then do
           c = Caml_bytes.get(lexbuf$1.lex_buffer, lexbuf$1.lex_start_pos);
-          $$Buffer.add_char(raw$1, c);
-          $$Buffer.add_char(buf$1, c);
+          __Buffer.add_char(raw$1, c);
+          __Buffer.add_char(buf$1, c);
           match$1 = jsx_text(env$1, --[[ JSX_CHILD_TEXT ]]2, buf$1, raw$1, lexbuf$1);
-          value$1 = $$Buffer.contents(buf$1);
-          raw$3 = $$Buffer.contents(raw$1);
+          value$1 = __Buffer.contents(buf$1);
+          raw$3 = __Buffer.contents(raw$1);
           return --[[ tuple ]][
                   match$1[0],
                   --[[ T_JSX_TEXT ]]Block.__(4, [--[[ tuple ]][
@@ -4613,8 +4613,8 @@ end end
 
 function jsx_child$1(env) do
   start = from_curr_lb(env.lex_source, env.lex_lb);
-  buf = $$Buffer.create(127);
-  raw = $$Buffer.create(127);
+  buf = __Buffer.create(127);
+  raw = __Buffer.create(127);
   match = jsx_child(env, start, buf, raw, env.lex_lb);
   return get_result_and_clear_state(--[[ tuple ]][
               match[0],
@@ -4809,7 +4809,7 @@ function grow(t, n) do
       end
        end 
     end end;
-    new_arr = $$Array.init(new_size, filler);
+    new_arr = __Array.init(new_size, filler);
     t.la_results = new_arr;
     return --[[ () ]]0;
   end else do
@@ -4979,8 +4979,8 @@ end end
 
 function record_export(env, param) do
   export_name = param[1];
-  $$exports = env.exports.contents;
-  if (mem(export_name, $$exports)) then do
+  __exports = env.exports.contents;
+  if (mem(export_name, __exports)) then do
     return error_at(env, --[[ tuple ]][
                 param[0],
                 --[[ DuplicateExport ]]Block.__(7, [export_name])
@@ -5377,7 +5377,7 @@ function token$3(env) do
   t = env.lookahead.contents;
   lex_until(t, 0);
   if (t.la_num_lexed > 1) then do
-    $$Array.blit(t.la_results, 1, t.la_results, 0, t.la_num_lexed - 1 | 0);
+    __Array.blit(t.la_results, 1, t.la_results, 0, t.la_num_lexed - 1 | 0);
   end
    end 
   Caml_array.caml_array_set(t.la_results, t.la_num_lexed - 1 | 0, undefined);
@@ -6566,7 +6566,7 @@ function methodish(env, start_loc) do
         ];
 end end
 
-function method_property(env, start_loc, $$static, key) do
+function method_property(env, start_loc, __static, key) do
   value = methodish(env, start_loc);
   value_000 = value[0];
   value_001 = --[[ Function ]]Block.__(1, [value[1]]);
@@ -6580,24 +6580,24 @@ function method_property(env, start_loc, $$static, key) do
             key: key,
             value: value$1,
             optional: false,
-            static: $$static,
+            static: __static,
             _method: true
           end
         ];
 end end
 
-function call_property(env, start_loc, $$static) do
+function call_property(env, start_loc, __static) do
   value = methodish(env, Curry._2(Parser_env_Peek.loc, undefined, env));
   return --[[ tuple ]][
           btwn(start_loc, value[0]),
           do
             value: value,
-            static: $$static
+            static: __static
           end
         ];
 end end
 
-function property(env, start_loc, $$static, key) do
+function property(env, start_loc, __static, key) do
   if (not env.parse_options.types) then do
     error$1(env, --[[ UnexpectedTypeAnnotation ]]6);
   end
@@ -6611,13 +6611,13 @@ function property(env, start_loc, $$static, key) do
             key: key,
             value: value,
             optional: optional,
-            static: $$static,
+            static: __static,
             _method: false
           end
         ];
 end end
 
-function indexer_property(env, start_loc, $$static) do
+function indexer_property(env, start_loc, __static) do
   token$4(env, --[[ T_LBRACKET ]]5);
   match = Curry._1(Parse.identifier_or_reserved_keyword, env);
   token$4(env, --[[ T_COLON ]]77);
@@ -6631,7 +6631,7 @@ function indexer_property(env, start_loc, $$static) do
             id: match[0],
             key: key,
             value: value,
-            static: $$static
+            static: __static
           end
         ];
 end end
@@ -6662,7 +6662,7 @@ function properties(allow_static, env, _param) do
     indexers = param[1];
     acc = param[0];
     start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
-    $$static = allow_static and maybe(env, --[[ T_STATIC ]]40);
+    __static = allow_static and maybe(env, --[[ T_STATIC ]]40);
     match = Curry._2(Parser_env_Peek.token, undefined, env);
     exit = 0;
     if (typeof match == "number") then do
@@ -6682,7 +6682,7 @@ function properties(allow_static, env, _param) do
                or ___conditional___ = 4--[[ T_RPAREN ]] then do
                   exit = 1;end else 
                if ___conditional___ = 5--[[ T_LBRACKET ]] then do
-                  indexer = indexer_property(env, start_loc, $$static);
+                  indexer = indexer_property(env, start_loc, __static);
                   semicolon$1(env);
                   _param = --[[ tuple ]][
                     acc,
@@ -6712,7 +6712,7 @@ function properties(allow_static, env, _param) do
           match$1 = Curry._2(Parser_env_Peek.token, undefined, env);
           match$2;
           exit$1 = 0;
-          if ($$static and typeof match$1 == "number" and match$1 == 77) then do
+          if (__static and typeof match$1 == "number" and match$1 == 77) then do
             strict_error_at(env, --[[ tuple ]][
                   start_loc,
                   --[[ StrictReservedWord ]]39
@@ -6741,15 +6741,15 @@ function properties(allow_static, env, _param) do
             key = Curry._1(Parse.object_key, env);
             pop_lex_mode(env);
             match$2 = --[[ tuple ]][
-              $$static,
+              __static,
               key
             ];
           end
            end 
           key$1 = match$2[1][1];
-          $$static$1 = match$2[0];
+          __static$1 = match$2[0];
           match$3 = Curry._2(Parser_env_Peek.token, undefined, env);
-          property$1 = typeof match$3 == "number" and not (match$3 ~= 3 and match$3 ~= 89) and method_property(env, start_loc, $$static$1, key$1) or property(env, start_loc, $$static$1, key$1);
+          property$1 = typeof match$3 == "number" and not (match$3 ~= 3 and match$3 ~= 89) and method_property(env, start_loc, __static$1, key$1) or property(env, start_loc, __static$1, key$1);
           semicolon$1(env);
           _param = --[[ tuple ]][
             --[[ :: ]][
@@ -6767,7 +6767,7 @@ function properties(allow_static, env, _param) do
                   List.rev(callProperties)
                 ];end end end 
        if ___conditional___ = 3 then do
-          call_prop = call_property(env, start_loc, $$static);
+          call_prop = call_property(env, start_loc, __static);
           semicolon$1(env);
           _param = --[[ tuple ]][
             acc,
@@ -7301,10 +7301,10 @@ function param$1(env) do
   id = Curry._2(Parse.pattern, env, --[[ StrictParamName ]]28);
   if (Curry._2(Parser_env_Peek.token, undefined, env) == --[[ T_ASSIGN ]]75) then do
     token$4(env, --[[ T_ASSIGN ]]75);
-    $$default = Curry._1(Parse.assignment, env);
+    __default = Curry._1(Parse.assignment, env);
     return --[[ tuple ]][
             id,
-            $$default
+            __default
           ];
   end else do
     return --[[ tuple ]][
@@ -7336,8 +7336,8 @@ function param_list(env, _param) do
     do
        if ___conditional___ = 1 then do
           match = param$1(env);
-          $$default = match[1];
-          has_default$1 = has_default or $$default ~= undefined;
+          __default = match[1];
+          has_default$1 = has_default or __default ~= undefined;
           if (Curry._2(Parser_env_Peek.token, undefined, env) ~= --[[ T_RPAREN ]]4) then do
             token$4(env, --[[ T_COMMA ]]8);
           end
@@ -7348,7 +7348,7 @@ function param_list(env, _param) do
               params
             ],
             --[[ :: ]][
-              $$default,
+              __default,
               defaults
             ],
             has_default$1
@@ -7584,7 +7584,7 @@ function declarations(token$5, kind, env) do
         ];
 end end
 
-function $$const(env) do
+function __const(env) do
   env$1 = with_no_let(true, env);
   match = declarations(--[[ T_CONST ]]25, --[[ Const ]]2, env$1);
   match$1 = match[0];
@@ -7630,7 +7630,7 @@ function variable(env) do
           error_unexpected(env);
           match$1 = declarations(--[[ T_VAR ]]22, --[[ Var ]]0, env);end else 
        if ___conditional___ = 25--[[ T_CONST ]] then do
-          match$1 = $$const(env);end else 
+          match$1 = __const(env);end else 
        if ___conditional___ = 26--[[ T_LET ]] then do
           match$1 = _let(env);end else 
        do end end end end end
@@ -7963,7 +7963,7 @@ function call(env, _left) do
             if (env.no_call) then do
               return left;
             end else do
-              match$1 = Curry._1($$arguments, env);
+              match$1 = Curry._1(__arguments, env);
               _left = --[[ tuple ]][
                 btwn(left[0], match$1[0]),
                 --[[ Call ]]Block.__(12, [do
@@ -8060,7 +8060,7 @@ function _new(env, _finish_fn) do
     callee$1;
     callee$1 = typeof match$1 == "number" or match$1.tag ~= --[[ T_TEMPLATE_PART ]]2 and callee or tagged_template(env, callee, match$1[0]);
     match$2 = Curry._2(Parser_env_Peek.token, undefined, env);
-    args = typeof match$2 == "number" and match$2 == 3 and Curry._1($$arguments, env) or undefined;
+    args = typeof match$2 == "number" and match$2 == 3 and Curry._1(__arguments, env) or undefined;
     return Curry._2(finish_fn, callee$1, args);
   end;
 end end
@@ -8317,13 +8317,13 @@ function primary$1(env) do
           end end  end 
           raw_flags = match$5[2];
           pop_lex_mode(env$3);
-          filtered_flags = $$Buffer.create(#raw_flags);
-          $$String.iter((function (c) do
+          filtered_flags = __Buffer.create(#raw_flags);
+          __String.iter((function (c) do
                   if (c >= 110) then do
                     if (c ~= 121) then do
                       return --[[ () ]]0;
                     end else do
-                      return $$Buffer.add_char(filtered_flags, c);
+                      return __Buffer.add_char(filtered_flags, c);
                     end end 
                   end else if (c >= 103) then do
                     local ___conditional___=(c - 103 | 0);
@@ -8336,7 +8336,7 @@ function primary$1(env) do
                        if ___conditional___ = 0
                        or ___conditional___ = 2
                        or ___conditional___ = 6 then do
-                          return $$Buffer.add_char(filtered_flags, c);end end end 
+                          return __Buffer.add_char(filtered_flags, c);end end end 
                        do
                       
                     end
@@ -8344,7 +8344,7 @@ function primary$1(env) do
                     return --[[ () ]]0;
                   end end  end 
                 end end), raw_flags);
-          flags = $$Buffer.contents(filtered_flags);
+          flags = __Buffer.contents(filtered_flags);
           if (flags ~= raw_flags) then do
             error$1(env$3, --[[ InvalidRegExpFlags ]]Block.__(3, [raw_flags]));
           end
@@ -9057,7 +9057,7 @@ function arguments$prime(env, _acc) do
   end;
 end end
 
-function $$arguments(env) do
+function __arguments(env) do
   start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
   token$4(env, --[[ T_LPAREN ]]3);
   args = arguments$prime(env, --[[ [] ]]0);
@@ -9999,7 +9999,7 @@ function class_implements(env, _acc) do
   end;
 end end
 
-function init$1(env, start_loc, decorators, key, async, generator, $$static) do
+function init$1(env, start_loc, decorators, key, async, generator, __static) do
   match = Curry._2(Parser_env_Peek.token, undefined, env);
   exit = 0;
   if (typeof match == "number") then do
@@ -10018,7 +10018,7 @@ function init$1(env, start_loc, decorators, key, async, generator, $$static) do
   if (exit == 2 and not async and not generator) then do
     typeAnnotation = wrap(annotation_opt, env);
     options = env.parse_options;
-    value = Curry._2(Parser_env_Peek.token, undefined, env) == --[[ T_ASSIGN ]]75 and ($$static and options.esproposal_class_static_fields or not $$static and options.esproposal_class_instance_fields) and (token$4(env, --[[ T_ASSIGN ]]75), Curry._1(Parse.expression, env)) or undefined;
+    value = Curry._2(Parser_env_Peek.token, undefined, env) == --[[ T_ASSIGN ]]75 and (__static and options.esproposal_class_static_fields or not __static and options.esproposal_class_instance_fields) and (token$4(env, --[[ T_ASSIGN ]]75), Curry._1(Parse.expression, env)) or undefined;
     end_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
     if (not maybe(env, --[[ T_SEMICOLON ]]7)) then do
       if (Curry._2(Parser_env_Peek.token, undefined, env) == --[[ T_LBRACKET ]]5 or Curry._2(Parser_env_Peek.token, undefined, env) == --[[ T_LPAREN ]]3) then do
@@ -10034,7 +10034,7 @@ function init$1(env, start_loc, decorators, key, async, generator, $$static) do
                   key: key,
                   value: value,
                   typeAnnotation: typeAnnotation,
-                  static: $$static
+                  static: __static
                 end
               ]]);
   end
@@ -10094,7 +10094,7 @@ function init$1(env, start_loc, decorators, key, async, generator, $$static) do
                 kind: kind,
                 key: key,
                 value: value$1,
-                static: $$static,
+                static: __static,
                 decorators: decorators
               end
             ]]);
@@ -10103,7 +10103,7 @@ end end
 function class_element(env) do
   start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
   decorators = decorator_list(env);
-  $$static = maybe(env, --[[ T_STATIC ]]40);
+  __static = maybe(env, --[[ T_STATIC ]]40);
   async = Curry._2(Parser_env_Peek.token, 1, env) ~= --[[ T_LPAREN ]]3 and Curry._2(Parser_env_Peek.token, 1, env) ~= --[[ T_COLON ]]77 and maybe(env, --[[ T_ASYNC ]]61);
   generator$1 = generator(env, async);
   match = key(env);
@@ -10134,7 +10134,7 @@ function class_element(env) do
                       env$1 = env;
                       start_loc$1 = start_loc;
                       decorators$1 = decorators;
-                      $$static$1 = $$static;
+                      __static$1 = __static;
                       match$2 = _method(env$1, --[[ Get ]]1);
                       value = match$2[1];
                       return --[[ Method ]]Block.__(0, [--[[ tuple ]][
@@ -10143,12 +10143,12 @@ function class_element(env) do
                                     kind: --[[ Get ]]2,
                                     key: match$2[0],
                                     value: value,
-                                    static: $$static$1,
+                                    static: __static$1,
                                     decorators: decorators$1
                                   end
                                 ]]);end end end 
                    if ___conditional___ = 3 then do
-                      return init$1(env, start_loc, decorators, key$1, async, generator$1, $$static);end end end 
+                      return init$1(env, start_loc, decorators, key$1, async, generator$1, __static);end end end 
                    do
                   
                 endend else 
@@ -10172,7 +10172,7 @@ function class_element(env) do
                       env$2 = env;
                       start_loc$2 = start_loc;
                       decorators$2 = decorators;
-                      $$static$2 = $$static;
+                      __static$2 = __static;
                       match$4 = _method(env$2, --[[ Set ]]2);
                       value$1 = match$4[1];
                       return --[[ Method ]]Block.__(0, [--[[ tuple ]][
@@ -10181,12 +10181,12 @@ function class_element(env) do
                                     kind: --[[ Set ]]3,
                                     key: match$4[0],
                                     value: value$1,
-                                    static: $$static$2,
+                                    static: __static$2,
                                     decorators: decorators$2
                                   end
                                 ]]);end end end 
                    if ___conditional___ = 3 then do
-                      return init$1(env, start_loc, decorators, key$1, async, generator$1, $$static);end end end 
+                      return init$1(env, start_loc, decorators, key$1, async, generator$1, __static);end end end 
                    do
                   
                 endend else 
@@ -10202,7 +10202,7 @@ function class_element(env) do
     end
   end
    end 
-  return init$1(env, start_loc, decorators, match[1], async, generator$1, $$static);
+  return init$1(env, start_loc, decorators, match[1], async, generator$1, __static);
 end end
 
 function elements$1(env, _acc) do
@@ -10261,23 +10261,23 @@ function _class(env) do
       undefined
     ];
   end end 
-  $$implements;
+  __implements;
   if (Curry._2(Parser_env_Peek.token, undefined, env) == --[[ T_IMPLEMENTS ]]50) then do
     if (not env.parse_options.types) then do
       error$1(env, --[[ UnexpectedTypeInterface ]]10);
     end
      end 
     token$4(env, --[[ T_IMPLEMENTS ]]50);
-    $$implements = class_implements(env, --[[ [] ]]0);
+    __implements = class_implements(env, --[[ [] ]]0);
   end else do
-    $$implements = --[[ [] ]]0;
+    __implements = --[[ [] ]]0;
   end end 
   body = Curry._1(class_body, env);
   return --[[ tuple ]][
           body,
           match[0],
           match[1],
-          $$implements
+          __implements
         ];
 end end
 
@@ -10577,7 +10577,7 @@ function declare_var(env, start_loc) do
         ];
 end end
 
-function $$interface(env) do
+function __interface(env) do
   if (Curry._2(Parser_env_Peek.is_identifier, 1, env)) then do
     match = Curry._1(interface_helper, env);
     return --[[ tuple ]][
@@ -10847,10 +10847,10 @@ function declare_export_declaration(allow_export_typeOpt, env) do
                 end end 
               end
                end 
-              $$var = declare_var(env$1, start_loc);
+              __var = declare_var(env$1, start_loc);
               match$10 = --[[ tuple ]][
-                $$var[0],
-                --[[ Variable ]]Block.__(0, [$$var])
+                __var[0],
+                --[[ Variable ]]Block.__(0, [__var])
               ];end else 
            do end
           
@@ -10927,7 +10927,7 @@ function declare(in_moduleOpt, env) do
                  end end else 
              if ___conditional___ = 13--[[ T_FUNCTION ]] then do
                 token$4(env, --[[ T_DECLARE ]]58);
-                return $$interface(env);end end end 
+                return __interface(env);end end end 
              if ___conditional___ = 21--[[ T_TRY ]] then do
                 token$4(env, --[[ T_DECLARE ]]58);
                 return type_alias(env);end end end 
@@ -11063,9 +11063,9 @@ end end
 function supers(env, _acc) do
   while(true) do
     acc = _acc;
-    $$super = wrap(generic, env);
+    __super = wrap(generic, env);
     acc$1 = --[[ :: ]][
-      $$super,
+      __super,
       acc
     ];
     match = Curry._2(Parser_env_Peek.token, undefined, env);
@@ -11088,7 +11088,7 @@ function interface_helper(env) do
   token$4(env, --[[ T_INTERFACE ]]51);
   id = Curry._2(Parse.identifier, undefined, env);
   typeParameters = Curry._1(type_parameter_declaration_with_defaults, env);
-  $$extends = Curry._2(Parser_env_Peek.token, undefined, env) == --[[ T_EXTENDS ]]39 and (token$4(env, --[[ T_EXTENDS ]]39), supers(env, --[[ [] ]]0)) or --[[ [] ]]0;
+  __extends = Curry._2(Parser_env_Peek.token, undefined, env) == --[[ T_EXTENDS ]]39 and (token$4(env, --[[ T_EXTENDS ]]39), supers(env, --[[ [] ]]0)) or --[[ [] ]]0;
   body = _object$1(true, env);
   loc = btwn(start_loc, body[0]);
   return --[[ tuple ]][
@@ -11097,7 +11097,7 @@ function interface_helper(env) do
             id: id,
             typeParameters: typeParameters,
             body: body,
-            extends: $$extends,
+            extends: __extends,
             mixins: --[[ [] ]]0
           end
         ];
@@ -11106,9 +11106,9 @@ end end
 function supers$1(env, _acc) do
   while(true) do
     acc = _acc;
-    $$super = wrap(generic, env);
+    __super = wrap(generic, env);
     acc$1 = --[[ :: ]][
-      $$super,
+      __super,
       acc
     ];
     match = Curry._2(Parser_env_Peek.token, undefined, env);
@@ -11127,7 +11127,7 @@ function declare_class(env, start_loc) do
   token$4(env$1, --[[ T_CLASS ]]38);
   id = Curry._2(Parse.identifier, undefined, env$1);
   typeParameters = Curry._1(type_parameter_declaration_with_defaults, env$1);
-  $$extends = Curry._2(Parser_env_Peek.token, undefined, env$1) == --[[ T_EXTENDS ]]39 and (token$4(env$1, --[[ T_EXTENDS ]]39), supers$1(env$1, --[[ [] ]]0)) or --[[ [] ]]0;
+  __extends = Curry._2(Parser_env_Peek.token, undefined, env$1) == --[[ T_EXTENDS ]]39 and (token$4(env$1, --[[ T_EXTENDS ]]39), supers$1(env$1, --[[ [] ]]0)) or --[[ [] ]]0;
   mixins = Curry._2(Parser_env_Peek.value, undefined, env$1) == "mixins" and (contextual(env$1, "mixins"), supers$1(env$1, --[[ [] ]]0)) or --[[ [] ]]0;
   body = _object$1(true, env$1);
   loc = btwn(start_loc, body[0]);
@@ -11137,7 +11137,7 @@ function declare_class(env, start_loc) do
             id: id,
             typeParameters: typeParameters,
             body: body,
-            extends: $$extends,
+            extends: __extends,
             mixins: mixins
           end
         ];
@@ -11725,13 +11725,13 @@ function _object$2(restricted_error) do
         pattern$4;
         if (typeof match$4 == "number" and match$4 == 75) then do
           token$4(env, --[[ T_ASSIGN ]]75);
-          $$default = Curry._1(Parse.assignment, env);
-          loc$1 = btwn(pattern$3[0], $$default[0]);
+          __default = Curry._1(Parse.assignment, env);
+          loc$1 = btwn(pattern$3[0], __default[0]);
           pattern$4 = --[[ tuple ]][
             loc$1,
             --[[ Assignment ]]Block.__(2, [do
                   left: pattern$3,
-                  right: $$default
+                  right: __default
                 end])
           ];
         end else do
@@ -11863,13 +11863,13 @@ function _array(restricted_error) do
       pattern$3;
       if (typeof match$1 == "number" and match$1 == 75) then do
         token$4(env, --[[ T_ASSIGN ]]75);
-        $$default = Curry._1(Parse.expression, env);
-        loc$1 = btwn(pattern$2[0], $$default[0]);
+        __default = Curry._1(Parse.expression, env);
+        loc$1 = btwn(pattern$2[0], __default[0]);
         pattern$3 = --[[ tuple ]][
           loc$1,
           --[[ Assignment ]]Block.__(2, [do
                 left: pattern$2,
-                right: $$default
+                right: __default
               end])
         ];
       end else do
@@ -12435,7 +12435,7 @@ function statement_list_item(decoratorsOpt, env) do
     local ___conditional___=(match);
     do
        if ___conditional___ = 51--[[ T_INTERFACE ]] then do
-          return $$interface(env);end end end 
+          return __interface(env);end end end 
        if ___conditional___ = 52--[[ T_PACKAGE ]]
        or ___conditional___ = 53--[[ T_PRIVATE ]]
        or ___conditional___ = 54--[[ T_PROTECTED ]]
@@ -12485,8 +12485,8 @@ function module_item(env) do
                           error$1(env$2, --[[ UnexpectedTypeExport ]]9);
                         end
                          end 
-                        $$interface$1 = $$interface(env$2);
-                        match$2 = $$interface$1[1];
+                        __interface$1 = __interface(env$2);
+                        match$2 = __interface$1[1];
                         if (typeof match$2 == "number") then do
                           throw [
                                 Caml_builtin_exceptions.failure,
@@ -12494,7 +12494,7 @@ function module_item(env) do
                               ];
                         end else if (match$2.tag == --[[ InterfaceDeclaration ]]21) then do
                           record_export(env$2, --[[ tuple ]][
-                                $$interface$1[0],
+                                __interface$1[0],
                                 extract_ident_name(match$2[0].id)
                               ]);
                         end else do
@@ -12503,12 +12503,12 @@ function module_item(env) do
                                 "Internal Flow Error! Parsed `export interface` into something other than an interface declaration!"
                               ];
                         end end  end 
-                        end_loc = $$interface$1[0];
+                        end_loc = __interface$1[0];
                         return --[[ tuple ]][
                                 btwn(start_loc, end_loc),
                                 --[[ ExportDeclaration ]]Block.__(28, [do
                                       default: false,
-                                      declaration: --[[ Declaration ]]Block.__(0, [$$interface$1]),
+                                      declaration: --[[ Declaration ]]Block.__(0, [__interface$1]),
                                       specifiers: undefined,
                                       source: undefined,
                                       exportKind: --[[ ExportType ]]0
@@ -13272,7 +13272,7 @@ function statement(env) do
                          or ___conditional___ = 2--[[ T_RCURLY ]] then do
                             exit$1 = 1;end else 
                          if ___conditional___ = 3--[[ T_LPAREN ]] then do
-                            match$12 = $$const(with_no_in(true, env$12));
+                            match$12 = __const(with_no_in(true, env$12));
                             match$10 = --[[ tuple ]][
                               --[[ InitDeclaration ]]Block.__(0, [match$12[0]]),
                               match$12[1]
@@ -14087,7 +14087,7 @@ function program$1(failOpt, token_sinkOpt, parse_optionsOpt, content) do
   error_list = filter_duplicate_errors(env$1.errors.contents);
   if (fail$2 and error_list ~= --[[ [] ]]0) then do
     throw [
-          $$Error,
+          __Error,
           error_list
         ];
   end
@@ -14112,7 +14112,7 @@ array = (function (x) {return x;});
 
 number$1 = (function (x) {return x;});
 
-$$null = null;
+__null = null;
 
 function regexp$1(loc, pattern, flags) do
   try do
@@ -14135,13 +14135,13 @@ function parse(content, options) do
     match = program$1(false, undefined, Caml_option.some(undefined), content);
     translation_errors.contents = --[[ [] ]]0;
     array_of_list = function (fn, list) do
-      return array($$Array.of_list(List.map(fn, list)));
+      return array(__Array.of_list(List.map(fn, list)));
     end end;
     option = function (f, param) do
       if (param ~= undefined) then do
         return Curry._1(f, Caml_option.valFromOption(param));
       end else do
-        return $$null;
+        return __null;
       end end 
     end end;
     position = function (p) do
@@ -14156,14 +14156,14 @@ function parse(content, options) do
                   ]
                 ]);
     end end;
-    loc = function ($$location) do
-      match = $$location.source;
+    loc = function (__location) do
+      match = __location.source;
       source;
       if (match ~= undefined) then do
         match$1 = match;
         source = typeof match$1 == "number" and string("(global)") or string(match$1[0]);
       end else do
-        source = $$null;
+        source = __null;
       end end 
       return obj([
                   --[[ tuple ]][
@@ -14172,33 +14172,33 @@ function parse(content, options) do
                   ],
                   --[[ tuple ]][
                     "start",
-                    position($$location.start)
+                    position(__location.start)
                   ],
                   --[[ tuple ]][
                     "end",
-                    position($$location._end)
+                    position(__location._end)
                   ]
                 ]);
     end end;
-    range = function ($$location) do
+    range = function (__location) do
       return array([
-                  number$1($$location.start.offset),
-                  number$1($$location._end.offset)
+                  number$1(__location.start.offset),
+                  number$1(__location._end.offset)
                 ]);
     end end;
-    node = function (_type, $$location, props) do
-      return obj($$Array.append([
+    node = function (_type, __location, props) do
+      return obj(__Array.append([
                       --[[ tuple ]][
                         "type",
                         string(_type)
                       ],
                       --[[ tuple ]][
                         "loc",
-                        loc($$location)
+                        loc(__location)
                       ],
                       --[[ tuple ]][
                         "range",
-                        range($$location)
+                        range(__location)
                       ]
                     ], props));
     end end;
@@ -14797,15 +14797,15 @@ function parse(content, options) do
                           ]
                         ]);end end end 
            if ___conditional___ = 14--[[ Yield ]] then do
-              $$yield = match[0];
+              __yield = match[0];
               return node("YieldExpression", loc, [
                           --[[ tuple ]][
                             "argument",
-                            option(expression, $$yield.argument)
+                            option(expression, __yield.argument)
                           ],
                           --[[ tuple ]][
                             "delegate",
-                            bool($$yield.delegate)
+                            bool(__yield.delegate)
                           ]
                         ]);end end end 
            if ___conditional___ = 15--[[ Comprehension ]] then do
@@ -14975,7 +14975,7 @@ function parse(content, options) do
       loc = param[0];
       value_;
       if (typeof value == "number") then do
-        value_ = $$null;
+        value_ = __null;
       end else do
         local ___conditional___=(value.tag | 0);
         do
@@ -15227,15 +15227,15 @@ function parse(content, options) do
       end
     end end;
     class_implements = function (param) do
-      $$implements = param[1];
+      __implements = param[1];
       return node("ClassImplements", param[0], [
                   --[[ tuple ]][
                     "id",
-                    identifier($$implements.id)
+                    identifier(__implements.id)
                   ],
                   --[[ tuple ]][
                     "typeParameters",
-                    option(type_parameter_instantiation, $$implements.typeParameters)
+                    option(type_parameter_instantiation, __implements.typeParameters)
                   ]
                 ]);
     end end;
@@ -15245,7 +15245,7 @@ function parse(content, options) do
                     array_of_list(class_element, param[1].body)
                   ]]);
     end end;
-    $$catch = function (param) do
+    __catch = function (param) do
       c = param[1];
       return node("CatchClause", param[0], [
                   --[[ tuple ]][
@@ -15319,8 +15319,8 @@ function parse(content, options) do
                   ]]);
     end end;
     variable_declaration = function (param) do
-      $$var = param[1];
-      match = $$var.kind;
+      __var = param[1];
+      match = __var.kind;
       kind;
       local ___conditional___=(match);
       do
@@ -15336,7 +15336,7 @@ function parse(content, options) do
       return node("VariableDeclaration", param[0], [
                   --[[ tuple ]][
                     "declarations",
-                    array_of_list(variable_declarator, $$var.declarations)
+                    array_of_list(variable_declarator, __var.declarations)
                   ],
                   --[[ tuple ]][
                     "kind",
@@ -15422,19 +15422,19 @@ function parse(content, options) do
                           match[0]
                         ]);end end end 
            if ___conditional___ = 8--[[ Switch ]] then do
-              $$switch = match[0];
+              __switch = match[0];
               return node("SwitchStatement", loc, [
                           --[[ tuple ]][
                             "discriminant",
-                            expression($$switch.discriminant)
+                            expression(__switch.discriminant)
                           ],
                           --[[ tuple ]][
                             "cases",
-                            array_of_list($$case, $$switch.cases)
+                            array_of_list(__case, __switch.cases)
                           ],
                           --[[ tuple ]][
                             "lexical",
-                            bool($$switch.lexical)
+                            bool(__switch.lexical)
                           ]
                         ]);end end end 
            if ___conditional___ = 9--[[ Return ]] then do
@@ -15456,11 +15456,11 @@ function parse(content, options) do
                           ],
                           --[[ tuple ]][
                             "handler",
-                            option($$catch, _try.handler)
+                            option(__catch, _try.handler)
                           ],
                           --[[ tuple ]][
                             "guardedHandlers",
-                            array_of_list($$catch, _try.guardedHandlers)
+                            array_of_list(__catch, _try.guardedHandlers)
                           ],
                           --[[ tuple ]][
                             "finalizer",
@@ -15580,7 +15580,7 @@ function parse(content, options) do
                   identifier(match$3)
                 ] or --[[ tuple ]][
                   "FunctionExpression",
-                  $$null
+                  __null
                 ];
               match$5 = fn.body;
               body;
@@ -15646,7 +15646,7 @@ function parse(content, options) do
                   identifier(match$6)
                 ] or --[[ tuple ]][
                   "ClassExpression",
-                  $$null
+                  __null
                 ];
               return node(match$7[0], param$1[0], [
                           --[[ tuple ]][
@@ -15726,8 +15726,8 @@ function parse(content, options) do
                             type_annotation(match[0])
                           ]]);end end end 
            if ___conditional___ = 27--[[ DeclareExportDeclaration ]] then do
-              $$export = match[0];
-              match$10 = $$export.declaration;
+              __export = match[0];
+              match$10 = __export.declaration;
               declaration;
               if (match$10 ~= undefined) then do
                 match$11 = match$10;
@@ -15749,12 +15749,12 @@ function parse(content, options) do
                   
                 end
               end else do
-                declaration = $$null;
+                declaration = __null;
               end end 
               return node("DeclareExportDeclaration", loc, [
                           --[[ tuple ]][
                             "default",
-                            bool($$export.default)
+                            bool(__export.default)
                           ],
                           --[[ tuple ]][
                             "declaration",
@@ -15762,27 +15762,27 @@ function parse(content, options) do
                           ],
                           --[[ tuple ]][
                             "specifiers",
-                            export_specifiers($$export.specifiers)
+                            export_specifiers(__export.specifiers)
                           ],
                           --[[ tuple ]][
                             "source",
-                            option(literal, $$export.source)
+                            option(literal, __export.source)
                           ]
                         ]);end end end 
            if ___conditional___ = 28--[[ ExportDeclaration ]] then do
-              $$export$1 = match[0];
-              match$12 = $$export$1.declaration;
+              __export$1 = match[0];
+              match$12 = __export$1.declaration;
               declaration$1;
               if (match$12 ~= undefined) then do
                 match$13 = match$12;
                 declaration$1 = match$13.tag and expression(match$13[0]) or statement(match$13[0]);
               end else do
-                declaration$1 = $$null;
+                declaration$1 = __null;
               end end 
               return node("ExportDeclaration", loc, [
                           --[[ tuple ]][
                             "default",
-                            bool($$export$1.default)
+                            bool(__export$1.default)
                           ],
                           --[[ tuple ]][
                             "declaration",
@@ -15790,19 +15790,19 @@ function parse(content, options) do
                           ],
                           --[[ tuple ]][
                             "specifiers",
-                            export_specifiers($$export$1.specifiers)
+                            export_specifiers(__export$1.specifiers)
                           ],
                           --[[ tuple ]][
                             "source",
-                            option(literal, $$export$1.source)
+                            option(literal, __export$1.source)
                           ],
                           --[[ tuple ]][
                             "exportKind",
-                            string($$export$1.exportKind and "value" or "type")
+                            string(__export$1.exportKind and "value" or "type")
                           ]
                         ]);end end end 
            if ___conditional___ = 29--[[ ImportDeclaration ]] then do
-              $$import = match[0];
+              __import = match[0];
               specifiers = List.map((function (param) do
                       local ___conditional___=(param.tag | 0);
                       do
@@ -15836,8 +15836,8 @@ function parse(content, options) do
                          do
                         
                       end
-                    end end), $$import.specifiers);
-              match$14 = $$import.importKind;
+                    end end), __import.specifiers);
+              match$14 = __import.importKind;
               import_kind;
               local ___conditional___=(match$14);
               do
@@ -15853,11 +15853,11 @@ function parse(content, options) do
               return node("ImportDeclaration", loc, [
                           --[[ tuple ]][
                             "specifiers",
-                            array($$Array.of_list(specifiers))
+                            array(__Array.of_list(specifiers))
                           ],
                           --[[ tuple ]][
                             "source",
-                            literal($$import.source)
+                            literal(__import.source)
                           ],
                           --[[ tuple ]][
                             "importKind",
@@ -15869,7 +15869,7 @@ function parse(content, options) do
         end
       end end 
     end end;
-    $$case = function (param) do
+    __case = function (param) do
       c = param[1];
       return node("SwitchCase", param[0], [
                   --[[ tuple ]][
@@ -16496,7 +16496,7 @@ function parse(content, options) do
   end
   catch (raw_exn)do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
-    if (exn[0] == $$Error) then do
+    if (exn[0] == __Error) then do
       e = new Error(String(List.length(exn[1])) .. " errors");
       e["name"] = "Parse Error";
       throw(e);

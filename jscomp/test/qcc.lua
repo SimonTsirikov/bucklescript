@@ -7,7 +7,7 @@ Block = require "../../lib/js/block.lua";
 Bytes = require "../../lib/js/bytes.lua";
 Curry = require "../../lib/js/curry.lua";
 Printf = require "../../lib/js/printf.lua";
-$$String = require "../../lib/js/string.lua";
+__String = require "../../lib/js/string.lua";
 Caml_io = require "../../lib/js/caml_io.lua";
 Caml_obj = require "../../lib/js/caml_obj.lua";
 Caml_array = require "../../lib/js/caml_array.lua";
@@ -354,8 +354,8 @@ end end
 
 function le(n, x) do
   for i = 0 , (n / 8 | 0) - 1 | 0 , 1 do
-    $$byte = (x >>> (i << 3)) & 255;
-    obuf[opos.contents] = Char.chr($$byte);
+    __byte = (x >>> (i << 3)) & 255;
+    obuf[opos.contents] = Char.chr(__byte);
     opos.contents = opos.contents + 1 | 0;
   end
   return --[[ () ]]0;
@@ -1541,7 +1541,7 @@ function top(_param) do
   end;
 end end
 
-elfhdr = Bytes.of_string($$String.concat("", --[[ :: ]][
+elfhdr = Bytes.of_string(__String.concat("", --[[ :: ]][
           "\x7fELF\x02\x01\x01\0",
           --[[ :: ]][
             "\0\0\0\0\0\0\0\0",
@@ -1642,10 +1642,10 @@ function elfgen(outf) do
   symitr(patchloc);
   strtab = opos.contents;
   opos.contents = opos.contents + 1 | 0;
-  $$String.blit("/lib64/ld-linux-x86-64.so.2\0libc.so.6", 0, obuf, opos.contents, 37);
+  __String.blit("/lib64/ld-linux-x86-64.so.2\0libc.so.6", 0, obuf, opos.contents, 37);
   opos.contents = (opos.contents + 37 | 0) + 1 | 0;
   itr((function (s, sl, param) do
-          $$String.blit(s, 0, obuf, opos.contents, sl);
+          __String.blit(s, 0, obuf, opos.contents, sl);
           opos.contents = (opos.contents + sl | 0) + 1 | 0;
           return --[[ () ]]0;
         end end));

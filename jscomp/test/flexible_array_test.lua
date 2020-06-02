@@ -1,6 +1,6 @@
 --[['use strict';]]
 
-$$Array = require "../../lib/js/array.lua";
+__Array = require "../../lib/js/array.lua";
 Block = require "../../lib/js/block.lua";
 Curry = require "../../lib/js/curry.lua";
 Format = require "../../lib/js/format.lua";
@@ -68,7 +68,7 @@ function update(tr, k, w) do
   end end  end 
 end end
 
-function $$delete(tr, n) do
+function __delete(tr, n) do
   if (tr) then do
     if (n == 1) then do
       return --[[ Lf ]]0;
@@ -79,14 +79,14 @@ function $$delete(tr, n) do
       if (n % 2 == 0) then do
         return --[[ Br ]][
                 v,
-                $$delete(l, n / 2 | 0),
+                __delete(l, n / 2 | 0),
                 r
               ];
       end else do
         return --[[ Br ]][
                 v,
                 l,
-                $$delete(r, n / 2 | 0)
+                __delete(r, n / 2 | 0)
               ];
       end end 
     end end 
@@ -206,7 +206,7 @@ function pop_back(param) do
   k = param[1];
   if (k > 0) then do
     return --[[ tuple ]][
-            $$delete(param[0], k),
+            __delete(param[0], k),
             k - 1 | 0
           ];
   end else do
@@ -330,11 +330,11 @@ if (not Caml_obj.caml_equal(x, of_array([
 end
  end 
 
-v = $$Array.init(500, (function (i) do
+v = __Array.init(500, (function (i) do
         return 500 - i | 0;
       end end));
 
-y = $$Array.init(500, (function (i) do
+y = __Array.init(500, (function (i) do
         return i + 1 | 0;
       end end));
 
@@ -344,7 +344,7 @@ Caml_obj.caml_equal(x$1, of_array(y));
 
 exports.sub = sub;
 exports.update = update;
-exports.$$delete = $$delete;
+exports.__delete = __delete;
 exports.loext = loext;
 exports.lorem = lorem;
 exports.Int_array = Int_array;

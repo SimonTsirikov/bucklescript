@@ -1,37 +1,37 @@
 --[['use strict';]]
 
 
-$$ArrayBuffer = { };
+__ArrayBuffer = { };
 
-$$Int8Array = { };
+__Int8Array = { };
 
-$$Uint8Array = { };
+__Uint8Array = { };
 
-$$Uint8ClampedArray = { };
+__Uint8ClampedArray = { };
 
-$$Int16Array = { };
+__Int16Array = { };
 
-$$Uint16Array = { };
+__Uint16Array = { };
 
-$$Int32Array = { };
+__Int32Array = { };
 
-$$Uint32Array = { };
+__Uint32Array = { };
 
-$$Float32Array = { };
+__Float32Array = { };
 
-$$Float64Array = { };
+__Float64Array = { };
 
-$$DataView = { };
+__DataView = { };
 
-exports.$$ArrayBuffer = $$ArrayBuffer;
-exports.$$Int8Array = $$Int8Array;
-exports.$$Uint8Array = $$Uint8Array;
-exports.$$Uint8ClampedArray = $$Uint8ClampedArray;
-exports.$$Int16Array = $$Int16Array;
-exports.$$Uint16Array = $$Uint16Array;
-exports.$$Int32Array = $$Int32Array;
-exports.$$Uint32Array = $$Uint32Array;
-exports.$$Float32Array = $$Float32Array;
-exports.$$Float64Array = $$Float64Array;
-exports.$$DataView = $$DataView;
+exports.__ArrayBuffer = __ArrayBuffer;
+exports.__Int8Array = __Int8Array;
+exports.__Uint8Array = __Uint8Array;
+exports.__Uint8ClampedArray = __Uint8ClampedArray;
+exports.__Int16Array = __Int16Array;
+exports.__Uint16Array = __Uint16Array;
+exports.__Int32Array = __Int32Array;
+exports.__Uint32Array = __Uint32Array;
+exports.__Float32Array = __Float32Array;
+exports.__Float64Array = __Float64Array;
+exports.__DataView = __DataView;
 --[[ No side effect ]]

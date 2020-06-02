@@ -1,7 +1,7 @@
 --[['use strict';]]
 
 Mt = require "./mt.lua";
-$$Array = require "../../lib/js/array.lua";
+__Array = require "../../lib/js/array.lua";
 Block = require "../../lib/js/block.lua";
 Curry = require "../../lib/js/curry.lua";
 Int32 = require "../../lib/js/int32.lua";
@@ -19,7 +19,7 @@ function f(x) do
         ];
 end end
 
-shift_right_logical_tests_000 = $$Array.map((function (x) do
+shift_right_logical_tests_000 = __Array.map((function (x) do
         return (-1 >>> x) | 0;
       end end), Ext_array_test.range(0, 31));
 
@@ -63,7 +63,7 @@ shift_right_logical_tests = --[[ tuple ]][
   shift_right_logical_tests_001
 ];
 
-shift_right_tests_000 = $$Array.map((function (x) do
+shift_right_tests_000 = __Array.map((function (x) do
         return (Int32.min_int >> x);
       end end), Ext_array_test.range(0, 31));
 
@@ -107,7 +107,7 @@ shift_right_tests = --[[ tuple ]][
   shift_right_tests_001
 ];
 
-shift_left_tests_000 = $$Array.map((function (x) do
+shift_left_tests_000 = __Array.map((function (x) do
         return (1 << x);
       end end), Ext_array_test.range(0, 31));
 
@@ -176,7 +176,7 @@ suites = do
           ],
           --[[ [] ]]0
         ]
-      ], Pervasives.$at($$Array.to_list(Ext_array_test.map2i((function (i, a, b) do
+      ], Pervasives.$at(__Array.to_list(Ext_array_test.map2i((function (i, a, b) do
                       return --[[ tuple ]][
                               Curry._1(Format.asprintf(--[[ Format ]][
                                         --[[ String_literal ]]Block.__(11, [
@@ -197,7 +197,7 @@ suites = do
                                           ]);
                                 end end)
                             ];
-                    end end), shift_right_logical_tests_000, shift_right_logical_tests_001)), Pervasives.$at($$Array.to_list(Ext_array_test.map2i((function (i, a, b) do
+                    end end), shift_right_logical_tests_000, shift_right_logical_tests_001)), Pervasives.$at(__Array.to_list(Ext_array_test.map2i((function (i, a, b) do
                           return --[[ tuple ]][
                                   Curry._1(Format.asprintf(--[[ Format ]][
                                             --[[ String_literal ]]Block.__(11, [
@@ -218,7 +218,7 @@ suites = do
                                               ]);
                                     end end)
                                 ];
-                        end end), shift_right_tests_000, shift_right_tests_001)), $$Array.to_list(Ext_array_test.map2i((function (i, a, b) do
+                        end end), shift_right_tests_000, shift_right_tests_001)), __Array.to_list(Ext_array_test.map2i((function (i, a, b) do
                           return --[[ tuple ]][
                                   Curry._1(Format.asprintf(--[[ Format ]][
                                             --[[ String_literal ]]Block.__(11, [

@@ -28,7 +28,7 @@ function b(loc, x) do
   return Mt.bool_suites(test_id, suites, loc, x);
 end end
 
-function $$throw(loc, x) do
+function __throw(loc, x) do
   return Mt.throw_suites(test_id, suites, loc, x);
 end end
 
@@ -81,7 +81,7 @@ eq("File \"bs_array_test.ml\", line 25, characters 5-12", --[[ tuple ]][
       undefined
     ]);
 
-$$throw("File \"bs_array_test.ml\", line 28, characters 8-15", (function (param) do
+__throw("File \"bs_array_test.ml\", line 28, characters 8-15", (function (param) do
         Belt_Array.getExn([
               0,
               1
@@ -89,7 +89,7 @@ $$throw("File \"bs_array_test.ml\", line 28, characters 8-15", (function (param)
         return --[[ () ]]0;
       end end));
 
-$$throw("File \"bs_array_test.ml\", line 29, characters 8-15", (function (param) do
+__throw("File \"bs_array_test.ml\", line 29, characters 8-15", (function (param) do
         Belt_Array.getExn([
               0,
               1
@@ -114,14 +114,14 @@ b("File \"bs_array_test.ml\", line 30, characters 4-11", Caml_obj.caml_equal(--[
           1
         ]));
 
-$$throw("File \"bs_array_test.ml\", line 31, characters 8-15", (function (param) do
+__throw("File \"bs_array_test.ml\", line 31, characters 8-15", (function (param) do
         return Belt_Array.setExn([
                     0,
                     1
                   ], -1, 0);
       end end));
 
-$$throw("File \"bs_array_test.ml\", line 32, characters 8-15", (function (param) do
+__throw("File \"bs_array_test.ml\", line 32, characters 8-15", (function (param) do
         return Belt_Array.setExn([
                     0,
                     1
@@ -1597,7 +1597,7 @@ exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
 exports.b = b;
-exports.$$throw = $$throw;
+exports.__throw = __throw;
 exports.neq = neq;
 exports.A = A;
 exports.L = L;

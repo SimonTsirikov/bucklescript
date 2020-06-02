@@ -260,13 +260,13 @@ end end
 
 Int = --[[ alias ]]0;
 
-$$String = --[[ alias ]]0;
+__String = --[[ alias ]]0;
 
 Dict = --[[ alias ]]0;
 
 export do
   Int ,
-  $$String ,
+  __String ,
   Dict ,
   make ,
   fromArray ,

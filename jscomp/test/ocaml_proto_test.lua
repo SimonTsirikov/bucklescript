@@ -8,7 +8,7 @@ Bytes = require "../../lib/js/bytes.lua";
 Curry = require "../../lib/js/curry.lua";
 Lexing = require "../../lib/js/lexing.lua";
 Printf = require "../../lib/js/printf.lua";
-$$String = require "../../lib/js/string.lua";
+__String = require "../../lib/js/string.lua";
 Parsing = require "../../lib/js/parsing.lua";
 Caml_obj = require "../../lib/js/caml_obj.lua";
 Filename = require "../../lib/js/filename.lua";
@@ -76,10 +76,10 @@ function message(content, message_name) do
         end;
 end end
 
-function $$import($$public, file_name) do
+function __import(__public, file_name) do
   return do
           file_name: file_name,
-          public: $$public ~= undefined
+          public: __public ~= undefined
         end;
 end end
 
@@ -92,7 +92,7 @@ function extend(extend_name, extend_body) do
         end;
 end end
 
-function proto(syntax, file_option, $$package, $$import, message, $$enum, proto$1, extend, param) do
+function proto(syntax, file_option, __package, __import, message, __enum, proto$1, extend, param) do
   proto$2 = proto$1 ~= undefined and proto$1 or (do
         syntax: syntax,
         imports: --[[ [] ]]0,
@@ -111,11 +111,11 @@ function proto(syntax, file_option, $$package, $$import, message, $$enum, proto$
         enums: proto$2.enums,
         extends: proto$2.extends
       end) or proto$2;
-  proto$4 = $$package ~= undefined and (do
+  proto$4 = __package ~= undefined and (do
         syntax: proto$3.syntax,
         imports: proto$3.imports,
         file_options: proto$3.file_options,
-        package: $$package,
+        package: __package,
         messages: proto$3.messages,
         enums: proto$3.enums,
         extends: proto$3.extends
@@ -132,22 +132,22 @@ function proto(syntax, file_option, $$package, $$import, message, $$enum, proto$
         enums: proto$4.enums,
         extends: proto$4.extends
       end) or proto$4;
-  proto$6 = $$enum ~= undefined and (do
+  proto$6 = __enum ~= undefined and (do
         syntax: proto$5.syntax,
         imports: proto$5.imports,
         file_options: proto$5.file_options,
         package: proto$5.package,
         messages: proto$5.messages,
         enums: --[[ :: ]][
-          $$enum,
+          __enum,
           proto$2.enums
         ],
         extends: proto$5.extends
       end) or proto$5;
-  proto$7 = $$import ~= undefined and (do
+  proto$7 = __import ~= undefined and (do
         syntax: proto$6.syntax,
         imports: --[[ :: ]][
-          $$import,
+          __import,
           proto$2.imports
         ],
         file_options: proto$6.file_options,
@@ -204,8 +204,8 @@ end end
 function rev_split_by_char(c, s) do
   loop = function (i, l) do
     try do
-      i$prime = $$String.index_from(s, i, c);
-      s$prime = $$String.sub(s, i, i$prime - i | 0);
+      i$prime = __String.index_from(s, i, c);
+      s$prime = __String.sub(s, i, i$prime - i | 0);
       return loop(i$prime + 1 | 0, s$prime == "" and l or --[[ :: ]][
                     s$prime,
                     l
@@ -214,7 +214,7 @@ function rev_split_by_char(c, s) do
     catch (exn)do
       if (exn == Caml_builtin_exceptions.not_found) then do
         return --[[ :: ]][
-                $$String.sub(s, i, #s - i | 0),
+                __String.sub(s, i, #s - i | 0),
                 l
               ];
       end else do
@@ -274,7 +274,7 @@ function string_of_string_list(l) do
                         ])
                     ]),
                   "[%s]"
-                ]), $$String.concat(",", l));
+                ]), __String.concat(",", l));
 end end
 
 function string_fold_lefti(f, e0, s) do
@@ -878,13 +878,13 @@ yyact = [
       Parsing.peek_val(__caml_parser_env, 2);
       _2 = Parsing.peek_val(__caml_parser_env, 1);
       Parsing.peek_val(__caml_parser_env, 0);
-      return $$import(undefined, _2);
+      return __import(undefined, _2);
     end end),
   (function (__caml_parser_env) do
       Parsing.peek_val(__caml_parser_env, 3);
       _3 = Parsing.peek_val(__caml_parser_env, 1);
       Parsing.peek_val(__caml_parser_env, 0);
-      return $$import(--[[ () ]]0, _3);
+      return __import(--[[ () ]]0, _3);
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 3);
@@ -1485,7 +1485,7 @@ function __ocaml_lex_string_rec(_l, lexbuf, ___ocaml_lex_state) do
           ];
           continue ;end end end 
        if ___conditional___ = 1 then do
-          return --[[ String_value ]][$$String.concat("", List.rev(l))];end end end 
+          return --[[ String_value ]][__String.concat("", List.rev(l))];end end end 
        if ___conditional___ = 2 then do
           ___ocaml_lex_state = 55;
           _l = --[[ :: ]][
@@ -1515,7 +1515,7 @@ function __ocaml_lex_comment_rec(_l, lexbuf, ___ocaml_lex_state) do
     do
        if ___conditional___ = 0 then do
           update_loc(lexbuf);
-          return --[[ Comment_value ]][$$String.concat("", List.rev(l))];end end end 
+          return --[[ Comment_value ]][__String.concat("", List.rev(l))];end end end 
        if ___conditional___ = 1 then do
           ___ocaml_lex_state = 41;
           _l = --[[ :: ]][
@@ -1549,7 +1549,7 @@ function __ocaml_lex_multi_line_comment_rec(_l, lexbuf, ___ocaml_lex_state) do
           continue ;end end end 
        if ___conditional___ = 1 then do
           Lexing.lexeme(lexbuf);
-          return --[[ Comment_value ]][$$String.concat("", List.rev(l))];end end end 
+          return --[[ Comment_value ]][__String.concat("", List.rev(l))];end end end 
        if ___conditional___ = 2 then do
           ___ocaml_lex_state = 47;
           _l = --[[ :: ]][
@@ -1962,7 +1962,7 @@ function print(scope) do
       end end 
     end;
   end end;
-  return $$String.concat("\n", loop(--[[ [] ]]0, 0, scope.items));
+  return __String.concat("\n", loop(--[[ [] ]]0, 0, scope.items));
 end end
 
 function runtime_function(param) do
@@ -3880,7 +3880,7 @@ function strong_connect(g, sccs, stack, index, v) do
                   ])
               ]),
             "[Graph]   -> stack : %s\n"
-          ]), "[" .. ($$String.concat(";", List.map((function (param) do
+          ]), "[" .. (__String.concat(";", List.map((function (param) do
                     return String(param.core.id);
                   end end), stack$2)) .. "]"));
   if (eq_value(--[[ tuple ]][
@@ -6337,7 +6337,7 @@ function rev_split_by_naming_convention(s) do
       return l;
     end else do
       return --[[ :: ]][
-              $$String.sub(s, start_i, end_i - start_i | 0),
+              __String.sub(s, start_i, end_i - start_i | 0),
               l
             ];
     end end 
@@ -6444,13 +6444,13 @@ function fix_ocaml_keyword_conflict(s) do
 end end
 
 function constructor_name(s) do
-  s$1 = $$String.concat("_", List.rev(rev_split_by_naming_convention(s)));
+  s$1 = __String.concat("_", List.rev(rev_split_by_naming_convention(s)));
   s$2 = Caml_bytes.bytes_to_string(Bytes.lowercase(Caml_bytes.bytes_of_string(s$1)));
   return Caml_bytes.bytes_to_string(Bytes.capitalize(Caml_bytes.bytes_of_string(s$2)));
 end end
 
 function label_name_of_field_name(s) do
-  s$1 = $$String.concat("_", List.rev(rev_split_by_naming_convention(s)));
+  s$1 = __String.concat("_", List.rev(rev_split_by_naming_convention(s)));
   return fix_ocaml_keyword_conflict(Caml_bytes.bytes_to_string(Bytes.lowercase(Caml_bytes.bytes_of_string(s$1))));
 end end
 
@@ -6458,7 +6458,7 @@ function module_of_file_name(file_name) do
   file_name$1 = Curry._1(Filename.basename, file_name);
   dot_index;
   try do
-    dot_index = $$String.rindex(file_name$1, --[[ "." ]]46);
+    dot_index = __String.rindex(file_name$1, --[[ "." ]]46);
   end
   catch (exn)do
     if (exn == Caml_builtin_exceptions.not_found) then do
@@ -6470,7 +6470,7 @@ function module_of_file_name(file_name) do
      end 
     throw exn;
   end
-  return constructor_name($$String.sub(file_name$1, 0, dot_index) .. "_pb");
+  return constructor_name(__String.sub(file_name$1, 0, dot_index) .. "_pb");
 end end
 
 function type_name(message_scope, name) do
@@ -6479,12 +6479,12 @@ function type_name(message_scope, name) do
         --[[ [] ]]0
       ]);
   all_names$1 = List.map((function (s) do
-          return List.map($$String.lowercase, List.rev(rev_split_by_naming_convention(s)));
+          return List.map(__String.lowercase, List.rev(rev_split_by_naming_convention(s)));
         end end), all_names);
   all_names$2 = List.flatten(all_names$1);
   if (all_names$2) then do
     if (all_names$2[1]) then do
-      return $$String.concat("_", all_names$2);
+      return __String.concat("_", all_names$2);
     end else do
       return fix_ocaml_keyword_conflict(all_names$2[0]);
     end end 

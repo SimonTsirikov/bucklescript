@@ -4,8 +4,8 @@ List = require "./list.lua";
 Block = require "./block.lua";
 Bytes = require "./bytes.lua";
 Curry = require "./curry.lua";
-$$Buffer = require "./buffer.lua";
-$$String = require "./string.lua";
+__Buffer = require "./buffer.lua";
+__String = require "./string.lua";
 Caml_io = require "./caml_io.lua";
 Caml_obj = require "./caml_obj.lua";
 Caml_bytes = require "./caml_bytes.lua";
@@ -1006,13 +1006,13 @@ end end
 
 function formatter_of_buffer(b) do
   return make_formatter((function (param, param$1, param$2) do
-                return $$Buffer.add_substring(b, param, param$1, param$2);
+                return __Buffer.add_substring(b, param, param$1, param$2);
               end end), (function (prim) do
                 return --[[ () ]]0;
               end end));
 end end
 
-stdbuf = $$Buffer.create(512);
+stdbuf = __Buffer.create(512);
 
 std_formatter = formatter_of_out_channel(Pervasives.stdout);
 
@@ -1022,8 +1022,8 @@ str_formatter = formatter_of_buffer(stdbuf);
 
 function flush_buffer_formatter(buf, ppf) do
   pp_flush_queue(ppf, false);
-  s = $$Buffer.contents(buf);
-  $$Buffer.reset(buf);
+  s = __Buffer.contents(buf);
+  __Buffer.reset(buf);
   return s;
 end end
 
@@ -1066,7 +1066,7 @@ function formatter_of_symbolic_output_buffer(sob) do
     s = param;
     i = param$1;
     n = param$2;
-    return add_symbolic_output_item(sob$1, --[[ Output_string ]]Block.__(0, [$$String.sub(s, i, n)]));
+    return add_symbolic_output_item(sob$1, --[[ Output_string ]]Block.__(0, [__String.sub(s, i, n)]));
   end end;
   g = function (param) do
     return add_symbolic_output_item(sob, --[[ Output_flush ]]0);
@@ -1306,7 +1306,7 @@ function pp_print_text(ppf, s) do
     contents: 0
   end;
   flush = function (param) do
-    pp_print_string(ppf, $$String.sub(s, left.contents, right.contents - left.contents | 0));
+    pp_print_string(ppf, __String.sub(s, left.contents, right.contents - left.contents | 0));
     right.contents = right.contents + 1 | 0;
     left.contents = right.contents;
     return --[[ () ]]0;
@@ -1333,15 +1333,15 @@ function pp_print_text(ppf, s) do
 end end
 
 function compute_tag(output, tag_acc) do
-  buf = $$Buffer.create(16);
+  buf = __Buffer.create(16);
   ppf = formatter_of_buffer(buf);
   Curry._2(output, ppf, tag_acc);
   pp_print_flush(ppf, --[[ () ]]0);
   len = buf.position;
   if (len < 2) then do
-    return $$Buffer.contents(buf);
+    return __Buffer.contents(buf);
   end else do
-    return $$Buffer.sub(buf, 1, len - 2 | 0);
+    return __Buffer.sub(buf, 1, len - 2 | 0);
   end end 
 end end
 
@@ -1654,7 +1654,7 @@ function eprintf(fmt) do
 end end
 
 function ksprintf(k, param) do
-  b = $$Buffer.create(512);
+  b = __Buffer.create(512);
   ppf = formatter_of_buffer(b);
   k$1 = function (param, acc) do
     strput_acc(ppf, acc);
@@ -1670,7 +1670,7 @@ function sprintf(fmt) do
 end end
 
 function kasprintf(k, param) do
-  b = $$Buffer.create(512);
+  b = __Buffer.create(512);
   ppf = formatter_of_buffer(b);
   k$1 = function (ppf, acc) do
     output_acc(ppf, acc);

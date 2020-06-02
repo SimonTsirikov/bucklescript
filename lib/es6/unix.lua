@@ -2,11 +2,11 @@
 
 import * as Sys from "./sys.lua";
 import * as List from "./list.lua";
-import * as $$Array from "./array.lua";
+import * as __Array from "./array.lua";
 import * as Block from "./block.lua";
 import * as Curry from "./curry.lua";
 import * as Printf from "./printf.lua";
-import * as $$String from "./string.lua";
+import * as __String from "./string.lua";
 import * as Caml_io from "./caml_io.lua";
 import * as Hashtbl from "./hashtbl.lua";
 import * as Callback from "./callback.lua";
@@ -277,10 +277,10 @@ function execvpe(name, args, env) do
                 end
                  end 
                 argc = #args$1;
-                new_args = $$Array.append([
+                new_args = __Array.append([
                       "/bin/sh",
                       file
-                    ], argc == 0 and args$1 or $$Array.sub(args$1, 1, argc - 1 | 0));
+                    ], argc == 0 and args$1 or __Array.sub(args$1, 1, argc - 1 | 0));
                 return Caml_external_polyfill.resolve("unix_execve")(Caml_array.caml_array_get(new_args, 0), new_args, env$1);
               end else do
                 throw exn;
@@ -290,7 +290,7 @@ function execvpe(name, args, env) do
             end end 
           end
         end end;
-        if ($$String.contains(name$1, --[[ "/" ]]47)) then do
+        if (__String.contains(name$1, --[[ "/" ]]47)) then do
           return exec(name$1);
         end else do
           tmp;
@@ -305,7 +305,7 @@ function execvpe(name, args, env) do
             end end 
           end
           _eacces = false;
-          _param = $$String.split_on_char(--[[ ":" ]]58, tmp);
+          _param = __String.split_on_char(--[[ ":" ]]58, tmp);
           while(true) do
             param = _param;
             eacces = _eacces;
@@ -735,7 +735,7 @@ function getaddrinfo(node, service, opts) do
                               a,
                               he.h_name
                             ];
-                    end end), $$Array.to_list(he.h_addr_list));
+                    end end), __Array.to_list(he.h_addr_list));
             end
             catch (exn$2)do
               if (exn$2 == Caml_builtin_exceptions.not_found) then do

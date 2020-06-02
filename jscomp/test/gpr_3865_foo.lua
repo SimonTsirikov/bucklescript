@@ -1,7 +1,7 @@
 --[['use strict';]]
 
 
-$$return = 5;
+__return = 5;
 
-exports.$$return = $$return;
+exports.__return = __return;
 --[[ No side effect ]]

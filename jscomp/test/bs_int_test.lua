@@ -20,7 +20,7 @@ function b(loc, x) do
   return Mt.bool_suites(test_id, suites, loc, x);
 end end
 
-function $$throw(loc, x) do
+function __throw(loc, x) do
   return Mt.throw_suites(test_id, suites, loc, x);
 end end
 
@@ -91,7 +91,7 @@ exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
 exports.b = b;
-exports.$$throw = $$throw;
+exports.__throw = __throw;
 exports.neq = neq;
 exports.I = I;
 --[[  Not a pure module ]]

@@ -1,10 +1,10 @@
 --[['use strict';]]
 
-$$String = require "../../lib/js/string.lua";
+__String = require "../../lib/js/string.lua";
 
 function v(u) do
   t(do
-        compare: $$String.compare
+        compare: __String.compare
       end);
   return --[[ () ]]0;
 end end
@@ -13,7 +13,7 @@ function u(v) do
   return v;
 end end
 
-s = $$String;
+s = __String;
 
 exports.v = v;
 exports.u = u;

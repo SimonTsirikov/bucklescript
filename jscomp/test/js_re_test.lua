@@ -12,7 +12,7 @@ suites_000 = --[[ tuple ]][
       match = re.exec("3-");
       if (match ~= null) then do
         defined = Caml_array.caml_array_get(match, 1);
-        $$undefined = Caml_array.caml_array_get(match, 2);
+        __undefined = Caml_array.caml_array_get(match, 2);
         return --[[ Eq ]]Block.__(0, [
                   --[[ tuple ]][
                     "3",
@@ -20,7 +20,7 @@ suites_000 = --[[ tuple ]][
                   ],
                   --[[ tuple ]][
                     defined,
-                    $$undefined
+                    __undefined
                   ]
                 ]);
       end else do

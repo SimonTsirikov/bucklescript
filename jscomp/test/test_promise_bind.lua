@@ -1,8 +1,8 @@
 --[['use strict';]]
 
-$$Promise = require "./promise.lua";
+__Promise = require "./promise.lua";
 
-v = $$Promise.f;
+v = __Promise.f;
 
 exports.v = v;
 --[[ Promise Not a pure module ]]

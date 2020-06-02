@@ -58,13 +58,13 @@ function eq(loc, x, y) do
   return --[[ () ]]0;
 end end
 
-function point_init($$class) do
-  x_init = CamlinternalOO.new_variable($$class, "");
-  ids = CamlinternalOO.new_methods_variables($$class, shared$4, shared$2);
+function point_init(__class) do
+  x_init = CamlinternalOO.new_variable(__class, "");
+  ids = CamlinternalOO.new_methods_variables(__class, shared$4, shared$2);
   move = ids[0];
   get_x = ids[1];
   x = ids[2];
-  CamlinternalOO.set_methods($$class, [
+  CamlinternalOO.set_methods(__class, [
         get_x,
         (function (self$1) do
             return self$1[x];
@@ -76,7 +76,7 @@ function point_init($$class) do
           end end)
       ]);
   return (function (env, self, x_init$1) do
-      self$1 = CamlinternalOO.create_object_opt(self, $$class);
+      self$1 = CamlinternalOO.create_object_opt(self, __class);
       self$1[x_init] = x_init$1;
       self$1[x] = x_init$1;
       return self$1;
@@ -99,16 +99,16 @@ eq("File \"class7_test.ml\", line 22, characters 5-12", --[[ tuple ]][
       Caml_oo_curry.js1(291546447, 3, q)
     ]);
 
-function ref_init($$class) do
-  x_init = CamlinternalOO.new_variable($$class, "");
-  ids = CamlinternalOO.new_methods_variables($$class, [
+function ref_init(__class) do
+  x_init = CamlinternalOO.new_variable(__class, "");
+  ids = CamlinternalOO.new_methods_variables(__class, [
         "set",
         "get"
       ], shared$2);
   set = ids[0];
   get = ids[1];
   x = ids[2];
-  CamlinternalOO.set_methods($$class, [
+  CamlinternalOO.set_methods(__class, [
         get,
         (function (self$2) do
             return self$2[x];
@@ -120,7 +120,7 @@ function ref_init($$class) do
           end end)
       ]);
   return (function (env, self, x_init$1) do
-      self$1 = CamlinternalOO.create_object_opt(self, $$class);
+      self$1 = CamlinternalOO.create_object_opt(self, __class);
       self$1[x_init] = x_init$1;
       self$1[x] = x_init$1;
       return self$1;
@@ -129,12 +129,12 @@ end end
 
 ref = CamlinternalOO.make_class(shared$6, ref_init);
 
-function backup_init($$class) do
-  ids = CamlinternalOO.new_methods_variables($$class, shared$5, shared$3);
+function backup_init(__class) do
+  ids = CamlinternalOO.new_methods_variables(__class, shared$5, shared$3);
   save = ids[0];
   restore = ids[1];
   copy = ids[2];
-  CamlinternalOO.set_methods($$class, [
+  CamlinternalOO.set_methods(__class, [
         save,
         (function (self$3) do
             copy$1 = Caml_exceptions.caml_set_oo_id(Caml_obj.caml_obj_dup(self$3));
@@ -152,7 +152,7 @@ function backup_init($$class) do
           end end)
       ]);
   return (function (env, self) do
-      self$1 = CamlinternalOO.create_object_opt(self, $$class);
+      self$1 = CamlinternalOO.create_object_opt(self, __class);
       self$1[copy] = undefined;
       return self$1;
     end end);
@@ -160,21 +160,21 @@ end end
 
 backup = CamlinternalOO.make_class(shared$5, backup_init);
 
-function backup_ref_init($$class) do
-  x = CamlinternalOO.new_variable($$class, "");
-  inh = CamlinternalOO.inherits($$class, shared$2, 0, shared$6, ref, true);
+function backup_ref_init(__class) do
+  x = CamlinternalOO.new_variable(__class, "");
+  inh = CamlinternalOO.inherits(__class, shared$2, 0, shared$6, ref, true);
   obj_init = inh[0];
-  inh$1 = CamlinternalOO.inherits($$class, shared$3, 0, [
+  inh$1 = CamlinternalOO.inherits(__class, shared$3, 0, [
         "restore",
         "save"
       ], backup, true);
   obj_init$1 = inh$1[0];
   return (function (env, self, x$1) do
-      self$1 = CamlinternalOO.create_object_opt(self, $$class);
+      self$1 = CamlinternalOO.create_object_opt(self, __class);
       self$1[x] = x$1;
       Curry._2(obj_init, self$1, x$1);
       Curry._1(obj_init$1, self$1);
-      return CamlinternalOO.run_initializers_opt(self, self$1, $$class);
+      return CamlinternalOO.run_initializers_opt(self, self$1, __class);
     end end);
 end end
 
@@ -223,8 +223,8 @@ eq("File \"class7_test.ml\", line 47, characters 5-12", [
       get(p$1, 4)
     ]);
 
-function backup2_init($$class) do
-  ids = CamlinternalOO.new_methods_variables($$class, [
+function backup2_init(__class) do
+  ids = CamlinternalOO.new_methods_variables(__class, [
         "save",
         "restore",
         "clear"
@@ -233,7 +233,7 @@ function backup2_init($$class) do
   restore = ids[1];
   clear = ids[2];
   copy = ids[3];
-  CamlinternalOO.set_methods($$class, [
+  CamlinternalOO.set_methods(__class, [
         save,
         (function (self$5) do
             self$5[copy] = Caml_option.some(Caml_exceptions.caml_set_oo_id(Caml_obj.caml_obj_dup(self$5)));
@@ -255,7 +255,7 @@ function backup2_init($$class) do
           end end)
       ]);
   return (function (env, self) do
-      self$1 = CamlinternalOO.create_object_opt(self, $$class);
+      self$1 = CamlinternalOO.create_object_opt(self, __class);
       self$1[copy] = undefined;
       return self$1;
     end end);
@@ -267,22 +267,22 @@ backup2 = CamlinternalOO.make_class([
       "restore"
     ], backup2_init);
 
-function backup_ref2_init($$class) do
-  x = CamlinternalOO.new_variable($$class, "");
-  inh = CamlinternalOO.inherits($$class, shared$2, 0, shared$6, ref, true);
+function backup_ref2_init(__class) do
+  x = CamlinternalOO.new_variable(__class, "");
+  inh = CamlinternalOO.inherits(__class, shared$2, 0, shared$6, ref, true);
   obj_init = inh[0];
-  inh$1 = CamlinternalOO.inherits($$class, shared$3, 0, [
+  inh$1 = CamlinternalOO.inherits(__class, shared$3, 0, [
         "clear",
         "restore",
         "save"
       ], backup2, true);
   obj_init$1 = inh$1[0];
   return (function (env, self, x$1) do
-      self$1 = CamlinternalOO.create_object_opt(self, $$class);
+      self$1 = CamlinternalOO.create_object_opt(self, __class);
       self$1[x] = x$1;
       Curry._2(obj_init, self$1, x$1);
       Curry._1(obj_init$1, self$1);
-      return CamlinternalOO.run_initializers_opt(self, self$1, $$class);
+      return CamlinternalOO.run_initializers_opt(self, self$1, __class);
     end end);
 end end
 
@@ -318,34 +318,34 @@ eq("File \"class7_test.ml\", line 63, characters 5-12", [
       get(p$2, 4)
     ]);
 
-function window_init($$class) do
-  ids = CamlinternalOO.new_methods_variables($$class, shared$1, shared$1);
+function window_init(__class) do
+  ids = CamlinternalOO.new_methods_variables(__class, shared$1, shared$1);
   top_widget = ids[0];
   top_widget$1 = ids[1];
-  CamlinternalOO.set_method($$class, top_widget, (function (self$7) do
+  CamlinternalOO.set_method(__class, top_widget, (function (self$7) do
           return self$7[top_widget$1];
         end end));
   return (function (env, self) do
-      self$1 = CamlinternalOO.create_object_opt(self, $$class);
+      self$1 = CamlinternalOO.create_object_opt(self, __class);
       self$1[top_widget$1] = undefined;
       return self$1;
     end end);
 end end
 
-$$window = CamlinternalOO.make_class(shared$1, window_init);
+__window = CamlinternalOO.make_class(shared$1, window_init);
 
-function widget_init($$class) do
-  w = CamlinternalOO.new_variable($$class, "");
-  ids = CamlinternalOO.new_methods_variables($$class, shared, shared);
-  $$window = ids[0];
-  $$window$1 = ids[1];
-  CamlinternalOO.set_method($$class, $$window, (function (self$8) do
-          return self$8[$$window$1];
+function widget_init(__class) do
+  w = CamlinternalOO.new_variable(__class, "");
+  ids = CamlinternalOO.new_methods_variables(__class, shared, shared);
+  __window = ids[0];
+  __window$1 = ids[1];
+  CamlinternalOO.set_method(__class, __window, (function (self$8) do
+          return self$8[__window$1];
         end end));
   return (function (env, self, w$1) do
-      self$1 = CamlinternalOO.create_object_opt(self, $$class);
+      self$1 = CamlinternalOO.create_object_opt(self, __class);
       self$1[w] = w$1;
-      self$1[$$window$1] = w$1;
+      self$1[__window$1] = w$1;
       return self$1;
     end end);
 end end
@@ -364,6 +364,6 @@ exports.backup_ref = backup_ref;
 exports.get = get;
 exports.backup2 = backup2;
 exports.backup_ref2 = backup_ref2;
-exports.$$window = $$window;
+exports.__window = __window;
 exports.widget = widget;
 --[[ point Not a pure module ]]

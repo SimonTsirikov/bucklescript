@@ -23,7 +23,7 @@ Process = --[[ alias ]]0;
 
 Module = --[[ alias ]]0;
 
-$$Buffer = --[[ alias ]]0;
+__Buffer = --[[ alias ]]0;
 
 Child_process = --[[ alias ]]0;
 
@@ -31,7 +31,7 @@ exports.Path = Path;
 exports.Fs = Fs;
 exports.Process = Process;
 exports.Module = Module;
-exports.$$Buffer = $$Buffer;
+exports.__Buffer = __Buffer;
 exports.Child_process = Child_process;
 exports.test = test;
 --[[ No side effect ]]

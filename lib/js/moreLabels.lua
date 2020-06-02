@@ -1,16 +1,16 @@
 --[['use strict';]]
 
-$$Map = require "./map.lua";
-$$Set = require "./set.lua";
+__Map = require "./map.lua";
+__Set = require "./set.lua";
 Hashtbl = require "./hashtbl.lua";
 
 Hashtbl$1 = Hashtbl;
 
-$$Map$1 = $$Map;
+__Map$1 = __Map;
 
-$$Set$1 = $$Set;
+__Set$1 = __Set;
 
 exports.Hashtbl = Hashtbl$1;
-exports.$$Map = $$Map$1;
-exports.$$Set = $$Set$1;
+exports.__Map = __Map$1;
+exports.__Set = __Set$1;
 --[[ No side effect ]]

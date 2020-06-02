@@ -60,7 +60,7 @@ try do
 end
 catch (raw_exn)do
   exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
-  if (exn[0] == Js_exn.$$Error) then do
+  if (exn[0] == Js_exn.__Error) then do
     add_test("File \"js_exception_catch_test.ml\", line 21, characters 10-17", (function (param) do
             return --[[ Ok ]]Block.__(4, [true]);
           end end));
@@ -111,7 +111,7 @@ function test(f) do
       end else do
         return --[[ C ]]67;
       end end 
-    end else if (e[0] == Js_exn.$$Error) then do
+    end else if (e[0] == Js_exn.__Error) then do
       return --[[ Js_error ]]634022066;
     end else do
       return --[[ Any ]]3257036;

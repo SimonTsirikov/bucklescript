@@ -1,40 +1,40 @@
 
 
 
-$$ArrayBuffer = { };
+__ArrayBuffer = { };
 
-$$Int8Array = { };
+__Int8Array = { };
 
-$$Uint8Array = { };
+__Uint8Array = { };
 
-$$Uint8ClampedArray = { };
+__Uint8ClampedArray = { };
 
-$$Int16Array = { };
+__Int16Array = { };
 
-$$Uint16Array = { };
+__Uint16Array = { };
 
-$$Int32Array = { };
+__Int32Array = { };
 
-$$Uint32Array = { };
+__Uint32Array = { };
 
-$$Float32Array = { };
+__Float32Array = { };
 
-$$Float64Array = { };
+__Float64Array = { };
 
-$$DataView = { };
+__DataView = { };
 
 export do
-  $$ArrayBuffer ,
-  $$Int8Array ,
-  $$Uint8Array ,
-  $$Uint8ClampedArray ,
-  $$Int16Array ,
-  $$Uint16Array ,
-  $$Int32Array ,
-  $$Uint32Array ,
-  $$Float32Array ,
-  $$Float64Array ,
-  $$DataView ,
+  __ArrayBuffer ,
+  __Int8Array ,
+  __Uint8Array ,
+  __Uint8ClampedArray ,
+  __Int16Array ,
+  __Uint16Array ,
+  __Int32Array ,
+  __Uint32Array ,
+  __Float32Array ,
+  __Float64Array ,
+  __DataView ,
   
 end
 --[[ No side effect ]]

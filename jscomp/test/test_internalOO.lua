@@ -3,7 +3,7 @@
 Obj = require "../../lib/js/obj.lua";
 Sys = require "../../lib/js/sys.lua";
 List = require "../../lib/js/list.lua";
-$$Array = require "../../lib/js/array.lua";
+__Array = require "../../lib/js/array.lua";
 Curry = require "../../lib/js/curry.lua";
 Caml_oo = require "../../lib/js/caml_oo.lua";
 Caml_obj = require "../../lib/js/caml_obj.lua";
@@ -3098,7 +3098,7 @@ function resize(array, new_size) do
   old_size = #array.methods;
   if (new_size > old_size) then do
     new_buck = Caml_array.caml_make_vect(new_size, dummy_met);
-    $$Array.blit(array.methods, 0, new_buck, 0, old_size);
+    __Array.blit(array.methods, 0, new_buck, 0, old_size);
     array.methods = new_buck;
     return --[[ () ]]0;
   end else do
@@ -3142,7 +3142,7 @@ function get_method_label(table, name) do
 end end
 
 function get_method_labels(table, names) do
-  return $$Array.map((function (param) do
+  return __Array.map((function (param) do
                 return get_method_label(table, param);
               end end), names);
 end end
@@ -3180,7 +3180,7 @@ function to_list(arr) do
   if (arr == 0) then do
     return --[[ [] ]]0;
   end else do
-    return $$Array.to_list(arr);
+    return __Array.to_list(arr);
   end end 
 end end
 
@@ -3343,7 +3343,7 @@ function get_variable(table, name) do
 end end
 
 function get_variables(table, names) do
-  return $$Array.map((function (param) do
+  return __Array.map((function (param) do
                 return get_variable(table, param);
               end end), names);
 end end
@@ -3360,9 +3360,9 @@ function create_table(public_methods) do
   if (public_methods == 0) then do
     return new_table([]);
   end else do
-    tags = $$Array.map(public_method_label, public_methods);
+    tags = __Array.map(public_method_label, public_methods);
     table = new_table(tags);
-    $$Array.iteri((function (i, met) do
+    __Array.iteri((function (i, met) do
             lab = (i << 1) + 2 | 0;
             table.methods_by_name = add$1(met, lab, table.methods_by_name);
             table.methods_by_label = add$2(lab, true, table.methods_by_label);
@@ -3379,18 +3379,18 @@ function init_class(table) do
 end end
 
 function inherits(cla, vals, virt_meths, concr_meths, param, top) do
-  $$super = param[1];
+  __super = param[1];
   narrow(cla, vals, virt_meths, concr_meths);
-  init = top and Curry._2($$super, cla, param[3]) or Curry._1($$super, cla);
+  init = top and Curry._2(__super, cla, param[3]) or Curry._1(__super, cla);
   widen(cla);
   return Caml_array.caml_array_concat(--[[ :: ]][
               [init],
               --[[ :: ]][
-                $$Array.map((function (param) do
+                __Array.map((function (param) do
                         return get_variable(cla, param);
                       end end), to_array(vals)),
                 --[[ :: ]][
-                  $$Array.map((function (nm) do
+                  __Array.map((function (nm) do
                           return get_method(cla, get_method_label(cla, nm));
                         end end), to_array(concr_meths)),
                   --[[ [] ]]0

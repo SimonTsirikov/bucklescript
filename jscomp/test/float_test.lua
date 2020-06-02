@@ -1,7 +1,7 @@
 --[['use strict';]]
 
 Mt = require "./mt.lua";
-$$Array = require "../../lib/js/array.lua";
+__Array = require "../../lib/js/array.lua";
 Block = require "../../lib/js/block.lua";
 Curry = require "../../lib/js/curry.lua";
 Printf = require "../../lib/js/printf.lua";
@@ -42,7 +42,7 @@ match$1 = Caml_float.caml_frexp_float(0);
 
 match$2 = Caml_float.caml_frexp_float(-12.0);
 
-results = $$Array.append([
+results = __Array.append([
       --[[ tuple ]][
         Math.log10(2),
         0.301029995663981198
@@ -123,7 +123,7 @@ results = $$Array.append([
     ]);
 
 function from_pairs(ps) do
-  return $$Array.to_list($$Array.mapi((function (i, param) do
+  return __Array.to_list(__Array.mapi((function (i, param) do
                     b = param[1];
                     a = param[0];
                     return --[[ tuple ]][
@@ -184,7 +184,7 @@ param$3 = [
   1
 ];
 
-param$4 = $$Array.map((function (x) do
+param$4 = __Array.map((function (x) do
         if (x > 0) then do
           return 1;
         end else if (x < 0) then do
@@ -192,7 +192,7 @@ param$4 = $$Array.map((function (x) do
         end else do
           return 0;
         end end  end 
-      end end), $$Array.map((function (param) do
+      end end), __Array.map((function (param) do
             return Caml_primitive.caml_float_compare(param[0], param[1]);
           end end), [
           --[[ tuple ]][

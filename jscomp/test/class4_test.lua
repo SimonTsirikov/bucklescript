@@ -43,9 +43,9 @@ function eq(loc, x, y) do
   return --[[ () ]]0;
 end end
 
-function restricted_point_init($$class) do
-  x_init = CamlinternalOO.new_variable($$class, "");
-  ids = CamlinternalOO.new_methods_variables($$class, [
+function restricted_point_init(__class) do
+  x_init = CamlinternalOO.new_variable(__class, "");
+  ids = CamlinternalOO.new_methods_variables(__class, [
         "move",
         "get_x",
         "bump"
@@ -54,7 +54,7 @@ function restricted_point_init($$class) do
   get_x = ids[1];
   bump = ids[2];
   x = ids[3];
-  CamlinternalOO.set_methods($$class, [
+  CamlinternalOO.set_methods(__class, [
         get_x,
         (function (self$1) do
             return self$1[x];
@@ -70,7 +70,7 @@ function restricted_point_init($$class) do
           end end)
       ]);
   return (function (env, self, x_init$1) do
-      self$1 = CamlinternalOO.create_object_opt(self, $$class);
+      self$1 = CamlinternalOO.create_object_opt(self, __class);
       self$1[x_init] = x_init$1;
       self$1[x] = x_init$1;
       return self$1;
@@ -79,8 +79,8 @@ end end
 
 restricted_point = CamlinternalOO.make_class(shared$2, restricted_point_init);
 
-function restricted_point$prime_init($$class) do
-  inh = CamlinternalOO.inherits($$class, 0, 0, shared$2, restricted_point, true);
+function restricted_point$prime_init(__class) do
+  inh = CamlinternalOO.inherits(__class, 0, 0, shared$2, restricted_point, true);
   obj_init = inh[0];
   return (function (env, self, x) do
       return Curry._2(obj_init, self, x);
@@ -89,8 +89,8 @@ end end
 
 restricted_point$prime = CamlinternalOO.make_class(shared$2, restricted_point$prime_init);
 
-function restricted_point2$prime_init($$class) do
-  inh = CamlinternalOO.inherits($$class, 0, 0, shared$2, restricted_point, true);
+function restricted_point2$prime_init(__class) do
+  inh = CamlinternalOO.inherits(__class, 0, 0, shared$2, restricted_point, true);
   obj_init = inh[0];
   return (function (env, self, x) do
       return Curry._2(obj_init, self, x);
@@ -103,20 +103,20 @@ Point = do
   restricted_point$prime: restricted_point
 end;
 
-function abstract_point_001($$class) do
-  x_init = CamlinternalOO.new_variable($$class, "");
-  ids = CamlinternalOO.get_method_labels($$class, [
+function abstract_point_001(__class) do
+  x_init = CamlinternalOO.new_variable(__class, "");
+  ids = CamlinternalOO.get_method_labels(__class, [
         "move",
         "get_x",
         "get_offset"
       ]);
   get_x = ids[1];
   get_offset = ids[2];
-  CamlinternalOO.set_method($$class, get_offset, (function (self$5) do
+  CamlinternalOO.set_method(__class, get_offset, (function (self$5) do
           return Curry._1(self$5[0][get_x], self$5) - self$5[x_init] | 0;
         end end));
   return (function (env, self, x_init$1) do
-      self$1 = CamlinternalOO.create_object_opt(self, $$class);
+      self$1 = CamlinternalOO.create_object_opt(self, __class);
       self$1[x_init] = x_init$1;
       return self$1;
     end end);
@@ -129,15 +129,15 @@ abstract_point = --[[ class ]][
   0
 ];
 
-function point_init($$class) do
-  x_init = CamlinternalOO.new_variable($$class, "");
-  ids = CamlinternalOO.new_methods_variables($$class, shared$1, shared);
+function point_init(__class) do
+  x_init = CamlinternalOO.new_variable(__class, "");
+  ids = CamlinternalOO.new_methods_variables(__class, shared$1, shared);
   move = ids[0];
   get_x = ids[1];
   x = ids[2];
-  inh = CamlinternalOO.inherits($$class, 0, shared$1, ["get_offset"], abstract_point, true);
+  inh = CamlinternalOO.inherits(__class, 0, shared$1, ["get_offset"], abstract_point, true);
   obj_init = inh[0];
-  CamlinternalOO.set_methods($$class, [
+  CamlinternalOO.set_methods(__class, [
         get_x,
         (function (self$6) do
             return self$6[x];
@@ -149,11 +149,11 @@ function point_init($$class) do
           end end)
       ]);
   return (function (env, self, x_init$1) do
-      self$1 = CamlinternalOO.create_object_opt(self, $$class);
+      self$1 = CamlinternalOO.create_object_opt(self, __class);
       self$1[x_init] = x_init$1;
       Curry._2(obj_init, self$1, x_init$1);
       self$1[x] = x_init$1;
-      return CamlinternalOO.run_initializers_opt(self, self$1, $$class);
+      return CamlinternalOO.run_initializers_opt(self, self$1, __class);
     end end);
 end end
 
@@ -163,28 +163,28 @@ point = CamlinternalOO.make_class([
       "get_x"
     ], point_init);
 
-function colored_point_init($$class) do
-  x = CamlinternalOO.new_variable($$class, "");
-  c = CamlinternalOO.new_variable($$class, "");
-  ids = CamlinternalOO.new_methods_variables($$class, ["color"], ["c"]);
+function colored_point_init(__class) do
+  x = CamlinternalOO.new_variable(__class, "");
+  c = CamlinternalOO.new_variable(__class, "");
+  ids = CamlinternalOO.new_methods_variables(__class, ["color"], ["c"]);
   color = ids[0];
   c$1 = ids[1];
-  inh = CamlinternalOO.inherits($$class, shared, 0, [
+  inh = CamlinternalOO.inherits(__class, shared, 0, [
         "get_offset",
         "get_x",
         "move"
       ], point, true);
   obj_init = inh[0];
-  CamlinternalOO.set_method($$class, color, (function (self$7) do
+  CamlinternalOO.set_method(__class, color, (function (self$7) do
           return self$7[c$1];
         end end));
   return (function (env, self, x$1, c$2) do
-      self$1 = CamlinternalOO.create_object_opt(self, $$class);
+      self$1 = CamlinternalOO.create_object_opt(self, __class);
       self$1[c] = c$2;
       self$1[x] = x$1;
       Curry._2(obj_init, self$1, x$1);
       self$1[c$1] = c$2;
-      return CamlinternalOO.run_initializers_opt(self, self$1, $$class);
+      return CamlinternalOO.run_initializers_opt(self, self$1, __class);
     end end);
 end end
 

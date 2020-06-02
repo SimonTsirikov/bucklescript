@@ -10,11 +10,11 @@ count = do
 end;
 
 function test(set) do
-  count.contents = Offset.$$Set.cardinal(set) + count.contents | 0;
+  count.contents = Offset.__Set.cardinal(set) + count.contents | 0;
   return --[[ () ]]0;
 end end
 
-test(Curry._1(Offset.M.$$Set.singleton, "42"));
+test(Curry._1(Offset.M.__Set.singleton, "42"));
 
 suites = do
   contents: --[[ [] ]]0

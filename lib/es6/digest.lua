@@ -1,7 +1,7 @@
 
 
 import * as Char from "./char.lua";
-import * as $$String from "./string.lua";
+import * as __String from "./string.lua";
 import * as Caml_md5 from "./caml_md5.lua";
 import * as Caml_bytes from "./caml_bytes.lua";
 import * as Pervasives from "./pervasives.lua";
@@ -115,19 +115,19 @@ function from_hex(s) do
       return c - --[[ "0" ]]48 | 0;
     end end 
   end end;
-  $$byte = function (i) do
+  __byte = function (i) do
     return (digit(Caml_string.get(s, i)) << 4) + digit(Caml_string.get(s, i + 1 | 0)) | 0;
   end end;
   result = Caml_bytes.caml_create_bytes(16);
   for i = 0 , 15 , 1 do
-    result[i] = Char.chr($$byte((i << 1)));
+    result[i] = Char.chr(__byte((i << 1)));
   end
   return Caml_bytes.bytes_to_string(result);
 end end
 
-compare = $$String.compare;
+compare = __String.compare;
 
-equal = $$String.equal;
+equal = __String.equal;
 
 export do
   compare ,

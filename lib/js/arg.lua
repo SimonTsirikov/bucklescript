@@ -2,13 +2,13 @@
 
 Sys = require "./sys.lua";
 List = require "./list.lua";
-$$Array = require "./array.lua";
+__Array = require "./array.lua";
 Block = require "./block.lua";
 Bytes = require "./bytes.lua";
 Curry = require "./curry.lua";
-$$Buffer = require "./buffer.lua";
+__Buffer = require "./buffer.lua";
 Printf = require "./printf.lua";
-$$String = require "./string.lua";
+__String = require "./string.lua";
 Caml_io = require "./caml_io.lua";
 Caml_obj = require "./caml_obj.lua";
 Caml_array = require "./caml_array.lua";
@@ -46,11 +46,11 @@ function assoc3(x, _l) do
 end end
 
 function split(s) do
-  i = $$String.index(s, --[[ "=" ]]61);
+  i = __String.index(s, --[[ "=" ]]61);
   len = #s;
   return --[[ tuple ]][
-          $$String.sub(s, 0, i),
-          $$String.sub(s, i + 1 | 0, len - (i + 1 | 0) | 0)
+          __String.sub(s, 0, i),
+          __String.sub(s, i + 1 | 0, len - (i + 1 | 0) | 0)
         ];
 end end
 
@@ -182,9 +182,9 @@ function usage_b(buf, speclist, errmsg) do
 end end
 
 function usage_string(speclist, errmsg) do
-  b = $$Buffer.create(200);
+  b = __Buffer.create(200);
   usage_b(b, speclist, errmsg);
-  return $$Buffer.contents(b);
+  return __Buffer.contents(b);
 end end
 
 function usage(speclist, errmsg) do
@@ -246,7 +246,7 @@ end end
 function parse_and_expand_argv_dynamic_aux(allow_expand, current, argv, speclist, anonfun, errmsg) do
   initpos = current.contents;
   convert_error = function (error) do
-    b = $$Buffer.create(200);
+    b = __Buffer.create(200);
     progname = initpos < #argv.contents and Caml_array.caml_array_get(argv.contents, initpos) or "(?)";
     local ___conditional___=(error.tag | 0);
     do
@@ -347,12 +347,12 @@ function parse_and_expand_argv_dynamic_aux(allow_expand, current, argv, speclist
     if (Caml_obj.caml_equal(error, --[[ Unknown ]]Block.__(0, ["-help"])) or Caml_obj.caml_equal(error, --[[ Unknown ]]Block.__(0, ["--help"]))) then do
       return [
               Help,
-              $$Buffer.contents(b)
+              __Buffer.contents(b)
             ];
     end else do
       return [
               Bad,
-              $$Buffer.contents(b)
+              __Buffer.contents(b)
             ];
     end end 
   end end;
@@ -569,8 +569,8 @@ function parse_and_expand_argv_dynamic_aux(allow_expand, current, argv, speclist
                 arg$7 = get_arg(--[[ () ]]0);
                 newarg = Curry._1(param[0], arg$7);
                 consume_arg(--[[ () ]]0);
-                before = $$Array.sub(argv.contents, 0, current.contents + 1 | 0);
-                after = $$Array.sub(argv.contents, current.contents + 1 | 0, (#argv.contents - current.contents | 0) - 1 | 0);
+                before = __Array.sub(argv.contents, 0, current.contents + 1 | 0);
+                after = __Array.sub(argv.contents, current.contents + 1 | 0, (#argv.contents - current.contents | 0) - 1 | 0);
                 argv.contents = Caml_array.caml_array_concat(--[[ :: ]][
                       before,
                       --[[ :: ]][
@@ -743,14 +743,14 @@ function second_word(s) do
   end end;
   n;
   try do
-    n = $$String.index(s, --[[ "\t" ]]9);
+    n = __String.index(s, --[[ "\t" ]]9);
   end
   catch (exn)do
     if (exn == Caml_builtin_exceptions.not_found) then do
       exit = 0;
       n$1;
       try do
-        n$1 = $$String.index(s, --[[ " " ]]32);
+        n$1 = __String.index(s, --[[ " " ]]32);
         exit = 2;
       end
       catch (exn$1)do
@@ -784,7 +784,7 @@ function replace_leading_tab(s) do
   seen = do
     contents: false
   end;
-  return $$String.map((function (c) do
+  return __String.map((function (c) do
                 if (c ~= 9 or seen.contents) then do
                   return c;
                 end else do
@@ -829,8 +829,8 @@ function align(limitOpt, speclist) do
                           ];
                   end else do
                     spaces$1 = Caml_bytes.bytes_to_string(Bytes.make(diff, --[[ " " ]]32));
-                    prefix = $$String.sub(replace_leading_tab(msg$1), 0, cutcol$1);
-                    suffix = $$String.sub(msg$1, cutcol$1, #msg$1 - cutcol$1 | 0);
+                    prefix = __String.sub(replace_leading_tab(msg$1), 0, cutcol$1);
+                    suffix = __String.sub(msg$1, cutcol$1, #msg$1 - cutcol$1 | 0);
                     return --[[ tuple ]][
                             kwd,
                             spec,
@@ -844,7 +844,7 @@ end end
 function trim_cr(s) do
   len = #s;
   if (len > 0 and Caml_string.get(s, len - 1 | 0) == --[[ "\r" ]]13) then do
-    return $$String.sub(s, 0, len - 1 | 0);
+    return __String.sub(s, 0, len - 1 | 0);
   end else do
     return s;
   end end 
@@ -852,12 +852,12 @@ end end
 
 function read_aux(trim, sep, file) do
   ic = Pervasives.open_in_bin(file);
-  buf = $$Buffer.create(200);
+  buf = __Buffer.create(200);
   words = do
     contents: --[[ [] ]]0
   end;
   stash = function (param) do
-    word = $$Buffer.contents(buf);
+    word = __Buffer.contents(buf);
     word$1 = trim and trim_cr(word) or word;
     words.contents = --[[ :: ]][
       word$1,
@@ -873,7 +873,7 @@ function read_aux(trim, sep, file) do
         stash(--[[ () ]]0);
         return read(--[[ () ]]0);
       end else do
-        $$Buffer.add_char(buf, c);
+        __Buffer.add_char(buf, c);
         return read(--[[ () ]]0);
       end end 
     end
@@ -891,7 +891,7 @@ function read_aux(trim, sep, file) do
   end end;
   read(--[[ () ]]0);
   Caml_external_polyfill.resolve("caml_ml_close_channel")(ic);
-  return $$Array.of_list(List.rev(words.contents));
+  return __Array.of_list(List.rev(words.contents));
 end end
 
 function read_arg(param) do
@@ -904,7 +904,7 @@ end end
 
 function write_aux(sep, file, args) do
   oc = Pervasives.open_out_bin(file);
-  $$Array.iter((function (s) do
+  __Array.iter((function (s) do
           return Curry._2(Printf.fprintf(oc, --[[ Format ]][
                           --[[ String ]]Block.__(2, [
                               --[[ No_padding ]]0,

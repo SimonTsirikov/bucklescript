@@ -1,7 +1,7 @@
 --[['use strict';]]
 
 Curry = require "./curry.lua";
-$$Buffer = require "./buffer.lua";
+__Buffer = require "./buffer.lua";
 Pervasives = require "./pervasives.lua";
 CamlinternalFormat = require "./camlinternalFormat.lua";
 
@@ -51,9 +51,9 @@ end end
 
 function ksprintf(k, param) do
   k$prime = function (param, acc) do
-    buf = $$Buffer.create(64);
+    buf = __Buffer.create(64);
     CamlinternalFormat.strput_acc(buf, acc);
-    return Curry._1(k, $$Buffer.contents(buf));
+    return Curry._1(k, __Buffer.contents(buf));
   end end;
   return CamlinternalFormat.make_printf(k$prime, --[[ () ]]0, --[[ End_of_acc ]]0, param[0]);
 end end

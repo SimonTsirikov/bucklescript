@@ -14,7 +14,7 @@ import * as Caml_builtin_exceptions from "./caml_builtin_exceptions.lua";
 
 Failure = Caml_exceptions.create("Stream.Failure");
 
-$$Error = Caml_exceptions.create("Stream.Error");
+__Error = Caml_exceptions.create("Stream.Error");
 
 function count(param) do
   if (param ~= undefined) then do
@@ -499,7 +499,7 @@ sempty = undefined;
 
 export do
   Failure ,
-  $$Error ,
+  __Error ,
   from ,
   of_list ,
   of_string ,

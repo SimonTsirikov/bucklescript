@@ -2,7 +2,7 @@
 
 Mt = require "./mt.lua";
 List = require "../../lib/js/list.lua";
-$$Array = require "../../lib/js/array.lua";
+__Array = require "../../lib/js/array.lua";
 Block = require "../../lib/js/block.lua";
 Curry = require "../../lib/js/curry.lua";
 Printf = require "../../lib/js/printf.lua";
@@ -27,7 +27,7 @@ int32_pairs = [
 ];
 
 function from_pairs(pair) do
-  return List.concat($$Array.to_list($$Array.mapi((function (i, param) do
+  return List.concat(__Array.to_list(__Array.mapi((function (i, param) do
                         f = param[1];
                         i32 = param[0];
                         return --[[ :: ]][

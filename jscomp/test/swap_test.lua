@@ -2,7 +2,7 @@
 
 Mt = require "./mt.lua";
 List = require "../../lib/js/list.lua";
-$$Array = require "../../lib/js/array.lua";
+__Array = require "../../lib/js/array.lua";
 Block = require "../../lib/js/block.lua";
 Curry = require "../../lib/js/curry.lua";
 Format = require "../../lib/js/format.lua";
@@ -875,7 +875,7 @@ suites_16 = List.map((function (param) do
                             ]);
                   end end)
               ];
-      end end), $$Array.to_list(tests_16));
+      end end), __Array.to_list(tests_16));
 
 suites_32 = List.map((function (param) do
         b = param[1];
@@ -900,7 +900,7 @@ suites_32 = List.map((function (param) do
                             ]);
                   end end)
               ];
-      end end), $$Array.to_list(tests_32));
+      end end), __Array.to_list(tests_32));
 
 suites_64 = List.map((function (param) do
         b = param[1];
@@ -925,7 +925,7 @@ suites_64 = List.map((function (param) do
                             ]);
                   end end)
               ];
-      end end), $$Array.to_list(tests_64));
+      end end), __Array.to_list(tests_64));
 
 d16_000 = --[[ Format ]][
   --[[ Int ]]Block.__(4, [
@@ -988,7 +988,7 @@ d32 = --[[ tuple ]][
 function f(s, param) do
   swap = param[1];
   x = param[0];
-  return $$Array.to_list($$Array.mapi((function (i, param) do
+  return __Array.to_list(__Array.mapi((function (i, param) do
                     b = param[1];
                     a = param[0];
                     return --[[ tuple ]][

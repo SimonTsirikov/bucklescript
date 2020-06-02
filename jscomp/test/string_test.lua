@@ -4,7 +4,7 @@ Mt = require "./mt.lua";
 List = require "../../lib/js/list.lua";
 Block = require "../../lib/js/block.lua";
 Bytes = require "../../lib/js/bytes.lua";
-$$String = require "../../lib/js/string.lua";
+__String = require "../../lib/js/string.lua";
 Caml_bytes = require "../../lib/js/caml_bytes.lua";
 Ext_string_test = require "./ext_string_test.lua";
 Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
@@ -62,8 +62,8 @@ end end
 function rev_split_by_char(c, s) do
   loop = function (i, l) do
     try do
-      i$prime = $$String.index_from(s, i, c);
-      s$prime = $$String.sub(s, i, i$prime - i | 0);
+      i$prime = __String.index_from(s, i, c);
+      s$prime = __String.sub(s, i, i$prime - i | 0);
       return loop(i$prime + 1 | 0, s$prime == "" and l or --[[ :: ]][
                     s$prime,
                     l
@@ -72,7 +72,7 @@ function rev_split_by_char(c, s) do
     catch (exn)do
       if (exn == Caml_builtin_exceptions.not_found) then do
         return --[[ :: ]][
-                $$String.sub(s, i, #s - i | 0),
+                __String.sub(s, i, #s - i | 0),
                 l
               ];
       end else do
@@ -94,19 +94,19 @@ function xsplit(delim, s) do
       if (i ~= 0) then do
         i$prime;
         try do
-          i$prime = $$String.rindex_from(s, i - 1 | 0, delim);
+          i$prime = __String.rindex_from(s, i - 1 | 0, delim);
         end
         catch (exn)do
           if (exn == Caml_builtin_exceptions.not_found) then do
             return --[[ :: ]][
-                    $$String.sub(s, 0, i),
+                    __String.sub(s, 0, i),
                     l
                   ];
           end else do
             throw exn;
           end end 
         end
-        l_000 = $$String.sub(s, i$prime + 1 | 0, (i - i$prime | 0) - 1 | 0);
+        l_000 = __String.sub(s, i$prime + 1 | 0, (i - i$prime | 0) - 1 | 0);
         l$1 = --[[ :: ]][
           l_000,
           l
@@ -128,7 +128,7 @@ function xsplit(delim, s) do
 end end
 
 function string_of_chars(x) do
-  return $$String.concat("", List.map((function (prim) do
+  return __String.concat("", List.map((function (prim) do
                     return String.fromCharCode(prim);
                   end end), x));
 end end
@@ -159,7 +159,7 @@ Mt.from_pair_suites("String_test", --[[ :: ]][
             (function (param) do
                 return --[[ Eq ]]Block.__(0, [
                           "haha",
-                          $$String.escaped("haha")
+                          __String.escaped("haha")
                         ]);
               end end)
           ],
@@ -179,7 +179,7 @@ Mt.from_pair_suites("String_test", --[[ :: ]][
                 (function (param) do
                     return --[[ Eq ]]Block.__(0, [
                               "\\\"\\\"",
-                              $$String.escaped("\"\"")
+                              __String.escaped("\"\"")
                             ]);
                   end end)
               ],

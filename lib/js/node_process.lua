@@ -3,8 +3,8 @@
 Js_dict = require "./js_dict.lua";
 Process = require "process";
 
-function putEnvVar(key, $$var) do
-  Process.env[key] = $$var;
+function putEnvVar(key, __var) do
+  Process.env[key] = __var;
   return --[[ () ]]0;
 end end
 

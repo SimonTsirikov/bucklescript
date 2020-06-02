@@ -2,7 +2,7 @@
 
 import * as Bytes from "./bytes.lua";
 import * as Curry from "./curry.lua";
-import * as $$String from "./string.lua";
+import * as __String from "./string.lua";
 import * as Caml_bytes from "./caml_bytes.lua";
 import * as Pervasives from "./pervasives.lua";
 import * as Caml_string from "./caml_string.lua";
@@ -430,7 +430,7 @@ function find_ident(s, start, lim) do
   if (c ~= 40 and c ~= 123) then do
     stop = advance_to_non_alpha(s, start + 1 | 0);
     return --[[ tuple ]][
-            $$String.sub(s, start, stop - start | 0),
+            __String.sub(s, start, stop - start | 0),
             stop
           ];
   end
@@ -438,7 +438,7 @@ function find_ident(s, start, lim) do
   new_start = start + 1 | 0;
   stop$1 = advance_to_closing(c, closing(c), 0, s, new_start);
   return --[[ tuple ]][
-          $$String.sub(s, new_start, (stop$1 - start | 0) - 1 | 0),
+          __String.sub(s, new_start, (stop$1 - start | 0) - 1 | 0),
           stop$1 + 1 | 0
         ];
 end end

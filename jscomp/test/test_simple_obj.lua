@@ -6,14 +6,14 @@ Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
 
 shared = ["add"];
 
-$$class = CamlinternalOO.create_table([
+__class = CamlinternalOO.create_table([
       "hi",
       "id1",
       "id2",
       "hello"
     ]);
 
-ids = CamlinternalOO.get_method_labels($$class, [
+ids = CamlinternalOO.get_method_labels(__class, [
       "id2",
       "id1",
       "hi",
@@ -28,7 +28,7 @@ hi = ids[2];
 
 hello = ids[3];
 
-CamlinternalOO.set_methods($$class, [
+CamlinternalOO.set_methods(__class, [
       hi,
       (function (self$1, v, z) do
           return v + z | 0;
@@ -47,45 +47,45 @@ CamlinternalOO.set_methods($$class, [
         end end)
     ]);
 
-CamlinternalOO.init_class($$class);
+CamlinternalOO.init_class(__class);
 
-u = CamlinternalOO.create_object_opt(0, $$class);
+u = CamlinternalOO.create_object_opt(0, __class);
 
-$$class$1 = CamlinternalOO.create_table(["id"]);
+__class$1 = CamlinternalOO.create_table(["id"]);
 
-id = CamlinternalOO.get_method_label($$class$1, "id");
+id = CamlinternalOO.get_method_label(__class$1, "id");
 
-CamlinternalOO.set_method($$class$1, id, (function (self$2) do
+CamlinternalOO.set_method(__class$1, id, (function (self$2) do
         return "uu";
       end end));
 
-CamlinternalOO.init_class($$class$1);
+CamlinternalOO.init_class(__class$1);
 
-uu = CamlinternalOO.create_object_opt(0, $$class$1);
+uu = CamlinternalOO.create_object_opt(0, __class$1);
 
-$$class$2 = CamlinternalOO.create_table(shared);
+__class$2 = CamlinternalOO.create_table(shared);
 
-add = CamlinternalOO.get_method_label($$class$2, "add");
+add = CamlinternalOO.get_method_label(__class$2, "add");
 
-CamlinternalOO.set_method($$class$2, add, (function (self$3, x, y) do
+CamlinternalOO.set_method(__class$2, add, (function (self$3, x, y) do
         return x + y | 0;
       end end));
 
-CamlinternalOO.init_class($$class$2);
+CamlinternalOO.init_class(__class$2);
 
-uuu = CamlinternalOO.create_object_opt(0, $$class$2);
+uuu = CamlinternalOO.create_object_opt(0, __class$2);
 
-$$class$3 = CamlinternalOO.create_table(shared);
+__class$3 = CamlinternalOO.create_table(shared);
 
-add$1 = CamlinternalOO.get_method_label($$class$3, "add");
+add$1 = CamlinternalOO.get_method_label(__class$3, "add");
 
-CamlinternalOO.set_method($$class$3, add$1, (function (self$4, x, y) do
+CamlinternalOO.set_method(__class$3, add$1, (function (self$4, x, y) do
         return x + y | 0;
       end end));
 
-CamlinternalOO.init_class($$class$3);
+CamlinternalOO.init_class(__class$3);
 
-v = CamlinternalOO.create_object_opt(0, $$class$3);
+v = CamlinternalOO.create_object_opt(0, __class$3);
 
 function test(param) do
   if (Caml_oo_curry.js1(23515, 1, uu) ~= "uu") then do

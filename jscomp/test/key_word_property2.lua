@@ -16,15 +16,15 @@ function test(p) do
         ];
 end end
 
-$$case = Export_keyword.$$case;
+__case = Export_keyword.__case;
 
-$$window = Export_keyword.$$window;
+__window = Export_keyword.__window;
 
-$$switch = Export_keyword.$$switch;
+__switch = Export_keyword.__switch;
 
 exports.test2 = test2;
 exports.test = test;
-exports.$$case = $$case;
-exports.$$window = $$window;
-exports.$$switch = $$switch;
+exports.__case = __case;
+exports.__window = __window;
+exports.__switch = __switch;
 --[[ No side effect ]]

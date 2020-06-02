@@ -1,7 +1,7 @@
 --[['use strict';]]
 
 List = require "../../lib/js/list.lua";
-$$Array = require "../../lib/js/array.lua";
+__Array = require "../../lib/js/array.lua";
 Curry = require "../../lib/js/curry.lua";
 Caml_option = require "../../lib/js/caml_option.lua";
 Ext_string_test = require "./ext_string_test.lua";
@@ -446,11 +446,11 @@ function fold_right2_last(f, l1, l2, accu) do
 end end
 
 function init(n, f) do
-  return $$Array.to_list($$Array.init(n, f));
+  return __Array.to_list(__Array.init(n, f));
 end end
 
 function take(n, l) do
-  arr = $$Array.of_list(l);
+  arr = __Array.of_list(l);
   arr_length = #arr;
   if (arr_length < n) then do
     throw [
@@ -460,13 +460,13 @@ function take(n, l) do
   end
    end 
   return --[[ tuple ]][
-          $$Array.to_list($$Array.sub(arr, 0, n)),
-          $$Array.to_list($$Array.sub(arr, n, arr_length - n | 0))
+          __Array.to_list(__Array.sub(arr, 0, n)),
+          __Array.to_list(__Array.sub(arr, n, arr_length - n | 0))
         ];
 end end
 
 function try_take(n, l) do
-  arr = $$Array.of_list(l);
+  arr = __Array.of_list(l);
   arr_length = #arr;
   if (arr_length <= n) then do
     return --[[ tuple ]][
@@ -476,9 +476,9 @@ function try_take(n, l) do
           ];
   end else do
     return --[[ tuple ]][
-            $$Array.to_list($$Array.sub(arr, 0, n)),
+            __Array.to_list(__Array.sub(arr, 0, n)),
             n,
-            $$Array.to_list($$Array.sub(arr, n, arr_length - n | 0))
+            __Array.to_list(__Array.sub(arr, n, arr_length - n | 0))
           ];
   end end 
 end end
@@ -886,9 +886,9 @@ function rev_except_last(xs) do
 end end
 
 function sort_via_array(cmp, lst) do
-  arr = $$Array.of_list(lst);
-  $$Array.sort(cmp, arr);
-  return $$Array.to_list(arr);
+  arr = __Array.of_list(lst);
+  __Array.sort(cmp, arr);
+  return __Array.to_list(arr);
 end end
 
 function last(_xs) do

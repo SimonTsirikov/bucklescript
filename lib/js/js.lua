@@ -15,19 +15,19 @@ Null_undefined = --[[ alias ]]0;
 
 Exn = --[[ alias ]]0;
 
-$$Array = --[[ alias ]]0;
+__Array = --[[ alias ]]0;
 
 Array2 = --[[ alias ]]0;
 
-$$String = --[[ alias ]]0;
+__String = --[[ alias ]]0;
 
 String2 = --[[ alias ]]0;
 
 Re = --[[ alias ]]0;
 
-$$Promise = --[[ alias ]]0;
+__Promise = --[[ alias ]]0;
 
-$$Date = --[[ alias ]]0;
+__Date = --[[ alias ]]0;
 
 Dict = --[[ alias ]]0;
 
@@ -35,7 +35,7 @@ Global = --[[ alias ]]0;
 
 Json = --[[ alias ]]0;
 
-$$Math = --[[ alias ]]0;
+__Math = --[[ alias ]]0;
 
 Obj = --[[ alias ]]0;
 
@@ -49,7 +49,7 @@ Float = --[[ alias ]]0;
 
 Int = --[[ alias ]]0;
 
-$$Option = --[[ alias ]]0;
+__Option = --[[ alias ]]0;
 
 Result = --[[ alias ]]0;
 
@@ -66,24 +66,24 @@ exports.Undefined = Undefined;
 exports.Nullable = Nullable;
 exports.Null_undefined = Null_undefined;
 exports.Exn = Exn;
-exports.$$Array = $$Array;
+exports.__Array = __Array;
 exports.Array2 = Array2;
-exports.$$String = $$String;
+exports.__String = __String;
 exports.String2 = String2;
 exports.Re = Re;
-exports.$$Promise = $$Promise;
-exports.$$Date = $$Date;
+exports.__Promise = __Promise;
+exports.__Date = __Date;
 exports.Dict = Dict;
 exports.Global = Global;
 exports.Json = Json;
-exports.$$Math = $$Math;
+exports.__Math = __Math;
 exports.Obj = Obj;
 exports.Typed_array = Typed_array;
 exports.TypedArray2 = TypedArray2;
 exports.Types = Types;
 exports.Float = Float;
 exports.Int = Int;
-exports.$$Option = $$Option;
+exports.__Option = __Option;
 exports.Result = Result;
 exports.List = List;
 exports.Vector = Vector;

@@ -26,10 +26,10 @@ function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
 end end
 
-function comparable_001($$class) do
-  CamlinternalOO.get_method_label($$class, "leq");
+function comparable_001(__class) do
+  CamlinternalOO.get_method_label(__class, "leq");
   return (function (env, self) do
-      return CamlinternalOO.create_object_opt(self, $$class);
+      return CamlinternalOO.create_object_opt(self, __class);
     end end);
 end end
 
@@ -40,18 +40,18 @@ comparable = --[[ class ]][
   0
 ];
 
-function money_init($$class) do
-  x = CamlinternalOO.new_variable($$class, "");
-  ids = CamlinternalOO.new_methods_variables($$class, [
+function money_init(__class) do
+  x = CamlinternalOO.new_variable(__class, "");
+  ids = CamlinternalOO.new_methods_variables(__class, [
         "value",
         "leq"
       ], shared$1);
   value = ids[0];
   leq = ids[1];
   repr = ids[2];
-  inh = CamlinternalOO.inherits($$class, 0, ["leq"], 0, comparable, true);
+  inh = CamlinternalOO.inherits(__class, 0, ["leq"], 0, comparable, true);
   obj_init = inh[0];
-  CamlinternalOO.set_methods($$class, [
+  CamlinternalOO.set_methods(__class, [
         value,
         (function (self$2) do
             return self$2[repr];
@@ -62,32 +62,32 @@ function money_init($$class) do
           end end)
       ]);
   return (function (env, self, x$1) do
-      self$1 = CamlinternalOO.create_object_opt(self, $$class);
+      self$1 = CamlinternalOO.create_object_opt(self, __class);
       self$1[x] = x$1;
       Curry._1(obj_init, self$1);
       self$1[repr] = x$1;
-      return CamlinternalOO.run_initializers_opt(self, self$1, $$class);
+      return CamlinternalOO.run_initializers_opt(self, self$1, __class);
     end end);
 end end
 
 money = CamlinternalOO.make_class(shared, money_init);
 
-function money2_init($$class) do
-  x = CamlinternalOO.new_variable($$class, "");
-  times = CamlinternalOO.get_method_label($$class, "times");
-  inh = CamlinternalOO.inherits($$class, shared$1, 0, shared, money, true);
+function money2_init(__class) do
+  x = CamlinternalOO.new_variable(__class, "");
+  times = CamlinternalOO.get_method_label(__class, "times");
+  inh = CamlinternalOO.inherits(__class, shared$1, 0, shared, money, true);
   obj_init = inh[0];
   repr = inh[1];
-  CamlinternalOO.set_method($$class, times, (function (self$3, k) do
+  CamlinternalOO.set_method(__class, times, (function (self$3, k) do
           copy = Caml_exceptions.caml_set_oo_id(Caml_obj.caml_obj_dup(self$3));
           copy[repr] = k * self$3[repr];
           return copy;
         end end));
   return (function (env, self, x$1) do
-      self$1 = CamlinternalOO.create_object_opt(self, $$class);
+      self$1 = CamlinternalOO.create_object_opt(self, __class);
       self$1[x] = x$1;
       Curry._2(obj_init, self$1, x$1);
-      return CamlinternalOO.run_initializers_opt(self, self$1, $$class);
+      return CamlinternalOO.run_initializers_opt(self, self$1, __class);
     end end);
 end end
 

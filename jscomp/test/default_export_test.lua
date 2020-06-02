@@ -1,9 +1,9 @@
 --[['use strict';]]
 
 
-$$default = "xx";
+__default = "xx";
 
-exports.$$default = $$default;
-exports.default = $$default;
+exports.__default = __default;
+exports.default = __default;
 exports.__esModule = true;
 --[[ No side effect ]]

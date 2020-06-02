@@ -2,7 +2,7 @@
 
 Mt = require "./mt.lua";
 List = require "../../lib/js/list.lua";
-$$Array = require "../../lib/js/array.lua";
+__Array = require "../../lib/js/array.lua";
 Block = require "../../lib/js/block.lua";
 Curry = require "../../lib/js/curry.lua";
 Hashtbl = require "../../lib/js/hashtbl.lua";
@@ -39,7 +39,7 @@ function g(count) do
     Hashtbl.replace(tbl, (i$1 << 1), String(i$1));
   end
   v = to_list(tbl);
-  return $$Array.of_list(List.sort((function (param, param$1) do
+  return __Array.of_list(List.sort((function (param, param$1) do
                     return Caml_primitive.caml_int_compare(param[0], param$1[0]);
                   end end), v));
 end end
@@ -71,7 +71,7 @@ suites_001 = --[[ :: ]][
     "more_iterations",
     (function (param) do
         return --[[ Eq ]]Block.__(0, [
-                  $$Array.init(1001, (function (i) do
+                  __Array.init(1001, (function (i) do
                           return --[[ tuple ]][
                                   (i << 1),
                                   String(i)

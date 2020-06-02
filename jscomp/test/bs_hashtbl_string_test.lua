@@ -27,7 +27,7 @@ function hashString (str)do
                                               
                                             end;
 
-$$String = Belt_Id.hashable(Hashtbl.hash, (function (x, y) do
+__String = Belt_Id.hashable(Hashtbl.hash, (function (x, y) do
         return x == y;
       end end));
 
@@ -319,7 +319,7 @@ S = --[[ alias ]]0;
 
 exports.hash_string = hash_string;
 exports.hashString = hashString;
-exports.$$String = $$String;
+exports.__String = __String;
 exports.String1 = String1;
 exports.String2 = String2;
 exports.Int = Int;

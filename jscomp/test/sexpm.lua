@@ -6,10 +6,10 @@ List = require "../../lib/js/list.lua";
 Block = require "../../lib/js/block.lua";
 Bytes = require "../../lib/js/bytes.lua";
 Curry = require "../../lib/js/curry.lua";
-$$Buffer = require "../../lib/js/buffer.lua";
+__Buffer = require "../../lib/js/buffer.lua";
 Format = require "../../lib/js/format.lua";
 Printf = require "../../lib/js/printf.lua";
-$$String = require "../../lib/js/string.lua";
+__String = require "../../lib/js/string.lua";
 Caml_io = require "../../lib/js/caml_io.lua";
 Printexc = require "../../lib/js/printexc.lua";
 Caml_bytes = require "../../lib/js/caml_bytes.lua";
@@ -102,15 +102,15 @@ function to_buf(b, t) do
     l = t[1];
     if (l) then do
       if (l[1]) then do
-        $$Buffer.add_char(b, --[[ "(" ]]40);
+        __Buffer.add_char(b, --[[ "(" ]]40);
         List.iteri((function (i, t$prime) do
                 if (i > 0) then do
-                  $$Buffer.add_char(b, --[[ " " ]]32);
+                  __Buffer.add_char(b, --[[ " " ]]32);
                 end
                  end 
                 return to_buf(b, t$prime);
               end end), l);
-        return $$Buffer.add_char(b, --[[ ")" ]]41);
+        return __Buffer.add_char(b, --[[ ")" ]]41);
       end else do
         return Curry._2(Printf.bprintf(b, --[[ Format ]][
                         --[[ Char_literal ]]Block.__(12, [
@@ -124,7 +124,7 @@ function to_buf(b, t) do
                       ]), to_buf, l[0]);
       end end 
     end else do
-      return $$Buffer.add_string(b, "()");
+      return __Buffer.add_string(b, "()");
     end end 
   end else do
     s = t[1];
@@ -141,17 +141,17 @@ function to_buf(b, t) do
                             ])
                         ]),
                       "\"%s\""
-                    ]), $$String.escaped(s));
+                    ]), __String.escaped(s));
     end else do
-      return $$Buffer.add_string(b, s);
+      return __Buffer.add_string(b, s);
     end end 
   end end 
 end end
 
 function to_string(t) do
-  b = $$Buffer.create(128);
+  b = __Buffer.create(128);
   to_buf(b, t);
-  return $$Buffer.contents(b);
+  return __Buffer.contents(b);
 end end
 
 function print(fmt, t) do
@@ -244,7 +244,7 @@ function print(fmt, t) do
                             ])
                         ]),
                       "\"%s\""
-                    ]), $$String.escaped(s));
+                    ]), __String.escaped(s));
     end else do
       return Format.pp_print_string(fmt, s);
     end end 
@@ -295,7 +295,7 @@ function print_noindent(fmt, t) do
                             ])
                         ]),
                       "\"%s\""
-                    ]), $$String.escaped(s));
+                    ]), __String.escaped(s));
     end else do
       return Format.pp_print_string(fmt, s);
     end end 
@@ -336,7 +336,7 @@ function to_file(filename, t) do
               end end));
 end end
 
-function $$return(x) do
+function __return(x) do
   return x;
 end end
 
@@ -345,7 +345,7 @@ function $great$great$eq(x, f) do
 end end
 
 ID_MONAD = do
-  $$return: $$return,
+  __return: __return,
   $great$great$eq: $great$great$eq
 end;
 
@@ -355,7 +355,7 @@ function make(bufsizeOpt, refill) do
   return do
           buf: Caml_bytes.caml_create_bytes(bufsize$1),
           refill: refill,
-          atom: $$Buffer.create(32),
+          atom: __Buffer.create(32),
           i: 0,
           len: 0,
           line: 1,
@@ -406,7 +406,7 @@ function _get(t) do
 end end
 
 function _error(t, msg) do
-  b = $$Buffer.create(32);
+  b = __Buffer.create(32);
   Curry._2(Printf.bprintf(b, --[[ Format ]][
             --[[ String_literal ]]Block.__(11, [
                 "at ",
@@ -431,7 +431,7 @@ function _error(t, msg) do
             "at %d, %d: "
           ]), t.line, t.col);
   return Printf.kbprintf((function (b) do
-                msg$prime = $$Buffer.contents(b);
+                msg$prime = __Buffer.contents(b);
                 return --[[ `Error ]][
                         106380200,
                         msg$prime
@@ -537,7 +537,7 @@ function expr_starting_with(c, k, t) do
         ];
   end
    end  end  end 
-  $$Buffer.add_char(t.atom, c);
+  __Buffer.add_char(t.atom, c);
   return atom(k, t);
 end end
 
@@ -600,7 +600,7 @@ function expr_list(acc, k, t) do
 end end
 
 function _return_atom(last, k, t) do
-  s = $$Buffer.contents(t.atom);
+  s = __Buffer.contents(t.atom);
   t.atom.position = 0;
   return Curry._2(k, last, --[[ `Atom ]][
               726615281,
@@ -663,7 +663,7 @@ function atom(k, t) do
       local ___conditional___=(exit);
       do
          if ___conditional___ = 1 then do
-            $$Buffer.add_char(t.atom, c);
+            __Buffer.add_char(t.atom, c);
             continue ;end end end 
          if ___conditional___ = 2 then do
             return _return_atom(c, k, t);end end end 
@@ -684,11 +684,11 @@ function quoted(k, t) do
       c = _get(t);
       if (c ~= 34) then do
         if (c ~= 92) then do
-          $$Buffer.add_char(t.atom, c);
+          __Buffer.add_char(t.atom, c);
           continue ;
         end else do
           return escaped((function (c) do
-                        $$Buffer.add_char(t.atom, c);
+                        __Buffer.add_char(t.atom, c);
                         return quoted(k, t);
                       end end), t);
         end end 
@@ -967,7 +967,7 @@ function MakeDecode(funarg) do
     return do
             buf: Caml_bytes.caml_create_bytes(bufsize$1),
             refill: refill,
-            atom: $$Buffer.create(32),
+            atom: __Buffer.create(32),
             i: 0,
             len: 0,
             line: 1,
@@ -1015,7 +1015,7 @@ function MakeDecode(funarg) do
     return c;
   end end;
   _error = function (t, msg) do
-    b = $$Buffer.create(32);
+    b = __Buffer.create(32);
     Curry._2(Printf.bprintf(b, --[[ Format ]][
               --[[ String_literal ]]Block.__(11, [
                   "at ",
@@ -1040,8 +1040,8 @@ function MakeDecode(funarg) do
               "at %d, %d: "
             ]), t.line, t.col);
     return Printf.kbprintf((function (b) do
-                  msg$prime = $$Buffer.contents(b);
-                  return Curry._1(funarg.$$return, --[[ `Error ]][
+                  msg$prime = __Buffer.contents(b);
+                  return Curry._1(funarg.__return, --[[ `Error ]][
                               106380200,
                               msg$prime
                             ]);
@@ -1143,7 +1143,7 @@ function MakeDecode(funarg) do
           ];
     end
      end  end  end 
-    $$Buffer.add_char(t.atom, c);
+    __Buffer.add_char(t.atom, c);
     return atom(k, t);
   end end;
   expr_list = function (acc, k, t) do
@@ -1204,7 +1204,7 @@ function MakeDecode(funarg) do
     end;
   end end;
   _return_atom = function (last, k, t) do
-    s = $$Buffer.contents(t.atom);
+    s = __Buffer.contents(t.atom);
     t.atom.position = 0;
     return Curry._2(k, last, --[[ `Atom ]][
                 726615281,
@@ -1266,7 +1266,7 @@ function MakeDecode(funarg) do
         local ___conditional___=(exit);
         do
            if ___conditional___ = 1 then do
-              $$Buffer.add_char(t.atom, c);
+              __Buffer.add_char(t.atom, c);
               continue ;end end end 
            if ___conditional___ = 2 then do
               return _return_atom(c, k, t);end end end 
@@ -1286,11 +1286,11 @@ function MakeDecode(funarg) do
         c = _get(t);
         if (c ~= 34) then do
           if (c ~= 92) then do
-            $$Buffer.add_char(t.atom, c);
+            __Buffer.add_char(t.atom, c);
             continue ;
           end else do
             return escaped((function (c) do
-                          $$Buffer.add_char(t.atom, c);
+                          __Buffer.add_char(t.atom, c);
                           return quoted(k, t);
                         end end), t);
           end end 
@@ -1436,7 +1436,7 @@ function MakeDecode(funarg) do
         return _refill(t, (function (param) do
                       return expr_or_end(k, param);
                     end end), (function (param) do
-                      return Curry._1(funarg.$$return, --[[ End ]]3455931);
+                      return Curry._1(funarg.__return, --[[ End ]]3455931);
                     end end));
       end else do
         c = _get(t);
@@ -1456,7 +1456,7 @@ function MakeDecode(funarg) do
   end end;
   next = function (t) do
     return expr_or_end((function (param, x) do
-                  return Curry._1(funarg.$$return, --[[ `Ok ]][
+                  return Curry._1(funarg.__return, --[[ `Ok ]][
                               17724,
                               x
                             ]);

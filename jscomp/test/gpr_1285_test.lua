@@ -45,34 +45,34 @@ class_tables$1 = --[[ Cons ]][
 
 function step1(param) do
   if (not class_tables[0]) then do
-    $$class = CamlinternalOO.create_table(["step2"]);
-    env = CamlinternalOO.new_variable($$class, "");
-    step2 = CamlinternalOO.get_method_label($$class, "step2");
-    CamlinternalOO.set_method($$class, step2, (function (self$1) do
+    __class = CamlinternalOO.create_table(["step2"]);
+    env = CamlinternalOO.new_variable(__class, "");
+    step2 = CamlinternalOO.get_method_label(__class, "step2");
+    CamlinternalOO.set_method(__class, step2, (function (self$1) do
             if (not class_tables$1[0]) then do
-              $$class = CamlinternalOO.create_table(["step3"]);
-              env = CamlinternalOO.new_variable($$class, "");
-              step3 = CamlinternalOO.get_method_label($$class, "step3");
-              CamlinternalOO.set_method($$class, step3, (function (self$2) do
+              __class = CamlinternalOO.create_table(["step3"]);
+              env = CamlinternalOO.new_variable(__class, "");
+              step3 = CamlinternalOO.get_method_label(__class, "step3");
+              CamlinternalOO.set_method(__class, step3, (function (self$2) do
                       return 33;
                     end end));
               env_init = function (env$1) do
-                self = CamlinternalOO.create_object_opt(0, $$class);
+                self = CamlinternalOO.create_object_opt(0, __class);
                 self[env] = env$1;
                 return self;
               end end;
-              CamlinternalOO.init_class($$class);
+              CamlinternalOO.init_class(__class);
               class_tables$1[0] = env_init;
             end
              end 
             return Curry._1(class_tables$1[0], 0);
           end end));
     env_init = function (env$1) do
-      self = CamlinternalOO.create_object_opt(0, $$class);
+      self = CamlinternalOO.create_object_opt(0, __class);
       self[env] = env$1;
       return self;
     end end;
-    CamlinternalOO.init_class($$class);
+    CamlinternalOO.init_class(__class);
     class_tables[0] = env_init;
   end
    end 

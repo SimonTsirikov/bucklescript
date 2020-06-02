@@ -1,7 +1,7 @@
 
 
 import * as Sys from "./sys.lua";
-import * as $$Array from "./array.lua";
+import * as __Array from "./array.lua";
 import * as Curry from "./curry.lua";
 import * as Caml_obj from "./caml_obj.lua";
 import * as Caml_weak from "./caml_weak.lua";
@@ -52,7 +52,7 @@ function Make(H) do
     return --[[ () ]]0;
   end end;
   fold = function (f, t, init) do
-    return $$Array.fold_right((function (param, param$1) do
+    return __Array.fold_right((function (param, param$1) do
                   _i = 0;
                   b = param;
                   _accu = param$1;
@@ -76,7 +76,7 @@ function Make(H) do
                 end end), t.table, init);
   end end;
   iter = function (f, t) do
-    return $$Array.iter((function (param) do
+    return __Array.iter((function (param) do
                   _i = 0;
                   b = param;
                   while(true) do
@@ -98,7 +98,7 @@ function Make(H) do
                 end end), t.table);
   end end;
   iter_weak = function (f, t) do
-    return $$Array.iteri((function (param, param$1) do
+    return __Array.iteri((function (param, param$1) do
                   _i = 0;
                   j = param;
                   b = param$1;
@@ -133,7 +133,7 @@ function Make(H) do
     end;
   end end;
   count = function (t) do
-    return $$Array.fold_right((function (param, param$1) do
+    return __Array.fold_right((function (param, param$1) do
                   return count_bucket(0, param, param$1);
                 end end), t.table, 0);
   end end;
@@ -209,7 +209,7 @@ function Make(H) do
         newbucket = Caml_weak.caml_weak_create(newsz);
         newhashes = Caml_array.caml_make_vect(newsz, 0);
         Caml_weak.caml_weak_blit(bucket, 0, newbucket, 0, sz);
-        $$Array.blit(hashes, 0, newhashes, 0, sz);
+        __Array.blit(hashes, 0, newhashes, 0, sz);
         Curry._3(setter, newbucket, sz, d);
         Caml_array.caml_array_set(newhashes, sz, h);
         Caml_array.caml_array_set(t.table, index, newbucket);
@@ -432,11 +432,11 @@ function Make(H) do
   end end;
   stats = function (t) do
     len = #t.table;
-    lens = $$Array.map((function (prim) do
+    lens = __Array.map((function (prim) do
             return #prim;
           end end), t.table);
-    $$Array.sort(Caml_primitive.caml_int_compare, lens);
-    totlen = $$Array.fold_left((function (prim, prim$1) do
+    __Array.sort(Caml_primitive.caml_int_compare, lens);
+    totlen = __Array.fold_left((function (prim, prim$1) do
             return prim + prim$1 | 0;
           end end), 0, lens);
     return --[[ tuple ]][

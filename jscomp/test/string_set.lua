@@ -1,8 +1,8 @@
 --[['use strict';]]
 
 List = require "../../lib/js/list.lua";
-$$Array = require "../../lib/js/array.lua";
-$$String = require "../../lib/js/string.lua";
+__Array = require "../../lib/js/array.lua";
+__String = require "../../lib/js/string.lua";
 Set_gen = require "./set_gen.lua";
 Caml_primitive = require "../../lib/js/caml_primitive.lua";
 Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
@@ -168,11 +168,11 @@ function remove(x, tree) do
 end end
 
 function compare(s1, s2) do
-  return Set_gen.compare($$String.compare, s1, s2);
+  return Set_gen.compare(__String.compare, s1, s2);
 end end
 
 function equal(s1, s2) do
-  return Set_gen.compare($$String.compare, s1, s2) == 0;
+  return Set_gen.compare(__String.compare, s1, s2) == 0;
 end end
 
 function subset(_s1, _s2) do
@@ -260,7 +260,7 @@ function of_list(l) do
           x3 = match$2[0];
           if (match$3) then do
             if (match$3[1]) then do
-              return Set_gen.of_sorted_list(List.sort_uniq($$String.compare, l));
+              return Set_gen.of_sorted_list(List.sort_uniq(__String.compare, l));
             end else do
               return add(match$3[0], add(x3, add(x2, add(x1, Set_gen.singleton(x0)))));
             end end 
@@ -282,17 +282,17 @@ function of_list(l) do
 end end
 
 function of_array(l) do
-  return $$Array.fold_left((function (acc, x) do
+  return __Array.fold_left((function (acc, x) do
                 return add(x, acc);
               end end), --[[ Empty ]]0, l);
 end end
 
 function invariant(t) do
   Set_gen.check(t);
-  return Set_gen.is_ordered($$String.compare, t);
+  return Set_gen.is_ordered(__String.compare, t);
 end end
 
-compare_elt = $$String.compare;
+compare_elt = __String.compare;
 
 empty = --[[ Empty ]]0;
 

@@ -260,12 +260,12 @@ end end
 
 Int = --[[ alias ]]0;
 
-$$String = --[[ alias ]]0;
+__String = --[[ alias ]]0;
 
 Dict = --[[ alias ]]0;
 
 exports.Int = Int;
-exports.$$String = $$String;
+exports.__String = __String;
 exports.Dict = Dict;
 exports.make = make;
 exports.fromArray = fromArray;

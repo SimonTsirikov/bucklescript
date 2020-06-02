@@ -1,6 +1,6 @@
 --[['use strict';]]
 
-$$Array = require "./array.lua";
+__Array = require "./array.lua";
 Curry = require "./curry.lua";
 Random = require "./random.lua";
 Caml_obj = require "./caml_obj.lua";
@@ -143,7 +143,7 @@ end end
 function copy(h) do
   return do
           size: h.size,
-          data: $$Array.map(copy_bucketlist, h.data),
+          data: __Array.map(copy_bucketlist, h.data),
           seed: h.seed,
           initial_size: h.initial_size
         end;
@@ -604,11 +604,11 @@ function bucket_length(_accu, _param) do
 end end
 
 function stats(h) do
-  mbl = $$Array.fold_left((function (m, b) do
+  mbl = __Array.fold_left((function (m, b) do
           return Caml_primitive.caml_int_max(m, bucket_length(0, b));
         end end), 0, h.data);
   histo = Caml_array.caml_make_vect(mbl + 1 | 0, 0);
-  $$Array.iter((function (b) do
+  __Array.iter((function (b) do
           l = bucket_length(0, b);
           return Caml_array.caml_array_set(histo, l, Caml_array.caml_array_get(histo, l) + 1 | 0);
         end end), h.data);

@@ -13,12 +13,12 @@ shared$1 = [
   "get_x"
 ];
 
-function point_init($$class) do
-  ids = CamlinternalOO.new_methods_variables($$class, shared$1, shared);
+function point_init(__class) do
+  ids = CamlinternalOO.new_methods_variables(__class, shared$1, shared);
   move = ids[0];
   get_x = ids[1];
   x = ids[2];
-  CamlinternalOO.set_methods($$class, [
+  CamlinternalOO.set_methods(__class, [
         get_x,
         (function (self$1) do
             return self$1[x];
@@ -30,7 +30,7 @@ function point_init($$class) do
           end end)
       ]);
   return (function (env, self) do
-      self$1 = CamlinternalOO.create_object_opt(self, $$class);
+      self$1 = CamlinternalOO.create_object_opt(self, __class);
       self$1[x] = 0;
       return self$1;
     end end);
@@ -50,12 +50,12 @@ x0 = do
   contents: 0
 end;
 
-function point2_init($$class) do
-  ids = CamlinternalOO.new_methods_variables($$class, shared$1, shared);
+function point2_init(__class) do
+  ids = CamlinternalOO.new_methods_variables(__class, shared$1, shared);
   move = ids[0];
   get_x = ids[1];
   x = ids[2];
-  CamlinternalOO.set_methods($$class, [
+  CamlinternalOO.set_methods(__class, [
         get_x,
         (function (self$2) do
             return self$2[x];
@@ -67,7 +67,7 @@ function point2_init($$class) do
           end end)
       ]);
   return (function (env, self) do
-      self$1 = CamlinternalOO.create_object_opt(self, $$class);
+      self$1 = CamlinternalOO.create_object_opt(self, __class);
       x0.contents = x0.contents + 1 | 0;
       self$1[x] = x0.contents;
       return self$1;

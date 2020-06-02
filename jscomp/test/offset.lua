@@ -2,7 +2,7 @@
 
 List = require "../../lib/js/list.lua";
 Curry = require "../../lib/js/curry.lua";
-$$String = require "../../lib/js/string.lua";
+__String = require "../../lib/js/string.lua";
 Caml_option = require "../../lib/js/caml_option.lua";
 Caml_primitive = require "../../lib/js/caml_primitive.lua";
 Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
@@ -881,7 +881,7 @@ function of_list(l) do
           x3 = match$2[0];
           if (match$3) then do
             if (match$3[1]) then do
-              l$1 = List.sort_uniq($$String.compare, l);
+              l$1 = List.sort_uniq(__String.compare, l);
               sub = function (n, l) do
                 local ___conditional___=(n);
                 do
@@ -1002,7 +1002,7 @@ function of_list(l) do
   end end 
 end end
 
-$$Set = do
+__Set = do
   empty: --[[ Empty ]]0,
   is_empty: is_empty,
   mem: mem,
@@ -1042,12 +1042,12 @@ end;
 
 M = do
   x: 1,
-  $$Set: $$Set
+  __Set: __Set
 end;
 
 x = 1;
 
 exports.M = M;
 exports.x = x;
-exports.$$Set = $$Set;
+exports.__Set = __Set;
 --[[ No side effect ]]

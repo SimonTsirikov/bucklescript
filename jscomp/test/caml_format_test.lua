@@ -1,11 +1,11 @@
 --[['use strict';]]
 
 Mt = require "./mt.lua";
-$$Array = require "../../lib/js/array.lua";
+__Array = require "../../lib/js/array.lua";
 Block = require "../../lib/js/block.lua";
 Curry = require "../../lib/js/curry.lua";
 Int64 = require "../../lib/js/int64.lua";
-$$Buffer = require "../../lib/js/buffer.lua";
+__Buffer = require "../../lib/js/buffer.lua";
 Format = require "../../lib/js/format.lua";
 Printf = require "../../lib/js/printf.lua";
 Caml_int64 = require "../../lib/js/caml_int64.lua";
@@ -84,13 +84,13 @@ of_string = [
 ];
 
 function from_float_of_string(xs) do
-  return $$Array.mapi((function (i, param) do
+  return __Array.mapi((function (i, param) do
                 return Pervasives.string_of_float;
               end end), xs);
 end end
 
 function from_of_string(xs) do
-  return $$Array.to_list($$Array.mapi((function (i, param) do
+  return __Array.to_list(__Array.mapi((function (i, param) do
                     b = param[1];
                     a = param[0];
                     return --[[ tuple ]][
@@ -193,7 +193,7 @@ suites = Pervasives.$at(from_of_string(of_string), Pervasives.$at(--[[ :: ]][
               end end)
           ],
           --[[ [] ]]0
-        ], Pervasives.$at($$Array.to_list($$Array.mapi((function (i, param) do
+        ], Pervasives.$at(__Array.to_list(__Array.mapi((function (i, param) do
                         b = param[1];
                         a = param[0];
                         return --[[ tuple ]][
@@ -238,7 +238,7 @@ suites = Pervasives.$at(from_of_string(of_string), Pervasives.$at(--[[ :: ]][
                     ],
                     --[[ [] ]]0
                   ]
-                ], $$Array.to_list($$Array.mapi((function (i, param) do
+                ], __Array.to_list(__Array.mapi((function (i, param) do
                             b = param[1];
                             a = param[0];
                             return --[[ tuple ]][
@@ -1603,7 +1603,7 @@ lambda_suites = [
 ];
 
 function from_lambda_pairs(p) do
-  return $$Array.to_list($$Array.mapi((function (i, param) do
+  return __Array.to_list(__Array.mapi((function (i, param) do
                     b = param[1];
                     a = param[0];
                     return --[[ tuple ]][
@@ -2220,7 +2220,7 @@ int64_suites_001 = --[[ :: ]][
                                                   --[[ tuple ]][
                                                     "missing_newline2",
                                                     (function (param) do
-                                                        buf = $$Buffer.create(30);
+                                                        buf = __Buffer.create(30);
                                                         return --[[ Eq ]]Block.__(0, [
                                                                   (Curry._1(Printf.bprintf(buf, --[[ Format ]][
                                                                               --[[ Int64 ]]Block.__(7, [
@@ -2236,7 +2236,7 @@ int64_suites_001 = --[[ :: ]][
                                                                             ]), --[[ int64 ]][
                                                                           --[[ hi ]]0,
                                                                           --[[ lo ]]32
-                                                                        ]), $$Buffer.contents(buf)),
+                                                                        ]), __Buffer.contents(buf)),
                                                                   "32\n"
                                                                 ]);
                                                       end end)
@@ -2339,7 +2339,7 @@ of_string_data = [
   ]
 ];
 
-Mt.from_pair_suites("Caml_format_test", Pervasives.$at(suites, Pervasives.$at(formatter_suites, Pervasives.$at(from_lambda_pairs(lambda_suites), Pervasives.$at(ksprintf_suites, Pervasives.$at($$Array.to_list($$Array.mapi((function (i, param) do
+Mt.from_pair_suites("Caml_format_test", Pervasives.$at(suites, Pervasives.$at(formatter_suites, Pervasives.$at(from_lambda_pairs(lambda_suites), Pervasives.$at(ksprintf_suites, Pervasives.$at(__Array.to_list(__Array.mapi((function (i, param) do
                                     str_result = param[2];
                                     f = param[1];
                                     fmt = param[0];
@@ -2363,7 +2363,7 @@ Mt.from_pair_suites("Caml_format_test", Pervasives.$at(suites, Pervasives.$at(fo
                                                         ]);
                                               end end)
                                           ];
-                                  end end), float_data)), Pervasives.$at(int64_suites, $$Array.to_list($$Array.mapi((function (i, param) do
+                                  end end), float_data)), Pervasives.$at(int64_suites, __Array.to_list(__Array.mapi((function (i, param) do
                                         b = param[1];
                                         a = param[0];
                                         return --[[ tuple ]][

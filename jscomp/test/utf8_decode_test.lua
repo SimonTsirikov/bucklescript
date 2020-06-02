@@ -51,7 +51,7 @@ function utf8_decode(strm) do
                   match$1 = classify(match);
                   if (typeof match$1 == "number") then do
                     throw [
-                          Stream.$$Error,
+                          Stream.__Error,
                           "Invalid byte"
                         ];
                   end else do
@@ -61,7 +61,7 @@ function utf8_decode(strm) do
                           return Stream.icons(match$1[0], utf8_decode(strm));end end end 
                        if ___conditional___ = 1--[[ Cont ]] then do
                           throw [
-                                Stream.$$Error,
+                                Stream.__Error,
                                 "Unexpected continuation byte"
                               ];end end end 
                        if ___conditional___ = 2--[[ Leading ]] then do
@@ -75,7 +75,7 @@ function utf8_decode(strm) do
                                 match = classify(Stream.next(strm));
                                 if (typeof match == "number") then do
                                   throw [
-                                        Stream.$$Error,
+                                        Stream.__Error,
                                         "Continuation byte expected"
                                       ];
                                 end else if (match.tag == --[[ Cont ]]1) then do
@@ -84,7 +84,7 @@ function utf8_decode(strm) do
                                   continue ;
                                 end else do
                                   throw [
-                                        Stream.$$Error,
+                                        Stream.__Error,
                                         "Continuation byte expected"
                                       ];
                                 end end  end 

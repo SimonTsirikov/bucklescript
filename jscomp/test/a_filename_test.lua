@@ -1,7 +1,7 @@
 --[['use strict';]]
 
 Mt = require "./mt.lua";
-$$Array = require "../../lib/js/array.lua";
+__Array = require "../../lib/js/array.lua";
 Block = require "../../lib/js/block.lua";
 Ext_filename_test = require "./ext_filename_test.lua";
 
@@ -106,7 +106,7 @@ eq("File \"a_filename_test.ml\", line 64, characters 5-12", Ext_filename_test.ge
 
 eq("File \"a_filename_test.ml\", line 68, characters 5-12", Ext_filename_test.get_extension(".txt"), ".txt");
 
-eq("File \"a_filename_test.ml\", line 73, characters 5-12", $$Array.map(Ext_filename_test.normalize_absolute_path, [
+eq("File \"a_filename_test.ml\", line 73, characters 5-12", __Array.map(Ext_filename_test.normalize_absolute_path, [
           "/gsho/./..",
           "/a/b/../c../d/e/f",
           "/a/b/../c/../d/e/f",

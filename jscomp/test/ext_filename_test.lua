@@ -6,7 +6,7 @@ Block = require "../../lib/js/block.lua";
 Bytes = require "../../lib/js/bytes.lua";
 Curry = require "../../lib/js/curry.lua";
 Format = require "../../lib/js/format.lua";
-$$String = require "../../lib/js/string.lua";
+__String = require "../../lib/js/string.lua";
 Caml_obj = require "../../lib/js/caml_obj.lua";
 Caml_sys = require "../../lib/js/caml_sys.lua";
 Filename = require "../../lib/js/filename.lua";
@@ -132,9 +132,9 @@ function relative_path(file_or_dir_1, file_or_dir_2) do
   end end;
   ys = go(dir1, dir2);
   if (ys and ys[0] == node_parent) then do
-    return $$String.concat(node_sep, ys);
+    return __String.concat(node_sep, ys);
   end else do
-    return $$String.concat(node_sep, --[[ :: ]][
+    return __String.concat(node_sep, --[[ :: ]][
                 node_current,
                 ys
               ]);
