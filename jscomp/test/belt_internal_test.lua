@@ -16,12 +16,12 @@ function copy(n) do
     h = match.height;
     l = match.left;
     r = match.right;
-    return do
-            value: v,
-            height: h,
-            left: copy(l),
-            right: copy(r)
-          end;
+    return {
+            value = v,
+            height = h,
+            left = copy(l),
+            right = copy(r)
+          };
   end else do
     return n;
   end end 

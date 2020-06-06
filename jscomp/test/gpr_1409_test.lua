@@ -7,13 +7,13 @@ Curry = require "../../lib/js/curry";
 String_set = require "./string_set";
 Caml_option = require "../../lib/js/caml_option";
 
-suites = do
-  contents: --[[ [] ]]0
-end;
+suites = {
+  contents = --[[ [] ]]0
+};
 
-test_id = do
-  contents: 0
-end;
+test_id = {
+  contents = 0
+};
 
 function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
@@ -34,9 +34,9 @@ end end
 
 a = { };
 
-b = do
-  foo: "42"
-end;
+b = {
+  foo = "42"
+};
 
 function map(f, x) do
   if (x ~= undefined) then do
@@ -71,15 +71,15 @@ console.log(a, b, a_, b_);
 
 eq("File \"gpr_1409_test.ml\", line 36, characters 6-13", #Object.keys(a_), 0);
 
-test2 = do
-  hi: 2
-end;
+test2 = {
+  hi = 2
+};
 
 function test3(_open, xx__hi) do
   console.log("no inlin");
-  tmp = do
-    hi: 2
-  end;
+  tmp = {
+    hi = 2
+  };
   if (_open ~= undefined) then do
     tmp.open = Caml_option.valFromOption(_open);
   end
@@ -93,10 +93,10 @@ end end
 
 function test4(_open, xx__hi) do
   console.log("no inlin");
-  tmp = do
-    open: _open,
-    hi: 2
-  end;
+  tmp = {
+    open = _open,
+    hi = 2
+  };
   if (xx__hi ~= undefined) then do
     tmp.xx = Caml_option.valFromOption(xx__hi);
   end
@@ -106,9 +106,9 @@ end end
 
 function test5(f, x) do
   console.log("no inline");
-  tmp = do
-    hi: 2
-  end;
+  tmp = {
+    hi = 2
+  };
   tmp_1 = Curry._1(f, x);
   if (tmp_1 ~= undefined) then do
     tmp.open = Caml_option.valFromOption(tmp_1);
@@ -124,12 +124,12 @@ end end
 
 function test6(f, x) do
   console.log("no inline");
-  x_1 = do
-    contents: 3
-  end;
-  tmp = do
-    hi: 2
-  end;
+  x_1 = {
+    contents = 3
+  };
+  tmp = {
+    hi = 2
+  };
   tmp_1 = (x_1.contents = x_1.contents + 1 | 0, x_1.contents);
   if (tmp_1 ~= undefined) then do
     tmp.open = Caml_option.valFromOption(tmp_1);

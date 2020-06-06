@@ -1,27 +1,27 @@
 console = {log = print};
 
 
-x = (do
-    x: 3,
-    y: 4
-  end).x;
+x = ({
+    x = 3,
+    y = 4
+  }).x;
 
-(do
-    x: 3,
-    y: 4
-  end).x;
+({
+    x = 3,
+    y = 4
+  }).x;
 
-zz = (do
-    "5": 3
-  end)["5"];
+zz = ({
+    "5" = 3
+  })["5"];
 
-(do
-    "5": 3
-  end)["5"];
+({
+    "5" = 3
+  })["5"];
 
-console.log((do
-          "5": 3
-        end).tag | 0);
+console.log(({
+          "5" = 3
+        }).tag | 0);
 
 exports = {}
 exports.x = x;

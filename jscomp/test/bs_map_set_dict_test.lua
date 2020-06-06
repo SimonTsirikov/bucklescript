@@ -11,13 +11,13 @@ Belt_SetDict = require "../../lib/js/belt_SetDict";
 Caml_primitive = require "../../lib/js/caml_primitive";
 Array_data_util = require "./array_data_util";
 
-suites = do
-  contents: --[[ [] ]]0
-end;
+suites = {
+  contents = --[[ [] ]]0
+};
 
-test_id = do
-  contents: 0
-end;
+test_id = {
+  contents = 0
+};
 
 function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
@@ -31,24 +31,24 @@ Icmp = Belt_Id.comparable(Caml_primitive.caml_int_compare);
 
 Icmp2 = Belt_Id.comparable(Caml_primitive.caml_int_compare);
 
-m0 = do
-  cmp: Icmp.cmp,
-  data: Belt_MapDict.empty
-end;
+m0 = {
+  cmp = Icmp.cmp,
+  data = Belt_MapDict.empty
+};
 
 I2 = Belt_Id.comparable((function(x, y) do
         return Caml_primitive.caml_int_compare(y, x);
       end end));
 
-m = do
-  cmp: Icmp2.cmp,
-  data: Belt_MapDict.empty
-end;
+m = {
+  cmp = Icmp2.cmp,
+  data = Belt_MapDict.empty
+};
 
-m2 = do
-  cmp: I2.cmp,
-  data: Belt_MapDict.empty
-end;
+m2 = {
+  cmp = I2.cmp,
+  data = Belt_MapDict.empty
+};
 
 data = m.data;
 
@@ -62,10 +62,10 @@ end
 
 data_1 = data;
 
-newm = do
-  cmp: m_dict.cmp,
-  data: data_1
-end;
+newm = {
+  cmp = m_dict.cmp,
+  data = data_1
+};
 
 console.log(newm);
 
@@ -73,10 +73,10 @@ m11 = Belt_MapDict.set(Belt_MapDict.empty, 1, 1, Icmp.cmp);
 
 console.log(m11);
 
-v = do
-  cmp: Icmp2.cmp,
-  data: Belt_SetDict.empty
-end;
+v = {
+  cmp = Icmp2.cmp,
+  data = Belt_SetDict.empty
+};
 
 m_dict_1 = Belt_Map.getId(m);
 

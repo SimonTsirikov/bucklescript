@@ -1,25 +1,25 @@
 console = {log = print};
 
 
-u = do
-  y: 3
-end;
+u = {
+  y = 3
+};
 
-v_ice_cream3_000 = do
-  flavor: "vanilla",
-  num: 3
-end;
+v_ice_cream3_000 = {
+  flavor = "vanilla",
+  num = 3
+};
 
 v_ice_cream3_001 = --[[ :: ]]{
-  do
-    flavor: "x",
-    num: 3
-  end,
+  {
+    flavor = "x",
+    num = 3
+  },
   --[[ :: ]]{
-    do
-      flavor: "vanilla",
-      num: 3
-    end,
+    {
+      flavor = "vanilla",
+      num = 3
+    },
     --[[ [] ]]0
   }
 };
@@ -29,16 +29,16 @@ v_ice_cream3 = --[[ :: ]]{
   v_ice_cream3_001
 };
 
-v_ice_cream4_000 = do
-  flavor: "vanilla",
-  num: 3
-end;
+v_ice_cream4_000 = {
+  flavor = "vanilla",
+  num = 3
+};
 
 v_ice_cream4_001 = --[[ :: ]]{
-  do
-    flavor: "x",
-    num: 3
-  end,
+  {
+    flavor = "x",
+    num = 3
+  },
   --[[ [] ]]0
 };
 
@@ -47,28 +47,28 @@ v_ice_cream4 = --[[ :: ]]{
   v_ice_cream4_001
 };
 
-vv = do
-  x: 3
-end;
+vv = {
+  x = 3
+};
 
-int_expect = do
-  x: 0
-end;
+int_expect = {
+  x = 0
+};
 
-int_expect2 = do
-  x: 0
-end;
+int_expect2 = {
+  x = 0
+};
 
 int_expects_000 = { };
 
 int_expects_001 = --[[ :: ]]{
-  do
-    x: 2
-  end,
+  {
+    x = 2
+  },
   --[[ :: ]]{
-    do
-      x: 3
-    end,
+    {
+      x = 3
+    },
     --[[ [] ]]0
   }
 };
@@ -78,54 +78,54 @@ int_expects = --[[ :: ]]{
   int_expects_001
 };
 
-mk_ice = do
-  flavour: "vanilla",
-  num: 3
-end;
+mk_ice = {
+  flavour = "vanilla",
+  num = 3
+};
 
-my_ice2 = do
-  flavour: "vanilla",
-  num: 1
-end;
+my_ice2 = {
+  flavour = "vanilla",
+  num = 1
+};
 
-my_ice3 = do
-  num: 2
-end;
+my_ice3 = {
+  num = 2
+};
 
-v_mk4 = do
-  y: 3
-end;
+v_mk4 = {
+  y = 3
+};
 
-v_mk5 = do
-  x: --[[ () ]]0,
-  y: 3
-end;
+v_mk5 = {
+  x = --[[ () ]]0,
+  y = 3
+};
 
-v_mk6 = do
-  y: 3
-end;
+v_mk6 = {
+  y = 3
+};
 
-v_mk6_1 = do
-  x: --[[ () ]]0,
-  y: 3
-end;
+v_mk6_1 = {
+  x = --[[ () ]]0,
+  y = 3
+};
 
-mk_u = do
-  x: 0
-end;
+mk_u = {
+  x = 0
+};
 
-v_mk7_000 = do
-  y: 3
-end;
+v_mk7_000 = {
+  y = 3
+};
 
 v_mk7_001 = --[[ :: ]]{
-  do
-    y: 2
-  end,
+  {
+    y = 2
+  },
   --[[ :: ]]{
-    do
-      y: 2
-    end,
+    {
+      y = 2
+    },
     --[[ [] ]]0
   }
 };
@@ -149,9 +149,9 @@ again3(3);
 
 again3(2);
 
-side_effect = do
-  contents: 0
-end;
+side_effect = {
+  contents = 0
+};
 
 again4(undefined, --[[ () ]]0, 166);
 

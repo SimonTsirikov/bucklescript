@@ -5,9 +5,9 @@ function f(x) do
   return x;
 end end
 
-U = do
-  f: f
-end;
+U = {
+  f = f
+};
 
 v = --[[ H ]]{--[[ OT ]]0};
 

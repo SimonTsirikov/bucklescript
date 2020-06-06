@@ -6,11 +6,11 @@ Caml_option = require "./caml_option";
 __null = nil;
 
 function make(param) do
-  return do
-          length: 0,
-          first: __null,
-          last: __null
-        end;
+  return {
+          length = 0,
+          first = __null,
+          last = __null
+        };
 end end
 
 function clear(q) do
@@ -21,10 +21,10 @@ function clear(q) do
 end end
 
 function add(q, x) do
-  cell = do
-    content: x,
-    next: __null
-  end;
+  cell = {
+    content = x,
+    next = __null
+  };
   match = q.last;
   if (match ~= nil) then do
     q.length = q.length + 1 | 0;
@@ -114,11 +114,11 @@ function popUndefined(q) do
 end end
 
 function copy(q) do
-  qRes = do
-    length: q.length,
-    first: __null,
-    last: __null
-  end;
+  qRes = {
+    length = q.length,
+    first = __null,
+    last = __null
+  };
   _prev = __null;
   _cell = q.first;
   while(true) do
@@ -126,10 +126,10 @@ function copy(q) do
     prev = _prev;
     if (cell ~= nil) then do
       content = cell.content;
-      res = do
-        content: content,
-        next: __null
-      end;
+      res = {
+        content = content,
+        next = __null
+      };
       if (prev ~= nil) then do
         prev.next = res;
       end else do
@@ -146,11 +146,11 @@ function copy(q) do
 end end
 
 function mapU(q, f) do
-  qRes = do
-    length: q.length,
-    first: __null,
-    last: __null
-  end;
+  qRes = {
+    length = q.length,
+    first = __null,
+    last = __null
+  };
   _prev = __null;
   _cell = q.first;
   f_1 = f;
@@ -159,10 +159,10 @@ function mapU(q, f) do
     prev = _prev;
     if (cell ~= nil) then do
       content = f_1(cell.content);
-      res = do
-        content: content,
-        next: __null
-      end;
+      res = {
+        content = content,
+        next = __null
+      };
       if (prev ~= nil) then do
         prev.next = res;
       end else do

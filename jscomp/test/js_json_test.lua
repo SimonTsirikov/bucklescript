@@ -9,13 +9,13 @@ Caml_array = require "../../lib/js/caml_array";
 Caml_option = require "../../lib/js/caml_option";
 Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
-suites = do
-  contents: --[[ [] ]]0
-end;
+suites = {
+  contents = --[[ [] ]]0
+};
 
-counter = do
-  contents: 0
-end;
+counter = {
+  contents = 0
+};
 
 function add_test(loc, test) do
   counter.contents = counter.contents + 1 | 0;
@@ -510,13 +510,13 @@ eq("File \"js_json_test.ml\", line 295, characters 12-19", JSON.stringify({
           3
         }), "[1,2,3]");
 
-eq("File \"js_json_test.ml\", line 299, characters 2-9", JSON.stringify(do
-          foo: 1,
-          bar: "hello",
-          baz: do
-            baaz: 10
-          end
-        end), "{\"foo\":1,\"bar\":\"hello\",\"baz\":{\"baaz\":10}}");
+eq("File \"js_json_test.ml\", line 299, characters 2-9", JSON.stringify({
+          foo = 1,
+          bar = "hello",
+          baz = {
+            baaz = 10
+          }
+        }), "{\"foo\":1,\"bar\":\"hello\",\"baz\":{\"baaz\":10}}");
 
 eq("File \"js_json_test.ml\", line 303, characters 12-19", JSON.stringify(nil), "null");
 

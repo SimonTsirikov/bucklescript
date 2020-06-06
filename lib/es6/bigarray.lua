@@ -54,11 +54,11 @@ function map_file(fd, posOpt, kind, layout, shared, dims) do
   return Caml_external_polyfill.resolve("caml_ba_map_file_bytecode")(fd, kind, layout, shared, dims, pos);
 end end
 
-Genarray = do
-  dims: dims,
-  size_in_bytes: size_in_bytes,
-  map_file: map_file
-end;
+Genarray = {
+  dims = dims,
+  size_in_bytes = size_in_bytes,
+  map_file = map_file
+};
 
 function create(kind, layout) do
   return Caml_external_polyfill.resolve("caml_ba_create")(kind, layout, {});
@@ -333,57 +333,57 @@ function Array0_change_layout(prim, prim_1) do
   return Caml_external_polyfill.resolve("caml_ba_change_layout")(prim, prim_1);
 end end
 
-Array0 = do
-  create: create,
-  change_layout: Array0_change_layout,
-  size_in_bytes: size_in_bytes_1,
-  get: get,
-  set: set,
-  of_value: of_value
-end;
+Array0 = {
+  create = create,
+  change_layout = Array0_change_layout,
+  size_in_bytes = size_in_bytes_1,
+  get = get,
+  set = set,
+  of_value = of_value
+};
 
 function Array1_change_layout(prim, prim_1) do
   return Caml_external_polyfill.resolve("caml_ba_change_layout")(prim, prim_1);
 end end
 
-Array1 = do
-  create: create_1,
-  change_layout: Array1_change_layout,
-  size_in_bytes: size_in_bytes_2,
-  slice: slice,
-  of_array: of_array,
-  map_file: map_file_1
-end;
+Array1 = {
+  create = create_1,
+  change_layout = Array1_change_layout,
+  size_in_bytes = size_in_bytes_2,
+  slice = slice,
+  of_array = of_array,
+  map_file = map_file_1
+};
 
 function Array2_change_layout(prim, prim_1) do
   return Caml_external_polyfill.resolve("caml_ba_change_layout")(prim, prim_1);
 end end
 
-Array2 = do
-  create: create_2,
-  change_layout: Array2_change_layout,
-  size_in_bytes: size_in_bytes_3,
-  slice_left: slice_left,
-  slice_right: slice_right,
-  of_array: of_array_1,
-  map_file: map_file_2
-end;
+Array2 = {
+  create = create_2,
+  change_layout = Array2_change_layout,
+  size_in_bytes = size_in_bytes_3,
+  slice_left = slice_left,
+  slice_right = slice_right,
+  of_array = of_array_1,
+  map_file = map_file_2
+};
 
 function Array3_change_layout(prim, prim_1) do
   return Caml_external_polyfill.resolve("caml_ba_change_layout")(prim, prim_1);
 end end
 
-Array3 = do
-  create: create_3,
-  change_layout: Array3_change_layout,
-  size_in_bytes: size_in_bytes_4,
-  slice_left_1: slice_left_1,
-  slice_right_1: slice_right_1,
-  slice_left_2: slice_left_2,
-  slice_right_2: slice_right_2,
-  of_array: of_array_2,
-  map_file: map_file_3
-end;
+Array3 = {
+  create = create_3,
+  change_layout = Array3_change_layout,
+  size_in_bytes = size_in_bytes_4,
+  slice_left_1 = slice_left_1,
+  slice_right_1 = slice_right_1,
+  slice_left_2 = slice_left_2,
+  slice_right_2 = slice_right_2,
+  of_array = of_array_2,
+  map_file = map_file_3
+};
 
 function reshape(prim, prim_1) do
   return Caml_external_polyfill.resolve("caml_ba_reshape")(prim, prim_1);

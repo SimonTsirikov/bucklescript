@@ -4,13 +4,13 @@ Mt = require "./mt";
 Block = require "../../lib/js/block";
 Caml_obj = require "../../lib/js/caml_obj";
 
-suites = do
-  contents: --[[ [] ]]0
-end;
+suites = {
+  contents = --[[ [] ]]0
+};
 
-test_id = do
-  contents: 0
-end;
+test_id = {
+  contents = 0
+};
 
 function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
@@ -33,13 +33,13 @@ a = { };
 
 b = { };
 
-Caml_obj.caml_update_dummy(a, do
-      b: b
-    end);
+Caml_obj.caml_update_dummy(a, {
+      b = b
+    });
 
-Caml_obj.caml_update_dummy(b, do
-      a: a
-    end);
+Caml_obj.caml_update_dummy(b, {
+      a = a
+    });
 
 function is_inifite(x) do
   return x.b.a == x;

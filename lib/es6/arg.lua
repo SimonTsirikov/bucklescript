@@ -195,9 +195,9 @@ function usage(speclist, errmsg) do
                 }), usage_string(speclist, errmsg));
 end end
 
-current = do
-  contents: 0
-end;
+current = {
+  contents = 0
+};
 
 function bool_of_string_opt(x) do
   xpcall(function() do
@@ -604,16 +604,16 @@ end end
 
 function parse_argv_dynamic(currentOpt, argv, speclist, anonfun, errmsg) do
   current_1 = currentOpt ~= undefined and currentOpt or current;
-  return parse_and_expand_argv_dynamic_aux(false, current_1, do
-              contents: argv
-            end, speclist, anonfun, errmsg);
+  return parse_and_expand_argv_dynamic_aux(false, current_1, {
+              contents = argv
+            }, speclist, anonfun, errmsg);
 end end
 
 function parse_argv(currentOpt, argv, speclist, anonfun, errmsg) do
   current_1 = currentOpt ~= undefined and currentOpt or current;
-  return parse_argv_dynamic(current_1, argv, do
-              contents: speclist
-            end, anonfun, errmsg);
+  return parse_argv_dynamic(current_1, argv, {
+              contents = speclist
+            }, anonfun, errmsg);
 end end
 
 function parse(l, f, msg) do
@@ -676,15 +676,15 @@ end end
 
 function parse_expand(l, f, msg) do
   xpcall(function() do
-    argv = do
-      contents: Sys.argv
-    end;
-    spec = do
-      contents: l
-    end;
-    current_1 = do
-      contents: current.contents
-    end;
+    argv = {
+      contents = Sys.argv
+    };
+    spec = {
+      contents = l
+    };
+    current_1 = {
+      contents = current.contents
+    };
     return parse_and_expand_argv_dynamic(current_1, argv, spec, f, msg);
   end end,function(raw_exn) do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
@@ -765,9 +765,9 @@ function max_arg_len(cur, param) do
 end end
 
 function replace_leading_tab(s) do
-  seen = do
-    contents: false
-  end;
+  seen = {
+    contents = false
+  };
   return __String.map((function(c) do
                 if (c ~= 9 or seen.contents) then do
                   return c;
@@ -837,9 +837,9 @@ end end
 function read_aux(trim, sep, file) do
   ic = Pervasives.open_in_bin(file);
   buf = __Buffer.create(200);
-  words = do
-    contents: --[[ [] ]]0
-  end;
+  words = {
+    contents = --[[ [] ]]0
+  };
   stash = function(param) do
     word = __Buffer.contents(buf);
     word_1 = trim and trim_cr(word) or word;

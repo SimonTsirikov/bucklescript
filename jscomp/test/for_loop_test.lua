@@ -8,9 +8,9 @@ Caml_array = require "../../lib/js/caml_array";
 Caml_int32 = require "../../lib/js/caml_int32";
 
 function for_3(x) do
-  v = do
-    contents: 0
-  end;
+  v = {
+    contents = 0
+  };
   arr = __Array.map((function(param, param_1) do
           return --[[ () ]]0;
         end end), x);
@@ -30,9 +30,9 @@ function for_3(x) do
 end end
 
 function for_4(x) do
-  v = do
-    contents: 0
-  end;
+  v = {
+    contents = 0
+  };
   arr = __Array.map((function(param, param_1) do
           return --[[ () ]]0;
         end end), x);
@@ -53,9 +53,9 @@ function for_4(x) do
 end end
 
 function for_5(x, u) do
-  v = do
-    contents: 0
-  end;
+  v = {
+    contents = 0
+  };
   arr = __Array.map((function(param, param_1) do
           return --[[ () ]]0;
         end end), x);
@@ -75,25 +75,25 @@ function for_5(x, u) do
 end end
 
 function for_6(x, u) do
-  v = do
-    contents: 0
-  end;
+  v = {
+    contents = 0
+  };
   arr = __Array.map((function(param, param_1) do
           return --[[ () ]]0;
         end end), x);
-  v4 = do
-    contents: 0
-  end;
-  v5 = do
-    contents: 0
-  end;
+  v4 = {
+    contents = 0
+  };
+  v5 = {
+    contents = 0
+  };
   inspect_3 = -1;
   v4.contents = v4.contents + 1 | 0;
   for j = 0 , 1 , 1 do
     v5.contents = v5.contents + 1 | 0;
-    v2 = do
-      contents: 0
-    end;
+    v2 = {
+      contents = 0
+    };
     (function(v2) do
     for i = 0 , #x - 1 | 0 , 1 do
       k = Caml_int32.imul((u << 1), u);
@@ -121,9 +121,9 @@ function for_6(x, u) do
 end end
 
 function for_7(param) do
-  v = do
-    contents: 0
-  end;
+  v = {
+    contents = 0
+  };
   arr = Caml_array.caml_make_vect(21, (function(param) do
           return --[[ () ]]0;
         end end));
@@ -146,9 +146,9 @@ function for_7(param) do
 end end
 
 function for_8(param) do
-  v = do
-    contents: 0
-  end;
+  v = {
+    contents = 0
+  };
   arr = Caml_array.caml_make_vect(21, (function(param) do
           return --[[ () ]]0;
         end end));
@@ -173,9 +173,9 @@ function for_8(param) do
 end end
 
 function for_9(param) do
-  v = do
-    contents: --[[ [] ]]0
-  end;
+  v = {
+    contents = --[[ [] ]]0
+  };
   collect = function(x) do
     v.contents = --[[ :: ]]{
       x,
@@ -183,12 +183,12 @@ function for_9(param) do
     };
     return --[[ () ]]0;
   end end;
-  vv = do
-    contents: 0
-  end;
-  vv2 = do
-    contents: 0
-  end;
+  vv = {
+    contents = 0
+  };
+  vv2 = {
+    contents = 0
+  };
   arr = Caml_array.caml_make_vect(4, (function(param) do
           return --[[ () ]]0;
         end end));
@@ -196,9 +196,9 @@ function for_9(param) do
           return --[[ () ]]0;
         end end));
   for i = 0 , 1 , 1 do
-    v_1 = do
-      contents: 0
-    end;
+    v_1 = {
+      contents = 0
+    };
     v_1.contents = v_1.contents + i | 0;
     (function(v_1) do
     for j = 0 , 1 , 1 do

@@ -4,9 +4,9 @@ Mt = require "./mt";
 Block = require "../../lib/js/block";
 Curry = require "../../lib/js/curry";
 
-v = do
-  contents: 3
-end;
+v = {
+  contents = 3
+};
 
 function f(h) do
   v.contents = v.contents + 1 | 0;
@@ -26,9 +26,9 @@ f((function(prim, prim_1) do
 
 a = v.contents;
 
-v_1 = do
-  contents: 3
-end;
+v_1 = {
+  contents = 3
+};
 
 function f_1(h) do
   v_1.contents = v_1.contents + 1 | 0;
@@ -48,9 +48,9 @@ f_1((function(prim, prim_1) do
 
 b = v_1.contents;
 
-v_2 = do
-  contents: 3
-end;
+v_2 = {
+  contents = 3
+};
 
 function f_2(h) do
   return Curry._2(h, 2, (v_2.contents = v_2.contents + 1 | 0, 3));
@@ -66,9 +66,9 @@ f_2((function(prim, prim_1) do
 
 c = v_2.contents;
 
-v_3 = do
-  contents: 3
-end;
+v_3 = {
+  contents = 3
+};
 
 function f_3(h, g) do
   v_3.contents = v_3.contents + 1 | 0;

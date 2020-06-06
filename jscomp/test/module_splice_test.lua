@@ -5,13 +5,13 @@ Block = require "../../lib/js/block";
 JoinClasses = require "./joinCla";
 Caml_splice_call = require "../../lib/js/caml_splice_call";
 
-suites = do
-  contents: --[[ [] ]]0
-end;
+suites = {
+  contents = --[[ [] ]]0
+};
 
-test_id = do
-  contents: 0
-end;
+test_id = {
+  contents = 0
+};
 
 function eq(loc, param) do
   y = param[1];

@@ -1,15 +1,15 @@
 console = {log = print};
 
 
-v1 = do
-  stdio: "inherit",
-  v: 3
-end;
+v1 = {
+  stdio = "inherit",
+  v = 3
+};
 
-v2 = do
-  stdio: 1,
-  v: 2
-end;
+v2 = {
+  stdio = 1,
+  v = 2
+};
 
 process.on("exit", (function(exit_code) do
         return String(exit_code);
@@ -59,10 +59,10 @@ function register(p) do
   return --[[ () ]]0;
 end end
 
-config = do
-  stdio: "inherit",
-  cwd: "."
-end;
+config = {
+  stdio = "inherit",
+  cwd = "."
+};
 
 exports = {}
 exports.v1 = v1;

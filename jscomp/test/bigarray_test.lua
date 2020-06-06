@@ -13,10 +13,10 @@ end end
 
 function init(v) do
   for i = 0 , Caml_external_polyfill.resolve("caml_ba_dim_1")(v) - 1 | 0 , 1 do
-    v[i] = do
-      re: Caml_int32.imul(i, i),
-      im: Caml_int32.imul(Caml_int32.imul(i, i), i)
-    end;
+    v[i] = {
+      re = Caml_int32.imul(i, i),
+      im = Caml_int32.imul(Caml_int32.imul(i, i), i)
+    };
   end
   return --[[ () ]]0;
 end end

@@ -3,13 +3,13 @@ console = {log = print};
 Mt = require "./mt";
 Block = require "../../lib/js/block";
 
-suites = do
-  contents: --[[ [] ]]0
-end;
+suites = {
+  contents = --[[ [] ]]0
+};
 
-test_id = do
-  contents: 0
-end;
+test_id = {
+  contents = 0
+};
 
 function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
@@ -45,14 +45,14 @@ function ff(x, i, v) do
   return x._open(3);
 end end
 
-u = do
-  "Content'type": "x"
-end;
+u = {
+  "Content'type" = "x"
+};
 
-h = do
-  open: 3,
-  end: 32
-end;
+h = {
+  open = 3,
+  end = 32
+};
 
 function hg(x) do
   return x.open + x.end | 0;

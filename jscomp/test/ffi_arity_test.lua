@@ -45,9 +45,9 @@ function u() do
   return 3;
 end end
 
-vvv = do
-  contents: 0
-end;
+vvv = {
+  contents = 0
+};
 
 function fff(param) do
   console.log("x");

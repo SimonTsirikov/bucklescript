@@ -595,15 +595,15 @@ function getaddrinfo(node, service, opts) do
       node_1 = node;
       service_1 = service;
       opts_1 = opts;
-      opt_socktype = do
-        contents: undefined
-      end;
-      opt_protocol = do
-        contents: 0
-      end;
-      opt_passive = do
-        contents: false
-      end;
+      opt_socktype = {
+        contents = undefined
+      };
+      opt_protocol = {
+        contents = 0
+      };
+      opt_passive = {
+        contents = false
+      };
       List.iter((function(param) do
               if (typeof param == "number") then do
                 if (param == --[[ AI_PASSIVE ]]2) then do
@@ -737,16 +737,16 @@ function getaddrinfo(node, service, opts) do
                         port = param[1];
                         ty = param[0];
                         return List.map((function(param) do
-                                      return do
-                                              ai_family: --[[ PF_INET ]]1,
-                                              ai_socktype: ty,
-                                              ai_protocol: opt_protocol.contents,
-                                              ai_addr: --[[ ADDR_INET ]]Block.__(1, {
+                                      return {
+                                              ai_family = --[[ PF_INET ]]1,
+                                              ai_socktype = ty,
+                                              ai_protocol = opt_protocol.contents,
+                                              ai_addr = --[[ ADDR_INET ]]Block.__(1, {
                                                   param[0],
                                                   port
                                                 }),
-                                              ai_canonname: param[1]
-                                            end;
+                                              ai_canonname = param[1]
+                                            };
                                     end end), addresses);
                       end end), ports));
     end else do
@@ -799,15 +799,15 @@ function getnameinfo(addr, opts) do
             error(exn_2)
           end end 
         end end)
-        return do
-                ni_hostname: hostname,
-                ni_service: service
-              end;
+        return {
+                ni_hostname = hostname,
+                ni_service = service
+              };
       end else do
-        return do
-                ni_hostname: "",
-                ni_service: addr_1[0]
-              end;
+        return {
+                ni_hostname = "",
+                ni_service = addr_1[0]
+              };
       end end 
     end else do
       error(exn)
@@ -1362,14 +1362,14 @@ function LargeFile_fstat(prim) do
   return Caml_external_polyfill.resolve("unix_fstat_64")(prim);
 end end
 
-LargeFile = do
-  lseek: LargeFile_lseek,
-  truncate: LargeFile_truncate,
-  ftruncate: LargeFile_ftruncate,
-  stat: LargeFile_stat,
-  lstat: LargeFile_lstat,
-  fstat: LargeFile_fstat
-end;
+LargeFile = {
+  lseek = LargeFile_lseek,
+  truncate = LargeFile_truncate,
+  ftruncate = LargeFile_ftruncate,
+  stat = LargeFile_stat,
+  lstat = LargeFile_lstat,
+  fstat = LargeFile_fstat
+};
 
 function unlink(prim) do
   return Caml_external_polyfill.resolve("unix_unlink")(prim);

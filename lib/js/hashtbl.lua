@@ -29,9 +29,9 @@ function flip_ongoing_traversal(h) do
   return --[[ () ]]0;
 end end
 
-randomized = do
-  contents: false
-end;
+randomized = {
+  contents = false
+};
 
 function randomize(param) do
   randomized.contents = true;
@@ -62,12 +62,12 @@ function create(randomOpt, initial_size) do
   random = randomOpt ~= undefined and randomOpt or randomized.contents;
   s = power_2_above(16, initial_size);
   seed = random and Random.State.bits(CamlinternalLazy.force(prng)) or 0;
-  return do
-          size: 0,
-          data: Caml_array.caml_make_vect(s, --[[ Empty ]]0),
-          seed: seed,
-          initial_size: s
-        end;
+  return {
+          size = 0,
+          data = Caml_array.caml_make_vect(s, --[[ Empty ]]0),
+          seed = seed,
+          initial_size = s
+        };
 end end
 
 function clear(h) do
@@ -141,12 +141,12 @@ function copy_bucketlist(param) do
 end end
 
 function copy(h) do
-  return do
-          size: h.size,
-          data: __Array.map(copy_bucketlist, h.data),
-          seed: h.seed,
-          initial_size: h.initial_size
-        end;
+  return {
+          size = h.size,
+          data = __Array.map(copy_bucketlist, h.data),
+          seed = h.seed,
+          initial_size = h.initial_size
+        };
 end end
 
 function length(h) do
@@ -609,12 +609,12 @@ function stats(h) do
           l = bucket_length(0, b);
           return Caml_array.caml_array_set(histo, l, Caml_array.caml_array_get(histo, l) + 1 | 0);
         end end), h.data);
-  return do
-          num_bindings: h.size,
-          num_buckets: #h.data,
-          max_bucket_length: mbl,
-          bucket_histogram: histo
-        end;
+  return {
+          num_bindings = h.size,
+          num_buckets = #h.data,
+          max_bucket_length = mbl,
+          bucket_histogram = histo
+        };
 end end
 
 function MakeSeeded(H) do
@@ -846,24 +846,24 @@ function MakeSeeded(H) do
       end end 
     end;
   end end;
-  return do
-          create: create,
-          clear: clear,
-          reset: reset,
-          copy: copy,
-          add: add,
-          remove: remove,
-          find: find,
-          find_opt: find_opt,
-          find_all: find_all,
-          replace: replace,
-          mem: mem,
-          iter: iter,
-          filter_map_inplace: filter_map_inplace,
-          fold: fold,
-          length: length,
-          stats: stats
-        end;
+  return {
+          create = create,
+          clear = clear,
+          reset = reset,
+          copy = copy,
+          add = add,
+          remove = remove,
+          find = find,
+          find_opt = find_opt,
+          find_all = find_all,
+          replace = replace,
+          mem = mem,
+          iter = iter,
+          filter_map_inplace = filter_map_inplace,
+          fold = fold,
+          length = length,
+          stats = stats
+        };
 end end
 
 function Make(H) do
@@ -1099,24 +1099,24 @@ function Make(H) do
   create_1 = function(sz) do
     return create(false, sz);
   end end;
-  return do
-          create: create_1,
-          clear: clear,
-          reset: reset,
-          copy: copy,
-          add: add,
-          remove: remove,
-          find: find,
-          find_opt: find_opt,
-          find_all: find_all,
-          replace: replace,
-          mem: mem,
-          iter: iter,
-          filter_map_inplace: filter_map_inplace,
-          fold: fold,
-          length: length,
-          stats: stats
-        end;
+  return {
+          create = create_1,
+          clear = clear,
+          reset = reset,
+          copy = copy,
+          add = add,
+          remove = remove,
+          find = find,
+          find_opt = find_opt,
+          find_all = find_all,
+          replace = replace,
+          mem = mem,
+          iter = iter,
+          filter_map_inplace = filter_map_inplace,
+          fold = fold,
+          length = length,
+          stats = stats
+        };
 end end
 
 seeded_hash_param = Caml_hash.caml_hash;

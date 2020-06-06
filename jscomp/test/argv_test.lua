@@ -9,13 +9,13 @@ end end
 
 usage_msg = "Usage:\n";
 
-compile = do
-  contents: false
-end;
+compile = {
+  contents = false
+};
 
-test = do
-  contents: true
-end;
+test = {
+  contents = true
+};
 
 arg_spec_000 = --[[ tuple ]]{
   "-c",

@@ -2,24 +2,24 @@ console = {log = print};
 
 Curry = require "../../lib/js/curry";
 
-v = do
-  contents: 0
-end;
+v = {
+  contents = 0
+};
 
 function gen(param) do
   v.contents = v.contents + 1 | 0;
   return v.contents;
 end end
 
-h = do
-  contents: 0
-end;
+h = {
+  contents = 0
+};
 
 a = 0;
 
-c = do
-  contents: 0
-end;
+c = {
+  contents = 0
+};
 
 not_real_escape = a;
 

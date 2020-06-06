@@ -2,9 +2,9 @@ console = {log = print};
 
 Curry = require "../../lib/js/curry";
 
-v = do
-  contents: 0
-end;
+v = {
+  contents = 0
+};
 
 function reset(param) do
   v.contents = 0;
@@ -16,9 +16,9 @@ function incr(param) do
   return --[[ () ]]0;
 end end
 
-vv = do
-  contents: 0
-end;
+vv = {
+  contents = 0
+};
 
 function reset2(param) do
   vv.contents = 0;

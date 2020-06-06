@@ -3,21 +3,21 @@ console = {log = print};
 Curry = require "../../lib/js/curry";
 Caml_exceptions = require "../../lib/js/caml_exceptions";
 
-x = do
-  contents: 1
-end;
+x = {
+  contents = 1
+};
 
-y = do
-  contents: 2
-end;
+y = {
+  contents = 2
+};
 
 function f(param) do
-  a = do
-    contents: param[0]
-  end;
-  b = do
-    contents: param[1]
-  end;
+  a = {
+    contents = param[0]
+  };
+  b = {
+    contents = param[1]
+  };
   console.log(a, b);
   return --[[ () ]]0;
 end end

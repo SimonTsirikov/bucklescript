@@ -511,9 +511,9 @@ function $caret$caret(param, param_1) do
         };
 end end
 
-exit_function = do
-  contents: flush_all
-end;
+exit_function = {
+  contents = flush_all
+};
 
 function at_exit(f) do
   g = exit_function[0];

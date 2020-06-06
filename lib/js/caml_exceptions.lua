@@ -1,9 +1,9 @@
 console = {log = print};
 
 
-id = do
-  contents: 0
-end;
+id = {
+  contents = 0
+};
 
 function caml_set_oo_id(b) do
   b[1] = id.contents;

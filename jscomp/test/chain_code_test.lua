@@ -3,13 +3,13 @@ console = {log = print};
 Mt = require "./mt";
 Block = require "../../lib/js/block";
 
-suites = do
-  contents: --[[ [] ]]0
-end;
+suites = {
+  contents = --[[ [] ]]0
+};
 
-test_id = do
-  contents: 0
-end;
+test_id = {
+  contents = 0
+};
 
 function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
@@ -52,13 +52,13 @@ function f4(h, x, y) do
   return --[[ () ]]0;
 end end
 
-eq("File \"chain_code_test.ml\", line 28, characters 5-12", 32, (do
-        x: do
-          y: do
-            z: 32
-          end
-        end
-      end).x.y.z);
+eq("File \"chain_code_test.ml\", line 28, characters 5-12", 32, ({
+        x = {
+          y = {
+            z = 32
+          }
+        }
+      }).x.y.z);
 
 Mt.from_pair_suites("Chain_code_test", suites.contents);
 

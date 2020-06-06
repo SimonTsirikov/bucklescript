@@ -122,8 +122,8 @@ end end,function(raw_e_1) do
   a2 = Caml_js_exceptions.internalToOCamlException(raw_e_1);
 end end)
 
-suites = do
-  contents: --[[ :: ]]{
+suites = {
+  contents = --[[ :: ]]{
     --[[ tuple ]]{
       "File \"exception_raise_test.ml\", line 114, characters 4-11",
       (function(param) do
@@ -167,11 +167,11 @@ suites = do
       --[[ [] ]]0
     }
   }
-end;
+};
 
-test_id = do
-  contents: 0
-end;
+test_id = {
+  contents = 0
+};
 
 function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);

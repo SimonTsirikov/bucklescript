@@ -3,41 +3,41 @@ console = {log = print};
 Js_mapperRt = require "../../lib/js/js_mapperRt";
 
 function tToJs(param) do
-  return do
-          xx: param.xx,
-          yy: param.yy,
-          zz: param.zz
-        end;
+  return {
+          xx = param.xx,
+          yy = param.yy,
+          zz = param.zz
+        };
 end end
 
 function tFromJs(param) do
-  return do
-          xx: param.xx,
-          yy: param.yy,
-          zz: param.zz
-        end;
+  return {
+          xx = param.xx,
+          yy = param.yy,
+          zz = param.zz
+        };
 end end
 
-u = tToJs(do
-      xx: 3,
-      yy: "x",
-      zz: --[[ tuple ]]{
+u = tToJs({
+      xx = 3,
+      yy = "x",
+      zz = --[[ tuple ]]{
         1,
         2
       }
-    end);
+    });
 
 tFromJs(u);
 
-tFromJs(do
-      xx: 3,
-      yy: "2",
-      zz: --[[ tuple ]]{
+tFromJs({
+      xx = 3,
+      yy = "2",
+      zz = --[[ tuple ]]{
         1,
         2
       },
-      cc: 3
-    end);
+      cc = 3
+    });
 
 function searchForSureExists(xs, k) do
   _i = 0;

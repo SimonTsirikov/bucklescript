@@ -3,10 +3,10 @@ console = {log = print};
 Export_keyword = require "./export_keyword";
 
 function test2(v) do
-  return do
-          open: v.open,
-          window: v.window
-        end;
+  return {
+          open = v.open,
+          window = v.window
+        };
 end end
 
 function test(p) do

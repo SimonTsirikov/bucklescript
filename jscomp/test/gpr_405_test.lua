@@ -7,10 +7,10 @@ Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 function Make(funarg) do
   __let = funarg.V;
-  H = Hashtbl.Make(do
-        equal: __let.equal,
-        hash: __let.hash
-      end);
+  H = Hashtbl.Make({
+        equal = __let.equal,
+        hash = __let.hash
+      });
   find_default = function(htbl, x) do
     xpcall(function() do
       return Curry._2(H.find, htbl, x);
@@ -27,12 +27,12 @@ function Make(funarg) do
     l_labels = Curry._1(H.create, 97);
     already_processed = Curry._1(H.create, 97);
     on_the_stack = Curry._1(H.create, 97);
-    cut_set = do
-      contents: --[[ [] ]]0
-    end;
-    counter = do
-      contents: 1
-    end;
+    cut_set = {
+      contents = --[[ [] ]]0
+    };
+    counter = {
+      contents = 1
+    };
     step2 = function(top, rest_of_stack) do
       if (find_default(already_processed, top)) then do
         error({
@@ -117,9 +117,9 @@ function Make(funarg) do
     end end;
     return step2(first_node, --[[ [] ]]0);
   end end;
-  return do
-          min_cutset: min_cutset
-        end;
+  return {
+          min_cutset = min_cutset
+        };
 end end
 
 exports = {}

@@ -9,13 +9,13 @@ Random = require "../../lib/js/random";
 Mt_global = require "./mt_global";
 Caml_array = require "../../lib/js/caml_array";
 
-id = do
-  contents: 0
-end;
+id = {
+  contents = 0
+};
 
-suites = do
-  contents: --[[ [] ]]0
-end;
+suites = {
+  contents = --[[ [] ]]0
+};
 
 function eq(f) do
   return (function(param, param_1) do

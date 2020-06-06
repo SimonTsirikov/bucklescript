@@ -6,13 +6,13 @@ Curry = require "../../lib/js/curry";
 Caml_int32 = require "../../lib/js/caml_int32";
 Caml_module = require "../../lib/js/caml_module";
 
-suites = do
-  contents: --[[ [] ]]0
-end;
+suites = {
+  contents = --[[ [] ]]0
+};
 
-test_id = do
-  contents: 0
-end;
+test_id = {
+  contents = 0
+};
 
 function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
@@ -73,16 +73,16 @@ end end
 Caml_module.update_mod(--[[ Module ]]Block.__(0, {{--[[ tuple ]]{
             --[[ Function ]]0,
             "fact"
-          }}}), M, do
-      fact: fact
-    end);
+          }}}), M, {
+      fact = fact
+    });
 
 fact_1 = M.fact;
 
-Fact = do
-  M: M,
-  fact: fact_1
-end;
+Fact = {
+  M = M,
+  fact = fact_1
+};
 
 eq("File \"recursive_module_test.ml\", line 30, characters 5-12", 120, Curry._1(fact_1, 5));
 

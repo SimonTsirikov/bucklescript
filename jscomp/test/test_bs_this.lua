@@ -25,13 +25,13 @@ function bark(param) do
     end);
 end end
 
-js_obj = do
-  bark: (function(x, y) do
+js_obj = {
+  bark = (function(x, y) do
       o = this ;
       console.log(o);
       return x + y | 0; end
     end)
-end;
+};
 
 function f(x) do
   x.onload = (function() do

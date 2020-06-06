@@ -31,29 +31,29 @@ function a4(x, y) do
   return a3(x, y) + 1 | 0;
 end end
 
-A4 = do
-  a4: a4
-end;
+A4 = {
+  a4 = a4
+};
 
-A3 = do
-  a3: a3,
-  A4: A4
-end;
+A3 = {
+  a3 = a3,
+  A4 = A4
+};
 
-A2 = do
-  a2: a2,
-  A3: A3
-end;
+A2 = {
+  a2 = a2,
+  A3 = A3
+};
 
-A1 = do
-  a1: a1,
-  A2: A2
-end;
+A1 = {
+  a1 = a1,
+  A2 = A2
+};
 
-A0 = do
-  a0: a0,
-  A1: A1
-end;
+A0 = {
+  a0 = a0,
+  A1 = A1
+};
 
 v1 = a1(1, 2);
 

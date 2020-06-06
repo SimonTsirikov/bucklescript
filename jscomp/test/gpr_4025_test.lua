@@ -6,9 +6,9 @@ console = {log = print};
 console.log("hi");
 
 function f(x) do
-  (do
-      x: (console.log("hi"), x)
-    end).x = x + 1 | 0;
+  ({
+      x = (console.log("hi"), x)
+    }).x = x + 1 | 0;
   return --[[ () ]]0;
 end end
 

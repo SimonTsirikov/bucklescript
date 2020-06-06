@@ -19,13 +19,13 @@ function copy(o) do
   return Caml_exceptions.caml_set_oo_id(Caml_obj.caml_obj_dup(o));
 end end
 
-params = do
-  compact_table: true,
-  copy_parent: true,
-  clean_when_copying: true,
-  retry_count: 3,
-  bucket_small_size: 16
-end;
+params = {
+  compact_table = true,
+  copy_parent = true,
+  clean_when_copying = true,
+  retry_count = 3,
+  bucket_small_size = 16
+};
 
 step = Sys.word_size / 16 | 0;
 
@@ -1007,42 +1007,42 @@ function bindings(s) do
   return bindings_aux(--[[ [] ]]0, s);
 end end
 
-Vars = do
-  empty: --[[ Empty ]]0,
-  is_empty: is_empty,
-  mem: mem,
-  add: add,
-  update: update,
-  singleton: singleton,
-  remove: remove,
-  merge: merge_1,
-  union: union,
-  compare: compare,
-  equal: equal,
-  iter: iter,
-  fold: fold,
-  for_all: for_all,
-  exists: exists,
-  filter: filter,
-  partition: partition,
-  cardinal: cardinal,
-  bindings: bindings,
-  min_binding: min_binding,
-  min_binding_opt: min_binding_opt,
-  max_binding: max_binding,
-  max_binding_opt: max_binding_opt,
-  choose: min_binding,
-  choose_opt: min_binding_opt,
-  split: split,
-  find: find,
-  find_opt: find_opt,
-  find_first: find_first,
-  find_first_opt: find_first_opt,
-  find_last: find_last,
-  find_last_opt: find_last_opt,
-  map: map,
-  mapi: mapi
-end;
+Vars = {
+  empty = --[[ Empty ]]0,
+  is_empty = is_empty,
+  mem = mem,
+  add = add,
+  update = update,
+  singleton = singleton,
+  remove = remove,
+  merge = merge_1,
+  union = union,
+  compare = compare,
+  equal = equal,
+  iter = iter,
+  fold = fold,
+  for_all = for_all,
+  exists = exists,
+  filter = filter,
+  partition = partition,
+  cardinal = cardinal,
+  bindings = bindings,
+  min_binding = min_binding,
+  min_binding_opt = min_binding_opt,
+  max_binding = max_binding,
+  max_binding_opt = max_binding_opt,
+  choose = min_binding,
+  choose_opt = min_binding_opt,
+  split = split,
+  find = find,
+  find_opt = find_opt,
+  find_first = find_first,
+  find_first_opt = find_first_opt,
+  find_last = find_last,
+  find_last_opt = find_last_opt,
+  map = map,
+  mapi = mapi
+};
 
 function height_1(param) do
   if (param) then do
@@ -2009,42 +2009,42 @@ function bindings_1(s) do
   return bindings_aux_1(--[[ [] ]]0, s);
 end end
 
-Meths = do
-  empty: --[[ Empty ]]0,
-  is_empty: is_empty_1,
-  mem: mem_1,
-  add: add_1,
-  update: update_1,
-  singleton: singleton_1,
-  remove: remove_1,
-  merge: merge_3,
-  union: union_1,
-  compare: compare_1,
-  equal: equal_1,
-  iter: iter_1,
-  fold: fold_1,
-  for_all: for_all_1,
-  exists: exists_1,
-  filter: filter_1,
-  partition: partition_1,
-  cardinal: cardinal_1,
-  bindings: bindings_1,
-  min_binding: min_binding_1,
-  min_binding_opt: min_binding_opt_1,
-  max_binding: max_binding_1,
-  max_binding_opt: max_binding_opt_1,
-  choose: min_binding_1,
-  choose_opt: min_binding_opt_1,
-  split: split_1,
-  find: find_1,
-  find_opt: find_opt_1,
-  find_first: find_first_1,
-  find_first_opt: find_first_opt_1,
-  find_last: find_last_1,
-  find_last_opt: find_last_opt_1,
-  map: map_1,
-  mapi: mapi_1
-end;
+Meths = {
+  empty = --[[ Empty ]]0,
+  is_empty = is_empty_1,
+  mem = mem_1,
+  add = add_1,
+  update = update_1,
+  singleton = singleton_1,
+  remove = remove_1,
+  merge = merge_3,
+  union = union_1,
+  compare = compare_1,
+  equal = equal_1,
+  iter = iter_1,
+  fold = fold_1,
+  for_all = for_all_1,
+  exists = exists_1,
+  filter = filter_1,
+  partition = partition_1,
+  cardinal = cardinal_1,
+  bindings = bindings_1,
+  min_binding = min_binding_1,
+  min_binding_opt = min_binding_opt_1,
+  max_binding = max_binding_1,
+  max_binding_opt = max_binding_opt_1,
+  choose = min_binding_1,
+  choose_opt = min_binding_opt_1,
+  split = split_1,
+  find = find_1,
+  find_opt = find_opt_1,
+  find_first = find_first_1,
+  find_first_opt = find_first_opt_1,
+  find_last = find_last_1,
+  find_last_opt = find_last_opt_1,
+  map = map_1,
+  mapi = mapi_1
+};
 
 function height_2(param) do
   if (param) then do
@@ -3011,57 +3011,57 @@ function bindings_2(s) do
   return bindings_aux_2(--[[ [] ]]0, s);
 end end
 
-Labs = do
-  empty: --[[ Empty ]]0,
-  is_empty: is_empty_2,
-  mem: mem_2,
-  add: add_2,
-  update: update_2,
-  singleton: singleton_2,
-  remove: remove_2,
-  merge: merge_5,
-  union: union_2,
-  compare: compare_2,
-  equal: equal_2,
-  iter: iter_2,
-  fold: fold_2,
-  for_all: for_all_2,
-  exists: exists_2,
-  filter: filter_2,
-  partition: partition_2,
-  cardinal: cardinal_2,
-  bindings: bindings_2,
-  min_binding: min_binding_2,
-  min_binding_opt: min_binding_opt_2,
-  max_binding: max_binding_2,
-  max_binding_opt: max_binding_opt_2,
-  choose: min_binding_2,
-  choose_opt: min_binding_opt_2,
-  split: split_2,
-  find: find_2,
-  find_opt: find_opt_2,
-  find_first: find_first_2,
-  find_first_opt: find_first_opt_2,
-  find_last: find_last_2,
-  find_last_opt: find_last_opt_2,
-  map: map_2,
-  mapi: mapi_2
-end;
+Labs = {
+  empty = --[[ Empty ]]0,
+  is_empty = is_empty_2,
+  mem = mem_2,
+  add = add_2,
+  update = update_2,
+  singleton = singleton_2,
+  remove = remove_2,
+  merge = merge_5,
+  union = union_2,
+  compare = compare_2,
+  equal = equal_2,
+  iter = iter_2,
+  fold = fold_2,
+  for_all = for_all_2,
+  exists = exists_2,
+  filter = filter_2,
+  partition = partition_2,
+  cardinal = cardinal_2,
+  bindings = bindings_2,
+  min_binding = min_binding_2,
+  min_binding_opt = min_binding_opt_2,
+  max_binding = max_binding_2,
+  max_binding_opt = max_binding_opt_2,
+  choose = min_binding_2,
+  choose_opt = min_binding_opt_2,
+  split = split_2,
+  find = find_2,
+  find_opt = find_opt_2,
+  find_first = find_first_2,
+  find_first_opt = find_first_opt_2,
+  find_last = find_last_2,
+  find_last_opt = find_last_opt_2,
+  map = map_2,
+  mapi = mapi_2
+};
 
-dummy_table = do
-  size: 0,
-  methods: {--[[ () ]]0},
-  methods_by_name: --[[ Empty ]]0,
-  methods_by_label: --[[ Empty ]]0,
-  previous_states: --[[ [] ]]0,
-  hidden_meths: --[[ [] ]]0,
-  vars: --[[ Empty ]]0,
-  initializers: --[[ [] ]]0
-end;
+dummy_table = {
+  size = 0,
+  methods = {--[[ () ]]0},
+  methods_by_name = --[[ Empty ]]0,
+  methods_by_label = --[[ Empty ]]0,
+  previous_states = --[[ [] ]]0,
+  hidden_meths = --[[ [] ]]0,
+  vars = --[[ Empty ]]0,
+  initializers = --[[ [] ]]0
+};
 
-table_count = do
-  contents: 0
-end;
+table_count = {
+  contents = 0
+};
 
 dummy_met = --[[ obj_block ]]{};
 
@@ -3082,16 +3082,16 @@ function new_table(pub_labels) do
   for i = 0 , len - 1 | 0 , 1 do
     Caml_array.caml_array_set(methods, (i << 1) + 3 | 0, Caml_array.caml_array_get(pub_labels, i));
   end
-  return do
-          size: 2,
-          methods: methods,
-          methods_by_name: --[[ Empty ]]0,
-          methods_by_label: --[[ Empty ]]0,
-          previous_states: --[[ [] ]]0,
-          hidden_meths: --[[ [] ]]0,
-          vars: --[[ Empty ]]0,
-          initializers: --[[ [] ]]0
-        end;
+  return {
+          size = 2,
+          methods = methods,
+          methods_by_name = --[[ Empty ]]0,
+          methods_by_label = --[[ Empty ]]0,
+          previous_states = --[[ [] ]]0,
+          hidden_meths = --[[ [] ]]0,
+          vars = --[[ Empty ]]0,
+          initializers = --[[ [] ]]0
+        };
 end end
 
 function resize(array, new_size) do
@@ -3111,13 +3111,13 @@ function put(array, label, element) do
   return Caml_array.caml_array_set(array.methods, label, element);
 end end
 
-method_count = do
-  contents: 0
-end;
+method_count = {
+  contents = 0
+};
 
-inst_var_count = do
-  contents: 0
-end;
+inst_var_count = {
+  contents = 0
+};
 
 function new_method(table) do
   index = #table.methods;
@@ -3210,12 +3210,12 @@ function narrow(table, vars, virt_meths, concr_meths) do
             return tvars;
           end end 
         end end), table.vars, --[[ Empty ]]0);
-  by_name = do
-    contents: --[[ Empty ]]0
-  end;
-  by_label = do
-    contents: --[[ Empty ]]0
-  end;
+  by_name = {
+    contents = --[[ Empty ]]0
+  };
+  by_label = {
+    contents = --[[ Empty ]]0
+  };
   List.iter2((function(met, label) do
           by_name.contents = add_1(met, label, by_name.contents);
           tmp;
@@ -3492,11 +3492,11 @@ function create_object_and_run_initializers(obj_0, table) do
 end end
 
 function build_path(n, keys, tables) do
-  res = do
-    key: 0,
-    data: --[[ Empty ]]0,
-    next: --[[ Empty ]]0
-  end;
+  res = {
+    key = 0,
+    data = --[[ Empty ]]0,
+    next = --[[ Empty ]]0
+  };
   r = res;
   for i = 0 , n , 1 do
     r = --[[ Cons ]]{
@@ -3832,9 +3832,9 @@ end end
 
 function set_methods(table, methods) do
   len = #methods;
-  i = do
-    contents: 0
-  end;
+  i = {
+    contents = 0
+  };
   while(i.contents < len) do
     label = Caml_array.caml_array_get(methods, i.contents);
     clo = method_impl(table, i, methods);
@@ -3845,11 +3845,11 @@ function set_methods(table, methods) do
 end end
 
 function stats(param) do
-  return do
-          classes: table_count.contents,
-          methods: method_count.contents,
-          inst_vars: inst_var_count.contents
-        end;
+  return {
+          classes = table_count.contents,
+          methods = method_count.contents,
+          inst_vars = inst_var_count.contents
+        };
 end end
 
 initial_object_size = 2;

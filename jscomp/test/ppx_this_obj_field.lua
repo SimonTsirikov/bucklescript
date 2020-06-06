@@ -3,13 +3,13 @@ console = {log = print};
 Mt = require "./mt";
 Block = require "../../lib/js/block";
 
-suites = do
-  contents: --[[ [] ]]0
-end;
+suites = {
+  contents = --[[ [] ]]0
+};
 
-test_id = do
-  contents: 0
-end;
+test_id = {
+  contents = 0
+};
 
 function eq(loc, param) do
   y = param[1];
@@ -30,10 +30,10 @@ function eq(loc, param) do
   return --[[ () ]]0;
 end end
 
-v5 = do
-  x: 3,
-  y: 3,
-  setY: (function(v) do
+v5 = {
+  x = 3,
+  y = 3,
+  setY = (function(v) do
       self = this ;
       self.y = 2;
       return --[[ tuple ]]{
@@ -41,58 +41,58 @@ v5 = do
               v
             }; end
     end),
-  say: (function() do
+  say = (function() do
       self = this ;
       return self.x + self.y | 0; end
     end),
-  hihi: (function(u) do
+  hihi = (function(u) do
       self = this ;
       return self.x + self.say() | 0; end
     end),
-  bark: (function() do
+  bark = (function() do
       console.log("bark");
       return --[[ () ]]0; end
     end),
-  xz: (function() do
+  xz = (function() do
       return 3; end
     end)
-end;
+};
 
-v = do
-  x: 3,
-  y: 0,
-  reset: (function() do
+v = {
+  x = 3,
+  y = 0,
+  reset = (function() do
       self = this ;
       self.y = 0;
       return --[[ () ]]0; end
     end),
-  incr: (function() do
+  incr = (function() do
       self = this ;
       self.y = self.y + 1 | 0;
       return --[[ () ]]0; end
     end),
-  getY: (function() do
+  getY = (function() do
       self = this ;
       return self.y; end
     end),
-  say: (function() do
+  say = (function() do
       self = this ;
       return self.x + self.y | 0; end
     end)
-end;
+};
 
-u = do
-  incr: (function() do
+u = {
+  incr = (function() do
       console.log("hey");
       return --[[ () ]]0; end
     end),
-  getY: (function() do
+  getY = (function() do
       return 3; end
     end),
-  say: (function() do
+  say = (function() do
       return 7; end
     end)
-end;
+};
 
 test_type_001 = --[[ :: ]]{
   v,
@@ -104,57 +104,57 @@ test_type = --[[ :: ]]{
   test_type_001
 };
 
-z = do
-  x: do
-    contents: 3
-  end,
-  setX: (function(x) do
+z = {
+  x = {
+    contents = 3
+  },
+  setX = (function(x) do
       self = this ;
       self.x.contents = x;
       return --[[ () ]]0; end
     end),
-  getX: (function() do
+  getX = (function() do
       self = this ;
       return self.x.contents; end
     end)
-end;
+};
 
-eventObj = do
-  events: {},
-  empty: (function() do
+eventObj = {
+  events = {},
+  empty = (function() do
       self = this ;
       a = self.events;
       a.splice(0);
       return --[[ () ]]0; end
     end),
-  push: (function(a) do
+  push = (function(a) do
       self = this ;
       xs = self.events;
       xs.push(a);
       return --[[ () ]]0; end
     end),
-  needRebuild: (function() do
+  needRebuild = (function() do
       self = this ;
       return #self.events ~= 0; end
     end)
-end;
+};
 
 function test__(x) do
   return eventObj.push(x);
 end end
 
-zz = do
-  x: 3,
-  setX: (function(x) do
+zz = {
+  x = 3,
+  setX = (function(x) do
       self = this ;
       self.x = x;
       return --[[ () ]]0; end
     end),
-  getX: (function() do
+  getX = (function() do
       self = this ;
       return self.x; end
     end)
-end;
+};
 
 test_type2_001 = --[[ :: ]]{
   zz,

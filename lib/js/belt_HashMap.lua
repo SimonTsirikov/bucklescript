@@ -53,20 +53,20 @@ function set0(h, key, value, eq, hash) do
   l = h_buckets[i];
   if (l ~= undefined) then do
     if (replaceInBucket(eq, key, value, l)) then do
-      h_buckets[i] = do
-        key: key,
-        value: value,
-        next: l
-      end;
+      h_buckets[i] = {
+        key = key,
+        value = value,
+        next = l
+      };
       h.size = h.size + 1 | 0;
     end
      end 
   end else do
-    h_buckets[i] = do
-      key: key,
-      value: value,
-      next: undefined
-    end;
+    h_buckets[i] = {
+      key = key,
+      value = value,
+      next = undefined
+    };
     h.size = h.size + 1 | 0;
   end end 
   if (h.size > (buckets_len << 1)) then do

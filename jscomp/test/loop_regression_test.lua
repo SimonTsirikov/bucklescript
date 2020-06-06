@@ -4,12 +4,12 @@ Mt = require "./mt";
 Block = require "../../lib/js/block";
 
 function f(param) do
-  v = do
-    contents: 0
-  end;
-  acc = do
-    contents: 0
-  end;
+  v = {
+    contents = 0
+  };
+  acc = {
+    contents = 0
+  };
   n = 10;
   while(true) do
     if (v.contents > n) then do

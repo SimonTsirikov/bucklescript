@@ -15,24 +15,24 @@ function to_list(q) do
                   end end), --[[ [] ]]0, q));
 end end
 
-Q = do
-  Empty: Queue.Empty,
-  create: Queue.create,
-  add: Queue.add,
-  push: Queue.push,
-  take: Queue.take,
-  pop: Queue.pop,
-  peek: Queue.peek,
-  top: Queue.top,
-  clear: Queue.clear,
-  copy: Queue.copy,
-  is_empty: Queue.is_empty,
-  length: Queue.length,
-  iter: Queue.iter,
-  fold: Queue.fold,
-  transfer: Queue.transfer,
-  to_list: to_list
-end;
+Q = {
+  Empty = Queue.Empty,
+  create = Queue.create,
+  add = Queue.add,
+  push = Queue.push,
+  take = Queue.take,
+  pop = Queue.pop,
+  peek = Queue.peek,
+  top = Queue.top,
+  clear = Queue.clear,
+  copy = Queue.copy,
+  is_empty = Queue.is_empty,
+  length = Queue.length,
+  iter = Queue.iter,
+  fold = Queue.fold,
+  transfer = Queue.transfer,
+  to_list = to_list
+};
 
 function does_raise(f, q) do
   xpcall(function() do
@@ -47,11 +47,11 @@ function does_raise(f, q) do
   end end)
 end end
 
-q = do
-  length: 0,
-  first: --[[ Nil ]]0,
-  last: --[[ Nil ]]0
-end;
+q = {
+  length = 0,
+  first = --[[ Nil ]]0,
+  last = --[[ Nil ]]0
+};
 
 if (not (to_list(q) == --[[ [] ]]0 and q.length == 0)) then do
   error({
@@ -277,11 +277,11 @@ if (not does_raise(Queue.take, q)) then do
 end
  end 
 
-q_1 = do
-  length: 0,
-  first: --[[ Nil ]]0,
-  last: --[[ Nil ]]0
-end;
+q_1 = {
+  length = 0,
+  first = --[[ Nil ]]0,
+  last = --[[ Nil ]]0
+};
 
 Queue.add(1, q_1);
 
@@ -347,11 +347,11 @@ if (q_1.length ~= 0) then do
 end
  end 
 
-q_2 = do
-  length: 0,
-  first: --[[ Nil ]]0,
-  last: --[[ Nil ]]0
-end;
+q_2 = {
+  length = 0,
+  first = --[[ Nil ]]0,
+  last = --[[ Nil ]]0
+};
 
 Queue.add(1, q_2);
 
@@ -491,11 +491,11 @@ if (not does_raise(Queue.peek, q_2)) then do
 end
  end 
 
-q_3 = do
-  length: 0,
-  first: --[[ Nil ]]0,
-  last: --[[ Nil ]]0
-end;
+q_3 = {
+  length = 0,
+  first = --[[ Nil ]]0,
+  last = --[[ Nil ]]0
+};
 
 for i = 1 , 10 , 1 do
   Queue.add(i, q_3);
@@ -527,11 +527,11 @@ if (not does_raise(Queue.take, q_3)) then do
 end
  end 
 
-if (not Caml_obj.caml_equal(q_3, do
-        length: 0,
-        first: --[[ Nil ]]0,
-        last: --[[ Nil ]]0
-      end)) then do
+if (not Caml_obj.caml_equal(q_3, {
+        length = 0,
+        first = --[[ Nil ]]0,
+        last = --[[ Nil ]]0
+      })) then do
   error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
@@ -557,11 +557,11 @@ if (Queue.take(q_3) ~= 42) then do
 end
  end 
 
-q1 = do
-  length: 0,
-  first: --[[ Nil ]]0,
-  last: --[[ Nil ]]0
-end;
+q1 = {
+  length = 0,
+  first = --[[ Nil ]]0,
+  last = --[[ Nil ]]0
+};
 
 for i_1 = 1 , 10 , 1 do
   Queue.add(i_1, q1);
@@ -705,11 +705,11 @@ for i_3 = 1 , 10 , 1 do
    end 
 end
 
-q_4 = do
-  length: 0,
-  first: --[[ Nil ]]0,
-  last: --[[ Nil ]]0
-end;
+q_4 = {
+  length = 0,
+  first = --[[ Nil ]]0,
+  last = --[[ Nil ]]0
+};
 
 if (q_4.length ~= 0) then do
   error({
@@ -799,19 +799,19 @@ if (q_4.length ~= 0) then do
 end
  end 
 
-q_5 = do
-  length: 0,
-  first: --[[ Nil ]]0,
-  last: --[[ Nil ]]0
-end;
+q_5 = {
+  length = 0,
+  first = --[[ Nil ]]0,
+  last = --[[ Nil ]]0
+};
 
 for i_6 = 1 , 10 , 1 do
   Queue.add(i_6, q_5);
 end
 
-i_7 = do
-  contents: 1
-end;
+i_7 = {
+  contents = 1
+};
 
 Queue.iter((function(j) do
         if (i_7.contents ~= j) then do
@@ -829,17 +829,17 @@ Queue.iter((function(j) do
         return --[[ () ]]0;
       end end), q_5);
 
-q1_1 = do
-  length: 0,
-  first: --[[ Nil ]]0,
-  last: --[[ Nil ]]0
-end;
+q1_1 = {
+  length = 0,
+  first = --[[ Nil ]]0,
+  last = --[[ Nil ]]0
+};
 
-q2_1 = do
-  length: 0,
-  first: --[[ Nil ]]0,
-  last: --[[ Nil ]]0
-end;
+q2_1 = {
+  length = 0,
+  first = --[[ Nil ]]0,
+  last = --[[ Nil ]]0
+};
 
 if (q1_1.length ~= 0) then do
   error({
@@ -939,17 +939,17 @@ if (to_list(q2_1) ~= --[[ [] ]]0) then do
 end
  end 
 
-q1_2 = do
-  length: 0,
-  first: --[[ Nil ]]0,
-  last: --[[ Nil ]]0
-end;
+q1_2 = {
+  length = 0,
+  first = --[[ Nil ]]0,
+  last = --[[ Nil ]]0
+};
 
-q2_2 = do
-  length: 0,
-  first: --[[ Nil ]]0,
-  last: --[[ Nil ]]0
-end;
+q2_2 = {
+  length = 0,
+  first = --[[ Nil ]]0,
+  last = --[[ Nil ]]0
+};
 
 for i_8 = 1 , 4 , 1 do
   Queue.add(i_8, q1_2);
@@ -1077,17 +1077,17 @@ if (not Caml_obj.caml_equal(to_list(q2_2), --[[ :: ]]{
 end
  end 
 
-q1_3 = do
-  length: 0,
-  first: --[[ Nil ]]0,
-  last: --[[ Nil ]]0
-end;
+q1_3 = {
+  length = 0,
+  first = --[[ Nil ]]0,
+  last = --[[ Nil ]]0
+};
 
-q2_3 = do
-  length: 0,
-  first: --[[ Nil ]]0,
-  last: --[[ Nil ]]0
-end;
+q2_3 = {
+  length = 0,
+  first = --[[ Nil ]]0,
+  last = --[[ Nil ]]0
+};
 
 for i_9 = 5 , 8 , 1 do
   Queue.add(i_9, q2_3);
@@ -1215,17 +1215,17 @@ if (not Caml_obj.caml_equal(to_list(q2_3), --[[ :: ]]{
 end
  end 
 
-q1_4 = do
-  length: 0,
-  first: --[[ Nil ]]0,
-  last: --[[ Nil ]]0
-end;
+q1_4 = {
+  length = 0,
+  first = --[[ Nil ]]0,
+  last = --[[ Nil ]]0
+};
 
-q2_4 = do
-  length: 0,
-  first: --[[ Nil ]]0,
-  last: --[[ Nil ]]0
-end;
+q2_4 = {
+  length = 0,
+  first = --[[ Nil ]]0,
+  last = --[[ Nil ]]0
+};
 
 for i_10 = 1 , 4 , 1 do
   Queue.add(i_10, q1_4);

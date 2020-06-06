@@ -775,9 +775,9 @@ suites_001 = --[[ :: ]]{
                                                                                       --[[ tuple ]]{
                                                                                         "typed_array - forEach",
                                                                                         (function(param) do
-                                                                                            sum = do
-                                                                                              contents: 0
-                                                                                            end;
+                                                                                            sum = {
+                                                                                              contents = 0
+                                                                                            };
                                                                                             new Int8Array({
                                                                                                     1,
                                                                                                     2,
@@ -796,9 +796,9 @@ suites_001 = --[[ :: ]]{
                                                                                         --[[ tuple ]]{
                                                                                           "typed_array - forEachi",
                                                                                           (function(param) do
-                                                                                              sum = do
-                                                                                                contents: 0
-                                                                                              end;
+                                                                                              sum = {
+                                                                                                contents = 0
+                                                                                              };
                                                                                               new Int8Array({
                                                                                                       1,
                                                                                                       2,

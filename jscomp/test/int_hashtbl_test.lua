@@ -53,10 +53,10 @@ function equal(x, y) do
   return x == y;
 end end
 
-Int_hash = Hashtbl.Make(do
-      equal: equal,
-      hash: hash
-    end);
+Int_hash = Hashtbl.Make({
+      equal = equal,
+      hash = hash
+    });
 
 suites_000 = --[[ tuple ]]{
   "simple",

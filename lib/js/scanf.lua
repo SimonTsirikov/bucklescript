@@ -110,23 +110,23 @@ function store_char(width, ib, c) do
 end end
 
 function create(iname, next) do
-  return do
-          ic_eof: false,
-          ic_current_char: --[[ "\000" ]]0,
-          ic_current_char_is_valid: false,
-          ic_char_count: 0,
-          ic_line_count: 0,
-          ic_token_count: 0,
-          ic_get_next_char: next,
-          ic_token_buffer: __Buffer.create(1024),
-          ic_input_name: iname
-        end;
+  return {
+          ic_eof = false,
+          ic_current_char = --[[ "\000" ]]0,
+          ic_current_char_is_valid = false,
+          ic_char_count = 0,
+          ic_line_count = 0,
+          ic_token_count = 0,
+          ic_get_next_char = next,
+          ic_token_buffer = __Buffer.create(1024),
+          ic_input_name = iname
+        };
 end end
 
 function from_string(s) do
-  i = do
-    contents: 0
-  end;
+  i = {
+    contents = 0
+  };
   len = #s;
   next = function(param) do
     if (i.contents >= len) then do
@@ -144,9 +144,9 @@ function from_function(param) do
   return create(--[[ From_function ]]0, param);
 end end
 
-file_buffer_size = do
-  contents: 1024
-end;
+file_buffer_size = {
+  contents = 1024
+};
 
 function scan_close_at_end(ic) do
   Caml_external_polyfill.resolve("caml_ml_close_channel")(ic);
@@ -160,15 +160,15 @@ end end
 function from_ic(scan_close_ic, iname, ic) do
   len = file_buffer_size.contents;
   buf = Caml_bytes.caml_create_bytes(len);
-  i = do
-    contents: 0
-  end;
-  lim = do
-    contents: 0
-  end;
-  eof = do
-    contents: false
-  end;
+  i = {
+    contents = 0
+  };
+  lim = {
+    contents = 0
+  };
+  eof = {
+    contents = false
+  };
   next = function(param) do
     if (i.contents < lim.contents) then do
       c = Caml_bytes.get(buf, i.contents);
@@ -232,9 +232,9 @@ function close_in(ib) do
   end end  end 
 end end
 
-memo = do
-  contents: --[[ [] ]]0
-end;
+memo = {
+  contents = --[[ [] ]]0
+};
 
 function memo_from_ic(scan_close_ic, ic) do
   xpcall(function() do
@@ -2157,21 +2157,21 @@ function fscanf(ic, fmt) do
   return kscanf(memo_from_ic(scan_raise_at_end, ic), scanf_bad_input, fmt);
 end end
 
-Scanning = do
-  stdin: stdin,
-  open_in: open_in,
-  open_in_bin: open_in_bin,
-  close_in: close_in,
-  from_file: open_in,
-  from_file_bin: open_in_bin,
-  from_string: from_string,
-  from_function: from_function,
-  from_channel: from_channel,
-  end_of_input: end_of_input,
-  beginning_of_input: beginning_of_input,
-  name_of_input: name_of_input,
-  stdib: stdin
-end;
+Scanning = {
+  stdin = stdin,
+  open_in = open_in,
+  open_in_bin = open_in_bin,
+  close_in = close_in,
+  from_file = open_in,
+  from_file_bin = open_in_bin,
+  from_string = from_string,
+  from_function = from_function,
+  from_channel = from_channel,
+  end_of_input = end_of_input,
+  beginning_of_input = beginning_of_input,
+  name_of_input = name_of_input,
+  stdib = stdin
+};
 
 exports = {}
 exports.Scanning = Scanning;

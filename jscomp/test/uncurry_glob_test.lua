@@ -6,9 +6,9 @@ v = Caml_utils.repeat(100, "x");
 
 function M(U) do
   v = U.f(100, "x");
-  return do
-          v: v
-        end;
+  return {
+          v = v
+        };
 end end
 
 function f() do

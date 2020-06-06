@@ -152,9 +152,9 @@ function timing(label, f) do
 end end
 
 function assertion_test(param) do
-  m = do
-    contents: --[[ Empty ]]0
-  end;
+  m = {
+    contents = --[[ Empty ]]0
+  };
   timing("building", (function(param) do
           for i = 0 , 1000000 , 1 do
             m.contents = add(String(i), String(i), m.contents);

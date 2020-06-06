@@ -16,13 +16,13 @@ function copy(n) do
   if (n ~= nil) then do
     l = n.left;
     r = n.right;
-    return do
-            key: n.key,
-            value: n.value,
-            height: n.height,
-            left: copy(l),
-            right: copy(r)
-          end;
+    return {
+            key = n.key,
+            value = n.value,
+            height = n.height,
+            left = copy(l),
+            right = copy(r)
+          };
   end else do
     return n;
   end end 
@@ -31,23 +31,23 @@ end end
 function create(l, x, d, r) do
   hl = treeHeight(l);
   hr = treeHeight(r);
-  return do
-          key: x,
-          value: d,
-          height: hl >= hr and hl + 1 | 0 or hr + 1 | 0,
-          left: l,
-          right: r
-        end;
+  return {
+          key = x,
+          value = d,
+          height = hl >= hr and hl + 1 | 0 or hr + 1 | 0,
+          left = l,
+          right = r
+        };
 end end
 
 function singleton(x, d) do
-  return do
-          key: x,
-          value: d,
-          height: 1,
-          left: nil,
-          right: nil
-        end;
+  return {
+          key = x,
+          value = d,
+          height = 1,
+          left = nil,
+          right = nil
+        };
 end end
 
 function heightGe(l, r) do
@@ -66,13 +66,13 @@ function updateValue(n, newValue) do
   if (n.value == newValue) then do
     return n;
   end else do
-    return do
-            key: n.key,
-            value: newValue,
-            height: n.height,
-            left: n.left,
-            right: n.right
-          end;
+    return {
+            key = n.key,
+            value = newValue,
+            height = n.height,
+            left = n.left,
+            right = n.right
+          };
   end end 
 end end
 
@@ -108,13 +108,13 @@ function bal(l, x, d, r) do
       return create(create(l, x, d, rll), rlv, rld, create(rlr, rv, rd, rr));
     end end 
   end else do
-    return do
-            key: x,
-            value: d,
-            height: hl >= hr and hl + 1 | 0 or hr + 1 | 0,
-            left: l,
-            right: r
-          end;
+    return {
+            key = x,
+            value = d,
+            height = hl >= hr and hl + 1 | 0 or hr + 1 | 0,
+            left = l,
+            right = r
+          };
   end end  end 
 end end
 
@@ -321,13 +321,13 @@ function mapU(n, f) do
     newLeft = mapU(n.left, f);
     newD = f(n.value);
     newRight = mapU(n.right, f);
-    return do
-            key: n.key,
-            value: newD,
-            height: n.height,
-            left: newLeft,
-            right: newRight
-          end;
+    return {
+            key = n.key,
+            value = newD,
+            height = n.height,
+            left = newLeft,
+            right = newRight
+          };
   end else do
     return nil;
   end end 
@@ -343,13 +343,13 @@ function mapWithKeyU(n, f) do
     newLeft = mapWithKeyU(n.left, f);
     newD = f(key, n.value);
     newRight = mapWithKeyU(n.right, f);
-    return do
-            key: key,
-            value: newD,
-            height: n.height,
-            left: newLeft,
-            right: newRight
-          end;
+    return {
+            key = key,
+            value = newD,
+            height = n.height,
+            left = newLeft,
+            right = newRight
+          };
   end else do
     return nil;
   end end 
@@ -468,12 +468,12 @@ end end
 function concat(t1, t2) do
   if (t1 ~= nil) then do
     if (t2 ~= nil) then do
-      kr = do
-        contents: t2.key
-      end;
-      vr = do
-        contents: t2.value
-      end;
+      kr = {
+        contents = t2.key
+      };
+      vr = {
+        contents = t2.value
+      };
       t2r = removeMinAuxWithRef(t2, kr, vr);
       return join(t1, kr.contents, vr.contents, t2r);
     end else do
@@ -740,13 +740,13 @@ function fromSortedArrayRevAux(arr, off, len) do
         match_001 = arr[off - 1 | 0];
         match_1 = match_001;
         match_2 = match_000;
-        return do
-                key: match_1[0],
-                value: match_1[1],
-                height: 2,
-                left: singleton(match_2[0], match_2[1]),
-                right: nil
-              end; end end 
+        return {
+                key = match_1[0],
+                value = match_1[1],
+                height = 2,
+                left = singleton(match_2[0], match_2[1]),
+                right = nil
+              }; end end 
      if ___conditional___ == 3 then do
         match_000_1 = arr[off];
         match_001_1 = arr[off - 1 | 0];
@@ -754,13 +754,13 @@ function fromSortedArrayRevAux(arr, off, len) do
         match_3 = match_002;
         match_4 = match_001_1;
         match_5 = match_000_1;
-        return do
-                key: match_4[0],
-                value: match_4[1],
-                height: 2,
-                left: singleton(match_5[0], match_5[1]),
-                right: singleton(match_3[0], match_3[1])
-              end; end end 
+        return {
+                key = match_4[0],
+                value = match_4[1],
+                height = 2,
+                left = singleton(match_5[0], match_5[1]),
+                right = singleton(match_3[0], match_3[1])
+              }; end end 
     nl = len / 2 | 0;
       left = fromSortedArrayRevAux(arr, off, nl);
       match_6 = arr[off - nl | 0];
@@ -783,13 +783,13 @@ function fromSortedArrayAux(arr, off, len) do
         match_001 = arr[off + 1 | 0];
         match_1 = match_001;
         match_2 = match_000;
-        return do
-                key: match_1[0],
-                value: match_1[1],
-                height: 2,
-                left: singleton(match_2[0], match_2[1]),
-                right: nil
-              end; end end 
+        return {
+                key = match_1[0],
+                value = match_1[1],
+                height = 2,
+                left = singleton(match_2[0], match_2[1]),
+                right = nil
+              }; end end 
      if ___conditional___ == 3 then do
         match_000_1 = arr[off];
         match_001_1 = arr[off + 1 | 0];
@@ -797,13 +797,13 @@ function fromSortedArrayAux(arr, off, len) do
         match_3 = match_002;
         match_4 = match_001_1;
         match_5 = match_000_1;
-        return do
-                key: match_4[0],
-                value: match_4[1],
-                height: 2,
-                left: singleton(match_5[0], match_5[1]),
-                right: singleton(match_3[0], match_3[1])
-              end; end end 
+        return {
+                key = match_4[0],
+                value = match_4[1],
+                height = 2,
+                left = singleton(match_5[0], match_5[1]),
+                right = singleton(match_3[0], match_3[1])
+              }; end end 
     nl = len / 2 | 0;
       left = fromSortedArrayAux(arr, off, nl);
       match_6 = arr[off + nl | 0];

@@ -3,18 +3,18 @@ console = {log = print};
 Mt = require "./mt";
 Curry = require "../../lib/js/curry";
 
-result = do
-  contents: ""
-end;
+result = {
+  contents = ""
+};
 
 function log(x) do
   result.contents = x;
   return --[[ () ]]0;
 end end
 
-Xx = do
-  log: log
-end;
+Xx = {
+  log = log
+};
 
 function compilerBug(a, b, c, f) do
   exit = 0;
@@ -52,13 +52,13 @@ function compilerBug(a, b, c, f) do
   end end 
 end end
 
-suites = do
-  contents: --[[ [] ]]0
-end;
+suites = {
+  contents = --[[ [] ]]0
+};
 
-test_id = do
-  contents: 0
-end;
+test_id = {
+  contents = 0
+};
 
 function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);

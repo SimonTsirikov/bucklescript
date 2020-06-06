@@ -46,9 +46,9 @@ Caml_oo_curry.js2(-933174511, 2, p, 3);
 
 three = Caml_oo_curry.js1(291546447, 3, p);
 
-x0 = do
-  contents: 0
-end;
+x0 = {
+  contents = 0
+};
 
 function point2_init(__class) do
   ids = CamlinternalOO.new_methods_variables(__class, shared_1, shared);
@@ -84,13 +84,13 @@ tmp_1 = Curry._1(point2[0], 0);
 
 two = Caml_oo_curry.js1(291546447, 5, tmp_1);
 
-u = do
-  x: 3,
-  getX: (function() do
+u = {
+  x = 3,
+  getX = (function() do
       self = this ;
       return self.x; end
     end)
-end;
+};
 
 Mt.from_pair_suites("Class_test", --[[ :: ]]{
       --[[ tuple ]]{

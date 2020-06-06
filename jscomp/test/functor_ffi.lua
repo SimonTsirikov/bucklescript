@@ -6,18 +6,18 @@ function Make(S) do
   opt_get = function(f, i) do
     return Caml_option.undefined_to_opt(f[i]);
   end end;
-  return do
-          opt_get: opt_get
-        end;
+  return {
+          opt_get = opt_get
+        };
 end end
 
 function opt_get(f, i) do
   return Caml_option.undefined_to_opt(f[i]);
 end end
 
-Int_arr = do
-  opt_get: opt_get
-end;
+Int_arr = {
+  opt_get = opt_get
+};
 
 function f(v) do
   return --[[ tuple ]]{

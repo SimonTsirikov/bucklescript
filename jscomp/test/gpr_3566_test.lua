@@ -18,23 +18,23 @@ function Test($star) do
   u = --[[ A ]]Block.__(0, {3});
   Block_1 = { };
   b = eq_A(--[[ A ]]Block.__(0, {3}), u);
-  return do
-          u: u,
-          Block: Block_1,
-          y: 32,
-          b: b
-        end;
+  return {
+          u = u,
+          Block = Block_1,
+          y = 32,
+          b = b
+        };
 end end
 
 function Test2($star) do
   console.log("no inline");
   Block_1 = { };
   b = eq_A(--[[ A ]]Block.__(0, {3}), --[[ A ]]Block.__(0, {3}));
-  return do
-          Block: Block_1,
-          y: 32,
-          b: b
-        end;
+  return {
+          Block = Block_1,
+          y = 32,
+          b = b
+        };
 end end
 
 function f(i, y) do
@@ -45,19 +45,19 @@ end end
 function Test3($star) do
   f = Caml_obj.caml_equal;
   Caml_obj_1 = { };
-  return do
-          f: f,
-          Caml_obj: Caml_obj_1
-        end;
+  return {
+          f = f,
+          Caml_obj = Caml_obj_1
+        };
 end end
 
 function Test4($star) do
   Caml_obj_1 = { };
   f = Caml_obj.caml_equal;
-  return do
-          Caml_obj: Caml_obj_1,
-          f: f
-        end;
+  return {
+          Caml_obj = Caml_obj_1,
+          f = f
+        };
 end end
 
 function Test5($star) do
@@ -65,10 +65,10 @@ function Test5($star) do
     return Caml_option.some(x);
   end end;
   Caml_option_1 = { };
-  return do
-          f: f,
-          Caml_option: Caml_option_1
-        end;
+  return {
+          f = f,
+          Caml_option = Caml_option_1
+        };
 end end
 
 function Test6($star) do
@@ -76,17 +76,17 @@ function Test6($star) do
   f = function(x) do
     return Caml_option.some(x);
   end end;
-  return do
-          Caml_option: Caml_option_1,
-          f: f
-        end;
+  return {
+          Caml_option = Caml_option_1,
+          f = f
+        };
 end end
 
 function Test7($star) do
   Caml_option = { };
-  return do
-          Caml_option: Caml_option
-        end;
+  return {
+          Caml_option = Caml_option
+        };
 end end
 
 function Test8($star) do
@@ -94,10 +94,10 @@ function Test8($star) do
   f = function(x) do
     return Curry._1(x, 1);
   end end;
-  return do
-          Curry: Curry_1,
-          f: f
-        end;
+  return {
+          Curry = Curry_1,
+          f = f
+        };
 end end
 
 function Test9($star) do
@@ -105,17 +105,17 @@ function Test9($star) do
     return Curry._1(x, 1);
   end end;
   Curry_1 = { };
-  return do
-          f: f,
-          Curry: Curry_1
-        end;
+  return {
+          f = f,
+          Curry = Curry_1
+        };
 end end
 
 function Test10($star) do
   Curry = { };
-  return do
-          Curry: Curry
-        end;
+  return {
+          Curry = Curry
+        };
 end end
 
 x = 3;

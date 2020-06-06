@@ -12,11 +12,11 @@ Caml_exceptions = require "../../lib/js/caml_exceptions";
 Parse_error = Caml_exceptions.create("Stream_parser_test.Parse_error");
 
 function parse(token) do
-  look_ahead = do
-    length: 0,
-    first: --[[ Nil ]]0,
-    last: --[[ Nil ]]0
-  end;
+  look_ahead = {
+    length = 0,
+    first = --[[ Nil ]]0,
+    last = --[[ Nil ]]0
+  };
   token_1 = function(param) do
     if (look_ahead.length == 0) then do
       xpcall(function() do
@@ -142,11 +142,11 @@ function token(chars) do
 end end
 
 function l_parse(token) do
-  look_ahead = do
-    length: 0,
-    first: --[[ Nil ]]0,
-    last: --[[ Nil ]]0
-  end;
+  look_ahead = {
+    length = 0,
+    first = --[[ Nil ]]0,
+    last = --[[ Nil ]]0
+  };
   token_1 = function(param) do
     if (look_ahead.length == 0) then do
       xpcall(function() do
@@ -252,13 +252,13 @@ function l_parse(token) do
         };
 end end
 
-suites = do
-  contents: --[[ [] ]]0
-end;
+suites = {
+  contents = --[[ [] ]]0
+};
 
-test_id = do
-  contents: 0
-end;
+test_id = {
+  contents = 0
+};
 
 function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;

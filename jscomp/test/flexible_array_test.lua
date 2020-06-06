@@ -281,20 +281,20 @@ end end
 
 equal = Caml_obj.caml_equal;
 
-Int_array = do
-  empty: empty,
-  get: get,
-  set: set,
-  push_front: push_front,
-  pop_front: pop_front,
-  push_back: push_back,
-  pop_back: pop_back,
-  pp: pp,
-  append: append,
-  sort: sort,
-  of_array: of_array,
-  equal: equal
-end;
+Int_array = {
+  empty = empty,
+  get = get,
+  set = set,
+  push_front = push_front,
+  pop_front = pop_front,
+  push_back = push_back,
+  pop_back = pop_back,
+  pp = pp,
+  append = append,
+  sort = sort,
+  of_array = of_array,
+  equal = equal
+};
 
 function $eq$tilde(x, y) do
   return Caml_obj.caml_equal(x, of_array(y));

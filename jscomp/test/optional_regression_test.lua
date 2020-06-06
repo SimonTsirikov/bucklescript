@@ -3,13 +3,13 @@ console = {log = print};
 Mt = require "./mt";
 Caml_option = require "../../lib/js/caml_option";
 
-suites = do
-  contents: --[[ [] ]]0
-end;
+suites = {
+  contents = --[[ [] ]]0
+};
 
-test_id = do
-  contents: 0
-end;
+test_id = {
+  contents = 0
+};
 
 function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
@@ -34,11 +34,11 @@ function make(s, b, i) do
     end end);
 end end
 
-hh = do
-  s: "",
-  b: false,
-  i: 0
-end;
+hh = {
+  s = "",
+  b = false,
+  i = 0
+};
 
 eq("File \"optional_regression_test.ml\", line 21, characters 6-13", Caml_option.undefined_to_opt(hh.s), "");
 

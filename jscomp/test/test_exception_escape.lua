@@ -15,9 +15,9 @@ end end,function(exn) do
   f = 3;
 end end)
 
-N = do
-  f: f
-end;
+N = {
+  f = f
+};
 
 exports = {}
 exports.N = N;

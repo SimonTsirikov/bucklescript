@@ -19,18 +19,18 @@ Caml_string = require "../../lib/js/caml_string";
 Caml_external_polyfill = require "../../lib/js/caml_external_polyfill";
 Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
-dbg = do
-  contents: true
-end;
+dbg = {
+  contents = true
+};
 
-inch = do
-  contents: Pervasives.stdin
-end;
+inch = {
+  contents = Pervasives.stdin
+};
 
 function bufferize(f) do
-  buf = do
-    contents: undefined
-  end;
+  buf = {
+    contents = undefined
+  };
   return --[[ tuple ]]{
           (function(param) do
               match = buf.contents;
@@ -75,9 +75,9 @@ end end
 
 symtab = Caml_array.caml_make_vect(100, "");
 
-syms = do
-  contents: 0
-end;
+syms = {
+  contents = 0
+};
 
 function find(s, _n) do
   while(true) do
@@ -124,9 +124,9 @@ end end
 
 glo = Bytes.make(4096, --[[ "\000" ]]0);
 
-gpos = do
-  contents: 0
-end;
+gpos = {
+  contents = 0
+};
 
 s = Caml_bytes.caml_create_bytes(100);
 
@@ -336,9 +336,9 @@ end end
 
 obuf = Bytes.make(1048576, --[[ "\000" ]]0);
 
-opos = do
-  contents: 0
-end;
+opos = {
+  contents = 0
+};
 
 function out(x) do
   if (x ~= 0) then do
@@ -442,9 +442,9 @@ function test(n, l) do
   return loc;
 end end
 
-align = do
-  contents: 0
-end;
+align = {
+  contents = 0
+};
 
 function push(r) do
   align.contents = align.contents + 1 | 0;
@@ -464,12 +464,12 @@ function pop(r) do
   end end 
 end end
 
-lval = do
-  contents: --[[ tuple ]]{
+lval = {
+  contents = --[[ tuple ]]{
     --[[ Mov ]]Block.__(0, {0}),
     --[[ Int ]]0
   }
-end;
+};
 
 function patchlval(param) do
   match = lval.contents[0];
@@ -502,10 +502,10 @@ function read(param) do
   end end 
 end end
 
-globs = Caml_array.caml_make_vect(100, do
-      loc: 0,
-      va: -1
-    end);
+globs = Caml_array.caml_make_vect(100, {
+      loc = 0,
+      va = -1
+    });
 
 lvls = --[[ :: ]]{
   --[[ tuple ]]{
@@ -970,10 +970,10 @@ function unary(stk) do
           g = Caml_array.caml_array_get(globs, i);
           loc = opos.contents;
           le(64, g.loc);
-          Caml_array.caml_array_set(globs, i, do
-                loc: loc,
-                va: g.va
-              end);
+          Caml_array.caml_array_set(globs, i, {
+                loc = loc,
+                va = g.va
+              });
           read(--[[ Int ]]0);
         end end 
         return postfix(stk); end end 
@@ -1157,10 +1157,10 @@ function decl(g, _n, _stk) do
                 end
                  end 
                 va = (gpos.contents + 232 | 0) + 4194304 | 0;
-                Caml_array.caml_array_set(globs, s, do
-                      loc: glo.loc,
-                      va: va
-                    end);
+                Caml_array.caml_array_set(globs, s, {
+                      loc = glo.loc,
+                      va = va
+                    });
                 gpos.contents = gpos.contents + 8 | 0;
                 stk$prime = stk;
               end else do
@@ -1247,9 +1247,9 @@ function decl(g, _n, _stk) do
   end;
 end end
 
-retl = do
-  contents: 0
-end;
+retl = {
+  contents = 0
+};
 
 function stmt(brk, stk) do
   pexpr = function(stk) do
@@ -1277,9 +1277,9 @@ function stmt(brk, stk) do
     end end 
     return patch(true, loc_1, opos.contents);
   end else if (Caml_obj.caml_equal(t, tokwhile) or Caml_obj.caml_equal(t, tokfor)) then do
-    bl = do
-      contents: 0
-    end;
+    bl = {
+      contents = 0
+    };
     ba = align.contents;
     match;
     if (Caml_obj.caml_equal(t, tokwhile)) then do
@@ -1417,10 +1417,10 @@ function top(_param) do
           })
         end
          end 
-        Caml_array.caml_array_set(globs, f, do
-              loc: g.loc,
-              va: opos.contents
-            end);
+        Caml_array.caml_array_set(globs, f, {
+              loc = g.loc,
+              va = opos.contents
+            });
         emitargs = function(_regs, _n, _stk) do
           while(true) do
             stk = _stk;
@@ -1495,9 +1495,9 @@ function top(_param) do
         end;
         retl.contents = 0;
         block(--[[ tuple ]]{
-              do
-                contents: 0
-              end,
+              {
+                contents = 0
+              },
               0
             }, stk);
         patch(true, retl.contents, opos.contents);
@@ -1596,10 +1596,10 @@ function elfgen(outf) do
   out(-1921768440);
   out(18616);
   le(64, gmain.loc);
-  Caml_array.caml_array_set(globs, main, do
-        loc: opos.contents - 8 | 0,
-        va: gmain.va
-      end);
+  Caml_array.caml_array_set(globs, main, {
+        loc = opos.contents - 8 | 0,
+        va = gmain.va
+      });
   out(65488);
   out(35271);
   load(0, 60);
@@ -1640,9 +1640,9 @@ function elfgen(outf) do
         end end));
   opos.contents = opos.contents + 7 & -8;
   symtab = opos.contents;
-  n = do
-    contents: 39
-  end;
+  n = {
+    contents = 39
+  };
   opos.contents = opos.contents + 24 | 0;
   itr((function(param, sl, param_1) do
           le(32, n.contents);
@@ -1653,9 +1653,9 @@ function elfgen(outf) do
           return --[[ () ]]0;
         end end));
   rel = opos.contents;
-  n_1 = do
-    contents: 1
-  end;
+  n_1 = {
+    contents = 1
+  };
   itr((function(param, param_1, l) do
           genrel = function(_l) do
             while(true) do
@@ -1846,9 +1846,9 @@ function main(param) do
   local ___conditional___=(f);
   do
      if ___conditional___ == "-blk" then do
-        partial_arg_000 = do
-          contents: 0
-        end;
+        partial_arg_000 = {
+          contents = 0
+        };
         partial_arg = --[[ tuple ]]{
           partial_arg_000,
           0

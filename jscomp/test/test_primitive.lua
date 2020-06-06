@@ -59,10 +59,10 @@ end end
 
 Caml_array.caml_array_set(v, 1, 3.0);
 
-unboxed_x = do
-  u: 0,
-  v: 0
-end;
+unboxed_x = {
+  u = 0,
+  v = 0
+};
 
 function gg(x) do
   x.u = 0;

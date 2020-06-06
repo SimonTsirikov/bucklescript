@@ -31,16 +31,16 @@ function setup_sprite(loopOpt, bbox_offsetOpt, bbox_sizeOpt, img_src, max_frames
         0
       }) and frame_size or bbox_size;
   img_src_1 = "./sprites/" .. img_src;
-  return do
-          max_frames: max_frames,
-          max_ticks: max_ticks,
-          img_src: img_src_1,
-          frame_size: frame_size,
-          src_offset: src_offset,
-          bbox_offset: bbox_offset,
-          bbox_size: bbox_size_1,
-          loop: loop
-        end;
+  return {
+          max_frames = max_frames,
+          max_ticks = max_ticks,
+          img_src = img_src_1,
+          frame_size = frame_size,
+          src_offset = src_offset,
+          bbox_offset = bbox_offset,
+          bbox_size = bbox_size_1,
+          loop = loop
+        };
 end end
 
 function make_enemy(param) do
@@ -636,17 +636,17 @@ end end
 function make_from_params(params, context) do
   img = document.createElement("img");
   img.src = params.img_src;
-  return do
-          params: params,
-          context: context,
-          frame: do
-            contents: 0
-          end,
-          ticks: do
-            contents: 0
-          end,
-          img: img
-        end;
+  return {
+          params = params,
+          context = context,
+          frame = {
+            contents = 0
+          },
+          ticks = {
+            contents = 0
+          },
+          img = img
+        };
 end end
 
 function make(spawn, dir, context) do
@@ -698,35 +698,35 @@ function update_animation(spr) do
   end end 
 end end
 
-Sprite = do
-  setup_sprite: setup_sprite,
-  make: make,
-  make_bgd: make_bgd,
-  make_particle: make_particle_1,
-  transform_enemy: transform_enemy,
-  update_animation: update_animation
-end;
+Sprite = {
+  setup_sprite = setup_sprite,
+  make = make,
+  make_bgd = make_bgd,
+  make_particle = make_particle_1,
+  transform_enemy = transform_enemy,
+  update_animation = update_animation
+};
 
 function pair_to_xy(pair) do
-  return do
-          x: pair[0],
-          y: pair[1]
-        end;
+  return {
+          x = pair[0],
+          y = pair[1]
+        };
 end end
 
 function make_type_1(typ, ctx) do
   if (typ == 2 or typ == 1) then do
-    return do
-            sprite: make_particle_1(typ, ctx),
-            rot: 0,
-            lifetime: 300
-          end;
+    return {
+            sprite = make_particle_1(typ, ctx),
+            rot = 0,
+            lifetime = 300
+          };
   end else do
-    return do
-            sprite: make_particle_1(typ, ctx),
-            rot: 0,
-            lifetime: 30
-          end;
+    return {
+            sprite = make_particle_1(typ, ctx),
+            rot = 0,
+            lifetime = 30
+          };
   end end 
 end end
 
@@ -743,15 +743,15 @@ function make_1(velOpt, accOpt, part_type, pos, ctx) do
   pos_1 = pair_to_xy(pos);
   vel_1 = pair_to_xy(vel);
   acc_1 = pair_to_xy(acc);
-  return do
-          params: params,
-          part_type: part_type,
-          pos: pos_1,
-          vel: vel_1,
-          acc: acc_1,
-          kill: false,
-          life: params.lifetime
-        end;
+  return {
+          params = params,
+          part_type = part_type,
+          pos = pos_1,
+          vel = vel_1,
+          acc = acc_1,
+          kill = false,
+          life = params.lifetime
+        };
 end end
 
 function make_score(score, pos, ctx) do
@@ -799,23 +799,23 @@ function __process(part) do
   return --[[ () ]]0;
 end end
 
-Particle = do
-  make: make_1,
-  make_score: make_score,
-  __process: __process
-end;
+Particle = {
+  make = make_1,
+  make_score = make_score,
+  __process = __process
+};
 
-id_counter = do
-  contents: Pervasives.min_int
-end;
+id_counter = {
+  contents = Pervasives.min_int
+};
 
 function setup_obj(has_gravityOpt, speedOpt, param) do
   has_gravity = has_gravityOpt ~= undefined and has_gravityOpt or true;
   speed = speedOpt ~= undefined and speedOpt or 1;
-  return do
-          has_gravity: has_gravity,
-          speed: speed
-        end;
+  return {
+          has_gravity = has_gravity,
+          speed = speed
+        };
 end end
 
 function set_vel_to_speed(obj) do
@@ -866,26 +866,26 @@ function make_2($staropt$star, $staropt$star_1, spawnable, context, param) do
   spr = make(spawnable, dir, context);
   params = make_type_2(spawnable);
   id_1 = id ~= undefined and id or new_id(--[[ () ]]0);
-  obj = do
-    params: params,
-    pos: do
-      x: param[0],
-      y: param[1]
-    end,
-    vel: do
-      x: 0.0,
-      y: 0.0
-    end,
-    id: id_1,
-    jumping: false,
-    grounded: false,
-    dir: dir,
-    invuln: 0,
-    kill: false,
-    health: 1,
-    crouch: false,
-    score: 0
-  end;
+  obj = {
+    params = params,
+    pos = {
+      x = param[0],
+      y = param[1]
+    },
+    vel = {
+      x = 0.0,
+      y = 0.0
+    },
+    id = id_1,
+    jumping = false,
+    grounded = false,
+    dir = dir,
+    invuln = 0,
+    kill = false,
+    health = 1,
+    crouch = false,
+    score = 0
+  };
   return --[[ tuple ]]{
           spr,
           obj
@@ -1238,16 +1238,16 @@ function get_aabb(obj) do
   match_1 = spr.bbox_size;
   sy = match_1[1];
   sx = match_1[0];
-  return do
-          center: do
-            x: box + sx / 2,
-            y: boy + sy / 2
-          end,
-          half: do
-            x: sx / 2,
-            y: sy / 2
-          end
-        end;
+  return {
+          center = {
+            x = box + sx / 2,
+            y = boy + sy / 2
+          },
+          half = {
+            x = sx / 2,
+            y = sy / 2
+          }
+        };
 end end
 
 function col_bypass(c1, c2) do
@@ -1412,29 +1412,29 @@ function kill(collid, ctx) do
   end
 end end
 
-__Object = do
-  invuln: 60,
-  dampen_jump: 4,
-  get_sprite: get_sprite,
-  get_obj: get_obj,
-  spawn: spawn,
-  equals: equals,
-  is_player: is_player,
-  is_enemy: is_enemy,
-  normalize_origin: normalize_origin,
-  normalize_pos: normalize_pos,
-  kill: kill,
-  process_obj: process_obj,
-  update_player: update_player,
-  check_collision: check_collision,
-  evolve_enemy: evolve_enemy,
-  evolve_block: evolve_block,
-  dec_health: dec_health,
-  rev_dir: rev_dir,
-  reverse_left_right: reverse_left_right,
-  collide_block: collide_block,
-  spawn_above: spawn_above
-end;
+__Object = {
+  invuln = 60,
+  dampen_jump = 4,
+  get_sprite = get_sprite,
+  get_obj = get_obj,
+  spawn = spawn,
+  equals = equals,
+  is_player = is_player,
+  is_enemy = is_enemy,
+  normalize_origin = normalize_origin,
+  normalize_pos = normalize_pos,
+  kill = kill,
+  process_obj = process_obj,
+  update_player = update_player,
+  check_collision = check_collision,
+  evolve_enemy = evolve_enemy,
+  evolve_block = evolve_block,
+  dec_health = dec_health,
+  rev_dir = rev_dir,
+  reverse_left_right = reverse_left_right,
+  collide_block = collide_block,
+  spawn_above = spawn_above
+};
 
 function render_bbox(sprite, param) do
   context = sprite.context;
@@ -1516,32 +1516,32 @@ function game_loss(ctx) do
   })
 end end
 
-Draw = do
-  render: render,
-  clear_canvas: clear_canvas,
-  draw_bgd: draw_bgd,
-  render_bbox: render_bbox,
-  fps: fps,
-  hud: hud,
-  game_win: game_win,
-  game_loss: game_loss
-end;
+Draw = {
+  render = render,
+  clear_canvas = clear_canvas,
+  draw_bgd = draw_bgd,
+  render_bbox = render_bbox,
+  fps = fps,
+  hud = hud,
+  game_win = game_win,
+  game_loss = game_loss
+};
 
 function make_3(param, param_1) do
-  return do
-          pos: do
-            x: 0,
-            y: 0
-          end,
-          v_dim: do
-            x: param[0],
-            y: param[1]
-          end,
-          m_dim: do
-            x: param_1[0],
-            y: param_1[1]
-          end
-        end;
+  return {
+          pos = {
+            x = 0,
+            y = 0
+          },
+          v_dim = {
+            x = param[0],
+            y = param[1]
+          },
+          m_dim = {
+            x = param_1[0],
+            y = param_1[1]
+          }
+        };
 end end
 
 function calc_viewport_point(cc, vc, mc) do
@@ -1569,54 +1569,54 @@ function out_of_viewport_below(v, y) do
 end end
 
 function coord_to_viewport(viewport, coord) do
-  return do
-          x: coord.x - viewport.pos.x,
-          y: coord.y - viewport.pos.y
-        end;
+  return {
+          x = coord.x - viewport.pos.x,
+          y = coord.y - viewport.pos.y
+        };
 end end
 
 function update(vpt, ctr) do
   new_x = calc_viewport_point(ctr.x, vpt.v_dim.x, vpt.m_dim.x);
   new_y = calc_viewport_point(ctr.y, vpt.v_dim.y, vpt.m_dim.y);
-  pos = do
-    x: new_x,
-    y: new_y
-  end;
-  return do
-          pos: pos,
-          v_dim: vpt.v_dim,
-          m_dim: vpt.m_dim
-        end;
+  pos = {
+    x = new_x,
+    y = new_y
+  };
+  return {
+          pos = pos,
+          v_dim = vpt.v_dim,
+          m_dim = vpt.m_dim
+        };
 end end
 
-Viewport = do
-  make: make_3,
-  calc_viewport_point: calc_viewport_point,
-  in_viewport: in_viewport,
-  out_of_viewport_below: out_of_viewport_below,
-  coord_to_viewport: coord_to_viewport,
-  update: update
-end;
+Viewport = {
+  make = make_3,
+  calc_viewport_point = calc_viewport_point,
+  in_viewport = in_viewport,
+  out_of_viewport_below = out_of_viewport_below,
+  coord_to_viewport = coord_to_viewport,
+  update = update
+};
 
-pressed_keys = do
-  left: false,
-  right: false,
-  up: false,
-  down: false,
-  bbox: 0
-end;
+pressed_keys = {
+  left = false,
+  right = false,
+  up = false,
+  down = false,
+  bbox = 0
+};
 
-collid_objs = do
-  contents: --[[ [] ]]0
-end;
+collid_objs = {
+  contents = --[[ [] ]]0
+};
 
-particles = do
-  contents: --[[ [] ]]0
-end;
+particles = {
+  contents = --[[ [] ]]0
+};
 
-last_time = do
-  contents: 0
-end;
+last_time = {
+  contents = 0
+};
 
 function calc_fps(t0, t1) do
   delta = (t1 - t0) / 1000;
@@ -2217,16 +2217,16 @@ function update_loop(canvas, param, map_dim) do
         cwidth,
         cheight
       }, map_dim);
-  state = do
-    bgd: make_bgd(ctx),
-    ctx: ctx,
-    vpt: update(viewport, player[2].pos),
-    map: map_dim[1],
-    score: 0,
-    coins: 0,
-    multiplier: 1,
-    game_over: false
-  end;
+  state = {
+    bgd = make_bgd(ctx),
+    ctx = ctx,
+    vpt = update(viewport, player[2].pos),
+    map = map_dim[1],
+    score = 0,
+    coins = 0,
+    multiplier = 1,
+    game_over = false
+  };
   state.ctx.scale(1, 1);
   update_helper = function(time, state, player, objs, parts) do
     if (state.game_over == true) then do
@@ -2244,16 +2244,16 @@ function update_loop(canvas, param, map_dim) do
       if (player_1[2].kill == true) then do
         return game_loss(state.ctx);
       end else do
-        state_1 = do
-          bgd: state.bgd,
-          ctx: state.ctx,
-          vpt: update(state.vpt, player_1[2].pos),
-          map: state.map,
-          score: state.score,
-          coins: state.coins,
-          multiplier: state.multiplier,
-          game_over: state.game_over
-        end;
+        state_1 = {
+          bgd = state.bgd,
+          ctx = state.ctx,
+          vpt = update(state.vpt, player_1[2].pos),
+          map = state.map,
+          score = state.score,
+          coins = state.coins,
+          multiplier = state.multiplier,
+          game_over = state.game_over
+        };
         List.iter((function(obj) do
                 run_update_collid(state_1, obj, objs);
                 return --[[ () ]]0;
@@ -2395,11 +2395,11 @@ function keyup(evt) do
   return true;
 end end
 
-Director = do
-  update_loop: update_loop,
-  keydown: keydown,
-  keyup: keyup
-end;
+Director = {
+  update_loop = update_loop,
+  keydown = keydown,
+  keyup = keyup
+};
 
 function mem_loc(checkloc, _loclist) do
   while(true) do
@@ -3244,14 +3244,14 @@ function init(param) do
   return Random.self_init(--[[ () ]]0);
 end end
 
-Procedural_generator = do
-  init: init,
-  generate: generate
-end;
+Procedural_generator = {
+  init = init,
+  generate = generate
+};
 
-loadCount = do
-  contents: 0
-end;
+loadCount = {
+  contents = 0
+};
 
 function load(param) do
   Random.self_init(--[[ () ]]0);
@@ -3330,17 +3330,17 @@ window.onload = (function(param) do
     return true;
   end end);
 
-Main = do
-  Html: --[[ alias ]]0,
-  Pg: --[[ alias ]]0,
-  loadCount: loadCount,
-  imgsToLoad: 4,
-  level_width: 2400,
-  level_height: 256,
-  load: load,
-  inc_counter: inc_counter,
-  preload: preload
-end;
+Main = {
+  Html = --[[ alias ]]0,
+  Pg = --[[ alias ]]0,
+  loadCount = loadCount,
+  imgsToLoad = 4,
+  level_width = 2400,
+  level_height = 256,
+  load = load,
+  inc_counter = inc_counter,
+  preload = preload
+};
 
 exports = {}
 exports.Actors = Actors;

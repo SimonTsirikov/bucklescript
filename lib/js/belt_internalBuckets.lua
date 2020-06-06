@@ -9,11 +9,11 @@ function copyAuxCont(_c, _prec) do
     prec = _prec;
     c = _c;
     if (c ~= undefined) then do
-      ncopy = do
-        key: c.key,
-        value: c.value,
-        next: undefined
-      end;
+      ncopy = {
+        key = c.key,
+        value = c.value,
+        next = undefined
+      };
       prec.next = ncopy;
       _prec = ncopy;
       _c = c.next;
@@ -26,11 +26,11 @@ end end
 
 function copyBucket(c) do
   if (c ~= undefined) then do
-    head = do
-      key: c.key,
-      value: c.value,
-      next: undefined
-    end;
+    head = {
+      key = c.key,
+      value = c.value,
+      next = undefined
+    };
     copyAuxCont(c.next, head);
     return head;
   end else do
@@ -48,12 +48,12 @@ function copyBuckets(buckets) do
 end end
 
 function copy(x) do
-  return do
-          size: x.size,
-          buckets: copyBuckets(x.buckets),
-          hash: x.hash,
-          eq: x.eq
-        end;
+  return {
+          size = x.size,
+          buckets = copyBuckets(x.buckets),
+          hash = x.hash,
+          eq = x.eq
+        };
 end end
 
 function bucketLength(_accu, _buckets) do
@@ -148,11 +148,11 @@ end end
 
 function logStats(h) do
   histogram = getBucketHistogram(h);
-  console.log(do
-        bindings: h.size,
-        buckets: #h.buckets,
-        histogram: histogram
-      end);
+  console.log({
+        bindings = h.size,
+        buckets = #h.buckets,
+        histogram = histogram
+      });
   return --[[ () ]]0;
 end end
 

@@ -9,9 +9,9 @@ Str = Caml_exceptions.create("Extensible_variant_test.Str");
 
 Int = Caml_exceptions.create("Extensible_variant_test.N.Int");
 
-N = do
-  Int: Int
-end;
+N = {
+  Int = Int
+};
 
 Int_1 = Caml_exceptions.create("Extensible_variant_test.Int");
 

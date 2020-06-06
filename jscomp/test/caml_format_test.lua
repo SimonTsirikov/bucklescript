@@ -1553,15 +1553,15 @@ string_of_lambda = Curry._1(Format.asprintf(--[[ Format ]]{
           "%a"
         }), pr_lambda);
 
-Lambda_suites = do
-  ident: ident,
-  kwd: kwd,
-  pr_exp0: pr_exp0,
-  pr_app: pr_app,
-  pr_other_applications: pr_other_applications,
-  pr_lambda: pr_lambda,
-  string_of_lambda: string_of_lambda
-end;
+Lambda_suites = {
+  ident = ident,
+  kwd = kwd,
+  pr_exp0 = pr_exp0,
+  pr_app = pr_app,
+  pr_other_applications = pr_other_applications,
+  pr_lambda = pr_lambda,
+  string_of_lambda = string_of_lambda
+};
 
 lambda_suites = {
   --[[ tuple ]]{

@@ -1,13 +1,13 @@
 console = {log = print};
 
 
-direct = do
-  contents: --[[ [] ]]0
-end;
+direct = {
+  contents = --[[ [] ]]0
+};
 
-indirect = do
-  contents: --[[ [] ]]0
-end;
+indirect = {
+  contents = --[[ [] ]]0
+};
 
 exports = {}
 exports.direct = direct;

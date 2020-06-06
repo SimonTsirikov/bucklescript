@@ -9,13 +9,13 @@ Array_data_util = require "./array_data_util";
 Belt_MutableSet = require "../../lib/js/belt_MutableSet";
 Belt_internalAVLset = require "../../lib/js/belt_internalAVLset";
 
-suites = do
-  contents: --[[ [] ]]0
-end;
+suites = {
+  contents = --[[ [] ]]0
+};
 
-test_id = do
-  contents: 0
-end;
+test_id = {
+  contents = 0
+};
 
 function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
@@ -32,10 +32,10 @@ function fromArray(param) do
 end end
 
 function empty(param) do
-  return do
-          cmp: IntCmp.cmp,
-          data: nil
-        end;
+  return {
+          cmp = IntCmp.cmp,
+          data = nil
+        };
 end end
 
 u = fromArray(Array_data_util.range(0, 30));
@@ -148,10 +148,10 @@ eq("File \"bs_poly_mutable_set_test.ml\", line 67, characters 5-12", indeedAded,
 
 eq("File \"bs_poly_mutable_set_test.ml\", line 68, characters 5-12", Belt_internalAVLset.size(v.data), 1501);
 
-b("File \"bs_poly_mutable_set_test.ml\", line 69, characters 4-11", Belt_MutableSet.isEmpty(do
-          cmp: IntCmp.cmp,
-          data: nil
-        end));
+b("File \"bs_poly_mutable_set_test.ml\", line 69, characters 4-11", Belt_MutableSet.isEmpty({
+          cmp = IntCmp.cmp,
+          data = nil
+        }));
 
 eq("File \"bs_poly_mutable_set_test.ml\", line 70, characters 5-12", Belt_internalAVLset.minimum(v.data), 500);
 
@@ -245,15 +245,15 @@ dd = Belt_MutableSet.intersect(aa_2, bb_2);
 
 b("File \"bs_poly_mutable_set_test.ml\", line 111, characters 4-11", Belt_MutableSet.eq(dd, fromArray(Array_data_util.randomRange(40, 100))));
 
-b("File \"bs_poly_mutable_set_test.ml\", line 112, characters 4-11", Belt_MutableSet.eq(Belt_MutableSet.intersect(fromArray(Array_data_util.randomRange(0, 20)), fromArray(Array_data_util.randomRange(21, 40))), do
-          cmp: IntCmp.cmp,
-          data: nil
-        end));
+b("File \"bs_poly_mutable_set_test.ml\", line 112, characters 4-11", Belt_MutableSet.eq(Belt_MutableSet.intersect(fromArray(Array_data_util.randomRange(0, 20)), fromArray(Array_data_util.randomRange(21, 40))), {
+          cmp = IntCmp.cmp,
+          data = nil
+        }));
 
-b("File \"bs_poly_mutable_set_test.ml\", line 118, characters 4-11", Belt_MutableSet.eq(Belt_MutableSet.intersect(fromArray(Array_data_util.randomRange(21, 40)), fromArray(Array_data_util.randomRange(0, 20))), do
-          cmp: IntCmp.cmp,
-          data: nil
-        end));
+b("File \"bs_poly_mutable_set_test.ml\", line 118, characters 4-11", Belt_MutableSet.eq(Belt_MutableSet.intersect(fromArray(Array_data_util.randomRange(21, 40)), fromArray(Array_data_util.randomRange(0, 20))), {
+          cmp = IntCmp.cmp,
+          data = nil
+        }));
 
 b("File \"bs_poly_mutable_set_test.ml\", line 124, characters 4-11", Belt_MutableSet.eq(Belt_MutableSet.intersect(fromArray({
                   1,

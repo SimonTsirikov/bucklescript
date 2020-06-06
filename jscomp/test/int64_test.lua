@@ -2383,13 +2383,13 @@ suites = Pervasives.$at(--[[ :: ]]{
                               };
                       end end), shift_right_logical_suites_000, shift_right_logical_suites_001)))));
 
-suites_1 = do
-  contents: suites
-end;
+suites_1 = {
+  contents = suites
+};
 
-test_id = do
-  contents: 0
-end;
+test_id = {
+  contents = 0
+};
 
 function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites_1, loc, x, y);

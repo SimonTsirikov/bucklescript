@@ -10,17 +10,17 @@ function g(x) do
 end end
 
 function ff(v, u) do
-  return do
-          v: v,
-          u: u
-        end;
+  return {
+          v = v,
+          u = u
+        };
 end end
 
 function fff(vv, uu) do
-  return do
-          vv: vv,
-          uu: uu
-        end;
+  return {
+          vv = vv,
+          uu = uu
+        };
 end end
 
 function a(x) do

@@ -13,24 +13,24 @@ YYexit = Caml_exceptions.create("Parsing.YYexit");
 
 Parse_error = Caml_exceptions.create("Parsing.Parse_error");
 
-env = do
-  s_stack: Caml_array.caml_make_vect(100, 0),
-  v_stack: Caml_array.caml_make_vect(100, --[[ () ]]0),
-  symb_start_stack: Caml_array.caml_make_vect(100, Lexing.dummy_pos),
-  symb_end_stack: Caml_array.caml_make_vect(100, Lexing.dummy_pos),
-  stacksize: 100,
-  stackbase: 0,
-  curr_char: 0,
-  lval: --[[ () ]]0,
-  symb_start: Lexing.dummy_pos,
-  symb_end: Lexing.dummy_pos,
-  asp: 0,
-  rule_len: 0,
-  rule_number: 0,
-  sp: 0,
-  state: 0,
-  errflag: 0
-end;
+env = {
+  s_stack = Caml_array.caml_make_vect(100, 0),
+  v_stack = Caml_array.caml_make_vect(100, --[[ () ]]0),
+  symb_start_stack = Caml_array.caml_make_vect(100, Lexing.dummy_pos),
+  symb_end_stack = Caml_array.caml_make_vect(100, Lexing.dummy_pos),
+  stacksize = 100,
+  stackbase = 0,
+  curr_char = 0,
+  lval = --[[ () ]]0,
+  symb_start = Lexing.dummy_pos,
+  symb_end = Lexing.dummy_pos,
+  asp = 0,
+  rule_len = 0,
+  rule_number = 0,
+  sp = 0,
+  state = 0,
+  errflag = 0
+};
 
 function grow_stacks(param) do
   oldsize = env.stacksize;
@@ -57,11 +57,11 @@ function clear_parser(param) do
   return --[[ () ]]0;
 end end
 
-current_lookahead_fun = do
-  contents: (function(param) do
+current_lookahead_fun = {
+  contents = (function(param) do
       return false;
     end end)
-end;
+};
 
 function yyparse(tables, start, lexer, lexbuf) do
   init_asp = env.asp;

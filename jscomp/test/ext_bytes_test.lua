@@ -7,13 +7,13 @@ Curry = require "../../lib/js/curry";
 Caml_bytes = require "../../lib/js/caml_bytes";
 Caml_exceptions = require "../../lib/js/caml_exceptions";
 
-suites = do
-  contents: --[[ [] ]]0
-end;
+suites = {
+  contents = --[[ [] ]]0
+};
 
-test_id = do
-  contents: 0
-end;
+test_id = {
+  contents = 0
+};
 
 function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);

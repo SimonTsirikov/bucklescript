@@ -1,19 +1,19 @@
 console = {log = print};
 
 
-a = do
-  x: 3,
-  y: {1}
-end;
+a = {
+  x = 3,
+  y = {1}
+};
 
-b = do
-  x: 3,
-  y: {1},
-  z: 3,
-  u: (function(x, y) do
+b = {
+  x = 3,
+  y = {1},
+  z = 3,
+  u = (function(x, y) do
       return x + y | 0;
     end end)
-end;
+};
 
 function f(obj) do
   return obj.x + #obj.y | 0;

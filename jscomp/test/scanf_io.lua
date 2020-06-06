@@ -59,9 +59,9 @@ end end
 
 function get_lines(fname) do
   ib = Scanf.Scanning.from_file(fname);
-  l = do
-    contents: --[[ [] ]]0
-  end;
+  l = {
+    contents = --[[ [] ]]0
+  };
   xpcall(function() do
     while(not Scanf.Scanning.end_of_input(ib)) do
       Curry._1(Scanf.bscanf(ib, --[[ Format ]]{

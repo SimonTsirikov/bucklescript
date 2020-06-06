@@ -6,13 +6,13 @@ Int64 = require "../../lib/js/int64";
 Caml_int64 = require "../../lib/js/caml_int64";
 Pervasives = require "../../lib/js/pervasives";
 
-suites = do
-  contents: --[[ [] ]]0
-end;
+suites = {
+  contents = --[[ [] ]]0
+};
 
-test_id = do
-  contents: 0
-end;
+test_id = {
+  contents = 0
+};
 
 function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
@@ -40,9 +40,9 @@ function g(x) do
   return Caml_int64.or_(x, (Pervasives.print_string("f"), x));
 end end
 
-v = do
-  contents: 0
-end;
+v = {
+  contents = 0
+};
 
 function f2(x) do
   v.contents = v.contents + 1 | 0;

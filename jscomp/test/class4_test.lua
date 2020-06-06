@@ -18,13 +18,13 @@ shared_2 = {
   "get_x"
 };
 
-suites = do
-  contents: --[[ [] ]]0
-end;
+suites = {
+  contents = --[[ [] ]]0
+};
 
-test_id = do
-  contents: 0
-end;
+test_id = {
+  contents = 0
+};
 
 function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
@@ -99,9 +99,9 @@ end end
 
 restricted_point2$prime = CamlinternalOO.make_class(shared_2, restricted_point2$prime_init);
 
-Point = do
-  restricted_point$prime: restricted_point
-end;
+Point = {
+  restricted_point$prime = restricted_point
+};
 
 function abstract_point_001(__class) do
   x_init = CamlinternalOO.new_variable(__class, "");

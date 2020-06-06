@@ -5,13 +5,13 @@ Block = require "../../lib/js/block";
 Curry = require "../../lib/js/curry";
 Caml_option = require "../../lib/js/caml_option";
 
-suites = do
-  contents: --[[ [] ]]0
-end;
+suites = {
+  contents = --[[ [] ]]0
+};
 
-test_id = do
-  contents: 0
-end;
+test_id = {
+  contents = 0
+};
 
 function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
@@ -101,19 +101,19 @@ end end
 
 f11 = false;
 
-Test_null = do
-  f1: f1,
-  f2: f2,
-  f5: f5,
-  f4: f4,
-  f6: f6,
-  f7: f7,
-  f8: f8,
-  u: u,
-  f9: f9,
-  f10: f10,
-  f11: f11
-end;
+Test_null = {
+  f1 = f1,
+  f2 = f2,
+  f5 = f5,
+  f4 = f4,
+  f6 = f6,
+  f7 = f7,
+  f8 = f8,
+  u = u,
+  f9 = f9,
+  f10 = f10,
+  f11 = f11
+};
 
 function f1_1(x) do
   if (x ~= undefined) then do
@@ -186,19 +186,19 @@ end end
 
 f11_1 = false;
 
-Test_def = do
-  f1: f1_1,
-  f2: f2_1,
-  f5: f5_1,
-  f4: f4_1,
-  f6: f6_1,
-  f7: f7_1,
-  f8: f8_1,
-  u: u_1,
-  f9: f9_1,
-  f10: f10_1,
-  f11: f11_1
-end;
+Test_def = {
+  f1 = f1_1,
+  f2 = f2_1,
+  f5 = f5_1,
+  f4 = f4_1,
+  f6 = f6_1,
+  f7 = f7_1,
+  f8 = f8_1,
+  u = u_1,
+  f9 = f9_1,
+  f10 = f10_1,
+  f11 = f11_1
+};
 
 function f1_2(x) do
   if (x == nil) then do
@@ -269,19 +269,19 @@ end end
 
 f11_2 = false;
 
-Test_null_def = do
-  f1: f1_2,
-  f2: f2_2,
-  f5: f5_2,
-  f4: f4_2,
-  f6: f6_2,
-  f7: f7_2,
-  f8: f8_2,
-  u: u_2,
-  f9: f9_2,
-  f10: f10_2,
-  f11: f11_2
-end;
+Test_null_def = {
+  f1 = f1_2,
+  f2 = f2_2,
+  f5 = f5_2,
+  f4 = f4_2,
+  f6 = f6_2,
+  f7 = f7_2,
+  f8 = f8_2,
+  u = u_2,
+  f9 = f9_2,
+  f10 = f10_2,
+  f11 = f11_2
+};
 
 eq("File \"test_zero_nullable.ml\", line 227, characters 7-14", f1_2(0), 1);
 

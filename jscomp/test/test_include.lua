@@ -6,21 +6,21 @@ Test_order = require "./test_order";
 
 function Make(U) do
   compare = U.compare;
-  return do
-          compare: compare,
-          v: compare
-        end;
+  return {
+          compare = compare,
+          v = compare
+        };
 end end
 
-X = do
-  compare: __String.compare,
-  v: __String.compare
-end;
+X = {
+  compare = __String.compare,
+  v = __String.compare
+};
 
-U = do
-  compare: Test_order.compare,
-  v: Test_order.compare
-end;
+U = {
+  compare = Test_order.compare,
+  v = Test_order.compare
+};
 
 N = --[[ alias ]]0;
 

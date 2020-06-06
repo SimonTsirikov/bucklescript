@@ -8,33 +8,33 @@ __default = SomeEs6Module.default;
 __window = Vscode.window;
 
 function mk(__window, __default) do
-  return do
-          window: __window,
-          default: __default
-        end;
+  return {
+          window = __window,
+          default = __default
+        };
 end end
 
 function mk2(__window, __default) do
   return --[[ :: ]]{
-          do
-            window: __window,
-            default: __default
-          end,
+          {
+            window = __window,
+            default = __default
+          },
           --[[ [] ]]0
         };
 end end
 
 function des(v) do
-  return do
-          window: v.window,
-          default: v.default
-        end;
+  return {
+          window = v.window,
+          default = v.default
+        };
 end end
 
-test = do
-  case: 3,
-  window: 3
-end;
+test = {
+  case = 3,
+  window = 3
+};
 
 function u(param) do
   return __window.switch();

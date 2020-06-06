@@ -7,12 +7,12 @@ function Make(X) do
   f = function(param) do
     return --[[ () ]]0;
   end end;
-  M = do
-    f: f
-  end;
-  return do
-          M: M
-        end;
+  M = {
+    f = f
+  };
+  return {
+          M = M
+        };
 end end
 
 B = Caml_module.init_mod(--[[ tuple ]]{
@@ -31,9 +31,9 @@ function f(param) do
   return --[[ () ]]0;
 end end
 
-M = do
-  f: f
-end;
+M = {
+  f = f
+};
 
 Caml_module.update_mod(--[[ Module ]]Block.__(0, {{--[[ tuple ]]{
             --[[ Module ]]Block.__(0, {{--[[ tuple ]]{
@@ -41,9 +41,9 @@ Caml_module.update_mod(--[[ Module ]]Block.__(0, {{--[[ tuple ]]{
                     "f"
                   }}}),
             "M"
-          }}}), B, do
-      M: M
-    end);
+          }}}), B, {
+      M = M
+    });
 
 A = --[[ () ]]0;
 

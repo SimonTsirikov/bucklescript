@@ -65,18 +65,18 @@ dyn_log3(--[[ `Int ]]{
 
 console.log("foo");
 
-console.log(do
-      foo: 1
-    end);
+console.log({
+      foo = 1
+    });
 
 function dyn_log4(prim) do
   console.log(prim[1]);
   return --[[ () ]]0;
 end end
 
-console.log(do
-      foo: 2
-    end);
+console.log({
+      foo = 2
+    });
 
 function f(x) do
   console.log(x[1]);

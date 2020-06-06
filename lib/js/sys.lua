@@ -23,9 +23,9 @@ function getenv_opt(s) do
    end 
 end end
 
-interactive = do
-  contents: false
-end;
+interactive = {
+  contents = false
+};
 
 function set_signal(sig_num, sig_beh) do
   return --[[ () ]]0;

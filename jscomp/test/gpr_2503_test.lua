@@ -3,13 +3,13 @@ console = {log = print};
 Mt = require "./mt";
 Caml_option = require "../../lib/js/caml_option";
 
-suites = do
-  contents: --[[ [] ]]0
-end;
+suites = {
+  contents = --[[ [] ]]0
+};
 
-test_id = do
-  contents: 0
-end;
+test_id = {
+  contents = 0
+};
 
 function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
@@ -39,8 +39,8 @@ function makeWrapper(foo, param) do
 end end
 
 function makeWrapper2(foo, param) do
-  console.log(do
-        foo: (function() do
+  console.log({
+        foo = (function() do
               local ___conditional___=(foo);
               do
                  if ___conditional___ == 97 then do
@@ -50,7 +50,7 @@ function makeWrapper2(foo, param) do
                 
               end
             end end)()
-      end);
+      });
   return --[[ () ]]0;
 end end
 

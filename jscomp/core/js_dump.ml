@@ -988,7 +988,7 @@ and expression_desc cxt ~(level:int) f x : cxt  =
   | Object lst ->    
     let action () =
       if lst = [] then begin P.string f "{ }" ; cxt end else      
-        P.brace_vgroup f 1 (fun _ ->
+        P.curlybrace_vgroup f 1 (fun _ ->
             property_name_and_value_list cxt f lst) in
     if level > 1 then
       (* #1946 object literal is easy to be
@@ -1004,7 +1004,8 @@ and expression_desc cxt ~(level:int) f x : cxt  =
 and property_name_and_value_list cxt f (l : J.property_map) =     
   iter_lst cxt f l (fun cxt f (pn,e) -> 
     Js_dump_property.property_key f pn ;
-    P.string f L.colon;
+    P.space f;
+    P.string f L.eq;
     P.space f;
     expression ~level:1 cxt f e
   ) comma_nl      

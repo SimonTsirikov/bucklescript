@@ -13,12 +13,12 @@ function engine(tbl, state, buf) do
   if (result >= 0) then do
     buf.lex_start_p = buf.lex_curr_p;
     init = buf.lex_curr_p;
-    buf.lex_curr_p = do
-      pos_fname: init.pos_fname,
-      pos_lnum: init.pos_lnum,
-      pos_bol: init.pos_bol,
-      pos_cnum: buf.lex_abs_pos + buf.lex_curr_pos | 0
-    end;
+    buf.lex_curr_p = {
+      pos_fname = init.pos_fname,
+      pos_lnum = init.pos_lnum,
+      pos_bol = init.pos_bol,
+      pos_cnum = buf.lex_abs_pos + buf.lex_curr_pos | 0
+    };
   end
    end 
   return result;
@@ -29,28 +29,28 @@ function new_engine(tbl, state, buf) do
   if (result >= 0) then do
     buf.lex_start_p = buf.lex_curr_p;
     init = buf.lex_curr_p;
-    buf.lex_curr_p = do
-      pos_fname: init.pos_fname,
-      pos_lnum: init.pos_lnum,
-      pos_bol: init.pos_bol,
-      pos_cnum: buf.lex_abs_pos + buf.lex_curr_pos | 0
-    end;
+    buf.lex_curr_p = {
+      pos_fname = init.pos_fname,
+      pos_lnum = init.pos_lnum,
+      pos_bol = init.pos_bol,
+      pos_cnum = buf.lex_abs_pos + buf.lex_curr_pos | 0
+    };
   end
    end 
   return result;
 end end
 
-zero_pos = do
-  pos_fname: "",
-  pos_lnum: 1,
-  pos_bol: 0,
-  pos_cnum: 0
-end;
+zero_pos = {
+  pos_fname = "",
+  pos_lnum = 1,
+  pos_bol = 0,
+  pos_cnum = 0
+};
 
 function from_function(f) do
   partial_arg = Caml_bytes.caml_create_bytes(512);
-  return do
-          refill_buff: (function(param) do
+  return {
+          refill_buff = (function(param) do
               read_fun = f;
               aux_buffer = partial_arg;
               lexbuf = param;
@@ -92,18 +92,18 @@ function from_function(f) do
               lexbuf.lex_buffer_len = lexbuf.lex_buffer_len + n | 0;
               return --[[ () ]]0;
             end end),
-          lex_buffer: Caml_bytes.caml_create_bytes(1024),
-          lex_buffer_len: 0,
-          lex_abs_pos: 0,
-          lex_start_pos: 0,
-          lex_curr_pos: 0,
-          lex_last_pos: 0,
-          lex_last_action: 0,
-          lex_eof_reached: false,
-          lex_mem: {},
-          lex_start_p: zero_pos,
-          lex_curr_p: zero_pos
-        end;
+          lex_buffer = Caml_bytes.caml_create_bytes(1024),
+          lex_buffer_len = 0,
+          lex_abs_pos = 0,
+          lex_start_pos = 0,
+          lex_curr_pos = 0,
+          lex_last_pos = 0,
+          lex_last_action = 0,
+          lex_eof_reached = false,
+          lex_mem = {},
+          lex_start_p = zero_pos,
+          lex_curr_p = zero_pos
+        };
 end end
 
 function from_channel(ic) do
@@ -113,23 +113,23 @@ function from_channel(ic) do
 end end
 
 function from_string(s) do
-  return do
-          refill_buff: (function(lexbuf) do
+  return {
+          refill_buff = (function(lexbuf) do
               lexbuf.lex_eof_reached = true;
               return --[[ () ]]0;
             end end),
-          lex_buffer: Bytes.of_string(s),
-          lex_buffer_len: #s,
-          lex_abs_pos: 0,
-          lex_start_pos: 0,
-          lex_curr_pos: 0,
-          lex_last_pos: 0,
-          lex_last_action: 0,
-          lex_eof_reached: true,
-          lex_mem: {},
-          lex_start_p: zero_pos,
-          lex_curr_p: zero_pos
-        end;
+          lex_buffer = Bytes.of_string(s),
+          lex_buffer_len = #s,
+          lex_abs_pos = 0,
+          lex_start_pos = 0,
+          lex_curr_pos = 0,
+          lex_last_pos = 0,
+          lex_last_action = 0,
+          lex_eof_reached = true,
+          lex_mem = {},
+          lex_start_p = zero_pos,
+          lex_curr_p = zero_pos
+        };
 end end
 
 function lexeme(lexbuf) do
@@ -183,12 +183,12 @@ end end
 
 function new_line(lexbuf) do
   lcp = lexbuf.lex_curr_p;
-  lexbuf.lex_curr_p = do
-    pos_fname: lcp.pos_fname,
-    pos_lnum: lcp.pos_lnum + 1 | 0,
-    pos_bol: lcp.pos_cnum,
-    pos_cnum: lcp.pos_cnum
-  end;
+  lexbuf.lex_curr_p = {
+    pos_fname = lcp.pos_fname,
+    pos_lnum = lcp.pos_lnum + 1 | 0,
+    pos_bol = lcp.pos_cnum,
+    pos_cnum = lcp.pos_cnum
+  };
   return --[[ () ]]0;
 end end
 
@@ -196,22 +196,22 @@ function flush_input(lb) do
   lb.lex_curr_pos = 0;
   lb.lex_abs_pos = 0;
   init = lb.lex_curr_p;
-  lb.lex_curr_p = do
-    pos_fname: init.pos_fname,
-    pos_lnum: init.pos_lnum,
-    pos_bol: init.pos_bol,
-    pos_cnum: 0
-  end;
+  lb.lex_curr_p = {
+    pos_fname = init.pos_fname,
+    pos_lnum = init.pos_lnum,
+    pos_bol = init.pos_bol,
+    pos_cnum = 0
+  };
   lb.lex_buffer_len = 0;
   return --[[ () ]]0;
 end end
 
-dummy_pos = do
-  pos_fname: "",
-  pos_lnum: 0,
-  pos_bol: 0,
-  pos_cnum: -1
-end;
+dummy_pos = {
+  pos_fname = "",
+  pos_lnum = 0,
+  pos_bol = 0,
+  pos_cnum = -1
+};
 
 export do
   dummy_pos ,

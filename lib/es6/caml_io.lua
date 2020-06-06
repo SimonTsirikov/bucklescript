@@ -2,9 +2,9 @@
 
 import * as Curry from "./curry.lua";
 
-stdout = do
-  buffer: "",
-  output: (function(param, s) do
+stdout = {
+  buffer = "",
+  output = (function(param, s) do
       v = #s - 1 | 0;
       if (((typeof process !== "undefined") && process.stdout && process.stdout.write)) then do
         return process.stdout.write(s);
@@ -16,11 +16,11 @@ stdout = do
         return --[[ () ]]0;
       end end  end 
     end end)
-end;
+};
 
-stderr = do
-  buffer: "",
-  output: (function(param, s) do
+stderr = {
+  buffer = "",
+  output = (function(param, s) do
       v = #s - 1 | 0;
       if (s[v] == "\n") then do
         console.log(s.slice(0, v));
@@ -30,7 +30,7 @@ stderr = do
         return --[[ () ]]0;
       end end 
     end end)
-end;
+};
 
 function caml_ml_flush(oc) do
   if (oc.buffer ~= "") then do

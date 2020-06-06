@@ -7,13 +7,13 @@ Belt_Array = require "../../lib/js/belt_Array";
 Belt_SetInt = require "../../lib/js/belt_SetInt";
 Array_data_util = require "./array_data_util";
 
-suites = do
-  contents: --[[ [] ]]0
-end;
+suites = {
+  contents = --[[ [] ]]0
+};
 
-test_id = do
-  contents: 0
-end;
+test_id = {
+  contents = 0
+};
 
 function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);

@@ -200,12 +200,12 @@ function caml_compare(_a, _b) do
                   end else do
                     a_2 = a;
                     b_2 = b;
-                    min_key_lhs = do
-                      contents: undefined
-                    end;
-                    min_key_rhs = do
-                      contents: undefined
-                    end;
+                    min_key_lhs = {
+                      contents = undefined
+                    };
+                    min_key_rhs = {
+                      contents = undefined
+                    };
                     do_key = function(param, key) do
                       min_key = param[2];
                       b = param[1];
@@ -374,9 +374,9 @@ function caml_equal(_a, _b) do
                 end else do
                   a_2 = a;
                   b_2 = b;
-                  result = do
-                    contents: true
-                  end;
+                  result = {
+                    contents = true
+                  };
                   do_key_a = (function(b_2,result)do
                   return function do_key_a(key) do
                     if (b_2.hasOwnProperty(key)) then do

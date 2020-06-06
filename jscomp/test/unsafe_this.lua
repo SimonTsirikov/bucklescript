@@ -1,10 +1,10 @@
 console = {log = print};
 
 
-u = do
-  x: 3,
-  y: 32,
-  bark: (function(__this, x, y) do
+u = {
+  x = 3,
+  y = 32,
+  bark = (function(__this, x, y) do
       console.log(--[[ tuple ]]{
             __this.length,
             __this.x,
@@ -12,8 +12,8 @@ u = do
           });
       return --[[ () ]]0;
     end end),
-  length: 32
-end;
+  length = 32
+};
 
 u.bark(u, 1, 2);
 
@@ -22,10 +22,10 @@ function uux_this(x, y) do
   return (o.length + x | 0) + y | 0; end
 end
 
-js_obj = do
-  x: 3,
-  y: 32,
-  bark: (function(x, y) do
+js_obj = {
+  x = 3,
+  y = 32,
+  bark = (function(x, y) do
       o = this ;
       console.log(--[[ tuple ]]{
             o.length,
@@ -36,8 +36,8 @@ js_obj = do
           });
       return x + y | 0; end
     end),
-  length: 32
-end;
+  length = 32
+};
 
 exports = {}
 exports.js_obj = js_obj;

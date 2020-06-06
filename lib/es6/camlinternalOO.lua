@@ -18,13 +18,13 @@ function copy(o) do
   return Caml_exceptions.caml_set_oo_id(Caml_obj.caml_obj_dup(o));
 end end
 
-params = do
-  compact_table: true,
-  copy_parent: true,
-  clean_when_copying: true,
-  retry_count: 3,
-  bucket_small_size: 16
-end;
+params = {
+  compact_table = true,
+  copy_parent = true,
+  clean_when_copying = true,
+  retry_count = 3,
+  bucket_small_size = 16
+};
 
 function public_method_label(s) do
   accu = 0;
@@ -39,20 +39,20 @@ function public_method_label(s) do
   end end 
 end end
 
-dummy_table = do
-  size: 0,
-  methods: {--[[ () ]]0},
-  methods_by_name: Belt_MapString.empty,
-  methods_by_label: Belt_MapInt.empty,
-  previous_states: --[[ [] ]]0,
-  hidden_meths: --[[ [] ]]0,
-  vars: Belt_MapString.empty,
-  initializers: --[[ [] ]]0
-end;
+dummy_table = {
+  size = 0,
+  methods = {--[[ () ]]0},
+  methods_by_name = Belt_MapString.empty,
+  methods_by_label = Belt_MapInt.empty,
+  previous_states = --[[ [] ]]0,
+  hidden_meths = --[[ [] ]]0,
+  vars = Belt_MapString.empty,
+  initializers = --[[ [] ]]0
+};
 
-table_count = do
-  contents: 0
-end;
+table_count = {
+  contents = 0
+};
 
 dummy_met = --[[ obj_block ]]{};
 
@@ -73,16 +73,16 @@ function new_table(pub_labels) do
   for i = 0 , len - 1 | 0 , 1 do
     Caml_array.caml_array_set(methods, (i << 1) + 3 | 0, Caml_array.caml_array_get(pub_labels, i));
   end
-  return do
-          size: 2,
-          methods: methods,
-          methods_by_name: Belt_MapString.empty,
-          methods_by_label: Belt_MapInt.empty,
-          previous_states: --[[ [] ]]0,
-          hidden_meths: --[[ [] ]]0,
-          vars: Belt_MapString.empty,
-          initializers: --[[ [] ]]0
-        end;
+  return {
+          size = 2,
+          methods = methods,
+          methods_by_name = Belt_MapString.empty,
+          methods_by_label = Belt_MapInt.empty,
+          previous_states = --[[ [] ]]0,
+          hidden_meths = --[[ [] ]]0,
+          vars = Belt_MapString.empty,
+          initializers = --[[ [] ]]0
+        };
 end end
 
 function resize(array, new_size) do
@@ -97,13 +97,13 @@ function resize(array, new_size) do
   end end 
 end end
 
-method_count = do
-  contents: 0
-end;
+method_count = {
+  contents = 0
+};
 
-inst_var_count = do
-  contents: 0
-end;
+inst_var_count = {
+  contents = 0
+};
 
 function new_method(table) do
   index = #table.methods;
@@ -197,12 +197,12 @@ function narrow(table, vars, virt_meths, concr_meths) do
             return tvars;
           end end 
         end end));
-  by_name = do
-    contents: Belt_MapString.empty
-  end;
-  by_label = do
-    contents: Belt_MapInt.empty
-  end;
+  by_name = {
+    contents = Belt_MapString.empty
+  };
+  by_label = {
+    contents = Belt_MapInt.empty
+  };
   List.iter2((function(met, label) do
           by_name.contents = Belt_MapString.set(by_name.contents, met, label);
           by_label.contents = Belt_MapInt.set(by_label.contents, label, Belt_MapInt.getWithDefault(table.methods_by_label, label, true));
@@ -810,9 +810,9 @@ end end
 
 function set_methods(table, methods) do
   len = #methods;
-  i = do
-    contents: 0
-  end;
+  i = {
+    contents = 0
+  };
   while(i.contents < len) do
     label = Caml_array.caml_array_get(methods, i.contents);
     clo = method_impl(table, i, methods);
@@ -823,11 +823,11 @@ function set_methods(table, methods) do
 end end
 
 function stats(param) do
-  return do
-          classes: table_count.contents,
-          methods: method_count.contents,
-          inst_vars: inst_var_count.contents
-        end;
+  return {
+          classes = table_count.contents,
+          methods = method_count.contents,
+          inst_vars = inst_var_count.contents
+        };
 end end
 
 export do

@@ -20,9 +20,9 @@ function for_2(x) do
 end end
 
 function for_3(x) do
-  v = do
-    contents: 0
-  end;
+  v = {
+    contents = 0
+  };
   arr = __Array.map((function(param, param_1) do
           return --[[ () ]]0;
         end end), x);
@@ -42,9 +42,9 @@ function for_3(x) do
 end end
 
 function for_4(x) do
-  v = do
-    contents: 0
-  end;
+  v = {
+    contents = 0
+  };
   arr = __Array.map((function(param, param_1) do
           return --[[ () ]]0;
         end end), x);
@@ -65,9 +65,9 @@ function for_4(x) do
 end end
 
 function for_5(x, u) do
-  v = do
-    contents: 0
-  end;
+  v = {
+    contents = 0
+  };
   arr = __Array.map((function(param, param_1) do
           return --[[ () ]]0;
         end end), x);
@@ -87,24 +87,24 @@ function for_5(x, u) do
 end end
 
 function for_6(x, u) do
-  v = do
-    contents: 0
-  end;
+  v = {
+    contents = 0
+  };
   arr = __Array.map((function(param, param_1) do
           return --[[ () ]]0;
         end end), x);
-  v4 = do
-    contents: 0
-  end;
-  v5 = do
-    contents: 0
-  end;
+  v4 = {
+    contents = 0
+  };
+  v5 = {
+    contents = 0
+  };
   v4.contents = v4.contents + 1 | 0;
   for j = 0 , 1 , 1 do
     v5.contents = v5.contents + 1 | 0;
-    v2 = do
-      contents: 0
-    end;
+    v2 = {
+      contents = 0
+    };
     (function(v2) do
     for i = 0 , #x , 1 do
       k = Caml_int32.imul((u << 1), u);

@@ -50,9 +50,9 @@ function remove(t, x) do
     if (x == v) then do
       if (l ~= nil) then do
         if (r ~= nil) then do
-          v_1 = do
-            contents: r.value
-          end;
+          v_1 = {
+            contents = r.value
+          };
           r_1 = Belt_internalAVLset.removeMinAuxWithRef(r, v_1);
           return Belt_internalAVLset.bal(l, v_1.contents, r_1);
         end else do
@@ -166,9 +166,9 @@ end end
 
 function split(t, x) do
   if (t ~= nil) then do
-    pres = do
-      contents: false
-    end;
+    pres = {
+      contents = false
+    };
     v = splitAuxPivot(t, x, pres);
     return --[[ tuple ]]{
             v,
@@ -222,9 +222,9 @@ function intersect(s1, s2) do
     l1 = s1.left;
     v1 = s1.value;
     r1 = s1.right;
-    pres = do
-      contents: false
-    end;
+    pres = {
+      contents = false
+    };
     match = splitAuxPivot(s2, v1, pres);
     ll = intersect(l1, match[0]);
     rr = intersect(r1, match[1]);
@@ -243,9 +243,9 @@ function diff(s1, s2) do
     l1 = s1.left;
     v1 = s1.value;
     r1 = s1.right;
-    pres = do
-      contents: false
-    end;
+    pres = {
+      contents = false
+    };
     match = splitAuxPivot(s2, v1, pres);
     ll = diff(l1, match[0]);
     rr = diff(r1, match[1]);

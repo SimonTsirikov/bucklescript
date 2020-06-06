@@ -5,13 +5,13 @@ Caml_obj = require "../../lib/js/caml_obj";
 Caml_int64 = require "../../lib/js/caml_int64";
 Caml_primitive = require "../../lib/js/caml_primitive";
 
-suites = do
-  contents: --[[ [] ]]0
-end;
+suites = {
+  contents = --[[ [] ]]0
+};
 
-test_id = do
-  contents: 0
-end;
+test_id = {
+  contents = 0
+};
 
 function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);

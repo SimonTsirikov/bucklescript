@@ -4,13 +4,13 @@ Mt = require "./mt";
 Block = require "../../lib/js/block";
 Js_mapperRt = require "../../lib/js/js_mapperRt";
 
-suites = do
-  contents: --[[ [] ]]0
-end;
+suites = {
+  contents = --[[ [] ]]0
+};
 
-test_id = do
-  contents: 0
-end;
+test_id = {
+  contents = 0
+};
 
 function __throw(loc, x) do
   test_id.contents = test_id.contents + 1 | 0;

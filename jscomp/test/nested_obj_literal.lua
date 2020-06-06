@@ -1,21 +1,21 @@
 console = {log = print};
 
 
-structural_obj = do
-  x: do
-    y: do
-      z: 3
-    end
-  end
-end;
+structural_obj = {
+  x = {
+    y = {
+      z = 3
+    }
+  }
+};
 
-f_record = do
-  x: do
-    y: do
-      z: 3
-    end
-  end
-end;
+f_record = {
+  x = {
+    y = {
+      z = 3
+    }
+  }
+};
 
 exports = {}
 exports.structural_obj = structural_obj;

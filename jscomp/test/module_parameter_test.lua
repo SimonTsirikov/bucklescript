@@ -10,9 +10,9 @@ end end
 
 s = __String;
 
-N = do
-  s: s
-end;
+N = {
+  s = s
+};
 
 function v(x) do
   return #x;

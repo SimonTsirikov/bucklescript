@@ -189,9 +189,9 @@ a = --[[ Sum ]]Block.__(2, {--[[ :: ]]{
 
 b = --[[ Val ]]Block.__(0, {--[[ Symbol ]]Block.__(1, {"x"})});
 
-console.log(compare(--[[ InSum ]]0, do
-          complex: true
-        end, a, b));
+console.log(compare(--[[ InSum ]]0, {
+          complex = true
+        }, a, b));
 
 exports = {}
 --[[  Not a pure module ]]

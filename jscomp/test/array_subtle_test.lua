@@ -4,13 +4,13 @@ Mt = require "./mt";
 Block = require "../../lib/js/block";
 Caml_array = require "../../lib/js/caml_array";
 
-suites = do
-  contents: --[[ [] ]]0
-end;
+suites = {
+  contents = --[[ [] ]]0
+};
 
-test_id = do
-  contents: 0
-end;
+test_id = {
+  contents = 0
+};
 
 function eq(loc, param) do
   y = param[1];

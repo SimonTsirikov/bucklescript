@@ -3,13 +3,13 @@ console = {log = print};
 Mt = require "./mt";
 Block = require "../../lib/js/block";
 
-suites = do
-  contents: --[[ [] ]]0
-end;
+suites = {
+  contents = --[[ [] ]]0
+};
 
-test_id = do
-  contents: 0
-end;
+test_id = {
+  contents = 0
+};
 
 function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
@@ -48,16 +48,16 @@ function f(check) do
   end end 
 end end
 
-eq("File \"gpr_904_test.ml\", line 23, characters 5-12", f(do
-          x: true,
-          y: false
-        end), false);
+eq("File \"gpr_904_test.ml\", line 23, characters 5-12", f({
+          x = true,
+          y = false
+        }), false);
 
-eq("File \"gpr_904_test.ml\", line 26, characters 5-12", check_healty(do
-          a: false,
-          b: false,
-          c: true
-        end), false);
+eq("File \"gpr_904_test.ml\", line 26, characters 5-12", check_healty({
+          a = false,
+          b = false,
+          c = true
+        }), false);
 
 Mt.from_pair_suites("Gpr_904_test", suites.contents);
 

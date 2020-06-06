@@ -1,49 +1,49 @@
 console = {log = print};
 
 
-f = do
-  x: do
-    y: do
-      z: 3
-    end
-  end
-end;
+f = {
+  x = {
+    y = {
+      z = 3
+    }
+  }
+};
 
 f2_000 = --[[ :: ]]{
-  do
-    x: do
-      y: do
-        z: 3
-      end
-    end
-  end,
+  {
+    x = {
+      y = {
+        z = 3
+      }
+    }
+  },
   --[[ :: ]]{
-    do
-      x: do
-        y: do
-          z: 31
-        end
-      end
-    end,
+    {
+      x = {
+        y = {
+          z = 31
+        }
+      }
+    },
     --[[ [] ]]0
   }
 };
 
 f2_001 = {
-  do
-    x: do
-      y: do
-        z: 3
-      end
-    end
-  end,
-  do
-    x: do
-      y: do
-        z: 31
-      end
-    end
-  end
+  {
+    x = {
+      y = {
+        z = 3
+      }
+    }
+  },
+  {
+    x = {
+      y = {
+        z = 31
+      }
+    }
+  }
 };
 
 f2 = --[[ tuple ]]{
@@ -51,21 +51,21 @@ f2 = --[[ tuple ]]{
   f2_001
 };
 
-f3 = do
-  x: do
-    y: do
-      z: 3
-    end
-  end
-end;
+f3 = {
+  x = {
+    y = {
+      z = 3
+    }
+  }
+};
 
-f_record = do
-  x: do
-    y: do
-      z: 3
-    end
-  end
-end;
+f_record = {
+  x = {
+    y = {
+      z = 3
+    }
+  }
+};
 
 exports = {}
 exports.f_record = f_record;

@@ -5,10 +5,10 @@ Belt_SetDict = require "./belt_SetDict";
 
 function fromArray(data, id) do
   cmp = id.cmp;
-  return do
-          cmp: cmp,
-          data: Belt_SetDict.fromArray(data, cmp)
-        end;
+  return {
+          cmp = cmp,
+          data = Belt_SetDict.fromArray(data, cmp)
+        };
 end end
 
 function remove(m, e) do
@@ -18,10 +18,10 @@ function remove(m, e) do
   if (newData == data) then do
     return m;
   end else do
-    return do
-            cmp: cmp,
-            data: newData
-          end;
+    return {
+            cmp = cmp,
+            data = newData
+          };
   end end 
 end end
 
@@ -32,51 +32,51 @@ function add(m, e) do
   if (newData == data) then do
     return m;
   end else do
-    return do
-            cmp: cmp,
-            data: newData
-          end;
+    return {
+            cmp = cmp,
+            data = newData
+          };
   end end 
 end end
 
 function mergeMany(m, e) do
   cmp = m.cmp;
-  return do
-          cmp: cmp,
-          data: Belt_SetDict.mergeMany(m.data, e, cmp)
-        end;
+  return {
+          cmp = cmp,
+          data = Belt_SetDict.mergeMany(m.data, e, cmp)
+        };
 end end
 
 function removeMany(m, e) do
   cmp = m.cmp;
-  return do
-          cmp: cmp,
-          data: Belt_SetDict.removeMany(m.data, e, cmp)
-        end;
+  return {
+          cmp = cmp,
+          data = Belt_SetDict.removeMany(m.data, e, cmp)
+        };
 end end
 
 function union(m, n) do
   cmp = m.cmp;
-  return do
-          cmp: cmp,
-          data: Belt_SetDict.union(m.data, n.data, cmp)
-        end;
+  return {
+          cmp = cmp,
+          data = Belt_SetDict.union(m.data, n.data, cmp)
+        };
 end end
 
 function intersect(m, n) do
   cmp = m.cmp;
-  return do
-          cmp: cmp,
-          data: Belt_SetDict.intersect(m.data, n.data, cmp)
-        end;
+  return {
+          cmp = cmp,
+          data = Belt_SetDict.intersect(m.data, n.data, cmp)
+        };
 end end
 
 function diff(m, n) do
   cmp = m.cmp;
-  return do
-          cmp: cmp,
-          data: Belt_SetDict.diff(m.data, n.data, cmp)
-        end;
+  return {
+          cmp = cmp,
+          data = Belt_SetDict.diff(m.data, n.data, cmp)
+        };
 end end
 
 function subset(m, n) do
@@ -90,24 +90,24 @@ function split(m, e) do
   match_1 = match[0];
   return --[[ tuple ]]{
           --[[ tuple ]]{
-            do
-              cmp: cmp,
-              data: match_1[0]
-            end,
-            do
-              cmp: cmp,
-              data: match_1[1]
-            end
+            {
+              cmp = cmp,
+              data = match_1[0]
+            },
+            {
+              cmp = cmp,
+              data = match_1[1]
+            }
           },
           match[1]
         };
 end end
 
 function make(id) do
-  return do
-          cmp: id.cmp,
-          data: Belt_SetDict.empty
-        end;
+  return {
+          cmp = id.cmp,
+          data = Belt_SetDict.empty
+        };
 end end
 
 function isEmpty(m) do
@@ -156,10 +156,10 @@ function some(m, f) do
 end end
 
 function keepU(m, f) do
-  return do
-          cmp: m.cmp,
-          data: Belt_SetDict.keepU(m.data, f)
-        end;
+  return {
+          cmp = m.cmp,
+          data = Belt_SetDict.keepU(m.data, f)
+        };
 end end
 
 function keep(m, f) do
@@ -170,14 +170,14 @@ function partitionU(m, f) do
   match = Belt_SetDict.partitionU(m.data, f);
   cmp = m.cmp;
   return --[[ tuple ]]{
-          do
-            cmp: cmp,
-            data: match[0]
-          end,
-          do
-            cmp: cmp,
-            data: match[1]
-          end
+          {
+            cmp = cmp,
+            data = match[0]
+          },
+          {
+            cmp = cmp,
+            data = match[1]
+          }
         };
 end end
 
@@ -230,10 +230,10 @@ function has(m, e) do
 end end
 
 function fromSortedArrayUnsafe(xs, id) do
-  return do
-          cmp: id.cmp,
-          data: Belt_SetDict.fromSortedArrayUnsafe(xs)
-        end;
+  return {
+          cmp = id.cmp,
+          data = Belt_SetDict.fromSortedArrayUnsafe(xs)
+        };
 end end
 
 function getData(prim) do
@@ -242,16 +242,16 @@ end end
 
 function getId(m) do
   cmp = m.cmp;
-  return do
-          cmp: cmp
-        end;
+  return {
+          cmp = cmp
+        };
 end end
 
 function packIdData(id, data) do
-  return do
-          cmp: id.cmp,
-          data: data
-        end;
+  return {
+          cmp = id.cmp,
+          data = data
+        };
 end end
 
 function checkInvariantInternal(d) do

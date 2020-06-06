@@ -9,9 +9,9 @@ function M(S) do
   f = function(x) do
     return x;
   end end;
-  return do
-          f: f
-        end;
+  return {
+          f = f
+        };
 end end
 
 function fff(param, param_1) do

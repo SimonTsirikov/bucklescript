@@ -6,9 +6,9 @@ Curry = require "../../lib/js/curry";
 
 g = 7;
 
-h = do
-  contents: 0
-end;
+h = {
+  contents = 0
+};
 
 function g1(x, y) do
   u = x + y | 0;

@@ -153,8 +153,8 @@ shift_left_tests = --[[ tuple ]]{
 
 $star$tilde = Caml_int32.imul;
 
-suites = do
-  contents: Pervasives.$at(--[[ :: ]]{
+suites = {
+  contents = Pervasives.$at(--[[ :: ]]{
         --[[ tuple ]]{
           "File \"int32_test.ml\", line 31, characters 2-9",
           (function(param) do
@@ -240,11 +240,11 @@ suites = do
                                     end end)
                                 };
                         end end), shift_left_tests_000, shift_left_tests_001)))))
-end;
+};
 
-test_id = do
-  contents: 0
-end;
+test_id = {
+  contents = 0
+};
 
 function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);

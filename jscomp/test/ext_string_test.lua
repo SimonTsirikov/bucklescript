@@ -410,9 +410,9 @@ function unsafe_concat_with_length(len, sep, l) do
     hd_len = #hd;
     sep_len = #sep;
     Caml_bytes.caml_blit_string(hd, 0, r, 0, hd_len);
-    pos = do
-      contents: hd_len
-    end;
+    pos = {
+      contents = hd_len
+    };
     List.iter((function(s) do
             s_len = #s;
             Caml_bytes.caml_blit_string(sep, 0, r, pos.contents, sep_len);

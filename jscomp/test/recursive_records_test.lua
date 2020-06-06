@@ -6,13 +6,13 @@ Caml_obj = require "../../lib/js/caml_obj";
 Caml_int32 = require "../../lib/js/caml_int32";
 Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
-suites = do
-  contents: --[[ [] ]]0
-end;
+suites = {
+  contents = --[[ [] ]]0
+};
 
-test_id = do
-  contents: 0
-end;
+test_id = {
+  contents = 0
+};
 
 function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
@@ -26,10 +26,10 @@ rec_cell.next = rec_cell;
 
 function f0(x) do
   rec_cell = { };
-  Caml_obj.caml_update_dummy(rec_cell, do
-        content: Caml_int32.imul(x, x) - 6 | 0,
-        next: rec_cell
-      end);
+  Caml_obj.caml_update_dummy(rec_cell, {
+        content = Caml_int32.imul(x, x) - 6 | 0,
+        next = rec_cell
+      });
   return rec_cell;
 end end
 

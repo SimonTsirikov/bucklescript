@@ -21,13 +21,13 @@ Caml_primitive = require "../../lib/js/caml_primitive";
 Caml_exceptions = require "../../lib/js/caml_exceptions";
 Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
-suites = do
-  contents: --[[ [] ]]0
-end;
+suites = {
+  contents = --[[ [] ]]0
+};
 
-test_id = do
-  contents: 0
-end;
+test_id = {
+  contents = 0
+};
 
 function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
@@ -596,10 +596,10 @@ function hash_combine(h, accu) do
   return Caml_int32.imul(accu, 65599) + h | 0;
 end end
 
-empty = do
-  marks: --[[ [] ]]0,
-  pmarks: --[[ Empty ]]0
-end;
+empty = {
+  marks = --[[ [] ]]0,
+  pmarks = --[[ Empty ]]0
+};
 
 function hash(m, accu) do
   _l = m.marks;
@@ -638,10 +638,10 @@ function marks_set_idx(idx, marks) do
 end end
 
 function marks_set_idx_1(marks, idx) do
-  return do
-          marks: marks_set_idx(idx, marks.marks),
-          pmarks: marks.pmarks
-        end;
+  return {
+          marks = marks_set_idx(idx, marks.marks),
+          pmarks = marks.pmarks
+        };
 end end
 
 function first(f, _param) do
@@ -661,17 +661,17 @@ function first(f, _param) do
   end;
 end end
 
-eps_expr = do
-  id: 0,
-  def: --[[ Eps ]]0
-end;
+eps_expr = {
+  id = 0,
+  def = --[[ Eps ]]0
+};
 
 function mk_expr(ids, def) do
   ids.contents = ids.contents + 1 | 0;
-  return do
-          id: ids.contents,
-          def: def
-        end;
+  return {
+          id = ids.contents,
+          def = def
+        };
 end end
 
 function cst(ids, s) do
@@ -920,26 +920,26 @@ function tseq(kind, x, y, rem) do
         };
 end end
 
-dummy = do
-  idx: -1,
-  category: -1,
-  desc: --[[ [] ]]0,
-  status: undefined,
-  hash: -1
-end;
+dummy = {
+  idx = -1,
+  category = -1,
+  desc = --[[ [] ]]0,
+  status = undefined,
+  hash = -1
+};
 
 function hash_2(idx, cat, desc) do
   return hash_1(desc, hash_combine(idx, hash_combine(cat, 0))) & 1073741823;
 end end
 
 function mk(idx, cat, desc) do
-  return do
-          idx: idx,
-          category: cat,
-          desc: desc,
-          status: undefined,
-          hash: hash_2(idx, cat, desc)
-        end;
+  return {
+          idx = idx,
+          category = cat,
+          desc = desc,
+          status = undefined,
+          hash = hash_2(idx, cat, desc)
+        };
 end end
 
 function create_2(cat, e) do
@@ -964,10 +964,10 @@ function hash_3(t) do
   return t.hash;
 end end
 
-Table = Hashtbl.Make(do
-      equal: equal_1,
-      hash: hash_3
-    end);
+Table = Hashtbl.Make({
+      equal = equal_1,
+      hash = hash_3
+    });
 
 function reset_table(a) do
   return __Array.fill(a, 0, #a, false);
@@ -1178,8 +1178,8 @@ function set_idx(idx, param) do
 end end
 
 function filter_marks(b, e, marks) do
-  return do
-          marks: List.filter((function(param) do
+  return {
+          marks = List.filter((function(param) do
                     i = param[0];
                     if (i < b) then do
                       return true;
@@ -1187,8 +1187,8 @@ function filter_marks(b, e, marks) do
                       return i > e;
                     end end 
                   end end))(marks.marks),
-          pmarks: marks.pmarks
-        end;
+          pmarks = marks.pmarks
+        };
 end end
 
 function delta_1(marks, c, next_cat, prev_cat, x, rem) do
@@ -1261,10 +1261,10 @@ function delta_1(marks, c, next_cat, prev_cat, x, rem) do
             List.remove_assq(i, marks.marks)
           };
           marks_pmarks = marks.pmarks;
-          marks_1 = do
-            marks: marks_marks,
-            pmarks: marks_pmarks
-          end;
+          marks_1 = {
+            marks = marks_marks,
+            pmarks = marks_pmarks
+          };
           return --[[ :: ]]{
                   --[[ TMatch ]]Block.__(2, {marks_1}),
                   rem
@@ -1295,10 +1295,10 @@ function delta_1(marks, c, next_cat, prev_cat, x, rem) do
        if ___conditional___ == 8--[[ Pmark ]] then do
           marks_marks_1 = marks.marks;
           marks_pmarks_1 = add_1(match[0], marks.pmarks);
-          marks_2 = do
-            marks: marks_marks_1,
-            pmarks: marks_pmarks_1
-          end;
+          marks_2 = {
+            marks = marks_marks_1,
+            pmarks = marks_pmarks_1
+          };
           return --[[ :: ]]{
                   --[[ TMatch ]]Block.__(2, {marks_2}),
                   rem
@@ -1422,22 +1422,22 @@ function status(s) do
   end end 
 end end
 
-Re_automata_Category = do
-  $plus$plus: $plus$plus,
-  from_char: from_char,
-  inexistant: 1,
-  letter: 2,
-  not_letter: 4,
-  newline: 8,
-  lastnewline: 16,
-  search_boundary: 32
-end;
+Re_automata_Category = {
+  $plus$plus = $plus$plus,
+  from_char = from_char,
+  inexistant = 1,
+  letter = 2,
+  not_letter = 4,
+  newline = 8,
+  lastnewline = 16,
+  search_boundary = 32
+};
 
-Re_automata_State = do
-  dummy: dummy,
-  create: create_2,
-  Table: Table
-end;
+Re_automata_State = {
+  dummy = dummy,
+  create = create_2,
+  Table = Table
+};
 
 function iter(_n, f, _v) do
   while(true) do
@@ -1465,24 +1465,24 @@ end end
 
 dummy_next = {};
 
-unknown_state = do
-  idx: -2,
-  real_idx: 0,
-  next: dummy_next,
-  final: --[[ [] ]]0,
-  desc: Re_automata_State.dummy
-end;
+unknown_state = {
+  idx = -2,
+  real_idx = 0,
+  next = dummy_next,
+  final = --[[ [] ]]0,
+  desc = Re_automata_State.dummy
+};
 
 function mk_state(ncol, desc) do
   match = status(desc);
   break_state = typeof match == "number" and match == 0 or true;
-  return do
-          idx: break_state and -3 or desc.idx,
-          real_idx: desc.idx,
-          next: break_state and dummy_next or Caml_array.caml_make_vect(ncol, unknown_state),
-          final: --[[ [] ]]0,
-          desc: desc
-        end;
+  return {
+          idx = break_state and -3 or desc.idx,
+          real_idx = desc.idx,
+          next = break_state and dummy_next or Caml_array.caml_make_vect(ncol, unknown_state),
+          final = --[[ [] ]]0,
+          desc = desc
+        };
 end end
 
 function find_state(re, desc) do
@@ -1622,13 +1622,13 @@ function scan_str(info, s, initial_state, groups) do
   pos = info.pos;
   last = info.last;
   if (last == #s and info.re.lnl ~= -1 and last > pos and Caml_string.get(s, last - 1 | 0) == --[[ "\n" ]]10) then do
-    info_1 = do
-      re: info.re,
-      i_cols: info.i_cols,
-      positions: info.positions,
-      pos: info.pos,
-      last: last - 1 | 0
-    end;
+    info_1 = {
+      re = info.re,
+      i_cols = info.i_cols,
+      positions = info.positions,
+      pos = info.pos,
+      last = last - 1 | 0
+    };
     st = scan_str(info_1, s, initial_state, groups);
     if (st.idx == -3) then do
       return st;
@@ -1828,9 +1828,9 @@ cword = union(--[[ :: ]]{
     }, calnum);
 
 function colorize(c, regexp) do
-  lnl = do
-    contents: false
-  end;
+  lnl = {
+    contents = false
+  };
   colorize_1 = function(_regexp) do
     while(true) do
       regexp = _regexp;
@@ -2897,15 +2897,15 @@ function compile(r) do
   col = match[0];
   lnl = need_lnl and ncol or -1;
   ncol_1 = need_lnl and ncol + 1 | 0 or ncol;
-  ids = do
-    contents: 0
-  end;
-  pos = do
-    contents: 0
-  end;
-  match_1 = translate(ids, --[[ First ]]332064784, false, false, --[[ Greedy ]]-904640576, pos, do
-        contents: --[[ Empty ]]0
-      end, col, regexp_1);
+  ids = {
+    contents = 0
+  };
+  pos = {
+    contents = 0
+  };
+  match_1 = translate(ids, --[[ First ]]332064784, false, false, --[[ Greedy ]]-904640576, pos, {
+        contents = --[[ Empty ]]0
+      }, col, regexp_1);
   r_1 = enforce_kind(ids, --[[ First ]]332064784, match_1[1], match_1[0]);
   init = r_1;
   cols = col;
@@ -2913,19 +2913,19 @@ function compile(r) do
   ncol_2 = ncol_1;
   lnl_1 = lnl;
   group_count = pos.contents / 2 | 0;
-  return do
-          initial: init,
-          initial_states: --[[ [] ]]0,
-          cols: cols,
-          col_repr: col_repr,
-          ncol: ncol_2,
-          lnl: lnl_1,
-          tbl: do
-            contents: {false}
-          end,
-          states: Curry._1(Re_automata_State.Table.create, 97),
-          group_count: group_count
-        end;
+  return {
+          initial = init,
+          initial_states = --[[ [] ]]0,
+          cols = cols,
+          col_repr = col_repr,
+          ncol = ncol_2,
+          lnl = lnl_1,
+          tbl = {
+            contents = {false}
+          },
+          states = Curry._1(Re_automata_State.Table.create, 97),
+          group_count = group_count
+        };
 end end
 
 function exec_internal(name, posOpt, lenOpt, groups, re, s) do
@@ -2964,13 +2964,13 @@ function exec_internal(name, posOpt, lenOpt, groups, re, s) do
   end else do
     tmp = {};
   end end 
-  info = do
-    re: re_1,
-    i_cols: re_1.cols,
-    positions: tmp,
-    pos: pos_1,
-    last: last
-  end;
+  info = {
+    re = re_1,
+    i_cols = re_1.cols,
+    positions = tmp,
+    pos = pos_1,
+    last = last
+  };
   initial_cat = pos_1 == 0 and Curry._2(Re_automata_Category.$plus$plus, Re_automata_Category.search_boundary, Re_automata_Category.inexistant) or Curry._2(Re_automata_Category.$plus$plus, Re_automata_Category.search_boundary, category(re_1, get_color(re_1, s_1, pos_1 - 1 | 0)));
   initial_state = find_initial_state(re_1, initial_cat);
   st = scan_str(info, s_1, initial_state, groups_1);
@@ -2993,13 +2993,13 @@ function exec_internal(name, posOpt, lenOpt, groups, re, s) do
       return --[[ Failed ]]0;
     end end 
   end else do
-    return --[[ Match ]]{do
-              s: s_1,
-              marks: res[0],
-              pmarks: res[1],
-              gpos: info.positions,
-              gcount: re_1.group_count
-            end};
+    return --[[ Match ]]{{
+              s = s_1,
+              marks = res[0],
+              pmarks = res[1],
+              gpos = info.positions,
+              gcount = re_1.group_count
+            }};
   end end 
 end end
 
@@ -3070,9 +3070,9 @@ function posix_class_of_string(class_) do
 end end
 
 function parse(multiline, dollar_endonly, dotall, ungreedy, s) do
-  i = do
-    contents: 0
-  end;
+  i = {
+    contents = 0
+  };
   l = #s;
   test = function(c) do
     if (i.contents ~= l) then do

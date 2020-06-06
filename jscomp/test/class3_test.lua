@@ -61,13 +61,13 @@ shared_9 = {
   "len"
 };
 
-suites = do
-  contents: --[[ [] ]]0
-end;
+suites = {
+  contents = --[[ [] ]]0
+};
 
-test_id = do
-  contents: 0
-end;
+test_id = {
+  contents = 0
+};
 
 function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
@@ -227,9 +227,9 @@ p_1 = Curry._2(printable_point[0], 0, 7);
 
 eq("File \"class3_test.ml\", line 49, characters 11-18", Caml_oo_curry.js1(-930392019, 4, p_1), 7);
 
-ints = do
-  contents: --[[ [] ]]0
-end;
+ints = {
+  contents = --[[ [] ]]0
+};
 
 __class = CamlinternalOO.create_table(shared_9);
 

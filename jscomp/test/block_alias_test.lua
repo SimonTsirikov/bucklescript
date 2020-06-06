@@ -5,13 +5,13 @@ List = require "../../lib/js/list";
 Block = require "../../lib/js/block";
 Caml_obj = require "../../lib/js/caml_obj";
 
-suites = do
-  contents: --[[ [] ]]0
-end;
+suites = {
+  contents = --[[ [] ]]0
+};
 
-test_id = do
-  contents: 0
-end;
+test_id = {
+  contents = 0
+};
 
 function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
@@ -35,18 +35,18 @@ v1 = --[[ A ]]Block.__(1, {
     1
   });
 
-N = do
-  Block: Block_2,
-  v1: v1
-end;
+N = {
+  Block = Block_2,
+  v1 = v1
+};
 
 Caml_obj_1 = { };
 
 List_1 = { };
 
-V = do
-  List: List_1
-end;
+V = {
+  List = List_1
+};
 
 f = Caml_obj.caml_equal;
 

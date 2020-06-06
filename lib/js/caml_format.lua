@@ -311,19 +311,19 @@ function parse_format(fmt) do
     })
   end
    end 
-  f = do
-    justify: "+",
-    signstyle: "-",
-    filter: " ",
-    alternate: false,
-    base: --[[ Dec ]]2,
-    signedconv: false,
-    width: 0,
-    uppercase: false,
-    sign: 1,
-    prec: -1,
-    conv: "f"
-  end;
+  f = {
+    justify = "+",
+    signstyle = "-",
+    filter = " ",
+    alternate = false,
+    base = --[[ Dec ]]2,
+    signedconv = false,
+    width = 0,
+    uppercase = false,
+    sign = 1,
+    prec = -1,
+    conv = "f"
+  };
   _i = 0;
   while(true) do
     i = _i;

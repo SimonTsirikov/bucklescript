@@ -31,21 +31,21 @@ function getId(bdd) do
   end end 
 end end
 
-nodeC = do
-  contents: 1
-end;
+nodeC = {
+  contents = 1
+};
 
-sz_1 = do
-  contents: 8191
-end;
+sz_1 = {
+  contents = 8191
+};
 
-htab = do
-  contents: Caml_array.caml_make_vect(sz_1.contents + 1 | 0, --[[ [] ]]0)
-end;
+htab = {
+  contents = Caml_array.caml_make_vect(sz_1.contents + 1 | 0, --[[ [] ]]0)
+};
 
-n_items = do
-  contents: 0
-end;
+n_items = {
+  contents = 0
+};
 
 function hashVal(x, y, v) do
   return ((x << 1) + y | 0) + (v << 2) | 0;
@@ -333,9 +333,9 @@ function hwb(n) do
   return h(0, n - 1 | 0);
 end end
 
-seed = do
-  contents: 0
-end;
+seed = {
+  contents = 0
+};
 
 function random(param) do
   seed.contents = Caml_int32.imul(seed.contents, 25173) + 17431 | 0;

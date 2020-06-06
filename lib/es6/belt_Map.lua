@@ -5,10 +5,10 @@ import * as Belt_MapDict from "./belt_MapDict.lua";
 
 function fromArray(data, id) do
   cmp = id.cmp;
-  return do
-          cmp: cmp,
-          data: Belt_MapDict.fromArray(data, cmp)
-        end;
+  return {
+          cmp = cmp,
+          data = Belt_MapDict.fromArray(data, cmp)
+        };
 end end
 
 function remove(m, x) do
@@ -18,10 +18,10 @@ function remove(m, x) do
   if (newData == odata) then do
     return m;
   end else do
-    return do
-            cmp: cmp,
-            data: newData
-          end;
+    return {
+            cmp = cmp,
+            data = newData
+          };
   end end 
 end end
 
@@ -29,34 +29,34 @@ function removeMany(m, x) do
   cmp = m.cmp;
   odata = m.data;
   newData = Belt_MapDict.removeMany(odata, x, cmp);
-  return do
-          cmp: cmp,
-          data: newData
-        end;
+  return {
+          cmp = cmp,
+          data = newData
+        };
 end end
 
 function set(m, key, d) do
   cmp = m.cmp;
-  return do
-          cmp: cmp,
-          data: Belt_MapDict.set(m.data, key, d, cmp)
-        end;
+  return {
+          cmp = cmp,
+          data = Belt_MapDict.set(m.data, key, d, cmp)
+        };
 end end
 
 function mergeMany(m, e) do
   cmp = m.cmp;
-  return do
-          cmp: cmp,
-          data: Belt_MapDict.mergeMany(m.data, e, cmp)
-        end;
+  return {
+          cmp = cmp,
+          data = Belt_MapDict.mergeMany(m.data, e, cmp)
+        };
 end end
 
 function updateU(m, key, f) do
   cmp = m.cmp;
-  return do
-          cmp: cmp,
-          data: Belt_MapDict.updateU(m.data, key, f, cmp)
-        end;
+  return {
+          cmp = cmp,
+          data = Belt_MapDict.updateU(m.data, key, f, cmp)
+        };
 end end
 
 function update(m, key, f) do
@@ -69,14 +69,14 @@ function split(m, x) do
   match_1 = match[0];
   return --[[ tuple ]]{
           --[[ tuple ]]{
-            do
-              cmp: cmp,
-              data: match_1[0]
-            end,
-            do
-              cmp: cmp,
-              data: match_1[1]
-            end
+            {
+              cmp = cmp,
+              data = match_1[0]
+            },
+            {
+              cmp = cmp,
+              data = match_1[1]
+            }
           },
           match[1]
         };
@@ -84,10 +84,10 @@ end end
 
 function mergeU(s1, s2, f) do
   cmp = s1.cmp;
-  return do
-          cmp: cmp,
-          data: Belt_MapDict.mergeU(s1.data, s2.data, f, cmp)
-        end;
+  return {
+          cmp = cmp,
+          data = Belt_MapDict.mergeU(s1.data, s2.data, f, cmp)
+        };
 end end
 
 function merge(s1, s2, f) do
@@ -95,10 +95,10 @@ function merge(s1, s2, f) do
 end end
 
 function make(id) do
-  return do
-          cmp: id.cmp,
-          data: Belt_MapDict.empty
-        end;
+  return {
+          cmp = id.cmp,
+          data = Belt_MapDict.empty
+        };
 end end
 
 function isEmpty(map) do
@@ -146,10 +146,10 @@ function some(m, f) do
 end end
 
 function keepU(m, f) do
-  return do
-          cmp: m.cmp,
-          data: Belt_MapDict.keepU(m.data, f)
-        end;
+  return {
+          cmp = m.cmp,
+          data = Belt_MapDict.keepU(m.data, f)
+        };
 end end
 
 function keep(m, f) do
@@ -160,14 +160,14 @@ function partitionU(m, p) do
   cmp = m.cmp;
   match = Belt_MapDict.partitionU(m.data, p);
   return --[[ tuple ]]{
-          do
-            cmp: cmp,
-            data: match[0]
-          end,
-          do
-            cmp: cmp,
-            data: match[1]
-          end
+          {
+            cmp = cmp,
+            data = match[0]
+          },
+          {
+            cmp = cmp,
+            data = match[1]
+          }
         };
 end end
 
@@ -176,10 +176,10 @@ function partition(m, p) do
 end end
 
 function mapU(m, f) do
-  return do
-          cmp: m.cmp,
-          data: Belt_MapDict.mapU(m.data, f)
-        end;
+  return {
+          cmp = m.cmp,
+          data = Belt_MapDict.mapU(m.data, f)
+        };
 end end
 
 function map(m, f) do
@@ -187,10 +187,10 @@ function map(m, f) do
 end end
 
 function mapWithKeyU(m, f) do
-  return do
-          cmp: m.cmp,
-          data: Belt_MapDict.mapWithKeyU(m.data, f)
-        end;
+  return {
+          cmp = m.cmp,
+          data = Belt_MapDict.mapWithKeyU(m.data, f)
+        };
 end end
 
 function mapWithKey(m, f) do
@@ -295,16 +295,16 @@ end end
 
 function getId(m) do
   cmp = m.cmp;
-  return do
-          cmp: cmp
-        end;
+  return {
+          cmp = cmp
+        };
 end end
 
 function packIdData(id, data) do
-  return do
-          cmp: id.cmp,
-          data: data
-        end;
+  return {
+          cmp = id.cmp,
+          data = data
+        };
 end end
 
 Int = --[[ alias ]]0;

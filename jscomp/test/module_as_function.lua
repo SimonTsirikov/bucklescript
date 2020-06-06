@@ -2,9 +2,9 @@ console = {log = print};
 
 Nightmare = require "night";
 
-v = Nightmare(do
-      show: true
-    end);
+v = Nightmare({
+      show = true
+    });
 
 exports = {}
 exports.v = v;

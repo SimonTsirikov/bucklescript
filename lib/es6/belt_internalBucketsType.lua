@@ -15,12 +15,12 @@ end end
 
 function make(hash, eq, hintSize) do
   s = power_2_above(16, hintSize);
-  return do
-          size: 0,
-          buckets: new Array(s),
-          hash: hash,
-          eq: eq
-        end;
+  return {
+          size = 0,
+          buckets = new Array(s),
+          hash = hash,
+          eq = eq
+        };
 end end
 
 function clear(h) do

@@ -2,25 +2,25 @@ console = {log = print};
 
 __Array = require "../../lib/js/array";
 
-v = do
-  contents: 32
-end;
+v = {
+  contents = 32
+};
 
 v.contents = 0;
 
-N = do
-  a: 3,
-  v: v
-end;
+N = {
+  a = 3,
+  v = v
+};
 
-v_1 = do
-  contents: 32
-end;
+v_1 = {
+  contents = 32
+};
 
-NN = do
-  a: 3,
-  v: v_1
-end;
+NN = {
+  a = 3,
+  v = v_1
+};
 
 make_float = __Array.make_float;
 

@@ -83,9 +83,9 @@ suites_001 = --[[ :: ]]{
               --[[ tuple ]]{
                 "iter - empty",
                 (function(param) do
-                    hit = do
-                      contents: false
-                    end;
+                    hit = {
+                      contents = false
+                    };
                     Js_null.iter(nil, (function(param) do
                             hit.contents = true;
                             return --[[ () ]]0;
@@ -100,9 +100,9 @@ suites_001 = --[[ :: ]]{
                 --[[ tuple ]]{
                   "iter - 'a",
                   (function(param) do
-                      hit = do
-                        contents: 0
-                      end;
+                      hit = {
+                        contents = 0
+                      };
                       Js_null.iter(2, (function(v) do
                               hit.contents = v;
                               return --[[ () ]]0;

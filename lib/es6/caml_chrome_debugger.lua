@@ -121,9 +121,9 @@ if (typeof window === "undefined"){
 return 0
 });
 
-setup = do
-  contents: false
-end;
+setup = {
+  contents = false
+};
 
 function setupOnce(param) do
   if (setup.contents) then do
@@ -137,23 +137,23 @@ end end
 function variant(meta, tag, xs) do
   setupOnce(--[[ () ]]0);
   xs.tag = tag;
-  return Object.defineProperty(xs, Symbol.for("BsVariant"), do
-              value: meta
-            end);
+  return Object.defineProperty(xs, Symbol.for("BsVariant"), {
+              value = meta
+            });
 end end
 
 function simpleVariant(meta, xs) do
   setupOnce(--[[ () ]]0);
-  return Object.defineProperty(xs, Symbol.for("BsVariant"), do
-              value: meta
-            end);
+  return Object.defineProperty(xs, Symbol.for("BsVariant"), {
+              value = meta
+            });
 end end
 
 function polyVar(meta, xs) do
   setupOnce(--[[ () ]]0);
-  return Object.defineProperty(xs, Symbol.for("BsPolyVar"), do
-              value: meta
-            end);
+  return Object.defineProperty(xs, Symbol.for("BsPolyVar"), {
+              value = meta
+            });
 end end
 
 __ = Block.__;

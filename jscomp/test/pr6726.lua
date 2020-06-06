@@ -5,17 +5,17 @@ function get_uint8(str, off) do
   return 33;
 end end
 
-BigEndian = do
-  get_uint8: get_uint8
-end;
+BigEndian = {
+  get_uint8 = get_uint8
+};
 
-ExtUnixAll = do
-  BigEndian: BigEndian
-end;
+ExtUnixAll = {
+  BigEndian = BigEndian
+};
 
-ExtUnix = do
-  All: --[[ alias ]]0
-end;
+ExtUnix = {
+  All = --[[ alias ]]0
+};
 
 function test_endian_string(x) do
   return 33;
@@ -23,10 +23,10 @@ end end
 
 v = 33;
 
-Test = do
-  test_endian_string: test_endian_string,
-  v: v
-end;
+Test = {
+  test_endian_string = test_endian_string,
+  v = v
+};
 
 exports = {}
 exports.ExtUnixAll = ExtUnixAll;

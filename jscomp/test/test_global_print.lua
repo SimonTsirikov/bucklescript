@@ -1,13 +1,13 @@
 console = {log = print};
 
 
-List = do
-  u: 3
-end;
+List = {
+  u = 3
+};
 
-X = do
-  List: List
-end;
+X = {
+  List = List
+};
 
 Hashtbl = --[[ alias ]]0;
 

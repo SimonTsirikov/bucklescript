@@ -26,21 +26,21 @@ function log(x) do
   return --[[ () ]]0;
 end end
 
-N = do
-  log2: log
-end;
+N = {
+  log2 = log
+};
 
-forIn(do
-      x: 3
-    end, (function(x) do
+forIn({
+      x = 3
+    }, (function(x) do
         console.log(x);
         return --[[ () ]]0;
       end end));
 
-forIn(do
-      x: 3,
-      y: 3
-    end, (function(x) do
+forIn({
+      x = 3,
+      y = 3
+    }, (function(x) do
         console.log(x);
         return --[[ () ]]0;
       end end));

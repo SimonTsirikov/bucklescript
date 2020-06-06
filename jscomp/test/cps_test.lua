@@ -7,9 +7,9 @@ Curry = require "../../lib/js/curry";
 Caml_array = require "../../lib/js/caml_array";
 
 function test(param) do
-  v = do
-    contents: 0
-  end;
+  v = {
+    contents = 0
+  };
   f = function(_n, _acc) do
     while(true) do
       acc = _acc;
@@ -35,9 +35,9 @@ function test(param) do
 end end
 
 function test_closure(param) do
-  v = do
-    contents: 0
-  end;
+  v = {
+    contents = 0
+  };
   arr = Caml_array.caml_make_vect(6, (function(x) do
           return x;
         end end));
@@ -56,9 +56,9 @@ function test_closure(param) do
 end end
 
 function test_closure2(param) do
-  v = do
-    contents: 0
-  end;
+  v = {
+    contents = 0
+  };
   arr = Caml_array.caml_make_vect(6, (function(x) do
           return x;
         end end));

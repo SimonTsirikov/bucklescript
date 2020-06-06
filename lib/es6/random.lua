@@ -44,10 +44,10 @@ function full_init(s, seed) do
 end end
 
 function make(seed) do
-  result = do
-    st: Caml_array.caml_make_vect(55, 0),
-    idx: 0
-  end;
+  result = {
+    st = Caml_array.caml_make_vect(55, 0),
+    idx = 0
+  };
   full_init(result, seed);
   return result;
 end end
@@ -57,10 +57,10 @@ function make_self_init(param) do
 end end
 
 function copy(s) do
-  result = do
-    st: Caml_array.caml_make_vect(55, 0),
-    idx: 0
-  end;
+  result = {
+    st = Caml_array.caml_make_vect(55, 0),
+    idx = 0
+  };
   assign(result, s);
   return result;
 end end
@@ -166,8 +166,8 @@ function bool(s) do
   return (bits(s) & 1) == 0;
 end end
 
-__default = do
-  st: {
+__default = {
+  st = {
     987910699,
     495797812,
     364182224,
@@ -224,8 +224,8 @@ __default = do
     409934019,
     801085050
   },
-  idx: 0
-end;
+  idx = 0
+};
 
 function bits_1(param) do
   return bits(__default);
@@ -275,18 +275,18 @@ function set_state(s) do
   return assign(__default, s);
 end end
 
-State = do
-  make: make,
-  make_self_init: make_self_init,
-  copy: copy,
-  bits: bits,
-  __int: __int,
-  int32: int32,
-  nativeint: nativeint,
-  int64: int64,
-  __float: __float,
-  bool: bool
-end;
+State = {
+  make = make,
+  make_self_init = make_self_init,
+  copy = copy,
+  bits = bits,
+  __int = __int,
+  int32 = int32,
+  nativeint = nativeint,
+  int64 = int64,
+  __float = __float,
+  bool = bool
+};
 
 export do
   init ,

@@ -63,10 +63,10 @@ function string_of_float_option(param) do
   end end 
 end end
 
-Util = do
-  split: split,
-  string_of_float_option: string_of_float_option
-end;
+Util = {
+  split = split,
+  string_of_float_option = string_of_float_option
+};
 
 function string_of_rank(param) do
   if (typeof param == "number") then do
@@ -1076,42 +1076,42 @@ function bindings(s) do
   return bindings_aux(--[[ [] ]]0, s);
 end end
 
-Ticker_map = do
-  empty: --[[ Empty ]]0,
-  is_empty: is_empty,
-  mem: mem,
-  add: add,
-  update: update,
-  singleton: singleton,
-  remove: remove,
-  merge: merge_1,
-  union: union,
-  compare: compare,
-  equal: equal,
-  iter: iter,
-  fold: fold,
-  for_all: for_all,
-  exists: exists,
-  filter: filter,
-  partition: partition,
-  cardinal: cardinal,
-  bindings: bindings,
-  min_binding: min_binding,
-  min_binding_opt: min_binding_opt,
-  max_binding: max_binding,
-  max_binding_opt: max_binding_opt,
-  choose: min_binding,
-  choose_opt: min_binding_opt,
-  split: split_1,
-  find: find,
-  find_opt: find_opt,
-  find_first: find_first,
-  find_first_opt: find_first_opt,
-  find_last: find_last,
-  find_last_opt: find_last_opt,
-  map: map,
-  mapi: mapi
-end;
+Ticker_map = {
+  empty = --[[ Empty ]]0,
+  is_empty = is_empty,
+  mem = mem,
+  add = add,
+  update = update,
+  singleton = singleton,
+  remove = remove,
+  merge = merge_1,
+  union = union,
+  compare = compare,
+  equal = equal,
+  iter = iter,
+  fold = fold,
+  for_all = for_all,
+  exists = exists,
+  filter = filter,
+  partition = partition,
+  cardinal = cardinal,
+  bindings = bindings,
+  min_binding = min_binding,
+  min_binding_opt = min_binding_opt,
+  max_binding = max_binding,
+  max_binding_opt = max_binding_opt,
+  choose = min_binding,
+  choose_opt = min_binding_opt,
+  split = split_1,
+  find = find,
+  find_opt = find_opt,
+  find_first = find_first,
+  find_first_opt = find_first_opt,
+  find_last = find_last,
+  find_last_opt = find_last_opt,
+  map = map,
+  mapi = mapi
+};
 
 function compute_update_sequences(all_tickers) do
   List.fold_left((function(counter, ticker) do
@@ -1232,16 +1232,16 @@ function process_input_line(ticker_map, all_tickers, line) do
   make_binary_op = function(ticker_name, lhs, rhs, op) do
     lhs_1 = find_ticker_by_name(all_tickers, lhs);
     rhs_1 = find_ticker_by_name(all_tickers, rhs);
-    return do
-            value: undefined,
-            rank: --[[ Uninitialized ]]0,
-            ticker_name: ticker_name,
-            type_: --[[ Binary_op ]]{do
-                op: op,
-                rhs: rhs_1,
-                lhs: lhs_1
-              end}
-          end;
+    return {
+            value = undefined,
+            rank = --[[ Uninitialized ]]0,
+            ticker_name = ticker_name,
+            type_ = --[[ Binary_op ]]{{
+                op = op,
+                rhs = rhs_1,
+                lhs = lhs_1
+              }}
+          };
   end end;
   tokens = split(--[[ "|" ]]124, line);
   if (tokens) then do
@@ -1358,12 +1358,12 @@ function process_input_line(ticker_map, all_tickers, line) do
                      end 
                     return --[[ tuple ]]{
                             --[[ :: ]]{
-                              do
-                                value: undefined,
-                                rank: --[[ Uninitialized ]]0,
-                                ticker_name: ticker_name,
-                                type_: --[[ Market ]]0
-                              end,
+                              {
+                                value = undefined,
+                                rank = --[[ Uninitialized ]]0,
+                                ticker_name = ticker_name,
+                                type_ = --[[ Market ]]0
+                              },
                               all_tickers
                             },
                             ticker_map

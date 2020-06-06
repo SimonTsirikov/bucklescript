@@ -20,13 +20,13 @@ Caml_string = require "../../lib/js/caml_string";
 Caml_js_exceptions = require "../../lib/js/caml_js_exceptions";
 Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
-suites = do
-  contents: --[[ [] ]]0
-end;
+suites = {
+  contents = --[[ [] ]]0
+};
 
-test_id = do
-  contents: 0
-end;
+test_id = {
+  contents = 0
+};
 
 function eq(f, param) do
   return Mt_global.collect_eq(test_id, suites, f, param[0], param[1]);
@@ -3755,9 +3755,9 @@ function writer(ib, ob) do
               end end));
 end end
 
-count = do
-  contents: 0
-end;
+count = {
+  contents = 0
+};
 
 function reader(ib, ob) do
   if (Scanf.Scanning.beginning_of_input(ib)) then do

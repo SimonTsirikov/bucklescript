@@ -3,13 +3,13 @@ console = {log = print};
 Mt = require "./mt";
 Block = require "../../lib/js/block";
 
-suites = do
-  contents: --[[ [] ]]0
-end;
+suites = {
+  contents = --[[ [] ]]0
+};
 
-test_id = do
-  contents: 0
-end;
+test_id = {
+  contents = 0
+};
 
 function eq(loc, param) do
   y = param[1];
@@ -30,62 +30,62 @@ function eq(loc, param) do
   return --[[ () ]]0;
 end end
 
-v = do
-  x: (function() do
+v = {
+  x = (function() do
       return 3; end
     end),
-  say: (function(x) do
+  say = (function(x) do
       self = this ;
       return x * self.x(); end
     end),
-  hi: (function(x, y) do
+  hi = (function(x, y) do
       self = this ;
       return self.say(x) + y; end
     end)
-end;
+};
 
-v2 = do
-  hi: (function(x, y) do
+v2 = {
+  hi = (function(x, y) do
       self = this ;
       return self.say(x) + y; end
     end),
-  say: (function(x) do
+  say = (function(x) do
       self = this ;
       return x * self.x(); end
     end),
-  x: (function() do
+  x = (function() do
       return 3; end
     end)
-end;
+};
 
-v3 = do
-  hi: (function(x, y) do
+v3 = {
+  hi = (function(x, y) do
       self = this ;
-      u = do
-        x: x
-      end;
+      u = {
+        x = x
+      };
       return self.say(u.x) + y + x; end
     end),
-  say: (function(x) do
+  say = (function(x) do
       self = this ;
       return x * self.x(); end
     end),
-  x: (function() do
+  x = (function() do
       return 3; end
     end)
-end;
+};
 
-v4 = do
-  hi: (function(x, y) do
+v4 = {
+  hi = (function(x, y) do
       return x + y; end
     end),
-  say: (function(x) do
+  say = (function(x) do
       return x; end
     end),
-  x: (function() do
+  x = (function() do
       return 1; end
     end)
-end;
+};
 
 collection = {
   v,

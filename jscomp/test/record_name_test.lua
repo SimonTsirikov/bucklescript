@@ -2,9 +2,9 @@ console = {log = print};
 
 
 function f(x) do
-  return do
-          THIS_IS_NOT_EXPRESSIBLE_IN_BUCKLE: x
-        end;
+  return {
+          THIS_IS_NOT_EXPRESSIBLE_IN_BUCKLE = x
+        };
 end end
 
 function set(x) do
@@ -18,16 +18,16 @@ end end
 
 function f2(x) do
   x["x'"] = x["x'"] + 3 | 0;
-  return do
-          "x'": x["x'"] + 3 | 0
-        end;
+  return {
+          "x'" = x["x'"] + 3 | 0
+        };
 end end
 
 function f3(x) do
   x.in = x.in + 3 | 0;
-  return do
-          in: x.in + 3 | 0
-        end;
+  return {
+          in = x.in + 3 | 0
+        };
 end end
 
 function f4(param) do

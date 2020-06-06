@@ -8,13 +8,13 @@ Caml_exceptions = require "../../lib/js/caml_exceptions";
 Caml_js_exceptions = require "../../lib/js/caml_js_exceptions";
 Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
-suites = do
-  contents: --[[ [] ]]0
-end;
+suites = {
+  contents = --[[ [] ]]0
+};
 
-counter = do
-  contents: 0
-end;
+counter = {
+  contents = 0
+};
 
 function add_test(loc, test) do
   counter.contents = counter.contents + 1 | 0;

@@ -5,9 +5,9 @@ Curry = require "../../lib/js/curry";
 Offset = require "./offset";
 Mt_global = require "./mt_global";
 
-count = do
-  contents: 0
-end;
+count = {
+  contents = 0
+};
 
 function test(set) do
   count.contents = Offset.__Set.cardinal(set) + count.contents | 0;
@@ -16,13 +16,13 @@ end end
 
 test(Curry._1(Offset.M.__Set.singleton, "42"));
 
-suites = do
-  contents: --[[ [] ]]0
-end;
+suites = {
+  contents = --[[ [] ]]0
+};
 
-test_id = do
-  contents: 0
-end;
+test_id = {
+  contents = 0
+};
 
 function eq(f, a, b) do
   return Mt_global.collect_eq(test_id, suites, f, a, b);

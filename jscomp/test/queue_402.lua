@@ -7,10 +7,10 @@ Caml_exceptions = require "../../lib/js/caml_exceptions";
 Empty = Caml_exceptions.create("Queue_402.Empty");
 
 function create(param) do
-  return do
-          length: 0,
-          tail: undefined
-        end;
+  return {
+          length = 0,
+          tail = undefined
+        };
 end end
 
 function clear(q) do
@@ -30,10 +30,10 @@ function add(x, q) do
   end else do
     tail = q.tail;
     head = tail.next;
-    cell_1 = do
-      content: x,
-      next: head
-    end;
+    cell_1 = {
+      content = x,
+      next = head
+    };
     q.length = q.length + 1 | 0;
     tail.next = cell_1;
     q.tail = cell_1;
@@ -67,26 +67,26 @@ end end
 
 function copy(q) do
   if (q.length == 0) then do
-    return do
-            length: 0,
-            tail: undefined
-          end;
+    return {
+            length = 0,
+            tail = undefined
+          };
   end else do
     tail = q.tail;
     tail$prime = { };
-    Caml_obj.caml_update_dummy(tail$prime, do
-          content: tail.content,
-          next: tail$prime
-        end);
+    Caml_obj.caml_update_dummy(tail$prime, {
+          content = tail.content,
+          next = tail$prime
+        });
     copy_1 = function(_prev, _cell) do
       while(true) do
         cell = _cell;
         prev = _prev;
         if (cell ~= tail) then do
-          res = do
-            content: cell.content,
-            next: tail$prime
-          end;
+          res = {
+            content = cell.content,
+            next = tail$prime
+          };
           prev.next = res;
           _cell = cell.next;
           _prev = res;
@@ -97,10 +97,10 @@ function copy(q) do
       end;
     end end;
     copy_1(tail$prime, tail.next);
-    return do
-            length: q.length,
-            tail: tail$prime
-          end;
+    return {
+            length = q.length,
+            tail = tail$prime
+          };
   end end 
 end end
 

@@ -19,8 +19,8 @@ end end,function(raw_exn) do
   function_equal_test = exn[0] == Caml_builtin_exceptions.invalid_argument and exn[1] == "equal: functional value" and true or false;
 end end)
 
-suites = do
-  contents: --[[ :: ]]{
+suites = {
+  contents = --[[ :: ]]{
     --[[ tuple ]]{
       "File \"caml_compare_test.ml\", line 9, characters 4-11",
       (function(param) do
@@ -528,13 +528,13 @@ suites = do
                                             "cmp_id",
                                             (function(param) do
                                                 return --[[ Eq ]]Block.__(0, {
-                                                          Caml_obj.caml_compare(do
-                                                                x: 1,
-                                                                y: 2
-                                                              end, do
-                                                                x: 1,
-                                                                y: 2
-                                                              end),
+                                                          Caml_obj.caml_compare({
+                                                                x = 1,
+                                                                y = 2
+                                                              }, {
+                                                                x = 1,
+                                                                y = 2
+                                                              }),
                                                           0
                                                         });
                                               end end)
@@ -544,11 +544,11 @@ suites = do
                                               "cmp_val",
                                               (function(param) do
                                                   return --[[ Eq ]]Block.__(0, {
-                                                            Caml_obj.caml_compare(do
-                                                                  x: 1
-                                                                end, do
-                                                                  x: 2
-                                                                end),
+                                                            Caml_obj.caml_compare({
+                                                                  x = 1
+                                                                }, {
+                                                                  x = 2
+                                                                }),
                                                             -1
                                                           });
                                                 end end)
@@ -558,11 +558,11 @@ suites = do
                                                 "cmp_val2",
                                                 (function(param) do
                                                     return --[[ Eq ]]Block.__(0, {
-                                                              Caml_obj.caml_compare(do
-                                                                    x: 2
-                                                                  end, do
-                                                                    x: 1
-                                                                  end),
+                                                              Caml_obj.caml_compare({
+                                                                    x = 2
+                                                                  }, {
+                                                                    x = 1
+                                                                  }),
                                                               1
                                                             });
                                                   end end)
@@ -592,13 +592,13 @@ suites = do
                                                       "cmp_swap",
                                                       (function(param) do
                                                           return --[[ Eq ]]Block.__(0, {
-                                                                    Caml_obj.caml_compare(do
-                                                                          x: 1,
-                                                                          y: 2
-                                                                        end, do
-                                                                          y: 2,
-                                                                          x: 1
-                                                                        end),
+                                                                    Caml_obj.caml_compare({
+                                                                          x = 1,
+                                                                          y = 2
+                                                                        }, {
+                                                                          y = 2,
+                                                                          x = 1
+                                                                        }),
                                                                     0
                                                                   });
                                                         end end)
@@ -628,13 +628,13 @@ suites = do
                                                             "cmp_order",
                                                             (function(param) do
                                                                 return --[[ Eq ]]Block.__(0, {
-                                                                          Caml_obj.caml_compare(do
-                                                                                x: 0,
-                                                                                y: 1
-                                                                              end, do
-                                                                                x: 1,
-                                                                                y: 0
-                                                                              end),
+                                                                          Caml_obj.caml_compare({
+                                                                                x = 0,
+                                                                                y = 1
+                                                                              }, {
+                                                                                x = 1,
+                                                                                y = 0
+                                                                              }),
                                                                           -1
                                                                         });
                                                               end end)
@@ -644,13 +644,13 @@ suites = do
                                                               "cmp_order2",
                                                               (function(param) do
                                                                   return --[[ Eq ]]Block.__(0, {
-                                                                            Caml_obj.caml_compare(do
-                                                                                  x: 1,
-                                                                                  y: 0
-                                                                                end, do
-                                                                                  x: 0,
-                                                                                  y: 1
-                                                                                end),
+                                                                            Caml_obj.caml_compare({
+                                                                                  x = 1,
+                                                                                  y = 0
+                                                                                }, {
+                                                                                  x = 0,
+                                                                                  y = 1
+                                                                                }),
                                                                             1
                                                                           });
                                                                 end end)
@@ -661,14 +661,14 @@ suites = do
                                                                 (function(param) do
                                                                     return --[[ Eq ]]Block.__(0, {
                                                                               Caml_obj.caml_compare(--[[ :: ]]{
-                                                                                    do
-                                                                                      x: 1
-                                                                                    end,
+                                                                                    {
+                                                                                      x = 1
+                                                                                    },
                                                                                     --[[ [] ]]0
                                                                                   }, --[[ :: ]]{
-                                                                                    do
-                                                                                      x: 2
-                                                                                    end,
+                                                                                    {
+                                                                                      x = 2
+                                                                                    },
                                                                                     --[[ [] ]]0
                                                                                   }),
                                                                               -1
@@ -681,14 +681,14 @@ suites = do
                                                                   (function(param) do
                                                                       return --[[ Eq ]]Block.__(0, {
                                                                                 Caml_obj.caml_compare(--[[ :: ]]{
-                                                                                      do
-                                                                                        x: 2
-                                                                                      end,
+                                                                                      {
+                                                                                        x = 2
+                                                                                      },
                                                                                       --[[ [] ]]0
                                                                                     }, --[[ :: ]]{
-                                                                                      do
-                                                                                        x: 1
-                                                                                      end,
+                                                                                      {
+                                                                                        x = 1
+                                                                                      },
                                                                                       --[[ [] ]]0
                                                                                     }),
                                                                                 1
@@ -700,17 +700,17 @@ suites = do
                                                                     "cmp_with_list",
                                                                     (function(param) do
                                                                         return --[[ Eq ]]Block.__(0, {
-                                                                                  Caml_obj.caml_compare(do
-                                                                                        x: --[[ :: ]]{
+                                                                                  Caml_obj.caml_compare({
+                                                                                        x = --[[ :: ]]{
                                                                                           0,
                                                                                           --[[ [] ]]0
                                                                                         }
-                                                                                      end, do
-                                                                                        x: --[[ :: ]]{
+                                                                                      }, {
+                                                                                        x = --[[ :: ]]{
                                                                                           1,
                                                                                           --[[ [] ]]0
                                                                                         }
-                                                                                      end),
+                                                                                      }),
                                                                                   -1
                                                                                 });
                                                                       end end)
@@ -720,17 +720,17 @@ suites = do
                                                                       "cmp_with_list2",
                                                                       (function(param) do
                                                                           return --[[ Eq ]]Block.__(0, {
-                                                                                    Caml_obj.caml_compare(do
-                                                                                          x: --[[ :: ]]{
+                                                                                    Caml_obj.caml_compare({
+                                                                                          x = --[[ :: ]]{
                                                                                             1,
                                                                                             --[[ [] ]]0
                                                                                           }
-                                                                                        end, do
-                                                                                          x: --[[ :: ]]{
+                                                                                        }, {
+                                                                                          x = --[[ :: ]]{
                                                                                             0,
                                                                                             --[[ [] ]]0
                                                                                           }
-                                                                                        end),
+                                                                                        }),
                                                                                     1
                                                                                   });
                                                                         end end)
@@ -739,13 +739,13 @@ suites = do
                                                                       --[[ tuple ]]{
                                                                         "eq_id",
                                                                         (function(param) do
-                                                                            return --[[ Ok ]]Block.__(4, {Caml_obj.caml_equal(do
-                                                                                            x: 1,
-                                                                                            y: 2
-                                                                                          end, do
-                                                                                            x: 1,
-                                                                                            y: 2
-                                                                                          end)});
+                                                                            return --[[ Ok ]]Block.__(4, {Caml_obj.caml_equal({
+                                                                                            x = 1,
+                                                                                            y = 2
+                                                                                          }, {
+                                                                                            x = 1,
+                                                                                            y = 2
+                                                                                          })});
                                                                           end end)
                                                                       },
                                                                       --[[ :: ]]{
@@ -753,11 +753,11 @@ suites = do
                                                                           "eq_val",
                                                                           (function(param) do
                                                                               return --[[ Eq ]]Block.__(0, {
-                                                                                        Caml_obj.caml_equal(do
-                                                                                              x: 1
-                                                                                            end, do
-                                                                                              x: 2
-                                                                                            end),
+                                                                                        Caml_obj.caml_equal({
+                                                                                              x = 1
+                                                                                            }, {
+                                                                                              x = 2
+                                                                                            }),
                                                                                         false
                                                                                       });
                                                                             end end)
@@ -767,11 +767,11 @@ suites = do
                                                                             "eq_val2",
                                                                             (function(param) do
                                                                                 return --[[ Eq ]]Block.__(0, {
-                                                                                          Caml_obj.caml_equal(do
-                                                                                                x: 2
-                                                                                              end, do
-                                                                                                x: 1
-                                                                                              end),
+                                                                                          Caml_obj.caml_equal({
+                                                                                                x = 2
+                                                                                              }, {
+                                                                                                x = 1
+                                                                                              }),
                                                                                           false
                                                                                         });
                                                                               end end)
@@ -800,13 +800,13 @@ suites = do
                                                                                 --[[ tuple ]]{
                                                                                   "eq_swap",
                                                                                   (function(param) do
-                                                                                      return --[[ Ok ]]Block.__(4, {Caml_obj.caml_equal(do
-                                                                                                      x: 1,
-                                                                                                      y: 2
-                                                                                                    end, do
-                                                                                                      y: 2,
-                                                                                                      x: 1
-                                                                                                    end)});
+                                                                                      return --[[ Ok ]]Block.__(4, {Caml_obj.caml_equal({
+                                                                                                      x = 1,
+                                                                                                      y = 2
+                                                                                                    }, {
+                                                                                                      y = 2,
+                                                                                                      x = 1
+                                                                                                    })});
                                                                                     end end)
                                                                                 },
                                                                                 --[[ :: ]]{
@@ -835,14 +835,14 @@ suites = do
                                                                                         (function(param) do
                                                                                             return --[[ Eq ]]Block.__(0, {
                                                                                                       Caml_obj.caml_equal(--[[ :: ]]{
-                                                                                                            do
-                                                                                                              x: 1
-                                                                                                            end,
+                                                                                                            {
+                                                                                                              x = 1
+                                                                                                            },
                                                                                                             --[[ [] ]]0
                                                                                                           }, --[[ :: ]]{
-                                                                                                            do
-                                                                                                              x: 2
-                                                                                                            end,
+                                                                                                            {
+                                                                                                              x = 2
+                                                                                                            },
                                                                                                             --[[ [] ]]0
                                                                                                           }),
                                                                                                       false
@@ -855,14 +855,14 @@ suites = do
                                                                                           (function(param) do
                                                                                               return --[[ Eq ]]Block.__(0, {
                                                                                                         Caml_obj.caml_equal(--[[ :: ]]{
-                                                                                                              do
-                                                                                                                x: 2
-                                                                                                              end,
+                                                                                                              {
+                                                                                                                x = 2
+                                                                                                              },
                                                                                                               --[[ [] ]]0
                                                                                                             }, --[[ :: ]]{
-                                                                                                              do
-                                                                                                                x: 2
-                                                                                                              end,
+                                                                                                              {
+                                                                                                                x = 2
+                                                                                                              },
                                                                                                               --[[ [] ]]0
                                                                                                             }),
                                                                                                         true
@@ -874,17 +874,17 @@ suites = do
                                                                                             "eq_with_list",
                                                                                             (function(param) do
                                                                                                 return --[[ Eq ]]Block.__(0, {
-                                                                                                          Caml_obj.caml_equal(do
-                                                                                                                x: --[[ :: ]]{
+                                                                                                          Caml_obj.caml_equal({
+                                                                                                                x = --[[ :: ]]{
                                                                                                                   0,
                                                                                                                   --[[ [] ]]0
                                                                                                                 }
-                                                                                                              end, do
-                                                                                                                x: --[[ :: ]]{
+                                                                                                              }, {
+                                                                                                                x = --[[ :: ]]{
                                                                                                                   0,
                                                                                                                   --[[ [] ]]0
                                                                                                                 }
-                                                                                                              end),
+                                                                                                              }),
                                                                                                           true
                                                                                                         });
                                                                                               end end)
@@ -894,17 +894,17 @@ suites = do
                                                                                               "eq_with_list2",
                                                                                               (function(param) do
                                                                                                   return --[[ Eq ]]Block.__(0, {
-                                                                                                            Caml_obj.caml_equal(do
-                                                                                                                  x: --[[ :: ]]{
+                                                                                                            Caml_obj.caml_equal({
+                                                                                                                  x = --[[ :: ]]{
                                                                                                                     0,
                                                                                                                     --[[ [] ]]0
                                                                                                                   }
-                                                                                                                end, do
-                                                                                                                  x: --[[ :: ]]{
+                                                                                                                }, {
+                                                                                                                  x = --[[ :: ]]{
                                                                                                                     1,
                                                                                                                     --[[ [] ]]0
                                                                                                                   }
-                                                                                                                end),
+                                                                                                                }),
                                                                                                             false
                                                                                                           });
                                                                                                 end end)
@@ -1027,11 +1027,11 @@ suites = do
       }
     }
   }
-end;
+};
 
-test_id = do
-  contents: 0
-end;
+test_id = {
+  contents = 0
+};
 
 function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);

@@ -5,13 +5,13 @@ Caml_obj = require "../../lib/js/caml_obj";
 Belt_List = require "../../lib/js/belt_List";
 Caml_option = require "../../lib/js/caml_option";
 
-suites = do
-  contents: --[[ [] ]]0
-end;
+suites = {
+  contents = --[[ [] ]]0
+};
 
-test_id = do
-  contents: 0
-end;
+test_id = {
+  contents = 0
+};
 
 function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
@@ -76,9 +76,9 @@ f10 = Caml_option.some(Caml_option.some(Caml_option.some(Caml_option.some(undefi
 
 f11 = Caml_option.some(f10);
 
-randomized = do
-  contents: false
-end;
+randomized = {
+  contents = false
+};
 
 function create(randomOpt, param) do
   random = randomOpt ~= undefined and randomOpt or randomized.contents;
@@ -263,10 +263,10 @@ function v0(x) do
   return x;
 end end
 
-N0 = do
-  v: v,
-  v0: v0
-end;
+N0 = {
+  v = v,
+  v0 = v0
+};
 
 Mt.from_pair_suites("Option_repr_test", suites.contents);
 

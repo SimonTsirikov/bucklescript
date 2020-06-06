@@ -52,11 +52,11 @@ suites_001 = --[[ :: ]]{
     (function(param) do
         return --[[ Eq ]]Block.__(0, {
                   34,
-                  (do
-                        say: (function(x) do
+                  ({
+                        say = (function(x) do
                             return x + 2 | 0;
                           end end)
-                      end).say(32)
+                      }).say(32)
                 });
       end end)
   },
@@ -66,11 +66,11 @@ suites_001 = --[[ :: ]]{
       (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     34,
-                    (do
-                          say: (function(x) do
+                    ({
+                          say = (function(x) do
                               return x + 2 | 0;
                             end end)
-                        end).say(32)
+                        }).say(32)
                   });
         end end)
     },
@@ -89,12 +89,12 @@ suites_001 = --[[ :: ]]{
           "assign",
           (function(param) do
               return --[[ Eq ]]Block.__(0, {
-                        do
-                          a: 1
-                        end,
-                        Object.assign({ }, do
-                              a: 1
-                            end)
+                        {
+                          a = 1
+                        },
+                        Object.assign({ }, {
+                              a = 1
+                            })
                       });
             end end)
         },

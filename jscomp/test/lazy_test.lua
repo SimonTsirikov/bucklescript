@@ -8,9 +8,9 @@ CamlinternalLazy = require "../../lib/js/camlinternalLazy";
 Caml_js_exceptions = require "../../lib/js/caml_js_exceptions";
 Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
-u = do
-  contents: 3
-end;
+u = {
+  contents = 3
+};
 
 v = Caml_obj.caml_lazy_make((function(param) do
         u.contents = 32;
@@ -50,9 +50,9 @@ function f(param) do
   end end 
 end end
 
-s = do
-  contents: undefined
-end;
+s = {
+  contents = undefined
+};
 
 set_true = Caml_obj.caml_lazy_make((function(param) do
         s.contents = 1;
@@ -81,9 +81,9 @@ end end,function(raw_exn) do
   end end 
 end end)
 
-u_v = do
-  contents: 0
-end;
+u_v = {
+  contents = 0
+};
 
 u_1 = Caml_obj.caml_lazy_make((function(param) do
         u_v.contents = 2;

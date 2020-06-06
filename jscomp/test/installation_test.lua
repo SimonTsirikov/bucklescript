@@ -8,13 +8,13 @@ Child_process = require "child_pro";
 App_root_finder = require "./app_root_finder";
 Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
-suites = do
-  contents: --[[ [] ]]0
-end;
+suites = {
+  contents = --[[ [] ]]0
+};
 
-test_id = do
-  contents: 0
-end;
+test_id = {
+  contents = 0
+};
 
 function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
@@ -41,9 +41,9 @@ if (match ~= undefined) then do
   exit = 0;
   output;
   xpcall(function() do
-    output = Child_process.execSync(bsc_exe .. " -where ", do
-          encoding: "utf8"
-        end);
+    output = Child_process.execSync(bsc_exe .. " -where ", {
+          encoding = "utf8"
+        });
     exit = 1;
   end end,function(e) do
     error({

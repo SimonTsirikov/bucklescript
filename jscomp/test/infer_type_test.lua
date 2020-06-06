@@ -1,23 +1,23 @@
 console = {log = print};
 
 
-hh = do
-  hi: 30,
-  lo: 20
-end;
+hh = {
+  hi = 30,
+  lo = 20
+};
 
 hh.width;
 
-v = do
-  hi: 32,
-  lo: 3
-end;
+v = {
+  hi = 32,
+  lo = 3
+};
 
-vv = do
-  hi: 3,
-  lo: 3,
-  width: 3
-end;
+vv = {
+  hi = 3,
+  lo = 3,
+  width = 3
+};
 
 u = v.hi;
 

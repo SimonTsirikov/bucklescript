@@ -6,13 +6,13 @@ Curry = require "../../lib/js/curry";
 Printf = require "../../lib/js/printf";
 Mt_global = require "./mt_global";
 
-suites = do
-  contents: --[[ [] ]]0
-end;
+suites = {
+  contents = --[[ [] ]]0
+};
 
-test_id = do
-  contents: 0
-end;
+test_id = {
+  contents = 0
+};
 
 function eq(f, param) do
   return Mt_global.collect_eq(test_id, suites, f, param[0], param[1]);

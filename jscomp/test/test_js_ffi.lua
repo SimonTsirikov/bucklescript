@@ -3,9 +3,9 @@ console = {log = print};
 __String = require "../../lib/js/string";
 
 function v(u) do
-  t(do
-        compare: __String.compare
-      end);
+  t({
+        compare = __String.compare
+      });
   return --[[ () ]]0;
 end end
 

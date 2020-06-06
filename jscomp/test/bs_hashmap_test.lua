@@ -10,13 +10,13 @@ Caml_primitive = require "../../lib/js/caml_primitive";
 Array_data_util = require "./array_data_util";
 Belt_internalBucketsType = require "../../lib/js/belt_internalBucketsType";
 
-suites = do
-  contents: --[[ [] ]]0
-end;
+suites = {
+  contents = --[[ [] ]]0
+};
 
-test_id = do
-  contents: 0
-end;
+test_id = {
+  contents = 0
+};
 
 function eqx(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);

@@ -13,13 +13,13 @@ doc.getElementById("haha");
 
 console.log(32);
 
-ReactDom.render(React.createClass(do
-          render: (function(param) do
-              return React.DOM.div(do
-                          alt: "pic"
-                        end, React.DOM.h1(undefined, "hello react"), React.DOM.h2(undefined, "type safe!"), React.DOM.h3(undefined, "type safe!"));
+ReactDom.render(React.createClass({
+          render = (function(param) do
+              return React.DOM.div({
+                          alt = "pic"
+                        }, React.DOM.h1(undefined, "hello react"), React.DOM.h2(undefined, "type safe!"), React.DOM.h3(undefined, "type safe!"));
             end end)
-        end), document.getElementById("hi"));
+        }), document.getElementById("hi"));
 
 function f(param) do
   Xxx();

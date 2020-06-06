@@ -5,9 +5,9 @@ Curry = require "../../lib/js/curry";
 Caml_array = require "../../lib/js/caml_array";
 Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
-v = do
-  contents: 0
-end;
+v = {
+  contents = 0
+};
 
 function f(param) do
   arr = Caml_array.caml_make_vect(10, (function(param) do

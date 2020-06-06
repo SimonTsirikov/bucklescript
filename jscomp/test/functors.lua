@@ -9,10 +9,10 @@ function O(X) do
   sheep = function(x) do
     return 1 + Curry._1(X.foo, x) | 0;
   end end;
-  return do
-          cow: cow,
-          sheep: sheep
-        end;
+  return {
+          cow = cow,
+          sheep = sheep
+        };
 end end
 
 function F(X, Y) do
@@ -22,40 +22,40 @@ function F(X, Y) do
   sheep = function(x) do
     return 1 + Curry._1(Y.foo, Curry._1(X.foo, x)) | 0;
   end end;
-  return do
-          cow: cow,
-          sheep: sheep
-        end;
+  return {
+          cow = cow,
+          sheep = sheep
+        };
 end end
 
 function F1(X, Y) do
   sheep = function(x) do
     return 1 + Curry._1(Y.foo, Curry._1(X.foo, x)) | 0;
   end end;
-  return do
-          sheep: sheep
-        end;
+  return {
+          sheep = sheep
+        };
 end end
 
 function F2(X, Y) do
   sheep = function(x) do
     return 1 + Curry._1(Y.foo, Curry._1(X.foo, x)) | 0;
   end end;
-  return do
-          sheep: sheep
-        end;
+  return {
+          sheep = sheep
+        };
 end end
 
-M = do
-  F: (function(funarg, funarg_1) do
+M = {
+  F = (function(funarg, funarg_1) do
       sheep = function(x) do
         return 1 + Curry._1(funarg_1.foo, Curry._1(funarg.foo, x)) | 0;
       end end;
-      return do
-              sheep: sheep
-            end;
+      return {
+              sheep = sheep
+            };
     end end)
-end;
+};
 
 exports = {}
 exports.O = O;

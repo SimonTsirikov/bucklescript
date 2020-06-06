@@ -12,13 +12,13 @@ function $$higher_order(x){
   }
 ;
 
-suites = do
-  contents: --[[ [] ]]0
-end;
+suites = {
+  contents = --[[ [] ]]0
+};
 
-test_id = do
-  contents: 0
-end;
+test_id = {
+  contents = 0
+};
 
 function eq(loc, param) do
   y = param[1];
@@ -39,15 +39,15 @@ function eq(loc, param) do
   return --[[ () ]]0;
 end end
 
-int_config = do
-  hi: 3,
-  low: 32
-end;
+int_config = {
+  hi = 3,
+  low = 32
+};
 
-string_config = do
-  hi: 3,
-  low: "32"
-end;
+string_config = {
+  hi = 3,
+  low = "32"
+};
 
 eq("File \"ffi_js_test.ml\", line 32, characters 5-12", --[[ tuple ]]{
       6,
@@ -57,10 +57,10 @@ eq("File \"ffi_js_test.ml\", line 32, characters 5-12", --[[ tuple ]]{
 same_type_000 = --[[ :: ]]{
   int_config,
   --[[ :: ]]{
-    do
-      hi: 3,
-      low: 32
-    end,
+    {
+      hi = 3,
+      low = 32
+    },
     --[[ [] ]]0
   }
 };
@@ -68,10 +68,10 @@ same_type_000 = --[[ :: ]]{
 same_type_001 = --[[ :: ]]{
   string_config,
   --[[ :: ]]{
-    do
-      hi: 3,
-      low: "32"
-    end,
+    {
+      hi = 3,
+      low = "32"
+    },
     --[[ [] ]]0
   }
 };
@@ -81,12 +81,12 @@ same_type = --[[ tuple ]]{
   same_type_001
 };
 
-v_obj = do
-  hi: (function() do
+v_obj = {
+  hi = (function() do
       console.log("hei");
       return --[[ () ]]0; end
     end)
-end;
+};
 
 eq("File \"ffi_js_test.ml\", line 44, characters 5-12", --[[ tuple ]]{
       #Object.keys(int_config),
@@ -108,14 +108,14 @@ eq("File \"ffi_js_test.ml\", line 47, characters 5-12", --[[ tuple ]]{
       0
     });
 
-u = do
-  contents: 3
-end;
+u = {
+  contents = 3
+};
 
-side_effect_config = (u.contents = u.contents + 1 | 0, do
-    hi: 3,
-    low: 32
-  end);
+side_effect_config = (u.contents = u.contents + 1 | 0, {
+    hi = 3,
+    low = 32
+  });
 
 eq("File \"ffi_js_test.ml\", line 54, characters 5-12", --[[ tuple ]]{
       u.contents,
@@ -139,11 +139,11 @@ function vvvv(z) do
 end end
 
 function create_prim(param) do
-  return do
-          "x'": 3,
-          "x''": 3,
-          "x''''": 2
-        end;
+  return {
+          "x'" = 3,
+          "x''" = 3,
+          "x''''" = 2
+        };
 end end
 
 function ffff(x) do

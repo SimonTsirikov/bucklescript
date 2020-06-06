@@ -29,9 +29,9 @@ function filter_map(f, _xs) do
 end end
 
 function excludes(p, l) do
-  excluded = do
-    contents: false
-  end;
+  excluded = {
+    contents = false
+  };
   aux = function(_accu, _param) do
     while(true) do
       param = _param;
@@ -71,9 +71,9 @@ function excludes(p, l) do
 end end
 
 function exclude_with_fact(p, l) do
-  excluded = do
-    contents: undefined
-  end;
+  excluded = {
+    contents = undefined
+  };
   aux = function(_accu, _param) do
     while(true) do
       param = _param;
@@ -106,12 +106,12 @@ function exclude_with_fact(p, l) do
 end end
 
 function exclude_with_fact2(p1, p2, l) do
-  excluded1 = do
-    contents: undefined
-  end;
-  excluded2 = do
-    contents: undefined
-  end;
+  excluded1 = {
+    contents = undefined
+  };
+  excluded2 = {
+    contents = undefined
+  };
   aux = function(_accu, _param) do
     while(true) do
       param = _param;
@@ -807,9 +807,9 @@ function reduce_from_left(fn, lst) do
 end end
 
 function create_ref_empty(param) do
-  return do
-          contents: --[[ [] ]]0
-        end;
+  return {
+          contents = --[[ [] ]]0
+        };
 end end
 
 function ref_top(x) do

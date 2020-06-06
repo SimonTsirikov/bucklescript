@@ -1,18 +1,18 @@
 console = {log = print};
 
 
-f = do
-  "Content-Type": 3
-end;
+f = {
+  "Content-Type" = 3
+};
 
 console.log(f["Content-Type"]);
 
 function ff(x) do
   x.Hi;
   x["Content-Type"] = "hello";
-  console.log((do
-          "Content-Type": "hello"
-        end)["Content-Type"]);
+  console.log(({
+          "Content-Type" = "hello"
+        })["Content-Type"]);
   return --[[ () ]]0;
 end end
 

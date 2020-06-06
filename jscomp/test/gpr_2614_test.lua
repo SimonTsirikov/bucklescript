@@ -2,11 +2,11 @@ console = {log = print};
 
 Caml_option = require "../../lib/js/caml_option";
 
-v = do
-  "Content-Type": 3,
-  l: 2,
-  open: 2
-end;
+v = {
+  "Content-Type" = 3,
+  l = 2,
+  open = 2
+};
 
 v["Content-Type"];
 
@@ -23,9 +23,9 @@ end end
 partial_arg = "x";
 
 function h0(param) do
-  tmp = do
-    hi: 2
-  end;
+  tmp = {
+    hi = 2
+  };
   if (partial_arg ~= undefined) then do
     tmp["lo-x"] = Caml_option.valFromOption(partial_arg);
   end
@@ -33,14 +33,14 @@ function h0(param) do
   return tmp;
 end end
 
-h1 = do
-  "lo-x": "x",
-  hi: 2
-end;
+h1 = {
+  "lo-x" = "x",
+  hi = 2
+};
 
-h2 = do
-  hi: 2
-end;
+h2 = {
+  hi = 2
+};
 
 function hh(x) do
   x["lo-x"] = "3";
@@ -56,9 +56,9 @@ function hh2(x) do
   end end 
 end end
 
-u = do
-  "xx-yy": 3
-end;
+u = {
+  "xx-yy" = 3
+};
 
 match = u["xx-yy"];
 

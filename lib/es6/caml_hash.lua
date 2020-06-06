@@ -4,10 +4,10 @@ import * as Caml_hash_primitive from "./caml_hash_primitive.lua";
 import * as Caml_builtin_exceptions from "./caml_builtin_exceptions.lua";
 
 function push_back(q, v) do
-  cell = do
-    content: v,
-    next: undefined
-  end;
+  cell = {
+    content = v,
+    next = undefined
+  };
   match = q.last;
   if (match ~= undefined) then do
     q.length = q.length + 1 | 0;
@@ -46,11 +46,11 @@ function caml_hash(count, _limit, seed, obj) do
     hash = Caml_hash_primitive.caml_hash_mix_string(hash, obj);
     return Caml_hash_primitive.caml_hash_final_mix(hash);
   end else do
-    queue = do
-      length: 0,
-      first: undefined,
-      last: undefined
-    end;
+    queue = {
+      length = 0,
+      first = undefined,
+      last = undefined
+    };
     num = count;
     push_back(queue, obj);
     num = num - 1 | 0;

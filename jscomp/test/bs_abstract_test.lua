@@ -2,19 +2,19 @@ console = {log = print};
 
 Curry = require "../../lib/js/curry";
 
-v = do
-  hd: 3,
-  tl: nil
-end;
+v = {
+  hd = 3,
+  tl = nil
+};
 
 v.tl = v;
 
-f = do
-  k: (function(x, y) do
+f = {
+  k = (function(x, y) do
       return x == y;
     end end),
-  y: "x"
-end;
+  y = "x"
+};
 
 function uf(u) do
   return Curry._1(u.y0, 1);

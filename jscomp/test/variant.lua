@@ -63,27 +63,27 @@ same = Caml_obj.caml_equal;
 
 compare = Caml_obj.caml_compare;
 
-Path = do
-  same: same,
-  compare: compare
-end;
+Path = {
+  same = same,
+  compare = compare
+};
 
 function Make(M) do
   find = function(x) do
     return --[[ () ]]0;
   end end;
-  return do
-          find: find
-        end;
+  return {
+          find = find
+        };
 end end
 
 function find(x) do
   return --[[ () ]]0;
 end end
 
-M = do
-  find: find
-end;
+M = {
+  find = find
+};
 
 function rollback_path(subst, p) do
   xpcall(function() do

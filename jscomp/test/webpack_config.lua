@@ -10,15 +10,15 @@ WebpackMiddlewareConfigJs = require "../../../webpack.middleware.confi";
 
 configx = WebpackConfigJs;
 
-WebpackConfig = do
-  configx: configx
-end;
+WebpackConfig = {
+  configx = configx
+};
 
 configx_1 = WebpackMiddlewareConfigJs;
 
-WebpackDevMiddlewareConfig = do
-  configx: configx_1
-end;
+WebpackDevMiddlewareConfig = {
+  configx = configx_1
+};
 
 function configX(prim) do
   return WebpackMiddlewareConfigJs.configX();
@@ -28,9 +28,9 @@ function configX_1(prim) do
   return WebpackConfigJs.configX();
 end end
 
-U = do
-  configX: configX_1
-end;
+U = {
+  configX = configX_1
+};
 
 A = { };
 

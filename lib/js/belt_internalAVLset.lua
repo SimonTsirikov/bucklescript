@@ -16,12 +16,12 @@ function copy(n) do
   if (n ~= nil) then do
     l = n.left;
     r = n.right;
-    return do
-            value: n.value,
-            height: n.height,
-            left: copy(l),
-            right: copy(r)
-          end;
+    return {
+            value = n.value,
+            height = n.height,
+            left = copy(l),
+            right = copy(r)
+          };
   end else do
     return n;
   end end 
@@ -30,21 +30,21 @@ end end
 function create(l, v, r) do
   hl = l ~= nil and l.height or 0;
   hr = r ~= nil and r.height or 0;
-  return do
-          value: v,
-          height: hl >= hr and hl + 1 | 0 or hr + 1 | 0,
-          left: l,
-          right: r
-        end;
+  return {
+          value = v,
+          height = hl >= hr and hl + 1 | 0 or hr + 1 | 0,
+          left = l,
+          right = r
+        };
 end end
 
 function singleton(x) do
-  return do
-          value: x,
-          height: 1,
-          left: nil,
-          right: nil
-        end;
+  return {
+          value = x,
+          height = 1,
+          left = nil,
+          right = nil
+        };
 end end
 
 function heightGe(l, r) do
@@ -87,12 +87,12 @@ function bal(l, v, r) do
       return create(create(l, v, rll), rlv, create(rlr, rv, rr));
     end end 
   end else do
-    return do
-            value: v,
-            height: hl >= hr and hl + 1 | 0 or hr + 1 | 0,
-            left: l,
-            right: r
-          end;
+    return {
+            value = v,
+            height = hl >= hr and hl + 1 | 0 or hr + 1 | 0,
+            left = l,
+            right = r
+          };
   end end  end 
 end end
 
@@ -301,9 +301,9 @@ end end
 function concatShared(t1, t2) do
   if (t1 ~= nil) then do
     if (t2 ~= nil) then do
-      v = do
-        contents: t2.value
-      end;
+      v = {
+        contents = t2.value
+      };
       t2r = removeMinAuxWithRef(t2, v);
       return joinShared(t1, v.contents, t2r);
     end else do
@@ -492,22 +492,22 @@ function fromSortedArrayRevAux(arr, off, len) do
      if ___conditional___ == 2 then do
         x0 = arr[off];
         x1 = arr[off - 1 | 0];
-        return do
-                value: x1,
-                height: 2,
-                left: singleton(x0),
-                right: nil
-              end; end end 
+        return {
+                value = x1,
+                height = 2,
+                left = singleton(x0),
+                right = nil
+              }; end end 
      if ___conditional___ == 3 then do
         x0_1 = arr[off];
         x1_1 = arr[off - 1 | 0];
         x2 = arr[off - 2 | 0];
-        return do
-                value: x1_1,
-                height: 2,
-                left: singleton(x0_1),
-                right: singleton(x2)
-              end; end end 
+        return {
+                value = x1_1,
+                height = 2,
+                left = singleton(x0_1),
+                right = singleton(x2)
+              }; end end 
     nl = len / 2 | 0;
       left = fromSortedArrayRevAux(arr, off, nl);
       mid = arr[off - nl | 0];
@@ -527,22 +527,22 @@ function fromSortedArrayAux(arr, off, len) do
      if ___conditional___ == 2 then do
         x0 = arr[off];
         x1 = arr[off + 1 | 0];
-        return do
-                value: x1,
-                height: 2,
-                left: singleton(x0),
-                right: nil
-              end; end end 
+        return {
+                value = x1,
+                height = 2,
+                left = singleton(x0),
+                right = nil
+              }; end end 
      if ___conditional___ == 3 then do
         x0_1 = arr[off];
         x1_1 = arr[off + 1 | 0];
         x2 = arr[off + 2 | 0];
-        return do
-                value: x1_1,
-                height: 2,
-                left: singleton(x0_1),
-                right: singleton(x2)
-              end; end end 
+        return {
+                value = x1_1,
+                height = 2,
+                left = singleton(x0_1),
+                right = singleton(x2)
+              }; end end 
     nl = len / 2 | 0;
       left = fromSortedArrayAux(arr, off, nl);
       mid = arr[off + nl | 0];
@@ -602,10 +602,10 @@ function partitionCopyU(n, p) do
     size = lengthNode(n);
     v = new Array(size);
     backward = size - 1 | 0;
-    cursor = do
-      forward: 0,
-      backward: backward
-    end;
+    cursor = {
+      forward = 0,
+      backward = backward
+    };
     fillArrayWithPartition(n, cursor, v, p);
     forwardLen = cursor.forward;
     return --[[ tuple ]]{

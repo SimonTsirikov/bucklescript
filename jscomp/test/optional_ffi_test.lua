@@ -4,13 +4,13 @@ Mt = require "./mt";
 Block = require "../../lib/js/block";
 Caml_option = require "../../lib/js/caml_option";
 
-suites = do
-  contents: --[[ [] ]]0
-end;
+suites = {
+  contents = --[[ [] ]]0
+};
 
-test_id = do
-  contents: 0
-end;
+test_id = {
+  contents = 0
+};
 
 function eq(loc, param) do
   y = param[1];
@@ -52,9 +52,9 @@ eq("File \"optional_ffi_test.ml\", line 23, characters 5-12", --[[ tuple ]]{
       }
     });
 
-counter = do
-  contents: 0
-end;
+counter = {
+  contents = 0
+};
 
 function side_effect(x) do
   x.contents = x.contents + 1 | 0;
@@ -69,9 +69,9 @@ function bug_to_fix2(f, x) do
   return hey(Caml_option.option_get(f(x)), 3);
 end end
 
-counter2 = do
-  contents: 0
-end;
+counter2 = {
+  contents = 0
+};
 
 function side_effect2(x) do
   x.contents = x.contents + 1 | 0;

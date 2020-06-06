@@ -7,9 +7,9 @@ Belt_MutableStack = require "../../lib/js/belt_MutableStack";
 
 function inOrder(v) do
   current = v;
-  s = do
-    root: nil
-  end;
+  s = {
+    root = nil
+  };
   q = Belt_MutableQueue.make(--[[ () ]]0);
   while(current ~= undefined) do
     v_1 = current;
@@ -32,9 +32,9 @@ end end
 
 function inOrder3(v) do
   current = v;
-  s = do
-    root: nil
-  end;
+  s = {
+    root = nil
+  };
   q = Belt_MutableQueue.make(--[[ () ]]0);
   while(current ~= undefined) do
     v_1 = current;
@@ -57,9 +57,9 @@ end end
 function inOrder2(v) do
   todo = true;
   cursor = v;
-  s = do
-    root: nil
-  end;
+  s = {
+    root = nil
+  };
   q = Belt_MutableQueue.make(--[[ () ]]0);
   while(todo) do
     if (cursor ~= undefined) then do
@@ -79,11 +79,11 @@ function inOrder2(v) do
 end end
 
 function n(l, r, a) do
-  return do
-          value: a,
-          left: Js_undefined.fromOption(l),
-          right: Js_undefined.fromOption(r)
-        end;
+  return {
+          value = a,
+          left = Js_undefined.fromOption(l),
+          right = Js_undefined.fromOption(r)
+        };
 end end
 
 test1 = n(Caml_option.some(n(Caml_option.some(n(undefined, undefined, 4)), Caml_option.some(n(undefined, undefined, 5)), 2)), Caml_option.some(n(undefined, undefined, 3)), 1);

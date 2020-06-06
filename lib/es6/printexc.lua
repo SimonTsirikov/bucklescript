@@ -12,9 +12,9 @@ import * as Caml_js_exceptions from "./caml_js_exceptions.lua";
 import * as Caml_external_polyfill from "./caml_external_polyfill.lua";
 import * as Caml_builtin_exceptions from "./caml_builtin_exceptions.lua";
 
-printers = do
-  contents: --[[ [] ]]0
-end;
+printers = {
+  contents = --[[ [] ]]0
+};
 
 locfmt = --[[ Format ]]{
   --[[ String_literal ]]Block.__(11, {
@@ -409,12 +409,12 @@ function backtrace_slot_location(param) do
   if (param.tag) then do
     return ;
   end else do
-    return do
-            filename: param[--[[ filename ]]1],
-            line_number: param[--[[ line_number ]]2],
-            start_char: param[--[[ start_char ]]3],
-            end_char: param[--[[ end_char ]]4]
-          end;
+    return {
+            filename = param[--[[ filename ]]1],
+            line_number = param[--[[ line_number ]]2],
+            start_char = param[--[[ start_char ]]3],
+            end_char = param[--[[ end_char ]]4]
+          };
   end end 
 end end
 
@@ -483,9 +483,9 @@ function exn_slot_name(x) do
   return slot[0];
 end end
 
-uncaught_exception_handler = do
-  contents: undefined
-end;
+uncaught_exception_handler = {
+  contents = undefined
+};
 
 function set_uncaught_exception_handler(fn) do
   uncaught_exception_handler.contents = fn;
@@ -508,12 +508,12 @@ function get_callstack(prim) do
   return --[[ () ]]0;
 end end
 
-Slot = do
-  is_raise: backtrace_slot_is_raise,
-  is_inline: backtrace_slot_is_inline,
-  __location: backtrace_slot_location,
-  format: format_backtrace_slot
-end;
+Slot = {
+  is_raise = backtrace_slot_is_raise,
+  is_inline = backtrace_slot_is_inline,
+  __location = backtrace_slot_location,
+  format = format_backtrace_slot
+};
 
 function raw_backtrace_length(prim) do
   return Caml_external_polyfill.resolve("caml_raw_backtrace_length")(prim);

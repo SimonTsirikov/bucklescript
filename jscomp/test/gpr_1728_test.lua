@@ -4,13 +4,13 @@ Mt = require "./mt";
 Block = require "../../lib/js/block";
 Caml_format = require "../../lib/js/caml_format";
 
-suites = do
-  contents: --[[ [] ]]0
-end;
+suites = {
+  contents = --[[ [] ]]0
+};
 
-test_id = do
-  contents: 0
-end;
+test_id = {
+  contents = 0
+};
 
 function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
@@ -39,9 +39,9 @@ function badInlining(obj) do
   return --[[ () ]]0;
 end end
 
-eq("File \"gpr_1728_test.ml\", line 17, characters 6-13", badInlining(do
-          field: "3"
-        end), --[[ () ]]0);
+eq("File \"gpr_1728_test.ml\", line 17, characters 6-13", badInlining({
+          field = "3"
+        }), --[[ () ]]0);
 
 eq("File \"gpr_1728_test.ml\", line 19, characters 6-13", Caml_format.caml_int_of_string("-13"), -13);
 

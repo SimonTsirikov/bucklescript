@@ -2,10 +2,10 @@ console = {log = print};
 
 
 function mk(param) do
-  return do
-          text: 32,
-          label: "hel"
-        end;
+  return {
+          text = 32,
+          label = "hel"
+        };
 end end
 
 exports = {}

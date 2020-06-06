@@ -14,14 +14,14 @@ p.then((function(x) do
         return reason;
       end end));
 
-u = do
-  then: 3,
-  catch: 32
-end;
+u = {
+  then = 3,
+  catch = 32
+};
 
-uu = do
-  "'x": 3
-end;
+uu = {
+  "'x" = 3
+};
 
 hh = uu["'x"];
 

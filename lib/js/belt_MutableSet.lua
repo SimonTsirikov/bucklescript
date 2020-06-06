@@ -124,9 +124,9 @@ end end
 function removeCheck(d, v) do
   oldRoot = d.data;
   if (oldRoot ~= nil) then do
-    removed = do
-      contents: false
-    end;
+    removed = {
+      contents = false
+    };
     newRoot = removeCheck0(oldRoot, v, removed, d.cmp);
     if (newRoot ~= oldRoot) then do
       d.data = newRoot;
@@ -163,9 +163,9 @@ end end
 
 function addCheck(m, e) do
   oldRoot = m.data;
-  added = do
-    contents: false
-  end;
+  added = {
+    contents = false
+  };
   newRoot = addCheck0(oldRoot, e, added, m.cmp);
   if (newRoot ~= oldRoot) then do
     m.data = newRoot;
@@ -199,10 +199,10 @@ function mergeMany(d, xs) do
 end end
 
 function make(id) do
-  return do
-          cmp: id.cmp,
-          data: nil
-        end;
+  return {
+          cmp = id.cmp,
+          data = nil
+        };
 end end
 
 function isEmpty(d) do
@@ -271,10 +271,10 @@ function toArray(d) do
 end end
 
 function fromSortedArrayUnsafe(xs, id) do
-  return do
-          cmp: id.cmp,
-          data: Belt_internalAVLset.fromSortedArrayUnsafe(xs)
-        end;
+  return {
+          cmp = id.cmp,
+          data = Belt_internalAVLset.fromSortedArrayUnsafe(xs)
+        };
 end end
 
 function checkInvariantInternal(d) do
@@ -283,10 +283,10 @@ end end
 
 function fromArray(data, id) do
   cmp = id.cmp;
-  return do
-          cmp: cmp,
-          data: Belt_internalAVLset.fromArray(data, cmp)
-        end;
+  return {
+          cmp = cmp,
+          data = Belt_internalAVLset.fromArray(data, cmp)
+        };
 end end
 
 function cmp(d0, d1) do
@@ -318,28 +318,28 @@ function split(d, key) do
     next = (-i | 0) - 1 | 0;
     return --[[ tuple ]]{
             --[[ tuple ]]{
-              do
-                cmp: cmp,
-                data: Belt_internalAVLset.fromSortedArrayAux(arr, 0, next)
-              end,
-              do
-                cmp: cmp,
-                data: Belt_internalAVLset.fromSortedArrayAux(arr, next, len - next | 0)
-              end
+              {
+                cmp = cmp,
+                data = Belt_internalAVLset.fromSortedArrayAux(arr, 0, next)
+              },
+              {
+                cmp = cmp,
+                data = Belt_internalAVLset.fromSortedArrayAux(arr, next, len - next | 0)
+              }
             },
             false
           };
   end else do
     return --[[ tuple ]]{
             --[[ tuple ]]{
-              do
-                cmp: cmp,
-                data: Belt_internalAVLset.fromSortedArrayAux(arr, 0, i)
-              end,
-              do
-                cmp: cmp,
-                data: Belt_internalAVLset.fromSortedArrayAux(arr, i + 1 | 0, (len - i | 0) - 1 | 0)
-              end
+              {
+                cmp = cmp,
+                data = Belt_internalAVLset.fromSortedArrayAux(arr, 0, i)
+              },
+              {
+                cmp = cmp,
+                data = Belt_internalAVLset.fromSortedArrayAux(arr, i + 1 | 0, (len - i | 0) - 1 | 0)
+              }
             },
             true
           };
@@ -347,10 +347,10 @@ function split(d, key) do
 end end
 
 function keepU(d, p) do
-  return do
-          cmp: d.cmp,
-          data: Belt_internalAVLset.keepCopyU(d.data, p)
-        end;
+  return {
+          cmp = d.cmp,
+          data = Belt_internalAVLset.keepCopyU(d.data, p)
+        };
 end end
 
 function keep(d, p) do
@@ -361,14 +361,14 @@ function partitionU(d, p) do
   cmp = d.cmp;
   match = Belt_internalAVLset.partitionCopyU(d.data, p);
   return --[[ tuple ]]{
-          do
-            cmp: cmp,
-            data: match[0]
-          end,
-          do
-            cmp: cmp,
-            data: match[1]
-          end
+          {
+            cmp = cmp,
+            data = match[0]
+          },
+          {
+            cmp = cmp,
+            data = match[1]
+          }
         };
 end end
 
@@ -393,29 +393,29 @@ function intersect(a, b) do
       Belt_internalAVLset.fillArray(match, 0, tmp);
       Belt_internalAVLset.fillArray(match_1, sizea, tmp);
       if (cmp(tmp[sizea - 1 | 0], tmp[sizea]) < 0 or cmp(tmp[totalSize - 1 | 0], tmp[0]) < 0) then do
-        return do
-                cmp: cmp,
-                data: nil
-              end;
+        return {
+                cmp = cmp,
+                data = nil
+              };
       end else do
         tmp2 = new Array(sizea < sizeb and sizea or sizeb);
         k = Belt_SortArray.intersectU(tmp, 0, sizea, tmp, sizea, sizeb, tmp2, 0, cmp);
-        return do
-                cmp: cmp,
-                data: Belt_internalAVLset.fromSortedArrayAux(tmp2, 0, k)
-              end;
+        return {
+                cmp = cmp,
+                data = Belt_internalAVLset.fromSortedArrayAux(tmp2, 0, k)
+              };
       end end 
     end else do
-      return do
-              cmp: cmp,
-              data: nil
-            end;
+      return {
+              cmp = cmp,
+              data = nil
+            };
     end end 
   end else do
-    return do
-            cmp: cmp,
-            data: nil
-          end;
+    return {
+            cmp = cmp,
+            data = nil
+          };
   end end 
 end end
 
@@ -432,29 +432,29 @@ function diff(a, b) do
       Belt_internalAVLset.fillArray(dataa, 0, tmp);
       Belt_internalAVLset.fillArray(match, sizea, tmp);
       if (cmp(tmp[sizea - 1 | 0], tmp[sizea]) < 0 or cmp(tmp[totalSize - 1 | 0], tmp[0]) < 0) then do
-        return do
-                cmp: cmp,
-                data: Belt_internalAVLset.copy(dataa)
-              end;
+        return {
+                cmp = cmp,
+                data = Belt_internalAVLset.copy(dataa)
+              };
       end else do
         tmp2 = new Array(sizea);
         k = Belt_SortArray.diffU(tmp, 0, sizea, tmp, sizea, sizeb, tmp2, 0, cmp);
-        return do
-                cmp: cmp,
-                data: Belt_internalAVLset.fromSortedArrayAux(tmp2, 0, k)
-              end;
+        return {
+                cmp = cmp,
+                data = Belt_internalAVLset.fromSortedArrayAux(tmp2, 0, k)
+              };
       end end 
     end else do
-      return do
-              cmp: cmp,
-              data: Belt_internalAVLset.copy(dataa)
-            end;
+      return {
+              cmp = cmp,
+              data = Belt_internalAVLset.copy(dataa)
+            };
     end end 
   end else do
-    return do
-            cmp: cmp,
-            data: nil
-          end;
+    return {
+            cmp = cmp,
+            data = nil
+          };
   end end 
 end end
 
@@ -471,29 +471,29 @@ function union(a, b) do
       Belt_internalAVLset.fillArray(dataa, 0, tmp);
       Belt_internalAVLset.fillArray(datab, sizea, tmp);
       if (cmp(tmp[sizea - 1 | 0], tmp[sizea]) < 0) then do
-        return do
-                cmp: cmp,
-                data: Belt_internalAVLset.fromSortedArrayAux(tmp, 0, totalSize)
-              end;
+        return {
+                cmp = cmp,
+                data = Belt_internalAVLset.fromSortedArrayAux(tmp, 0, totalSize)
+              };
       end else do
         tmp2 = new Array(totalSize);
         k = Belt_SortArray.unionU(tmp, 0, sizea, tmp, sizea, sizeb, tmp2, 0, cmp);
-        return do
-                cmp: cmp,
-                data: Belt_internalAVLset.fromSortedArrayAux(tmp2, 0, k)
-              end;
+        return {
+                cmp = cmp,
+                data = Belt_internalAVLset.fromSortedArrayAux(tmp2, 0, k)
+              };
       end end 
     end else do
-      return do
-              cmp: cmp,
-              data: Belt_internalAVLset.copy(dataa)
-            end;
+      return {
+              cmp = cmp,
+              data = Belt_internalAVLset.copy(dataa)
+            };
     end end 
   end else do
-    return do
-            cmp: cmp,
-            data: Belt_internalAVLset.copy(datab)
-          end;
+    return {
+            cmp = cmp,
+            data = Belt_internalAVLset.copy(datab)
+          };
   end end 
 end end
 
@@ -502,10 +502,10 @@ function has(d, x) do
 end end
 
 function copy(d) do
-  return do
-          cmp: d.cmp,
-          data: Belt_internalAVLset.copy(d.data)
-        end;
+  return {
+          cmp = d.cmp,
+          data = Belt_internalAVLset.copy(d.data)
+        };
 end end
 
 Int = --[[ alias ]]0;

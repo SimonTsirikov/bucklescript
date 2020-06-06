@@ -26,9 +26,9 @@ function even2(n) do
   end end 
 end end
 
-v = do
-  contents: 0
-end;
+v = {
+  contents = 0
+};
 
 function obj_get(param) do
   return v.contents;
@@ -39,10 +39,10 @@ function obj_set(i) do
   return --[[ () ]]0;
 end end
 
-obj = do
-  get: obj_get,
-  set: obj_set
-end;
+obj = {
+  get = obj_get,
+  set = obj_set
+};
 
 exports = {}
 exports.even = even;

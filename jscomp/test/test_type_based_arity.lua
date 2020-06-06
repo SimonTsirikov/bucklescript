@@ -63,9 +63,9 @@ function f13(g, x) do
   return Curry._1(g, x);
 end end
 
-X2 = do
-  f13: f13
-end;
+X2 = {
+  f13 = f13
+};
 
 function f14(h, g, x) do
   return Curry._2(h, g, x);

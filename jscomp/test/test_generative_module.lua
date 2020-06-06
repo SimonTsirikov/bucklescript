@@ -2,14 +2,14 @@ console = {log = print};
 
 
 function M($star) do
-  return do
-          v: 3
-        end;
+  return {
+          v = 3
+        };
 end end
 
-V = do
-  v: 3
-end;
+V = {
+  v = 3
+};
 
 exports = {}
 exports.M = M;

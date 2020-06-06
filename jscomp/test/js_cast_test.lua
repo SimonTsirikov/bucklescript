@@ -3,13 +3,13 @@ console = {log = print};
 Mt = require "./mt";
 Block = require "../../lib/js/block";
 
-suites = do
-  contents: --[[ [] ]]0
-end;
+suites = {
+  contents = --[[ [] ]]0
+};
 
-counter = do
-  contents: 0
-end;
+counter = {
+  contents = 0
+};
 
 function add_test(loc, test) do
   counter.contents = counter.contents + 1 | 0;

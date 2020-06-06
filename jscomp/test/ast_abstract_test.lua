@@ -4,13 +4,13 @@ Mt = require "./mt";
 Block = require "../../lib/js/block";
 Js_mapperRt = require "../../lib/js/js_mapperRt";
 
-suites = do
-  contents: --[[ [] ]]0
-end;
+suites = {
+  contents = --[[ [] ]]0
+};
 
-test_id = do
-  contents: 0
-end;
+test_id = {
+  contents = 0
+};
 
 function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
@@ -30,32 +30,32 @@ function eq(loc, x, y) do
 end end
 
 function tToJs(param) do
-  return do
-          x: param.x,
-          y: param.y,
-          z: param.z
-        end;
+  return {
+          x = param.x,
+          y = param.y,
+          z = param.z
+        };
 end end
 
 function tFromJs(param) do
-  return do
-          x: param.x,
-          y: param.y,
-          z: param.z
-        end;
+  return {
+          x = param.x,
+          y = param.y,
+          z = param.z
+        };
 end end
 
-v0 = do
-  x: 3,
-  y: false,
-  z: false
-end;
+v0 = {
+  x = 3,
+  y = false,
+  z = false
+};
 
-v1 = do
-  x: 3,
-  y: false,
-  z: ""
-end;
+v1 = {
+  x = 3,
+  y = false,
+  z = ""
+};
 
 jsMapperConstantArray = {
   --[[ tuple ]]{

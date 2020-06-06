@@ -101,9 +101,9 @@ function utf8_decode(strm) do
 end end
 
 function to_list(xs) do
-  v = do
-    contents: --[[ [] ]]0
-  end;
+  v = {
+    contents = --[[ [] ]]0
+  };
   Stream.iter((function(x) do
           v.contents = --[[ :: ]]{
             x,
@@ -197,13 +197,13 @@ function eq_list(cmp, _xs, _ys) do
   end;
 end end
 
-suites = do
-  contents: --[[ [] ]]0
-end;
+suites = {
+  contents = --[[ [] ]]0
+};
 
-test_id = do
-  contents: 0
-end;
+test_id = {
+  contents = 0
+};
 
 function eq(loc, param) do
   y = param[1];

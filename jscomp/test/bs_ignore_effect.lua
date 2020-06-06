@@ -3,13 +3,13 @@ console = {log = print};
 Mt = require "./mt";
 Block = require "../../lib/js/block";
 
-suites = do
-  contents: --[[ [] ]]0
-end;
+suites = {
+  contents = --[[ [] ]]0
+};
 
-test_id = do
-  contents: 0
-end;
+test_id = {
+  contents = 0
+};
 
 function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
@@ -33,14 +33,14 @@ function add(x,y){
 }
 ;
 
-v = do
-  contents: 0
-end;
+v = {
+  contents = 0
+};
 
-h = (v.contents = v.contents + 1 | 0, do
-    hi: 2,
-    lo: 0
-  end);
+h = (v.contents = v.contents + 1 | 0, {
+    hi = 2,
+    lo = 0
+  });
 
 z = (v.contents = v.contents + 1 | 0, add(3.0, 2.0));
 

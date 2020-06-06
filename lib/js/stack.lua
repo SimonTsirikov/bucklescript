@@ -6,10 +6,10 @@ Caml_exceptions = require "./caml_exceptions";
 Empty = Caml_exceptions.create("Stack.Empty");
 
 function create(param) do
-  return do
-          c: --[[ [] ]]0,
-          len: 0
-        end;
+  return {
+          c = --[[ [] ]]0,
+          len = 0
+        };
 end end
 
 function clear(s) do
@@ -19,10 +19,10 @@ function clear(s) do
 end end
 
 function copy(s) do
-  return do
-          c: s.c,
-          len: s.len
-        end;
+  return {
+          c = s.c,
+          len = s.len
+        };
 end end
 
 function push(x, s) do

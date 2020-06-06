@@ -9,10 +9,10 @@ function name(param) do
   return 2;
 end end
 
-Language = do
-  toString: toString,
-  name: name
-end;
+Language = {
+  toString = toString,
+  name = name
+};
 
 language = "a";
 

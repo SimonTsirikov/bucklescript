@@ -11,10 +11,10 @@ function Make(M) do
   return M;
 end end
 
-Comparable = do
-  getcompare: getcompare,
-  Make: Make
-end;
+Comparable = {
+  getcompare = getcompare,
+  Make = Make
+};
 
 function height(param) do
   if (param) then do
@@ -127,40 +127,40 @@ end end
 
 function add_1(x, data, v) do
   X = v.compare;
-  return do
-          compare: v.compare,
-          data: add(x, data, X.compare, v.data)
-        end;
+  return {
+          compare = v.compare,
+          data = add(x, data, X.compare, v.data)
+        };
 end end
 
 function empty(v) do
-  return do
-          compare: v,
-          data: --[[ Empty ]]0
-        end;
+  return {
+          compare = v,
+          data = --[[ Empty ]]0
+        };
 end end
 
 compare = Caml_primitive.caml_int_compare;
 
-V0 = do
-  compare: compare
-end;
+V0 = {
+  compare = compare
+};
 
 compare_1 = Caml_primitive.caml_int_compare;
 
-V1 = do
-  compare: compare_1
-end;
+V1 = {
+  compare = compare_1
+};
 
-v0 = do
-  compare: V0,
-  data: --[[ Empty ]]0
-end;
+v0 = {
+  compare = V0,
+  data = --[[ Empty ]]0
+};
 
-v1 = do
-  compare: V1,
-  data: --[[ Empty ]]0
-end;
+v1 = {
+  compare = V1,
+  data = --[[ Empty ]]0
+};
 
 v3 = add_1(3, "a", v0);
 

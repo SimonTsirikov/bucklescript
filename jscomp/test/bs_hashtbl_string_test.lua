@@ -103,10 +103,10 @@ function bench2(m) do
 end end
 
 function bench3(m) do
-  empty = do
-    cmp: m.cmp,
-    data: Belt_MapDict.empty
-  end;
+  empty = {
+    cmp = m.cmp,
+    data = Belt_MapDict.empty
+  };
   cmp = m.cmp;
   table = empty.data;
   for i = 0 , 1000000 , 1 do

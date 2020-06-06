@@ -13,13 +13,13 @@ import * as Caml_builtin_exceptions from "./caml_builtin_exceptions.lua";
 
 initial_buffer = Caml_bytes.caml_create_bytes(32);
 
-buffer = do
-  contents: initial_buffer
-end;
+buffer = {
+  contents = initial_buffer
+};
 
-bufpos = do
-  contents: 0
-end;
+bufpos = {
+  contents = 0
+};
 
 function reset_buffer(param) do
   buffer.contents = initial_buffer;

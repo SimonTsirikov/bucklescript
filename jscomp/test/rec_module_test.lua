@@ -40,9 +40,9 @@ end end
 Caml_module.update_mod(--[[ Module ]]Block.__(0, {{--[[ tuple ]]{
             --[[ Function ]]0,
             "even"
-          }}}), A, do
-      even: even
-    end);
+          }}}), A, {
+      even = even
+    });
 
 function odd(n) do
   if (n == 1) then do
@@ -57,9 +57,9 @@ end end
 Caml_module.update_mod(--[[ Module ]]Block.__(0, {{--[[ tuple ]]{
             --[[ Function ]]0,
             "odd"
-          }}}), B, do
-      odd: odd
-    end);
+          }}}), B, {
+      odd = odd
+    });
 
 AA = Caml_module.init_mod(--[[ tuple ]]{
       "rec_module_test.ml",
@@ -114,10 +114,10 @@ Caml_module.update_mod(--[[ Module ]]Block.__(0, {{
             --[[ Function ]]0,
             "x"
           }
-        }}), AA, do
-      even: even_1,
-      x: x
-    end);
+        }}), AA, {
+      even = even_1,
+      x = x
+    });
 
 function odd_1(n) do
   if (n == 1) then do
@@ -142,10 +142,10 @@ Caml_module.update_mod(--[[ Module ]]Block.__(0, {{
             --[[ Function ]]0,
             "y"
           }
-        }}), BB, do
-      odd: odd_1,
-      y: y
-    end);
+        }}), BB, {
+      odd = odd_1,
+      y = y
+    });
 
 AAA = Caml_module.init_mod(--[[ tuple ]]{
       "rec_module_test.ml",
@@ -1149,43 +1149,43 @@ function of_list(l) do
   end end 
 end end
 
-ASet = do
-  empty: --[[ Empty ]]0,
-  is_empty: is_empty,
-  mem: mem,
-  add: add,
-  singleton: singleton,
-  remove: remove,
-  union: union,
-  inter: inter,
-  diff: diff,
-  compare: compare,
-  equal: equal,
-  subset: subset,
-  iter: iter,
-  map: map,
-  fold: fold,
-  for_all: for_all,
-  exists: exists,
-  filter: filter,
-  partition: partition,
-  cardinal: cardinal,
-  elements: elements,
-  min_elt: min_elt,
-  min_elt_opt: min_elt_opt,
-  max_elt: max_elt,
-  max_elt_opt: max_elt_opt,
-  choose: min_elt,
-  choose_opt: min_elt_opt,
-  split: split,
-  find: find,
-  find_opt: find_opt,
-  find_first: find_first,
-  find_first_opt: find_first_opt,
-  find_last: find_last,
-  find_last_opt: find_last_opt,
-  of_list: of_list
-end;
+ASet = {
+  empty = --[[ Empty ]]0,
+  is_empty = is_empty,
+  mem = mem,
+  add = add,
+  singleton = singleton,
+  remove = remove,
+  union = union,
+  inter = inter,
+  diff = diff,
+  compare = compare,
+  equal = equal,
+  subset = subset,
+  iter = iter,
+  map = map,
+  fold = fold,
+  for_all = for_all,
+  exists = exists,
+  filter = filter,
+  partition = partition,
+  cardinal = cardinal,
+  elements = elements,
+  min_elt = min_elt,
+  min_elt_opt = min_elt_opt,
+  max_elt = max_elt,
+  max_elt_opt = max_elt_opt,
+  choose = min_elt,
+  choose_opt = min_elt_opt,
+  split = split,
+  find = find,
+  find_opt = find_opt,
+  find_first = find_first,
+  find_first_opt = find_first_opt,
+  find_last = find_last,
+  find_last_opt = find_last_opt,
+  of_list = of_list
+};
 
 function compare_1(t1, t2) do
   if (t1.tag) then do
@@ -1204,9 +1204,9 @@ end end
 Caml_module.update_mod(--[[ Module ]]Block.__(0, {{--[[ tuple ]]{
             --[[ Function ]]0,
             "compare"
-          }}}), AAA, do
-      compare: compare_1
-    end);
+          }}}), AAA, {
+      compare = compare_1
+    });
 
 suites_000 = --[[ tuple ]]{
   "test1",

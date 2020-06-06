@@ -721,52 +721,52 @@ function Make(Ord) do
       return --[[ Empty ]]0;
     end end 
   end end;
-  return do
-          height: height,
-          create: create,
-          bal: bal,
-          add: add,
-          singleton: singleton,
-          add_min_element: add_min_element,
-          add_max_element: add_max_element,
-          join: join,
-          min_elt: min_elt,
-          max_elt: max_elt,
-          remove_min_elt: remove_min_elt,
-          merge: merge,
-          concat: concat,
-          split: split,
-          empty: --[[ Empty ]]0,
-          is_empty: is_empty,
-          mem: mem,
-          remove: remove,
-          union: union,
-          inter: inter,
-          diff: diff,
-          cons_enum: cons_enum,
-          compare_aux: compare_aux,
-          compare: compare,
-          equal: equal,
-          subset: subset,
-          iter: iter,
-          fold: fold,
-          for_all: for_all,
-          exists: exists,
-          filter: filter,
-          partition: partition,
-          cardinal: cardinal,
-          elements_aux: elements_aux,
-          elements: elements,
-          choose: min_elt,
-          find: find,
-          of_sorted_list: of_sorted_list,
-          of_list: of_list
-        end;
+  return {
+          height = height,
+          create = create,
+          bal = bal,
+          add = add,
+          singleton = singleton,
+          add_min_element = add_min_element,
+          add_max_element = add_max_element,
+          join = join,
+          min_elt = min_elt,
+          max_elt = max_elt,
+          remove_min_elt = remove_min_elt,
+          merge = merge,
+          concat = concat,
+          split = split,
+          empty = --[[ Empty ]]0,
+          is_empty = is_empty,
+          mem = mem,
+          remove = remove,
+          union = union,
+          inter = inter,
+          diff = diff,
+          cons_enum = cons_enum,
+          compare_aux = compare_aux,
+          compare = compare,
+          equal = equal,
+          subset = subset,
+          iter = iter,
+          fold = fold,
+          for_all = for_all,
+          exists = exists,
+          filter = filter,
+          partition = partition,
+          cardinal = cardinal,
+          elements_aux = elements_aux,
+          elements = elements,
+          choose = min_elt,
+          find = find,
+          of_sorted_list = of_sorted_list,
+          of_list = of_list
+        };
 end end
 
-N = do
-  a: 3
-end;
+N = {
+  a = 3
+};
 
 exports = {}
 exports.Make = Make;

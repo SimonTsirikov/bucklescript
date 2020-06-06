@@ -315,31 +315,31 @@ function iter(f, strm) do
 end end
 
 function from(f) do
-  return do
-          count: 0,
-          data: --[[ Sgen ]]Block.__(3, {do
-                curr: undefined,
-                func: f
-              end})
-        end;
+  return {
+          count = 0,
+          data = --[[ Sgen ]]Block.__(3, {{
+                curr = undefined,
+                func = f
+              }})
+        };
 end end
 
 function of_list(l) do
-  return do
-          count: 0,
-          data: List.fold_right((function(x, l) do
+  return {
+          count = 0,
+          data = List.fold_right((function(x, l) do
                   return --[[ Scons ]]Block.__(0, {
                             x,
                             l
                           });
                 end end), l, --[[ Sempty ]]0)
-        end;
+        };
 end end
 
 function of_string(s) do
-  count = do
-    contents: 0
-  end;
+  count = {
+    contents = 0
+  };
   return from((function(param) do
                 c = count.contents;
                 if (c < #s) then do
@@ -351,9 +351,9 @@ function of_string(s) do
 end end
 
 function of_bytes(s) do
-  count = do
-    contents: 0
-  end;
+  count = {
+    contents = 0
+  };
   return from((function(param) do
                 c = count.contents;
                 if (c < #s) then do
@@ -365,90 +365,90 @@ function of_bytes(s) do
 end end
 
 function of_channel(ic) do
-  return do
-          count: 0,
-          data: --[[ Sbuffio ]]Block.__(4, {do
-                ic: ic,
-                buff: Caml_bytes.caml_create_bytes(4096),
-                len: 0,
-                ind: 0
-              end})
-        end;
+  return {
+          count = 0,
+          data = --[[ Sbuffio ]]Block.__(4, {{
+                ic = ic,
+                buff = Caml_bytes.caml_create_bytes(4096),
+                len = 0,
+                ind = 0
+              }})
+        };
 end end
 
 function iapp(i, s) do
-  return do
-          count: 0,
-          data: --[[ Sapp ]]Block.__(1, {
+  return {
+          count = 0,
+          data = --[[ Sapp ]]Block.__(1, {
               data(i),
               data(s)
             })
-        end;
+        };
 end end
 
 function icons(i, s) do
-  return do
-          count: 0,
-          data: --[[ Scons ]]Block.__(0, {
+  return {
+          count = 0,
+          data = --[[ Scons ]]Block.__(0, {
               i,
               data(s)
             })
-        end;
+        };
 end end
 
 function ising(i) do
-  return do
-          count: 0,
-          data: --[[ Scons ]]Block.__(0, {
+  return {
+          count = 0,
+          data = --[[ Scons ]]Block.__(0, {
               i,
               --[[ Sempty ]]0
             })
-        end;
+        };
 end end
 
 function lapp(f, s) do
-  return do
-          count: 0,
-          data: --[[ Slazy ]]Block.__(2, {Caml_obj.caml_lazy_make((function(param) do
+  return {
+          count = 0,
+          data = --[[ Slazy ]]Block.__(2, {Caml_obj.caml_lazy_make((function(param) do
                       return --[[ Sapp ]]Block.__(1, {
                                 data(Curry._1(f, --[[ () ]]0)),
                                 data(s)
                               });
                     end end))})
-        end;
+        };
 end end
 
 function lcons(f, s) do
-  return do
-          count: 0,
-          data: --[[ Slazy ]]Block.__(2, {Caml_obj.caml_lazy_make((function(param) do
+  return {
+          count = 0,
+          data = --[[ Slazy ]]Block.__(2, {Caml_obj.caml_lazy_make((function(param) do
                       return --[[ Scons ]]Block.__(0, {
                                 Curry._1(f, --[[ () ]]0),
                                 data(s)
                               });
                     end end))})
-        end;
+        };
 end end
 
 function lsing(f) do
-  return do
-          count: 0,
-          data: --[[ Slazy ]]Block.__(2, {Caml_obj.caml_lazy_make((function(param) do
+  return {
+          count = 0,
+          data = --[[ Slazy ]]Block.__(2, {Caml_obj.caml_lazy_make((function(param) do
                       return --[[ Scons ]]Block.__(0, {
                                 Curry._1(f, --[[ () ]]0),
                                 --[[ Sempty ]]0
                               });
                     end end))})
-        end;
+        };
 end end
 
 function slazy(f) do
-  return do
-          count: 0,
-          data: --[[ Slazy ]]Block.__(2, {Caml_obj.caml_lazy_make((function(param) do
+  return {
+          count = 0,
+          data = --[[ Slazy ]]Block.__(2, {Caml_obj.caml_lazy_make((function(param) do
                       return data(Curry._1(f, --[[ () ]]0));
                     end end))})
-        end;
+        };
 end end
 
 function dump_data(f, param) do

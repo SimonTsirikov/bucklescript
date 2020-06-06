@@ -154,10 +154,10 @@ function update(t, x, f) do
 end end
 
 function make(id) do
-  return do
-          cmp: id.cmp,
-          data: nil
-        end;
+  return {
+          cmp = id.cmp,
+          data = nil
+        };
 end end
 
 function clear(m) do
@@ -275,10 +275,10 @@ function eq(m1, m2, cmp) do
 end end
 
 function mapU(m, f) do
-  return do
-          cmp: m.cmp,
-          data: Belt_internalAVLtree.mapU(m.data, f)
-        end;
+  return {
+          cmp = m.cmp,
+          data = Belt_internalAVLtree.mapU(m.data, f)
+        };
 end end
 
 function map(m, f) do
@@ -286,10 +286,10 @@ function map(m, f) do
 end end
 
 function mapWithKeyU(m, f) do
-  return do
-          cmp: m.cmp,
-          data: Belt_internalAVLtree.mapWithKeyU(m.data, f)
-        end;
+  return {
+          cmp = m.cmp,
+          data = Belt_internalAVLtree.mapWithKeyU(m.data, f)
+        };
 end end
 
 function mapWithKey(m, f) do
@@ -318,10 +318,10 @@ end end
 
 function fromArray(data, id) do
   cmp = id.cmp;
-  return do
-          cmp: cmp,
-          data: Belt_internalAVLtree.fromArray(data, cmp)
-        end;
+  return {
+          cmp = cmp,
+          data = Belt_internalAVLtree.fromArray(data, cmp)
+        };
 end end
 
 function set(m, e, v) do

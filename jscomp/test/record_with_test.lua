@@ -4,37 +4,37 @@ Mt = require "./mt";
 Block = require "../../lib/js/block";
 Curry = require "../../lib/js/curry";
 
-v = do
-  syntax: undefined,
-  imports: 0,
-  file_options: 0,
-  package: 0,
-  messages: 0,
-  enums: 0,
-  extends: 0
-end;
+v = {
+  syntax = undefined,
+  imports = 0,
+  file_options = 0,
+  package = 0,
+  messages = 0,
+  enums = 0,
+  extends = 0
+};
 
-u_v = do
-  syntax: undefined,
-  imports: 0,
-  file_options: 0,
-  package: 0,
-  messages: 0,
-  enums: 0,
-  extends: 0
-end;
+u_v = {
+  syntax = undefined,
+  imports = 0,
+  file_options = 0,
+  package = 0,
+  messages = 0,
+  enums = 0,
+  extends = 0
+};
 
 function f(g, h) do
   init = Curry._1(g, h);
-  return do
-          syntax: init.syntax,
-          imports: 0,
-          file_options: init.file_options,
-          package: init.package,
-          messages: init.messages,
-          enums: init.enums,
-          extends: init.extends
-        end;
+  return {
+          syntax = init.syntax,
+          imports = 0,
+          file_options = init.file_options,
+          package = init.package,
+          messages = init.messages,
+          enums = init.enums,
+          extends = init.extends
+        };
 end end
 
 suites_000 = --[[ tuple ]]{
@@ -54,15 +54,15 @@ suites = --[[ :: ]]{
 
 Mt.from_pair_suites("Record_with_test", suites);
 
-uv = do
-  syntax: undefined,
-  imports: 1,
-  file_options: 0,
-  package: 0,
-  messages: 0,
-  enums: 0,
-  extends: 0
-end;
+uv = {
+  syntax = undefined,
+  imports = 1,
+  file_options = 0,
+  package = 0,
+  messages = 0,
+  enums = 0,
+  extends = 0
+};
 
 exports = {}
 exports.v = v;

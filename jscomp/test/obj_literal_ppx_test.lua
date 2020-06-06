@@ -1,9 +1,9 @@
 console = {log = print};
 
 
-a = do
-  x: 3,
-  y: --[[ :: ]]{
+a = {
+  x = 3,
+  y = --[[ :: ]]{
     1,
     --[[ :: ]]{
       2,
@@ -13,7 +13,7 @@ a = do
       }
     }
   }
-end;
+};
 
 exports = {}
 exports.a = a;

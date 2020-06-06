@@ -34,13 +34,13 @@ function Make(H) do
   create = function(sz) do
     sz_1 = sz < 7 and 7 or sz;
     sz_2 = sz_1 > Sys.max_array_length and Sys.max_array_length or sz_1;
-    return do
-            table: Caml_array.caml_make_vect(sz_2, emptybucket),
-            hashes: Caml_array.caml_make_vect(sz_2, {}),
-            limit: 7,
-            oversize: 0,
-            rover: 0
-          end;
+    return {
+            table = Caml_array.caml_make_vect(sz_2, emptybucket),
+            hashes = Caml_array.caml_make_vect(sz_2, {}),
+            limit = 7,
+            oversize = 0,
+            rover = 0
+          };
   end end;
   clear = function(t) do
     for i = 0 , #t.table - 1 | 0 , 1 do
@@ -448,21 +448,21 @@ function Make(H) do
             Caml_array.caml_array_get(lens, len - 1 | 0)
           };
   end end;
-  return do
-          create: create,
-          clear: clear,
-          merge: merge,
-          add: add,
-          remove: remove,
-          find: find,
-          find_opt: find_opt,
-          find_all: find_all,
-          mem: mem,
-          iter: iter,
-          fold: fold,
-          count: count,
-          stats: stats
-        end;
+  return {
+          create = create,
+          clear = clear,
+          merge = merge,
+          add = add,
+          remove = remove,
+          find = find,
+          find_opt = find_opt,
+          find_all = find_all,
+          mem = mem,
+          iter = iter,
+          fold = fold,
+          count = count,
+          stats = stats
+        };
 end end
 
 create = Caml_weak.caml_weak_create;

@@ -7,13 +7,13 @@ Belt_Array = require "../../lib/js/belt_Array";
 Caml_int32 = require "../../lib/js/caml_int32";
 Caml_primitive = require "../../lib/js/caml_primitive";
 
-suites = do
-  contents: --[[ [] ]]0
-end;
+suites = {
+  contents = --[[ [] ]]0
+};
 
-test_id = do
-  contents: 0
-end;
+test_id = {
+  contents = 0
+};
 
 function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
@@ -28,9 +28,9 @@ function __throw(loc, x) do
 end end
 
 function sum(xs) do
-  v = do
-    contents: 0
-  end;
+  v = {
+    contents = 0
+  };
   Belt_List.forEach(xs, (function(x) do
           v.contents = v.contents + x | 0;
           return --[[ () ]]0;
@@ -39,9 +39,9 @@ function sum(xs) do
 end end
 
 function sum2(xs, ys) do
-  v = do
-    contents: 0
-  end;
+  v = {
+    contents = 0
+  };
   Belt_List.forEach2(xs, ys, (function(x, y) do
           v.contents = (v.contents + x | 0) + y | 0;
           return --[[ () ]]0;

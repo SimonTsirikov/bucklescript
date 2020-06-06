@@ -482,9 +482,9 @@ function temp_file_name(temp_dir, prefix, suffix) do
                     }), prefix, rnd, suffix));
 end end
 
-current_temp_dir_name = do
-  contents: temp_dir_name_2
-end;
+current_temp_dir_name = {
+  contents = temp_dir_name_2
+};
 
 function set_temp_dir_name(s) do
   current_temp_dir_name.contents = s;

@@ -6,13 +6,13 @@ Curry = require "../../lib/js/curry";
 Functor_def = require "./functor_def";
 Functor_inst = require "./functor_inst";
 
-suites = do
-  contents: --[[ [] ]]0
-end;
+suites = {
+  contents = --[[ [] ]]0
+};
 
-test_id = do
-  contents: 0
-end;
+test_id = {
+  contents = 0
+};
 
 function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;

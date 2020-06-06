@@ -1000,48 +1000,48 @@ function of_list(l) do
   end end 
 end end
 
-__Set = do
-  empty: --[[ Empty ]]0,
-  is_empty: is_empty,
-  mem: mem,
-  add: add,
-  singleton: singleton,
-  remove: remove,
-  union: union,
-  inter: inter,
-  diff: diff,
-  compare: compare,
-  equal: equal,
-  subset: subset,
-  iter: iter,
-  map: map,
-  fold: fold,
-  for_all: for_all,
-  exists: exists,
-  filter: filter,
-  partition: partition,
-  cardinal: cardinal,
-  elements: elements,
-  min_elt: min_elt,
-  min_elt_opt: min_elt_opt,
-  max_elt: max_elt,
-  max_elt_opt: max_elt_opt,
-  choose: min_elt,
-  choose_opt: min_elt_opt,
-  split: split,
-  find: find,
-  find_opt: find_opt,
-  find_first: find_first,
-  find_first_opt: find_first_opt,
-  find_last: find_last,
-  find_last_opt: find_last_opt,
-  of_list: of_list
-end;
+__Set = {
+  empty = --[[ Empty ]]0,
+  is_empty = is_empty,
+  mem = mem,
+  add = add,
+  singleton = singleton,
+  remove = remove,
+  union = union,
+  inter = inter,
+  diff = diff,
+  compare = compare,
+  equal = equal,
+  subset = subset,
+  iter = iter,
+  map = map,
+  fold = fold,
+  for_all = for_all,
+  exists = exists,
+  filter = filter,
+  partition = partition,
+  cardinal = cardinal,
+  elements = elements,
+  min_elt = min_elt,
+  min_elt_opt = min_elt_opt,
+  max_elt = max_elt,
+  max_elt_opt = max_elt_opt,
+  choose = min_elt,
+  choose_opt = min_elt_opt,
+  split = split,
+  find = find,
+  find_opt = find_opt,
+  find_first = find_first,
+  find_first_opt = find_first_opt,
+  find_last = find_last,
+  find_last_opt = find_last_opt,
+  of_list = of_list
+};
 
-M = do
-  x: 1,
-  __Set: __Set
-end;
+M = {
+  x = 1,
+  __Set = __Set
+};
 
 x = 1;
 

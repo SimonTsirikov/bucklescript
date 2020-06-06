@@ -49,16 +49,16 @@ function naive(n) do
   end end 
 end end
 
-four = do
-  contents: 2
-end;
+four = {
+  contents = 2
+};
 
-three = do
-  contents: 3
-end;
+three = {
+  contents = 3
+};
 
-v = do
-  contents: (function(param) do
+v = {
+  contents = (function(param) do
       error({
         Caml_builtin_exceptions.assert_failure,
         --[[ tuple ]]{
@@ -68,7 +68,7 @@ v = do
         }
       })
     end end)
-end;
+};
 
 function fib(n) do
   local ___conditional___=(n);

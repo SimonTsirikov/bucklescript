@@ -4,9 +4,9 @@ Curry = require "./curry";
 Caml_option = require "./caml_option";
 
 function make(param) do
-  return do
-          root: nil
-        end;
+  return {
+          root = nil
+        };
 end end
 
 function clear(s) do
@@ -15,16 +15,16 @@ function clear(s) do
 end end
 
 function copy(s) do
-  return do
-          root: s.root
-        end;
+  return {
+          root = s.root
+        };
 end end
 
 function push(s, x) do
-  s.root = do
-    head: x,
-    tail: s.root
-  end;
+  s.root = {
+    head = x,
+    tail = s.root
+  };
   return --[[ () ]]0;
 end end
 

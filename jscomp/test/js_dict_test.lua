@@ -5,10 +5,10 @@ Block = require "../../lib/js/block";
 Js_dict = require "../../lib/js/js_dict";
 
 function obj(param) do
-  return do
-          foo: 43,
-          bar: 86
-        end;
+  return {
+          foo = 43,
+          bar = 86
+        };
 end end
 
 suites_000 = --[[ tuple ]]{
@@ -27,10 +27,10 @@ suites_001 = --[[ :: ]]{
     (function(param) do
         return --[[ Eq ]]Block.__(0, {
                   43,
-                  Js_dict.get(do
-                        foo: 43,
-                        bar: 86
-                      end, "foo")
+                  Js_dict.get({
+                        foo = 43,
+                        bar = 86
+                      }, "foo")
                 });
       end end)
   },
@@ -40,10 +40,10 @@ suites_001 = --[[ :: ]]{
       (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     undefined,
-                    Js_dict.get(do
-                          foo: 43,
-                          bar: 86
-                        end, "baz")
+                    Js_dict.get({
+                          foo = 43,
+                          bar = 86
+                        }, "baz")
                   });
         end end)
     },
@@ -53,10 +53,10 @@ suites_001 = --[[ :: ]]{
         (function(param) do
             return --[[ Eq ]]Block.__(0, {
                       43,
-                      (do
-                            foo: 43,
-                            bar: 86
-                          end)["foo"]
+                      ({
+                            foo = 43,
+                            bar = 86
+                          })["foo"]
                     });
           end end)
       },
@@ -64,10 +64,10 @@ suites_001 = --[[ :: ]]{
         --[[ tuple ]]{
           "set",
           (function(param) do
-              o = do
-                foo: 43,
-                bar: 86
-              end;
+              o = {
+                foo = 43,
+                bar = 86
+              };
               o["foo"] = 36;
               return --[[ Eq ]]Block.__(0, {
                         36,
@@ -84,10 +84,10 @@ suites_001 = --[[ :: ]]{
                             "foo",
                             "bar"
                           },
-                          Object.keys(do
-                                foo: 43,
-                                bar: 86
-                              end)
+                          Object.keys({
+                                foo = 43,
+                                bar = 86
+                              })
                         });
               end end)
           },
@@ -106,10 +106,10 @@ suites_001 = --[[ :: ]]{
                                 86
                               }
                             },
-                            Js_dict.entries(do
-                                  foo: 43,
-                                  bar: 86
-                                end)
+                            Js_dict.entries({
+                                  foo = 43,
+                                  bar = 86
+                                })
                           });
                 end end)
             },
@@ -122,10 +122,10 @@ suites_001 = --[[ :: ]]{
                                 43,
                                 86
                               },
-                              Js_dict.values(do
-                                    foo: 43,
-                                    bar: 86
-                                  end)
+                              Js_dict.values({
+                                    foo = 43,
+                                    bar = 86
+                                  })
                             });
                   end end)
               },
@@ -213,16 +213,16 @@ suites_001 = --[[ :: ]]{
                           "map",
                           (function(param) do
                               return --[[ Eq ]]Block.__(0, {
-                                        do
-                                          foo: "43",
-                                          bar: "86"
-                                        end,
+                                        {
+                                          foo = "43",
+                                          bar = "86"
+                                        },
                                         Js_dict.map((function(i) do
                                                 return String(i);
-                                              end end), do
-                                              foo: 43,
-                                              bar: 86
-                                            end)
+                                              end end), {
+                                              foo = 43,
+                                              bar = 86
+                                            })
                                       });
                             end end)
                         },

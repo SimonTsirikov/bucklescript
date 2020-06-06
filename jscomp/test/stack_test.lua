@@ -17,10 +17,10 @@ function to_list(v) do
 end end
 
 function v(param) do
-  v_1 = do
-    c: --[[ [] ]]0,
-    len: 0
-  end;
+  v_1 = {
+    c = --[[ [] ]]0,
+    len = 0
+  };
   Stack.push(3, v_1);
   Stack.push(4, v_1);
   Stack.push(1, v_1);

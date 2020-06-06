@@ -3,11 +3,11 @@ console = {log = print};
 Curry = require "../../lib/js/curry";
 Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
-delayed = do
-  contents: (function(param) do
+delayed = {
+  contents = (function(param) do
       return --[[ () ]]0;
     end end)
-end;
+};
 
 for i = 1 , 2 , 1 do
   f = (function(i)do

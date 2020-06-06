@@ -5,13 +5,13 @@ Caml_exceptions = require "../../lib/js/caml_exceptions";
 
 E = Caml_exceptions.create("Exception_rebind_test.A.E");
 
-A = do
-  E: E
-end;
+A = {
+  E = E
+};
 
-B = do
-  F: E
-end;
+B = {
+  F = E
+};
 
 A0 = Caml_exceptions.create("Exception_rebind_test.A0");
 

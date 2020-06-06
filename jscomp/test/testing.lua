@@ -10,9 +10,9 @@ Pervasives = require "../../lib/js/pervasives";
 Caml_js_exceptions = require "../../lib/js/caml_js_exceptions";
 Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
-all_tests_ok = do
-  contents: true
-end;
+all_tests_ok = {
+  contents = true
+};
 
 function finish(param) do
   match = all_tests_ok.contents;
@@ -27,9 +27,9 @@ end end
 
 Pervasives.at_exit(finish);
 
-test_num = do
-  contents: -1
-end;
+test_num = {
+  contents = -1
+};
 
 function print_test_number(param) do
   Pervasives.print_string(" ");

@@ -35,12 +35,12 @@ function updateU(t, x, f) do
         r = t.right;
         if (l ~= nil) then do
           if (r ~= nil) then do
-            kr = do
-              contents: r.key
-            end;
-            vr = do
-              contents: r.value
-            end;
+            kr = {
+              contents = r.key
+            };
+            vr = {
+              contents = r.value
+            };
             r_1 = Belt_internalAVLtree.removeMinAuxWithRef(r, kr, vr);
             return Belt_internalAVLtree.bal(l, kr.contents, vr.contents, r_1);
           end else do
@@ -91,12 +91,12 @@ function removeAux(n, x) do
   if (x == v) then do
     if (l ~= nil) then do
       if (r ~= nil) then do
-        kr = do
-          contents: r.key
-        end;
-        vr = do
-          contents: r.value
-        end;
+        kr = {
+          contents = r.key
+        };
+        vr = {
+          contents = r.value
+        };
         r_1 = Belt_internalAVLtree.removeMinAuxWithRef(r, kr, vr);
         return Belt_internalAVLtree.bal(l, kr.contents, vr.contents, r_1);
       end else do

@@ -1,9 +1,9 @@
 console = {log = print};
 
 
-v = do
-  contents: 0
-end;
+v = {
+  contents = 0
+};
 
 while(console.log(String(v.contents)), v.contents = v.contents + 1 | 0, v.contents < 10) do
   
@@ -17,9 +17,9 @@ function fib(n) do
   end end 
 end end
 
-x = do
-  contents: 3
-end;
+x = {
+  contents = 3
+};
 
 while((function() do
         y = 3;

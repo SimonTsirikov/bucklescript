@@ -30,10 +30,10 @@ if (match ~= undefined) then do
       })
     end
      end 
-    (do
-        name: "bye",
-        age: Js_math.floor(1)
-      end);
+    ({
+        name = "bye",
+        age = Js_math.floor(1)
+      });
   end
    end 
 end else do

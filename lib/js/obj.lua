@@ -143,22 +143,22 @@ function Ephemeron_blit_data(prim, prim_1) do
   return Caml_external_polyfill.resolve("caml_ephe_blit_data")(prim, prim_1);
 end end
 
-Ephemeron = do
-  create: Ephemeron_create,
-  length: length,
-  get_key: Ephemeron_get_key,
-  get_key_copy: Ephemeron_get_key_copy,
-  set_key: Ephemeron_set_key,
-  unset_key: Ephemeron_unset_key,
-  check_key: Ephemeron_check_key,
-  blit_key: Ephemeron_blit_key,
-  get_data: Ephemeron_get_data,
-  get_data_copy: Ephemeron_get_data_copy,
-  set_data: Ephemeron_set_data,
-  unset_data: Ephemeron_unset_data,
-  check_data: Ephemeron_check_data,
-  blit_data: Ephemeron_blit_data
-end;
+Ephemeron = {
+  create = Ephemeron_create,
+  length = length,
+  get_key = Ephemeron_get_key,
+  get_key_copy = Ephemeron_get_key_copy,
+  set_key = Ephemeron_set_key,
+  unset_key = Ephemeron_unset_key,
+  check_key = Ephemeron_check_key,
+  blit_key = Ephemeron_blit_key,
+  get_data = Ephemeron_get_data,
+  get_data_copy = Ephemeron_get_data_copy,
+  set_data = Ephemeron_set_data,
+  unset_data = Ephemeron_unset_data,
+  check_data = Ephemeron_check_data,
+  blit_data = Ephemeron_blit_data
+};
 
 exports = {}
 exports.is_block = is_block;

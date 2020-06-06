@@ -11,23 +11,23 @@ Caml_js_exceptions = require "../../lib/js/caml_js_exceptions";
 Caml_external_polyfill = require "../../lib/js/caml_external_polyfill";
 Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
-suites = do
-  contents: --[[ [] ]]0
-end;
+suites = {
+  contents = --[[ [] ]]0
+};
 
-test_id = do
-  contents: 0
-end;
+test_id = {
+  contents = 0
+};
 
 function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
 end end
 
-Xx = do
-  f: (function(prim, prim_1) do
+Xx = {
+  f = (function(prim, prim_1) do
       return Caml_external_polyfill.resolve("hfiehi")(prim, prim_1);
     end end)
-end;
+};
 
 Int3 = Caml_module.init_mod(--[[ tuple ]]{
       "recursive_module.ml",
@@ -68,9 +68,9 @@ a = Caml_obj.caml_lazy_make((function(param) do
 Caml_module.update_mod(--[[ Module ]]Block.__(0, {{--[[ tuple ]]{
             --[[ Lazy ]]1,
             "a"
-          }}}), Inta, do
-      a: a
-    end);
+          }}}), Inta, {
+      a = a
+    });
 
 a_1 = Caml_obj.caml_lazy_make((function(param) do
         return CamlinternalLazy.force(Inta.a) + 1 | 0;
@@ -79,9 +79,9 @@ a_1 = Caml_obj.caml_lazy_make((function(param) do
 Caml_module.update_mod(--[[ Module ]]Block.__(0, {{--[[ tuple ]]{
             --[[ Lazy ]]1,
             "a"
-          }}}), Intb, do
-      a: a_1
-    end);
+          }}}), Intb, {
+      a = a_1
+    });
 
 tmp;
 
@@ -122,21 +122,21 @@ a_2 = Caml_obj.caml_lazy_make((function(param) do
 Caml_module.update_mod(--[[ Module ]]Block.__(0, {{--[[ tuple ]]{
             --[[ Lazy ]]1,
             "a"
-          }}}), Inta_1, do
-      a: a_2
-    end);
+          }}}), Inta_1, {
+      a = a_2
+    });
 
 Caml_module.update_mod(--[[ Module ]]Block.__(0, {{--[[ tuple ]]{
             --[[ Lazy ]]1,
             "a"
-          }}}), Intb_1, do
-      a: 2
-    end);
+          }}}), Intb_1, {
+      a = 2
+    });
 
-A = do
-  Inta: Inta_1,
-  Intb: Intb_1
-end;
+A = {
+  Inta = Inta_1,
+  Intb = Intb_1
+};
 
 eq("File \"recursive_module.ml\", line 58, characters 6-13", CamlinternalLazy.force(Inta_1.a), 3);
 

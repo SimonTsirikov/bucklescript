@@ -74,10 +74,10 @@ function addBucket(h, key, _cell) do
         ::continue:: ;
       end else do
         h.size = h.size + 1 | 0;
-        cell.next = do
-          key: key,
-          next: undefined
-        end;
+        cell.next = {
+          key = key,
+          next = undefined
+        };
         return --[[ () ]]0;
       end end 
     end else do
@@ -94,10 +94,10 @@ function add(h, key) do
   if (l ~= undefined) then do
     addBucket(h, key, l);
   end else do
-    h_buckets[i] = do
-      key: key,
-      next: undefined
-    end;
+    h_buckets[i] = {
+      key = key,
+      next = undefined
+    };
     h.size = h.size + 1 | 0;
   end end 
   if (h.size > (buckets_len << 1)) then do

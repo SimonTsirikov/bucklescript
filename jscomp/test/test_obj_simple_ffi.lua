@@ -3,11 +3,11 @@ console = {log = print};
 Caml_option = require "../../lib/js/caml_option";
 
 function v(displayName, param) do
-  tmp = do
-    test: 3,
-    config: 3,
-    hi: "ghos"
-  end;
+  tmp = {
+    test = 3,
+    config = 3,
+    hi = "ghos"
+  };
   if (displayName ~= undefined) then do
     tmp.displayName = Caml_option.valFromOption(displayName);
   end
@@ -15,18 +15,18 @@ function v(displayName, param) do
   return tmp;
 end end
 
-v2 = do
-  test: 3,
-  config: 3,
-  hi: "ghos"
-end;
+v2 = {
+  test = 3,
+  config = 3,
+  hi = "ghos"
+};
 
-v3 = do
-  displayName: "display",
-  test: 3,
-  config: 3,
-  hi: "ghos"
-end;
+v3 = {
+  displayName = "display",
+  test = 3,
+  config = 3,
+  hi = "ghos"
+};
 
 function u(x) do
   return x;

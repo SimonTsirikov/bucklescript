@@ -3,21 +3,21 @@ console = {log = print};
 Mt = require "./mt";
 Block = require "../../lib/js/block";
 
-v = do
-  contents: 1
-end;
+v = {
+  contents = 1
+};
 
 v.contents = v.contents + 1 | 0;
 
 a = v.contents;
 
-suites = do
-  contents: --[[ [] ]]0
-end;
+suites = {
+  contents = --[[ [] ]]0
+};
 
-test_id = do
-  contents: 0
-end;
+test_id = {
+  contents = 0
+};
 
 function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;

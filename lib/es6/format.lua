@@ -341,18 +341,18 @@ function enqueue_advance(state, tok) do
 end end
 
 function enqueue_string_as(state, size, s) do
-  return enqueue_advance(state, do
-              elem_size: size,
-              token: --[[ Pp_text ]]Block.__(0, {s}),
-              length: size
-            end);
+  return enqueue_advance(state, {
+              elem_size = size,
+              token = --[[ Pp_text ]]Block.__(0, {s}),
+              length = size
+            });
 end end
 
-q_elem = do
-  elem_size: -1,
-  token: --[[ Pp_text ]]Block.__(0, {""}),
-  length: 0
-end;
+q_elem = {
+  elem_size = -1,
+  token = --[[ Pp_text ]]Block.__(0, {""}),
+  length = 0
+};
 
 scan_stack_bottom_000 = --[[ Scan_elem ]]{
   -1,
@@ -427,14 +427,14 @@ end end
 function pp_open_box_gen(state, indent, br_ty) do
   state.pp_curr_depth = state.pp_curr_depth + 1 | 0;
   if (state.pp_curr_depth < state.pp_max_boxes) then do
-    elem = do
-      elem_size: -state.pp_right_total | 0,
-      token: --[[ Pp_begin ]]Block.__(3, {
+    elem = {
+      elem_size = -state.pp_right_total | 0,
+      token = --[[ Pp_begin ]]Block.__(3, {
           indent,
           br_ty
         }),
-      length: 0
-    end;
+      length = 0
+    };
     return scan_push(state, false, elem);
   end else if (state.pp_curr_depth == state.pp_max_boxes) then do
     state_1 = state;
@@ -449,11 +449,11 @@ end end
 function pp_close_box(state, param) do
   if (state.pp_curr_depth > 1) then do
     if (state.pp_curr_depth < state.pp_max_boxes) then do
-      pp_enqueue(state, do
-            elem_size: 0,
-            token: --[[ Pp_end ]]1,
-            length: 0
-          end);
+      pp_enqueue(state, {
+            elem_size = 0,
+            token = --[[ Pp_end ]]1,
+            length = 0
+          });
       set_size(state, true);
       set_size(state, false);
     end
@@ -475,11 +475,11 @@ function pp_open_tag(state, tag_name) do
   end
    end 
   if (state.pp_mark_tags) then do
-    return pp_enqueue(state, do
-                elem_size: 0,
-                token: --[[ Pp_open_tag ]]Block.__(5, {tag_name}),
-                length: 0
-              end);
+    return pp_enqueue(state, {
+                elem_size = 0,
+                token = --[[ Pp_open_tag ]]Block.__(5, {tag_name}),
+                length = 0
+              });
   end else do
     return 0;
   end end 
@@ -487,11 +487,11 @@ end end
 
 function pp_close_tag(state, param) do
   if (state.pp_mark_tags) then do
-    pp_enqueue(state, do
-          elem_size: 0,
-          token: --[[ Pp_close_tag ]]5,
-          length: 0
-        end);
+    pp_enqueue(state, {
+          elem_size = 0,
+          token = --[[ Pp_close_tag ]]5,
+          length = 0
+        });
   end
    end 
   if (state.pp_print_tags) then do
@@ -533,12 +533,12 @@ function pp_set_tags(state, b) do
 end end
 
 function pp_get_formatter_tag_functions(state, param) do
-  return do
-          mark_open_tag: state.pp_mark_open_tag,
-          mark_close_tag: state.pp_mark_close_tag,
-          print_open_tag: state.pp_print_open_tag,
-          print_close_tag: state.pp_print_close_tag
-        end;
+  return {
+          mark_open_tag = state.pp_mark_open_tag,
+          mark_close_tag = state.pp_mark_close_tag,
+          print_open_tag = state.pp_print_open_tag,
+          print_close_tag = state.pp_print_close_tag
+        };
 end end
 
 function pp_set_formatter_tag_functions(state, param) do
@@ -644,11 +644,11 @@ end end
 
 function pp_force_newline(state, param) do
   if (state.pp_curr_depth < state.pp_max_boxes) then do
-    return enqueue_advance(state, do
-                elem_size: 0,
-                token: --[[ Pp_newline ]]3,
-                length: 0
-              end);
+    return enqueue_advance(state, {
+                elem_size = 0,
+                token = --[[ Pp_newline ]]3,
+                length = 0
+              });
   end else do
     return 0;
   end end 
@@ -656,11 +656,11 @@ end end
 
 function pp_print_if_newline(state, param) do
   if (state.pp_curr_depth < state.pp_max_boxes) then do
-    return enqueue_advance(state, do
-                elem_size: 0,
-                token: --[[ Pp_if_newline ]]4,
-                length: 0
-              end);
+    return enqueue_advance(state, {
+                elem_size = 0,
+                token = --[[ Pp_if_newline ]]4,
+                length = 0
+              });
   end else do
     return 0;
   end end 
@@ -668,14 +668,14 @@ end end
 
 function pp_print_break(state, width, offset) do
   if (state.pp_curr_depth < state.pp_max_boxes) then do
-    elem = do
-      elem_size: -state.pp_right_total | 0,
-      token: --[[ Pp_break ]]Block.__(1, {
+    elem = {
+      elem_size = -state.pp_right_total | 0,
+      token = --[[ Pp_break ]]Block.__(1, {
           width,
           offset
         }),
-      length: width
-    end;
+      length = width
+    };
     return scan_push(state, true, elem);
   end else do
     return 0;
@@ -693,13 +693,13 @@ end end
 function pp_open_tbox(state, param) do
   state.pp_curr_depth = state.pp_curr_depth + 1 | 0;
   if (state.pp_curr_depth < state.pp_max_boxes) then do
-    elem = do
-      elem_size: 0,
-      token: --[[ Pp_tbegin ]]Block.__(4, {--[[ Pp_tbox ]]{do
-              contents: --[[ [] ]]0
-            end}}),
-      length: 0
-    end;
+    elem = {
+      elem_size = 0,
+      token = --[[ Pp_tbegin ]]Block.__(4, {--[[ Pp_tbox ]]{{
+              contents = --[[ [] ]]0
+            }}}),
+      length = 0
+    };
     return enqueue_advance(state, elem);
   end else do
     return 0;
@@ -708,11 +708,11 @@ end end
 
 function pp_close_tbox(state, param) do
   if (state.pp_curr_depth > 1 and state.pp_curr_depth < state.pp_max_boxes) then do
-    elem = do
-      elem_size: 0,
-      token: --[[ Pp_tend ]]2,
-      length: 0
-    end;
+    elem = {
+      elem_size = 0,
+      token = --[[ Pp_tend ]]2,
+      length = 0
+    };
     enqueue_advance(state, elem);
     state.pp_curr_depth = state.pp_curr_depth - 1 | 0;
     return --[[ () ]]0;
@@ -723,14 +723,14 @@ end end
 
 function pp_print_tbreak(state, width, offset) do
   if (state.pp_curr_depth < state.pp_max_boxes) then do
-    elem = do
-      elem_size: -state.pp_right_total | 0,
-      token: --[[ Pp_tbreak ]]Block.__(2, {
+    elem = {
+      elem_size = -state.pp_right_total | 0,
+      token = --[[ Pp_tbreak ]]Block.__(2, {
           width,
           offset
         }),
-      length: width
-    end;
+      length = width
+    };
     return scan_push(state, true, elem);
   end else do
     return 0;
@@ -743,11 +743,11 @@ end end
 
 function pp_set_tab(state, param) do
   if (state.pp_curr_depth < state.pp_max_boxes) then do
-    elem = do
-      elem_size: 0,
-      token: --[[ Pp_stab ]]0,
-      length: 0
-    end;
+    elem = {
+      elem_size = 0,
+      token = --[[ Pp_stab ]]0,
+      length = 0
+    };
     return enqueue_advance(state, elem);
   end else do
     return 0;
@@ -830,13 +830,13 @@ function pp_set_formatter_out_functions(state, param) do
 end end
 
 function pp_get_formatter_out_functions(state, param) do
-  return do
-          out_string: state.pp_out_string,
-          out_flush: state.pp_out_flush,
-          out_newline: state.pp_out_newline,
-          out_spaces: state.pp_out_spaces,
-          out_indent: state.pp_out_indent
-        end;
+  return {
+          out_string = state.pp_out_string,
+          out_flush = state.pp_out_flush,
+          out_newline = state.pp_out_newline,
+          out_spaces = state.pp_out_spaces,
+          out_indent = state.pp_out_indent
+        };
 end end
 
 function pp_set_formatter_output_functions(state, f, g) do
@@ -911,18 +911,18 @@ function default_pp_print_close_tag(prim) do
 end end
 
 function pp_make_formatter(f, g, h, i, j) do
-  pp_queue = do
-    insert: --[[ Nil ]]0,
-    body: --[[ Nil ]]0
-  end;
-  sys_tok = do
-    elem_size: -1,
-    token: --[[ Pp_begin ]]Block.__(3, {
+  pp_queue = {
+    insert = --[[ Nil ]]0,
+    body = --[[ Nil ]]0
+  };
+  sys_tok = {
+    elem_size = -1,
+    token = --[[ Pp_begin ]]Block.__(3, {
         0,
         --[[ Pp_hovbox ]]3
       }),
-    length: 0
-  end;
+    length = 0
+  };
   add_queue(sys_tok, pp_queue);
   sys_scan_stack_000 = --[[ Scan_elem ]]{
     1,
@@ -932,36 +932,36 @@ function pp_make_formatter(f, g, h, i, j) do
     sys_scan_stack_000,
     scan_stack_bottom
   };
-  return do
-          pp_scan_stack: sys_scan_stack,
-          pp_format_stack: --[[ [] ]]0,
-          pp_tbox_stack: --[[ [] ]]0,
-          pp_tag_stack: --[[ [] ]]0,
-          pp_mark_stack: --[[ [] ]]0,
-          pp_margin: 78,
-          pp_min_space_left: 10,
-          pp_max_indent: 68,
-          pp_space_left: 78,
-          pp_current_indent: 0,
-          pp_is_new_line: true,
-          pp_left_total: 1,
-          pp_right_total: 1,
-          pp_curr_depth: 1,
-          pp_max_boxes: Pervasives.max_int,
-          pp_ellipsis: ".",
-          pp_out_string: f,
-          pp_out_flush: g,
-          pp_out_newline: h,
-          pp_out_spaces: i,
-          pp_out_indent: j,
-          pp_print_tags: false,
-          pp_mark_tags: false,
-          pp_mark_open_tag: default_pp_mark_open_tag,
-          pp_mark_close_tag: default_pp_mark_close_tag,
-          pp_print_open_tag: default_pp_print_open_tag,
-          pp_print_close_tag: default_pp_print_close_tag,
-          pp_queue: pp_queue
-        end;
+  return {
+          pp_scan_stack = sys_scan_stack,
+          pp_format_stack = --[[ [] ]]0,
+          pp_tbox_stack = --[[ [] ]]0,
+          pp_tag_stack = --[[ [] ]]0,
+          pp_mark_stack = --[[ [] ]]0,
+          pp_margin = 78,
+          pp_min_space_left = 10,
+          pp_max_indent = 68,
+          pp_space_left = 78,
+          pp_current_indent = 0,
+          pp_is_new_line = true,
+          pp_left_total = 1,
+          pp_right_total = 1,
+          pp_curr_depth = 1,
+          pp_max_boxes = Pervasives.max_int,
+          pp_ellipsis = ".",
+          pp_out_string = f,
+          pp_out_flush = g,
+          pp_out_newline = h,
+          pp_out_spaces = i,
+          pp_out_indent = j,
+          pp_print_tags = false,
+          pp_mark_tags = false,
+          pp_mark_open_tag = default_pp_mark_open_tag,
+          pp_mark_close_tag = default_pp_mark_close_tag,
+          pp_print_open_tag = default_pp_print_open_tag,
+          pp_print_close_tag = default_pp_print_close_tag,
+          pp_queue = pp_queue
+        };
 end end
 
 function formatter_of_out_functions(out_funs) do
@@ -1024,9 +1024,9 @@ function flush_str_formatter(param) do
 end end
 
 function make_symbolic_output_buffer(param) do
-  return do
-          symbolic_output_contents: --[[ [] ]]0
-        end;
+  return {
+          symbolic_output_contents = --[[ [] ]]0
+        };
 end end
 
 function clear_symbolic_output_buffer(sob) do
@@ -1291,12 +1291,12 @@ end end
 
 function pp_print_text(ppf, s) do
   len = #s;
-  left = do
-    contents: 0
-  end;
-  right = do
-    contents: 0
-  end;
+  left = {
+    contents = 0
+  };
+  right = {
+    contents = 0
+  };
   flush = function(param) do
     pp_print_string(ppf, __String.sub(s, left.contents, right.contents - left.contents | 0));
     right.contents = right.contents + 1 | 0;

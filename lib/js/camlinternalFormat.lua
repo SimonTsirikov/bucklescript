@@ -842,10 +842,10 @@ function bprint_fmt(buf, fmt) do
 end end
 
 function string_of_fmt(fmt) do
-  buf = do
-    ind: 0,
-    bytes: Caml_bytes.caml_create_bytes(16)
-  end;
+  buf = {
+    ind = 0,
+    bytes = Caml_bytes.caml_create_bytes(16)
+  };
   bprint_fmt(buf, fmt);
   return buffer_contents(buf);
 end end
@@ -2834,10 +2834,10 @@ function format_of_fconv(fconv, prec) do
   end else do
     prec_1 = Pervasives.abs(prec);
     symb = char_of_fconv(fconv);
-    buf = do
-      ind: 0,
-      bytes: Caml_bytes.caml_create_bytes(16)
-    end;
+    buf = {
+      ind = 0,
+      bytes = Caml_bytes.caml_create_bytes(16)
+    };
     buffer_add_char(buf, --[[ "%" ]]37);
     bprint_fconv_flag(buf, fconv);
     buffer_add_char(buf, --[[ "." ]]46);
@@ -2946,10 +2946,10 @@ function format_caml_char(c) do
 end end
 
 function string_of_fmtty(fmtty) do
-  buf = do
-    ind: 0,
-    bytes: Caml_bytes.caml_create_bytes(16)
-  end;
+  buf = {
+    ind = 0,
+    bytes = Caml_bytes.caml_create_bytes(16)
+  };
   bprint_fmtty(buf, fmtty);
   return buffer_contents(buf);
 end end
@@ -4665,21 +4665,21 @@ function fmt_ebb_of_string(legacy_behavior, str) do
     end;
   end end;
   parse_flags = function(pct_ind, str_ind, end_ind, ign) do
-    zero = do
-      contents: false
-    end;
-    minus = do
-      contents: false
-    end;
-    plus = do
-      contents: false
-    end;
-    space = do
-      contents: false
-    end;
-    hash = do
-      contents: false
-    end;
+    zero = {
+      contents = false
+    };
+    minus = {
+      contents = false
+    };
+    plus = {
+      contents = false
+    };
+    space = {
+      contents = false
+    };
+    hash = {
+      contents = false
+    };
     set_flag = function(str_ind, flag) do
       if (flag.contents and not legacy_behavior_1) then do
         Curry._3(failwith_message(--[[ Format ]]{
@@ -4945,15 +4945,15 @@ function fmt_ebb_of_string(legacy_behavior, str) do
     plus_used = false;
     hash_used = false;
     space_used = false;
-    ign_used = do
-      contents: false
-    end;
-    pad_used = do
-      contents: false
-    end;
-    prec_used = do
-      contents: false
-    end;
+    ign_used = {
+      contents = false
+    };
+    pad_used = {
+      contents = false
+    };
+    prec_used = {
+      contents = false
+    };
     get_int_pad = function(param) do
       pad_used.contents = true;
       prec_used.contents = true;

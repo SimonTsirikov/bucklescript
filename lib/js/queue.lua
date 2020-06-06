@@ -6,11 +6,11 @@ Caml_exceptions = require "./caml_exceptions";
 Empty = Caml_exceptions.create("Queue.Empty");
 
 function create(param) do
-  return do
-          length: 0,
-          first: --[[ Nil ]]0,
-          last: --[[ Nil ]]0
-        end;
+  return {
+          length = 0,
+          first = --[[ Nil ]]0,
+          last = --[[ Nil ]]0
+        };
 end end
 
 function clear(q) do
@@ -67,11 +67,11 @@ function take(q) do
 end end
 
 function copy(q) do
-  q_res = do
-    length: q.length,
-    first: --[[ Nil ]]0,
-    last: --[[ Nil ]]0
-  end;
+  q_res = {
+    length = q.length,
+    first = --[[ Nil ]]0,
+    last = --[[ Nil ]]0
+  };
   _prev = --[[ Nil ]]0;
   _cell = q.first;
   while(true) do

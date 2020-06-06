@@ -34,9 +34,9 @@ function f(param) do
 end end
 
 function from_tokens(lst) do
-  l = do
-    contents: lst
-  end;
+  l = {
+    contents = lst
+  };
   return (function(param) do
       match = l.contents;
       if (match) then do
@@ -93,9 +93,9 @@ lexer_suites_001 = --[[ :: ]]{
     --[[ tuple ]]{
       "number_lexer",
       (function(param) do
-          v = do
-            contents: --[[ [] ]]0
-          end;
+          v = {
+            contents = --[[ [] ]]0
+          };
           add = function(t) do
             v.contents = --[[ :: ]]{
               t,

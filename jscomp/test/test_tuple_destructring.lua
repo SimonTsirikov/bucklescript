@@ -1,9 +1,9 @@
 console = {log = print};
 
 
-N = do
-  b: 3
-end;
+N = {
+  b = 3
+};
 
 v = 3;
 

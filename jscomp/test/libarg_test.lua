@@ -8,13 +8,13 @@ Curry = require "../../lib/js/curry";
 Printf = require "../../lib/js/printf";
 Caml_obj = require "../../lib/js/caml_obj";
 
-current = do
-  contents: 0
-end;
+current = {
+  contents = 0
+};
 
-accum = do
-  contents: --[[ [] ]]0
-end;
+accum = {
+  contents = --[[ [] ]]0
+};
 
 function record(fmt) do
   return Printf.kprintf((function(s) do
@@ -52,13 +52,13 @@ function f_bool(b) do
                 }), b);
 end end
 
-r_set = do
-  contents: false
-end;
+r_set = {
+  contents = false
+};
 
-r_clear = do
-  contents: true
-end;
+r_clear = {
+  contents = true
+};
 
 function f_string(s) do
   return Curry._1(record(--[[ Format ]]{
@@ -76,9 +76,9 @@ function f_string(s) do
                 }), s);
 end end
 
-r_string = do
-  contents: ""
-end;
+r_string = {
+  contents = ""
+};
 
 function f_int(i) do
   return Curry._1(record(--[[ Format ]]{
@@ -98,9 +98,9 @@ function f_int(i) do
                 }), i);
 end end
 
-r_int = do
-  contents: 0
-end;
+r_int = {
+  contents = 0
+};
 
 function f_float(f) do
   return Curry._1(record(--[[ Format ]]{
@@ -120,9 +120,9 @@ function f_float(f) do
                 }), f);
 end end
 
-r_float = do
-  contents: 0.0
-end;
+r_float = {
+  contents = 0.0
+};
 
 function f_symbol(s) do
   return Curry._1(record(--[[ Format ]]{

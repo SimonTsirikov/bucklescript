@@ -5,13 +5,13 @@ Block = require "../../lib/js/block";
 Curry = require "../../lib/js/curry";
 Caml_obj = require "../../lib/js/caml_obj";
 
-suites = do
-  contents: --[[ [] ]]0
-end;
+suites = {
+  contents = --[[ [] ]]0
+};
 
-test_id = do
-  contents: 0
-end;
+test_id = {
+  contents = 0
+};
 
 function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
@@ -30,9 +30,9 @@ function eq(loc, x, y) do
   return --[[ () ]]0;
 end end
 
-called = do
-  contents: 0
-end;
+called = {
+  contents = 0
+};
 
 function g(param) do
   v = { };
@@ -44,9 +44,9 @@ function g(param) do
      end 
     return i + 1 | 0;
   end end;
-  Caml_obj.caml_update_dummy(v, do
-        contents: next
-      end);
+  Caml_obj.caml_update_dummy(v, {
+        contents = next
+      });
   console.log(String(next(0, true)));
   return --[[ () ]]0;
 end end

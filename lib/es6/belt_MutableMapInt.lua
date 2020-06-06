@@ -6,9 +6,9 @@ import * as Belt_internalMapInt from "./belt_internalMapInt.lua";
 import * as Belt_internalAVLtree from "./belt_internalAVLtree.lua";
 
 function make(param) do
-  return do
-          data: nil
-        end;
+  return {
+          data = nil
+        };
 end end
 
 function isEmpty(m) do
@@ -73,9 +73,9 @@ function forEach(d, f) do
 end end
 
 function mapU(d, f) do
-  return do
-          data: Belt_internalAVLtree.mapU(d.data, f)
-        end;
+  return {
+          data = Belt_internalAVLtree.mapU(d.data, f)
+        };
 end end
 
 function map(d, f) do
@@ -83,9 +83,9 @@ function map(d, f) do
 end end
 
 function mapWithKeyU(d, f) do
-  return do
-          data: Belt_internalAVLtree.mapWithKeyU(d.data, f)
-        end;
+  return {
+          data = Belt_internalAVLtree.mapWithKeyU(d.data, f)
+        };
 end end
 
 function mapWithKey(d, f) do
@@ -288,9 +288,9 @@ function removeMany(d, xs) do
 end end
 
 function fromArray(xs) do
-  return do
-          data: Belt_internalMapInt.fromArray(xs)
-        end;
+  return {
+          data = Belt_internalMapInt.fromArray(xs)
+        };
 end end
 
 function cmpU(d0, d1, f) do

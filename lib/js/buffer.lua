@@ -11,12 +11,12 @@ Caml_builtin_exceptions = require "./caml_builtin_exceptions";
 function create(n) do
   n_1 = n < 1 and 1 or n;
   s = Caml_bytes.caml_create_bytes(n_1);
-  return do
-          buffer: s,
-          position: 0,
-          length: n_1,
-          initial_buffer: s
-        end;
+  return {
+          buffer = s,
+          position = 0,
+          length = n_1,
+          initial_buffer = s
+        };
 end end
 
 function contents(b) do

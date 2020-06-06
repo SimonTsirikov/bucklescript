@@ -2,9 +2,9 @@ console = {log = print};
 
 Belt_MutableSetInt = require "../../lib/js/belt_MutableSetInt";
 
-mySet = do
-  data: nil
-end;
+mySet = {
+  data = nil
+};
 
 Belt_MutableSetInt.add(mySet, 1);
 

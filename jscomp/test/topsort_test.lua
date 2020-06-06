@@ -273,9 +273,9 @@ end
  end 
 
 function dfs3(nodes, graph) do
-  visited = do
-    contents: --[[ [] ]]0
-  end;
+  visited = {
+    contents = --[[ [] ]]0
+  };
   aux = function(node, graph) do
     if (List.mem(node, visited.contents)) then do
       return 0;
@@ -406,9 +406,9 @@ grwork = --[[ :: ]]{
 };
 
 function unsafe_topsort(graph) do
-  visited = do
-    contents: --[[ [] ]]0
-  end;
+  visited = {
+    contents = --[[ [] ]]0
+  };
   sort_node = function(node) do
     if (List.mem(node, visited.contents)) then do
       return 0;
@@ -1451,50 +1451,50 @@ function of_list(l) do
   end end 
 end end
 
-String_set = do
-  empty: --[[ Empty ]]0,
-  is_empty: is_empty,
-  mem: mem,
-  add: add,
-  singleton: singleton,
-  remove: remove,
-  union: union,
-  inter: inter,
-  diff: diff,
-  compare: compare,
-  equal: equal,
-  subset: subset,
-  iter: iter,
-  map: map,
-  fold: fold,
-  for_all: for_all,
-  exists: exists,
-  filter: filter,
-  partition: partition,
-  cardinal: cardinal,
-  elements: elements,
-  min_elt: min_elt,
-  min_elt_opt: min_elt_opt,
-  max_elt: max_elt,
-  max_elt_opt: max_elt_opt,
-  choose: min_elt,
-  choose_opt: min_elt_opt,
-  split: split,
-  find: find,
-  find_opt: find_opt,
-  find_first: find_first,
-  find_first_opt: find_first_opt,
-  find_last: find_last,
-  find_last_opt: find_last_opt,
-  of_list: of_list
-end;
+String_set = {
+  empty = --[[ Empty ]]0,
+  is_empty = is_empty,
+  mem = mem,
+  add = add,
+  singleton = singleton,
+  remove = remove,
+  union = union,
+  inter = inter,
+  diff = diff,
+  compare = compare,
+  equal = equal,
+  subset = subset,
+  iter = iter,
+  map = map,
+  fold = fold,
+  for_all = for_all,
+  exists = exists,
+  filter = filter,
+  partition = partition,
+  cardinal = cardinal,
+  elements = elements,
+  min_elt = min_elt,
+  min_elt_opt = min_elt_opt,
+  max_elt = max_elt,
+  max_elt_opt = max_elt_opt,
+  choose = min_elt,
+  choose_opt = min_elt_opt,
+  split = split,
+  find = find,
+  find_opt = find_opt,
+  find_first = find_first,
+  find_first_opt = find_first_opt,
+  find_last = find_last,
+  find_last_opt = find_last_opt,
+  of_list = of_list
+};
 
 Cycle = Caml_exceptions.create("Topsort_test.Cycle");
 
 function pathsort(graph) do
-  visited = do
-    contents: --[[ [] ]]0
-  end;
+  visited = {
+    contents = --[[ [] ]]0
+  };
   empty_path = --[[ tuple ]]{
     --[[ Empty ]]0,
     --[[ [] ]]0

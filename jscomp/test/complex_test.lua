@@ -8,10 +8,10 @@ suites_000 = --[[ tuple ]]{
   "basic_add",
   (function(param) do
       return --[[ Eq ]]Block.__(0, {
-                do
-                  re: 2,
-                  im: 2
-                end,
+                {
+                  re = 2,
+                  im = 2
+                },
                 Complex.add(Complex.add(Complex.add(Complex.one, Complex.one), Complex.i), Complex.i)
               });
     end end)

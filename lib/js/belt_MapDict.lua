@@ -38,12 +38,12 @@ function updateU(t, newK, f, cmp) do
         r = t.right;
         if (l ~= nil) then do
           if (r ~= nil) then do
-            kr = do
-              contents: r.key
-            end;
-            vr = do
-              contents: r.value
-            end;
+            kr = {
+              contents = r.key
+            };
+            vr = {
+              contents = r.value
+            };
             r_1 = Belt_internalAVLtree.removeMinAuxWithRef(r, kr, vr);
             return Belt_internalAVLtree.bal(l, kr.contents, vr.contents, r_1);
           end else do
@@ -95,12 +95,12 @@ function removeAux0(n, x, cmp) do
   if (c == 0) then do
     if (l ~= nil) then do
       if (r ~= nil) then do
-        kr = do
-          contents: r.key
-        end;
-        vr = do
-          contents: r.value
-        end;
+        kr = {
+          contents = r.key
+        };
+        vr = {
+          contents = r.value
+        };
         r_1 = Belt_internalAVLtree.removeMinAuxWithRef(r, kr, vr);
         return Belt_internalAVLtree.bal(l, kr.contents, vr.contents, r_1);
       end else do
@@ -191,9 +191,9 @@ end end
 
 function split(n, x, cmp) do
   if (n ~= nil) then do
-    pres = do
-      contents: undefined
-    end;
+    pres = {
+      contents = undefined
+    };
     v = splitAuxPivot(n, x, pres, cmp);
     return --[[ tuple ]]{
             v,
@@ -218,9 +218,9 @@ function mergeU(s1, s2, f, cmp) do
         v1 = s1.key;
         d1 = s1.value;
         r1 = s1.right;
-        d2 = do
-          contents: undefined
-        end;
+        d2 = {
+          contents = undefined
+        };
         match = splitAuxPivot(s2, v1, d2, cmp);
         d2_1 = d2.contents;
         newLeft = mergeU(l1, match[0], f, cmp);
@@ -232,9 +232,9 @@ function mergeU(s1, s2, f, cmp) do
         v2 = s2.key;
         d2_2 = s2.value;
         r2 = s2.right;
-        d1_1 = do
-          contents: undefined
-        end;
+        d1_1 = {
+          contents = undefined
+        };
         match_1 = splitAuxPivot(s1, v2, d1_1, cmp);
         d1_2 = d1_1.contents;
         newLeft_1 = mergeU(match_1[0], l2, f, cmp);

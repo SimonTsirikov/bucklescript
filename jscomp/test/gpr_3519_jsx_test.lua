@@ -1,17 +1,17 @@
 console = {log = print};
 
 
-React = do
-  __null: --[[ () ]]0
-end;
+React = {
+  __null = --[[ () ]]0
+};
 
 function make(param, param_1) do
   return --[[ () ]]0;
 end end
 
-Foo = do
-  make: make
-end;
+Foo = {
+  make = make
+};
 
 exports = {}
 exports.React = React;

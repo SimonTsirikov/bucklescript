@@ -152,9 +152,9 @@ suites_001 = --[[ :: ]]{
                         "object_gadt_test",
                         (function(param) do
                             return --[[ Eq ]]Block.__(0, {
-                                      Js_types.test(do
-                                            x: 3
-                                          end, --[[ Object ]]6),
+                                      Js_types.test({
+                                            x = 3
+                                          }, --[[ Object ]]6),
                                       true
                                     });
                           end end)

@@ -81,13 +81,13 @@ function extract(queue) do
   end end 
 end end
 
-PrioQueue = do
-  empty: --[[ Empty ]]0,
-  insert: insert,
-  Queue_is_empty: Queue_is_empty,
-  remove_top: remove_top,
-  extract: extract
-end;
+PrioQueue = {
+  empty = --[[ Empty ]]0,
+  insert = insert,
+  Queue_is_empty = Queue_is_empty,
+  remove_top = remove_top,
+  extract = extract
+};
 
 exports = {}
 exports.PrioQueue = PrioQueue;

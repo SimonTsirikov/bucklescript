@@ -24,10 +24,10 @@ function Test(Queue) do
           end end), x);
     return to_array(q);
   end end;
-  return do
-          to_array: to_array,
-          queue_1: queue_1
-        end;
+  return {
+          to_array = to_array,
+          queue_1 = queue_1
+        };
 end end
 
 function to_array(q) do
@@ -40,21 +40,21 @@ function to_array(q) do
 end end
 
 function queue_1(x) do
-  q = do
-    length: 0,
-    first: --[[ Nil ]]0,
-    last: --[[ Nil ]]0
-  end;
+  q = {
+    length = 0,
+    first = --[[ Nil ]]0,
+    last = --[[ Nil ]]0
+  };
   __Array.iter((function(x) do
           return Queue.add(x, q);
         end end), x);
   return to_array(q);
 end end
 
-T1 = do
-  to_array: to_array,
-  queue_1: queue_1
-end;
+T1 = {
+  to_array = to_array,
+  queue_1 = queue_1
+};
 
 function to_array_1(q) do
   v = Caml_array.caml_make_vect(q.length, 0);
@@ -66,20 +66,20 @@ function to_array_1(q) do
 end end
 
 function queue_1_1(x) do
-  q = do
-    length: 0,
-    tail: undefined
-  end;
+  q = {
+    length = 0,
+    tail = undefined
+  };
   __Array.iter((function(x) do
           return Queue_402.add(x, q);
         end end), x);
   return to_array_1(q);
 end end
 
-T2 = do
-  to_array: to_array_1,
-  queue_1: queue_1_1
-end;
+T2 = {
+  to_array = to_array_1,
+  queue_1 = queue_1_1
+};
 
 suites_000 = --[[ tuple ]]{
   "File \"queue_test.ml\", line 26, characters 2-9",

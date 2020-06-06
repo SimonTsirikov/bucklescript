@@ -8,13 +8,13 @@ Belt_HashSetInt = require "../../lib/js/belt_HashSetInt";
 Belt_SortArrayInt = require "../../lib/js/belt_SortArrayInt";
 Belt_internalBucketsType = require "../../lib/js/belt_internalBucketsType";
 
-suites = do
-  contents: --[[ [] ]]0
-end;
+suites = {
+  contents = --[[ [] ]]0
+};
 
-test_id = do
-  contents: 0
-end;
+test_id = {
+  contents = 0
+};
 
 function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
@@ -29,9 +29,9 @@ function add(x, y) do
 end end
 
 function sum2(h) do
-  v = do
-    contents: 0
-  end;
+  v = {
+    contents = 0
+  };
   Belt_HashSetInt.forEach(h, (function(x) do
           v.contents = v.contents + x | 0;
           return --[[ () ]]0;

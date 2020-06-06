@@ -30,9 +30,9 @@ end end
 Caml_module.update_mod(--[[ Module ]]Block.__(0, {{--[[ tuple ]]{
             --[[ Function ]]0,
             "print"
-          }}}), PA, do
-      print: print
-    end);
+          }}}), PA, {
+      print = print
+    });
 
 function print_1(i) do
   console.log(String(i));
@@ -42,9 +42,9 @@ end end
 Caml_module.update_mod(--[[ Module ]]Block.__(0, {{--[[ tuple ]]{
             --[[ Function ]]0,
             "print"
-          }}}), P, do
-      print: print_1
-    end);
+          }}}), P, {
+      print = print_1
+    });
 
 Curry._1(PA.print, {
       1,

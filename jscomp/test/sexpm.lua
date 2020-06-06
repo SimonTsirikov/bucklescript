@@ -340,23 +340,23 @@ function $great$great$eq(x, f) do
   return Curry._1(f, x);
 end end
 
-ID_MONAD = do
-  __return: __return,
-  $great$great$eq: $great$great$eq
-end;
+ID_MONAD = {
+  __return = __return,
+  $great$great$eq = $great$great$eq
+};
 
 function make(bufsizeOpt, refill) do
   bufsize = bufsizeOpt ~= undefined and bufsizeOpt or 1024;
   bufsize_1 = Caml_primitive.caml_int_min(bufsize > 16 and bufsize or 16, Sys.max_string_length);
-  return do
-          buf: Caml_bytes.caml_create_bytes(bufsize_1),
-          refill: refill,
-          atom: __Buffer.create(32),
-          i: 0,
-          len: 0,
-          line: 1,
-          col: 1
-        end;
+  return {
+          buf = Caml_bytes.caml_create_bytes(bufsize_1),
+          refill = refill,
+          atom = __Buffer.create(32),
+          i = 0,
+          len = 0,
+          line = 1,
+          col = 1
+        };
 end end
 
 function _is_digit(c) do
@@ -861,9 +861,9 @@ end end
 
 function parse_string(s) do
   n = #s;
-  stop = do
-    contents: false
-  end;
+  stop = {
+    contents = false
+  };
   refill = function(bytes, i, _len) do
     if (stop.contents) then do
       return 0;
@@ -956,15 +956,15 @@ function MakeDecode(funarg) do
   make = function(bufsizeOpt, refill) do
     bufsize = bufsizeOpt ~= undefined and bufsizeOpt or 1024;
     bufsize_1 = Caml_primitive.caml_int_min(bufsize > 16 and bufsize or 16, Sys.max_string_length);
-    return do
-            buf: Caml_bytes.caml_create_bytes(bufsize_1),
-            refill: refill,
-            atom: __Buffer.create(32),
-            i: 0,
-            len: 0,
-            line: 1,
-            col: 1
-          end;
+    return {
+            buf = Caml_bytes.caml_create_bytes(bufsize_1),
+            refill = refill,
+            atom = __Buffer.create(32),
+            i = 0,
+            len = 0,
+            line = 1,
+            col = 1
+          };
   end end;
   _is_digit = function(c) do
     if (--[[ "0" ]]48 <= c) then do
@@ -1450,16 +1450,16 @@ function MakeDecode(funarg) do
                             });
                 end end), t);
   end end;
-  return do
-          make: make,
-          next: next
-        end;
+  return {
+          make = make,
+          next = next
+        };
 end end
 
-D = do
-  make: make,
-  next: next
-end;
+D = {
+  make = make,
+  next = next
+};
 
 exports = {}
 exports.to_buf = to_buf;

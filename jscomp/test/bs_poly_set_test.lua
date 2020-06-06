@@ -11,13 +11,13 @@ Belt_SortArray = require "../../lib/js/belt_SortArray";
 Caml_primitive = require "../../lib/js/caml_primitive";
 Array_data_util = require "./array_data_util";
 
-suites = do
-  contents: --[[ [] ]]0
-end;
+suites = {
+  contents = --[[ [] ]]0
+};
 
-test_id = do
-  contents: 0
-end;
+test_id = {
+  contents = 0
+};
 
 function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
@@ -139,10 +139,10 @@ u24 = Belt_Set.union(u18, u17);
 
 u25 = Belt_Set.add(u22, 59);
 
-u26 = Belt_Set.add(do
-      cmp: IntCmp.cmp,
-      data: Belt_SetDict.empty
-    end, 3);
+u26 = Belt_Set.add({
+      cmp = IntCmp.cmp,
+      data = Belt_SetDict.empty
+    }, 3);
 
 ss = Belt_Array.makeByAndShuffle(100, (function(i) do
         return (i << 1);
@@ -186,38 +186,38 @@ b("File \"bs_poly_set_test.ml\", line 86, characters 4-11", undefined == Belt_Se
 
 eq("File \"bs_poly_set_test.ml\", line 88, characters 5-12", Belt_SetDict.size(u25.data), 60);
 
-m = do
-  cmp: IntCmp.cmp,
-  data: Belt_SetDict.empty
-end;
+m = {
+  cmp = IntCmp.cmp,
+  data = Belt_SetDict.empty
+};
 
 b("File \"bs_poly_set_test.ml\", line 89, characters 4-11", Belt_SetDict.minimum(m.data) == undefined);
 
-m_1 = do
-  cmp: IntCmp.cmp,
-  data: Belt_SetDict.empty
-end;
+m_1 = {
+  cmp = IntCmp.cmp,
+  data = Belt_SetDict.empty
+};
 
 b("File \"bs_poly_set_test.ml\", line 90, characters 4-11", Belt_SetDict.maximum(m_1.data) == undefined);
 
-m_2 = do
-  cmp: IntCmp.cmp,
-  data: Belt_SetDict.empty
-end;
+m_2 = {
+  cmp = IntCmp.cmp,
+  data = Belt_SetDict.empty
+};
 
 b("File \"bs_poly_set_test.ml\", line 91, characters 4-11", Belt_SetDict.minUndefined(m_2.data) == undefined);
 
-m_3 = do
-  cmp: IntCmp.cmp,
-  data: Belt_SetDict.empty
-end;
+m_3 = {
+  cmp = IntCmp.cmp,
+  data = Belt_SetDict.empty
+};
 
 b("File \"bs_poly_set_test.ml\", line 92, characters 4-11", Belt_SetDict.maxUndefined(m_3.data) == undefined);
 
 function testIterToList(xs) do
-  v = do
-    contents: --[[ [] ]]0
-  end;
+  v = {
+    contents = --[[ [] ]]0
+  };
   Belt_Set.forEach(xs, (function(x) do
           v.contents = --[[ :: ]]{
             x,
@@ -229,9 +229,9 @@ function testIterToList(xs) do
 end end
 
 function testIterToList2(xs) do
-  v = do
-    contents: --[[ [] ]]0
-  end;
+  v = {
+    contents = --[[ [] ]]0
+  };
   Belt_SetDict.forEach(xs.data, (function(x) do
           v.contents = --[[ :: ]]{
             x,
@@ -401,10 +401,10 @@ m_4 = Belt_Set.keep(a, (function(x) do
 
 b("File \"bs_poly_set_test.ml\", line 153, characters 4-11", Belt_SetDict.isEmpty(m_4.data));
 
-match_5 = Belt_Set.split(do
-      cmp: IntCmp.cmp,
-      data: Belt_SetDict.empty
-    end, 0);
+match_5 = Belt_Set.split({
+      cmp = IntCmp.cmp,
+      data = Belt_SetDict.empty
+    }, 0);
 
 match_6 = match_5[0];
 

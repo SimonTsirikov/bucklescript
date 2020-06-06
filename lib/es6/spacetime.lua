@@ -11,10 +11,10 @@ function if_spacetime_enabled(f) do
 end end
 
 function create(path) do
-  return do
-          channel: Pervasives.stdout,
-          closed: true
-        end;
+  return {
+          channel = Pervasives.stdout,
+          closed = true
+        };
 end end
 
 function save_event(time, t, event_name) do
@@ -41,11 +41,11 @@ function save_and_close(time, t) do
               end end));
 end end
 
-Series = do
-  create: create,
-  save_event: save_event,
-  save_and_close: save_and_close
-end;
+Series = {
+  create = create,
+  save_event = save_event,
+  save_and_close = save_and_close
+};
 
 function take(time, param) do
   channel = param.channel;
@@ -63,9 +63,9 @@ function take(time, param) do
               end end));
 end end
 
-Snapshot = do
-  take: take
-end;
+Snapshot = {
+  take = take
+};
 
 function save_event_for_automatic_snapshots(event_name) do
   return if_spacetime_enabled((function(param) do

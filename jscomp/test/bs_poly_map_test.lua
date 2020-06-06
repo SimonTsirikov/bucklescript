@@ -9,13 +9,13 @@ Belt_MapDict = require "../../lib/js/belt_MapDict";
 Caml_primitive = require "../../lib/js/caml_primitive";
 Array_data_util = require "./array_data_util";
 
-suites = do
-  contents: --[[ [] ]]0
-end;
+suites = {
+  contents = --[[ [] ]]0
+};
 
-test_id = do
-  contents: 0
-end;
+test_id = {
+  contents = 0
+};
 
 function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
@@ -36,10 +36,10 @@ function setOfArray(x) do
 end end
 
 function emptyMap(param) do
-  return do
-          cmp: Icmp.cmp,
-          data: Belt_MapDict.empty
-        end;
+  return {
+          cmp = Icmp.cmp,
+          data = Belt_MapDict.empty
+        };
 end end
 
 function mergeInter(s1, s2) do
@@ -198,10 +198,10 @@ function acc(m, is) do
               end end));
 end end
 
-m = do
-  cmp: Icmp.cmp,
-  data: Belt_MapDict.empty
-end;
+m = {
+  cmp = Icmp.cmp,
+  data = Belt_MapDict.empty
+};
 
 m1 = acc(m, Belt_Array.concat(Array_data_util.randomRange(0, 20), Array_data_util.randomRange(10, 30)));
 
@@ -216,10 +216,10 @@ b("File \"bs_poly_map_test.ml\", line 103, characters 4-11", Belt_Map.eq(m1, Bel
             return x == y;
           end end)));
 
-v0 = do
-  cmp: Icmp.cmp,
-  data: Belt_MapDict.empty
-end;
+v0 = {
+  cmp = Icmp.cmp,
+  data = Belt_MapDict.empty
+};
 
 v1 = Belt_Map.mergeMany(v0, Belt_Array.map(Array_data_util.randomRange(0, 10000), (function(x) do
             return --[[ tuple ]]{
@@ -271,17 +271,17 @@ match_4 = Belt_Map.get(v4, -10);
 
 b("File \"bs_poly_map_test.ml\", line 128, characters 4-11", match_4 ~= undefined and match_4 == 0 or false);
 
-map = Belt_Map.remove(do
-      cmp: Icmp.cmp,
-      data: Belt_MapDict.empty
-    end, 0);
+map = Belt_Map.remove({
+      cmp = Icmp.cmp,
+      data = Belt_MapDict.empty
+    }, 0);
 
 b("File \"bs_poly_map_test.ml\", line 129, characters 4-11", Belt_MapDict.isEmpty(map.data));
 
-map_1 = Belt_Map.removeMany(do
-      cmp: Icmp.cmp,
-      data: Belt_MapDict.empty
-    end, {0});
+map_1 = Belt_Map.removeMany({
+      cmp = Icmp.cmp,
+      data = Belt_MapDict.empty
+    }, {0});
 
 b("File \"bs_poly_map_test.ml\", line 130, characters 4-11", Belt_MapDict.isEmpty(map_1.data));
 

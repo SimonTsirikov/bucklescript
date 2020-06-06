@@ -508,9 +508,9 @@ function $caret$caret(param, param_1) do
         };
 end end
 
-exit_function = do
-  contents: flush_all
-end;
+exit_function = {
+  contents = flush_all
+};
 
 function at_exit(f) do
   g = exit_function.contents;
@@ -628,14 +628,14 @@ function LargeFile_in_channel_length(prim) do
   return Caml_external_polyfill.resolve("caml_ml_channel_size_64")(prim);
 end end
 
-LargeFile = do
-  seek_out: LargeFile_seek_out,
-  pos_out: LargeFile_pos_out,
-  out_channel_length: LargeFile_out_channel_length,
-  seek_in: LargeFile_seek_in,
-  pos_in: LargeFile_pos_in,
-  in_channel_length: LargeFile_in_channel_length
-end;
+LargeFile = {
+  seek_out = LargeFile_seek_out,
+  pos_out = LargeFile_pos_out,
+  out_channel_length = LargeFile_out_channel_length,
+  seek_in = LargeFile_seek_in,
+  pos_in = LargeFile_pos_in,
+  in_channel_length = LargeFile_in_channel_length
+};
 
 export do
   invalid_arg ,

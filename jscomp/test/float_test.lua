@@ -11,13 +11,13 @@ Caml_int64 = require "../../lib/js/caml_int64";
 Pervasives = require "../../lib/js/pervasives";
 Caml_primitive = require "../../lib/js/caml_primitive";
 
-test_id = do
-  contents: 0
-end;
+test_id = {
+  contents = 0
+};
 
-suites = do
-  contents: --[[ [] ]]0
-end;
+suites = {
+  contents = --[[ [] ]]0
+};
 
 function eq(loc) do
   return (function(param, param_1) do

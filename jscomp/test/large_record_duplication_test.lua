@@ -7,13 +7,13 @@ Caml_array = require "../../lib/js/caml_array";
 Caml_exceptions = require "../../lib/js/caml_exceptions";
 Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
-suites = do
-  contents: --[[ [] ]]0
-end;
+suites = {
+  contents = --[[ [] ]]0
+};
 
-test_id = do
-  contents: 0
-end;
+test_id = {
+  contents = 0
+};
 
 function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
@@ -170,31 +170,31 @@ eq("File \"large_record_duplication_test.ml\", line 262, characters 6-13", get_x
 
 Mt.from_pair_suites("Large_record_duplication_test", suites.contents);
 
-v0 = do
-  x0: 9,
-  x1: 9,
-  x2: 9,
-  x3: 9,
-  x4: 9,
-  x5: 9,
-  x6: 9,
-  x7: 9,
-  x8: 9,
-  x9: 9,
-  x10: 9,
-  x11: 9,
-  x12: 9,
-  x13: 9,
-  x14: 9,
-  x15: 9,
-  x16: 9,
-  x17: 9,
-  x18: 9,
-  x19: 9,
-  x20: 9,
-  x21: 9,
-  x22: 9
-end;
+v0 = {
+  x0 = 9,
+  x1 = 9,
+  x2 = 9,
+  x3 = 9,
+  x4 = 9,
+  x5 = 9,
+  x6 = 9,
+  x7 = 9,
+  x8 = 9,
+  x9 = 9,
+  x10 = 9,
+  x11 = 9,
+  x12 = 9,
+  x13 = 9,
+  x14 = 9,
+  x15 = 9,
+  x16 = 9,
+  x17 = 9,
+  x18 = 9,
+  x19 = 9,
+  x20 = 9,
+  x21 = 9,
+  x22 = 9
+};
 
 exports = {}
 exports.suites = suites;

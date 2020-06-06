@@ -882,9 +882,9 @@ suites_001 = --[[ :: ]]{
                                                                                                     --[[ tuple ]]{
                                                                                                       "forEach",
                                                                                                       (function(param) do
-                                                                                                          sum = do
-                                                                                                            contents: 0
-                                                                                                          end;
+                                                                                                          sum = {
+                                                                                                            contents = 0
+                                                                                                          };
                                                                                                           {
                                                                                                               1,
                                                                                                               2,
@@ -903,9 +903,9 @@ suites_001 = --[[ :: ]]{
                                                                                                       --[[ tuple ]]{
                                                                                                         "forEachi",
                                                                                                         (function(param) do
-                                                                                                            sum = do
-                                                                                                              contents: 0
-                                                                                                            end;
+                                                                                                            sum = {
+                                                                                                              contents = 0
+                                                                                                            };
                                                                                                             {
                                                                                                                 1,
                                                                                                                 2,

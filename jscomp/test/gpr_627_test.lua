@@ -3,13 +3,13 @@ console = {log = print};
 Mt = require "./mt";
 Block = require "../../lib/js/block";
 
-suites = do
-  contents: --[[ [] ]]0
-end;
+suites = {
+  contents = --[[ [] ]]0
+};
 
-test_id = do
-  contents: 0
-end;
+test_id = {
+  contents = 0
+};
 
 function eq(loc, param) do
   y = param[1];
@@ -30,28 +30,28 @@ function eq(loc, param) do
   return --[[ () ]]0;
 end end
 
-u = do
-  say: (function(x, y) do
+u = {
+  say = (function(x, y) do
       return x + y | 0; end
     end)
-end;
+};
 
-v = do
-  hi: (function(x, y) do
+v = {
+  hi = (function(x, y) do
       self = this ;
-      u = do
-        x: x
-      end;
+      u = {
+        x = x
+      };
       return self.say(u.x) + y + x; end
     end),
-  say: (function(x) do
+  say = (function(x) do
       self = this ;
       return x * self.x(); end
     end),
-  x: (function() do
+  x = (function() do
       return 3; end
     end)
-end;
+};
 
 p_001 = u.say(1, 2);
 

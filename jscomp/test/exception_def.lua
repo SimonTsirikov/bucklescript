@@ -8,9 +8,9 @@ A = Caml_exceptions.create("Exception_def.A");
 
 A_1 = Caml_exceptions.create("Exception_def.U.A");
 
-U = do
-  A: A_1
-end;
+U = {
+  A = A_1
+};
 
 H = { };
 

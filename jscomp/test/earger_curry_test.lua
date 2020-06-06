@@ -70,13 +70,13 @@ end end
 
 f2(--[[ () ]]0);
 
-suites = do
-  contents: --[[ [] ]]0
-end;
+suites = {
+  contents = --[[ [] ]]0
+};
 
-test_id = do
-  contents: 0
-end;
+test_id = {
+  contents = 0
+};
 
 function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
@@ -95,13 +95,13 @@ function eq(loc, x, y) do
   return --[[ () ]]0;
 end end
 
-v = do
-  contents: 0
-end;
+v = {
+  contents = 0
+};
 
-all_v = do
-  contents: --[[ [] ]]0
-end;
+all_v = {
+  contents = --[[ [] ]]0
+};
 
 function add5(a0, a1, a2, a3, a4) do
   console.log(--[[ tuple ]]{
