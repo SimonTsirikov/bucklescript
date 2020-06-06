@@ -6,10 +6,10 @@ Belt_internalBucketsType = require "./belt_internalBucketsType";
 function copyBucket(hash, h_buckets, ndata_tail, _old_bucket) do
   while(true) do
     old_bucket = _old_bucket;
-    if (old_bucket ~= undefined) then do
+    if (old_bucket ~= nil) then do
       nidx = hash(old_bucket.key) & (#h_buckets - 1 | 0);
       match = ndata_tail[nidx];
-      if (match ~= undefined) then do
+      if (match ~= nil) then do
         match.next = old_bucket;
       end else do
         h_buckets[nidx] = old_bucket;
@@ -28,13 +28,13 @@ function remove(h, key) do
   h_buckets = h.buckets;
   i = h.hash(key) & (#h_buckets - 1 | 0);
   l = h_buckets[i];
-  if (l ~= undefined) then do
+  if (l ~= nil) then do
     next_cell = l.next;
     if (eq(l.key, key)) then do
       h.size = h.size - 1 | 0;
       h_buckets[i] = next_cell;
       return --[[ () ]]0;
-    end else if (next_cell ~= undefined) then do
+    end else if (next_cell ~= nil) then do
       eq_1 = eq;
       h_1 = h;
       key_1 = key;
@@ -48,7 +48,7 @@ function remove(h, key) do
           prec.next = cell_next;
           h_1.size = h_1.size - 1 | 0;
           return --[[ () ]]0;
-        end else if (cell_next ~= undefined) then do
+        end else if (cell_next ~= nil) then do
           _cell = cell_next;
           _prec = cell;
           ::continue:: ;
@@ -71,14 +71,14 @@ function addBucket(h, key, _cell, eq) do
       return 0;
     end else do
       n = cell.next;
-      if (n ~= undefined) then do
+      if (n ~= nil) then do
         _cell = n;
         ::continue:: ;
       end else do
         h.size = h.size + 1 | 0;
         cell.next = {
           key = key,
-          next = undefined
+          next = nil
         };
         return --[[ () ]]0;
       end end 
@@ -91,13 +91,13 @@ function add0(h, key, hash, eq) do
   buckets_len = #h_buckets;
   i = hash(key) & (buckets_len - 1 | 0);
   l = h_buckets[i];
-  if (l ~= undefined) then do
+  if (l ~= nil) then do
     addBucket(h, key, l, eq);
   end else do
     h.size = h.size + 1 | 0;
     h_buckets[i] = {
       key = key,
-      next = undefined
+      next = nil
     };
   end end 
   if (h.size > (buckets_len << 1)) then do
@@ -115,8 +115,8 @@ function add0(h, key, hash, eq) do
       end
       for i_2 = 0 , nsize - 1 | 0 , 1 do
         match = ndata_tail[i_2];
-        if (match ~= undefined) then do
-          match.next = undefined;
+        if (match ~= nil) then do
+          match.next = nil;
         end
          end 
       end
@@ -138,7 +138,7 @@ function has(h, key) do
   h_buckets = h.buckets;
   nid = h.hash(key) & (#h_buckets - 1 | 0);
   bucket = h_buckets[nid];
-  if (bucket ~= undefined) then do
+  if (bucket ~= nil) then do
     eq_1 = eq;
     key_1 = key;
     _cell = bucket;
@@ -148,7 +148,7 @@ function has(h, key) do
         return true;
       end else do
         match = cell.next;
-        if (match ~= undefined) then do
+        if (match ~= nil) then do
           _cell = match;
           ::continue:: ;
         end else do

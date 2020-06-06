@@ -23,7 +23,7 @@ function compilerBug(a, b, c, f) do
   end
    end 
   if (exit == 2) then do
-    if (b ~= undefined) then do
+    if (b ~= nil) then do
       if (b ~= "x") then do
         if (c) then do
           result.contents = "No x, c is true";
@@ -64,7 +64,7 @@ function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
 end end
 
-compilerBug("x", undefined, true, (function(param) do
+compilerBug("x", nil, true, (function(param) do
         return true;
       end end));
 

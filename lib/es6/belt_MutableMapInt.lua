@@ -198,7 +198,7 @@ function updateDone(t, x, f) do
     k = t.key;
     if (k == x) then do
       match = f(Caml_option.some(t.value));
-      if (match ~= undefined) then do
+      if (match ~= nil) then do
         t.value = Caml_option.valFromOption(match);
         return t;
       end else do
@@ -227,8 +227,8 @@ function updateDone(t, x, f) do
       return Belt_internalAVLtree.balMutate(t);
     end end 
   end else do
-    match_1 = f(undefined);
-    if (match_1 ~= undefined) then do
+    match_1 = f(nil);
+    if (match_1 ~= nil) then do
       return Belt_internalAVLtree.singleton(x, Caml_option.valFromOption(match_1));
     end else do
       return t;

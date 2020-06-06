@@ -139,7 +139,7 @@ end end,function(exn) do
 end end)
 
 dont_record_crc_unit = {
-  contents = undefined
+  contents = nil
 };
 
 bs_only = {
@@ -147,7 +147,7 @@ bs_only = {
 };
 
 color = {
-  contents = undefined
+  contents = nil
 };
 
 Fatal_error = Caml_exceptions.create("Ocaml_typedtree_test.Misc.Fatal_error");
@@ -244,7 +244,7 @@ function split_last(param) do
 end end
 
 function may(f, param) do
-  if (param ~= undefined) then do
+  if (param ~= nil) then do
     return Curry._1(f, Caml_option.valFromOption(param));
   end else do
     return --[[ () ]]0;
@@ -252,7 +252,7 @@ function may(f, param) do
 end end
 
 function may_map(f, param) do
-  if (param ~= undefined) then do
+  if (param ~= nil) then do
     return Caml_option.some(Curry._1(f, Caml_option.valFromOption(param)));
   end
    end 
@@ -295,7 +295,7 @@ function remove_file(filename) do
 end end
 
 function create_hashtable(size, init) do
-  tbl = Hashtbl.create(undefined, size);
+  tbl = Hashtbl.create(nil, size);
   List.iter((function(param) do
           return Hashtbl.add(tbl, param[0], param[1]);
         end end), init);
@@ -550,7 +550,7 @@ function setup(o) do
     Format.set_mark_tags(true);
     List.iter(set_color_tag_handling, formatter_l);
     tmp;
-    if (o ~= undefined) then do
+    if (o ~= nil) then do
       local ___conditional___=(o);
       do
          if ___conditional___ == 1--[[ Always ]] then do
@@ -1539,7 +1539,7 @@ input_name = {
 };
 
 input_lexbuf = {
-  contents = undefined
+  contents = nil
 };
 
 status = {
@@ -1725,7 +1725,7 @@ function highlight_locations(ppf, locs) do
     if (typeof match == "number") then do
       if (match ~= 0) then do
         match_1 = input_lexbuf.contents;
-        if (match_1 ~= undefined) then do
+        if (match_1 ~= nil) then do
           norepeat;
           xpcall(function() do
             norepeat = Caml_sys.caml_sys_getenv("TERM") == "norepeat";
@@ -1760,7 +1760,7 @@ function highlight_locations(ppf, locs) do
       end end 
     end else do
       match_2 = input_lexbuf.contents;
-      if (match_2 ~= undefined) then do
+      if (match_2 ~= nil) then do
         xpcall(function() do
           highlight_terminfo(ppf, match[0], match_2, locs);
           return true;
@@ -2067,9 +2067,9 @@ function print_phanton_error_prefix(ppf) do
 end end
 
 function errorf(locOpt, subOpt, if_highlightOpt, fmt) do
-  loc = locOpt ~= undefined and locOpt or none;
-  sub = subOpt ~= undefined and subOpt or --[[ [] ]]0;
-  if_highlight = if_highlightOpt ~= undefined and if_highlightOpt or "";
+  loc = locOpt ~= nil and locOpt or none;
+  sub = subOpt ~= nil and subOpt or --[[ [] ]]0;
+  if_highlight = if_highlightOpt ~= nil and if_highlightOpt or "";
   before = print_phanton_error_prefix;
   k = function(msg) do
     return {
@@ -2083,7 +2083,7 @@ function errorf(locOpt, subOpt, if_highlightOpt, fmt) do
   buf = __Buffer.create(64);
   ppf = Format.formatter_of_buffer(buf);
   Curry._1(Misc_Color.set_color_tag_handling, ppf);
-  if (before ~= undefined) then do
+  if (before ~= nil) then do
     Curry._1(before, ppf);
   end
    end 
@@ -2094,9 +2094,9 @@ function errorf(locOpt, subOpt, if_highlightOpt, fmt) do
 end end
 
 function error(locOpt, subOpt, if_highlightOpt, msg) do
-  loc = locOpt ~= undefined and locOpt or none;
-  sub = subOpt ~= undefined and subOpt or --[[ [] ]]0;
-  if_highlight = if_highlightOpt ~= undefined and if_highlightOpt or "";
+  loc = locOpt ~= nil and locOpt or none;
+  sub = subOpt ~= nil and subOpt or --[[ [] ]]0;
+  if_highlight = if_highlightOpt ~= nil and if_highlightOpt or "";
   return {
           loc = loc,
           msg = msg,
@@ -2118,7 +2118,7 @@ function register_error_of_exn(f) do
 end end
 
 function error_of_printer(loc, print, x) do
-  return Curry._2(errorf(loc, undefined, undefined, --[[ Format ]]{
+  return Curry._2(errorf(loc, nil, nil, --[[ Format ]]{
                   --[[ Alpha ]]Block.__(15, {--[[ Formatting_lit ]]Block.__(17, {
                           --[[ FFlush ]]2,
                           --[[ End_of_format ]]0
@@ -2133,7 +2133,7 @@ end end
 
 register_error_of_exn((function(param) do
         if (param[0] == Caml_builtin_exceptions.sys_error) then do
-          return Curry._1(errorf(in_file(input_name.contents), undefined, undefined, --[[ Format ]]{
+          return Curry._1(errorf(in_file(input_name.contents), nil, nil, --[[ Format ]]{
                           --[[ String_literal ]]Block.__(11, {
                               "I/O error: ",
                               --[[ String ]]Block.__(2, {
@@ -2144,7 +2144,7 @@ register_error_of_exn((function(param) do
                           "I/O error: %s"
                         }), param[1]);
         end else if (param[0] == Errors) then do
-          return Curry._1(errorf(in_file(input_name.contents), undefined, undefined, --[[ Format ]]{
+          return Curry._1(errorf(in_file(input_name.contents), nil, nil, --[[ Format ]]{
                           --[[ String_literal ]]Block.__(11, {
                               "Some fatal warnings were triggered (",
                               --[[ Int ]]Block.__(4, {
@@ -2394,7 +2394,7 @@ function add(id, data, param) do
             {
               ident = id,
               data = data,
-              previous = undefined
+              previous = nil
             },
             --[[ Empty ]]0,
             1
@@ -2416,7 +2416,7 @@ function find_same(id, _param) do
           _param_1 = k.previous;
           while(true) do
             param_1 = _param_1;
-            if (param_1 ~= undefined) then do
+            if (param_1 ~= nil) then do
               k_1 = param_1;
               if (k_1.ident.stamp == s) then do
                 return k_1.data;
@@ -2458,7 +2458,7 @@ function find_name(name, _param) do
 end end
 
 function get_all(param) do
-  if (param ~= undefined) then do
+  if (param ~= nil) then do
     k = param;
     return --[[ :: ]]{
             k.data,
@@ -2602,7 +2602,7 @@ function kfalse(x) do
 end end
 
 function name($staropt$star, param) do
-  paren = $staropt$star ~= undefined and $staropt$star or kfalse;
+  paren = $staropt$star ~= nil and $staropt$star or kfalse;
   local ___conditional___=(param.tag | 0);
   do
      if ___conditional___ == 0--[[ Pident ]] then do
@@ -4167,7 +4167,7 @@ end end
 dummy_method = "*dummy method*";
 
 function default_mty(param) do
-  if (param ~= undefined) then do
+  if (param ~= nil) then do
     return param;
   end else do
     return --[[ Mty_signature ]]Block.__(1, {--[[ [] ]]0});
@@ -4181,7 +4181,7 @@ function field_kind_repr(_kind) do
       return kind;
     end else do
       match = kind[0].contents;
-      if (match ~= undefined) then do
+      if (match ~= nil) then do
         _kind = match;
         ::continue:: ;
       end else do
@@ -4244,7 +4244,7 @@ function row_field_repr_aux(_tl, _fi) do
       r = fi[3];
       tl$prime = fi[1];
       match = r.contents;
-      if (match ~= undefined) then do
+      if (match ~= nil) then do
         _fi = match;
         _tl = Pervasives.$at(tl, tl$prime);
         ::continue:: ;
@@ -4256,7 +4256,7 @@ function row_field_repr_aux(_tl, _fi) do
                   r
                 });
       end end 
-    end else if (fi[0] ~= undefined and tl ~= --[[ [] ]]0) then do
+    end else if (fi[0] ~= nil and tl ~= --[[ [] ]]0) then do
       return --[[ Rpresent ]]Block.__(0, {List.hd(tl)});
     end else do
       return fi;
@@ -4538,7 +4538,7 @@ function iter_row(f, _row) do
               return List.iter(f, match[1]);
             end else do
               match_1 = match[0];
-              if (match_1 ~= undefined) then do
+              if (match_1 ~= nil) then do
                 return Curry._1(f, match_1);
               end else do
                 return --[[ () ]]0;
@@ -4592,7 +4592,7 @@ function iter_type_expr(f, ty) do
        if ___conditional___ == 4--[[ Tobject ]] then do
           ty_1 = match[0];
           match_1 = match[1].contents;
-          if (match_1 ~= undefined) then do
+          if (match_1 ~= nil) then do
             Curry._1(f, ty_1);
             return List.iter(f, match_1[1]);
           end else do
@@ -4766,7 +4766,7 @@ function it_do_type_expr(it, ty) do
     do
        if ___conditional___ == 4--[[ Tobject ]] then do
           match_1 = match[1].contents;
-          if (match_1 ~= undefined) then do
+          if (match_1 ~= nil) then do
             return Curry._1(it.it_path, match_1[0]);
           end else do
             return --[[ () ]]0;
@@ -4797,7 +4797,7 @@ function copy_row(f, fixed, row, keep, more) do
             tmp = fi;
           end else if (match.tag) then do
             e = keep and match[3] or ({
-                  contents = undefined
+                  contents = nil
                 });
             m = row.row_fixed and fixed or match[2];
             tl = List.map(f, match[1]);
@@ -4809,7 +4809,7 @@ function copy_row(f, fixed, row, keep, more) do
               });
           end else do
             match_1 = match[0];
-            tmp = match_1 ~= undefined and --[[ Rpresent ]]Block.__(0, {Curry._1(f, match_1)}) or fi;
+            tmp = match_1 ~= nil and --[[ Rpresent ]]Block.__(0, {Curry._1(f, match_1)}) or fi;
           end end  end 
           return --[[ tuple ]]{
                   param[0],
@@ -4818,14 +4818,14 @@ function copy_row(f, fixed, row, keep, more) do
         end end), row.row_fields);
   match = row.row_name;
   name;
-  if (match ~= undefined) then do
+  if (match ~= nil) then do
     match_1 = match;
     name = --[[ tuple ]]{
       match_1[0],
       List.map(f, match_1[1])
     };
   end else do
-    name = undefined;
+    name = nil;
   end end 
   return {
           row_fields = fields,
@@ -4855,12 +4855,12 @@ function copy_kind(_param) do
       end end 
     end else do
       match = param[0].contents;
-      if (match ~= undefined) then do
+      if (match ~= nil) then do
         _param = match;
         ::continue:: ;
       end else do
         return --[[ Fvar ]]{{
-                  contents = undefined
+                  contents = nil
                 }};
       end end 
     end end 
@@ -4881,7 +4881,7 @@ function copy_type_desc(_keep_namesOpt, f, _ty) do
   while(true) do
     keep_namesOpt = _keep_namesOpt;
     ty = _ty;
-    keep_names = keep_namesOpt ~= undefined and keep_namesOpt or false;
+    keep_names = keep_namesOpt ~= nil and keep_namesOpt or false;
     if (typeof ty == "number") then do
       return --[[ Tnil ]]0;
     end else do
@@ -4891,7 +4891,7 @@ function copy_type_desc(_keep_namesOpt, f, _ty) do
             if (keep_names) then do
               return ty;
             end else do
-              return --[[ Tvar ]]Block.__(0, {undefined});
+              return --[[ Tvar ]]Block.__(0, {nil});
             end end  end end 
          if ___conditional___ == 1--[[ Tarrow ]] then do
             return --[[ Tarrow ]]Block.__(1, {
@@ -4913,7 +4913,7 @@ function copy_type_desc(_keep_namesOpt, f, _ty) do
          if ___conditional___ == 4--[[ Tobject ]] then do
             ty_1 = ty[0];
             match = ty[1].contents;
-            if (match ~= undefined) then do
+            if (match ~= nil) then do
               match_1 = match;
               return --[[ Tobject ]]Block.__(4, {
                         Curry._1(f, ty_1),
@@ -4928,7 +4928,7 @@ function copy_type_desc(_keep_namesOpt, f, _ty) do
               return --[[ Tobject ]]Block.__(4, {
                         Curry._1(f, ty_1),
                         {
-                          contents = undefined
+                          contents = nil
                         }
                       });
             end end  end end 
@@ -4941,7 +4941,7 @@ function copy_type_desc(_keep_namesOpt, f, _ty) do
                     }); end end 
          if ___conditional___ == 6--[[ Tlink ]] then do
             _ty = ty[0].desc;
-            _keep_namesOpt = undefined;
+            _keep_namesOpt = nil;
             ::continue:: ; end end 
          if ___conditional___ == 7--[[ Tsubst ]] then do
             error({
@@ -5040,7 +5040,7 @@ new_kinds = {
 
 function dup_kind(r) do
   match = r.contents;
-  if (match ~= undefined) then do
+  if (match ~= nil) then do
     error({
       Caml_builtin_exceptions.assert_failure,
       --[[ tuple ]]{
@@ -5059,7 +5059,7 @@ function dup_kind(r) do
       saved_kinds.contents
     };
     r$prime = {
-      contents = undefined
+      contents = nil
     };
     new_kinds.contents = --[[ :: ]]{
       r$prime,
@@ -5076,7 +5076,7 @@ function cleanup_types(param) do
           return --[[ () ]]0;
         end end), saved_desc.contents);
   List.iter((function(r) do
-          r.contents = undefined;
+          r.contents = nil;
           return --[[ () ]]0;
         end end), saved_kinds.contents);
   saved_desc.contents = --[[ [] ]]0;
@@ -5326,7 +5326,7 @@ last_snapshot = {
 
 function log_change(ch) do
   match = Caml_weak.caml_weak_get(trail, 0);
-  if (match ~= undefined) then do
+  if (match ~= nil) then do
     r$prime = {
       contents = --[[ Unchanged ]]0
     };
@@ -5360,7 +5360,7 @@ function link_type(ty, ty$prime) do
     return --[[ () ]]0;
   end else do
     name = desc[0];
-    if (name ~= undefined and not (match[0] ~= undefined and ty.level >= ty$prime.level)) then do
+    if (name ~= nil and not (match[0] ~= nil and ty.level >= ty$prime.level)) then do
       log_type(ty$prime);
       ty$prime.desc = --[[ Tvar ]]Block.__(0, {name});
       return --[[ () ]]0;
@@ -5440,7 +5440,7 @@ function snapshot(param) do
   old = last_snapshot.contents;
   last_snapshot.contents = new_id.contents;
   match = Caml_weak.caml_weak_get(trail, 0);
-  if (match ~= undefined) then do
+  if (match ~= nil) then do
     return --[[ tuple ]]{
             match,
             old
@@ -5698,7 +5698,7 @@ function extract(l, tbl) do
                     return --[[ :: ]]{
                             --[[ tuple ]]{
                               name,
-                              undefined
+                              nil
                             },
                             assc
                           };
@@ -5765,7 +5765,7 @@ optional_shape = --[[ tuple ]]{
 
 function extension_descr(path_ext, ext) do
   match = ext.ext_ret_type;
-  ty_res = match ~= undefined and match or newty2(100000000, --[[ Tconstr ]]Block.__(3, {
+  ty_res = match ~= nil and match or newty2(100000000, --[[ Tconstr ]]Block.__(3, {
             ext.ext_type_path,
             ext.ext_type_params,
             {
@@ -5779,7 +5779,7 @@ function extension_descr(path_ext, ext) do
     });
   match_1 = ext.ext_ret_type;
   existentials;
-  if (match_1 ~= undefined) then do
+  if (match_1 ~= nil) then do
     ret_vars = free_vars(match_1);
     arg_vars = free_vars(newty2(100000000, --[[ Ttuple ]]Block.__(2, {ext.ext_args})));
     existentials = elements_aux_1(--[[ [] ]]0, diff_1(arg_vars, ret_vars));
@@ -5796,7 +5796,7 @@ function extension_descr(path_ext, ext) do
           cstr_consts = -1,
           cstr_nonconsts = -1,
           cstr_normal = -1,
-          cstr_generalized = ext.ext_ret_type ~= undefined,
+          cstr_generalized = ext.ext_ret_type ~= nil,
           cstr_private = ext.ext_private,
           cstr_loc = ext.ext_loc,
           cstr_attributes = ext.ext_attributes
@@ -6069,9 +6069,9 @@ decl_abstr = {
   type_arity = 0,
   type_kind = --[[ Type_abstract ]]0,
   type_private = --[[ Public ]]1,
-  type_manifest = undefined,
+  type_manifest = nil,
   type_variance = --[[ [] ]]0,
-  type_newtype_level = undefined,
+  type_newtype_level = nil,
   type_loc = none,
   type_attributes = --[[ [] ]]0
 };
@@ -6080,7 +6080,7 @@ function cstr(id, args) do
   return {
           cd_id = id,
           cd_args = args,
-          cd_res = undefined,
+          cd_res = nil,
           cd_loc = none,
           cd_attributes = --[[ [] ]]0
         };
@@ -6113,9 +6113,9 @@ function common_initial_env(add_type, add_extension, empty_env) do
     type_arity = 0,
     type_kind = decl_bool_type_kind,
     type_private = --[[ Public ]]1,
-    type_manifest = undefined,
+    type_manifest = nil,
     type_variance = --[[ [] ]]0,
-    type_newtype_level = undefined,
+    type_newtype_level = nil,
     type_loc = none,
     type_attributes = --[[ [] ]]0
   };
@@ -6128,9 +6128,9 @@ function common_initial_env(add_type, add_extension, empty_env) do
     type_arity = 0,
     type_kind = decl_unit_type_kind,
     type_private = --[[ Public ]]1,
-    type_manifest = undefined,
+    type_manifest = nil,
     type_variance = --[[ [] ]]0,
-    type_newtype_level = undefined,
+    type_newtype_level = nil,
     type_loc = none,
     type_attributes = --[[ [] ]]0
   };
@@ -6139,13 +6139,13 @@ function common_initial_env(add_type, add_extension, empty_env) do
     type_arity = 0,
     type_kind = --[[ Type_open ]]1,
     type_private = --[[ Public ]]1,
-    type_manifest = undefined,
+    type_manifest = nil,
     type_variance = --[[ [] ]]0,
-    type_newtype_level = undefined,
+    type_newtype_level = nil,
     type_loc = none,
     type_attributes = --[[ [] ]]0
   };
-  tvar = newty2(100000000, --[[ Tvar ]]Block.__(0, {undefined}));
+  tvar = newty2(100000000, --[[ Tvar ]]Block.__(0, {nil}));
   decl_array_type_params = --[[ :: ]]{
     tvar,
     --[[ [] ]]0
@@ -6159,13 +6159,13 @@ function common_initial_env(add_type, add_extension, empty_env) do
     type_arity = 1,
     type_kind = --[[ Type_abstract ]]0,
     type_private = --[[ Public ]]1,
-    type_manifest = undefined,
+    type_manifest = nil,
     type_variance = decl_array_type_variance,
-    type_newtype_level = undefined,
+    type_newtype_level = nil,
     type_loc = none,
     type_attributes = --[[ [] ]]0
   };
-  tvar_1 = newty2(100000000, --[[ Tvar ]]Block.__(0, {undefined}));
+  tvar_1 = newty2(100000000, --[[ Tvar ]]Block.__(0, {nil}));
   decl_list_type_params = --[[ :: ]]{
     tvar_1,
     --[[ [] ]]0
@@ -6192,13 +6192,13 @@ function common_initial_env(add_type, add_extension, empty_env) do
     type_arity = 1,
     type_kind = decl_list_type_kind,
     type_private = --[[ Public ]]1,
-    type_manifest = undefined,
+    type_manifest = nil,
     type_variance = decl_list_type_variance,
-    type_newtype_level = undefined,
+    type_newtype_level = nil,
     type_loc = none,
     type_attributes = --[[ [] ]]0
   };
-  tvar_2 = newty2(100000000, --[[ Tvar ]]Block.__(0, {undefined}));
+  tvar_2 = newty2(100000000, --[[ Tvar ]]Block.__(0, {nil}));
   decl_option_type_params = --[[ :: ]]{
     tvar_2,
     --[[ [] ]]0
@@ -6222,13 +6222,13 @@ function common_initial_env(add_type, add_extension, empty_env) do
     type_arity = 1,
     type_kind = decl_option_type_kind,
     type_private = --[[ Public ]]1,
-    type_manifest = undefined,
+    type_manifest = nil,
     type_variance = decl_option_type_variance,
-    type_newtype_level = undefined,
+    type_newtype_level = nil,
     type_loc = none,
     type_attributes = --[[ [] ]]0
   };
-  tvar_3 = newty2(100000000, --[[ Tvar ]]Block.__(0, {undefined}));
+  tvar_3 = newty2(100000000, --[[ Tvar ]]Block.__(0, {nil}));
   decl_lazy_t_type_params = --[[ :: ]]{
     tvar_3,
     --[[ [] ]]0
@@ -6242,9 +6242,9 @@ function common_initial_env(add_type, add_extension, empty_env) do
     type_arity = 1,
     type_kind = --[[ Type_abstract ]]0,
     type_private = --[[ Public ]]1,
-    type_manifest = undefined,
+    type_manifest = nil,
     type_variance = decl_lazy_t_type_variance,
-    type_newtype_level = undefined,
+    type_newtype_level = nil,
     type_loc = none,
     type_attributes = --[[ [] ]]0
   };
@@ -6253,7 +6253,7 @@ function common_initial_env(add_type, add_extension, empty_env) do
                 ext_type_path = path_exn,
                 ext_type_params = --[[ [] ]]0,
                 ext_args = l,
-                ext_ret_type = undefined,
+                ext_ret_type = nil,
                 ext_private = --[[ Public ]]1,
                 ext_loc = none,
                 ext_attributes = --[[ [] ]]0
@@ -6318,7 +6318,7 @@ function build_initial_env(add_type, add_exception, empty_env) do
     type_private = --[[ Public ]]1,
     type_manifest = decl_bytes_unsafe_type_manifest,
     type_variance = --[[ [] ]]0,
-    type_newtype_level = undefined,
+    type_newtype_level = nil,
     type_loc = none,
     type_attributes = --[[ [] ]]0
   };
@@ -6421,8 +6421,8 @@ function docstring(body, loc) do
 end end
 
 empty_docs = {
-  docs_pre = undefined,
-  docs_post = undefined
+  docs_pre = nil,
+  docs_post = nil
 };
 
 doc_loc = {
@@ -6433,7 +6433,7 @@ doc_loc = {
 function docs_attr(ds) do
   exp_pexp_desc = --[[ Pexp_constant ]]Block.__(1, {--[[ Const_string ]]Block.__(2, {
           ds.ds_body,
-          undefined
+          nil
         })});
   exp_pexp_loc = ds.ds_loc;
   exp = {
@@ -6461,12 +6461,12 @@ end end
 
 function add_docs_attrs(docs, attrs) do
   match = docs.docs_pre;
-  attrs_1 = match ~= undefined and --[[ :: ]]{
+  attrs_1 = match ~= nil and --[[ :: ]]{
       docs_attr(match),
       attrs
     } or attrs;
   match_1 = docs.docs_post;
-  if (match_1 ~= undefined) then do
+  if (match_1 ~= nil) then do
     return Pervasives.$at(attrs_1, --[[ :: ]]{
                 docs_attr(match_1),
                 --[[ [] ]]0
@@ -6477,7 +6477,7 @@ function add_docs_attrs(docs, attrs) do
 end end
 
 function add_info_attrs(info, attrs) do
-  if (info ~= undefined) then do
+  if (info ~= nil) then do
     return Pervasives.$at(attrs, --[[ :: ]]{
                 docs_attr(info),
                 --[[ [] ]]0
@@ -6495,7 +6495,7 @@ text_loc = {
 function text_attr(ds) do
   exp_pexp_desc = --[[ Pexp_constant ]]Block.__(1, {--[[ Const_string ]]Block.__(2, {
           ds.ds_body,
-          undefined
+          nil
         })});
   exp_pexp_loc = ds.ds_loc;
   exp = {
@@ -6585,7 +6585,7 @@ function associate_docstrings(dsl) do
               end end), dsl);
 end end
 
-pre_table = Hashtbl.create(undefined, 50);
+pre_table = Hashtbl.create(nil, 50);
 
 function set_pre_docstrings(pos, dsl) do
   if (dsl ~= --[[ [] ]]0) then do
@@ -6621,7 +6621,7 @@ function mark_pre_docs(pos) do
   end end)
 end end
 
-post_table = Hashtbl.create(undefined, 50);
+post_table = Hashtbl.create(nil, 50);
 
 function set_post_docstrings(pos, dsl) do
   if (dsl ~= --[[ [] ]]0) then do
@@ -6670,7 +6670,7 @@ function get_info(pos) do
   end end)
 end end
 
-floating_table = Hashtbl.create(undefined, 50);
+floating_table = Hashtbl.create(nil, 50);
 
 function set_floating_docstrings(pos, dsl) do
   if (dsl ~= --[[ [] ]]0) then do
@@ -6692,7 +6692,7 @@ function get_text(pos) do
   end end)
 end end
 
-pre_extra_table = Hashtbl.create(undefined, 50);
+pre_extra_table = Hashtbl.create(nil, 50);
 
 function set_pre_extra_docstrings(pos, dsl) do
   if (dsl ~= --[[ [] ]]0) then do
@@ -6714,7 +6714,7 @@ function get_pre_extra_text(pos) do
   end end)
 end end
 
-post_extra_table = Hashtbl.create(undefined, 50);
+post_extra_table = Hashtbl.create(nil, 50);
 
 function set_post_extra_docstrings(pos, dsl) do
   if (dsl ~= --[[ [] ]]0) then do
@@ -6785,8 +6785,8 @@ default_loc = {
 };
 
 function mk(locOpt, attrsOpt, d) do
-  loc = locOpt ~= undefined and locOpt or default_loc.contents;
-  attrs = attrsOpt ~= undefined and attrsOpt or --[[ [] ]]0;
+  loc = locOpt ~= nil and locOpt or default_loc.contents;
+  attrs = attrsOpt ~= nil and attrsOpt or --[[ [] ]]0;
   return {
           ptyp_desc = d,
           ptyp_loc = loc,
@@ -6881,12 +6881,12 @@ function force_poly(t) do
     return t;
   end
    end 
-  return poly(t.ptyp_loc, undefined, --[[ [] ]]0, t);
+  return poly(t.ptyp_loc, nil, --[[ [] ]]0, t);
 end end
 
 function mk_1(locOpt, attrsOpt, d) do
-  loc = locOpt ~= undefined and locOpt or default_loc.contents;
-  attrs = attrsOpt ~= undefined and attrsOpt or --[[ [] ]]0;
+  loc = locOpt ~= nil and locOpt or default_loc.contents;
+  attrs = attrsOpt ~= nil and attrsOpt or --[[ [] ]]0;
   return {
           ppat_desc = d,
           ppat_loc = loc,
@@ -6991,8 +6991,8 @@ function extension_1(loc, attrs, a) do
 end end
 
 function mk_2(locOpt, attrsOpt, d) do
-  loc = locOpt ~= undefined and locOpt or default_loc.contents;
-  attrs = attrsOpt ~= undefined and attrsOpt or --[[ [] ]]0;
+  loc = locOpt ~= nil and locOpt or default_loc.contents;
+  attrs = attrsOpt ~= nil and attrsOpt or --[[ [] ]]0;
   return {
           pexp_desc = d,
           pexp_loc = loc,
@@ -7233,8 +7233,8 @@ function __case(lhs, guard, rhs) do
 end end
 
 function mk_3(locOpt, attrsOpt, d) do
-  loc = locOpt ~= undefined and locOpt or default_loc.contents;
-  attrs = attrsOpt ~= undefined and attrsOpt or --[[ [] ]]0;
+  loc = locOpt ~= nil and locOpt or default_loc.contents;
+  attrs = attrsOpt ~= nil and attrsOpt or --[[ [] ]]0;
   return {
           pmty_desc = d,
           pmty_loc = loc,
@@ -7289,8 +7289,8 @@ function extension_3(loc, attrs, a) do
 end end
 
 function mk_4(locOpt, attrsOpt, d) do
-  loc = locOpt ~= undefined and locOpt or default_loc.contents;
-  attrs = attrsOpt ~= undefined and attrsOpt or --[[ [] ]]0;
+  loc = locOpt ~= nil and locOpt or default_loc.contents;
+  attrs = attrsOpt ~= nil and attrsOpt or --[[ [] ]]0;
   return {
           pmod_desc = d,
           pmod_loc = loc,
@@ -7348,7 +7348,7 @@ function extension_4(loc, attrs, a) do
 end end
 
 function mk_5(locOpt, d) do
-  loc = locOpt ~= undefined and locOpt or default_loc.contents;
+  loc = locOpt ~= nil and locOpt or default_loc.contents;
   return {
           psig_desc = d,
           psig_loc = loc
@@ -7356,7 +7356,7 @@ function mk_5(locOpt, d) do
 end end
 
 function extension_5(loc, attrsOpt, a) do
-  attrs = attrsOpt ~= undefined and attrsOpt or --[[ [] ]]0;
+  attrs = attrsOpt ~= nil and attrsOpt or --[[ [] ]]0;
   return mk_5(loc, --[[ Psig_extension ]]Block.__(12, {
                 a,
                 attrs
@@ -7372,7 +7372,7 @@ function text(txt) do
 end end
 
 function mk_6(locOpt, d) do
-  loc = locOpt ~= undefined and locOpt or default_loc.contents;
+  loc = locOpt ~= nil and locOpt or default_loc.contents;
   return {
           pstr_desc = d,
           pstr_loc = loc
@@ -7380,7 +7380,7 @@ function mk_6(locOpt, d) do
 end end
 
 function __eval(loc, attrsOpt, a) do
-  attrs = attrsOpt ~= undefined and attrsOpt or --[[ [] ]]0;
+  attrs = attrsOpt ~= nil and attrsOpt or --[[ [] ]]0;
   return mk_6(loc, --[[ Pstr_eval ]]Block.__(0, {
                 a,
                 attrs
@@ -7395,7 +7395,7 @@ function value(loc, a, b) do
 end end
 
 function extension_6(loc, attrsOpt, a) do
-  attrs = attrsOpt ~= undefined and attrsOpt or --[[ [] ]]0;
+  attrs = attrsOpt ~= nil and attrsOpt or --[[ [] ]]0;
   return mk_6(loc, --[[ Pstr_extension ]]Block.__(14, {
                 a,
                 attrs
@@ -7411,8 +7411,8 @@ function text_1(txt) do
 end end
 
 function mk_7(locOpt, attrsOpt, d) do
-  loc = locOpt ~= undefined and locOpt or default_loc.contents;
-  attrs = attrsOpt ~= undefined and attrsOpt or --[[ [] ]]0;
+  loc = locOpt ~= nil and locOpt or default_loc.contents;
+  attrs = attrsOpt ~= nil and attrsOpt or --[[ [] ]]0;
   return {
           pcl_desc = d,
           pcl_loc = loc,
@@ -7478,8 +7478,8 @@ function extension_7(loc, attrs, a) do
 end end
 
 function mk_8(locOpt, attrsOpt, d) do
-  loc = locOpt ~= undefined and locOpt or default_loc.contents;
-  attrs = attrsOpt ~= undefined and attrsOpt or --[[ [] ]]0;
+  loc = locOpt ~= nil and locOpt or default_loc.contents;
+  attrs = attrsOpt ~= nil and attrsOpt or --[[ [] ]]0;
   return {
           pcty_desc = d,
           pcty_loc = loc,
@@ -7522,9 +7522,9 @@ function extension_8(loc, attrs, a) do
 end end
 
 function mk_9(locOpt, attrsOpt, docsOpt, d) do
-  loc = locOpt ~= undefined and locOpt or default_loc.contents;
-  attrs = attrsOpt ~= undefined and attrsOpt or --[[ [] ]]0;
-  docs = docsOpt ~= undefined and docsOpt or empty_docs;
+  loc = locOpt ~= nil and locOpt or default_loc.contents;
+  attrs = attrsOpt ~= nil and attrsOpt or --[[ [] ]]0;
+  docs = docsOpt ~= nil and docsOpt or empty_docs;
   return {
           pctf_desc = d,
           pctf_loc = loc,
@@ -7533,11 +7533,11 @@ function mk_9(locOpt, attrsOpt, docsOpt, d) do
 end end
 
 function inherit_(loc, attrs, a) do
-  return mk_9(loc, attrs, undefined, --[[ Pctf_inherit ]]Block.__(0, {a}));
+  return mk_9(loc, attrs, nil, --[[ Pctf_inherit ]]Block.__(0, {a}));
 end end
 
 function val_(loc, attrs, a, b, c, d) do
-  return mk_9(loc, attrs, undefined, --[[ Pctf_val ]]Block.__(1, {--[[ tuple ]]{
+  return mk_9(loc, attrs, nil, --[[ Pctf_val ]]Block.__(1, {--[[ tuple ]]{
                   a,
                   b,
                   c,
@@ -7546,7 +7546,7 @@ function val_(loc, attrs, a, b, c, d) do
 end end
 
 function method_(loc, attrs, a, b, c, d) do
-  return mk_9(loc, attrs, undefined, --[[ Pctf_method ]]Block.__(2, {--[[ tuple ]]{
+  return mk_9(loc, attrs, nil, --[[ Pctf_method ]]Block.__(2, {--[[ tuple ]]{
                   a,
                   b,
                   c,
@@ -7555,18 +7555,18 @@ function method_(loc, attrs, a, b, c, d) do
 end end
 
 function constraint__4(loc, attrs, a, b) do
-  return mk_9(loc, attrs, undefined, --[[ Pctf_constraint ]]Block.__(3, {--[[ tuple ]]{
+  return mk_9(loc, attrs, nil, --[[ Pctf_constraint ]]Block.__(3, {--[[ tuple ]]{
                   a,
                   b
                 }}));
 end end
 
 function extension_9(loc, attrs, a) do
-  return mk_9(loc, attrs, undefined, --[[ Pctf_extension ]]Block.__(5, {a}));
+  return mk_9(loc, attrs, nil, --[[ Pctf_extension ]]Block.__(5, {a}));
 end end
 
 function attribute(loc, a) do
-  return mk_9(loc, undefined, undefined, --[[ Pctf_attribute ]]Block.__(4, {a}));
+  return mk_9(loc, nil, nil, --[[ Pctf_attribute ]]Block.__(4, {a}));
 end end
 
 function text_2(txt) do
@@ -7587,9 +7587,9 @@ function attr_7(d, a) do
 end end
 
 function mk_10(locOpt, attrsOpt, docsOpt, d) do
-  loc = locOpt ~= undefined and locOpt or default_loc.contents;
-  attrs = attrsOpt ~= undefined and attrsOpt or --[[ [] ]]0;
-  docs = docsOpt ~= undefined and docsOpt or empty_docs;
+  loc = locOpt ~= nil and locOpt or default_loc.contents;
+  attrs = attrsOpt ~= nil and attrsOpt or --[[ [] ]]0;
+  docs = docsOpt ~= nil and docsOpt or empty_docs;
   return {
           pcf_desc = d,
           pcf_loc = loc,
@@ -7598,7 +7598,7 @@ function mk_10(locOpt, attrsOpt, docsOpt, d) do
 end end
 
 function inherit__1(loc, attrs, a, b, c) do
-  return mk_10(loc, attrs, undefined, --[[ Pcf_inherit ]]Block.__(0, {
+  return mk_10(loc, attrs, nil, --[[ Pcf_inherit ]]Block.__(0, {
                 a,
                 b,
                 c
@@ -7606,7 +7606,7 @@ function inherit__1(loc, attrs, a, b, c) do
 end end
 
 function val__1(loc, attrs, a, b, c) do
-  return mk_10(loc, attrs, undefined, --[[ Pcf_val ]]Block.__(1, {--[[ tuple ]]{
+  return mk_10(loc, attrs, nil, --[[ Pcf_val ]]Block.__(1, {--[[ tuple ]]{
                   a,
                   b,
                   c
@@ -7614,7 +7614,7 @@ function val__1(loc, attrs, a, b, c) do
 end end
 
 function method__1(loc, attrs, a, b, c) do
-  return mk_10(loc, attrs, undefined, --[[ Pcf_method ]]Block.__(2, {--[[ tuple ]]{
+  return mk_10(loc, attrs, nil, --[[ Pcf_method ]]Block.__(2, {--[[ tuple ]]{
                   a,
                   b,
                   c
@@ -7622,22 +7622,22 @@ function method__1(loc, attrs, a, b, c) do
 end end
 
 function constraint__5(loc, attrs, a, b) do
-  return mk_10(loc, attrs, undefined, --[[ Pcf_constraint ]]Block.__(3, {--[[ tuple ]]{
+  return mk_10(loc, attrs, nil, --[[ Pcf_constraint ]]Block.__(3, {--[[ tuple ]]{
                   a,
                   b
                 }}));
 end end
 
 function initializer_(loc, attrs, a) do
-  return mk_10(loc, attrs, undefined, --[[ Pcf_initializer ]]Block.__(4, {a}));
+  return mk_10(loc, attrs, nil, --[[ Pcf_initializer ]]Block.__(4, {a}));
 end end
 
 function extension_10(loc, attrs, a) do
-  return mk_10(loc, attrs, undefined, --[[ Pcf_extension ]]Block.__(6, {a}));
+  return mk_10(loc, attrs, nil, --[[ Pcf_extension ]]Block.__(6, {a}));
 end end
 
 function attribute_1(loc, a) do
-  return mk_10(loc, undefined, undefined, --[[ Pcf_attribute ]]Block.__(5, {a}));
+  return mk_10(loc, nil, nil, --[[ Pcf_attribute ]]Block.__(5, {a}));
 end end
 
 function text_3(txt) do
@@ -7669,10 +7669,10 @@ function attr_8(d, a) do
 end end
 
 function mk_11(locOpt, attrsOpt, docsOpt, primOpt, name, typ) do
-  loc = locOpt ~= undefined and locOpt or default_loc.contents;
-  attrs = attrsOpt ~= undefined and attrsOpt or --[[ [] ]]0;
-  docs = docsOpt ~= undefined and docsOpt or empty_docs;
-  prim = primOpt ~= undefined and primOpt or --[[ [] ]]0;
+  loc = locOpt ~= nil and locOpt or default_loc.contents;
+  attrs = attrsOpt ~= nil and attrsOpt or --[[ [] ]]0;
+  docs = docsOpt ~= nil and docsOpt or empty_docs;
+  prim = primOpt ~= nil and primOpt or --[[ [] ]]0;
   return {
           pval_name = name,
           pval_type = typ,
@@ -7683,10 +7683,10 @@ function mk_11(locOpt, attrsOpt, docsOpt, primOpt, name, typ) do
 end end
 
 function mk_12(locOpt, attrsOpt, docsOpt, textOpt, name, typ) do
-  loc = locOpt ~= undefined and locOpt or default_loc.contents;
-  attrs = attrsOpt ~= undefined and attrsOpt or --[[ [] ]]0;
-  docs = docsOpt ~= undefined and docsOpt or empty_docs;
-  text = textOpt ~= undefined and textOpt or --[[ [] ]]0;
+  loc = locOpt ~= nil and locOpt or default_loc.contents;
+  attrs = attrsOpt ~= nil and attrsOpt or --[[ [] ]]0;
+  docs = docsOpt ~= nil and docsOpt or empty_docs;
+  text = textOpt ~= nil and textOpt or --[[ [] ]]0;
   return {
           pmd_name = name,
           pmd_type = typ,
@@ -7696,10 +7696,10 @@ function mk_12(locOpt, attrsOpt, docsOpt, textOpt, name, typ) do
 end end
 
 function mk_13(locOpt, attrsOpt, docsOpt, textOpt, typ, name) do
-  loc = locOpt ~= undefined and locOpt or default_loc.contents;
-  attrs = attrsOpt ~= undefined and attrsOpt or --[[ [] ]]0;
-  docs = docsOpt ~= undefined and docsOpt or empty_docs;
-  text = textOpt ~= undefined and textOpt or --[[ [] ]]0;
+  loc = locOpt ~= nil and locOpt or default_loc.contents;
+  attrs = attrsOpt ~= nil and attrsOpt or --[[ [] ]]0;
+  docs = docsOpt ~= nil and docsOpt or empty_docs;
+  text = textOpt ~= nil and textOpt or --[[ [] ]]0;
   return {
           pmtd_name = name,
           pmtd_type = typ,
@@ -7709,10 +7709,10 @@ function mk_13(locOpt, attrsOpt, docsOpt, textOpt, typ, name) do
 end end
 
 function mk_14(locOpt, attrsOpt, docsOpt, textOpt, name, expr) do
-  loc = locOpt ~= undefined and locOpt or default_loc.contents;
-  attrs = attrsOpt ~= undefined and attrsOpt or --[[ [] ]]0;
-  docs = docsOpt ~= undefined and docsOpt or empty_docs;
-  text = textOpt ~= undefined and textOpt or --[[ [] ]]0;
+  loc = locOpt ~= nil and locOpt or default_loc.contents;
+  attrs = attrsOpt ~= nil and attrsOpt or --[[ [] ]]0;
+  docs = docsOpt ~= nil and docsOpt or empty_docs;
+  text = textOpt ~= nil and textOpt or --[[ [] ]]0;
   return {
           pmb_name = name,
           pmb_expr = expr,
@@ -7722,10 +7722,10 @@ function mk_14(locOpt, attrsOpt, docsOpt, textOpt, name, expr) do
 end end
 
 function mk_15(locOpt, attrsOpt, docsOpt, overrideOpt, lid) do
-  loc = locOpt ~= undefined and locOpt or default_loc.contents;
-  attrs = attrsOpt ~= undefined and attrsOpt or --[[ [] ]]0;
-  docs = docsOpt ~= undefined and docsOpt or empty_docs;
-  override = overrideOpt ~= undefined and overrideOpt or --[[ Fresh ]]1;
+  loc = locOpt ~= nil and locOpt or default_loc.contents;
+  attrs = attrsOpt ~= nil and attrsOpt or --[[ [] ]]0;
+  docs = docsOpt ~= nil and docsOpt or empty_docs;
+  override = overrideOpt ~= nil and overrideOpt or --[[ Fresh ]]1;
   return {
           popen_lid = lid,
           popen_override = override,
@@ -7735,9 +7735,9 @@ function mk_15(locOpt, attrsOpt, docsOpt, overrideOpt, lid) do
 end end
 
 function mk_16(locOpt, attrsOpt, docsOpt, mexpr) do
-  loc = locOpt ~= undefined and locOpt or default_loc.contents;
-  attrs = attrsOpt ~= undefined and attrsOpt or --[[ [] ]]0;
-  docs = docsOpt ~= undefined and docsOpt or empty_docs;
+  loc = locOpt ~= nil and locOpt or default_loc.contents;
+  attrs = attrsOpt ~= nil and attrsOpt or --[[ [] ]]0;
+  docs = docsOpt ~= nil and docsOpt or empty_docs;
   return {
           pincl_mod = mexpr,
           pincl_loc = loc,
@@ -7746,10 +7746,10 @@ function mk_16(locOpt, attrsOpt, docsOpt, mexpr) do
 end end
 
 function mk_17(locOpt, attrsOpt, docsOpt, textOpt, pat, expr) do
-  loc = locOpt ~= undefined and locOpt or default_loc.contents;
-  attrs = attrsOpt ~= undefined and attrsOpt or --[[ [] ]]0;
-  docs = docsOpt ~= undefined and docsOpt or empty_docs;
-  text = textOpt ~= undefined and textOpt or --[[ [] ]]0;
+  loc = locOpt ~= nil and locOpt or default_loc.contents;
+  attrs = attrsOpt ~= nil and attrsOpt or --[[ [] ]]0;
+  docs = docsOpt ~= nil and docsOpt or empty_docs;
+  text = textOpt ~= nil and textOpt or --[[ [] ]]0;
   return {
           pvb_pat = pat,
           pvb_expr = expr,
@@ -7759,12 +7759,12 @@ function mk_17(locOpt, attrsOpt, docsOpt, textOpt, pat, expr) do
 end end
 
 function mk_18(locOpt, attrsOpt, docsOpt, textOpt, virtOpt, paramsOpt, name, expr) do
-  loc = locOpt ~= undefined and locOpt or default_loc.contents;
-  attrs = attrsOpt ~= undefined and attrsOpt or --[[ [] ]]0;
-  docs = docsOpt ~= undefined and docsOpt or empty_docs;
-  text = textOpt ~= undefined and textOpt or --[[ [] ]]0;
-  virt = virtOpt ~= undefined and virtOpt or --[[ Concrete ]]1;
-  params = paramsOpt ~= undefined and paramsOpt or --[[ [] ]]0;
+  loc = locOpt ~= nil and locOpt or default_loc.contents;
+  attrs = attrsOpt ~= nil and attrsOpt or --[[ [] ]]0;
+  docs = docsOpt ~= nil and docsOpt or empty_docs;
+  text = textOpt ~= nil and textOpt or --[[ [] ]]0;
+  virt = virtOpt ~= nil and virtOpt or --[[ Concrete ]]1;
+  params = paramsOpt ~= nil and paramsOpt or --[[ [] ]]0;
   return {
           pci_virt = virt,
           pci_params = params,
@@ -7776,14 +7776,14 @@ function mk_18(locOpt, attrsOpt, docsOpt, textOpt, virtOpt, paramsOpt, name, exp
 end end
 
 function mk_19(locOpt, attrsOpt, docsOpt, textOpt, paramsOpt, cstrsOpt, kindOpt, privOpt, manifest, name) do
-  loc = locOpt ~= undefined and locOpt or default_loc.contents;
-  attrs = attrsOpt ~= undefined and attrsOpt or --[[ [] ]]0;
-  docs = docsOpt ~= undefined and docsOpt or empty_docs;
-  text = textOpt ~= undefined and textOpt or --[[ [] ]]0;
-  params = paramsOpt ~= undefined and paramsOpt or --[[ [] ]]0;
-  cstrs = cstrsOpt ~= undefined and cstrsOpt or --[[ [] ]]0;
-  kind = kindOpt ~= undefined and kindOpt or --[[ Ptype_abstract ]]0;
-  priv = privOpt ~= undefined and privOpt or --[[ Public ]]1;
+  loc = locOpt ~= nil and locOpt or default_loc.contents;
+  attrs = attrsOpt ~= nil and attrsOpt or --[[ [] ]]0;
+  docs = docsOpt ~= nil and docsOpt or empty_docs;
+  text = textOpt ~= nil and textOpt or --[[ [] ]]0;
+  params = paramsOpt ~= nil and paramsOpt or --[[ [] ]]0;
+  cstrs = cstrsOpt ~= nil and cstrsOpt or --[[ [] ]]0;
+  kind = kindOpt ~= nil and kindOpt or --[[ Ptype_abstract ]]0;
+  priv = privOpt ~= nil and privOpt or --[[ Public ]]1;
   return {
           ptype_name = name,
           ptype_params = params,
@@ -7797,10 +7797,10 @@ function mk_19(locOpt, attrsOpt, docsOpt, textOpt, paramsOpt, cstrsOpt, kindOpt,
 end end
 
 function constructor(locOpt, attrsOpt, infoOpt, argsOpt, res, name) do
-  loc = locOpt ~= undefined and locOpt or default_loc.contents;
-  attrs = attrsOpt ~= undefined and attrsOpt or --[[ [] ]]0;
-  info = infoOpt ~= undefined and Caml_option.valFromOption(infoOpt) or undefined;
-  args = argsOpt ~= undefined and argsOpt or --[[ [] ]]0;
+  loc = locOpt ~= nil and locOpt or default_loc.contents;
+  attrs = attrsOpt ~= nil and attrsOpt or --[[ [] ]]0;
+  info = infoOpt ~= nil and Caml_option.valFromOption(infoOpt) or nil;
+  args = argsOpt ~= nil and argsOpt or --[[ [] ]]0;
   return {
           pcd_name = name,
           pcd_args = args,
@@ -7811,10 +7811,10 @@ function constructor(locOpt, attrsOpt, infoOpt, argsOpt, res, name) do
 end end
 
 function field_1(locOpt, attrsOpt, infoOpt, mutOpt, name, typ) do
-  loc = locOpt ~= undefined and locOpt or default_loc.contents;
-  attrs = attrsOpt ~= undefined and attrsOpt or --[[ [] ]]0;
-  info = infoOpt ~= undefined and Caml_option.valFromOption(infoOpt) or undefined;
-  mut = mutOpt ~= undefined and mutOpt or --[[ Immutable ]]0;
+  loc = locOpt ~= nil and locOpt or default_loc.contents;
+  attrs = attrsOpt ~= nil and attrsOpt or --[[ [] ]]0;
+  info = infoOpt ~= nil and Caml_option.valFromOption(infoOpt) or nil;
+  mut = mutOpt ~= nil and mutOpt or --[[ Immutable ]]0;
   return {
           pld_name = name,
           pld_mutable = mut,
@@ -7825,10 +7825,10 @@ function field_1(locOpt, attrsOpt, infoOpt, mutOpt, name, typ) do
 end end
 
 function mk_20(attrsOpt, docsOpt, paramsOpt, privOpt, path, constructors) do
-  attrs = attrsOpt ~= undefined and attrsOpt or --[[ [] ]]0;
-  docs = docsOpt ~= undefined and docsOpt or empty_docs;
-  params = paramsOpt ~= undefined and paramsOpt or --[[ [] ]]0;
-  priv = privOpt ~= undefined and privOpt or --[[ Public ]]1;
+  attrs = attrsOpt ~= nil and attrsOpt or --[[ [] ]]0;
+  docs = docsOpt ~= nil and docsOpt or empty_docs;
+  params = paramsOpt ~= nil and paramsOpt or --[[ [] ]]0;
+  priv = privOpt ~= nil and privOpt or --[[ Public ]]1;
   return {
           ptyext_path = path,
           ptyext_params = params,
@@ -7839,10 +7839,10 @@ function mk_20(attrsOpt, docsOpt, paramsOpt, privOpt, path, constructors) do
 end end
 
 function constructor_1(locOpt, attrsOpt, docsOpt, infoOpt, name, kind) do
-  loc = locOpt ~= undefined and locOpt or default_loc.contents;
-  attrs = attrsOpt ~= undefined and attrsOpt or --[[ [] ]]0;
-  docs = docsOpt ~= undefined and docsOpt or empty_docs;
-  info = infoOpt ~= undefined and Caml_option.valFromOption(infoOpt) or undefined;
+  loc = locOpt ~= nil and locOpt or default_loc.contents;
+  attrs = attrsOpt ~= nil and attrsOpt or --[[ [] ]]0;
+  docs = docsOpt ~= nil and docsOpt or empty_docs;
+  info = infoOpt ~= nil and Caml_option.valFromOption(infoOpt) or nil;
   return {
           pext_name = name,
           pext_kind = kind,
@@ -7852,11 +7852,11 @@ function constructor_1(locOpt, attrsOpt, docsOpt, infoOpt, name, kind) do
 end end
 
 function decl(locOpt, attrsOpt, docsOpt, infoOpt, argsOpt, res, name) do
-  loc = locOpt ~= undefined and locOpt or default_loc.contents;
-  attrs = attrsOpt ~= undefined and attrsOpt or --[[ [] ]]0;
-  docs = docsOpt ~= undefined and docsOpt or empty_docs;
-  info = infoOpt ~= undefined and Caml_option.valFromOption(infoOpt) or undefined;
-  args = argsOpt ~= undefined and argsOpt or --[[ [] ]]0;
+  loc = locOpt ~= nil and locOpt or default_loc.contents;
+  attrs = attrsOpt ~= nil and attrsOpt or --[[ [] ]]0;
+  docs = docsOpt ~= nil and docsOpt or empty_docs;
+  info = infoOpt ~= nil and Caml_option.valFromOption(infoOpt) or nil;
+  args = argsOpt ~= nil and argsOpt or --[[ [] ]]0;
   return {
           pext_name = name,
           pext_kind = --[[ Pext_decl ]]Block.__(0, {
@@ -7869,10 +7869,10 @@ function decl(locOpt, attrsOpt, docsOpt, infoOpt, argsOpt, res, name) do
 end end
 
 function rebind(locOpt, attrsOpt, docsOpt, infoOpt, name, lid) do
-  loc = locOpt ~= undefined and locOpt or default_loc.contents;
-  attrs = attrsOpt ~= undefined and attrsOpt or --[[ [] ]]0;
-  docs = docsOpt ~= undefined and docsOpt or empty_docs;
-  info = infoOpt ~= undefined and Caml_option.valFromOption(infoOpt) or undefined;
+  loc = locOpt ~= nil and locOpt or default_loc.contents;
+  attrs = attrsOpt ~= nil and attrsOpt or --[[ [] ]]0;
+  docs = docsOpt ~= nil and docsOpt or empty_docs;
+  info = infoOpt ~= nil and Caml_option.valFromOption(infoOpt) or nil;
   return {
           pext_name = name,
           pext_kind = --[[ Pext_rebind ]]Block.__(1, {lid}),
@@ -7970,7 +7970,7 @@ function map_tuple(f1, f2, param) do
 end end
 
 function map_opt(f, param) do
-  if (param ~= undefined) then do
+  if (param ~= nil) then do
     return Caml_option.some(Curry._1(f, Caml_option.valFromOption(param)));
   end
    end 
@@ -8050,7 +8050,7 @@ function map_type_declaration(sub, param) do
   partial_arg_1 = Curry._1(sub.location, sub);
   partial_arg_2 = Curry._1(sub.typ, sub);
   partial_arg_3 = Curry._1(sub.typ, sub);
-  return mk_19(Curry._2(sub.location, sub, param.ptype_loc), Curry._2(sub.attributes, sub, param.ptype_attributes), undefined, undefined, List.map((function(param) do
+  return mk_19(Curry._2(sub.location, sub, param.ptype_loc), Curry._2(sub.attributes, sub, param.ptype_attributes), nil, nil, List.map((function(param) do
                     return map_fst(partial_arg, param);
                   end end), param.ptype_params), List.map((function(param) do
                     f1 = partial_arg_3;
@@ -8081,7 +8081,7 @@ end end
 
 function map_type_extension(sub, param) do
   partial_arg = Curry._1(sub.typ, sub);
-  return mk_20(Curry._2(sub.attributes, sub, param.ptyext_attributes), undefined, List.map((function(param) do
+  return mk_20(Curry._2(sub.attributes, sub, param.ptyext_attributes), nil, List.map((function(param) do
                     return map_fst(partial_arg, param);
                   end end), param.ptyext_params), param.ptyext_private, map_loc(sub, param.ptyext_path), List.map(Curry._1(sub.extension_constructor, sub), param.ptyext_constructors));
 end end
@@ -8098,7 +8098,7 @@ function map_extension_constructor_kind(sub, param) do
 end end
 
 function map_extension_constructor(sub, param) do
-  return constructor_1(Curry._2(sub.location, sub, param.pext_loc), Curry._2(sub.attributes, sub, param.pext_attributes), undefined, undefined, map_loc(sub, param.pext_name), map_extension_constructor_kind(sub, param.pext_kind));
+  return constructor_1(Curry._2(sub.location, sub, param.pext_loc), Curry._2(sub.attributes, sub, param.pext_attributes), nil, nil, map_loc(sub, param.pext_name), map_extension_constructor_kind(sub, param.pext_kind));
 end end
 
 function map_2(sub, param) do
@@ -8537,7 +8537,7 @@ end end
 
 function class_infos(sub, f, param) do
   partial_arg = Curry._1(sub.typ, sub);
-  return mk_18(Curry._2(sub.location, sub, param.pci_loc), Curry._2(sub.attributes, sub, param.pci_attributes), undefined, undefined, param.pci_virt, List.map((function(param) do
+  return mk_18(Curry._2(sub.location, sub, param.pci_loc), Curry._2(sub.attributes, sub, param.pci_attributes), nil, nil, param.pci_virt, List.map((function(param) do
                     return map_fst(partial_arg, param);
                   end end), param.pci_params), map_loc(sub, param.pci_name), Curry._1(f, param.pci_expr));
 end end
@@ -8587,7 +8587,7 @@ function default_mapper_class_type_declaration(__this) do
 end end
 
 function default_mapper_constructor_declaration(__this, param) do
-  return constructor(Curry._2(__this.location, __this, param.pcd_loc), Curry._2(__this.attributes, __this, param.pcd_attributes), undefined, List.map(Curry._1(__this.typ, __this), param.pcd_args), map_opt(Curry._1(__this.typ, __this), param.pcd_res), map_loc(__this, param.pcd_name));
+  return constructor(Curry._2(__this.location, __this, param.pcd_loc), Curry._2(__this.attributes, __this, param.pcd_attributes), nil, List.map(Curry._1(__this.typ, __this), param.pcd_args), map_opt(Curry._1(__this.typ, __this), param.pcd_res), map_loc(__this, param.pcd_name));
 end end
 
 function default_mapper_extension(__this, param) do
@@ -8598,15 +8598,15 @@ function default_mapper_extension(__this, param) do
 end end
 
 function default_mapper_include_declaration(__this, param) do
-  return mk_16(Curry._2(__this.location, __this, param.pincl_loc), Curry._2(__this.attributes, __this, param.pincl_attributes), undefined, Curry._2(__this.module_expr, __this, param.pincl_mod));
+  return mk_16(Curry._2(__this.location, __this, param.pincl_loc), Curry._2(__this.attributes, __this, param.pincl_attributes), nil, Curry._2(__this.module_expr, __this, param.pincl_mod));
 end end
 
 function default_mapper_include_description(__this, param) do
-  return mk_16(Curry._2(__this.location, __this, param.pincl_loc), Curry._2(__this.attributes, __this, param.pincl_attributes), undefined, Curry._2(__this.module_type, __this, param.pincl_mod));
+  return mk_16(Curry._2(__this.location, __this, param.pincl_loc), Curry._2(__this.attributes, __this, param.pincl_attributes), nil, Curry._2(__this.module_type, __this, param.pincl_mod));
 end end
 
 function default_mapper_label_declaration(__this, param) do
-  return field_1(Curry._2(__this.location, __this, param.pld_loc), Curry._2(__this.attributes, __this, param.pld_attributes), undefined, param.pld_mutable, map_loc(__this, param.pld_name), Curry._2(__this.typ, __this, param.pld_type));
+  return field_1(Curry._2(__this.location, __this, param.pld_loc), Curry._2(__this.attributes, __this, param.pld_attributes), nil, param.pld_mutable, map_loc(__this, param.pld_name), Curry._2(__this.typ, __this, param.pld_type));
 end end
 
 function default_mapper_location(__this, l) do
@@ -8614,19 +8614,19 @@ function default_mapper_location(__this, l) do
 end end
 
 function default_mapper_module_binding(__this, param) do
-  return mk_14(Curry._2(__this.location, __this, param.pmb_loc), Curry._2(__this.attributes, __this, param.pmb_attributes), undefined, undefined, map_loc(__this, param.pmb_name), Curry._2(__this.module_expr, __this, param.pmb_expr));
+  return mk_14(Curry._2(__this.location, __this, param.pmb_loc), Curry._2(__this.attributes, __this, param.pmb_attributes), nil, nil, map_loc(__this, param.pmb_name), Curry._2(__this.module_expr, __this, param.pmb_expr));
 end end
 
 function default_mapper_module_declaration(__this, param) do
-  return mk_12(Curry._2(__this.location, __this, param.pmd_loc), Curry._2(__this.attributes, __this, param.pmd_attributes), undefined, undefined, map_loc(__this, param.pmd_name), Curry._2(__this.module_type, __this, param.pmd_type));
+  return mk_12(Curry._2(__this.location, __this, param.pmd_loc), Curry._2(__this.attributes, __this, param.pmd_attributes), nil, nil, map_loc(__this, param.pmd_name), Curry._2(__this.module_type, __this, param.pmd_type));
 end end
 
 function default_mapper_module_type_declaration(__this, param) do
-  return mk_13(Curry._2(__this.location, __this, param.pmtd_loc), Curry._2(__this.attributes, __this, param.pmtd_attributes), undefined, undefined, map_opt(Curry._1(__this.module_type, __this), param.pmtd_type), map_loc(__this, param.pmtd_name));
+  return mk_13(Curry._2(__this.location, __this, param.pmtd_loc), Curry._2(__this.attributes, __this, param.pmtd_attributes), nil, nil, map_opt(Curry._1(__this.module_type, __this), param.pmtd_type), map_loc(__this, param.pmtd_name));
 end end
 
 function default_mapper_open_description(__this, param) do
-  return mk_15(Curry._2(__this.location, __this, param.popen_loc), Curry._2(__this.attributes, __this, param.popen_attributes), undefined, param.popen_override, map_loc(__this, param.popen_lid));
+  return mk_15(Curry._2(__this.location, __this, param.popen_loc), Curry._2(__this.attributes, __this, param.popen_attributes), nil, param.popen_override, map_loc(__this, param.popen_lid));
 end end
 
 function default_mapper_payload(__this, param) do
@@ -8654,11 +8654,11 @@ function default_mapper_structure(__this, l) do
 end end
 
 function default_mapper_value_binding(__this, param) do
-  return mk_17(Curry._2(__this.location, __this, param.pvb_loc), Curry._2(__this.attributes, __this, param.pvb_attributes), undefined, undefined, Curry._2(__this.pat, __this, param.pvb_pat), Curry._2(__this.expr, __this, param.pvb_expr));
+  return mk_17(Curry._2(__this.location, __this, param.pvb_loc), Curry._2(__this.attributes, __this, param.pvb_attributes), nil, nil, Curry._2(__this.pat, __this, param.pvb_pat), Curry._2(__this.expr, __this, param.pvb_expr));
 end end
 
 function default_mapper_value_description(__this, param) do
-  return mk_11(Curry._2(__this.location, __this, param.pval_loc), Curry._2(__this.attributes, __this, param.pval_attributes), undefined, param.pval_prim, map_loc(__this, param.pval_name), Curry._2(__this.typ, __this, param.pval_type));
+  return mk_11(Curry._2(__this.location, __this, param.pval_loc), Curry._2(__this.attributes, __this, param.pval_attributes), nil, param.pval_prim, map_loc(__this, param.pval_name), Curry._2(__this.typ, __this, param.pval_type));
 end end
 
 default_mapper = {
@@ -9065,16 +9065,16 @@ function norm(d) do
     local ___conditional___=(d.tag | 0);
     do
        if ___conditional___ == 0--[[ Tvar ]] then do
-          if (d[0] ~= undefined) then do
+          if (d[0] ~= nil) then do
             return d;
           end else do
-            return --[[ Tvar ]]Block.__(0, {undefined});
+            return --[[ Tvar ]]Block.__(0, {nil});
           end end  end end 
        if ___conditional___ == 9--[[ Tunivar ]] then do
-          if (d[0] ~= undefined) then do
+          if (d[0] ~= nil) then do
             return d;
           end else do
-            return --[[ Tunivar ]]Block.__(9, {undefined});
+            return --[[ Tunivar ]]Block.__(9, {nil});
           end end  end end 
       return d;
         
@@ -9106,7 +9106,7 @@ function typexp(s, ty) do
      if ___conditional___ == 1 then do
         desc_1 = ty_1.desc;
         save_desc(ty_1, desc_1);
-        ty$prime = s.for_saving and newpersty(--[[ Tvar ]]Block.__(0, {undefined})) or newty2(100000000, --[[ Tvar ]]Block.__(0, {undefined}));
+        ty$prime = s.for_saving and newpersty(--[[ Tvar ]]Block.__(0, {nil})) or newty2(100000000, --[[ Tvar ]]Block.__(0, {nil}));
         ty_1.desc = --[[ Tsubst ]]Block.__(7, {ty$prime});
         tmp;
         exit_1 = 0;
@@ -9128,7 +9128,7 @@ function typexp(s, ty) do
              if ___conditional___ == 4--[[ Tobject ]] then do
                 match = desc_1[1].contents;
                 tmp_1;
-                if (match ~= undefined) then do
+                if (match ~= nil) then do
                   match_1 = match;
                   tmp_1 = --[[ tuple ]]{
                     type_path(s, match_1[0]),
@@ -9137,7 +9137,7 @@ function typexp(s, ty) do
                           end end), match_1[1])
                   };
                 end else do
-                  tmp_1 = undefined;
+                  tmp_1 = nil;
                 end end 
                 tmp = --[[ Tobject ]]Block.__(4, {
                     typexp(s, desc_1[0]),
@@ -9252,7 +9252,7 @@ function typexp(s, ty) do
                           return typexp(s, param);
                         end end), true, row, not dup, more$prime);
                   match_8 = row_1.row_name;
-                  if (match_8 ~= undefined) then do
+                  if (match_8 ~= nil) then do
                     match_9 = match_8;
                     tmp = --[[ Tvariant ]]Block.__(8, {{
                           row_fields = row_1.row_fields,
@@ -9284,7 +9284,7 @@ function typexp(s, ty) do
           end
         end end 
         if (exit_1 == 3) then do
-          tmp = copy_type_desc(undefined, (function(param) do
+          tmp = copy_type_desc(nil, (function(param) do
                   return typexp(s, param);
                 end end), desc_1);
         end
@@ -9347,7 +9347,7 @@ function type_declaration(s, decl) do
         end end), decl.type_params);
   decl_type_arity = decl.type_arity;
   decl_type_private = decl.type_private;
-  decl_type_manifest = match_1 ~= undefined and typexp(s, match_1) or undefined;
+  decl_type_manifest = match_1 ~= nil and typexp(s, match_1) or nil;
   decl_type_variance = decl.type_variance;
   decl_type_loc = loc(s, decl.type_loc);
   decl_type_attributes = attrs(s, decl.type_attributes);
@@ -9358,7 +9358,7 @@ function type_declaration(s, decl) do
     type_private = decl_type_private,
     type_manifest = decl_type_manifest,
     type_variance = decl_type_variance,
-    type_newtype_level = undefined,
+    type_newtype_level = nil,
     type_loc = decl_type_loc,
     type_attributes = decl_type_attributes
   };
@@ -9419,7 +9419,7 @@ function class_declaration(s, decl) do
           end end), decl.cty_params),
     cty_type = class_type(s, decl.cty_type),
     cty_path = type_path(s, decl.cty_path),
-    cty_new = match ~= undefined and typexp(s, match) or undefined,
+    cty_new = match ~= nil and typexp(s, match) or nil,
     cty_variance = decl.cty_variance,
     cty_loc = loc(s, decl.cty_loc),
     cty_attributes = attrs(s, decl.cty_attributes)
@@ -9681,9 +9681,9 @@ add_delayed_check_forward = {
     end end)
 };
 
-value_declarations = Hashtbl.create(undefined, 16);
+value_declarations = Hashtbl.create(nil, 16);
 
-type_declarations = Hashtbl.create(undefined, 16);
+type_declarations = Hashtbl.create(nil, 16);
 
 function add_constructor_usage(cu, param) do
   local ___conditional___=(param);
@@ -9701,9 +9701,9 @@ function add_constructor_usage(cu, param) do
   end
 end end
 
-used_constructors = Hashtbl.create(undefined, 16);
+used_constructors = Hashtbl.create(nil, 16);
 
-prefixed_sg = Hashtbl.create(undefined, 113);
+prefixed_sg = Hashtbl.create(nil, 113);
 
 __Error_2 = Caml_exceptions.create("Ocaml_typedtree_test.Env.Error");
 
@@ -9761,7 +9761,7 @@ end end
 
 function add_6(kind, slot, id, x, tbl, ref_tbl) do
   slot_1;
-  if (slot ~= undefined) then do
+  if (slot ~= nil) then do
     f = slot;
     slot_1 = (function(param) do
         s = id.name;
@@ -9960,9 +9960,9 @@ current_unit = {
   contents = ""
 };
 
-persistent_structures = Hashtbl.create(undefined, 17);
+persistent_structures = Hashtbl.create(nil, 17);
 
-crc_units = Hashtbl.create(undefined, 13);
+crc_units = Hashtbl.create(nil, 13);
 
 function height_5(param) do
   if (param) then do
@@ -10118,7 +10118,7 @@ function check_consistency(ps) do
     xpcall(function() do
       List.iter((function(param) do
               crco = param[1];
-              if (crco ~= undefined) then do
+              if (crco ~= nil) then do
                 name = param[0];
                 add_import(name);
                 tbl = crc_units;
@@ -10228,7 +10228,7 @@ function read_pers_struct(modname, filename) do
 end end
 
 function find_pers_struct(checkOpt, name) do
-  check = checkOpt ~= undefined and checkOpt or true;
+  check = checkOpt ~= nil and checkOpt or true;
   if (name == "*predef*") then do
     error(Caml_builtin_exceptions.not_found)
   end
@@ -10238,15 +10238,15 @@ function find_pers_struct(checkOpt, name) do
     r = Caml_option.some(Hashtbl.find(persistent_structures, name));
   end end,function(exn) do
     if (exn == Caml_builtin_exceptions.not_found) then do
-      r = undefined;
+      r = nil;
     end else do
       error(exn)
     end end 
   end end)
   ps;
-  if (r ~= undefined) then do
+  if (r ~= nil) then do
     match = Caml_option.valFromOption(r);
-    if (match ~= undefined) then do
+    if (match ~= nil) then do
       ps = match;
     end else do
       error(Caml_builtin_exceptions.not_found)
@@ -10258,7 +10258,7 @@ function find_pers_struct(checkOpt, name) do
       filename = find_in_path_uncap(load_path.contents, name .. ".cmi");
     end end,function(exn_1) do
       if (exn_1 == Caml_builtin_exceptions.not_found) then do
-        Hashtbl.add(persistent_structures, name, undefined);
+        Hashtbl.add(persistent_structures, name, nil);
         error(Caml_builtin_exceptions.not_found)
       end else do
         error(exn_1)
@@ -10283,7 +10283,7 @@ function find_module_descr(path, env) do
         end end,function(exn) do
           if (exn == Caml_builtin_exceptions.not_found) then do
             if (id.stamp == 0 and id.name ~= current_unit.contents) then do
-              return find_pers_struct(undefined, id.name).ps_comps;
+              return find_pers_struct(nil, id.name).ps_comps;
             end else do
               error(Caml_builtin_exceptions.not_found)
             end end 
@@ -10370,7 +10370,7 @@ function find_module(alias, path, env) do
         end end,function(exn) do
           if (exn == Caml_builtin_exceptions.not_found) then do
             if (id.stamp == 0 and id.name ~= current_unit.contents) then do
-              ps = find_pers_struct(undefined, id.name);
+              ps = find_pers_struct(nil, id.name);
               return {
                       md_type = --[[ Mty_signature ]]Block.__(1, {ps.ps_sig}),
                       md_attributes = --[[ [] ]]0,
@@ -10520,10 +10520,10 @@ end end
 
 function normalize_path_1(oloc, env, path) do
   xpcall(function() do
-    return normalize_path(oloc == undefined, env, path);
+    return normalize_path(oloc == nil, env, path);
   end end,function(exn) do
     if (exn == Caml_builtin_exceptions.not_found) then do
-      if (oloc ~= undefined) then do
+      if (oloc ~= nil) then do
         error({
           __Error_2,
           --[[ Missing_module ]]Block.__(3, {
@@ -10551,7 +10551,7 @@ end end
 function find_type_expansion(path, env) do
   decl = find_type_full(path, env)[0];
   match = decl.type_manifest;
-  if (match ~= undefined) then do
+  if (match ~= nil) then do
     body = match;
     if (decl.type_private == --[[ Public ]]1 or decl.type_kind ~= --[[ Type_abstract ]]0 or has_constr_row(body)) then do
       return --[[ tuple ]]{
@@ -10565,7 +10565,7 @@ function find_type_expansion(path, env) do
      end 
   end
    end 
-  path$prime = normalize_path_1(undefined, env, path);
+  path$prime = normalize_path_1(nil, env, path);
   if (same(path, path$prime)) then do
     error(Caml_builtin_exceptions.not_found)
   end
@@ -10588,7 +10588,7 @@ end end
 function find_type_expansion_opt(path, env) do
   decl = find_type_full(path, env)[0];
   match = decl.type_manifest;
-  if (match ~= undefined) then do
+  if (match ~= nil) then do
     return --[[ tuple ]]{
             decl.type_params,
             match,
@@ -10597,7 +10597,7 @@ function find_type_expansion_opt(path, env) do
                   end end), decl.type_newtype_level)
           };
   end else do
-    path$prime = normalize_path_1(undefined, env, path);
+    path$prime = normalize_path_1(nil, env, path);
     if (same(path, path$prime)) then do
       error(Caml_builtin_exceptions.not_found)
     end
@@ -10620,7 +10620,7 @@ end end
 
 function find_modtype_expansion(path, env) do
   match = find_modtype(path, env).mtd_type;
-  if (match ~= undefined) then do
+  if (match ~= nil) then do
     return match;
   end else do
     error(Caml_builtin_exceptions.not_found)
@@ -10668,7 +10668,7 @@ function lookup_module_descr(lid, env) do
               error(Caml_builtin_exceptions.not_found)
             end
              end 
-            ps = find_pers_struct(undefined, s);
+            ps = find_pers_struct(nil, s);
             return --[[ tuple ]]{
                     --[[ Pident ]]Block.__(0, {{
                           stamp = 0,
@@ -10763,7 +10763,7 @@ function lookup_module(load, lid, env) do
                 end end 
               end end)
             end else do
-              find_pers_struct(undefined, s);
+              find_pers_struct(nil, s);
             end end 
             return --[[ Pident ]]Block.__(0, {{
                         stamp = 0,
@@ -11274,7 +11274,7 @@ end end
 function lookup_class_1(lid, env) do
   r = lookup_class(lid, env);
   desc = r[1];
-  if (name(undefined, desc.cty_path) == "") then do
+  if (name(nil, desc.cty_path) == "") then do
     lookup_type_1(lid, env);
   end else do
     mark_type_path(env, desc.cty_path);
@@ -11285,7 +11285,7 @@ end end
 function lookup_cltype_1(lid, env) do
   r = lookup_cltype(lid, env);
   desc = r[1];
-  if (name(undefined, desc.clty_path) == "") then do
+  if (name(nil, desc.clty_path) == "") then do
     lookup_type_1(lid, env);
   end else do
     mark_type_path(env, desc.clty_path);
@@ -11350,7 +11350,7 @@ function iter_types(f) do
         cont = function(param) do
           match = get_arg(mcomps);
           safe;
-          if (match ~= undefined) then do
+          if (match ~= nil) then do
             match_1 = match;
             xpcall(function() do
               safe = scrape_alias_safe(match_1[0], match_1[3]);
@@ -11412,7 +11412,7 @@ function iter_types(f) do
         return --[[ () ]]0;
       end end;
       Hashtbl.iter((function(s, pso) do
-              if (pso ~= undefined) then do
+              if (pso ~= nil) then do
                 id = --[[ Pident ]]Block.__(0, {{
                       stamp = 0,
                       name = s,
@@ -11443,7 +11443,7 @@ function used_persistent(param) do
     contents = --[[ Empty ]]0
   };
   Hashtbl.iter((function(s, pso) do
-          if (pso ~= undefined) then do
+          if (pso ~= nil) then do
             r.contents = add_2(s, r.contents);
             return --[[ () ]]0;
           end else do
@@ -11680,7 +11680,7 @@ function scrape_alias(env, path, mty) do
         end end) end end 
     
   end
-  if (path ~= undefined) then do
+  if (path ~= nil) then do
     return Curry._3(strengthen.contents, env, mty, path);
   end else do
     return mty;
@@ -11717,7 +11717,7 @@ function constructors_of_type(ty_path, decl) do
             end else do
               num_nonconsts.contents = num_nonconsts.contents + 1 | 0;
             end end 
-            if (param.cd_res == undefined) then do
+            if (param.cd_res == nil) then do
               num_normal.contents = num_normal.contents + 1 | 0;
               return --[[ () ]]0;
             end else do
@@ -11731,7 +11731,7 @@ function constructors_of_type(ty_path, decl) do
         cd_res = match.cd_res;
         cd_args = match.cd_args;
         cd_id = match.cd_id;
-        ty_res_1 = cd_res ~= undefined and cd_res or ty_res;
+        ty_res_1 = cd_res ~= nil and cd_res or ty_res;
         match_1 = cd_args and --[[ tuple ]]{
             --[[ Cstr_block ]]Block.__(1, {idx_nonconst}),
             describe_constructors(idx_const, idx_nonconst + 1 | 0, rem)
@@ -11740,7 +11740,7 @@ function constructors_of_type(ty_path, decl) do
             describe_constructors(idx_const + 1 | 0, idx_nonconst, rem)
           };
         existentials;
-        if (cd_res ~= undefined) then do
+        if (cd_res ~= nil) then do
           res_vars = free_vars(cd_res);
           arg_vars = free_vars(newty2(100000000, --[[ Ttuple ]]Block.__(2, {cd_args})));
           existentials = elements_aux_1(--[[ [] ]]0, diff_1(arg_vars, res_vars));
@@ -11753,7 +11753,7 @@ function constructors_of_type(ty_path, decl) do
         cstr_cstr_consts = num_consts.contents;
         cstr_cstr_nonconsts = num_nonconsts.contents;
         cstr_cstr_normal = num_normal.contents;
-        cstr_cstr_generalized = cd_res ~= undefined;
+        cstr_cstr_generalized = cd_res ~= nil;
         cstr_cstr_loc = match.cd_loc;
         cstr_cstr_attributes = match.cd_attributes;
         cstr = {
@@ -12360,7 +12360,7 @@ end end
 function components_of_module_maker(param) do
   sub = param[1];
   env = param[0];
-  match = scrape_alias(env, undefined, param[3]);
+  match = scrape_alias(env, nil, param[3]);
   local ___conditional___=(match.tag | 0);
   do
      if ___conditional___ == 1--[[ Mty_signature ]] then do
@@ -12435,7 +12435,7 @@ function components_of_module_maker(param) do
                                   }, c.comp_labels);
                               return --[[ () ]]0;
                             end end), labels);
-                      env_1.contents = store_type_infos(undefined, id, --[[ Pident ]]Block.__(0, {id}), decl_1, env_1.contents, env_1.contents);
+                      env_1.contents = store_type_infos(nil, id, --[[ Pident ]]Block.__(0, {id}), decl_1, env_1.contents, env_1.contents);
                       return --[[ () ]]0; end end 
                    if ___conditional___ == 2--[[ Sig_typext ]] then do
                       ext$prime = extension_constructor(sub_1, item[1]);
@@ -12465,7 +12465,7 @@ function components_of_module_maker(param) do
                             comps,
                             pos.contents
                           }, c.comp_components);
-                      env_1.contents = store_module(undefined, id_1, --[[ Pident ]]Block.__(0, {id_1}), md, env_1.contents, env_1.contents);
+                      env_1.contents = store_module(nil, id_1, --[[ Pident ]]Block.__(0, {id_1}), md, env_1.contents, env_1.contents);
                       pos.contents = pos.contents + 1 | 0;
                       return --[[ () ]]0; end end 
                    if ___conditional___ == 4--[[ Sig_modtype ]] then do
@@ -12476,7 +12476,7 @@ function components_of_module_maker(param) do
                             decl$prime_2,
                             -1
                           }, c.comp_modtypes);
-                      env_1.contents = store_modtype(undefined, id_2, --[[ Pident ]]Block.__(0, {id_2}), decl_2, env_1.contents, env_1.contents);
+                      env_1.contents = store_modtype(nil, id_2, --[[ Pident ]]Block.__(0, {id_2}), decl_2, env_1.contents, env_1.contents);
                       return --[[ () ]]0; end end 
                    if ___conditional___ == 5--[[ Sig_class ]] then do
                       decl$prime_3 = class_declaration(sub_1, item[1]);
@@ -12506,8 +12506,8 @@ function components_of_module_maker(param) do
                     fcomp_res = match[2],
                     fcomp_env = env,
                     fcomp_subst = sub,
-                    fcomp_cache = Hashtbl.create(undefined, 17),
-                    fcomp_subst_cache = Hashtbl.create(undefined, 17)
+                    fcomp_cache = Hashtbl.create(nil, 17),
+                    fcomp_subst_cache = Hashtbl.create(nil, 17)
                   }}); end end 
      if ___conditional___ == 0--[[ Mty_ident ]]
      or ___conditional___ == 3--[[ Mty_alias ]]
@@ -12790,24 +12790,24 @@ components_of_functor_appl$prime.contents = components_of_functor_appl;
 components_of_module_maker$prime.contents = components_of_module_maker;
 
 function add_value(check, id, desc, env) do
-  return store_value(check, undefined, id, --[[ Pident ]]Block.__(0, {id}), desc, env, env);
+  return store_value(check, nil, id, --[[ Pident ]]Block.__(0, {id}), desc, env, env);
 end end
 
 function add_type_1(check, id, info, env) do
-  return store_type(check, undefined, id, --[[ Pident ]]Block.__(0, {id}), info, env, env);
+  return store_type(check, nil, id, --[[ Pident ]]Block.__(0, {id}), info, env, env);
 end end
 
 function add_extension(check, id, ext, env) do
-  return store_extension(check, undefined, id, --[[ Pident ]]Block.__(0, {id}), ext, env, env);
+  return store_extension(check, nil, id, --[[ Pident ]]Block.__(0, {id}), ext, env, env);
 end end
 
 function add_module_declaration(arg, id, md, env) do
   path = --[[ Pident ]]Block.__(0, {id});
-  env_1 = store_module(undefined, id, path, md, env, env);
+  env_1 = store_module(nil, id, path, md, env, env);
   argOpt = arg;
   id_1 = id;
   env_2 = env_1;
-  arg_1 = argOpt ~= undefined and argOpt or false;
+  arg_1 = argOpt ~= nil and argOpt or false;
   if (arg_1) then do
     return {
             values = env_2.values,
@@ -12834,15 +12834,15 @@ function add_module_declaration(arg, id, md, env) do
 end end
 
 function add_modtype_1(id, info, env) do
-  return store_modtype(undefined, id, --[[ Pident ]]Block.__(0, {id}), info, env, env);
+  return store_modtype(nil, id, --[[ Pident ]]Block.__(0, {id}), info, env, env);
 end end
 
 function add_class(id, ty, env) do
-  return store_class(undefined, id, --[[ Pident ]]Block.__(0, {id}), ty, env, env);
+  return store_class(nil, id, --[[ Pident ]]Block.__(0, {id}), ty, env, env);
 end end
 
 function add_cltype(id, ty, env) do
-  return store_cltype(undefined, id, --[[ Pident ]]Block.__(0, {id}), ty, env, env);
+  return store_cltype(nil, id, --[[ Pident ]]Block.__(0, {id}), ty, env, env);
 end end
 
 function add_module_1(arg, id, mty, env) do
@@ -12854,9 +12854,9 @@ function add_module_1(arg, id, mty, env) do
 end end
 
 function add_local_constraint(id, info, elv, env) do
-  if (info.type_manifest ~= undefined) then do
+  if (info.type_manifest ~= nil) then do
     match = info.type_newtype_level;
-    if (match ~= undefined) then do
+    if (match ~= nil) then do
       env_1 = add_type_1(false, id, {
             type_params = info.type_params,
             type_arity = info.type_arity,
@@ -12913,7 +12913,7 @@ function enter(store_fun, name, data, env) do
   id = create(name);
   return --[[ tuple ]]{
           id,
-          Curry._6(store_fun, undefined, id, --[[ Pident ]]Block.__(0, {id}), data, env, env)
+          Curry._6(store_fun, nil, id, --[[ Pident ]]Block.__(0, {id}), data, env, env)
         };
 end end
 
@@ -12955,13 +12955,13 @@ function add_item(comp, env) do
   local ___conditional___=(comp.tag | 0);
   do
      if ___conditional___ == 0--[[ Sig_value ]] then do
-        return add_value(undefined, comp[0], comp[1], env); end end 
+        return add_value(nil, comp[0], comp[1], env); end end 
      if ___conditional___ == 1--[[ Sig_type ]] then do
         return add_type_1(false, comp[0], comp[1], env); end end 
      if ___conditional___ == 2--[[ Sig_typext ]] then do
         return add_extension(false, comp[0], comp[1], env); end end 
      if ___conditional___ == 3--[[ Sig_module ]] then do
-        return add_module_declaration(undefined, comp[0], comp[1], env); end end 
+        return add_module_declaration(nil, comp[0], comp[1], env); end end 
      if ___conditional___ == 4--[[ Sig_modtype ]] then do
         return add_modtype_1(comp[0], comp[1], env); end end 
      if ___conditional___ == 5--[[ Sig_class ]] then do
@@ -12993,7 +12993,7 @@ function open_signature(slot, root, sg, env0) do
           local ___conditional___=(item.tag | 0);
           do
              if ___conditional___ == 0--[[ Sig_value ]] then do
-                return store_value(undefined, slot, hide(item[0]), p, item[1], env, env0); end end 
+                return store_value(nil, slot, hide(item[0]), p, item[1], env, env0); end end 
              if ___conditional___ == 1--[[ Sig_type ]] then do
                 return store_type(false, slot, hide(item[0]), p, item[1], env, env0); end end 
              if ___conditional___ == 2--[[ Sig_typext ]] then do
@@ -13031,8 +13031,8 @@ function open_signature(slot, root, sg, env0) do
 end end
 
 function open_signature_1(locOpt, toplevelOpt, ovf, root, sg, env) do
-  loc = locOpt ~= undefined and locOpt or none;
-  toplevel = toplevelOpt ~= undefined and toplevelOpt or false;
+  loc = locOpt ~= nil and locOpt or none;
+  toplevel = toplevelOpt ~= nil and toplevelOpt or false;
   if (not toplevel and ovf == --[[ Fresh ]]1 and not loc.loc_ghost and (is_active(--[[ Unused_open ]]Block.__(17, {""})) or is_active(--[[ Open_shadow_identifier ]]Block.__(27, {
               "",
               ""
@@ -13047,7 +13047,7 @@ function open_signature_1(locOpt, toplevelOpt, ovf, root, sg, env) do
             if (used.contents) then do
               return 0;
             end else do
-              return prerr_warning(loc, --[[ Unused_open ]]Block.__(17, {name(undefined, root)}));
+              return prerr_warning(loc, --[[ Unused_open ]]Block.__(17, {name(nil, root)}));
             end end 
           end end));
     shadowed = {
@@ -13089,7 +13089,7 @@ function open_signature_1(locOpt, toplevelOpt, ovf, root, sg, env) do
     end end;
     return open_signature(slot, root, sg, env);
   end else do
-    return open_signature(undefined, root, sg, env);
+    return open_signature(nil, root, sg, env);
   end end 
 end end
 
@@ -13101,7 +13101,7 @@ end end
 
 function imports(param) do
   dont_record_crc_unit_1 = dont_record_crc_unit.contents;
-  if (dont_record_crc_unit_1 ~= undefined) then do
+  if (dont_record_crc_unit_1 ~= nil) then do
     x = dont_record_crc_unit_1;
     return extract(fold_5((function(m, acc) do
                       if (m == x) then do
@@ -13172,7 +13172,7 @@ function save_signature(sg, modname, filename) do
 end end
 
 function find_all_1(proj1, proj2, f, lid, env, acc) do
-  if (lid ~= undefined) then do
+  if (lid ~= nil) then do
     match = lookup_module_descr(lid, env);
     p = match[0];
     match_1 = force(components_of_module_maker, match[1]);
@@ -13195,7 +13195,7 @@ function find_all_1(proj1, proj2, f, lid, env, acc) do
 end end
 
 function find_all_simple_list(proj1, proj2, f, lid, env, acc) do
-  if (lid ~= undefined) then do
+  if (lid ~= nil) then do
     match = lookup_module_descr(lid, env);
     match_1 = force(components_of_module_maker, match[1]);
     if (match_1.tag) then do
@@ -13217,7 +13217,7 @@ function find_all_simple_list(proj1, proj2, f, lid, env, acc) do
 end end
 
 function fold_modules(f, lid, env, acc) do
-  if (lid ~= undefined) then do
+  if (lid ~= nil) then do
     match = lookup_module_descr(lid, env);
     p = match[0];
     match_1 = force(components_of_module_maker, match[1]);
@@ -13242,7 +13242,7 @@ function fold_modules(f, lid, env, acc) do
               return Curry._4(f, id.name, param[0], param[1], acc);
             end end))(env.modules, acc);
     return Hashtbl.fold((function(name, ps, acc) do
-                  if (ps ~= undefined) then do
+                  if (ps ~= nil) then do
                     return Curry._4(f, name, --[[ Pident ]]Block.__(0, {{
                                     stamp = 0,
                                     name = name,
@@ -13558,7 +13558,7 @@ function report_error_1(ppf, param) do
                           })
                       }),
                     "Internal path@ %s@ is dangling."
-                  }), name(undefined, path1));
+                  }), name(nil, path1));
         end else do
           Curry._2(Format.fprintf(ppf, --[[ Format ]]{
                     --[[ String_literal ]]Block.__(11, {
@@ -13606,7 +13606,7 @@ function report_error_1(ppf, param) do
                           })
                       }),
                     "Internal path@ %s@ expands to@ %s@ which is dangling."
-                  }), name(undefined, path1), name(undefined, path2));
+                  }), name(nil, path1), name(nil, path2));
         end end 
         return Curry._3(Format.fprintf(ppf, --[[ Format ]]{
                         --[[ Formatting_lit ]]Block.__(17, {
@@ -13724,7 +13724,7 @@ function is_mocha(param) do
 end end
 
 function close_enough(thresholdOpt, a, b) do
-  threshold = thresholdOpt ~= undefined and thresholdOpt or 0.0000001;
+  threshold = thresholdOpt ~= nil and thresholdOpt or 0.0000001;
   return Math.abs(a - b) < threshold;
 end end
 
@@ -13757,7 +13757,7 @@ function from_pair_suites(name, suites) do
                                        if ___conditional___ == 5--[[ Approx ]] then do
                                           b = spec[1];
                                           a = spec[0];
-                                          if (close_enough(undefined, a, b)) then do
+                                          if (close_enough(nil, a, b)) then do
                                             return 0;
                                           end else do
                                             Assert.deepEqual(a, b);
@@ -13886,7 +13886,7 @@ function prepare_error(param) do
         closing = param[3];
         opening = param[1];
         return Curry._1(errorf(param[2], --[[ :: ]]{
-                        Curry._1(errorf(param[0], undefined, undefined, --[[ Format ]]{
+                        Curry._1(errorf(param[0], nil, nil, --[[ Format ]]{
                                   --[[ String_literal ]]Block.__(11, {
                                       "This '",
                                       --[[ String ]]Block.__(2, {
@@ -13932,7 +13932,7 @@ function prepare_error(param) do
                         "Syntax error: '%s' expected"
                       }), closing); end end 
      if ___conditional___ == 1--[[ Expecting ]] then do
-        return Curry._1(errorf(param[0], undefined, undefined, --[[ Format ]]{
+        return Curry._1(errorf(param[0], nil, nil, --[[ Format ]]{
                         --[[ String_literal ]]Block.__(11, {
                             "Syntax error: ",
                             --[[ String ]]Block.__(2, {
@@ -13946,7 +13946,7 @@ function prepare_error(param) do
                         "Syntax error: %s expected."
                       }), param[1]); end end 
      if ___conditional___ == 2--[[ Not_expecting ]] then do
-        return Curry._1(errorf(param[0], undefined, undefined, --[[ Format ]]{
+        return Curry._1(errorf(param[0], nil, nil, --[[ Format ]]{
                         --[[ String_literal ]]Block.__(11, {
                             "Syntax error: ",
                             --[[ String ]]Block.__(2, {
@@ -13960,7 +13960,7 @@ function prepare_error(param) do
                         "Syntax error: %s not expected."
                       }), param[1]); end end 
      if ___conditional___ == 3--[[ Applicative_path ]] then do
-        return errorf(param[0], undefined, undefined, --[[ Format ]]{
+        return errorf(param[0], nil, nil, --[[ Format ]]{
                     --[[ String_literal ]]Block.__(11, {
                         "Syntax error: applicative paths of the form F(X).t are not supported when the option -no-app-func is set.",
                         --[[ End_of_format ]]0
@@ -13969,7 +13969,7 @@ function prepare_error(param) do
                   }); end end 
      if ___conditional___ == 4--[[ Variable_in_scope ]] then do
         __var = param[1];
-        return Curry._2(errorf(param[0], undefined, undefined, --[[ Format ]]{
+        return Curry._2(errorf(param[0], nil, nil, --[[ Format ]]{
                         --[[ String_literal ]]Block.__(11, {
                             "In this scoped type, variable '",
                             --[[ String ]]Block.__(2, {
@@ -13989,7 +13989,7 @@ function prepare_error(param) do
                         "In this scoped type, variable '%s is reserved for the local type %s."
                       }), __var, __var); end end 
      if ___conditional___ == 5--[[ Other ]] then do
-        return errorf(param[0], undefined, undefined, --[[ Format ]]{
+        return errorf(param[0], nil, nil, --[[ Format ]]{
                     --[[ String_literal ]]Block.__(11, {
                         "Syntax error",
                         --[[ End_of_format ]]0
@@ -13997,7 +13997,7 @@ function prepare_error(param) do
                     "Syntax error"
                   }); end end 
      if ___conditional___ == 6--[[ Ill_formed_ast ]] then do
-        return Curry._1(errorf(param[0], undefined, undefined, --[[ Format ]]{
+        return Curry._1(errorf(param[0], nil, nil, --[[ Format ]]{
                         --[[ String_literal ]]Block.__(11, {
                             "broken invariant in parsetree: ",
                             --[[ String ]]Block.__(2, {
@@ -14029,19 +14029,19 @@ function ill_formed_ast(loc, s) do
 end end
 
 function mktyp(d) do
-  return mk(symbol_rloc(--[[ () ]]0), undefined, d);
+  return mk(symbol_rloc(--[[ () ]]0), nil, d);
 end end
 
 function mkpat(d) do
-  return mk_1(symbol_rloc(--[[ () ]]0), undefined, d);
+  return mk_1(symbol_rloc(--[[ () ]]0), nil, d);
 end end
 
 function mkexp(d) do
-  return Curry._3(Ast_helper_Exp.mk, symbol_rloc(--[[ () ]]0), undefined, d);
+  return Curry._3(Ast_helper_Exp.mk, symbol_rloc(--[[ () ]]0), nil, d);
 end end
 
 function mkmty(d) do
-  return mk_3(symbol_rloc(--[[ () ]]0), undefined, d);
+  return mk_3(symbol_rloc(--[[ () ]]0), nil, d);
 end end
 
 function mksig(d) do
@@ -14049,7 +14049,7 @@ function mksig(d) do
 end end
 
 function mkmod(d) do
-  return mk_4(symbol_rloc(--[[ () ]]0), undefined, d);
+  return mk_4(symbol_rloc(--[[ () ]]0), nil, d);
 end end
 
 function mkstr(d) do
@@ -14057,11 +14057,11 @@ function mkstr(d) do
 end end
 
 function mkclass(d) do
-  return mk_7(symbol_rloc(--[[ () ]]0), undefined, d);
+  return mk_7(symbol_rloc(--[[ () ]]0), nil, d);
 end end
 
 function mkcty(d) do
-  return mk_8(symbol_rloc(--[[ () ]]0), undefined, d);
+  return mk_8(symbol_rloc(--[[ () ]]0), nil, d);
 end end
 
 function mkctf(attrs, docs, d) do
@@ -14081,7 +14081,7 @@ function mkoption(d) do
     loc_end = loc_loc_end,
     loc_ghost = true
   };
-  return mk(loc, undefined, --[[ Ptyp_constr ]]Block.__(3, {
+  return mk(loc, nil, --[[ Ptyp_constr ]]Block.__(3, {
                 {
                   txt = --[[ Ldot ]]Block.__(1, {
                       --[[ Lident ]]Block.__(0, {"*predef*"}),
@@ -14114,29 +14114,29 @@ end end
 
 function mkoperator(name, pos) do
   loc = rhs_loc(pos);
-  return Curry._3(Ast_helper_Exp.mk, loc, undefined, --[[ Pexp_ident ]]Block.__(0, {{
+  return Curry._3(Ast_helper_Exp.mk, loc, nil, --[[ Pexp_ident ]]Block.__(0, {{
                   txt = --[[ Lident ]]Block.__(0, {name}),
                   loc = loc
                 }}));
 end end
 
 function mkpatvar(name, pos) do
-  return mk_1(rhs_loc(pos), undefined, --[[ Ppat_var ]]Block.__(0, {{
+  return mk_1(rhs_loc(pos), nil, --[[ Ppat_var ]]Block.__(0, {{
                   txt = name,
                   loc = rhs_loc(pos)
                 }}));
 end end
 
 function ghexp(d) do
-  return Curry._3(Ast_helper_Exp.mk, symbol_gloc(--[[ () ]]0), undefined, d);
+  return Curry._3(Ast_helper_Exp.mk, symbol_gloc(--[[ () ]]0), nil, d);
 end end
 
 function ghpat(d) do
-  return mk_1(symbol_gloc(--[[ () ]]0), undefined, d);
+  return mk_1(symbol_gloc(--[[ () ]]0), nil, d);
 end end
 
 function ghtyp(d) do
-  return mk(symbol_gloc(--[[ () ]]0), undefined, d);
+  return mk(symbol_gloc(--[[ () ]]0), nil, d);
 end end
 
 function mkinfix(arg1, name, arg2) do
@@ -14167,7 +14167,7 @@ function neg_float_string(f) do
 end end
 
 function mkexp_cons(consloc, args, loc) do
-  return Curry._3(Ast_helper_Exp.mk, loc, undefined, --[[ Pexp_construct ]]Block.__(9, {
+  return Curry._3(Ast_helper_Exp.mk, loc, nil, --[[ Pexp_construct ]]Block.__(9, {
                 {
                   txt = --[[ Lident ]]Block.__(0, {"::"}),
                   loc = consloc
@@ -14177,7 +14177,7 @@ function mkexp_cons(consloc, args, loc) do
 end end
 
 function mkpat_cons(consloc, args, loc) do
-  return mk_1(loc, undefined, --[[ Ppat_construct ]]Block.__(5, {
+  return mk_1(loc, nil, --[[ Ppat_construct ]]Block.__(5, {
                 {
                   txt = --[[ Lident ]]Block.__(0, {"::"}),
                   loc = consloc
@@ -14197,7 +14197,7 @@ function mktailexp(nilloc, param) do
       loc_end = loc_loc_end,
       loc_ghost = true
     };
-    arg = Curry._3(Ast_helper_Exp.mk, loc, undefined, --[[ Pexp_tuple ]]Block.__(8, {--[[ :: ]]{
+    arg = Curry._3(Ast_helper_Exp.mk, loc, nil, --[[ Pexp_tuple ]]Block.__(8, {--[[ :: ]]{
               e1,
               --[[ :: ]]{
                 exp_el,
@@ -14222,9 +14222,9 @@ function mktailexp(nilloc, param) do
       txt = nil_txt,
       loc = loc_1
     };
-    return Curry._3(Ast_helper_Exp.mk, loc_1, undefined, --[[ Pexp_construct ]]Block.__(9, {
+    return Curry._3(Ast_helper_Exp.mk, loc_1, nil, --[[ Pexp_construct ]]Block.__(9, {
                   nil,
-                  undefined
+                  nil
                 }));
   end end 
 end end
@@ -14240,7 +14240,7 @@ function mktailpat(nilloc, param) do
       loc_end = loc_loc_end,
       loc_ghost = true
     };
-    arg = mk_1(loc, undefined, --[[ Ppat_tuple ]]Block.__(4, {--[[ :: ]]{
+    arg = mk_1(loc, nil, --[[ Ppat_tuple ]]Block.__(4, {--[[ :: ]]{
               p1,
               --[[ :: ]]{
                 pat_pl,
@@ -14265,9 +14265,9 @@ function mktailpat(nilloc, param) do
       txt = nil_txt,
       loc = loc_1
     };
-    return mk_1(loc_1, undefined, --[[ Ppat_construct ]]Block.__(5, {
+    return mk_1(loc_1, nil, --[[ Ppat_construct ]]Block.__(5, {
                   nil,
-                  undefined
+                  nil
                 }));
   end end 
 end end
@@ -14285,8 +14285,8 @@ end end
 function mkexp_constraint(e, param) do
   t2 = param[1];
   t1 = param[0];
-  if (t1 ~= undefined) then do
-    if (t2 ~= undefined) then do
+  if (t1 ~= nil) then do
+    if (t2 ~= nil) then do
       return ghexp(--[[ Pexp_coerce ]]Block.__(20, {
                     e,
                     t1,
@@ -14298,7 +14298,7 @@ function mkexp_constraint(e, param) do
                     t1
                   }));
     end end 
-  end else if (t2 ~= undefined) then do
+  end else if (t2 ~= nil) then do
     return ghexp(--[[ Pexp_coerce ]]Block.__(20, {
                   e,
                   t1,
@@ -14575,7 +14575,7 @@ function wrap_exp_attrs(body, param) do
     pexp_loc = body_pexp_loc,
     pexp_attributes = body_pexp_attributes
   };
-  if (ext ~= undefined) then do
+  if (ext ~= nil) then do
     return ghexp(--[[ Pexp_extension ]]Block.__(33, {--[[ tuple ]]{
                     ext,
                     --[[ PStr ]]Block.__(0, {--[[ :: ]]{
@@ -14915,7 +14915,7 @@ yyact = {
                 txt = "*",
                 loc = rhs_loc(2)
               },
-              undefined
+              nil
             };
     end end),
   (function(__caml_parser_env) do
@@ -15043,7 +15043,7 @@ yyact = {
       _5 = Parsing.peek_val(__caml_parser_env, 1);
       return mkmod(--[[ Pmod_unpack ]]Block.__(5, {ghexp(--[[ Pexp_coerce ]]Block.__(20, {
                             _3,
-                            undefined,
+                            nil,
                             ghtyp(--[[ Ptyp_package ]]Block.__(9, {_5}))
                           }))}));
     end end),
@@ -15105,7 +15105,7 @@ yyact = {
         lb = bindings[0];
         if (typeof lb.lb_pattern.ppat_desc == "number" and not bindings[1]) then do
           exp = wrap_exp_attrs(lb.lb_expression, --[[ tuple ]]{
-                undefined,
+                nil,
                 lbs.lbs_attributes
               });
           str = mkstr(--[[ Pstr_eval ]]Block.__(0, {
@@ -15139,7 +15139,7 @@ yyact = {
       end
        end 
       match = lbs.lbs_extension;
-      if (match ~= undefined) then do
+      if (match ~= nil) then do
         d = --[[ Pstr_extension ]]Block.__(14, {
             --[[ tuple ]]{
               match,
@@ -15241,7 +15241,7 @@ yyact = {
       _2 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 1);
       _4 = Parsing.peek_val(__caml_parser_env, 0);
-      return mk_14(symbol_rloc(--[[ () ]]0), _4, symbol_docs(--[[ () ]]0), undefined, {
+      return mk_14(symbol_rloc(--[[ () ]]0), _4, symbol_docs(--[[ () ]]0), nil, {
                   txt = _2,
                   loc = rhs_loc(2)
                 }, _3);
@@ -15265,7 +15265,7 @@ yyact = {
       _3 = Parsing.peek_val(__caml_parser_env, 2);
       _4 = Parsing.peek_val(__caml_parser_env, 1);
       _5 = Parsing.peek_val(__caml_parser_env, 0);
-      return mk_14(symbol_rloc(--[[ () ]]0), _5, symbol_docs(--[[ () ]]0), undefined, {
+      return mk_14(symbol_rloc(--[[ () ]]0), _5, symbol_docs(--[[ () ]]0), nil, {
                   txt = _3,
                   loc = rhs_loc(3)
                 }, _4);
@@ -15450,7 +15450,7 @@ yyact = {
                       txt = "*",
                       loc = rhs_loc(1)
                     },
-                    undefined,
+                    nil,
                     _3
                   }));
     end end),
@@ -15458,7 +15458,7 @@ yyact = {
       _2 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 1);
       _4 = Parsing.peek_val(__caml_parser_env, 0);
-      return mk_12(symbol_rloc(--[[ () ]]0), _4, symbol_docs(--[[ () ]]0), undefined, {
+      return mk_12(symbol_rloc(--[[ () ]]0), _4, symbol_docs(--[[ () ]]0), nil, {
                   txt = _2,
                   loc = rhs_loc(2)
                 }, _3);
@@ -15467,10 +15467,10 @@ yyact = {
       _2 = Parsing.peek_val(__caml_parser_env, 3);
       _4 = Parsing.peek_val(__caml_parser_env, 1);
       _5 = Parsing.peek_val(__caml_parser_env, 0);
-      return mk_12(symbol_rloc(--[[ () ]]0), _5, symbol_docs(--[[ () ]]0), undefined, {
+      return mk_12(symbol_rloc(--[[ () ]]0), _5, symbol_docs(--[[ () ]]0), nil, {
                   txt = _2,
                   loc = rhs_loc(2)
-                }, alias_2(rhs_loc(4), undefined, {
+                }, alias_2(rhs_loc(4), nil, {
                       txt = _4,
                       loc = rhs_loc(4)
                     }));
@@ -15494,7 +15494,7 @@ yyact = {
       _3 = Parsing.peek_val(__caml_parser_env, 3);
       _5 = Parsing.peek_val(__caml_parser_env, 1);
       _6 = Parsing.peek_val(__caml_parser_env, 0);
-      return mk_12(symbol_rloc(--[[ () ]]0), _6, symbol_docs(--[[ () ]]0), undefined, {
+      return mk_12(symbol_rloc(--[[ () ]]0), _6, symbol_docs(--[[ () ]]0), nil, {
                   txt = _3,
                   loc = rhs_loc(3)
                 }, _5);
@@ -15518,7 +15518,7 @@ yyact = {
       _3 = Parsing.peek_val(__caml_parser_env, 2);
       _4 = Parsing.peek_val(__caml_parser_env, 1);
       _5 = Parsing.peek_val(__caml_parser_env, 0);
-      return mk_13(symbol_rloc(--[[ () ]]0), _5, symbol_docs(--[[ () ]]0), undefined, _4, {
+      return mk_13(symbol_rloc(--[[ () ]]0), _5, symbol_docs(--[[ () ]]0), nil, _4, {
                   txt = _3,
                   loc = rhs_loc(3)
                 });
@@ -15544,7 +15544,7 @@ yyact = {
       _4 = Parsing.peek_val(__caml_parser_env, 2);
       _5 = Parsing.peek_val(__caml_parser_env, 1);
       _6 = Parsing.peek_val(__caml_parser_env, 0);
-      return mk_18(symbol_rloc(--[[ () ]]0), _6, symbol_docs(--[[ () ]]0), undefined, _2, _3, {
+      return mk_18(symbol_rloc(--[[ () ]]0), _6, symbol_docs(--[[ () ]]0), nil, _2, _3, {
                   txt = _4,
                   loc = rhs_loc(4)
                 }, _5);
@@ -15637,9 +15637,9 @@ yyact = {
                 })
               end
                end 
-              return mk_17(lb.lb_loc, undefined, undefined, undefined, lb.lb_pattern, lb.lb_expression);
+              return mk_17(lb.lb_loc, nil, nil, nil, lb.lb_pattern, lb.lb_expression);
             end end), lbs.lbs_bindings);
-      if (lbs.lbs_extension ~= undefined) then do
+      if (lbs.lbs_extension ~= nil) then do
         error({
           __Error_3,
           --[[ Not_expecting ]]Block.__(2, {
@@ -15795,7 +15795,7 @@ yyact = {
   (function(__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
       mark_symbol_docs(--[[ () ]]0);
-      return mkcf(undefined, undefined, --[[ Pcf_attribute ]]Block.__(5, {_1}));
+      return mkcf(nil, nil, --[[ Pcf_attribute ]]Block.__(5, {_1}));
     end end),
   (function(__caml_parser_env) do
       return Parsing.peek_val(__caml_parser_env, 0);
@@ -15919,7 +15919,7 @@ yyact = {
                   _1,
                   ghexp(--[[ Pexp_poly ]]Block.__(28, {
                           _4,
-                          undefined
+                          nil
                         }))
                 })
             };
@@ -16108,7 +16108,7 @@ yyact = {
   (function(__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
       mark_symbol_docs(--[[ () ]]0);
-      return mkctf(undefined, undefined, --[[ Pctf_attribute ]]Block.__(4, {_1}));
+      return mkctf(nil, nil, --[[ Pctf_attribute ]]Block.__(4, {_1}));
     end end),
   (function(__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 3);
@@ -16180,7 +16180,7 @@ yyact = {
       _4 = Parsing.peek_val(__caml_parser_env, 3);
       _6 = Parsing.peek_val(__caml_parser_env, 1);
       _7 = Parsing.peek_val(__caml_parser_env, 0);
-      return mk_18(symbol_rloc(--[[ () ]]0), _7, symbol_docs(--[[ () ]]0), undefined, _2, _3, {
+      return mk_18(symbol_rloc(--[[ () ]]0), _7, symbol_docs(--[[ () ]]0), nil, _2, _3, {
                   txt = _4,
                   loc = rhs_loc(4)
                 }, _6);
@@ -16217,7 +16217,7 @@ yyact = {
       _5 = Parsing.peek_val(__caml_parser_env, 3);
       _7 = Parsing.peek_val(__caml_parser_env, 1);
       _8 = Parsing.peek_val(__caml_parser_env, 0);
-      return mk_18(symbol_rloc(--[[ () ]]0), _8, symbol_docs(--[[ () ]]0), undefined, _3, _4, {
+      return mk_18(symbol_rloc(--[[ () ]]0), _8, symbol_docs(--[[ () ]]0), nil, _3, _4, {
                   txt = _5,
                   loc = rhs_loc(5)
                 }, _7);
@@ -16260,7 +16260,7 @@ yyact = {
       _2 = Parsing.peek_val(__caml_parser_env, 0);
       return --[[ tuple ]]{
               "?" .. _2[0],
-              undefined,
+              nil,
               _2[1]
             };
     end end),
@@ -16279,7 +16279,7 @@ yyact = {
       _2 = Parsing.peek_val(__caml_parser_env, 0);
       return --[[ tuple ]]{
               "?" .. _1,
-              undefined,
+              nil,
               _2
             };
     end end),
@@ -16287,7 +16287,7 @@ yyact = {
       _3 = Parsing.peek_val(__caml_parser_env, 1);
       return --[[ tuple ]]{
               _3[0],
-              undefined,
+              nil,
               _3[1]
             };
     end end),
@@ -16295,7 +16295,7 @@ yyact = {
       _2 = Parsing.peek_val(__caml_parser_env, 0);
       return --[[ tuple ]]{
               _2[0],
-              undefined,
+              nil,
               _2[1]
             };
     end end),
@@ -16304,7 +16304,7 @@ yyact = {
       _2 = Parsing.peek_val(__caml_parser_env, 0);
       return --[[ tuple ]]{
               _1,
-              undefined,
+              nil,
               _2
             };
     end end),
@@ -16312,7 +16312,7 @@ yyact = {
       _1 = Parsing.peek_val(__caml_parser_env, 0);
       return --[[ tuple ]]{
               "",
-              undefined,
+              nil,
               _1
             };
     end end),
@@ -16394,7 +16394,7 @@ yyact = {
                 })
               end
                end 
-              return mk_17(lb.lb_loc, undefined, undefined, undefined, lb.lb_pattern, lb.lb_expression);
+              return mk_17(lb.lb_loc, nil, nil, nil, lb.lb_pattern, lb.lb_expression);
             end end), lbs.lbs_bindings);
       d_000 = lbs.lbs_rec;
       d_001 = List.rev(bindings);
@@ -16537,7 +16537,7 @@ yyact = {
       return wrap_exp_attrs(mkexp(--[[ Pexp_ifthenelse ]]Block.__(15, {
                         _3,
                         _5,
-                        undefined
+                        nil
                       })), _2);
     end end),
   (function(__caml_parser_env) do
@@ -17040,14 +17040,14 @@ yyact = {
                       txt = _1,
                       loc = rhs_loc(1)
                     },
-                    undefined
+                    nil
                   }));
     end end),
   (function(__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
       return mkexp(--[[ Pexp_variant ]]Block.__(10, {
                     _1,
-                    undefined
+                    nil
                   }));
     end end),
   (function(__caml_parser_env) do
@@ -17070,7 +17070,7 @@ yyact = {
       };
       d = --[[ Pexp_construct ]]Block.__(9, {
           d_000,
-          undefined
+          nil
         });
       return wrap_exp_attrs(mkexp(d), _2);
     end end),
@@ -17714,7 +17714,7 @@ yyact = {
   (function(__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return Curry._3(Ast_helper_Exp.__case, _1, undefined, _3);
+      return Curry._3(Ast_helper_Exp.__case, _1, nil, _3);
     end end),
   (function(__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 4);
@@ -17773,7 +17773,7 @@ yyact = {
   (function(__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
       return --[[ tuple ]]{
-              undefined,
+              nil,
               _1
             };
     end end),
@@ -17868,7 +17868,7 @@ yyact = {
       _2 = Parsing.peek_val(__caml_parser_env, 0);
       return --[[ tuple ]]{
               _2,
-              undefined
+              nil
             };
     end end),
   (function(__caml_parser_env) do
@@ -17882,7 +17882,7 @@ yyact = {
   (function(__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 0);
       return --[[ tuple ]]{
-              undefined,
+              nil,
               _2
             };
     end end),
@@ -18021,14 +18021,14 @@ yyact = {
                       txt = _1,
                       loc = rhs_loc(1)
                     },
-                    undefined
+                    nil
                   }));
     end end),
   (function(__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
       return mkpat(--[[ Ppat_variant ]]Block.__(6, {
                     _1,
-                    undefined
+                    nil
                   }));
     end end),
   (function(__caml_parser_env) do
@@ -18228,7 +18228,7 @@ yyact = {
       _2 = Parsing.peek_val(__caml_parser_env, 3);
       _4 = Parsing.peek_val(__caml_parser_env, 1);
       _5 = Parsing.peek_val(__caml_parser_env, 0);
-      return mk_11(symbol_rloc(--[[ () ]]0), _5, symbol_docs(--[[ () ]]0), undefined, {
+      return mk_11(symbol_rloc(--[[ () ]]0), _5, symbol_docs(--[[ () ]]0), nil, {
                   txt = _2,
                   loc = rhs_loc(2)
                 }, _4);
@@ -18280,7 +18280,7 @@ yyact = {
       _5 = Parsing.peek_val(__caml_parser_env, 2);
       _6 = Parsing.peek_val(__caml_parser_env, 1);
       _7 = Parsing.peek_val(__caml_parser_env, 0);
-      return mk_19(symbol_rloc(--[[ () ]]0), add_nonrec(_2, _7, 2), symbol_docs(--[[ () ]]0), undefined, _3, List.rev(_6), _5[0], _5[1], _5[2], {
+      return mk_19(symbol_rloc(--[[ () ]]0), add_nonrec(_2, _7, 2), symbol_docs(--[[ () ]]0), nil, _3, List.rev(_6), _5[0], _5[1], _5[2], {
                   txt = _4,
                   loc = rhs_loc(4)
                 });
@@ -18311,7 +18311,7 @@ yyact = {
       return --[[ tuple ]]{
               --[[ Ptype_abstract ]]0,
               --[[ Public ]]1,
-              undefined
+              nil
             };
     end end),
   (function(__caml_parser_env) do
@@ -18335,7 +18335,7 @@ yyact = {
       return --[[ tuple ]]{
               --[[ Ptype_variant ]]Block.__(0, {List.rev(_2)}),
               --[[ Public ]]1,
-              undefined
+              nil
             };
     end end),
   (function(__caml_parser_env) do
@@ -18343,14 +18343,14 @@ yyact = {
       return --[[ tuple ]]{
               --[[ Ptype_variant ]]Block.__(0, {List.rev(_3)}),
               --[[ Private ]]0,
-              undefined
+              nil
             };
     end end),
   (function(__caml_parser_env) do
       return --[[ tuple ]]{
               --[[ Ptype_open ]]1,
               --[[ Public ]]1,
-              undefined
+              nil
             };
     end end),
   (function(__caml_parser_env) do
@@ -18359,7 +18359,7 @@ yyact = {
       return --[[ tuple ]]{
               --[[ Ptype_record ]]Block.__(1, {_4}),
               _2,
-              undefined
+              nil
             };
     end end),
   (function(__caml_parser_env) do
@@ -18530,7 +18530,7 @@ yyact = {
       _4 = Parsing.peek_val(__caml_parser_env, 2);
       _5 = Parsing.peek_val(__caml_parser_env, 1);
       _6 = Parsing.peek_val(__caml_parser_env, 0);
-      return rebind(symbol_rloc(--[[ () ]]0), Pervasives.$at(_5, _6), symbol_docs(--[[ () ]]0), undefined, {
+      return rebind(symbol_rloc(--[[ () ]]0), Pervasives.$at(_5, _6), symbol_docs(--[[ () ]]0), nil, {
                   txt = _2,
                   loc = rhs_loc(2)
                 }, {
@@ -18543,7 +18543,7 @@ yyact = {
       _3 = Parsing.peek_val(__caml_parser_env, 2);
       _4 = Parsing.peek_val(__caml_parser_env, 1);
       _5 = Parsing.peek_val(__caml_parser_env, 0);
-      return decl(symbol_rloc(--[[ () ]]0), Pervasives.$at(_4, _5), symbol_docs(--[[ () ]]0), undefined, _3[0], _3[1], {
+      return decl(symbol_rloc(--[[ () ]]0), Pervasives.$at(_4, _5), symbol_docs(--[[ () ]]0), nil, _3[0], _3[1], {
                   txt = _2,
                   loc = rhs_loc(2)
                 });
@@ -18551,14 +18551,14 @@ yyact = {
   (function(__caml_parser_env) do
       return --[[ tuple ]]{
               --[[ [] ]]0,
-              undefined
+              nil
             };
     end end),
   (function(__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 0);
       return --[[ tuple ]]{
               List.rev(_2),
-              undefined
+              nil
             };
     end end),
   (function(__caml_parser_env) do
@@ -18615,7 +18615,7 @@ yyact = {
       _5 = Parsing.peek_val(__caml_parser_env, 2);
       _7 = Parsing.peek_val(__caml_parser_env, 0);
       info_before_semi = get_info(Parsing.rhs_end_pos(5));
-      info = info_before_semi ~= undefined and info_before_semi or get_info(Parsing.symbol_end_pos(--[[ () ]]0));
+      info = info_before_semi ~= nil and info_before_semi or get_info(Parsing.symbol_end_pos(--[[ () ]]0));
       return field_1(symbol_rloc(--[[ () ]]0), Pervasives.$at(_5, _7), Caml_option.some(info), _1, {
                   txt = _2,
                   loc = rhs_loc(2)
@@ -18723,7 +18723,7 @@ yyact = {
       _1 = Parsing.peek_val(__caml_parser_env, 2);
       _2 = Parsing.peek_val(__caml_parser_env, 1);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return decl(symbol_rloc(--[[ () ]]0), _3, undefined, Caml_option.some(get_info(Parsing.symbol_end_pos(--[[ () ]]0))), _2[0], _2[1], {
+      return decl(symbol_rloc(--[[ () ]]0), _3, nil, Caml_option.some(get_info(Parsing.symbol_end_pos(--[[ () ]]0))), _2[0], _2[1], {
                   txt = _1,
                   loc = rhs_loc(1)
                 });
@@ -18732,7 +18732,7 @@ yyact = {
       _2 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 1);
       _4 = Parsing.peek_val(__caml_parser_env, 0);
-      return decl(symbol_rloc(--[[ () ]]0), _4, undefined, Caml_option.some(get_info(Parsing.symbol_end_pos(--[[ () ]]0))), _3[0], _3[1], {
+      return decl(symbol_rloc(--[[ () ]]0), _4, nil, Caml_option.some(get_info(Parsing.symbol_end_pos(--[[ () ]]0))), _3[0], _3[1], {
                   txt = _2,
                   loc = rhs_loc(2)
                 });
@@ -18741,7 +18741,7 @@ yyact = {
       _1 = Parsing.peek_val(__caml_parser_env, 3);
       _3 = Parsing.peek_val(__caml_parser_env, 1);
       _4 = Parsing.peek_val(__caml_parser_env, 0);
-      return rebind(symbol_rloc(--[[ () ]]0), _4, undefined, Caml_option.some(get_info(Parsing.symbol_end_pos(--[[ () ]]0))), {
+      return rebind(symbol_rloc(--[[ () ]]0), _4, nil, Caml_option.some(get_info(Parsing.symbol_end_pos(--[[ () ]]0))), {
                   txt = _1,
                   loc = rhs_loc(1)
                 }, {
@@ -18753,7 +18753,7 @@ yyact = {
       _2 = Parsing.peek_val(__caml_parser_env, 3);
       _4 = Parsing.peek_val(__caml_parser_env, 1);
       _5 = Parsing.peek_val(__caml_parser_env, 0);
-      return rebind(symbol_rloc(--[[ () ]]0), _5, undefined, Caml_option.some(get_info(Parsing.symbol_end_pos(--[[ () ]]0))), {
+      return rebind(symbol_rloc(--[[ () ]]0), _5, nil, Caml_option.some(get_info(Parsing.symbol_end_pos(--[[ () ]]0))), {
                   txt = _2,
                   loc = rhs_loc(2)
                 }, {
@@ -18788,7 +18788,7 @@ yyact = {
                   txt = _3,
                   loc = rhs_loc(3)
                 },
-                mk_19(symbol_rloc(--[[ () ]]0), undefined, undefined, undefined, _2, List.rev(_6), undefined, _4, _5, {
+                mk_19(symbol_rloc(--[[ () ]]0), nil, nil, nil, _2, List.rev(_6), nil, _4, _5, {
                       txt = rhs,
                       loc = rhs_loc(3)
                     })
@@ -18798,7 +18798,7 @@ yyact = {
       _2 = Parsing.peek_val(__caml_parser_env, 3);
       _3 = Parsing.peek_val(__caml_parser_env, 2);
       _5 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ Pwith_typesubst ]]Block.__(2, {mk_19(symbol_rloc(--[[ () ]]0), undefined, undefined, undefined, _2, undefined, undefined, undefined, _5, {
+      return --[[ Pwith_typesubst ]]Block.__(2, {mk_19(symbol_rloc(--[[ () ]]0), nil, nil, nil, _2, nil, nil, nil, _5, {
                       txt = _3,
                       loc = rhs_loc(3)
                     })});
@@ -19063,7 +19063,7 @@ yyact = {
                       --[[ [] ]]0
                     },
                     --[[ Closed ]]0,
-                    undefined
+                    nil
                   }));
     end end),
   (function(__caml_parser_env) do
@@ -19071,7 +19071,7 @@ yyact = {
       return mktyp(--[[ Ptyp_variant ]]Block.__(7, {
                     List.rev(_3),
                     --[[ Closed ]]0,
-                    undefined
+                    nil
                   }));
     end end),
   (function(__caml_parser_env) do
@@ -19083,7 +19083,7 @@ yyact = {
                       List.rev(_4)
                     },
                     --[[ Closed ]]0,
-                    undefined
+                    nil
                   }));
     end end),
   (function(__caml_parser_env) do
@@ -19092,14 +19092,14 @@ yyact = {
       return mktyp(--[[ Ptyp_variant ]]Block.__(7, {
                     List.rev(_3),
                     --[[ Open ]]1,
-                    undefined
+                    nil
                   }));
     end end),
   (function(__caml_parser_env) do
       return mktyp(--[[ Ptyp_variant ]]Block.__(7, {
                     --[[ [] ]]0,
                     --[[ Open ]]1,
-                    undefined
+                    nil
                   }));
     end end),
   (function(__caml_parser_env) do
@@ -20037,7 +20037,7 @@ yyact = {
     end end),
   (function(__caml_parser_env) do
       return --[[ tuple ]]{
-              undefined,
+              nil,
               --[[ [] ]]0
             };
     end end),
@@ -20045,7 +20045,7 @@ yyact = {
       _1 = Parsing.peek_val(__caml_parser_env, 1);
       _2 = Parsing.peek_val(__caml_parser_env, 0);
       return --[[ tuple ]]{
-              undefined,
+              nil,
               --[[ :: ]]{
                 _1,
                 _2
@@ -20088,7 +20088,7 @@ yyact = {
       _2 = Parsing.peek_val(__caml_parser_env, 0);
       return --[[ PPat ]]Block.__(2, {
                 _2,
-                undefined
+                nil
               });
     end end),
   (function(__caml_parser_env) do
@@ -20221,7 +20221,7 @@ function assert_same_type(lexbuf, x, y) do
   return y;
 end end
 
-directive_built_in_values = Hashtbl.create(undefined, 51);
+directive_built_in_values = Hashtbl.create(nil, 51);
 
 Hashtbl.replace(directive_built_in_values, "OCAML_VERSION", --[[ Dir_string ]]Block.__(3, {Sys.ocaml_version}));
 
@@ -20407,12 +20407,12 @@ end end
 
 function directive_parse(token_with_comments, lexbuf) do
   look_ahead = {
-    contents = undefined
+    contents = nil
   };
   token = function(param) do
     v = look_ahead.contents;
-    if (v ~= undefined) then do
-      look_ahead.contents = undefined;
+    if (v ~= nil) then do
+      look_ahead.contents = nil;
       return v;
     end else do
       _param = --[[ () ]]0;
@@ -20448,7 +20448,7 @@ function directive_parse(token_with_comments, lexbuf) do
     end end 
   end end;
   push = function(e) do
-    if (look_ahead.contents ~= undefined) then do
+    if (look_ahead.contents ~= nil) then do
       error({
         Caml_builtin_exceptions.assert_failure,
         --[[ tuple ]]{
@@ -21284,7 +21284,7 @@ if_then_else = {
 };
 
 sharp_look_ahead = {
-  contents = undefined
+  contents = nil
 };
 
 function with_comment_buffer(comment, lexbuf) do
@@ -21429,7 +21429,7 @@ end end
 
 function update_loc(lexbuf, file, line, absolute, chars) do
   pos = lexbuf.lex_curr_p;
-  new_file = file ~= undefined and file or pos.pos_fname;
+  new_file = file ~= nil and file or pos.pos_fname;
   lexbuf.lex_curr_p = {
     pos_fname = new_file,
     pos_lnum = absolute and line or pos.pos_lnum + line | 0,
@@ -21440,7 +21440,7 @@ function update_loc(lexbuf, file, line, absolute, chars) do
 end end
 
 preprocessor = {
-  contents = undefined
+  contents = nil
 };
 
 escaped_newlines = {
@@ -21681,10 +21681,10 @@ function token(lexbuf) do
             })
           end
            end 
-          update_loc(lexbuf_1, undefined, 1, false, 0);
+          update_loc(lexbuf_1, nil, 1, false, 0);
           return token(lexbuf_1); end end 
        if ___conditional___ == 1 then do
-          update_loc(lexbuf_1, undefined, 1, false, 0);
+          update_loc(lexbuf_1, nil, 1, false, 0);
           return --[[ EOL ]]100; end end 
        if ___conditional___ == 2 then do
           return token(lexbuf_1); end end 
@@ -21795,7 +21795,7 @@ function token(lexbuf) do
           lexbuf_1.lex_start_p = string_start;
           return --[[ STRING ]]Block.__(16, {--[[ tuple ]]{
                       get_stored_string(--[[ () ]]0),
-                      undefined
+                      nil
                     }}); end end 
        if ___conditional___ == 20 then do
           reset_string_buffer(--[[ () ]]0);
@@ -21812,7 +21812,7 @@ function token(lexbuf) do
                       delim_1
                     }}); end end 
        if ___conditional___ == 21 then do
-          update_loc(lexbuf_1, undefined, 1, false, 1);
+          update_loc(lexbuf_1, nil, 1, false, 1);
           return --[[ CHAR ]]Block.__(0, {Lexing.lexeme_char(lexbuf_1, 1)}); end end 
        if ___conditional___ == 22 then do
           return --[[ CHAR ]]Block.__(0, {Lexing.lexeme_char(lexbuf_1, 1)}); end end 
@@ -22034,7 +22034,7 @@ function __ocaml_lex_quoted_string_rec(delim, lexbuf, ___ocaml_lex_state) do
     local ___conditional___=(__ocaml_lex_state_1);
     do
        if ___conditional___ == 0 then do
-          update_loc(lexbuf, undefined, 1, false, 0);
+          update_loc(lexbuf, nil, 1, false, 0);
           store_string(Lexing.lexeme(lexbuf));
           ___ocaml_lex_state = 183;
           ::continue:: ; end end 
@@ -22205,7 +22205,7 @@ function __ocaml_lex_comment_rec(lexbuf, ___ocaml_lex_state) do
           ___ocaml_lex_state = 132;
           ::continue:: ; end end 
        if ___conditional___ == 5 then do
-          update_loc(lexbuf, undefined, 1, false, 1);
+          update_loc(lexbuf, nil, 1, false, 1);
           store_string(Lexing.lexeme(lexbuf));
           ___ocaml_lex_state = 132;
           ::continue:: ; end end 
@@ -22230,7 +22230,7 @@ function __ocaml_lex_comment_rec(lexbuf, ___ocaml_lex_state) do
             })
           end end  end end 
        if ___conditional___ == 11 then do
-          update_loc(lexbuf, undefined, 1, false, 0);
+          update_loc(lexbuf, nil, 1, false, 0);
           store_string(Lexing.lexeme(lexbuf));
           ___ocaml_lex_state = 132;
           ::continue:: ; end end 
@@ -22264,7 +22264,7 @@ function string(lexbuf) do
           return --[[ () ]]0; end end 
        if ___conditional___ == 1 then do
           space = Lexing.sub_lexeme(lexbuf_1, Caml_array.caml_array_get(lexbuf_1.lex_mem, 0), lexbuf_1.lex_curr_pos);
-          update_loc(lexbuf_1, undefined, 1, false, #space);
+          update_loc(lexbuf_1, nil, 1, false, #space);
           return string(lexbuf_1); end end 
        if ___conditional___ == 2 then do
           store_string_char(char_for_backslash(Lexing.lexeme_char(lexbuf_1, 1)));
@@ -22290,7 +22290,7 @@ function string(lexbuf) do
             prerr_warning(curr(lexbuf_1), --[[ Eol_in_string ]]14);
           end
            end 
-          update_loc(lexbuf_1, undefined, 1, false, 0);
+          update_loc(lexbuf_1, nil, 1, false, 0);
           store_string(Lexing.lexeme(lexbuf_1));
           return string(lexbuf_1); end end 
        if ___conditional___ == 7 then do
@@ -22322,7 +22322,7 @@ end end
 
 function token_with_comments(lexbuf) do
   match = preprocessor.contents;
-  if (match ~= undefined) then do
+  if (match ~= nil) then do
     return Curry._2(match[1], token, lexbuf);
   end else do
     return token(lexbuf);
@@ -22619,8 +22619,8 @@ function token_1(lexbuf) do
     end;
   end end;
   match = sharp_look_ahead.contents;
-  if (match ~= undefined) then do
-    sharp_look_ahead.contents = undefined;
+  if (match ~= nil) then do
+    sharp_look_ahead.contents = nil;
     return match;
   end else do
     return loop(--[[ NoLine ]]0, --[[ Initial ]]0, lexbuf);
@@ -22628,13 +22628,13 @@ function token_1(lexbuf) do
 end end
 
 function init_1(param) do
-  sharp_look_ahead.contents = undefined;
+  sharp_look_ahead.contents = nil;
   if_then_else.contents = --[[ Dir_out ]]2;
   is_in_string.contents = false;
   comment_start_loc.contents = --[[ [] ]]0;
   comment_list.contents = --[[ [] ]]0;
   match = preprocessor.contents;
-  if (match ~= undefined) then do
+  if (match ~= nil) then do
     return Curry._1(match[0], --[[ () ]]0);
   end else do
     return --[[ () ]]0;
@@ -22782,7 +22782,7 @@ function map_pattern_desc(f, d) do
                   }); end end 
        if ___conditional___ == 5--[[ Tpat_variant ]] then do
           match = d[1];
-          if (match ~= undefined) then do
+          if (match ~= nil) then do
             return --[[ Tpat_variant ]]Block.__(5, {
                       d[0],
                       Curry._1(f, match),
@@ -23545,7 +23545,7 @@ function TypedtreeMap_MakeMap(funarg) do
        if ___conditional___ == 5--[[ Tcl_constraint ]] then do
           match_1 = match[1];
           cl = match[0];
-          cl_desc = match_1 ~= undefined and --[[ Tcl_constraint ]]Block.__(5, {
+          cl_desc = match_1 ~= nil and --[[ Tcl_constraint ]]Block.__(5, {
                 map_class_expr(cl),
                 map_class_type(match_1),
                 match[2],
@@ -23553,7 +23553,7 @@ function TypedtreeMap_MakeMap(funarg) do
                 match[4]
               }) or --[[ Tcl_constraint ]]Block.__(5, {
                 map_class_expr(cl),
-                undefined,
+                nil,
                 match[2],
                 match[3],
                 match[4]
@@ -23595,7 +23595,7 @@ function TypedtreeMap_MakeMap(funarg) do
               }); end else 
          if ___conditional___ == 5--[[ Tpat_variant ]] then do
             pato = match[1];
-            pato_1 = pato ~= undefined and map_pattern(pato) or pato;
+            pato_1 = pato ~= nil and map_pattern(pato) or pato;
             pat_desc = --[[ Tpat_variant ]]Block.__(5, {
                 match[0],
                 pato_1,
@@ -23672,7 +23672,7 @@ function TypedtreeMap_MakeMap(funarg) do
               map_expression(match[0]),
               List.map((function(param) do
                       expo = param[1];
-                      expo_1 = expo ~= undefined and map_expression(expo) or expo;
+                      expo_1 = expo ~= nil and map_expression(expo) or expo;
                       return --[[ tuple ]]{
                               param[0],
                               expo_1,
@@ -23702,7 +23702,7 @@ function TypedtreeMap_MakeMap(funarg) do
             }); end else 
        if ___conditional___ == 9--[[ Texp_variant ]] then do
           expo = match[1];
-          expo_1 = expo ~= undefined and map_expression(expo) or expo;
+          expo_1 = expo ~= nil and map_expression(expo) or expo;
           exp_desc = --[[ Texp_variant ]]Block.__(9, {
               match[0],
               expo_1
@@ -23716,7 +23716,7 @@ function TypedtreeMap_MakeMap(funarg) do
                           map_expression(param[2])
                         };
                 end end), match[0]);
-          expo_3 = expo_2 ~= undefined and map_expression(expo_2) or expo_2;
+          expo_3 = expo_2 ~= nil and map_expression(expo_2) or expo_2;
           exp_desc = --[[ Texp_record ]]Block.__(10, {
               list,
               expo_3
@@ -23741,7 +23741,7 @@ function TypedtreeMap_MakeMap(funarg) do
           exp_desc = --[[ Texp_ifthenelse ]]Block.__(14, {
               map_expression(match[0]),
               map_expression(match[1]),
-              expo_4 ~= undefined and map_expression(expo_4) or expo_4
+              expo_4 ~= nil and map_expression(expo_4) or expo_4
             }); end else 
        if ___conditional___ == 15--[[ Texp_sequence ]] then do
           exp_desc = --[[ Texp_sequence ]]Block.__(15, {
@@ -24021,7 +24021,7 @@ function TypedtreeMap_MakeMap(funarg) do
                 }; end end 
        if ___conditional___ == 1--[[ Texp_coerce ]] then do
           match = desc[0];
-          if (match ~= undefined) then do
+          if (match ~= nil) then do
             return --[[ tuple ]]{
                     --[[ Texp_coerce ]]Block.__(1, {
                         map_core_type(match),
@@ -24033,7 +24033,7 @@ function TypedtreeMap_MakeMap(funarg) do
           end else do
             return --[[ tuple ]]{
                     --[[ Texp_coerce ]]Block.__(1, {
-                        undefined,
+                        nil,
                         map_core_type(desc[1])
                       }),
                     loc,
@@ -24042,7 +24042,7 @@ function TypedtreeMap_MakeMap(funarg) do
           end end  end end 
        if ___conditional___ == 3--[[ Texp_poly ]] then do
           match_1 = desc[0];
-          if (match_1 ~= undefined) then do
+          if (match_1 ~= nil) then do
             return --[[ tuple ]]{
                     --[[ Texp_poly ]]Block.__(3, {map_core_type(match_1)}),
                     loc,
@@ -24503,7 +24503,7 @@ function save_cmt(filename, modname, binary_annots, sourcefile, initial_env, sg)
     imports_1 = imports(--[[ () ]]0);
     oc = Pervasives.open_out_bin(filename);
     this_crc;
-    if (sg ~= undefined) then do
+    if (sg ~= nil) then do
       cmi_cmi_flags = recursive_types.contents and --[[ :: ]]{
           --[[ Rectypes ]]0,
           --[[ [] ]]0
@@ -24516,7 +24516,7 @@ function save_cmt(filename, modname, binary_annots, sourcefile, initial_env, sg)
       };
       this_crc = output_cmi(filename, oc, cmi);
     end else do
-      this_crc = undefined;
+      this_crc = nil;
     end end 
     source_digest = may_map(Digest.file, sourcefile);
     cmt_cmt_annots = clear_env(binary_annots);
@@ -24554,7 +24554,7 @@ function save_cmt(filename, modname, binary_annots, sourcefile, initial_env, sg)
     end end)
     if (exit == 1) then do
       Caml_sys.caml_sys_system_command(cmd .. (" -cmt-add " .. (filename .. (
-                sourcefile ~= undefined and ":" .. sourcefile or ""
+                sourcefile ~= nil and ":" .. sourcefile or ""
               ))));
     end
      end 
@@ -24569,7 +24569,7 @@ Tags = Caml_exceptions.create("Ocaml_typedtree_test.Ctype.Tags");
 
 register_error_of_exn((function(param) do
         if (param[0] == Tags) then do
-          return Curry._2(errorf(in_file(input_name.contents), undefined, undefined, --[[ Format ]]{
+          return Curry._2(errorf(in_file(input_name.contents), nil, nil, --[[ Format ]]{
                           --[[ String_literal ]]Block.__(11, {
                               "In this program,",
                               --[[ Formatting_lit ]]Block.__(17, {
@@ -24791,7 +24791,7 @@ function newobj(fields) do
   return newty2(current_level.contents, --[[ Tobject ]]Block.__(4, {
                 fields,
                 {
-                  contents = undefined
+                  contents = nil
                 }
               }));
 end end
@@ -25266,7 +25266,7 @@ function hide_private_methods(ty) do
       }
     })
   end else if (match.tag == --[[ Tobject ]]4) then do
-    match[1].contents = undefined;
+    match[1].contents = nil;
     match_1 = flatten_fields(match[0]);
     return List.iter((function(param) do
                   match = field_kind_repr(param[1]);
@@ -25499,7 +25499,7 @@ free_variables = {
 };
 
 really_closed = {
-  contents = undefined
+  contents = nil
 };
 
 function free_vars_rec(_real, _ty) do
@@ -25528,7 +25528,7 @@ function free_vars_rec(_real, _ty) do
               };
               return --[[ () ]]0; end end 
            if ___conditional___ == 3--[[ Tconstr ]] then do
-              if (match_1 ~= undefined) then do
+              if (match_1 ~= nil) then do
                 xpcall(function() do
                   match_2 = find_type_expansion(match[0], Caml_option.valFromOption(match_1));
                   if (repr(match_2[1]).level ~= 100000000) then do
@@ -25594,7 +25594,7 @@ function free_vars_1(env, ty) do
   free_vars_rec(true, ty);
   res = free_variables.contents;
   free_variables.contents = --[[ [] ]]0;
-  really_closed.contents = undefined;
+  really_closed.contents = nil;
   return res;
 end end
 
@@ -25607,7 +25607,7 @@ function free_variables_1(env, ty) do
 end end
 
 function closed_type(ty) do
-  match = free_vars_1(undefined, ty);
+  match = free_vars_1(nil, ty);
   if (match) then do
     match_1 = match[0];
     error({
@@ -25647,7 +25647,7 @@ function closed_type_decl(decl) do
       match == --[[ Type_abstract ]]0;
     end else if (match.tag) then do
       List.iter((function(param) do
-              if (param.cd_res ~= undefined) then do
+              if (param.cd_res ~= nil) then do
                 return --[[ () ]]0;
               end else do
                 return List.iter(closed_type, param.cd_args);
@@ -25659,7 +25659,7 @@ function closed_type_decl(decl) do
             end end), match[0]);
     end end  end 
     match_1 = decl.type_manifest;
-    if (match_1 ~= undefined) then do
+    if (match_1 ~= nil) then do
       closed_type(match_1);
     end
      end 
@@ -25680,7 +25680,7 @@ function closed_extension_constructor(ext) do
   xpcall(function() do
     List.iter(mark_type, ext.ext_type_params);
     match = ext.ext_ret_type;
-    if (match == undefined) then do
+    if (match == nil) then do
       List.iter(closed_type, ext.ext_args);
     end
      end 
@@ -25876,7 +25876,7 @@ forward_try_expand_once = {
 function get_level(env, p) do
   xpcall(function() do
     match = find_type_full(p, env)[0].type_newtype_level;
-    if (match ~= undefined) then do
+    if (match ~= nil) then do
       return match[0];
     end else do
       return binding_time(p);
@@ -25898,12 +25898,12 @@ function normalize_package_path(env, _p) do
       t = find_modtype(p, env).mtd_type;
     end end,function(exn) do
       if (exn == Caml_builtin_exceptions.not_found) then do
-        t = undefined;
+        t = nil;
       end else do
         error(exn)
       end end 
     end end)
-    if (t ~= undefined) then do
+    if (t ~= nil) then do
       match = t;
       if (match.tag) then do
         return p;
@@ -25923,13 +25923,13 @@ function update_level(env, level, _ty) do
     ty_1 = repr(ty);
     if (ty_1.level > level) then do
       match = gadt_instance_level(env, ty_1);
-      if (match ~= undefined and level < match) then do
+      if (match ~= nil and level < match) then do
         error({
           Unify,
           --[[ :: ]]{
             --[[ tuple ]]{
               ty_1,
-              newty2(level, --[[ Tvar ]]Block.__(0, {undefined}))
+              newty2(level, --[[ Tvar ]]Block.__(0, {nil}))
             },
             --[[ [] ]]0
           }
@@ -25954,7 +25954,7 @@ function update_level(env, level, _ty) do
                         --[[ :: ]]{
                           --[[ tuple ]]{
                             ty_1,
-                            newty2(level, --[[ Tvar ]]Block.__(0, {undefined}))
+                            newty2(level, --[[ Tvar ]]Block.__(0, {nil}))
                           },
                           --[[ [] ]]0
                         }
@@ -25973,8 +25973,8 @@ function update_level(env, level, _ty) do
            if ___conditional___ == 4--[[ Tobject ]] then do
               nm = match_1[1];
               match_2 = nm.contents;
-              if (match_2 ~= undefined and level < get_level(env, match_2[0])) then do
-                set_name(nm, undefined);
+              if (match_2 ~= nil and level < get_level(env, match_2[0])) then do
+                set_name(nm, nil);
                 _ty = ty_1;
                 ::continue:: ;
               end
@@ -25987,7 +25987,7 @@ function update_level(env, level, _ty) do
                   --[[ :: ]]{
                     --[[ tuple ]]{
                       ty1,
-                      newty2(level, --[[ Tvar ]]Block.__(0, {undefined}))
+                      newty2(level, --[[ Tvar ]]Block.__(0, {nil}))
                     },
                     --[[ [] ]]0
                   }
@@ -25997,7 +25997,7 @@ function update_level(env, level, _ty) do
            if ___conditional___ == 8--[[ Tvariant ]] then do
               row = row_repr_aux(--[[ [] ]]0, match_1[0]);
               match_3 = row.row_name;
-              if (match_3 ~= undefined) then do
+              if (match_3 ~= nil) then do
                 if (level < get_level(env, match_3[0])) then do
                   log_type(ty_1);
                   ty_1.desc = --[[ Tvariant ]]Block.__(8, {{
@@ -26006,7 +26006,7 @@ function update_level(env, level, _ty) do
                         row_bound = row.row_bound,
                         row_closed = row.row_closed,
                         row_fixed = row.row_fixed,
-                        row_name = undefined
+                        row_name = nil
                       }});
                 end
                  end 
@@ -26026,7 +26026,7 @@ function update_level(env, level, _ty) do
                     --[[ :: ]]{
                       --[[ tuple ]]{
                         ty_1,
-                        newty2(level, --[[ Tvar ]]Block.__(0, {undefined}))
+                        newty2(level, --[[ Tvar ]]Block.__(0, {nil}))
                       },
                       --[[ [] ]]0
                     }
@@ -26165,7 +26165,7 @@ end end
 
 function limited_generalize(ty0, ty) do
   ty0_1 = repr(ty0);
-  graph = Hashtbl.create(undefined, 17);
+  graph = Hashtbl.create(nil, 17);
   idx = {
     contents = 0
   };
@@ -26366,13 +26366,13 @@ function copy(env, partial, keep_names, ty) do
     return match[0];
   end end 
   if (exit == 1) then do
-    if (ty_1.level ~= 100000000 and partial == undefined) then do
+    if (ty_1.level ~= 100000000 and partial == nil) then do
       return ty_1;
     end else do
       forget;
       if (ty_1.level == 100000000) then do
         forget = 100000000;
-      end else if (partial ~= undefined) then do
+      end else if (partial ~= nil) then do
         match_1 = partial;
         param = Curry._1(match_1[0], ty_1);
         forget = (
@@ -26391,16 +26391,16 @@ function copy(env, partial, keep_names, ty) do
         })
       end end  end 
       if (forget ~= 100000000) then do
-        return newty2(forget, --[[ Tvar ]]Block.__(0, {undefined}));
+        return newty2(forget, --[[ Tvar ]]Block.__(0, {nil}));
       end else do
         desc = ty_1.desc;
         save_desc(ty_1, desc);
-        t = newvar(undefined, --[[ () ]]0);
-        if (env ~= undefined) then do
+        t = newvar(nil, --[[ () ]]0);
+        if (env ~= nil) then do
           env_1 = Caml_option.valFromOption(env);
           if (env_1.local_constraints) then do
             match_2 = gadt_instance_level(env_1, ty_1);
-            if (match_2 ~= undefined) then do
+            if (match_2 ~= nil) then do
               add_gadt_instances(env_1, match_2, --[[ :: ]]{
                     t,
                     --[[ [] ]]0
@@ -26424,7 +26424,7 @@ function copy(env, partial, keep_names, ty) do
                 abbrevs = proper_abbrevs(p, tl, abbreviations.contents);
                 match_3 = find_repr(p, abbrevs.contents);
                 exit_1 = 0;
-                if (match_3 ~= undefined) then do
+                if (match_3 ~= nil) then do
                   ty_2 = match_3;
                   if (repr(ty_2) ~= t) then do
                     tmp = --[[ Tlink ]]Block.__(6, {ty_2});
@@ -26448,19 +26448,19 @@ function copy(env, partial, keep_names, ty) do
                 end
                  end  end else 
              if ___conditional___ == 4--[[ Tobject ]] then do
-                tmp = partial ~= undefined and --[[ Tobject ]]Block.__(4, {
+                tmp = partial ~= nil and --[[ Tobject ]]Block.__(4, {
                       copy_1(desc[0]),
                       {
-                        contents = undefined
+                        contents = nil
                       }
                     }) or copy_type_desc(keep_names, copy_1, desc); end else 
              if ___conditional___ == 5--[[ Tfield ]] then do
                 match_4 = field_kind_repr(desc[1]);
                 if (typeof match_4 == "number") then do
-                  tmp = match_4 ~= 0 and --[[ Tlink ]]Block.__(6, {copy_1(desc[3])}) or copy_type_desc(undefined, copy_1, desc);
+                  tmp = match_4 ~= 0 and --[[ Tlink ]]Block.__(6, {copy_1(desc[3])}) or copy_type_desc(nil, copy_1, desc);
                 end else do
                   dup_kind(match_4[0]);
-                  tmp = copy_type_desc(undefined, copy_1, desc);
+                  tmp = copy_type_desc(nil, copy_1, desc);
                 end end  end else 
              if ___conditional___ == 8--[[ Tvariant ]] then do
                 row = row_repr_aux(--[[ [] ]]0, desc[0]);
@@ -26544,7 +26544,7 @@ function copy(env, partial, keep_names, ty) do
                         row_name = row.row_name
                       });
                   match_12;
-                  if (partial ~= undefined) then do
+                  if (partial ~= nil) then do
                     match_13 = partial;
                     if (match_13[1]) then do
                       match_12 = --[[ tuple ]]{
@@ -26557,7 +26557,7 @@ function copy(env, partial, keep_names, ty) do
                         more$prime_1 = more$prime;
                       end else do
                         lv = keep and more.level or current_level.contents;
-                        more$prime_1 = newty2(lv, --[[ Tvar ]]Block.__(0, {undefined}));
+                        more$prime_1 = newty2(lv, --[[ Tvar ]]Block.__(0, {nil}));
                       end end 
                       not_reither = function(param) do
                         match = row_field_repr_aux(--[[ [] ]]0, param[1]);
@@ -26588,7 +26588,7 @@ function copy(env, partial, keep_names, ty) do
                             row_bound = --[[ () ]]0,
                             row_closed = false,
                             row_fixed = false,
-                            row_name = undefined
+                            row_name = nil
                           }
                         } or --[[ tuple ]]{
                           more$prime_1,
@@ -26626,7 +26626,7 @@ function copy(env, partial, keep_names, ty) do
 end end
 
 function simple_copy(t) do
-  return copy(undefined, undefined, undefined, t);
+  return copy(nil, nil, nil, t);
 end end
 
 function gadt_env(env) do
@@ -26638,17 +26638,17 @@ end end
 
 function instance(partial, env, sch) do
   env_1 = gadt_env(env);
-  partial_1 = partial ~= undefined and --[[ tuple ]]{
+  partial_1 = partial ~= nil and --[[ tuple ]]{
       compute_univars(sch),
       partial
-    } or undefined;
-  ty = copy(env_1, partial_1, undefined, sch);
+    } or nil;
+  ty = copy(env_1, partial_1, nil, sch);
   cleanup_types(--[[ () ]]0);
   return ty;
 end end
 
 function instance_def(sch) do
-  ty = copy(undefined, undefined, undefined, sch);
+  ty = copy(nil, nil, nil, sch);
   cleanup_types(--[[ () ]]0);
   return ty;
 end end
@@ -26656,7 +26656,7 @@ end end
 function instance_list(env, schl) do
   env_1 = gadt_env(env);
   tyl = List.map((function(t) do
-          return copy(env_1, undefined, undefined, t);
+          return copy(env_1, nil, nil, t);
         end end), schl);
   cleanup_types(--[[ () ]]0);
   return tyl;
@@ -26710,7 +26710,7 @@ function new_declaration(newtype, manifest) do
 end end
 
 function instance_constructor(in_pattern, cstr) do
-  if (in_pattern ~= undefined) then do
+  if (in_pattern ~= nil) then do
     match = in_pattern;
     newtype_lev = match[1];
     env = match[0];
@@ -26718,7 +26718,7 @@ function instance_constructor(in_pattern, cstr) do
       decl = new_declaration(--[[ tuple ]]{
             newtype_lev,
             newtype_lev
-          }, undefined);
+          }, nil);
       match = repr(existential);
       match_1 = match.desc;
       name;
@@ -26726,7 +26726,7 @@ function instance_constructor(in_pattern, cstr) do
         name = "ex";
       end else do
         match_2 = match_1[0];
-        name = match_2 ~= undefined and match_2 or "ex";
+        name = match_2 ~= nil and match_2 or "ex";
       end end 
       match_3 = enter_type(get_new_abstract_name(name), decl, env.contents);
       env.contents = match_3[1];
@@ -26737,7 +26737,7 @@ function instance_constructor(in_pattern, cstr) do
                 contents = --[[ Mnil ]]0
               }
             }));
-      tv = copy(undefined, undefined, undefined, existential);
+      tv = copy(nil, nil, nil, existential);
       if (not is_Tvar(tv)) then do
         error({
           Caml_builtin_exceptions.assert_failure,
@@ -26754,7 +26754,7 @@ function instance_constructor(in_pattern, cstr) do
     List.iter(__process, cstr.cstr_existentials);
   end
    end 
-  ty_res = copy(undefined, undefined, undefined, cstr.cstr_res);
+  ty_res = copy(nil, nil, nil, cstr.cstr_res);
   ty_args = List.map(simple_copy, cstr.cstr_args);
   cleanup_types(--[[ () ]]0);
   return --[[ tuple ]]{
@@ -26765,9 +26765,9 @@ end end
 
 function instance_parameterized_type(keep_names, sch_args, sch) do
   ty_args = List.map((function(t) do
-          return copy(undefined, undefined, keep_names, t);
+          return copy(nil, nil, keep_names, t);
         end end), sch_args);
-  ty = copy(undefined, undefined, undefined, sch);
+  ty = copy(nil, nil, nil, sch);
   cleanup_types(--[[ () ]]0);
   return --[[ tuple ]]{
           ty_args,
@@ -26794,7 +26794,7 @@ function instance_declaration(decl) do
                     return {
                             ld_id = l.ld_id,
                             ld_mutable = l.ld_mutable,
-                            ld_type = copy(undefined, undefined, undefined, l.ld_type),
+                            ld_type = copy(nil, nil, nil, l.ld_type),
                             ld_loc = l.ld_loc,
                             ld_attributes = l.ld_attributes
                           };
@@ -26838,12 +26838,12 @@ function instance_class(params, cty) do
        if ___conditional___ == 1--[[ Cty_signature ]] then do
           sign = param[0];
           return --[[ Cty_signature ]]Block.__(1, {{
-                      csig_self = copy(undefined, undefined, undefined, sign.csig_self),
+                      csig_self = copy(nil, nil, nil, sign.csig_self),
                       csig_vars = map((function(param) do
                               return --[[ tuple ]]{
                                       param[0],
                                       param[1],
-                                      copy(undefined, undefined, undefined, param[2])
+                                      copy(nil, nil, nil, param[2])
                                     };
                             end end), sign.csig_vars),
                       csig_concr = sign.csig_concr,
@@ -26857,7 +26857,7 @@ function instance_class(params, cty) do
        if ___conditional___ == 2--[[ Cty_arrow ]] then do
           return --[[ Cty_arrow ]]Block.__(2, {
                     param[0],
-                    copy(undefined, undefined, undefined, param[1]),
+                    copy(nil, nil, nil, param[1]),
                     copy_class_type(param[2])
                   }); end end 
       
@@ -26906,10 +26906,10 @@ function copy_sep(fixed, free, bound, visited, ty) do
     if (ty_1.level ~= 100000000) then do
       return ty_1;
     end else do
-      t = newvar(undefined, --[[ () ]]0);
+      t = newvar(nil, --[[ () ]]0);
       delayed_copy.contents = --[[ :: ]]{
         Caml_obj.caml_lazy_make((function(param) do
-                t.desc = --[[ Tlink ]]Block.__(6, {copy(undefined, undefined, undefined, ty_1)});
+                t.desc = --[[ Tlink ]]Block.__(6, {copy(nil, nil, nil, ty_1)});
                 return --[[ () ]]0;
               end end)),
         delayed_copy.contents
@@ -26927,7 +26927,7 @@ function copy_sep(fixed, free, bound, visited, ty) do
       return match[0];
     end end,function(exn) do
       if (exn == Caml_builtin_exceptions.not_found) then do
-        t_1 = newvar(undefined, --[[ () ]]0);
+        t_1 = newvar(nil, --[[ () ]]0);
         match_1 = ty_1.desc;
         visited_1;
         exit = 0;
@@ -26967,7 +26967,7 @@ function copy_sep(fixed, free, bound, visited, ty) do
         match_2 = ty_1.desc;
         tmp;
         if (typeof match_2 == "number") then do
-          tmp = copy_type_desc(undefined, copy_rec, ty_1.desc);
+          tmp = copy_type_desc(nil, copy_rec, ty_1.desc);
         end else do
           local ___conditional___=(match_2.tag | 0);
           do
@@ -26999,7 +26999,7 @@ function copy_sep(fixed, free, bound, visited, ty) do
                     tl$prime
                   }); end else 
              end end end end
-            tmp = copy_type_desc(undefined, copy_rec, ty_1.desc);
+            tmp = copy_type_desc(nil, copy_rec, ty_1.desc);
               
           end
         end end 
@@ -27013,7 +27013,7 @@ function copy_sep(fixed, free, bound, visited, ty) do
 end end
 
 function instance_poly(keep_namesOpt, fixed, univars, sch) do
-  keep_names = keep_namesOpt ~= undefined and keep_namesOpt or false;
+  keep_names = keep_namesOpt ~= nil and keep_namesOpt or false;
   univars_1 = List.map(repr, univars);
   copy_var = function(ty) do
     match = ty.desc;
@@ -27030,7 +27030,7 @@ function instance_poly(keep_namesOpt, fixed, univars, sch) do
       if (keep_names) then do
         return newty2(current_level.contents, --[[ Tvar ]]Block.__(0, {match[0]}));
       end else do
-        return newvar(undefined, --[[ () ]]0);
+        return newvar(nil, --[[ () ]]0);
       end end 
     end else do
       error({
@@ -27065,7 +27065,7 @@ function instance_poly(keep_namesOpt, fixed, univars, sch) do
 end end
 
 function instance_label(fixed, lbl) do
-  ty_res = copy(undefined, undefined, undefined, lbl.lbl_res);
+  ty_res = copy(nil, nil, nil, lbl.lbl_res);
   ty = repr(lbl.lbl_arg);
   match = ty.desc;
   match_1;
@@ -27073,12 +27073,12 @@ function instance_label(fixed, lbl) do
   if (typeof match == "number" or match.tag ~= --[[ Tpoly ]]10) then do
     exit = 1;
   end else do
-    match_1 = instance_poly(undefined, fixed, match[1], match[0]);
+    match_1 = instance_poly(nil, fixed, match[1], match[0]);
   end end 
   if (exit == 1) then do
     match_1 = --[[ tuple ]]{
       --[[ [] ]]0,
-      copy(undefined, undefined, undefined, lbl.lbl_arg)
+      copy(nil, nil, nil, lbl.lbl_arg)
     };
   end
    end 
@@ -27110,8 +27110,8 @@ function subst(env, level, priv, abbrev, ty, params, args, body) do
   old_level = current_level.contents;
   current_level.contents = level;
   xpcall(function() do
-    body0 = newvar(undefined, --[[ () ]]0);
-    if (ty ~= undefined) then do
+    body0 = newvar(nil, --[[ () ]]0);
+    if (ty ~= nil) then do
       ty_1 = ty;
       match = ty_1.desc;
       if (typeof match == "number") then do
@@ -27140,7 +27140,7 @@ function subst(env, level, priv, abbrev, ty, params, args, body) do
     end
      end 
     abbreviations.contents = abbrev;
-    match_1 = instance_parameterized_type(undefined, params, body);
+    match_1 = instance_parameterized_type(nil, params, body);
     body$prime = match_1[1];
     abbreviations.contents = {
       contents = --[[ Mnil ]]0
@@ -27193,7 +27193,7 @@ function expand_abbrev_gen(kind, find_type_expansion, env, ty) do
     level = ty.level;
     lookup_abbrev = proper_abbrevs(path, args, abbrev);
     match_1 = find_expans(kind, path, lookup_abbrev.contents);
-    if (match_1 ~= undefined) then do
+    if (match_1 ~= nil) then do
       ty_1 = match_1;
       if (level ~= 100000000) then do
         xpcall(function() do
@@ -27242,7 +27242,7 @@ function expand_abbrev_gen(kind, find_type_expansion, env, ty) do
        end 
       if (trace_gadt_instances.contents) then do
         match_4 = Caml_obj.caml_max(match_2[2], gadt_instance_level(env, ty));
-        if (match_4 ~= undefined) then do
+        if (match_4 ~= nil) then do
           lv = match_4;
           if (level < lv) then do
             error({
@@ -27250,7 +27250,7 @@ function expand_abbrev_gen(kind, find_type_expansion, env, ty) do
               --[[ :: ]]{
                 --[[ tuple ]]{
                   ty,
-                  newty2(level, --[[ Tvar ]]Block.__(0, {undefined}))
+                  newty2(level, --[[ Tvar ]]Block.__(0, {nil}))
                 },
                 --[[ [] ]]0
               }
@@ -27366,7 +27366,7 @@ end end
 function try_expand_head_1(try_once, env, ty) do
   ty$prime = try_expand_head(try_once, env, ty);
   match = gadt_instance_level(env, ty$prime);
-  if (match ~= undefined) then do
+  if (match ~= nil) then do
     add_gadt_instance_chain(env, match, ty);
   end
    end 
@@ -27497,7 +27497,7 @@ function enforce_constraints(env, ty) do
       decl = find_type_full(match[0], env)[0];
       subst(env, level, --[[ Public ]]1, {
             contents = --[[ Mnil ]]0
-          }, undefined, decl.type_params, match[1], newty2(level, --[[ Tvar ]]Block.__(0, {undefined})));
+          }, nil, decl.type_params, match[1], newty2(level, --[[ Tvar ]]Block.__(0, {nil})));
       return --[[ () ]]0;
     end end,function(exn) do
       if (exn == Caml_builtin_exceptions.not_found) then do
@@ -27525,13 +27525,13 @@ function full_expand(env, ty) do
     return ty_1;
   end else do
     match_1 = match[1].contents;
-    if (match_1 ~= undefined) then do
+    if (match_1 ~= nil) then do
       match_2 = match_1[1];
       if (match_2 and is_Tvar(repr(match_2[0]))) then do
         return newty2(ty_1.level, --[[ Tobject ]]Block.__(4, {
                       match[0],
                       {
-                        contents = undefined
+                        contents = nil
                       }
                     }));
       end else do
@@ -27562,7 +27562,7 @@ function generic_private_abbrev(env, path) do
     match_1 = match.type_kind;
     if (typeof match_1 == "number" and not (match_1 ~= 0 or match.type_private)) then do
       match_2 = match.type_manifest;
-      if (match_2 ~= undefined) then do
+      if (match_2 ~= nil) then do
         return repr(match_2).level == 100000000;
       end else do
         return false;
@@ -27758,11 +27758,11 @@ function unify_univar(t1, t2, _param) do
       end end;
       match_1 = find_univ(t1, match[0]);
       match_2 = find_univ(t2, match[1]);
-      if (match_1 ~= undefined) then do
+      if (match_1 ~= nil) then do
         r1 = match_1;
         match_3 = r1.contents;
-        if (match_3 ~= undefined) then do
-          if (match_2 ~= undefined) then do
+        if (match_3 ~= nil) then do
+          if (match_2 ~= nil) then do
             if (t2 == repr(match_3)) then do
               return --[[ () ]]0;
             end else do
@@ -27777,10 +27777,10 @@ function unify_univar(t1, t2, _param) do
               --[[ [] ]]0
             })
           end end 
-        end else if (match_2 ~= undefined) then do
+        end else if (match_2 ~= nil) then do
           r2 = match_2;
           match_4 = r2.contents;
-          if (match_4 ~= undefined) then do
+          if (match_4 ~= nil) then do
             error({
               Unify,
               --[[ [] ]]0
@@ -27796,7 +27796,7 @@ function unify_univar(t1, t2, _param) do
           })
         end end  end 
       end else do
-        if (match_2 ~= undefined) then do
+        if (match_2 ~= nil) then do
           error({
             Unify,
             --[[ [] ]]0
@@ -27903,7 +27903,7 @@ function occur_univar(env, ty) do
                     --[[ :: ]]{
                       --[[ tuple ]]{
                         ty_1,
-                        newty2(100000000, --[[ Tvar ]]Block.__(0, {undefined}))
+                        newty2(100000000, --[[ Tvar ]]Block.__(0, {nil}))
                       },
                       --[[ [] ]]0
                     }
@@ -28064,7 +28064,7 @@ function enter_poly(env, univar_pairs, t1, tl1, t2, tl2, f) do
           return --[[ tuple ]]{
                   t,
                   {
-                    contents = undefined
+                    contents = nil
                   }
                 };
         end end), tl1_1);
@@ -28072,7 +28072,7 @@ function enter_poly(env, univar_pairs, t1, tl1, t2, tl2, f) do
           return --[[ tuple ]]{
                   t,
                   {
-                    contents = undefined
+                    contents = nil
                   }
                 };
         end end), tl2_1);
@@ -28143,11 +28143,11 @@ end end
 function mkvariant(fields, closed) do
   return newty2(100000000, --[[ Tvariant ]]Block.__(8, {{
                   row_fields = fields,
-                  row_more = newvar(undefined, --[[ () ]]0),
+                  row_more = newvar(nil, --[[ () ]]0),
                   row_bound = --[[ () ]]0,
                   row_closed = closed,
                   row_fixed = false,
-                  row_name = undefined
+                  row_name = nil
                 }}));
 end end
 
@@ -28184,12 +28184,12 @@ function deep_occur(t0, ty) do
 end end
 
 newtype_level = {
-  contents = undefined
+  contents = nil
 };
 
 function get_newtype_level(param) do
   match = newtype_level.contents;
-  if (match ~= undefined) then do
+  if (match ~= nil) then do
     return match;
   end else do
     error({
@@ -28209,7 +28209,7 @@ function reify(env, t) do
     decl = new_declaration(--[[ tuple ]]{
           newtype_level,
           newtype_level
-        }, undefined);
+        }, nil);
     name_1 = get_new_abstract_name(name);
     match = enter_type(name_1, decl, env.contents);
     t = newty2(lev, --[[ Tconstr ]]Block.__(3, {
@@ -28239,7 +28239,7 @@ function reify(env, t) do
         do
            if ___conditional___ == 0--[[ Tvar ]] then do
               o = match[0];
-              name = o ~= undefined and o or "ex";
+              name = o ~= nil and o or "ex";
               t = create_fresh_constr(ty_1.level, name);
               return link_type(ty_1, t); end end 
            if ___conditional___ == 3--[[ Tconstr ]] then do
@@ -28276,7 +28276,7 @@ function reify(env, t) do
                     })
                   end else do
                     o_1 = match_1[0];
-                    name_1 = o_1 ~= undefined and o_1 or "ex";
+                    name_1 = o_1 ~= nil and o_1 or "ex";
                     t_1 = create_fresh_constr(m.level, name_1);
                     row_row_bound = r.row_bound;
                     row_row_closed = r.row_closed;
@@ -28307,7 +28307,7 @@ end end
 function is_newtype(env, p) do
   xpcall(function() do
     decl = find_type_full(p, env)[0];
-    if (decl.type_newtype_level ~= undefined and decl.type_kind == --[[ Type_abstract ]]0) then do
+    if (decl.type_newtype_level ~= nil and decl.type_kind == --[[ Type_abstract ]]0) then do
       return decl.type_private == --[[ Public ]]1;
     end else do
       return false;
@@ -28323,7 +28323,7 @@ end end
 
 function non_aliasable(p, decl) do
   if (in_current_module(p)) then do
-    return decl.type_newtype_level == undefined;
+    return decl.type_newtype_level == nil;
   end else do
     return false;
   end end 
@@ -28808,7 +28808,7 @@ function mcomp(type_pairs, env, _t1, _t2) do
                                                 exit_2 = 3;
                                               end else do
                                                 match_2 = match_1[0];
-                                                if (match_2 ~= undefined) then do
+                                                if (match_2 ~= nil) then do
                                                   t2 = match_2;
                                                   return List.iter((function(param) do
                                                                 return mcomp(type_pairs_3, env_3, t2, param);
@@ -28827,7 +28827,7 @@ function mcomp(type_pairs, env, _t1, _t2) do
                                                end 
                                             end else do
                                               match_3 = match[0];
-                                              if (match_3 ~= undefined) then do
+                                              if (match_3 ~= nil) then do
                                                 t1 = match_3;
                                                 if (typeof match_1 == "number") then do
                                                   error({
@@ -28847,7 +28847,7 @@ function mcomp(type_pairs, env, _t1, _t2) do
                                                               end end), match_1[1]);
                                                 end else do
                                                   match_4 = match_1[0];
-                                                  if (match_4 ~= undefined) then do
+                                                  if (match_4 ~= nil) then do
                                                     return mcomp(type_pairs_3, env_3, t1, match_4);
                                                   end else do
                                                     error({
@@ -28870,7 +28870,7 @@ function mcomp(type_pairs, env, _t1, _t2) do
                                                 end else do
                                                   return --[[ () ]]0;
                                                 end end 
-                                              end else if (match_1[0] ~= undefined) then do
+                                              end else if (match_1[0] ~= nil) then do
                                                 error({
                                                   Unify,
                                                   --[[ [] ]]0
@@ -28882,7 +28882,7 @@ function mcomp(type_pairs, env, _t1, _t2) do
                                             if (exit_1 == 2) then do
                                               if (typeof match_1 == "number" or match_1.tag) then do
                                                 return --[[ () ]]0;
-                                              end else if (match_1[0] ~= undefined) then do
+                                              end else if (match_1[0] ~= nil) then do
                                                 exit = 1;
                                               end else do
                                                 error({
@@ -28897,7 +28897,7 @@ function mcomp(type_pairs, env, _t1, _t2) do
                                                 return --[[ () ]]0;
                                               end
                                                end 
-                                              if (typeof match_1 == "number" or match_1.tag or match_1[0] == undefined) then do
+                                              if (typeof match_1 == "number" or match_1.tag or match_1[0] == nil) then do
                                                 return --[[ () ]]0;
                                               end else do
                                                 error({
@@ -29142,8 +29142,8 @@ function mcomp_kind(k1, k2) do
 end end
 
 function mcomp_type_option(type_pairs, env, t, t$prime) do
-  if (t ~= undefined) then do
-    if (t$prime ~= undefined) then do
+  if (t ~= nil) then do
+    if (t$prime ~= nil) then do
       return mcomp(type_pairs, env, t, t$prime);
     end else do
       error({
@@ -29151,7 +29151,7 @@ function mcomp_type_option(type_pairs, env, t, t$prime) do
         --[[ [] ]]0
       })
     end end 
-  end else if (t$prime ~= undefined) then do
+  end else if (t$prime ~= nil) then do
     error({
       Unify,
       --[[ [] ]]0
@@ -29229,7 +29229,7 @@ end end
 function find_newtype_level(env, path) do
   xpcall(function() do
     match = find_type_full(path, env)[0].type_newtype_level;
-    if (match ~= undefined) then do
+    if (match ~= nil) then do
       return match;
     end else do
       error({
@@ -29349,16 +29349,16 @@ function nondep_instance(env, level, id, ty) do
   end else do
     old = current_level.contents;
     current_level.contents = level;
-    ty_2 = instance(undefined, env, ty_1);
+    ty_2 = instance(nil, env, ty_1);
     current_level.contents = old;
     return ty_2;
   end end 
 end end
 
 function complete_type_list(allow_absentOpt, env, nl1, lv2, mty2, nl2, tl2) do
-  allow_absent = allow_absentOpt ~= undefined and allow_absentOpt or false;
+  allow_absent = allow_absentOpt ~= nil and allow_absentOpt or false;
   id2 = create("Pkg");
-  env$prime = add_module_1(undefined, id2, mty2, env);
+  env$prime = add_module_1(nil, id2, mty2, env);
   complete = function(_nl1, ntl2) do
     while(true) do
       nl1 = _nl1;
@@ -29396,7 +29396,7 @@ function complete_type_list(allow_absentOpt, env, nl1, lv2, mty2, nl2, tl2) do
                end 
               if (decl.type_private) then do
                 match_2 = decl.type_manifest;
-                if (match_2 ~= undefined) then do
+                if (match_2 ~= nil) then do
                   return --[[ :: ]]{
                           --[[ tuple ]]{
                             n,
@@ -29438,8 +29438,8 @@ function complete_type_list(allow_absentOpt, env, nl1, lv2, mty2, nl2, tl2) do
 end end
 
 function unify_package(env, unify_list, lv1, p1, n1, tl1, lv2, p2, n2, tl2) do
-  ntl2 = complete_type_list(undefined, env, n1, lv2, --[[ Mty_ident ]]Block.__(0, {p2}), n2, tl2);
-  ntl1 = complete_type_list(undefined, env, n2, lv2, --[[ Mty_ident ]]Block.__(0, {p1}), n1, tl1);
+  ntl2 = complete_type_list(nil, env, n1, lv2, --[[ Mty_ident ]]Block.__(0, {p2}), n2, tl2);
+  ntl1 = complete_type_list(nil, env, n2, lv2, --[[ Mty_ident ]]Block.__(0, {p1}), n1, tl1);
   Curry._2(unify_list, List.map((function(prim) do
               return prim[1];
             end end), ntl1), List.map((function(prim) do
@@ -29647,7 +29647,7 @@ end end
 function make_rowvar(level, use1, rest1, use2, rest2) do
   set_name = function(ty, name) do
     match = ty.desc;
-    if (typeof match == "number" or match.tag or match[0] ~= undefined) then do
+    if (typeof match == "number" or match.tag or match[0] ~= nil) then do
       return --[[ () ]]0;
     end else do
       log_type(ty);
@@ -29663,13 +29663,13 @@ function make_rowvar(level, use1, rest1, use2, rest2) do
     exit = 1;
   end else do
     name1 = match[0];
-    if (name1 ~= undefined) then do
+    if (name1 ~= nil) then do
       exit_1 = 0;
       if (typeof match_1 == "number" or match_1.tag) then do
         exit_1 = 2;
       end else do
         name2 = match_1[0];
-        if (name2 ~= undefined) then do
+        if (name2 ~= nil) then do
           name = rest1.level <= rest2.level and name1 or name2;
         end else do
           exit_1 = 2;
@@ -29689,17 +29689,17 @@ function make_rowvar(level, use1, rest1, use2, rest2) do
   end end 
   if (exit == 1) then do
     if (typeof match_1 == "number" or match_1.tag) then do
-      name = undefined;
+      name = nil;
     end else do
       name_1 = match_1[0];
-      if (name_1 ~= undefined) then do
+      if (name_1 ~= nil) then do
         if (use1) then do
           set_name(rest2, name_1);
         end
          end 
         name = name_1;
       end else do
-        name = undefined;
+        name = nil;
       end end 
     end end 
   end
@@ -29809,7 +29809,7 @@ function unify_row(env, row1, row2) do
     r2 = match[1];
     r1 = match[0];
     if (r1 ~= --[[ [] ]]0 and r2 ~= --[[ [] ]]0) then do
-      ht = Hashtbl.create(undefined, List.length(r1));
+      ht = Hashtbl.create(nil, List.length(r1));
       List.iter((function(param) do
               l = param[0];
               return Hashtbl.add(ht, hash_variant(l), l);
@@ -29835,7 +29835,7 @@ function unify_row(env, row1, row2) do
     fixed1 = row_fixed(row1_1);
     fixed2 = row_fixed(row2_1);
     more = fixed1 and rm1 or (
-        fixed2 and rm2 or newty2(rm1.level < rm2.level and rm1.level or rm2.level, --[[ Tvar ]]Block.__(0, {undefined}))
+        fixed2 and rm2 or newty2(rm1.level < rm2.level and rm1.level or rm2.level, --[[ Tvar ]]Block.__(0, {nil}))
       );
     fixed = fixed1 or fixed2;
     closed = row1_1.row_closed or row2_1.row_closed;
@@ -29873,18 +29873,18 @@ function unify_row(env, row1, row2) do
       })
     end
      end 
-    name = row1_1.row_name ~= undefined and (row1_1.row_closed or empty(r2)) and (not row2_1.row_closed or keep((function(f1, f2) do
+    name = row1_1.row_name ~= nil and (row1_1.row_closed or empty(r2)) and (not row2_1.row_closed or keep((function(f1, f2) do
               return --[[ tuple ]]{
                       f1,
                       f2
                     };
             end end)) and empty(r1)) and row1_1.row_name or (
-        row2_1.row_name ~= undefined and (row2_1.row_closed or empty(r1)) and (not row1_1.row_closed or keep((function(f1, f2) do
+        row2_1.row_name ~= nil and (row2_1.row_closed or empty(r1)) and (not row1_1.row_closed or keep((function(f1, f2) do
                   return --[[ tuple ]]{
                           f2,
                           f1
                         };
-                end end)) and empty(r2)) and row2_1.row_name or undefined
+                end end)) and empty(r2)) and row2_1.row_name or nil
       );
     set_more = function(row, rest) do
       rest_1 = closed and filter_row_fields(row.row_closed, rest) or rest;
@@ -30030,7 +30030,7 @@ function unify_row(env, row1, row2) do
                                         return unify(env_1, t1, param);
                                       end end
                                       end end)(t1), match[1]);
-                                  tmp = e1.contents ~= undefined or e2.contents ~= undefined;
+                                  tmp = e1.contents ~= nil or e2.contents ~= nil;
                                 end else do
                                   tmp = false;
                                 end end 
@@ -30074,7 +30074,7 @@ function unify_row(env, row1, row2) do
                                     end end
                                     end end)(partial_arg,partial_arg_1), Pervasives.$at(tl1$prime, tl2$prime));
                                 e = {
-                                  contents = undefined
+                                  contents = nil
                                 };
                                 f1$prime_000 = c1 or c2;
                                 f1$prime_002 = m1 or m2;
@@ -30104,7 +30104,7 @@ function unify_row(env, row1, row2) do
                               })
                             end
                              end 
-                            if (f2_2[0] ~= undefined) then do
+                            if (f2_2[0] ~= nil) then do
                               error({
                                 Unify,
                                 --[[ [] ]]0
@@ -30121,7 +30121,7 @@ function unify_row(env, row1, row2) do
                             end end 
                           end else do
                             match_1 = f2_2[0];
-                            if (match_1 ~= undefined) then do
+                            if (match_1 ~= nil) then do
                               if (fixed1_1) then do
                                 error({
                                   Unify,
@@ -30139,7 +30139,7 @@ function unify_row(env, row1, row2) do
                                             end end
                                             end end)(t2), f1_2[1]);
                                 end end,function(exn) do
-                                  e1_1.contents = undefined;
+                                  e1_1.contents = nil;
                                   error(exn)
                                 end end)
                               end end 
@@ -30152,7 +30152,7 @@ function unify_row(env, row1, row2) do
                           end end  end  end 
                         end else do
                           match_2 = f1_2[0];
-                          if (match_2 ~= undefined) then do
+                          if (match_2 ~= nil) then do
                             t1_1 = match_2;
                             if (typeof f2_2 == "number") then do
                               error({
@@ -30183,13 +30183,13 @@ function unify_row(env, row1, row2) do
                                             end end
                                             end end)(t1_1), f2_2[1]);
                                 end end,function(exn_1) do
-                                  e2_1.contents = undefined;
+                                  e2_1.contents = nil;
                                   error(exn_1)
                                 end end)
                               end end 
                             end else do
                               match_3 = f2_2[0];
-                              if (match_3 ~= undefined) then do
+                              if (match_3 ~= nil) then do
                                 return unify(env_1, t1_1, match_3);
                               end else do
                                 error({
@@ -30226,7 +30226,7 @@ function unify_row(env, row1, row2) do
                                 --[[ [] ]]0
                               })
                             end end 
-                          end else if (f2_2[0] ~= undefined) then do
+                          end else if (f2_2[0] ~= nil) then do
                             error({
                               Unify,
                               --[[ [] ]]0
@@ -30584,7 +30584,7 @@ function unify3(env, t1, t1$prime, t2, t2$prime) do
                       if (typeof match_4 ~= "number" and match_4.tag == --[[ Tobject ]]4) then do
                         nm2 = match_4[1];
                         match_5 = nm2.contents;
-                        if (match_5 ~= undefined) then do
+                        if (match_5 ~= nil) then do
                           match_6 = match_5[1];
                           if (match_6) then do
                             match_7 = repr(match_6[0]).desc;
@@ -30926,7 +30926,7 @@ function unify2(env, t1, t2) do
     if (trace_gadt_instances.contents) then do
       ilevel = function(t) do
         match = gadt_instance_level(env.contents, t);
-        if (match ~= undefined) then do
+        if (match ~= nil) then do
           return match;
         end else do
           return 0;
@@ -31090,8 +31090,8 @@ function filter_arrow(env, t, l) do
     do
        if ___conditional___ == 0--[[ Tvar ]] then do
           lv = t_1.level;
-          t1 = newty2(lv, --[[ Tvar ]]Block.__(0, {undefined}));
-          t2 = newty2(lv, --[[ Tvar ]]Block.__(0, {undefined}));
+          t1 = newty2(lv, --[[ Tvar ]]Block.__(0, {nil}));
+          t2 = newty2(lv, --[[ Tvar ]]Block.__(0, {nil}));
           t$prime = newty2(lv, --[[ Tarrow ]]Block.__(1, {
                   l,
                   t1,
@@ -31140,12 +31140,12 @@ function filter_method_field(env, name, priv, _ty) do
       do
          if ___conditional___ == 0--[[ Tvar ]] then do
             level = ty_1.level;
-            ty1 = newty2(level, --[[ Tvar ]]Block.__(0, {undefined}));
-            ty2 = newty2(level, --[[ Tvar ]]Block.__(0, {undefined}));
+            ty1 = newty2(level, --[[ Tvar ]]Block.__(0, {nil}));
+            ty2 = newty2(level, --[[ Tvar ]]Block.__(0, {nil}));
             ty$prime = newty2(level, --[[ Tfield ]]Block.__(5, {
                     name,
                     priv and --[[ Fpresent ]]0 or --[[ Fvar ]]{{
-                          contents = undefined
+                          contents = nil
                         }},
                     ty1,
                     ty2
@@ -31186,7 +31186,7 @@ function filter_method(env, name, priv, ty) do
     local ___conditional___=(match.tag | 0);
     do
        if ___conditional___ == 0--[[ Tvar ]] then do
-          ty1 = newvar(undefined, --[[ () ]]0);
+          ty1 = newvar(nil, --[[ () ]]0);
           ty$prime = newobj(ty1);
           update_level(env, ty_1.level, ty$prime);
           link_type(ty_1, ty$prime);
@@ -31569,7 +31569,7 @@ function moregen(inst_nongen, type_pairs, env, t1, t2) do
                                             c1 = f1[0];
                                             if (c1) then do
                                               if (not f1[1] and typeof f2 ~= "number" and not f2.tag) then do
-                                                if (f2[0] ~= undefined) then do
+                                                if (f2[0] ~= nil) then do
                                                   error({
                                                     Unify,
                                                     --[[ [] ]]0
@@ -31588,7 +31588,7 @@ function moregen(inst_nongen, type_pairs, env, t1, t2) do
                                                end 
                                             end else if (typeof f2 ~= "number" and not f2.tag) then do
                                               match = f2[0];
-                                              if (match ~= undefined) then do
+                                              if (match ~= nil) then do
                                                 if (may_inst) then do
                                                   t2 = match;
                                                   set_row_field(f1[3], f2);
@@ -31666,7 +31666,7 @@ function moregen(inst_nongen, type_pairs, env, t1, t2) do
                                             end end  end 
                                           end else do
                                             match_1 = f1[0];
-                                            if (match_1 ~= undefined) then do
+                                            if (match_1 ~= nil) then do
                                               if (typeof f2 == "number") then do
                                                 error({
                                                   Unify,
@@ -31679,7 +31679,7 @@ function moregen(inst_nongen, type_pairs, env, t1, t2) do
                                                 })
                                               end else do
                                                 match_2 = f2[0];
-                                                if (match_2 ~= undefined) then do
+                                                if (match_2 ~= nil) then do
                                                   return moregen(inst_nongen_1, type_pairs_1, env_1, match_1, match_2);
                                                 end else do
                                                   error({
@@ -31698,7 +31698,7 @@ function moregen(inst_nongen, type_pairs, env, t1, t2) do
                                                 Unify,
                                                 --[[ [] ]]0
                                               })
-                                            end else if (f2[0] ~= undefined) then do
+                                            end else if (f2[0] ~= nil) then do
                                               error({
                                                 Unify,
                                                 --[[ [] ]]0
@@ -31946,10 +31946,10 @@ end end
 function moregeneral(env, inst_nongen, pat_sch, subj_sch) do
   old_level = current_level.contents;
   current_level.contents = 99999999;
-  ty = instance(undefined, env, subj_sch);
+  ty = instance(nil, env, subj_sch);
   subj = type_expr(identity, ty);
   current_level.contents = 100000000;
-  patt = instance(undefined, env, pat_sch);
+  patt = instance(nil, env, pat_sch);
   res;
   xpcall(function() do
     moregen_1(inst_nongen, Curry._1(TypePairs.create, 13), env, patt, subj);
@@ -32493,7 +32493,7 @@ function eqtype(rename, type_pairs, subst, env, t1, t2) do
                                             end end 
                                           end else do
                                             match_4 = match[0];
-                                            if (match_4 ~= undefined) then do
+                                            if (match_4 ~= nil) then do
                                               if (typeof match_1 == "number") then do
                                                 error({
                                                   Unify,
@@ -32506,7 +32506,7 @@ function eqtype(rename, type_pairs, subst, env, t1, t2) do
                                                 })
                                               end else do
                                                 match_5 = match_1[0];
-                                                if (match_5 ~= undefined) then do
+                                                if (match_5 ~= nil) then do
                                                   return eqtype(rename_1, type_pairs_1, subst_1, env_1, match_4, match_5);
                                                 end else do
                                                   error({
@@ -32525,7 +32525,7 @@ function eqtype(rename, type_pairs, subst, env, t1, t2) do
                                                 Unify,
                                                 --[[ [] ]]0
                                               })
-                                            end else if (match_1[0] ~= undefined) then do
+                                            end else if (match_1[0] ~= nil) then do
                                               error({
                                                 Unify,
                                                 --[[ [] ]]0
@@ -32951,7 +32951,7 @@ function moregen_clty(trace, type_pairs, env, cty1, cty2) do
 end end
 
 function match_class_types(traceOpt, env, pat_sch, subj_sch) do
-  trace = traceOpt ~= undefined and traceOpt or true;
+  trace = traceOpt ~= nil and traceOpt or true;
   type_pairs = Curry._1(TypePairs.create, 53);
   old_level = current_level.contents;
   current_level.contents = 99999999;
@@ -33509,20 +33509,20 @@ function memq_warn(t, visited) do
 end end
 
 function lid_of_path($staropt$star, param) do
-  sharp = $staropt$star ~= undefined and $staropt$star or "";
+  sharp = $staropt$star ~= nil and $staropt$star or "";
   local ___conditional___=(param.tag | 0);
   do
      if ___conditional___ == 0--[[ Pident ]] then do
         return --[[ Lident ]]Block.__(0, {sharp .. param[0].name}); end end 
      if ___conditional___ == 1--[[ Pdot ]] then do
         return --[[ Ldot ]]Block.__(1, {
-                  lid_of_path(undefined, param[0]),
+                  lid_of_path(nil, param[0]),
                   sharp .. param[1]
                 }); end end 
      if ___conditional___ == 2--[[ Papply ]] then do
         return --[[ Lapply ]]Block.__(2, {
                   lid_of_path(sharp, param[0]),
-                  lid_of_path(undefined, param[1])
+                  lid_of_path(nil, param[1])
                 }); end end 
     
   end
@@ -33532,14 +33532,14 @@ function find_cltype_for_path(env, p) do
   match = lookup_type_1(lid_of_path("#", p), env);
   cl_abbr = match[1];
   match_1 = cl_abbr.type_manifest;
-  if (match_1 ~= undefined) then do
+  if (match_1 ~= nil) then do
     ty = match_1;
     match_2 = repr(ty).desc;
     if (typeof match_2 == "number") then do
       error(Caml_builtin_exceptions.not_found)
     end else if (match_2.tag == --[[ Tobject ]]4) then do
       match_3 = match_2[1].contents;
-      if (match_3 ~= undefined) then do
+      if (match_3 ~= nil) then do
         if (same(p, match_3[0])) then do
           return --[[ tuple ]]{
                   cl_abbr,
@@ -33571,7 +33571,7 @@ function build_subtype(env, visited, loops, posi, level, t) do
   match = t_1.desc;
   if (typeof match == "number") then do
     if (posi) then do
-      v = newvar(undefined, --[[ () ]]0);
+      v = newvar(nil, --[[ () ]]0);
       return --[[ tuple ]]{
               v,
               --[[ Changed ]]2
@@ -33685,7 +33685,7 @@ function build_subtype(env, visited, loops, posi, level, t) do
               end else if (match_3.tag == --[[ Tobject ]]4) then do
                 if (posi and not opened_object(t$prime_1)) then do
                   match_4 = find_cltype_for_path(env, p);
-                  ty = subst(env, current_level.contents, --[[ Public ]]1, match[2], undefined, match_4[0].type_params, tl, match_4[1]);
+                  ty = subst(env, current_level.contents, --[[ Public ]]1, match[2], nil, match_4[0].type_params, tl, match_4[1]);
                   ty_1 = repr(ty);
                   match_5 = ty_1.desc;
                   match_6;
@@ -33693,7 +33693,7 @@ function build_subtype(env, visited, loops, posi, level, t) do
                     error(Caml_builtin_exceptions.not_found)
                   end else if (match_5.tag == --[[ Tobject ]]4) then do
                     match_7 = match_5[1].contents;
-                    if (match_7 ~= undefined) then do
+                    if (match_7 ~= nil) then do
                       match_8 = match_7;
                       if (same(p, match_8[0])) then do
                         match_6 = --[[ tuple ]]{
@@ -33716,8 +33716,8 @@ function build_subtype(env, visited, loops, posi, level, t) do
                     error(Caml_builtin_exceptions.not_found)
                   end
                    end 
-                  ty_1.desc = --[[ Tvar ]]Block.__(0, {undefined});
-                  t$prime$prime = newvar(undefined, --[[ () ]]0);
+                  ty_1.desc = --[[ Tvar ]]Block.__(0, {nil});
+                  t$prime$prime = newvar(nil, --[[ () ]]0);
                   loops_000 = --[[ tuple ]]{
                     ty_1,
                     t$prime$prime
@@ -33742,7 +33742,7 @@ function build_subtype(env, visited, loops, posi, level, t) do
                     })
                   end
                    end 
-                  nm = match_9[1] > --[[ Equiv ]]1 or deep_occur(ty_1, ty1$prime) and undefined or --[[ tuple ]]{
+                  nm = match_9[1] > --[[ Equiv ]]1 or deep_occur(ty_1, ty1$prime) and nil or --[[ tuple ]]{
                       p,
                       tl1
                     };
@@ -33830,7 +33830,7 @@ function build_subtype(env, visited, loops, posi, level, t) do
                         return build_subtype(env, visited_3, loops, posi, level, t);
                       end else do
                         return --[[ tuple ]]{
-                                newvar(undefined, --[[ () ]]0),
+                                newvar(nil, --[[ () ]]0),
                                 --[[ Changed ]]2
                               };
                       end end  end 
@@ -33881,7 +33881,7 @@ function build_subtype(env, visited, loops, posi, level, t) do
                       newty2(current_level.contents, --[[ Tobject ]]Block.__(4, {
                               match_11[0],
                               {
-                                contents = undefined
+                                contents = nil
                               }
                             })),
                       c_4
@@ -33961,7 +33961,7 @@ function build_subtype(env, visited, loops, posi, level, t) do
                       })
                     end else do
                       match_1 = match[0];
-                      if (match_1 ~= undefined) then do
+                      if (match_1 ~= nil) then do
                         match_2 = build_subtype(env, visited_5, loops, posi, level$prime_2, match_1);
                         t$prime = match_2[0];
                         f = posi and level > 0 and --[[ Reither ]]Block.__(1, {
@@ -33972,7 +33972,7 @@ function build_subtype(env, visited, loops, posi, level, t) do
                               },
                               false,
                               {
-                                contents = undefined
+                                contents = nil
                               }
                             }) or --[[ Rpresent ]]Block.__(0, {t$prime});
                         return --[[ tuple ]]{
@@ -33991,7 +33991,7 @@ function build_subtype(env, visited, loops, posi, level, t) do
                                       --[[ [] ]]0,
                                       false,
                                       {
-                                        contents = undefined
+                                        contents = nil
                                       }
                                     })
                                 },
@@ -34009,8 +34009,8 @@ function build_subtype(env, visited, loops, posi, level, t) do
             row_row_fields = List.map((function(prim) do
                     return prim[0];
                   end end), fields_1);
-            row_row_more = newvar(undefined, --[[ () ]]0);
-            row_row_name = c_6 > --[[ Unchanged ]]0 and undefined or row.row_name;
+            row_row_more = newvar(nil, --[[ () ]]0);
+            row_row_name = c_6 > --[[ Unchanged ]]0 and nil or row.row_name;
             row_1 = {
               row_fields = row_row_fields,
               row_more = row_row_more,
@@ -34266,7 +34266,7 @@ function subtype_rec(env, _trace, _t1, _t2, _cstrs) do
                                 --[[ tuple ]]{
                                   trace_2,
                                   rest1,
-                                  build_fields(repr(ty2).level)(miss2, newvar(undefined, --[[ () ]]0)),
+                                  build_fields(repr(ty2).level)(miss2, newvar(nil, --[[ () ]]0)),
                                   univar_pairs.contents
                                 },
                                 cstrs_4
@@ -34414,14 +34414,14 @@ function subtype_rec(env, _trace, _t1, _t2, _cstrs) do
                                                       end end 
                                                     end else do
                                                       match_4 = match[0];
-                                                      if (match_4 ~= undefined) then do
+                                                      if (match_4 ~= nil) then do
                                                         if (typeof match_1 == "number") then do
                                                           error(Pervasives.Exit)
                                                         end else if (match_1.tag) then do
                                                           error(Pervasives.Exit)
                                                         end else do
                                                           match_5 = match_1[0];
-                                                          if (match_5 ~= undefined) then do
+                                                          if (match_5 ~= nil) then do
                                                             t1 = match_4;
                                                             t2 = match_5;
                                                           end else do
@@ -34433,7 +34433,7 @@ function subtype_rec(env, _trace, _t1, _t2, _cstrs) do
                                                       end else if (match_1.tag) then do
                                                         error(Pervasives.Exit)
                                                       end else do
-                                                        if (match_1[0] ~= undefined) then do
+                                                        if (match_1[0] ~= nil) then do
                                                           error(Pervasives.Exit)
                                                         end
                                                          end 
@@ -34489,7 +34489,7 @@ function subtype_rec(env, _trace, _t1, _t2, _cstrs) do
                                                     error(Pervasives.Exit)
                                                   end else do
                                                     match_3 = match_1[0];
-                                                    if (match_3 ~= undefined) then do
+                                                    if (match_3 ~= nil) then do
                                                       t2 = match_3;
                                                       return subtype_rec(env_3, --[[ :: ]]{
                                                                   --[[ tuple ]]{
@@ -34509,7 +34509,7 @@ function subtype_rec(env, _trace, _t1, _t2, _cstrs) do
                                                end 
                                             end else do
                                               match_4 = match[0];
-                                              if (match_4 ~= undefined) then do
+                                              if (match_4 ~= nil) then do
                                                 t1_1 = match_4;
                                                 if (typeof match_1 == "number") then do
                                                   error(Pervasives.Exit)
@@ -34517,7 +34517,7 @@ function subtype_rec(env, _trace, _t1, _t2, _cstrs) do
                                                   error(Pervasives.Exit)
                                                 end else do
                                                   match_5 = match_1[0];
-                                                  if (match_5 ~= undefined) then do
+                                                  if (match_5 ~= nil) then do
                                                     t2_1 = match_5;
                                                     return subtype_rec(env_3, --[[ :: ]]{
                                                                 --[[ tuple ]]{
@@ -34538,7 +34538,7 @@ function subtype_rec(env, _trace, _t1, _t2, _cstrs) do
                                             end else if (match_1.tag) then do
                                               error(Pervasives.Exit)
                                             end else do
-                                              if (match_1[0] ~= undefined) then do
+                                              if (match_1[0] ~= nil) then do
                                                 error(Pervasives.Exit)
                                               end
                                                end 
@@ -34635,7 +34635,7 @@ function subtype_rec(env, _trace, _t1, _t2, _cstrs) do
                                 end end 
                               end end)
                             end else do
-                              match_8 = instance_poly(undefined, false, tl1_1, u1_1);
+                              match_8 = instance_poly(nil, false, tl1_1, u1_1);
                               _t2 = u2_1;
                               _t1 = match_8[1];
                               ::continue:: ;
@@ -34664,7 +34664,7 @@ function subtype_rec(env, _trace, _t1, _t2, _cstrs) do
                           nl2 = match_1[1];
                           p2 = match_1[0];
                           xpcall(function() do
-                            ntl1 = complete_type_list(undefined, env, nl2, t1_1.level, --[[ Mty_ident ]]Block.__(0, {p1}), nl1, tl1_2);
+                            ntl1 = complete_type_list(nil, env, nl2, t1_1.level, --[[ Mty_ident ]]Block.__(0, {p1}), nl1, tl1_2);
                             ntl2 = complete_type_list(true, env, nl1, t2_1.level, --[[ Mty_ident ]]Block.__(0, {p2}), nl2, tl2_2);
                             cstrs$prime = List.map((function(trace,ntl1)do
                                 return function (param) do
@@ -34907,7 +34907,7 @@ function unalias_object(ty) do
        if ___conditional___ == 0--[[ Tvar ]] then do
           return newty2(ty_1.level, ty_1.desc); end end 
        if ___conditional___ == 3--[[ Tconstr ]] then do
-          return newty2(ty_1.level, --[[ Tvar ]]Block.__(0, {undefined})); end end 
+          return newty2(ty_1.level, --[[ Tvar ]]Block.__(0, {nil})); end end 
        if ___conditional___ == 5--[[ Tfield ]] then do
           return newty2(ty_1.level, --[[ Tfield ]]Block.__(5, {
                         match[0],
@@ -35015,7 +35015,7 @@ function normalize_type_rec(env, visited, ty) do
          if ___conditional___ == 4--[[ Tobject ]] then do
             nm = match[1];
             match_1 = nm.contents;
-            if (match_1 ~= undefined) then do
+            if (match_1 ~= nil) then do
               match_2 = match_1;
               match_3 = match_2[1];
               if (match_3) then do
@@ -35023,7 +35023,7 @@ function normalize_type_rec(env, visited, ty) do
                 v = match_3[0];
                 n = match_2[0];
                 if (deep_occur(ty_1, newty2(100000000, --[[ Ttuple ]]Block.__(2, {l})))) then do
-                  set_name(nm, undefined);
+                  set_name(nm, nil);
                 end else do
                   v$prime = repr(v);
                   match_4 = v$prime.desc;
@@ -35044,7 +35044,7 @@ function normalize_type_rec(env, visited, ty) do
                        or ___conditional___ == 9--[[ Tunivar ]] then do
                           exit = 1; end else 
                        end end
-                      set_name(nm, undefined);
+                      set_name(nm, nil);
                         
                     end
                   end end 
@@ -35184,7 +35184,7 @@ function nondep_type_rec(env, id, _ty) do
         return Curry._2(TypeHash.find, nondep_hash, ty);
       end end,function(exn) do
         if (exn == Caml_builtin_exceptions.not_found) then do
-          ty$prime = newty2(100000000, --[[ Tvar ]]Block.__(0, {undefined}));
+          ty$prime = newty2(100000000, --[[ Tvar ]]Block.__(0, {nil}));
           Curry._3(TypeHash.add, nondep_hash, ty, ty$prime);
           match_1 = ty.desc;
           tmp;
@@ -35225,17 +35225,17 @@ function nondep_type_rec(env, id, _ty) do
                if ___conditional___ == 4--[[ Tobject ]] then do
                   match_2 = match_1[1].contents;
                   tmp_1;
-                  if (match_2 ~= undefined) then do
+                  if (match_2 ~= nil) then do
                     match_3 = match_2;
                     p_1 = match_3[0];
-                    tmp_1 = isfree(id, p_1) and undefined or --[[ tuple ]]{
+                    tmp_1 = isfree(id, p_1) and nil or --[[ tuple ]]{
                         p_1,
                         List.map((function(param) do
                                 return nondep_type_rec(env, id, param);
                               end end), match_3[1])
                       };
                   end else do
-                    tmp_1 = undefined;
+                    tmp_1 = nil;
                   end end 
                   tmp = --[[ Tobject ]]Block.__(4, {
                       nondep_type_rec(env, id, match_1[0]),
@@ -35259,13 +35259,13 @@ function nondep_type_rec(env, id, _ty) do
                               return nondep_type_rec(env, id, param);
                             end end), true, row, true, more$prime);
                       match_4 = row_1.row_name;
-                      tmp = match_4 ~= undefined and isfree(id, match_4[0]) and --[[ Tvariant ]]Block.__(8, {{
+                      tmp = match_4 ~= nil and isfree(id, match_4[0]) and --[[ Tvariant ]]Block.__(8, {{
                               row_fields = row_1.row_fields,
                               row_more = row_1.row_more,
                               row_bound = row_1.row_bound,
                               row_closed = row_1.row_closed,
                               row_fixed = row_1.row_fixed,
-                              row_name = undefined
+                              row_name = nil
                             }}) or --[[ Tvariant ]]Block.__(8, {row_1});
                     end else do
                       error(exn_2)
@@ -35295,7 +35295,7 @@ function nondep_type_rec(env, id, _ty) do
             end
           end end 
           if (exit_1 == 2) then do
-            tmp = copy_type_desc(undefined, (function(param) do
+            tmp = copy_type_desc(nil, (function(param) do
                     return nondep_type_rec(env, id, param);
                   end end), ty.desc);
           end
@@ -35400,11 +35400,11 @@ function nondep_type_decl(env, mid, id, is_covariant, decl) do
     tm;
     xpcall(function() do
       match_1 = decl.type_manifest;
-      tm = match_1 ~= undefined and unroll_abbrev(id, params, nondep_type_rec(env, mid, match_1)) or undefined;
+      tm = match_1 ~= nil and unroll_abbrev(id, params, nondep_type_rec(env, mid, match_1)) or nil;
     end end,function(exn_1) do
       if (exn_1 == Caml_builtin_exceptions.not_found) then do
         if (is_covariant) then do
-          tm = undefined;
+          tm = nil;
         end else do
           error(exn_1)
         end end 
@@ -35414,7 +35414,7 @@ function nondep_type_decl(env, mid, id, is_covariant, decl) do
     end end)
     Curry._1(TypeHash.clear, nondep_hash);
     Curry._1(TypeHash.clear, nondep_variants);
-    priv = tm ~= undefined and has_constr_row(tm) and --[[ Private ]]0 or decl.type_private;
+    priv = tm ~= nil and has_constr_row(tm) and --[[ Private ]]0 or decl.type_private;
     return {
             type_params = params,
             type_arity = decl.type_arity,
@@ -35422,7 +35422,7 @@ function nondep_type_decl(env, mid, id, is_covariant, decl) do
             type_private = priv,
             type_manifest = tm,
             type_variance = decl.type_variance,
-            type_newtype_level = undefined,
+            type_newtype_level = nil,
             type_loc = decl.type_loc,
             type_attributes = decl.type_attributes
           };
@@ -35571,7 +35571,7 @@ function nondep_class_declaration(env, id, decl) do
           end end), decl.cty_params),
     cty_type = nondep_class_type(env, id, decl.cty_type),
     cty_path = decl.cty_path,
-    cty_new = match ~= undefined and nondep_type_rec(env, id, match) or undefined,
+    cty_new = match ~= nil and nondep_type_rec(env, id, match) or nil,
     cty_variance = decl.cty_variance,
     cty_loc = decl.cty_loc,
     cty_attributes = decl.cty_attributes
@@ -35651,7 +35651,7 @@ function collapse_conj(env, visited, ty) do
                                   },
                                   match[2],
                                   {
-                                    contents = undefined
+                                    contents = nil
                                   }
                                 }));
                   end else do
@@ -36379,7 +36379,7 @@ function print_simple_out_type(ppf, ty) do
        if ___conditional___ == 11--[[ Otyp_variant ]] then do
           tags = ty[3];
           print_present = function(ppf, param) do
-            if (param ~= undefined) then do
+            if (param ~= nil) then do
               l = param;
               if (l) then do
                 return Curry._2(Format.fprintf(ppf, --[[ Format ]]{
@@ -36489,9 +36489,9 @@ function print_simple_out_type(ppf, ty) do
                             }),
                           "%s[%s@[<hv>@[<hv>%a@]%a ]@]"
                         }), ty[0] and "_" or "", ty[2] and (
-                        tags == undefined and " " or "< "
+                        tags == nil and " " or "< "
                       ) or (
-                        tags == undefined and "> " or "? "
+                        tags == nil and "> " or "? "
                       ), print_fields_1, ty[1], print_present, tags); end end 
        if ___conditional___ == 0--[[ Otyp_alias ]]
        or ___conditional___ == 1--[[ Otyp_arrow ]]
@@ -36605,7 +36605,7 @@ function print_fields(rest, ppf, _param) do
                     }),
                   "%s : %a"
                 }), s, print_out_type, t);
-        if (rest ~= undefined) then do
+        if (rest ~= nil) then do
           Format.fprintf(ppf, --[[ Format ]]{
                 --[[ Char_literal ]]Block.__(12, {
                     --[[ ";" ]]59,
@@ -36625,7 +36625,7 @@ function print_fields(rest, ppf, _param) do
         _param = --[[ [] ]]0;
         ::continue:: ;
       end end 
-    end else if (rest ~= undefined) then do
+    end else if (rest ~= nil) then do
       return Curry._1(Format.fprintf(ppf, --[[ Format ]]{
                       --[[ String ]]Block.__(2, {
                           --[[ No_padding ]]0,
@@ -36910,7 +36910,7 @@ function print_out_class_type(ppf, param) do
                       }), lab ~= "" and lab .. ":" or "", print_out_type_2, param[1], print_out_class_type, param[2]); end end 
      if ___conditional___ == 2--[[ Octy_signature ]] then do
         pr_param = function(ppf, param) do
-          if (param ~= undefined) then do
+          if (param ~= nil) then do
             return Curry._2(Format.fprintf(ppf, --[[ Format ]]{
                             --[[ Formatting_lit ]]Block.__(17, {
                                 --[[ Break ]]Block.__(0, {
@@ -37165,7 +37165,7 @@ out_type_extension = {
 function print_out_functor(ppf, m) do
   if (typeof m ~= "number" and not m.tag) then do
     match = m[1];
-    if (match ~= undefined) then do
+    if (match ~= nil) then do
       return Curry._5(Format.fprintf(ppf, --[[ Format ]]{
                       --[[ Char_literal ]]Block.__(12, {
                           --[[ "(" ]]40,
@@ -37213,7 +37213,7 @@ function print_out_constr(ppf, param) do
   ret_type_opt = param[2];
   tyl = param[1];
   name = param[0];
-  if (ret_type_opt ~= undefined) then do
+  if (ret_type_opt ~= nil) then do
     ret_type = ret_type_opt;
     if (tyl) then do
       return Curry._5(Format.fprintf(ppf, --[[ Format ]]{
@@ -38795,7 +38795,7 @@ function safe_kind_repr(_v, _param) do
       end end 
     end else do
       match = param[0].contents;
-      if (match ~= undefined) then do
+      if (match ~= nil) then do
         k = match;
         if (List.memq(k, v)) then do
           return "Fvar loop";
@@ -38881,7 +38881,7 @@ function list_of_memo(_param) do
 end end
 
 function print_name(ppf, param) do
-  if (param ~= undefined) then do
+  if (param ~= nil) then do
     return Curry._1(Format.fprintf(ppf, --[[ Format ]]{
                     --[[ Char_literal ]]Block.__(12, {
                         --[[ "\"" ]]34,
@@ -39202,7 +39202,7 @@ function raw_type_desc(ppf, param) do
                           "@[<hov1>Tobject(@,%a,@,@[<1>ref%t@])@]"
                         }), raw_type, param[0], (function(ppf) do
                         match = nm.contents;
-                        if (match ~= undefined) then do
+                        if (match ~= nil) then do
                           match_1 = match;
                           return Curry._4(Format.fprintf(ppf, --[[ Format ]]{
                                           --[[ String_literal ]]Block.__(11, {
@@ -39532,7 +39532,7 @@ function raw_type_desc(ppf, param) do
                       "row_name=",
                       (function(ppf) do
                           match = row.row_name;
-                          if (match ~= undefined) then do
+                          if (match ~= nil) then do
                             match_1 = match;
                             return Curry._4(Format.fprintf(ppf, --[[ Format ]]{
                                             --[[ String_literal ]]Block.__(11, {
@@ -39747,7 +39747,7 @@ function raw_field(ppf, param) do
                     "@[<hov1>Reither(%b,@,%a,@,%b,@,@[<1>ref%t@])@]"
                   }), param[0], raw_type_list, param[1], param[2], (function(ppf) do
                   match = e.contents;
-                  if (match ~= undefined) then do
+                  if (match ~= nil) then do
                     return Curry._2(Format.fprintf(ppf, --[[ Format ]]{
                                     --[[ Formatting_lit ]]Block.__(17, {
                                         --[[ Break ]]Block.__(0, {
@@ -39789,7 +39789,7 @@ function raw_field(ppf, param) do
                 end end));
   end else do
     match = param[0];
-    if (match ~= undefined) then do
+    if (match ~= nil) then do
       return Curry._2(Format.fprintf(ppf, --[[ Format ]]{
                       --[[ Formatting_gen ]]Block.__(18, {
                           --[[ Open_box ]]Block.__(1, {--[[ Format ]]{
@@ -40118,7 +40118,7 @@ function uniq(_param) do
 end end
 
 function normalize_type_path(cacheOpt, env, p) do
-  cache = cacheOpt ~= undefined and cacheOpt or false;
+  cache = cacheOpt ~= nil and cacheOpt or false;
   xpcall(function() do
     match = find_type_expansion(p, env);
     params = List.map(repr, match[0]);
@@ -40284,9 +40284,9 @@ function is_unambiguous(path, env) do
             end end), rem)) then do
       return true;
     end else do
-      id = lid_of_path(undefined, p);
+      id = lid_of_path(nil, p);
       if (List.for_all((function(p) do
-                return Caml_obj.caml_equal(lid_of_path(undefined, p), id);
+                return Caml_obj.caml_equal(lid_of_path(nil, p), id);
               end end), rem)) then do
         return same(p, lookup_type_1(id, env)[0]);
       end else do
@@ -40303,7 +40303,7 @@ function best_type_path(p) do
             --[[ Id ]]0
           };
   end else do
-    match = normalize_type_path(undefined, printing_env.contents, p);
+    match = normalize_type_path(nil, printing_env.contents, p);
     p$prime = match[0];
     get_path = function(param) do
       r = find_4(p$prime, printing_map.contents);
@@ -40410,7 +40410,7 @@ function add_named_var(ty) do
     end
   end end 
   match_1 = match[0];
-  if (match_1 ~= undefined) then do
+  if (match_1 ~= nil) then do
     name = match_1;
     if (List.mem(name, named_vars.contents)) then do
       return --[[ () ]]0;
@@ -40473,7 +40473,7 @@ function name_of_type(t) do
       end end 
       if (exit == 1) then do
         match_1 = match[0];
-        if (match_1 ~= undefined) then do
+        if (match_1 ~= nil) then do
           name_1 = match_1;
           current_name = {
             contents = name_1
@@ -40582,7 +40582,7 @@ function aliasable(ty) do
 end end
 
 function namable_row(row) do
-  if (row.row_name ~= undefined) then do
+  if (row.row_name ~= nil) then do
     return List.for_all((function(param) do
                   match = row_field_repr_aux(--[[ [] ]]0, param[1]);
                   if (typeof match == "number" or not match.tag) then do
@@ -40654,7 +40654,7 @@ function mark_loops_rec(_visited, _ty) do
                 end
                  end 
                 match_2 = match[1].contents;
-                if (match_2 ~= undefined) then do
+                if (match_2 ~= nil) then do
                   return List.iter((function(visited_1)do
                             return function (param) do
                               return mark_loops_rec(visited_1, param);
@@ -40704,7 +40704,7 @@ function mark_loops_rec(_visited, _ty) do
                 end
                  end 
                 match_4 = row.row_name;
-                if (match_4 ~= undefined) then do
+                if (match_4 ~= nil) then do
                   if (namable_row(row)) then do
                     return List.iter((function(visited_1)do
                               return function (param) do
@@ -40783,7 +40783,7 @@ function tree_of_typexp(sch, ty) do
     pr_typ = function(param) do
       match = ty_1.desc;
       if (typeof match == "number") then do
-        return tree_of_typobject(sch, ty_1, undefined);
+        return tree_of_typobject(sch, ty_1, nil);
       end else do
         local ___conditional___=(match.tag | 0);
         do
@@ -40835,7 +40835,7 @@ function tree_of_typexp(sch, ty) do
            if ___conditional___ == 4--[[ Tobject ]] then do
               return tree_of_typobject(sch, match[0], match[1].contents); end end 
            if ___conditional___ == 5--[[ Tfield ]] then do
-              return tree_of_typobject(sch, ty_1, undefined); end end 
+              return tree_of_typobject(sch, ty_1, nil); end end 
            if ___conditional___ == 6--[[ Tlink ]] then do
               return fatal_error("Printtyp.tree_of_typexp"); end end 
            if ___conditional___ == 7--[[ Tsubst ]] then do
@@ -40855,7 +40855,7 @@ function tree_of_typexp(sch, ty) do
                       end end))(fields);
               all_present = List.length(present) == List.length(fields);
               match_4 = row.row_name;
-              if (match_4 ~= undefined) then do
+              if (match_4 ~= nil) then do
                 match_5 = match_4;
                 tyl = match_5[1];
                 p = match_5[0];
@@ -40878,7 +40878,7 @@ function tree_of_typexp(sch, ty) do
                     end end 
                   end else do
                     non_gen = is_non_gen(sch, px);
-                    tags = all_present and undefined or List.map((function(prim) do
+                    tags = all_present and nil or List.map((function(prim) do
                               return prim[0];
                             end end), present);
                     inh;
@@ -40958,7 +40958,7 @@ function tree_of_typexp(sch, ty) do
                         end end 
                       end else do
                         match_1 = match[0];
-                        if (match_1 ~= undefined) then do
+                        if (match_1 ~= nil) then do
                           return --[[ tuple ]]{
                                   l,
                                   false,
@@ -40976,7 +40976,7 @@ function tree_of_typexp(sch, ty) do
                         end end 
                       end end  end 
                     end end), fields);
-              tags_1 = all_present and undefined or List.map((function(prim) do
+              tags_1 = all_present and nil or List.map((function(prim) do
                         return prim[0];
                       end end), present);
               return --[[ Otyp_variant ]]Block.__(11, {
@@ -41018,7 +41018,7 @@ function tree_of_typexp(sch, ty) do
                       return __String.concat(".", flat(--[[ [] ]]0, li));
                     end end), match[1]);
               return --[[ Otyp_module ]]Block.__(13, {
-                        name(undefined, match[0]),
+                        name(nil, match[0]),
                         n,
                         List.map((function(param) do
                                 return tree_of_typexp(sch, param);
@@ -41047,7 +41047,7 @@ function tree_of_typexp(sch, ty) do
 end end
 
 function tree_of_typobject(sch, fi, nm) do
-  if (nm ~= undefined) then do
+  if (nm ~= nil) then do
     match = nm;
     match_1 = match[1];
     if (match_1) then do
@@ -41134,7 +41134,7 @@ function tree_of_typfields(sch, rest, param) do
     match_2 = rest.desc;
     rest_1;
     if (typeof match_2 == "number") then do
-      rest_1 = undefined;
+      rest_1 = nil;
     end else do
       local ___conditional___=(match_2.tag | 0);
       do
@@ -41221,7 +41221,7 @@ end end
 function tree_of_constructor(cd) do
   name = cd.cd_id.name;
   match = cd.cd_res;
-  if (match ~= undefined) then do
+  if (match ~= nil) then do
     nm = names.contents;
     names.contents = --[[ [] ]]0;
     ret = tree_of_typexp(false, match);
@@ -41240,7 +41240,7 @@ function tree_of_constructor(cd) do
             List.map((function(param) do
                     return tree_of_typexp(false, param);
                   end end), cd.cd_args),
-            undefined
+            nil
           };
   end end 
 end end
@@ -41249,16 +41249,16 @@ function tree_of_type_decl(id, decl) do
   reset(--[[ () ]]0);
   params = filter_params(decl.type_params);
   match = decl.type_manifest;
-  if (match ~= undefined) then do
-    vars = free_variables_1(undefined, match);
+  if (match ~= nil) then do
+    vars = free_variables_1(nil, match);
     List.iter((function(ty) do
             match = ty.desc;
             if (typeof match == "number" or match.tag) then do
               return --[[ () ]]0;
             end else do
               match_1 = match[0];
-              if (match_1 ~= undefined and match_1 == "_" and List.memq(ty, vars)) then do
-                ty.desc = --[[ Tvar ]]Block.__(0, {undefined});
+              if (match_1 ~= nil and match_1 == "_" and List.memq(ty, vars)) then do
+                ty.desc = --[[ Tvar ]]Block.__(0, {nil});
                 return --[[ () ]]0;
               end else do
                 return --[[ () ]]0;
@@ -41272,7 +41272,7 @@ function tree_of_type_decl(id, decl) do
   List.iter(check_name_of_type, List.map(proxy, params));
   match_1 = decl.type_manifest;
   ty_manifest;
-  if (match_1 ~= undefined) then do
+  if (match_1 ~= nil) then do
     ty = match_1;
     match_2 = repr(ty);
     match_3 = match_2.desc;
@@ -41282,7 +41282,7 @@ function tree_of_type_decl(id, decl) do
     end else do
       row = row_repr_aux(--[[ [] ]]0, match_3[0]);
       match_4 = row.row_name;
-      if (match_4 ~= undefined) then do
+      if (match_4 ~= nil) then do
         match_5 = match_4[0];
         local ___conditional___=(match_5.tag | 0);
         do
@@ -41293,7 +41293,7 @@ function tree_of_type_decl(id, decl) do
                           row_bound = row.row_bound,
                           row_closed = row.row_closed,
                           row_fixed = row.row_fixed,
-                          row_name = undefined
+                          row_name = nil
                         }})) or ty; end else 
            if ___conditional___ == 1--[[ Pdot ]]
            or ___conditional___ == 2--[[ Papply ]] then do
@@ -41308,7 +41308,7 @@ function tree_of_type_decl(id, decl) do
     mark_loops(ty_1);
     ty_manifest = ty_1;
   end else do
-    ty_manifest = undefined;
+    ty_manifest = nil;
   end end 
   match_6 = decl.type_kind;
   if (typeof match_6 == "number") then do
@@ -41334,10 +41334,10 @@ function tree_of_type_decl(id, decl) do
     match = decl.type_kind;
     abstr;
     abstr = typeof match == "number" and (
-        match == --[[ Type_abstract ]]0 and decl.type_manifest == undefined or decl.type_private == --[[ Private ]]0 or decl.type_manifest == undefined
+        match == --[[ Type_abstract ]]0 and decl.type_manifest == nil or decl.type_private == --[[ Private ]]0 or decl.type_manifest == nil
       ) or (
         match.tag and decl.type_private == --[[ Private ]]0 or List.exists((function(cd) do
-                  return cd.cd_res ~= undefined;
+                  return cd.cd_res ~= nil;
                 end end), match[0]) or decl.type_private == --[[ Private ]]0
       );
     vari = List.map2((function(ty, v) do
@@ -41361,7 +41361,7 @@ function tree_of_type_decl(id, decl) do
           };
   end end;
   tree_of_manifest = function(ty1) do
-    if (ty_manifest ~= undefined) then do
+    if (ty_manifest ~= nil) then do
       return --[[ Otyp_manifest ]]Block.__(4, {
                 tree_of_typexp(false, ty_manifest),
                 ty1
@@ -41376,7 +41376,7 @@ function tree_of_type_decl(id, decl) do
   match_9;
   match_9 = typeof match_8 == "number" and (
       match_8 == --[[ Type_abstract ]]0 and (
-          ty_manifest ~= undefined and --[[ tuple ]]{
+          ty_manifest ~= nil and --[[ tuple ]]{
               tree_of_typexp(false, ty_manifest),
               decl.type_private
             } or --[[ tuple ]]{
@@ -41418,7 +41418,7 @@ end end
 
 function tree_of_extension_constructor(id, ext, es) do
   reset(--[[ () ]]0);
-  ty_name = name(undefined, ext.ext_type_path);
+  ty_name = name(nil, ext.ext_type_path);
   ty_params = filter_params(ext.ext_type_params);
   List.iter(add_alias, ty_params);
   List.iter(mark_loops, ty_params);
@@ -41436,7 +41436,7 @@ function tree_of_extension_constructor(id, ext, es) do
   name_1 = id.name;
   match = ext.ext_ret_type;
   match_1;
-  if (match ~= undefined) then do
+  if (match ~= nil) then do
     nm = names.contents;
     names.contents = --[[ [] ]]0;
     ret = tree_of_typexp(false, match);
@@ -41453,7 +41453,7 @@ function tree_of_extension_constructor(id, ext, es) do
       List.map((function(param) do
               return tree_of_typexp(false, param);
             end end), ext.ext_args),
-      undefined
+      nil
     };
   end end 
   ext_oext_args = match_1[0];
@@ -41590,7 +41590,7 @@ function tree_of_class_type(sch, params, _param) do
           self_ty = is_aliased(sty_1) and --[[ Otyp_var ]]Block.__(10, {
                 false,
                 name_of_type(proxy(sty_1))
-              }) or undefined;
+              }) or nil;
           match = flatten_fields(object_fields(sign.csig_self));
           csil = List.fold_left((function(csil, param) do
                   return --[[ :: ]]{
@@ -41738,7 +41738,7 @@ function tree_of_class_declaration(id, cl, rs) do
     name_of_type(t);
   end
    end 
-  vir_flag = cl.cty_new == undefined;
+  vir_flag = cl.cty_new == nil;
   return --[[ Osig_class ]]Block.__(0, {
             vir_flag,
             id.name,
@@ -41877,9 +41877,9 @@ dummy = {
   type_arity = 0,
   type_kind = --[[ Type_abstract ]]0,
   type_private = --[[ Public ]]1,
-  type_manifest = undefined,
+  type_manifest = nil,
   type_variance = --[[ [] ]]0,
-  type_newtype_level = undefined,
+  type_newtype_level = nil,
   type_loc = none,
   type_attributes = --[[ [] ]]0
 };
@@ -41935,7 +41935,7 @@ function tree_of_modtype(param) do
         ty_arg = param[1];
         param_1 = param[0];
         res;
-        if (ty_arg ~= undefined) then do
+        if (ty_arg ~= nil) then do
           mty = ty_arg;
           partial_arg = true;
           res = wrap_env((function(param_2) do
@@ -42059,7 +42059,7 @@ end end
 
 function tree_of_modtype_declaration(id, decl) do
   match = decl.mtd_type;
-  mty = match ~= undefined and tree_of_modtype(match) or --[[ Omty_abstract ]]0;
+  mty = match ~= nil and tree_of_modtype(match) or --[[ Omty_abstract ]]0;
   return --[[ Osig_modtype ]]Block.__(3, {
             id.name,
             mty
@@ -42381,16 +42381,16 @@ function hide_variant_name(t) do
     return t;
   end else do
     row = match[0];
-    if (row_repr_aux(--[[ [] ]]0, row).row_name ~= undefined) then do
+    if (row_repr_aux(--[[ [] ]]0, row).row_name ~= nil) then do
       init = row_repr_aux(--[[ [] ]]0, row);
       level = row_more(row).level;
       return newty2(t_1.level, --[[ Tvariant ]]Block.__(8, {{
                       row_fields = init.row_fields,
-                      row_more = newty2(level, --[[ Tvar ]]Block.__(0, {undefined})),
+                      row_more = newty2(level, --[[ Tvar ]]Block.__(0, {nil})),
                       row_bound = init.row_bound,
                       row_closed = init.row_closed,
                       row_fixed = init.row_fixed,
-                      row_name = undefined
+                      row_name = nil
                     }}));
     end else do
       return t;
@@ -42603,7 +42603,7 @@ function mismatch(unif, param) do
       t$prime = match[0][1];
       t = param[0][1];
       m = mismatch(unif, match[1]);
-      if (m ~= undefined) then do
+      if (m ~= nil) then do
         return m;
       end else if (has_explanation(unif, t, t$prime)) then do
         return --[[ tuple ]]{
@@ -42628,7 +42628,7 @@ function mismatch(unif, param) do
 end end
 
 function explanation(unif, mis, ppf) do
-  if (mis ~= undefined) then do
+  if (mis ~= nil) then do
     match = mis;
     unif_1 = unif;
     t3 = match[0];
@@ -43406,7 +43406,7 @@ function trace_same_names(_param) do
 end end
 
 function report_unification_error(ppf, env, unifOpt, tr, txt1, txt2) do
-  unif = unifOpt ~= undefined and unifOpt or true;
+  unif = unifOpt ~= nil and unifOpt or true;
   return wrap_printing_env(env, (function(param) do
                 unif_1 = unif;
                 tr_1 = tr;
@@ -43426,7 +43426,7 @@ function report_unification_error(ppf, env, unifOpt, tr, txt1, txt2) do
                   match = tr_2[1];
                   if (match) then do
                     xpcall(function() do
-                      tr_3 = filter_trace(mis == undefined, match[1]);
+                      tr_3 = filter_trace(mis == nil, match[1]);
                       match_1 = may_prepare_expansion(tr_3 == --[[ [] ]]0, tr_2[0]);
                       t1 = match_1[0];
                       match_2 = may_prepare_expansion(tr_3 == --[[ [] ]]0, match[0]);
@@ -43559,7 +43559,7 @@ function trace_1(fst, keep_last, txt, ppf, tr) do
 end end
 
 function class_types(env, cty1, cty2) do
-  return match_class_types(undefined, env, cty1, cty2);
+  return match_class_types(nil, env, cty1, cty2);
 end end
 
 function class_type_declarations(env, cty1, cty2) do
@@ -43569,7 +43569,7 @@ end end
 function class_declarations(env, cty1, cty2) do
   match = cty1.cty_new;
   match_1 = cty2.cty_new;
-  if (match == undefined and match_1 ~= undefined) then do
+  if (match == nil and match_1 ~= nil) then do
     return --[[ :: ]]{
             --[[ CM_Virtual_class ]]0,
             --[[ [] ]]0
@@ -43987,7 +43987,7 @@ function private_flags(decl1, decl2) do
   if (match or not match_1) then do
     return true;
   end else if (decl2.type_kind == --[[ Type_abstract ]]0) then do
-    if (decl2.type_manifest == undefined) then do
+    if (decl2.type_manifest == nil) then do
       return true;
     end else do
       return decl1.type_kind ~= --[[ Type_abstract ]]0;
@@ -44152,7 +44152,7 @@ function type_manifest(env, ty1, params1, ty2, params2, priv2) do
                                 end end 
                               end else do
                                 match_2 = match[0];
-                                if (match_2 ~= undefined) then do
+                                if (match_2 ~= nil) then do
                                   t2;
                                   if (typeof match_1 == "number") then do
                                     return false;
@@ -44169,7 +44169,7 @@ function type_manifest(env, ty1, params1, ty2, params2, priv2) do
                                     end end 
                                   end else do
                                     match_4 = match_1[0];
-                                    if (match_4 ~= undefined) then do
+                                    if (match_4 ~= nil) then do
                                       t2 = match_4;
                                     end else do
                                       return false;
@@ -44192,7 +44192,7 @@ function type_manifest(env, ty1, params1, ty2, params2, priv2) do
                                     return false;
                                   end end 
                                 end else do
-                                  return match_1[0] == undefined;
+                                  return match_1[0] == nil;
                                 end end  end  end 
                               end end  end 
                             end end), match_9[2])) then do
@@ -44479,8 +44479,8 @@ function compare_variants(env, decl1, decl2, _n, _cstrs1, _cstrs2) do
                   --[[ [] ]]0
                 };
         end else do
-          if (ret1 ~= undefined) then do
-            if (not (ret2 ~= undefined and equal_4(env, true, --[[ :: ]]{
+          if (ret1 ~= nil) then do
+            if (not (ret2 ~= nil and equal_4(env, true, --[[ :: ]]{
                       ret1,
                       --[[ [] ]]0
                     }, --[[ :: ]]{
@@ -44493,7 +44493,7 @@ function compare_variants(env, decl1, decl2, _n, _cstrs1, _cstrs2) do
                     };
             end
              end 
-          end else if (ret2 ~= undefined) then do
+          end else if (ret2 ~= nil) then do
             return --[[ :: ]]{
                     --[[ Field_type ]]Block.__(0, {cstr1}),
                     --[[ [] ]]0
@@ -44609,7 +44609,7 @@ function compare_records(env, decl1, decl2, _n, _labels1, _labels2) do
 end end
 
 function type_declarations_1(equalityOpt, env, name, decl1, id, decl2) do
-  equality = equalityOpt ~= undefined and equalityOpt or false;
+  equality = equalityOpt ~= nil and equalityOpt or false;
   if (decl1.type_arity ~= decl2.type_arity) then do
     return --[[ :: ]]{
             --[[ Arity ]]0,
@@ -44674,8 +44674,8 @@ function type_declarations_1(equalityOpt, env, name, decl1, id, decl2) do
       match_2 = decl1.type_manifest;
       match_3 = decl2.type_manifest;
       err_2;
-      if (match_3 ~= undefined) then do
-        if (match_2 ~= undefined) then do
+      if (match_3 ~= nil) then do
+        if (match_2 ~= nil) then do
           err_2 = type_manifest(env, match_2, decl1.type_params, match_3, decl2.type_params, decl2.type_private) and --[[ [] ]]0 or --[[ :: ]]{
               --[[ Manifest ]]4,
               --[[ [] ]]0
@@ -44713,8 +44713,8 @@ function type_declarations_1(equalityOpt, env, name, decl1, id, decl2) do
       if (err_2 ~= --[[ [] ]]0) then do
         return err_2;
       end else do
-        abstr = decl2.type_private == --[[ Private ]]0 or decl2.type_kind == --[[ Type_abstract ]]0 and decl2.type_manifest == undefined;
-        opn = decl2.type_kind == --[[ Type_open ]]1 and decl2.type_manifest == undefined;
+        abstr = decl2.type_private == --[[ Private ]]0 or decl2.type_kind == --[[ Type_abstract ]]0 and decl2.type_manifest == nil;
+        opn = decl2.type_kind == --[[ Type_open ]]1 and decl2.type_manifest == nil;
         if (List.for_all2((function(ty, param) do
                   v2 = param[1];
                   v1 = param[0];
@@ -44780,8 +44780,8 @@ function extension_constructors(env, id, ext1, ext2) do
     match_1 = ext2.ext_ret_type;
     tmp;
     exit = 0;
-    if (match ~= undefined) then do
-      if (match_1 ~= undefined and equal_4(env, true, --[[ :: ]]{
+    if (match ~= nil) then do
+      if (match_1 ~= nil and equal_4(env, true, --[[ :: ]]{
               match,
               --[[ [] ]]0
             }, --[[ :: ]]{
@@ -44792,7 +44792,7 @@ function extension_constructors(env, id, ext1, ext2) do
       end else do
         tmp = false;
       end end 
-    end else if (match_1 ~= undefined) then do
+    end else if (match_1 ~= nil) then do
       tmp = false;
     end else do
       exit = 1;
@@ -44881,7 +44881,7 @@ function strengthen_sig(env, sg, p) do
           match_2 = decl.type_kind;
           newdecl;
           exit = 0;
-          if (match ~= undefined and (match_1 or typeof match_2 ~= "number")) then do
+          if (match ~= nil and (match_1 or typeof match_2 ~= "number")) then do
             newdecl = decl;
           end else do
             exit = 1;
@@ -44943,13 +44943,13 @@ function strengthen_sig(env, sg, p) do
                       str,
                       sigelt[2]
                     }),
-                  strengthen_sig(add_module_declaration(undefined, id_1, md, env), sg[1], p)
+                  strengthen_sig(add_module_declaration(nil, id_1, md, env), sg[1], p)
                 }; end end 
        if ___conditional___ == 4--[[ Sig_modtype ]] then do
           decl_1 = sigelt[1];
           id_2 = sigelt[0];
           match_3 = decl_1.mtd_type;
-          newdecl_1 = match_3 ~= undefined and decl_1 or ({
+          newdecl_1 = match_3 ~= nil and decl_1 or ({
                 mtd_type = --[[ Mty_ident ]]Block.__(0, {--[[ Pdot ]]Block.__(1, {
                         p,
                         id_2.name,
@@ -45111,7 +45111,7 @@ function nondep_supertype(env, mid, mty) do
                         --[[ Sig_modtype ]]Block.__(4, {
                             id_1,
                             {
-                              mtd_type = undefined,
+                              mtd_type = nil,
                               mtd_attributes = --[[ [] ]]0,
                               mtd_loc = none
                             }
@@ -45160,7 +45160,7 @@ end end
 
 function enrich_typedecl(env, p, decl) do
   match = decl.type_manifest;
-  if (match ~= undefined) then do
+  if (match ~= nil) then do
     return decl;
   end else do
     xpcall(function() do
@@ -45281,7 +45281,7 @@ function type_paths_sig(_env, p, _pos, _sg) do
                               p,
                               id.name,
                               pos
-                            }), md.md_type), type_paths_sig(add_module_declaration(undefined, id, md, env), p, pos + 1 | 0, sg[1])); end end 
+                            }), md.md_type), type_paths_sig(add_module_declaration(nil, id, md, env), p, pos + 1 | 0, sg[1])); end end 
          if ___conditional___ == 4--[[ Sig_modtype ]] then do
             _sg = sg[1];
             _env = add_modtype_1(match[0], match[1], env);
@@ -45310,7 +45310,7 @@ function contains_type(env, _param) do
        if ___conditional___ == 0--[[ Mty_ident ]] then do
           xpcall(function() do
             match = find_modtype(param[0], env).mtd_type;
-            if (match ~= undefined) then do
+            if (match ~= nil) then do
               return contains_type(env, match);
             end else do
               error(Pervasives.Exit)
@@ -45344,7 +45344,7 @@ function contains_type_sig(env) do
                        if ___conditional___ == 1--[[ Sig_type ]] then do
                           match = param_1[1];
                           match_1 = match.type_kind;
-                          if (match.type_manifest ~= undefined) then do
+                          if (match.type_manifest ~= nil) then do
                             if (typeof match_1 == "number" and not (match_1 ~= 0 or match.type_private)) then do
                               error(Pervasives.Exit)
                             end else do
@@ -46163,7 +46163,7 @@ function remove_aliases(env, excl, _mty) do
        or ___conditional___ == 2--[[ Mty_functor ]] then do
           return mty; end end 
        if ___conditional___ == 3--[[ Mty_alias ]] then do
-          mty$prime = scrape_alias(env, undefined, mty);
+          mty$prime = scrape_alias(env, nil, mty);
           if (Caml_obj.caml_equal(mty$prime, mty)) then do
             return mty;
           end else do
@@ -46196,7 +46196,7 @@ function remove_aliases_sig(env, excl, sg) do
                       },
                       it[2]
                     }),
-                  remove_aliases_sig(add_module_1(undefined, id, mty_1, env), excl, sg[1])
+                  remove_aliases_sig(add_module_1(nil, id, mty_1, env), excl, sg[1])
                 }; end end 
        if ___conditional___ == 4--[[ Sig_modtype ]] then do
           mtd = it[1];
@@ -46284,10 +46284,10 @@ function value_descriptions(env, cxt, subst, id, vd1, vd2) do
 end end
 
 function type_declarations_2(env, old_envOpt, cxt, subst, id, decl1, decl2) do
-  old_env = old_envOpt ~= undefined and Caml_option.valFromOption(old_envOpt) or env;
+  old_env = old_envOpt ~= nil and Caml_option.valFromOption(old_envOpt) or env;
   mark_type_used(env, id.name, decl1);
   decl2_1 = type_declaration(subst, decl2);
-  err = type_declarations_1(undefined, env, id.name, decl1, id, decl2_1);
+  err = type_declarations_1(nil, env, id.name, decl1, id, decl2_1);
   if (err ~= --[[ [] ]]0) then do
     error({
       __Error_5,
@@ -46613,19 +46613,19 @@ function try_modtypes(env, cxt, subst, _mty1, mty2) do
        if ___conditional___ == 2--[[ Mty_functor ]] then do
           match = mty1[1];
           param1 = mty1[0];
-          if (match ~= undefined) then do
+          if (match ~= nil) then do
             local ___conditional___=(mty2.tag | 0);
             do
                if ___conditional___ == 0--[[ Mty_ident ]]
                or ___conditional___ == 2--[[ Mty_functor ]] then do
                   match_1 = mty2[1];
-                  if (match_1 ~= undefined) then do
+                  if (match_1 ~= nil) then do
                     arg2$prime = modtype(subst, match_1);
                     cc_arg = modtypes(env, --[[ :: ]]{
                           --[[ Arg ]]Block.__(2, {param1}),
                           cxt
                         }, identity, arg2$prime, match);
-                    cc_res = modtypes(add_module_1(undefined, param1, arg2$prime, env), --[[ :: ]]{
+                    cc_res = modtypes(add_module_1(nil, param1, arg2$prime, env), --[[ :: ]]{
                           --[[ Body ]]Block.__(3, {param1}),
                           cxt
                         }, add_module(mty2[0], --[[ Pident ]]Block.__(0, {param1}), subst), mty1[2], mty2[2]);
@@ -46650,7 +46650,7 @@ function try_modtypes(env, cxt, subst, _mty1, mty2) do
             do
                if ___conditional___ == 0--[[ Mty_ident ]]
                or ___conditional___ == 2--[[ Mty_functor ]] then do
-                  if (mty2[1] ~= undefined) then do
+                  if (mty2[1] ~= nil) then do
                     error(Dont_match_1)
                   end
                    end 
@@ -46693,8 +46693,8 @@ function try_modtypes(env, cxt, subst, _mty1, mty2) do
             if (same(p1_1, p2)) then do
               return --[[ Tcoerce_none ]]0;
             end else do
-              p1_2 = normalize_path_1(undefined, env, p1_1);
-              p2_1 = normalize_path_1(undefined, env, module_path(subst, p2));
+              p1_2 = normalize_path_1(nil, env, p1_1);
+              p2_1 = normalize_path_1(nil, env, module_path(subst, p2));
               if (same(p1_2, p2_1)) then do
                 return --[[ Tcoerce_none ]]0;
               end else do
@@ -46849,7 +46849,7 @@ function signatures(env, cxt, subst, sig1, sig2) do
         name2 = match[2];
         id2 = match[0];
         match_1;
-        if (item2.tag == --[[ Sig_type ]]1 and not (item2[1].type_manifest ~= undefined or name2.tag ~= --[[ Field_type ]]1)) then do
+        if (item2.tag == --[[ Sig_type ]]1 and not (item2[1].type_manifest ~= nil or name2.tag ~= --[[ Field_type ]]1)) then do
           s = name2[0];
           l = #s;
           match_1 = l >= 4 and __String.sub(s, l - 4 | 0, 4) == "#row" and --[[ tuple ]]{
@@ -47081,13 +47081,13 @@ function modtype_infos(env, cxt, subst, id, info1, info2) do
   xpcall(function() do
     match = info1.mtd_type;
     match_1 = info2_1.mtd_type;
-    if (match ~= undefined) then do
-      if (match_1 ~= undefined) then do
+    if (match ~= nil) then do
+      if (match_1 ~= nil) then do
         return check_modtype_equiv(env, cxt$prime, match, match_1);
       end else do
         return --[[ () ]]0;
       end end 
-    end else if (match_1 ~= undefined) then do
+    end else if (match_1 ~= nil) then do
       return check_modtype_equiv(env, cxt$prime, --[[ Mty_ident ]]Block.__(0, {--[[ Pident ]]Block.__(0, {id})}), match_1);
     end else do
       return --[[ () ]]0;
@@ -47183,7 +47183,7 @@ function modtypes_1(env, mty1, mty2) do
 end end
 
 function type_declarations_3(env, id, decl1, decl2) do
-  return type_declarations_2(env, undefined, --[[ [] ]]0, identity, id, decl1, decl2);
+  return type_declarations_2(env, nil, --[[ [] ]]0, identity, id, decl1, decl2);
 end end
 
 function show_loc(msg, ppf, loc) do
@@ -48464,7 +48464,7 @@ function compat(_p, _q) do
          if ___conditional___ == 5--[[ Tpat_variant ]] then do
             match_2 = match[1];
             l1 = match[0];
-            if (match_2 ~= undefined) then do
+            if (match_2 ~= nil) then do
               if (typeof match_1 == "number") then do
                 exit = 1;
               end else do
@@ -48475,7 +48475,7 @@ function compat(_p, _q) do
                       exit = 1; end else 
                    if ___conditional___ == 5--[[ Tpat_variant ]] then do
                       match_3 = match_1[1];
-                      if (match_3 ~= undefined and l1 == match_1[0]) then do
+                      if (match_3 ~= nil and l1 == match_1[0]) then do
                         _q = match_3;
                         _p = match_2;
                         ::continue:: ;
@@ -48498,7 +48498,7 @@ function compat(_p, _q) do
                  or ___conditional___ == 1--[[ Tpat_alias ]] then do
                     exit = 1; end else 
                  if ___conditional___ == 5--[[ Tpat_variant ]] then do
-                    if (match_1[1] ~= undefined) then do
+                    if (match_1[1] ~= nil) then do
                       return false;
                     end else do
                       return l1 == match_1[0];
@@ -49044,7 +49044,7 @@ function pretty_val(ppf, v) do
          if ___conditional___ == 5--[[ Tpat_variant ]] then do
             match_3 = match_1[1];
             l = match_1[0];
-            if (match_3 ~= undefined) then do
+            if (match_3 ~= nil) then do
               return Curry._3(Format.fprintf(ppf, --[[ Format ]]{
                               --[[ Formatting_gen ]]Block.__(18, {
                                   --[[ Open_box ]]Block.__(1, {--[[ Format ]]{
@@ -49270,7 +49270,7 @@ function pretty_arg(ppf, v) do
           end
            end  end else 
        if ___conditional___ == 5--[[ Tpat_variant ]] then do
-          if (match[1] == undefined) then do
+          if (match[1] == nil) then do
             return pretty_val(ppf, v);
           end
            end  end else 
@@ -49539,7 +49539,7 @@ function simple_match_args(p1, _p2) do
             return match[2]; end end 
          if ___conditional___ == 5--[[ Tpat_variant ]] then do
             match_1 = match[1];
-            if (match_1 ~= undefined) then do
+            if (match_1 ~= nil) then do
               return --[[ :: ]]{
                       match_1,
                       --[[ [] ]]0
@@ -49593,7 +49593,7 @@ function simple_match_args(p1, _p2) do
                           return omega;
                         end end), match_2[2]); end end 
          if ___conditional___ == 5--[[ Tpat_variant ]] then do
-            if (match_2[1] ~= undefined) then do
+            if (match_2[1] ~= nil) then do
               return --[[ :: ]]{
                       omega,
                       --[[ [] ]]0
@@ -49831,7 +49831,7 @@ function do_set_args(erase_mutable, q, r) do
                 }; end end 
        if ___conditional___ == 5--[[ Tpat_variant ]] then do
           match_3;
-          if (match[1] ~= undefined) then do
+          if (match[1] ~= nil) then do
             if (r) then do
               match_3 = --[[ tuple ]]{
                 r[0],
@@ -49849,7 +49849,7 @@ function do_set_args(erase_mutable, q, r) do
             end end 
           end else do
             match_3 = --[[ tuple ]]{
-              undefined,
+              nil,
               r
             };
           end end 
@@ -50322,7 +50322,7 @@ function close_variant(env, row) do
   if (not row_1.row_closed or nm ~= row_1.row_name) then do
     return unify_2(env, row_1.row_more, newty2(100000000, --[[ Tvariant ]]Block.__(8, {{
                         row_fields = --[[ [] ]]0,
-                        row_more = newty2(100000000, --[[ Tvar ]]Block.__(0, {undefined})),
+                        row_more = newty2(100000000, --[[ Tvar ]]Block.__(0, {nil})),
                         row_bound = row_1.row_bound,
                         row_closed = true,
                         row_fixed = row_1.row_fixed,
@@ -50510,7 +50510,7 @@ function full_match_gadt(env) do
 end end
 
 function should_extend(ext, env) do
-  if (ext ~= undefined and env) then do
+  if (ext ~= nil and env) then do
     p = env[0][0];
     match = p.pat_desc;
     if (typeof match == "number" or match.tag ~= --[[ Tpat_construct ]]4) then do
@@ -50603,7 +50603,7 @@ function pat_of_constrs(ex_pat, param) do
               pat_desc = --[[ Tpat_or ]]Block.__(8, {
                   pat_of_constr(ex_pat, cstr),
                   pat_of_constrs(ex_pat, rem),
-                  undefined
+                  nil
                 }),
               pat_loc = ex_pat.pat_loc,
               pat_extra = ex_pat.pat_extra,
@@ -50633,7 +50633,7 @@ function get_variant_constructors(env, _ty) do
         return find_type_full(path, env)[1][0];
       end
        end 
-      if (match_1.type_manifest ~= undefined) then do
+      if (match_1.type_manifest ~= nil) then do
         _ty = expand_head_once(env, clean_copy(ty));
         ::continue:: ;
       end else do
@@ -50649,7 +50649,7 @@ function map_filter(f, _param) do
     if (param) then do
       xs = param[1];
       match = Curry._1(f, param[0]);
-      if (match ~= undefined) then do
+      if (match ~= nil) then do
         return --[[ :: ]]{
                 Caml_option.valFromOption(match),
                 map_filter(f, xs)
@@ -50839,7 +50839,7 @@ function build_other(ext, env) do
                               end end), (function(i) do
                                 return --[[ Tpat_constant ]]Block.__(2, {--[[ Const_string ]]Block.__(2, {
                                               Caml_bytes.bytes_to_string(Bytes.make(i, --[[ "*" ]]42)),
-                                              undefined
+                                              nil
                                             })});
                               end end), 0, (function(prim) do
                                 return prim + 1 | 0;
@@ -50979,7 +50979,7 @@ function build_other(ext, env) do
               
             end
             if (exit == 1) then do
-              if (ext ~= undefined and same(ext, get_type_path(p.pat_type, p.pat_env))) then do
+              if (ext ~= nil and same(ext, get_type_path(p.pat_type, p.pat_env))) then do
                 return extra_pat;
               end
                end 
@@ -51023,7 +51023,7 @@ function build_other(ext, env) do
                   end end), env);
             row = row_of_pat(p);
             make_other_pat = function(tag, __const) do
-              arg = __const and undefined or omega;
+              arg = __const and nil or omega;
               return make_pat(--[[ Tpat_variant ]]Block.__(5, {
                             tag,
                             arg,
@@ -51045,7 +51045,7 @@ function build_other(ext, env) do
                               };
                       end else do
                         return --[[ :: ]]{
-                                make_other_pat(tag, match[0] == undefined),
+                                make_other_pat(tag, match[0] == nil),
                                 others
                               };
                       end end  end 
@@ -51056,7 +51056,7 @@ function build_other(ext, env) do
                             return make_pat(--[[ Tpat_or ]]Block.__(8, {
                                           pat,
                                           p_res,
-                                          undefined
+                                          nil
                                         }), p.pat_type, p.pat_env);
                           end end), match_2[0], match_2[1]);
             end else do
@@ -51153,7 +51153,7 @@ function has_instance(_p) do
             match_1 = match[1];
             if (is_absent(match[0], match[2])) then do
               return false;
-            end else if (match_1 ~= undefined) then do
+            end else if (match_1 ~= nil) then do
               _p = match_1;
               ::continue:: ;
             end else do
@@ -51300,7 +51300,7 @@ function orify_many(param) do
       return make_pat(--[[ Tpat_or ]]Block.__(8, {
                     x_1,
                     y,
-                    undefined
+                    nil
                   }), x_1.pat_type, x_1.pat_env);
     end else do
       return x;
@@ -51578,11 +51578,11 @@ function pressure_variants(_tdefs, _pss) do
             end end 
           end end
           end end)(tdefs);
-          if (full_match(true, tdefs == undefined, constrs)) then do
+          if (full_match(true, tdefs == nil, constrs)) then do
             return try_non_omega(constrs);
-          end else if (tdefs == undefined) then do
+          end else if (tdefs == nil) then do
             _pss = filter_extra(pss);
-            _tdefs = undefined;
+            _tdefs = nil;
             ::continue:: ;
           end else do
             full = full_match(true, true, constrs);
@@ -51590,9 +51590,9 @@ function pressure_variants(_tdefs, _pss) do
             if (constrs) then do
               p = constrs[0][0];
               tmp = p.pat_desc;
-              if (typeof tmp ~= "number" and tmp.tag == --[[ Tpat_variant ]]5 and tdefs ~= undefined) then do
+              if (typeof tmp ~= "number" and tmp.tag == --[[ Tpat_variant ]]5 and tdefs ~= nil) then do
                 row = row_of_pat(p);
-                if (not (row_fixed(row) or pressure_variants(undefined, filter_extra(pss)))) then do
+                if (not (row_fixed(row) or pressure_variants(nil, filter_extra(pss)))) then do
                   close_variant(Caml_option.valFromOption(tdefs), row);
                 end
                  end 
@@ -52174,7 +52174,7 @@ function le_pat(_p, _q) do
          if ___conditional___ == 5--[[ Tpat_variant ]] then do
             match_2 = match[1];
             l1 = match[0];
-            if (match_2 ~= undefined) then do
+            if (match_2 ~= nil) then do
               if (typeof match_1 ~= "number") then do
                 local ___conditional___=(match_1.tag | 0);
                 do
@@ -52182,7 +52182,7 @@ function le_pat(_p, _q) do
                       exit = 2; end else 
                    if ___conditional___ == 5--[[ Tpat_variant ]] then do
                       match_3 = match_1[1];
-                      if (match_3 ~= undefined and l1 == match_1[0]) then do
+                      if (match_3 ~= nil and l1 == match_1[0]) then do
                         _q = match_3;
                         _p = match_2;
                         ::continue:: ;
@@ -52199,7 +52199,7 @@ function le_pat(_p, _q) do
                  if ___conditional___ == 1--[[ Tpat_alias ]] then do
                     exit = 2; end else 
                  if ___conditional___ == 5--[[ Tpat_variant ]] then do
-                    if (match_1[1] ~= undefined) then do
+                    if (match_1[1] ~= nil) then do
                       return false;
                     end else do
                       return l1 == match_1[0];
@@ -52345,7 +52345,7 @@ function initial_matrix(_param) do
     param = _param;
     if (param) then do
       match = param[0];
-      if (match.c_guard ~= undefined) then do
+      if (match.c_guard ~= nil) then do
         _param = param[1];
         ::continue:: ;
       end else do
@@ -52377,7 +52377,7 @@ function initial_all(no_guard, param) do
               },
               pat.pat_loc
             },
-            initial_all(no_guard and match.c_guard == undefined, param[1])
+            initial_all(no_guard and match.c_guard == nil, param[1])
           };
   end else if (no_guard) then do
     error(NoGuard)
@@ -52499,7 +52499,7 @@ function do_match(_pss, _qs) do
               match[0],
               qs_1
             });
-        if (r ~= undefined) then do
+        if (r ~= nil) then do
           return r;
         end else do
           _qs = --[[ :: ]]{
@@ -52548,7 +52548,7 @@ function get_first(f, _param) do
     param = _param;
     if (param) then do
       x = Curry._1(f, param[0]);
-      if (x ~= undefined) then do
+      if (x ~= nil) then do
         return x;
       end else do
         _param = param[1];
@@ -52603,15 +52603,15 @@ function fresh(name) do
 end end
 
 function conv(typed) do
-  constrs = Hashtbl.create(undefined, 0);
-  labels = Hashtbl.create(undefined, 0);
+  constrs = Hashtbl.create(nil, 0);
+  labels = Hashtbl.create(nil, 0);
   loop = function(_pat) do
     while(true) do
       pat = _pat;
       match = pat.pat_desc;
       if (typeof match == "number") then do
         return --[[ :: ]]{
-                mk_1(undefined, undefined, --[[ Ppat_any ]]0),
+                mk_1(nil, nil, --[[ Ppat_any ]]0),
                 --[[ [] ]]0
               };
       end else do
@@ -52623,7 +52623,7 @@ function conv(typed) do
            if ___conditional___ == 3--[[ Tpat_tuple ]] then do
               results = select(List.map(loop, match[0]));
               return List.map((function(lst) do
-                            return mk_1(undefined, undefined, --[[ Ppat_tuple ]]Block.__(4, {lst}));
+                            return mk_1(nil, nil, --[[ Ppat_tuple ]]Block.__(4, {lst}));
                           end end), results); end end 
            if ___conditional___ == 4--[[ Tpat_construct ]] then do
               lst = match[2];
@@ -52642,7 +52642,7 @@ function conv(typed) do
                           return function (lst) do
                             arg;
                             if (lst) then do
-                              arg = lst[1] and mk_1(undefined, undefined, --[[ Ppat_tuple ]]Block.__(4, {lst})) or lst[0];
+                              arg = lst[1] and mk_1(nil, nil, --[[ Ppat_tuple ]]Block.__(4, {lst})) or lst[0];
                             end else do
                               error({
                                 Caml_builtin_exceptions.assert_failure,
@@ -52653,7 +52653,7 @@ function conv(typed) do
                                 }
                               })
                             end end 
-                            return mk_1(undefined, undefined, --[[ Ppat_construct ]]Block.__(5, {
+                            return mk_1(nil, nil, --[[ Ppat_construct ]]Block.__(5, {
                                           lid,
                                           arg
                                         }));
@@ -52661,9 +52661,9 @@ function conv(typed) do
                           end end)(lid), results_1);
               end else do
                 return --[[ :: ]]{
-                        mk_1(undefined, undefined, --[[ Ppat_construct ]]Block.__(5, {
+                        mk_1(nil, nil, --[[ Ppat_construct ]]Block.__(5, {
                                 lid,
-                                undefined
+                                nil
                               })),
                         --[[ [] ]]0
                       };
@@ -52671,11 +52671,11 @@ function conv(typed) do
            if ___conditional___ == 5--[[ Tpat_variant ]] then do
               p_opt = match[1];
               label = match[0];
-              if (p_opt ~= undefined) then do
+              if (p_opt ~= nil) then do
                 results_2 = loop(p_opt);
                 return List.map((function(label)do
                           return function (p) do
-                            return mk_1(undefined, undefined, --[[ Ppat_variant ]]Block.__(6, {
+                            return mk_1(nil, nil, --[[ Ppat_variant ]]Block.__(6, {
                                           label,
                                           p
                                         }));
@@ -52683,9 +52683,9 @@ function conv(typed) do
                           end end)(label), results_2);
               end else do
                 return --[[ :: ]]{
-                        mk_1(undefined, undefined, --[[ Ppat_variant ]]Block.__(6, {
+                        mk_1(nil, nil, --[[ Ppat_variant ]]Block.__(6, {
                                 label,
-                                undefined
+                                nil
                               })),
                         --[[ [] ]]0
                       };
@@ -52712,7 +52712,7 @@ function conv(typed) do
                                           pat
                                         };
                                 end end), label_idents, lst);
-                          return mk_1(undefined, undefined, --[[ Ppat_record ]]Block.__(7, {
+                          return mk_1(nil, nil, --[[ Ppat_record ]]Block.__(7, {
                                         lst_1,
                                         --[[ Open ]]1
                                       }));
@@ -52721,17 +52721,17 @@ function conv(typed) do
            if ___conditional___ == 7--[[ Tpat_array ]] then do
               results_3 = select(List.map(loop, match[0]));
               return List.map((function(lst) do
-                            return mk_1(undefined, undefined, --[[ Ppat_array ]]Block.__(8, {lst}));
+                            return mk_1(nil, nil, --[[ Ppat_array ]]Block.__(8, {lst}));
                           end end), results_3); end end 
            if ___conditional___ == 8--[[ Tpat_or ]] then do
               return Pervasives.$at(loop(match[0]), loop(match[1])); end end 
            if ___conditional___ == 9--[[ Tpat_lazy ]] then do
               results_4 = loop(match[0]);
               return List.map((function(p) do
-                            return mk_1(undefined, undefined, --[[ Ppat_lazy ]]Block.__(12, {p}));
+                            return mk_1(nil, nil, --[[ Ppat_lazy ]]Block.__(12, {p}));
                           end end), results_4); end end 
           return --[[ :: ]]{
-                    mk_1(undefined, undefined, --[[ Ppat_any ]]0),
+                    mk_1(nil, nil, --[[ Ppat_any ]]0),
                     --[[ [] ]]0
                   };
             
@@ -52749,19 +52749,19 @@ end end
 
 function do_check_partial(pred, exhaust, loc, casel, pss) do
   if (pss) then do
-    match = Curry._3(exhaust, undefined, pss, List.length(pss[0]));
+    match = Curry._3(exhaust, nil, pss, List.length(pss[0]));
     if (match) then do
       match_1 = match[0];
       if (match_1 and not match_1[1]) then do
         u = match_1[0];
         v;
-        if (pred ~= undefined) then do
+        if (pred ~= nil) then do
           match_2 = conv(u);
           v = get_first(Curry._2(pred, match_2[1], match_2[2]), match_2[0]);
         end else do
           v = u;
         end end 
-        if (v ~= undefined) then do
+        if (v ~= nil) then do
           v_1 = v;
           match_3 = v_1.pat_desc;
           errmsg;
@@ -52777,7 +52777,7 @@ function do_check_partial(pred, exhaust, loc, casel, pss) do
               fmt = Format.formatter_of_buffer(buf);
               top_pretty(fmt, v_1);
               match_4 = check_partial_all(v_1, casel);
-              if (match_4 ~= undefined) then do
+              if (match_4 ~= nil) then do
                 __Buffer.add_string(buf, "\n(However, some guarded clause may match this value.)");
               end
                end 
@@ -52808,7 +52808,7 @@ function do_check_partial(pred, exhaust, loc, casel, pss) do
 end end
 
 function do_check_partial_normal(loc, casel, pss) do
-  return do_check_partial(undefined, exhaust, loc, casel, pss);
+  return do_check_partial(nil, exhaust, loc, casel, pss);
 end end
 
 function add_path(path, paths) do
@@ -52857,7 +52857,7 @@ function collect_paths_from_pat(_r, _p) do
             return List.fold_left(collect_paths_from_pat, extendable_path(path) and add_path(path, r) or r, match[2]); end end 
          if ___conditional___ == 5--[[ Tpat_variant ]] then do
             match_1 = match[1];
-            if (match_1 ~= undefined) then do
+            if (match_1 ~= nil) then do
               _p = match_1;
               ::continue:: ;
             end else do
@@ -52896,7 +52896,7 @@ function do_check_fragile_param(exhaust, loc, casel, pss) do
                   if (match) then do
                     return --[[ () ]]0;
                   end else do
-                    return prerr_warning(loc, --[[ Fragile_match ]]Block.__(1, {name(undefined, ext)}));
+                    return prerr_warning(loc, --[[ Fragile_match ]]Block.__(1, {name(nil, ext)}));
                   end end 
                 end end), exts);
   end else do
@@ -52979,7 +52979,7 @@ function error_of_extension(ext) do
      or ___conditional___ == "ocaml.error" then do
         exit = 1; end else 
      end end
-    return Curry._1(errorf(match.loc, undefined, undefined, --[[ Format ]]{
+    return Curry._1(errorf(match.loc, nil, nil, --[[ Format ]]{
                       --[[ String_literal ]]Block.__(11, {
                           "Uninterpreted extension '",
                           --[[ String ]]Block.__(2, {
@@ -53007,7 +53007,7 @@ function error_of_extension(ext) do
                 };
         end else do
           return --[[ :: ]]{
-                  Curry._1(errorf(loc, undefined, undefined, --[[ Format ]]{
+                  Curry._1(errorf(loc, nil, nil, --[[ Format ]]{
                             --[[ String_literal ]]Block.__(11, {
                                 "Invalid syntax for sub-error of extension '",
                                 --[[ String ]]Block.__(2, {
@@ -53062,7 +53062,7 @@ function error_of_extension(ext) do
                     exit_1 = 3;
                   end end 
                   if (exit_1 == 3) then do
-                    return error(loc, sub_from(inner), undefined, msg);
+                    return error(loc, sub_from(inner), nil, msg);
                   end
                    end 
                 end
@@ -53078,7 +53078,7 @@ function error_of_extension(ext) do
        end end end
       
     end
-    return Curry._1(errorf(loc, undefined, undefined, --[[ Format ]]{
+    return Curry._1(errorf(loc, nil, nil, --[[ Format ]]{
                     --[[ String_literal ]]Block.__(11, {
                         "Invalid syntax for extension '",
                         --[[ String ]]Block.__(2, {
@@ -53106,7 +53106,7 @@ function check_deprecated(loc, attrs, s) do
                     
                 end
                 match = string_of_payload(param[1]);
-                if (match ~= undefined) then do
+                if (match ~= nil) then do
                   txt = match;
                   if (bs_vscode) then do
                     return prerr_warning(loc, --[[ Deprecated ]]Block.__(0, {s .. (" " .. txt)}));
@@ -53197,7 +53197,7 @@ end end
 function warning_attribute(attrs) do
   __process = function(loc, txt, errflag, payload) do
     match = string_of_payload(payload);
-    if (match ~= undefined) then do
+    if (match ~= nil) then do
       xpcall(function() do
         return parse_options(errflag, match);
       end end,function(raw_exn) do
@@ -53276,7 +53276,7 @@ function narrow_unbound_lid_error(env, loc, lid, make_error) do
         mlid = lid[0];
         check_module(mlid);
         md = find_module(false, lookup_module(true, mlid, env), env);
-        match = scrape_alias(env, undefined, md.md_type);
+        match = scrape_alias(env, nil, md.md_type);
         if (match.tag == --[[ Mty_functor ]]2) then do
           error({
             __Error_6,
@@ -53351,7 +53351,7 @@ function find_type(env, loc, lid) do
   r = find_component(lookup_type_1, (function(lid) do
           return --[[ Unbound_type_constructor ]]Block.__(1, {lid});
         end end), env, loc, lid);
-  check_deprecated(loc, r[1].type_attributes, name(undefined, r[0]));
+  check_deprecated(loc, r[1].type_attributes, name(nil, r[0]));
   return r;
 end end
 
@@ -53377,7 +53377,7 @@ function find_class_1(env, loc, lid) do
   r = find_component(lookup_class_1, (function(lid) do
           return --[[ Unbound_class ]]Block.__(21, {lid});
         end end), env, loc, lid);
-  check_deprecated(loc, r[1].cty_attributes, name(undefined, r[0]));
+  check_deprecated(loc, r[1].cty_attributes, name(nil, r[0]));
   return r;
 end end
 
@@ -53386,12 +53386,12 @@ function find_value_1(env, loc, lid) do
   r = find_component(lookup_value_1, (function(lid) do
           return --[[ Unbound_value ]]Block.__(17, {lid});
         end end), env, loc, lid);
-  check_deprecated(loc, r[1].val_attributes, name(undefined, r[0]));
+  check_deprecated(loc, r[1].val_attributes, name(nil, r[0]));
   return r;
 end end
 
 function lookup_module_1(loadOpt, env, loc, lid) do
-  load = loadOpt ~= undefined and loadOpt or false;
+  load = loadOpt ~= nil and loadOpt or false;
   return find_component((function(lid, env) do
                   return --[[ tuple ]]{
                           lookup_module(load, lid, env),
@@ -53405,7 +53405,7 @@ end end
 function find_module_1(env, loc, lid) do
   path = lookup_module_1(true, env, loc, lid);
   decl = find_module(false, path, env);
-  check_deprecated(loc, decl.md_attributes, name(undefined, path));
+  check_deprecated(loc, decl.md_attributes, name(nil, path));
   return --[[ tuple ]]{
           path,
           decl
@@ -53416,7 +53416,7 @@ function find_modtype_1(env, loc, lid) do
   r = find_component(lookup_modtype, (function(lid) do
           return --[[ Unbound_modtype ]]Block.__(22, {lid});
         end end), env, loc, lid);
-  check_deprecated(loc, r[1].mtd_attributes, name(undefined, r[0]));
+  check_deprecated(loc, r[1].mtd_attributes, name(nil, r[0]));
   return r;
 end end
 
@@ -53424,7 +53424,7 @@ function find_class_type(env, loc, lid) do
   r = find_component(lookup_cltype_1, (function(lid) do
           return --[[ Unbound_cltype ]]Block.__(23, {lid});
         end end), env, loc, lid);
-  check_deprecated(loc, r[1].clty_attributes, name(undefined, r[0]));
+  check_deprecated(loc, r[1].clty_attributes, name(nil, r[0]));
   return r;
 end end
 
@@ -53489,7 +53489,7 @@ function create_package_mty(fake, loc, env, param) do
                     txt = last_1(s.txt),
                     loc = s.loc
                   };
-                  d_ptype_manifest = fake and undefined or param[1];
+                  d_ptype_manifest = fake and nil or param[1];
                   d = {
                     ptype_name = d_ptype_name,
                     ptype_params = --[[ [] ]]0,
@@ -53500,7 +53500,7 @@ function create_package_mty(fake, loc, env, param) do
                     ptype_attributes = --[[ [] ]]0,
                     ptype_loc = loc
                   };
-                  return mk_3(loc, undefined, --[[ Pmty_with ]]Block.__(3, {
+                  return mk_3(loc, nil, --[[ Pmty_with ]]Block.__(3, {
                                 mty,
                                 --[[ :: ]]{
                                   --[[ Pwith_type ]]Block.__(0, {
@@ -53513,7 +53513,7 @@ function create_package_mty(fake, loc, env, param) do
                                   --[[ [] ]]0
                                 }
                               }));
-                end end), mk_3(loc, undefined, --[[ Pmty_ident ]]Block.__(0, {param[0]})), l)
+                end end), mk_3(loc, nil, --[[ Pmty_ident ]]Block.__(0, {param[0]})), l)
         };
 end end
 
@@ -53563,7 +53563,7 @@ function strict_lowercase(c) do
 end end
 
 function validate_name(s) do
-  if (s ~= undefined) then do
+  if (s ~= nil) then do
     name = s;
     if (name ~= "" and strict_lowercase(Caml_string.get(name, 0))) then do
       return s;
@@ -53672,7 +53672,7 @@ function transl_type(env, policy, styp) do
   if (typeof match == "number") then do
     ty;
     if (policy == --[[ Univars ]]2) then do
-      ty = new_pre_univar(undefined, --[[ () ]]0);
+      ty = new_pre_univar(nil, --[[ () ]]0);
     end else do
       if (policy == --[[ Fixed ]]0) then do
         error({
@@ -53683,7 +53683,7 @@ function transl_type(env, policy, styp) do
         })
       end
        end 
-      ty = newvar(validate_name(undefined), --[[ () ]]0);
+      ty = newvar(validate_name(nil), --[[ () ]]0);
     end end 
     return ctyp(--[[ Ttyp_any ]]0, ty);
   end else do
@@ -53702,11 +53702,11 @@ function transl_type(env, policy, styp) do
            end 
           ty_1;
           xpcall(function() do
-            ty_1 = instance(undefined, env, List.assoc(name, univars.contents));
+            ty_1 = instance(nil, env, List.assoc(name, univars.contents));
           end end,function(exn) do
             if (exn == Caml_builtin_exceptions.not_found) then do
               xpcall(function() do
-                ty_1 = instance(undefined, env, find_2(name, used_variables.contents)[0]);
+                ty_1 = instance(nil, env, find_2(name, used_variables.contents)[0]);
               end end,function(exn_1) do
                 if (exn_1 == Caml_builtin_exceptions.not_found) then do
                   v = policy == --[[ Univars ]]2 and new_pre_univar(name, --[[ () ]]0) or newvar(validate_name(name), --[[ () ]]0);
@@ -53786,7 +53786,7 @@ function transl_type(env, policy, styp) do
                 end end), stl_2);
           params = instance_list(empty, decl.type_params);
           match_2 = decl.type_manifest;
-          unify_param = match_2 ~= undefined and repr(match_2).level ~= 100000000 and unify_2 or unify_var;
+          unify_param = match_2 ~= nil and repr(match_2).level ~= 100000000 and unify_2 or unify_var;
           List.iter2((function(param, ty$prime) do
                   xpcall(function() do
                     return Curry._3(unify_param, env, ty$prime, param[1].ctyp_type);
@@ -53852,7 +53852,7 @@ function transl_type(env, policy, styp) do
               while(true) do
                 decl = _decl;
                 match = decl.type_manifest;
-                if (match ~= undefined) then do
+                if (match ~= nil) then do
                   match_1 = repr(match).desc;
                   if (typeof match_1 == "number") then do
                     error(Caml_builtin_exceptions.not_found)
@@ -54017,7 +54017,7 @@ function transl_type(env, policy, styp) do
                             tmp = f;
                           end else do
                             match_1 = match[0];
-                            tmp = match_1 ~= undefined and --[[ Reither ]]Block.__(1, {
+                            tmp = match_1 ~= nil and --[[ Reither ]]Block.__(1, {
                                   false,
                                   --[[ :: ]]{
                                     match_1,
@@ -54025,14 +54025,14 @@ function transl_type(env, policy, styp) do
                                   },
                                   false,
                                   {
-                                    contents = undefined
+                                    contents = nil
                                   }
                                 }) or --[[ Reither ]]Block.__(1, {
                                   true,
                                   --[[ [] ]]0,
                                   false,
                                   {
-                                    contents = undefined
+                                    contents = nil
                                   }
                                 });
                           end end 
@@ -54041,7 +54041,7 @@ function transl_type(env, policy, styp) do
                                   tmp
                                 };
                         end end), row.row_fields);
-                  row_row_more = newvar(validate_name(undefined), --[[ () ]]0);
+                  row_row_more = newvar(validate_name(nil), --[[ () ]]0);
                   row_row_name = --[[ tuple ]]{
                     path_1,
                     ty_args
@@ -54065,7 +54065,7 @@ function transl_type(env, policy, styp) do
                       }) or (
                       policy ~= --[[ Univars ]]2 and row_1 or ({
                             row_fields = fields_1,
-                            row_more = new_pre_univar(undefined, --[[ () ]]0),
+                            row_more = new_pre_univar(nil, --[[ () ]]0),
                             row_bound = --[[ () ]]0,
                             row_closed = true,
                             row_fixed = false,
@@ -54100,7 +54100,7 @@ function transl_type(env, policy, styp) do
               t_1 = List.assoc(alias, univars.contents);
             end end,function(exn_6) do
               if (exn_6 == Caml_builtin_exceptions.not_found) then do
-                t_1 = instance(undefined, env, find_2(alias, used_variables.contents)[0]);
+                t_1 = instance(nil, env, find_2(alias, used_variables.contents)[0]);
               end else do
                 error(exn_6)
               end end 
@@ -54129,7 +54129,7 @@ function transl_type(env, policy, styp) do
                 begin_def(--[[ () ]]0);
               end
                end 
-              t_2 = newvar(validate_name(undefined), --[[ () ]]0);
+              t_2 = newvar(validate_name(nil), --[[ () ]]0);
               used_variables.contents = add_5(alias, --[[ tuple ]]{
                     t_2,
                     styp.ptyp_loc
@@ -54156,20 +54156,20 @@ function transl_type(env, policy, styp) do
                 generalize_structure_1(current_level.contents, t_2);
               end
                end 
-              t_3 = instance(undefined, env, t_2);
+              t_3 = instance(nil, env, t_2);
               px = proxy(t_3);
               match_9 = px.desc;
               if (typeof match_9 ~= "number") then do
                 local ___conditional___=(match_9.tag | 0);
                 do
                    if ___conditional___ == 0--[[ Tvar ]] then do
-                      if (match_9[0] == undefined) then do
+                      if (match_9[0] == nil) then do
                         log_type(px);
                         px.desc = --[[ Tvar ]]Block.__(0, {alias});
                       end
                        end  end else 
                    if ___conditional___ == 9--[[ Tunivar ]] then do
-                      if (match_9[0] == undefined) then do
+                      if (match_9[0] == nil) then do
                         log_type(px);
                         px.desc = --[[ Tunivar ]]Block.__(9, {alias});
                       end
@@ -54198,7 +54198,7 @@ function transl_type(env, policy, styp) do
           present = match[2];
           closed = match[1];
           name_1 = {
-            contents = undefined
+            contents = nil
           };
           mkfield = function(l, f) do
             desc = --[[ Tvariant ]]Block.__(8, {{
@@ -54209,15 +54209,15 @@ function transl_type(env, policy, styp) do
                     },
                     --[[ [] ]]0
                   },
-                  row_more = newvar(validate_name(undefined), --[[ () ]]0),
+                  row_more = newvar(validate_name(nil), --[[ () ]]0),
                   row_bound = --[[ () ]]0,
                   row_closed = true,
                   row_fixed = false,
-                  row_name = undefined
+                  row_name = nil
                 }});
             return newty2(current_level.contents, desc);
           end end;
-          hfields = Hashtbl.create(undefined, 17);
+          hfields = Hashtbl.create(nil, 17);
           add_typed_field = function(loc, l, f) do
             h = hash_variant(l);
             xpcall(function() do
@@ -54284,7 +54284,7 @@ function transl_type(env, policy, styp) do
               match = repr(cty.ctyp_type);
               match_1 = match.desc;
               nm;
-              nm = typeof match_1 == "number" or match_1.tag ~= --[[ Tconstr ]]3 and undefined or --[[ tuple ]]{
+              nm = typeof match_1 == "number" or match_1.tag ~= --[[ Tconstr ]]3 and nil or --[[ tuple ]]{
                   match_1[0],
                   match_1[1]
                 };
@@ -54295,7 +54295,7 @@ function transl_type(env, policy, styp) do
                 name_1.contents = nm;
               end end,function(exn) do
                 if (exn == Pervasives.Exit) then do
-                  name_1.contents = undefined;
+                  name_1.contents = nil;
                 end else do
                   error(exn)
                 end end 
@@ -54310,7 +54310,7 @@ function transl_type(env, policy, styp) do
                 local ___conditional___=(match_3.tag | 0);
                 do
                    if ___conditional___ == 0--[[ Tvar ]] then do
-                      if (nm ~= undefined) then do
+                      if (nm ~= nil) then do
                         error({
                           __Error_6,
                           sty.ptyp_loc,
@@ -54345,7 +54345,7 @@ function transl_type(env, policy, styp) do
                       f = param[1];
                       l = param[0];
                       f_1;
-                      if (present ~= undefined and not List.mem(l, present)) then do
+                      if (present ~= nil and not List.mem(l, present)) then do
                         if (typeof f == "number") then do
                           error({
                             Caml_builtin_exceptions.assert_failure,
@@ -54366,7 +54366,7 @@ function transl_type(env, policy, styp) do
                           })
                         end else do
                           match = f[0];
-                          f_1 = match ~= undefined and --[[ Reither ]]Block.__(1, {
+                          f_1 = match ~= nil and --[[ Reither ]]Block.__(1, {
                                 false,
                                 --[[ :: ]]{
                                   match,
@@ -54374,14 +54374,14 @@ function transl_type(env, policy, styp) do
                                 },
                                 false,
                                 {
-                                  contents = undefined
+                                  contents = nil
                                 }
                               }) or --[[ Reither ]]Block.__(1, {
                                 true,
                                 --[[ [] ]]0,
                                 false,
                                 {
-                                  contents = undefined
+                                  contents = nil
                                 }
                               });
                         end end  end 
@@ -54395,13 +54395,13 @@ function transl_type(env, policy, styp) do
               stl = param[3];
               c = param[2];
               l = param[0];
-              name_1.contents = undefined;
+              name_1.contents = nil;
               tl = List.map((function(param) do
                       return transl_type(env, policy, param);
                     end end), stl);
               f;
               exit_1 = 0;
-              if (present ~= undefined and not List.mem(l, present)) then do
+              if (present ~= nil and not List.mem(l, present)) then do
                 ty_tl = List.map((function(cty) do
                         return cty.ctyp_type;
                       end end), tl);
@@ -54410,7 +54410,7 @@ function transl_type(env, policy, styp) do
                     ty_tl,
                     false,
                     {
-                      contents = undefined
+                      contents = nil
                     }
                   });
               end else do
@@ -54426,7 +54426,7 @@ function transl_type(env, policy, styp) do
                   })
                 end
                  end 
-                f = tl and --[[ Rpresent ]]Block.__(0, {tl[0].ctyp_type}) or --[[ Rpresent ]]Block.__(0, {undefined});
+                f = tl and --[[ Rpresent ]]Block.__(0, {tl[0].ctyp_type}) or --[[ Rpresent ]]Block.__(0, {nil});
               end
                end 
               add_typed_field(styp.ptyp_loc, l, f);
@@ -54445,7 +54445,7 @@ function transl_type(env, policy, styp) do
                           l
                         };
                 end end), hfields, --[[ [] ]]0);
-          if (present ~= undefined) then do
+          if (present ~= nil) then do
             List.iter((function(l) do
                     if (List.mem_assoc(l, fields_2)) then do
                       return 0;
@@ -54461,7 +54461,7 @@ function transl_type(env, policy, styp) do
           end
            end 
           row_row_fields = List.rev(fields_2);
-          row_row_more_1 = newvar(validate_name(undefined), --[[ () ]]0);
+          row_row_more_1 = newvar(validate_name(nil), --[[ () ]]0);
           row_row_closed = closed == --[[ Closed ]]0;
           row_row_name_1 = name_1.contents;
           row_3 = {
@@ -54483,7 +54483,7 @@ function transl_type(env, policy, styp) do
               }) or (
               policy ~= --[[ Univars ]]2 and row_3 or ({
                     row_fields = row_row_fields,
-                    row_more = new_pre_univar(undefined, --[[ () ]]0),
+                    row_more = new_pre_univar(nil, --[[ () ]]0),
                     row_bound = --[[ () ]]0,
                     row_closed = row_row_closed,
                     row_fixed = false,
@@ -54543,7 +54543,7 @@ function transl_type(env, policy, styp) do
                   ty_10,
                   List.rev(ty_list)
                 }));
-          unify_var(env, newvar(validate_name(undefined), --[[ () ]]0), ty$prime);
+          unify_var(env, newvar(validate_name(nil), --[[ () ]]0), ty$prime);
           return ctyp(--[[ Ttyp_poly ]]Block.__(8, {
                         vars,
                         cty_1
@@ -54623,9 +54623,9 @@ function transl_fields(loc, env, policy, seen, o, param) do
                 }));
   end else if (o) then do
     if (policy >= 2) then do
-      return new_pre_univar(undefined, --[[ () ]]0);
+      return new_pre_univar(nil, --[[ () ]]0);
     end else do
-      return newvar(validate_name(undefined), --[[ () ]]0);
+      return newvar(validate_name(nil), --[[ () ]]0);
     end end 
   end else do
     return newty2(current_level.contents, --[[ Tnil ]]0);
@@ -54681,7 +54681,7 @@ function globalize_used_variables(env, fixed) do
   iter_2((function(name, param) do
           loc = param[1];
           ty = param[0];
-          v = new_global_var(validate_name(undefined), --[[ () ]]0);
+          v = new_global_var(validate_name(nil), --[[ () ]]0);
           snap = snapshot(--[[ () ]]0);
           tmp;
           xpcall(function() do
@@ -54713,7 +54713,7 @@ function globalize_used_variables(env, fixed) do
                   })
                 end
                  end 
-                v2 = new_global_var(validate_name(undefined), --[[ () ]]0);
+                v2 = new_global_var(validate_name(nil), --[[ () ]]0);
                 r.contents = --[[ :: ]]{
                   --[[ tuple ]]{
                     loc,
@@ -54804,7 +54804,7 @@ function transl_simple_type_univars(env, styp) do
   unmark_type(ty);
   return {
           ctyp_desc = typ.ctyp_desc,
-          ctyp_type = instance(undefined, env, newty2(100000000, --[[ Tpoly ]]Block.__(10, {
+          ctyp_type = instance(nil, env, newty2(100000000, --[[ Tpoly ]]Block.__(10, {
                       typ.ctyp_type,
                       univs
                     }))),
@@ -54850,7 +54850,7 @@ function spellcheck(ppf, fold, env, lid) do
     best_dist = acc[1];
     best_choice = acc[0];
     match = edit_distance(target, head, cutoff);
-    if (match ~= undefined) then do
+    if (match ~= nil) then do
       dist = match;
       choice = dist < best_dist and --[[ :: ]]{
           head,
@@ -54919,7 +54919,7 @@ function spellcheck(ppf, fold, env, lid) do
         s = lid[0];
         return handle(Curry._4(fold, (function(param, param_1) do
                           return compare(s, param, param_1);
-                        end end), undefined, env, init)); end end 
+                        end end), nil, env, init)); end end 
      if ___conditional___ == 1--[[ Ldot ]] then do
         s_1 = lid[1];
         return handle(Curry._4(fold, (function(param, param_1) do
@@ -55101,7 +55101,7 @@ register_error_of_exn((function(param) do
                                                 "Unbound row variable in #%a"
                                               }), longident, param_2[0]); end end 
                              if ___conditional___ == 6--[[ Type_mismatch ]] then do
-                                return report_unification_error(ppf, empty, undefined, param_2[0], (function(ppf) do
+                                return report_unification_error(ppf, empty, nil, param_2[0], (function(ppf) do
                                               return Format.fprintf(ppf, --[[ Format ]]{
                                                           --[[ String_literal ]]Block.__(11, {
                                                               "This type",
@@ -55119,7 +55119,7 @@ register_error_of_exn((function(param) do
                                                         });
                                             end end)); end end 
                              if ___conditional___ == 7--[[ Alias_type_mismatch ]] then do
-                                return report_unification_error(ppf, empty, undefined, param_2[0], (function(ppf) do
+                                return report_unification_error(ppf, empty, nil, param_2[0], (function(ppf) do
                                               return Format.fprintf(ppf, --[[ Format ]]{
                                                           --[[ String_literal ]]Block.__(11, {
                                                               "This alias is bound to type",
@@ -55770,7 +55770,7 @@ function iter_expression(f, e) do
 end end
 
 function all_idents_cases(el) do
-  idents = Hashtbl.create(undefined, 8);
+  idents = Hashtbl.create(nil, 8);
   f = function(param) do
     match = param.pexp_desc;
     if (match.tag) then do
@@ -56035,12 +56035,12 @@ function unify_exp_types(loc, env, ty, expected_ty) do
 end end
 
 newtype_level_1 = {
-  contents = undefined
+  contents = nil
 };
 
 function get_newtype_level_1(param) do
   match = newtype_level_1.contents;
-  if (match ~= undefined) then do
+  if (match ~= nil) then do
     return match;
   end else do
     error({
@@ -56057,7 +56057,7 @@ end end
 function unify_pat_types_gadt(loc, env, ty, ty$prime) do
   match = newtype_level_1.contents;
   newtype_level_2;
-  if (match ~= undefined) then do
+  if (match ~= nil) then do
     newtype_level_2 = match;
   end else do
     error({
@@ -56080,7 +56080,7 @@ function unify_pat_types_gadt(loc, env, ty, ty$prime) do
       set_mode_pattern(true, true, (function(param) do
               return unify_1(env_1, ty1, ty2);
             end end));
-      newtype_level.contents = undefined;
+      newtype_level.contents = nil;
       return Curry._1(TypePairs.clear, unify_eq_set);
     end end,function(raw_e) do
       e = Caml_js_exceptions.internalToOCamlException(raw_e);
@@ -56092,7 +56092,7 @@ function unify_pat_types_gadt(loc, env, ty, ty$prime) do
         })
       end
        end 
-      newtype_level.contents = undefined;
+      newtype_level.contents = nil;
       error(e)
     end end)
   end end,function(raw_exn) do
@@ -56174,7 +56174,7 @@ function finalize_variant(pat) do
       c = match_3[0];
       if (c) then do
         if (not match_3[1] and not row.row_closed) then do
-          return set_row_field(match_3[3], --[[ Rpresent ]]Block.__(0, {undefined}));
+          return set_row_field(match_3[3], --[[ Rpresent ]]Block.__(0, {nil}));
         end
          end 
       end else do
@@ -56182,7 +56182,7 @@ function finalize_variant(pat) do
         if (match_4 and not row.row_closed) then do
           ty = match_4[0];
           set_row_field(match_3[3], --[[ Rpresent ]]Block.__(0, {ty}));
-          if (opat ~= undefined) then do
+          if (opat ~= nil) then do
             pat_1 = opat;
             partial_arg = pat_1.pat_env;
             return List.iter((function(param) do
@@ -56210,7 +56210,7 @@ function finalize_variant(pat) do
                       --[[ [] ]]0,
                       false,
                       {
-                        contents = undefined
+                        contents = nil
                       }
                     }));
       end else do
@@ -56256,7 +56256,7 @@ pattern_force = {
 };
 
 pattern_scope = {
-  contents = undefined
+  contents = nil
 };
 
 allow_modules = {
@@ -56277,8 +56277,8 @@ function reset_pattern(scope, allow) do
 end end
 
 function enter_variable(is_moduleOpt, is_as_variableOpt, loc, name, ty) do
-  is_module = is_moduleOpt ~= undefined and is_moduleOpt or false;
-  is_as_variable = is_as_variableOpt ~= undefined and is_as_variableOpt or false;
+  is_module = is_moduleOpt ~= nil and is_moduleOpt or false;
+  is_as_variable = is_as_variableOpt ~= nil and is_as_variableOpt or false;
   if (List.exists((function(param) do
             return param[0].name == name.txt;
           end end), pattern_variables.contents)) then do
@@ -56442,7 +56442,7 @@ function build_as_type(env, _p) do
               tyl_1 = List.map((function(param) do
                       return build_as_type(env, param);
                     end end), pl);
-              match_1 = instance_constructor(undefined, cstr);
+              match_1 = instance_constructor(nil, cstr);
               List.iter2((function(param) do
                       p = param[0];
                       partial_arg = {
@@ -56471,11 +56471,11 @@ function build_as_type(env, _p) do
                     },
                     --[[ [] ]]0
                   },
-                  row_more = newvar(undefined, --[[ () ]]0),
+                  row_more = newvar(nil, --[[ () ]]0),
                   row_bound = --[[ () ]]0,
                   row_closed = false,
                   row_fixed = false,
-                  row_name = undefined
+                  row_name = nil
                 }});
             return newty2(current_level.contents, desc); end end 
          if ___conditional___ == 6--[[ Tpat_record ]] then do
@@ -56484,7 +56484,7 @@ function build_as_type(env, _p) do
             if (lbl.lbl_private == --[[ Private ]]0) then do
               return p.pat_type;
             end else do
-              ty_1 = newvar(undefined, --[[ () ]]0);
+              ty_1 = newvar(nil, --[[ () ]]0);
               ppl = List.map((function(param) do
                       return --[[ tuple ]]{
                               param[1].lbl_pos,
@@ -56539,11 +56539,11 @@ function build_as_type(env, _p) do
          if ___conditional___ == 8--[[ Tpat_or ]] then do
             row = match[2];
             p2 = match[1];
-            if (row ~= undefined) then do
+            if (row ~= nil) then do
               row_1 = row_repr_aux(--[[ [] ]]0, row);
               desc_1 = --[[ Tvariant ]]Block.__(8, {{
                     row_fields = row_1.row_fields,
-                    row_more = newvar(undefined, --[[ () ]]0),
+                    row_more = newvar(nil, --[[ () ]]0),
                     row_bound = row_1.row_bound,
                     row_closed = false,
                     row_fixed = row_1.row_fixed,
@@ -56574,7 +56574,7 @@ function build_or_pat(env, loc, lid) do
   match = find_type(env, loc, lid);
   path = match[0];
   tyl = List.map((function(param) do
-          return newvar(undefined, --[[ () ]]0);
+          return newvar(nil, --[[ () ]]0);
         end end), match[1].type_params);
   ty = expand_head(env, newty2(current_level.contents, --[[ Tconstr ]]Block.__(3, {
               path,
@@ -56617,7 +56617,7 @@ function build_or_pat(env, loc, lid) do
                   };
           end else do
             match_1 = match[0];
-            if (match_1 ~= undefined) then do
+            if (match_1 ~= nil) then do
               ty = match_1;
               return --[[ tuple ]]{
                       --[[ :: ]]{
@@ -56645,7 +56645,7 @@ function build_or_pat(env, loc, lid) do
                               },
                               true,
                               {
-                                contents = undefined
+                                contents = nil
                               }
                             })
                         },
@@ -56657,7 +56657,7 @@ function build_or_pat(env, loc, lid) do
                       --[[ :: ]]{
                         --[[ tuple ]]{
                           l,
-                          undefined
+                          nil
                         },
                         pats
                       },
@@ -56669,7 +56669,7 @@ function build_or_pat(env, loc, lid) do
                               --[[ [] ]]0,
                               true,
                               {
-                                contents = undefined
+                                contents = nil
                               }
                             })
                         },
@@ -56683,7 +56683,7 @@ function build_or_pat(env, loc, lid) do
         --[[ [] ]]0
       }, row_repr_aux(--[[ [] ]]0, row0).row_fields);
   row_row_fields = List.rev(match_2[1]);
-  row_row_more = newvar(undefined, --[[ () ]]0);
+  row_row_more = newvar(nil, --[[ () ]]0);
   row_row_name = --[[ tuple ]]{
     path,
     tyl
@@ -56707,7 +56707,7 @@ function build_or_pat(env, loc, lid) do
   row$prime = {
     contents = {
       row_fields = row_row_fields,
-      row_more = newvar(undefined, --[[ () ]]0),
+      row_more = newvar(nil, --[[ () ]]0),
       row_bound = --[[ () ]]0,
       row_closed = false,
       row_fixed = false,
@@ -56773,14 +56773,14 @@ function expand_path(env, _p) do
       decl = find_type_full(p, env)[0];
     end end,function(exn) do
       if (exn == Caml_builtin_exceptions.not_found) then do
-        decl = undefined;
+        decl = nil;
       end else do
         error(exn)
       end end 
     end end)
-    if (decl ~= undefined) then do
+    if (decl ~= nil) then do
       match = decl.type_manifest;
-      if (match ~= undefined) then do
+      if (match ~= nil) then do
         match_1 = repr(match);
         match_2 = match_1.desc;
         if (typeof match_2 == "number" or match_2.tag ~= --[[ Tconstr ]]3) then do
@@ -56793,7 +56793,7 @@ function expand_path(env, _p) do
        end 
     end
      end 
-    p$prime = normalize_path_1(undefined, env, p);
+    p$prime = normalize_path_1(nil, env, p);
     if (same(p, p$prime)) then do
       return p;
     end else do
@@ -56885,7 +56885,7 @@ function lookup_from_type(env, tpath, lid) do
               env,
               --[[ Wrong_name ]]Block.__(13, {
                   "",
-                  newvar(undefined, --[[ () ]]0),
+                  newvar(nil, --[[ () ]]0),
                   type_kind,
                   tpath,
                   lid.txt
@@ -56953,13 +56953,13 @@ function disambiguate_by_type(env, tpath, lbls) do
 end end
 
 function disambiguate(warnOpt, check_lkOpt, scope, lid, env, opath, lbls) do
-  warn = warnOpt ~= undefined and warnOpt or prerr_warning;
-  check_lk = check_lkOpt ~= undefined and check_lkOpt or (function(param, param_1) do
+  warn = warnOpt ~= nil and warnOpt or prerr_warning;
+  check_lk = check_lkOpt ~= nil and check_lkOpt or (function(param, param_1) do
         return --[[ () ]]0;
       end end);
-  scope_1 = scope ~= undefined and scope or lbls;
+  scope_1 = scope ~= nil and scope or lbls;
   lbl;
-  if (opath ~= undefined) then do
+  if (opath ~= nil) then do
     match = opath;
     pr = match[2];
     tpath = match[1];
@@ -57084,7 +57084,7 @@ end end
 
 function disambiguate_label_by_ids(keep, env, closed, ids, labels) do
   check_ids = function(param) do
-    lbls = Hashtbl.create(undefined, 8);
+    lbls = Hashtbl.create(nil, 8);
     __Array.iter((function(lbl) do
             return Hashtbl.add(lbls, lbl.lbl_name, --[[ () ]]0);
           end end), param[0].lbl_all);
@@ -57179,13 +57179,13 @@ function disambiguate_lid_a_list(loc, closed, env, opath, lid_a_list) do
   end end;
   process_label = function(lid) do
     scope = find_all_labels(env, lid.loc, lid.txt);
-    if (opath == undefined and scope == --[[ [] ]]0) then do
+    if (opath == nil and scope == --[[ [] ]]0) then do
       unbound_label_error(env, lid);
     end
      end 
     match;
     exit = 0;
-    if (opath ~= undefined and opath[2]) then do
+    if (opath ~= nil and opath[2]) then do
       match = --[[ tuple ]]{
         true,
         scope
@@ -57194,12 +57194,12 @@ function disambiguate_lid_a_list(loc, closed, env, opath, lid_a_list) do
       exit = 1;
     end end 
     if (exit == 1) then do
-      match = disambiguate_label_by_ids(opath == undefined, env, closed, ids, scope);
+      match = disambiguate_label_by_ids(opath == nil, env, closed, ids, scope);
     end
      end 
     labels = match[1];
     if (match[0]) then do
-      return disambiguate(warn, undefined, scope, lid, env, opath, labels);
+      return disambiguate(warn, nil, scope, lid, env, opath, labels);
     end else do
       return List.hd(labels)[0];
     end end 
@@ -57286,7 +57286,7 @@ function type_label_a_list(labels, loc, closed, env, type_lbl_a, opath, lid_a_li
     local ___conditional___=(match.tag | 0);
     do
        if ___conditional___ == 0--[[ Lident ]] then do
-          if (labels ~= undefined) then do
+          if (labels ~= nil) then do
             labels_1 = Caml_option.valFromOption(labels);
             if (Hashtbl.mem(labels_1, match[0])) then do
               lbl_a_list = List.map((function(param) do
@@ -57331,7 +57331,7 @@ function type_label_a_list(labels, loc, closed, env, type_lbl_a, opath, lid_a_li
   if (exit == 1) then do
     match_1 = find_record_qual(lid_a_list);
     lid_a_list_1;
-    if (match_1 ~= undefined) then do
+    if (match_1 ~= nil) then do
       modname = match_1;
       lid_a_list_1 = List.map((function(lid_a) do
               lid = lid_a[0];
@@ -57457,7 +57457,7 @@ function lookup_from_type_1(env, tpath, lid) do
               env,
               --[[ Wrong_name ]]Block.__(13, {
                   "",
-                  newvar(undefined, --[[ () ]]0),
+                  newvar(nil, --[[ () ]]0),
                   type_kind_1,
                   tpath,
                   lid.txt
@@ -57525,13 +57525,13 @@ function disambiguate_by_type_1(env, tpath, lbls) do
 end end
 
 function disambiguate_1(warnOpt, check_lkOpt, scope, lid, env, opath, lbls) do
-  warn = warnOpt ~= undefined and warnOpt or prerr_warning;
-  check_lk = check_lkOpt ~= undefined and check_lkOpt or (function(param, param_1) do
+  warn = warnOpt ~= nil and warnOpt or prerr_warning;
+  check_lk = check_lkOpt ~= nil and check_lkOpt or (function(param, param_1) do
         return --[[ () ]]0;
       end end);
-  scope_1 = scope ~= undefined and scope or lbls;
+  scope_1 = scope ~= nil and scope or lbls;
   lbl;
-  if (opath ~= undefined) then do
+  if (opath ~= nil) then do
     match = opath;
     pr = match[2];
     tpath = match[1];
@@ -57655,7 +57655,7 @@ function disambiguate_1(warnOpt, check_lkOpt, scope, lid, env, opath, lbls) do
 end end
 
 function unify_head_only(loc, env, ty, constr) do
-  match = instance_constructor(undefined, constr);
+  match = instance_constructor(nil, constr);
   ty_res = match[1];
   match_1 = repr(ty_res).desc;
   if (typeof match_1 == "number") then do
@@ -57671,7 +57671,7 @@ function unify_head_only(loc, env, ty, constr) do
     ty_res.desc = --[[ Tconstr ]]Block.__(3, {
         match_1[0],
         List.map((function(param) do
-                return newvar(undefined, --[[ () ]]0);
+                return newvar(nil, --[[ () ]]0);
               end end), match_1[1]),
         match_1[2]
       });
@@ -57691,8 +57691,8 @@ end end
 
 function type_pat(constrs, labels, no_existentials, mode, env, sp, expected_ty) do
   type_pat_1 = function(modeOpt, envOpt) do
-    mode_1 = modeOpt ~= undefined and modeOpt or mode;
-    env_1 = envOpt ~= undefined and envOpt or env;
+    mode_1 = modeOpt ~= nil and modeOpt or mode;
+    env_1 = envOpt ~= nil and envOpt or env;
     return (function(param, param_1) do
         return type_pat(constrs, labels, no_existentials, mode_1, env_1, param, param_1);
       end end);
@@ -57713,7 +57713,7 @@ function type_pat(constrs, labels, no_existentials, mode, env, sp, expected_ty) 
     do
        if ___conditional___ == 0--[[ Ppat_var ]] then do
           name = match[0];
-          id = enter_variable(undefined, undefined, loc, name, expected_ty);
+          id = enter_variable(nil, nil, loc, name, expected_ty);
           return rp({
                       pat_desc = --[[ Tpat_var ]]Block.__(0, {
                           id,
@@ -57727,14 +57727,14 @@ function type_pat(constrs, labels, no_existentials, mode, env, sp, expected_ty) 
                     }); end end 
        if ___conditional___ == 1--[[ Ppat_alias ]] then do
           name_1 = match[1];
-          q = type_pat_1(undefined, undefined)(match[0], expected_ty);
+          q = type_pat_1(nil, nil)(match[0], expected_ty);
           begin_def(--[[ () ]]0);
           ty_var = build_as_type(env.contents, q);
           end_def(--[[ () ]]0);
           iter_generalize_1({
                 contents = --[[ [] ]]0
               }, ty_var);
-          id_1 = enter_variable(undefined, true, loc, name_1, ty_var);
+          id_1 = enter_variable(nil, true, loc, name_1, ty_var);
           return rp({
                       pat_desc = --[[ Tpat_alias ]]Block.__(1, {
                           q,
@@ -57774,9 +57774,9 @@ function type_pat(constrs, labels, no_existentials, mode, env, sp, expected_ty) 
               };
               loop = function(c1, c2) do
                 if (c1 == c2) then do
-                  return constant(gloc, undefined, --[[ Const_char ]]Block.__(1, {c1}));
+                  return constant(gloc, nil, --[[ Const_char ]]Block.__(1, {c1}));
                 end else do
-                  return or_(gloc, undefined, constant(gloc, undefined, --[[ Const_char ]]Block.__(1, {c1})), loop(Char.chr(c1 + 1 | 0), c2));
+                  return or_(gloc, nil, constant(gloc, nil, --[[ Const_char ]]Block.__(1, {c1})), loop(Char.chr(c1 + 1 | 0), c2));
                 end end 
               end end;
               p = c1 <= c2 and loop(c1, c2) or loop(c2, c1);
@@ -57787,7 +57787,7 @@ function type_pat(constrs, labels, no_existentials, mode, env, sp, expected_ty) 
                 ppat_loc = loc,
                 ppat_attributes = p_ppat_attributes
               };
-              return type_pat_1(undefined, undefined)(p_1, expected_ty);
+              return type_pat_1(nil, nil)(p_1, expected_ty);
             end else do
               error({
                 __Error_7,
@@ -57813,7 +57813,7 @@ function type_pat(constrs, labels, no_existentials, mode, env, sp, expected_ty) 
           spl_ann = List.map((function(p) do
                   return --[[ tuple ]]{
                           p,
-                          newvar(undefined, --[[ () ]]0)
+                          newvar(nil, --[[ () ]]0)
                         };
                 end end), spl);
           desc = --[[ Ttuple ]]Block.__(2, {List.map((function(prim) do
@@ -57822,7 +57822,7 @@ function type_pat(constrs, labels, no_existentials, mode, env, sp, expected_ty) 
           ty = newty2(current_level.contents, desc);
           unify_pat_types(loc, env.contents, ty, expected_ty);
           pl = List.map((function(param) do
-                  return type_pat_1(undefined, undefined)(param[0], param[1]);
+                  return type_pat_1(nil, nil)(param[0], param[1]);
                 end end), spl_ann);
           return rp({
                       pat_desc = --[[ Tpat_tuple ]]Block.__(3, {pl}),
@@ -57845,7 +57845,7 @@ function type_pat(constrs, labels, no_existentials, mode, env, sp, expected_ty) 
             };
           end end,function(exn) do
             if (exn == Caml_builtin_exceptions.not_found) then do
-              opath = undefined;
+              opath = nil;
             end else do
               error(exn)
             end end 
@@ -57856,7 +57856,7 @@ function type_pat(constrs, labels, no_existentials, mode, env, sp, expected_ty) 
           local ___conditional___=(match_4.tag | 0);
           do
              if ___conditional___ == 0--[[ Lident ]] then do
-                if (constrs ~= undefined) then do
+                if (constrs ~= nil) then do
                   constrs_2 = Caml_option.valFromOption(constrs);
                   s = match_4[0];
                   if (Hashtbl.mem(constrs_2, s)) then do
@@ -57903,7 +57903,7 @@ function type_pat(constrs, labels, no_existentials, mode, env, sp, expected_ty) 
           partial_arg = env.contents;
           partial_arg_1 = check_lk;
           constr = wrap_disambiguate("This variant pattern is expected to have", expected_ty, (function(param) do
-                  return disambiguate_1(undefined, partial_arg_1, undefined, lid, partial_arg, opath, param);
+                  return disambiguate_1(nil, partial_arg_1, nil, lid, partial_arg, opath, param);
                 end end), constrs_1);
           mark_constructor(--[[ Pattern ]]1, env.contents, last_1(lid.txt), constr);
           check_deprecated(loc, constr.cstr_attributes, constr.cstr_name);
@@ -57921,7 +57921,7 @@ function type_pat(constrs, labels, no_existentials, mode, env, sp, expected_ty) 
           end
            end 
           sargs;
-          if (sarg ~= undefined) then do
+          if (sarg ~= nil) then do
             sp_1 = sarg;
             match_5 = sp_1.ppat_desc;
             if (typeof match_5 == "number") then do
@@ -57970,7 +57970,7 @@ function type_pat(constrs, labels, no_existentials, mode, env, sp, expected_ty) 
             unify_pat_types(loc, env.contents, ty_res, expected_ty);
           end end 
           args = List.map2((function(p, t) do
-                  return type_pat_1(undefined, undefined)(p, t);
+                  return type_pat_1(nil, nil)(p, t);
                 end end), sargs, match_6[0]);
           return rp({
                       pat_desc = --[[ Tpat_construct ]]Block.__(4, {
@@ -57987,35 +57987,35 @@ function type_pat(constrs, labels, no_existentials, mode, env, sp, expected_ty) 
        if ___conditional___ == 6--[[ Ppat_variant ]] then do
           sarg_1 = match[1];
           l = match[0];
-          arg_type = sarg_1 ~= undefined and --[[ :: ]]{
-              newvar(undefined, --[[ () ]]0),
+          arg_type = sarg_1 ~= nil and --[[ :: ]]{
+              newvar(nil, --[[ () ]]0),
               --[[ [] ]]0
             } or --[[ [] ]]0;
           row_row_fields = --[[ :: ]]{
             --[[ tuple ]]{
               l,
               --[[ Reither ]]Block.__(1, {
-                  sarg_1 == undefined,
+                  sarg_1 == nil,
                   arg_type,
                   true,
                   {
-                    contents = undefined
+                    contents = nil
                   }
                 })
             },
             --[[ [] ]]0
           };
-          row_row_more = newvar(undefined, --[[ () ]]0);
+          row_row_more = newvar(nil, --[[ () ]]0);
           row = {
             row_fields = row_row_fields,
             row_more = row_row_more,
             row_bound = --[[ () ]]0,
             row_closed = false,
             row_fixed = false,
-            row_name = undefined
+            row_name = nil
           };
           unify_pat_types(loc, env.contents, newty2(current_level.contents, --[[ Tvariant ]]Block.__(8, {row})), expected_ty);
-          arg = sarg_1 ~= undefined and arg_type and not arg_type[1] and type_pat_1(undefined, undefined)(sarg_1, arg_type[0]) or undefined;
+          arg = sarg_1 ~= nil and arg_type and not arg_type[1] and type_pat_1(nil, nil)(sarg_1, arg_type[0]) or nil;
           return rp({
                       pat_desc = --[[ Tpat_variant ]]Block.__(5, {
                           l,
@@ -58023,11 +58023,11 @@ function type_pat(constrs, labels, no_existentials, mode, env, sp, expected_ty) 
                           {
                             contents = {
                               row_fields = row_row_fields,
-                              row_more = newvar(undefined, --[[ () ]]0),
+                              row_more = newvar(nil, --[[ () ]]0),
                               row_bound = --[[ () ]]0,
                               row_closed = false,
                               row_fixed = false,
-                              row_name = undefined
+                              row_name = nil
                             }
                           }
                         }),
@@ -58058,8 +58058,8 @@ function type_pat(constrs, labels, no_existentials, mode, env, sp, expected_ty) 
           end end,function(exn_1) do
             if (exn_1 == Caml_builtin_exceptions.not_found) then do
               match_7 = --[[ tuple ]]{
-                undefined,
-                newvar(undefined, --[[ () ]]0)
+                nil,
+                newvar(nil, --[[ () ]]0)
               };
             end else do
               error(exn_1)
@@ -58096,7 +58096,7 @@ function type_pat(constrs, labels, no_existentials, mode, env, sp, expected_ty) 
                end 
               error(exn)
             end end)
-            arg = type_pat_1(undefined, undefined)(param[2], ty_arg);
+            arg = type_pat_1(nil, nil)(param[2], ty_arg);
             if (vars ~= --[[ [] ]]0) then do
               end_def(--[[ () ]]0);
               iter_generalize_1({
@@ -58146,16 +58146,16 @@ function type_pat(constrs, labels, no_existentials, mode, env, sp, expected_ty) 
                       pat_attributes = sp.ppat_attributes
                     }); end end 
        if ___conditional___ == 8--[[ Ppat_array ]] then do
-          ty_elt = newvar(undefined, --[[ () ]]0);
+          ty_elt = newvar(nil, --[[ () ]]0);
           unify_pat_types(loc, env.contents, instance_def(type_array(ty_elt)), expected_ty);
           spl_ann_1 = List.map((function(p) do
                   return --[[ tuple ]]{
                           p,
-                          newvar(undefined, --[[ () ]]0)
+                          newvar(nil, --[[ () ]]0)
                         };
                 end end), match[0]);
           pl_1 = List.map((function(param) do
-                  return type_pat_1(undefined, undefined)(param[0], ty_elt);
+                  return type_pat_1(nil, nil)(param[0], ty_elt);
                 end end), spl_ann_1);
           return rp({
                       pat_desc = --[[ Tpat_array ]]Block.__(7, {pl_1}),
@@ -58167,10 +58167,10 @@ function type_pat(constrs, labels, no_existentials, mode, env, sp, expected_ty) 
                     }); end end 
        if ___conditional___ == 9--[[ Ppat_or ]] then do
           initial_pattern_variables = pattern_variables.contents;
-          p1 = type_pat_1(--[[ Inside_or ]]1, undefined)(match[0], expected_ty);
+          p1 = type_pat_1(--[[ Inside_or ]]1, nil)(match[0], expected_ty);
           p1_variables = pattern_variables.contents;
           pattern_variables.contents = initial_pattern_variables;
-          p2 = type_pat_1(--[[ Inside_or ]]1, undefined)(match[1], expected_ty);
+          p2 = type_pat_1(--[[ Inside_or ]]1, nil)(match[1], expected_ty);
           p2_variables = pattern_variables.contents;
           alpha_env = enter_orpat_variables(loc, env.contents, p1_variables, p2_variables);
           pattern_variables.contents = p1_variables;
@@ -58178,7 +58178,7 @@ function type_pat(constrs, labels, no_existentials, mode, env, sp, expected_ty) 
                       pat_desc = --[[ Tpat_or ]]Block.__(8, {
                           p1,
                           alpha_pat(alpha_env, p2),
-                          undefined
+                          nil
                         }),
                       pat_loc = loc,
                       pat_extra = --[[ [] ]]0,
@@ -58226,7 +58226,7 @@ function type_pat(constrs, labels, no_existentials, mode, env, sp, expected_ty) 
                 iter_generalize_1({
                       contents = --[[ [] ]]0
                     }, ty$prime);
-                id_2 = enter_variable(undefined, undefined, lloc, name_2, ty$prime);
+                id_2 = enter_variable(nil, nil, lloc, name_2, ty$prime);
                 return rp({
                             pat_desc = --[[ Tpat_var ]]Block.__(0, {
                                 id_2,
@@ -58264,11 +58264,11 @@ function type_pat(constrs, labels, no_existentials, mode, env, sp, expected_ty) 
             ty_2 = cty_1.ctyp_type;
             end_def(--[[ () ]]0);
             generalize_structure_1(current_level.contents, ty_2);
-            match_000 = instance(undefined, env.contents, ty_2);
-            match_001 = instance(undefined, env.contents, ty_2);
+            match_000 = instance(nil, env.contents, ty_2);
+            match_001 = instance(nil, env.contents, ty_2);
             ty_3 = match_000;
             unify_pat_types(loc, env.contents, ty_3, expected_ty);
-            p_2 = type_pat_1(undefined, undefined)(sp_2, match_001);
+            p_2 = type_pat_1(nil, nil)(sp_2, match_001);
             pattern_force.contents = --[[ :: ]]{
               match_13[1],
               pattern_force.contents
@@ -58343,9 +58343,9 @@ function type_pat(constrs, labels, no_existentials, mode, env, sp, expected_ty) 
                   pat_attributes = p_3.pat_attributes
                 }; end end end end 
        if ___conditional___ == 12--[[ Ppat_lazy ]] then do
-          nv = newvar(undefined, --[[ () ]]0);
+          nv = newvar(nil, --[[ () ]]0);
           unify_pat_types(loc, env.contents, instance_def(type_lazy_t(nv)), expected_ty);
-          p1_1 = type_pat_1(undefined, undefined)(match[0], nv);
+          p1_1 = type_pat_1(nil, nil)(match[0], nv);
           return rp({
                       pat_desc = --[[ Tpat_lazy ]]Block.__(9, {p1_1}),
                       pat_loc = loc,
@@ -58356,7 +58356,7 @@ function type_pat(constrs, labels, no_existentials, mode, env, sp, expected_ty) 
                     }); end end 
        if ___conditional___ == 13--[[ Ppat_unpack ]] then do
           name_3 = match[0];
-          id_3 = enter_variable(true, undefined, loc, name_3, expected_ty);
+          id_3 = enter_variable(true, nil, loc, name_3, expected_ty);
           return rp({
                       pat_desc = --[[ Tpat_var ]]Block.__(0, {
                           id_3,
@@ -58393,8 +58393,8 @@ function type_pat(constrs, labels, no_existentials, mode, env, sp, expected_ty) 
 end end
 
 function type_pat_1(allow_existentialsOpt, constrs, labels, levOpt, env, sp, expected_ty) do
-  allow_existentials = allow_existentialsOpt ~= undefined and allow_existentialsOpt or false;
-  lev = levOpt ~= undefined and levOpt or current_level.contents;
+  allow_existentials = allow_existentialsOpt ~= nil and allow_existentialsOpt or false;
+  lev = levOpt ~= nil and levOpt or current_level.contents;
   newtype_level_1.contents = lev;
   xpcall(function() do
     r = type_pat(constrs, labels, not allow_existentials, --[[ Normal ]]0, env, sp, expected_ty);
@@ -58402,10 +58402,10 @@ function type_pat_1(allow_existentialsOpt, constrs, labels, levOpt, env, sp, exp
             p.pat_env = env.contents;
             return --[[ () ]]0;
           end end), r);
-    newtype_level_1.contents = undefined;
+    newtype_level_1.contents = nil;
     return r;
   end end,function(e) do
-    newtype_level_1.contents = undefined;
+    newtype_level_1.contents = nil;
     error(e)
   end end)
 end end
@@ -58413,7 +58413,7 @@ end end
 function partial_pred(lev, env, expected_ty, constrs, labels, p) do
   snap = snapshot(--[[ () ]]0);
   xpcall(function() do
-    reset_pattern(undefined, true);
+    reset_pattern(nil, true);
     typed_p = type_pat_1(true, Caml_option.some(constrs), Caml_option.some(labels), lev, {
           contents = env
         }, p, expected_ty);
@@ -58426,7 +58426,7 @@ function partial_pred(lev, env, expected_ty, constrs, labels, p) do
 end end
 
 function check_partial_1(levOpt, env, expected_ty) do
-  lev = levOpt ~= undefined and levOpt or current_level.contents;
+  lev = levOpt ~= nil and levOpt or current_level.contents;
   return (function(param, param_1) do
       pred = function(param, param_1, param_2) do
         return partial_pred(lev, env, expected_ty, param, param_1, param_2);
@@ -58469,7 +58469,7 @@ function type_pattern(lev, env, spat, scope, expected_ty) do
   new_env = {
     contents = env
   };
-  pat = type_pat_1(true, undefined, undefined, lev, new_env, spat, expected_ty);
+  pat = type_pat_1(true, nil, nil, lev, new_env, spat, expected_ty);
   match = add_pattern_variables((function(s) do
           return --[[ Unused_var_strict ]]Block.__(13, {s});
         end end), (function(s) do
@@ -58489,9 +58489,9 @@ function type_pattern_list(env, spatl, scope, expected_tys, allow) do
     contents = env
   };
   patl = List.map2((function(param, param_1) do
-          return type_pat_1(undefined, undefined, undefined, undefined, new_env, param, param_1);
+          return type_pat_1(nil, nil, nil, nil, new_env, param, param_1);
         end end), spatl, expected_tys);
-  match = add_pattern_variables(undefined, undefined, new_env.contents);
+  match = add_pattern_variables(nil, nil, new_env.contents);
   return --[[ tuple ]]{
           patl,
           match[0],
@@ -58501,9 +58501,9 @@ function type_pattern_list(env, spatl, scope, expected_tys, allow) do
 end end
 
 function type_class_arg_pattern(cl_num, val_env, met_env, l, spat) do
-  reset_pattern(undefined, false);
-  nv = newvar(undefined, --[[ () ]]0);
-  pat = type_pat_1(undefined, undefined, undefined, undefined, {
+  reset_pattern(nil, false);
+  nv = newvar(nil, --[[ () ]]0);
+  pat = type_pat_1(nil, nil, nil, nil, {
         contents = val_env
       }, spat, nv);
   if (has_variants(pat)) then do
@@ -58518,7 +58518,7 @@ function type_class_arg_pattern(cl_num, val_env, met_env, l, spat) do
           return Curry._1(f, --[[ () ]]0);
         end end), get_ref(pattern_force));
   if (is_optional(l)) then do
-    unify_pat(val_env, pat, type_option_1(newvar(undefined, --[[ () ]]0)));
+    unify_pat(val_env, pat, type_option_1(newvar(nil, --[[ () ]]0)));
   end
    end 
   match = List.fold_right((function(param, param_1) do
@@ -58557,7 +58557,7 @@ function type_class_arg_pattern(cl_num, val_env, met_env, l, spat) do
         --[[ [] ]]0,
         met_env
       });
-  match_1 = add_pattern_variables(undefined, undefined, val_env);
+  match_1 = add_pattern_variables(nil, nil, val_env);
   return --[[ tuple ]]{
           pat,
           match[0],
@@ -58567,8 +58567,8 @@ function type_class_arg_pattern(cl_num, val_env, met_env, l, spat) do
 end end
 
 function type_self_pattern(cl_num, privty, val_env, met_env, par_env, spat) do
-  spat_1 = mk_1(undefined, undefined, --[[ Ppat_alias ]]Block.__(1, {
-          mk_1(undefined, undefined, --[[ Ppat_alias ]]Block.__(1, {
+  spat_1 = mk_1(nil, nil, --[[ Ppat_alias ]]Block.__(1, {
+          mk_1(nil, nil, --[[ Ppat_alias ]]Block.__(1, {
                   spat,
                   {
                     txt = "selfpat-*",
@@ -58580,9 +58580,9 @@ function type_self_pattern(cl_num, privty, val_env, met_env, par_env, spat) do
             loc = none
           }
         }));
-  reset_pattern(undefined, false);
-  nv = newvar(undefined, --[[ () ]]0);
-  pat = type_pat_1(undefined, undefined, undefined, undefined, {
+  reset_pattern(nil, false);
+  nv = newvar(nil, --[[ () ]]0);
+  pat = type_pat_1(nil, nil, nil, nil, {
         contents = val_env
       }, spat_1, nv);
   List.iter((function(f) do
@@ -58602,7 +58602,7 @@ function type_self_pattern(cl_num, privty, val_env, met_env, par_env, spat) do
           ty = param[1];
           id = param[0];
           return --[[ tuple ]]{
-                  add_value(undefined, id, {
+                  add_value(nil, id, {
                         val_type = ty,
                         val_kind = --[[ Val_unbound ]]1,
                         val_loc = loc,
@@ -58625,7 +58625,7 @@ function type_self_pattern(cl_num, privty, val_env, met_env, par_env, spat) do
                         val_loc = loc,
                         val_attributes = --[[ [] ]]0
                       }, param_1[1]),
-                  add_value(undefined, id, {
+                  add_value(nil, id, {
                         val_type = ty,
                         val_kind = --[[ Val_unbound ]]1,
                         val_loc = loc,
@@ -58725,7 +58725,7 @@ function is_nonexpansive(_exp) do
           return true; end end 
        if ___conditional___ == 4--[[ Texp_apply ]] then do
           match_1 = match[1];
-          if (match_1 and not (match_1[0][1] ~= undefined or not is_nonexpansive(match[0]))) then do
+          if (match_1 and not (match_1[0][1] ~= nil or not is_nonexpansive(match[0]))) then do
             return List.for_all(is_nonexpansive_opt, List.map(snd3, match_1[1]));
           end else do
             return false;
@@ -58885,7 +58885,7 @@ function is_nonexpansive_mod(_mexp) do
 end end
 
 function is_nonexpansive_opt(param) do
-  if (param ~= undefined) then do
+  if (param ~= nil) then do
     return is_nonexpansive(param);
   end else do
     return true;
@@ -58897,13 +58897,13 @@ function approx_type(env, _sty) do
     sty = _sty;
     match = sty.ptyp_desc;
     if (typeof match == "number") then do
-      return newvar(undefined, --[[ () ]]0);
+      return newvar(nil, --[[ () ]]0);
     end else do
       local ___conditional___=(match.tag | 0);
       do
          if ___conditional___ == 1--[[ Ptyp_arrow ]] then do
             p = match[0];
-            ty1 = is_optional(p) and type_option_1(newvar(undefined, --[[ () ]]0)) or newvar(undefined, --[[ () ]]0);
+            ty1 = is_optional(p) and type_option_1(newvar(nil, --[[ () ]]0)) or newvar(nil, --[[ () ]]0);
             desc_002 = approx_type(env, match[2]);
             desc = --[[ Tarrow ]]Block.__(1, {
                 p,
@@ -58931,7 +58931,7 @@ function approx_type(env, _sty) do
               return newconstr(match_1[0], tyl);
             end end,function(exn) do
               if (exn == Caml_builtin_exceptions.not_found) then do
-                return newvar(undefined, --[[ () ]]0);
+                return newvar(nil, --[[ () ]]0);
               end else do
                 error(exn)
               end end 
@@ -58939,7 +58939,7 @@ function approx_type(env, _sty) do
          if ___conditional___ == 8--[[ Ptyp_poly ]] then do
             _sty = match[1];
             ::continue:: ; end end 
-        return newvar(undefined, --[[ () ]]0);
+        return newvar(nil, --[[ () ]]0);
           
       end
     end end 
@@ -58958,7 +58958,7 @@ function type_approx(env, _sexp) do
        if ___conditional___ == 3--[[ Pexp_function ]] then do
           match_1 = match[0];
           if (match_1) then do
-            desc_001 = newvar(undefined, --[[ () ]]0);
+            desc_001 = newvar(nil, --[[ () ]]0);
             desc_002 = type_approx(env, match_1[0].pc_rhs);
             desc = --[[ Tarrow ]]Block.__(1, {
                 "",
@@ -58968,13 +58968,13 @@ function type_approx(env, _sexp) do
               });
             return newty2(current_level.contents, desc);
           end else do
-            return newvar(undefined, --[[ () ]]0);
+            return newvar(nil, --[[ () ]]0);
           end end  end end 
        if ___conditional___ == 4--[[ Pexp_fun ]] then do
           e = match[3];
           p = match[0];
           if (is_optional(p)) then do
-            desc_001_1 = type_option_1(newvar(undefined, --[[ () ]]0));
+            desc_001_1 = type_option_1(newvar(nil, --[[ () ]]0));
             desc_002_1 = type_approx(env, e);
             desc_1 = --[[ Tarrow ]]Block.__(1, {
                 p,
@@ -58984,7 +58984,7 @@ function type_approx(env, _sexp) do
               });
             return newty2(current_level.contents, desc_1);
           end else do
-            desc_001_2 = newvar(undefined, --[[ () ]]0);
+            desc_001_2 = newvar(nil, --[[ () ]]0);
             desc_002_2 = type_approx(env, e);
             desc_2 = --[[ Tarrow ]]Block.__(1, {
                 p,
@@ -59000,7 +59000,7 @@ function type_approx(env, _sexp) do
             _sexp = match_2[0].pc_rhs;
             ::continue:: ;
           end else do
-            return newvar(undefined, --[[ () ]]0);
+            return newvar(nil, --[[ () ]]0);
           end end  end end 
        if ___conditional___ == 7--[[ Pexp_try ]] then do
           _sexp = match[0];
@@ -59035,10 +59035,10 @@ function type_approx(env, _sexp) do
           return ty1; end end 
        if ___conditional___ == 20--[[ Pexp_coerce ]] then do
           approx_ty_opt = function(param) do
-            if (param ~= undefined) then do
+            if (param ~= nil) then do
               return approx_type(env, param);
             end else do
-              return newvar(undefined, --[[ () ]]0);
+              return newvar(nil, --[[ () ]]0);
             end end 
           end end;
           ty_1 = type_approx(env, match[0]);
@@ -59060,7 +59060,7 @@ function type_approx(env, _sexp) do
             error(exn_1)
           end end)
           return ty2; end end 
-      return newvar(undefined, --[[ () ]]0);
+      return newvar(nil, --[[ () ]]0);
         
     end
   end;
@@ -59225,7 +59225,7 @@ self_coercion = {
 function wrap_unpacks(sexp, unpacks) do
   return List.fold_left((function(sexp, param) do
                 name = param[0];
-                return Curry._5(Ast_helper_Exp.letmodule, sexp.pexp_loc, undefined, name, unpack_1(param[1], undefined, Curry._3(Ast_helper_Exp.ident, name.loc, undefined, {
+                return Curry._5(Ast_helper_Exp.letmodule, sexp.pexp_loc, nil, name, unpack_1(param[1], nil, Curry._3(Ast_helper_Exp.ident, name.loc, nil, {
                                     txt = --[[ Lident ]]Block.__(0, {name.txt}),
                                     loc = name.loc
                                   })), sexp);
@@ -59387,7 +59387,7 @@ function check_absent_variant(env) do
                               end end), row.row_fields) or not row.row_fixed and not static_row(row)) then do
                         return --[[ () ]]0;
                       end else do
-                        ty_arg = arg ~= undefined and --[[ :: ]]{
+                        ty_arg = arg ~= nil and --[[ :: ]]{
                             type_expr(identity, arg.pat_type),
                             --[[ [] ]]0
                           } or --[[ [] ]]0;
@@ -59395,24 +59395,24 @@ function check_absent_variant(env) do
                           --[[ tuple ]]{
                             s,
                             --[[ Reither ]]Block.__(1, {
-                                arg == undefined,
+                                arg == nil,
                                 ty_arg,
                                 true,
                                 {
-                                  contents = undefined
+                                  contents = nil
                                 }
                               })
                           },
                           --[[ [] ]]0
                         };
-                        row$prime_row_more = newvar(undefined, --[[ () ]]0);
+                        row$prime_row_more = newvar(nil, --[[ () ]]0);
                         row$prime = {
                           row_fields = row$prime_row_fields,
                           row_more = row$prime_row_more,
                           row_bound = --[[ () ]]0,
                           row_closed = false,
                           row_fixed = false,
-                          row_name = undefined
+                          row_name = nil
                         };
                         return unify_pat(env, {
                                     pat_desc = pat.pat_desc,
@@ -59451,7 +59451,7 @@ function duplicate_ident_types(loc, caselist, env) do
                           val_loc = desc_val_loc,
                           val_attributes = desc_val_attributes
                         };
-                        return add_value(undefined, path[0], desc_1, env); end end 
+                        return add_value(nil, path[0], desc_1, env); end end 
                      if ___conditional___ == 1--[[ Pdot ]]
                      or ___conditional___ == 2--[[ Papply ]] then do
                         return env; end end 
@@ -59472,7 +59472,7 @@ function unify_exp(env, exp, expected_ty) do
 end end
 
 function type_exp(env, sexp) do
-  return type_expect(undefined, env, sexp, newvar(undefined, --[[ () ]]0));
+  return type_expect(nil, env, sexp, newvar(nil, --[[ () ]]0));
 end end
 
 function type_expect(in_function, env, sexp, ty_expected) do
@@ -59491,7 +59491,7 @@ end end
 function type_expect_(in_function, env, sexp, ty_expected) do
   loc = sexp.pexp_loc;
   rue = function(exp) do
-    unify_exp(env, re(exp), instance(undefined, env, ty_expected));
+    unify_exp(env, re(exp), instance(nil, env, ty_expected));
     return exp;
   end end;
   match = sexp.pexp_desc;
@@ -59581,7 +59581,7 @@ function type_expect_(in_function, env, sexp, ty_expected) do
                     exp_desc = tmp,
                     exp_loc = loc,
                     exp_extra = --[[ [] ]]0,
-                    exp_type = instance(undefined, env, desc.val_type),
+                    exp_type = instance(nil, env, desc.val_type),
                     exp_env = env,
                     exp_attributes = sexp.pexp_attributes
                   }); end end 
@@ -59659,7 +59659,7 @@ function type_expect_(in_function, env, sexp, ty_expected) do
                             pexp_desc = --[[ Pexp_match ]]Block.__(6, {
                                 match_8.pvb_expr,
                                 --[[ :: ]]{
-                                  Curry._3(Ast_helper_Exp.__case, spat, undefined, match[2]),
+                                  Curry._3(Ast_helper_Exp.__case, spat, nil, match[2]),
                                   --[[ [] ]]0
                                 }
                               }),
@@ -59680,7 +59680,7 @@ function type_expect_(in_function, env, sexp, ty_expected) do
           scp;
           exit_1 = 0;
           if (match_9 and match_9[0][0].txt == "#default" and not match_9[1]) then do
-            scp = undefined;
+            scp = nil;
           end else do
             exit_1 = 2;
           end end 
@@ -59688,8 +59688,8 @@ function type_expect_(in_function, env, sexp, ty_expected) do
             scp = rec_flag and --[[ Idef ]]Block.__(1, {loc}) or --[[ Idef ]]Block.__(1, {sbody.pexp_loc});
           end
            end 
-          match_10 = type_let(undefined, undefined, env, rec_flag, match[1], scp, true);
-          body = type_expect(undefined, match_10[1], wrap_unpacks(sbody, match_10[2]), ty_expected);
+          match_10 = type_let(nil, nil, env, rec_flag, match[1], scp, true);
+          body = type_expect(nil, match_10[1], wrap_unpacks(sbody, match_10[2]), ty_expected);
           return re({
                       exp_desc = --[[ Texp_let ]]Block.__(2, {
                           rec_flag,
@@ -59709,7 +59709,7 @@ function type_expect_(in_function, env, sexp, ty_expected) do
      if ___conditional___ == 4--[[ Pexp_fun ]] then do
         match_11 = match[1];
         l = match[0];
-        if (match_11 ~= undefined) then do
+        if (match_11 ~= nil) then do
           __default = match_11;
           if (not is_optional(l)) then do
             error({
@@ -59723,38 +59723,38 @@ function type_expect_(in_function, env, sexp, ty_expected) do
           end
            end 
           default_loc = __default.pexp_loc;
-          scases_000 = Curry._3(Ast_helper_Exp.__case, construct(default_loc, undefined, {
+          scases_000 = Curry._3(Ast_helper_Exp.__case, construct(default_loc, nil, {
                     txt = --[[ Ldot ]]Block.__(1, {
                         --[[ Lident ]]Block.__(0, {"*predef*"}),
                         "Some"
                       }),
                     loc = none
-                  }, __var_1(default_loc, undefined, {
+                  }, __var_1(default_loc, nil, {
                         txt = "*sth*",
                         loc = none
-                      })), undefined, Curry._3(Ast_helper_Exp.ident, default_loc, undefined, {
+                      })), nil, Curry._3(Ast_helper_Exp.ident, default_loc, nil, {
                     txt = --[[ Lident ]]Block.__(0, {"*sth*"}),
                     loc = none
                   }));
           scases_001 = --[[ :: ]]{
-            Curry._3(Ast_helper_Exp.__case, construct(default_loc, undefined, {
+            Curry._3(Ast_helper_Exp.__case, construct(default_loc, nil, {
                       txt = --[[ Ldot ]]Block.__(1, {
                           --[[ Lident ]]Block.__(0, {"*predef*"}),
                           "None"
                         }),
                       loc = none
-                    }, undefined), undefined, __default),
+                    }, nil), nil, __default),
             --[[ [] ]]0
           };
           scases = --[[ :: ]]{
             scases_000,
             scases_001
           };
-          smatch = Curry._4(Ast_helper_Exp.match_, loc, undefined, Curry._3(Ast_helper_Exp.ident, loc, undefined, {
+          smatch = Curry._4(Ast_helper_Exp.match_, loc, nil, Curry._3(Ast_helper_Exp.ident, loc, nil, {
                     txt = --[[ Lident ]]Block.__(0, {"*opt*"}),
                     loc = none
                   }), scases);
-          sfun = Curry._6(Ast_helper_Exp.fun_, loc, undefined, l, undefined, __var_1(loc, undefined, {
+          sfun = Curry._6(Ast_helper_Exp.fun_, loc, nil, l, nil, __var_1(loc, nil, {
                     txt = "*opt*",
                     loc = none
                   }), Curry._5(Ast_helper_Exp.let_, loc, --[[ :: ]]{
@@ -59767,7 +59767,7 @@ function type_expect_(in_function, env, sexp, ty_expected) do
                     },
                     --[[ [] ]]0
                   }, --[[ Nonrecursive ]]0, --[[ :: ]]{
-                    mk_17(undefined, undefined, undefined, undefined, match[2], smatch),
+                    mk_17(nil, nil, nil, nil, match[2], smatch),
                     --[[ [] ]]0
                   }, match[3]));
           return type_expect(in_function, env, sfun, ty_expected);
@@ -59776,7 +59776,7 @@ function type_expect_(in_function, env, sexp, ty_expected) do
           return type_function(in_function, loc, sexp_1.pexp_attributes, env, ty_expected, l, --[[ :: ]]{
                       {
                         pc_lhs = match[2],
-                        pc_guard = undefined,
+                        pc_guard = nil,
                         pc_rhs = sexp_1
                       },
                       --[[ [] ]]0
@@ -59799,7 +59799,7 @@ function type_expect_(in_function, env, sexp, ty_expected) do
           generalize_structure_1(current_level.contents, funct.exp_type);
         end
          end 
-        ty = instance(undefined, env, funct.exp_type);
+        ty = instance(nil, env, funct.exp_type);
         end_def(--[[ () ]]0);
         wrap_trace_gadt_instances(env, (function(param) do
                 _seen = --[[ [] ]]0;
@@ -59816,7 +59816,7 @@ function type_expect_(in_function, env, sexp, ty_expected) do
                       return --[[ () ]]0;
                     end else do
                       xpcall(function() do
-                        unify_var(env, newvar(undefined, --[[ () ]]0), match[1]);
+                        unify_var(env, newvar(nil, --[[ () ]]0), match[1]);
                       end end,function(raw_exn) do
                         exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
                         if (exn[0] == Unify) then do
@@ -59845,7 +59845,7 @@ function type_expect_(in_function, env, sexp, ty_expected) do
         begin_def(--[[ () ]]0);
         match_12 = type_application(env, funct, sargs);
         end_def(--[[ () ]]0);
-        unify_var(env, newvar(undefined, --[[ () ]]0), funct.exp_type);
+        unify_var(env, newvar(nil, --[[ () ]]0), funct.exp_type);
         return rue({
                     exp_desc = --[[ Texp_apply ]]Block.__(4, {
                         funct,
@@ -59915,8 +59915,8 @@ function type_expect_(in_function, env, sexp, ty_expected) do
           })
         end
          end 
-        match_14 = type_cases(undefined, env, arg.exp_type, ty_expected, true, loc, val_caselist);
-        match_15 = type_cases(undefined, env, type_exn, ty_expected, false, loc, exn_caselist);
+        match_14 = type_cases(nil, env, arg.exp_type, ty_expected, true, loc, val_caselist);
+        match_15 = type_cases(nil, env, type_exn, ty_expected, false, loc, exn_caselist);
         return re({
                     exp_desc = --[[ Texp_match ]]Block.__(5, {
                         arg,
@@ -59926,13 +59926,13 @@ function type_expect_(in_function, env, sexp, ty_expected) do
                       }),
                     exp_loc = loc,
                     exp_extra = --[[ [] ]]0,
-                    exp_type = instance(undefined, env, ty_expected),
+                    exp_type = instance(nil, env, ty_expected),
                     exp_env = env,
                     exp_attributes = sexp.pexp_attributes
                   }); end end 
      if ___conditional___ == 7--[[ Pexp_try ]] then do
-        body_1 = type_expect(undefined, env, match[0], ty_expected);
-        match_16 = type_cases(undefined, env, type_exn, ty_expected, false, loc, match[1]);
+        body_1 = type_expect(nil, env, match[0], ty_expected);
+        match_16 = type_cases(nil, env, type_exn, ty_expected, false, loc, match[1]);
         return re({
                     exp_desc = --[[ Texp_try ]]Block.__(6, {
                         body_1,
@@ -59951,12 +59951,12 @@ function type_expect_(in_function, env, sexp, ty_expected) do
         end
          end 
         subtypes = List.map((function(param) do
-                return newty2(100000000, --[[ Tvar ]]Block.__(0, {undefined}));
+                return newty2(100000000, --[[ Tvar ]]Block.__(0, {nil}));
               end end), sexpl);
         to_unify = newty2(100000000, --[[ Ttuple ]]Block.__(2, {subtypes}));
         unify_exp_types(loc, env, to_unify, ty_expected);
         expl = List.map2((function(body, ty) do
-                return type_expect(undefined, env, body, ty);
+                return type_expect(nil, env, body, ty);
               end end), sexpl, subtypes);
         desc_1 = --[[ Ttuple ]]Block.__(2, {List.map((function(e) do
                     return e.exp_type;
@@ -59986,19 +59986,19 @@ function type_expect_(in_function, env, sexp, ty_expected) do
           };
         end end,function(exn) do
           if (exn == Caml_builtin_exceptions.not_found) then do
-            opath = undefined;
+            opath = nil;
           end else do
             error(exn)
           end end 
         end end)
         constrs = find_all_constructors(env_1, lid_1.loc, lid_1.txt);
         constr = wrap_disambiguate("This variant expression is expected to have", ty_expected_1, (function(param) do
-                return disambiguate_1(undefined, undefined, undefined, lid_1, env_1, opath, param);
+                return disambiguate_1(nil, nil, nil, lid_1, env_1, opath, param);
               end end), constrs);
         mark_constructor(--[[ Positive ]]0, env_1, last_1(lid_1.txt), constr);
         check_deprecated(loc_1, constr.cstr_attributes, constr.cstr_name);
         sargs_1;
-        if (sarg ~= undefined) then do
+        if (sarg ~= nil) then do
           se = sarg;
           match_18 = se.pexp_desc;
           sargs_1 = match_18.tag == --[[ Pexp_tuple ]]8 and (constr.cstr_arity > 1 or explicit_arity(attrs)) and match_18[0] or --[[ :: ]]{
@@ -60027,7 +60027,7 @@ function type_expect_(in_function, env, sexp, ty_expected) do
           begin_def(--[[ () ]]0);
         end
          end 
-        match_19 = instance_constructor(undefined, constr);
+        match_19 = instance_constructor(nil, constr);
         ty_res = match_19[1];
         ty_args = match_19[0];
         texp = re({
@@ -60052,7 +60052,7 @@ function type_expect_(in_function, env, sexp, ty_expected) do
                 exp_type = instance_def(ty_res),
                 exp_env = texp.exp_env,
                 exp_attributes = texp.exp_attributes
-              }, instance(undefined, env_1, ty_expected_1));
+              }, instance(nil, env_1, ty_expected_1));
           end_def(--[[ () ]]0);
           List.iter(generalize_structure_2, ty_args);
           generalize_structure_1(current_level.contents, ty_res);
@@ -60093,7 +60093,7 @@ function type_expect_(in_function, env, sexp, ty_expected) do
           exp_attributes = texp_exp_attributes
         };
         if (not separate) then do
-          unify_exp(env_1, texp_1, instance(undefined, env_1, ty_expected_1));
+          unify_exp(env_1, texp_1, instance(nil, env_1, ty_expected_1));
         end
          end 
         args = List.map2((function(e, param) do
@@ -60123,11 +60123,11 @@ function type_expect_(in_function, env, sexp, ty_expected) do
      if ___conditional___ == 10--[[ Pexp_variant ]] then do
         sarg_1 = match[1];
         l_1 = match[0];
-        ty_expected0 = instance(undefined, env, ty_expected);
+        ty_expected0 = instance(nil, env, ty_expected);
         xpcall(function() do
           match_22 = expand_head(env, ty_expected);
           match_23 = expand_head(env, ty_expected0);
-          if (sarg_1 ~= undefined) then do
+          if (sarg_1 ~= nil) then do
             match_24 = match_22.desc;
             if (typeof match_24 == "number") then do
               error(Caml_builtin_exceptions.not_found)
@@ -60145,14 +60145,14 @@ function type_expect_(in_function, env, sexp, ty_expected) do
                   error(Caml_builtin_exceptions.not_found)
                 end else do
                   match_28 = match_26[0];
-                  if (match_28 ~= undefined) then do
+                  if (match_28 ~= nil) then do
                     if (typeof match_27 == "number") then do
                       error(Caml_builtin_exceptions.not_found)
                     end else if (match_27.tag) then do
                       error(Caml_builtin_exceptions.not_found)
                     end else do
                       match_29 = match_27[0];
-                      if (match_29 ~= undefined) then do
+                      if (match_29 ~= nil) then do
                         arg_1 = type_argument(env, sarg_1, match_28, match_29);
                         return re({
                                     exp_desc = --[[ Texp_variant ]]Block.__(9, {
@@ -60198,11 +60198,11 @@ function type_expect_(in_function, env, sexp, ty_expected) do
                     },
                     --[[ [] ]]0
                   },
-                  row_more = newvar(undefined, --[[ () ]]0),
+                  row_more = newvar(nil, --[[ () ]]0),
                   row_bound = --[[ () ]]0,
                   row_closed = false,
                   row_fixed = false,
-                  row_name = undefined
+                  row_name = nil
                 }});
             return rue({
                         exp_desc = --[[ Texp_variant ]]Block.__(9, {
@@ -60227,7 +60227,7 @@ function type_expect_(in_function, env, sexp, ty_expected) do
         end
          end 
         opt_exp;
-        if (opt_sexp ~= undefined) then do
+        if (opt_sexp ~= nil) then do
           if (principal.contents) then do
             begin_def(--[[ () ]]0);
           end
@@ -60240,7 +60240,7 @@ function type_expect_(in_function, env, sexp, ty_expected) do
            end 
           opt_exp = exp;
         end else do
-          opt_exp = undefined;
+          opt_exp = nil;
         end end 
         get_path = function(ty) do
           xpcall(function() do
@@ -60260,14 +60260,14 @@ function type_expect_(in_function, env, sexp, ty_expected) do
         end end;
         op = get_path(ty_expected);
         match_30;
-        if (op ~= undefined) then do
+        if (op ~= nil) then do
           match_30 = --[[ tuple ]]{
             ty_expected,
             op
           };
-        end else if (opt_exp ~= undefined) then do
+        end else if (opt_exp ~= nil) then do
           op_1 = get_path(opt_exp.exp_type);
-          if (op_1 ~= undefined) then do
+          if (op_1 ~= nil) then do
             p$prime = op_1[1];
             decl = find_type_full(p$prime, env)[0];
             begin_def(--[[ () ]]0);
@@ -60280,25 +60280,25 @@ function type_expect_(in_function, env, sexp, ty_expected) do
             };
           end else do
             match_30 = --[[ tuple ]]{
-              newvar(undefined, --[[ () ]]0),
-              undefined
+              newvar(nil, --[[ () ]]0),
+              nil
             };
           end end 
         end else do
           match_30 = --[[ tuple ]]{
-            newvar(undefined, --[[ () ]]0),
-            undefined
+            newvar(nil, --[[ () ]]0),
+            nil
           };
         end end  end 
         opath_1 = match_30[1];
         ty_record = match_30[0];
-        closed = opt_sexp == undefined;
+        closed = opt_sexp == nil;
         lbl_exp_list = wrap_disambiguate("This record expression is expected to have", ty_record, (function(param) do
-                return type_label_a_list(undefined, loc, closed, env, (function(param) do
+                return type_label_a_list(nil, loc, closed, env, (function(param) do
                               return type_label_exp(true, env, loc, ty_record, param);
                             end end), opath_1, param);
               end end), lid_sexp_list);
-        unify_exp_types(loc, env, ty_record, instance(undefined, env, ty_expected));
+        unify_exp_types(loc, env, ty_record, instance(nil, env, ty_expected));
         check_duplicates = function(_param) do
           while(true) do
             param = _param;
@@ -60328,10 +60328,10 @@ function type_expect_(in_function, env, sexp, ty_expected) do
         end end;
         check_duplicates(lbl_exp_list);
         opt_exp_1;
-        if (opt_exp ~= undefined) then do
+        if (opt_exp ~= nil) then do
           if (lbl_exp_list) then do
             exp_1 = opt_exp;
-            ty_exp_1 = instance(undefined, env, exp_1.exp_type);
+            ty_exp_1 = instance(nil, env, exp_1.exp_type);
             unify_kept = function(lbl) do
               if (List.for_all((function(param) do
                         return param[1].lbl_pos ~= lbl.lbl_pos;
@@ -60339,7 +60339,7 @@ function type_expect_(in_function, env, sexp, ty_expected) do
                 match = instance_label(false, lbl);
                 match_1 = instance_label(false, lbl);
                 unify_2(env, match[1], match_1[1]);
-                unify_2(env, instance(undefined, env, ty_expected), match_1[2]);
+                unify_2(env, instance(nil, env, ty_expected), match_1[2]);
                 return unify_exp_types(exp_1.exp_loc, env, ty_exp_1, match[2]);
               end else do
                 return 0;
@@ -60365,7 +60365,7 @@ function type_expect_(in_function, env, sexp, ty_expected) do
             })
           end end 
         end else do
-          opt_exp_1 = undefined;
+          opt_exp_1 = nil;
         end end 
         num_fields;
         if (lbl_exp_list) then do
@@ -60380,7 +60380,7 @@ function type_expect_(in_function, env, sexp, ty_expected) do
             }
           })
         end end 
-        if (opt_sexp == undefined and List.length(lid_sexp_list) ~= num_fields) then do
+        if (opt_sexp == nil and List.length(lid_sexp_list) ~= num_fields) then do
           present_indices = List.map((function(param) do
                   return param[1].lbl_pos;
                 end end), lbl_exp_list);
@@ -60413,7 +60413,7 @@ function type_expect_(in_function, env, sexp, ty_expected) do
             env,
             --[[ Label_missing ]]Block.__(11, {missing})
           })
-        end else if (opt_sexp ~= undefined and List.length(lid_sexp_list) == num_fields) then do
+        end else if (opt_sexp ~= nil and List.length(lid_sexp_list) == num_fields) then do
           prerr_warning(loc, --[[ Useless_record_with ]]11);
         end
          end  end 
@@ -60424,7 +60424,7 @@ function type_expect_(in_function, env, sexp, ty_expected) do
                       }),
                     exp_loc = loc,
                     exp_extra = --[[ [] ]]0,
-                    exp_type = instance(undefined, env, ty_expected),
+                    exp_type = instance(nil, env, ty_expected),
                     exp_env = env,
                     exp_attributes = sexp.pexp_attributes
                   }); end end 
@@ -60451,7 +60451,7 @@ function type_expect_(in_function, env, sexp, ty_expected) do
         lid_3 = match[1];
         match_33 = type_label_access(env, loc, match[0], lid_3);
         record_4 = match_33[0];
-        ty_record_1 = match_33[2] == undefined and newvar(undefined, --[[ () ]]0) or record_4.exp_type;
+        ty_record_1 = match_33[2] == nil and newvar(nil, --[[ () ]]0) or record_4.exp_type;
         match_34 = type_label_exp(false, env, loc, ty_record_1, --[[ tuple ]]{
               lid_3,
               match_33[1],
@@ -60482,27 +60482,27 @@ function type_expect_(in_function, env, sexp, ty_expected) do
                     exp_attributes = sexp.pexp_attributes
                   }); end end 
      if ___conditional___ == 14--[[ Pexp_array ]] then do
-        ty_2 = newty2(100000000, --[[ Tvar ]]Block.__(0, {undefined}));
+        ty_2 = newty2(100000000, --[[ Tvar ]]Block.__(0, {nil}));
         to_unify_1 = type_array(ty_2);
         unify_exp_types(loc, env, to_unify_1, ty_expected);
         argl = List.map((function(sarg) do
-                return type_expect(undefined, env, sarg, ty_2);
+                return type_expect(nil, env, sarg, ty_2);
               end end), match[0]);
         return re({
                     exp_desc = --[[ Texp_array ]]Block.__(13, {argl}),
                     exp_loc = loc,
                     exp_extra = --[[ [] ]]0,
-                    exp_type = instance(undefined, env, ty_expected),
+                    exp_type = instance(nil, env, ty_expected),
                     exp_env = env,
                     exp_attributes = sexp.pexp_attributes
                   }); end end 
      if ___conditional___ == 15--[[ Pexp_ifthenelse ]] then do
         sifnot = match[2];
         sifso = match[1];
-        cond = type_expect(undefined, env, match[0], type_bool);
-        if (sifnot ~= undefined) then do
-          ifso = type_expect(undefined, env, sifso, ty_expected);
-          ifnot = type_expect(undefined, env, sifnot, ty_expected);
+        cond = type_expect(nil, env, match[0], type_bool);
+        if (sifnot ~= nil) then do
+          ifso = type_expect(nil, env, sifso, ty_expected);
+          ifnot = type_expect(nil, env, sifnot, ty_expected);
           unify_exp(env, ifnot, ifso.exp_type);
           return re({
                       exp_desc = --[[ Texp_ifthenelse ]]Block.__(14, {
@@ -60517,12 +60517,12 @@ function type_expect_(in_function, env, sexp, ty_expected) do
                       exp_attributes = sexp.pexp_attributes
                     });
         end else do
-          ifso_1 = type_expect(undefined, env, sifso, type_unit);
+          ifso_1 = type_expect(nil, env, sifso, type_unit);
           return rue({
                       exp_desc = --[[ Texp_ifthenelse ]]Block.__(14, {
                           cond,
                           ifso_1,
-                          undefined
+                          nil
                         }),
                       exp_loc = loc,
                       exp_extra = --[[ [] ]]0,
@@ -60533,7 +60533,7 @@ function type_expect_(in_function, env, sexp, ty_expected) do
         end end  end end 
      if ___conditional___ == 16--[[ Pexp_sequence ]] then do
         exp1 = type_statement(env, match[0]);
-        exp2 = type_expect(undefined, env, match[1], ty_expected);
+        exp2 = type_expect(nil, env, match[1], ty_expected);
         return re({
                     exp_desc = --[[ Texp_sequence ]]Block.__(15, {
                         exp1,
@@ -60546,7 +60546,7 @@ function type_expect_(in_function, env, sexp, ty_expected) do
                     exp_attributes = sexp.pexp_attributes
                   }); end end 
      if ___conditional___ == 17--[[ Pexp_while ]] then do
-        cond_1 = type_expect(undefined, env, match[0], type_bool);
+        cond_1 = type_expect(nil, env, match[0], type_bool);
         body_2 = type_statement(env, match[1]);
         return rue({
                     exp_desc = --[[ Texp_while ]]Block.__(16, {
@@ -60561,8 +60561,8 @@ function type_expect_(in_function, env, sexp, ty_expected) do
                   }); end end 
      if ___conditional___ == 18--[[ Pexp_for ]] then do
         param = match[0];
-        low = type_expect(undefined, env, match[1], type_int);
-        high = type_expect(undefined, env, match[2], type_int);
+        low = type_expect(nil, env, match[1], type_int);
+        high = type_expect(nil, env, match[2], type_int);
         match_35 = param.ppat_desc;
         match_36;
         if (typeof match_35 == "number") then do
@@ -60610,8 +60610,8 @@ function type_expect_(in_function, env, sexp, ty_expected) do
         ty_3 = cty.ctyp_type;
         end_def(--[[ () ]]0);
         generalize_structure_1(current_level.contents, ty_3);
-        match_000 = type_argument(env, sarg_2, ty_3, instance(undefined, env, ty_3));
-        match_001 = instance(undefined, env, ty_3);
+        match_000 = type_argument(env, sarg_2, ty_3, instance(nil, env, ty_3));
+        match_001 = instance(nil, env, ty_3);
         arg_3 = match_000;
         return rue({
                     exp_desc = arg_3.exp_desc,
@@ -60633,7 +60633,7 @@ function type_expect_(in_function, env, sexp, ty_expected) do
         sty = match[1];
         sarg_3 = match[0];
         match_37;
-        if (sty ~= undefined) then do
+        if (sty ~= nil) then do
           begin_def(--[[ () ]]0);
           match_38 = transl_simple_type_delayed(env, sty);
           cty_1 = match_38[0];
@@ -60666,8 +60666,8 @@ function type_expect_(in_function, env, sexp, ty_expected) do
           generalize_structure_1(current_level.contents, ty_4);
           generalize_structure_1(current_level.contents, ty$prime);
           match_37 = --[[ tuple ]]{
-            type_argument(env, sarg_3, ty_4, instance(undefined, env, ty_4)),
-            instance(undefined, env, ty$prime),
+            type_argument(env, sarg_3, ty_4, instance(nil, env, ty_4)),
+            instance(nil, env, ty$prime),
             cty_1,
             cty$prime
           };
@@ -60679,7 +60679,7 @@ function type_expect_(in_function, env, sexp, ty_expected) do
           begin_def(--[[ () ]]0);
           arg_4 = type_exp(env, sarg_3);
           end_def(--[[ () ]]0);
-          tv = newvar(undefined, --[[ () ]]0);
+          tv = newvar(nil, --[[ () ]]0);
           gen = generalizable(tv.level, arg_4.exp_type);
           unify_var(env, tv, arg_4.exp_type);
           gen_1 = gen;
@@ -60786,7 +60786,7 @@ function type_expect_(in_function, env, sexp, ty_expected) do
           match_37 = --[[ tuple ]]{
             arg_4,
             ty$prime_1,
-            undefined,
+            nil,
             cty$prime_1
           };
         end end 
@@ -60840,7 +60840,7 @@ function type_expect_(in_function, env, sexp, ty_expected) do
                      end 
                     match_48 = --[[ tuple ]]{
                       --[[ Tmeth_val ]]Block.__(1, {match_50[0]}),
-                      undefined,
+                      nil,
                       typ
                     }; end else 
                  if ___conditional___ == 3--[[ Val_anc ]] then do
@@ -60876,10 +60876,10 @@ function type_expect_(in_function, env, sexp, ty_expected) do
                     end else if (match_53.tag == --[[ Val_self ]]2) then do
                       match_54 = filter_self_method(env, met, --[[ Private ]]0, match_53[0], match_53[3]);
                       typ_1 = match_54[1];
-                      method_type = newvar(undefined, --[[ () ]]0);
+                      method_type = newvar(nil, --[[ () ]]0);
                       match_55 = filter_arrow(env, method_type, "");
                       unify_2(env, match_55[0], desc_3.val_type);
-                      unify_2(env, match_55[1], instance(undefined, env, typ_1));
+                      unify_2(env, match_55[1], instance(nil, env, typ_1));
                       exp_000 = {
                         exp_desc = --[[ Texp_ident ]]Block.__(0, {
                             --[[ Pident ]]Block.__(0, {method_id}),
@@ -60951,7 +60951,7 @@ function type_expect_(in_function, env, sexp, ty_expected) do
           if (exit_3 == 1) then do
             match_48 = --[[ tuple ]]{
               --[[ Tmeth_name ]]Block.__(0, {met}),
-              undefined,
+              nil,
               filter_method(env, met, --[[ Public ]]1, obj.exp_type)
             };
           end
@@ -60978,7 +60978,7 @@ function type_expect_(in_function, env, sexp, ty_expected) do
             local ___conditional___=(match_56.tag | 0);
             do
                if ___conditional___ == 0--[[ Tvar ]] then do
-                  ty$prime_2 = newvar(undefined, --[[ () ]]0);
+                  ty$prime_2 = newvar(nil, --[[ () ]]0);
                   unify_2(env, instance_def(ty_5), newty2(current_level.contents, --[[ Tpoly ]]Block.__(10, {
                               ty$prime_2,
                               --[[ [] ]]0
@@ -60993,9 +60993,9 @@ function type_expect_(in_function, env, sexp, ty_expected) do
                       prerr_warning(loc, --[[ Not_principal ]]Block.__(8, {"this use of a polymorphic method"}));
                     end
                      end 
-                    typ_3 = instance_poly(undefined, false, tl, ty_6)[1];
+                    typ_3 = instance_poly(nil, false, tl, ty_6)[1];
                   end else do
-                    typ_3 = instance(undefined, env, ty_6);
+                    typ_3 = instance(nil, env, ty_6);
                   end end  end else 
                end end end end
               error({
@@ -61042,7 +61042,7 @@ function type_expect_(in_function, env, sexp, ty_expected) do
         match_57 = find_class_1(env, loc, cl.txt);
         cl_decl = match_57[1];
         match_58 = cl_decl.cty_new;
-        if (match_58 ~= undefined) then do
+        if (match_58 ~= nil) then do
           return rue({
                       exp_desc = --[[ Texp_new ]]Block.__(19, {
                           match_57[0],
@@ -61073,7 +61073,7 @@ function type_expect_(in_function, env, sexp, ty_expected) do
           if (typeof match_60 == "number" or match_60.tag ~= --[[ Val_ivar ]]1) then do
             exit_4 = 1;
           end else if (match_60[0]) then do
-            newval = type_expect(undefined, env, match[1], instance(undefined, env, desc_4.val_type));
+            newval = type_expect(nil, env, match[1], instance(nil, env, desc_4.val_type));
             match_61 = lookup_value_1(--[[ Lident ]]Block.__(0, {"self-" .. match_60[1]}), env);
             return rue({
                         exp_desc = --[[ Texp_setinstvar ]]Block.__(21, {
@@ -61181,7 +61181,7 @@ function type_expect_(in_function, env, sexp, ty_expected) do
               return --[[ tuple ]]{
                       --[[ Pident ]]Block.__(0, {match[0]}),
                       lab,
-                      type_expect(undefined, env, param[1], instance(undefined, env, match[3]))
+                      type_expect(nil, env, param[1], instance(nil, env, match[3]))
                     };
             end end,function(exn) do
               if (exn == Caml_builtin_exceptions.not_found) then do
@@ -61220,16 +61220,16 @@ function type_expect_(in_function, env, sexp, ty_expected) do
         end end  end  end end end end 
      if ___conditional___ == 25--[[ Pexp_letmodule ]] then do
         name_2 = match[0];
-        ty_7 = newvar(undefined, --[[ () ]]0);
+        ty_7 = newvar(nil, --[[ () ]]0);
         begin_def(--[[ () ]]0);
         set_current_time(ty_7.level);
         context = narrow(--[[ () ]]0);
         modl = Curry._2(type_module.contents, env, match[1]);
-        match_65 = enter_module(undefined, name_2.txt, modl.mod_type, env);
+        match_65 = enter_module(nil, name_2.txt, modl.mod_type, env);
         new_env = match_65[1];
         init_def(currentstamp.contents);
         widen(context);
-        body_4 = type_expect(undefined, new_env, match[2], ty_expected);
+        body_4 = type_expect(nil, new_env, match[2], ty_expected);
         end_def(--[[ () ]]0);
         xpcall(function() do
           unify_var(new_env, ty_7, body_4.exp_type);
@@ -61263,10 +61263,10 @@ function type_expect_(in_function, env, sexp, ty_expected) do
                     exp_attributes = sexp.pexp_attributes
                   }); end end 
      if ___conditional___ == 26--[[ Pexp_assert ]] then do
-        cond_2 = type_expect(undefined, env, match[0], type_bool);
+        cond_2 = type_expect(nil, env, match[0], type_bool);
         match_66 = cond_2.exp_desc;
         exp_type;
-        exp_type = match_66.tag == --[[ Texp_construct ]]8 and match_66[1].cstr_name == "false" and instance(undefined, env, ty_expected) or instance_def(type_unit);
+        exp_type = match_66.tag == --[[ Texp_construct ]]8 and match_66[1].cstr_name == "false" and instance(nil, env, ty_expected) or instance_def(type_unit);
         return rue({
                     exp_desc = --[[ Texp_assert ]]Block.__(24, {cond_2}),
                     exp_loc = loc,
@@ -61276,15 +61276,15 @@ function type_expect_(in_function, env, sexp, ty_expected) do
                     exp_attributes = sexp.pexp_attributes
                   }); end end 
      if ___conditional___ == 27--[[ Pexp_lazy ]] then do
-        ty_8 = newty2(100000000, --[[ Tvar ]]Block.__(0, {undefined}));
+        ty_8 = newty2(100000000, --[[ Tvar ]]Block.__(0, {nil}));
         to_unify_2 = type_lazy_t(ty_8);
         unify_exp_types(loc, env, to_unify_2, ty_expected);
-        arg_6 = type_expect(undefined, env, match[0], ty_8);
+        arg_6 = type_expect(nil, env, match[0], ty_8);
         return re({
                     exp_desc = --[[ Texp_lazy ]]Block.__(25, {arg_6}),
                     exp_loc = loc,
                     exp_extra = --[[ [] ]]0,
-                    exp_type = instance(undefined, env, ty_expected),
+                    exp_type = instance(nil, env, ty_expected),
                     exp_env = env,
                     exp_attributes = sexp.pexp_attributes
                   }); end end 
@@ -61296,7 +61296,7 @@ function type_expect_(in_function, env, sexp, ty_expected) do
         end
          end 
         match_67;
-        if (sty_1 ~= undefined) then do
+        if (sty_1 ~= nil) then do
           sty_2 = force_poly(sty_1);
           cty_2 = transl_simple_type(env, false, sty_2);
           match_67 = --[[ tuple ]]{
@@ -61306,7 +61306,7 @@ function type_expect_(in_function, env, sexp, ty_expected) do
         end else do
           match_67 = --[[ tuple ]]{
             repr(ty_expected),
-            undefined
+            nil
           };
         end end 
         ty_9 = match_67[0];
@@ -61315,8 +61315,8 @@ function type_expect_(in_function, env, sexp, ty_expected) do
           generalize_structure_1(current_level.contents, ty_9);
         end
          end 
-        if (sty_1 ~= undefined) then do
-          unify_exp_types(loc, env, instance(undefined, env, ty_9), instance(undefined, env, ty_expected));
+        if (sty_1 ~= nil) then do
+          unify_exp_types(loc, env, instance(nil, env, ty_9), instance(nil, env, ty_expected));
         end
          end 
         match_68 = expand_head(env, ty_9).desc;
@@ -61363,31 +61363,31 @@ function type_expect_(in_function, env, sexp, ty_expected) do
                     begin_def(--[[ () ]]0);
                   end
                    end 
-                  match_69 = instance_poly(undefined, true, tl_1, ty$prime_3);
+                  match_69 = instance_poly(nil, true, tl_1, ty$prime_3);
                   ty$prime$prime = match_69[1];
                   if (principal.contents) then do
                     end_def(--[[ () ]]0);
                     generalize_structure_1(current_level.contents, ty$prime$prime);
                   end
                    end 
-                  exp_6 = type_expect(undefined, env, sbody_1, ty$prime$prime);
+                  exp_6 = type_expect(nil, env, sbody_1, ty$prime$prime);
                   end_def(--[[ () ]]0);
                   check_univars(env, false, "method", exp_6, ty_expected, match_69[0]);
                   exp_3 = {
                     exp_desc = exp_6.exp_desc,
                     exp_loc = exp_6.exp_loc,
                     exp_extra = exp_6.exp_extra,
-                    exp_type = instance(undefined, env, ty_9),
+                    exp_type = instance(nil, env, ty_9),
                     exp_env = exp_6.exp_env,
                     exp_attributes = exp_6.exp_attributes
                   };
                 end else do
-                  exp_7 = type_expect(undefined, env, sbody_1, ty$prime_3);
+                  exp_7 = type_expect(nil, env, sbody_1, ty$prime_3);
                   exp_3 = {
                     exp_desc = exp_7.exp_desc,
                     exp_loc = exp_7.exp_loc,
                     exp_extra = exp_7.exp_extra,
-                    exp_type = instance(undefined, env, ty_9),
+                    exp_type = instance(nil, env, ty_9),
                     exp_env = exp_7.exp_env,
                     exp_attributes = exp_7.exp_attributes
                   };
@@ -61434,7 +61434,7 @@ function type_expect_(in_function, env, sexp, ty_expected) do
                   }); end end 
      if ___conditional___ == 30--[[ Pexp_newtype ]] then do
         name_3 = match[0];
-        ty_10 = newvar(undefined, --[[ () ]]0);
+        ty_10 = newvar(nil, --[[ () ]]0);
         begin_def(--[[ () ]]0);
         level = current_level.contents;
         decl_type_newtype_level = --[[ tuple ]]{
@@ -61446,7 +61446,7 @@ function type_expect_(in_function, env, sexp, ty_expected) do
           type_arity = 0,
           type_kind = --[[ Type_abstract ]]0,
           type_private = --[[ Public ]]1,
-          type_manifest = undefined,
+          type_manifest = nil,
           type_variance = --[[ [] ]]0,
           type_newtype_level = decl_type_newtype_level,
           type_loc = loc,
@@ -61457,7 +61457,7 @@ function type_expect_(in_function, env, sexp, ty_expected) do
         id = match_71[0];
         init_def(currentstamp.contents);
         body_5 = type_exp(match_71[1], match[1]);
-        seen = Hashtbl.create(undefined, 8);
+        seen = Hashtbl.create(nil, 8);
         replace = function(t) do
           if (Hashtbl.mem(seen, t.id)) then do
             return --[[ () ]]0;
@@ -61503,7 +61503,7 @@ function type_expect_(in_function, env, sexp, ty_expected) do
                     exp_attributes = body_5.exp_attributes
                   }); end end 
      if ___conditional___ == 31--[[ Pexp_pack ]] then do
-        match_72 = expand_head(env, instance(undefined, env, ty_expected));
+        match_72 = expand_head(env, instance(nil, env, ty_expected));
         match_73 = match_72.desc;
         match_74;
         if (typeof match_73 == "number") then do
@@ -61563,7 +61563,7 @@ function type_expect_(in_function, env, sexp, ty_expected) do
         ovf = match[0];
         match_76 = Curry._4(type_open.contents, ovf, env, sexp.pexp_loc, lid_5);
         newenv = match_76[1];
-        exp_8 = type_expect(undefined, newenv, match[2], ty_expected);
+        exp_8 = type_expect(nil, newenv, match[2], ty_expected);
         return {
                 exp_desc = exp_8.exp_desc,
                 exp_loc = exp_8.exp_loc,
@@ -61594,9 +61594,9 @@ function type_expect_(in_function, env, sexp, ty_expected) do
 end end
 
 function type_function(in_function, loc, attrs, env, ty_expected, l, caselist) do
-  match = in_function ~= undefined and in_function or --[[ tuple ]]{
+  match = in_function ~= nil and in_function or --[[ tuple ]]{
       loc,
-      instance(undefined, env, ty_expected)
+      instance(nil, env, ty_expected)
     };
   ty_fun = match[1];
   loc_fun = match[0];
@@ -61607,7 +61607,7 @@ function type_function(in_function, loc, attrs, env, ty_expected, l, caselist) d
    end 
   match_1;
   xpcall(function() do
-    match_1 = filter_arrow(env, instance(undefined, env, ty_expected), l);
+    match_1 = filter_arrow(env, instance(nil, env, ty_expected), l);
   end end,function(raw_exn) do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn[0] == Unify) then do
@@ -61633,7 +61633,7 @@ function type_function(in_function, loc, attrs, env, ty_expected, l, caselist) d
           loc_fun,
           env,
           --[[ Too_many_arguments ]]Block.__(26, {
-              in_function ~= undefined,
+              in_function ~= nil,
               ty_fun
             })
         })
@@ -61647,7 +61647,7 @@ function type_function(in_function, loc, attrs, env, ty_expected, l, caselist) d
   ty_arg = match_1[0];
   ty_arg_1;
   if (is_optional(l)) then do
-    tv = newvar(undefined, --[[ () ]]0);
+    tv = newvar(nil, --[[ () ]]0);
     xpcall(function() do
       unify_2(env, ty_arg, type_option_1(tv));
     end end,function(raw_exn_1) do
@@ -61700,7 +61700,7 @@ function type_function(in_function, loc, attrs, env, ty_expected, l, caselist) d
                 }),
               exp_loc = loc,
               exp_extra = --[[ [] ]]0,
-              exp_type = instance(undefined, env, newty2(100000000, --[[ Tarrow ]]Block.__(1, {
+              exp_type = instance(nil, env, newty2(100000000, --[[ Tarrow ]]Block.__(1, {
                           l,
                           ty_arg_1,
                           ty_res,
@@ -61733,14 +61733,14 @@ function type_label_access(env, loc, srecord, lid) do
     };
   end end,function(exn) do
     if (exn == Caml_builtin_exceptions.not_found) then do
-      opath = undefined;
+      opath = nil;
     end else do
       error(exn)
     end end 
   end end)
   labels = find_all_labels(env, lid.loc, lid.txt);
   label = wrap_disambiguate("This expression has", ty_exp, (function(param) do
-          return disambiguate(undefined, undefined, undefined, lid, env, opath, param);
+          return disambiguate(nil, nil, nil, lid, env, opath, param);
         end end), labels);
   return --[[ tuple ]]{
           record,
@@ -61782,7 +61782,7 @@ function type_label_exp(create, env, loc, ty_expected, param) do
   end
    end 
   xpcall(function() do
-    unify_2(env, instance_def(ty_res), instance(undefined, env, ty_expected));
+    unify_2(env, instance_def(ty_res), instance(nil, env, ty_expected));
   end end,function(raw_exn) do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn[0] == Unify) then do
@@ -61826,8 +61826,8 @@ function type_label_exp(create, env, loc, ty_expected, param) do
     })
   end
    end 
-  snap = vars == --[[ [] ]]0 and undefined or Caml_option.some(snapshot(--[[ () ]]0));
-  arg = type_argument(env, sarg, ty_arg_1, instance(undefined, env, ty_arg_1));
+  snap = vars == --[[ [] ]]0 and nil or Caml_option.some(snapshot(--[[ () ]]0));
+  arg = type_argument(env, sarg, ty_arg_1, instance(nil, env, ty_arg_1));
   end_def(--[[ () ]]0);
   arg_1;
   xpcall(function() do
@@ -61870,7 +61870,7 @@ function type_label_exp(create, env, loc, ty_expected, param) do
             exp_desc = arg_1.exp_desc,
             exp_loc = arg_1.exp_loc,
             exp_extra = arg_1.exp_extra,
-            exp_type = instance(undefined, env, arg_1.exp_type),
+            exp_type = instance(nil, env, arg_1.exp_type),
             exp_env = arg_1.exp_env,
             exp_attributes = arg_1.exp_attributes
           }
@@ -61896,7 +61896,7 @@ function type_argument(env, sarg, ty_expected$prime, ty_expected) do
       do
          if ___conditional___ == 15--[[ Pexp_ifthenelse ]] then do
             match_1 = match[2];
-            if (match_1 ~= undefined and is_inferred(match[1])) then do
+            if (match_1 ~= nil and is_inferred(match[1])) then do
               _sexp = match_1;
               ::continue:: ;
             end else do
@@ -61955,7 +61955,7 @@ function type_argument(env, sarg, ty_expected$prime, ty_expected) do
                   ty_fun_1 = match[2];
                   l = match[0];
                   if (is_optional(l)) then do
-                    ty = option_none(instance(undefined, env, match[1]), sarg.pexp_loc);
+                    ty = option_none(instance(nil, env, match[1]), sarg.pexp_loc);
                     _ty_fun = ty_fun_1;
                     _args = --[[ :: ]]{
                       --[[ tuple ]]{
@@ -61993,7 +61993,7 @@ function type_argument(env, sarg, ty_expected$prime, ty_expected) do
       texp_exp_desc = texp.exp_desc;
       texp_exp_loc = texp.exp_loc;
       texp_exp_extra = texp.exp_extra;
-      texp_exp_type = instance(undefined, env, texp.exp_type);
+      texp_exp_type = instance(nil, env, texp.exp_type);
       texp_exp_env = texp.exp_env;
       texp_exp_attributes = texp.exp_attributes;
       texp_1 = {
@@ -62004,7 +62004,7 @@ function type_argument(env, sarg, ty_expected$prime, ty_expected) do
         exp_env = texp_exp_env,
         exp_attributes = texp_exp_attributes
       };
-      ty_fun = instance(undefined, env, ty_fun$prime);
+      ty_fun = instance(nil, env, ty_fun$prime);
       if (match_2[2] or no_labels(ty_res)) then do
         unify_exp(env, {
               exp_desc = texp_exp_desc,
@@ -62089,7 +62089,7 @@ function type_argument(env, sarg, ty_expected$prime, ty_expected) do
                         --[[ :: ]]{
                           {
                             c_lhs = eta_pat,
-                            c_guard = undefined,
+                            c_guard = nil,
                             c_rhs = e
                           },
                           --[[ [] ]]0
@@ -62144,7 +62144,7 @@ function type_argument(env, sarg, ty_expected$prime, ty_expected) do
      end 
   end
    end 
-  texp_2 = type_expect(undefined, env, sarg, ty_expected$prime);
+  texp_2 = type_expect(nil, env, sarg, ty_expected$prime);
   unify_exp(env, texp_2, ty_expected);
   return texp_2;
 end end
@@ -62347,9 +62347,9 @@ function type_application(env, funct, sargs) do
                           ignored.contents
                         }, (function(ty)do
                         return function (param) do
-                          return option_none(instance(undefined, env, ty), none);
+                          return option_none(instance(nil, env, ty), none);
                         end end
-                        end end)(ty)) or (may_warn(funct.exp_loc, --[[ Without_principality ]]Block.__(9, {"commuted an argument"})), undefined)
+                        end end)(ty)) or (may_warn(funct.exp_loc, --[[ Without_principality ]]Block.__(9, {"commuted an argument"})), nil)
                   };
                 end else do
                   error(exn_1)
@@ -62358,7 +62358,7 @@ function type_application(env, funct, sargs) do
             end end 
             arg = match_4[2];
             sargs_1 = match_4[0];
-            omitted_1 = arg == undefined and --[[ :: ]]{
+            omitted_1 = arg == nil and --[[ :: ]]{
                 --[[ tuple ]]{
                   l,
                   ty,
@@ -62423,8 +62423,8 @@ function type_application(env, funct, sargs) do
               local ___conditional___=(td.tag | 0);
               do
                  if ___conditional___ == 0--[[ Tvar ]] then do
-                    t1 = newvar(undefined, --[[ () ]]0);
-                    t2 = newvar(undefined, --[[ () ]]0);
+                    t1 = newvar(nil, --[[ () ]]0);
+                    t2 = newvar(nil, --[[ () ]]0);
                     not_identity = function(param) do
                       if (param.tag) then do
                         return true;
@@ -62511,9 +62511,9 @@ function type_application(env, funct, sargs) do
             optional_1 = is_optional(l1) and --[[ Optional ]]1 or --[[ Required ]]0;
             arg1 = (function(sarg1,ty1,optional_1)do
             return function arg1(param) do
-              arg1_1 = type_expect(undefined, env, sarg1, ty1);
+              arg1_1 = type_expect(nil, env, sarg1, ty1);
               if (optional_1 == --[[ Optional ]]1) then do
-                unify_exp(env, arg1_1, type_option_1(newvar(undefined, --[[ () ]]0)));
+                unify_exp(env, arg1_1, type_option_1(newvar(nil, --[[ () ]]0)));
               end
                end 
               return arg1_1;
@@ -62535,7 +62535,7 @@ function type_application(env, funct, sargs) do
                     List.map((function(param) do
                             match = param[1];
                             l = param[0];
-                            if (match ~= undefined) then do
+                            if (match ~= nil) then do
                               return --[[ tuple ]]{
                                       l,
                                       Curry._1(match, --[[ () ]]0),
@@ -62544,12 +62544,12 @@ function type_application(env, funct, sargs) do
                             end else do
                               return --[[ tuple ]]{
                                       l,
-                                      undefined,
+                                      nil,
                                       param[2]
                                     };
                             end end 
                           end end), List.rev(args_1)),
-                    instance(undefined, env, result_type(omitted_2, ty_fun_2))
+                    instance(nil, env, result_type(omitted_2, ty_fun_2))
                   };
           end end 
         end;
@@ -62563,8 +62563,8 @@ function type_application(env, funct, sargs) do
     if (typeof match_2 ~= "number" and not match_2.tag and match_2[0].prim_name == "%ignore" and sargs) then do
       match_3 = sargs[0];
       if (match_3[0] == "" and not sargs[1]) then do
-        match_4 = filter_arrow(env, instance(undefined, env, funct.exp_type), "");
-        exp = type_expect(undefined, env, match_3[1], match_4[0]);
+        match_4 = filter_arrow(env, instance(nil, env, funct.exp_type), "");
+        exp = type_expect(nil, env, match_3[1], match_4[0]);
         match_5 = expand_head(env, exp.exp_type).desc;
         if (typeof match_5 ~= "number") then do
           local ___conditional___=(match_5.tag | 0);
@@ -62599,9 +62599,9 @@ function type_application(env, funct, sargs) do
    end 
   ty = funct.exp_type;
   if (ignore_labels) then do
-    return type_args(--[[ [] ]]0, --[[ [] ]]0, ty, instance(undefined, env, ty), ty, --[[ [] ]]0, sargs);
+    return type_args(--[[ [] ]]0, --[[ [] ]]0, ty, instance(nil, env, ty), ty, --[[ [] ]]0, sargs);
   end else do
-    return type_args(--[[ [] ]]0, --[[ [] ]]0, ty, instance(undefined, env, ty), ty, sargs, --[[ [] ]]0);
+    return type_args(--[[ [] ]]0, --[[ [] ]]0, ty, instance(nil, env, ty), ty, sargs, --[[ [] ]]0);
   end end 
 end end
 
@@ -62616,7 +62616,7 @@ function type_statement(env, sexp) do
     return exp;
   end else do
     ty = expand_head(env, exp.exp_type);
-    tv = newvar(undefined, --[[ () ]]0);
+    tv = newvar(nil, --[[ () ]]0);
     match = ty.desc;
     if (typeof match == "number") then do
       prerr_warning(loc, --[[ Statement_type ]]4);
@@ -62685,7 +62685,7 @@ function type_cases(in_function, env, ty_arg, ty_res, partial_flag, loc, caselis
   env_2 = match_1[1];
   lev_1 = match_1[0];
   begin_def(--[[ () ]]0);
-  ty_arg$prime = newvar(undefined, --[[ () ]]0);
+  ty_arg$prime = newvar(nil, --[[ () ]]0);
   pattern_force = {
     contents = --[[ [] ]]0
   };
@@ -62693,7 +62693,7 @@ function type_cases(in_function, env, ty_arg, ty_res, partial_flag, loc, caselis
           pc_rhs = param.pc_rhs;
           pc_guard = param.pc_guard;
           loc;
-          if (pc_guard ~= undefined) then do
+          if (pc_guard ~= nil) then do
             init = pc_rhs.pexp_loc;
             loc = {
               loc_start = pc_guard.pexp_loc.loc_start,
@@ -62708,7 +62708,7 @@ function type_cases(in_function, env, ty_arg, ty_res, partial_flag, loc, caselis
           end
            end 
           scope = --[[ Idef ]]Block.__(1, {loc});
-          partial = principal.contents or erase_either and false or undefined;
+          partial = principal.contents or erase_either and false or nil;
           ty_arg_2 = instance(partial, env_2, ty_arg_1);
           match = type_pattern(lev_1, env_2, param.pc_lhs, scope, ty_arg_2);
           pat = match[0];
@@ -62719,7 +62719,7 @@ function type_cases(in_function, env, ty_arg, ty_res, partial_flag, loc, caselis
                 pat_desc = pat.pat_desc,
                 pat_loc = pat.pat_loc,
                 pat_extra = pat.pat_extra,
-                pat_type = instance(undefined, env_2, pat.pat_type),
+                pat_type = instance(nil, env_2, pat.pat_type),
                 pat_env = pat.pat_env,
                 pat_attributes = pat.pat_attributes
               }) or pat;
@@ -62749,11 +62749,11 @@ function type_cases(in_function, env, ty_arg, ty_res, partial_flag, loc, caselis
         end end), pattern_force.contents);
   List.iter((function(param) do
           return iter_pattern((function(param) do
-                        return unify_var(env_2, param.pat_type, newvar(undefined, --[[ () ]]0));
+                        return unify_var(env_2, param.pat_type, newvar(nil, --[[ () ]]0));
                       end end), param);
         end end), patl);
   List.iter((function(pat) do
-          return unify_pat(env_2, pat, instance(undefined, env_2, ty_arg_1));
+          return unify_pat(env_2, pat, instance(nil, env_2, ty_arg_1));
         end end), patl);
   end_def(--[[ () ]]0);
   List.iter((function(param) do
@@ -62763,7 +62763,7 @@ function type_cases(in_function, env, ty_arg, ty_res, partial_flag, loc, caselis
                                   }, param.pat_type);
                       end end), param);
         end end), patl);
-  in_function_1 = List.length(caselist) == 1 and in_function or undefined;
+  in_function_1 = List.length(caselist) == 1 and in_function or nil;
   cases = List.map2((function(param, param_1) do
           pc_guard = param_1.pc_guard;
           match = param[1];
@@ -62780,7 +62780,7 @@ function type_cases(in_function, env, ty_arg, ty_res, partial_flag, loc, caselis
           end else do
             ty_res$prime = contains_gadt(env_2, param_1.pc_lhs) and type_expr(identity, ty_res_1) or ty_res_1;
           end end 
-          guard = pc_guard ~= undefined and type_expect(undefined, ext_env, wrap_unpacks(pc_guard, unpacks), type_bool) or undefined;
+          guard = pc_guard ~= nil and type_expect(nil, ext_env, wrap_unpacks(pc_guard, unpacks), type_bool) or nil;
           exp = type_expect(in_function_1, ext_env, sexp, ty_res$prime);
           return {
                   c_lhs = param[0],
@@ -62789,14 +62789,14 @@ function type_cases(in_function, env, ty_arg, ty_res, partial_flag, loc, caselis
                     exp_desc = exp.exp_desc,
                     exp_loc = exp.exp_loc,
                     exp_extra = exp.exp_extra,
-                    exp_type = instance(undefined, env_2, ty_res$prime),
+                    exp_type = instance(nil, env_2, ty_res$prime),
                     exp_env = exp.exp_env,
                     exp_attributes = exp.exp_attributes
                   }
                 };
         end end), pat_env_list, caselist);
   if (principal.contents or has_gadts) then do
-    ty_res$prime = instance(undefined, env_2, ty_res_1);
+    ty_res$prime = instance(nil, env_2, ty_res_1);
     List.iter((function(c) do
             return unify_exp(env_2, c.c_rhs, ty_res$prime);
           end end), cases);
@@ -62862,7 +62862,7 @@ function type_cases(in_function, env, ty_arg, ty_res, partial_flag, loc, caselis
                   end
                    end 
                 end end)
-                if (match.c_guard ~= undefined) then do
+                if (match.c_guard ~= nil) then do
                   _param = rem;
                   ::continue:: ;
                 end else do
@@ -62886,7 +62886,7 @@ function type_cases(in_function, env, ty_arg, ty_res, partial_flag, loc, caselis
         end end));
   if (has_gadts) then do
     end_def(--[[ () ]]0);
-    unify_exp_types(loc, env_2, instance(undefined, env_2, ty_res_1), newvar(undefined, --[[ () ]]0));
+    unify_exp_types(loc, env_2, instance(nil, env_2, ty_res_1), newvar(nil, --[[ () ]]0));
   end
    end 
   return --[[ tuple ]]{
@@ -62896,10 +62896,10 @@ function type_cases(in_function, env, ty_arg, ty_res, partial_flag, loc, caselis
 end end
 
 function type_let(checkOpt, check_strictOpt, env, rec_flag, spat_sexp_list, scope, allow) do
-  check = checkOpt ~= undefined and checkOpt or (function(s) do
+  check = checkOpt ~= nil and checkOpt or (function(s) do
         return --[[ Unused_var ]]Block.__(12, {s});
       end end);
-  check_strict = check_strictOpt ~= undefined and check_strictOpt or (function(s) do
+  check_strict = check_strictOpt ~= nil and check_strictOpt or (function(s) do
         return --[[ Unused_var_strict ]]Block.__(13, {s});
       end end);
   begin_def(--[[ () ]]0);
@@ -62959,13 +62959,13 @@ function type_let(checkOpt, check_strictOpt, env, rec_flag, spat_sexp_list, scop
                         loc_start = init.loc_start,
                         loc_end = init.loc_end,
                         loc_ghost = true
-                      }, undefined, spat, sty);
+                      }, nil, spat, sty);
           end else do
             return spat;
           end end 
         end end), spat_sexp_list);
   nvs = List.map((function(param) do
-          return newvar(undefined, --[[ () ]]0);
+          return newvar(nil, --[[ () ]]0);
         end end), spatl);
   match_3 = type_pattern_list(env, spatl, scope, nvs, allow);
   unpacks = match_3[3];
@@ -63007,7 +63007,7 @@ function type_let(checkOpt, check_strictOpt, env, rec_flag, spat_sexp_list, scop
                       pat_desc = pat.pat_desc,
                       pat_loc = pat.pat_loc,
                       pat_extra = pat.pat_extra,
-                      pat_type = instance(undefined, env, pat.pat_type),
+                      pat_type = instance(nil, env, pat.pat_type),
                       pat_env = pat.pat_env,
                       pat_attributes = pat.pat_attributes
                     };
@@ -63017,7 +63017,7 @@ function type_let(checkOpt, check_strictOpt, env, rec_flag, spat_sexp_list, scop
         end end), match_3[2]);
   exp_env = is_recursive and new_env or env;
   current_slot = {
-    contents = undefined
+    contents = nil
   };
   rec_needed = {
     contents = false
@@ -63052,7 +63052,7 @@ function type_let(checkOpt, check_strictOpt, env, rec_flag, spat_sexp_list, scop
                     vd_1 = vd;
                     callback = function(param) do
                       match = current_slot.contents;
-                      if (match ~= undefined) then do
+                      if (match ~= nil) then do
                         slot_1 = match;
                         slot_1.contents = --[[ :: ]]{
                           --[[ tuple ]]{
@@ -63098,7 +63098,7 @@ function type_let(checkOpt, check_strictOpt, env, rec_flag, spat_sexp_list, scop
           end else do
             return --[[ tuple ]]{
                     pat,
-                    undefined
+                    nil
                   };
           end end 
         end end), pat_list_1);
@@ -63112,7 +63112,7 @@ function type_let(checkOpt, check_strictOpt, env, rec_flag, spat_sexp_list, scop
            end 
           match = pat.pat_type.desc;
           if (typeof match == "number" or match.tag ~= --[[ Tpoly ]]10) then do
-            return type_expect(undefined, exp_env, sexp_1, pat.pat_type);
+            return type_expect(nil, exp_env, sexp_1, pat.pat_type);
           end else do
             begin_def(--[[ () ]]0);
             if (principal.contents) then do
@@ -63126,29 +63126,29 @@ function type_let(checkOpt, check_strictOpt, env, rec_flag, spat_sexp_list, scop
               generalize_structure_1(current_level.contents, ty$prime);
             end
              end 
-            exp = type_expect(undefined, exp_env, sexp_1, ty$prime);
+            exp = type_expect(nil, exp_env, sexp_1, ty$prime);
             end_def(--[[ () ]]0);
             check_univars(env, true, "definition", exp, pat.pat_type, match_1[0]);
             return {
                     exp_desc = exp.exp_desc,
                     exp_loc = exp.exp_loc,
                     exp_extra = exp.exp_extra,
-                    exp_type = instance(undefined, env, exp.exp_type),
+                    exp_type = instance(nil, env, exp.exp_type),
                     exp_env = exp.exp_env,
                     exp_attributes = exp.exp_attributes
                   };
           end end 
         end end), spat_sexp_list, pat_slot_list);
-  current_slot.contents = undefined;
+  current_slot.contents = nil;
   if (is_recursive and not rec_needed.contents and is_active(--[[ Unused_rec_flag ]]15)) then do
     prerr_warning(List.hd(spat_sexp_list).pvb_pat.ppat_loc, --[[ Unused_rec_flag ]]15);
   end
    end 
   List.iter2((function(pat, exp) do
-          check_partial_1(undefined, env, pat.pat_type)(pat.pat_loc, --[[ :: ]]{
+          check_partial_1(nil, env, pat.pat_type)(pat.pat_loc, --[[ :: ]]{
                 {
                   c_lhs = pat,
-                  c_guard = undefined,
+                  c_guard = nil,
                   c_rhs = exp
                 },
                 --[[ [] ]]0
@@ -63202,7 +63202,7 @@ function type_binding(env, rec_flag, spat_sexp_list, scope) do
 end end
 
 function type_let_1(env, rec_flag, spat_sexp_list, scope) do
-  match = type_let(undefined, undefined, env, rec_flag, spat_sexp_list, scope, false);
+  match = type_let(nil, nil, env, rec_flag, spat_sexp_list, scope, false);
   return --[[ tuple ]]{
           match[0],
           match[1]
@@ -63468,7 +63468,7 @@ register_error_of_exn((function(param) do
                                                             }), longident, param_1[0], param_1[1], param_1[2]); end end 
                                            if ___conditional___ == 2--[[ Label_mismatch ]] then do
                                               lid = param_1[0];
-                                              return report_unification_error(ppf_1, env_2, undefined, param_1[1], (function(ppf) do
+                                              return report_unification_error(ppf_1, env_2, nil, param_1[1], (function(ppf) do
                                                             return Curry._2(Format.fprintf(ppf, --[[ Format ]]{
                                                                             --[[ String_literal ]]Block.__(11, {
                                                                                 "The record field ",
@@ -63496,7 +63496,7 @@ register_error_of_exn((function(param) do
                                                                       });
                                                           end end)); end end 
                                            if ___conditional___ == 3--[[ Pattern_type_clash ]] then do
-                                              return report_unification_error(ppf_1, env_2, undefined, param_1[0], (function(ppf) do
+                                              return report_unification_error(ppf_1, env_2, nil, param_1[0], (function(ppf) do
                                                             return Format.fprintf(ppf, --[[ Format ]]{
                                                                         --[[ String_literal ]]Block.__(11, {
                                                                             "This pattern matches values of type",
@@ -63515,7 +63515,7 @@ register_error_of_exn((function(param) do
                                                           end end)); end end 
                                            if ___conditional___ == 4--[[ Or_pattern_type_clash ]] then do
                                               id = param_1[0];
-                                              return report_unification_error(ppf_1, env_2, undefined, param_1[1], (function(ppf) do
+                                              return report_unification_error(ppf_1, env_2, nil, param_1[1], (function(ppf) do
                                                             return Curry._1(Format.fprintf(ppf, --[[ Format ]]{
                                                                             --[[ String_literal ]]Block.__(11, {
                                                                                 "The variable ",
@@ -63567,7 +63567,7 @@ register_error_of_exn((function(param) do
                                                               "Variable %s must occur on both sides of this | pattern"
                                                             }), param_1[0].name); end end 
                                            if ___conditional___ == 7--[[ Expr_type_clash ]] then do
-                                              return report_unification_error(ppf_1, env_2, undefined, param_1[0], (function(ppf) do
+                                              return report_unification_error(ppf_1, env_2, nil, param_1[0], (function(ppf) do
                                                             return Format.fprintf(ppf, --[[ Format ]]{
                                                                         --[[ String_literal ]]Block.__(11, {
                                                                             "This expression has type",
@@ -64317,7 +64317,7 @@ register_error_of_exn((function(param) do
                                                                         });
                                                             end else do
                                                               mis = mismatch(true, tr2_1);
-                                                              partial_arg_1 = mis == undefined;
+                                                              partial_arg_1 = mis == nil;
                                                               return Curry._3(Format.fprintf(ppf_5, --[[ Format ]]{
                                                                               --[[ Alpha ]]Block.__(15, {--[[ Theta ]]Block.__(16, {--[[ Formatting_lit ]]Block.__(17, {
                                                                                           --[[ Close_box ]]0,
@@ -64348,7 +64348,7 @@ register_error_of_exn((function(param) do
                                            if ___conditional___ == 25--[[ Coercion_failure ]] then do
                                               ty$prime = param_1[1];
                                               ty_3 = param_1[0];
-                                              report_unification_error(ppf_1, env_2, undefined, param_1[2], (function(ppf) do
+                                              report_unification_error(ppf_1, env_2, nil, param_1[2], (function(ppf) do
                                                       match = prepare_expansion(--[[ tuple ]]{
                                                             ty_3,
                                                             ty$prime
@@ -64638,7 +64638,7 @@ register_error_of_exn((function(param) do
                                                             }), longident, param_1[0]); end end 
                                            if ___conditional___ == 31--[[ Less_general ]] then do
                                               kind_2 = param_1[0];
-                                              return report_unification_error(ppf_1, env_2, undefined, param_1[1], (function(ppf) do
+                                              return report_unification_error(ppf_1, env_2, nil, param_1[1], (function(ppf) do
                                                             return Curry._1(Format.fprintf(ppf, --[[ Format ]]{
                                                                             --[[ String_literal ]]Block.__(11, {
                                                                                 "This ",
@@ -64677,7 +64677,7 @@ register_error_of_exn((function(param) do
                                                               "This expression is packed module, but the expected type is@ %a"
                                                             }), type_expr_1, param_1[0]); end end 
                                            if ___conditional___ == 33--[[ Recursive_local_constraint ]] then do
-                                              return report_unification_error(ppf_1, env_2, undefined, param_1[0], (function(ppf) do
+                                              return report_unification_error(ppf_1, env_2, nil, param_1[0], (function(ppf) do
                                                             return Format.fprintf(ppf, --[[ Format ]]{
                                                                         --[[ String_literal ]]Block.__(11, {
                                                                             "Recursive local constraint when unifying",
@@ -64749,11 +64749,11 @@ __Error_8 = Caml_exceptions.create("Ocaml_typedtree_test.Typedecl.Error");
 function enter_type_1(env, sdecl, id) do
   match = sdecl.ptype_manifest;
   decl_type_params = List.map((function(param) do
-          return newty2(100000000, --[[ Tvar ]]Block.__(0, {undefined}));
+          return newty2(100000000, --[[ Tvar ]]Block.__(0, {nil}));
         end end), sdecl.ptype_params);
   decl_type_arity = List.length(sdecl.ptype_params);
   decl_type_private = sdecl.ptype_private;
-  decl_type_manifest = match ~= undefined and newvar(undefined, --[[ () ]]0) or undefined;
+  decl_type_manifest = match ~= nil and newvar(nil, --[[ () ]]0) or nil;
   decl_type_variance = List.map((function(param) do
           return Types_Variance.full;
         end end), sdecl.ptype_params);
@@ -64766,7 +64766,7 @@ function enter_type_1(env, sdecl, id) do
     type_private = decl_type_private,
     type_manifest = decl_type_manifest,
     type_variance = decl_type_variance,
-    type_newtype_level = undefined,
+    type_newtype_level = nil,
     type_loc = decl_type_loc,
     type_attributes = decl_type_attributes
   };
@@ -64775,7 +64775,7 @@ end end
 
 function is_fixed_type(sd) do
   match = sd.ptype_manifest;
-  if (match ~= undefined and sd.ptype_kind == --[[ Ptype_abstract ]]0 and sd.ptype_private == --[[ Private ]]0) then do
+  if (match ~= nil and sd.ptype_kind == --[[ Ptype_abstract ]]0 and sd.ptype_private == --[[ Private ]]0) then do
     _sty = match;
     while(true) do
       sty = _sty;
@@ -64800,7 +64800,7 @@ function is_fixed_type(sd) do
               if (match_1[1]) then do
                 return true;
               end else do
-                return match_1[2] ~= undefined;
+                return match_1[2] ~= nil;
               end end  end end 
           return false;
             
@@ -64815,7 +64815,7 @@ end end
 function set_fixed_row(env, loc, p, decl) do
   match = decl.type_manifest;
   tm;
-  if (match ~= undefined) then do
+  if (match ~= nil) then do
     tm = expand_head(env, match);
   end else do
     error({
@@ -65026,7 +65026,7 @@ function make_params(env, params) do
 end end
 
 function make_constructor(env, type_path, type_params, sargs, sret_type) do
-  if (sret_type ~= undefined) then do
+  if (sret_type ~= nil) then do
     sret_type_1 = sret_type;
     z = narrow(--[[ () ]]0);
     reset_type_variables(--[[ () ]]0);
@@ -65071,9 +65071,9 @@ function make_constructor(env, type_path, type_params, sargs, sret_type) do
           end end), targs_1);
     return --[[ tuple ]]{
             targs_1,
-            undefined,
+            nil,
             args_1,
-            undefined
+            nil
           };
   end end 
 end end
@@ -65096,7 +65096,7 @@ function generalize_decl(decl) do
           end end), match[0]);
   end end  end 
   match_1 = decl.type_manifest;
-  if (match_1 ~= undefined) then do
+  if (match_1 ~= nil) then do
     return iter_generalize_1({
                 contents = --[[ [] ]]0
               }, match_1);
@@ -65125,7 +65125,7 @@ function check_constraints_rec(env, loc, visited, _ty) do
               args = match[1];
               path = match[0];
               args$prime = List.map((function(param) do
-                      return newvar(undefined, --[[ () ]]0);
+                      return newvar(nil, --[[ () ]]0);
                     end end), args);
               ty$prime = newconstr(path, args$prime);
               xpcall(function() do
@@ -65168,7 +65168,7 @@ function check_constraints_rec(env, loc, visited, _ty) do
                             return check_constraints_rec(env, loc, visited, param);
                           end end), args); end end 
            if ___conditional___ == 10--[[ Tpoly ]] then do
-              match_1 = instance_poly(undefined, false, match[1], match[0]);
+              match_1 = instance_poly(nil, false, match[1], match[0]);
               _ty = match_1[1];
               ::continue:: ; end end 
           return iter_type_expr((function(param) do
@@ -65328,7 +65328,7 @@ function check_coherence(env, loc, id, decl) do
   end
    end 
   match_1 = decl.type_manifest;
-  if (match_1 ~= undefined) then do
+  if (match_1 ~= nil) then do
     ty = match_1;
     match_2 = repr(ty).desc;
     if (typeof match_2 == "number") then do
@@ -65406,7 +65406,7 @@ function check_well_founded(env, loc, path, to_check, ty) do
         error({
           __Error_8,
           loc,
-          --[[ Recursive_abbrev ]]Block.__(2, {name(undefined, path)})
+          --[[ Recursive_abbrev ]]Block.__(2, {name(nil, path)})
         })
       end
        end 
@@ -65414,7 +65414,7 @@ function check_well_founded(env, loc, path, to_check, ty) do
         __Error_8,
         loc,
         --[[ Cycle_in_def ]]Block.__(3, {
-            name(undefined, path),
+            name(nil, path),
             ty0
           })
       })
@@ -65577,7 +65577,7 @@ function check_recursion(env, loc, path, decl, to_check) do
                     xpcall(function() do
                       match_1 = find_type_expansion(path$prime, env);
                       params0 = match_1[0];
-                      match_2 = instance_parameterized_type(undefined, params0, match_1[1]);
+                      match_2 = instance_parameterized_type(nil, params0, match_1[1]);
                       xpcall(function() do
                         List.iter2((function(param, param_1) do
                                 return unify_2(env, param, param_1);
@@ -65739,7 +65739,7 @@ function compute_variance(env, visited, vari, ty) do
                                     end end), match[1]);
                       end else do
                         match_1 = match[0];
-                        if (match_1 ~= undefined) then do
+                        if (match_1 ~= nil) then do
                           return compute_variance_rec(vari_1, match_1);
                         end else do
                           return --[[ () ]]0;
@@ -65841,7 +65841,7 @@ function compute_variance_type(env, check, param, decl, tyl) do
             end end 
           end end), params, required);
     args = newty2(100000000, --[[ Ttuple ]]Block.__(2, {params}));
-    fvl = free_variables_1(undefined, args);
+    fvl = free_variables_1(nil, args);
     fvl_1 = List.filter((function(v) do
               return not List.memq(v, params);
             end end))(fvl);
@@ -65982,7 +65982,7 @@ function compute_variance_gadt(env, check, rloc, decl, param) do
   ret_type_opt = param[1];
   tl = param[0];
   loc = rloc[1];
-  if (ret_type_opt ~= undefined) then do
+  if (ret_type_opt ~= nil) then do
     match = repr(ret_type_opt);
     match_1 = match.desc;
     if (typeof match_1 == "number") then do
@@ -65997,7 +65997,7 @@ function compute_variance_gadt(env, check, rloc, decl, param) do
     end else if (match_1.tag == --[[ Tconstr ]]3) then do
       tyl = List.map(repr, match_1[1]);
       fvl = List.map((function(param) do
-              return free_variables_1(undefined, param);
+              return free_variables_1(nil, param);
             end end), tyl);
       List.fold_left2((function(param, ty, param_1) do
               fv2 = param[1];
@@ -66087,13 +66087,13 @@ function compute_variance_extension(env, check, decl, ext, rloc) do
 end end
 
 function compute_variance_decl(env, check, decl, rloc) do
-  if ((decl.type_kind == --[[ Type_abstract ]]0 or decl.type_kind == --[[ Type_open ]]1) and decl.type_manifest == undefined) then do
+  if ((decl.type_kind == --[[ Type_abstract ]]0 or decl.type_kind == --[[ Type_open ]]1) and decl.type_manifest == nil) then do
     return List.map((function(param) do
                   return make(not param[1], not param[0], decl.type_kind ~= --[[ Type_abstract ]]0 or param[2]);
                 end end), rloc[0]);
   end else do
     match = decl.type_manifest;
-    mn = match ~= undefined and --[[ :: ]]{
+    mn = match ~= nil and --[[ :: ]]{
         --[[ tuple ]]{
           false,
           match
@@ -66106,7 +66106,7 @@ function compute_variance_decl(env, check, decl, rloc) do
     end else if (match_1.tag) then do
       tll = match_1[0];
       if (List.for_all((function(c) do
-                return c.cd_res == undefined;
+                return c.cd_res == nil;
               end end), tll)) then do
         return compute_variance_type(env, check, rloc, decl, Pervasives.$at(mn, add_false(List.flatten(List.map((function(c) do
                                       return c.cd_args;
@@ -66118,7 +66118,7 @@ function compute_variance_decl(env, check, decl, rloc) do
                           param[1],
                           --[[ [] ]]0
                         },
-                        undefined
+                        nil
                       };
               end end), mn);
         tll_1 = Pervasives.$at(mn_1, List.map((function(c) do
@@ -66331,8 +66331,8 @@ function compute_variance_decls(env, cldecls) do
 end end
 
 function check_duplicates(sdecl_list) do
-  labels = Hashtbl.create(undefined, 7);
-  constrs = Hashtbl.create(undefined, 7);
+  labels = Hashtbl.create(nil, 7);
+  constrs = Hashtbl.create(nil, 7);
   return List.iter((function(sdecl) do
                 match = sdecl.ptype_kind;
                 if (typeof match == "number") then do
@@ -66382,7 +66382,7 @@ function name_recursion(sdecl, id, decl) do
   match = decl.type_kind;
   if (typeof match == "number" and not (match ~= 0 or decl.type_private)) then do
     match_1 = decl.type_manifest;
-    if (match_1 ~= undefined and is_fixed_type(sdecl)) then do
+    if (match_1 ~= nil and is_fixed_type(sdecl)) then do
       ty = repr(match_1);
       ty$prime = newty2(ty.level, ty.desc);
       if (deep_occur(ty, ty$prime)) then do
@@ -66434,7 +66434,7 @@ function transl_type_decl(env, rec_flag, sdecl_list) do
                       ptype_cstrs = sdecl.ptype_cstrs,
                       ptype_kind = --[[ Ptype_abstract ]]0,
                       ptype_private = sdecl.ptype_private,
-                      ptype_manifest = undefined,
+                      ptype_manifest = nil,
                       ptype_attributes = sdecl.ptype_attributes,
                       ptype_loc = sdecl.ptype_loc
                     };
@@ -66446,7 +66446,7 @@ function transl_type_decl(env, rec_flag, sdecl_list) do
   begin_def(--[[ () ]]0);
   temp_env = rec_flag and List.fold_left2(enter_type_1, env, sdecl_list_1, id_list) or env;
   current_slot = {
-    contents = undefined
+    contents = nil
   };
   warn_unused = is_active(--[[ Unused_type_declaration ]]Block.__(18, {""}));
   id_slots = function(id) do
@@ -66458,7 +66458,7 @@ function transl_type_decl(env, rec_flag, sdecl_list) do
       name = id.name;
       set_type_used_callback(name, td, (function(old_callback) do
               match = current_slot.contents;
-              if (match ~= undefined) then do
+              if (match ~= nil) then do
                 slot_1 = match;
                 slot_1.contents = --[[ :: ]]{
                   --[[ tuple ]]{
@@ -66482,7 +66482,7 @@ function transl_type_decl(env, rec_flag, sdecl_list) do
     end else do
       return --[[ tuple ]]{
               id,
-              undefined
+              nil
             };
     end end 
   end end;
@@ -66652,7 +66652,7 @@ function transl_type_decl(env, rec_flag, sdecl_list) do
     end end  end 
     match_3 = sdecl.ptype_manifest;
     match_4;
-    if (match_3 ~= undefined) then do
+    if (match_3 ~= nil) then do
       no_row = not is_fixed_type(sdecl);
       cty = transl_simple_type(env, no_row, match_3);
       match_4 = --[[ tuple ]]{
@@ -66661,8 +66661,8 @@ function transl_type_decl(env, rec_flag, sdecl_list) do
       };
     end else do
       match_4 = --[[ tuple ]]{
-        undefined,
-        undefined
+        nil,
+        nil
       };
     end end 
     man = match_4[1];
@@ -66681,7 +66681,7 @@ function transl_type_decl(env, rec_flag, sdecl_list) do
       type_private = decl_type_private,
       type_manifest = man,
       type_variance = decl_type_variance,
-      type_newtype_level = undefined,
+      type_newtype_level = nil,
       type_loc = decl_type_loc,
       type_attributes = decl_type_attributes
     };
@@ -66728,7 +66728,7 @@ function transl_type_decl(env, rec_flag, sdecl_list) do
       set_fixed_row(env, sdecl.ptype_loc, match_5[0], decl);
     end
      end 
-    if (man ~= undefined and cyclic_abbrev(env, id, man)) then do
+    if (man ~= nil and cyclic_abbrev(env, id, man)) then do
       error({
         __Error_8,
         sdecl.ptype_loc,
@@ -66756,7 +66756,7 @@ function transl_type_decl(env, rec_flag, sdecl_list) do
                   tdecl.typ_type
                 };
         end end), tdecls);
-  current_slot.contents = undefined;
+  current_slot.contents = nil;
   check_duplicates(sdecl_list_1);
   newenv = List.fold_right((function(param, env) do
           return add_type_1(true, param[0], param[1], env);
@@ -66770,9 +66770,9 @@ function transl_type_decl(env, rec_flag, sdecl_list) do
             path = --[[ Pident ]]Block.__(0, {id_1});
             decl = find_type_full(path, temp_env_1)[0];
             match = decl.type_manifest;
-            if (match ~= undefined) then do
+            if (match ~= nil) then do
               params = List.map((function(param) do
-                      return newvar(undefined, --[[ () ]]0);
+                      return newvar(nil, --[[ () ]]0);
                     end end), decl.type_params);
               xpcall(function() do
                 return unify_2(env, newconstr(path, params), match);
@@ -66813,11 +66813,11 @@ function transl_type_decl(env, rec_flag, sdecl_list) do
           loc = List.assoc(id, id_loc_list);
           path = --[[ Pident ]]Block.__(0, {id});
           decl = param[1];
-          if (decl.type_manifest == undefined) then do
+          if (decl.type_manifest == nil) then do
             return --[[ () ]]0;
           end else do
             args = List.map((function(param) do
-                    return newvar(undefined, --[[ () ]]0);
+                    return newvar(nil, --[[ () ]]0);
                   end end), decl.type_params);
             return check_well_founded(env, loc, path, (function(param) do
                           return same(path, param);
@@ -66851,7 +66851,7 @@ function transl_type_decl(env, rec_flag, sdecl_list) do
   List.iter2((function(sdecl, tdecl) do
           decl = tdecl.typ_type;
           match = closed_type_decl(decl);
-          if (match ~= undefined) then do
+          if (match ~= nil) then do
             error({
               __Error_8,
               sdecl.ptype_loc,
@@ -66927,7 +66927,7 @@ function transl_type_decl(env, rec_flag, sdecl_list) do
                     List.iter2((function(sty, ty) do
                             return check_constraints_rec(env, sty.ptyp_loc, visited, ty);
                           end end), match.pcd_args, param.cd_args);
-                    if (sret_type ~= undefined and ret_type ~= undefined) then do
+                    if (sret_type ~= nil and ret_type ~= nil) then do
                       return check_constraints_rec(env, sret_type.ptyp_loc, visited, ret_type);
                     end else do
                       return --[[ () ]]0;
@@ -66986,10 +66986,10 @@ function transl_type_decl(env, rec_flag, sdecl_list) do
                   end end), match[0]);
           end end  end 
           match_1 = decl.type_manifest;
-          if (match_1 ~= undefined) then do
+          if (match_1 ~= nil) then do
             match_2 = sdecl.ptype_manifest;
             sty;
-            if (match_2 ~= undefined) then do
+            if (match_2 ~= nil) then do
               sty = match_2;
             end else do
               error({
@@ -67059,7 +67059,7 @@ function transl_extension_constructor(env, check_open, type_path, type_params, t
     cdescr = find_constructor(env, sext.pext_loc, lid.txt);
     usage = cdescr.cstr_private == --[[ Private ]]0 or priv == --[[ Public ]]1 and --[[ Positive ]]0 or --[[ Privatize ]]2;
     mark_constructor(usage, env, last_1(lid.txt), cdescr);
-    match_2 = instance_constructor(undefined, cdescr);
+    match_2 = instance_constructor(nil, cdescr);
     args = match_2[0];
     match_3;
     if (cdescr.cstr_generalized) then do
@@ -67073,7 +67073,7 @@ function transl_extension_constructor(env, check_open, type_path, type_params, t
     end else do
       match_3 = --[[ tuple ]]{
         newconstr(type_path, typext_params),
-        undefined
+        nil
       };
     end end 
     xpcall(function() do
@@ -67095,15 +67095,15 @@ function transl_extension_constructor(env, check_open, type_path, type_params, t
       error(exn)
     end end)
     if (not cdescr.cstr_generalized) then do
-      vars = free_variables_1(undefined, newty2(100000000, --[[ Ttuple ]]Block.__(2, {args})));
+      vars = free_variables_1(nil, newty2(100000000, --[[ Ttuple ]]Block.__(2, {args})));
       List.iter((function(ty) do
               match = ty.desc;
               if (typeof match == "number" or match.tag) then do
                 return --[[ () ]]0;
               end else do
                 match_1 = match[0];
-                if (match_1 ~= undefined and match_1 == "_" and List.memq(ty, vars)) then do
-                  ty.desc = --[[ Tvar ]]Block.__(0, {undefined});
+                if (match_1 ~= nil and match_1 == "_" and List.memq(ty, vars)) then do
+                  ty.desc = --[[ Tvar ]]Block.__(0, {nil});
                   return --[[ () ]]0;
                 end else do
                   return --[[ () ]]0;
@@ -67343,7 +67343,7 @@ function transl_type_extension(check_open, env, loc, styext) do
         end end), constructors);
   List.iter((function(ext) do
           match = closed_extension_constructor(ext.ext_type);
-          if (match ~= undefined) then do
+          if (match ~= nil) then do
             error({
               __Error_8,
               ext.ext_loc,
@@ -67391,7 +67391,7 @@ function transl_exception(env, sext) do
   List.iter(generalize, ext.ext_type.ext_args);
   may(generalize, ext.ext_type.ext_ret_type);
   match = closed_extension_constructor(ext.ext_type);
-  if (match ~= undefined) then do
+  if (match ~= nil) then do
     error({
       __Error_8,
       ext.ext_loc,
@@ -67568,7 +67568,7 @@ function transl_with_constraint(env, id, row_path, orig_decl, sdecl) do
   no_row = not is_fixed_type(sdecl);
   match = sdecl.ptype_manifest;
   match_1;
-  if (match ~= undefined) then do
+  if (match ~= nil) then do
     cty = transl_simple_type(env, no_row, match);
     match_1 = --[[ tuple ]]{
       cty,
@@ -67576,8 +67576,8 @@ function transl_with_constraint(env, id, row_path, orig_decl, sdecl) do
     };
   end else do
     match_1 = --[[ tuple ]]{
-      undefined,
-      undefined
+      nil,
+      nil
     };
   end end 
   man = match_1[1];
@@ -67589,7 +67589,7 @@ function transl_with_constraint(env, id, row_path, orig_decl, sdecl) do
   end
    end 
   decl_type_arity = List.length(params);
-  decl_type_kind = arity_ok and man ~= undefined and orig_decl_1.type_kind or --[[ Type_abstract ]]0;
+  decl_type_kind = arity_ok and man ~= nil and orig_decl_1.type_kind or --[[ Type_abstract ]]0;
   decl_type_loc = sdecl.ptype_loc;
   decl_type_attributes = sdecl.ptype_attributes;
   decl = {
@@ -67599,16 +67599,16 @@ function transl_with_constraint(env, id, row_path, orig_decl, sdecl) do
     type_private = priv,
     type_manifest = man,
     type_variance = --[[ [] ]]0,
-    type_newtype_level = undefined,
+    type_newtype_level = nil,
     type_loc = decl_type_loc,
     type_attributes = decl_type_attributes
   };
-  if (row_path ~= undefined) then do
+  if (row_path ~= nil) then do
     set_fixed_row(env, sdecl.ptype_loc, row_path, decl);
   end
    end 
   match_2 = closed_type_decl(decl);
-  if (match_2 ~= undefined) then do
+  if (match_2 ~= nil) then do
     error({
       __Error_8,
       sdecl.ptype_loc,
@@ -67667,7 +67667,7 @@ function abstract_type_decl(arity) do
       return --[[ [] ]]0;
     end else do
       return --[[ :: ]]{
-              newvar(undefined, --[[ () ]]0),
+              newvar(nil, --[[ () ]]0),
               make_params(n - 1 | 0)
             };
     end end 
@@ -67680,9 +67680,9 @@ function abstract_type_decl(arity) do
     type_arity = arity,
     type_kind = --[[ Type_abstract ]]0,
     type_private = --[[ Public ]]1,
-    type_manifest = undefined,
+    type_manifest = nil,
     type_variance = decl_type_variance,
-    type_newtype_level = undefined,
+    type_newtype_level = nil,
     type_loc = none,
     type_attributes = --[[ [] ]]0
   };
@@ -67708,7 +67708,7 @@ function explain_unbound(ppf, tv, tl, typ, kwd, lab) do
     ty0 = newty2(100000000, --[[ Tobject ]]Block.__(4, {
             tv,
             {
-              contents = undefined
+              contents = nil
             }
           }));
     reset_and_mark_loops_list(--[[ :: ]]{
@@ -68113,7 +68113,7 @@ function report_error_5(ppf, param) do
                   }),
                 "The type constraints are not consistent.@."
               });
-          return report_unification_error(ppf, param[0], undefined, param[1], (function(ppf) do
+          return report_unification_error(ppf, param[0], nil, param[1], (function(ppf) do
                         return Format.fprintf(ppf, --[[ Format ]]{
                                     --[[ String_literal ]]Block.__(11, {
                                         "Type",
@@ -68131,7 +68131,7 @@ function report_error_5(ppf, param) do
                                   });
                       end end)); end end 
        if ___conditional___ == 7--[[ Type_clash ]] then do
-          return report_unification_error(ppf, param[0], undefined, param[1], (function(ppf) do
+          return report_unification_error(ppf, param[0], nil, param[1], (function(ppf) do
                         return Format.fprintf(ppf, --[[ Format ]]{
                                     --[[ String_literal ]]Block.__(11, {
                                         "This type constructor expands to type",
@@ -68202,7 +68202,7 @@ function report_error_5(ppf, param) do
                                 })
                             }),
                           "@[<hv>In the definition of %s, type@ %a@ should be@ %a@]"
-                        }), name(undefined, param[0]), type_expr_1, ty_3, type_expr_1, ty$prime_1); end end 
+                        }), name(nil, param[0]), type_expr_1, ty_3, type_expr_1, ty$prime_1); end end 
        if ___conditional___ == 9--[[ Unbound_type_var ]] then do
           decl = param[1];
           Format.fprintf(ppf, --[[ Format ]]{
@@ -68216,7 +68216,7 @@ function report_error_5(ppf, param) do
           match = decl.type_kind;
           match_1 = decl.type_manifest;
           if (typeof match == "number") then do
-            if (match == --[[ Type_abstract ]]0 and match_1 ~= undefined) then do
+            if (match == --[[ Type_abstract ]]0 and match_1 ~= nil) then do
               ppf_1 = ppf;
               tv = ty_4;
               ty_5 = match_1;
@@ -68265,7 +68265,7 @@ function report_error_5(ppf, param) do
                                         end end 
                                       end else do
                                         match_1 = match[0];
-                                        if (match_1 ~= undefined) then do
+                                        if (match_1 ~= nil) then do
                                           return match_1;
                                         end else do
                                           return newty2(100000000, --[[ Ttuple ]]Block.__(2, {--[[ [] ]]0}));
@@ -68404,12 +68404,12 @@ function report_error_5(ppf, param) do
                                 })
                             }),
                           "@[<v>@[<hov>%s@ %s@;<1 2>%s@]%a@]"
-                        }), "This extension", "does not match the definition of type", name(undefined, param[0]), (function(param) do
+                        }), "This extension", "does not match the definition of type", name(nil, param[0]), (function(param) do
                         return report_type_mismatch("the type", "this extension", "definition", param);
                       end end), param[1]); end end 
        if ___conditional___ == 13--[[ Rebind_wrong_type ]] then do
           lid = param[0];
-          return report_unification_error(ppf, param[1], undefined, param[2], (function(ppf) do
+          return report_unification_error(ppf, param[1], nil, param[2], (function(ppf) do
                         return Curry._2(Format.fprintf(ppf, --[[ Format ]]{
                                         --[[ String_literal ]]Block.__(11, {
                                             "The constructor ",
@@ -68509,7 +68509,7 @@ function report_error_5(ppf, param) do
                                 })
                             }),
                           "@[%s@ %a@ %s@ %s@ %s@ %s@ %s@]"
-                        }), "The constructor", longident, param[0], "extends type", name(undefined, param[1]), "whose declaration does not match", "the declaration of type", name(undefined, param[2])); end end 
+                        }), "The constructor", longident, param[0], "extends type", name(nil, param[1]), "whose declaration does not match", "the declaration of type", name(nil, param[2])); end end 
        if ___conditional___ == 15--[[ Rebind_private ]] then do
           return Curry._4(Format.fprintf(ppf, --[[ Format ]]{
                           --[[ Formatting_gen ]]Block.__(18, {
@@ -69057,7 +69057,7 @@ function rc(node) do
 end end
 
 function enter_met_env(check, loc, lab, kind, ty, val_env, met_env, par_env) do
-  match = enter_value(undefined)(lab, {
+  match = enter_value(nil)(lab, {
         val_type = ty,
         val_kind = --[[ Val_unbound ]]1,
         val_loc = loc,
@@ -69073,7 +69073,7 @@ function enter_met_env(check, loc, lab, kind, ty, val_env, met_env, par_env) do
                 val_loc = loc,
                 val_attributes = --[[ [] ]]0
               }, met_env),
-          add_value(undefined, id, {
+          add_value(nil, id, {
                 val_type = ty,
                 val_kind = --[[ Val_unbound ]]1,
                 val_loc = loc,
@@ -69099,9 +69099,9 @@ function enter_val(cl_num, vars, inh, lab, mut, virt, ty, val_env, met_env, par_
       })
     end
      end 
-    unify_2(val_env, instance(undefined, val_env, ty), instance(undefined, val_env, match_1[3]));
+    unify_2(val_env, instance(nil, val_env, ty), instance(nil, val_env, match_1[3]));
     match = --[[ tuple ]]{
-      inh and undefined or match_1[0],
+      inh and nil or match_1[0],
       virt$prime == --[[ Concrete ]]1 and virt$prime or virt
     };
   end end,function(raw_exn) do
@@ -69121,7 +69121,7 @@ function enter_val(cl_num, vars, inh, lab, mut, virt, ty, val_env, met_env, par_
      end 
     if (exn == Caml_builtin_exceptions.not_found) then do
       match = --[[ tuple ]]{
-        undefined,
+        nil,
         virt
       };
     end else do
@@ -69129,12 +69129,12 @@ function enter_val(cl_num, vars, inh, lab, mut, virt, ty, val_env, met_env, par_
     end end 
   end end)
   id = match[0];
-  result = id ~= undefined and --[[ tuple ]]{
+  result = id ~= nil and --[[ tuple ]]{
       id,
       val_env,
       met_env,
       par_env
-    } or enter_met_env(undefined, none, lab, --[[ Val_ivar ]]Block.__(1, {
+    } or enter_met_env(nil, none, lab, --[[ Val_ivar ]]Block.__(1, {
             mut,
             cl_num
           }), ty, val_env, met_env, par_env);
@@ -69222,13 +69222,13 @@ function inheritance(self_type, env, ovf, concr_meths, warn_vals, loc, parent) d
         over_meths = inter_1(cl_sig.csig_concr, concr_meths);
         concr_vals_1 = concr_vals(cl_sig.csig_vars);
         over_vals = inter_1(concr_vals_1, warn_vals);
-        if (ovf ~= undefined) then do
+        if (ovf ~= nil) then do
           if (ovf) then do
             cname;
             local ___conditional___=(parent.tag | 0);
             do
                if ___conditional___ == 0--[[ Cty_constr ]] then do
-                  cname = name(undefined, parent[0]); end else 
+                  cname = name(nil, parent[0]); end else 
                if ___conditional___ == 1--[[ Cty_signature ]]
                or ___conditional___ == 2--[[ Cty_arrow ]] then do
                   cname = "inherited"; end else 
@@ -69400,7 +69400,7 @@ function type_constraint(val_env, sty, sty$prime, loc) do
 end end
 
 function make_method(loc, cl_num, expr) do
-  return Curry._6(Ast_helper_Exp.fun_, expr.pexp_loc, undefined, "", undefined, alias_1(loc, undefined, __var_1(loc, undefined, {
+  return Curry._6(Ast_helper_Exp.fun_, expr.pexp_loc, nil, "", nil, alias_1(loc, nil, __var_1(loc, nil, {
                       txt = "self-*",
                       loc = loc
                     }), {
@@ -69444,7 +69444,7 @@ function class_signature_1(env, param) do
     ctyp_attributes = self_cty.ctyp_attributes
   };
   self_type = self_cty_1.ctyp_type;
-  dummy_obj = newvar(undefined, --[[ () ]]0);
+  dummy_obj = newvar(nil, --[[ () ]]0);
   unify_2(env, filter_method(env, dummy_method, --[[ Private ]]0, dummy_obj), newty2(current_level.contents, --[[ Ttuple ]]Block.__(2, {--[[ [] ]]0})));
   xpcall(function() do
     unify_2(env, self_type, dummy_obj);
@@ -69504,7 +69504,7 @@ function class_signature_1(env, param) do
                    end end end end
                   
                 end
-                match_2 = inheritance(self_type_1, env_1, undefined, concr_meths, --[[ Empty ]]0, sparent.pcty_loc, parent.cltyp_type);
+                match_2 = inheritance(self_type_1, env_1, nil, concr_meths, --[[ Empty ]]0, sparent.pcty_loc, parent.cltyp_type);
                 partial_arg = sparent.pcty_loc;
                 val_sig_1 = fold((function(param, param_1, param_2) do
                         return add_val(env_1, partial_arg, param, param_1, param_2);
@@ -69745,9 +69745,9 @@ function class_structure(cl_num, __final, val_env, met_env, loc, param) do
     loc_end = self_loc_loc_end,
     loc_ghost = true
   };
-  self_type = newvar(undefined, --[[ () ]]0);
+  self_type = newvar(nil, --[[ () ]]0);
   unify_2(val_env, filter_method(val_env, dummy_method, --[[ Private ]]0, self_type), newty2(current_level.contents, --[[ Ttuple ]]Block.__(2, {--[[ [] ]]0})));
-  private_self = __final and newvar(undefined, --[[ () ]]0) or self_type;
+  private_self = __final and newvar(nil, --[[ () ]]0) or self_type;
   match = type_self_pattern(cl_num, private_self, val_env, met_env, met_env, spat);
   val_env_1 = match[3];
   vars = match[2];
@@ -69756,9 +69756,9 @@ function class_structure(cl_num, __final, val_env, met_env, loc, param) do
   public_self = pat.pat_type;
   ty;
   if (__final) then do
-    desc_000 = newvar(undefined, --[[ () ]]0);
+    desc_000 = newvar(nil, --[[ () ]]0);
     desc_001 = {
-      contents = undefined
+      contents = nil
     };
     desc = --[[ Tobject ]]Block.__(4, {
         desc_000,
@@ -69892,7 +69892,7 @@ function class_structure(cl_num, __final, val_env, met_env, loc, param) do
                               };
                       end end), cl_sig.csig_concr, --[[ [] ]]0);
                 match_4;
-                if (__super ~= undefined) then do
+                if (__super ~= nil) then do
                   match_5 = enter_met_env((function(s) do
                           return --[[ Unused_ancestor ]]Block.__(20, {s});
                         end end), sparent.pcl_loc, __super, --[[ Val_anc ]]Block.__(3, {
@@ -70082,7 +70082,7 @@ function class_structure(cl_num, __final, val_env, met_env, loc, param) do
                   ovf_2 = match_12[0];
                   match_13 = expr.pexp_desc;
                   expr_1;
-                  expr_1 = match_13.tag == --[[ Pexp_poly ]]28 and expr or Curry._4(Ast_helper_Exp.poly, expr.pexp_loc, undefined, expr, undefined);
+                  expr_1 = match_13.tag == --[[ Pexp_poly ]]28 and expr or Curry._4(Ast_helper_Exp.poly, expr.pexp_loc, nil, expr, nil);
                   if (mem_2(lab_1.txt, local_meths)) then do
                     error({
                       __Error_9,
@@ -70122,7 +70122,7 @@ function class_structure(cl_num, __final, val_env, met_env, loc, param) do
                     if (match_15.tag == --[[ Pexp_poly ]]28) then do
                       sty = match_15[1];
                       sbody = match_15[0];
-                      if (sty ~= undefined) then do
+                      if (sty ~= nil) then do
                         sty_1 = force_poly(sty);
                         cty$prime = transl_simple_type(val_env, false, sty_1);
                         ty$prime = cty$prime.ctyp_type;
@@ -70143,14 +70143,14 @@ function class_structure(cl_num, __final, val_env, met_env, loc, param) do
                         local ___conditional___=(match_16.tag | 0);
                         do
                            if ___conditional___ == 0--[[ Tvar ]] then do
-                              ty$prime_1 = newvar(undefined, --[[ () ]]0);
+                              ty$prime_1 = newvar(nil, --[[ () ]]0);
                               unify_2(val_env, newty2(current_level.contents, --[[ Tpoly ]]Block.__(10, {
                                           ty$prime_1,
                                           --[[ [] ]]0
                                         })), ty_1);
                               unify_2(val_env, type_approx(val_env, sbody), ty$prime_1); end else 
                            if ___conditional___ == 10--[[ Tpoly ]] then do
-                              match_17 = instance_poly(undefined, false, match_16[1], match_16[0]);
+                              match_17 = instance_poly(nil, false, match_16[1], match_16[0]);
                               ty2 = type_approx(val_env, sbody);
                               unify_2(val_env, ty2, match_17[1]); end else 
                            end end end end
@@ -70203,7 +70203,7 @@ function class_structure(cl_num, __final, val_env, met_env, loc, param) do
                                 }));
                           raise_nongen_level(--[[ () ]]0);
                           vars_1.contents = vars_local;
-                          texp = type_expect(undefined, met_env, meth_expr, meth_type);
+                          texp = type_expect(nil, met_env, meth_expr, meth_type);
                           end_def(--[[ () ]]0);
                           return mkcf(--[[ Tcf_method ]]Block.__(2, {
                                         lab_1,
@@ -70289,7 +70289,7 @@ function class_structure(cl_num, __final, val_env, met_env, loc, param) do
                           });
                         meth_type = newty2(current_level.contents, desc);
                         vars_1.contents = vars_local_1;
-                        texp = type_expect(undefined, met_env, expr_2, meth_type);
+                        texp = type_expect(nil, met_env, expr_2, meth_type);
                         end_def(--[[ () ]]0);
                         return mkcf(--[[ Tcf_initializer ]]Block.__(4, {texp}));
                       end end));
@@ -70350,7 +70350,7 @@ function class_structure(cl_num, __final, val_env, met_env, loc, param) do
   inher = match_1[6];
   concr_meths = match_1[4];
   warning_leave_scope(--[[ () ]]0);
-  unify_2(val_env_1, self_type, newvar(undefined, --[[ () ]]0));
+  unify_2(val_env_1, self_type, newvar(nil, --[[ () ]]0));
   sign_csig_vars = map((function(param) do
           return --[[ tuple ]]{
                   param[1],
@@ -70427,7 +70427,7 @@ function class_structure(cl_num, __final, val_env, met_env, loc, param) do
       unify_2(val_env_1, private_self, newty2(current_level.contents, --[[ Tobject ]]Block.__(4, {
                   self_methods,
                   {
-                    contents = undefined
+                    contents = nil
                   }
                 })));
       unify_2(val_env_1, public_self, self_type);
@@ -70455,7 +70455,7 @@ function class_structure(cl_num, __final, val_env, met_env, loc, param) do
   fields = List.map(CamlinternalLazy.force, List.rev(match_1[3]));
   if (principal.contents) then do
     List.iter((function(param) do
-            return unify_2(val_env_1, param[2], newvar(undefined, --[[ () ]]0));
+            return unify_2(val_env_1, param[2], newvar(nil, --[[ () ]]0));
           end end), methods);
   end
    end 
@@ -70569,7 +70569,7 @@ function class_expr(cl_num, val_env, met_env, _scl) do
           return rc({
                       cl_desc = --[[ Tcl_constraint ]]Block.__(5, {
                           cl,
-                          undefined,
+                          nil,
                           match_3[0],
                           match_3[1],
                           match_3[2]
@@ -70591,45 +70591,45 @@ function class_expr(cl_num, val_env, met_env, _scl) do
        if ___conditional___ == 2--[[ Pcl_fun ]] then do
           match_5 = match[1];
           l = match[0];
-          if (match_5 ~= undefined) then do
+          if (match_5 ~= nil) then do
             __default = match_5;
             loc = __default.pexp_loc;
-            scases_000 = Curry._3(Ast_helper_Exp.__case, construct(loc, undefined, {
+            scases_000 = Curry._3(Ast_helper_Exp.__case, construct(loc, nil, {
                       txt = --[[ Ldot ]]Block.__(1, {
                           --[[ Lident ]]Block.__(0, {"*predef*"}),
                           "Some"
                         }),
                       loc = none
-                    }, __var_1(loc, undefined, {
+                    }, __var_1(loc, nil, {
                           txt = "*sth*",
                           loc = none
-                        })), undefined, Curry._3(Ast_helper_Exp.ident, loc, undefined, {
+                        })), nil, Curry._3(Ast_helper_Exp.ident, loc, nil, {
                       txt = --[[ Lident ]]Block.__(0, {"*sth*"}),
                       loc = none
                     }));
             scases_001 = --[[ :: ]]{
-              Curry._3(Ast_helper_Exp.__case, construct(loc, undefined, {
+              Curry._3(Ast_helper_Exp.__case, construct(loc, nil, {
                         txt = --[[ Ldot ]]Block.__(1, {
                             --[[ Lident ]]Block.__(0, {"*predef*"}),
                             "None"
                           }),
                         loc = none
-                      }, undefined), undefined, __default),
+                      }, nil), nil, __default),
               --[[ [] ]]0
             };
             scases = --[[ :: ]]{
               scases_000,
               scases_001
             };
-            smatch = Curry._4(Ast_helper_Exp.match_, loc, undefined, Curry._3(Ast_helper_Exp.ident, loc, undefined, {
+            smatch = Curry._4(Ast_helper_Exp.match_, loc, nil, Curry._3(Ast_helper_Exp.ident, loc, nil, {
                       txt = --[[ Lident ]]Block.__(0, {"*opt*"}),
                       loc = none
                     }), scases);
-            sfun = fun__1(scl.pcl_loc, undefined, l, undefined, __var_1(loc, undefined, {
+            sfun = fun__1(scl.pcl_loc, nil, l, nil, __var_1(loc, nil, {
                       txt = "*opt*",
                       loc = none
-                    }), let__1(scl.pcl_loc, undefined, --[[ Nonrecursive ]]0, --[[ :: ]]{
-                      mk_17(undefined, undefined, undefined, undefined, match[2], smatch),
+                    }), let__1(scl.pcl_loc, nil, --[[ Nonrecursive ]]0, --[[ :: ]]{
+                      mk_17(nil, nil, nil, nil, match[2], smatch),
                       --[[ [] ]]0
                     }, match[3]));
             _scl = sfun;
@@ -70668,7 +70668,7 @@ function class_expr(cl_num, val_env, met_env, _scl) do
                               }),
                             exp_loc = none,
                             exp_extra = --[[ [] ]]0,
-                            exp_type = instance(undefined, val_env$prime, vd.val_type),
+                            exp_type = instance(nil, val_env$prime, vd.val_type),
                             exp_env = val_env$prime,
                             exp_attributes = --[[ [] ]]0
                           }
@@ -70686,10 +70686,10 @@ function class_expr(cl_num, val_env, met_env, _scl) do
                 
               end
             end end;
-            partial = check_partial_1(undefined, val_env, pat.pat_type)(pat.pat_loc, --[[ :: ]]{
+            partial = check_partial_1(nil, val_env, pat.pat_type)(pat.pat_loc, --[[ :: ]]{
                   {
                     c_lhs = pat,
-                    c_guard = undefined,
+                    c_guard = nil,
                     c_rhs = {
                       exp_desc = --[[ Texp_constant ]]Block.__(1, {--[[ Const_int ]]Block.__(0, {1})}),
                       exp_loc = none,
@@ -70893,7 +70893,7 @@ function class_expr(cl_num, val_env, met_env, _scl) do
                                   match = --[[ tuple ]]{
                                     sargs,
                                     more_sargs,
-                                    is_optional(l) and (List.mem_assoc("", sargs) or List.mem_assoc("", more_sargs)) and option_none(ty0, none) or undefined
+                                    is_optional(l) and (List.mem_assoc("", sargs) or List.mem_assoc("", more_sargs)) and option_none(ty0, none) or nil
                                   };
                                 end else do
                                   error(exn_1)
@@ -70901,7 +70901,7 @@ function class_expr(cl_num, val_env, met_env, _scl) do
                               end end)
                             end end 
                             arg_1 = match[2];
-                            omitted_1 = arg_1 == undefined and --[[ :: ]]{
+                            omitted_1 = arg_1 == nil and --[[ :: ]]{
                                 --[[ tuple ]]{
                                   l,
                                   ty0
@@ -70980,7 +70980,7 @@ function class_expr(cl_num, val_env, met_env, _scl) do
           rec_flag = match[0];
           match_9;
           xpcall(function() do
-            match_9 = type_let_1(val_env, rec_flag, match[1], undefined);
+            match_9 = type_let_1(val_env, rec_flag, match[1], nil);
           end end,function(raw_exn) do
             exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
             if (exn[0] == Unify) then do
@@ -71019,7 +71019,7 @@ function class_expr(cl_num, val_env, met_env, _scl) do
                     },
                     vd
                   });
-                expr_exp_type = instance(undefined, val_env_1, vd.val_type);
+                expr_exp_type = instance(nil, val_env_1, vd.val_type);
                 expr = {
                   exp_desc = expr_exp_desc,
                   exp_loc = none,
@@ -71054,7 +71054,7 @@ function class_expr(cl_num, val_env, met_env, _scl) do
                           },
                           param_1[0]
                         },
-                        add_value(undefined, id$prime, desc, param_1[1])
+                        add_value(nil, id$prime, desc, param_1[1])
                       };
               end end
               end end)(val_env_1), List.rev(rev_let_bound_idents_with_loc(defs)), --[[ tuple ]]{
@@ -71119,7 +71119,7 @@ function class_expr(cl_num, val_env, met_env, _scl) do
   end;
 end end
 
-var_option = type_option(newty2(100000000, --[[ Tvar ]]Block.__(0, {undefined})));
+var_option = type_option(newty2(100000000, --[[ Tvar ]]Block.__(0, {nil})));
 
 function approx_declaration(_cl) do
   while(true) do
@@ -71129,7 +71129,7 @@ function approx_declaration(_cl) do
     do
        if ___conditional___ == 2--[[ Pcl_fun ]] then do
           l = match[0];
-          arg = is_optional(l) and instance_def(var_option) or newvar(undefined, --[[ () ]]0);
+          arg = is_optional(l) and instance_def(var_option) or newvar(nil, --[[ () ]]0);
           desc_002 = approx_declaration(match[3]);
           desc = --[[ Tarrow ]]Block.__(1, {
               l,
@@ -71144,7 +71144,7 @@ function approx_declaration(_cl) do
        if ___conditional___ == 5--[[ Pcl_constraint ]] then do
           _cl = match[0];
           ::continue:: ; end end 
-      return newvar(undefined, --[[ () ]]0);
+      return newvar(nil, --[[ () ]]0);
         
     end
   end;
@@ -71154,7 +71154,7 @@ function approx_description(ct) do
   match = ct.pcty_desc;
   if (match.tag == --[[ Pcty_arrow ]]2) then do
     l = match[0];
-    arg = is_optional(l) and instance_def(var_option) or newvar(undefined, --[[ () ]]0);
+    arg = is_optional(l) and instance_def(var_option) or newvar(nil, --[[ () ]]0);
     desc_002 = approx_description(match[2]);
     desc = --[[ Tarrow ]]Block.__(1, {
         l,
@@ -71164,7 +71164,7 @@ function approx_description(ct) do
       });
     return newty2(current_level.contents, desc);
   end else do
-    return newvar(undefined, --[[ () ]]0);
+    return newvar(nil, --[[ () ]]0);
   end end 
 end end
 
@@ -71172,11 +71172,11 @@ function temp_abbrev(loc, env, id, arity) do
   params = --[[ [] ]]0;
   for _i = 1 , arity , 1 do
     params = --[[ :: ]]{
-      newvar(undefined, --[[ () ]]0),
+      newvar(nil, --[[ () ]]0),
       params
     };
   end
-  ty = newobj(newvar(undefined, --[[ () ]]0));
+  ty = newobj(newvar(nil, --[[ () ]]0));
   env_1 = add_type_1(true, id, {
         type_params = params,
         type_arity = arity,
@@ -71184,7 +71184,7 @@ function temp_abbrev(loc, env, id, arity) do
         type_private = --[[ Public ]]1,
         type_manifest = ty,
         type_variance = replicate_list(Types_Variance.full, arity),
-        type_newtype_level = undefined,
+        type_newtype_level = nil,
         type_loc = loc,
         type_attributes = --[[ [] ]]0
       }, env);
@@ -71260,7 +71260,7 @@ function type_classes(define_class, approx, kind, env, cls) do
           end
            end 
           dummy_cty = --[[ Cty_signature ]]Block.__(1, {{
-                csig_self = newvar(undefined, --[[ () ]]0),
+                csig_self = newvar(nil, --[[ () ]]0),
                 csig_vars = --[[ Empty ]]0,
                 csig_concr = --[[ Empty ]]0,
                 csig_inher = --[[ [] ]]0
@@ -71270,7 +71270,7 @@ function type_classes(define_class, approx, kind, env, cls) do
             cty_params = --[[ [] ]]0,
             cty_type = dummy_cty,
             cty_path = unbound_class,
-            cty_new = match_2 and constr_type or undefined,
+            cty_new = match_2 and constr_type or nil,
             cty_variance = --[[ [] ]]0,
             cty_loc = none,
             cty_attributes = --[[ [] ]]0
@@ -71479,7 +71479,7 @@ function type_classes(define_class, approx, kind, env, cls) do
             end end 
           end end)
           xpcall(function() do
-            unify_2(env, constructor_type(constr, obj_type), instance(undefined, env, constr_type));
+            unify_2(env, constructor_type(constr, obj_type), instance(nil, env, constr_type));
           end end,function(raw_exn_4) do
             exn_5 = Caml_js_exceptions.internalToOCamlException(raw_exn_4);
             if (exn_5[0] == Unify) then do
@@ -71516,7 +71516,7 @@ function type_classes(define_class, approx, kind, env, cls) do
             cty_params = params,
             cty_type = typ,
             cty_path = --[[ Pident ]]Block.__(0, {obj_id}),
-            cty_new = match_4 and constr_type or undefined,
+            cty_new = match_4 and constr_type or nil,
             cty_variance = cty_variance,
             cty_loc = cl.pci_loc,
             cty_attributes = cl.pci_attributes
@@ -71577,7 +71577,7 @@ function type_classes(define_class, approx, kind, env, cls) do
             cty_params = params$prime,
             cty_type = typ$prime,
             cty_path = --[[ Pident ]]Block.__(0, {obj_id}),
-            cty_new = match_7 and instance(undefined, env_1, constr_type) or undefined,
+            cty_new = match_7 and instance(nil, env_1, constr_type) or nil,
             cty_variance = cty_variance,
             cty_loc = cl.pci_loc,
             cty_attributes = cl.pci_attributes
@@ -71595,11 +71595,11 @@ function type_classes(define_class, approx, kind, env, cls) do
             type_private = --[[ Public ]]1,
             type_manifest = obj_abbr_type_manifest,
             type_variance = obj_abbr_type_variance,
-            type_newtype_level = undefined,
+            type_newtype_level = nil,
             type_loc = obj_abbr_type_loc,
             type_attributes = --[[ [] ]]0
           };
-          match_8 = instance_parameterized_type(undefined, params, repr(signature_of_class_type(typ).csig_self));
+          match_8 = instance_parameterized_type(nil, params, repr(signature_of_class_type(typ).csig_self));
           cl_ty_1 = match_8[1];
           cl_params_1 = match_8[0];
           hide_private_methods(cl_ty_1);
@@ -71617,7 +71617,7 @@ function type_classes(define_class, approx, kind, env, cls) do
             type_private = --[[ Public ]]1,
             type_manifest = cl_abbr_type_manifest,
             type_variance = cl_abbr_type_variance,
-            type_newtype_level = undefined,
+            type_newtype_level = nil,
             type_loc = cl_abbr_type_loc,
             type_attributes = --[[ [] ]]0
           };
@@ -71704,7 +71704,7 @@ function type_classes(define_class, approx, kind, env, cls) do
           end
            end 
           match = closed_class(clty.cty_params, signature_of_class_type(clty.cty_type));
-          if (match ~= undefined) then do
+          if (match ~= nil) then do
             printer = define_class_1 and (function(ppf) do
                   return class_declaration_1(id, ppf, clty);
                 end end) or (function(ppf) do
@@ -71771,10 +71771,10 @@ function type_classes(define_class, approx, kind, env, cls) do
             match = cl_abbr.type_manifest;
             match_1 = obj_abbr.type_manifest;
             match_2;
-            if (match ~= undefined) then do
-              if (match_1 ~= undefined) then do
-                match_3 = instance_parameterized_type(undefined, cl_abbr.type_params, match);
-                match_4 = instance_parameterized_type(undefined, obj_abbr.type_params, match_1);
+            if (match ~= nil) then do
+              if (match_1 ~= nil) then do
+                match_3 = instance_parameterized_type(nil, cl_abbr.type_params, match);
+                match_4 = instance_parameterized_type(nil, obj_abbr.type_params, match_1);
                 List.iter2((function(param, param_1) do
                         return unify_2(env_3, param, param_1);
                       end end), match_3[0], match_4[0]);
@@ -71920,7 +71920,7 @@ function unify_parents_struct(env, ty, st) do
                           xpcall(function() do
                             decl = find_class(match_1[0], env_1);
                             match_2 = find_cltype_for_path(env_1, decl.cty_path);
-                            return unify_2(env_1, ty_1, instance(undefined, env_1, match_2[1]));
+                            return unify_2(env_1, ty_1, instance(nil, env_1, match_2[1]));
                           end end,function(exn) do
                             if (exn == Caml_builtin_exceptions.not_found) then do
                               return --[[ () ]]0;
@@ -71974,8 +71974,8 @@ end end
 type_object.contents = type_object_1;
 
 function approx_class(sdecl) do
-  self$prime = mk(undefined, undefined, --[[ Ptyp_any ]]0);
-  clty$prime = signature_1(sdecl.pci_expr.pcty_loc, undefined, {
+  self$prime = mk(nil, nil, --[[ Ptyp_any ]]0);
+  clty$prime = signature_1(sdecl.pci_expr.pcty_loc, nil, {
         pcsig_self = self$prime,
         pcsig_fields = --[[ [] ]]0
       });
@@ -72026,7 +72026,7 @@ register_error_of_exn((function(param) do
                                                       }),
                                                     "The class constraints are not consistent.@."
                                                   });
-                                              return report_unification_error(ppf_1, env_2, undefined, param_1[0], (function(ppf) do
+                                              return report_unification_error(ppf_1, env_2, nil, param_1[0], (function(ppf) do
                                                             return Format.fprintf(ppf, --[[ Format ]]{
                                                                         --[[ String_literal ]]Block.__(11, {
                                                                             "Type",
@@ -72046,7 +72046,7 @@ register_error_of_exn((function(param) do
                                            if ___conditional___ == 1--[[ Field_type_mismatch ]] then do
                                               m = param_1[1];
                                               k = param_1[0];
-                                              return report_unification_error(ppf_1, env_2, undefined, param_1[2], (function(ppf) do
+                                              return report_unification_error(ppf_1, env_2, nil, param_1[2], (function(ppf) do
                                                             return Curry._2(Format.fprintf(ppf, --[[ Format ]]{
                                                                             --[[ String_literal ]]Block.__(11, {
                                                                                 "The ",
@@ -72309,7 +72309,7 @@ register_error_of_exn((function(param) do
                                                             }), type_expr_1, abbrev, type_expr_1, actual, type_expr_1, expected); end end 
                                            if ___conditional___ == 9--[[ Constructor_type_mismatch ]] then do
                                               c = param_1[0];
-                                              return report_unification_error(ppf_1, env_2, undefined, param_1[1], (function(ppf) do
+                                              return report_unification_error(ppf_1, env_2, nil, param_1[1], (function(ppf) do
                                                             return Curry._1(Format.fprintf(ppf, --[[ Format ]]{
                                                                             --[[ String_literal ]]Block.__(11, {
                                                                                 "The expression \"new ",
@@ -72486,7 +72486,7 @@ register_error_of_exn((function(param) do
                                                               "@[The class constructor %a@ expects %i type argument(s),@ but is here applied to %i type argument(s)@]"
                                                             }), longident, param_1[0], param_1[1], param_1[2]); end end 
                                            if ___conditional___ == 12--[[ Parameter_mismatch ]] then do
-                                              return report_unification_error(ppf_1, env_2, undefined, param_1[0], (function(ppf) do
+                                              return report_unification_error(ppf_1, env_2, nil, param_1[0], (function(ppf) do
                                                             return Format.fprintf(ppf, --[[ Format ]]{
                                                                         --[[ String_literal ]]Block.__(11, {
                                                                             "The type parameter",
@@ -72581,7 +72581,7 @@ register_error_of_exn((function(param) do
                                                 ty1 = real and ty0 or newty2(100000000, --[[ Tobject ]]Block.__(4, {
                                                           ty0,
                                                           {
-                                                            contents = undefined
+                                                            contents = nil
                                                           }
                                                         }));
                                                 mark_loops(ty1);
@@ -72874,7 +72874,7 @@ register_error_of_exn((function(param) do
                                                       }), (function(param, param_1) do
                                                       return class_declaration_1(id_1, param, param_1);
                                                     end end), param_1[1]);
-                                              return report_unification_error(ppf_1, env_2, undefined, param_1[2], (function(ppf) do
+                                              return report_unification_error(ppf_1, env_2, nil, param_1[2], (function(ppf) do
                                                             return Format.fprintf(ppf, --[[ Format ]]{
                                                                         --[[ String_literal ]]Block.__(11, {
                                                                             "Type",
@@ -72892,7 +72892,7 @@ register_error_of_exn((function(param) do
                                                                       });
                                                           end end)); end end 
                                            if ___conditional___ == 21--[[ Final_self_clash ]] then do
-                                              return report_unification_error(ppf_1, env_2, undefined, param_1[0], (function(ppf) do
+                                              return report_unification_error(ppf_1, env_2, nil, param_1[0], (function(ppf) do
                                                             return Format.fprintf(ppf, --[[ Format ]]{
                                                                         --[[ String_literal ]]Block.__(11, {
                                                                             "This object is expected to have type",
@@ -73109,7 +73109,7 @@ function path_concat(head, p) do
 end end
 
 function extract_sig(env, loc, mty) do
-  match = scrape_alias(env, undefined, mty);
+  match = scrape_alias(env, nil, mty);
   if (match.tag == --[[ Mty_signature ]]1) then do
     return match[0];
   end else do
@@ -73123,7 +73123,7 @@ function extract_sig(env, loc, mty) do
 end end
 
 function extract_sig_open(env, loc, mty) do
-  match = scrape_alias(env, undefined, mty);
+  match = scrape_alias(env, nil, mty);
   if (match.tag == --[[ Mty_signature ]]1) then do
     return match[0];
   end else do
@@ -73201,7 +73201,7 @@ end end
 
 function check_type_decl(env, loc, id, row_id, newdecl, decl, rs, rem) do
   env_1 = add_type_1(true, id, newdecl, env);
-  env_2 = row_id ~= undefined and add_type_1(true, row_id, newdecl, env_1) or env_1;
+  env_2 = row_id ~= nil and add_type_1(true, row_id, newdecl, env_1) or env_1;
   env_3 = rs == --[[ Trec_not ]]0 and env_2 or add_rec_types(env_2, rem);
   type_declarations_3(env_3, id, newdecl, decl);
   return check_coherence(env_3, loc, id, newdecl);
@@ -73269,7 +73269,7 @@ function merge_constraint(initial_env, loc, sg, constr) do
     
   end
   real_id = {
-    contents = undefined
+    contents = nil
   };
   merge = function(env, _sg, namelist, _row_id) do
     while(true) do
@@ -73295,7 +73295,7 @@ function merge_constraint(initial_env, loc, sg, constr) do
                       exit_1 = 0;
                       if (typeof match == "number" and not (match ~= 0 or not (id.name == s and is_fixed_type(sdecl)))) then do
                         decl_row_type_params = List.map((function(param) do
-                                return newty2(100000000, --[[ Tvar ]]Block.__(0, {undefined}));
+                                return newty2(100000000, --[[ Tvar ]]Block.__(0, {nil}));
                               end end), sdecl.ptype_params);
                         decl_row_type_arity = List.length(sdecl.ptype_params);
                         decl_row_type_variance = List.map((function(param) do
@@ -73331,9 +73331,9 @@ function merge_constraint(initial_env, loc, sg, constr) do
                           type_arity = decl_row_type_arity,
                           type_kind = --[[ Type_abstract ]]0,
                           type_private = --[[ Private ]]0,
-                          type_manifest = undefined,
+                          type_manifest = nil,
                           type_variance = decl_row_type_variance,
-                          type_newtype_level = undefined,
+                          type_newtype_level = nil,
                           type_loc = decl_row_type_loc,
                           type_attributes = --[[ [] ]]0
                         };
@@ -73351,9 +73351,9 @@ function merge_constraint(initial_env, loc, sg, constr) do
                           type_arity = decl_row_type_arity_1,
                           type_kind = --[[ Type_abstract ]]0,
                           type_private = --[[ Private ]]0,
-                          type_manifest = undefined,
+                          type_manifest = nil,
                           type_variance = decl_row_type_variance_1,
-                          type_newtype_level = undefined,
+                          type_newtype_level = nil,
                           type_loc = decl_row_type_loc_1,
                           type_attributes = --[[ [] ]]0
                         };
@@ -73385,7 +73385,7 @@ function merge_constraint(initial_env, loc, sg, constr) do
                       end end 
                       if (exit_1 == 3) then do
                         if (id.name == s) then do
-                          tdecl_1 = transl_with_constraint(initial_env, id, undefined, decl, sdecl);
+                          tdecl_1 = transl_with_constraint(initial_env, id, nil, decl, sdecl);
                           newdecl_1 = tdecl_1.typ_type;
                           check_type_decl(env, sdecl.ptype_loc, id, row_id, newdecl_1, decl, rs, rem);
                           return --[[ tuple ]]{
@@ -73423,7 +73423,7 @@ function merge_constraint(initial_env, loc, sg, constr) do
                   end else if (constr.tag) then do
                     sdecl_1 = constr[0];
                     if (id.name == s) then do
-                      tdecl_2 = transl_with_constraint(initial_env, id, undefined, decl, sdecl_1);
+                      tdecl_2 = transl_with_constraint(initial_env, id, nil, decl, sdecl_1);
                       newdecl_2 = tdecl_2.typ_type;
                       check_type_decl(env, sdecl_1.ptype_loc, id, row_id, newdecl_2, decl, rs, rem);
                       real_id.contents = id;
@@ -73524,7 +73524,7 @@ function merge_constraint(initial_env, loc, sg, constr) do
                   end
                 end end 
                 if (exit_2 == 2 and id_1.name == s_1) then do
-                  match_3 = merge(env, extract_sig(env, loc, md.md_type), namelist_1, undefined);
+                  match_3 = merge(env, extract_sig(env, loc, md.md_type), namelist_1, nil);
                   match_4 = match_3[0];
                   return --[[ tuple ]]{
                           --[[ tuple ]]{
@@ -73572,7 +73572,7 @@ function merge_constraint(initial_env, loc, sg, constr) do
   end end;
   xpcall(function() do
     names = flat(--[[ [] ]]0, lid.txt);
-    match = merge(initial_env, sg, names, undefined);
+    match = merge(initial_env, sg, names, nil);
     sg_1 = match[1];
     sg_2;
     if (names and not names[1]) then do
@@ -73585,7 +73585,7 @@ function merge_constraint(initial_env, loc, sg, constr) do
             sdecl = constr[0];
             match_1 = real_id.contents;
             id;
-            if (match_1 ~= undefined) then do
+            if (match_1 ~= nil) then do
               id = match_1;
             end else do
               error({
@@ -73600,7 +73600,7 @@ function merge_constraint(initial_env, loc, sg, constr) do
             lid_1;
             xpcall(function() do
               match_2 = sdecl.ptype_manifest;
-              if (match_2 ~= undefined) then do
+              if (match_2 ~= nil) then do
                 match_3 = match_2.ptyp_desc;
                 if (typeof match_3 == "number") then do
                   error(Pervasives.Exit)
@@ -73670,7 +73670,7 @@ function merge_constraint(initial_env, loc, sg, constr) do
          if ___conditional___ == 3--[[ Pwith_modsubst ]] then do
             match_5 = real_id.contents;
             id_1;
-            if (match_5 ~= undefined) then do
+            if (match_5 ~= nil) then do
               id_1 = match_5;
             end else do
               error({
@@ -73682,7 +73682,7 @@ function merge_constraint(initial_env, loc, sg, constr) do
                 }
               })
             end end 
-            path = lookup_module_1(undefined, initial_env, loc, constr[1].txt);
+            path = lookup_module_1(nil, initial_env, loc, constr[1].txt);
             sub_1 = add_module(id_1, path, identity);
             sg_2 = signature_2(sub_1, sg_1); end else 
          end end end end end end
@@ -73809,7 +73809,7 @@ function approx_modtype(env, _smty) do
             error_of_extension(match[0])
           }) end end 
        if ___conditional___ == 6--[[ Pmty_alias ]] then do
-          path = lookup_module_1(undefined, env, smty.pmty_loc, match[0].txt);
+          path = lookup_module_1(nil, env, smty.pmty_loc, match[0].txt);
           return --[[ Mty_alias ]]Block.__(3, {path}); end end 
       
     end
@@ -73848,7 +73848,7 @@ function approx_sig(_env, _ssg) do
          if ___conditional___ == 4--[[ Psig_module ]] then do
             pmd = match[0];
             md = approx_module_declaration(env, pmd);
-            match_1 = enter_module_declaration(undefined, pmd.pmd_name.txt, md, env);
+            match_1 = enter_module_declaration(nil, pmd.pmd_name.txt, md, env);
             return --[[ :: ]]{
                     --[[ Sig_module ]]Block.__(3, {
                         match_1[0],
@@ -73867,7 +73867,7 @@ function approx_sig(_env, _ssg) do
                 end end
                 end end)(env), match[0]);
             newenv = List.fold_left((function(env, param) do
-                    return add_module_declaration(undefined, param[0], param[1], env);
+                    return add_module_declaration(nil, param[0], param[1], env);
                   end end), env, decls_1);
             return map_rec((function(rs, param) do
                           return --[[ Sig_module ]]Block.__(3, {
@@ -73888,7 +73888,7 @@ function approx_sig(_env, _ssg) do
                     approx_sig(match_2[1], srem)
                   }; end end 
          if ___conditional___ == 7--[[ Psig_open ]] then do
-            match_3 = type_open_1(undefined, env, match[0]);
+            match_3 = type_open_1(nil, env, match[0]);
             _ssg = srem;
             _env = match_3[1];
             ::continue:: ; end end 
@@ -74245,7 +74245,7 @@ function transl_modtype_longident_1(loc, env, lid) do
 end end
 
 function transl_module_alias(loc, env, lid) do
-  return lookup_module_1(undefined, env, loc, lid);
+  return lookup_module_1(nil, env, loc, lid);
 end end
 
 function mkmty_1(desc, typ, env, loc, attrs) do
@@ -74472,7 +74472,7 @@ function transl_signature(env, sg) do
               md_attributes = md_md_attributes,
               md_loc = md_md_loc
             };
-            match_9 = enter_module_declaration(undefined, pmd.pmd_name.txt, md, env);
+            match_9 = enter_module_declaration(nil, pmd.pmd_name.txt, md, env);
             id = match_9[0];
             match_10 = transl_sig(match_9[1], srem);
             return --[[ tuple ]]{
@@ -74541,7 +74541,7 @@ function transl_signature(env, sg) do
                     match_14[2]
                   }; end end 
          if ___conditional___ == 7--[[ Psig_open ]] then do
-            match_15 = type_open_1(undefined, env, match[0]);
+            match_15 = type_open_1(nil, env, match[0]);
             match_16 = transl_sig(match_15[1], srem);
             return --[[ tuple ]]{
                     --[[ :: ]]{
@@ -74968,7 +74968,7 @@ function closed_signature_item(param) do
 end end
 
 function anchor_submodule(name, anchor) do
-  if (anchor ~= undefined) then do
+  if (anchor ~= nil) then do
     return --[[ Pdot ]]Block.__(1, {
               anchor,
               name,
@@ -74979,7 +74979,7 @@ function anchor_submodule(name, anchor) do
 end end
 
 function enrich_type_decls(anchor, decls, oldenv, newenv) do
-  if (anchor ~= undefined) then do
+  if (anchor ~= nil) then do
     p = anchor;
     return List.fold_left((function(e, info) do
                   id = info.typ_id;
@@ -74996,7 +74996,7 @@ function enrich_type_decls(anchor, decls, oldenv, newenv) do
 end end
 
 function enrich_module_type(anchor, name, mty, env) do
-  if (anchor ~= undefined) then do
+  if (anchor ~= nil) then do
     return enrich_modtype(env, --[[ Pdot ]]Block.__(1, {
                   anchor,
                   name,
@@ -75200,7 +75200,7 @@ function modtype_of_package(env, loc, p, nl, tl) do
   xpcall(function() do
     match = find_modtype(p, env).mtd_type;
     exit = 0;
-    if (match ~= undefined and nl ~= --[[ [] ]]0) then do
+    if (match ~= nil and nl ~= --[[ [] ]]0) then do
       return package_constraints(env, loc, match, List.combine(List.map(flatten, nl), tl));
     end else do
       exit = 1;
@@ -75220,7 +75220,7 @@ function modtype_of_package(env, loc, p, nl, tl) do
      end 
   end end,function(exn) do
     if (exn == Caml_builtin_exceptions.not_found) then do
-      error = --[[ Unbound_modtype ]]Block.__(22, {lid_of_path(undefined, p)});
+      error = --[[ Unbound_modtype ]]Block.__(22, {lid_of_path(nil, p)});
       error({
         __Error_6,
         loc,
@@ -75236,7 +75236,7 @@ end end
 function package_subtype_1(env, p1, nl1, tl1, p2, nl2, tl2) do
   mkmty = function(p, nl, tl) do
     ntl = List.filter((function(param) do
-              return free_variables_1(undefined, param[1]) == --[[ [] ]]0;
+              return free_variables_1(nil, param[1]) == --[[ [] ]]0;
             end end))(List.combine(nl, tl));
     match = List.split(ntl);
     return modtype_of_package(env, none, p, match[0], match[1]);
@@ -75289,7 +75289,7 @@ function wrap_constraint(env, arg, mty, explicit) do
 end end
 
 function type_module_1(aliasOpt, sttn, funct_body, anchor, env, smod) do
-  alias = aliasOpt ~= undefined and aliasOpt or false;
+  alias = aliasOpt ~= nil and aliasOpt or false;
   match = smod.pmod_desc;
   local ___conditional___=(match.tag | 0);
   do
@@ -75353,7 +75353,7 @@ function type_module_1(aliasOpt, sttn, funct_body, anchor, env, smod) do
         record_2(--[[ Ti_mod ]]Block.__(3, {node}));
         return node; end end 
      if ___conditional___ == 1--[[ Pmod_structure ]] then do
-        match_1 = type_structure(undefined, funct_body, anchor, env, match[0], smod.pmod_loc);
+        match_1 = type_structure(nil, funct_body, anchor, env, match[0], smod.pmod_loc);
         sg = match_1[1];
         node_mod_desc = --[[ Tmod_structure ]]Block.__(1, {match_1[0]});
         node_mod_loc = smod.pmod_loc;
@@ -75381,7 +75381,7 @@ function type_module_1(aliasOpt, sttn, funct_body, anchor, env, smod) do
         ty_arg = may_map((function(m) do
                 return m.mty_type;
               end end), mty_3);
-        match_2 = ty_arg ~= undefined and --[[ tuple ]]{
+        match_2 = ty_arg ~= nil and --[[ tuple ]]{
             enter_module(true, name.txt, ty_arg, env),
             true
           } or --[[ tuple ]]{
@@ -75393,7 +75393,7 @@ function type_module_1(aliasOpt, sttn, funct_body, anchor, env, smod) do
           };
         match_3 = match_2[0];
         id = match_3[0];
-        body = type_module_1(undefined, sttn, match_2[1], undefined, match_3[1], match[2]);
+        body = type_module_1(nil, sttn, match_2[1], nil, match_3[1], match[2]);
         node_mod_desc_1 = --[[ Tmod_functor ]]Block.__(2, {
             id,
             name,
@@ -75419,15 +75419,15 @@ function type_module_1(aliasOpt, sttn, funct_body, anchor, env, smod) do
      if ___conditional___ == 3--[[ Pmod_apply ]] then do
         sarg = match[1];
         sfunct = match[0];
-        arg = type_module_1(undefined, true, funct_body, undefined, env, sarg);
+        arg = type_module_1(nil, true, funct_body, nil, env, sarg);
         path_1 = path_of_module_1(arg);
-        funct = type_module_1(undefined, sttn and path_1 ~= undefined, funct_body, undefined, env, sfunct);
-        mty_functor = scrape_alias(env, undefined, funct.mod_type);
+        funct = type_module_1(nil, sttn and path_1 ~= nil, funct_body, nil, env, sfunct);
+        mty_functor = scrape_alias(env, nil, funct.mod_type);
         if (mty_functor.tag == --[[ Mty_functor ]]2) then do
           mty_res = mty_functor[2];
           mty_param = mty_functor[1];
           param = mty_functor[0];
-          generative = mty_param == undefined;
+          generative = mty_param == nil;
           mty_param_1 = default_mty(mty_param);
           if (generative) then do
             if (Caml_obj.caml_notequal(sarg.pmod_desc, --[[ Pmod_structure ]]Block.__(1, {--[[ [] ]]0}))) then do
@@ -75467,7 +75467,7 @@ function type_module_1(aliasOpt, sttn, funct_body, anchor, env, smod) do
             error(exn)
           end end)
           mty_appl;
-          if (path_1 ~= undefined) then do
+          if (path_1 ~= nil) then do
             mty_appl = modtype(add_module(param, path_1, identity), mty_res);
           end else if (generative) then do
             mty_appl = mty_res;
@@ -75559,7 +75559,7 @@ function type_module_1(aliasOpt, sttn, funct_body, anchor, env, smod) do
              if ___conditional___ == 11--[[ Tpackage ]] then do
                 tl = match_5[2];
                 if (List.exists((function(t) do
-                          return free_variables_1(undefined, t) ~= --[[ [] ]]0;
+                          return free_variables_1(nil, t) ~= --[[ [] ]]0;
                         end end), tl)) then do
                   error({
                     __Error_10,
@@ -75622,7 +75622,7 @@ function type_module_1(aliasOpt, sttn, funct_body, anchor, env, smod) do
 end end
 
 function type_structure(toplevelOpt, funct_body, anchor, env, sstr, scope) do
-  toplevel = toplevelOpt ~= undefined and toplevelOpt or false;
+  toplevel = toplevelOpt ~= nil and toplevelOpt or false;
   type_names = {
     contents = --[[ Empty ]]0
   };
@@ -75755,7 +75755,7 @@ function type_structure(toplevelOpt, funct_body, anchor, env, sstr, scope) do
             md_attributes = attrs,
             md_loc = pmb_loc
           };
-          match_6 = enter_module_declaration(undefined, name.txt, md, env);
+          match_6 = enter_module_declaration(nil, name.txt, md, env);
           id = match_6[0];
           return --[[ tuple ]]{
                   --[[ Tstr_module ]]Block.__(6, {{
@@ -75814,7 +75814,7 @@ function type_structure(toplevelOpt, funct_body, anchor, env, sstr, scope) do
           decls_1 = match_7[0];
           bindings1 = List.map2((function(param, param_1) do
                   id = param.md_id;
-                  modl = type_module_1(undefined, true, funct_body, --[[ Pident ]]Block.__(0, {id}), newenv_1, param_1[2]);
+                  modl = type_module_1(nil, true, funct_body, --[[ Pident ]]Block.__(0, {id}), newenv_1, param_1[2]);
                   mty$prime = enrich_module_type(anchor, id.name, modl.mod_type, newenv_1);
                   return --[[ tuple ]]{
                           id,
@@ -75835,7 +75835,7 @@ function type_structure(toplevelOpt, funct_body, anchor, env, sstr, scope) do
                     md_attributes = mdecl_md_attributes,
                     md_loc = mdecl_md_loc
                   };
-                  return add_module_declaration(undefined, md.md_id, mdecl, env);
+                  return add_module_declaration(nil, md.md_id, mdecl, env);
                 end end), env, decls_1);
           bindings2 = check_recmodule_inclusion(newenv_2, bindings1);
           return --[[ tuple ]]{
@@ -75879,7 +75879,7 @@ function type_structure(toplevelOpt, funct_body, anchor, env, sstr, scope) do
           classes = match_10[0];
           return --[[ tuple ]]{
                   --[[ Tstr_class ]]Block.__(10, {List.map((function(param) do
-                              vf = param[2].cty_new == undefined and --[[ Virtual ]]0 or --[[ Concrete ]]1;
+                              vf = param[2].cty_new == nil and --[[ Virtual ]]0 or --[[ Concrete ]]1;
                               return --[[ tuple ]]{
                                       param[11],
                                       param[10],
@@ -75963,7 +75963,7 @@ function type_structure(toplevelOpt, funct_body, anchor, env, sstr, scope) do
        if ___conditional___ == 12--[[ Pstr_include ]] then do
           sincl = desc[0];
           smodl = sincl.pincl_mod;
-          modl_1 = type_module_1(undefined, true, funct_body, undefined, env, smodl);
+          modl_1 = type_module_1(nil, true, funct_body, nil, env, smodl);
           sg = signature_2(identity, extract_sig_open(env, smodl.pmod_loc, modl_1.mod_type));
           match_12 = modl_1.mod_desc;
           sg_1;
@@ -76127,11 +76127,11 @@ function type_structure(toplevelOpt, funct_body, anchor, env, sstr, scope) do
 end end
 
 function type_module_2(param, param_1) do
-  return type_module_1(undefined, true, false, undefined, param, param_1);
+  return type_module_1(nil, true, false, nil, param, param_1);
 end end
 
 function type_structure_1(param, param_1, param_2) do
-  return type_structure(undefined, false, undefined, param, param_1, param_2);
+  return type_structure(nil, false, nil, param, param_1, param_2);
 end end
 
 function normalize_signature(env) do
@@ -76280,7 +76280,7 @@ function type_package_1(env, m, p, nl, tl) do
     mty = modtype_of_package(env_1, modl.mod_loc, p, nl, tl$prime);
     List.iter2((function(n, ty) do
             xpcall(function() do
-              return unify_2(env_1, ty, newvar(undefined, --[[ () ]]0));
+              return unify_2(env_1, ty, newvar(nil, --[[ () ]]0));
             end end,function(raw_exn) do
               exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
               if (exn[0] == Unify) then do
@@ -76312,7 +76312,7 @@ transl_modtype_longident.contents = transl_modtype_longident_1;
 transl_modtype.contents = transl_modtype_1;
 
 type_open.contents = (function(param, param_1, param_2, param_3) do
-    return type_open_(undefined, param, param_1, param_2, param_3);
+    return type_open_(nil, param, param_1, param_2, param_3);
   end end);
 
 type_package.contents = type_package_1;
@@ -76368,7 +76368,7 @@ function type_implementation_more(sourcefile, outputprefix, modulename, initial_
         dclsig = read_signature(modulename, intf_file);
         coercion = compunit(initial_env, sourcefile, sg, intf_file, dclsig);
         force_delayed_checks(--[[ () ]]0);
-        save_cmt(outputprefix .. ".cmt", modulename, --[[ Implementation ]]Block.__(1, {str}), sourcefile, initial_env, undefined);
+        save_cmt(outputprefix .. ".cmt", modulename, --[[ Implementation ]]Block.__(1, {str}), sourcefile, initial_env, nil);
         return --[[ tuple ]]{
                 str,
                 coercion,
@@ -76429,7 +76429,7 @@ function type_implementation_more(sourcefile, outputprefix, modulename, initial_
       end end 
     end end 
   end end,function(e) do
-    save_cmt(outputprefix .. ".cmt", modulename, --[[ Partial_implementation ]]Block.__(3, {__Array.of_list(saved_types.contents)}), sourcefile, initial_env, undefined);
+    save_cmt(outputprefix .. ".cmt", modulename, --[[ Partial_implementation ]]Block.__(3, {__Array.of_list(saved_types.contents)}), sourcefile, initial_env, nil);
     error(e)
   end end)
 end end
@@ -77069,14 +77069,14 @@ if (match_1) then do
                   eq("File \"ocaml_typed_tree_main.ml\", line 221, characters 12-19", true, false);
                 end else do
                   match_13 = match_12.type_kind;
-                  if (typeof match_13 == "number" and not (match_13 ~= 0 or not (match_12.type_private and not (match_12.type_manifest ~= undefined or match_12.type_variance or match_12.type_newtype_level ~= undefined)))) then do
+                  if (typeof match_13 == "number" and not (match_13 ~= 0 or not (match_12.type_private and not (match_12.type_manifest ~= nil or match_12.type_variance or match_12.type_newtype_level ~= nil)))) then do
                     match_14 = match_12.type_loc;
                     match_15 = match_14.loc_start;
                     if (match_15.pos_fname == "" and not (match_15.pos_lnum ~= 2 or match_15.pos_bol ~= 1 or match_15.pos_cnum ~= 1)) then do
                       match_16 = match_14.loc_end;
                       if (match_16.pos_fname == "" and not (match_16.pos_lnum ~= 2 or match_16.pos_bol ~= 1 or match_16.pos_cnum ~= 9 or match_14.loc_ghost or match_12.type_attributes or match_5.typ_cstrs)) then do
                         match_17 = match_5.typ_kind;
-                        if (typeof match_17 == "number" and not (match_17 ~= 0 or not (match_5.typ_private and match_5.typ_manifest == undefined))) then do
+                        if (typeof match_17 == "number" and not (match_17 ~= 0 or not (match_5.typ_private and match_5.typ_manifest == nil))) then do
                           match_18 = match_5.typ_loc;
                           match_19 = match_18.loc_start;
                           if (match_19.pos_fname == "" and not (match_19.pos_lnum ~= 2 or match_19.pos_bol ~= 1 or match_19.pos_cnum ~= 1)) then do

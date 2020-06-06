@@ -33,9 +33,9 @@ function eq(loc, x, y) do
   return --[[ () ]]0;
 end end
 
-match = typeof __dirname == "undefined" and undefined or __dirname;
+match = typeof __dirname == "undefined" and nil or __dirname;
 
-if (match ~= undefined) then do
+if (match ~= nil) then do
   root = App_root_finder.find_package_json(match);
   bsc_exe = Path.join(root, "bsc");
   exit = 0;

@@ -42,7 +42,7 @@ if (match) then do
                 if (match_12.pos_fname == "" and not (match_12.pos_lnum ~= 1 or match_12.pos_bol ~= 0 or match_12.pos_cnum ~= 5 or match_10.loc_ghost or match_4.ppat_attributes)) then do
                   match_13 = match_3.pvb_expr;
                   match_14 = match_13.pexp_desc;
-                  if (match_14.tag == --[[ Pexp_fun ]]4 and match_14[0] == "" and match_14[1] == undefined) then do
+                  if (match_14.tag == --[[ Pexp_fun ]]4 and match_14[0] == "" and match_14[1] == nil) then do
                     match_15 = match_14[2];
                     match_16 = match_15.ppat_desc;
                     if (typeof match_16 == "number" or match_16.tag) then do

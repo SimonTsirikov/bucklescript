@@ -163,7 +163,7 @@ function splitAux(x, n) do
     end else do
       return --[[ tuple ]]{
               nil,
-              undefined,
+              nil,
               n
             };
     end end 
@@ -177,7 +177,7 @@ function splitAux(x, n) do
   end else do
     return --[[ tuple ]]{
             n,
-            undefined,
+            nil,
             nil
           };
   end end  end  end 
@@ -189,7 +189,7 @@ function split(x, n) do
   end else do
     return --[[ tuple ]]{
             nil,
-            undefined,
+            nil,
             nil
           };
   end end 

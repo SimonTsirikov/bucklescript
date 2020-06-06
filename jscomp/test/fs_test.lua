@@ -32,13 +32,13 @@ function eq(loc, param) do
   return --[[ () ]]0;
 end end
 
-match = typeof __filename == "undefined" and undefined or __filename;
+match = typeof __filename == "undefined" and nil or __filename;
 
-current_file = match ~= undefined and match or "<Not Node JS>";
+current_file = match ~= nil and match or "<Not Node JS>";
 
-match_1 = typeof __dirname == "undefined" and undefined or __dirname;
+match_1 = typeof __dirname == "undefined" and nil or __dirname;
 
-current_dir_name = match_1 ~= undefined and match_1 or "<Not Node Js>";
+current_dir_name = match_1 ~= nil and match_1 or "<Not Node Js>";
 
 Fs.readFileSync(current_file, "utf8");
 
@@ -46,9 +46,9 @@ Fs.readdirSync(current_dir_name);
 
 pathobj = Path.parse(current_dir_name);
 
-match_2 = typeof module == "undefined" and undefined or module;
+match_2 = typeof module == "undefined" and nil or module;
 
-if (match_2 ~= undefined) then do
+if (match_2 ~= nil) then do
   console.log(--[[ tuple ]]{
         match_2.id,
         match_2.paths

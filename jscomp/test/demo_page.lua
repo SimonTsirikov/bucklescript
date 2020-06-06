@@ -43,7 +43,7 @@ ReactDom.render(React.createClass({
           render = (function(param) do
               return React.DOM.div({
                           alt = "pic"
-                        }, React.DOM.h1(undefined, "hello react"), React.DOM.h2(undefined, "type safe!"));
+                        }, React.DOM.h1(nil, "hello react"), React.DOM.h2(nil, "type safe!"));
             end end)
         }), document.getElementById("hi"));
 

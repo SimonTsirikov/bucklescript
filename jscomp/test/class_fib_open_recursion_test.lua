@@ -73,7 +73,7 @@ function memo_fib_init(__class) do
         end end));
   return (function(env, self) do
       self_1 = CamlinternalOO.create_object_opt(self, __class);
-      self_1[cache] = Hashtbl.create(undefined, 31);
+      self_1[cache] = Hashtbl.create(nil, 31);
       Curry._1(obj_init, self_1);
       return CamlinternalOO.run_initializers_opt(self, self_1, __class);
     end end);

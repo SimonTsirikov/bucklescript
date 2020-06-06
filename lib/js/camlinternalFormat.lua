@@ -47,7 +47,7 @@ function is_in_char_set(char_set, c) do
 end end
 
 function pad_of_pad_opt(pad_opt) do
-  if (pad_opt ~= undefined) then do
+  if (pad_opt ~= nil) then do
     return --[[ Lit_padding ]]Block.__(0, {
               --[[ Right ]]1,
               pad_opt
@@ -58,7 +58,7 @@ function pad_of_pad_opt(pad_opt) do
 end end
 
 function prec_of_prec_opt(prec_opt) do
-  if (prec_opt ~= undefined) then do
+  if (prec_opt ~= nil) then do
     return --[[ Lit_precision ]]{prec_opt};
   end else do
     return --[[ No_precision ]]0;
@@ -406,7 +406,7 @@ function bprint_ignored_flag(buf, ign_flag) do
 end end
 
 function bprint_pad_opt(buf, pad_opt) do
-  if (pad_opt ~= undefined) then do
+  if (pad_opt ~= nil) then do
     return buffer_add_string(buf, String(pad_opt));
   end else do
     return --[[ () ]]0;
@@ -4215,7 +4215,7 @@ function make_padprec_fmt_ebb(pad, prec, fmt) do
 end end
 
 function fmt_ebb_of_string(legacy_behavior, str) do
-  legacy_behavior_1 = legacy_behavior ~= undefined and legacy_behavior or true;
+  legacy_behavior_1 = legacy_behavior ~= nil and legacy_behavior or true;
   invalid_format_message = function(str_ind, msg) do
     return Curry._3(failwith_message(--[[ Format ]]{
                     --[[ String_literal ]]Block.__(11, {
@@ -4486,12 +4486,12 @@ function fmt_ebb_of_string(legacy_behavior, str) do
                   exit_1 = 0;
                   if (match_14 >= 48) then do
                     if (match_14 >= 58) then do
-                      match_13 = undefined;
+                      match_13 = nil;
                     end else do
                       exit_1 = 1;
                     end end 
                   end else if (match_14 ~= 45) then do
-                    match_13 = undefined;
+                    match_13 = nil;
                   end else do
                     exit_1 = 1;
                   end end  end 
@@ -4515,12 +4515,12 @@ function fmt_ebb_of_string(legacy_behavior, str) do
                 end end,function(raw_exn_1) do
                   exn_1 = Caml_js_exceptions.internalToOCamlException(raw_exn_1);
                   if (exn_1 == Caml_builtin_exceptions.not_found or exn_1[0] == Caml_builtin_exceptions.failure) then do
-                    match_13 = undefined;
+                    match_13 = nil;
                   end else do
                     error(exn_1)
                   end end 
                 end end)
-                if (match_13 ~= undefined) then do
+                if (match_13 ~= nil) then do
                   match_16 = match_13;
                   next_ind_1 = match_16[0];
                   match_17 = parse_literal(next_ind_1, next_ind_1, end_ind_2);
@@ -5189,7 +5189,7 @@ function fmt_ebb_of_string(legacy_behavior, str) do
             match_10 = parse_literal(str_ind, str_ind, end_ind);
             fmt_rest_5 = match_10[0];
             match_11 = opt_of_pad(--[[ "c" ]]99, (pad_used.contents = true, pad));
-            fmt_result = match_11 ~= undefined and (
+            fmt_result = match_11 ~= nil and (
                 match_11 ~= 0 and (
                     legacy_behavior_1 and char_format(fmt_rest_5) or invalid_format_message(str_ind, "non-zero widths are unsupported for %c conversions")
                   ) or scan_format(fmt_rest_5)
@@ -6455,7 +6455,7 @@ function fmt_ebb_of_string(legacy_behavior, str) do
 end end
 
 function format_of_string_fmtty(str, fmtty) do
-  match = fmt_ebb_of_string(undefined, str);
+  match = fmt_ebb_of_string(nil, str);
   xpcall(function() do
     return --[[ Format ]]{
             type_format(match[0], fmtty),
@@ -6486,7 +6486,7 @@ function format_of_string_fmtty(str, fmtty) do
 end end
 
 function format_of_string_format(str, param) do
-  match = fmt_ebb_of_string(undefined, str);
+  match = fmt_ebb_of_string(nil, str);
   xpcall(function() do
     return --[[ Format ]]{
             type_format(match[0], fmtty_of_fmt(param[0])),

@@ -7,10 +7,10 @@ function copyAuxCont(_c, _prec) do
   while(true) do
     prec = _prec;
     c = _c;
-    if (c ~= undefined) then do
+    if (c ~= nil) then do
       ncopy = {
         key = c.key,
-        next = undefined
+        next = nil
       };
       prec.next = ncopy;
       _prec = ncopy;
@@ -23,10 +23,10 @@ function copyAuxCont(_c, _prec) do
 end end
 
 function copyBucket(c) do
-  if (c ~= undefined) then do
+  if (c ~= nil) then do
     head = {
       key = c.key,
-      next = undefined
+      next = nil
     };
     copyAuxCont(c.next, head);
     return head;
@@ -57,7 +57,7 @@ function bucketLength(_accu, _buckets) do
   while(true) do
     buckets = _buckets;
     accu = _accu;
-    if (buckets ~= undefined) then do
+    if (buckets ~= nil) then do
       _buckets = buckets.next;
       _accu = accu + 1 | 0;
       ::continue:: ;
@@ -70,7 +70,7 @@ end end
 function doBucketIter(f, _buckets) do
   while(true) do
     buckets = _buckets;
-    if (buckets ~= undefined) then do
+    if (buckets ~= nil) then do
       f(buckets.key);
       _buckets = buckets.next;
       ::continue:: ;
@@ -98,7 +98,7 @@ function fillArray(_i, arr, _cell) do
     i = _i;
     arr[i] = cell.key;
     match = cell.next;
-    if (match ~= undefined) then do
+    if (match ~= nil) then do
       _cell = match;
       _i = i + 1 | 0;
       ::continue:: ;
@@ -114,7 +114,7 @@ function toArray(h) do
   arr = new Array(h.size);
   for i = 0 , #d - 1 | 0 , 1 do
     cell = d[i];
-    if (cell ~= undefined) then do
+    if (cell ~= nil) then do
       current = fillArray(current, arr, cell);
     end
      end 
@@ -126,7 +126,7 @@ function doBucketFold(f, _b, _accu) do
   while(true) do
     accu = _accu;
     b = _b;
-    if (b ~= undefined) then do
+    if (b ~= nil) then do
       _accu = f(accu, b.key);
       _b = b.next;
       ::continue:: ;

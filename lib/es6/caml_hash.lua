@@ -6,10 +6,10 @@ import * as Caml_builtin_exceptions from "./caml_builtin_exceptions.lua";
 function push_back(q, v) do
   cell = {
     content = v,
-    next = undefined
+    next = nil
   };
   match = q.last;
-  if (match ~= undefined) then do
+  if (match ~= nil) then do
     q.length = q.length + 1 | 0;
     match.next = cell;
     q.last = cell;
@@ -25,10 +25,10 @@ end end
 function unsafe_pop(q) do
   cell = q.first;
   next = cell.next;
-  if (next == undefined) then do
+  if (next == nil) then do
     q.length = 0;
-    q.first = undefined;
-    q.last = undefined;
+    q.first = nil;
+    q.last = nil;
   end else do
     q.length = q.length - 1 | 0;
     q.first = next;
@@ -48,8 +48,8 @@ function caml_hash(count, _limit, seed, obj) do
   end else do
     queue = {
       length = 0,
-      first = undefined,
-      last = undefined
+      first = nil,
+      last = nil
     };
     num = count;
     push_back(queue, obj);
@@ -77,7 +77,7 @@ function caml_hash(count, _limit, seed, obj) do
          end 
         if (typeof obj_1 ~= "function") then do
           size = obj_1.length;
-          if (size ~= undefined) then do
+          if (size ~= nil) then do
             obj_tag = obj_1.tag | 0;
             tag = (size << 10) | obj_tag;
             if (tag == 248) then do

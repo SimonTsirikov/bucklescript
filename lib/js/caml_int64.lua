@@ -72,7 +72,7 @@ function equal_null(x, y) do
 end end
 
 function equal_undefined(x, y) do
-  if (y ~= undefined) then do
+  if (y ~= nil) then do
     return eq(x, y);
   end else do
     return false;

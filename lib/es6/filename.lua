@@ -496,7 +496,7 @@ function get_temp_dir_name(param) do
 end end
 
 function temp_file(temp_dirOpt, prefix, suffix) do
-  temp_dir = temp_dirOpt ~= undefined and temp_dirOpt or current_temp_dir_name.contents;
+  temp_dir = temp_dirOpt ~= nil and temp_dirOpt or current_temp_dir_name.contents;
   _counter = 0;
   while(true) do
     counter = _counter;
@@ -530,12 +530,12 @@ function temp_file(temp_dirOpt, prefix, suffix) do
 end end
 
 function open_temp_file(modeOpt, permsOpt, temp_dirOpt, prefix, suffix) do
-  mode = modeOpt ~= undefined and modeOpt or --[[ :: ]]{
+  mode = modeOpt ~= nil and modeOpt or --[[ :: ]]{
       --[[ Open_text ]]7,
       --[[ [] ]]0
     };
-  perms = permsOpt ~= undefined and permsOpt or 384;
-  temp_dir = temp_dirOpt ~= undefined and temp_dirOpt or current_temp_dir_name.contents;
+  perms = permsOpt ~= nil and permsOpt or 384;
+  temp_dir = temp_dirOpt ~= nil and temp_dirOpt or current_temp_dir_name.contents;
   _counter = 0;
   while(true) do
     counter = _counter;

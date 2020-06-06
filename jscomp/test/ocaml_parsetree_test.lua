@@ -55,7 +55,7 @@ end end,function(exn) do
 end end)
 
 color = {
-  contents = undefined
+  contents = nil
 };
 
 Fatal_error = Caml_exceptions.create("Ocaml_parsetree_test.Misc.Fatal_error");
@@ -67,7 +67,7 @@ function fatal_error(msg) do
 end end
 
 function create_hashtable(size, init) do
-  tbl = Hashtbl.create(undefined, size);
+  tbl = Hashtbl.create(nil, size);
   List.iter((function(param) do
           return Hashtbl.add(tbl, param[0], param[1]);
         end end), init);
@@ -271,7 +271,7 @@ function setup(o) do
     Format.set_mark_tags(true);
     List.iter(set_color_tag_handling, formatter_l);
     tmp;
-    if (o ~= undefined) then do
+    if (o ~= nil) then do
       local ___conditional___=(o);
       do
          if ___conditional___ == 1--[[ Always ]] then do
@@ -1260,7 +1260,7 @@ input_name = {
 };
 
 input_lexbuf = {
-  contents = undefined
+  contents = nil
 };
 
 status = {
@@ -1446,7 +1446,7 @@ function highlight_locations(ppf, locs) do
     if (typeof match == "number") then do
       if (match ~= 0) then do
         match_1 = input_lexbuf.contents;
-        if (match_1 ~= undefined) then do
+        if (match_1 ~= nil) then do
           norepeat;
           xpcall(function() do
             norepeat = Caml_sys.caml_sys_getenv("TERM") == "norepeat";
@@ -1481,7 +1481,7 @@ function highlight_locations(ppf, locs) do
       end end 
     end else do
       match_2 = input_lexbuf.contents;
-      if (match_2 ~= undefined) then do
+      if (match_2 ~= nil) then do
         xpcall(function() do
           highlight_terminfo(ppf, match[0], match_2, locs);
           return true;
@@ -1788,9 +1788,9 @@ function print_phanton_error_prefix(ppf) do
 end end
 
 function errorf(locOpt, subOpt, if_highlightOpt, fmt) do
-  loc = locOpt ~= undefined and locOpt or none;
-  sub = subOpt ~= undefined and subOpt or --[[ [] ]]0;
-  if_highlight = if_highlightOpt ~= undefined and if_highlightOpt or "";
+  loc = locOpt ~= nil and locOpt or none;
+  sub = subOpt ~= nil and subOpt or --[[ [] ]]0;
+  if_highlight = if_highlightOpt ~= nil and if_highlightOpt or "";
   before = print_phanton_error_prefix;
   k = function(msg) do
     return {
@@ -1804,7 +1804,7 @@ function errorf(locOpt, subOpt, if_highlightOpt, fmt) do
   buf = __Buffer.create(64);
   ppf = Format.formatter_of_buffer(buf);
   Curry._1(Misc_Color.set_color_tag_handling, ppf);
-  if (before ~= undefined) then do
+  if (before ~= nil) then do
     Curry._1(before, ppf);
   end
    end 
@@ -1827,7 +1827,7 @@ function register_error_of_exn(f) do
 end end
 
 function error_of_printer(loc, print, x) do
-  return Curry._2(errorf(loc, undefined, undefined, --[[ Format ]]{
+  return Curry._2(errorf(loc, nil, nil, --[[ Format ]]{
                   --[[ Alpha ]]Block.__(15, {--[[ Formatting_lit ]]Block.__(17, {
                           --[[ FFlush ]]2,
                           --[[ End_of_format ]]0
@@ -1838,7 +1838,7 @@ end end
 
 register_error_of_exn((function(param) do
         if (param[0] == Caml_builtin_exceptions.sys_error) then do
-          return Curry._1(errorf(in_file(input_name.contents), undefined, undefined, --[[ Format ]]{
+          return Curry._1(errorf(in_file(input_name.contents), nil, nil, --[[ Format ]]{
                           --[[ String_literal ]]Block.__(11, {
                               "I/O error: ",
                               --[[ String ]]Block.__(2, {
@@ -1849,7 +1849,7 @@ register_error_of_exn((function(param) do
                           "I/O error: %s"
                         }), param[1]);
         end else if (param[0] == Errors) then do
-          return Curry._1(errorf(in_file(input_name.contents), undefined, undefined, --[[ Format ]]{
+          return Curry._1(errorf(in_file(input_name.contents), nil, nil, --[[ Format ]]{
                           --[[ String_literal ]]Block.__(11, {
                               "Some fatal warnings were triggered (",
                               --[[ Int ]]Block.__(4, {
@@ -1916,7 +1916,7 @@ function is_mocha(param) do
 end end
 
 function close_enough(thresholdOpt, a, b) do
-  threshold = thresholdOpt ~= undefined and thresholdOpt or 0.0000001;
+  threshold = thresholdOpt ~= nil and thresholdOpt or 0.0000001;
   return Math.abs(a - b) < threshold;
 end end
 
@@ -1949,7 +1949,7 @@ function from_pair_suites(name, suites) do
                                        if ___conditional___ == 5--[[ Approx ]] then do
                                           b = spec[1];
                                           a = spec[0];
-                                          if (close_enough(undefined, a, b)) then do
+                                          if (close_enough(nil, a, b)) then do
                                             return 0;
                                           end else do
                                             Assert.deepEqual(a, b);
@@ -2111,8 +2111,8 @@ function docstring(body, loc) do
 end end
 
 empty_docs = {
-  docs_pre = undefined,
-  docs_post = undefined
+  docs_pre = nil,
+  docs_post = nil
 };
 
 doc_loc = {
@@ -2123,7 +2123,7 @@ doc_loc = {
 function docs_attr(ds) do
   exp_pexp_desc = --[[ Pexp_constant ]]Block.__(1, {--[[ Const_string ]]Block.__(2, {
           ds.ds_body,
-          undefined
+          nil
         })});
   exp_pexp_loc = ds.ds_loc;
   exp = {
@@ -2151,12 +2151,12 @@ end end
 
 function add_docs_attrs(docs, attrs) do
   match = docs.docs_pre;
-  attrs_1 = match ~= undefined and --[[ :: ]]{
+  attrs_1 = match ~= nil and --[[ :: ]]{
       docs_attr(match),
       attrs
     } or attrs;
   match_1 = docs.docs_post;
-  if (match_1 ~= undefined) then do
+  if (match_1 ~= nil) then do
     return Pervasives.$at(attrs_1, --[[ :: ]]{
                 docs_attr(match_1),
                 --[[ [] ]]0
@@ -2167,7 +2167,7 @@ function add_docs_attrs(docs, attrs) do
 end end
 
 function add_info_attrs(info, attrs) do
-  if (info ~= undefined) then do
+  if (info ~= nil) then do
     return Pervasives.$at(attrs, --[[ :: ]]{
                 docs_attr(info),
                 --[[ [] ]]0
@@ -2185,7 +2185,7 @@ text_loc = {
 function text_attr(ds) do
   exp_pexp_desc = --[[ Pexp_constant ]]Block.__(1, {--[[ Const_string ]]Block.__(2, {
           ds.ds_body,
-          undefined
+          nil
         })});
   exp_pexp_loc = ds.ds_loc;
   exp = {
@@ -2275,7 +2275,7 @@ function associate_docstrings(dsl) do
               end end), dsl);
 end end
 
-pre_table = Hashtbl.create(undefined, 50);
+pre_table = Hashtbl.create(nil, 50);
 
 function set_pre_docstrings(pos, dsl) do
   if (dsl ~= --[[ [] ]]0) then do
@@ -2311,7 +2311,7 @@ function mark_pre_docs(pos) do
   end end)
 end end
 
-post_table = Hashtbl.create(undefined, 50);
+post_table = Hashtbl.create(nil, 50);
 
 function set_post_docstrings(pos, dsl) do
   if (dsl ~= --[[ [] ]]0) then do
@@ -2360,7 +2360,7 @@ function get_info(pos) do
   end end)
 end end
 
-floating_table = Hashtbl.create(undefined, 50);
+floating_table = Hashtbl.create(nil, 50);
 
 function set_floating_docstrings(pos, dsl) do
   if (dsl ~= --[[ [] ]]0) then do
@@ -2382,7 +2382,7 @@ function get_text(pos) do
   end end)
 end end
 
-pre_extra_table = Hashtbl.create(undefined, 50);
+pre_extra_table = Hashtbl.create(nil, 50);
 
 function set_pre_extra_docstrings(pos, dsl) do
   if (dsl ~= --[[ [] ]]0) then do
@@ -2404,7 +2404,7 @@ function get_pre_extra_text(pos) do
   end end)
 end end
 
-post_extra_table = Hashtbl.create(undefined, 50);
+post_extra_table = Hashtbl.create(nil, 50);
 
 function set_post_extra_docstrings(pos, dsl) do
   if (dsl ~= --[[ [] ]]0) then do
@@ -2475,8 +2475,8 @@ default_loc = {
 };
 
 function mk(locOpt, attrsOpt, d) do
-  loc = locOpt ~= undefined and locOpt or default_loc.contents;
-  attrs = attrsOpt ~= undefined and attrsOpt or --[[ [] ]]0;
+  loc = locOpt ~= nil and locOpt or default_loc.contents;
+  attrs = attrsOpt ~= nil and attrsOpt or --[[ [] ]]0;
   return {
           ptyp_desc = d,
           ptyp_loc = loc,
@@ -2496,8 +2496,8 @@ function attr(d, a) do
 end end
 
 function mk_1(locOpt, attrsOpt, d) do
-  loc = locOpt ~= undefined and locOpt or default_loc.contents;
-  attrs = attrsOpt ~= undefined and attrsOpt or --[[ [] ]]0;
+  loc = locOpt ~= nil and locOpt or default_loc.contents;
+  attrs = attrsOpt ~= nil and attrsOpt or --[[ [] ]]0;
   return {
           ppat_desc = d,
           ppat_loc = loc,
@@ -2517,8 +2517,8 @@ function attr_1(d, a) do
 end end
 
 function mk_2(locOpt, attrsOpt, d) do
-  loc = locOpt ~= undefined and locOpt or default_loc.contents;
-  attrs = attrsOpt ~= undefined and attrsOpt or --[[ [] ]]0;
+  loc = locOpt ~= nil and locOpt or default_loc.contents;
+  attrs = attrsOpt ~= nil and attrsOpt or --[[ [] ]]0;
   return {
           pexp_desc = d,
           pexp_loc = loc,
@@ -2759,8 +2759,8 @@ function __case(lhs, guard, rhs) do
 end end
 
 function mk_3(locOpt, attrsOpt, d) do
-  loc = locOpt ~= undefined and locOpt or default_loc.contents;
-  attrs = attrsOpt ~= undefined and attrsOpt or --[[ [] ]]0;
+  loc = locOpt ~= nil and locOpt or default_loc.contents;
+  attrs = attrsOpt ~= nil and attrsOpt or --[[ [] ]]0;
   return {
           pmty_desc = d,
           pmty_loc = loc,
@@ -2784,8 +2784,8 @@ function alias(loc, attrs, a) do
 end end
 
 function mk_4(locOpt, attrsOpt, d) do
-  loc = locOpt ~= undefined and locOpt or default_loc.contents;
-  attrs = attrsOpt ~= undefined and attrsOpt or --[[ [] ]]0;
+  loc = locOpt ~= nil and locOpt or default_loc.contents;
+  attrs = attrsOpt ~= nil and attrsOpt or --[[ [] ]]0;
   return {
           pmod_desc = d,
           pmod_loc = loc,
@@ -2805,7 +2805,7 @@ function attr_4(d, a) do
 end end
 
 function mk_5(locOpt, d) do
-  loc = locOpt ~= undefined and locOpt or default_loc.contents;
+  loc = locOpt ~= nil and locOpt or default_loc.contents;
   return {
           psig_desc = d,
           psig_loc = loc
@@ -2821,7 +2821,7 @@ function text(txt) do
 end end
 
 function mk_6(locOpt, d) do
-  loc = locOpt ~= undefined and locOpt or default_loc.contents;
+  loc = locOpt ~= nil and locOpt or default_loc.contents;
   return {
           pstr_desc = d,
           pstr_loc = loc
@@ -2837,8 +2837,8 @@ function text_1(txt) do
 end end
 
 function mk_7(locOpt, attrsOpt, d) do
-  loc = locOpt ~= undefined and locOpt or default_loc.contents;
-  attrs = attrsOpt ~= undefined and attrsOpt or --[[ [] ]]0;
+  loc = locOpt ~= nil and locOpt or default_loc.contents;
+  attrs = attrsOpt ~= nil and attrsOpt or --[[ [] ]]0;
   return {
           pcl_desc = d,
           pcl_loc = loc,
@@ -2858,8 +2858,8 @@ function attr_5(d, a) do
 end end
 
 function mk_8(locOpt, attrsOpt, d) do
-  loc = locOpt ~= undefined and locOpt or default_loc.contents;
-  attrs = attrsOpt ~= undefined and attrsOpt or --[[ [] ]]0;
+  loc = locOpt ~= nil and locOpt or default_loc.contents;
+  attrs = attrsOpt ~= nil and attrsOpt or --[[ [] ]]0;
   return {
           pcty_desc = d,
           pcty_loc = loc,
@@ -2879,9 +2879,9 @@ function attr_6(d, a) do
 end end
 
 function mk_9(locOpt, attrsOpt, docsOpt, d) do
-  loc = locOpt ~= undefined and locOpt or default_loc.contents;
-  attrs = attrsOpt ~= undefined and attrsOpt or --[[ [] ]]0;
-  docs = docsOpt ~= undefined and docsOpt or empty_docs;
+  loc = locOpt ~= nil and locOpt or default_loc.contents;
+  attrs = attrsOpt ~= nil and attrsOpt or --[[ [] ]]0;
+  docs = docsOpt ~= nil and docsOpt or empty_docs;
   return {
           pctf_desc = d,
           pctf_loc = loc,
@@ -2890,11 +2890,11 @@ function mk_9(locOpt, attrsOpt, docsOpt, d) do
 end end
 
 function inherit_(loc, attrs, a) do
-  return mk_9(loc, attrs, undefined, --[[ Pctf_inherit ]]Block.__(0, {a}));
+  return mk_9(loc, attrs, nil, --[[ Pctf_inherit ]]Block.__(0, {a}));
 end end
 
 function val_(loc, attrs, a, b, c, d) do
-  return mk_9(loc, attrs, undefined, --[[ Pctf_val ]]Block.__(1, {--[[ tuple ]]{
+  return mk_9(loc, attrs, nil, --[[ Pctf_val ]]Block.__(1, {--[[ tuple ]]{
                   a,
                   b,
                   c,
@@ -2903,7 +2903,7 @@ function val_(loc, attrs, a, b, c, d) do
 end end
 
 function method_(loc, attrs, a, b, c, d) do
-  return mk_9(loc, attrs, undefined, --[[ Pctf_method ]]Block.__(2, {--[[ tuple ]]{
+  return mk_9(loc, attrs, nil, --[[ Pctf_method ]]Block.__(2, {--[[ tuple ]]{
                   a,
                   b,
                   c,
@@ -2912,18 +2912,18 @@ function method_(loc, attrs, a, b, c, d) do
 end end
 
 function constraint__1(loc, attrs, a, b) do
-  return mk_9(loc, attrs, undefined, --[[ Pctf_constraint ]]Block.__(3, {--[[ tuple ]]{
+  return mk_9(loc, attrs, nil, --[[ Pctf_constraint ]]Block.__(3, {--[[ tuple ]]{
                   a,
                   b
                 }}));
 end end
 
 function extension_1(loc, attrs, a) do
-  return mk_9(loc, attrs, undefined, --[[ Pctf_extension ]]Block.__(5, {a}));
+  return mk_9(loc, attrs, nil, --[[ Pctf_extension ]]Block.__(5, {a}));
 end end
 
 function attribute(loc, a) do
-  return mk_9(loc, undefined, undefined, --[[ Pctf_attribute ]]Block.__(4, {a}));
+  return mk_9(loc, nil, nil, --[[ Pctf_attribute ]]Block.__(4, {a}));
 end end
 
 function text_2(txt) do
@@ -2944,9 +2944,9 @@ function attr_7(d, a) do
 end end
 
 function mk_10(locOpt, attrsOpt, docsOpt, d) do
-  loc = locOpt ~= undefined and locOpt or default_loc.contents;
-  attrs = attrsOpt ~= undefined and attrsOpt or --[[ [] ]]0;
-  docs = docsOpt ~= undefined and docsOpt or empty_docs;
+  loc = locOpt ~= nil and locOpt or default_loc.contents;
+  attrs = attrsOpt ~= nil and attrsOpt or --[[ [] ]]0;
+  docs = docsOpt ~= nil and docsOpt or empty_docs;
   return {
           pcf_desc = d,
           pcf_loc = loc,
@@ -2955,7 +2955,7 @@ function mk_10(locOpt, attrsOpt, docsOpt, d) do
 end end
 
 function inherit__1(loc, attrs, a, b, c) do
-  return mk_10(loc, attrs, undefined, --[[ Pcf_inherit ]]Block.__(0, {
+  return mk_10(loc, attrs, nil, --[[ Pcf_inherit ]]Block.__(0, {
                 a,
                 b,
                 c
@@ -2963,7 +2963,7 @@ function inherit__1(loc, attrs, a, b, c) do
 end end
 
 function val__1(loc, attrs, a, b, c) do
-  return mk_10(loc, attrs, undefined, --[[ Pcf_val ]]Block.__(1, {--[[ tuple ]]{
+  return mk_10(loc, attrs, nil, --[[ Pcf_val ]]Block.__(1, {--[[ tuple ]]{
                   a,
                   b,
                   c
@@ -2971,7 +2971,7 @@ function val__1(loc, attrs, a, b, c) do
 end end
 
 function method__1(loc, attrs, a, b, c) do
-  return mk_10(loc, attrs, undefined, --[[ Pcf_method ]]Block.__(2, {--[[ tuple ]]{
+  return mk_10(loc, attrs, nil, --[[ Pcf_method ]]Block.__(2, {--[[ tuple ]]{
                   a,
                   b,
                   c
@@ -2979,22 +2979,22 @@ function method__1(loc, attrs, a, b, c) do
 end end
 
 function constraint__2(loc, attrs, a, b) do
-  return mk_10(loc, attrs, undefined, --[[ Pcf_constraint ]]Block.__(3, {--[[ tuple ]]{
+  return mk_10(loc, attrs, nil, --[[ Pcf_constraint ]]Block.__(3, {--[[ tuple ]]{
                   a,
                   b
                 }}));
 end end
 
 function initializer_(loc, attrs, a) do
-  return mk_10(loc, attrs, undefined, --[[ Pcf_initializer ]]Block.__(4, {a}));
+  return mk_10(loc, attrs, nil, --[[ Pcf_initializer ]]Block.__(4, {a}));
 end end
 
 function extension_2(loc, attrs, a) do
-  return mk_10(loc, attrs, undefined, --[[ Pcf_extension ]]Block.__(6, {a}));
+  return mk_10(loc, attrs, nil, --[[ Pcf_extension ]]Block.__(6, {a}));
 end end
 
 function attribute_1(loc, a) do
-  return mk_10(loc, undefined, undefined, --[[ Pcf_attribute ]]Block.__(5, {a}));
+  return mk_10(loc, nil, nil, --[[ Pcf_attribute ]]Block.__(5, {a}));
 end end
 
 function text_3(txt) do
@@ -3026,10 +3026,10 @@ function attr_8(d, a) do
 end end
 
 function mk_11(locOpt, attrsOpt, docsOpt, primOpt, name, typ) do
-  loc = locOpt ~= undefined and locOpt or default_loc.contents;
-  attrs = attrsOpt ~= undefined and attrsOpt or --[[ [] ]]0;
-  docs = docsOpt ~= undefined and docsOpt or empty_docs;
-  prim = primOpt ~= undefined and primOpt or --[[ [] ]]0;
+  loc = locOpt ~= nil and locOpt or default_loc.contents;
+  attrs = attrsOpt ~= nil and attrsOpt or --[[ [] ]]0;
+  docs = docsOpt ~= nil and docsOpt or empty_docs;
+  prim = primOpt ~= nil and primOpt or --[[ [] ]]0;
   return {
           pval_name = name,
           pval_type = typ,
@@ -3040,10 +3040,10 @@ function mk_11(locOpt, attrsOpt, docsOpt, primOpt, name, typ) do
 end end
 
 function mk_12(locOpt, attrsOpt, docsOpt, textOpt, name, typ) do
-  loc = locOpt ~= undefined and locOpt or default_loc.contents;
-  attrs = attrsOpt ~= undefined and attrsOpt or --[[ [] ]]0;
-  docs = docsOpt ~= undefined and docsOpt or empty_docs;
-  text = textOpt ~= undefined and textOpt or --[[ [] ]]0;
+  loc = locOpt ~= nil and locOpt or default_loc.contents;
+  attrs = attrsOpt ~= nil and attrsOpt or --[[ [] ]]0;
+  docs = docsOpt ~= nil and docsOpt or empty_docs;
+  text = textOpt ~= nil and textOpt or --[[ [] ]]0;
   return {
           pmd_name = name,
           pmd_type = typ,
@@ -3053,10 +3053,10 @@ function mk_12(locOpt, attrsOpt, docsOpt, textOpt, name, typ) do
 end end
 
 function mk_13(locOpt, attrsOpt, docsOpt, textOpt, typ, name) do
-  loc = locOpt ~= undefined and locOpt or default_loc.contents;
-  attrs = attrsOpt ~= undefined and attrsOpt or --[[ [] ]]0;
-  docs = docsOpt ~= undefined and docsOpt or empty_docs;
-  text = textOpt ~= undefined and textOpt or --[[ [] ]]0;
+  loc = locOpt ~= nil and locOpt or default_loc.contents;
+  attrs = attrsOpt ~= nil and attrsOpt or --[[ [] ]]0;
+  docs = docsOpt ~= nil and docsOpt or empty_docs;
+  text = textOpt ~= nil and textOpt or --[[ [] ]]0;
   return {
           pmtd_name = name,
           pmtd_type = typ,
@@ -3066,10 +3066,10 @@ function mk_13(locOpt, attrsOpt, docsOpt, textOpt, typ, name) do
 end end
 
 function mk_14(locOpt, attrsOpt, docsOpt, textOpt, name, expr) do
-  loc = locOpt ~= undefined and locOpt or default_loc.contents;
-  attrs = attrsOpt ~= undefined and attrsOpt or --[[ [] ]]0;
-  docs = docsOpt ~= undefined and docsOpt or empty_docs;
-  text = textOpt ~= undefined and textOpt or --[[ [] ]]0;
+  loc = locOpt ~= nil and locOpt or default_loc.contents;
+  attrs = attrsOpt ~= nil and attrsOpt or --[[ [] ]]0;
+  docs = docsOpt ~= nil and docsOpt or empty_docs;
+  text = textOpt ~= nil and textOpt or --[[ [] ]]0;
   return {
           pmb_name = name,
           pmb_expr = expr,
@@ -3079,10 +3079,10 @@ function mk_14(locOpt, attrsOpt, docsOpt, textOpt, name, expr) do
 end end
 
 function mk_15(locOpt, attrsOpt, docsOpt, overrideOpt, lid) do
-  loc = locOpt ~= undefined and locOpt or default_loc.contents;
-  attrs = attrsOpt ~= undefined and attrsOpt or --[[ [] ]]0;
-  docs = docsOpt ~= undefined and docsOpt or empty_docs;
-  override = overrideOpt ~= undefined and overrideOpt or --[[ Fresh ]]1;
+  loc = locOpt ~= nil and locOpt or default_loc.contents;
+  attrs = attrsOpt ~= nil and attrsOpt or --[[ [] ]]0;
+  docs = docsOpt ~= nil and docsOpt or empty_docs;
+  override = overrideOpt ~= nil and overrideOpt or --[[ Fresh ]]1;
   return {
           popen_lid = lid,
           popen_override = override,
@@ -3092,9 +3092,9 @@ function mk_15(locOpt, attrsOpt, docsOpt, overrideOpt, lid) do
 end end
 
 function mk_16(locOpt, attrsOpt, docsOpt, mexpr) do
-  loc = locOpt ~= undefined and locOpt or default_loc.contents;
-  attrs = attrsOpt ~= undefined and attrsOpt or --[[ [] ]]0;
-  docs = docsOpt ~= undefined and docsOpt or empty_docs;
+  loc = locOpt ~= nil and locOpt or default_loc.contents;
+  attrs = attrsOpt ~= nil and attrsOpt or --[[ [] ]]0;
+  docs = docsOpt ~= nil and docsOpt or empty_docs;
   return {
           pincl_mod = mexpr,
           pincl_loc = loc,
@@ -3103,10 +3103,10 @@ function mk_16(locOpt, attrsOpt, docsOpt, mexpr) do
 end end
 
 function mk_17(locOpt, attrsOpt, docsOpt, textOpt, pat, expr) do
-  loc = locOpt ~= undefined and locOpt or default_loc.contents;
-  attrs = attrsOpt ~= undefined and attrsOpt or --[[ [] ]]0;
-  docs = docsOpt ~= undefined and docsOpt or empty_docs;
-  text = textOpt ~= undefined and textOpt or --[[ [] ]]0;
+  loc = locOpt ~= nil and locOpt or default_loc.contents;
+  attrs = attrsOpt ~= nil and attrsOpt or --[[ [] ]]0;
+  docs = docsOpt ~= nil and docsOpt or empty_docs;
+  text = textOpt ~= nil and textOpt or --[[ [] ]]0;
   return {
           pvb_pat = pat,
           pvb_expr = expr,
@@ -3116,12 +3116,12 @@ function mk_17(locOpt, attrsOpt, docsOpt, textOpt, pat, expr) do
 end end
 
 function mk_18(locOpt, attrsOpt, docsOpt, textOpt, virtOpt, paramsOpt, name, expr) do
-  loc = locOpt ~= undefined and locOpt or default_loc.contents;
-  attrs = attrsOpt ~= undefined and attrsOpt or --[[ [] ]]0;
-  docs = docsOpt ~= undefined and docsOpt or empty_docs;
-  text = textOpt ~= undefined and textOpt or --[[ [] ]]0;
-  virt = virtOpt ~= undefined and virtOpt or --[[ Concrete ]]1;
-  params = paramsOpt ~= undefined and paramsOpt or --[[ [] ]]0;
+  loc = locOpt ~= nil and locOpt or default_loc.contents;
+  attrs = attrsOpt ~= nil and attrsOpt or --[[ [] ]]0;
+  docs = docsOpt ~= nil and docsOpt or empty_docs;
+  text = textOpt ~= nil and textOpt or --[[ [] ]]0;
+  virt = virtOpt ~= nil and virtOpt or --[[ Concrete ]]1;
+  params = paramsOpt ~= nil and paramsOpt or --[[ [] ]]0;
   return {
           pci_virt = virt,
           pci_params = params,
@@ -3133,14 +3133,14 @@ function mk_18(locOpt, attrsOpt, docsOpt, textOpt, virtOpt, paramsOpt, name, exp
 end end
 
 function mk_19(locOpt, attrsOpt, docsOpt, textOpt, paramsOpt, cstrsOpt, kindOpt, privOpt, manifest, name) do
-  loc = locOpt ~= undefined and locOpt or default_loc.contents;
-  attrs = attrsOpt ~= undefined and attrsOpt or --[[ [] ]]0;
-  docs = docsOpt ~= undefined and docsOpt or empty_docs;
-  text = textOpt ~= undefined and textOpt or --[[ [] ]]0;
-  params = paramsOpt ~= undefined and paramsOpt or --[[ [] ]]0;
-  cstrs = cstrsOpt ~= undefined and cstrsOpt or --[[ [] ]]0;
-  kind = kindOpt ~= undefined and kindOpt or --[[ Ptype_abstract ]]0;
-  priv = privOpt ~= undefined and privOpt or --[[ Public ]]1;
+  loc = locOpt ~= nil and locOpt or default_loc.contents;
+  attrs = attrsOpt ~= nil and attrsOpt or --[[ [] ]]0;
+  docs = docsOpt ~= nil and docsOpt or empty_docs;
+  text = textOpt ~= nil and textOpt or --[[ [] ]]0;
+  params = paramsOpt ~= nil and paramsOpt or --[[ [] ]]0;
+  cstrs = cstrsOpt ~= nil and cstrsOpt or --[[ [] ]]0;
+  kind = kindOpt ~= nil and kindOpt or --[[ Ptype_abstract ]]0;
+  priv = privOpt ~= nil and privOpt or --[[ Public ]]1;
   return {
           ptype_name = name,
           ptype_params = params,
@@ -3154,10 +3154,10 @@ function mk_19(locOpt, attrsOpt, docsOpt, textOpt, paramsOpt, cstrsOpt, kindOpt,
 end end
 
 function constructor(locOpt, attrsOpt, infoOpt, argsOpt, res, name) do
-  loc = locOpt ~= undefined and locOpt or default_loc.contents;
-  attrs = attrsOpt ~= undefined and attrsOpt or --[[ [] ]]0;
-  info = infoOpt ~= undefined and Caml_option.valFromOption(infoOpt) or undefined;
-  args = argsOpt ~= undefined and argsOpt or --[[ [] ]]0;
+  loc = locOpt ~= nil and locOpt or default_loc.contents;
+  attrs = attrsOpt ~= nil and attrsOpt or --[[ [] ]]0;
+  info = infoOpt ~= nil and Caml_option.valFromOption(infoOpt) or nil;
+  args = argsOpt ~= nil and argsOpt or --[[ [] ]]0;
   return {
           pcd_name = name,
           pcd_args = args,
@@ -3168,10 +3168,10 @@ function constructor(locOpt, attrsOpt, infoOpt, argsOpt, res, name) do
 end end
 
 function field_1(locOpt, attrsOpt, infoOpt, mutOpt, name, typ) do
-  loc = locOpt ~= undefined and locOpt or default_loc.contents;
-  attrs = attrsOpt ~= undefined and attrsOpt or --[[ [] ]]0;
-  info = infoOpt ~= undefined and Caml_option.valFromOption(infoOpt) or undefined;
-  mut = mutOpt ~= undefined and mutOpt or --[[ Immutable ]]0;
+  loc = locOpt ~= nil and locOpt or default_loc.contents;
+  attrs = attrsOpt ~= nil and attrsOpt or --[[ [] ]]0;
+  info = infoOpt ~= nil and Caml_option.valFromOption(infoOpt) or nil;
+  mut = mutOpt ~= nil and mutOpt or --[[ Immutable ]]0;
   return {
           pld_name = name,
           pld_mutable = mut,
@@ -3182,10 +3182,10 @@ function field_1(locOpt, attrsOpt, infoOpt, mutOpt, name, typ) do
 end end
 
 function mk_20(attrsOpt, docsOpt, paramsOpt, privOpt, path, constructors) do
-  attrs = attrsOpt ~= undefined and attrsOpt or --[[ [] ]]0;
-  docs = docsOpt ~= undefined and docsOpt or empty_docs;
-  params = paramsOpt ~= undefined and paramsOpt or --[[ [] ]]0;
-  priv = privOpt ~= undefined and privOpt or --[[ Public ]]1;
+  attrs = attrsOpt ~= nil and attrsOpt or --[[ [] ]]0;
+  docs = docsOpt ~= nil and docsOpt or empty_docs;
+  params = paramsOpt ~= nil and paramsOpt or --[[ [] ]]0;
+  priv = privOpt ~= nil and privOpt or --[[ Public ]]1;
   return {
           ptyext_path = path,
           ptyext_params = params,
@@ -3196,11 +3196,11 @@ function mk_20(attrsOpt, docsOpt, paramsOpt, privOpt, path, constructors) do
 end end
 
 function decl(locOpt, attrsOpt, docsOpt, infoOpt, argsOpt, res, name) do
-  loc = locOpt ~= undefined and locOpt or default_loc.contents;
-  attrs = attrsOpt ~= undefined and attrsOpt or --[[ [] ]]0;
-  docs = docsOpt ~= undefined and docsOpt or empty_docs;
-  info = infoOpt ~= undefined and Caml_option.valFromOption(infoOpt) or undefined;
-  args = argsOpt ~= undefined and argsOpt or --[[ [] ]]0;
+  loc = locOpt ~= nil and locOpt or default_loc.contents;
+  attrs = attrsOpt ~= nil and attrsOpt or --[[ [] ]]0;
+  docs = docsOpt ~= nil and docsOpt or empty_docs;
+  info = infoOpt ~= nil and Caml_option.valFromOption(infoOpt) or nil;
+  args = argsOpt ~= nil and argsOpt or --[[ [] ]]0;
   return {
           pext_name = name,
           pext_kind = --[[ Pext_decl ]]Block.__(0, {
@@ -3213,10 +3213,10 @@ function decl(locOpt, attrsOpt, docsOpt, infoOpt, argsOpt, res, name) do
 end end
 
 function rebind(locOpt, attrsOpt, docsOpt, infoOpt, name, lid) do
-  loc = locOpt ~= undefined and locOpt or default_loc.contents;
-  attrs = attrsOpt ~= undefined and attrsOpt or --[[ [] ]]0;
-  docs = docsOpt ~= undefined and docsOpt or empty_docs;
-  info = infoOpt ~= undefined and Caml_option.valFromOption(infoOpt) or undefined;
+  loc = locOpt ~= nil and locOpt or default_loc.contents;
+  attrs = attrsOpt ~= nil and attrsOpt or --[[ [] ]]0;
+  docs = docsOpt ~= nil and docsOpt or empty_docs;
+  info = infoOpt ~= nil and Caml_option.valFromOption(infoOpt) or nil;
   return {
           pext_name = name,
           pext_kind = --[[ Pext_rebind ]]Block.__(1, {lid}),
@@ -3303,7 +3303,7 @@ function prepare_error(param) do
         closing = param[3];
         opening = param[1];
         return Curry._1(errorf(param[2], --[[ :: ]]{
-                        Curry._1(errorf(param[0], undefined, undefined, --[[ Format ]]{
+                        Curry._1(errorf(param[0], nil, nil, --[[ Format ]]{
                                   --[[ String_literal ]]Block.__(11, {
                                       "This '",
                                       --[[ String ]]Block.__(2, {
@@ -3349,7 +3349,7 @@ function prepare_error(param) do
                         "Syntax error: '%s' expected"
                       }), closing); end end 
      if ___conditional___ == 1--[[ Expecting ]] then do
-        return Curry._1(errorf(param[0], undefined, undefined, --[[ Format ]]{
+        return Curry._1(errorf(param[0], nil, nil, --[[ Format ]]{
                         --[[ String_literal ]]Block.__(11, {
                             "Syntax error: ",
                             --[[ String ]]Block.__(2, {
@@ -3363,7 +3363,7 @@ function prepare_error(param) do
                         "Syntax error: %s expected."
                       }), param[1]); end end 
      if ___conditional___ == 2--[[ Not_expecting ]] then do
-        return Curry._1(errorf(param[0], undefined, undefined, --[[ Format ]]{
+        return Curry._1(errorf(param[0], nil, nil, --[[ Format ]]{
                         --[[ String_literal ]]Block.__(11, {
                             "Syntax error: ",
                             --[[ String ]]Block.__(2, {
@@ -3377,7 +3377,7 @@ function prepare_error(param) do
                         "Syntax error: %s not expected."
                       }), param[1]); end end 
      if ___conditional___ == 3--[[ Applicative_path ]] then do
-        return errorf(param[0], undefined, undefined, --[[ Format ]]{
+        return errorf(param[0], nil, nil, --[[ Format ]]{
                     --[[ String_literal ]]Block.__(11, {
                         "Syntax error: applicative paths of the form F(X).t are not supported when the option -no-app-func is set.",
                         --[[ End_of_format ]]0
@@ -3386,7 +3386,7 @@ function prepare_error(param) do
                   }); end end 
      if ___conditional___ == 4--[[ Variable_in_scope ]] then do
         __var = param[1];
-        return Curry._2(errorf(param[0], undefined, undefined, --[[ Format ]]{
+        return Curry._2(errorf(param[0], nil, nil, --[[ Format ]]{
                         --[[ String_literal ]]Block.__(11, {
                             "In this scoped type, variable '",
                             --[[ String ]]Block.__(2, {
@@ -3406,7 +3406,7 @@ function prepare_error(param) do
                         "In this scoped type, variable '%s is reserved for the local type %s."
                       }), __var, __var); end end 
      if ___conditional___ == 5--[[ Other ]] then do
-        return errorf(param[0], undefined, undefined, --[[ Format ]]{
+        return errorf(param[0], nil, nil, --[[ Format ]]{
                     --[[ String_literal ]]Block.__(11, {
                         "Syntax error",
                         --[[ End_of_format ]]0
@@ -3414,7 +3414,7 @@ function prepare_error(param) do
                     "Syntax error"
                   }); end end 
      if ___conditional___ == 6--[[ Ill_formed_ast ]] then do
-        return Curry._1(errorf(param[0], undefined, undefined, --[[ Format ]]{
+        return Curry._1(errorf(param[0], nil, nil, --[[ Format ]]{
                         --[[ String_literal ]]Block.__(11, {
                             "broken invariant in parsetree: ",
                             --[[ String ]]Block.__(2, {
@@ -3436,19 +3436,19 @@ register_error_of_exn((function(param) do
       end end));
 
 function mktyp(d) do
-  return mk(symbol_rloc(--[[ () ]]0), undefined, d);
+  return mk(symbol_rloc(--[[ () ]]0), nil, d);
 end end
 
 function mkpat(d) do
-  return mk_1(symbol_rloc(--[[ () ]]0), undefined, d);
+  return mk_1(symbol_rloc(--[[ () ]]0), nil, d);
 end end
 
 function mkexp(d) do
-  return Curry._3(Ast_helper_Exp.mk, symbol_rloc(--[[ () ]]0), undefined, d);
+  return Curry._3(Ast_helper_Exp.mk, symbol_rloc(--[[ () ]]0), nil, d);
 end end
 
 function mkmty(d) do
-  return mk_3(symbol_rloc(--[[ () ]]0), undefined, d);
+  return mk_3(symbol_rloc(--[[ () ]]0), nil, d);
 end end
 
 function mksig(d) do
@@ -3456,7 +3456,7 @@ function mksig(d) do
 end end
 
 function mkmod(d) do
-  return mk_4(symbol_rloc(--[[ () ]]0), undefined, d);
+  return mk_4(symbol_rloc(--[[ () ]]0), nil, d);
 end end
 
 function mkstr(d) do
@@ -3464,11 +3464,11 @@ function mkstr(d) do
 end end
 
 function mkclass(d) do
-  return mk_7(symbol_rloc(--[[ () ]]0), undefined, d);
+  return mk_7(symbol_rloc(--[[ () ]]0), nil, d);
 end end
 
 function mkcty(d) do
-  return mk_8(symbol_rloc(--[[ () ]]0), undefined, d);
+  return mk_8(symbol_rloc(--[[ () ]]0), nil, d);
 end end
 
 function mkctf(attrs, docs, d) do
@@ -3488,7 +3488,7 @@ function mkoption(d) do
     loc_end = loc_loc_end,
     loc_ghost = true
   };
-  return mk(loc, undefined, --[[ Ptyp_constr ]]Block.__(3, {
+  return mk(loc, nil, --[[ Ptyp_constr ]]Block.__(3, {
                 {
                   txt = --[[ Ldot ]]Block.__(1, {
                       --[[ Lident ]]Block.__(0, {"*predef*"}),
@@ -3521,29 +3521,29 @@ end end
 
 function mkoperator(name, pos) do
   loc = rhs_loc(pos);
-  return Curry._3(Ast_helper_Exp.mk, loc, undefined, --[[ Pexp_ident ]]Block.__(0, {{
+  return Curry._3(Ast_helper_Exp.mk, loc, nil, --[[ Pexp_ident ]]Block.__(0, {{
                   txt = --[[ Lident ]]Block.__(0, {name}),
                   loc = loc
                 }}));
 end end
 
 function mkpatvar(name, pos) do
-  return mk_1(rhs_loc(pos), undefined, --[[ Ppat_var ]]Block.__(0, {{
+  return mk_1(rhs_loc(pos), nil, --[[ Ppat_var ]]Block.__(0, {{
                   txt = name,
                   loc = rhs_loc(pos)
                 }}));
 end end
 
 function ghexp(d) do
-  return Curry._3(Ast_helper_Exp.mk, symbol_gloc(--[[ () ]]0), undefined, d);
+  return Curry._3(Ast_helper_Exp.mk, symbol_gloc(--[[ () ]]0), nil, d);
 end end
 
 function ghpat(d) do
-  return mk_1(symbol_gloc(--[[ () ]]0), undefined, d);
+  return mk_1(symbol_gloc(--[[ () ]]0), nil, d);
 end end
 
 function ghtyp(d) do
-  return mk(symbol_gloc(--[[ () ]]0), undefined, d);
+  return mk(symbol_gloc(--[[ () ]]0), nil, d);
 end end
 
 function mkinfix(arg1, name, arg2) do
@@ -3574,7 +3574,7 @@ function neg_float_string(f) do
 end end
 
 function mkexp_cons(consloc, args, loc) do
-  return Curry._3(Ast_helper_Exp.mk, loc, undefined, --[[ Pexp_construct ]]Block.__(9, {
+  return Curry._3(Ast_helper_Exp.mk, loc, nil, --[[ Pexp_construct ]]Block.__(9, {
                 {
                   txt = --[[ Lident ]]Block.__(0, {"::"}),
                   loc = consloc
@@ -3584,7 +3584,7 @@ function mkexp_cons(consloc, args, loc) do
 end end
 
 function mkpat_cons(consloc, args, loc) do
-  return mk_1(loc, undefined, --[[ Ppat_construct ]]Block.__(5, {
+  return mk_1(loc, nil, --[[ Ppat_construct ]]Block.__(5, {
                 {
                   txt = --[[ Lident ]]Block.__(0, {"::"}),
                   loc = consloc
@@ -3604,7 +3604,7 @@ function mktailexp(nilloc, param) do
       loc_end = loc_loc_end,
       loc_ghost = true
     };
-    arg = Curry._3(Ast_helper_Exp.mk, loc, undefined, --[[ Pexp_tuple ]]Block.__(8, {--[[ :: ]]{
+    arg = Curry._3(Ast_helper_Exp.mk, loc, nil, --[[ Pexp_tuple ]]Block.__(8, {--[[ :: ]]{
               e1,
               --[[ :: ]]{
                 exp_el,
@@ -3629,9 +3629,9 @@ function mktailexp(nilloc, param) do
       txt = nil_txt,
       loc = loc_1
     };
-    return Curry._3(Ast_helper_Exp.mk, loc_1, undefined, --[[ Pexp_construct ]]Block.__(9, {
+    return Curry._3(Ast_helper_Exp.mk, loc_1, nil, --[[ Pexp_construct ]]Block.__(9, {
                   nil,
-                  undefined
+                  nil
                 }));
   end end 
 end end
@@ -3647,7 +3647,7 @@ function mktailpat(nilloc, param) do
       loc_end = loc_loc_end,
       loc_ghost = true
     };
-    arg = mk_1(loc, undefined, --[[ Ppat_tuple ]]Block.__(4, {--[[ :: ]]{
+    arg = mk_1(loc, nil, --[[ Ppat_tuple ]]Block.__(4, {--[[ :: ]]{
               p1,
               --[[ :: ]]{
                 pat_pl,
@@ -3672,9 +3672,9 @@ function mktailpat(nilloc, param) do
       txt = nil_txt,
       loc = loc_1
     };
-    return mk_1(loc_1, undefined, --[[ Ppat_construct ]]Block.__(5, {
+    return mk_1(loc_1, nil, --[[ Ppat_construct ]]Block.__(5, {
                   nil,
-                  undefined
+                  nil
                 }));
   end end 
 end end
@@ -3692,8 +3692,8 @@ end end
 function mkexp_constraint(e, param) do
   t2 = param[1];
   t1 = param[0];
-  if (t1 ~= undefined) then do
-    if (t2 ~= undefined) then do
+  if (t1 ~= nil) then do
+    if (t2 ~= nil) then do
       return ghexp(--[[ Pexp_coerce ]]Block.__(20, {
                     e,
                     t1,
@@ -3705,7 +3705,7 @@ function mkexp_constraint(e, param) do
                     t1
                   }));
     end end 
-  end else if (t2 ~= undefined) then do
+  end else if (t2 ~= nil) then do
     return ghexp(--[[ Pexp_coerce ]]Block.__(20, {
                   e,
                   t1,
@@ -3982,7 +3982,7 @@ function wrap_exp_attrs(body, param) do
     pexp_loc = body_pexp_loc,
     pexp_attributes = body_pexp_attributes
   };
-  if (ext ~= undefined) then do
+  if (ext ~= nil) then do
     return ghexp(--[[ Pexp_extension ]]Block.__(33, {--[[ tuple ]]{
                     ext,
                     --[[ PStr ]]Block.__(0, {--[[ :: ]]{
@@ -4322,7 +4322,7 @@ yyact = {
                 txt = "*",
                 loc = rhs_loc(2)
               },
-              undefined
+              nil
             };
     end end),
   (function(__caml_parser_env) do
@@ -4450,7 +4450,7 @@ yyact = {
       _5 = Parsing.peek_val(__caml_parser_env, 1);
       return mkmod(--[[ Pmod_unpack ]]Block.__(5, {ghexp(--[[ Pexp_coerce ]]Block.__(20, {
                             _3,
-                            undefined,
+                            nil,
                             ghtyp(--[[ Ptyp_package ]]Block.__(9, {_5}))
                           }))}));
     end end),
@@ -4512,7 +4512,7 @@ yyact = {
         lb = bindings[0];
         if (typeof lb.lb_pattern.ppat_desc == "number" and not bindings[1]) then do
           exp = wrap_exp_attrs(lb.lb_expression, --[[ tuple ]]{
-                undefined,
+                nil,
                 lbs.lbs_attributes
               });
           str = mkstr(--[[ Pstr_eval ]]Block.__(0, {
@@ -4546,7 +4546,7 @@ yyact = {
       end
        end 
       match = lbs.lbs_extension;
-      if (match ~= undefined) then do
+      if (match ~= nil) then do
         d = --[[ Pstr_extension ]]Block.__(14, {
             --[[ tuple ]]{
               match,
@@ -4648,7 +4648,7 @@ yyact = {
       _2 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 1);
       _4 = Parsing.peek_val(__caml_parser_env, 0);
-      return mk_14(symbol_rloc(--[[ () ]]0), _4, symbol_docs(--[[ () ]]0), undefined, {
+      return mk_14(symbol_rloc(--[[ () ]]0), _4, symbol_docs(--[[ () ]]0), nil, {
                   txt = _2,
                   loc = rhs_loc(2)
                 }, _3);
@@ -4672,7 +4672,7 @@ yyact = {
       _3 = Parsing.peek_val(__caml_parser_env, 2);
       _4 = Parsing.peek_val(__caml_parser_env, 1);
       _5 = Parsing.peek_val(__caml_parser_env, 0);
-      return mk_14(symbol_rloc(--[[ () ]]0), _5, symbol_docs(--[[ () ]]0), undefined, {
+      return mk_14(symbol_rloc(--[[ () ]]0), _5, symbol_docs(--[[ () ]]0), nil, {
                   txt = _3,
                   loc = rhs_loc(3)
                 }, _4);
@@ -4857,7 +4857,7 @@ yyact = {
                       txt = "*",
                       loc = rhs_loc(1)
                     },
-                    undefined,
+                    nil,
                     _3
                   }));
     end end),
@@ -4865,7 +4865,7 @@ yyact = {
       _2 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 1);
       _4 = Parsing.peek_val(__caml_parser_env, 0);
-      return mk_12(symbol_rloc(--[[ () ]]0), _4, symbol_docs(--[[ () ]]0), undefined, {
+      return mk_12(symbol_rloc(--[[ () ]]0), _4, symbol_docs(--[[ () ]]0), nil, {
                   txt = _2,
                   loc = rhs_loc(2)
                 }, _3);
@@ -4874,10 +4874,10 @@ yyact = {
       _2 = Parsing.peek_val(__caml_parser_env, 3);
       _4 = Parsing.peek_val(__caml_parser_env, 1);
       _5 = Parsing.peek_val(__caml_parser_env, 0);
-      return mk_12(symbol_rloc(--[[ () ]]0), _5, symbol_docs(--[[ () ]]0), undefined, {
+      return mk_12(symbol_rloc(--[[ () ]]0), _5, symbol_docs(--[[ () ]]0), nil, {
                   txt = _2,
                   loc = rhs_loc(2)
-                }, alias(rhs_loc(4), undefined, {
+                }, alias(rhs_loc(4), nil, {
                       txt = _4,
                       loc = rhs_loc(4)
                     }));
@@ -4901,7 +4901,7 @@ yyact = {
       _3 = Parsing.peek_val(__caml_parser_env, 3);
       _5 = Parsing.peek_val(__caml_parser_env, 1);
       _6 = Parsing.peek_val(__caml_parser_env, 0);
-      return mk_12(symbol_rloc(--[[ () ]]0), _6, symbol_docs(--[[ () ]]0), undefined, {
+      return mk_12(symbol_rloc(--[[ () ]]0), _6, symbol_docs(--[[ () ]]0), nil, {
                   txt = _3,
                   loc = rhs_loc(3)
                 }, _5);
@@ -4925,7 +4925,7 @@ yyact = {
       _3 = Parsing.peek_val(__caml_parser_env, 2);
       _4 = Parsing.peek_val(__caml_parser_env, 1);
       _5 = Parsing.peek_val(__caml_parser_env, 0);
-      return mk_13(symbol_rloc(--[[ () ]]0), _5, symbol_docs(--[[ () ]]0), undefined, _4, {
+      return mk_13(symbol_rloc(--[[ () ]]0), _5, symbol_docs(--[[ () ]]0), nil, _4, {
                   txt = _3,
                   loc = rhs_loc(3)
                 });
@@ -4951,7 +4951,7 @@ yyact = {
       _4 = Parsing.peek_val(__caml_parser_env, 2);
       _5 = Parsing.peek_val(__caml_parser_env, 1);
       _6 = Parsing.peek_val(__caml_parser_env, 0);
-      return mk_18(symbol_rloc(--[[ () ]]0), _6, symbol_docs(--[[ () ]]0), undefined, _2, _3, {
+      return mk_18(symbol_rloc(--[[ () ]]0), _6, symbol_docs(--[[ () ]]0), nil, _2, _3, {
                   txt = _4,
                   loc = rhs_loc(4)
                 }, _5);
@@ -5044,9 +5044,9 @@ yyact = {
                 })
               end
                end 
-              return mk_17(lb.lb_loc, undefined, undefined, undefined, lb.lb_pattern, lb.lb_expression);
+              return mk_17(lb.lb_loc, nil, nil, nil, lb.lb_pattern, lb.lb_expression);
             end end), lbs.lbs_bindings);
-      if (lbs.lbs_extension ~= undefined) then do
+      if (lbs.lbs_extension ~= nil) then do
         error({
           __Error_1,
           --[[ Not_expecting ]]Block.__(2, {
@@ -5202,7 +5202,7 @@ yyact = {
   (function(__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
       mark_symbol_docs(--[[ () ]]0);
-      return mkcf(undefined, undefined, --[[ Pcf_attribute ]]Block.__(5, {_1}));
+      return mkcf(nil, nil, --[[ Pcf_attribute ]]Block.__(5, {_1}));
     end end),
   (function(__caml_parser_env) do
       return Parsing.peek_val(__caml_parser_env, 0);
@@ -5326,7 +5326,7 @@ yyact = {
                   _1,
                   ghexp(--[[ Pexp_poly ]]Block.__(28, {
                           _4,
-                          undefined
+                          nil
                         }))
                 })
             };
@@ -5515,7 +5515,7 @@ yyact = {
   (function(__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
       mark_symbol_docs(--[[ () ]]0);
-      return mkctf(undefined, undefined, --[[ Pctf_attribute ]]Block.__(4, {_1}));
+      return mkctf(nil, nil, --[[ Pctf_attribute ]]Block.__(4, {_1}));
     end end),
   (function(__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 3);
@@ -5587,7 +5587,7 @@ yyact = {
       _4 = Parsing.peek_val(__caml_parser_env, 3);
       _6 = Parsing.peek_val(__caml_parser_env, 1);
       _7 = Parsing.peek_val(__caml_parser_env, 0);
-      return mk_18(symbol_rloc(--[[ () ]]0), _7, symbol_docs(--[[ () ]]0), undefined, _2, _3, {
+      return mk_18(symbol_rloc(--[[ () ]]0), _7, symbol_docs(--[[ () ]]0), nil, _2, _3, {
                   txt = _4,
                   loc = rhs_loc(4)
                 }, _6);
@@ -5624,7 +5624,7 @@ yyact = {
       _5 = Parsing.peek_val(__caml_parser_env, 3);
       _7 = Parsing.peek_val(__caml_parser_env, 1);
       _8 = Parsing.peek_val(__caml_parser_env, 0);
-      return mk_18(symbol_rloc(--[[ () ]]0), _8, symbol_docs(--[[ () ]]0), undefined, _3, _4, {
+      return mk_18(symbol_rloc(--[[ () ]]0), _8, symbol_docs(--[[ () ]]0), nil, _3, _4, {
                   txt = _5,
                   loc = rhs_loc(5)
                 }, _7);
@@ -5667,7 +5667,7 @@ yyact = {
       _2 = Parsing.peek_val(__caml_parser_env, 0);
       return --[[ tuple ]]{
               "?" .. _2[0],
-              undefined,
+              nil,
               _2[1]
             };
     end end),
@@ -5686,7 +5686,7 @@ yyact = {
       _2 = Parsing.peek_val(__caml_parser_env, 0);
       return --[[ tuple ]]{
               "?" .. _1,
-              undefined,
+              nil,
               _2
             };
     end end),
@@ -5694,7 +5694,7 @@ yyact = {
       _3 = Parsing.peek_val(__caml_parser_env, 1);
       return --[[ tuple ]]{
               _3[0],
-              undefined,
+              nil,
               _3[1]
             };
     end end),
@@ -5702,7 +5702,7 @@ yyact = {
       _2 = Parsing.peek_val(__caml_parser_env, 0);
       return --[[ tuple ]]{
               _2[0],
-              undefined,
+              nil,
               _2[1]
             };
     end end),
@@ -5711,7 +5711,7 @@ yyact = {
       _2 = Parsing.peek_val(__caml_parser_env, 0);
       return --[[ tuple ]]{
               _1,
-              undefined,
+              nil,
               _2
             };
     end end),
@@ -5719,7 +5719,7 @@ yyact = {
       _1 = Parsing.peek_val(__caml_parser_env, 0);
       return --[[ tuple ]]{
               "",
-              undefined,
+              nil,
               _1
             };
     end end),
@@ -5801,7 +5801,7 @@ yyact = {
                 })
               end
                end 
-              return mk_17(lb.lb_loc, undefined, undefined, undefined, lb.lb_pattern, lb.lb_expression);
+              return mk_17(lb.lb_loc, nil, nil, nil, lb.lb_pattern, lb.lb_expression);
             end end), lbs.lbs_bindings);
       d_000 = lbs.lbs_rec;
       d_001 = List.rev(bindings);
@@ -5944,7 +5944,7 @@ yyact = {
       return wrap_exp_attrs(mkexp(--[[ Pexp_ifthenelse ]]Block.__(15, {
                         _3,
                         _5,
-                        undefined
+                        nil
                       })), _2);
     end end),
   (function(__caml_parser_env) do
@@ -6447,14 +6447,14 @@ yyact = {
                       txt = _1,
                       loc = rhs_loc(1)
                     },
-                    undefined
+                    nil
                   }));
     end end),
   (function(__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
       return mkexp(--[[ Pexp_variant ]]Block.__(10, {
                     _1,
-                    undefined
+                    nil
                   }));
     end end),
   (function(__caml_parser_env) do
@@ -6477,7 +6477,7 @@ yyact = {
       };
       d = --[[ Pexp_construct ]]Block.__(9, {
           d_000,
-          undefined
+          nil
         });
       return wrap_exp_attrs(mkexp(d), _2);
     end end),
@@ -7121,7 +7121,7 @@ yyact = {
   (function(__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return Curry._3(Ast_helper_Exp.__case, _1, undefined, _3);
+      return Curry._3(Ast_helper_Exp.__case, _1, nil, _3);
     end end),
   (function(__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 4);
@@ -7180,7 +7180,7 @@ yyact = {
   (function(__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
       return --[[ tuple ]]{
-              undefined,
+              nil,
               _1
             };
     end end),
@@ -7275,7 +7275,7 @@ yyact = {
       _2 = Parsing.peek_val(__caml_parser_env, 0);
       return --[[ tuple ]]{
               _2,
-              undefined
+              nil
             };
     end end),
   (function(__caml_parser_env) do
@@ -7289,7 +7289,7 @@ yyact = {
   (function(__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 0);
       return --[[ tuple ]]{
-              undefined,
+              nil,
               _2
             };
     end end),
@@ -7428,14 +7428,14 @@ yyact = {
                       txt = _1,
                       loc = rhs_loc(1)
                     },
-                    undefined
+                    nil
                   }));
     end end),
   (function(__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
       return mkpat(--[[ Ppat_variant ]]Block.__(6, {
                     _1,
-                    undefined
+                    nil
                   }));
     end end),
   (function(__caml_parser_env) do
@@ -7635,7 +7635,7 @@ yyact = {
       _2 = Parsing.peek_val(__caml_parser_env, 3);
       _4 = Parsing.peek_val(__caml_parser_env, 1);
       _5 = Parsing.peek_val(__caml_parser_env, 0);
-      return mk_11(symbol_rloc(--[[ () ]]0), _5, symbol_docs(--[[ () ]]0), undefined, {
+      return mk_11(symbol_rloc(--[[ () ]]0), _5, symbol_docs(--[[ () ]]0), nil, {
                   txt = _2,
                   loc = rhs_loc(2)
                 }, _4);
@@ -7687,7 +7687,7 @@ yyact = {
       _5 = Parsing.peek_val(__caml_parser_env, 2);
       _6 = Parsing.peek_val(__caml_parser_env, 1);
       _7 = Parsing.peek_val(__caml_parser_env, 0);
-      return mk_19(symbol_rloc(--[[ () ]]0), add_nonrec(_2, _7, 2), symbol_docs(--[[ () ]]0), undefined, _3, List.rev(_6), _5[0], _5[1], _5[2], {
+      return mk_19(symbol_rloc(--[[ () ]]0), add_nonrec(_2, _7, 2), symbol_docs(--[[ () ]]0), nil, _3, List.rev(_6), _5[0], _5[1], _5[2], {
                   txt = _4,
                   loc = rhs_loc(4)
                 });
@@ -7718,7 +7718,7 @@ yyact = {
       return --[[ tuple ]]{
               --[[ Ptype_abstract ]]0,
               --[[ Public ]]1,
-              undefined
+              nil
             };
     end end),
   (function(__caml_parser_env) do
@@ -7742,7 +7742,7 @@ yyact = {
       return --[[ tuple ]]{
               --[[ Ptype_variant ]]Block.__(0, {List.rev(_2)}),
               --[[ Public ]]1,
-              undefined
+              nil
             };
     end end),
   (function(__caml_parser_env) do
@@ -7750,14 +7750,14 @@ yyact = {
       return --[[ tuple ]]{
               --[[ Ptype_variant ]]Block.__(0, {List.rev(_3)}),
               --[[ Private ]]0,
-              undefined
+              nil
             };
     end end),
   (function(__caml_parser_env) do
       return --[[ tuple ]]{
               --[[ Ptype_open ]]1,
               --[[ Public ]]1,
-              undefined
+              nil
             };
     end end),
   (function(__caml_parser_env) do
@@ -7766,7 +7766,7 @@ yyact = {
       return --[[ tuple ]]{
               --[[ Ptype_record ]]Block.__(1, {_4}),
               _2,
-              undefined
+              nil
             };
     end end),
   (function(__caml_parser_env) do
@@ -7937,7 +7937,7 @@ yyact = {
       _4 = Parsing.peek_val(__caml_parser_env, 2);
       _5 = Parsing.peek_val(__caml_parser_env, 1);
       _6 = Parsing.peek_val(__caml_parser_env, 0);
-      return rebind(symbol_rloc(--[[ () ]]0), Pervasives.$at(_5, _6), symbol_docs(--[[ () ]]0), undefined, {
+      return rebind(symbol_rloc(--[[ () ]]0), Pervasives.$at(_5, _6), symbol_docs(--[[ () ]]0), nil, {
                   txt = _2,
                   loc = rhs_loc(2)
                 }, {
@@ -7950,7 +7950,7 @@ yyact = {
       _3 = Parsing.peek_val(__caml_parser_env, 2);
       _4 = Parsing.peek_val(__caml_parser_env, 1);
       _5 = Parsing.peek_val(__caml_parser_env, 0);
-      return decl(symbol_rloc(--[[ () ]]0), Pervasives.$at(_4, _5), symbol_docs(--[[ () ]]0), undefined, _3[0], _3[1], {
+      return decl(symbol_rloc(--[[ () ]]0), Pervasives.$at(_4, _5), symbol_docs(--[[ () ]]0), nil, _3[0], _3[1], {
                   txt = _2,
                   loc = rhs_loc(2)
                 });
@@ -7958,14 +7958,14 @@ yyact = {
   (function(__caml_parser_env) do
       return --[[ tuple ]]{
               --[[ [] ]]0,
-              undefined
+              nil
             };
     end end),
   (function(__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 0);
       return --[[ tuple ]]{
               List.rev(_2),
-              undefined
+              nil
             };
     end end),
   (function(__caml_parser_env) do
@@ -8022,7 +8022,7 @@ yyact = {
       _5 = Parsing.peek_val(__caml_parser_env, 2);
       _7 = Parsing.peek_val(__caml_parser_env, 0);
       info_before_semi = get_info(Parsing.rhs_end_pos(5));
-      info = info_before_semi ~= undefined and info_before_semi or get_info(Parsing.symbol_end_pos(--[[ () ]]0));
+      info = info_before_semi ~= nil and info_before_semi or get_info(Parsing.symbol_end_pos(--[[ () ]]0));
       return field_1(symbol_rloc(--[[ () ]]0), Pervasives.$at(_5, _7), Caml_option.some(info), _1, {
                   txt = _2,
                   loc = rhs_loc(2)
@@ -8130,7 +8130,7 @@ yyact = {
       _1 = Parsing.peek_val(__caml_parser_env, 2);
       _2 = Parsing.peek_val(__caml_parser_env, 1);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return decl(symbol_rloc(--[[ () ]]0), _3, undefined, Caml_option.some(get_info(Parsing.symbol_end_pos(--[[ () ]]0))), _2[0], _2[1], {
+      return decl(symbol_rloc(--[[ () ]]0), _3, nil, Caml_option.some(get_info(Parsing.symbol_end_pos(--[[ () ]]0))), _2[0], _2[1], {
                   txt = _1,
                   loc = rhs_loc(1)
                 });
@@ -8139,7 +8139,7 @@ yyact = {
       _2 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 1);
       _4 = Parsing.peek_val(__caml_parser_env, 0);
-      return decl(symbol_rloc(--[[ () ]]0), _4, undefined, Caml_option.some(get_info(Parsing.symbol_end_pos(--[[ () ]]0))), _3[0], _3[1], {
+      return decl(symbol_rloc(--[[ () ]]0), _4, nil, Caml_option.some(get_info(Parsing.symbol_end_pos(--[[ () ]]0))), _3[0], _3[1], {
                   txt = _2,
                   loc = rhs_loc(2)
                 });
@@ -8148,7 +8148,7 @@ yyact = {
       _1 = Parsing.peek_val(__caml_parser_env, 3);
       _3 = Parsing.peek_val(__caml_parser_env, 1);
       _4 = Parsing.peek_val(__caml_parser_env, 0);
-      return rebind(symbol_rloc(--[[ () ]]0), _4, undefined, Caml_option.some(get_info(Parsing.symbol_end_pos(--[[ () ]]0))), {
+      return rebind(symbol_rloc(--[[ () ]]0), _4, nil, Caml_option.some(get_info(Parsing.symbol_end_pos(--[[ () ]]0))), {
                   txt = _1,
                   loc = rhs_loc(1)
                 }, {
@@ -8160,7 +8160,7 @@ yyact = {
       _2 = Parsing.peek_val(__caml_parser_env, 3);
       _4 = Parsing.peek_val(__caml_parser_env, 1);
       _5 = Parsing.peek_val(__caml_parser_env, 0);
-      return rebind(symbol_rloc(--[[ () ]]0), _5, undefined, Caml_option.some(get_info(Parsing.symbol_end_pos(--[[ () ]]0))), {
+      return rebind(symbol_rloc(--[[ () ]]0), _5, nil, Caml_option.some(get_info(Parsing.symbol_end_pos(--[[ () ]]0))), {
                   txt = _2,
                   loc = rhs_loc(2)
                 }, {
@@ -8195,7 +8195,7 @@ yyact = {
                   txt = _3,
                   loc = rhs_loc(3)
                 },
-                mk_19(symbol_rloc(--[[ () ]]0), undefined, undefined, undefined, _2, List.rev(_6), undefined, _4, _5, {
+                mk_19(symbol_rloc(--[[ () ]]0), nil, nil, nil, _2, List.rev(_6), nil, _4, _5, {
                       txt = rhs,
                       loc = rhs_loc(3)
                     })
@@ -8205,7 +8205,7 @@ yyact = {
       _2 = Parsing.peek_val(__caml_parser_env, 3);
       _3 = Parsing.peek_val(__caml_parser_env, 2);
       _5 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ Pwith_typesubst ]]Block.__(2, {mk_19(symbol_rloc(--[[ () ]]0), undefined, undefined, undefined, _2, undefined, undefined, undefined, _5, {
+      return --[[ Pwith_typesubst ]]Block.__(2, {mk_19(symbol_rloc(--[[ () ]]0), nil, nil, nil, _2, nil, nil, nil, _5, {
                       txt = _3,
                       loc = rhs_loc(3)
                     })});
@@ -8470,7 +8470,7 @@ yyact = {
                       --[[ [] ]]0
                     },
                     --[[ Closed ]]0,
-                    undefined
+                    nil
                   }));
     end end),
   (function(__caml_parser_env) do
@@ -8478,7 +8478,7 @@ yyact = {
       return mktyp(--[[ Ptyp_variant ]]Block.__(7, {
                     List.rev(_3),
                     --[[ Closed ]]0,
-                    undefined
+                    nil
                   }));
     end end),
   (function(__caml_parser_env) do
@@ -8490,7 +8490,7 @@ yyact = {
                       List.rev(_4)
                     },
                     --[[ Closed ]]0,
-                    undefined
+                    nil
                   }));
     end end),
   (function(__caml_parser_env) do
@@ -8499,14 +8499,14 @@ yyact = {
       return mktyp(--[[ Ptyp_variant ]]Block.__(7, {
                     List.rev(_3),
                     --[[ Open ]]1,
-                    undefined
+                    nil
                   }));
     end end),
   (function(__caml_parser_env) do
       return mktyp(--[[ Ptyp_variant ]]Block.__(7, {
                     --[[ [] ]]0,
                     --[[ Open ]]1,
-                    undefined
+                    nil
                   }));
     end end),
   (function(__caml_parser_env) do
@@ -9444,7 +9444,7 @@ yyact = {
     end end),
   (function(__caml_parser_env) do
       return --[[ tuple ]]{
-              undefined,
+              nil,
               --[[ [] ]]0
             };
     end end),
@@ -9452,7 +9452,7 @@ yyact = {
       _1 = Parsing.peek_val(__caml_parser_env, 1);
       _2 = Parsing.peek_val(__caml_parser_env, 0);
       return --[[ tuple ]]{
-              undefined,
+              nil,
               --[[ :: ]]{
                 _1,
                 _2
@@ -9495,7 +9495,7 @@ yyact = {
       _2 = Parsing.peek_val(__caml_parser_env, 0);
       return --[[ PPat ]]Block.__(2, {
                 _2,
-                undefined
+                nil
               });
     end end),
   (function(__caml_parser_env) do
@@ -9628,7 +9628,7 @@ function assert_same_type(lexbuf, x, y) do
   return y;
 end end
 
-directive_built_in_values = Hashtbl.create(undefined, 51);
+directive_built_in_values = Hashtbl.create(nil, 51);
 
 Hashtbl.replace(directive_built_in_values, "OCAML_VERSION", --[[ Dir_string ]]Block.__(3, {Sys.ocaml_version}));
 
@@ -9814,12 +9814,12 @@ end end
 
 function directive_parse(token_with_comments, lexbuf) do
   look_ahead = {
-    contents = undefined
+    contents = nil
   };
   token = function(param) do
     v = look_ahead.contents;
-    if (v ~= undefined) then do
-      look_ahead.contents = undefined;
+    if (v ~= nil) then do
+      look_ahead.contents = nil;
       return v;
     end else do
       _param = --[[ () ]]0;
@@ -9855,7 +9855,7 @@ function directive_parse(token_with_comments, lexbuf) do
     end end 
   end end;
   push = function(e) do
-    if (look_ahead.contents ~= undefined) then do
+    if (look_ahead.contents ~= nil) then do
       error({
         Caml_builtin_exceptions.assert_failure,
         --[[ tuple ]]{
@@ -10686,7 +10686,7 @@ if_then_else = {
 };
 
 sharp_look_ahead = {
-  contents = undefined
+  contents = nil
 };
 
 function with_comment_buffer(comment, lexbuf) do
@@ -10831,7 +10831,7 @@ end end
 
 function update_loc(lexbuf, file, line, absolute, chars) do
   pos = lexbuf.lex_curr_p;
-  new_file = file ~= undefined and file or pos.pos_fname;
+  new_file = file ~= nil and file or pos.pos_fname;
   lexbuf.lex_curr_p = {
     pos_fname = new_file,
     pos_lnum = absolute and line or pos.pos_lnum + line | 0,
@@ -10842,7 +10842,7 @@ function update_loc(lexbuf, file, line, absolute, chars) do
 end end
 
 preprocessor = {
-  contents = undefined
+  contents = nil
 };
 
 escaped_newlines = {
@@ -11083,10 +11083,10 @@ function token(lexbuf) do
             })
           end
            end 
-          update_loc(lexbuf_1, undefined, 1, false, 0);
+          update_loc(lexbuf_1, nil, 1, false, 0);
           return token(lexbuf_1); end end 
        if ___conditional___ == 1 then do
-          update_loc(lexbuf_1, undefined, 1, false, 0);
+          update_loc(lexbuf_1, nil, 1, false, 0);
           return --[[ EOL ]]100; end end 
        if ___conditional___ == 2 then do
           return token(lexbuf_1); end end 
@@ -11197,7 +11197,7 @@ function token(lexbuf) do
           lexbuf_1.lex_start_p = string_start;
           return --[[ STRING ]]Block.__(16, {--[[ tuple ]]{
                       get_stored_string(--[[ () ]]0),
-                      undefined
+                      nil
                     }}); end end 
        if ___conditional___ == 20 then do
           reset_string_buffer(--[[ () ]]0);
@@ -11214,7 +11214,7 @@ function token(lexbuf) do
                       delim_1
                     }}); end end 
        if ___conditional___ == 21 then do
-          update_loc(lexbuf_1, undefined, 1, false, 1);
+          update_loc(lexbuf_1, nil, 1, false, 1);
           return --[[ CHAR ]]Block.__(0, {Lexing.lexeme_char(lexbuf_1, 1)}); end end 
        if ___conditional___ == 22 then do
           return --[[ CHAR ]]Block.__(0, {Lexing.lexeme_char(lexbuf_1, 1)}); end end 
@@ -11436,7 +11436,7 @@ function __ocaml_lex_quoted_string_rec(delim, lexbuf, ___ocaml_lex_state) do
     local ___conditional___=(__ocaml_lex_state_1);
     do
        if ___conditional___ == 0 then do
-          update_loc(lexbuf, undefined, 1, false, 0);
+          update_loc(lexbuf, nil, 1, false, 0);
           store_string(Lexing.lexeme(lexbuf));
           ___ocaml_lex_state = 183;
           ::continue:: ; end end 
@@ -11482,7 +11482,7 @@ function string(lexbuf) do
           return --[[ () ]]0; end end 
        if ___conditional___ == 1 then do
           space = Lexing.sub_lexeme(lexbuf_1, Caml_array.caml_array_get(lexbuf_1.lex_mem, 0), lexbuf_1.lex_curr_pos);
-          update_loc(lexbuf_1, undefined, 1, false, #space);
+          update_loc(lexbuf_1, nil, 1, false, #space);
           return string(lexbuf_1); end end 
        if ___conditional___ == 2 then do
           store_string_char(char_for_backslash(Lexing.lexeme_char(lexbuf_1, 1)));
@@ -11508,7 +11508,7 @@ function string(lexbuf) do
             prerr_warning(curr(lexbuf_1), --[[ Eol_in_string ]]14);
           end
            end 
-          update_loc(lexbuf_1, undefined, 1, false, 0);
+          update_loc(lexbuf_1, nil, 1, false, 0);
           store_string(Lexing.lexeme(lexbuf_1));
           return string(lexbuf_1); end end 
        if ___conditional___ == 7 then do
@@ -11667,7 +11667,7 @@ function __ocaml_lex_comment_rec(lexbuf, ___ocaml_lex_state) do
           ___ocaml_lex_state = 132;
           ::continue:: ; end end 
        if ___conditional___ == 5 then do
-          update_loc(lexbuf, undefined, 1, false, 1);
+          update_loc(lexbuf, nil, 1, false, 1);
           store_string(Lexing.lexeme(lexbuf));
           ___ocaml_lex_state = 132;
           ::continue:: ; end end 
@@ -11692,7 +11692,7 @@ function __ocaml_lex_comment_rec(lexbuf, ___ocaml_lex_state) do
             })
           end end  end end 
        if ___conditional___ == 11 then do
-          update_loc(lexbuf, undefined, 1, false, 0);
+          update_loc(lexbuf, nil, 1, false, 0);
           store_string(Lexing.lexeme(lexbuf));
           ___ocaml_lex_state = 132;
           ::continue:: ; end end 
@@ -11724,7 +11724,7 @@ end end
 
 function token_with_comments(lexbuf) do
   match = preprocessor.contents;
-  if (match ~= undefined) then do
+  if (match ~= nil) then do
     return Curry._2(match[1], token, lexbuf);
   end else do
     return token(lexbuf);
@@ -12021,8 +12021,8 @@ function token_1(lexbuf) do
     end;
   end end;
   match = sharp_look_ahead.contents;
-  if (match ~= undefined) then do
-    sharp_look_ahead.contents = undefined;
+  if (match ~= nil) then do
+    sharp_look_ahead.contents = nil;
     return match;
   end else do
     return loop(--[[ NoLine ]]0, --[[ Initial ]]0, lexbuf);
@@ -12030,13 +12030,13 @@ function token_1(lexbuf) do
 end end
 
 function init_1(param) do
-  sharp_look_ahead.contents = undefined;
+  sharp_look_ahead.contents = nil;
   if_then_else.contents = --[[ Dir_out ]]2;
   is_in_string.contents = false;
   comment_start_loc.contents = --[[ [] ]]0;
   comment_list.contents = --[[ [] ]]0;
   match = preprocessor.contents;
-  if (match ~= undefined) then do
+  if (match ~= nil) then do
     return Curry._1(match[0], --[[ () ]]0);
   end else do
     return --[[ () ]]0;
@@ -12185,7 +12185,7 @@ if (match) then do
                 if (match_12.pos_fname == "" and not (match_12.pos_lnum ~= 1 or match_12.pos_bol ~= 0 or match_12.pos_cnum ~= 5 or match_10.loc_ghost or match_4.ppat_attributes)) then do
                   match_13 = match_3.pvb_expr;
                   match_14 = match_13.pexp_desc;
-                  if (match_14.tag == --[[ Pexp_fun ]]4 and match_14[0] == "" and match_14[1] == undefined) then do
+                  if (match_14.tag == --[[ Pexp_fun ]]4 and match_14[0] == "" and match_14[1] == nil) then do
                     match_15 = match_14[2];
                     match_16 = match_15.ppat_desc;
                     if (typeof match_16 == "number" or match_16.tag) then do

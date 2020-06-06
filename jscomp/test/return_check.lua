@@ -15,7 +15,7 @@ end end
 
 function f_undefined(xs, i) do
   match = xs[i];
-  if (match ~= undefined) then do
+  if (match ~= nil) then do
     return match;
   end else do
     error({
@@ -32,7 +32,7 @@ end end
 function f_escaped_not(xs, i) do
   x = xs[i];
   console.log("hei");
-  if (x ~= undefined) then do
+  if (x ~= nil) then do
     return x;
   end else do
     return 1;
@@ -42,7 +42,7 @@ end end
 function f_escaped_1(xs, i) do
   x = xs[i];
   return (function(param) do
-      if (x ~= undefined) then do
+      if (x ~= nil) then do
         return x;
       end else do
         return 1;

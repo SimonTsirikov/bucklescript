@@ -66,7 +66,7 @@ end end)
 
 if (exit == 1) then do
   console.log("ok");
-  x = undefined;
+  x = nil;
 end
  end 
 

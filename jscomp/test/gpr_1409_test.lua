@@ -39,7 +39,7 @@ b = {
 };
 
 function map(f, x) do
-  if (x ~= undefined) then do
+  if (x ~= nil) then do
     return Caml_option.some(Curry._1(f, Caml_option.valFromOption(x)));
   end
    end 
@@ -51,7 +51,7 @@ function make(foo) do
         end end), foo);
   return (function(param) do
       tmp = { };
-      if (partial_arg ~= undefined) then do
+      if (partial_arg ~= nil) then do
         tmp.foo = Caml_option.valFromOption(partial_arg);
       end
        end 
@@ -59,7 +59,7 @@ function make(foo) do
     end end);
 end end
 
-a_ = make(undefined)(--[[ () ]]0);
+a_ = make(nil)(--[[ () ]]0);
 
 b_ = make(42)(--[[ () ]]0);
 
@@ -80,11 +80,11 @@ function test3(_open, xx__hi) do
   tmp = {
     hi = 2
   };
-  if (_open ~= undefined) then do
+  if (_open ~= nil) then do
     tmp.open = Caml_option.valFromOption(_open);
   end
    end 
-  if (xx__hi ~= undefined) then do
+  if (xx__hi ~= nil) then do
     tmp.xx = Caml_option.valFromOption(xx__hi);
   end
    end 
@@ -97,7 +97,7 @@ function test4(_open, xx__hi) do
     open = _open,
     hi = 2
   };
-  if (xx__hi ~= undefined) then do
+  if (xx__hi ~= nil) then do
     tmp.xx = Caml_option.valFromOption(xx__hi);
   end
    end 
@@ -110,12 +110,12 @@ function test5(f, x) do
     hi = 2
   };
   tmp_1 = Curry._1(f, x);
-  if (tmp_1 ~= undefined) then do
+  if (tmp_1 ~= nil) then do
     tmp.open = Caml_option.valFromOption(tmp_1);
   end
    end 
   tmp_2 = Curry._1(f, x);
-  if (tmp_2 ~= undefined) then do
+  if (tmp_2 ~= nil) then do
     tmp.xx = Caml_option.valFromOption(tmp_2);
   end
    end 
@@ -131,12 +131,12 @@ function test6(f, x) do
     hi = 2
   };
   tmp_1 = (x_1.contents = x_1.contents + 1 | 0, x_1.contents);
-  if (tmp_1 ~= undefined) then do
+  if (tmp_1 ~= nil) then do
     tmp.open = Caml_option.valFromOption(tmp_1);
   end
    end 
   tmp_2 = f(x_1);
-  if (tmp_2 ~= undefined) then do
+  if (tmp_2 ~= nil) then do
     tmp.xx = Caml_option.valFromOption(tmp_2);
   end
    end 
@@ -150,7 +150,7 @@ end end
 eq("File \"gpr_1409_test.ml\", line 69, characters 6-13", keys(--[[ :: ]]{
           "hi",
           --[[ [] ]]0
-        }, Object.keys(test3(undefined, undefined))), true);
+        }, Object.keys(test3(nil, nil))), true);
 
 eq("File \"gpr_1409_test.ml\", line 71, characters 6-13", keys(--[[ :: ]]{
           "hi",
@@ -158,7 +158,7 @@ eq("File \"gpr_1409_test.ml\", line 71, characters 6-13", keys(--[[ :: ]]{
             "open",
             --[[ [] ]]0
           }
-        }, Object.keys(test3(2, undefined))), true);
+        }, Object.keys(test3(2, nil))), true);
 
 eq("File \"gpr_1409_test.ml\", line 73, characters 6-13", keys(--[[ :: ]]{
           "hi",

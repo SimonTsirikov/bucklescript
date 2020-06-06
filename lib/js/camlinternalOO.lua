@@ -113,7 +113,7 @@ end end
 
 function get_method_label(table, name) do
   match = Belt_MapString.getUndefined(table.methods_by_name, name);
-  if (match ~= undefined) then do
+  if (match ~= nil) then do
     return match;
   end else do
     label = new_method(table);
@@ -258,7 +258,7 @@ end end
 
 function new_variable(table, name) do
   match = Belt_MapString.getUndefined(table.vars, name);
-  if (match ~= undefined) then do
+  if (match ~= nil) then do
     return match;
   end else do
     index = new_slot(table);

@@ -28,7 +28,7 @@ function clear(h) do
   h_buckets = h.buckets;
   len = #h_buckets;
   for i = 0 , len - 1 | 0 , 1 do
-    h_buckets[i] = undefined;
+    h_buckets[i] = nil;
   end
   return --[[ () ]]0;
 end end
@@ -37,7 +37,7 @@ function isEmpty(h) do
   return h.size == 0;
 end end
 
-emptyOpt = undefined;
+emptyOpt = nil;
 
 exports = {}
 exports.emptyOpt = emptyOpt;

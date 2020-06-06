@@ -22,7 +22,7 @@ function to_list(tbl) do
 end end
 
 function f(param) do
-  tbl = Hashtbl.create(undefined, 17);
+  tbl = Hashtbl.create(nil, 17);
   Hashtbl.add(tbl, 1, --[[ "1" ]]49);
   Hashtbl.add(tbl, 2, --[[ "2" ]]50);
   return List.sort((function(param, param_1) do
@@ -31,7 +31,7 @@ function f(param) do
 end end
 
 function g(count) do
-  tbl = Hashtbl.create(undefined, 17);
+  tbl = Hashtbl.create(nil, 17);
   for i = 0 , count , 1 do
     Hashtbl.replace(tbl, (i << 1), String(i));
   end
@@ -85,7 +85,7 @@ suites_001 = --[[ :: ]]{
     --[[ tuple ]]{
       "More_labels_regressionfix_374",
       (function(param) do
-          tbl = Curry._2(MoreLabels.Hashtbl.create, undefined, 30);
+          tbl = Curry._2(MoreLabels.Hashtbl.create, nil, 30);
           Hashtbl.add(tbl, 3, 3);
           return --[[ Eq ]]Block.__(0, {
                     tbl.size,

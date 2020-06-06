@@ -78,7 +78,7 @@ suites_001 = --[[ :: ]]{
           "undefined_gadt_test",
           (function(param) do
               return --[[ Eq ]]Block.__(0, {
-                        Js_types.test(undefined, --[[ Undefined ]]0),
+                        Js_types.test(nil, --[[ Undefined ]]0),
                         true
                       });
             end end)

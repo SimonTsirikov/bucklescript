@@ -29,20 +29,20 @@ inch = {
 
 function bufferize(f) do
   buf = {
-    contents = undefined
+    contents = nil
   };
   return --[[ tuple ]]{
           (function(param) do
               match = buf.contents;
-              if (match ~= undefined) then do
-                buf.contents = undefined;
+              if (match ~= nil) then do
+                buf.contents = nil;
                 return Caml_option.valFromOption(match);
               end else do
                 return Curry._1(f, --[[ () ]]0);
               end end 
             end end),
           (function(x) do
-              if (buf.contents ~= undefined) then do
+              if (buf.contents ~= nil) then do
                 error({
                   Caml_builtin_exceptions.assert_failure,
                   --[[ tuple ]]{
@@ -197,12 +197,12 @@ function next(param) do
     match = skip(--[[ () ]]0);
   end end,function(exn) do
     if (exn == Caml_builtin_exceptions.end_of_file) then do
-      match = undefined;
+      match = nil;
     end else do
       error(exn)
     end end 
   end end)
-  if (match ~= undefined) then do
+  if (match ~= nil) then do
     c = match;
     if (c ~= 34) then do
       if (c >= 48) then do

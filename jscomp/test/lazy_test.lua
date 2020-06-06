@@ -30,10 +30,10 @@ end end
 function f(param) do
   CamlinternalLazy.force(param[0]);
   match = param[2].contents;
-  if (match ~= undefined) then do
+  if (match ~= nil) then do
     CamlinternalLazy.force(param[1]);
     match_1 = param[2].contents;
-    if (match_1 ~= undefined) then do
+    if (match_1 ~= nil) then do
       return 1;
     end else do
       error({
@@ -51,7 +51,7 @@ function f(param) do
 end end
 
 s = {
-  contents = undefined
+  contents = nil
 };
 
 set_true = Caml_obj.caml_lazy_make((function(param) do
@@ -60,7 +60,7 @@ set_true = Caml_obj.caml_lazy_make((function(param) do
       end end));
 
 set_false = Caml_obj.caml_lazy_make((function(param) do
-        s.contents = undefined;
+        s.contents = nil;
         return --[[ () ]]0;
       end end));
 

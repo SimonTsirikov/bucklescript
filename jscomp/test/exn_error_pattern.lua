@@ -73,7 +73,7 @@ end end,function(raw_e) do
   tmp = Caml_js_exceptions.internalToOCamlException(raw_e);
 end end)
 
-eq("File \"exn_error_pattern.ml\", line 38, characters 5-12", f(tmp), undefined);
+eq("File \"exn_error_pattern.ml\", line 38, characters 5-12", f(tmp), nil);
 
 Mt.from_pair_suites("Exn_error_pattern", suites.contents);
 

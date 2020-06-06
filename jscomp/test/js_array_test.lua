@@ -219,7 +219,7 @@ suites_001 = --[[ :: ]]{
                           "pop - empty array",
                           (function(param) do
                               return --[[ Eq ]]Block.__(0, {
-                                        undefined,
+                                        nil,
                                         Caml_option.undefined_to_opt({}.pop())
                                       });
                             end end)
@@ -289,7 +289,7 @@ suites_001 = --[[ :: ]]{
                                     "shift - empty array",
                                     (function(param) do
                                         return --[[ Eq ]]Block.__(0, {
-                                                  undefined,
+                                                  nil,
                                                   Caml_option.undefined_to_opt({}.shift())
                                                 });
                                       end end)
@@ -798,7 +798,7 @@ suites_001 = --[[ :: ]]{
                                                                                             "find - no match",
                                                                                             (function(param) do
                                                                                                 return --[[ Eq ]]Block.__(0, {
-                                                                                                          undefined,
+                                                                                                          nil,
                                                                                                           Caml_option.undefined_to_opt({
                                                                                                                   1,
                                                                                                                   2,
@@ -832,7 +832,7 @@ suites_001 = --[[ :: ]]{
                                                                                                 "findi - no match",
                                                                                                 (function(param) do
                                                                                                     return --[[ Eq ]]Block.__(0, {
-                                                                                                              undefined,
+                                                                                                              nil,
                                                                                                               Caml_option.undefined_to_opt({
                                                                                                                       1,
                                                                                                                       2,

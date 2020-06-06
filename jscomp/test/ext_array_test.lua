@@ -99,7 +99,7 @@ function filter_map(f, a) do
       v = a[i];
       match = Curry._1(f, v);
       _i = i + 1 | 0;
-      if (match ~= undefined) then do
+      if (match ~= nil) then do
         _acc = --[[ :: ]]{
           Caml_option.valFromOption(match),
           acc
@@ -148,7 +148,7 @@ function tolist_aux(a, f, _i, _res) do
     end else do
       v = a[i];
       match = Curry._1(f, v);
-      _res = match ~= undefined and --[[ :: ]]{
+      _res = match ~= nil and --[[ :: ]]{
           Caml_option.valFromOption(match),
           res
         } or res;

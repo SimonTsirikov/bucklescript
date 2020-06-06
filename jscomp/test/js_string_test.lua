@@ -109,7 +109,7 @@ suites_001 = --[[ :: ]]{
                       "codePointAt - out of bounds",
                       (function(param) do
                           return --[[ Eq ]]Block.__(0, {
-                                    undefined,
+                                    nil,
                                     "foobar".codePointAt(98)
                                   });
                         end end)
@@ -242,7 +242,7 @@ suites_001 = --[[ :: ]]{
                                                 "match - no match",
                                                 (function(param) do
                                                     return --[[ Eq ]]Block.__(0, {
-                                                              undefined,
+                                                              nil,
                                                               Caml_option.null_to_opt("banana".match(/nanana+/g))
                                                             });
                                                   end end)
@@ -430,7 +430,7 @@ suites_001 = --[[ :: ]]{
                                                                                             {
                                                                                               "a",
                                                                                               "#",
-                                                                                              undefined,
+                                                                                              nil,
                                                                                               "b",
                                                                                               "#",
                                                                                               ":",
@@ -448,7 +448,7 @@ suites_001 = --[[ :: ]]{
                                                                                               {
                                                                                                 "a",
                                                                                                 "#",
-                                                                                                undefined
+                                                                                                nil
                                                                                               },
                                                                                               "a#b#:c".split(/(#)(:)?/, 3)
                                                                                             });

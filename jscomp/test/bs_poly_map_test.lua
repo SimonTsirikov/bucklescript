@@ -44,7 +44,7 @@ end end
 
 function mergeInter(s1, s2) do
   m = Belt_Map.merge(s1, s2, (function(k, v1, v2) do
-          if (v1 ~= undefined and v2 ~= undefined) then do
+          if (v1 ~= nil and v2 ~= nil) then do
             return --[[ () ]]0;
           end
            end 
@@ -55,7 +55,7 @@ end end
 
 function mergeUnion(s1, s2) do
   m = Belt_Map.merge(s1, s2, (function(k, v1, v2) do
-          if (v1 ~= undefined or v2 ~= undefined) then do
+          if (v1 ~= nil or v2 ~= nil) then do
             return --[[ () ]]0;
           end
            end 
@@ -66,7 +66,7 @@ end end
 
 function mergeDiff(s1, s2) do
   m = Belt_Map.merge(s1, s2, (function(k, v1, v2) do
-          if (v1 ~= undefined and v2 == undefined) then do
+          if (v1 ~= nil and v2 == nil) then do
             return --[[ () ]]0;
           end
            end 
@@ -117,7 +117,7 @@ a1 = Belt_Map.set(a0, 3, 33);
 a2 = Belt_Map.remove(a1, 3);
 
 a3 = Belt_Map.update(a2, 3, (function(k) do
-        if (k ~= undefined) then do
+        if (k ~= nil) then do
           return k + 1 | 0;
         end else do
           return 11;
@@ -125,7 +125,7 @@ a3 = Belt_Map.update(a2, 3, (function(k) do
       end end));
 
 a4 = Belt_Map.update(a2, 3, (function(k) do
-        if (k ~= undefined) then do
+        if (k ~= nil) then do
           return k + 1 | 0;
         end
          end 
@@ -145,11 +145,11 @@ b("File \"bs_poly_map_test.ml\", line 73, characters 4-11", 3 == Belt_Map.getUnd
 
 b("File \"bs_poly_map_test.ml\", line 74, characters 4-11", 33 == Belt_Map.getUndefined(a1, 3));
 
-b("File \"bs_poly_map_test.ml\", line 75, characters 4-11", Belt_Map.getUndefined(a2, 3) == undefined);
+b("File \"bs_poly_map_test.ml\", line 75, characters 4-11", Belt_Map.getUndefined(a2, 3) == nil);
 
 b("File \"bs_poly_map_test.ml\", line 77, characters 4-11", 11 == Belt_Map.getUndefined(a3, 3));
 
-b("File \"bs_poly_map_test.ml\", line 78, characters 4-11", Belt_Map.getUndefined(a4, 3) == undefined);
+b("File \"bs_poly_map_test.ml\", line 78, characters 4-11", Belt_Map.getUndefined(a4, 3) == nil);
 
 a7 = Belt_Map.removeMany(a0, {
       7,
@@ -189,7 +189,7 @@ function acc(m, is) do
                 m = a;
                 i_1 = i;
                 return Belt_Map.update(m, i_1, (function(n) do
-                              if (n ~= undefined) then do
+                              if (n ~= nil) then do
                                 return n + 1 | 0;
                               end else do
                                 return 1;
@@ -242,7 +242,7 @@ b("File \"bs_poly_map_test.ml\", line 117, characters 4-11", Belt_Map.eq(v1, v2,
           end end)));
 
 function inc(x) do
-  if (x ~= undefined) then do
+  if (x ~= nil) then do
     return x + 1 | 0;
   end else do
     return 0;
@@ -261,15 +261,15 @@ match_1 = match[0];
 
 match_2 = Belt_Map.get(v3, 10);
 
-b("File \"bs_poly_map_test.ml\", line 126, characters 4-11", match_2 ~= undefined and match_2 == 11 or false);
+b("File \"bs_poly_map_test.ml\", line 126, characters 4-11", match_2 ~= nil and match_2 == 11 or false);
 
 match_3 = Belt_Map.get(v3, -10);
 
-b("File \"bs_poly_map_test.ml\", line 127, characters 4-11", match_3 == undefined);
+b("File \"bs_poly_map_test.ml\", line 127, characters 4-11", match_3 == nil);
 
 match_4 = Belt_Map.get(v4, -10);
 
-b("File \"bs_poly_map_test.ml\", line 128, characters 4-11", match_4 ~= undefined and match_4 == 0 or false);
+b("File \"bs_poly_map_test.ml\", line 128, characters 4-11", match_4 ~= nil and match_4 == 0 or false);
 
 map = Belt_Map.remove({
       cmp = Icmp.cmp,
@@ -285,7 +285,7 @@ map_1 = Belt_Map.removeMany({
 
 b("File \"bs_poly_map_test.ml\", line 130, characters 4-11", Belt_MapDict.isEmpty(map_1.data));
 
-b("File \"bs_poly_map_test.ml\", line 131, characters 4-11", pres ~= undefined and pres == 5000 or false);
+b("File \"bs_poly_map_test.ml\", line 131, characters 4-11", pres ~= nil and pres == 5000 or false);
 
 b("File \"bs_poly_map_test.ml\", line 132, characters 4-11", Belt_Array.eq(Belt_MapDict.keysToArray(match_1[0].data), Belt_Array.makeBy(5000, (function(i) do
                 return i;
@@ -305,7 +305,7 @@ match_5 = Belt_Map.split(v7, 5000);
 
 match_6 = match_5[0];
 
-b("File \"bs_poly_map_test.ml\", line 137, characters 4-11", match_5[1] == undefined);
+b("File \"bs_poly_map_test.ml\", line 137, characters 4-11", match_5[1] == nil);
 
 b("File \"bs_poly_map_test.ml\", line 138, characters 4-11", Belt_Array.eq(Belt_MapDict.keysToArray(match_6[0].data), Belt_Array.makeBy(5000, (function(i) do
                 return i;

@@ -46,7 +46,7 @@ function get_string(param) do
 end end
 
 function make_lexer(keywords) do
-  kwd_table = Hashtbl.create(undefined, 17);
+  kwd_table = Hashtbl.create(nil, 17);
   List.iter((function(s) do
           return Hashtbl.add(kwd_table, s, --[[ Kwd ]]Block.__(0, {s}));
         end end), keywords);
@@ -79,7 +79,7 @@ function make_lexer(keywords) do
   next_token = function(strm__) do
     while(true) do
       match = Stream.peek(strm__);
-      if (match ~= undefined) then do
+      if (match ~= nil) then do
         c = match;
         exit = 0;
         if (c < 124) then do
@@ -118,7 +118,7 @@ function make_lexer(keywords) do
                       error(exn)
                     end end)
                     match_1 = Stream.peek(strm__);
-                    if (match_1 ~= undefined) then do
+                    if (match_1 ~= nil) then do
                       if (match_1 ~= 39) then do
                         error({
                           Stream.__Error,
@@ -149,7 +149,7 @@ function make_lexer(keywords) do
                     Stream.junk(strm__);
                     strm___2 = strm__;
                     match_3 = Stream.peek(strm___2);
-                    if (match_3 ~= undefined) then do
+                    if (match_3 ~= nil) then do
                       c_2 = match_3;
                       if (c_2 > 57 or c_2 < 48) then do
                         reset_buffer(--[[ () ]]0);
@@ -265,7 +265,7 @@ function make_lexer(keywords) do
               strm___3 = strm__;
               while(true) do
                 match_4 = Stream.peek(strm___3);
-                if (match_4 ~= undefined) then do
+                if (match_4 ~= nil) then do
                   c_3 = match_4;
                   if (c_3 >= 91) then do
                     switcher_1 = c_3 - 95 | 0;
@@ -314,7 +314,7 @@ function make_lexer(keywords) do
   ident2 = function(strm__) do
     while(true) do
       match = Stream.peek(strm__);
-      if (match ~= undefined) then do
+      if (match ~= nil) then do
         c = match;
         if (c >= 94) then do
           switcher = c - 95 | 0;
@@ -385,7 +385,7 @@ function make_lexer(keywords) do
   number = function(strm__) do
     while(true) do
       match = Stream.peek(strm__);
-      if (match ~= undefined) then do
+      if (match ~= nil) then do
         c = match;
         if (c >= 58) then do
           if (not (c ~= 69 and c ~= 101)) then do
@@ -407,7 +407,7 @@ function make_lexer(keywords) do
           strm___1 = strm__;
           while(true) do
             match_1 = Stream.peek(strm___1);
-            if (match_1 ~= undefined) then do
+            if (match_1 ~= nil) then do
               c_1 = match_1;
               switcher = c_1 - 69 | 0;
               if (switcher > 32 or switcher < 0) then do
@@ -435,7 +435,7 @@ function make_lexer(keywords) do
   end end;
   exponent_part = function(strm__) do
     match = Stream.peek(strm__);
-    if (match ~= undefined) then do
+    if (match ~= nil) then do
       c = match;
       if (c ~= 43 and c ~= 45) then do
         return end_exponent_part(strm__);
@@ -451,7 +451,7 @@ function make_lexer(keywords) do
   end_exponent_part = function(strm__) do
     while(true) do
       match = Stream.peek(strm__);
-      if (match ~= undefined) then do
+      if (match ~= nil) then do
         c = match;
         if (c > 57 or c < 48) then do
           return --[[ Float ]]Block.__(3, {Caml_format.caml_float_of_string(get_string(--[[ () ]]0))});
@@ -468,7 +468,7 @@ function make_lexer(keywords) do
   string = function(strm__) do
     while(true) do
       match = Stream.peek(strm__);
-      if (match ~= undefined) then do
+      if (match ~= nil) then do
         c = match;
         Stream.junk(strm__);
         if (c ~= 34) then do
@@ -502,7 +502,7 @@ function make_lexer(keywords) do
   end end;
   __char = function(strm__) do
     match = Stream.peek(strm__);
-    if (match ~= undefined) then do
+    if (match ~= nil) then do
       c = match;
       Stream.junk(strm__);
       if (c ~= 92) then do
@@ -527,7 +527,7 @@ function make_lexer(keywords) do
   end end;
   __escape = function(strm__) do
     match = Stream.peek(strm__);
-    if (match ~= undefined) then do
+    if (match ~= nil) then do
       c1 = match;
       if (c1 >= 58) then do
         local ___conditional___=(c1);
@@ -555,7 +555,7 @@ function make_lexer(keywords) do
         Stream.junk(strm__);
         if (c1 >= 48) then do
           match_1 = Stream.peek(strm__);
-          if (match_1 ~= undefined) then do
+          if (match_1 ~= nil) then do
             c2 = match_1;
             if (c2 > 57 or c2 < 48) then do
               error({
@@ -566,7 +566,7 @@ function make_lexer(keywords) do
              end 
             Stream.junk(strm__);
             match_2 = Stream.peek(strm__);
-            if (match_2 ~= undefined) then do
+            if (match_2 ~= nil) then do
               c3 = match_2;
               if (c3 > 57 or c3 < 48) then do
                 error({
@@ -600,14 +600,14 @@ function make_lexer(keywords) do
   comment = function(strm__) do
     while(true) do
       match = Stream.peek(strm__);
-      if (match ~= undefined) then do
+      if (match ~= nil) then do
         local ___conditional___=(match);
         do
            if ___conditional___ == 40 then do
               Stream.junk(strm__);
               strm___1 = strm__;
               match_1 = Stream.peek(strm___1);
-              if (match_1 ~= undefined) then do
+              if (match_1 ~= nil) then do
                 if (match_1 ~= 42) then do
                   Stream.junk(strm___1);
                   return comment(strm___1);
@@ -627,7 +627,7 @@ function make_lexer(keywords) do
               strm___2 = strm__;
               while(true) do
                 match_2 = Stream.peek(strm___2);
-                if (match_2 ~= undefined) then do
+                if (match_2 ~= nil) then do
                   match_3 = match_2;
                   Stream.junk(strm___2);
                   if (match_3 ~= 41) then do

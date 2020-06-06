@@ -19,7 +19,7 @@ function iter(x, f) do
 end end
 
 function fromOption(x) do
-  if (x ~= undefined) then do
+  if (x ~= nil) then do
     return Caml_option.valFromOption(x);
   end
    end 

@@ -9,8 +9,8 @@ suites_000 = --[[ tuple ]]{
   "toOption - empty",
   (function(param) do
       return --[[ Eq ]]Block.__(0, {
-                undefined,
-                undefined
+                nil,
+                nil
               });
     end end)
 };
@@ -60,8 +60,8 @@ suites_001 = --[[ :: ]]{
             "bind - empty",
             (function(param) do
                 return --[[ Eq ]]Block.__(0, {
-                          undefined,
-                          Js_undefined.bind(undefined, (function(v) do
+                          nil,
+                          Js_undefined.bind(nil, (function(v) do
                                   return v;
                                 end end))
                         });
@@ -86,7 +86,7 @@ suites_001 = --[[ :: ]]{
                     hit = {
                       contents = false
                     };
-                    Js_undefined.iter(undefined, (function(param) do
+                    Js_undefined.iter(nil, (function(param) do
                             hit.contents = true;
                             return --[[ () ]]0;
                           end end));
@@ -118,8 +118,8 @@ suites_001 = --[[ :: ]]{
                     "fromOption - None",
                     (function(param) do
                         return --[[ Eq ]]Block.__(0, {
-                                  undefined,
-                                  Js_undefined.fromOption(undefined)
+                                  nil,
+                                  Js_undefined.fromOption(nil)
                                 });
                       end end)
                   },

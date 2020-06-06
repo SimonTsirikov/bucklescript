@@ -29,7 +29,7 @@ suites_001 = --[[ :: ]]{
     "split_non_empty",
     (function(param) do
         return --[[ Eq ]]Block.__(0, {
-                  Ext_string_test.split(undefined, "hihi", --[[ "i" ]]105),
+                  Ext_string_test.split(nil, "hihi", --[[ "i" ]]105),
                   --[[ :: ]]{
                     "h",
                     --[[ :: ]]{
@@ -76,7 +76,7 @@ suites_001 = --[[ :: ]]{
               return --[[ Eq ]]Block.__(0, {
                         List.filter((function(s) do
                                   return s ~= "";
-                                end end))(Ext_string_test.split_by(undefined, (function(x) do
+                                end end))(Ext_string_test.split_by(nil, (function(x) do
                                     if (x == --[[ " " ]]32) then do
                                       return true;
                                     end else do

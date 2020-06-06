@@ -46,7 +46,7 @@ end end
 function utf8_decode(strm) do
   return Stream.slazy((function(param) do
                 match = Stream.peek(strm);
-                if (match ~= undefined) then do
+                if (match ~= nil) then do
                   Stream.junk(strm);
                   match_1 = classify(match);
                   if (typeof match_1 == "number") then do

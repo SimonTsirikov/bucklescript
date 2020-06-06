@@ -17,7 +17,7 @@ end end
 
 function f1(x) do
   error(Caml_builtin_exceptions.not_found)
-  return Curry._1(undefined, x);
+  return Curry._1(nil, x);
 end end
 
 function f3(x) do

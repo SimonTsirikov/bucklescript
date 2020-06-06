@@ -47,7 +47,7 @@ function size_in_bytes(arr) do
 end end
 
 function map_file(fd, posOpt, kind, layout, shared, dims) do
-  pos = posOpt ~= undefined and posOpt or --[[ int64 ]]{
+  pos = posOpt ~= nil and posOpt or --[[ int64 ]]{
       --[[ hi ]]0,
       --[[ lo ]]0
     };

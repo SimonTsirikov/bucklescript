@@ -16,8 +16,8 @@ unix = Caml_sys.os_type(--[[ () ]]0) == "Unix";
 win32 = Caml_sys.os_type(--[[ () ]]0) == "Win32";
 
 function getenv_opt(s) do
-  match = typeof process == "undefined" and undefined or process;
-  if (match ~= undefined) then do
+  match = typeof process == "undefined" and nil or process;
+  if (match ~= nil) then do
     return match.env[s];
   end
    end 

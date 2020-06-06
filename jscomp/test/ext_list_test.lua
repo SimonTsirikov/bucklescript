@@ -13,7 +13,7 @@ function filter_map(f, _xs) do
     if (xs) then do
       ys = xs[1];
       match = Curry._1(f, xs[0]);
-      if (match ~= undefined) then do
+      if (match ~= nil) then do
         return --[[ :: ]]{
                 Caml_option.valFromOption(match),
                 filter_map(f, ys)
@@ -72,7 +72,7 @@ end end
 
 function exclude_with_fact(p, l) do
   excluded = {
-    contents = undefined
+    contents = nil
   };
   aux = function(_accu, _param) do
     while(true) do
@@ -101,16 +101,16 @@ function exclude_with_fact(p, l) do
   v = aux(--[[ [] ]]0, l);
   return --[[ tuple ]]{
           excluded.contents,
-          excluded.contents ~= undefined and v or l
+          excluded.contents ~= nil and v or l
         };
 end end
 
 function exclude_with_fact2(p1, p2, l) do
   excluded1 = {
-    contents = undefined
+    contents = nil
   };
   excluded2 = {
-    contents = undefined
+    contents = nil
   };
   aux = function(_accu, _param) do
     while(true) do
@@ -144,7 +144,7 @@ function exclude_with_fact2(p1, p2, l) do
   return --[[ tuple ]]{
           excluded1.contents,
           excluded2.contents,
-          excluded1.contents ~= undefined and excluded2.contents ~= undefined and v or l
+          excluded1.contents ~= nil and excluded2.contents ~= nil and v or l
         };
 end end
 
@@ -176,7 +176,7 @@ function filter_mapi(f, xs) do
       if (xs) then do
         ys = xs[1];
         match = Curry._2(f, i, xs[0]);
-        if (match ~= undefined) then do
+        if (match ~= nil) then do
           return --[[ :: ]]{
                   Caml_option.valFromOption(match),
                   aux(i + 1 | 0, ys)
@@ -203,7 +203,7 @@ function filter_map2(f, _xs, _ys) do
         vs = ys[1];
         us = xs[1];
         match = Curry._2(f, xs[0], ys[0]);
-        if (match ~= undefined) then do
+        if (match ~= nil) then do
           return --[[ :: ]]{
                   Caml_option.valFromOption(match),
                   filter_map2(f, us, vs)
@@ -241,7 +241,7 @@ function filter_map2i(f, xs, ys) do
           vs = ys[1];
           us = xs[1];
           match = Curry._3(f, i, xs[0], ys[0]);
-          if (match ~= undefined) then do
+          if (match ~= nil) then do
             return --[[ :: ]]{
                     Caml_option.valFromOption(match),
                     aux(i + 1 | 0, us, vs)
@@ -641,7 +641,7 @@ function for_all_opt(p, _param) do
     param = _param;
     if (param) then do
       v = Curry._1(p, param[0]);
-      if (v ~= undefined) then do
+      if (v ~= nil) then do
         return v;
       end else do
         _param = param[1];
@@ -740,7 +740,7 @@ function find_opt(p, _param) do
     param = _param;
     if (param) then do
       v = Curry._1(p, param[0]);
-      if (v ~= undefined) then do
+      if (v ~= nil) then do
         return v;
       end else do
         _param = param[1];
@@ -922,7 +922,7 @@ function assoc_by_string(def, k, _lst) do
         _lst = lst[1];
         ::continue:: ;
       end end 
-    end else if (def ~= undefined) then do
+    end else if (def ~= nil) then do
       return Caml_option.valFromOption(def);
     end else do
       error({
@@ -948,7 +948,7 @@ function assoc_by_int(def, k, _lst) do
         _lst = lst[1];
         ::continue:: ;
       end end 
-    end else if (def ~= undefined) then do
+    end else if (def ~= nil) then do
       return Caml_option.valFromOption(def);
     end else do
       error({

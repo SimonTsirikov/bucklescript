@@ -26,7 +26,7 @@ function h0(param) do
   tmp = {
     hi = 2
   };
-  if (partial_arg ~= undefined) then do
+  if (partial_arg ~= nil) then do
     tmp["lo-x"] = Caml_option.valFromOption(partial_arg);
   end
    end 
@@ -49,7 +49,7 @@ end end
 
 function hh2(x) do
   match = x["lo-x"];
-  if (match ~= undefined) then do
+  if (match ~= nil) then do
     return 1;
   end else do
     return 0;
@@ -62,7 +62,7 @@ u = {
 
 match = u["xx-yy"];
 
-v_1 = match ~= undefined and match or 0;
+v_1 = match ~= nil and match or 0;
 
 exports = {}
 exports.b = b;

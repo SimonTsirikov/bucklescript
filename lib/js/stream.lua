@@ -17,7 +17,7 @@ Failure = Caml_exceptions.create("Stream.Failure");
 __Error = Caml_exceptions.create("Stream.Error");
 
 function count(param) do
-  if (param ~= undefined) then do
+  if (param ~= nil) then do
     return param.count;
   end else do
     return 0;
@@ -25,7 +25,7 @@ function count(param) do
 end end
 
 function data(param) do
-  if (param ~= undefined) then do
+  if (param ~= nil) then do
     return param.data;
   end else do
     return --[[ Sempty ]]0;
@@ -78,10 +78,10 @@ function get_data(count, _d) do
          if ___conditional___ == 3--[[ Sgen ]] then do
             g = d[0];
             match_1 = g.curr;
-            if (match_1 ~= undefined) then do
+            if (match_1 ~= nil) then do
               match_2 = Caml_option.valFromOption(match_1);
-              if (match_2 ~= undefined) then do
-                g.curr = undefined;
+              if (match_2 ~= nil) then do
+                g.curr = nil;
                 return --[[ Scons ]]Block.__(0, {
                           Caml_option.valFromOption(match_2),
                           d
@@ -91,13 +91,13 @@ function get_data(count, _d) do
               end end 
             end else do
               match_3 = Curry._1(g.func, count);
-              if (match_3 ~= undefined) then do
+              if (match_3 ~= nil) then do
                 return --[[ Scons ]]Block.__(0, {
                           Caml_option.valFromOption(match_3),
                           d
                         });
               end else do
-                g.curr = Caml_option.some(undefined);
+                g.curr = Caml_option.some(nil);
                 return --[[ Sempty ]]0;
               end end 
             end end  end end 
@@ -156,7 +156,7 @@ function peek_data(s) do
          if ___conditional___ == 3--[[ Sgen ]] then do
             g = match[0];
             match_1 = g.curr;
-            if (match_1 ~= undefined) then do
+            if (match_1 ~= nil) then do
               return Caml_option.valFromOption(match_1);
             end else do
               x = Curry._1(g.func, s.count);
@@ -182,7 +182,7 @@ function peek_data(s) do
 end end
 
 function peek(param) do
-  if (param ~= undefined) then do
+  if (param ~= nil) then do
     return peek_data(param);
   end
    end 
@@ -201,9 +201,9 @@ function junk_data(s) do
          if ___conditional___ == 3--[[ Sgen ]] then do
             g = match[0];
             match_1 = g.curr;
-            if (match_1 ~= undefined) then do
+            if (match_1 ~= nil) then do
               s.count = s.count + 1 | 0;
-              g.curr = undefined;
+              g.curr = nil;
               return --[[ () ]]0;
             end
              end  end else 
@@ -217,7 +217,7 @@ function junk_data(s) do
     end
      end 
     match_2 = peek_data(s);
-    if (match_2 ~= undefined) then do
+    if (match_2 ~= nil) then do
       ::continue:: ;
     end else do
       return --[[ () ]]0;
@@ -226,7 +226,7 @@ function junk_data(s) do
 end end
 
 function junk(param) do
-  if (param ~= undefined) then do
+  if (param ~= nil) then do
     return junk_data(param);
   end else do
     return --[[ () ]]0;
@@ -242,7 +242,7 @@ function nget_data(n, s) do
           };
   end else do
     match = peek_data(s);
-    if (match ~= undefined) then do
+    if (match ~= nil) then do
       a = Caml_option.valFromOption(match);
       junk_data(s);
       match_1 = nget_data(n - 1 | 0, s);
@@ -268,7 +268,7 @@ function nget_data(n, s) do
 end end
 
 function npeek(n, param) do
-  if (param ~= undefined) then do
+  if (param ~= nil) then do
     n_1 = n;
     s = param;
     match = nget_data(n_1, s);
@@ -282,7 +282,7 @@ end end
 
 function next(s) do
   match = peek(s);
-  if (match ~= undefined) then do
+  if (match ~= nil) then do
     junk(s);
     return Caml_option.valFromOption(match);
   end else do
@@ -292,7 +292,7 @@ end end
 
 function empty(s) do
   match = peek(s);
-  if (match ~= undefined) then do
+  if (match ~= nil) then do
     error(Failure)
   end else do
     return --[[ () ]]0;
@@ -303,7 +303,7 @@ function iter(f, strm) do
   _param = --[[ () ]]0;
   while(true) do
     match = peek(strm);
-    if (match ~= undefined) then do
+    if (match ~= nil) then do
       junk(strm);
       Curry._1(f, Caml_option.valFromOption(match));
       _param = --[[ () ]]0;
@@ -318,7 +318,7 @@ function from(f) do
   return {
           count = 0,
           data = --[[ Sgen ]]Block.__(3, {{
-                curr = undefined,
+                curr = nil,
                 func = f
               }})
         };
@@ -489,7 +489,7 @@ function dump(f, s) do
   return Pervasives.print_newline(--[[ () ]]0);
 end end
 
-sempty = undefined;
+sempty = nil;
 
 exports = {}
 exports.Failure = Failure;

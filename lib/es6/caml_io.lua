@@ -74,7 +74,7 @@ function caml_ml_out_channels_list(param) do
         };
 end end
 
-stdin = undefined;
+stdin = nil;
 
 export do
   stdin ,

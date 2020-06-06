@@ -512,7 +512,7 @@ function update(x, f, m) do
     c = Caml_primitive.caml_int_compare(x, v);
     if (c == 0) then do
       match = Curry._1(f, Caml_option.some(d));
-      if (match ~= undefined) then do
+      if (match ~= nil) then do
         data = Caml_option.valFromOption(match);
         if (d == data) then do
           return m;
@@ -544,8 +544,8 @@ function update(x, f, m) do
       end end 
     end end  end 
   end else do
-    match_1 = Curry._1(f, undefined);
-    if (match_1 ~= undefined) then do
+    match_1 = Curry._1(f, nil);
+    if (match_1 ~= nil) then do
       return --[[ Node ]]{
               --[[ l : Empty ]]0,
               --[[ v ]]x,
@@ -704,7 +704,7 @@ function concat(t1, t2) do
 end end
 
 function concat_or_join(t1, v, d, t2) do
-  if (d ~= undefined) then do
+  if (d ~= nil) then do
     return join(t1, v, Caml_option.valFromOption(d), t2);
   end else do
     return concat(t1, t2);
@@ -742,7 +742,7 @@ function split(x, param) do
   end else do
     return --[[ tuple ]]{
             --[[ Empty ]]0,
-            undefined,
+            nil,
             --[[ Empty ]]0
           };
   end end 
@@ -788,7 +788,7 @@ function union(f, s1, s2) do
         d2_1 = match[1];
         l = union(f, s1[--[[ l ]]0], match[0]);
         r = union(f, s1[--[[ r ]]3], match[2]);
-        if (d2_1 ~= undefined) then do
+        if (d2_1 ~= nil) then do
           return concat_or_join(l, v1, Curry._3(f, v1, d1, Caml_option.valFromOption(d2_1)), r);
         end else do
           return join(l, v1, d1, r);
@@ -798,7 +798,7 @@ function union(f, s1, s2) do
         d1_1 = match_1[1];
         l_1 = union(f, match_1[0], s2[--[[ l ]]0]);
         r_1 = union(f, match_1[2], s2[--[[ r ]]3]);
-        if (d1_1 ~= undefined) then do
+        if (d1_1 ~= nil) then do
           return concat_or_join(l_1, v2, Curry._3(f, v2, Caml_option.valFromOption(d1_1), d2), r_1);
         end else do
           return join(l_1, v2, d2, r_1);

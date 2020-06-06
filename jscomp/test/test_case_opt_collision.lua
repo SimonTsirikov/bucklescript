@@ -15,15 +15,15 @@ function eq(loc, x, y) do
 end end
 
 function f(xOpt, y) do
-  x = xOpt ~= undefined and xOpt or 3;
+  x = xOpt ~= nil and xOpt or 3;
   xOpt_1 = x + 2 | 0;
   console.log(xOpt_1);
   return xOpt_1 + y | 0;
 end end
 
-console.log(f(undefined, 2));
+console.log(f(nil, 2));
 
-eq("File \"test_case_opt_collision.ml\", line 15, characters 6-13", f(undefined, 2), 7);
+eq("File \"test_case_opt_collision.ml\", line 15, characters 6-13", f(nil, 2), 7);
 
 eq("File \"test_case_opt_collision.ml\", line 17, characters 6-13", f(4, 2), 8);
 

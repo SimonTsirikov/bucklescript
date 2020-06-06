@@ -63,7 +63,7 @@ function Make(H) do
                       return accu;
                     end else do
                       match = Caml_weak.caml_weak_get(b, i);
-                      if (match ~= undefined) then do
+                      if (match ~= nil) then do
                         _accu = Curry._2(f, Caml_option.valFromOption(match), accu);
                         _i = i + 1 | 0;
                         ::continue:: ;
@@ -85,7 +85,7 @@ function Make(H) do
                       return --[[ () ]]0;
                     end else do
                       match = Caml_weak.caml_weak_get(b, i);
-                      if (match ~= undefined) then do
+                      if (match ~= nil) then do
                         Curry._1(f, Caml_option.valFromOption(match));
                         _i = i + 1 | 0;
                         ::continue:: ;
@@ -233,7 +233,7 @@ function Make(H) do
                 return Caml_weak.caml_weak_blit(ob, oi, nb, ni, 1);
               end end;
               h = Caml_array.caml_array_get(oh, oi);
-              return add_aux(newt, setter, undefined, h, get_index(newt, h));
+              return add_aux(newt, setter, nil, h, get_index(newt, h));
             end end
             end end)(newt);
             iter_weak(add_weak, t_1);
@@ -277,10 +277,10 @@ function Make(H) do
         return Curry._2(ifnotfound, h, index);
       end else if (h == Caml_array.caml_array_get(hashes, i)) then do
         match = Caml_weak.caml_weak_get_copy(bucket, i);
-        if (match ~= undefined) then do
+        if (match ~= nil) then do
           if (Curry._2(H.equal, Caml_option.valFromOption(match), d)) then do
             match_1 = Caml_weak.caml_weak_get(bucket, i);
-            if (match_1 ~= undefined) then do
+            if (match_1 ~= nil) then do
               return Caml_option.valFromOption(match_1);
             end else do
               _i = i + 1 | 0;
@@ -324,10 +324,10 @@ function Make(H) do
         return ;
       end else if (h == Caml_array.caml_array_get(hashes, i)) then do
         match = Caml_weak.caml_weak_get_copy(bucket, i);
-        if (match ~= undefined) then do
+        if (match ~= nil) then do
           if (Curry._2(H.equal, Caml_option.valFromOption(match), d)) then do
             v = Caml_weak.caml_weak_get(bucket, i);
-            if (v ~= undefined) then do
+            if (v ~= nil) then do
               return v;
             end else do
               _i = i + 1 | 0;
@@ -360,7 +360,7 @@ function Make(H) do
         return ifnotfound;
       end else if (h == Caml_array.caml_array_get(hashes, i)) then do
         match = Caml_weak.caml_weak_get_copy(bucket, i);
-        if (match ~= undefined) then do
+        if (match ~= nil) then do
           if (Curry._2(H.equal, Caml_option.valFromOption(match), d)) then do
             return Curry._2(iffound, bucket, i);
           end else do
@@ -379,7 +379,7 @@ function Make(H) do
   end end;
   remove = function(t, d) do
     return find_shadow(t, d, (function(w, i) do
-                  return Caml_weak.caml_weak_set(w, i, undefined);
+                  return Caml_weak.caml_weak_set(w, i, nil);
                 end end), --[[ () ]]0);
   end end;
   mem = function(t, d) do
@@ -402,10 +402,10 @@ function Make(H) do
         return accu;
       end else if (h == Caml_array.caml_array_get(hashes, i)) then do
         match = Caml_weak.caml_weak_get_copy(bucket, i);
-        if (match ~= undefined) then do
+        if (match ~= nil) then do
           if (Curry._2(H.equal, Caml_option.valFromOption(match), d)) then do
             match_1 = Caml_weak.caml_weak_get(bucket, i);
-            if (match_1 ~= undefined) then do
+            if (match_1 ~= nil) then do
               _accu = --[[ :: ]]{
                 Caml_option.valFromOption(match_1),
                 accu

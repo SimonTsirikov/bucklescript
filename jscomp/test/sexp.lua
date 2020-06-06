@@ -148,14 +148,14 @@ function __return(x) do
 end end
 
 function $great$pipe$eq(e, f) do
-  if (e ~= undefined) then do
+  if (e ~= nil) then do
     return Caml_option.some(Curry._1(f, Caml_option.valFromOption(e)));
   end
    end 
 end end
 
 function $great$great$eq(e, f) do
-  if (e ~= undefined) then do
+  if (e ~= nil) then do
     return Curry._1(f, Caml_option.valFromOption(e));
   end
    end 
@@ -169,7 +169,7 @@ function map_opt(f, l) do
     acc = _acc;
     if (l_1) then do
       match = Curry._1(f, l_1[0]);
-      if (match ~= undefined) then do
+      if (match ~= nil) then do
         _l = l_1[1];
         _acc = --[[ :: ]]{
           Caml_option.valFromOption(match),
@@ -193,7 +193,7 @@ function list_any(f, e) do
       l = _l;
       if (l) then do
         res = Curry._1(f_1, l[0]);
-        if (res ~= undefined) then do
+        if (res ~= nil) then do
           return res;
         end else do
           _l = l[1];
@@ -219,7 +219,7 @@ function list_all(f, e) do
         tl = l[1];
         match = Curry._1(f_1, l[0]);
         _l = tl;
-        if (match ~= undefined) then do
+        if (match ~= nil) then do
           _acc = --[[ :: ]]{
             Caml_option.valFromOption(match),
             acc
@@ -500,7 +500,7 @@ function get_variant(l, e) do
 end end
 
 function get_exn(e) do
-  if (e ~= undefined) then do
+  if (e ~= nil) then do
     return Caml_option.valFromOption(e);
   end else do
     error({

@@ -37,7 +37,7 @@ function hey(x, y) {
   }
 ;
 
-u = hey(undefined, 3);
+u = hey(nil, 3);
 
 z = hey(5, 3);
 

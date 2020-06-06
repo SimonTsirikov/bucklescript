@@ -76,9 +76,9 @@ eq("File \"bs_array_test.ml\", line 25, characters 5-12", --[[ tuple ]]{
     }, --[[ tuple ]]{
       1,
       2,
-      undefined,
-      undefined,
-      undefined
+      nil,
+      nil,
+      nil
     });
 
 __throw("File \"bs_array_test.ml\", line 28, characters 8-15", (function(param) do
@@ -1569,7 +1569,7 @@ eq("File \"bs_array_test.ml\", line 335, characters 5-12", Belt_Array.getBy({
           3
         }, (function(x) do
             return x > 3;
-          end end)), undefined);
+          end end)), nil);
 
 eq("File \"bs_array_test.ml\", line 338, characters 5-12", Belt_Array.getIndexBy({
           1,
@@ -1585,7 +1585,7 @@ eq("File \"bs_array_test.ml\", line 339, characters 5-12", Belt_Array.getIndexBy
           3
         }, (function(x) do
             return x > 3;
-          end end)), undefined);
+          end end)), nil);
 
 Mt.from_pair_suites("File \"bs_array_test.ml\", line 341, characters 23-30", suites.contents);
 

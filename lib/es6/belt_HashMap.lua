@@ -11,10 +11,10 @@ end end
 function copyBucketReHash(hash, h_buckets, ndata_tail, _old_bucket) do
   while(true) do
     old_bucket = _old_bucket;
-    if (old_bucket ~= undefined) then do
+    if (old_bucket ~= nil) then do
       nidx = hash(old_bucket.key) & (#h_buckets - 1 | 0);
       match = ndata_tail[nidx];
-      if (match ~= undefined) then do
+      if (match ~= nil) then do
         match.next = old_bucket;
       end else do
         h_buckets[nidx] = old_bucket;
@@ -36,7 +36,7 @@ function replaceInBucket(eq, key, info, _cell) do
       return false;
     end else do
       match = cell.next;
-      if (match ~= undefined) then do
+      if (match ~= nil) then do
         _cell = match;
         ::continue:: ;
       end else do
@@ -51,7 +51,7 @@ function set0(h, key, value, eq, hash) do
   buckets_len = #h_buckets;
   i = hash(key) & (buckets_len - 1 | 0);
   l = h_buckets[i];
-  if (l ~= undefined) then do
+  if (l ~= nil) then do
     if (replaceInBucket(eq, key, value, l)) then do
       h_buckets[i] = {
         key = key,
@@ -65,7 +65,7 @@ function set0(h, key, value, eq, hash) do
     h_buckets[i] = {
       key = key,
       value = value,
-      next = undefined
+      next = nil
     };
     h.size = h.size + 1 | 0;
   end end 
@@ -84,8 +84,8 @@ function set0(h, key, value, eq, hash) do
       end
       for i_2 = 0 , nsize - 1 | 0 , 1 do
         match = ndata_tail[i_2];
-        if (match ~= undefined) then do
-          match.next = undefined;
+        if (match ~= nil) then do
+          match.next = nil;
         end
          end 
       end
@@ -106,7 +106,7 @@ function remove(h, key) do
   h_buckets = h.buckets;
   i = h.hash(key) & (#h_buckets - 1 | 0);
   bucket = h_buckets[i];
-  if (bucket ~= undefined) then do
+  if (bucket ~= nil) then do
     eq = h.eq;
     if (eq(bucket.key, key)) then do
       h_buckets[i] = bucket.next;
@@ -121,7 +121,7 @@ function remove(h, key) do
       while(true) do
         bucket_1 = _bucket;
         prec = _prec;
-        if (bucket_1 ~= undefined) then do
+        if (bucket_1 ~= nil) then do
           cell_next = bucket_1.next;
           if (eq_1(bucket_1.key, key_1)) then do
             prec.next = cell_next;
@@ -146,18 +146,18 @@ function get(h, key) do
   h_buckets = h.buckets;
   nid = h.hash(key) & (#h_buckets - 1 | 0);
   match = h_buckets[nid];
-  if (match ~= undefined) then do
+  if (match ~= nil) then do
     eq = h.eq;
     if (eq(key, match.key)) then do
       return Caml_option.some(match.value);
     end else do
       match_1 = match.next;
-      if (match_1 ~= undefined) then do
+      if (match_1 ~= nil) then do
         if (eq(key, match_1.key)) then do
           return Caml_option.some(match_1.value);
         end else do
           match_2 = match_1.next;
-          if (match_2 ~= undefined) then do
+          if (match_2 ~= nil) then do
             if (eq(key, match_2.key)) then do
               return Caml_option.some(match_2.value);
             end else do
@@ -166,7 +166,7 @@ function get(h, key) do
               _buckets = match_2.next;
               while(true) do
                 buckets = _buckets;
-                if (buckets ~= undefined) then do
+                if (buckets ~= nil) then do
                   if (eq_1(key_1, buckets.key)) then do
                     return Caml_option.some(buckets.value);
                   end else do
@@ -194,7 +194,7 @@ function has(h, key) do
   h_buckets = h.buckets;
   nid = h.hash(key) & (#h_buckets - 1 | 0);
   bucket = h_buckets[nid];
-  if (bucket ~= undefined) then do
+  if (bucket ~= nil) then do
     key_1 = key;
     _cell = bucket;
     eq = h.eq;
@@ -204,7 +204,7 @@ function has(h, key) do
         return true;
       end else do
         match = cell.next;
-        if (match ~= undefined) then do
+        if (match ~= nil) then do
           _cell = match;
           ::continue:: ;
         end else do

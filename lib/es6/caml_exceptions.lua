@@ -27,13 +27,13 @@ function create(str) do
 end end
 
 function caml_is_extension(e) do
-  if (e == undefined) then do
+  if (e == nil) then do
     return false;
   end else if (e.tag == 248) then do
     return true;
   end else do
     slot = e[0];
-    if (slot ~= undefined) then do
+    if (slot ~= nil) then do
       return slot.tag == 248;
     end else do
       return false;

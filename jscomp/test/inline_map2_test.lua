@@ -379,7 +379,7 @@ function Make(Ord) do
     end end 
   end end;
   concat_or_join = function(t1, v, d, t2) do
-    if (d ~= undefined) then do
+    if (d ~= nil) then do
       return join(t1, v, Caml_option.valFromOption(d), t2);
     end else do
       return concat(t1, t2);
@@ -416,7 +416,7 @@ function Make(Ord) do
     end else do
       return --[[ tuple ]]{
               --[[ Empty ]]0,
-              undefined,
+              nil,
               --[[ Empty ]]0
             };
     end end 
@@ -1023,7 +1023,7 @@ function concat(t1, t2) do
 end end
 
 function concat_or_join(t1, v, d, t2) do
-  if (d ~= undefined) then do
+  if (d ~= nil) then do
     return join(t1, v, Caml_option.valFromOption(d), t2);
   end else do
     return concat(t1, t2);
@@ -1061,7 +1061,7 @@ function split(x, param) do
   end else do
     return --[[ tuple ]]{
             --[[ Empty ]]0,
-            undefined,
+            nil,
             --[[ Empty ]]0
           };
   end end 
@@ -1705,7 +1705,7 @@ function concat_1(t1, t2) do
 end end
 
 function concat_or_join_1(t1, v, d, t2) do
-  if (d ~= undefined) then do
+  if (d ~= nil) then do
     return join_1(t1, v, Caml_option.valFromOption(d), t2);
   end else do
     return concat_1(t1, t2);
@@ -1743,7 +1743,7 @@ function split_1(x, param) do
   end else do
     return --[[ tuple ]]{
             --[[ Empty ]]0,
-            undefined,
+            nil,
             --[[ Empty ]]0
           };
   end end 

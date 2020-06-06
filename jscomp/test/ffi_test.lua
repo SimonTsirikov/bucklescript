@@ -27,7 +27,7 @@ b = false;
 
 c = nil;
 
-d = undefined;
+d = nil;
 
 exports = {}
 exports.u = u;

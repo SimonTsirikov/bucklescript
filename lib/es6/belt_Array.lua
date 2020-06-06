@@ -316,8 +316,8 @@ end end
 function getByU(a, p) do
   l = #a;
   i = 0;
-  r = undefined;
-  while(r == undefined and i < l) do
+  r = nil;
+  while(r == nil and i < l) do
     v = a[i];
     if (p(v)) then do
       r = Caml_option.some(v);
@@ -335,8 +335,8 @@ end end
 function getIndexByU(a, p) do
   l = #a;
   i = 0;
-  r = undefined;
-  while(r == undefined and i < l) do
+  r = nil;
+  while(r == nil and i < l) do
     v = a[i];
     if (p(v)) then do
       r = i;
@@ -398,7 +398,7 @@ function keepMapU(a, f) do
   for i = 0 , l - 1 | 0 , 1 do
     v = a[i];
     match = f(v);
-    if (match ~= undefined) then do
+    if (match ~= nil) then do
       r[j] = Caml_option.valFromOption(match);
       j = j + 1 | 0;
     end

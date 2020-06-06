@@ -23,9 +23,9 @@ function find_package_json(_dir) do
   end;
 end end
 
-match = typeof __dirname == "undefined" and undefined or __dirname;
+match = typeof __dirname == "undefined" and nil or __dirname;
 
-if (match ~= undefined) then do
+if (match ~= nil) then do
   console.log(find_package_json(match));
 end
  end 

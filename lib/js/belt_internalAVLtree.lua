@@ -270,7 +270,7 @@ end end
 function findFirstByU(n, p) do
   if (n ~= nil) then do
     left = findFirstByU(n.left, p);
-    if (left ~= undefined) then do
+    if (left ~= nil) then do
       return left;
     end else do
       v = n.key;
@@ -283,7 +283,7 @@ function findFirstByU(n, p) do
               };
       end else do
         right = findFirstByU(n.right, p);
-        if (right ~= undefined) then do
+        if (right ~= nil) then do
           return right;
         end else do
           return ;
@@ -485,7 +485,7 @@ function concat(t1, t2) do
 end end
 
 function concatOrJoin(t1, v, d, t2) do
-  if (d ~= undefined) then do
+  if (d ~= nil) then do
     return join(t1, v, Caml_option.valFromOption(d), t2);
   end else do
     return concat(t1, t2);
@@ -520,7 +520,7 @@ function keepMapU(n, p) do
     newLeft = keepMapU(n.left, p);
     pvd = p(v, d);
     newRight = keepMapU(n.right, p);
-    if (pvd ~= undefined) then do
+    if (pvd ~= nil) then do
       return join(newLeft, v, Caml_option.valFromOption(pvd), newRight);
     end else do
       return concat(newLeft, newRight);

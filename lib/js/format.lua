@@ -1270,7 +1270,7 @@ function pp_print_list(_$staropt$star, pp_v, ppf, _param) do
   while(true) do
     param = _param;
     $staropt$star = _$staropt$star;
-    pp_sep = $staropt$star ~= undefined and $staropt$star or pp_print_cut;
+    pp_sep = $staropt$star ~= nil and $staropt$star or pp_print_cut;
     if (param) then do
       vs = param[1];
       v = param[0];

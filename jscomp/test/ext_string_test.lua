@@ -12,7 +12,7 @@ Caml_exceptions = require "../../lib/js/caml_exceptions";
 Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 function split_by(keep_emptyOpt, is_delim, str) do
-  keep_empty = keep_emptyOpt ~= undefined and keep_emptyOpt or false;
+  keep_empty = keep_emptyOpt ~= nil and keep_emptyOpt or false;
   len = #str;
   _acc = --[[ [] ]]0;
   _last_pos = len;
@@ -277,7 +277,7 @@ end end
 Local_exit = Caml_exceptions.create("Ext_string_test.Local_exit");
 
 function find(startOpt, sub, s) do
-  start = startOpt ~= undefined and startOpt or 0;
+  start = startOpt ~= nil and startOpt or 0;
   n = #sub;
   s_len = #s;
   i = start;
@@ -300,7 +300,7 @@ function find(startOpt, sub, s) do
 end end
 
 function contain_substring(s, sub) do
-  return find(undefined, sub, s) >= 0;
+  return find(nil, sub, s) >= 0;
 end end
 
 function non_overlap_count(sub, s) do
@@ -538,7 +538,7 @@ function is_valid_source_name(name) do
           }
         }
       });
-  if (match ~= undefined) then do
+  if (match ~= nil) then do
     if (is_valid_module_file(match)) then do
       return --[[ Good ]]0;
     end else do

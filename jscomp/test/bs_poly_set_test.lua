@@ -180,9 +180,9 @@ b("File \"bs_poly_set_test.ml\", line 83, characters 4-11", 47 == Belt_Set.getUn
 
 b("File \"bs_poly_set_test.ml\", line 84, characters 4-11", Caml_obj.caml_equal(47, Belt_Set.get(u22, 47)));
 
-b("File \"bs_poly_set_test.ml\", line 85, characters 4-11", Belt_Set.getUndefined(u22, 59) == undefined);
+b("File \"bs_poly_set_test.ml\", line 85, characters 4-11", Belt_Set.getUndefined(u22, 59) == nil);
 
-b("File \"bs_poly_set_test.ml\", line 86, characters 4-11", undefined == Belt_Set.get(u22, 59));
+b("File \"bs_poly_set_test.ml\", line 86, characters 4-11", nil == Belt_Set.get(u22, 59));
 
 eq("File \"bs_poly_set_test.ml\", line 88, characters 5-12", Belt_SetDict.size(u25.data), 60);
 
@@ -191,28 +191,28 @@ m = {
   data = Belt_SetDict.empty
 };
 
-b("File \"bs_poly_set_test.ml\", line 89, characters 4-11", Belt_SetDict.minimum(m.data) == undefined);
+b("File \"bs_poly_set_test.ml\", line 89, characters 4-11", Belt_SetDict.minimum(m.data) == nil);
 
 m_1 = {
   cmp = IntCmp.cmp,
   data = Belt_SetDict.empty
 };
 
-b("File \"bs_poly_set_test.ml\", line 90, characters 4-11", Belt_SetDict.maximum(m_1.data) == undefined);
+b("File \"bs_poly_set_test.ml\", line 90, characters 4-11", Belt_SetDict.maximum(m_1.data) == nil);
 
 m_2 = {
   cmp = IntCmp.cmp,
   data = Belt_SetDict.empty
 };
 
-b("File \"bs_poly_set_test.ml\", line 91, characters 4-11", Belt_SetDict.minUndefined(m_2.data) == undefined);
+b("File \"bs_poly_set_test.ml\", line 91, characters 4-11", Belt_SetDict.minUndefined(m_2.data) == nil);
 
 m_3 = {
   cmp = IntCmp.cmp,
   data = Belt_SetDict.empty
 };
 
-b("File \"bs_poly_set_test.ml\", line 92, characters 4-11", Belt_SetDict.maxUndefined(m_3.data) == undefined);
+b("File \"bs_poly_set_test.ml\", line 92, characters 4-11", Belt_SetDict.maxUndefined(m_3.data) == nil);
 
 function testIterToList(xs) do
   v = {

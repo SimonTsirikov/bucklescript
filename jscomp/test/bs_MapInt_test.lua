@@ -16,7 +16,7 @@ function test(param) do
     m = Belt_MapInt.set(m, i, i);
   end
   for i_1 = 0 , 999999 , 1 do
-    should(Belt_MapInt.get(m, i_1) ~= undefined);
+    should(Belt_MapInt.get(m, i_1) ~= nil);
   end
   for i_2 = 0 , 999999 , 1 do
     m = Belt_MapInt.remove(m, i_2);

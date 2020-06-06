@@ -74,7 +74,7 @@ option_suites_001 = --[[ :: ]]{
               (function(param) do
                   return --[[ Eq ]]Block.__(0, {
                             false,
-                            Js_option.isSomeValue(simpleEq, 1, undefined)
+                            Js_option.isSomeValue(simpleEq, 1, nil)
                           });
                 end end)
             },
@@ -114,7 +114,7 @@ option_suites_001 = --[[ :: ]]{
                       (function(param) do
                           return --[[ Eq ]]Block.__(0, {
                                     false,
-                                    Js_option.equal(simpleEq, 1, undefined)
+                                    Js_option.equal(simpleEq, 1, nil)
                                   });
                         end end)
                     },
@@ -159,10 +159,10 @@ option_suites_001 = --[[ :: ]]{
                               "option_map_None",
                               (function(param) do
                                   return --[[ Eq ]]Block.__(0, {
-                                            undefined,
+                                            nil,
                                             Js_option.map((function(a) do
                                                     return a + 1 | 0;
-                                                  end end), undefined)
+                                                  end end), nil)
                                           });
                                 end end)
                             },
@@ -182,7 +182,7 @@ option_suites_001 = --[[ :: ]]{
                                   (function(param) do
                                       return --[[ Eq ]]Block.__(0, {
                                                 3,
-                                                Js_option.getWithDefault(3, undefined)
+                                                Js_option.getWithDefault(3, nil)
                                               });
                                     end end)
                                 },
@@ -203,7 +203,7 @@ option_suites_001 = --[[ :: ]]{
                                       "option_filter_Reject",
                                       (function(param) do
                                           return --[[ Eq ]]Block.__(0, {
-                                                    undefined,
+                                                    nil,
                                                     Js_option.filter((function(a) do
                                                             return a % 3 == 0;
                                                           end end), 2)
@@ -215,10 +215,10 @@ option_suites_001 = --[[ :: ]]{
                                         "option_filter_None",
                                         (function(param) do
                                             return --[[ Eq ]]Block.__(0, {
-                                                      undefined,
+                                                      nil,
                                                       Js_option.filter((function(a) do
                                                               return a % 3 == 0;
-                                                            end end), undefined)
+                                                            end end), nil)
                                                     });
                                           end end)
                                       },
@@ -238,7 +238,7 @@ option_suites_001 = --[[ :: ]]{
                                             (function(param) do
                                                 return --[[ Eq ]]Block.__(0, {
                                                           true,
-                                                          Js_option.isSomeValue(simpleEq, 2, Js_option.firstSome(undefined, 2))
+                                                          Js_option.isSomeValue(simpleEq, 2, Js_option.firstSome(nil, 2))
                                                         });
                                               end end)
                                           },
@@ -247,8 +247,8 @@ option_suites_001 = --[[ :: ]]{
                                               "option_firstSome_None",
                                               (function(param) do
                                                   return --[[ Eq ]]Block.__(0, {
-                                                            undefined,
-                                                            Js_option.firstSome(undefined, undefined)
+                                                            nil,
+                                                            Js_option.firstSome(nil, nil)
                                                           });
                                                 end end)
                                             },

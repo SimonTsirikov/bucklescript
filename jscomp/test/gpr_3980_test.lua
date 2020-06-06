@@ -5,7 +5,7 @@ Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 match = 1;
 
-if (match ~= undefined) then do
+if (match ~= nil) then do
   if (match ~= 1) then do
     error({
       Caml_builtin_exceptions.assert_failure,

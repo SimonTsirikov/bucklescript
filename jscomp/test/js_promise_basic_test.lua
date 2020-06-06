@@ -74,8 +74,8 @@ end end
 h = Promise.resolve(--[[ () ]]0);
 
 function assertIsNotFound(x) do
-  match = Caml_exceptions.caml_is_extension(x) and x == Caml_builtin_exceptions.not_found and 0 or undefined;
-  if (match ~= undefined) then do
+  match = Caml_exceptions.caml_is_extension(x) and x == Caml_builtin_exceptions.not_found and 0 or nil;
+  if (match ~= nil) then do
     return h;
   end else do
     error({
@@ -135,8 +135,8 @@ function orElseRejectedRejectTest(param) do
   return p.catch((function(param) do
                     return Promise.reject(Caml_builtin_exceptions.stack_overflow);
                   end end)).then(fail).catch((function(error) do
-                match = Caml_exceptions.caml_is_extension(error) and error == Caml_builtin_exceptions.stack_overflow and 0 or undefined;
-                if (match ~= undefined) then do
+                match = Caml_exceptions.caml_is_extension(error) and error == Caml_builtin_exceptions.stack_overflow and 0 or nil;
+                if (match ~= nil) then do
                   return h;
                 end else do
                   error({

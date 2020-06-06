@@ -85,7 +85,7 @@ function f8(x) do
   end end 
 end end
 
-u = f8(undefined);
+u = f8(nil);
 
 function f9(x) do
   if (x == nil) then do
@@ -116,7 +116,7 @@ Test_null = {
 };
 
 function f1_1(x) do
-  if (x ~= undefined) then do
+  if (x ~= nil) then do
     return x + 1 | 0;
   end else do
     return 3;
@@ -124,7 +124,7 @@ function f1_1(x) do
 end end
 
 function f2_1(x) do
-  if (x ~= undefined) then do
+  if (x ~= nil) then do
     return x + 1 | 0;
   end else do
     return 3;
@@ -133,7 +133,7 @@ end end
 
 function f5_1(h, x) do
   u = Curry._1(h, 32);
-  if (u ~= undefined) then do
+  if (u ~= nil) then do
     return u + 1 | 0;
   end else do
     return 3;
@@ -143,7 +143,7 @@ end end
 function f4_1(h, x) do
   u = Curry._1(h, 32);
   v = 32 + x | 0;
-  if (u ~= undefined) then do
+  if (u ~= nil) then do
     return u + 1 | 0;
   end else do
     return 1 + v | 0;
@@ -159,8 +159,8 @@ function f7_1(x) do
 end end
 
 function f8_1(x) do
-  if (x ~= undefined) then do
-    if (x ~= undefined) then do
+  if (x ~= nil) then do
+    if (x ~= nil) then do
       return 0;
     end else do
       return 1;
@@ -170,10 +170,10 @@ function f8_1(x) do
   end end 
 end end
 
-u_1 = f8_1(undefined);
+u_1 = f8_1(nil);
 
 function f9_1(x) do
-  if (x == undefined) then do
+  if (x == nil) then do
     return ;
   end else do
     return Caml_option.some(x);
@@ -181,7 +181,7 @@ function f9_1(x) do
 end end
 
 function f10_1(x) do
-  return x == undefined;
+  return x == nil;
 end end
 
 f11_1 = false;
@@ -253,7 +253,7 @@ function f8_2(x) do
   end end  end 
 end end
 
-u_2 = f8_2(undefined);
+u_2 = f8_2(nil);
 
 function f9_2(x) do
   if (x == nil) then do

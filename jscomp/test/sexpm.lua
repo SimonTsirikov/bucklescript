@@ -346,7 +346,7 @@ ID_MONAD = {
 };
 
 function make(bufsizeOpt, refill) do
-  bufsize = bufsizeOpt ~= undefined and bufsizeOpt or 1024;
+  bufsize = bufsizeOpt ~= nil and bufsizeOpt or 1024;
   bufsize_1 = Caml_primitive.caml_int_min(bufsize > 16 and bufsize or 16, Sys.max_string_length);
   return {
           buf = Caml_bytes.caml_create_bytes(bufsize_1),
@@ -547,7 +547,7 @@ function expr_list(acc, k, t) do
       switcher = c - 9 | 0;
       if (switcher > 23 or switcher < 0) then do
         if (switcher == 32) then do
-          return Curry._2(k, undefined, --[[ `List ]]{
+          return Curry._2(k, nil, --[[ `List ]]{
                       848054398,
                       List.rev(acc)
                     });
@@ -558,7 +558,7 @@ function expr_list(acc, k, t) do
       end
        end  end 
       return expr_starting_with(c, (function(last, e) do
-                    if (last ~= undefined) then do
+                    if (last ~= nil) then do
                       match = last;
                       if (match ~= 40) then do
                         if (match ~= 41) then do
@@ -567,7 +567,7 @@ function expr_list(acc, k, t) do
                                       acc
                                     }, k, t);
                         end else do
-                          return Curry._2(k, undefined, --[[ `List ]]{
+                          return Curry._2(k, nil, --[[ `List ]]{
                                       848054398,
                                       List.rev(--[[ :: ]]{
                                             e,
@@ -609,7 +609,7 @@ function atom(k, t) do
       return _refill(t, (function(param) do
                     return atom(k, param);
                   end end), (function(param) do
-                    return _return_atom(undefined, k, param);
+                    return _return_atom(nil, k, param);
                   end end));
     end else do
       c = _get(t);
@@ -686,7 +686,7 @@ function quoted(k, t) do
                       end end), t);
         end end 
       end else do
-        return _return_atom(undefined, k, t);
+        return _return_atom(nil, k, t);
       end end 
     end end 
   end;
@@ -819,7 +819,7 @@ function skip_comment(k, t) do
       if (match ~= 10) then do
         ::continue:: ;
       end else do
-        return Curry._2(k, undefined, --[[ () ]]0);
+        return Curry._2(k, nil, --[[ () ]]0);
       end end 
     end end 
   end;
@@ -941,20 +941,20 @@ end end
 
 function parse_file(filename) do
   return _with_in(filename, (function(ic) do
-                return parse_chan(undefined, ic);
+                return parse_chan(nil, ic);
               end end));
 end end
 
 function parse_file_list(filename) do
   return _with_in(filename, (function(ic) do
-                return parse_chan_list(undefined, ic);
+                return parse_chan_list(nil, ic);
               end end));
 end end
 
 function MakeDecode(funarg) do
   $great$great$eq = funarg.$great$great$eq;
   make = function(bufsizeOpt, refill) do
-    bufsize = bufsizeOpt ~= undefined and bufsizeOpt or 1024;
+    bufsize = bufsizeOpt ~= nil and bufsizeOpt or 1024;
     bufsize_1 = Caml_primitive.caml_int_min(bufsize > 16 and bufsize or 16, Sys.max_string_length);
     return {
             buf = Caml_bytes.caml_create_bytes(bufsize_1),
@@ -1148,7 +1148,7 @@ function MakeDecode(funarg) do
         switcher = c - 9 | 0;
         if (switcher > 23 or switcher < 0) then do
           if (switcher == 32) then do
-            return Curry._2(k, undefined, --[[ `List ]]{
+            return Curry._2(k, nil, --[[ `List ]]{
                         848054398,
                         List.rev(acc)
                       });
@@ -1159,7 +1159,7 @@ function MakeDecode(funarg) do
         end
          end  end 
         return expr_starting_with(c, (function(last, e) do
-                      if (last ~= undefined) then do
+                      if (last ~= nil) then do
                         match = last;
                         if (match ~= 40) then do
                           if (match ~= 41) then do
@@ -1168,7 +1168,7 @@ function MakeDecode(funarg) do
                                         acc
                                       }, k, t);
                           end else do
-                            return Curry._2(k, undefined, --[[ `List ]]{
+                            return Curry._2(k, nil, --[[ `List ]]{
                                         848054398,
                                         List.rev(--[[ :: ]]{
                                               e,
@@ -1208,7 +1208,7 @@ function MakeDecode(funarg) do
         return _refill(t, (function(param) do
                       return atom(k, param);
                     end end), (function(param) do
-                      return _return_atom(undefined, k, param);
+                      return _return_atom(nil, k, param);
                     end end));
       end else do
         c = _get(t);
@@ -1284,7 +1284,7 @@ function MakeDecode(funarg) do
                         end end), t);
           end end 
         end else do
-          return _return_atom(undefined, k, t);
+          return _return_atom(nil, k, t);
         end end 
       end end 
     end;
@@ -1413,7 +1413,7 @@ function MakeDecode(funarg) do
         if (match ~= 10) then do
           ::continue:: ;
         end else do
-          return Curry._2(k, undefined, --[[ () ]]0);
+          return Curry._2(k, nil, --[[ () ]]0);
         end end 
       end end 
     end;

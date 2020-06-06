@@ -58,14 +58,14 @@ function eqU(x, y) do
 end end
 
 function eqUOpt(x, y) do
-  if (x ~= undefined) then do
-    if (y ~= undefined) then do
+  if (x ~= nil) then do
+    if (y ~= nil) then do
       return x == y;
     end else do
       return false;
     end end 
   end else do
-    return y == undefined;
+    return y == nil;
   end end 
 end end
 
@@ -75,7 +75,7 @@ eq("File \"ast_js_mapper_poly_test.ml\", line 26, characters 5-12", eqUOpt(uFrom
 
 eq("File \"ast_js_mapper_poly_test.ml\", line 27, characters 5-12", eqUOpt(uFromJs("C"), --[[ C ]]67), true);
 
-eq("File \"ast_js_mapper_poly_test.ml\", line 28, characters 5-12", eqUOpt(uFromJs("f"), undefined), true);
+eq("File \"ast_js_mapper_poly_test.ml\", line 28, characters 5-12", eqUOpt(uFromJs("f"), nil), true);
 
 eq("File \"ast_js_mapper_poly_test.ml\", line 29, characters 5-12", __Array.map(uToJs, {
           --[[ D ]]68,
@@ -107,14 +107,14 @@ function eqV(x, y) do
 end end
 
 function eqVOpt(x, y) do
-  if (x ~= undefined) then do
-    if (y ~= undefined) then do
+  if (x ~= nil) then do
+    if (y ~= nil) then do
       return x == y;
     end else do
       return false;
     end end 
   end else do
-    return y == undefined;
+    return y == nil;
   end end 
 end end
 
@@ -155,12 +155,12 @@ eq("File \"ast_js_mapper_poly_test.ml\", line 55, characters 5-12", __Array.map(
           6
         }), {
       --[[ A0 ]]0,
-      undefined,
-      undefined,
+      nil,
+      nil,
       --[[ A1 ]]1,
       --[[ A2 ]]2,
       --[[ A3 ]]3,
-      undefined
+      nil
     });
 
 function v1ToJs(param) do
@@ -200,14 +200,14 @@ eq("File \"ast_js_mapper_poly_test.ml\", line 69, characters 5-12", __Array.map(
           5,
           6
         }), {
-      undefined,
+      nil,
       --[[ B0 ]]0,
       --[[ B1 ]]1,
       --[[ B2 ]]2,
       --[[ B3 ]]3,
       --[[ B4 ]]4,
       --[[ B5 ]]5,
-      undefined
+      nil
     });
 
 function v2ToJs(param) do
@@ -248,8 +248,8 @@ eq("File \"ast_js_mapper_poly_test.ml\", line 89, characters 5-12", __Array.map(
           7,
           8
         }), __Array.append(__Array.append({
-              undefined,
-              undefined
+              nil,
+              nil
             }, __Array.map((function(x) do
                     return x;
                   end end), {
@@ -259,7 +259,7 @@ eq("File \"ast_js_mapper_poly_test.ml\", line 89, characters 5-12", __Array.map(
                   --[[ C3 ]]3,
                   --[[ C4 ]]4,
                   --[[ C5 ]]5
-                })), {undefined}));
+                })), {nil}));
 
 Mt.from_pair_suites("Ast_js_mapper_poly_test", suites.contents);
 

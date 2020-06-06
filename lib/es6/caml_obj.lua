@@ -201,17 +201,17 @@ function caml_compare(_a, _b) do
                     a_2 = a;
                     b_2 = b;
                     min_key_lhs = {
-                      contents = undefined
+                      contents = nil
                     };
                     min_key_rhs = {
-                      contents = undefined
+                      contents = nil
                     };
                     do_key = function(param, key) do
                       min_key = param[2];
                       b = param[1];
                       if (not b.hasOwnProperty(key) or caml_compare(param[0][key], b[key]) > 0) then do
                         match = min_key.contents;
-                        if (match ~= undefined and key >= match) then do
+                        if (match ~= nil and key >= match) then do
                           return 0;
                         end else do
                           min_key.contents = key;
@@ -245,13 +245,13 @@ function caml_compare(_a, _b) do
                     for_in(b_2, do_key_b);
                     match = min_key_lhs.contents;
                     match_1 = min_key_rhs.contents;
-                    if (match ~= undefined) then do
-                      if (match_1 ~= undefined) then do
+                    if (match ~= nil) then do
+                      if (match_1 ~= nil) then do
                         return Caml_primitive.caml_string_compare(match, match_1);
                       end else do
                         return -1;
                       end end 
-                    end else if (match_1 ~= undefined) then do
+                    end else if (match_1 ~= nil) then do
                       return 1;
                     end else do
                       return 0;
@@ -424,7 +424,7 @@ function caml_equal_null(x, y) do
 end end
 
 function caml_equal_undefined(x, y) do
-  if (y ~= undefined) then do
+  if (y ~= nil) then do
     return caml_equal(x, y);
   end else do
     return x == y;

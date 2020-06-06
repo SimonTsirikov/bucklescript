@@ -5,7 +5,7 @@ Block = require "../../lib/js/block";
 Curry = require "../../lib/js/curry";
 
 v = {
-  syntax = undefined,
+  syntax = nil,
   imports = 0,
   file_options = 0,
   package = 0,
@@ -15,7 +15,7 @@ v = {
 };
 
 u_v = {
-  syntax = undefined,
+  syntax = nil,
   imports = 0,
   file_options = 0,
   package = 0,
@@ -55,7 +55,7 @@ suites = --[[ :: ]]{
 Mt.from_pair_suites("Record_with_test", suites);
 
 uv = {
-  syntax = undefined,
+  syntax = nil,
   imports = 1,
   file_options = 0,
   package = 0,

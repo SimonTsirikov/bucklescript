@@ -242,7 +242,7 @@ function filterMapRevAux(f, _acc, _xs) do
       ys = xs[1];
       match = f(xs[0]);
       _xs = ys;
-      if (match ~= undefined) then do
+      if (match ~= nil) then do
         _acc = --[[ :: ]]{
           Caml_option.valFromOption(match),
           acc

@@ -24,7 +24,7 @@ end end
 function scan_rest(ib, accu) do
   return Curry._1(Scanf.bscanf(ib, --[[ Format ]]{
                   --[[ Scan_char_set ]]Block.__(20, {
-                      undefined,
+                      nil,
                       "\0\0\0\0\0\0\0\0\0\0\0 \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0",
                       --[[ End_of_format ]]0
                     }),

@@ -23,7 +23,7 @@ end end
 
 function f0(x) do
   match = x[1];
-  if (match ~= undefined and match) then do
+  if (match ~= nil and match) then do
     return 1;
   end else do
     return 2;
@@ -39,9 +39,9 @@ function f1(u) do
 end end
 
 function f2(x, y, zOpt, param) do
-  z = zOpt ~= undefined and zOpt or 3;
+  z = zOpt ~= nil and zOpt or 3;
   console.log(x);
-  if (y ~= undefined) then do
+  if (y ~= nil) then do
     return y + z | 0;
   end else do
     return 0;
@@ -49,7 +49,7 @@ function f2(x, y, zOpt, param) do
 end end
 
 function f3(x) do
-  if (x ~= undefined) then do
+  if (x ~= nil) then do
     return 1;
   end else do
     return 0;
@@ -57,7 +57,7 @@ function f3(x) do
 end end
 
 function f4(x) do
-  if (x ~= undefined) then do
+  if (x ~= nil) then do
     return x + 1 | 0;
   end else do
     return 0;
@@ -72,7 +72,7 @@ function f6(a) do
   return true;
 end end
 
-f10 = Caml_option.some(Caml_option.some(Caml_option.some(Caml_option.some(undefined))));
+f10 = Caml_option.some(Caml_option.some(Caml_option.some(Caml_option.some(nil))));
 
 f11 = Caml_option.some(f10);
 
@@ -81,7 +81,7 @@ randomized = {
 };
 
 function create(randomOpt, param) do
-  random = randomOpt ~= undefined and randomOpt or randomized.contents;
+  random = randomOpt ~= nil and randomOpt or randomized.contents;
   if (random) then do
     return 2;
   end else do
@@ -92,12 +92,12 @@ end end
 ff = create(false, --[[ () ]]0);
 
 function f13(xOpt, yOpt, param) do
-  x = xOpt ~= undefined and xOpt or 3;
-  y = yOpt ~= undefined and yOpt or 4;
+  x = xOpt ~= nil and xOpt or 3;
+  y = yOpt ~= nil and yOpt or 4;
   return x + y | 0;
 end end
 
-a = f13(2, undefined, --[[ () ]]0);
+a = f13(2, nil, --[[ () ]]0);
 
 function f12(x) do
   return x;
@@ -124,17 +124,17 @@ function f13_1(param) do
             });
 end end
 
-b("File \"option_repr_test.ml\", line 94, characters 4-11", Caml_obj.caml_lessthan(undefined, nil));
+b("File \"option_repr_test.ml\", line 94, characters 4-11", Caml_obj.caml_lessthan(nil, nil));
 
-b("File \"option_repr_test.ml\", line 95, characters 4-11", not Caml_obj.caml_greaterthan(undefined, nil));
+b("File \"option_repr_test.ml\", line 95, characters 4-11", not Caml_obj.caml_greaterthan(nil, nil));
 
-b("File \"option_repr_test.ml\", line 96, characters 4-11", Caml_obj.caml_greaterthan(nil, undefined));
+b("File \"option_repr_test.ml\", line 96, characters 4-11", Caml_obj.caml_greaterthan(nil, nil));
 
-b("File \"option_repr_test.ml\", line 97, characters 4-11", Caml_obj.caml_lessthan(undefined, Caml_option.some(undefined)));
+b("File \"option_repr_test.ml\", line 97, characters 4-11", Caml_obj.caml_lessthan(nil, Caml_option.some(nil)));
 
-b("File \"option_repr_test.ml\", line 98, characters 4-11", Caml_obj.caml_greaterthan(Caml_option.some(undefined), undefined));
+b("File \"option_repr_test.ml\", line 98, characters 4-11", Caml_obj.caml_greaterthan(Caml_option.some(nil), nil));
 
-console.log(6, undefined);
+console.log(6, nil);
 
 function ltx(a, b) do
   if (Caml_obj.caml_lessthan(a, b)) then do
@@ -174,7 +174,7 @@ function all_true(xs) do
               end end));
 end end
 
-xs_000 = gtx(Caml_option.some(nil), Caml_option.some(undefined));
+xs_000 = gtx(Caml_option.some(nil), Caml_option.some(nil));
 
 xs = --[[ :: ]]{
   xs_000,
@@ -185,26 +185,26 @@ b("File \"option_repr_test.ml\", line 121, characters 5-12", Belt_List.every(xs,
             return x;
           end end)));
 
-xs_000_1 = ltx(Caml_option.some(undefined), 3);
+xs_000_1 = ltx(Caml_option.some(nil), 3);
 
 xs_001 = --[[ :: ]]{
-  ltx(Caml_option.some(undefined), Caml_option.some(Caml_option.some(undefined))),
+  ltx(Caml_option.some(nil), Caml_option.some(Caml_option.some(nil))),
   --[[ :: ]]{
-    ltx(Caml_option.some(undefined), "3"),
+    ltx(Caml_option.some(nil), "3"),
     --[[ :: ]]{
-      ltx(Caml_option.some(undefined), true),
+      ltx(Caml_option.some(nil), true),
       --[[ :: ]]{
-        ltx(Caml_option.some(undefined), false),
+        ltx(Caml_option.some(nil), false),
         --[[ :: ]]{
           ltx(false, true),
           --[[ :: ]]{
             ltx(false, true),
             --[[ :: ]]{
-              ltx(undefined, Caml_option.some(undefined)),
+              ltx(nil, Caml_option.some(nil)),
               --[[ :: ]]{
-                ltx(undefined, nil),
+                ltx(nil, nil),
                 --[[ :: ]]{
-                  ltx(undefined, (function(x) do
+                  ltx(nil, (function(x) do
                           return x;
                         end end)),
                   --[[ :: ]]{
@@ -230,16 +230,16 @@ b("File \"option_repr_test.ml\", line 127, characters 5-12", Belt_List.every(xs_
             return x;
           end end)));
 
-xs_000_2 = eqx(undefined, undefined);
+xs_000_2 = eqx(nil, nil);
 
 xs_001_1 = --[[ :: ]]{
-  neqx(undefined, nil),
+  neqx(nil, nil),
   --[[ :: ]]{
-    eqx(Caml_option.some(undefined), Caml_option.some(undefined)),
+    eqx(Caml_option.some(nil), Caml_option.some(nil)),
     --[[ :: ]]{
-      eqx(Caml_option.some(Caml_option.some(undefined)), Caml_option.some(Caml_option.some(undefined))),
+      eqx(Caml_option.some(Caml_option.some(nil)), Caml_option.some(Caml_option.some(nil))),
       --[[ :: ]]{
-        neqx(Caml_option.some(Caml_option.some(Caml_option.some(undefined))), Caml_option.some(Caml_option.some(undefined))),
+        neqx(Caml_option.some(Caml_option.some(Caml_option.some(nil))), Caml_option.some(Caml_option.some(nil))),
         --[[ [] ]]0
       }
     }
@@ -270,15 +270,15 @@ N0 = {
 
 Mt.from_pair_suites("Option_repr_test", suites.contents);
 
-f7 = undefined;
+f7 = nil;
 
-f8 = Caml_option.some(undefined);
+f8 = Caml_option.some(nil);
 
-f9 = Caml_option.some(Caml_option.some(undefined));
+f9 = Caml_option.some(Caml_option.some(nil));
 
 N = --[[ alias ]]0;
 
-none_arg = undefined;
+none_arg = nil;
 
 exports = {}
 exports.suites = suites;

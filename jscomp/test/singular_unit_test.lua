@@ -10,7 +10,7 @@ function f1(x) do
 end end
 
 function f3(x) do
-  if (x ~= undefined) then do
+  if (x ~= nil) then do
     return x;
   end else do
     return --[[ A ]]0;

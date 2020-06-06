@@ -110,7 +110,7 @@ eq("File \"bs_list_test.ml\", line 32, characters 5-12", Belt_List.getBy(--[[ ::
           }
         }, (function(x) do
             return x % 5 == 0;
-          end end)), undefined);
+          end end)), nil);
 
 eq("FLATTEN", Belt_List.flatten(--[[ :: ]]{
           --[[ :: ]]{
@@ -851,7 +851,7 @@ eq("TAKE", Belt_List.take(--[[ :: ]]{
       }
     });
 
-eq("TAKE", Belt_List.take(--[[ [] ]]0, 1), undefined);
+eq("TAKE", Belt_List.take(--[[ [] ]]0, 1), nil);
 
 eq("TAKE", Belt_List.take(--[[ :: ]]{
           1,
@@ -859,7 +859,7 @@ eq("TAKE", Belt_List.take(--[[ :: ]]{
             2,
             --[[ [] ]]0
           }
-        }, 3), undefined);
+        }, 3), nil);
 
 eq("TAKE", Belt_List.take(--[[ :: ]]{
           1,
@@ -879,7 +879,7 @@ eq("TAKE", Belt_List.take(length_10_id, 8), length_8_id);
 
 eq("TAKE", Belt_List.take(length_10_id, 0), --[[ [] ]]0);
 
-eq("TAKE", Belt_List.take(length_8_id, -2), undefined);
+eq("TAKE", Belt_List.take(length_8_id, -2), nil);
 
 eq("DROP", Belt_List.drop(length_10_id, 10), --[[ [] ]]0);
 
@@ -893,13 +893,13 @@ eq("DROP", Belt_List.drop(length_10_id, 8), --[[ :: ]]{
 
 eq("DROP", Belt_List.drop(length_10_id, 0), length_10_id);
 
-eq("DROP", Belt_List.drop(length_8_id, -1), undefined);
+eq("DROP", Belt_List.drop(length_8_id, -1), nil);
 
 a = Belt_List.makeBy(5, id);
 
-eq("SPLIT", Belt_List.splitAt(--[[ [] ]]0, 1), undefined);
+eq("SPLIT", Belt_List.splitAt(--[[ [] ]]0, 1), nil);
 
-eq("SPLIT", Belt_List.splitAt(a, 6), undefined);
+eq("SPLIT", Belt_List.splitAt(a, 6), nil);
 
 eq("SPLIT", Belt_List.splitAt(a, 5), --[[ tuple ]]{
       a,
@@ -991,7 +991,7 @@ eq("SPLIT", Belt_List.splitAt(a, 0), --[[ tuple ]]{
       a
     });
 
-eq("SPLIT", Belt_List.splitAt(a, -1), undefined);
+eq("SPLIT", Belt_List.splitAt(a, -1), nil);
 
 function succx(x) do
   return x + 1 | 0;
@@ -1541,7 +1541,7 @@ b("File \"bs_list_test.ml\", line 212, characters 4-11", Belt_List.getAssoc(--[[
           }
         }, 4, (function(prim, prim_1) do
             return prim == prim_1;
-          end end)) == undefined);
+          end end)) == nil);
 
 eq("File \"bs_list_test.ml\", line 216, characters 5-12", --[[ tuple ]]{
       Belt_List.head(length_10_id),
@@ -1551,7 +1551,7 @@ eq("File \"bs_list_test.ml\", line 216, characters 5-12", --[[ tuple ]]{
       Belt_List.drop(length_10_id, 1)
     });
 
-eq("File \"bs_list_test.ml\", line 219, characters 5-12", Belt_List.head(--[[ [] ]]0), undefined);
+eq("File \"bs_list_test.ml\", line 219, characters 5-12", Belt_List.head(--[[ [] ]]0), nil);
 
 __throw("File \"bs_list_test.ml\", line 220, characters 8-15", (function(param) do
         return Belt_List.headExn(--[[ [] ]]0);
@@ -1620,17 +1620,17 @@ Belt_List.forEachWithIndex(length_10_id, (function(i, x) do
         return eq("File \"bs_list_test.ml\", line 228, characters 9-16", Belt_List.get(length_10_id, i), x);
       end end));
 
-eq("File \"bs_list_test.ml\", line 229, characters 5-12", Belt_List.tail(--[[ [] ]]0), undefined);
+eq("File \"bs_list_test.ml\", line 229, characters 5-12", Belt_List.tail(--[[ [] ]]0), nil);
 
-eq("File \"bs_list_test.ml\", line 230, characters 5-12", Belt_List.drop(--[[ [] ]]0, 3), undefined);
+eq("File \"bs_list_test.ml\", line 230, characters 5-12", Belt_List.drop(--[[ [] ]]0, 3), nil);
 
 eq("File \"bs_list_test.ml\", line 231, characters 5-12", Belt_List.mapWithIndex(--[[ [] ]]0, (function(i, x) do
             return i + x | 0;
           end end)), --[[ [] ]]0);
 
-eq("File \"bs_list_test.ml\", line 232, characters 5-12", Belt_List.get(length_10_id, -1), undefined);
+eq("File \"bs_list_test.ml\", line 232, characters 5-12", Belt_List.get(length_10_id, -1), nil);
 
-eq("File \"bs_list_test.ml\", line 233, characters 5-12", Belt_List.get(length_10_id, 12), undefined);
+eq("File \"bs_list_test.ml\", line 233, characters 5-12", Belt_List.get(length_10_id, 12), nil);
 
 eq("File \"bs_list_test.ml\", line 234, characters 5-12", sum(--[[ [] ]]0), 0);
 

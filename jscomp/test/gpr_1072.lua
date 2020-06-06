@@ -137,11 +137,11 @@ v_mk7 = --[[ :: ]]{
 
 again("a", 3);
 
-again(undefined, 3);
+again(nil, 3);
 
-again(undefined, 3);
+again(nil, 3);
 
-again(undefined, 3);
+again(nil, 3);
 
 again2("a", 3);
 
@@ -153,21 +153,21 @@ side_effect = {
   contents = 0
 };
 
-again4(undefined, --[[ () ]]0, 166);
+again4(nil, --[[ () ]]0, 166);
 
-again4(undefined, --[[ () ]]0, 167);
+again4(nil, --[[ () ]]0, 167);
 
 again4(--[[ () ]]0, --[[ () ]]0, 168);
 
 again4(--[[ () ]]0, --[[ () ]]0, 169);
 
-again4(undefined, --[[ () ]]0, 170);
+again4(nil, --[[ () ]]0, 170);
 
 again4((side_effect.contents = side_effect.contents + 1 | 0, --[[ () ]]0), --[[ () ]]0, 171);
 
 again4((side_effect.contents = side_effect.contents + 1 | 0, --[[ () ]]0), (side_effect.contents = side_effect.contents - 1 | 0, --[[ () ]]0), 172);
 
-again4(undefined, (side_effect.contents = side_effect.contents - 1 | 0, --[[ () ]]0), 173);
+again4(nil, (side_effect.contents = side_effect.contents - 1 | 0, --[[ () ]]0), 173);
 
 again4((side_effect.contents = side_effect.contents + 1 | 0, --[[ () ]]0), --[[ () ]]0, 174);
 

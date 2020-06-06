@@ -38,7 +38,7 @@ end end
 
 function uff3(f) do
   match = f.yyyy2;
-  if (match ~= undefined) then do
+  if (match ~= nil) then do
     return Curry._1(match, 0);
   end else do
     return 0;

@@ -899,12 +899,12 @@ function test11(param) do
             return prenom == "Pierre" and nom == "Weis" and Caml_format.caml_int_of_string(poids) == 70 or false;
           end end)) and Curry._1(Scanf.sscanf("Jean-Luc\tde Leage\t68", --[[ Format ]]{
               --[[ Scan_char_set ]]Block.__(20, {
-                  undefined,
+                  nil,
                   "\xff\xfd\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff",
                   --[[ Char_literal ]]Block.__(12, {
                       --[[ " " ]]32,
                       --[[ Scan_char_set ]]Block.__(20, {
-                          undefined,
+                          nil,
                           "\xff\xfd\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff",
                           --[[ Char_literal ]]Block.__(12, {
                               --[[ " " ]]32,
@@ -1026,7 +1026,7 @@ function test110(param) do
             return x == "";
           end end)) and Curry._1(Scanf.sscanf("", --[[ Format ]]{
               --[[ Scan_char_set ]]Block.__(20, {
-                  undefined,
+                  nil,
                   "\xff\xfb\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff",
                   --[[ End_of_format ]]0
                 }),
@@ -1035,7 +1035,7 @@ function test110(param) do
             return x == "";
           end end)) and Curry._1(Scanf.sscanf("", --[[ Format ]]{
               --[[ Scan_char_set ]]Block.__(20, {
-                  undefined,
+                  nil,
                   "\xff\xfb\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff",
                   --[[ Char_literal ]]Block.__(12, {
                       --[[ " " ]]32,
@@ -1175,7 +1175,7 @@ end end
 function test111(param) do
   return Curry._1(Scanf.sscanf("", --[[ Format ]]{
                   --[[ Scan_char_set ]]Block.__(20, {
-                      undefined,
+                      nil,
                       "\xff\xfb\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff",
                       --[[ Formatting_lit ]]Block.__(17, {
                           --[[ Force_newline ]]3,
@@ -1588,7 +1588,7 @@ function scan_elems_3(ib, accu) do
                           --[[ No_padding ]]0,
                           --[[ No_precision ]]0,
                           --[[ Scan_char_set ]]Block.__(20, {
-                              undefined,
+                              nil,
                               "\0&\0\0\x01\0\0\b\0\0\0 \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0",
                               --[[ End_of_format ]]0
                             })
@@ -1697,7 +1697,7 @@ function scan_rest(ib, accu) do
                 end else do
                   return Curry._1(Scanf.bscanf(ib, --[[ Format ]]{
                                   --[[ Scan_char_set ]]Block.__(20, {
-                                      undefined,
+                                      nil,
                                       "\0\0\0\0\0\0\0\0\0\0\0 \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0",
                                       --[[ End_of_format ]]0
                                     }),
@@ -1753,7 +1753,7 @@ function scan_elems_4(ib, accu) do
                 if (accu == --[[ [] ]]0) then do
                   return Curry._1(Scanf.bscanf(ib, --[[ Format ]]{
                                   --[[ Scan_char_set ]]Block.__(20, {
-                                      undefined,
+                                      nil,
                                       "\0\0\0\0\0\0\0\0\0\0\0 \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0",
                                       --[[ End_of_format ]]0
                                     }),
@@ -1864,7 +1864,7 @@ test21(--[[ () ]]0);
 function scan_rest_1(ib, accu) do
   return Curry._1(Scanf.bscanf(ib, --[[ Format ]]{
                   --[[ Scan_char_set ]]Block.__(20, {
-                      undefined,
+                      nil,
                       "\0\0\0\0\0\0\0\0\0\0\0 \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0",
                       --[[ End_of_format ]]0
                     }),
@@ -3139,7 +3139,7 @@ function test40(param) do
   ib = Scanf.Scanning.from_string("cba");
   return Curry._1(Scanf.bscanf(ib, --[[ Format ]]{
                   --[[ Scan_char_set ]]Block.__(20, {
-                      undefined,
+                      nil,
                       "\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xf9\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff",
                       --[[ String ]]Block.__(2, {
                           --[[ No_padding ]]0,
@@ -3162,10 +3162,10 @@ function test41(param) do
   ib = Scanf.Scanning.from_string("cba");
   return Curry._1(Scanf.bscanf(ib, --[[ Format ]]{
                   --[[ Scan_char_set ]]Block.__(20, {
-                      undefined,
+                      nil,
                       "\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xf1\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff",
                       --[[ Scan_char_set ]]Block.__(20, {
-                          undefined,
+                          nil,
                           "\0\0\0\0\0\0\0\0\0\0\0\0\x0e\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0",
                           --[[ Flush ]]Block.__(10, {--[[ End_of_format ]]0})
                         })
@@ -3187,10 +3187,10 @@ function test42(param) do
   ib = Scanf.Scanning.from_string(s);
   if (Curry._1(Scanf.bscanf(ib, --[[ Format ]]{
               --[[ Scan_char_set ]]Block.__(20, {
-                  undefined,
+                  nil,
                   "\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xf1\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff",
                   --[[ Scan_char_set ]]Block.__(20, {
-                      undefined,
+                      nil,
                       "\0\0\0\0\0\0\0\0\0\0\0\0\x0e\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0",
                       --[[ String ]]Block.__(2, {
                           --[[ No_padding ]]0,
@@ -3262,12 +3262,12 @@ function test45(param) do
   ib = Scanf.Scanning.from_string("12.2");
   return Curry._1(Scanf.bscanf(ib, --[[ Format ]]{
                   --[[ Scan_char_set ]]Block.__(20, {
-                      undefined,
+                      nil,
                       "\0\0\0\0\0\0\xff\x03\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0",
                       --[[ Char_literal ]]Block.__(12, {
                           --[[ "." ]]46,
                           --[[ Scan_char_set ]]Block.__(20, {
-                              undefined,
+                              nil,
                               "\0\0\0\0\0\0\xff\x03\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0",
                               --[[ String ]]Block.__(2, {
                                   --[[ No_padding ]]0,
@@ -3297,7 +3297,7 @@ function test46(param) do
                       --[[ Char_literal ]]Block.__(12, {
                           --[[ " " ]]32,
                           --[[ Format_subst ]]Block.__(14, {
-                              undefined,
+                              nil,
                               --[[ String_ty ]]Block.__(1, {--[[ End_of_fmtty ]]0}),
                               --[[ Char_literal ]]Block.__(12, {
                                   --[[ "." ]]46,
@@ -3328,7 +3328,7 @@ function test47(param) do
                       --[[ Char_literal ]]Block.__(12, {
                           --[[ " " ]]32,
                           --[[ Format_arg ]]Block.__(13, {
-                              undefined,
+                              nil,
                               --[[ String_ty ]]Block.__(1, {--[[ End_of_fmtty ]]0}),
                               --[[ String_literal ]]Block.__(11, {
                                   ", ",
@@ -3397,7 +3397,7 @@ function test48(param) do
                   --[[ Char_literal ]]Block.__(12, {
                       --[[ " " ]]32,
                       --[[ Format_arg ]]Block.__(13, {
-                          undefined,
+                          nil,
                           --[[ Int_ty ]]Block.__(2, {--[[ End_of_fmtty ]]0}),
                           --[[ String ]]Block.__(2, {
                               --[[ No_padding ]]0,
@@ -3428,7 +3428,7 @@ function test48(param) do
     k = function(s) do
       return Curry._1(Scanf.sscanf(s, --[[ Format ]]{
                       --[[ Format_subst ]]Block.__(14, {
-                          undefined,
+                          nil,
                           --[[ Float_ty ]]Block.__(6, {--[[ End_of_fmtty ]]0}),
                           --[[ End_of_format ]]0
                         }),
@@ -3443,7 +3443,7 @@ function test48(param) do
                         --[[ String_literal ]]Block.__(11, {
                             "Read integers with ",
                             --[[ Format_subst ]]Block.__(14, {
-                                undefined,
+                                nil,
                                 --[[ Int_ty ]]Block.__(2, {--[[ End_of_fmtty ]]0}),
                                 --[[ End_of_format ]]0
                               })
@@ -3459,7 +3459,7 @@ function test48(param) do
                           --[[ String_literal ]]Block.__(11, {
                               "with ",
                               --[[ Format_subst ]]Block.__(14, {
-                                  undefined,
+                                  nil,
                                   --[[ Int_ty ]]Block.__(2, {--[[ String_ty ]]Block.__(1, {--[[ End_of_fmtty ]]0})}),
                                   --[[ End_of_format ]]0
                                 })
@@ -3490,7 +3490,7 @@ function test48(param) do
                             --[[ String_literal ]]Block.__(11, {
                                 "with ",
                                 --[[ Format_subst ]]Block.__(14, {
-                                    undefined,
+                                    nil,
                                     --[[ Int_ty ]]Block.__(2, {--[[ String_ty ]]Block.__(1, {--[[ End_of_fmtty ]]0})}),
                                     --[[ End_of_format ]]0
                                   })
@@ -3539,7 +3539,7 @@ test("File \"tscanf_test.ml\", line 1157, characters 5-12", test48(--[[ () ]]0))
 function test49(param) do
   if (Curry._1(Scanf.sscanf("as", --[[ Format ]]{
               --[[ Scan_char_set ]]Block.__(20, {
-                  undefined,
+                  nil,
                   "\0\0\0\0\0\0\0\0\0\0\0\x10\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0",
                   --[[ End_of_format ]]0
                 }),
@@ -3548,7 +3548,7 @@ function test49(param) do
             return s == "";
           end end)) and Curry._1(Scanf.sscanf("as", --[[ Format ]]{
               --[[ Scan_char_set ]]Block.__(20, {
-                  undefined,
+                  nil,
                   "\0\0\0\0\0\0\0\0\0\0\0\x10\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0",
                   --[[ String ]]Block.__(2, {
                       --[[ No_padding ]]0,
@@ -3560,7 +3560,7 @@ function test49(param) do
             return s == "" and t == "as" or false;
           end end)) and Curry._1(Scanf.sscanf("as", --[[ Format ]]{
               --[[ Scan_char_set ]]Block.__(20, {
-                  undefined,
+                  nil,
                   "\0\0\0\0\0\0\0\0\0\0\0\x10\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0",
                   --[[ String ]]Block.__(2, {
                       --[[ No_padding ]]0,
@@ -3572,7 +3572,7 @@ function test49(param) do
             return s == "" and t == "as" or false;
           end end)) and Curry._1(Scanf.sscanf("as", --[[ Format ]]{
               --[[ Scan_char_set ]]Block.__(20, {
-                  undefined,
+                  nil,
                   "\0\0\0\0\0@\0\0\0\0\0\0\x02\0\0\x04\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0",
                   --[[ End_of_format ]]0
                 }),
@@ -3581,7 +3581,7 @@ function test49(param) do
             return s == "a";
           end end)) and Curry._1(Scanf.sscanf("as", --[[ Format ]]{
               --[[ Scan_char_set ]]Block.__(20, {
-                  undefined,
+                  nil,
                   "\0\0\0\0\0\0\0\0\0\0\0\0\xfe\xff\xff\x07\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0",
                   --[[ End_of_format ]]0
                 }),
@@ -3590,7 +3590,7 @@ function test49(param) do
             return s == "as";
           end end)) and Curry._1(Scanf.sscanf("as", --[[ Format ]]{
               --[[ Scan_char_set ]]Block.__(20, {
-                  undefined,
+                  nil,
                   "\0\0\0\0\0@\0\0\0\0\0\0\x02\0\0\x04\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0",
                   --[[ String ]]Block.__(2, {
                       --[[ No_padding ]]0,
@@ -3602,7 +3602,7 @@ function test49(param) do
             return s == "a" and t == "s" or false;
           end end)) and Curry._1(Scanf.sscanf("as", --[[ Format ]]{
               --[[ Scan_char_set ]]Block.__(20, {
-                  undefined,
+                  nil,
                   "\0\0\0\0\0\0\0\0\0\0\0\0\xfe\xff\xff\x07\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0",
                   --[[ String ]]Block.__(2, {
                       --[[ No_padding ]]0,
@@ -3614,7 +3614,7 @@ function test49(param) do
             return s == "as" and t == "" or false;
           end end)) and Curry._1(Scanf.sscanf("-as", --[[ Format ]]{
               --[[ Scan_char_set ]]Block.__(20, {
-                  undefined,
+                  nil,
                   "\0\0\0\0\0 \0\0\0\0\0\0\xfe\xff\xff\x07\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0",
                   --[[ End_of_format ]]0
                 }),
@@ -3623,7 +3623,7 @@ function test49(param) do
             return s == "-as";
           end end)) and Curry._1(Scanf.sscanf("-as", --[[ Format ]]{
               --[[ Scan_char_set ]]Block.__(20, {
-                  undefined,
+                  nil,
                   "\0\0\0\0\0 \0\0\0\0\0\0\xfe\xff\xff\x07\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0",
                   --[[ Formatting_lit ]]Block.__(17, {
                       --[[ Scan_indic ]]Block.__(2, {--[[ "s" ]]115}),
@@ -3637,7 +3637,7 @@ function test49(param) do
               --[[ Char_literal ]]Block.__(12, {
                   --[[ "-" ]]45,
                   --[[ Scan_char_set ]]Block.__(20, {
-                      undefined,
+                      nil,
                       "\0\0\0\0\0\0\0\0\0\0\0\0\x02\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0",
                       --[[ Formatting_lit ]]Block.__(17, {
                           --[[ Scan_indic ]]Block.__(2, {--[[ "s" ]]115}),
@@ -3652,7 +3652,7 @@ function test49(param) do
               --[[ Char_literal ]]Block.__(12, {
                   --[[ "-" ]]45,
                   --[[ Scan_char_set ]]Block.__(20, {
-                      undefined,
+                      nil,
                       "\0\0\0\0\0\0\0\0\0\0\0\0\x02\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0",
                       --[[ Formatting_lit ]]Block.__(17, {
                           --[[ Scan_indic ]]Block.__(2, {--[[ "s" ]]115}),
@@ -3671,7 +3671,7 @@ function test49(param) do
                     --[[ Char_literal ]]Block.__(12, {
                         --[[ "-" ]]45,
                         --[[ Scan_char_set ]]Block.__(20, {
-                            undefined,
+                            nil,
                             "\0\0\0\0\0\0\0\0\0\0\0\0\x02\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0",
                             --[[ Formatting_lit ]]Block.__(17, {
                                 --[[ Scan_indic ]]Block.__(2, {--[[ "s" ]]115}),
@@ -3767,7 +3767,7 @@ function reader(ib, ob) do
   end else do
     return Curry._1(Scanf.bscanf(ib, --[[ Format ]]{
                     --[[ Scan_char_set ]]Block.__(20, {
-                        undefined,
+                        nil,
                         "\xff\xfb\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff",
                         --[[ Char_literal ]]Block.__(12, {
                             --[[ "\n" ]]10,
@@ -4413,7 +4413,7 @@ function test57(param) do
                         --[[ Char_literal ]]Block.__(12, {
                             --[[ " " ]]32,
                             --[[ Format_arg ]]Block.__(13, {
-                                undefined,
+                                nil,
                                 --[[ Int_ty ]]Block.__(2, {--[[ End_of_fmtty ]]0}),
                                 --[[ String ]]Block.__(2, {
                                     --[[ No_padding ]]0,
@@ -4477,7 +4477,7 @@ function test58(param) do
             return prim .. prim_1;
           end end)) == "string1string2" and Curry._1(Scanf.sscanf("string1@string2", --[[ Format ]]{
               --[[ Scan_char_set ]]Block.__(20, {
-                  undefined,
+                  nil,
                   "\0\0\0\0\0\0\xff\x03\0\0\0\0\xfe\xff\xff\x07\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0",
                   --[[ Char_literal ]]Block.__(12, {
                       --[[ "@" ]]64,
@@ -4493,7 +4493,7 @@ function test58(param) do
           end end)) == "string1string2") then do
     return Curry._1(Scanf.sscanf("string1@%string2", --[[ Format ]]{
                     --[[ Scan_char_set ]]Block.__(20, {
-                        undefined,
+                        nil,
                         "\0\0\0\0\0\0\xff\x03\0\0\0\0\xfe\xff\xff\x07\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0",
                         --[[ Char_literal ]]Block.__(12, {
                             --[[ "@" ]]64,

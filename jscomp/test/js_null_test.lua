@@ -9,8 +9,8 @@ suites_000 = --[[ tuple ]]{
   "toOption - empty",
   (function(param) do
       return --[[ Eq ]]Block.__(0, {
-                undefined,
-                undefined
+                nil,
+                nil
               });
     end end)
 };
@@ -119,7 +119,7 @@ suites_001 = --[[ :: ]]{
                     (function(param) do
                         return --[[ Eq ]]Block.__(0, {
                                   nil,
-                                  Js_null.fromOption(undefined)
+                                  Js_null.fromOption(nil)
                                 });
                       end end)
                   },

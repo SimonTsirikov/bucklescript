@@ -43,7 +43,7 @@ XX = {
 
 u = {__String};
 
-ghh = Curry._2(MoreLabels.Hashtbl.create, undefined, 30);
+ghh = Curry._2(MoreLabels.Hashtbl.create, nil, 30);
 
 hh = 1;
 

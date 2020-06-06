@@ -8,7 +8,7 @@ function v(displayName, param) do
     config = 3,
     hi = "ghos"
   };
-  if (displayName ~= undefined) then do
+  if (displayName ~= nil) then do
     tmp.displayName = Caml_option.valFromOption(displayName);
   end
    end 

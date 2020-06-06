@@ -1215,14 +1215,14 @@ function tFromJs(param) do
 end end
 
 function eq(x, y) do
-  if (x ~= undefined) then do
-    if (y ~= undefined) then do
+  if (x ~= nil) then do
+    if (y ~= nil) then do
       return x == y;
     end else do
       return false;
     end end 
   end else do
-    return y == undefined;
+    return y == nil;
   end end 
 end end
 
@@ -8426,7 +8426,7 @@ if (not eq(tFromJs("variant299"), --[[ variant299 ]]34947885)) then do
 end
  end 
 
-if (not eq(tFromJs("xx"), undefined)) then do
+if (not eq(tFromJs("xx"), nil)) then do
   error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{

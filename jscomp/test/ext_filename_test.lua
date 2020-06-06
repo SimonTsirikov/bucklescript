@@ -62,7 +62,7 @@ function absolute_path(s) do
 end end
 
 function chop_extension(locOpt, name) do
-  loc = locOpt ~= undefined and locOpt or "";
+  loc = locOpt ~= nil and locOpt or "";
   xpcall(function() do
     return Filename.chop_extension(name);
   end end,function(raw_exn) do
@@ -111,8 +111,8 @@ os_path_separator_char = Filename.dir_sep.charCodeAt(0);
 function relative_path(file_or_dir_1, file_or_dir_2) do
   relevant_dir1 = file_or_dir_1[0] >= 781515420 and Curry._1(Filename.dirname, file_or_dir_1[1]) or file_or_dir_1[1];
   relevant_dir2 = file_or_dir_2[0] >= 781515420 and Curry._1(Filename.dirname, file_or_dir_2[1]) or file_or_dir_2[1];
-  dir1 = Ext_string_test.split(undefined, relevant_dir1, os_path_separator_char);
-  dir2 = Ext_string_test.split(undefined, relevant_dir2, os_path_separator_char);
+  dir1 = Ext_string_test.split(nil, relevant_dir1, os_path_separator_char);
+  dir2 = Ext_string_test.split(nil, relevant_dir2, os_path_separator_char);
   go = function(_dir1, _dir2) do
     while(true) do
       dir2 = _dir2;
@@ -141,7 +141,7 @@ end end
 
 function node_relative_path(node_modules_shorten, file1, dep_file) do
   file2 = dep_file[1];
-  v = Ext_string_test.find(undefined, Test_literals.node_modules, file2);
+  v = Ext_string_test.find(nil, Test_literals.node_modules, file2);
   len = #file2;
   if (node_modules_shorten and v >= 0) then do
     skip = function(_i) do

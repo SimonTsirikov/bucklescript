@@ -31,7 +31,7 @@ function updateU(t, newK, f, cmp) do
     c = cmp(newK, k);
     if (c == 0) then do
       match = f(Caml_option.some(t.value));
-      if (match ~= undefined) then do
+      if (match ~= nil) then do
         return Belt_internalAVLtree.updateValue(t, Caml_option.valFromOption(match));
       end else do
         l = t.left;
@@ -74,8 +74,8 @@ function updateU(t, newK, f, cmp) do
       end end 
     end end 
   end else do
-    match_1 = f(undefined);
-    if (match_1 ~= undefined) then do
+    match_1 = f(nil);
+    if (match_1 ~= nil) then do
       return Belt_internalAVLtree.singleton(newK, Caml_option.valFromOption(match_1));
     end else do
       return t;
@@ -192,7 +192,7 @@ end end
 function split(n, x, cmp) do
   if (n ~= nil) then do
     pres = {
-      contents = undefined
+      contents = nil
     };
     v = splitAuxPivot(n, x, pres, cmp);
     return --[[ tuple ]]{
@@ -205,7 +205,7 @@ function split(n, x, cmp) do
               nil,
               nil
             },
-            undefined
+            nil
           };
   end end 
 end end
@@ -219,7 +219,7 @@ function mergeU(s1, s2, f, cmp) do
         d1 = s1.value;
         r1 = s1.right;
         d2 = {
-          contents = undefined
+          contents = nil
         };
         match = splitAuxPivot(s2, v1, d2, cmp);
         d2_1 = d2.contents;
@@ -233,7 +233,7 @@ function mergeU(s1, s2, f, cmp) do
         d2_2 = s2.value;
         r2 = s2.right;
         d1_1 = {
-          contents = undefined
+          contents = nil
         };
         match_1 = splitAuxPivot(s1, v2, d1_1, cmp);
         d1_2 = d1_1.contents;
@@ -244,12 +244,12 @@ function mergeU(s1, s2, f, cmp) do
       end end 
     end else do
       return Belt_internalAVLtree.keepMapU(s1, (function(k, v) do
-                    return f(k, Caml_option.some(v), undefined);
+                    return f(k, Caml_option.some(v), nil);
                   end end));
     end end 
   end else if (s2 ~= nil) then do
     return Belt_internalAVLtree.keepMapU(s2, (function(k, v) do
-                  return f(k, undefined, Caml_option.some(v));
+                  return f(k, nil, Caml_option.some(v));
                 end end));
   end else do
     return nil;

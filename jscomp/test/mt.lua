@@ -51,7 +51,7 @@ function from_suites(name, suite) do
 end end
 
 function close_enough(thresholdOpt, a, b) do
-  threshold = thresholdOpt ~= undefined and thresholdOpt or 0.0000001;
+  threshold = thresholdOpt ~= nil and thresholdOpt or 0.0000001;
   return Math.abs(a - b) < threshold;
 end end
 
@@ -76,7 +76,7 @@ function handleCode(spec) do
      if ___conditional___ == 5--[[ Approx ]] then do
         b = spec[1];
         a = spec[0];
-        if (close_enough(undefined, a, b)) then do
+        if (close_enough(nil, a, b)) then do
           return 0;
         end else do
           Assert.deepEqual(a, b);

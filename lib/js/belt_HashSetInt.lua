@@ -7,11 +7,11 @@ Belt_internalBucketsType = require "./belt_internalBucketsType";
 function copyBucket(h_buckets, ndata_tail, _old_bucket) do
   while(true) do
     old_bucket = _old_bucket;
-    if (old_bucket ~= undefined) then do
+    if (old_bucket ~= nil) then do
       s = old_bucket.key;
       nidx = Caml_hash_primitive.caml_hash_final_mix(Caml_hash_primitive.caml_hash_mix_int(0, s)) & (#h_buckets - 1 | 0);
       match = ndata_tail[nidx];
-      if (match ~= undefined) then do
+      if (match ~= nil) then do
         match.next = old_bucket;
       end else do
         h_buckets[nidx] = old_bucket;
@@ -29,13 +29,13 @@ function remove(h, key) do
   h_buckets = h.buckets;
   i = Caml_hash_primitive.caml_hash_final_mix(Caml_hash_primitive.caml_hash_mix_int(0, key)) & (#h_buckets - 1 | 0);
   l = h_buckets[i];
-  if (l ~= undefined) then do
+  if (l ~= nil) then do
     next_cell = l.next;
     if (l.key == key) then do
       h.size = h.size - 1 | 0;
       h_buckets[i] = next_cell;
       return --[[ () ]]0;
-    end else if (next_cell ~= undefined) then do
+    end else if (next_cell ~= nil) then do
       h_1 = h;
       key_1 = key;
       _prec = l;
@@ -48,7 +48,7 @@ function remove(h, key) do
           prec.next = cell_next;
           h_1.size = h_1.size - 1 | 0;
           return --[[ () ]]0;
-        end else if (cell_next ~= undefined) then do
+        end else if (cell_next ~= nil) then do
           _cell = cell_next;
           _prec = cell;
           ::continue:: ;
@@ -69,14 +69,14 @@ function addBucket(h, key, _cell) do
     cell = _cell;
     if (cell.key ~= key) then do
       n = cell.next;
-      if (n ~= undefined) then do
+      if (n ~= nil) then do
         _cell = n;
         ::continue:: ;
       end else do
         h.size = h.size + 1 | 0;
         cell.next = {
           key = key,
-          next = undefined
+          next = nil
         };
         return --[[ () ]]0;
       end end 
@@ -91,12 +91,12 @@ function add(h, key) do
   buckets_len = #h_buckets;
   i = Caml_hash_primitive.caml_hash_final_mix(Caml_hash_primitive.caml_hash_mix_int(0, key)) & (buckets_len - 1 | 0);
   l = h_buckets[i];
-  if (l ~= undefined) then do
+  if (l ~= nil) then do
     addBucket(h, key, l);
   end else do
     h_buckets[i] = {
       key = key,
-      next = undefined
+      next = nil
     };
     h.size = h.size + 1 | 0;
   end end 
@@ -114,8 +114,8 @@ function add(h, key) do
       end
       for i_2 = 0 , nsize - 1 | 0 , 1 do
         match = ndata_tail[i_2];
-        if (match ~= undefined) then do
-          match.next = undefined;
+        if (match ~= nil) then do
+          match.next = nil;
         end
          end 
       end
@@ -132,7 +132,7 @@ function has(h, key) do
   h_buckets = h.buckets;
   nid = Caml_hash_primitive.caml_hash_final_mix(Caml_hash_primitive.caml_hash_mix_int(0, key)) & (#h_buckets - 1 | 0);
   bucket = h_buckets[nid];
-  if (bucket ~= undefined) then do
+  if (bucket ~= nil) then do
     key_1 = key;
     _cell = bucket;
     while(true) do
@@ -141,7 +141,7 @@ function has(h, key) do
         return true;
       end else do
         match = cell.next;
-        if (match ~= undefined) then do
+        if (match ~= nil) then do
           _cell = match;
           ::continue:: ;
         end else do

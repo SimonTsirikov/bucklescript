@@ -433,7 +433,7 @@ function single_write_substring(fd, buf, ofs, len) do
 end end
 
 function map_file(fd, posOpt, kind, layout, shared, dims) do
-  pos = posOpt ~= undefined and posOpt or --[[ int64 ]]{
+  pos = posOpt ~= nil and posOpt or --[[ int64 ]]{
       --[[ hi ]]0,
       --[[ lo ]]0
     };
@@ -596,7 +596,7 @@ function getaddrinfo(node, service, opts) do
       service_1 = service;
       opts_1 = opts;
       opt_socktype = {
-        contents = undefined
+        contents = nil
       };
       opt_protocol = {
         contents = 0
@@ -670,7 +670,7 @@ function getaddrinfo(node, service, opts) do
       end end;
       match = opt_socktype.contents;
       ports;
-      if (match ~= undefined) then do
+      if (match ~= nil) then do
         ty = match;
         ports = ty ~= 1 and (
             ty ~= 0 and (
@@ -862,7 +862,7 @@ function file_descr_not_standard(_fd) do
     if (fd >= 3) then do
       return fd;
     end else do
-      _fd = Caml_external_polyfill.resolve("unix_dup")(undefined, fd);
+      _fd = Caml_external_polyfill.resolve("unix_dup")(nil, fd);
       ::continue:: ;
     end end 
   end;
@@ -921,7 +921,7 @@ function create_process_env(cmd, args, env, new_stdin, new_stdout, new_stderr) d
   end end 
 end end
 
-popen_processes = Hashtbl.create(undefined, 7);
+popen_processes = Hashtbl.create(nil, 7);
 
 function open_proc(cmd, envopt, proc, input, output, error) do
   id = Caml_external_polyfill.resolve("unix_fork")(--[[ () ]]0);
@@ -936,7 +936,7 @@ function open_proc(cmd, envopt, proc, input, output, error) do
       cmd
     };
     xpcall(function() do
-      if (envopt ~= undefined) then do
+      if (envopt ~= nil) then do
         return Caml_external_polyfill.resolve("unix_execve")(shell, argv, envopt);
       end else do
         return Caml_external_polyfill.resolve("unix_execv")(shell, argv);
@@ -952,7 +952,7 @@ function open_process_in(cmd) do
   in_write = match[1];
   inchan = Caml_external_polyfill.resolve("caml_ml_open_descriptor_in")(match[0]);
   xpcall(function() do
-    open_proc(cmd, undefined, --[[ Process_in ]]Block.__(1, {inchan}), 0, in_write, 2);
+    open_proc(cmd, nil, --[[ Process_in ]]Block.__(1, {inchan}), 0, in_write, 2);
   end end,function(e) do
     Caml_external_polyfill.resolve("caml_ml_close_channel")(inchan);
     Caml_external_polyfill.resolve("unix_close")(in_write);
@@ -967,7 +967,7 @@ function open_process_out(cmd) do
   out_read = match[0];
   outchan = Caml_external_polyfill.resolve("caml_ml_open_descriptor_out")(match[1]);
   xpcall(function() do
-    open_proc(cmd, undefined, --[[ Process_out ]]Block.__(2, {outchan}), out_read, 1, 2);
+    open_proc(cmd, nil, --[[ Process_out ]]Block.__(2, {outchan}), out_read, 1, 2);
   end end,function(e) do
     Caml_io.caml_ml_flush(outchan);
     Caml_external_polyfill.resolve("caml_ml_close_channel")(outchan);
@@ -995,7 +995,7 @@ function open_process(cmd) do
   inchan = Caml_external_polyfill.resolve("caml_ml_open_descriptor_in")(in_read);
   outchan = Caml_external_polyfill.resolve("caml_ml_open_descriptor_out")(out_write);
   xpcall(function() do
-    open_proc(cmd, undefined, --[[ Process ]]Block.__(0, {
+    open_proc(cmd, nil, --[[ Process ]]Block.__(0, {
             inchan,
             outchan
           }), out_read, in_write, 2);

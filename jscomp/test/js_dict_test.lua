@@ -39,7 +39,7 @@ suites_001 = --[[ :: ]]{
       "get - property not in object",
       (function(param) do
           return --[[ Eq ]]Block.__(0, {
-                    undefined,
+                    nil,
                     Js_dict.get({
                           foo = 43,
                           bar = 86

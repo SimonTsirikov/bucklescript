@@ -59,7 +59,7 @@ add_test("File \"js_json_test.ml\", line 23, characters 11-18", (function(param)
           return --[[ Ok ]]Block.__(4, {false});
         end else do
           match = Js_dict.get(ty[0], "x");
-          if (match ~= undefined) then do
+          if (match ~= nil) then do
             ty2 = Js_json.classify(Caml_option.valFromOption(match));
             if (typeof ty2 == "number" or ty2.tag ~= --[[ JSONArray ]]3) then do
               return --[[ Ok ]]Block.__(4, {false});
@@ -202,7 +202,7 @@ test(true);
 test(false);
 
 function option_get(param) do
-  if (param ~= undefined) then do
+  if (param ~= nil) then do
     return Caml_option.valFromOption(param);
   end else do
     error({
@@ -520,79 +520,79 @@ eq("File \"js_json_test.ml\", line 299, characters 2-9", JSON.stringify({
 
 eq("File \"js_json_test.ml\", line 303, characters 12-19", JSON.stringify(nil), "null");
 
-eq("File \"js_json_test.ml\", line 305, characters 12-19", JSON.stringify(undefined), undefined);
+eq("File \"js_json_test.ml\", line 305, characters 12-19", JSON.stringify(nil), nil);
 
 eq("File \"js_json_test.ml\", line 308, characters 5-12", Js_json.decodeString("test"), "test");
 
-eq("File \"js_json_test.ml\", line 310, characters 5-12", Js_json.decodeString(true), undefined);
+eq("File \"js_json_test.ml\", line 310, characters 5-12", Js_json.decodeString(true), nil);
 
-eq("File \"js_json_test.ml\", line 312, characters 5-12", Js_json.decodeString({}), undefined);
+eq("File \"js_json_test.ml\", line 312, characters 5-12", Js_json.decodeString({}), nil);
 
-eq("File \"js_json_test.ml\", line 314, characters 5-12", Js_json.decodeString(null), undefined);
+eq("File \"js_json_test.ml\", line 314, characters 5-12", Js_json.decodeString(null), nil);
 
-eq("File \"js_json_test.ml\", line 316, characters 5-12", Js_json.decodeString({ }), undefined);
+eq("File \"js_json_test.ml\", line 316, characters 5-12", Js_json.decodeString({ }), nil);
 
-eq("File \"js_json_test.ml\", line 318, characters 5-12", Js_json.decodeString(1.23), undefined);
+eq("File \"js_json_test.ml\", line 318, characters 5-12", Js_json.decodeString(1.23), nil);
 
-eq("File \"js_json_test.ml\", line 322, characters 5-12", Js_json.decodeNumber("test"), undefined);
+eq("File \"js_json_test.ml\", line 322, characters 5-12", Js_json.decodeNumber("test"), nil);
 
-eq("File \"js_json_test.ml\", line 324, characters 5-12", Js_json.decodeNumber(true), undefined);
+eq("File \"js_json_test.ml\", line 324, characters 5-12", Js_json.decodeNumber(true), nil);
 
-eq("File \"js_json_test.ml\", line 326, characters 5-12", Js_json.decodeNumber({}), undefined);
+eq("File \"js_json_test.ml\", line 326, characters 5-12", Js_json.decodeNumber({}), nil);
 
-eq("File \"js_json_test.ml\", line 328, characters 5-12", Js_json.decodeNumber(null), undefined);
+eq("File \"js_json_test.ml\", line 328, characters 5-12", Js_json.decodeNumber(null), nil);
 
-eq("File \"js_json_test.ml\", line 330, characters 5-12", Js_json.decodeNumber({ }), undefined);
+eq("File \"js_json_test.ml\", line 330, characters 5-12", Js_json.decodeNumber({ }), nil);
 
 eq("File \"js_json_test.ml\", line 332, characters 5-12", Js_json.decodeNumber(1.23), 1.23);
 
-eq("File \"js_json_test.ml\", line 336, characters 5-12", Js_json.decodeObject("test"), undefined);
+eq("File \"js_json_test.ml\", line 336, characters 5-12", Js_json.decodeObject("test"), nil);
 
-eq("File \"js_json_test.ml\", line 338, characters 5-12", Js_json.decodeObject(true), undefined);
+eq("File \"js_json_test.ml\", line 338, characters 5-12", Js_json.decodeObject(true), nil);
 
-eq("File \"js_json_test.ml\", line 340, characters 5-12", Js_json.decodeObject({}), undefined);
+eq("File \"js_json_test.ml\", line 340, characters 5-12", Js_json.decodeObject({}), nil);
 
-eq("File \"js_json_test.ml\", line 342, characters 5-12", Js_json.decodeObject(null), undefined);
+eq("File \"js_json_test.ml\", line 342, characters 5-12", Js_json.decodeObject(null), nil);
 
 eq("File \"js_json_test.ml\", line 344, characters 5-12", Js_json.decodeObject({ }), { });
 
-eq("File \"js_json_test.ml\", line 347, characters 5-12", Js_json.decodeObject(1.23), undefined);
+eq("File \"js_json_test.ml\", line 347, characters 5-12", Js_json.decodeObject(1.23), nil);
 
-eq("File \"js_json_test.ml\", line 351, characters 5-12", Js_json.decodeArray("test"), undefined);
+eq("File \"js_json_test.ml\", line 351, characters 5-12", Js_json.decodeArray("test"), nil);
 
-eq("File \"js_json_test.ml\", line 353, characters 5-12", Js_json.decodeArray(true), undefined);
+eq("File \"js_json_test.ml\", line 353, characters 5-12", Js_json.decodeArray(true), nil);
 
 eq("File \"js_json_test.ml\", line 355, characters 5-12", Js_json.decodeArray({}), {});
 
-eq("File \"js_json_test.ml\", line 357, characters 5-12", Js_json.decodeArray(null), undefined);
+eq("File \"js_json_test.ml\", line 357, characters 5-12", Js_json.decodeArray(null), nil);
 
-eq("File \"js_json_test.ml\", line 359, characters 5-12", Js_json.decodeArray({ }), undefined);
+eq("File \"js_json_test.ml\", line 359, characters 5-12", Js_json.decodeArray({ }), nil);
 
-eq("File \"js_json_test.ml\", line 361, characters 5-12", Js_json.decodeArray(1.23), undefined);
+eq("File \"js_json_test.ml\", line 361, characters 5-12", Js_json.decodeArray(1.23), nil);
 
-eq("File \"js_json_test.ml\", line 365, characters 5-12", Js_json.decodeBoolean("test"), undefined);
+eq("File \"js_json_test.ml\", line 365, characters 5-12", Js_json.decodeBoolean("test"), nil);
 
 eq("File \"js_json_test.ml\", line 367, characters 5-12", Js_json.decodeBoolean(true), true);
 
-eq("File \"js_json_test.ml\", line 369, characters 5-12", Js_json.decodeBoolean({}), undefined);
+eq("File \"js_json_test.ml\", line 369, characters 5-12", Js_json.decodeBoolean({}), nil);
 
-eq("File \"js_json_test.ml\", line 371, characters 5-12", Js_json.decodeBoolean(null), undefined);
+eq("File \"js_json_test.ml\", line 371, characters 5-12", Js_json.decodeBoolean(null), nil);
 
-eq("File \"js_json_test.ml\", line 373, characters 5-12", Js_json.decodeBoolean({ }), undefined);
+eq("File \"js_json_test.ml\", line 373, characters 5-12", Js_json.decodeBoolean({ }), nil);
 
-eq("File \"js_json_test.ml\", line 375, characters 5-12", Js_json.decodeBoolean(1.23), undefined);
+eq("File \"js_json_test.ml\", line 375, characters 5-12", Js_json.decodeBoolean(1.23), nil);
 
-eq("File \"js_json_test.ml\", line 379, characters 5-12", Js_json.decodeNull("test"), undefined);
+eq("File \"js_json_test.ml\", line 379, characters 5-12", Js_json.decodeNull("test"), nil);
 
-eq("File \"js_json_test.ml\", line 381, characters 5-12", Js_json.decodeNull(true), undefined);
+eq("File \"js_json_test.ml\", line 381, characters 5-12", Js_json.decodeNull(true), nil);
 
-eq("File \"js_json_test.ml\", line 383, characters 5-12", Js_json.decodeNull({}), undefined);
+eq("File \"js_json_test.ml\", line 383, characters 5-12", Js_json.decodeNull({}), nil);
 
 eq("File \"js_json_test.ml\", line 385, characters 5-12", Js_json.decodeNull(null), nil);
 
-eq("File \"js_json_test.ml\", line 387, characters 5-12", Js_json.decodeNull({ }), undefined);
+eq("File \"js_json_test.ml\", line 387, characters 5-12", Js_json.decodeNull({ }), nil);
 
-eq("File \"js_json_test.ml\", line 389, characters 5-12", Js_json.decodeNull(1.23), undefined);
+eq("File \"js_json_test.ml\", line 389, characters 5-12", Js_json.decodeNull(1.23), nil);
 
 Mt.from_pair_suites("Js_json_test", suites.contents);
 

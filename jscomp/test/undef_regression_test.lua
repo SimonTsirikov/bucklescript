@@ -6,7 +6,7 @@ function f(obj) do
     return --[[ () ]]0;
   end else do
     size = obj.length;
-    if (size ~= undefined) then do
+    if (size ~= nil) then do
       console.log(size);
       return --[[ () ]]0;
     end else do

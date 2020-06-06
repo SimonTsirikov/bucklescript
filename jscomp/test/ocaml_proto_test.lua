@@ -23,7 +23,7 @@ Caml_js_exceptions = require "../../lib/js/caml_js_exceptions";
 Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 function field(optionsOpt, label, number, type_, name) do
-  options = optionsOpt ~= undefined and optionsOpt or --[[ [] ]]0;
+  options = optionsOpt ~= nil and optionsOpt or --[[ [] ]]0;
   return {
           field_name = name,
           field_number = number,
@@ -34,7 +34,7 @@ function field(optionsOpt, label, number, type_, name) do
 end end
 
 function map(map_optionsOpt, number, key_type, value_type, name) do
-  map_options = map_optionsOpt ~= undefined and map_optionsOpt or --[[ [] ]]0;
+  map_options = map_optionsOpt ~= nil and map_optionsOpt or --[[ [] ]]0;
   return {
           map_name = name,
           map_number = number,
@@ -45,7 +45,7 @@ function map(map_optionsOpt, number, key_type, value_type, name) do
 end end
 
 function oneof_field(optionsOpt, number, type_, name) do
-  options = optionsOpt ~= undefined and optionsOpt or --[[ [] ]]0;
+  options = optionsOpt ~= nil and optionsOpt or --[[ [] ]]0;
   return {
           field_name = name,
           field_number = number,
@@ -79,7 +79,7 @@ end end
 function __import(__public, file_name) do
   return {
           file_name = file_name,
-          public = __public ~= undefined
+          public = __public ~= nil
         };
 end end
 
@@ -93,16 +93,16 @@ function extend(extend_name, extend_body) do
 end end
 
 function proto(syntax, file_option, __package, __import, message, __enum, proto_1, extend, param) do
-  proto_2 = proto_1 ~= undefined and proto_1 or ({
+  proto_2 = proto_1 ~= nil and proto_1 or ({
         syntax = syntax,
         imports = --[[ [] ]]0,
         file_options = --[[ [] ]]0,
-        package = undefined,
+        package = nil,
         messages = --[[ [] ]]0,
         enums = --[[ [] ]]0,
         extends = --[[ [] ]]0
       });
-  proto_3 = syntax ~= undefined and ({
+  proto_3 = syntax ~= nil and ({
         syntax = syntax,
         imports = proto_2.imports,
         file_options = proto_2.file_options,
@@ -111,7 +111,7 @@ function proto(syntax, file_option, __package, __import, message, __enum, proto_
         enums = proto_2.enums,
         extends = proto_2.extends
       }) or proto_2;
-  proto_4 = __package ~= undefined and ({
+  proto_4 = __package ~= nil and ({
         syntax = proto_3.syntax,
         imports = proto_3.imports,
         file_options = proto_3.file_options,
@@ -120,7 +120,7 @@ function proto(syntax, file_option, __package, __import, message, __enum, proto_
         enums = proto_3.enums,
         extends = proto_3.extends
       }) or proto_3;
-  proto_5 = message ~= undefined and ({
+  proto_5 = message ~= nil and ({
         syntax = proto_4.syntax,
         imports = proto_4.imports,
         file_options = proto_4.file_options,
@@ -132,7 +132,7 @@ function proto(syntax, file_option, __package, __import, message, __enum, proto_
         enums = proto_4.enums,
         extends = proto_4.extends
       }) or proto_4;
-  proto_6 = __enum ~= undefined and ({
+  proto_6 = __enum ~= nil and ({
         syntax = proto_5.syntax,
         imports = proto_5.imports,
         file_options = proto_5.file_options,
@@ -144,7 +144,7 @@ function proto(syntax, file_option, __package, __import, message, __enum, proto_
         },
         extends = proto_5.extends
       }) or proto_5;
-  proto_7 = __import ~= undefined and ({
+  proto_7 = __import ~= nil and ({
         syntax = proto_6.syntax,
         imports = --[[ :: ]]{
           __import,
@@ -156,7 +156,7 @@ function proto(syntax, file_option, __package, __import, message, __enum, proto_
         enums = proto_6.enums,
         extends = proto_6.extends
       }) or proto_6;
-  proto_8 = file_option ~= undefined and ({
+  proto_8 = file_option ~= nil and ({
         syntax = proto_7.syntax,
         imports = proto_7.imports,
         file_options = --[[ :: ]]{
@@ -168,7 +168,7 @@ function proto(syntax, file_option, __package, __import, message, __enum, proto_
         enums = proto_7.enums,
         extends = proto_7.extends
       }) or proto_7;
-  if (extend ~= undefined) then do
+  if (extend ~= nil) then do
     return {
             syntax = proto_8.syntax,
             imports = proto_8.imports,
@@ -247,7 +247,7 @@ function apply_until(f, _param) do
     param = _param;
     if (param) then do
       x = Curry._1(f, param[0]);
-      if (x ~= undefined) then do
+      if (x ~= nil) then do
         return x;
       end else do
         _param = param[1];
@@ -293,7 +293,7 @@ function string_fold_lefti(f, e0, s) do
 end end
 
 function option_default(x, param) do
-  if (param ~= undefined) then do
+  if (param ~= nil) then do
     return Caml_option.valFromOption(param);
   end else do
     return x;
@@ -302,7 +302,7 @@ end end
 
 function from_lexbuf(lexbuf) do
   x = lexbuf.lex_curr_p.pos_fname;
-  file_name = x == "" and undefined or x;
+  file_name = x == "" and nil or x;
   line = lexbuf.lex_curr_p.pos_lnum;
   return {
           file_name = file_name,
@@ -804,64 +804,64 @@ yyact = {
   (function(__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return proto(_1, undefined, undefined, undefined, undefined, undefined, _2, undefined, --[[ () ]]0);
+      return proto(_1, nil, nil, nil, nil, nil, _2, nil, --[[ () ]]0);
     end end),
   (function(__caml_parser_env) do
       return Parsing.peek_val(__caml_parser_env, 0);
     end end),
   (function(__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return proto(undefined, undefined, undefined, _1, undefined, undefined, undefined, undefined, --[[ () ]]0);
+      return proto(nil, nil, nil, _1, nil, nil, nil, nil, --[[ () ]]0);
     end end),
   (function(__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return proto(undefined, _1, undefined, undefined, undefined, undefined, undefined, undefined, --[[ () ]]0);
+      return proto(nil, _1, nil, nil, nil, nil, nil, nil, --[[ () ]]0);
     end end),
   (function(__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return proto(undefined, undefined, _1, undefined, undefined, undefined, undefined, undefined, --[[ () ]]0);
+      return proto(nil, nil, _1, nil, nil, nil, nil, nil, --[[ () ]]0);
     end end),
   (function(__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return proto(undefined, undefined, undefined, undefined, _1, undefined, undefined, undefined, --[[ () ]]0);
+      return proto(nil, nil, nil, nil, _1, nil, nil, nil, --[[ () ]]0);
     end end),
   (function(__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return proto(undefined, undefined, undefined, undefined, undefined, _1, undefined, undefined, --[[ () ]]0);
+      return proto(nil, nil, nil, nil, nil, _1, nil, nil, --[[ () ]]0);
     end end),
   (function(__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return proto(undefined, undefined, undefined, undefined, undefined, undefined, undefined, _1, --[[ () ]]0);
+      return proto(nil, nil, nil, nil, nil, nil, nil, _1, --[[ () ]]0);
     end end),
   (function(__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return proto(undefined, undefined, undefined, _1, undefined, undefined, _2, undefined, --[[ () ]]0);
+      return proto(nil, nil, nil, _1, nil, nil, _2, nil, --[[ () ]]0);
     end end),
   (function(__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return proto(undefined, _1, undefined, undefined, undefined, undefined, _2, undefined, --[[ () ]]0);
+      return proto(nil, _1, nil, nil, nil, nil, _2, nil, --[[ () ]]0);
     end end),
   (function(__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return proto(undefined, undefined, _1, undefined, undefined, undefined, _2, undefined, --[[ () ]]0);
+      return proto(nil, nil, _1, nil, nil, nil, _2, nil, --[[ () ]]0);
     end end),
   (function(__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return proto(undefined, undefined, undefined, undefined, _1, undefined, _2, undefined, --[[ () ]]0);
+      return proto(nil, nil, nil, nil, _1, nil, _2, nil, --[[ () ]]0);
     end end),
   (function(__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return proto(undefined, undefined, undefined, undefined, undefined, _1, _2, undefined, --[[ () ]]0);
+      return proto(nil, nil, nil, nil, nil, _1, _2, nil, --[[ () ]]0);
     end end),
   (function(__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return proto(undefined, undefined, undefined, undefined, undefined, undefined, _2, _1, --[[ () ]]0);
+      return proto(nil, nil, nil, nil, nil, nil, _2, _1, --[[ () ]]0);
     end end),
   (function(__caml_parser_env) do
       _3 = Parsing.peek_val(__caml_parser_env, 1);
@@ -872,7 +872,7 @@ yyact = {
       Parsing.peek_val(__caml_parser_env, 2);
       _2 = Parsing.peek_val(__caml_parser_env, 1);
       Parsing.peek_val(__caml_parser_env, 0);
-      return __import(undefined, _2);
+      return __import(nil, _2);
     end end),
   (function(__caml_parser_env) do
       Parsing.peek_val(__caml_parser_env, 3);
@@ -1049,7 +1049,7 @@ yyact = {
       _2 = Parsing.peek_val(__caml_parser_env, 3);
       _4 = Parsing.peek_val(__caml_parser_env, 1);
       Parsing.peek_val(__caml_parser_env, 0);
-      return oneof_field(undefined, _4, _1[1], _2);
+      return oneof_field(nil, _4, _1[1], _2);
     end end),
   (function(__caml_parser_env) do
       _3 = Parsing.peek_val(__caml_parser_env, 7);
@@ -1057,7 +1057,7 @@ yyact = {
       _7 = Parsing.peek_val(__caml_parser_env, 3);
       _9 = Parsing.peek_val(__caml_parser_env, 1);
       Parsing.peek_val(__caml_parser_env, 0);
-      return map(undefined, _9, _3[1], _5[1], _7);
+      return map(nil, _9, _3[1], _5[1], _7);
     end end),
   (function(__caml_parser_env) do
       _3 = Parsing.peek_val(__caml_parser_env, 8);
@@ -1083,7 +1083,7 @@ yyact = {
       _3 = Parsing.peek_val(__caml_parser_env, 3);
       _5 = Parsing.peek_val(__caml_parser_env, 1);
       Parsing.peek_val(__caml_parser_env, 0);
-      return field(undefined, _1, _5, _2[1], _3);
+      return field(nil, _1, _5, _2[1], _3);
     end end),
   (function(__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 5);
@@ -1266,7 +1266,7 @@ yyact = {
       Parsing.peek_val(__caml_parser_env, 0);
       enum_valuesOpt = _4;
       enum_name = _2[1];
-      enum_values = enum_valuesOpt ~= undefined and enum_valuesOpt or --[[ [] ]]0;
+      enum_values = enum_valuesOpt ~= nil and enum_valuesOpt or --[[ [] ]]0;
       message_counter.contents = message_counter.contents + 1 | 0;
       return {
               enum_id = message_counter.contents,
@@ -1687,7 +1687,7 @@ function lexer(lexbuf) do
 end end
 
 function let_decl_of_and(param) do
-  if (param ~= undefined) then do
+  if (param ~= nil) then do
     return "and";
   end else do
     return "let rec";
@@ -1721,7 +1721,7 @@ function string_of_field_type(param) do
   end else if (param.tag) then do
     param_1 = param[0];
     match = param_1.udt_module;
-    if (match ~= undefined) then do
+    if (match ~= nil) then do
       return match .. ("." .. param_1.udt_type_name);
     end else do
       return param_1.udt_type_name;
@@ -1800,7 +1800,7 @@ end end
 
 function function_name_of_user_defined(prefix, param) do
   match = param.udt_module;
-  if (match ~= undefined) then do
+  if (match ~= nil) then do
     return Curry._3(Printf.sprintf(--[[ Format ]]{
                     --[[ String ]]Block.__(2, {
                         --[[ No_padding ]]0,
@@ -1854,7 +1854,7 @@ function string_of_payload_kind(capitalize, payload_kind, packed) do
   end else do
     s = packed and "bytes" or "varint";
   end end 
-  if (capitalize ~= undefined) then do
+  if (capitalize ~= nil) then do
     return Caml_bytes.bytes_to_string(Bytes.capitalize(Caml_bytes.bytes_of_string(s)));
   end else do
     return s;
@@ -2948,12 +2948,12 @@ Codegen_decode = {
 };
 
 __log__ = {
-  contents = undefined
+  contents = nil
 };
 
 function log(x) do
   match = __log__.contents;
-  if (match ~= undefined) then do
+  if (match ~= nil) then do
     return Printf.fprintf(Caml_option.valFromOption(match), x);
   end else do
     return Printf.ifprintf(Pervasives.stdout, x);
@@ -3632,9 +3632,9 @@ end end
 
 function min_value(param) do
   match = param[0];
-  if (match ~= undefined) then do
+  if (match ~= nil) then do
     match_1 = param[1];
-    if (match_1 ~= undefined) then do
+    if (match_1 ~= nil) then do
       return Caml_option.some(Caml_obj.caml_min(Caml_option.valFromOption(match), Caml_option.valFromOption(match_1)));
     end else do
       error({
@@ -3652,9 +3652,9 @@ end end
 
 function eq_value(param) do
   match = param[0];
-  if (match ~= undefined) then do
+  if (match ~= nil) then do
     match_1 = param[1];
-    if (match_1 ~= undefined) then do
+    if (match_1 ~= nil) then do
       return Caml_obj.caml_equal(Caml_option.valFromOption(match), Caml_option.valFromOption(match_1));
     end else do
       error({
@@ -3671,7 +3671,7 @@ function eq_value(param) do
 end end
 
 function string_of_option(f, param) do
-  if (param ~= undefined) then do
+  if (param ~= nil) then do
     return Curry._1(Printf.sprintf(--[[ Format ]]{
                     --[[ String_literal ]]Block.__(11, {
                         "Some(",
@@ -3694,8 +3694,8 @@ function reset(g) do
   return map_1((function(core) do
                 return {
                         core = core,
-                        index = undefined,
-                        lowlink = undefined,
+                        index = nil,
+                        lowlink = nil,
                         on_stack = false
                       };
               end end), g);
@@ -3761,7 +3761,7 @@ function strong_connect(g, sccs, stack, index, v) do
                       return String(prim);
                     end end), w.index));
           match = w.index;
-          if (match ~= undefined) then do
+          if (match ~= nil) then do
             if (w.on_stack) then do
               v.lowlink = min_value(--[[ tuple ]]{
                     v.lowlink,
@@ -3908,7 +3908,7 @@ function tarjan(g) do
                   stack = param_1[1];
                   sccs = param_1[0];
                   match = n.index;
-                  if (match ~= undefined) then do
+                  if (match ~= nil) then do
                     return --[[ tuple ]]{
                             sccs,
                             stack,
@@ -4005,7 +4005,7 @@ function string_of_unresolved(param) do
 end end
 
 function scope_of_package(param) do
-  if (param ~= undefined) then do
+  if (param ~= nil) then do
     return {
             packages = List.rev(rev_split_by_char(--[[ "." ]]46, param)),
             message_names = --[[ [] ]]0
@@ -4076,7 +4076,7 @@ function compile_default_p2(all_types, field) do
   field_name_1 = field_name(field);
   field_type_1 = field_type(field);
   field_default_1 = field_default(field);
-  if (field_default_1 ~= undefined) then do
+  if (field_default_1 ~= nil) then do
     constant = field_default_1;
     exit = 0;
     if (typeof field_type_1 == "number") then do
@@ -4127,7 +4127,7 @@ function compile_default_p2(all_types, field) do
                 end
                  end 
               end end), spec[0].enum_values);
-        if (default_enum_value_1 ~= undefined) then do
+        if (default_enum_value_1 ~= nil) then do
           return constant;
         end else do
           return invalid_default_value(field_name_1, "Invalid default enum value", --[[ () ]]0);
@@ -4561,7 +4561,7 @@ function compile_message_p2(types, param, message) do
                 end end 
               end end)
             end end), search_scopes_1);
-      if (id ~= undefined) then do
+      if (id ~= nil) then do
         return --[[ Field_type_type ]]{id};
       end else do
         field_name_1 = field_name;
@@ -4734,7 +4734,7 @@ function group(proto) do
 end end
 
 function type_decl_of_and(param) do
-  if (param ~= undefined) then do
+  if (param ~= nil) then do
     return "and";
   end else do
     return "type";
@@ -4744,7 +4744,7 @@ end end
 function gen_type_record(mutable_, and_, param, sc) do
   r_fields = param.r_fields;
   r_name = param.r_name;
-  mutable__1 = mutable_ ~= undefined;
+  mutable__1 = mutable_ ~= nil;
   is_imperative_type = function(param) do
     local ___conditional___=(param.tag | 0);
     do
@@ -4911,7 +4911,7 @@ function gen_struct_2(and_, t, scope) do
   do
      if ___conditional___ == 0--[[ Record ]] then do
         r = match[0];
-        gen_type_record(undefined, and_, r, scope);
+        gen_type_record(nil, and_, r, scope);
         line_1(scope, "");
         gen_type_record(--[[ () ]]0, --[[ () ]]0, r, scope); end else 
      if ___conditional___ == 1--[[ Variant ]] then do
@@ -4929,7 +4929,7 @@ function gen_sig_2(and_, t, scope) do
   local ___conditional___=(match.tag | 0);
   do
      if ___conditional___ == 0--[[ Record ]] then do
-        gen_type_record(undefined, and_, match[0], scope); end else 
+        gen_type_record(nil, and_, match[0], scope); end else 
      if ___conditional___ == 1--[[ Variant ]] then do
         gen_type_variant(and_, match[0], scope); end else 
      if ___conditional___ == 2--[[ Const_variant ]] then do
@@ -4947,7 +4947,7 @@ Codegen_type = {
 };
 
 function gen_encode_field_key(sc, number, pk, is_packed) do
-  s = string_of_payload_kind(undefined, pk, is_packed);
+  s = string_of_payload_kind(nil, pk, is_packed);
   s_1 = Caml_bytes.bytes_to_string(Bytes.lowercase(Caml_bytes.bytes_of_string(s)));
   return line_1(sc, Curry._2(Printf.sprintf(--[[ Format ]]{
                       --[[ String_literal ]]Block.__(11, {
@@ -4982,7 +4982,7 @@ end end
 
 function gen_encode_field_type(with_key, sc, var_name, encoding_number, pk, is_packed, field_type) do
   encode_key = function(sc) do
-    if (with_key ~= undefined) then do
+    if (with_key ~= nil) then do
       return gen_encode_field_key(sc, encoding_number, pk, is_packed);
     end else do
       return --[[ () ]]0;
@@ -5159,7 +5159,7 @@ function gen_encode_record(and_, param, sc) do
                                   scope(sc, (function(sc) do
                                           line_1(sc, "Pbrt.Repeated_field.iter (fun x -> ");
                                           scope(sc, (function(sc) do
-                                                  return gen_encode_field_type(undefined, sc, "x", encoding_number_1, pk_1, is_packed, field_type_1);
+                                                  return gen_encode_field_type(nil, sc, "x", encoding_number_1, pk_1, is_packed, field_type_1);
                                                 end end));
                                           return line_1(sc, Curry._1(Printf.sprintf(--[[ Format ]]{
                                                               --[[ String_literal ]]Block.__(11, {
@@ -5201,7 +5201,7 @@ function gen_encode_record(and_, param, sc) do
                                 scope(sc, (function(sc) do
                                         line_1(sc, "List.iter (fun x -> ");
                                         scope(sc, (function(sc) do
-                                                return gen_encode_field_type(undefined, sc, "x", encoding_number_1, pk_1, is_packed, field_type_1);
+                                                return gen_encode_field_type(nil, sc, "x", encoding_number_1, pk_1, is_packed, field_type_1);
                                               end end));
                                         return line_1(sc, Curry._1(Printf.sprintf(--[[ Format ]]{
                                                             --[[ String_literal ]]Block.__(11, {
@@ -5260,7 +5260,7 @@ function gen_encode_record(and_, param, sc) do
                                           }), encode_basic_type(match_5[0], key_pk)));
                               line_1(sc, "let encode_value = (fun x encoder ->");
                               scope(sc, (function(sc) do
-                                      return gen_encode_field_type(undefined, sc, "x", -1, value_pk, false, value_type);
+                                      return gen_encode_field_type(nil, sc, "x", -1, value_pk, false, value_type);
                                     end end));
                               line_1(sc, ") in");
                               if (match_3[0]) then do
@@ -5629,7 +5629,7 @@ function default_value_of_field_type(field_name, field_type, field_default) do
     local ___conditional___=(basic_type);
     do
        if ___conditional___ == 0--[[ Bt_string ]] then do
-          if (field_default_1 ~= undefined) then do
+          if (field_default_1 ~= nil) then do
             match = field_default_1;
             if (match.tag) then do
               return invalid_default_value(field_name_1, "invalid default type", --[[ () ]]0);
@@ -5652,7 +5652,7 @@ function default_value_of_field_type(field_name, field_type, field_default) do
             return "\"\"";
           end end  end end 
        if ___conditional___ == 1--[[ Bt_float ]] then do
-          if (field_default_1 ~= undefined) then do
+          if (field_default_1 ~= nil) then do
             match_1 = field_default_1;
             if (match_1.tag == --[[ Constant_float ]]3) then do
               return Pervasives.string_of_float(match_1[0]);
@@ -5663,7 +5663,7 @@ function default_value_of_field_type(field_name, field_type, field_default) do
             return "0.";
           end end  end end 
        if ___conditional___ == 2--[[ Bt_int ]] then do
-          if (field_default_1 ~= undefined) then do
+          if (field_default_1 ~= nil) then do
             match_2 = field_default_1;
             if (match_2.tag == --[[ Constant_int ]]2) then do
               return String(match_2[0]);
@@ -5674,7 +5674,7 @@ function default_value_of_field_type(field_name, field_type, field_default) do
             return "0";
           end end  end end 
        if ___conditional___ == 3--[[ Bt_int32 ]] then do
-          if (field_default_1 ~= undefined) then do
+          if (field_default_1 ~= nil) then do
             match_3 = field_default_1;
             if (match_3.tag == --[[ Constant_int ]]2) then do
               return Curry._1(Printf.sprintf(--[[ Format ]]{
@@ -5696,7 +5696,7 @@ function default_value_of_field_type(field_name, field_type, field_default) do
             return "0l";
           end end  end end 
        if ___conditional___ == 4--[[ Bt_int64 ]] then do
-          if (field_default_1 ~= undefined) then do
+          if (field_default_1 ~= nil) then do
             match_4 = field_default_1;
             if (match_4.tag == --[[ Constant_int ]]2) then do
               return Curry._1(Printf.sprintf(--[[ Format ]]{
@@ -5718,7 +5718,7 @@ function default_value_of_field_type(field_name, field_type, field_default) do
             return "0L";
           end end  end end 
        if ___conditional___ == 5--[[ Bt_bytes ]] then do
-          if (field_default_1 ~= undefined) then do
+          if (field_default_1 ~= nil) then do
             match_5 = field_default_1;
             if (match_5.tag) then do
               return invalid_default_value(field_name_1, "invalid default type", --[[ () ]]0);
@@ -5741,7 +5741,7 @@ function default_value_of_field_type(field_name, field_type, field_default) do
             return "Bytes.create 64";
           end end  end end 
        if ___conditional___ == 6--[[ Bt_bool ]] then do
-          if (field_default_1 ~= undefined) then do
+          if (field_default_1 ~= nil) then do
             match_6 = field_default_1;
             if (match_6.tag == --[[ Constant_bool ]]1) then do
               b = match_6[0];
@@ -5777,7 +5777,7 @@ function record_field_default_info(record_field) do
      if ___conditional___ == 1--[[ Rft_optional ]] then do
         match_1 = rf_field_type[0];
         default_value_1 = match_1[3];
-        default_value = default_value_1 ~= undefined and Curry._1(Printf.sprintf(--[[ Format ]]{
+        default_value = default_value_1 ~= nil and Curry._1(Printf.sprintf(--[[ Format ]]{
                     --[[ String_literal ]]Block.__(11, {
                         "Some (",
                         --[[ String ]]Block.__(2, {
@@ -5804,7 +5804,7 @@ function record_field_default_info(record_field) do
                           })
                       }),
                     "Pbrt.Repeated_field.make (%s)"
-                  }), dfvft(match_2[1], undefined)) or "[]"; end else 
+                  }), dfvft(match_2[1], nil)) or "[]"; end else 
      if ___conditional___ == 3--[[ Rft_associative_field ]] then do
         default_value = rf_field_type[0][0] and "Hashtbl.create 128" or "[]"; end else 
      if ___conditional___ == 4--[[ Rft_variant_field ]] then do
@@ -5828,7 +5828,7 @@ function record_field_default_info(record_field) do
                             })
                         }),
                       "%s (%s)"
-                    }), vc_constructor, dfvft(vc_field_type[0], undefined)) or vc_constructor;
+                    }), vc_constructor, dfvft(vc_field_type[0], nil)) or vc_constructor;
         end else do
           error({
             Caml_builtin_exceptions.assert_failure,
@@ -5852,7 +5852,7 @@ end end
 function gen_default_record(mutable_, and_, param, sc) do
   r_name = param.r_name;
   fields_default_info = List.map(record_field_default_info, param.r_fields);
-  if (mutable_ ~= undefined) then do
+  if (mutable_ ~= nil) then do
     rn = r_name .. "_mutable";
     line_1(sc, Curry._3(Printf.sprintf(--[[ Format ]]{
                   --[[ String ]]Block.__(2, {
@@ -5989,7 +5989,7 @@ function gen_default_variant(and_, param, sc) do
     vc_constructor = match.vc_constructor;
     decl = let_decl_of_and(and_);
     if (vc_field_type) then do
-      default_value = default_value_of_field_type(v_name, vc_field_type[0], undefined);
+      default_value = default_value_of_field_type(v_name, vc_field_type[0], nil);
       return line_1(sc, Curry._5(Printf.sprintf(--[[ Format ]]{
                           --[[ String ]]Block.__(2, {
                               --[[ No_padding ]]0,
@@ -6109,7 +6109,7 @@ function gen_struct_4(and_, t, sc) do
      if ___conditional___ == 0--[[ Record ]] then do
         r = match[0];
         tmp = --[[ tuple ]]{
-          (gen_default_record(undefined, and_, r, sc), line_1(sc, ""), gen_default_record(--[[ () ]]0, --[[ () ]]0, r, sc)),
+          (gen_default_record(nil, and_, r, sc), line_1(sc, ""), gen_default_record(--[[ () ]]0, --[[ () ]]0, r, sc)),
           true
         }; end else 
      if ___conditional___ == 1--[[ Variant ]] then do
@@ -6119,7 +6119,7 @@ function gen_struct_4(and_, t, sc) do
         }; end else 
      if ___conditional___ == 2--[[ Const_variant ]] then do
         tmp = --[[ tuple ]]{
-          gen_default_const_variant(undefined, match[0], sc),
+          gen_default_const_variant(nil, match[0], sc),
           true
         }; end else 
      end end end end end end
@@ -6467,7 +6467,7 @@ end end
 function encoding_of_field(all_types, field) do
   match = field_option(field, "packed");
   packed;
-  if (match ~= undefined) then do
+  if (match ~= nil) then do
     match_1 = match;
     if (match_1.tag == --[[ Constant_bool ]]1) then do
       packed = match_1[0];
@@ -6493,7 +6493,7 @@ end end
 function compile_field_type(field_name, all_types, file_options, field_options, file_name, field_type) do
   match = find_field_option(field_options, "ocaml_type");
   ocaml_type;
-  if (match ~= undefined) then do
+  if (match ~= nil) then do
     match_1 = match;
     ocaml_type = match_1.tag == --[[ Constant_litteral ]]4 and match_1[0] == "int_t" and --[[ Int_t ]]-783406652 or --[[ None ]]870530776;
   end else do
@@ -6501,7 +6501,7 @@ function compile_field_type(field_name, all_types, file_options, field_options, 
   end end 
   match_2 = file_option(file_options, "int32_type");
   int32_type;
-  if (match_2 ~= undefined) then do
+  if (match_2 ~= nil) then do
     match_3 = match_2;
     int32_type = match_3.tag == --[[ Constant_litteral ]]4 and match_3[0] == "int_t" and --[[ Ft_basic_type ]]Block.__(0, {--[[ Bt_int ]]2}) or --[[ Ft_basic_type ]]Block.__(0, {--[[ Bt_int32 ]]3});
   end else do
@@ -6509,7 +6509,7 @@ function compile_field_type(field_name, all_types, file_options, field_options, 
   end end 
   match_4 = file_option(file_options, "int64_type");
   int64_type;
-  if (match_4 ~= undefined) then do
+  if (match_4 ~= nil) then do
     match_5 = match_4;
     int64_type = match_5.tag == --[[ Constant_litteral ]]4 and match_5[0] == "int_t" and --[[ Ft_basic_type ]]Block.__(0, {--[[ Bt_int ]]2}) or --[[ Ft_basic_type ]]Block.__(0, {--[[ Bt_int64 ]]4});
   end else do
@@ -6579,7 +6579,7 @@ function compile_field_type(field_name, all_types, file_options, field_options, 
       udt_type_name = type_name(match_6.message_names, type_name_of_type(t));
       if (field_type_module == module_) then do
         return --[[ Ft_user_defined_type ]]Block.__(1, {{
-                    udt_module = undefined,
+                    udt_module = nil,
                     udt_type_name = udt_type_name,
                     udt_nested = udt_nested
                   }});
@@ -6596,7 +6596,7 @@ end end
 
 function is_mutable(field_name, field_options) do
   match = find_field_option(field_options, "ocaml_mutable");
-  if (match ~= undefined) then do
+  if (match ~= nil) then do
     match_1 = match;
     if (match_1.tag == --[[ Constant_bool ]]1) then do
       return match_1[0];
@@ -6613,7 +6613,7 @@ end end
 
 function ocaml_container(field_options) do
   match = find_field_option(field_options, "ocaml_container");
-  if (match ~= undefined) then do
+  if (match ~= nil) then do
     match_1 = match;
     if (match_1.tag == --[[ Constant_litteral ]]4) then do
       return match_1[0];
@@ -6637,7 +6637,7 @@ function variant_of_oneof(include_oneof_name, outer_message_names, all_types, fi
                   vc_payload_kind = match[0]
                 };
         end end), oneof_field.oneof_fields);
-  v_name = include_oneof_name ~= undefined and type_name(outer_message_names, oneof_field.oneof_name) or type_name(outer_message_names, "");
+  v_name = include_oneof_name ~= nil and type_name(outer_message_names, oneof_field.oneof_name) or type_name(outer_message_names, "");
   return {
           v_name = v_name,
           v_constructors = v_constructors
@@ -6744,7 +6744,7 @@ function compile(proto_definition) do
                                           message_name,
                                           --[[ [] ]]0
                                         });
-                                    variant = variant_of_oneof(undefined, outer_message_names, all_types_1, file_options, file_name_1, match_1[0]);
+                                    variant = variant_of_oneof(nil, outer_message_names, all_types_1, file_options, file_name_1, match_1[0]);
                                     return --[[ :: ]]{
                                             {
                                               module_ = module_,
@@ -6790,7 +6790,7 @@ function compile(proto_definition) do
                                           end else do
                                             match_2 = ocaml_container(field_options_1);
                                             repeated_type;
-                                            if (match_2 ~= undefined) then do
+                                            if (match_2 ~= nil) then do
                                               if (match_2 == "repeated_field") then do
                                                 repeated_type = --[[ Rt_repeated_field ]]1;
                                               end else do
@@ -6905,7 +6905,7 @@ function compile(proto_definition) do
                                         value_pk = encoding_info_of_field_type(all_types_1, map_value_type);
                                         match_3 = ocaml_container(map_options);
                                         associative_type;
-                                        if (match_3 ~= undefined) then do
+                                        if (match_3 ~= nil) then do
                                           if (match_3 == "hashtbl") then do
                                             associative_type = --[[ At_hashtable ]]1;
                                           end else do
@@ -6979,7 +6979,7 @@ function compile(proto_definition) do
     return List.iter((function(param) do
                   ocamldoc_title = param[1];
                   f = param[0];
-                  if (ocamldoc_title ~= undefined) then do
+                  if (ocamldoc_title ~= nil) then do
                     line_1(sc, "");
                     line_1(sc, Curry._1(Printf.sprintf(--[[ Format ]]{
                                   --[[ String_literal ]]Block.__(11, {
@@ -6999,7 +6999,7 @@ function compile(proto_definition) do
                    end 
                   return List.iter((function(types) do
                                 List.fold_left((function(first, type_) do
-                                        has_encoded = first and Curry._3(f, undefined, type_, sc) or Curry._3(f, --[[ () ]]0, type_, sc);
+                                        has_encoded = first and Curry._3(f, nil, type_, sc) or Curry._3(f, --[[ () ]]0, type_, sc);
                                         line_1(sc, "");
                                         if (first) then do
                                           return not has_encoded;
@@ -7019,7 +7019,7 @@ function compile(proto_definition) do
   gen(otypes, sc, List.map((function(m) do
               return --[[ tuple ]]{
                       m.gen_struct,
-                      undefined
+                      nil
                     };
             end end), all_code_gen));
   struct_string = print(sc);

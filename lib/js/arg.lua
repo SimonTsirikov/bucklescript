@@ -358,7 +358,7 @@ function parse_and_expand_argv_dynamic_aux(allow_expand, current, argv, speclist
         xpcall(function() do
           match = --[[ tuple ]]{
             assoc3(s, speclist.contents),
-            undefined
+            nil
           };
         end end,function(exn) do
           if (exn == Caml_builtin_exceptions.not_found) then do
@@ -385,7 +385,7 @@ function parse_and_expand_argv_dynamic_aux(allow_expand, current, argv, speclist
         follow = match[1];
         no_arg = (function(s,follow)do
         return function no_arg(param) do
-          if (follow ~= undefined) then do
+          if (follow ~= nil) then do
             error({
               Stop,
               --[[ Wrong ]]Block.__(1, {
@@ -401,7 +401,7 @@ function parse_and_expand_argv_dynamic_aux(allow_expand, current, argv, speclist
         end end)(s,follow);
         get_arg = (function(s,follow)do
         return function get_arg(param) do
-          if (follow ~= undefined) then do
+          if (follow ~= nil) then do
             return follow;
           end else if ((current.contents + 1 | 0) < #argv.contents) then do
             return Caml_array.caml_array_get(argv.contents, current.contents + 1 | 0);
@@ -415,7 +415,7 @@ function parse_and_expand_argv_dynamic_aux(allow_expand, current, argv, speclist
         end end)(s,follow);
         consume_arg = (function(follow)do
         return function consume_arg(param) do
-          if (follow ~= undefined) then do
+          if (follow ~= nil) then do
             return --[[ () ]]0;
           end else do
             current.contents = current.contents + 1 | 0;
@@ -432,7 +432,7 @@ function parse_and_expand_argv_dynamic_aux(allow_expand, current, argv, speclist
              if ___conditional___ == 1--[[ Bool ]] then do
                 arg = get_arg(--[[ () ]]0);
                 match = bool_of_string_opt(arg);
-                if (match ~= undefined) then do
+                if (match ~= nil) then do
                   Curry._1(param[0], match);
                 end else do
                   error({
@@ -463,7 +463,7 @@ function parse_and_expand_argv_dynamic_aux(allow_expand, current, argv, speclist
              if ___conditional___ == 6--[[ Int ]] then do
                 arg_2 = get_arg(--[[ () ]]0);
                 match_1 = int_of_string_opt(arg_2);
-                if (match_1 ~= undefined) then do
+                if (match_1 ~= nil) then do
                   Curry._1(param[0], match_1);
                 end else do
                   error({
@@ -479,7 +479,7 @@ function parse_and_expand_argv_dynamic_aux(allow_expand, current, argv, speclist
              if ___conditional___ == 7--[[ Set_int ]] then do
                 arg_3 = get_arg(--[[ () ]]0);
                 match_2 = int_of_string_opt(arg_3);
-                if (match_2 ~= undefined) then do
+                if (match_2 ~= nil) then do
                   param[0].contents = match_2;
                 end else do
                   error({
@@ -495,7 +495,7 @@ function parse_and_expand_argv_dynamic_aux(allow_expand, current, argv, speclist
              if ___conditional___ == 8--[[ Float ]] then do
                 arg_4 = get_arg(--[[ () ]]0);
                 match_3 = float_of_string_opt(arg_4);
-                if (match_3 ~= undefined) then do
+                if (match_3 ~= nil) then do
                   Curry._1(param[0], match_3);
                 end else do
                   error({
@@ -511,7 +511,7 @@ function parse_and_expand_argv_dynamic_aux(allow_expand, current, argv, speclist
              if ___conditional___ == 9--[[ Set_float ]] then do
                 arg_5 = get_arg(--[[ () ]]0);
                 match_4 = float_of_string_opt(arg_5);
-                if (match_4 ~= undefined) then do
+                if (match_4 ~= nil) then do
                   param[0].contents = match_4;
                 end else do
                   error({
@@ -603,14 +603,14 @@ function parse_and_expand_argv_dynamic(current, argv, speclist, anonfun, errmsg)
 end end
 
 function parse_argv_dynamic(currentOpt, argv, speclist, anonfun, errmsg) do
-  current_1 = currentOpt ~= undefined and currentOpt or current;
+  current_1 = currentOpt ~= nil and currentOpt or current;
   return parse_and_expand_argv_dynamic_aux(false, current_1, {
               contents = argv
             }, speclist, anonfun, errmsg);
 end end
 
 function parse_argv(currentOpt, argv, speclist, anonfun, errmsg) do
-  current_1 = currentOpt ~= undefined and currentOpt or current;
+  current_1 = currentOpt ~= nil and currentOpt or current;
   return parse_argv_dynamic(current_1, argv, {
               contents = speclist
             }, anonfun, errmsg);
@@ -618,7 +618,7 @@ end end
 
 function parse(l, f, msg) do
   xpcall(function() do
-    return parse_argv(undefined, Sys.argv, l, f, msg);
+    return parse_argv(nil, Sys.argv, l, f, msg);
   end end,function(raw_exn) do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn[0] == Bad) then do
@@ -647,7 +647,7 @@ end end
 
 function parse_dynamic(l, f, msg) do
   xpcall(function() do
-    return parse_argv_dynamic(undefined, Sys.argv, l, f, msg);
+    return parse_argv_dynamic(nil, Sys.argv, l, f, msg);
   end end,function(raw_exn) do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn[0] == Bad) then do
@@ -779,7 +779,7 @@ function replace_leading_tab(s) do
 end end
 
 function align(limitOpt, speclist) do
-  limit = limitOpt ~= undefined and limitOpt or Pervasives.max_int;
+  limit = limitOpt ~= nil and limitOpt or Pervasives.max_int;
   completed = add_help(speclist);
   len = List.fold_left(max_arg_len, 0, completed);
   len_1 = len < limit and len or limit;

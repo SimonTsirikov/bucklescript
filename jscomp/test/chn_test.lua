@@ -38,7 +38,7 @@ console.log("\x3f\u003f\b\t\n\v\f\r\0\"\'");
 function convert(s) do
   return __Array.to_list(Array.from(s, (function(x) do
                     match = x.codePointAt(0);
-                    if (match ~= undefined) then do
+                    if (match ~= nil) then do
                       return match;
                     end else do
                       error({

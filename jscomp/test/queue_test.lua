@@ -68,7 +68,7 @@ end end
 function queue_1_1(x) do
   q = {
     length = 0,
-    tail = undefined
+    tail = nil
   };
   __Array.iter((function(x) do
           return Queue_402.add(x, q);

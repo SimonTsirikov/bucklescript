@@ -55,9 +55,9 @@ function f_opion(x) do
       return 0;
     end else do
       match_1 = x.lo;
-      if (match_1 and match_1[0] == undefined) then do
+      if (match_1 and match_1[0] == nil) then do
         match_2 = match_1[1];
-        if (match_2 and match_2[0] == undefined) then do
+        if (match_2 and match_2[0] == nil) then do
           match_3 = match_2[1];
           if (match_3) then do
             match_4 = match_3[0];
@@ -67,7 +67,7 @@ function f_opion(x) do
                 match_6 = match_5[0];
                 if (match_6 == 1) then do
                   match_7 = match_5[1];
-                  if (match_7 and match_7[0] ~= undefined) then do
+                  if (match_7 and match_7[0] ~= nil) then do
                     return 2;
                   end else do
                     return 0;
@@ -93,9 +93,9 @@ function f_opion(x) do
     end end 
   end else do
     match_8 = x.lo;
-    if (match_8 and match_8[0] == undefined) then do
+    if (match_8 and match_8[0] == nil) then do
       match_9 = match_8[1];
-      if (match_9 and match_9[0] == undefined) then do
+      if (match_9 and match_9[0] == nil) then do
         match_10 = match_9[1];
         if (match_10) then do
           match_11 = match_10[0];
@@ -105,7 +105,7 @@ function f_opion(x) do
               match_13 = match_12[0];
               if (match_13 == 1) then do
                 match_14 = match_12[1];
-                if (match_14 and match_14[0] ~= undefined) then do
+                if (match_14 and match_14[0] ~= nil) then do
                   return 3;
                 end else do
                   return 0;

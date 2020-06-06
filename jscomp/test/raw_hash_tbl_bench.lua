@@ -4,7 +4,7 @@ Hashtbl = require "../../lib/js/hashtbl";
 Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 function bench(param) do
-  table = Hashtbl.create(undefined, 1000000);
+  table = Hashtbl.create(nil, 1000000);
   for i = 0 , 1000000 , 1 do
     Hashtbl.add(table, i, i);
   end

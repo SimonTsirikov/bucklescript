@@ -649,7 +649,7 @@ function first(f, _param) do
     param = _param;
     if (param) then do
       res = Curry._1(f, param[0]);
-      if (res ~= undefined) then do
+      if (res ~= nil) then do
         return res;
       end else do
         _param = param[1];
@@ -924,7 +924,7 @@ dummy = {
   idx = -1,
   category = -1,
   desc = --[[ [] ]]0,
-  status = undefined,
+  status = nil,
   hash = -1
 };
 
@@ -937,7 +937,7 @@ function mk(idx, cat, desc) do
           idx = idx,
           category = cat,
           desc = desc,
-          status = undefined,
+          status = nil,
           hash = hash_2(idx, cat, desc)
         };
 end end
@@ -1232,7 +1232,7 @@ function delta_1(marks, c, next_cat, prev_cat, x, rem) do
                     
                   end
                 end end), y$prime_1);
-          match_2 = match_1 ~= undefined and --[[ tuple ]]{
+          match_2 = match_1 ~= nil and --[[ tuple ]]{
               Curry._1(remove_matches, y$prime_1),
               match_1
             } or --[[ tuple ]]{
@@ -1328,7 +1328,7 @@ function delta_seq(c, next_cat, prev_cat, kind, y, z, rem) do
             
           end
         end end), y);
-  if (match ~= undefined) then do
+  if (match ~= nil) then do
     marks = match;
     if (kind ~= -730718166) then do
       if (kind >= 332064784) then do
@@ -1393,7 +1393,7 @@ end end
 
 function status(s) do
   match = s.status;
-  if (match ~= undefined) then do
+  if (match ~= nil) then do
     return match;
   end else do
     match_1 = s.desc;
@@ -1698,7 +1698,7 @@ end end
 
 function trans_set(cache, cm, s) do
   match = one_char(s);
-  if (match ~= undefined) then do
+  if (match ~= nil) then do
     return single(Caml_bytes.get(cm, match));
   end else do
     v_000 = hash_rec(s);
@@ -2321,7 +2321,7 @@ function translate(ids, kind, _ign_group, ign_case, _greedy, pos, cache, c, _par
             kind$prime = match_1[1];
             cr = match_1[0];
             rem;
-            if (j ~= undefined) then do
+            if (j ~= nil) then do
               f = greedy >= 620821490 and (function(cr,kind$prime)do
                 return function (rem) do
                   return alt(ids, --[[ :: ]]{
@@ -2656,7 +2656,7 @@ function repn(r, i, j) do
     })
   end
    end 
-  if (j ~= undefined and j < i) then do
+  if (j ~= nil and j < i) then do
     error({
       Caml_builtin_exceptions.invalid_argument,
       "Re.repn"
@@ -2882,7 +2882,7 @@ function compile(r) do
   regexp = anchored(r) and --[[ Group ]]Block.__(6, {r}) or seq_2(--[[ :: ]]{
           --[[ Sem ]]Block.__(4, {
               --[[ Shortest ]]-1034406550,
-              repn(any, 0, undefined)
+              repn(any, 0, nil)
             }),
           --[[ :: ]]{
             --[[ Group ]]Block.__(6, {r}),
@@ -2929,8 +2929,8 @@ function compile(r) do
 end end
 
 function exec_internal(name, posOpt, lenOpt, groups, re, s) do
-  pos = posOpt ~= undefined and posOpt or 0;
-  len = lenOpt ~= undefined and lenOpt or -1;
+  pos = posOpt ~= nil and posOpt or 0;
+  len = lenOpt ~= nil and lenOpt or -1;
   if (pos < 0 or len < -1 or (pos + len | 0) > #s) then do
     error({
       Caml_builtin_exceptions.invalid_argument,
@@ -3763,21 +3763,21 @@ function parse(multiline, dollar_endonly, dotall, ungreedy, s) do
   piece = function(param) do
     r = atom(--[[ () ]]0);
     if (accept(--[[ "*" ]]42)) then do
-      return greedy_mod(repn(r, 0, undefined));
+      return greedy_mod(repn(r, 0, nil));
     end else if (accept(--[[ "+" ]]43)) then do
-      return greedy_mod(repn(r, 1, undefined));
+      return greedy_mod(repn(r, 1, nil));
     end else if (accept(--[[ "?" ]]63)) then do
       return greedy_mod(repn(r, 0, 1));
     end else if (accept(--[[ "{" ]]123)) then do
       match = integer(--[[ () ]]0);
-      if (match ~= undefined) then do
+      if (match ~= nil) then do
         i_1 = match;
         j = accept(--[[ "," ]]44) and integer(--[[ () ]]0) or i_1;
         if (not accept(--[[ "}" ]]125)) then do
           error(Parse_error)
         end
          end 
-        if (j ~= undefined and j < i_1) then do
+        if (j ~= nil and j < i_1) then do
           error(Parse_error)
         end
          end 
@@ -3799,7 +3799,7 @@ function parse(multiline, dollar_endonly, dotall, ungreedy, s) do
 end end
 
 function re(flagsOpt, pat) do
-  flags = flagsOpt ~= undefined and flagsOpt or --[[ [] ]]0;
+  flags = flagsOpt ~= nil and flagsOpt or --[[ [] ]]0;
   opts = List.map((function(param) do
           if (param ~= 601676297) then do
             if (param >= 613575188) then do
@@ -3813,7 +3813,7 @@ function re(flagsOpt, pat) do
         end end), flags);
   optsOpt = opts;
   s = pat;
-  opts_1 = optsOpt ~= undefined and optsOpt or --[[ [] ]]0;
+  opts_1 = optsOpt ~= nil and optsOpt or --[[ [] ]]0;
   r = parse(List.memq(--[[ Multiline ]]1071952589, opts_1), List.memq(--[[ Dollar_endonly ]]-712595228, opts_1), List.memq(--[[ Dotall ]]-424303016, opts_1), List.memq(--[[ Ungreedy ]]-243745063, opts_1), s);
   r_1 = List.memq(--[[ Anchored ]]616470068, opts_1) and seq_2(--[[ :: ]]{
           --[[ Start ]]8,
@@ -3831,7 +3831,7 @@ end end
 
 function exec(rex, pos, s) do
   pos_1 = pos;
-  len = undefined;
+  len = nil;
   re = rex;
   s_1 = s;
   match = exec_internal("Re.exec", pos_1, len, true, re, s_1);
@@ -3844,7 +3844,7 @@ end end
 
 s = Caml_bytes.bytes_to_string(Bytes.make(1048575, --[[ "a" ]]97)) .. "b";
 
-eq("File \"xx.ml\", line 7, characters 3-10", get(exec(compile(re(undefined, "aa?b")), undefined, s), 0), "aab");
+eq("File \"xx.ml\", line 7, characters 3-10", get(exec(compile(re(nil, "aa?b")), nil, s), 0), "aab");
 
 Mt.from_pair_suites("Ocaml_re_test", suites.contents);
 

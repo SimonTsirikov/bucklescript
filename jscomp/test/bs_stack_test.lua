@@ -11,7 +11,7 @@ function inOrder(v) do
     root = nil
   };
   q = Belt_MutableQueue.make(--[[ () ]]0);
-  while(current ~= undefined) do
+  while(current ~= nil) do
     v_1 = current;
     Belt_MutableStack.push(s, v_1);
     current = v_1.left;
@@ -21,7 +21,7 @@ function inOrder(v) do
     v_2 = current;
     Belt_MutableQueue.add(q, v_2.value);
     current = v_2.right;
-    while(current ~= undefined) do
+    while(current ~= nil) do
       v_3 = current;
       Belt_MutableStack.push(s, v_3);
       current = v_3.left;
@@ -36,7 +36,7 @@ function inOrder3(v) do
     root = nil
   };
   q = Belt_MutableQueue.make(--[[ () ]]0);
-  while(current ~= undefined) do
+  while(current ~= nil) do
     v_1 = current;
     Belt_MutableStack.push(s, v_1);
     current = v_1.left;
@@ -44,7 +44,7 @@ function inOrder3(v) do
   Belt_MutableStack.dynamicPopIter(s, (function(popped) do
           Belt_MutableQueue.add(q, popped.value);
           current = popped.right;
-          while(current ~= undefined) do
+          while(current ~= nil) do
             v = current;
             Belt_MutableStack.push(s, v);
             current = v.left;
@@ -62,7 +62,7 @@ function inOrder2(v) do
   };
   q = Belt_MutableQueue.make(--[[ () ]]0);
   while(todo) do
-    if (cursor ~= undefined) then do
+    if (cursor ~= nil) then do
       v_1 = cursor;
       Belt_MutableStack.push(s, v_1);
       cursor = v_1.left;
@@ -86,11 +86,11 @@ function n(l, r, a) do
         };
 end end
 
-test1 = n(Caml_option.some(n(Caml_option.some(n(undefined, undefined, 4)), Caml_option.some(n(undefined, undefined, 5)), 2)), Caml_option.some(n(undefined, undefined, 3)), 1);
+test1 = n(Caml_option.some(n(Caml_option.some(n(nil, nil, 4)), Caml_option.some(n(nil, nil, 5)), 2)), Caml_option.some(n(nil, nil, 3)), 1);
 
 function pushAllLeft(st1, s1) do
   current = st1;
-  while(current ~= undefined) do
+  while(current ~= nil) do
     v = current;
     Belt_MutableStack.push(s1, v);
     current = v.left;
@@ -98,9 +98,9 @@ function pushAllLeft(st1, s1) do
   return --[[ () ]]0;
 end end
 
-test2 = n(Caml_option.some(n(Caml_option.some(n(Caml_option.some(n(Caml_option.some(n(undefined, undefined, 4)), undefined, 2)), undefined, 5)), undefined, 1)), undefined, 3);
+test2 = n(Caml_option.some(n(Caml_option.some(n(Caml_option.some(n(Caml_option.some(n(nil, nil, 4)), nil, 2)), nil, 5)), nil, 1)), nil, 3);
 
-test3 = n(Caml_option.some(n(Caml_option.some(n(Caml_option.some(n(undefined, undefined, 4)), undefined, 2)), undefined, 5)), Caml_option.some(n(undefined, undefined, 3)), 1);
+test3 = n(Caml_option.some(n(Caml_option.some(n(Caml_option.some(n(nil, nil, 4)), nil, 2)), nil, 5)), Caml_option.some(n(nil, nil, 3)), 1);
 
 console.log(inOrder(test1));
 

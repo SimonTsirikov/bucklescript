@@ -145,7 +145,7 @@ function add_digest_ib(ob, ib) do
   scan_line = function(ib, f) do
     return Curry._1(Scanf.bscanf(ib, --[[ Format ]]{
                     --[[ Scan_char_set ]]Block.__(20, {
-                        undefined,
+                        nil,
                         "\xff\xdb\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff",
                         --[[ Char_literal ]]Block.__(12, {
                             --[[ "\n" ]]10,

@@ -181,14 +181,14 @@ xpcall(function() do
   (function(_)dothrow 2end(--[[ () ]]0));
 end end,function(raw_e_2) do
   e = Caml_js_exceptions.internalToOCamlException(raw_e_2);
-  eq("File \"exception_raise_test.ml\", line 131, characters 7-14", Caml_js_exceptions.caml_as_js_exn(e) ~= undefined, true);
+  eq("File \"exception_raise_test.ml\", line 131, characters 7-14", Caml_js_exceptions.caml_as_js_exn(e) ~= nil, true);
 end end)
 
 xpcall(function() do
   error(Caml_builtin_exceptions.not_found)
 end end,function(raw_e_3) do
   e_1 = Caml_js_exceptions.internalToOCamlException(raw_e_3);
-  eq("File \"exception_raise_test.ml\", line 138, characters 7-14", Caml_js_exceptions.caml_as_js_exn(e_1) ~= undefined, false);
+  eq("File \"exception_raise_test.ml\", line 138, characters 7-14", Caml_js_exceptions.caml_as_js_exn(e_1) ~= nil, false);
 end end)
 
 function fff0(x, g) do

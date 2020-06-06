@@ -1093,7 +1093,7 @@ function scan_string(stp, width, ib) do
       c = peek_char(ib);
       if (ib.ic_eof) then do
         return width_1;
-      end else if (stp ~= undefined) then do
+      end else if (stp ~= nil) then do
         if (c == stp) then do
           ib.ic_current_char_is_valid = false;
           return width_1;
@@ -1414,7 +1414,7 @@ function scan_chars_in_char_set(char_set, scan_indic, width, ib) do
       end end 
     end;
   end end;
-  if (scan_indic ~= undefined) then do
+  if (scan_indic ~= nil) then do
     c = scan_indic;
     scan_chars(width, c);
     if (ib.ic_eof) then do
@@ -1483,7 +1483,7 @@ function get_counter(ib, counter) do
 end end
 
 function width_of_pad_opt(pad_opt) do
-  if (pad_opt ~= undefined) then do
+  if (pad_opt ~= nil) then do
     return pad_opt;
   end else do
     return Pervasives.max_int;
@@ -1696,7 +1696,7 @@ function make_scanf(ib, _fmt, readers) do
             end
              end 
             scan_3 = function(width, param, ib) do
-              return scan_string(undefined, width, ib);
+              return scan_string(nil, width, ib);
             end end;
             return pad_prec_scanf(ib, rest, readers, pad, --[[ No_precision ]]0, scan_3, token); end end 
          if ___conditional___ == 3--[[ Caml_string ]] then do
@@ -1790,7 +1790,7 @@ function make_scanf(ib, _fmt, readers) do
               end else do
                 m = 5;
               end end 
-              return scan_string(undefined, m, ib_1);
+              return scan_string(nil, m, ib_1);
             end end;
             return pad_prec_scanf(ib, fmt[1], readers, fmt[0], --[[ No_precision ]]0, scan_9, token_bool); end end 
          if ___conditional___ == 10--[[ Flush ]] then do
@@ -1840,8 +1840,8 @@ function make_scanf(ib, _fmt, readers) do
             s_1 = token(ib);
             match_3;
             xpcall(function() do
-              match_4 = CamlinternalFormat.fmt_ebb_of_string(undefined, s_1);
-              match_5 = CamlinternalFormat.fmt_ebb_of_string(undefined, s_1);
+              match_4 = CamlinternalFormat.fmt_ebb_of_string(nil, s_1);
+              match_5 = CamlinternalFormat.fmt_ebb_of_string(nil, s_1);
               match_3 = --[[ tuple ]]{
                 CamlinternalFormat.type_format(match_4[0], CamlinternalFormatBasics.erase_rel(fmtty)),
                 CamlinternalFormat.type_format(match_5[0], CamlinternalFormatBasics.erase_rel(CamlinternalFormat.symm(fmtty)))
@@ -1927,7 +1927,7 @@ function make_scanf(ib, _fmt, readers) do
             end
              end 
             width_1 = width_of_pad_opt(width_opt);
-            scan_chars_in_char_set(char_set, undefined, width_1, ib);
+            scan_chars_in_char_set(char_set, nil, width_1, ib);
             s_3 = token(ib);
             return --[[ Cons ]]{
                     s_3,

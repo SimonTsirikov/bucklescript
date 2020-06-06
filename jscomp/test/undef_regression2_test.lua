@@ -43,13 +43,13 @@ function ok(loc, x) do
   return --[[ () ]]0;
 end end
 
-match = typeof ___undefined_value == "undefined" and undefined or ___undefined_value;
+match = typeof ___undefined_value == "undefined" and nil or ___undefined_value;
 
-a = match ~= undefined and 2 or 1;
+a = match ~= nil and 2 or 1;
 
 function test(param) do
-  match = typeof __DEV__ == "undefined" and undefined or __DEV__;
-  if (match ~= undefined) then do
+  match = typeof __DEV__ == "undefined" and nil or __DEV__;
+  if (match ~= nil) then do
     console.log("dev mode");
     return --[[ () ]]0;
   end else do
@@ -59,8 +59,8 @@ function test(param) do
 end end
 
 function test2(param) do
-  match = typeof __filename == "undefined" and undefined or __filename;
-  if (match ~= undefined) then do
+  match = typeof __filename == "undefined" and nil or __filename;
+  if (match ~= nil) then do
     console.log(match);
     return --[[ () ]]0;
   end else do
@@ -70,7 +70,7 @@ function test2(param) do
 end end
 
 function test3(param) do
-  if (Caml_option.undefined_to_opt(typeof __DEV__ == "undefined" and undefined or __DEV__) == undefined) then do
+  if (Caml_option.undefined_to_opt(typeof __DEV__ == "undefined" and nil or __DEV__) == nil) then do
     console.log("production mode");
     return --[[ () ]]0;
   end else do
@@ -79,7 +79,7 @@ function test3(param) do
 end end
 
 function f(x) do
-  return x == undefined;
+  return x == nil;
 end end
 
 ok("File \"undef_regression2_test.ml\", line 44, characters 5-12", a > 0);

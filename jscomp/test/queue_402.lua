@@ -9,13 +9,13 @@ Empty = Caml_exceptions.create("Queue_402.Empty");
 function create(param) do
   return {
           length = 0,
-          tail = undefined
+          tail = nil
         };
 end end
 
 function clear(q) do
   q.length = 0;
-  q.tail = undefined;
+  q.tail = nil;
   return --[[ () ]]0;
 end end
 
@@ -58,7 +58,7 @@ function take(q) do
   tail = q.tail;
   head = tail.next;
   if (head == tail) then do
-    q.tail = undefined;
+    q.tail = nil;
   end else do
     tail.next = head.next;
   end end 
@@ -69,7 +69,7 @@ function copy(q) do
   if (q.length == 0) then do
     return {
             length = 0,
-            tail = undefined
+            tail = nil
           };
   end else do
     tail = q.tail;

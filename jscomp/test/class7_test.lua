@@ -138,13 +138,13 @@ function backup_init(__class) do
         save,
         (function(self$3) do
             copy_1 = Caml_exceptions.caml_set_oo_id(Caml_obj.caml_obj_dup(self$3));
-            self$3[copy] = Caml_option.some((copy_1[copy] = undefined, copy_1));
+            self$3[copy] = Caml_option.some((copy_1[copy] = nil, copy_1));
             return --[[ () ]]0;
           end end),
         restore,
         (function(self$3) do
             match = self$3[copy];
-            if (match ~= undefined) then do
+            if (match ~= nil) then do
               return Caml_option.valFromOption(match);
             end else do
               return self$3;
@@ -153,7 +153,7 @@ function backup_init(__class) do
       });
   return (function(env, self) do
       self_1 = CamlinternalOO.create_object_opt(self, __class);
-      self_1[copy] = undefined;
+      self_1[copy] = nil;
       return self_1;
     end end);
 end end
@@ -242,7 +242,7 @@ function backup2_init(__class) do
         restore,
         (function(self$5) do
             match = self$5[copy];
-            if (match ~= undefined) then do
+            if (match ~= nil) then do
               return Caml_option.valFromOption(match);
             end else do
               return self$5;
@@ -250,13 +250,13 @@ function backup2_init(__class) do
           end end),
         clear,
         (function(self$5) do
-            self$5[copy] = undefined;
+            self$5[copy] = nil;
             return --[[ () ]]0;
           end end)
       });
   return (function(env, self) do
       self_1 = CamlinternalOO.create_object_opt(self, __class);
-      self_1[copy] = undefined;
+      self_1[copy] = nil;
       return self_1;
     end end);
 end end
@@ -327,7 +327,7 @@ function window_init(__class) do
         end end));
   return (function(env, self) do
       self_1 = CamlinternalOO.create_object_opt(self, __class);
-      self_1[top_widget_1] = undefined;
+      self_1[top_widget_1] = nil;
       return self_1;
     end end);
 end end

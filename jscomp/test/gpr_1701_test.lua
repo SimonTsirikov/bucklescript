@@ -34,12 +34,12 @@ function read_lines(inc) do
       match = Pervasives.input_line(inc);
     end end,function(exn) do
       if (exn == Caml_builtin_exceptions.end_of_file) then do
-        match = undefined;
+        match = nil;
       end else do
         error(exn)
       end end 
     end end)
-    if (match ~= undefined) then do
+    if (match ~= nil) then do
       _acc = --[[ :: ]]{
         match,
         acc

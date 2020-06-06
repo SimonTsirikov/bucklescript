@@ -31,27 +31,27 @@ console.log(arg_pair[1]);
 
 console.log(--[[ () ]]0);
 
-console.log(1, undefined);
+console.log(1, nil);
 
 console.log(2, "hi");
 
 console.log(3, "hi");
 
-console.log(4, undefined);
+console.log(4, nil);
 
 some_arg = --[[ `Bool ]]{
   737456202,
   true
 };
 
-console.log(5, some_arg ~= undefined and Caml_option.valFromOption(some_arg)[1] or undefined);
+console.log(5, some_arg ~= nil and Caml_option.valFromOption(some_arg)[1] or nil);
 
-console.log(6, undefined);
+console.log(6, nil);
 
-console.log(7, Caml_option.option_get_unwrap((console.log("trace"), undefined)));
+console.log(7, Caml_option.option_get_unwrap((console.log("trace"), nil)));
 
 function dyn_log3(prim, prim_1, prim_2) do
-  console.log(prim[1], prim_1 ~= undefined and Caml_option.valFromOption(prim_1)[1] or undefined);
+  console.log(prim[1], prim_1 ~= nil and Caml_option.valFromOption(prim_1)[1] or nil);
   return --[[ () ]]0;
 end end
 
@@ -84,7 +84,7 @@ function f(x) do
 end end
 
 function ff0(x, p) do
-  console.log(x ~= undefined and Caml_option.valFromOption(x)[1] or undefined, p);
+  console.log(x ~= nil and Caml_option.valFromOption(x)[1] or nil, p);
   return --[[ () ]]0;
 end end
 
@@ -93,7 +93,7 @@ function ff1(x, p) do
   return --[[ () ]]0;
 end end
 
-none_arg = undefined;
+none_arg = nil;
 
 exports = {}
 exports.arg_string = arg_string;

@@ -2,9 +2,9 @@ console = {log = print};
 
 Fs = require "";
 
-match = typeof __filename == "undefined" and undefined or __filename;
+match = typeof __filename == "undefined" and nil or __filename;
 
-if (match ~= undefined) then do
+if (match ~= nil) then do
   console.log(Fs.readFileSync(match, "utf8"));
 end
  end 

@@ -21,7 +21,7 @@ end end
 
 function makeWrapper(foo, param) do
   tmp = { };
-  if (foo ~= undefined) then do
+  if (foo ~= nil) then do
     tmp.foo = (function() do
           local ___conditional___=(Caml_option.valFromOption(foo));
           do
@@ -59,7 +59,7 @@ makeWrapper2(--[[ a ]]97, --[[ () ]]0);
 function makeWrapper3(foo, param) do
   console.log(2);
   tmp = { };
-  if (foo ~= undefined) then do
+  if (foo ~= nil) then do
     tmp.foo = (function() do
           local ___conditional___=(Caml_option.valFromOption(foo));
           do
@@ -78,10 +78,10 @@ end end
 function makeWrapper4(foo, param) do
   console.log(2);
   tmp = { };
-  tmp_1 = foo > 100 and undefined or (
+  tmp_1 = foo > 100 and nil or (
       foo > 10 and --[[ b ]]98 or --[[ a ]]97
     );
-  if (tmp_1 ~= undefined) then do
+  if (tmp_1 ~= nil) then do
     tmp.foo = (function() do
           local ___conditional___=(Caml_option.valFromOption(tmp_1));
           do
@@ -99,13 +99,13 @@ end end
 
 b("File \"gpr_2503_test.ml\", line 31, characters 5-12", "a" == makeWrapper3(--[[ a ]]97, --[[ () ]]0).foo);
 
-b("File \"gpr_2503_test.ml\", line 34, characters 5-12", undefined == makeWrapper3(undefined, --[[ () ]]0).foo);
+b("File \"gpr_2503_test.ml\", line 34, characters 5-12", nil == makeWrapper3(nil, --[[ () ]]0).foo);
 
 b("File \"gpr_2503_test.ml\", line 37, characters 5-12", "a" == makeWrapper4(1, --[[ () ]]0).foo);
 
 b("File \"gpr_2503_test.ml\", line 40, characters 5-12", "b" == makeWrapper4(11, --[[ () ]]0).foo);
 
-b("File \"gpr_2503_test.ml\", line 43, characters 5-12", undefined == makeWrapper4(111, --[[ () ]]0).foo);
+b("File \"gpr_2503_test.ml\", line 43, characters 5-12", nil == makeWrapper4(111, --[[ () ]]0).foo);
 
 Mt.from_pair_suites("Gpr_2503_test", suites.contents);
 

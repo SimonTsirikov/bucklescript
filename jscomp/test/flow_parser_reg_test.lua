@@ -29,7 +29,7 @@ Caml_js_exceptions = require "../../lib/js/caml_js_exceptions";
 Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 none = {
-  source = undefined,
+  source = nil,
   start = {
     line = 0,
     column = 0,
@@ -110,8 +110,8 @@ function order_of_filename(param) do
 end end
 
 function source_cmp(a, b) do
-  if (a ~= undefined) then do
-    if (b ~= undefined) then do
+  if (a ~= nil) then do
+    if (b ~= nil) then do
       fn2 = b;
       fn1 = a;
       k = order_of_filename(fn1) - order_of_filename(fn2) | 0;
@@ -123,7 +123,7 @@ function source_cmp(a, b) do
     end else do
       return -1;
     end end 
-  end else if (b ~= undefined) then do
+  end else if (b ~= nil) then do
     return 1;
   end else do
     return 0;
@@ -1565,7 +1565,7 @@ function start(str) do
           negative = false,
           mantissa = 0,
           exponent = 0,
-          decimal_exponent = undefined,
+          decimal_exponent = nil,
           todo = List.rev(todo.contents)
         };
 end end
@@ -1666,7 +1666,7 @@ function parse_body(_f) do
           return parse_exponent(eat(f));
         end
          end 
-      end else if (f.decimal_exponent == undefined) then do
+      end else if (f.decimal_exponent == nil) then do
         init = eat(f);
         _f = {
           negative = init.negative,
@@ -1691,7 +1691,7 @@ function parse_body(_f) do
       end end  end  end 
       value = c - ref_char_code | 0;
       match_1 = f.decimal_exponent;
-      decimal_exponent = match_1 ~= undefined and match_1 - 4 | 0 or undefined;
+      decimal_exponent = match_1 ~= nil and match_1 - 4 | 0 or nil;
       mantissa = (f.mantissa << 4) + value | 0;
       init_1 = eat(f);
       _f = {
@@ -1728,7 +1728,7 @@ function float_of_string(str) do
          end 
         ret = f.mantissa;
         match = f.decimal_exponent;
-        exponent = match ~= undefined and f.exponent + match | 0 or f.exponent;
+        exponent = match ~= nil and f.exponent + match | 0 or f.exponent;
         ret_1 = exponent == 0 and ret or Math.pow(ret, exponent);
         if (f.negative) then do
           return -ret_1;
@@ -1908,9 +1908,9 @@ function mk_num_singleton(number_type, num, neg) do
           });
 end end
 
-keywords = Hashtbl.create(undefined, 53);
+keywords = Hashtbl.create(nil, 53);
 
-type_keywords = Hashtbl.create(undefined, 53);
+type_keywords = Hashtbl.create(nil, 53);
 
 List.iter((function(param) do
         return Hashtbl.add(keywords, param[0], param[1]);
@@ -3857,10 +3857,10 @@ function jsx_text(env, mode, buf, raw, lexbuf) do
              if ___conditional___ == "zwnj" then do
                 code_2 = 8204; end else 
              end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end
-            code_2 = undefined;
+            code_2 = nil;
               
           end
-          if (code_2 ~= undefined) then do
+          if (code_2 ~= nil) then do
             List.iter((function(param) do
                     return __Buffer.add_char(buf_1, param);
                   end end), utf16to8(code_2));
@@ -4822,10 +4822,10 @@ default_parse_options = {
 };
 
 function init_env(token_sinkOpt, parse_optionsOpt, source, content) do
-  token_sink = token_sinkOpt ~= undefined and Caml_option.valFromOption(token_sinkOpt) or undefined;
-  parse_options = parse_optionsOpt ~= undefined and Caml_option.valFromOption(parse_optionsOpt) or undefined;
+  token_sink = token_sinkOpt ~= nil and Caml_option.valFromOption(token_sinkOpt) or nil;
+  parse_options = parse_optionsOpt ~= nil and Caml_option.valFromOption(parse_optionsOpt) or nil;
   lb = Lexing.from_string(content);
-  if (source ~= undefined) then do
+  if (source ~= nil) then do
     match = source;
     if (typeof match ~= "number") then do
       init = lb.lex_curr_p;
@@ -4839,7 +4839,7 @@ function init_env(token_sinkOpt, parse_optionsOpt, source, content) do
      end 
   end
    end 
-  parse_options_1 = parse_options ~= undefined and parse_options or default_parse_options;
+  parse_options_1 = parse_options ~= nil and parse_options or default_parse_options;
   enable_types_in_comments = parse_options_1.types;
   lex_env = new_lex_env(source, lb, enable_types_in_comments);
   return {
@@ -4854,7 +4854,7 @@ function init_env(token_sinkOpt, parse_optionsOpt, source, content) do
             contents = --[[ Empty ]]0
           },
           last_loc = {
-            contents = undefined
+            contents = nil
           },
           in_strict_mode = parse_options_1.use_strict,
           in_export = false,
@@ -4866,7 +4866,7 @@ function init_env(token_sinkOpt, parse_optionsOpt, source, content) do
           no_let = false,
           allow_yield = true,
           allow_await = false,
-          error_callback = undefined,
+          error_callback = nil,
           lex_mode_stack = {
             contents = --[[ :: ]]{
               --[[ NORMAL ]]0,
@@ -4897,7 +4897,7 @@ function error_at(env, param) do
     env.errors.contents
   };
   match = env.error_callback;
-  if (match ~= undefined) then do
+  if (match ~= nil) then do
     return Curry._2(match, env, e);
   end else do
     return --[[ () ]]0;
@@ -4931,7 +4931,7 @@ function record_export(env, param) do
 end end
 
 function lookahead(iOpt, env) do
-  i = iOpt ~= undefined and iOpt or 0;
+  i = iOpt ~= nil and iOpt or 0;
   if (i >= 2) then do
     error({
       Caml_builtin_exceptions.assert_failure,
@@ -4947,7 +4947,7 @@ function lookahead(iOpt, env) do
   i_1 = i;
   lex_until(t, i_1);
   match = Caml_array.caml_array_get(t.la_results, i_1);
-  if (match ~= undefined) then do
+  if (match ~= nil) then do
     return match[1];
   end else do
     error({
@@ -5027,7 +5027,7 @@ end end
 
 function without_error_callback(env) do
   newrecord = Caml_obj.caml_obj_dup(env);
-  newrecord.error_callback = undefined;
+  newrecord.error_callback = nil;
   return newrecord;
 end end
 
@@ -5085,37 +5085,37 @@ function is_restricted(param) do
 end end
 
 function token_2(iOpt, env) do
-  i = iOpt ~= undefined and iOpt or 0;
+  i = iOpt ~= nil and iOpt or 0;
   return lookahead(i, env).lex_token;
 end end
 
 function value(iOpt, env) do
-  i = iOpt ~= undefined and iOpt or 0;
+  i = iOpt ~= nil and iOpt or 0;
   return lookahead(i, env).lex_value;
 end end
 
 function loc(iOpt, env) do
-  i = iOpt ~= undefined and iOpt or 0;
+  i = iOpt ~= nil and iOpt or 0;
   return lookahead(i, env).lex_loc;
 end end
 
 function errors(iOpt, env) do
-  i = iOpt ~= undefined and iOpt or 0;
+  i = iOpt ~= nil and iOpt or 0;
   return lookahead(i, env).lex_errors;
 end end
 
 function comments(iOpt, env) do
-  i = iOpt ~= undefined and iOpt or 0;
+  i = iOpt ~= nil and iOpt or 0;
   return lookahead(i, env).lex_comments;
 end end
 
 function lex_env(iOpt, env) do
-  i = iOpt ~= undefined and iOpt or 0;
+  i = iOpt ~= nil and iOpt or 0;
   t = env.lookahead.contents;
   i_1 = i;
   lex_until(t, i_1);
   match = Caml_array.caml_array_get(t.la_results, i_1);
-  if (match ~= undefined) then do
+  if (match ~= nil) then do
     return match[0];
   end else do
     error({
@@ -5127,15 +5127,15 @@ end end
 
 function is_line_terminator(env) do
   match = env.last_loc.contents;
-  if (match ~= undefined) then do
-    return loc(undefined, env).start.line > match.start.line;
+  if (match ~= nil) then do
+    return loc(nil, env).start.line > match.start.line;
   end else do
     return false;
   end end 
 end end
 
 function is_implicit_semicolon(env) do
-  match = token_2(undefined, env);
+  match = token_2(nil, env);
   if (typeof match == "number") then do
     switcher = match - 3 | 0;
     if (switcher > 101 or switcher < 0) then do
@@ -5155,7 +5155,7 @@ function is_implicit_semicolon(env) do
 end end
 
 function semicolon_loc(iOpt, env) do
-  i = iOpt ~= undefined and iOpt or 0;
+  i = iOpt ~= nil and iOpt or 0;
   if (token_2(i, env) == --[[ T_SEMICOLON ]]7) then do
     return loc(i, env);
   end
@@ -5163,7 +5163,7 @@ function semicolon_loc(iOpt, env) do
 end end
 
 function is_identifier(iOpt, env) do
-  i = iOpt ~= undefined and iOpt or 0;
+  i = iOpt ~= nil and iOpt or 0;
   name = value(i, env);
   match = token_2(i, env);
   if (is_strict_reserved(name) or is_restricted(name) or is_future_reserved(name)) then do
@@ -5181,7 +5181,7 @@ function is_identifier(iOpt, env) do
 end end
 
 function is_function(iOpt, env) do
-  i = iOpt ~= undefined and iOpt or 0;
+  i = iOpt ~= nil and iOpt or 0;
   if (token_2(i, env) == --[[ T_FUNCTION ]]13) then do
     return true;
   end else if (token_2(i, env) == --[[ T_ASYNC ]]61) then do
@@ -5192,7 +5192,7 @@ function is_function(iOpt, env) do
 end end
 
 function is_class(iOpt, env) do
-  i = iOpt ~= undefined and iOpt or 0;
+  i = iOpt ~= nil and iOpt or 0;
   match = token_2(i, env);
   if (typeof match == "number") then do
     if (match ~= 12) then do
@@ -5206,7 +5206,7 @@ function is_class(iOpt, env) do
 end end
 
 function error_1(env, e) do
-  loc_1 = loc(undefined, env);
+  loc_1 = loc(nil, env);
   return error_at(env, --[[ tuple ]]{
               loc_1,
               e
@@ -5246,10 +5246,10 @@ function get_unexpected_error(param) do
 end end
 
 function error_unexpected(env) do
-  error_list(env)(errors(undefined, env));
+  error_list(env)(errors(nil, env));
   return error_1(env, get_unexpected_error(--[[ tuple ]]{
-                  token_2(undefined, env),
-                  value(undefined, env)
+                  token_2(nil, env),
+                  value(nil, env)
                 }));
 end end
 
@@ -5285,10 +5285,10 @@ end end
 
 function token_3(env) do
   match = env.token_sink.contents;
-  if (match ~= undefined) then do
-    token_loc = loc(undefined, env);
-    token_4 = token_2(undefined, env);
-    token_value = value(undefined, env);
+  if (match ~= nil) then do
+    token_loc = loc(nil, env);
+    token_4 = token_2(nil, env);
+    token_value = value(nil, env);
     Curry._1(match, {
           token_loc = token_loc,
           token = token_4,
@@ -5297,17 +5297,17 @@ function token_3(env) do
         });
   end
    end 
-  env.lex_env.contents = lex_env(undefined, env);
-  error_list(env)(errors(undefined, env));
-  comment_list(env)(comments(undefined, env));
-  env.last_loc.contents = loc(undefined, env);
+  env.lex_env.contents = lex_env(nil, env);
+  error_list(env)(errors(nil, env));
+  comment_list(env)(comments(nil, env));
+  env.last_loc.contents = loc(nil, env);
   t = env.lookahead.contents;
   lex_until(t, 0);
   if (t.la_num_lexed > 1) then do
     __Array.blit(t.la_results, 1, t.la_results, 0, t.la_num_lexed - 1 | 0);
   end
    end 
-  Caml_array.caml_array_set(t.la_results, t.la_num_lexed - 1 | 0, undefined);
+  Caml_array.caml_array_set(t.la_results, t.la_num_lexed - 1 | 0, nil);
   t.la_num_lexed = t.la_num_lexed - 1 | 0;
   return --[[ () ]]0;
 end end
@@ -5364,7 +5364,7 @@ end end
 function semicolon(env) do
   if (is_implicit_semicolon(env)) then do
     return 0;
-  end else if (token_2(undefined, env) == --[[ T_SEMICOLON ]]7) then do
+  end else if (token_2(nil, env) == --[[ T_SEMICOLON ]]7) then do
     return token_3(env);
   end else do
     return error_unexpected(env);
@@ -5372,7 +5372,7 @@ function semicolon(env) do
 end end
 
 function token_4(env, t) do
-  if (Caml_obj.caml_notequal(token_2(undefined, env), t)) then do
+  if (Caml_obj.caml_notequal(token_2(nil, env), t)) then do
     error_unexpected(env);
   end
    end 
@@ -5380,7 +5380,7 @@ function token_4(env, t) do
 end end
 
 function maybe(env, t) do
-  if (Caml_obj.caml_equal(token_2(undefined, env), t)) then do
+  if (Caml_obj.caml_equal(token_2(nil, env), t)) then do
     token_3(env);
     return true;
   end else do
@@ -5389,7 +5389,7 @@ function maybe(env, t) do
 end end
 
 function contextual(env, str) do
-  if (value(undefined, env) ~= str) then do
+  if (value(nil, env) ~= str) then do
     error_unexpected(env);
   end
    end 
@@ -5401,7 +5401,7 @@ Rollback = Caml_exceptions.create("Flow_parser_reg_test.Parser_env.Try.Rollback"
 function save_state(env) do
   match = env.token_sink.contents;
   token_buffer;
-  if (match ~= undefined) then do
+  if (match ~= nil) then do
     buffer = {
       length = 0,
       first = --[[ Nil ]]0,
@@ -5415,7 +5415,7 @@ function save_state(env) do
       buffer
     };
   end else do
-    token_buffer = undefined;
+    token_buffer = nil;
   end end 
   return {
           saved_errors = env.errors.contents,
@@ -5428,7 +5428,7 @@ function save_state(env) do
 end end
 
 function reset_token_sink(flush, env, token_buffer_info) do
-  if (token_buffer_info ~= undefined) then do
+  if (token_buffer_info ~= nil) then do
     match = token_buffer_info;
     orig_token_sink = match[0];
     env.token_sink.contents = orig_token_sink;
@@ -5911,10 +5911,10 @@ function filter_duplicate_errors(errs) do
 end end
 
 function with_loc(fn, env) do
-  start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
+  start_loc = Curry._2(Parser_env_Peek.loc, nil, env);
   result = Curry._1(fn, env);
   match = env.last_loc.contents;
-  end_loc = match ~= undefined and match or (error_1(env, --[[ Assertion ]]Block.__(0, {"did not consume any tokens"})), Curry._2(Parser_env_Peek.loc, undefined, env));
+  end_loc = match ~= nil and match or (error_1(env, --[[ Assertion ]]Block.__(0, {"did not consume any tokens"})), Curry._2(Parser_env_Peek.loc, nil, env));
   return --[[ tuple ]]{
           btwn(start_loc, end_loc),
           result
@@ -6027,12 +6027,12 @@ function intersection(env) do
 end end
 
 function generic(env) do
-  return Curry._2(raw_generic_with_identifier, env, Curry._2(Parse.identifier, undefined, env));
+  return Curry._2(raw_generic_with_identifier, env, Curry._2(Parse.identifier, nil, env));
 end end
 
 function primary(env) do
-  loc = Curry._2(Parser_env_Peek.loc, undefined, env);
-  token_5 = Curry._2(Parser_env_Peek.token, undefined, env);
+  loc = Curry._2(Parser_env_Peek.loc, nil, env);
+  token_5 = Curry._2(Parser_env_Peek.token, nil, env);
   exit = 0;
   if (typeof token_5 == "number") then do
     local ___conditional___=(token_5);
@@ -6044,14 +6044,14 @@ function primary(env) do
                   --[[ Generic ]]Block.__(4, {match[1]})
                 }; end end 
        if ___conditional___ == 1--[[ T_LCURLY ]] then do
-          match_1 = Curry._2(_object, undefined, env);
+          match_1 = Curry._2(_object, nil, env);
           return --[[ tuple ]]{
                   match_1[0],
                   --[[ Object ]]Block.__(2, {match_1[1]})
                 }; end end 
        if ___conditional___ == 3--[[ T_LPAREN ]] then do
           env_1 = env;
-          start_loc = Curry._2(Parser_env_Peek.loc, undefined, env_1);
+          start_loc = Curry._2(Parser_env_Peek.loc, nil, env_1);
           match_2 = param_list_or_type(env_1);
           if (match_2.tag) then do
             return match_2[0];
@@ -6066,16 +6066,16 @@ function primary(env) do
                           params = match_3[1],
                           returnType = returnType,
                           rest = match_3[0],
-                          typeParameters = undefined
+                          typeParameters = nil
                         }})
                   };
           end end  end end 
        if ___conditional___ == 5--[[ T_LBRACKET ]] then do
           env_2 = env;
-          start_loc_1 = Curry._2(Parser_env_Peek.loc, undefined, env_2);
+          start_loc_1 = Curry._2(Parser_env_Peek.loc, nil, env_2);
           token_4(env_2, --[[ T_LBRACKET ]]5);
           tl = types(env_2, --[[ [] ]]0);
-          end_loc_1 = Curry._2(Parser_env_Peek.loc, undefined, env_2);
+          end_loc_1 = Curry._2(Parser_env_Peek.loc, nil, env_2);
           token_4(env_2, --[[ T_RBRACKET ]]6);
           return --[[ tuple ]]{
                   btwn(start_loc_1, end_loc_1),
@@ -6085,7 +6085,7 @@ function primary(env) do
        or ___conditional___ == 29--[[ T_TRUE ]] then do
           exit = 2; end else 
        if ___conditional___ == 44--[[ T_TYPEOF ]] then do
-          start_loc_2 = Curry._2(Parser_env_Peek.loc, undefined, env);
+          start_loc_2 = Curry._2(Parser_env_Peek.loc, nil, env);
           token_4(env, --[[ T_TYPEOF ]]44);
           t = primary(env);
           return --[[ tuple ]]{
@@ -6094,7 +6094,7 @@ function primary(env) do
                 }; end end end end 
        if ___conditional___ == 89--[[ T_LESS_THAN ]] then do
           env_3 = env;
-          start_loc_3 = Curry._2(Parser_env_Peek.loc, undefined, env_3);
+          start_loc_3 = Curry._2(Parser_env_Peek.loc, nil, env_3);
           typeParameters = Curry._2(type_parameter_declaration, false, env_3);
           match_4 = function_param_list(env_3);
           token_4(env_3, --[[ T_ARROW ]]10);
@@ -6147,7 +6147,7 @@ function primary(env) do
        if ___conditional___ == 5--[[ T_NUMBER_SINGLETON_TYPE ]] then do
           value_1 = token_5[1];
           number_type = token_5[0];
-          raw_1 = Curry._2(Parser_env_Peek.value, undefined, env);
+          raw_1 = Curry._2(Parser_env_Peek.value, nil, env);
           token_4(env, --[[ T_NUMBER_SINGLETON_TYPE ]]Block.__(5, {
                   number_type,
                   value_1
@@ -6171,7 +6171,7 @@ function primary(env) do
   do
      if ___conditional___ == 1 then do
         match_6 = primitive(token_5);
-        if (match_6 ~= undefined) then do
+        if (match_6 ~= nil) then do
           token_4(env, token_5);
           return --[[ tuple ]]{
                   loc,
@@ -6185,7 +6185,7 @@ function primary(env) do
                 };
         end end  end end 
      if ___conditional___ == 2 then do
-        raw_2 = Curry._2(Parser_env_Peek.value, undefined, env);
+        raw_2 = Curry._2(Parser_env_Peek.value, nil, env);
         token_4(env, token_5);
         value_2 = token_5 == --[[ T_TRUE ]]29;
         return --[[ tuple ]]{
@@ -6228,8 +6228,8 @@ function primitive(param) do
 end end
 
 function function_param_or_generic_type(env) do
-  id = Curry._2(Parse.identifier, undefined, env);
-  match = Curry._2(Parser_env_Peek.token, undefined, env);
+  id = Curry._2(Parse.identifier, nil, env);
+  match = Curry._2(Parser_env_Peek.token, nil, env);
   if (typeof match == "number" and (match == 77 or match == 76)) then do
     param = function_param_with_id(env, id);
     maybe(env, --[[ T_COMMA ]]8);
@@ -6278,7 +6278,7 @@ function postfix_with(env, _t) do
   while(true) do
     t = _t;
     if (not Curry._1(Parser_env_Peek.is_line_terminator, env) and maybe(env, --[[ T_LBRACKET ]]5)) then do
-      end_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
+      end_loc = Curry._2(Parser_env_Peek.loc, nil, env);
       token_4(env, --[[ T_RBRACKET ]]6);
       loc = btwn(t[0], end_loc);
       t_001 = --[[ Array ]]Block.__(3, {t});
@@ -6302,9 +6302,9 @@ function function_param_list(env) do
 end end
 
 function prefix(env) do
-  match = Curry._2(Parser_env_Peek.token, undefined, env);
+  match = Curry._2(Parser_env_Peek.token, nil, env);
   if (typeof match == "number" and match == 76) then do
-    loc = Curry._2(Parser_env_Peek.loc, undefined, env);
+    loc = Curry._2(Parser_env_Peek.loc, nil, env);
     token_4(env, --[[ T_PLING ]]76);
     t = prefix(env);
     return --[[ tuple ]]{
@@ -6354,7 +6354,7 @@ end end
 
 function param_list_or_type(env) do
   token_4(env, --[[ T_LPAREN ]]3);
-  token_5 = Curry._2(Parser_env_Peek.token, undefined, env);
+  token_5 = Curry._2(Parser_env_Peek.token, nil, env);
   ret;
   exit = 0;
   if (typeof token_5 == "number") then do
@@ -6368,7 +6368,7 @@ function param_list_or_type(env) do
               ret = function_param_or_generic_type(env); end else 
            if ___conditional___ == 4--[[ T_RPAREN ]] then do
               ret = --[[ ParamList ]]Block.__(0, {--[[ tuple ]]{
-                    undefined,
+                    nil,
                     --[[ [] ]]0
                   }}); end else 
            if ___conditional___ == 1--[[ T_LCURLY ]]
@@ -6395,7 +6395,7 @@ function param_list_or_type(env) do
   end end 
   if (exit == 1) then do
     match = primitive(token_5);
-    if (match ~= undefined) then do
+    if (match ~= nil) then do
       match_1 = Curry._2(Parser_env_Peek.token, 1, env);
       if (typeof match_1 == "number" and (match_1 == 77 or match_1 == 76)) then do
         match_2 = Curry._1(Parse.identifier_or_reserved_keyword, env);
@@ -6407,7 +6407,7 @@ function param_list_or_type(env) do
         optional = maybe(env, --[[ T_PLING ]]76);
         token_4(env, --[[ T_COLON ]]77);
         typeAnnotation = union(env);
-        if (Curry._2(Parser_env_Peek.token, undefined, env) ~= --[[ T_RPAREN ]]4) then do
+        if (Curry._2(Parser_env_Peek.token, nil, env) ~= --[[ T_RPAREN ]]4) then do
           token_4(env, --[[ T_COMMA ]]8);
         end
          end 
@@ -6438,7 +6438,7 @@ function param_list_or_type(env) do
 end end
 
 function union_with(env, left) do
-  if (Curry._2(Parser_env_Peek.token, undefined, env) == --[[ T_BIT_OR ]]80) then do
+  if (Curry._2(Parser_env_Peek.token, nil, env) == --[[ T_BIT_OR ]]80) then do
     env_1 = env;
     _acc = --[[ :: ]]{
       left,
@@ -6446,7 +6446,7 @@ function union_with(env, left) do
     };
     while(true) do
       acc = _acc;
-      match = Curry._2(Parser_env_Peek.token, undefined, env_1);
+      match = Curry._2(Parser_env_Peek.token, nil, env_1);
       if (typeof match == "number" and match == 80) then do
         token_4(env_1, --[[ T_BIT_OR ]]80);
         _acc = --[[ :: ]]{
@@ -6505,7 +6505,7 @@ function method_property(env, start_loc, __static, key) do
 end end
 
 function call_property(env, start_loc, __static) do
-  value = methodish(env, Curry._2(Parser_env_Peek.loc, undefined, env));
+  value = methodish(env, Curry._2(Parser_env_Peek.loc, nil, env));
   return --[[ tuple ]]{
           btwn(start_loc, value[0]),
           {
@@ -6555,7 +6555,7 @@ function indexer_property(env, start_loc, __static) do
 end end
 
 function semicolon_1(env) do
-  match = Curry._2(Parser_env_Peek.token, undefined, env);
+  match = Curry._2(Parser_env_Peek.token, nil, env);
   if (typeof match == "number") then do
     if (match >= 7) then do
       if (match >= 9) then do
@@ -6579,9 +6579,9 @@ function properties(allow_static, env, _param) do
     callProperties = param[2];
     indexers = param[1];
     acc = param[0];
-    start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
+    start_loc = Curry._2(Parser_env_Peek.loc, nil, env);
     __static = allow_static and maybe(env, --[[ T_STATIC ]]40);
-    match = Curry._2(Parser_env_Peek.token, undefined, env);
+    match = Curry._2(Parser_env_Peek.token, nil, env);
     exit = 0;
     if (typeof match == "number") then do
       if (match ~= 89) then do
@@ -6626,7 +6626,7 @@ function properties(allow_static, env, _param) do
     local ___conditional___=(exit);
     do
        if ___conditional___ == 1 then do
-          match_1 = Curry._2(Parser_env_Peek.token, undefined, env);
+          match_1 = Curry._2(Parser_env_Peek.token, nil, env);
           match_2;
           exit_1 = 0;
           if (__static and typeof match_1 == "number" and match_1 == 77) then do
@@ -6638,7 +6638,7 @@ function properties(allow_static, env, _param) do
                   start_loc,
                   {
                     name = "static",
-                    typeAnnotation = undefined,
+                    typeAnnotation = nil,
                     optional = false
                   }
                 }});
@@ -6665,7 +6665,7 @@ function properties(allow_static, env, _param) do
            end 
           key_1 = match_2[1][1];
           __static_1 = match_2[0];
-          match_3 = Curry._2(Parser_env_Peek.token, undefined, env);
+          match_3 = Curry._2(Parser_env_Peek.token, nil, env);
           property_1 = typeof match_3 == "number" and not (match_3 ~= 3 and match_3 ~= 89) and method_property(env, start_loc, __static_1, key_1) or property(env, start_loc, __static_1, key_1);
           semicolon_1(env);
           _param = --[[ tuple ]]{
@@ -6701,15 +6701,15 @@ function properties(allow_static, env, _param) do
 end end
 
 function _object(allow_staticOpt, env) do
-  allow_static = allow_staticOpt ~= undefined and allow_staticOpt or false;
-  start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
+  allow_static = allow_staticOpt ~= nil and allow_staticOpt or false;
+  start_loc = Curry._2(Parser_env_Peek.loc, nil, env);
   token_4(env, --[[ T_LCURLY ]]1);
   match = properties(allow_static, env, --[[ tuple ]]{
         --[[ [] ]]0,
         --[[ [] ]]0,
         --[[ [] ]]0
       });
-  end_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
+  end_loc = Curry._2(Parser_env_Peek.loc, nil, env);
   token_4(env, --[[ T_RCURLY ]]2);
   return --[[ tuple ]]{
           btwn(start_loc, end_loc),
@@ -6724,7 +6724,7 @@ end end
 function types(env, _acc) do
   while(true) do
     acc = _acc;
-    match = Curry._2(Parser_env_Peek.token, undefined, env);
+    match = Curry._2(Parser_env_Peek.token, nil, env);
     if (typeof match == "number" and not (match ~= 6 and match ~= 105)) then do
       return List.rev(acc);
     end
@@ -6734,7 +6734,7 @@ function types(env, _acc) do
       acc_000,
       acc
     };
-    if (Curry._2(Parser_env_Peek.token, undefined, env) ~= --[[ T_RBRACKET ]]6) then do
+    if (Curry._2(Parser_env_Peek.token, nil, env) ~= --[[ T_RBRACKET ]]6) then do
       token_4(env, --[[ T_COMMA ]]8);
     end
      end 
@@ -6754,7 +6754,7 @@ function function_param_list_without_parens(env) do
       _acc = param_1;
       while(true) do
         acc = _acc;
-        t = Curry._2(Parser_env_Peek.token, undefined, env_1);
+        t = Curry._2(Parser_env_Peek.token, nil, env_1);
         exit = 0;
         if (typeof t == "number") then do
           switcher = t - 4 | 0;
@@ -6774,14 +6774,14 @@ function function_param_list_without_parens(env) do
                 acc_000,
                 acc
               };
-              if (Curry._2(Parser_env_Peek.token, undefined, env_1) ~= --[[ T_RPAREN ]]4) then do
+              if (Curry._2(Parser_env_Peek.token, nil, env_1) ~= --[[ T_RPAREN ]]4) then do
                 token_4(env_1, --[[ T_COMMA ]]8);
               end
                end 
               _acc = acc_1;
               ::continue:: ; end end 
            if ___conditional___ == 2 then do
-              rest = t == --[[ T_ELLIPSIS ]]11 and (token_4(env_1, --[[ T_ELLIPSIS ]]11), param(env_1)) or undefined;
+              rest = t == --[[ T_ELLIPSIS ]]11 and (token_4(env_1, --[[ T_ELLIPSIS ]]11), param(env_1)) or nil;
               return --[[ tuple ]]{
                       rest,
                       List.rev(acc)
@@ -6795,7 +6795,7 @@ end end
 function params(env, _acc) do
   while(true) do
     acc = _acc;
-    match = Curry._2(Parser_env_Peek.token, undefined, env);
+    match = Curry._2(Parser_env_Peek.token, nil, env);
     if (typeof match == "number" and not (match ~= 90 and match ~= 105)) then do
       return List.rev(acc);
     end
@@ -6805,7 +6805,7 @@ function params(env, _acc) do
       acc_000,
       acc
     };
-    if (Curry._2(Parser_env_Peek.token, undefined, env) ~= --[[ T_GREATER_THAN ]]90) then do
+    if (Curry._2(Parser_env_Peek.token, nil, env) ~= --[[ T_GREATER_THAN ]]90) then do
       token_4(env, --[[ T_COMMA ]]8);
     end
      end 
@@ -6815,11 +6815,11 @@ function params(env, _acc) do
 end end
 
 function type_parameter_instantiation(env) do
-  start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
-  if (Curry._2(Parser_env_Peek.token, undefined, env) == --[[ T_LESS_THAN ]]89) then do
+  start_loc = Curry._2(Parser_env_Peek.loc, nil, env);
+  if (Curry._2(Parser_env_Peek.token, nil, env) == --[[ T_LESS_THAN ]]89) then do
     token_4(env, --[[ T_LESS_THAN ]]89);
     params_1 = params(env, --[[ [] ]]0);
-    loc = btwn(start_loc, Curry._2(Parser_env_Peek.loc, undefined, env));
+    loc = btwn(start_loc, Curry._2(Parser_env_Peek.loc, nil, env));
     token_4(env, --[[ T_GREATER_THAN ]]90);
     return --[[ tuple ]]{
             loc,
@@ -6832,7 +6832,7 @@ function type_parameter_instantiation(env) do
 end end
 
 function intersection_with(env, left) do
-  if (Curry._2(Parser_env_Peek.token, undefined, env) == --[[ T_BIT_AND ]]82) then do
+  if (Curry._2(Parser_env_Peek.token, nil, env) == --[[ T_BIT_AND ]]82) then do
     env_1 = env;
     _acc = --[[ :: ]]{
       left,
@@ -6840,7 +6840,7 @@ function intersection_with(env, left) do
     };
     while(true) do
       acc = _acc;
-      match = Curry._2(Parser_env_Peek.token, undefined, env_1);
+      match = Curry._2(Parser_env_Peek.token, nil, env_1);
       if (typeof match == "number" and match == 82) then do
         token_4(env_1, --[[ T_BIT_AND ]]82);
         _acc = --[[ :: ]]{
@@ -6865,16 +6865,16 @@ function params_1(env, allow_default, _require_default, _acc) do
   while(true) do
     acc = _acc;
     require_default = _require_default;
-    match = Curry._2(Parser_env_Peek.token, undefined, env);
+    match = Curry._2(Parser_env_Peek.token, nil, env);
     variance = typeof match == "number" and (
         match ~= 94 and (
-            match ~= 95 and undefined or (token_3(env), --[[ Minus ]]1)
+            match ~= 95 and nil or (token_3(env), --[[ Minus ]]1)
           ) or (token_3(env), --[[ Plus ]]0)
-      ) or undefined;
+      ) or nil;
     match_1 = Curry._2(Parse.identifier_with_type, env, --[[ StrictParamName ]]28);
     id = match_1[1];
     loc = match_1[0];
-    match_2 = Curry._2(Parser_env_Peek.token, undefined, env);
+    match_2 = Curry._2(Parser_env_Peek.token, nil, env);
     match_3;
     if (allow_default) then do
       exit = 0;
@@ -6896,14 +6896,14 @@ function params_1(env, allow_default, _require_default, _acc) do
         end
          end 
         match_3 = --[[ tuple ]]{
-          undefined,
+          nil,
           require_default
         };
       end
        end 
     end else do
       match_3 = --[[ tuple ]]{
-        undefined,
+        nil,
         false
       };
     end end 
@@ -6921,13 +6921,13 @@ function params_1(env, allow_default, _require_default, _acc) do
       param,
       acc
     };
-    match_4 = Curry._2(Parser_env_Peek.token, undefined, env);
+    match_4 = Curry._2(Parser_env_Peek.token, nil, env);
     if (typeof match_4 == "number" and not (match_4 ~= 90 and match_4 ~= 105)) then do
       return List.rev(acc_1);
     end
      end 
     token_4(env, --[[ T_COMMA ]]8);
-    if (Curry._2(Parser_env_Peek.token, undefined, env) == --[[ T_GREATER_THAN ]]90) then do
+    if (Curry._2(Parser_env_Peek.token, nil, env) == --[[ T_GREATER_THAN ]]90) then do
       return List.rev(acc_1);
     end else do
       _acc = acc_1;
@@ -6938,15 +6938,15 @@ function params_1(env, allow_default, _require_default, _acc) do
 end end
 
 function type_parameter_declaration(allow_default, env) do
-  start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
-  if (Curry._2(Parser_env_Peek.token, undefined, env) == --[[ T_LESS_THAN ]]89) then do
+  start_loc = Curry._2(Parser_env_Peek.loc, nil, env);
+  if (Curry._2(Parser_env_Peek.token, nil, env) == --[[ T_LESS_THAN ]]89) then do
     if (not env.parse_options.types) then do
       error_1(env, --[[ UnexpectedTypeAnnotation ]]6);
     end
      end 
     token_4(env, --[[ T_LESS_THAN ]]89);
     params_2 = params_1(env, allow_default, false, --[[ [] ]]0);
-    loc = btwn(start_loc, Curry._2(Parser_env_Peek.loc, undefined, env));
+    loc = btwn(start_loc, Curry._2(Parser_env_Peek.loc, nil, env));
     token_4(env, --[[ T_GREATER_THAN ]]90);
     return --[[ tuple ]]{
             loc,
@@ -6963,9 +6963,9 @@ function identifier(env, _param) do
     param = _param;
     qualification = param[1];
     q_loc = param[0];
-    if (Curry._2(Parser_env_Peek.token, undefined, env) == --[[ T_PERIOD ]]9) then do
+    if (Curry._2(Parser_env_Peek.token, nil, env) == --[[ T_PERIOD ]]9) then do
       token_4(env, --[[ T_PERIOD ]]9);
-      id = Curry._2(Parse.identifier, undefined, env);
+      id = Curry._2(Parse.identifier, nil, env);
       loc = btwn(q_loc, id[0]);
       qualification_1 = --[[ Qualified ]]Block.__(1, {--[[ tuple ]]{
             loc,
@@ -6998,7 +6998,7 @@ function raw_generic_with_identifier(env, id) do
   match = identifier(env, id_1);
   id_loc = match[0];
   typeParameters = Curry._1(type_parameter_instantiation, env);
-  loc = typeParameters ~= undefined and btwn(id_loc, typeParameters[0]) or id_loc;
+  loc = typeParameters ~= nil and btwn(id_loc, typeParameters[0]) or id_loc;
   return --[[ tuple ]]{
           loc,
           {
@@ -7015,12 +7015,12 @@ function annotation(env) do
     error_1(env, --[[ UnexpectedTypeAnnotation ]]6);
   end
    end 
-  start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
+  start_loc = Curry._2(Parser_env_Peek.loc, nil, env);
   token_4(env, --[[ T_COLON ]]77);
   typeAnnotation = union(env);
   match = env.last_loc.contents;
   end_loc;
-  if (match ~= undefined) then do
+  if (match ~= nil) then do
     end_loc = match;
   end else do
     error({
@@ -7039,7 +7039,7 @@ function annotation(env) do
 end end
 
 function annotation_opt(env) do
-  match = Curry._2(Parser_env_Peek.token, undefined, env);
+  match = Curry._2(Parser_env_Peek.token, nil, env);
   if (typeof match == "number" and match == 77) then do
     return annotation(env);
   end
@@ -7067,7 +7067,7 @@ function type_parameter_declaration_1(param) do
 end end
 
 function _object_1(allow_staticOpt, env) do
-  allow_static = allow_staticOpt ~= undefined and allow_staticOpt or false;
+  allow_static = allow_staticOpt ~= nil and allow_staticOpt or false;
   return wrap(Curry._1(_object, allow_static), env);
 end end
 
@@ -7142,7 +7142,7 @@ function object_property(check_env, param) do
 end end
 
 function array_element(check_env, param) do
-  if (param ~= undefined) then do
+  if (param ~= nil) then do
     match = param;
     if (match.tag) then do
       return pattern(check_env, match[0][1].argument);
@@ -7181,7 +7181,7 @@ end end
 function strict_post_check(env, strict, simple, id, params) do
   if (strict or not simple) then do
     env_1 = strict and with_strict(not env.in_strict_mode, env) or env;
-    if (id ~= undefined) then do
+    if (id ~= nil) then do
       match = id;
       name = match[1].name;
       loc = match[0];
@@ -7213,7 +7213,7 @@ end end
 
 function param_1(env) do
   id = Curry._2(Parse.pattern, env, --[[ StrictParamName ]]28);
-  if (Curry._2(Parser_env_Peek.token, undefined, env) == --[[ T_ASSIGN ]]75) then do
+  if (Curry._2(Parser_env_Peek.token, nil, env) == --[[ T_ASSIGN ]]75) then do
     token_4(env, --[[ T_ASSIGN ]]75);
     __default = Curry._1(Parse.assignment, env);
     return --[[ tuple ]]{
@@ -7223,7 +7223,7 @@ function param_1(env) do
   end else do
     return --[[ tuple ]]{
             id,
-            undefined
+            nil
           };
   end end 
 end end
@@ -7234,7 +7234,7 @@ function param_list(env, _param) do
     has_default = param_2[2];
     defaults = param_2[1];
     params = param_2[0];
-    t = Curry._2(Parser_env_Peek.token, undefined, env);
+    t = Curry._2(Parser_env_Peek.token, nil, env);
     exit = 0;
     if (typeof t == "number") then do
       switcher = t - 4 | 0;
@@ -7251,8 +7251,8 @@ function param_list(env, _param) do
        if ___conditional___ == 1 then do
           match = param_1(env);
           __default = match[1];
-          has_default_1 = has_default or __default ~= undefined;
-          if (Curry._2(Parser_env_Peek.token, undefined, env) ~= --[[ T_RPAREN ]]4) then do
+          has_default_1 = has_default or __default ~= nil;
+          if (Curry._2(Parser_env_Peek.token, nil, env) ~= --[[ T_RPAREN ]]4) then do
             token_4(env, --[[ T_COMMA ]]8);
           end
            end 
@@ -7269,8 +7269,8 @@ function param_list(env, _param) do
           };
           ::continue:: ; end end 
        if ___conditional___ == 2 then do
-          rest = t == --[[ T_ELLIPSIS ]]11 and (token_4(env, --[[ T_ELLIPSIS ]]11), Curry._2(Parse.identifier_with_type, env, --[[ StrictParamName ]]28)) or undefined;
-          if (Curry._2(Parser_env_Peek.token, undefined, env) ~= --[[ T_RPAREN ]]4) then do
+          rest = t == --[[ T_ELLIPSIS ]]11 and (token_4(env, --[[ T_ELLIPSIS ]]11), Curry._2(Parse.identifier_with_type, env, --[[ StrictParamName ]]28)) or nil;
+          if (Curry._2(Parser_env_Peek.token, nil, env) ~= --[[ T_RPAREN ]]4) then do
             error_1(env, --[[ ParameterAfterRestParameter ]]47);
           end
            end 
@@ -7332,7 +7332,7 @@ function is_simple_param(param) do
 end end
 
 function is_simple_function_params(params, defaults, rest) do
-  if (defaults == --[[ [] ]]0 and rest == undefined) then do
+  if (defaults == --[[ [] ]]0 and rest == nil) then do
     return List.for_all(is_simple_param, params);
   end else do
     return false;
@@ -7340,12 +7340,12 @@ function is_simple_function_params(params, defaults, rest) do
 end end
 
 function _function(env) do
-  start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
+  start_loc = Curry._2(Parser_env_Peek.loc, nil, env);
   async = maybe(env, --[[ T_ASYNC ]]61);
   token_4(env, --[[ T_FUNCTION ]]13);
   generator_1 = generator(env, async);
   match = env.in_export;
-  match_1 = Curry._2(Parser_env_Peek.token, undefined, env);
+  match_1 = Curry._2(Parser_env_Peek.token, nil, env);
   match_2;
   exit = 0;
   if (match and typeof match_1 == "number") then do
@@ -7354,7 +7354,7 @@ function _function(env) do
         exit = 1;
       end else do
         typeParams = Curry._1(type_parameter_declaration_1, env);
-        id = Curry._2(Parser_env_Peek.token, undefined, env) == --[[ T_LPAREN ]]3 and undefined or Curry._2(Parse.identifier, --[[ StrictFunctionName ]]30, env);
+        id = Curry._2(Parser_env_Peek.token, nil, env) == --[[ T_LPAREN ]]3 and nil or Curry._2(Parse.identifier, --[[ StrictFunctionName ]]30, env);
         match_2 = --[[ tuple ]]{
           typeParams,
           id
@@ -7362,8 +7362,8 @@ function _function(env) do
       end end 
     end else do
       match_2 = --[[ tuple ]]{
-        undefined,
-        undefined
+        nil,
+        nil
       };
     end end 
   end else do
@@ -7417,7 +7417,7 @@ end end
 function variable_declaration(env) do
   id = Curry._2(Parse.pattern, env, --[[ StrictVarName ]]27);
   match;
-  if (Curry._2(Parser_env_Peek.token, undefined, env) == --[[ T_ASSIGN ]]75) then do
+  if (Curry._2(Parser_env_Peek.token, nil, env) == --[[ T_ASSIGN ]]75) then do
     token_4(env, --[[ T_ASSIGN ]]75);
     match = --[[ tuple ]]{
       Curry._1(Parse.assignment, env),
@@ -7425,10 +7425,10 @@ function variable_declaration(env) do
     };
   end else do
     match = id[1].tag == --[[ Identifier ]]3 and --[[ tuple ]]{
-        undefined,
+        nil,
         --[[ [] ]]0
       } or --[[ tuple ]]{
-        undefined,
+        nil,
         --[[ :: ]]{
           --[[ tuple ]]{
             id[0],
@@ -7439,7 +7439,7 @@ function variable_declaration(env) do
       };
   end end 
   init = match[0];
-  end_loc = init ~= undefined and init[0] or id[0];
+  end_loc = init ~= nil and init[0] or id[0];
   return --[[ tuple ]]{
           --[[ tuple ]]{
             btwn(id[0], end_loc),
@@ -7463,7 +7463,7 @@ function helper(env, _decls, _errs) do
       decls
     };
     errs_1 = Pervasives.$at(match[1], errs);
-    if (Curry._2(Parser_env_Peek.token, undefined, env) == --[[ T_COMMA ]]8) then do
+    if (Curry._2(Parser_env_Peek.token, nil, env) == --[[ T_COMMA ]]8) then do
       token_4(env, --[[ T_COMMA ]]8);
       _errs = errs_1;
       _decls = decls_1;
@@ -7482,7 +7482,7 @@ function helper(env, _decls, _errs) do
 end end
 
 function declarations(token_5, kind, env) do
-  start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
+  start_loc = Curry._2(Parser_env_Peek.loc, nil, env);
   token_4(env, token_5);
   match = helper(env, --[[ [] ]]0, --[[ [] ]]0);
   return --[[ tuple ]]{
@@ -7503,7 +7503,7 @@ function __const(env) do
   match_1 = match[0];
   variable = match_1[1];
   errs = List.fold_left((function(errs, decl) do
-          if (decl[1].init ~= undefined) then do
+          if (decl[1].init ~= nil) then do
             return errs;
           end else do
             return --[[ :: ]]{
@@ -7530,8 +7530,8 @@ function _let(env) do
 end end
 
 function variable(env) do
-  start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
-  match = Curry._2(Parser_env_Peek.token, undefined, env);
+  start_loc = Curry._2(Parser_env_Peek.loc, nil, env);
+  match = Curry._2(Parser_env_Peek.token, nil, env);
   match_1;
   if (typeof match == "number") then do
     local ___conditional___=(match);
@@ -7606,7 +7606,7 @@ function is_assignable_lhs(param) do
 end end
 
 function assignment_op(env) do
-  match = Curry._2(Parser_env_Peek.token, undefined, env);
+  match = Curry._2(Parser_env_Peek.token, nil, env);
   op;
   if (typeof match == "number") then do
     local ___conditional___=(match);
@@ -7638,13 +7638,13 @@ function assignment_op(env) do
        if ___conditional___ == 75--[[ T_ASSIGN ]] then do
           op = --[[ Assign ]]0; end else 
        end end end end end end end end end end end end end end end end end end end end end end end end end end
-      op = undefined;
+      op = nil;
         
     end
   end else do
-    op = undefined;
+    op = nil;
   end end 
-  if (op ~= undefined) then do
+  if (op ~= nil) then do
     token_3(env);
   end
    end 
@@ -7652,9 +7652,9 @@ function assignment_op(env) do
 end end
 
 function conditional(env) do
-  start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
+  start_loc = Curry._2(Parser_env_Peek.loc, nil, env);
   expr = Curry._1(logical, env);
-  if (Curry._2(Parser_env_Peek.token, undefined, env) == --[[ T_PLING ]]76) then do
+  if (Curry._2(Parser_env_Peek.token, nil, env) == --[[ T_PLING ]]76) then do
     token_4(env, --[[ T_PLING ]]76);
     env$prime = with_no_in(false, env);
     consequent = Curry._1(assignment, env$prime);
@@ -7675,7 +7675,7 @@ function conditional(env) do
 end end
 
 function peek_unary_op(env) do
-  match = Curry._2(Parser_env_Peek.token, undefined, env);
+  match = Curry._2(Parser_env_Peek.token, nil, env);
   if (typeof match == "number") then do
     if (match >= 46) then do
       if (match >= 94) then do
@@ -7724,9 +7724,9 @@ function peek_unary_op(env) do
 end end
 
 function unary(env) do
-  begin_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
+  begin_loc = Curry._2(Parser_env_Peek.loc, nil, env);
   op = peek_unary_op(env);
-  if (op ~= undefined) then do
+  if (op ~= nil) then do
     operator = op;
     token_3(env);
     argument = unary(env);
@@ -7751,13 +7751,13 @@ function unary(env) do
                 }})
           };
   end else do
-    match = Curry._2(Parser_env_Peek.token, undefined, env);
+    match = Curry._2(Parser_env_Peek.token, nil, env);
     op_1 = typeof match == "number" and (
         match ~= 102 and (
-            match ~= 103 and undefined or --[[ Decrement ]]1
+            match ~= 103 and nil or --[[ Decrement ]]1
           ) or --[[ Increment ]]0
-      ) or undefined;
-    if (op_1 ~= undefined) then do
+      ) or nil;
+    if (op_1 ~= nil) then do
       token_3(env);
       argument_1 = unary(env);
       if (not is_lhs(argument_1)) then do
@@ -7786,13 +7786,13 @@ function unary(env) do
       if (Curry._1(Parser_env_Peek.is_line_terminator, env_1)) then do
         return argument_2;
       end else do
-        match_2 = Curry._2(Parser_env_Peek.token, undefined, env_1);
+        match_2 = Curry._2(Parser_env_Peek.token, nil, env_1);
         op_2 = typeof match_2 == "number" and (
             match_2 ~= 102 and (
-                match_2 ~= 103 and undefined or --[[ Decrement ]]1
+                match_2 ~= 103 and nil or --[[ Decrement ]]1
               ) or --[[ Increment ]]0
-          ) or undefined;
-        if (op_2 ~= undefined) then do
+          ) or nil;
+        if (op_2 ~= nil) then do
           if (not is_lhs(argument_2)) then do
             error_at(env_1, --[[ tuple ]]{
                   argument_2[0],
@@ -7805,7 +7805,7 @@ function unary(env) do
             strict_error(env_1, --[[ StrictLHSPostfix ]]37);
           end
            end 
-          end_loc = Curry._2(Parser_env_Peek.loc, undefined, env_1);
+          end_loc = Curry._2(Parser_env_Peek.loc, nil, env_1);
           token_3(env_1);
           return --[[ tuple ]]{
                   btwn(argument_2[0], end_loc),
@@ -7824,7 +7824,7 @@ function unary(env) do
 end end
 
 function left_hand_side(env) do
-  match = Curry._2(Parser_env_Peek.token, undefined, env);
+  match = Curry._2(Parser_env_Peek.token, nil, env);
   expr;
   exit = 0;
   if (typeof match == "number" and match == 42) then do
@@ -7835,11 +7835,11 @@ function left_hand_side(env) do
     exit = 1;
   end end 
   if (exit == 1) then do
-    expr = Curry._2(Parser_env_Peek.is_function, undefined, env) and _function_1(env) or primary_1(env);
+    expr = Curry._2(Parser_env_Peek.is_function, nil, env) and _function_1(env) or primary_1(env);
   end
    end 
   expr_1 = member(env, expr);
-  match_1 = Curry._2(Parser_env_Peek.token, undefined, env);
+  match_1 = Curry._2(Parser_env_Peek.token, nil, env);
   if (typeof match_1 == "number") then do
     if (match_1 == --[[ T_LPAREN ]]3) then do
       return call(env, expr_1);
@@ -7856,7 +7856,7 @@ end end
 function call(env, _left) do
   while(true) do
     left = _left;
-    match = Curry._2(Parser_env_Peek.token, undefined, env);
+    match = Curry._2(Parser_env_Peek.token, nil, env);
     if (typeof match == "number") then do
       local ___conditional___=(match);
       do
@@ -7877,7 +7877,7 @@ function call(env, _left) do
          if ___conditional___ == 5--[[ T_LBRACKET ]] then do
             token_4(env, --[[ T_LBRACKET ]]5);
             expr = Curry._1(Parse.expression, env);
-            last_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
+            last_loc = Curry._2(Parser_env_Peek.loc, nil, env);
             loc = btwn(left[0], last_loc);
             token_4(env, --[[ T_RBRACKET ]]6);
             _left = --[[ tuple ]]{
@@ -7916,14 +7916,14 @@ end end
 function _new(env, _finish_fn) do
   while(true) do
     finish_fn = _finish_fn;
-    match = Curry._2(Parser_env_Peek.token, undefined, env);
+    match = Curry._2(Parser_env_Peek.token, nil, env);
     if (typeof match == "number" and match == 42) then do
-      start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
+      start_loc = Curry._2(Parser_env_Peek.loc, nil, env);
       token_4(env, --[[ T_NEW ]]42);
       finish_fn$prime = (function(finish_fn,start_loc)do
       return function finish_fn$prime(callee, args) do
         match;
-        if (args ~= undefined) then do
+        if (args ~= nil) then do
           match_1 = args;
           match = --[[ tuple ]]{
             match_1[0],
@@ -7944,27 +7944,27 @@ function _new(env, _finish_fn) do
           callee$prime_000,
           callee$prime_001
         };
-        return Curry._2(finish_fn, callee$prime, undefined);
+        return Curry._2(finish_fn, callee$prime, nil);
       end end
       end end)(finish_fn,start_loc);
       _finish_fn = finish_fn$prime;
       ::continue:: ;
     end
      end 
-    Curry._2(Parser_env_Peek.token, undefined, env);
-    expr = Curry._2(Parser_env_Peek.is_function, undefined, env) and _function_1(env) or primary_1(env);
+    Curry._2(Parser_env_Peek.token, nil, env);
+    expr = Curry._2(Parser_env_Peek.is_function, nil, env) and _function_1(env) or primary_1(env);
     callee = member(with_no_call(true, env), expr);
-    match_1 = Curry._2(Parser_env_Peek.token, undefined, env);
+    match_1 = Curry._2(Parser_env_Peek.token, nil, env);
     callee_1;
     callee_1 = typeof match_1 == "number" or match_1.tag ~= --[[ T_TEMPLATE_PART ]]2 and callee or tagged_template(env, callee, match_1[0]);
-    match_2 = Curry._2(Parser_env_Peek.token, undefined, env);
-    args = typeof match_2 == "number" and match_2 == 3 and Curry._1(__arguments, env) or undefined;
+    match_2 = Curry._2(Parser_env_Peek.token, nil, env);
+    args = typeof match_2 == "number" and match_2 == 3 and Curry._1(__arguments, env) or nil;
     return Curry._2(finish_fn, callee_1, args);
   end;
 end end
 
 function member(env, left) do
-  match = Curry._2(Parser_env_Peek.token, undefined, env);
+  match = Curry._2(Parser_env_Peek.token, nil, env);
   if (typeof match == "number") then do
     if (match ~= 5) then do
       if (match ~= 9) then do
@@ -7985,7 +7985,7 @@ function member(env, left) do
     end else do
       token_4(env, --[[ T_LBRACKET ]]5);
       expr = Curry._1(Parse.expression, with_no_call(false, env));
-      last_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
+      last_loc = Curry._2(Parser_env_Peek.loc, nil, env);
       token_4(env, --[[ T_RBRACKET ]]6);
       return call(env, --[[ tuple ]]{
                   btwn(left[0], last_loc),
@@ -8002,19 +8002,19 @@ function member(env, left) do
 end end
 
 function _function_1(env) do
-  start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
+  start_loc = Curry._2(Parser_env_Peek.loc, nil, env);
   async = maybe(env, --[[ T_ASYNC ]]61);
   token_4(env, --[[ T_FUNCTION ]]13);
   generator_1 = generator(env, async);
   match;
-  if (Curry._2(Parser_env_Peek.token, undefined, env) == --[[ T_LPAREN ]]3) then do
+  if (Curry._2(Parser_env_Peek.token, nil, env) == --[[ T_LPAREN ]]3) then do
     match = --[[ tuple ]]{
-      undefined,
-      undefined
+      nil,
+      nil
     };
   end else do
-    match_1 = Curry._2(Parser_env_Peek.token, undefined, env);
-    id = typeof match_1 == "number" and match_1 == 89 and undefined or Curry._2(Parse.identifier, --[[ StrictFunctionName ]]30, env);
+    match_1 = Curry._2(Parser_env_Peek.token, nil, env);
+    id = typeof match_1 == "number" and match_1 == 89 and nil or Curry._2(Parse.identifier, --[[ StrictFunctionName ]]30, env);
     match = --[[ tuple ]]{
       id,
       Curry._1(type_parameter_declaration_1, env)
@@ -8052,7 +8052,7 @@ function _function_1(env) do
 end end
 
 function number(env, number_type) do
-  value = Curry._2(Parser_env_Peek.value, undefined, env);
+  value = Curry._2(Parser_env_Peek.value, nil, env);
   value_1;
   if (number_type ~= 0) then do
     local ___conditional___=(number_type - 1 | 0);
@@ -8084,8 +8084,8 @@ function number(env, number_type) do
 end end
 
 function primary_1(env) do
-  loc = Curry._2(Parser_env_Peek.loc, undefined, env);
-  token_5 = Curry._2(Parser_env_Peek.token, undefined, env);
+  loc = Curry._2(Parser_env_Peek.loc, nil, env);
+  token_5 = Curry._2(Parser_env_Peek.token, nil, env);
   exit = 0;
   if (typeof token_5 == "number") then do
     local ___conditional___=(token_5);
@@ -8101,7 +8101,7 @@ function primary_1(env) do
           env_2 = env;
           token_4(env_2, --[[ T_LPAREN ]]3);
           expression = Curry._1(assignment, env_2);
-          match_1 = Curry._2(Parser_env_Peek.token, undefined, env_2);
+          match_1 = Curry._2(Parser_env_Peek.token, nil, env_2);
           ret;
           if (typeof match_1 == "number") then do
             if (match_1 ~= 8) then do
@@ -8141,7 +8141,7 @@ function primary_1(env) do
                   --[[ This ]]0
                 }; end end 
        if ___conditional___ == 27--[[ T_NULL ]] then do
-          raw = Curry._2(Parser_env_Peek.value, undefined, env);
+          raw = Curry._2(Parser_env_Peek.value, nil, env);
           token_4(env, --[[ T_NULL ]]27);
           return --[[ tuple ]]{
                   loc,
@@ -8156,11 +8156,11 @@ function primary_1(env) do
        if ___conditional___ == 38--[[ T_CLASS ]] then do
           return Curry._1(Parse.class_expression, env); end end end end 
        if ___conditional___ == 49--[[ T_SUPER ]] then do
-          loc_1 = Curry._2(Parser_env_Peek.loc, undefined, env);
+          loc_1 = Curry._2(Parser_env_Peek.loc, nil, env);
           token_4(env, --[[ T_SUPER ]]49);
           id_001 = {
             name = "super",
-            typeAnnotation = undefined,
+            typeAnnotation = nil,
             optional = false
           };
           id = --[[ tuple ]]{
@@ -8181,8 +8181,8 @@ function primary_1(env) do
        or ___conditional___ == 96--[[ T_DIV ]] then do
           env_3 = env;
           push_lex_mode(env_3, --[[ REGEXP ]]5);
-          loc_2 = Curry._2(Parser_env_Peek.loc, undefined, env_3);
-          match_4 = Curry._2(Parser_env_Peek.token, undefined, env_3);
+          loc_2 = Curry._2(Parser_env_Peek.loc, nil, env_3);
+          match_4 = Curry._2(Parser_env_Peek.token, nil, env_3);
           match_5;
           if (typeof match_4 == "number") then do
             error({
@@ -8195,7 +8195,7 @@ function primary_1(env) do
             })
           end else if (match_4.tag == --[[ T_REGEXP ]]3) then do
             match_6 = match_4[0];
-            raw_1 = Curry._2(Parser_env_Peek.value, undefined, env_3);
+            raw_1 = Curry._2(Parser_env_Peek.value, nil, env_3);
             token_3(env_3);
             match_5 = --[[ tuple ]]{
               raw_1,
@@ -8263,7 +8263,7 @@ function primary_1(env) do
     local ___conditional___=(token_5.tag | 0);
     do
        if ___conditional___ == 0--[[ T_NUMBER ]] then do
-          raw_2 = Curry._2(Parser_env_Peek.value, undefined, env);
+          raw_2 = Curry._2(Parser_env_Peek.value, nil, env);
           value_1 = --[[ Number ]]Block.__(2, {number(env, token_5[0])});
           return --[[ tuple ]]{
                   loc,
@@ -8309,8 +8309,8 @@ function primary_1(env) do
   local ___conditional___=(exit);
   do
      if ___conditional___ == 1 then do
-        if (Curry._2(Parser_env_Peek.is_identifier, undefined, env)) then do
-          id_1 = Curry._2(Parse.identifier, undefined, env);
+        if (Curry._2(Parser_env_Peek.is_identifier, nil, env)) then do
+          id_1 = Curry._2(Parse.identifier, nil, env);
           return --[[ tuple ]]{
                   id_1[0],
                   --[[ Identifier ]]Block.__(18, {id_1})
@@ -8330,7 +8330,7 @@ function primary_1(env) do
                 };
         end end  end end 
      if ___conditional___ == 2 then do
-        raw_4 = Curry._2(Parser_env_Peek.value, undefined, env);
+        raw_4 = Curry._2(Parser_env_Peek.value, nil, env);
         token_4(env, token_5);
         value_4 = --[[ Boolean ]]Block.__(1, {token_5 == --[[ T_TRUE ]]29});
         return --[[ tuple ]]{
@@ -8358,7 +8358,7 @@ end end
 function sequence(env, _acc) do
   while(true) do
     acc = _acc;
-    match = Curry._2(Parser_env_Peek.token, undefined, env);
+    match = Curry._2(Parser_env_Peek.token, nil, env);
     if (typeof match == "number" and match == 8) then do
       token_4(env, --[[ T_COMMA ]]8);
       expr = Curry._1(assignment, env);
@@ -8382,9 +8382,9 @@ function sequence(env, _acc) do
 end end
 
 function identifier_or_reserved_keyword(env) do
-  lex_token = Curry._2(Parser_env_Peek.token, undefined, env);
-  lex_value = Curry._2(Parser_env_Peek.value, undefined, env);
-  lex_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
+  lex_token = Curry._2(Parser_env_Peek.token, nil, env);
+  lex_value = Curry._2(Parser_env_Peek.value, nil, env);
+  lex_loc = Curry._2(Parser_env_Peek.loc, nil, env);
   exit = 0;
   if (typeof lex_token == "number") then do
     if (lex_token >= 58) then do
@@ -8392,16 +8392,16 @@ function identifier_or_reserved_keyword(env) do
         exit = 1;
       end else do
         return --[[ tuple ]]{
-                Curry._2(Parse.identifier, undefined, env),
-                undefined
+                Curry._2(Parse.identifier, nil, env),
+                nil
               };
       end end 
     end else if (lex_token ~= 0) then do
       exit = 1;
     end else do
       return --[[ tuple ]]{
-              Curry._2(Parse.identifier, undefined, env),
-              undefined
+              Curry._2(Parse.identifier, nil, env),
+              nil
             };
     end end  end 
   end else do
@@ -8417,17 +8417,17 @@ function identifier_or_reserved_keyword(env) do
           exit_1 = 2;
         end else do
           error_unexpected(env);
-          err = undefined;
+          err = nil;
         end end 
       end else if (switcher ~= 4) then do
         error_unexpected(env);
-        err = undefined;
+        err = nil;
       end else do
         exit_1 = 2;
       end end  end 
     end else do
       error_unexpected(env);
-      err = undefined;
+      err = nil;
     end end 
     if (exit_1 == 2) then do
       err = --[[ tuple ]]{
@@ -8445,7 +8445,7 @@ function identifier_or_reserved_keyword(env) do
               lex_loc,
               {
                 name = lex_value,
-                typeAnnotation = undefined,
+                typeAnnotation = nil,
                 optional = false
               }
             },
@@ -8458,7 +8458,7 @@ end end
 function assignment_but_not_arrow_function(env) do
   expr = conditional(env);
   match = assignment_op(env);
-  if (match ~= undefined) then do
+  if (match ~= nil) then do
     if (not is_assignable_lhs(expr)) then do
       error_at(env, --[[ tuple ]]{
             expr[0],
@@ -8497,7 +8497,7 @@ end end
 function try_assignment_but_not_arrow_function(env) do
   env_1 = with_error_callback(error_callback, env);
   ret = assignment_but_not_arrow_function(env_1);
-  match = Curry._2(Parser_env_Peek.token, undefined, env_1);
+  match = Curry._2(Parser_env_Peek.token, nil, env_1);
   if (typeof match == "number") then do
     if (match ~= 10) then do
       if (match == 77) then do
@@ -8509,8 +8509,8 @@ function try_assignment_but_not_arrow_function(env) do
     end end 
   end
    end 
-  if (Curry._2(Parser_env_Peek.is_identifier, undefined, env_1)) then do
-    if (Curry._2(Parser_env_Peek.value, undefined, env_1) == "checks") then do
+  if (Curry._2(Parser_env_Peek.is_identifier, nil, env_1)) then do
+    if (Curry._2(Parser_env_Peek.value, nil, env_1) == "checks") then do
       error(Parser_env_Try.Rollback)
     end
      end 
@@ -8530,8 +8530,8 @@ function try_assignment_but_not_arrow_function(env) do
 end end
 
 function assignment(env) do
-  match = Curry._2(Parser_env_Peek.token, undefined, env);
-  match_1 = Curry._2(Parser_env_Peek.is_identifier, undefined, env);
+  match = Curry._2(Parser_env_Peek.token, nil, env);
+  match_1 = Curry._2(Parser_env_Peek.is_identifier, nil, env);
   exit = 0;
   if (typeof match == "number") then do
     switcher = match - 4 | 0;
@@ -8544,21 +8544,21 @@ function assignment(env) do
       exit = 2;
     end else do
       env_1 = env;
-      start_loc = Curry._2(Parser_env_Peek.loc, undefined, env_1);
+      start_loc = Curry._2(Parser_env_Peek.loc, nil, env_1);
       token_4(env_1, --[[ T_YIELD ]]56);
       if (not env_1.allow_yield) then do
         error_1(env_1, --[[ IllegalYield ]]24);
       end
        end 
       delegate = maybe(env_1, --[[ T_MULT ]]97);
-      has_argument = not (Curry._2(Parser_env_Peek.token, undefined, env_1) == --[[ T_SEMICOLON ]]7 or Curry._1(Parser_env_Peek.is_implicit_semicolon, env_1));
-      argument = delegate or has_argument and Curry._1(assignment, env_1) or undefined;
+      has_argument = not (Curry._2(Parser_env_Peek.token, nil, env_1) == --[[ T_SEMICOLON ]]7 or Curry._1(Parser_env_Peek.is_implicit_semicolon, env_1));
+      argument = delegate or has_argument and Curry._1(assignment, env_1) or nil;
       end_loc;
-      if (argument ~= undefined) then do
+      if (argument ~= nil) then do
         end_loc = argument[0];
       end else do
-        match_2 = Curry._2(Parser_env_Peek.semicolon_loc, undefined, env_1);
-        end_loc_1 = match_2 ~= undefined and match_2 or start_loc;
+        match_2 = Curry._2(Parser_env_Peek.semicolon_loc, nil, env_1);
+        end_loc_1 = match_2 ~= nil and match_2 or start_loc;
         semicolon(env_1);
         end_loc = end_loc_1;
       end end 
@@ -8605,7 +8605,7 @@ function logical_and(env, _left, _lloc) do
   while(true) do
     lloc = _lloc;
     left = _left;
-    match = Curry._2(Parser_env_Peek.token, undefined, env);
+    match = Curry._2(Parser_env_Peek.token, nil, env);
     if (typeof match == "number" and match == 79) then do
       token_4(env, --[[ T_AND ]]79);
       match_1 = with_loc(binary, env);
@@ -8626,7 +8626,7 @@ function logical_or(env, _left, _lloc) do
   while(true) do
     lloc = _lloc;
     left = _left;
-    match = Curry._2(Parser_env_Peek.token, undefined, env);
+    match = Curry._2(Parser_env_Peek.token, nil, env);
     if (typeof match == "number" and match == 78) then do
       token_4(env, --[[ T_OR ]]78);
       match_1 = with_loc(binary, env);
@@ -8651,7 +8651,7 @@ function logical(env) do
 end end
 
 function binary_op(env) do
-  match = Curry._2(Parser_env_Peek.token, undefined, env);
+  match = Curry._2(Parser_env_Peek.token, nil, env);
   ret;
   if (typeof match == "number") then do
     switcher = match - 15 | 0;
@@ -8660,7 +8660,7 @@ function binary_op(env) do
           --[[ Instanceof ]]21,
           --[[ Left_assoc ]]Block.__(0, {6})
         } or (
-          env.no_in and undefined or --[[ tuple ]]{
+          env.no_in and nil or --[[ tuple ]]{
               --[[ In ]]20,
               --[[ Left_assoc ]]Block.__(0, {6})
             }
@@ -8780,17 +8780,17 @@ function binary_op(env) do
          or ___conditional___ == 29--[[ T_TRUE ]]
          or ___conditional___ == 30--[[ T_BREAK ]]
          or ___conditional___ == 31--[[ T_CASE ]] then do
-            ret = undefined; end else 
+            ret = nil; end else 
          end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end end
         
       end
     end else do
-      ret = undefined;
+      ret = nil;
     end end  end 
   end else do
-    ret = undefined;
+    ret = nil;
   end end 
-  if (ret ~= undefined) then do
+  if (ret ~= nil) then do
     token_3(env);
   end
    end 
@@ -8853,13 +8853,13 @@ function binary(env) do
   _stack = --[[ [] ]]0;
   while(true) do
     stack = _stack;
-    start_loc = Curry._2(Parser_env_Peek.loc, undefined, env_1);
-    is_unary = peek_unary_op(env_1) ~= undefined;
+    start_loc = Curry._2(Parser_env_Peek.loc, nil, env_1);
+    is_unary = peek_unary_op(env_1) ~= nil;
     right = unary(with_no_in(false, env_1));
     match = env_1.last_loc.contents;
-    end_loc = match ~= undefined and match or right[0];
+    end_loc = match ~= nil and match or right[0];
     right_loc = btwn(start_loc, end_loc);
-    if (Curry._2(Parser_env_Peek.token, undefined, env_1) == --[[ T_LESS_THAN ]]89) then do
+    if (Curry._2(Parser_env_Peek.token, nil, env_1) == --[[ T_LESS_THAN ]]89) then do
       tmp = right[1];
       if (typeof tmp ~= "number" and tmp.tag == --[[ JSXElement ]]22) then do
         error_1(env_1, --[[ AdjacentJSXElements ]]46);
@@ -8868,7 +8868,7 @@ function binary(env) do
     end
      end 
     match_1 = binary_op(env_1);
-    if (match_1 ~= undefined) then do
+    if (match_1 ~= nil) then do
       match_2 = match_1;
       rop = match_2[0];
       if (is_unary and rop == --[[ Exp ]]14) then do
@@ -8907,9 +8907,9 @@ function binary(env) do
 end end
 
 function argument(env) do
-  match = Curry._2(Parser_env_Peek.token, undefined, env);
+  match = Curry._2(Parser_env_Peek.token, nil, env);
   if (typeof match == "number" and match == 11) then do
-    start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
+    start_loc = Curry._2(Parser_env_Peek.loc, nil, env);
     token_4(env, --[[ T_ELLIPSIS ]]11);
     argument_1 = Curry._1(assignment, env);
     loc = btwn(start_loc, argument_1[0]);
@@ -8927,7 +8927,7 @@ end end
 function arguments$prime(env, _acc) do
   while(true) do
     acc = _acc;
-    match = Curry._2(Parser_env_Peek.token, undefined, env);
+    match = Curry._2(Parser_env_Peek.token, nil, env);
     if (typeof match == "number" and not (match ~= 4 and match ~= 105)) then do
       return List.rev(acc);
     end
@@ -8937,7 +8937,7 @@ function arguments$prime(env, _acc) do
       acc_000,
       acc
     };
-    if (Curry._2(Parser_env_Peek.token, undefined, env) ~= --[[ T_RPAREN ]]4) then do
+    if (Curry._2(Parser_env_Peek.token, nil, env) ~= --[[ T_RPAREN ]]4) then do
       token_4(env, --[[ T_COMMA ]]8);
     end
      end 
@@ -8947,10 +8947,10 @@ function arguments$prime(env, _acc) do
 end end
 
 function __arguments(env) do
-  start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
+  start_loc = Curry._2(Parser_env_Peek.loc, nil, env);
   token_4(env, --[[ T_LPAREN ]]3);
   args = arguments$prime(env, --[[ [] ]]0);
-  end_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
+  end_loc = Curry._2(Parser_env_Peek.loc, nil, env);
   token_4(env, --[[ T_RPAREN ]]4);
   return --[[ tuple ]]{
           btwn(start_loc, end_loc),
@@ -8967,10 +8967,10 @@ function template_parts(env, _quasis, _expressions) do
       expr,
       expressions
     };
-    match = Curry._2(Parser_env_Peek.token, undefined, env);
+    match = Curry._2(Parser_env_Peek.token, nil, env);
     if (typeof match == "number" and match == 2) then do
       push_lex_mode(env, --[[ TEMPLATE ]]4);
-      match_1 = Curry._2(Parser_env_Peek.token, undefined, env);
+      match_1 = Curry._2(Parser_env_Peek.token, nil, env);
       match_2;
       if (typeof match_1 == "number") then do
         error({
@@ -9094,7 +9094,7 @@ end end
 function elements(env, _acc) do
   while(true) do
     acc = _acc;
-    match = Curry._2(Parser_env_Peek.token, undefined, env);
+    match = Curry._2(Parser_env_Peek.token, nil, env);
     if (typeof match == "number") then do
       if (match ~= 105) then do
         if (match < 12) then do
@@ -9105,7 +9105,7 @@ function elements(env, _acc) do
              if ___conditional___ == 8--[[ T_COMMA ]] then do
                 token_4(env, --[[ T_COMMA ]]8);
                 _acc = --[[ :: ]]{
-                  undefined,
+                  nil,
                   acc
                 };
                 ::continue:: ; end end 
@@ -9119,7 +9119,7 @@ function elements(env, _acc) do
              or ___conditional___ == 9--[[ T_PERIOD ]]
              or ___conditional___ == 10--[[ T_ARROW ]]
              or ___conditional___ == 11--[[ T_ELLIPSIS ]] then do
-                start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
+                start_loc = Curry._2(Parser_env_Peek.loc, nil, env);
                 token_4(env, --[[ T_ELLIPSIS ]]11);
                 argument = Curry._1(assignment, env);
                 loc = btwn(start_loc, argument[0]);
@@ -9144,7 +9144,7 @@ function elements(env, _acc) do
     end
      end 
     elem_1 = --[[ Expression ]]Block.__(0, {Curry._1(assignment, env)});
-    if (Curry._2(Parser_env_Peek.token, undefined, env) ~= --[[ T_RBRACKET ]]6) then do
+    if (Curry._2(Parser_env_Peek.token, nil, env) ~= --[[ T_RBRACKET ]]6) then do
       token_4(env, --[[ T_COMMA ]]8);
     end
      end 
@@ -9157,10 +9157,10 @@ function elements(env, _acc) do
 end end
 
 function array_initializer(env) do
-  start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
+  start_loc = Curry._2(Parser_env_Peek.loc, nil, env);
   token_4(env, --[[ T_LBRACKET ]]5);
   elements_1 = elements(env, --[[ [] ]]0);
-  end_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
+  end_loc = Curry._2(Parser_env_Peek.loc, nil, env);
   token_4(env, --[[ T_RBRACKET ]]6);
   return --[[ tuple ]]{
           btwn(start_loc, end_loc),
@@ -9191,11 +9191,11 @@ end end
 
 function try_arrow_function(env) do
   env_1 = with_error_callback(error_callback_1, env);
-  start_loc = Curry._2(Parser_env_Peek.loc, undefined, env_1);
+  start_loc = Curry._2(Parser_env_Peek.loc, nil, env_1);
   async = Curry._2(Parser_env_Peek.token, 1, env_1) ~= --[[ T_ARROW ]]10 and maybe(env_1, --[[ T_ASYNC ]]61);
   typeParameters = Curry._1(type_parameter_declaration_1, env_1);
   match;
-  if (Curry._2(Parser_env_Peek.is_identifier, undefined, env_1) and typeParameters == undefined) then do
+  if (Curry._2(Parser_env_Peek.is_identifier, nil, env_1) and typeParameters == nil) then do
     id = Curry._2(Parse.identifier, --[[ StrictParamName ]]28, env_1);
     param_000 = id[0];
     param_001 = --[[ Identifier ]]Block.__(3, {id});
@@ -9209,8 +9209,8 @@ function try_arrow_function(env) do
         --[[ [] ]]0
       },
       --[[ [] ]]0,
-      undefined,
-      undefined
+      nil,
+      nil
     };
   end else do
     match_1 = function_params(env_1);
@@ -9225,8 +9225,8 @@ function try_arrow_function(env) do
   defaults = match[1];
   params = match[0];
   predicate = Curry._1(Parse.predicate, env_1);
-  env_2 = params == --[[ [] ]]0 or rest ~= undefined and without_error_callback(env_1) or env_1;
-  if (Curry._1(Parser_env_Peek.is_line_terminator, env_2) and Curry._2(Parser_env_Peek.token, undefined, env_2) == --[[ T_ARROW ]]10) then do
+  env_2 = params == --[[ [] ]]0 or rest ~= nil and without_error_callback(env_1) or env_1;
+  if (Curry._1(Parser_env_Peek.is_line_terminator, env_2) and Curry._2(Parser_env_Peek.token, nil, env_2) == --[[ T_ARROW ]]10) then do
     error_1(env_2, --[[ NewlineBeforeArrow ]]44);
   end
    end 
@@ -9237,7 +9237,7 @@ function try_arrow_function(env) do
           async_1 = async;
           generator = false;
           env_1 = with_in_function(true, env);
-          match = Curry._2(Parser_env_Peek.token, undefined, env_1);
+          match = Curry._2(Parser_env_Peek.token, nil, env_1);
           if (typeof match == "number" and match == 1) then do
             match_1 = function_body(env_1, async_1, generator);
             return --[[ tuple ]]{
@@ -9256,14 +9256,14 @@ function try_arrow_function(env) do
   match_3 = match_2[1];
   body = match_3[0];
   simple = is_simple_function_params(params, defaults, rest);
-  strict_post_check(env_3, match_3[1], simple, undefined, params);
+  strict_post_check(env_3, match_3[1], simple, nil, params);
   expression;
   expression = body.tag and true or false;
   loc = btwn(start_loc, match_2[0]);
   return --[[ tuple ]]{
           loc,
           --[[ ArrowFunction ]]Block.__(3, {{
-                id = undefined,
+                id = nil,
                 params = params,
                 defaults = defaults,
                 rest = rest,
@@ -9281,7 +9281,7 @@ end end
 function decorator_list_helper(env, _decorators) do
   while(true) do
     decorators = _decorators;
-    match = Curry._2(Parser_env_Peek.token, undefined, env);
+    match = Curry._2(Parser_env_Peek.token, nil, env);
     if (typeof match == "number" and match == 12) then do
       token_3(env);
       _decorators = --[[ :: ]]{
@@ -9304,13 +9304,13 @@ function decorator_list(env) do
 end end
 
 function key(env) do
-  match = Curry._2(Parser_env_Peek.token, undefined, env);
+  match = Curry._2(Parser_env_Peek.token, nil, env);
   if (typeof match == "number") then do
     if (match == --[[ T_LBRACKET ]]5) then do
-      start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
+      start_loc = Curry._2(Parser_env_Peek.loc, nil, env);
       token_4(env, --[[ T_LBRACKET ]]5);
       expr = Curry._1(Parse.assignment, with_no_in(false, env));
-      end_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
+      end_loc = Curry._2(Parser_env_Peek.loc, nil, env);
       token_4(env, --[[ T_RBRACKET ]]6);
       return --[[ tuple ]]{
               btwn(start_loc, end_loc),
@@ -9322,8 +9322,8 @@ function key(env) do
     local ___conditional___=(match.tag | 0);
     do
        if ___conditional___ == 0--[[ T_NUMBER ]] then do
-          raw = Curry._2(Parser_env_Peek.value, undefined, env);
-          loc = Curry._2(Parser_env_Peek.loc, undefined, env);
+          raw = Curry._2(Parser_env_Peek.value, nil, env);
+          loc = Curry._2(Parser_env_Peek.loc, nil, env);
           value = number(env, match[0]);
           value_1 = --[[ Number ]]Block.__(2, {value});
           return --[[ tuple ]]{
@@ -9377,7 +9377,7 @@ end end
 function _method(env, kind) do
   generator_1 = generator(env, false);
   match = key(env);
-  typeParameters = kind ~= 0 and undefined or Curry._1(type_parameter_declaration_1, env);
+  typeParameters = kind ~= 0 and nil or Curry._1(type_parameter_declaration_1, env);
   token_4(env, --[[ T_LPAREN ]]3);
   params;
   local ___conditional___=(kind);
@@ -9409,8 +9409,8 @@ function _method(env, kind) do
   returnType = wrap(annotation_opt, env);
   match_1 = function_body(env, false, generator_1);
   body = match_1[1];
-  simple = is_simple_function_params(params, --[[ [] ]]0, undefined);
-  strict_post_check(env, match_1[2], simple, undefined, params);
+  simple = is_simple_function_params(params, --[[ [] ]]0, nil);
+  strict_post_check(env, match_1[2], simple, nil, params);
   match_2;
   match_2 = body.tag and --[[ tuple ]]{
       body[0][0],
@@ -9421,14 +9421,14 @@ function _method(env, kind) do
     };
   value_000 = match_2[0];
   value_001 = {
-    id = undefined,
+    id = nil,
     params = params,
     defaults = --[[ [] ]]0,
-    rest = undefined,
+    rest = nil,
     body = body,
     async = false,
     generator = generator_1,
-    predicate = undefined,
+    predicate = nil,
     expression = match_2[1],
     returnType = returnType,
     typeParameters = typeParameters
@@ -9444,8 +9444,8 @@ function _method(env, kind) do
 end end
 
 function property_1(env) do
-  start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
-  if (Curry._2(Parser_env_Peek.token, undefined, env) == --[[ T_ELLIPSIS ]]11) then do
+  start_loc = Curry._2(Parser_env_Peek.loc, nil, env);
+  if (Curry._2(Parser_env_Peek.token, nil, env) == --[[ T_ELLIPSIS ]]11) then do
     token_4(env, --[[ T_ELLIPSIS ]]11);
     argument = Curry._1(Parse.assignment, env);
     return --[[ SpreadProperty ]]Block.__(1, {--[[ tuple ]]{
@@ -9470,7 +9470,7 @@ function property_1(env) do
             local ___conditional___=(key_1[0][1].name);
             do
                if ___conditional___ == "get" then do
-                  match_2 = Curry._2(Parser_env_Peek.token, undefined, env);
+                  match_2 = Curry._2(Parser_env_Peek.token, nil, env);
                   if (typeof match_2 == "number") then do
                     switcher = match_2 - 3 | 0;
                     tmp = switcher > 74 or switcher < 0 and (
@@ -9482,7 +9482,7 @@ function property_1(env) do
                     tmp = get(env, start_loc);
                   end end  end else 
                if ___conditional___ == "set" then do
-                  match_3 = Curry._2(Parser_env_Peek.token, undefined, env);
+                  match_3 = Curry._2(Parser_env_Peek.token, nil, env);
                   if (typeof match_3 == "number") then do
                     switcher_1 = match_3 - 3 | 0;
                     tmp = switcher_1 > 74 or switcher_1 < 0 and (
@@ -9555,7 +9555,7 @@ function set(env, start_loc) do
 end end
 
 function init(env, start_loc, key, async, generator) do
-  match = Curry._2(Parser_env_Peek.token, undefined, env);
+  match = Curry._2(Parser_env_Peek.token, nil, env);
   match_1;
   exit = 0;
   if (typeof match == "number") then do
@@ -9632,7 +9632,7 @@ function init(env, start_loc, key, async, generator) do
         match_3 = function_body(env, async, generator);
         body = match_3[1];
         simple = is_simple_function_params(params, defaults, rest);
-        strict_post_check(env, match_3[2], simple, undefined, params);
+        strict_post_check(env, match_3[2], simple, nil, params);
         match_4;
         match_4 = body.tag and --[[ tuple ]]{
             body[0][0],
@@ -9643,14 +9643,14 @@ function init(env, start_loc, key, async, generator) do
           };
         value_000 = match_4[0];
         value_001 = --[[ Function ]]Block.__(2, {{
-              id = undefined,
+              id = nil,
               params = params,
               defaults = defaults,
               rest = rest,
               body = body,
               async = async,
               generator = generator,
-              predicate = undefined,
+              predicate = nil,
               expression = match_4[1],
               returnType = returnType,
               typeParameters = typeParameters
@@ -9808,14 +9808,14 @@ function properties_1(env, _param) do
   while(true) do
     param = _param;
     acc = param[1];
-    match = Curry._2(Parser_env_Peek.token, undefined, env);
+    match = Curry._2(Parser_env_Peek.token, nil, env);
     if (typeof match == "number" and not (match ~= 2 and match ~= 105)) then do
       return List.rev(acc);
     end
      end 
     prop = property_1(env);
     prop_map = check_property(env, param[0], prop);
-    if (Curry._2(Parser_env_Peek.token, undefined, env) ~= --[[ T_RCURLY ]]2) then do
+    if (Curry._2(Parser_env_Peek.token, nil, env) ~= --[[ T_RCURLY ]]2) then do
       token_4(env, --[[ T_COMMA ]]8);
     end
      end 
@@ -9831,13 +9831,13 @@ function properties_1(env, _param) do
 end end
 
 function _initializer(env) do
-  start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
+  start_loc = Curry._2(Parser_env_Peek.loc, nil, env);
   token_4(env, --[[ T_LCURLY ]]1);
   props = properties_1(env, --[[ tuple ]]{
         --[[ Empty ]]0,
         --[[ [] ]]0
       });
-  end_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
+  end_loc = Curry._2(Parser_env_Peek.loc, nil, env);
   token_4(env, --[[ T_RCURLY ]]2);
   return --[[ tuple ]]{
           btwn(start_loc, end_loc),
@@ -9850,9 +9850,9 @@ end end
 function class_implements(env, _acc) do
   while(true) do
     acc = _acc;
-    id = Curry._2(Parse.identifier, undefined, env);
+    id = Curry._2(Parse.identifier, nil, env);
     typeParameters = wrap(type_parameter_instantiation, env);
-    loc = typeParameters ~= undefined and btwn(id[0], typeParameters[0]) or id[0];
+    loc = typeParameters ~= nil and btwn(id[0], typeParameters[0]) or id[0];
     implement_001 = {
       id = id,
       typeParameters = typeParameters
@@ -9865,7 +9865,7 @@ function class_implements(env, _acc) do
       implement,
       acc
     };
-    match = Curry._2(Parser_env_Peek.token, undefined, env);
+    match = Curry._2(Parser_env_Peek.token, nil, env);
     if (typeof match == "number" and match == 8) then do
       token_4(env, --[[ T_COMMA ]]8);
       _acc = acc_1;
@@ -9877,7 +9877,7 @@ function class_implements(env, _acc) do
 end end
 
 function init_1(env, start_loc, decorators, key, async, generator, __static) do
-  match = Curry._2(Parser_env_Peek.token, undefined, env);
+  match = Curry._2(Parser_env_Peek.token, nil, env);
   exit = 0;
   if (typeof match == "number") then do
     switcher = match - 75 | 0;
@@ -9895,10 +9895,10 @@ function init_1(env, start_loc, decorators, key, async, generator, __static) do
   if (exit == 2 and not async and not generator) then do
     typeAnnotation = wrap(annotation_opt, env);
     options = env.parse_options;
-    value = Curry._2(Parser_env_Peek.token, undefined, env) == --[[ T_ASSIGN ]]75 and (__static and options.esproposal_class_static_fields or not __static and options.esproposal_class_instance_fields) and (token_4(env, --[[ T_ASSIGN ]]75), Curry._1(Parse.expression, env)) or undefined;
-    end_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
+    value = Curry._2(Parser_env_Peek.token, nil, env) == --[[ T_ASSIGN ]]75 and (__static and options.esproposal_class_static_fields or not __static and options.esproposal_class_instance_fields) and (token_4(env, --[[ T_ASSIGN ]]75), Curry._1(Parse.expression, env)) or nil;
+    end_loc = Curry._2(Parser_env_Peek.loc, nil, env);
     if (not maybe(env, --[[ T_SEMICOLON ]]7)) then do
-      if (Curry._2(Parser_env_Peek.token, undefined, env) == --[[ T_LBRACKET ]]5 or Curry._2(Parser_env_Peek.token, undefined, env) == --[[ T_LPAREN ]]3) then do
+      if (Curry._2(Parser_env_Peek.token, nil, env) == --[[ T_LBRACKET ]]5 or Curry._2(Parser_env_Peek.token, nil, env) == --[[ T_LPAREN ]]3) then do
         error_unexpected(env);
       end
        end 
@@ -9925,7 +9925,7 @@ function init_1(env, start_loc, decorators, key, async, generator, __static) do
   match_2 = function_body(env, async, generator);
   body = match_2[1];
   simple = is_simple_function_params(params, defaults, rest);
-  strict_post_check(env, match_2[2], simple, undefined, params);
+  strict_post_check(env, match_2[2], simple, nil, params);
   match_3;
   match_3 = body.tag and --[[ tuple ]]{
       body[0][0],
@@ -9936,14 +9936,14 @@ function init_1(env, start_loc, decorators, key, async, generator, __static) do
     };
   end_loc_1 = match_3[0];
   value_001 = {
-    id = undefined,
+    id = nil,
     params = params,
     defaults = defaults,
     rest = rest,
     body = body,
     async = async,
     generator = generator,
-    predicate = undefined,
+    predicate = nil,
     expression = match_3[1],
     returnType = returnType,
     typeParameters = typeParameters
@@ -9978,7 +9978,7 @@ function init_1(env, start_loc, decorators, key, async, generator, __static) do
 end end
 
 function class_element(env) do
-  start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
+  start_loc = Curry._2(Parser_env_Peek.loc, nil, env);
   decorators = decorator_list(env);
   __static = maybe(env, --[[ T_STATIC ]]40);
   async = Curry._2(Parser_env_Peek.token, 1, env) ~= --[[ T_LPAREN ]]3 and Curry._2(Parser_env_Peek.token, 1, env) ~= --[[ T_COLON ]]77 and maybe(env, --[[ T_ASYNC ]]61);
@@ -9992,7 +9992,7 @@ function class_element(env) do
           local ___conditional___=(key_1[0][1].name);
           do
              if ___conditional___ == "get" then do
-                match_1 = Curry._2(Parser_env_Peek.token, undefined, env);
+                match_1 = Curry._2(Parser_env_Peek.token, nil, env);
                 exit = 0;
                 exit = typeof match_1 == "number" and (
                     match_1 >= 75 and (
@@ -10029,7 +10029,7 @@ function class_element(env) do
                   
                 end end else 
              if ___conditional___ == "set" then do
-                match_3 = Curry._2(Parser_env_Peek.token, undefined, env);
+                match_3 = Curry._2(Parser_env_Peek.token, nil, env);
                 exit_1 = 0;
                 exit_1 = typeof match_3 == "number" and (
                     match_3 >= 75 and (
@@ -10081,7 +10081,7 @@ end end
 function elements_1(env, _acc) do
   while(true) do
     acc = _acc;
-    match = Curry._2(Parser_env_Peek.token, undefined, env);
+    match = Curry._2(Parser_env_Peek.token, nil, env);
     if (typeof match == "number") then do
       switcher = match - 3 | 0;
       if (switcher > 101 or switcher < 0) then do
@@ -10105,10 +10105,10 @@ function elements_1(env, _acc) do
 end end
 
 function class_body(env) do
-  start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
+  start_loc = Curry._2(Parser_env_Peek.loc, nil, env);
   token_4(env, --[[ T_LCURLY ]]1);
   body = elements_1(env, --[[ [] ]]0);
-  end_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
+  end_loc = Curry._2(Parser_env_Peek.loc, nil, env);
   token_4(env, --[[ T_RCURLY ]]2);
   return --[[ tuple ]]{
           btwn(start_loc, end_loc),
@@ -10120,7 +10120,7 @@ end end
 
 function _class(env) do
   match;
-  if (Curry._2(Parser_env_Peek.token, undefined, env) == --[[ T_EXTENDS ]]39) then do
+  if (Curry._2(Parser_env_Peek.token, nil, env) == --[[ T_EXTENDS ]]39) then do
     token_4(env, --[[ T_EXTENDS ]]39);
     superClass = left_hand_side(with_allow_yield(false, env));
     superTypeParameters = wrap(type_parameter_instantiation, env);
@@ -10130,12 +10130,12 @@ function _class(env) do
     };
   end else do
     match = --[[ tuple ]]{
-      undefined,
-      undefined
+      nil,
+      nil
     };
   end end 
   __implements;
-  if (Curry._2(Parser_env_Peek.token, undefined, env) == --[[ T_IMPLEMENTS ]]50) then do
+  if (Curry._2(Parser_env_Peek.token, nil, env) == --[[ T_IMPLEMENTS ]]50) then do
     if (not env.parse_options.types) then do
       error_1(env, --[[ UnexpectedTypeInterface ]]10);
     end
@@ -10156,13 +10156,13 @@ end end
 
 function class_declaration(env, decorators) do
   env_1 = with_strict(true, env);
-  start_loc = Curry._2(Parser_env_Peek.loc, undefined, env_1);
+  start_loc = Curry._2(Parser_env_Peek.loc, nil, env_1);
   decorators_1 = Pervasives.$at(decorators, decorator_list(env_1));
   token_4(env_1, --[[ T_CLASS ]]38);
   tmp_env = with_no_let(true, env_1);
   match = env_1.in_export;
-  match_1 = Curry._2(Parser_env_Peek.is_identifier, undefined, tmp_env);
-  id = match and not match_1 and undefined or Curry._2(Parse.identifier, undefined, tmp_env);
+  match_1 = Curry._2(Parser_env_Peek.is_identifier, nil, tmp_env);
+  id = match and not match_1 and nil or Curry._2(Parse.identifier, nil, tmp_env);
   typeParameters = Curry._1(type_parameter_declaration_with_defaults, env_1);
   match_2 = _class(env_1);
   body = match_2[0];
@@ -10182,10 +10182,10 @@ function class_declaration(env, decorators) do
 end end
 
 function class_expression(env) do
-  start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
+  start_loc = Curry._2(Parser_env_Peek.loc, nil, env);
   decorators = decorator_list(env);
   token_4(env, --[[ T_CLASS ]]38);
-  match = Curry._2(Parser_env_Peek.token, undefined, env);
+  match = Curry._2(Parser_env_Peek.token, nil, env);
   match_1;
   exit = 0;
   if (typeof match == "number") then do
@@ -10195,14 +10195,14 @@ function class_expression(env) do
         exit = 1;
       end else do
         match_1 = --[[ tuple ]]{
-          undefined,
-          undefined
+          nil,
+          nil
         };
       end end 
     end else if (switcher > 37 or switcher < 1) then do
       match_1 = --[[ tuple ]]{
-        undefined,
-        undefined
+        nil,
+        nil
       };
     end else do
       exit = 1;
@@ -10211,7 +10211,7 @@ function class_expression(env) do
     exit = 1;
   end end 
   if (exit == 1) then do
-    id = Curry._2(Parse.identifier, undefined, env);
+    id = Curry._2(Parse.identifier, nil, env);
     typeParameters = Curry._1(type_parameter_declaration_with_defaults, env);
     match_1 = --[[ tuple ]]{
       id,
@@ -10238,7 +10238,7 @@ end end
 
 function export_source(env) do
   contextual(env, "from");
-  match = Curry._2(Parser_env_Peek.token, undefined, env);
+  match = Curry._2(Parser_env_Peek.token, nil, env);
   if (typeof match ~= "number" and match.tag == --[[ T_STRING ]]1) then do
     match_1 = match[0];
     octal = match_1[3];
@@ -10265,9 +10265,9 @@ function export_source(env) do
           };
   end
    end 
-  raw_1 = Curry._2(Parser_env_Peek.value, undefined, env);
+  raw_1 = Curry._2(Parser_env_Peek.value, nil, env);
   value_2 = --[[ String ]]Block.__(0, {raw_1});
-  ret_000 = Curry._2(Parser_env_Peek.loc, undefined, env);
+  ret_000 = Curry._2(Parser_env_Peek.loc, nil, env);
   ret_001 = {
     value = value_2,
     raw = raw_1
@@ -10282,8 +10282,8 @@ end end
 
 function expression(env) do
   expression_1 = Curry._1(Parse.expression, env);
-  match = Curry._2(Parser_env_Peek.semicolon_loc, undefined, env);
-  end_loc = match ~= undefined and match or expression_1[0];
+  match = Curry._2(Parser_env_Peek.semicolon_loc, nil, env);
+  end_loc = match ~= nil and match or expression_1[0];
   semicolon(env);
   return --[[ tuple ]]{
           btwn(expression_1[0], end_loc),
@@ -10295,8 +10295,8 @@ end end
 
 function declare_function(env, start_loc) do
   token_4(env, --[[ T_FUNCTION ]]13);
-  id = Curry._2(Parse.identifier, undefined, env);
-  start_sig_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
+  id = Curry._2(Parse.identifier, nil, env);
+  start_sig_loc = Curry._2(Parser_env_Peek.loc, nil, env);
   typeParameters = Curry._1(type_parameter_declaration_1, env);
   match = wrap(function_param_list, env);
   token_4(env, --[[ T_COLON ]]77);
@@ -10328,8 +10328,8 @@ function declare_function(env, start_loc) do
     id_000,
     id_001
   };
-  match_1 = Curry._2(Parser_env_Peek.semicolon_loc, undefined, env);
-  end_loc_1 = match_1 ~= undefined and match_1 or end_loc;
+  match_1 = Curry._2(Parser_env_Peek.semicolon_loc, nil, env);
+  end_loc_1 = match_1 ~= nil and match_1 or end_loc;
   predicate = Curry._1(Parse.predicate, env);
   semicolon(env);
   loc_1 = btwn(start_loc, end_loc_1);
@@ -10346,7 +10346,7 @@ function export_specifiers_and_errs(env, _specifiers, _errs) do
   while(true) do
     errs = _errs;
     specifiers = _specifiers;
-    match = Curry._2(Parser_env_Peek.token, undefined, env);
+    match = Curry._2(Parser_env_Peek.token, nil, env);
     if (typeof match == "number" and not (match ~= 2 and match ~= 105)) then do
       return --[[ tuple ]]{
               List.rev(specifiers),
@@ -10357,7 +10357,7 @@ function export_specifiers_and_errs(env, _specifiers, _errs) do
     match_1 = Curry._1(Parse.identifier_or_reserved_keyword, env);
     id = match_1[0];
     match_2;
-    if (Curry._2(Parser_env_Peek.value, undefined, env) == "as") then do
+    if (Curry._2(Parser_env_Peek.value, nil, env) == "as") then do
       contextual(env, "as");
       match_3 = Curry._1(Parse.identifier_or_reserved_keyword, env);
       name = match_3[0];
@@ -10367,7 +10367,7 @@ function export_specifiers_and_errs(env, _specifiers, _errs) do
           });
       match_2 = --[[ tuple ]]{
         name,
-        undefined,
+        nil,
         name[0]
       };
     end else do
@@ -10377,7 +10377,7 @@ function export_specifiers_and_errs(env, _specifiers, _errs) do
             extract_ident_name(id)
           });
       match_2 = --[[ tuple ]]{
-        undefined,
+        nil,
         match_1[1],
         loc
       };
@@ -10392,11 +10392,11 @@ function export_specifiers_and_errs(env, _specifiers, _errs) do
       loc_1,
       specifier_001
     };
-    if (Curry._2(Parser_env_Peek.token, undefined, env) == --[[ T_COMMA ]]8) then do
+    if (Curry._2(Parser_env_Peek.token, nil, env) == --[[ T_COMMA ]]8) then do
       token_4(env, --[[ T_COMMA ]]8);
     end
      end 
-    errs_1 = err ~= undefined and --[[ :: ]]{
+    errs_1 = err ~= nil and --[[ :: ]]{
         err,
         errs
       } or errs;
@@ -10410,19 +10410,19 @@ function export_specifiers_and_errs(env, _specifiers, _errs) do
 end end
 
 function type_alias_helper(env) do
-  start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
+  start_loc = Curry._2(Parser_env_Peek.loc, nil, env);
   if (not env.parse_options.types) then do
     error_1(env, --[[ UnexpectedTypeAlias ]]5);
   end
    end 
   token_4(env, --[[ T_TYPE ]]59);
   push_lex_mode(env, --[[ TYPE ]]1);
-  id = Curry._2(Parse.identifier, undefined, env);
+  id = Curry._2(Parse.identifier, nil, env);
   typeParameters = Curry._1(type_parameter_declaration_with_defaults, env);
   token_4(env, --[[ T_ASSIGN ]]75);
   right = wrap(_type, env);
-  match = Curry._2(Parser_env_Peek.semicolon_loc, undefined, env);
-  end_loc = match ~= undefined and match or right[0];
+  match = Curry._2(Parser_env_Peek.semicolon_loc, nil, env);
+  end_loc = match ~= nil and match or right[0];
   semicolon(env);
   pop_lex_mode(env);
   return --[[ tuple ]]{
@@ -10438,8 +10438,8 @@ end end
 function declare_var(env, start_loc) do
   token_4(env, --[[ T_VAR ]]22);
   id = Curry._2(Parse.identifier_with_type, env, --[[ StrictVarName ]]27);
-  match = Curry._2(Parser_env_Peek.semicolon_loc, undefined, env);
-  end_loc = match ~= undefined and match or id[0];
+  match = Curry._2(Parser_env_Peek.semicolon_loc, nil, env);
+  end_loc = match ~= nil and match or id[0];
   loc = btwn(start_loc, end_loc);
   semicolon(env);
   return --[[ tuple ]]{
@@ -10463,16 +10463,16 @@ function __interface(env) do
 end end
 
 function declare_export_declaration(allow_export_typeOpt, env) do
-  allow_export_type = allow_export_typeOpt ~= undefined and allow_export_typeOpt or false;
+  allow_export_type = allow_export_typeOpt ~= nil and allow_export_typeOpt or false;
   if (not env.parse_options.types) then do
     error_1(env, --[[ UnexpectedTypeDeclaration ]]7);
   end
    end 
-  start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
+  start_loc = Curry._2(Parser_env_Peek.loc, nil, env);
   token_4(env, --[[ T_DECLARE ]]58);
   env_1 = with_in_export(true, with_strict(true, env));
   token_4(env_1, --[[ T_EXPORT ]]47);
-  match = Curry._2(Parser_env_Peek.token, undefined, env_1);
+  match = Curry._2(Parser_env_Peek.token, nil, env_1);
   exit = 0;
   if (typeof match == "number") then do
     if (match >= 52) then do
@@ -10480,24 +10480,24 @@ function declare_export_declaration(allow_export_typeOpt, env) do
         if (match ~= 97) then do
           exit = 1;
         end else do
-          loc = Curry._2(Parser_env_Peek.loc, undefined, env_1);
+          loc = Curry._2(Parser_env_Peek.loc, nil, env_1);
           token_4(env_1, --[[ T_MULT ]]97);
           parse_export_star_as = env_1.parse_options.esproposal_export_star_as;
-          local_name = Curry._2(Parser_env_Peek.value, undefined, env_1) == "as" and (contextual(env_1, "as"), parse_export_star_as and Curry._2(Parse.identifier, undefined, env_1) or (error_1(env_1, --[[ UnexpectedTypeDeclaration ]]7), undefined)) or undefined;
+          local_name = Curry._2(Parser_env_Peek.value, nil, env_1) == "as" and (contextual(env_1, "as"), parse_export_star_as and Curry._2(Parse.identifier, nil, env_1) or (error_1(env_1, --[[ UnexpectedTypeDeclaration ]]7), nil)) or nil;
           specifiers = --[[ ExportBatchSpecifier ]]Block.__(1, {
               loc,
               local_name
             });
           source = export_source(env_1);
-          match_1 = Curry._2(Parser_env_Peek.semicolon_loc, undefined, env_1);
-          end_loc = match_1 ~= undefined and match_1 or source[0];
+          match_1 = Curry._2(Parser_env_Peek.semicolon_loc, nil, env_1);
+          end_loc = match_1 ~= nil and match_1 or source[0];
           source_1 = source;
           semicolon(env_1);
           return --[[ tuple ]]{
                   btwn(start_loc, end_loc),
                   --[[ DeclareExportDeclaration ]]Block.__(27, {{
                         default = false,
-                        declaration = undefined,
+                        declaration = nil,
                         specifiers = specifiers,
                         source = source_1
                       }})
@@ -10515,8 +10515,8 @@ function declare_export_declaration(allow_export_typeOpt, env) do
                             alias_loc,
                             match_2[1]
                           }}),
-                      specifiers = undefined,
-                      source = undefined
+                      specifiers = nil,
+                      source = nil
                     }})
               };
       end else do
@@ -10535,8 +10535,8 @@ function declare_export_declaration(allow_export_typeOpt, env) do
                             iface_loc,
                             match_3[1]
                           }}),
-                      specifiers = undefined,
-                      source = undefined
+                      specifiers = nil,
+                      source = nil
                     }})
               };
       end else do
@@ -10547,7 +10547,7 @@ function declare_export_declaration(allow_export_typeOpt, env) do
       do
          if ___conditional___ == 21--[[ T_TRY ]] then do
             token_4(env_1, --[[ T_DEFAULT ]]34);
-            match_4 = Curry._2(Parser_env_Peek.token, undefined, env_1);
+            match_4 = Curry._2(Parser_env_Peek.token, nil, env_1);
             match_5;
             exit_1 = 0;
             if (typeof match_4 == "number") then do
@@ -10573,8 +10573,8 @@ function declare_export_declaration(allow_export_typeOpt, env) do
             end end 
             if (exit_1 == 3) then do
               _type_1 = wrap(_type, env_1);
-              match_6 = Curry._2(Parser_env_Peek.semicolon_loc, undefined, env_1);
-              end_loc_1 = match_6 ~= undefined and match_6 or _type_1[0];
+              match_6 = Curry._2(Parser_env_Peek.semicolon_loc, nil, env_1);
+              end_loc_1 = match_6 ~= nil and match_6 or _type_1[0];
               semicolon(env_1);
               match_5 = --[[ tuple ]]{
                 end_loc_1,
@@ -10587,8 +10587,8 @@ function declare_export_declaration(allow_export_typeOpt, env) do
                     --[[ DeclareExportDeclaration ]]Block.__(27, {{
                           default = true,
                           declaration = match_5[1],
-                          specifiers = undefined,
-                          source = undefined
+                          specifiers = nil,
+                          source = nil
                         }})
                   }; end end 
          if ___conditional___ == 1--[[ T_LCURLY ]]
@@ -10630,7 +10630,7 @@ function declare_export_declaration(allow_export_typeOpt, env) do
   local ___conditional___=(exit);
   do
      if ___conditional___ == 1 then do
-        match_7 = Curry._2(Parser_env_Peek.token, undefined, env_1);
+        match_7 = Curry._2(Parser_env_Peek.token, nil, env_1);
         if (typeof match_7 == "number") then do
           if (match_7 ~= 51) then do
             if (match_7 ~= 59) then do
@@ -10646,27 +10646,27 @@ function declare_export_declaration(allow_export_typeOpt, env) do
         token_4(env_1, --[[ T_LCURLY ]]1);
         match_8 = export_specifiers_and_errs(env_1, --[[ [] ]]0, --[[ [] ]]0);
         specifiers_1 = --[[ ExportSpecifiers ]]Block.__(0, {match_8[0]});
-        end_loc_2 = Curry._2(Parser_env_Peek.loc, undefined, env_1);
+        end_loc_2 = Curry._2(Parser_env_Peek.loc, nil, env_1);
         token_4(env_1, --[[ T_RCURLY ]]2);
-        source_2 = Curry._2(Parser_env_Peek.value, undefined, env_1) == "from" and export_source(env_1) or (List.iter((function(param) do
+        source_2 = Curry._2(Parser_env_Peek.value, nil, env_1) == "from" and export_source(env_1) or (List.iter((function(param) do
                     return error_at(env_1, param);
-                  end end), match_8[1]), undefined);
-        match_9 = Curry._2(Parser_env_Peek.semicolon_loc, undefined, env_1);
-        end_loc_3 = match_9 ~= undefined and match_9 or (
-            source_2 ~= undefined and source_2[0] or end_loc_2
+                  end end), match_8[1]), nil);
+        match_9 = Curry._2(Parser_env_Peek.semicolon_loc, nil, env_1);
+        end_loc_3 = match_9 ~= nil and match_9 or (
+            source_2 ~= nil and source_2[0] or end_loc_2
           );
         semicolon(env_1);
         return --[[ tuple ]]{
                 btwn(start_loc, end_loc_3),
                 --[[ DeclareExportDeclaration ]]Block.__(27, {{
                       default = false,
-                      declaration = undefined,
+                      declaration = nil,
                       specifiers = specifiers_1,
                       source = source_2
                     }})
               }; end end 
      if ___conditional___ == 2 then do
-        token_5 = Curry._2(Parser_env_Peek.token, undefined, env_1);
+        token_5 = Curry._2(Parser_env_Peek.token, nil, env_1);
         match_10;
         exit_2 = 0;
         if (typeof token_5 == "number") then do
@@ -10733,8 +10733,8 @@ function declare_export_declaration(allow_export_typeOpt, env) do
                 --[[ DeclareExportDeclaration ]]Block.__(27, {{
                       default = false,
                       declaration = match_10[1],
-                      specifiers = undefined,
-                      source = undefined
+                      specifiers = nil,
+                      source = nil
                     }})
               }; end end 
     
@@ -10770,12 +10770,12 @@ function declare_var_statement(env, start_loc) do
 end end
 
 function declare(in_moduleOpt, env) do
-  in_module = in_moduleOpt ~= undefined and in_moduleOpt or false;
+  in_module = in_moduleOpt ~= nil and in_moduleOpt or false;
   if (not env.parse_options.types) then do
     error_1(env, --[[ UnexpectedTypeDeclaration ]]7);
   end
    end 
-  start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
+  start_loc = Curry._2(Parser_env_Peek.loc, nil, env);
   match = Curry._2(Parser_env_Peek.token, 1, env);
   if (typeof match == "number") then do
     if (match >= 22) then do
@@ -10840,14 +10840,14 @@ function declare(in_moduleOpt, env) do
       if (match == 0 and Curry._2(Parser_env_Peek.value, 1, env) == "module") then do
         token_4(env, --[[ T_DECLARE ]]58);
         contextual(env, "module");
-        if (in_module or Curry._2(Parser_env_Peek.token, undefined, env) == --[[ T_PERIOD ]]9) then do
+        if (in_module or Curry._2(Parser_env_Peek.token, nil, env) == --[[ T_PERIOD ]]9) then do
           env_2 = env;
           start_loc_2 = start_loc;
           token_4(env_2, --[[ T_PERIOD ]]9);
           contextual(env_2, "exports");
           type_annot = wrap(annotation, env_2);
-          match_2 = Curry._2(Parser_env_Peek.semicolon_loc, undefined, env_2);
-          end_loc = match_2 ~= undefined and match_2 or type_annot[0];
+          match_2 = Curry._2(Parser_env_Peek.semicolon_loc, nil, env_2);
+          end_loc = match_2 ~= nil and match_2 or type_annot[0];
           semicolon(env_2);
           loc = btwn(start_loc_2, end_loc);
           return --[[ tuple ]]{
@@ -10857,10 +10857,10 @@ function declare(in_moduleOpt, env) do
         end else do
           env_3 = env;
           start_loc_3 = start_loc;
-          match_3 = Curry._2(Parser_env_Peek.token, undefined, env_3);
+          match_3 = Curry._2(Parser_env_Peek.token, nil, env_3);
           id;
           if (typeof match_3 == "number" or match_3.tag ~= --[[ T_STRING ]]1) then do
-            id = --[[ Identifier ]]Block.__(0, {Curry._2(Parse.identifier, undefined, env_3)});
+            id = --[[ Identifier ]]Block.__(0, {Curry._2(Parse.identifier, nil, env_3)});
           end else do
             match_4 = match_3[0];
             octal = match_4[3];
@@ -10886,12 +10886,12 @@ function declare(in_moduleOpt, env) do
                   }
                 }});
           end end 
-          body_start_loc = Curry._2(Parser_env_Peek.loc, undefined, env_3);
+          body_start_loc = Curry._2(Parser_env_Peek.loc, nil, env_3);
           token_4(env_3, --[[ T_LCURLY ]]1);
-          match_5 = module_items(env_3, undefined, --[[ [] ]]0);
+          match_5 = module_items(env_3, nil, --[[ [] ]]0);
           module_kind = match_5[0];
           token_4(env_3, --[[ T_RCURLY ]]2);
-          body_end_loc = Curry._2(Parser_env_Peek.loc, undefined, env_3);
+          body_end_loc = Curry._2(Parser_env_Peek.loc, nil, env_3);
           body_loc = btwn(body_start_loc, body_end_loc);
           body_001 = {
             body = match_5[1]
@@ -10901,7 +10901,7 @@ function declare(in_moduleOpt, env) do
             body_001
           };
           loc_2 = btwn(start_loc_3, body_loc);
-          kind = module_kind ~= undefined and module_kind or --[[ CommonJS ]]Block.__(0, {loc_2});
+          kind = module_kind ~= nil and module_kind or --[[ CommonJS ]]Block.__(0, {loc_2});
           return --[[ tuple ]]{
                   loc_2,
                   --[[ DeclareModule ]]Block.__(25, {{
@@ -10939,7 +10939,7 @@ function supers(env, _acc) do
       __super,
       acc
     };
-    match = Curry._2(Parser_env_Peek.token, undefined, env);
+    match = Curry._2(Parser_env_Peek.token, nil, env);
     if (typeof match == "number" and match == 8) then do
       token_4(env, --[[ T_COMMA ]]8);
       _acc = acc_1;
@@ -10951,15 +10951,15 @@ function supers(env, _acc) do
 end end
 
 function interface_helper(env) do
-  start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
+  start_loc = Curry._2(Parser_env_Peek.loc, nil, env);
   if (not env.parse_options.types) then do
     error_1(env, --[[ UnexpectedTypeInterface ]]10);
   end
    end 
   token_4(env, --[[ T_INTERFACE ]]51);
-  id = Curry._2(Parse.identifier, undefined, env);
+  id = Curry._2(Parse.identifier, nil, env);
   typeParameters = Curry._1(type_parameter_declaration_with_defaults, env);
-  __extends = Curry._2(Parser_env_Peek.token, undefined, env) == --[[ T_EXTENDS ]]39 and (token_4(env, --[[ T_EXTENDS ]]39), supers(env, --[[ [] ]]0)) or --[[ [] ]]0;
+  __extends = Curry._2(Parser_env_Peek.token, nil, env) == --[[ T_EXTENDS ]]39 and (token_4(env, --[[ T_EXTENDS ]]39), supers(env, --[[ [] ]]0)) or --[[ [] ]]0;
   body = _object_1(true, env);
   loc = btwn(start_loc, body[0]);
   return --[[ tuple ]]{
@@ -10982,7 +10982,7 @@ function supers_1(env, _acc) do
       __super,
       acc
     };
-    match = Curry._2(Parser_env_Peek.token, undefined, env);
+    match = Curry._2(Parser_env_Peek.token, nil, env);
     if (typeof match == "number" and match == 8) then do
       token_4(env, --[[ T_COMMA ]]8);
       _acc = acc_1;
@@ -10996,10 +10996,10 @@ end end
 function declare_class(env, start_loc) do
   env_1 = with_strict(true, env);
   token_4(env_1, --[[ T_CLASS ]]38);
-  id = Curry._2(Parse.identifier, undefined, env_1);
+  id = Curry._2(Parse.identifier, nil, env_1);
   typeParameters = Curry._1(type_parameter_declaration_with_defaults, env_1);
-  __extends = Curry._2(Parser_env_Peek.token, undefined, env_1) == --[[ T_EXTENDS ]]39 and (token_4(env_1, --[[ T_EXTENDS ]]39), supers_1(env_1, --[[ [] ]]0)) or --[[ [] ]]0;
-  mixins = Curry._2(Parser_env_Peek.value, undefined, env_1) == "mixins" and (contextual(env_1, "mixins"), supers_1(env_1, --[[ [] ]]0)) or --[[ [] ]]0;
+  __extends = Curry._2(Parser_env_Peek.token, nil, env_1) == --[[ T_EXTENDS ]]39 and (token_4(env_1, --[[ T_EXTENDS ]]39), supers_1(env_1, --[[ [] ]]0)) or --[[ [] ]]0;
+  mixins = Curry._2(Parser_env_Peek.value, nil, env_1) == "mixins" and (contextual(env_1, "mixins"), supers_1(env_1, --[[ [] ]]0)) or --[[ [] ]]0;
   body = _object_1(true, env_1);
   loc = btwn(start_loc, body[0]);
   return --[[ tuple ]]{
@@ -11018,7 +11018,7 @@ function module_items(env, _module_kind, _acc) do
   while(true) do
     acc = _acc;
     module_kind = _module_kind;
-    match = Curry._2(Parser_env_Peek.token, undefined, env);
+    match = Curry._2(Parser_env_Peek.token, nil, env);
     if (typeof match == "number" and not (match ~= 2 and match ~= 105)) then do
       return --[[ tuple ]]{
               module_kind,
@@ -11030,7 +11030,7 @@ function module_items(env, _module_kind, _acc) do
     stmt_1 = stmt[1];
     loc = stmt[0];
     module_kind_1;
-    if (module_kind ~= undefined) then do
+    if (module_kind ~= nil) then do
       if (module_kind.tag) then do
         if (typeof stmt_1 == "number" or stmt_1.tag ~= --[[ DeclareModuleExports ]]26) then do
           module_kind_1 = module_kind;
@@ -11048,7 +11048,7 @@ function module_items(env, _module_kind, _acc) do
               module_kind_1 = module_kind; end else 
            if ___conditional___ == 27--[[ DeclareExportDeclaration ]] then do
               declaration = stmt_1[0].declaration;
-              if (declaration ~= undefined) then do
+              if (declaration ~= nil) then do
                 local ___conditional___=(declaration.tag | 0);
                 do
                    if ___conditional___ == 4--[[ NamedType ]]
@@ -11075,7 +11075,7 @@ function module_items(env, _module_kind, _acc) do
             module_kind_1 = --[[ CommonJS ]]Block.__(0, {loc}); end else 
          if ___conditional___ == 27--[[ DeclareExportDeclaration ]] then do
             declaration_1 = stmt_1[0].declaration;
-            if (declaration_1 ~= undefined) then do
+            if (declaration_1 ~= nil) then do
               local ___conditional___=(declaration_1.tag | 0);
               do
                  if ___conditional___ == 4--[[ NamedType ]]
@@ -11118,7 +11118,7 @@ function fold(acc, _param) do
                       end end), acc, match[0].properties); end end 
        if ___conditional___ == 1--[[ Array ]] then do
           return List.fold_left((function(acc, elem) do
-                        if (elem ~= undefined) then do
+                        if (elem ~= nil) then do
                           match = elem;
                           if (match.tag) then do
                             return fold(acc, match[0][1].argument);
@@ -11152,7 +11152,7 @@ function fold(acc, _param) do
 end end
 
 function assert_can_be_forin_or_forof(env, err, param) do
-  if (param ~= undefined) then do
+  if (param ~= nil) then do
     match = param;
     if (match.tag) then do
       match_1 = match[0];
@@ -11171,7 +11171,7 @@ function assert_can_be_forin_or_forof(env, err, param) do
     end else do
       match_2 = match[0];
       declarations = match_2[1].declarations;
-      if (declarations and declarations[0][1].init == undefined and not declarations[1]) then do
+      if (declarations and declarations[0][1].init == nil and not declarations[1]) then do
         return --[[ () ]]0;
       end
        end 
@@ -11186,15 +11186,15 @@ function assert_can_be_forin_or_forof(env, err, param) do
 end end
 
 function _if(env) do
-  start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
+  start_loc = Curry._2(Parser_env_Peek.loc, nil, env);
   token_4(env, --[[ T_IF ]]14);
   token_4(env, --[[ T_LPAREN ]]3);
   test = Curry._1(Parse.expression, env);
   token_4(env, --[[ T_RPAREN ]]4);
-  Curry._2(Parser_env_Peek.token, undefined, env);
-  consequent = Curry._2(Parser_env_Peek.is_function, undefined, env) and (strict_error(env, --[[ StrictFunctionStatement ]]45), _function(env)) or Curry._1(Parse.statement, env);
-  alternate = Curry._2(Parser_env_Peek.token, undefined, env) == --[[ T_ELSE ]]41 and (token_4(env, --[[ T_ELSE ]]41), Curry._1(Parse.statement, env)) or undefined;
-  end_loc = alternate ~= undefined and alternate[0] or consequent[0];
+  Curry._2(Parser_env_Peek.token, nil, env);
+  consequent = Curry._2(Parser_env_Peek.is_function, nil, env) and (strict_error(env, --[[ StrictFunctionStatement ]]45), _function(env)) or Curry._1(Parse.statement, env);
+  alternate = Curry._2(Parser_env_Peek.token, nil, env) == --[[ T_ELSE ]]41 and (token_4(env, --[[ T_ELSE ]]41), Curry._1(Parse.statement, env)) or nil;
+  end_loc = alternate ~= nil and alternate[0] or consequent[0];
   return --[[ tuple ]]{
           btwn(start_loc, end_loc),
           --[[ If ]]Block.__(2, {{
@@ -11210,13 +11210,13 @@ function case_list(env, _param) do
     param = _param;
     acc = param[1];
     seen_default = param[0];
-    match = Curry._2(Parser_env_Peek.token, undefined, env);
+    match = Curry._2(Parser_env_Peek.token, nil, env);
     if (typeof match == "number" and not (match ~= 2 and match ~= 105)) then do
       return List.rev(acc);
     end
      end 
-    start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
-    match_1 = Curry._2(Parser_env_Peek.token, undefined, env);
+    start_loc = Curry._2(Parser_env_Peek.loc, nil, env);
+    match_1 = Curry._2(Parser_env_Peek.token, nil, env);
     test;
     if (typeof match_1 == "number" and match_1 == 34) then do
       if (seen_default) then do
@@ -11224,13 +11224,13 @@ function case_list(env, _param) do
       end
        end 
       token_4(env, --[[ T_DEFAULT ]]34);
-      test = undefined;
+      test = nil;
     end else do
       token_4(env, --[[ T_CASE ]]31);
       test = Curry._1(Parse.expression, env);
     end end 
-    seen_default_1 = seen_default or test == undefined;
-    end_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
+    seen_default_1 = seen_default or test == nil;
+    end_loc = Curry._2(Parser_env_Peek.loc, nil, env);
     token_4(env, --[[ T_COLON ]]77);
     term_fn = function(param) do
       if (typeof param == "number") then do
@@ -11270,8 +11270,8 @@ function var_or_const(env) do
   match = variable(env);
   match_1 = match[0];
   start_loc = match_1[0];
-  match_2 = Curry._2(Parser_env_Peek.semicolon_loc, undefined, env);
-  end_loc = match_2 ~= undefined and match_2 or start_loc;
+  match_2 = Curry._2(Parser_env_Peek.semicolon_loc, nil, env);
+  end_loc = match_2 ~= nil and match_2 or start_loc;
   semicolon(env);
   List.iter((function(param) do
           return error_at(env, param);
@@ -11284,7 +11284,7 @@ end end
 
 function source(env) do
   contextual(env, "from");
-  match = Curry._2(Parser_env_Peek.token, undefined, env);
+  match = Curry._2(Parser_env_Peek.token, nil, env);
   if (typeof match ~= "number" and match.tag == --[[ T_STRING ]]1) then do
     match_1 = match[0];
     octal = match_1[3];
@@ -11311,9 +11311,9 @@ function source(env) do
           };
   end
    end 
-  raw_1 = Curry._2(Parser_env_Peek.value, undefined, env);
+  raw_1 = Curry._2(Parser_env_Peek.value, nil, env);
   value_2 = --[[ String ]]Block.__(0, {raw_1});
-  ret_000 = Curry._2(Parser_env_Peek.loc, undefined, env);
+  ret_000 = Curry._2(Parser_env_Peek.loc, nil, env);
   ret_001 = {
     value = value_2,
     raw = raw_1
@@ -11329,7 +11329,7 @@ end end
 function specifier_list(env, _acc) do
   while(true) do
     acc = _acc;
-    match = Curry._2(Parser_env_Peek.token, undefined, env);
+    match = Curry._2(Parser_env_Peek.token, nil, env);
     if (typeof match == "number" and not (match ~= 2 and match ~= 105)) then do
       return List.rev(acc);
     end
@@ -11338,24 +11338,24 @@ function specifier_list(env, _acc) do
     err = match_1[1];
     remote = match_1[0];
     specifier;
-    if (Curry._2(Parser_env_Peek.value, undefined, env) == "as") then do
+    if (Curry._2(Parser_env_Peek.value, nil, env) == "as") then do
       contextual(env, "as");
-      local = Curry._2(Parse.identifier, undefined, env);
+      local = Curry._2(Parse.identifier, nil, env);
       specifier = --[[ ImportNamedSpecifier ]]Block.__(0, {{
             local = local,
             remote = remote
           }});
     end else do
-      if (err ~= undefined) then do
+      if (err ~= nil) then do
         error_at(env, err);
       end
        end 
       specifier = --[[ ImportNamedSpecifier ]]Block.__(0, {{
-            local = undefined,
+            local = nil,
             remote = remote
           }});
     end end 
-    if (Curry._2(Parser_env_Peek.token, undefined, env) == --[[ T_COMMA ]]8) then do
+    if (Curry._2(Parser_env_Peek.token, nil, env) == --[[ T_COMMA ]]8) then do
       token_4(env, --[[ T_COMMA ]]8);
     end
      end 
@@ -11368,12 +11368,12 @@ function specifier_list(env, _acc) do
 end end
 
 function named_or_namespace_specifier(env) do
-  start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
-  match = Curry._2(Parser_env_Peek.token, undefined, env);
+  start_loc = Curry._2(Parser_env_Peek.loc, nil, env);
+  match = Curry._2(Parser_env_Peek.token, nil, env);
   if (typeof match == "number" and match == 97) then do
     token_4(env, --[[ T_MULT ]]97);
     contextual(env, "as");
-    id = Curry._2(Parse.identifier, undefined, env);
+    id = Curry._2(Parse.identifier, nil, env);
     return --[[ :: ]]{
             --[[ ImportNamespaceSpecifier ]]Block.__(2, {--[[ tuple ]]{
                   btwn(start_loc, id[0]),
@@ -11404,7 +11404,7 @@ function from_expr(env, param) do
           elements = List.map((function(param) do
                   env_2 = env_1;
                   param_1 = param;
-                  if (param_1 ~= undefined) then do
+                  if (param_1 ~= nil) then do
                     match = param_1;
                     if (match.tag) then do
                       match_1 = match[0];
@@ -11429,7 +11429,7 @@ function from_expr(env, param) do
                   param_1[0],
                   --[[ Array ]]Block.__(1, {{
                         elements = elements,
-                        typeAnnotation = undefined
+                        typeAnnotation = nil
                       }})
                 }; end end 
        if ___conditional___ == 1--[[ Object ]] then do
@@ -11481,7 +11481,7 @@ function from_expr(env, param) do
                   param_2[0],
                   --[[ Object ]]Block.__(0, {{
                         properties = properties,
-                        typeAnnotation = undefined
+                        typeAnnotation = nil
                       }})
                 }; end end 
        if ___conditional___ == 7--[[ Assignment ]] then do
@@ -11516,7 +11516,7 @@ end end
 
 function _object_2(restricted_error) do
   property = function(env) do
-    start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
+    start_loc = Curry._2(Parser_env_Peek.loc, nil, env);
     if (maybe(env, --[[ T_ELLIPSIS ]]11)) then do
       argument = pattern_1(env, restricted_error);
       loc = btwn(start_loc, argument[0]);
@@ -11541,7 +11541,7 @@ function _object_2(restricted_error) do
          end end end end end end
         
       end
-      match_2 = Curry._2(Parser_env_Peek.token, undefined, env);
+      match_2 = Curry._2(Parser_env_Peek.token, nil, env);
       prop;
       exit = 0;
       if (typeof match_2 == "number" and match_2 == 77) then do
@@ -11571,16 +11571,16 @@ function _object_2(restricted_error) do
            if ___conditional___ == 0--[[ Literal ]]
            or ___conditional___ == 2--[[ Computed ]] then do
               error_unexpected(env);
-              prop = undefined; end else 
+              prop = nil; end else 
            end end end end
           
         end
       end
        end 
-      if (prop ~= undefined) then do
+      if (prop ~= nil) then do
         match_3 = prop;
         pattern_3 = match_3[0];
-        match_4 = Curry._2(Parser_env_Peek.token, undefined, env);
+        match_4 = Curry._2(Parser_env_Peek.token, nil, env);
         pattern_4;
         if (typeof match_4 == "number" and match_4 == 75) then do
           token_4(env, --[[ T_ASSIGN ]]75);
@@ -11613,14 +11613,14 @@ function _object_2(restricted_error) do
   properties = function(env, _acc) do
     while(true) do
       acc = _acc;
-      match = Curry._2(Parser_env_Peek.token, undefined, env);
+      match = Curry._2(Parser_env_Peek.token, nil, env);
       if (typeof match == "number" and not (match ~= 2 and match ~= 105)) then do
         return List.rev(acc);
       end
        end 
       match_1 = property(env);
-      if (match_1 ~= undefined) then do
-        if (Curry._2(Parser_env_Peek.token, undefined, env) ~= --[[ T_RCURLY ]]2) then do
+      if (match_1 ~= nil) then do
+        if (Curry._2(Parser_env_Peek.token, nil, env) ~= --[[ T_RCURLY ]]2) then do
           token_4(env, --[[ T_COMMA ]]8);
         end
          end 
@@ -11635,13 +11635,13 @@ function _object_2(restricted_error) do
     end;
   end end;
   return (function(env) do
-      start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
+      start_loc = Curry._2(Parser_env_Peek.loc, nil, env);
       token_4(env, --[[ T_LCURLY ]]1);
       properties_1 = properties(env, --[[ [] ]]0);
-      end_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
+      end_loc = Curry._2(Parser_env_Peek.loc, nil, env);
       token_4(env, --[[ T_RCURLY ]]2);
       match;
-      if (Curry._2(Parser_env_Peek.token, undefined, env) == --[[ T_COLON ]]77) then do
+      if (Curry._2(Parser_env_Peek.token, nil, env) == --[[ T_COLON ]]77) then do
         typeAnnotation = wrap(annotation, env);
         match = --[[ tuple ]]{
           typeAnnotation[0],
@@ -11650,7 +11650,7 @@ function _object_2(restricted_error) do
       end else do
         match = --[[ tuple ]]{
           end_loc,
-          undefined
+          nil
         };
       end end 
       return --[[ tuple ]]{
@@ -11667,7 +11667,7 @@ function _array(restricted_error) do
   elements = function(env, _acc) do
     while(true) do
       acc = _acc;
-      match = Curry._2(Parser_env_Peek.token, undefined, env);
+      match = Curry._2(Parser_env_Peek.token, nil, env);
       if (typeof match == "number") then do
         if (match ~= 105) then do
           if (match < 12) then do
@@ -11678,7 +11678,7 @@ function _array(restricted_error) do
                if ___conditional___ == 8--[[ T_COMMA ]] then do
                   token_4(env, --[[ T_COMMA ]]8);
                   _acc = --[[ :: ]]{
-                    undefined,
+                    nil,
                     acc
                   };
                   ::continue:: ; end end 
@@ -11692,7 +11692,7 @@ function _array(restricted_error) do
                or ___conditional___ == 9--[[ T_PERIOD ]]
                or ___conditional___ == 10--[[ T_ARROW ]]
                or ___conditional___ == 11--[[ T_ELLIPSIS ]] then do
-                  start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
+                  start_loc = Curry._2(Parser_env_Peek.loc, nil, env);
                   token_4(env, --[[ T_ELLIPSIS ]]11);
                   argument = pattern_1(env, restricted_error);
                   loc = btwn(start_loc, argument[0]);
@@ -11717,7 +11717,7 @@ function _array(restricted_error) do
       end
        end 
       pattern_2 = pattern_1(env, restricted_error);
-      match_1 = Curry._2(Parser_env_Peek.token, undefined, env);
+      match_1 = Curry._2(Parser_env_Peek.token, nil, env);
       pattern_3;
       if (typeof match_1 == "number" and match_1 == 75) then do
         token_4(env, --[[ T_ASSIGN ]]75);
@@ -11734,7 +11734,7 @@ function _array(restricted_error) do
         pattern_3 = pattern_2;
       end end 
       element_1 = --[[ Element ]]Block.__(0, {pattern_3});
-      if (Curry._2(Parser_env_Peek.token, undefined, env) ~= --[[ T_RBRACKET ]]6) then do
+      if (Curry._2(Parser_env_Peek.token, nil, env) ~= --[[ T_RBRACKET ]]6) then do
         token_4(env, --[[ T_COMMA ]]8);
       end
        end 
@@ -11746,13 +11746,13 @@ function _array(restricted_error) do
     end;
   end end;
   return (function(env) do
-      start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
+      start_loc = Curry._2(Parser_env_Peek.loc, nil, env);
       token_4(env, --[[ T_LBRACKET ]]5);
       elements_1 = elements(env, --[[ [] ]]0);
-      end_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
+      end_loc = Curry._2(Parser_env_Peek.loc, nil, env);
       token_4(env, --[[ T_RBRACKET ]]6);
       match;
-      if (Curry._2(Parser_env_Peek.token, undefined, env) == --[[ T_COLON ]]77) then do
+      if (Curry._2(Parser_env_Peek.token, nil, env) == --[[ T_COLON ]]77) then do
         typeAnnotation = wrap(annotation, env);
         match = --[[ tuple ]]{
           typeAnnotation[0],
@@ -11761,7 +11761,7 @@ function _array(restricted_error) do
       end else do
         match = --[[ tuple ]]{
           end_loc,
-          undefined
+          nil
         };
       end end 
       return --[[ tuple ]]{
@@ -11775,7 +11775,7 @@ function _array(restricted_error) do
 end end
 
 function pattern_1(env, restricted_error) do
-  match = Curry._2(Parser_env_Peek.token, undefined, env);
+  match = Curry._2(Parser_env_Peek.token, nil, env);
   if (typeof match == "number") then do
     if (match ~= 1) then do
       if (match == 5) then do
@@ -11796,11 +11796,11 @@ end end
 
 function spread_attribute(env) do
   push_lex_mode(env, --[[ NORMAL ]]0);
-  start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
+  start_loc = Curry._2(Parser_env_Peek.loc, nil, env);
   token_4(env, --[[ T_LCURLY ]]1);
   token_4(env, --[[ T_ELLIPSIS ]]11);
   argument = Curry._1(assignment, env);
-  end_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
+  end_loc = Curry._2(Parser_env_Peek.loc, nil, env);
   token_4(env, --[[ T_RCURLY ]]2);
   pop_lex_mode(env);
   return --[[ tuple ]]{
@@ -11813,16 +11813,16 @@ end end
 
 function expression_container(env) do
   push_lex_mode(env, --[[ NORMAL ]]0);
-  start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
+  start_loc = Curry._2(Parser_env_Peek.loc, nil, env);
   token_4(env, --[[ T_LCURLY ]]1);
   expression;
-  if (Curry._2(Parser_env_Peek.token, undefined, env) == --[[ T_RCURLY ]]2) then do
-    empty_loc = btwn_exclusive(start_loc, Curry._2(Parser_env_Peek.loc, undefined, env));
+  if (Curry._2(Parser_env_Peek.token, nil, env) == --[[ T_RCURLY ]]2) then do
+    empty_loc = btwn_exclusive(start_loc, Curry._2(Parser_env_Peek.loc, nil, env));
     expression = --[[ EmptyExpression ]]Block.__(1, {empty_loc});
   end else do
     expression = --[[ Expression ]]Block.__(0, {Curry._1(Parse.expression, env)});
   end end 
-  end_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
+  end_loc = Curry._2(Parser_env_Peek.loc, nil, env);
   token_4(env, --[[ T_RCURLY ]]2);
   pop_lex_mode(env);
   return --[[ tuple ]]{
@@ -11834,8 +11834,8 @@ function expression_container(env) do
 end end
 
 function identifier_1(env) do
-  loc = Curry._2(Parser_env_Peek.loc, undefined, env);
-  name = Curry._2(Parser_env_Peek.value, undefined, env);
+  loc = Curry._2(Parser_env_Peek.loc, nil, env);
+  name = Curry._2(Parser_env_Peek.value, nil, env);
   token_4(env, --[[ T_JSX_IDENTIFIER ]]106);
   return --[[ tuple ]]{
           loc,
@@ -11848,7 +11848,7 @@ end end
 function member_expression(env, _member) do
   while(true) do
     member = _member;
-    match = Curry._2(Parser_env_Peek.token, undefined, env);
+    match = Curry._2(Parser_env_Peek.token, nil, env);
     if (typeof match == "number" and match == 9) then do
       _object = --[[ MemberExpression ]]Block.__(1, {member});
       token_4(env, --[[ T_PERIOD ]]9);
@@ -11872,7 +11872,7 @@ end end
 
 function name(env) do
   name_1 = identifier_1(env);
-  match = Curry._2(Parser_env_Peek.token, undefined, env);
+  match = Curry._2(Parser_env_Peek.token, nil, env);
   if (typeof match == "number") then do
     if (match ~= 9) then do
       if (match ~= 77) then do
@@ -11910,10 +11910,10 @@ function name(env) do
 end end
 
 function attribute(env) do
-  start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
+  start_loc = Curry._2(Parser_env_Peek.loc, nil, env);
   name = identifier_1(env);
   match;
-  if (Curry._2(Parser_env_Peek.token, undefined, env) == --[[ T_COLON ]]77) then do
+  if (Curry._2(Parser_env_Peek.token, nil, env) == --[[ T_COLON ]]77) then do
     token_4(env, --[[ T_COLON ]]77);
     name_1 = identifier_1(env);
     loc = btwn(name[0], name_1[0]);
@@ -11934,9 +11934,9 @@ function attribute(env) do
     };
   end end 
   match_1;
-  if (Curry._2(Parser_env_Peek.token, undefined, env) == --[[ T_ASSIGN ]]75) then do
+  if (Curry._2(Parser_env_Peek.token, nil, env) == --[[ T_ASSIGN ]]75) then do
     token_4(env, --[[ T_ASSIGN ]]75);
-    token_5 = Curry._2(Parser_env_Peek.token, undefined, env);
+    token_5 = Curry._2(Parser_env_Peek.token, nil, env);
     exit = 0;
     if (typeof token_5 == "number") then do
       if (token_5 == --[[ T_LCURLY ]]1) then do
@@ -11978,7 +11978,7 @@ function attribute(env) do
     end end  end 
     if (exit == 1) then do
       error_1(env, --[[ InvalidJSXAttributeValue ]]41);
-      loc_3 = Curry._2(Parser_env_Peek.loc, undefined, env);
+      loc_3 = Curry._2(Parser_env_Peek.loc, nil, env);
       match_1 = --[[ tuple ]]{
         loc_3,
         --[[ Literal ]]Block.__(0, {
@@ -11994,7 +11994,7 @@ function attribute(env) do
   end else do
     match_1 = --[[ tuple ]]{
       match[0],
-      undefined
+      nil
     };
   end end 
   return --[[ tuple ]]{
@@ -12009,7 +12009,7 @@ end end
 function attributes(env, _acc) do
   while(true) do
     acc = _acc;
-    match = Curry._2(Parser_env_Peek.token, undefined, env);
+    match = Curry._2(Parser_env_Peek.token, nil, env);
     if (typeof match == "number") then do
       if (match >= 91) then do
         if (not (match ~= 96 and match ~= 105)) then do
@@ -12043,12 +12043,12 @@ end end
 function opening_element_without_lt(env, start_loc) do
   name_1 = name(env);
   attributes_1 = attributes(env, --[[ [] ]]0);
-  selfClosing = Curry._2(Parser_env_Peek.token, undefined, env) == --[[ T_DIV ]]96;
+  selfClosing = Curry._2(Parser_env_Peek.token, nil, env) == --[[ T_DIV ]]96;
   if (selfClosing) then do
     token_4(env, --[[ T_DIV ]]96);
   end
    end 
-  end_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
+  end_loc = Curry._2(Parser_env_Peek.loc, nil, env);
   token_4(env, --[[ T_GREATER_THAN ]]90);
   pop_lex_mode(env);
   return --[[ tuple ]]{
@@ -12064,7 +12064,7 @@ end end
 function closing_element_without_lt(env, start_loc) do
   token_4(env, --[[ T_DIV ]]96);
   name_1 = name(env);
-  end_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
+  end_loc = Curry._2(Parser_env_Peek.loc, nil, env);
   token_4(env, --[[ T_GREATER_THAN ]]90);
   double_pop_lex_mode(env);
   return --[[ tuple ]]{
@@ -12076,7 +12076,7 @@ function closing_element_without_lt(env, start_loc) do
 end end
 
 function child(env) do
-  token_5 = Curry._2(Parser_env_Peek.token, undefined, env);
+  token_5 = Curry._2(Parser_env_Peek.token, nil, env);
   if (typeof token_5 == "number") then do
     if (token_5 == --[[ T_LCURLY ]]1) then do
       expression_container_1 = expression_container(env);
@@ -12106,7 +12106,7 @@ function child(env) do
 end end
 
 function element(env) do
-  start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
+  start_loc = Curry._2(Parser_env_Peek.loc, nil, env);
   push_lex_mode(env, --[[ JSX_TAG ]]2);
   token_4(env, --[[ T_LESS_THAN ]]89);
   return Curry._2(element_without_lt, env, start_loc);
@@ -12114,9 +12114,9 @@ end end
 
 function element_or_closing(env) do
   push_lex_mode(env, --[[ JSX_TAG ]]2);
-  start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
+  start_loc = Curry._2(Parser_env_Peek.loc, nil, env);
   token_4(env, --[[ T_LESS_THAN ]]89);
-  match = Curry._2(Parser_env_Peek.token, undefined, env);
+  match = Curry._2(Parser_env_Peek.token, nil, env);
   if (typeof match == "number" and not (match ~= 96 and match ~= 105)) then do
     return --[[ Closing ]]Block.__(0, {closing_element_without_lt(env, start_loc)});
   end else do
@@ -12127,7 +12127,7 @@ end end
 function children_and_closing(env, _acc) do
   while(true) do
     acc = _acc;
-    match = Curry._2(Parser_env_Peek.token, undefined, env);
+    match = Curry._2(Parser_env_Peek.token, nil, env);
     if (typeof match == "number") then do
       if (match ~= 89) then do
         if (match ~= 105) then do
@@ -12140,7 +12140,7 @@ function children_and_closing(env, _acc) do
           error_unexpected(env);
           return --[[ tuple ]]{
                   List.rev(acc),
-                  undefined
+                  nil
                 };
         end end 
       end else do
@@ -12197,11 +12197,11 @@ function element_without_lt(env, start_loc) do
   openingElement = opening_element_without_lt(env, start_loc);
   match = openingElement[1].selfClosing and --[[ tuple ]]{
       --[[ [] ]]0,
-      undefined
+      nil
     } or (push_lex_mode(env, --[[ JSX_CHILD ]]3), children_and_closing(env, --[[ [] ]]0));
   closingElement = match[1];
   end_loc;
-  if (closingElement ~= undefined) then do
+  if (closingElement ~= nil) then do
     match_1 = closingElement;
     opening_name = normalize(openingElement[1].name);
     if (normalize(match_1[1].name) ~= opening_name) then do
@@ -12223,19 +12223,19 @@ function element_without_lt(env, start_loc) do
 end end
 
 function statement_list_item(decoratorsOpt, env) do
-  decorators = decoratorsOpt ~= undefined and decoratorsOpt or --[[ [] ]]0;
-  if (not Curry._2(Parser_env_Peek.is_class, undefined, env)) then do
+  decorators = decoratorsOpt ~= nil and decoratorsOpt or --[[ [] ]]0;
+  if (not Curry._2(Parser_env_Peek.is_class, nil, env)) then do
     error_on_decorators(env)(decorators);
   end
    end 
-  match = Curry._2(Parser_env_Peek.token, undefined, env);
+  match = Curry._2(Parser_env_Peek.token, nil, env);
   if (typeof match == "number") then do
     if (match ~= 25) then do
       if (match == 26) then do
         env_1 = env;
-        start_loc = Curry._2(Parser_env_Peek.loc, undefined, env_1);
+        start_loc = Curry._2(Parser_env_Peek.loc, nil, env_1);
         token_4(env_1, --[[ T_LET ]]26);
-        if (Curry._2(Parser_env_Peek.token, undefined, env_1) == --[[ T_LPAREN ]]3) then do
+        if (Curry._2(Parser_env_Peek.token, nil, env_1) == --[[ T_LPAREN ]]3) then do
           token_4(env_1, --[[ T_LPAREN ]]3);
           match_1 = helper(with_no_let(true, env_1), --[[ [] ]]0, --[[ [] ]]0);
           head = List.map((function(param) do
@@ -12247,8 +12247,8 @@ function statement_list_item(decoratorsOpt, env) do
                 end end), match_1[1]);
           token_4(env_1, --[[ T_RPAREN ]]4);
           body = Curry._1(Parse.statement, env_1);
-          match_2 = Curry._2(Parser_env_Peek.semicolon_loc, undefined, env_1);
-          end_loc = match_2 ~= undefined and match_2 or match_1[0];
+          match_2 = Curry._2(Parser_env_Peek.semicolon_loc, nil, env_1);
+          end_loc = match_2 ~= nil and match_2 or match_1[0];
           semicolon(env_1);
           List.iter((function(param) do
                   return error_at(env_1, param);
@@ -12266,8 +12266,8 @@ function statement_list_item(decoratorsOpt, env) do
                 declarations = match_3[1],
                 kind = --[[ Let ]]1
               }});
-          match_4 = Curry._2(Parser_env_Peek.semicolon_loc, undefined, env_1);
-          end_loc_1 = match_4 ~= undefined and match_4 or match_3[0];
+          match_4 = Curry._2(Parser_env_Peek.semicolon_loc, nil, env_1);
+          end_loc_1 = match_4 ~= nil and match_4 or match_3[0];
           semicolon(env_1);
           List.iter((function(param) do
                   return error_at(env_1, param);
@@ -12284,9 +12284,9 @@ function statement_list_item(decoratorsOpt, env) do
     end end 
   end
    end 
-  if (Curry._2(Parser_env_Peek.is_function, undefined, env)) then do
+  if (Curry._2(Parser_env_Peek.is_function, nil, env)) then do
     return _function(env);
-  end else if (Curry._2(Parser_env_Peek.is_class, undefined, env)) then do
+  end else if (Curry._2(Parser_env_Peek.is_class, nil, env)) then do
     return class_declaration_1(env, decorators);
   end else if (typeof match == "number") then do
     local ___conditional___=(match);
@@ -12301,7 +12301,7 @@ function statement_list_item(decoratorsOpt, env) do
        or ___conditional___ == 57--[[ T_DEBUGGER ]] then do
           return statement(env); end end 
        if ___conditional___ == 58--[[ T_DECLARE ]] then do
-          return declare(undefined, env); end end 
+          return declare(nil, env); end end 
        if ___conditional___ == 59--[[ T_TYPE ]] then do
           return type_alias(env); end end 
       return statement(env);
@@ -12314,7 +12314,7 @@ end end
 
 function module_item(env) do
   decorators = decorator_list(env);
-  match = Curry._2(Parser_env_Peek.token, undefined, env);
+  match = Curry._2(Parser_env_Peek.token, nil, env);
   if (typeof match == "number") then do
     local ___conditional___=(match);
     do
@@ -12322,9 +12322,9 @@ function module_item(env) do
           env_1 = env;
           decorators_1 = decorators;
           env_2 = with_in_export(true, with_strict(true, env_1));
-          start_loc = Curry._2(Parser_env_Peek.loc, undefined, env_2);
+          start_loc = Curry._2(Parser_env_Peek.loc, nil, env_2);
           token_4(env_2, --[[ T_EXPORT ]]47);
-          match_1 = Curry._2(Parser_env_Peek.token, undefined, env_2);
+          match_1 = Curry._2(Parser_env_Peek.token, nil, env_2);
           exit = 0;
           if (typeof match_1 == "number") then do
             if (match_1 >= 51) then do
@@ -12363,8 +12363,8 @@ function module_item(env) do
                                 --[[ ExportDeclaration ]]Block.__(28, {{
                                       default = false,
                                       declaration = --[[ Declaration ]]Block.__(0, {__interface_1}),
-                                      specifiers = undefined,
-                                      source = undefined,
+                                      specifiers = nil,
+                                      source = nil,
                                       exportKind = --[[ ExportType ]]0
                                     }})
                               }; end end 
@@ -12398,8 +12398,8 @@ function module_item(env) do
                                   --[[ ExportDeclaration ]]Block.__(28, {{
                                         default = false,
                                         declaration = --[[ Declaration ]]Block.__(0, {type_alias_1}),
-                                        specifiers = undefined,
-                                        source = undefined,
+                                        specifiers = nil,
+                                        source = nil,
                                         exportKind = --[[ ExportType ]]0
                                       }})
                                 };
@@ -12422,24 +12422,24 @@ function module_item(env) do
                   end
                 end end 
               end else do
-                loc = Curry._2(Parser_env_Peek.loc, undefined, env_2);
+                loc = Curry._2(Parser_env_Peek.loc, nil, env_2);
                 token_4(env_2, --[[ T_MULT ]]97);
                 parse_export_star_as = env_2.parse_options.esproposal_export_star_as;
-                local_name = Curry._2(Parser_env_Peek.value, undefined, env_2) == "as" and (contextual(env_2, "as"), parse_export_star_as and Curry._2(Parse.identifier, undefined, env_2) or (error_1(env_2, --[[ UnexpectedTypeDeclaration ]]7), undefined)) or undefined;
+                local_name = Curry._2(Parser_env_Peek.value, nil, env_2) == "as" and (contextual(env_2, "as"), parse_export_star_as and Curry._2(Parse.identifier, nil, env_2) or (error_1(env_2, --[[ UnexpectedTypeDeclaration ]]7), nil)) or nil;
                 specifiers = --[[ ExportBatchSpecifier ]]Block.__(1, {
                     loc,
                     local_name
                   });
                 source_1 = export_source(env_2);
-                match_4 = Curry._2(Parser_env_Peek.semicolon_loc, undefined, env_2);
-                end_loc_2 = match_4 ~= undefined and match_4 or source_1[0];
+                match_4 = Curry._2(Parser_env_Peek.semicolon_loc, nil, env_2);
+                end_loc_2 = match_4 ~= nil and match_4 or source_1[0];
                 source_2 = source_1;
                 semicolon(env_2);
                 return --[[ tuple ]]{
                         btwn(start_loc, end_loc_2),
                         --[[ ExportDeclaration ]]Block.__(28, {{
                               default = false,
-                              declaration = undefined,
+                              declaration = nil,
                               specifiers = specifiers,
                               source = source_2,
                               exportKind = --[[ ExportValue ]]1
@@ -12452,10 +12452,10 @@ function module_item(env) do
                  if ___conditional___ == 34--[[ T_DEFAULT ]] then do
                     token_4(env_2, --[[ T_DEFAULT ]]34);
                     record_export(env_2, --[[ tuple ]]{
-                          btwn(start_loc, Curry._2(Parser_env_Peek.loc, undefined, env_2)),
+                          btwn(start_loc, Curry._2(Parser_env_Peek.loc, nil, env_2)),
                           "default"
                         });
-                    match_5 = Curry._2(Parser_env_Peek.token, undefined, env_2);
+                    match_5 = Curry._2(Parser_env_Peek.token, nil, env_2);
                     match_6;
                     exit_1 = 0;
                     if (typeof match_5 == "number" and match_5 == 13) then do
@@ -12468,7 +12468,7 @@ function module_item(env) do
                       exit_1 = 3;
                     end end 
                     if (exit_1 == 3) then do
-                      if (Curry._2(Parser_env_Peek.is_class, undefined, env_2)) then do
+                      if (Curry._2(Parser_env_Peek.is_class, nil, env_2)) then do
                         _class = class_declaration(env_2, decorators_1);
                         match_6 = --[[ tuple ]]{
                           _class[0],
@@ -12476,8 +12476,8 @@ function module_item(env) do
                         };
                       end else do
                         expr = Curry._1(Parse.assignment, env_2);
-                        match_7 = Curry._2(Parser_env_Peek.semicolon_loc, undefined, env_2);
-                        end_loc_3 = match_7 ~= undefined and match_7 or expr[0];
+                        match_7 = Curry._2(Parser_env_Peek.semicolon_loc, nil, env_2);
+                        end_loc_3 = match_7 ~= nil and match_7 or expr[0];
                         semicolon(env_2);
                         match_6 = --[[ tuple ]]{
                           end_loc_3,
@@ -12491,8 +12491,8 @@ function module_item(env) do
                             --[[ ExportDeclaration ]]Block.__(28, {{
                                   default = true,
                                   declaration = match_6[1],
-                                  specifiers = undefined,
-                                  source = undefined,
+                                  specifiers = nil,
+                                  source = nil,
                                   exportKind = --[[ ExportValue ]]1
                                 }})
                           }; end end 
@@ -12535,26 +12535,26 @@ function module_item(env) do
           local ___conditional___=(exit);
           do
              if ___conditional___ == 1 then do
-                match_8 = Curry._2(Parser_env_Peek.token, undefined, env_2);
+                match_8 = Curry._2(Parser_env_Peek.token, nil, env_2);
                 exportKind = typeof match_8 == "number" and match_8 == 59 and (token_3(env_2), --[[ ExportType ]]0) or --[[ ExportValue ]]1;
                 token_4(env_2, --[[ T_LCURLY ]]1);
                 match_9 = export_specifiers_and_errs(env_2, --[[ [] ]]0, --[[ [] ]]0);
                 specifiers_1 = --[[ ExportSpecifiers ]]Block.__(0, {match_9[0]});
-                end_loc_4 = Curry._2(Parser_env_Peek.loc, undefined, env_2);
+                end_loc_4 = Curry._2(Parser_env_Peek.loc, nil, env_2);
                 token_4(env_2, --[[ T_RCURLY ]]2);
-                source_3 = Curry._2(Parser_env_Peek.value, undefined, env_2) == "from" and export_source(env_2) or (List.iter((function(param) do
+                source_3 = Curry._2(Parser_env_Peek.value, nil, env_2) == "from" and export_source(env_2) or (List.iter((function(param) do
                             return error_at(env_2, param);
-                          end end), match_9[1]), undefined);
-                match_10 = Curry._2(Parser_env_Peek.semicolon_loc, undefined, env_2);
-                end_loc_5 = match_10 ~= undefined and match_10 or (
-                    source_3 ~= undefined and source_3[0] or end_loc_4
+                          end end), match_9[1]), nil);
+                match_10 = Curry._2(Parser_env_Peek.semicolon_loc, nil, env_2);
+                end_loc_5 = match_10 ~= nil and match_10 or (
+                    source_3 ~= nil and source_3[0] or end_loc_4
                   );
                 semicolon(env_2);
                 return --[[ tuple ]]{
                         btwn(start_loc, end_loc_5),
                         --[[ ExportDeclaration ]]Block.__(28, {{
                               default = false,
-                              declaration = undefined,
+                              declaration = nil,
                               specifiers = specifiers_1,
                               source = source_3,
                               exportKind = exportKind
@@ -12575,7 +12575,7 @@ function module_item(env) do
                   do
                      if ___conditional___ == 18--[[ FunctionDeclaration ]] then do
                         match_12 = match_11[0].id;
-                        if (match_12 ~= undefined) then do
+                        if (match_12 ~= nil) then do
                           names = --[[ :: ]]{
                             --[[ tuple ]]{
                               loc_1,
@@ -12602,7 +12602,7 @@ function module_item(env) do
                               end end), --[[ [] ]]0, match_11[0].declarations); end else 
                      if ___conditional___ == 20--[[ ClassDeclaration ]] then do
                         match_13 = match_11[0].id;
-                        if (match_13 ~= undefined) then do
+                        if (match_13 ~= nil) then do
                           names = --[[ :: ]]{
                             --[[ tuple ]]{
                               loc_1,
@@ -12634,8 +12634,8 @@ function module_item(env) do
                         --[[ ExportDeclaration ]]Block.__(28, {{
                               default = false,
                               declaration = declaration,
-                              specifiers = undefined,
-                              source = undefined,
+                              specifiers = nil,
+                              source = nil,
                               exportKind = --[[ ExportValue ]]1
                             }})
                       }; end end 
@@ -12645,16 +12645,16 @@ function module_item(env) do
           error_on_decorators(env)(decorators);
           env_3 = env;
           env_4 = with_strict(true, env_3);
-          start_loc_1 = Curry._2(Parser_env_Peek.loc, undefined, env_4);
+          start_loc_1 = Curry._2(Parser_env_Peek.loc, nil, env_4);
           token_4(env_4, --[[ T_IMPORT ]]48);
-          match_14 = Curry._2(Parser_env_Peek.token, undefined, env_4);
+          match_14 = Curry._2(Parser_env_Peek.token, nil, env_4);
           match_15;
           if (typeof match_14 == "number") then do
             if (match_14 ~= 44) then do
               if (match_14 ~= 59) then do
                 match_15 = --[[ tuple ]]{
                   --[[ ImportValue ]]2,
-                  undefined
+                  nil
                 };
               end else do
                 if (not env_4.parse_options.types) then do
@@ -12663,7 +12663,7 @@ function module_item(env) do
                  end 
                 match_15 = --[[ tuple ]]{
                   --[[ ImportType ]]0,
-                  Curry._2(Parse.identifier, undefined, env_4)
+                  Curry._2(Parse.identifier, nil, env_4)
                 };
               end end 
             end else do
@@ -12674,19 +12674,19 @@ function module_item(env) do
               token_4(env_4, --[[ T_TYPEOF ]]44);
               match_15 = --[[ tuple ]]{
                 --[[ ImportTypeof ]]1,
-                undefined
+                nil
               };
             end end 
           end else do
             match_15 = --[[ tuple ]]{
               --[[ ImportValue ]]2,
-              undefined
+              nil
             };
           end end 
           type_ident = match_15[1];
           importKind = match_15[0];
-          match_16 = Curry._2(Parser_env_Peek.token, undefined, env_4);
-          match_17 = Curry._2(Parser_env_Peek.is_identifier, undefined, env_4);
+          match_16 = Curry._2(Parser_env_Peek.token, nil, env_4);
+          match_17 = Curry._2(Parser_env_Peek.is_identifier, nil, env_4);
           exit_2 = 0;
           exit_3 = 0;
           if (typeof match_16 == "number") then do
@@ -12720,8 +12720,8 @@ function module_item(env) do
               str_loc,
               source_001
             };
-            match_19 = Curry._2(Parser_env_Peek.semicolon_loc, undefined, env_4);
-            end_loc_6 = match_19 ~= undefined and match_19 or str_loc;
+            match_19 = Curry._2(Parser_env_Peek.semicolon_loc, nil, env_4);
+            end_loc_6 = match_19 ~= nil and match_19 or str_loc;
             semicolon(env_4);
             return --[[ tuple ]]{
                     btwn(start_loc_1, end_loc_6),
@@ -12740,8 +12740,8 @@ function module_item(env) do
             end else do
               specifiers_2 = named_or_namespace_specifier(env_4);
               source_5 = source(env_4);
-              match_20 = Curry._2(Parser_env_Peek.semicolon_loc, undefined, env_4);
-              end_loc_7 = match_20 ~= undefined and match_20 or source_5[0];
+              match_20 = Curry._2(Parser_env_Peek.semicolon_loc, nil, env_4);
+              end_loc_7 = match_20 ~= nil and match_20 or source_5[0];
               semicolon(env_4);
               return --[[ tuple ]]{
                       btwn(start_loc_1, end_loc_7),
@@ -12755,11 +12755,11 @@ function module_item(env) do
           end
            end 
           if (exit_2 == 1) then do
-            match_21 = Curry._2(Parser_env_Peek.token, undefined, env_4);
-            match_22 = Curry._2(Parser_env_Peek.value, undefined, env_4);
+            match_21 = Curry._2(Parser_env_Peek.token, nil, env_4);
+            match_22 = Curry._2(Parser_env_Peek.value, nil, env_4);
             match_23;
             exit_4 = 0;
-            if (type_ident ~= undefined and typeof match_21 == "number") then do
+            if (type_ident ~= nil and typeof match_21 == "number") then do
               type_ident_1 = type_ident;
               if (match_21 ~= 8 and (match_21 ~= 0 or match_22 ~= "from")) then do
                 exit_4 = 2;
@@ -12775,15 +12775,15 @@ function module_item(env) do
             if (exit_4 == 2) then do
               match_23 = --[[ tuple ]]{
                 importKind,
-                --[[ ImportDefaultSpecifier ]]Block.__(1, {Curry._2(Parse.identifier, undefined, env_4)})
+                --[[ ImportDefaultSpecifier ]]Block.__(1, {Curry._2(Parse.identifier, nil, env_4)})
               };
             end
              end 
-            match_24 = Curry._2(Parser_env_Peek.token, undefined, env_4);
+            match_24 = Curry._2(Parser_env_Peek.token, nil, env_4);
             additional_specifiers = typeof match_24 == "number" and match_24 == 8 and (token_4(env_4, --[[ T_COMMA ]]8), named_or_namespace_specifier(env_4)) or --[[ [] ]]0;
             source_6 = source(env_4);
-            match_25 = Curry._2(Parser_env_Peek.semicolon_loc, undefined, env_4);
-            end_loc_8 = match_25 ~= undefined and match_25 or source_6[0];
+            match_25 = Curry._2(Parser_env_Peek.semicolon_loc, nil, env_4);
+            end_loc_8 = match_25 ~= nil and match_25 or source_6[0];
             semicolon(env_4);
             return --[[ tuple ]]{
                     btwn(start_loc_1, end_loc_8),
@@ -12811,7 +12811,7 @@ function module_item(env) do
        if ___conditional___ == 58--[[ T_DECLARE ]] then do
           if (Curry._2(Parser_env_Peek.token, 1, env) == --[[ T_EXPORT ]]47) then do
             error_on_decorators(env)(decorators);
-            return declare_export_declaration(undefined, env);
+            return declare_export_declaration(nil, env);
           end else do
             return statement_list_item(decorators, env);
           end end  end end 
@@ -12825,7 +12825,7 @@ end end
 
 function statement(env) do
   while(true) do
-    match = Curry._2(Parser_env_Peek.token, undefined, env);
+    match = Curry._2(Parser_env_Peek.token, nil, env);
     exit = 0;
     if (typeof match == "number") then do
       if (match ~= 105) then do
@@ -12843,7 +12843,7 @@ function statement(env) do
                       }; end end 
              if ___conditional___ == 7--[[ T_SEMICOLON ]] then do
                 env_2 = env;
-                loc = Curry._2(Parser_env_Peek.loc, undefined, env_2);
+                loc = Curry._2(Parser_env_Peek.loc, nil, env_2);
                 token_4(env_2, --[[ T_SEMICOLON ]]7);
                 return --[[ tuple ]]{
                         loc,
@@ -12857,12 +12857,12 @@ function statement(env) do
                   error_1(env_3, --[[ IllegalReturn ]]23);
                 end
                  end 
-                start_loc = Curry._2(Parser_env_Peek.loc, undefined, env_3);
+                start_loc = Curry._2(Parser_env_Peek.loc, nil, env_3);
                 token_4(env_3, --[[ T_RETURN ]]17);
-                argument = Curry._2(Parser_env_Peek.token, undefined, env_3) == --[[ T_SEMICOLON ]]7 or Curry._1(Parser_env_Peek.is_implicit_semicolon, env_3) and undefined or Curry._1(Parse.expression, env_3);
-                match_2 = Curry._2(Parser_env_Peek.semicolon_loc, undefined, env_3);
-                end_loc = match_2 ~= undefined and match_2 or (
-                    argument ~= undefined and argument[0] or start_loc
+                argument = Curry._2(Parser_env_Peek.token, nil, env_3) == --[[ T_SEMICOLON ]]7 or Curry._1(Parser_env_Peek.is_implicit_semicolon, env_3) and nil or Curry._1(Parse.expression, env_3);
+                match_2 = Curry._2(Parser_env_Peek.semicolon_loc, nil, env_3);
+                end_loc = match_2 ~= nil and match_2 or (
+                    argument ~= nil and argument[0] or start_loc
                   );
                 semicolon(env_3);
                 return --[[ tuple ]]{
@@ -12873,7 +12873,7 @@ function statement(env) do
                       }; end end 
              if ___conditional___ == 18--[[ T_SWITCH ]] then do
                 env_4 = env;
-                start_loc_1 = Curry._2(Parser_env_Peek.loc, undefined, env_4);
+                start_loc_1 = Curry._2(Parser_env_Peek.loc, nil, env_4);
                 token_4(env_4, --[[ T_SWITCH ]]18);
                 token_4(env_4, --[[ T_LPAREN ]]3);
                 discriminant = Curry._1(Parse.expression, env_4);
@@ -12883,7 +12883,7 @@ function statement(env) do
                       false,
                       --[[ [] ]]0
                     });
-                end_loc_1 = Curry._2(Parser_env_Peek.loc, undefined, env_4);
+                end_loc_1 = Curry._2(Parser_env_Peek.loc, nil, env_4);
                 token_4(env_4, --[[ T_RCURLY ]]2);
                 return --[[ tuple ]]{
                         btwn(start_loc_1, end_loc_1),
@@ -12895,7 +12895,7 @@ function statement(env) do
                       }; end end 
              if ___conditional___ == 20--[[ T_THROW ]] then do
                 env_5 = env;
-                start_loc_2 = Curry._2(Parser_env_Peek.loc, undefined, env_5);
+                start_loc_2 = Curry._2(Parser_env_Peek.loc, nil, env_5);
                 token_4(env_5, --[[ T_THROW ]]20);
                 if (Curry._1(Parser_env_Peek.is_line_terminator, env_5)) then do
                   error_at(env_5, --[[ tuple ]]{
@@ -12905,8 +12905,8 @@ function statement(env) do
                 end
                  end 
                 argument_1 = Curry._1(Parse.expression, env_5);
-                match_3 = Curry._2(Parser_env_Peek.semicolon_loc, undefined, env_5);
-                end_loc_2 = match_3 ~= undefined and match_3 or argument_1[0];
+                match_3 = Curry._2(Parser_env_Peek.semicolon_loc, nil, env_5);
+                end_loc_2 = match_3 ~= nil and match_3 or argument_1[0];
                 semicolon(env_5);
                 return --[[ tuple ]]{
                         btwn(start_loc_2, end_loc_2),
@@ -12916,13 +12916,13 @@ function statement(env) do
                       }; end end 
              if ___conditional___ == 21--[[ T_TRY ]] then do
                 env_6 = env;
-                start_loc_3 = Curry._2(Parser_env_Peek.loc, undefined, env_6);
+                start_loc_3 = Curry._2(Parser_env_Peek.loc, nil, env_6);
                 token_4(env_6, --[[ T_TRY ]]21);
                 block = Curry._1(Parse.block_body, env_6);
-                match_4 = Curry._2(Parser_env_Peek.token, undefined, env_6);
+                match_4 = Curry._2(Parser_env_Peek.token, nil, env_6);
                 handler;
                 if (typeof match_4 == "number" and match_4 == 32) then do
-                  start_loc_4 = Curry._2(Parser_env_Peek.loc, undefined, env_6);
+                  start_loc_4 = Curry._2(Parser_env_Peek.loc, nil, env_6);
                   token_4(env_6, --[[ T_CATCH ]]32);
                   token_4(env_6, --[[ T_LPAREN ]]3);
                   id = Curry._2(Parse.identifier, --[[ StrictCatchVariable ]]26, env_6);
@@ -12939,17 +12939,17 @@ function statement(env) do
                     loc_1,
                     {
                       param = param,
-                      guard = undefined,
+                      guard = nil,
                       body = body
                     }
                   };
                 end else do
-                  handler = undefined;
+                  handler = nil;
                 end end 
-                match_5 = Curry._2(Parser_env_Peek.token, undefined, env_6);
-                finalizer = typeof match_5 == "number" and match_5 == 36 and (token_4(env_6, --[[ T_FINALLY ]]36), Curry._1(Parse.block_body, env_6)) or undefined;
-                end_loc_3 = finalizer ~= undefined and finalizer[0] or (
-                    handler ~= undefined and handler[0] or (error_at(env_6, --[[ tuple ]]{
+                match_5 = Curry._2(Parser_env_Peek.token, nil, env_6);
+                finalizer = typeof match_5 == "number" and match_5 == 36 and (token_4(env_6, --[[ T_FINALLY ]]36), Curry._1(Parse.block_body, env_6)) or nil;
+                end_loc_3 = finalizer ~= nil and finalizer[0] or (
+                    handler ~= nil and handler[0] or (error_at(env_6, --[[ tuple ]]{
                               block[0],
                               --[[ NoCatchOrFinally ]]20
                             }), block[0])
@@ -12967,7 +12967,7 @@ function statement(env) do
                 return var_or_const(env); end end 
              if ___conditional___ == 23--[[ T_WHILE ]] then do
                 env_7 = env;
-                start_loc_5 = Curry._2(Parser_env_Peek.loc, undefined, env_7);
+                start_loc_5 = Curry._2(Parser_env_Peek.loc, nil, env_7);
                 token_4(env_7, --[[ T_WHILE ]]23);
                 token_4(env_7, --[[ T_LPAREN ]]3);
                 test = Curry._1(Parse.expression, env_7);
@@ -12982,7 +12982,7 @@ function statement(env) do
                       }; end end 
              if ___conditional___ == 24--[[ T_WITH ]] then do
                 env_8 = env;
-                start_loc_6 = Curry._2(Parser_env_Peek.loc, undefined, env_8);
+                start_loc_6 = Curry._2(Parser_env_Peek.loc, nil, env_8);
                 token_4(env_8, --[[ T_WITH ]]24);
                 token_4(env_8, --[[ T_LPAREN ]]3);
                 _object = Curry._1(Parse.expression, env_8);
@@ -13002,13 +13002,13 @@ function statement(env) do
                       }; end end 
              if ___conditional___ == 30--[[ T_BREAK ]] then do
                 env_9 = env;
-                start_loc_7 = Curry._2(Parser_env_Peek.loc, undefined, env_9);
+                start_loc_7 = Curry._2(Parser_env_Peek.loc, nil, env_9);
                 token_4(env_9, --[[ T_BREAK ]]30);
                 label;
-                if (Curry._2(Parser_env_Peek.token, undefined, env_9) == --[[ T_SEMICOLON ]]7 or Curry._1(Parser_env_Peek.is_implicit_semicolon, env_9)) then do
-                  label = undefined;
+                if (Curry._2(Parser_env_Peek.token, nil, env_9) == --[[ T_SEMICOLON ]]7 or Curry._1(Parser_env_Peek.is_implicit_semicolon, env_9)) then do
+                  label = nil;
                 end else do
-                  label_1 = Curry._2(Parse.identifier, undefined, env_9);
+                  label_1 = Curry._2(Parse.identifier, nil, env_9);
                   name = label_1[1].name;
                   if (not mem_1(name, env_9.labels)) then do
                     error_1(env_9, --[[ UnknownLabel ]]Block.__(4, {name}));
@@ -13016,12 +13016,12 @@ function statement(env) do
                    end 
                   label = label_1;
                 end end 
-                match_6 = Curry._2(Parser_env_Peek.semicolon_loc, undefined, env_9);
-                end_loc_4 = match_6 ~= undefined and match_6 or (
-                    label ~= undefined and label[0] or start_loc_7
+                match_6 = Curry._2(Parser_env_Peek.semicolon_loc, nil, env_9);
+                end_loc_4 = match_6 ~= nil and match_6 or (
+                    label ~= nil and label[0] or start_loc_7
                   );
                 loc_3 = btwn(start_loc_7, end_loc_4);
-                if (label == undefined and not (env_9.in_loop or env_9.in_switch)) then do
+                if (label == nil and not (env_9.in_loop or env_9.in_switch)) then do
                   error_at(env_9, --[[ tuple ]]{
                         loc_3,
                         --[[ IllegalBreak ]]22
@@ -13037,13 +13037,13 @@ function statement(env) do
                       }; end end 
              if ___conditional___ == 33--[[ T_CONTINUE ]] then do
                 env_10 = env;
-                start_loc_8 = Curry._2(Parser_env_Peek.loc, undefined, env_10);
+                start_loc_8 = Curry._2(Parser_env_Peek.loc, nil, env_10);
                 token_4(env_10, --[[ T_CONTINUE ]]33);
                 label_2;
-                if (Curry._2(Parser_env_Peek.token, undefined, env_10) == --[[ T_SEMICOLON ]]7 or Curry._1(Parser_env_Peek.is_implicit_semicolon, env_10)) then do
-                  label_2 = undefined;
+                if (Curry._2(Parser_env_Peek.token, nil, env_10) == --[[ T_SEMICOLON ]]7 or Curry._1(Parser_env_Peek.is_implicit_semicolon, env_10)) then do
+                  label_2 = nil;
                 end else do
-                  label_3 = Curry._2(Parse.identifier, undefined, env_10);
+                  label_3 = Curry._2(Parse.identifier, nil, env_10);
                   name_1 = label_3[1].name;
                   if (not mem_1(name_1, env_10.labels)) then do
                     error_1(env_10, --[[ UnknownLabel ]]Block.__(4, {name_1}));
@@ -13051,9 +13051,9 @@ function statement(env) do
                    end 
                   label_2 = label_3;
                 end end 
-                match_7 = Curry._2(Parser_env_Peek.semicolon_loc, undefined, env_10);
-                end_loc_5 = match_7 ~= undefined and match_7 or (
-                    label_2 ~= undefined and label_2[0] or start_loc_8
+                match_7 = Curry._2(Parser_env_Peek.semicolon_loc, nil, env_10);
+                end_loc_5 = match_7 ~= nil and match_7 or (
+                    label_2 ~= nil and label_2[0] or start_loc_8
                   );
                 loc_4 = btwn(start_loc_8, end_loc_5);
                 if (not env_10.in_loop) then do
@@ -13072,17 +13072,17 @@ function statement(env) do
                       }; end end 
              if ___conditional___ == 35--[[ T_DO ]] then do
                 env_11 = env;
-                start_loc_9 = Curry._2(Parser_env_Peek.loc, undefined, env_11);
+                start_loc_9 = Curry._2(Parser_env_Peek.loc, nil, env_11);
                 token_4(env_11, --[[ T_DO ]]35);
                 body_3 = Curry._1(Parse.statement, with_in_loop(true, env_11));
                 token_4(env_11, --[[ T_WHILE ]]23);
                 token_4(env_11, --[[ T_LPAREN ]]3);
                 test_1 = Curry._1(Parse.expression, env_11);
-                end_loc_6 = Curry._2(Parser_env_Peek.loc, undefined, env_11);
+                end_loc_6 = Curry._2(Parser_env_Peek.loc, nil, env_11);
                 token_4(env_11, --[[ T_RPAREN ]]4);
-                match_8 = Curry._2(Parser_env_Peek.semicolon_loc, undefined, env_11);
-                end_loc_7 = match_8 ~= undefined and match_8 or end_loc_6;
-                if (Curry._2(Parser_env_Peek.token, undefined, env_11) == --[[ T_SEMICOLON ]]7) then do
+                match_8 = Curry._2(Parser_env_Peek.semicolon_loc, nil, env_11);
+                end_loc_7 = match_8 ~= nil and match_8 or end_loc_6;
+                if (Curry._2(Parser_env_Peek.token, nil, env_11) == --[[ T_SEMICOLON ]]7) then do
                   semicolon(env_11);
                 end
                  end 
@@ -13095,10 +13095,10 @@ function statement(env) do
                       }; end end 
              if ___conditional___ == 37--[[ T_FOR ]] then do
                 env_12 = env;
-                start_loc_10 = Curry._2(Parser_env_Peek.loc, undefined, env_12);
+                start_loc_10 = Curry._2(Parser_env_Peek.loc, nil, env_12);
                 token_4(env_12, --[[ T_FOR ]]37);
                 token_4(env_12, --[[ T_LPAREN ]]3);
-                match_9 = Curry._2(Parser_env_Peek.token, undefined, env_12);
+                match_9 = Curry._2(Parser_env_Peek.token, nil, env_12);
                 match_10;
                 exit_1 = 0;
                 if (typeof match_9 == "number") then do
@@ -13137,7 +13137,7 @@ function statement(env) do
                     exit_1 = 1;
                   end else do
                     match_10 = --[[ tuple ]]{
-                      undefined,
+                      nil,
                       --[[ [] ]]0
                     };
                   end end  end 
@@ -13153,13 +13153,13 @@ function statement(env) do
                 end
                  end 
                 init = match_10[0];
-                match_14 = Curry._2(Parser_env_Peek.token, undefined, env_12);
+                match_14 = Curry._2(Parser_env_Peek.token, nil, env_12);
                 if (typeof match_14 == "number") then do
                   if (match_14 ~= 15) then do
                     if (match_14 == 60) then do
                       assert_can_be_forin_or_forof(env_12, --[[ InvalidLHSInForOf ]]17, init);
                       left;
-                      if (init ~= undefined) then do
+                      if (init ~= nil) then do
                         match_15 = init;
                         left = match_15.tag and --[[ LeftExpression ]]Block.__(1, {match_15[0]}) or --[[ LeftDeclaration ]]Block.__(0, {match_15[0]});
                       end else do
@@ -13189,7 +13189,7 @@ function statement(env) do
                   end else do
                     assert_can_be_forin_or_forof(env_12, --[[ InvalidLHSInForIn ]]16, init);
                     left_1;
-                    if (init ~= undefined) then do
+                    if (init ~= nil) then do
                       match_16 = init;
                       left_1 = match_16.tag and --[[ LeftExpression ]]Block.__(1, {match_16[0]}) or --[[ LeftDeclaration ]]Block.__(0, {match_16[0]});
                     end else do
@@ -13224,11 +13224,11 @@ function statement(env) do
                     end end
                     end end)(env_12), match_10[1]);
                 token_4(env_12, --[[ T_SEMICOLON ]]7);
-                match_17 = Curry._2(Parser_env_Peek.token, undefined, env_12);
-                test_2 = typeof match_17 == "number" and match_17 == 7 and undefined or Curry._1(Parse.expression, env_12);
+                match_17 = Curry._2(Parser_env_Peek.token, nil, env_12);
+                test_2 = typeof match_17 == "number" and match_17 == 7 and nil or Curry._1(Parse.expression, env_12);
                 token_4(env_12, --[[ T_SEMICOLON ]]7);
-                match_18 = Curry._2(Parser_env_Peek.token, undefined, env_12);
-                update = typeof match_18 == "number" and match_18 == 4 and undefined or Curry._1(Parse.expression, env_12);
+                match_18 = Curry._2(Parser_env_Peek.token, nil, env_12);
+                update = typeof match_18 == "number" and match_18 == 4 and nil or Curry._1(Parse.expression, env_12);
                 token_4(env_12, --[[ T_RPAREN ]]4);
                 body_6 = Curry._1(Parse.statement, with_in_loop(true, env_12));
                 return --[[ tuple ]]{
@@ -13286,10 +13286,10 @@ function statement(env) do
                 exit = 2; end else 
              if ___conditional___ == 57--[[ T_DEBUGGER ]] then do
                 env_13 = env;
-                start_loc_11 = Curry._2(Parser_env_Peek.loc, undefined, env_13);
+                start_loc_11 = Curry._2(Parser_env_Peek.loc, nil, env_13);
                 token_4(env_13, --[[ T_DEBUGGER ]]57);
-                match_19 = Curry._2(Parser_env_Peek.semicolon_loc, undefined, env_13);
-                end_loc_8 = match_19 ~= undefined and match_19 or start_loc_11;
+                match_19 = Curry._2(Parser_env_Peek.semicolon_loc, nil, env_13);
+                end_loc_8 = match_19 ~= nil and match_19 or start_loc_11;
                 semicolon(env_13);
                 return --[[ tuple ]]{
                         btwn(start_loc_11, end_loc_8),
@@ -13301,7 +13301,7 @@ function statement(env) do
       end else do
         error_unexpected(env);
         return --[[ tuple ]]{
-                Curry._2(Parser_env_Peek.loc, undefined, env),
+                Curry._2(Parser_env_Peek.loc, nil, env),
                 --[[ Empty ]]0
               };
       end end 
@@ -13309,10 +13309,10 @@ function statement(env) do
       exit = 2;
     end end 
     if (exit == 2) then do
-      if (Curry._2(Parser_env_Peek.is_identifier, undefined, env)) then do
+      if (Curry._2(Parser_env_Peek.is_identifier, nil, env)) then do
         env_14 = env;
         expr_1 = Curry._1(Parse.expression, env_14);
-        match_20 = Curry._2(Parser_env_Peek.token, undefined, env_14);
+        match_20 = Curry._2(Parser_env_Peek.token, nil, env_14);
         match_21 = expr_1[1];
         loc_5 = expr_1[0];
         if (typeof match_21 ~= "number" and match_21.tag == --[[ Identifier ]]18 and typeof match_20 == "number" and match_20 == 77) then do
@@ -13341,8 +13341,8 @@ function statement(env) do
                 };
         end
          end 
-        match_23 = Curry._2(Parser_env_Peek.semicolon_loc, undefined, env_14);
-        end_loc_9 = match_23 ~= undefined and match_23 or expr_1[0];
+        match_23 = Curry._2(Parser_env_Peek.semicolon_loc, nil, env_14);
+        end_loc_9 = match_23 ~= nil and match_23 or expr_1[0];
         semicolon(env_14);
         return --[[ tuple ]]{
                 btwn(expr_1[0], end_loc_9),
@@ -13431,7 +13431,7 @@ function module_body(term_fn, env) do
   _acc = --[[ [] ]]0;
   while(true) do
     acc = _acc;
-    t = Curry._2(Parser_env_Peek.token, undefined, env_1);
+    t = Curry._2(Parser_env_Peek.token, nil, env_1);
     if (typeof t == "number" and t == 105) then do
       return List.rev(acc);
     end
@@ -13454,7 +13454,7 @@ function statement_list(_env, term_fn, item_fn, _param) do
     env = _env;
     stmts = param[1];
     string_tokens = param[0];
-    t = Curry._2(Parser_env_Peek.token, undefined, env);
+    t = Curry._2(Parser_env_Peek.token, nil, env);
     if (typeof t == "number" and t == 105) then do
       return --[[ tuple ]]{
               env,
@@ -13470,8 +13470,8 @@ function statement_list(_env, term_fn, item_fn, _param) do
               stmts
             };
     end else do
-      string_token_000 = Curry._2(Parser_env_Peek.loc, undefined, env);
-      string_token_001 = Curry._2(Parser_env_Peek.token, undefined, env);
+      string_token_000 = Curry._2(Parser_env_Peek.loc, nil, env);
+      string_token_001 = Curry._2(Parser_env_Peek.token, nil, env);
       string_token = --[[ tuple ]]{
         string_token_000,
         string_token_001
@@ -13565,7 +13565,7 @@ function statement_list_1(term_fn, env) do
   _acc = --[[ [] ]]0;
   while(true) do
     acc = _acc;
-    t = Curry._2(Parser_env_Peek.token, undefined, env_1);
+    t = Curry._2(Parser_env_Peek.token, nil, env_1);
     if (typeof t == "number" and t == 105) then do
       return List.rev(acc);
     end
@@ -13574,7 +13574,7 @@ function statement_list_1(term_fn, env) do
       return List.rev(acc);
     end else do
       _acc = --[[ :: ]]{
-        statement_list_item(undefined, env_1),
+        statement_list_item(nil, env_1),
         acc
       };
       ::continue:: ;
@@ -13586,7 +13586,7 @@ class_declaration_1 = class_declaration;
 
 function statement_list_with_directives(term_fn, env) do
   match = Curry._3(directives, env, term_fn, (function(eta) do
-          return statement_list_item(undefined, eta);
+          return statement_list_item(nil, eta);
         end end));
   env_1 = match[0];
   stmts = Curry._2(statement_list_1, term_fn, env_1);
@@ -13603,9 +13603,9 @@ function statement_list_with_directives(term_fn, env) do
 end end
 
 function identifier_2(restricted_error, env) do
-  loc = Curry._2(Parser_env_Peek.loc, undefined, env);
-  name = Curry._2(Parser_env_Peek.value, undefined, env);
-  t = Curry._2(Parser_env_Peek.token, undefined, env);
+  loc = Curry._2(Parser_env_Peek.loc, nil, env);
+  name = Curry._2(Parser_env_Peek.value, nil, env);
+  t = Curry._2(Parser_env_Peek.token, nil, env);
   exit = 0;
   if (typeof t == "number" and t == 26) then do
     if (env.in_strict_mode) then do
@@ -13629,7 +13629,7 @@ function identifier_2(restricted_error, env) do
     end end  end 
   end
    end 
-  if (restricted_error ~= undefined) then do
+  if (restricted_error ~= nil) then do
     if (is_restricted(name)) then do
       strict_error_at(env, --[[ tuple ]]{
             loc,
@@ -13643,7 +13643,7 @@ function identifier_2(restricted_error, env) do
           loc,
           {
             name = name,
-            typeAnnotation = undefined,
+            typeAnnotation = nil,
             optional = false
           }
         };
@@ -13664,7 +13664,7 @@ function program(env) do
   stmts = module_body_with_directives(env, (function(param) do
           return false;
         end end));
-  end_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
+  end_loc = Curry._2(Parser_env_Peek.loc, nil, env);
   token_4(env, --[[ T_EOF ]]105);
   loc = stmts and btwn(List.hd(stmts)[0], List.hd(List.rev(stmts))[0]) or end_loc;
   comments = List.rev(env.comments.contents);
@@ -13677,7 +13677,7 @@ end end
 
 function expression_1(env) do
   expr = Curry._1(assignment, env);
-  match = Curry._2(Parser_env_Peek.token, undefined, env);
+  match = Curry._2(Parser_env_Peek.token, nil, env);
   if (typeof match == "number" and match == 8) then do
     return sequence(env, --[[ :: ]]{
                 expr,
@@ -13693,12 +13693,12 @@ function identifier_with_type(env, restricted_error) do
   id = match[1];
   loc = match[0];
   match_1;
-  if (Curry._2(Parser_env_Peek.token, undefined, env) == --[[ T_PLING ]]76) then do
+  if (Curry._2(Parser_env_Peek.token, nil, env) == --[[ T_PLING ]]76) then do
     if (not env.parse_options.types) then do
       error_1(env, --[[ UnexpectedTypeAnnotation ]]6);
     end
      end 
-    loc_1 = btwn(loc, Curry._2(Parser_env_Peek.loc, undefined, env));
+    loc_1 = btwn(loc, Curry._2(Parser_env_Peek.loc, nil, env));
     token_4(env, --[[ T_PLING ]]76);
     match_1 = --[[ tuple ]]{
       loc_1,
@@ -13716,7 +13716,7 @@ function identifier_with_type(env, restricted_error) do
   end end 
   id_1 = match_1[1];
   loc_2 = match_1[0];
-  if (Curry._2(Parser_env_Peek.token, undefined, env) == --[[ T_COLON ]]77) then do
+  if (Curry._2(Parser_env_Peek.token, nil, env) == --[[ T_COLON ]]77) then do
     typeAnnotation = wrap(annotation, env);
     loc_3 = btwn(loc_2, typeAnnotation[0]);
     typeAnnotation_1 = typeAnnotation;
@@ -13737,13 +13737,13 @@ function identifier_with_type(env, restricted_error) do
 end end
 
 function block_body(env) do
-  start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
+  start_loc = Curry._2(Parser_env_Peek.loc, nil, env);
   token_4(env, --[[ T_LCURLY ]]1);
   term_fn = function(t) do
     return t == --[[ T_RCURLY ]]2;
   end end;
   body = Curry._2(statement_list_1, term_fn, env);
-  end_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
+  end_loc = Curry._2(Parser_env_Peek.loc, nil, env);
   token_4(env, --[[ T_RCURLY ]]2);
   return --[[ tuple ]]{
           btwn(start_loc, end_loc),
@@ -13754,13 +13754,13 @@ function block_body(env) do
 end end
 
 function function_block_body(env) do
-  start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
+  start_loc = Curry._2(Parser_env_Peek.loc, nil, env);
   token_4(env, --[[ T_LCURLY ]]1);
   term_fn = function(t) do
     return t == --[[ T_RCURLY ]]2;
   end end;
   match = statement_list_with_directives(term_fn, env);
-  end_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
+  end_loc = Curry._2(Parser_env_Peek.loc, nil, env);
   token_4(env, --[[ T_RCURLY ]]2);
   return --[[ tuple ]]{
           btwn(start_loc, end_loc),
@@ -13772,12 +13772,12 @@ function function_block_body(env) do
 end end
 
 function predicate(env) do
-  checks_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
-  if (Curry._2(Parser_env_Peek.token, undefined, env) == --[[ T_IDENTIFIER ]]0 and Curry._2(Parser_env_Peek.value, undefined, env) == "checks") then do
+  checks_loc = Curry._2(Parser_env_Peek.loc, nil, env);
+  if (Curry._2(Parser_env_Peek.token, nil, env) == --[[ T_IDENTIFIER ]]0 and Curry._2(Parser_env_Peek.value, nil, env) == "checks") then do
     token_4(env, --[[ T_IDENTIFIER ]]0);
     if (maybe(env, --[[ T_LPAREN ]]3)) then do
       exp = Curry._1(Parse.expression, env);
-      rparen_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
+      rparen_loc = Curry._2(Parser_env_Peek.loc, nil, env);
       token_4(env, --[[ T_RPAREN ]]4);
       loc = btwn(checks_loc, rparen_loc);
       return --[[ tuple ]]{
@@ -13914,16 +13914,16 @@ Caml_module.update_mod(--[[ Module ]]Block.__(0, {{
     });
 
 function program_1(failOpt, token_sinkOpt, parse_optionsOpt, content) do
-  fail = failOpt ~= undefined and failOpt or true;
-  token_sink = token_sinkOpt ~= undefined and Caml_option.valFromOption(token_sinkOpt) or undefined;
-  parse_options = parse_optionsOpt ~= undefined and Caml_option.valFromOption(parse_optionsOpt) or undefined;
+  fail = failOpt ~= nil and failOpt or true;
+  token_sink = token_sinkOpt ~= nil and Caml_option.valFromOption(token_sinkOpt) or nil;
+  parse_options = parse_optionsOpt ~= nil and Caml_option.valFromOption(parse_optionsOpt) or nil;
   fail_1 = fail;
   token_sinkOpt_1 = Caml_option.some(token_sink);
   parse_optionsOpt_1 = Caml_option.some(parse_options);
-  filename = undefined;
+  filename = nil;
   content_1 = content;
-  token_sink_1 = token_sinkOpt_1 ~= undefined and Caml_option.valFromOption(token_sinkOpt_1) or undefined;
-  parse_options_1 = parse_optionsOpt_1 ~= undefined and Caml_option.valFromOption(parse_optionsOpt_1) or undefined;
+  token_sink_1 = token_sinkOpt_1 ~= nil and Caml_option.valFromOption(token_sinkOpt_1) or nil;
+  parse_options_1 = parse_optionsOpt_1 ~= nil and Caml_option.valFromOption(parse_optionsOpt_1) or nil;
   env = init_env(Caml_option.some(token_sink_1), Caml_option.some(parse_options_1), filename, content_1);
   env_1 = env;
   parser = Parse.program;
@@ -13976,13 +13976,13 @@ end end
 
 function parse(content, options) do
   xpcall(function() do
-    match = program_1(false, undefined, Caml_option.some(undefined), content);
+    match = program_1(false, nil, Caml_option.some(nil), content);
     translation_errors.contents = --[[ [] ]]0;
     array_of_list = function(fn, list) do
       return array(__Array.of_list(List.map(fn, list)));
     end end;
     option = function(f, param) do
-      if (param ~= undefined) then do
+      if (param ~= nil) then do
         return Curry._1(f, Caml_option.valFromOption(param));
       end else do
         return __null;
@@ -14003,7 +14003,7 @@ function parse(content, options) do
     loc = function(__location) do
       match = __location.source;
       source;
-      if (match ~= undefined) then do
+      if (match ~= nil) then do
         match_1 = match;
         source = typeof match_1 == "number" and string("(global)") or string(match_1[0]);
       end else do
@@ -15412,7 +15412,7 @@ function parse(content, options) do
            if ___conditional___ == 18--[[ FunctionDeclaration ]] then do
               fn = match[0];
               match_3 = fn.id;
-              match_4 = match_3 ~= undefined and --[[ tuple ]]{
+              match_4 = match_3 ~= nil and --[[ tuple ]]{
                   "FunctionDeclaration",
                   identifier(match_3)
                 } or --[[ tuple ]]{
@@ -15478,7 +15478,7 @@ function parse(content, options) do
               };
               c = param_1[1];
               match_6 = c.id;
-              match_7 = match_6 ~= undefined and --[[ tuple ]]{
+              match_7 = match_6 ~= nil and --[[ tuple ]]{
                   "ClassDeclaration",
                   identifier(match_6)
                 } or --[[ tuple ]]{
@@ -15566,7 +15566,7 @@ function parse(content, options) do
               __export = match[0];
               match_10 = __export.declaration;
               declaration;
-              if (match_10 ~= undefined) then do
+              if (match_10 ~= nil) then do
                 match_11 = match_10;
                 local ___conditional___=(match_11.tag | 0);
                 do
@@ -15610,7 +15610,7 @@ function parse(content, options) do
               __export_1 = match[0];
               match_12 = __export_1.declaration;
               declaration_1;
-              if (match_12 ~= undefined) then do
+              if (match_12 ~= nil) then do
                 match_13 = match_12;
                 declaration_1 = match_13.tag and expression(match_13[0]) or statement(match_13[0]);
               end else do
@@ -15647,7 +15647,7 @@ function parse(content, options) do
                             match = param[0];
                             local_id = match.local;
                             remote_id = match.remote;
-                            span_loc = local_id ~= undefined and btwn(remote_id[0], local_id[0]) or remote_id[0];
+                            span_loc = local_id ~= nil and btwn(remote_id[0], local_id[0]) or remote_id[0];
                             return node("ImportSpecifier", span_loc, {
                                         --[[ tuple ]]{
                                           "id",
@@ -15745,7 +15745,7 @@ function parse(content, options) do
                 });
     end end;
     export_specifiers = function(param) do
-      if (param ~= undefined) then do
+      if (param ~= nil) then do
         match = param;
         if (match.tag) then do
           return array({node("ExportBatchSpecifier", match[0], {--[[ tuple ]]{
@@ -16365,11 +16365,11 @@ function eq(loc, x, y) do
   return --[[ () ]]0;
 end end
 
-match = typeof __dirname == "undefined" and undefined or __dirname;
+match = typeof __dirname == "undefined" and nil or __dirname;
 
-if (match ~= undefined) then do
+if (match ~= nil) then do
   f = Path.join(match, "flow_parser_sample.js");
-  v = parse(Fs.readFileSync(f, "utf8"), undefined);
+  v = parse(Fs.readFileSync(f, "utf8"), nil);
   eq("File \"runParser.ml\", line 14, characters 7-14", --[[ tuple ]]{
         0,
         2842

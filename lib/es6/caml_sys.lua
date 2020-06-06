@@ -3,12 +3,12 @@
 import * as Caml_builtin_exceptions from "./caml_builtin_exceptions.lua";
 
 function caml_sys_getenv(s) do
-  if (typeof process == "undefined" or process.env == undefined) then do
+  if (typeof process == "undefined" or process.env == nil) then do
     error(Caml_builtin_exceptions.not_found)
   end
    end 
   match = process.env[s];
-  if (match ~= undefined) then do
+  if (match ~= nil) then do
     return match;
   end else do
     error(Caml_builtin_exceptions.not_found)
@@ -25,7 +25,7 @@ os_type = (function(_){
 });
 
 function caml_sys_time(param) do
-  if (typeof process == "undefined" or process.uptime == undefined) then do
+  if (typeof process == "undefined" or process.uptime == nil) then do
     return -1;
   end else do
     return process.uptime();

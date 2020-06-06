@@ -8,11 +8,11 @@ function copyAuxCont(_c, _prec) do
   while(true) do
     prec = _prec;
     c = _c;
-    if (c ~= undefined) then do
+    if (c ~= nil) then do
       ncopy = {
         key = c.key,
         value = c.value,
-        next = undefined
+        next = nil
       };
       prec.next = ncopy;
       _prec = ncopy;
@@ -25,11 +25,11 @@ function copyAuxCont(_c, _prec) do
 end end
 
 function copyBucket(c) do
-  if (c ~= undefined) then do
+  if (c ~= nil) then do
     head = {
       key = c.key,
       value = c.value,
-      next = undefined
+      next = nil
     };
     copyAuxCont(c.next, head);
     return head;
@@ -60,7 +60,7 @@ function bucketLength(_accu, _buckets) do
   while(true) do
     buckets = _buckets;
     accu = _accu;
-    if (buckets ~= undefined) then do
+    if (buckets ~= nil) then do
       _buckets = buckets.next;
       _accu = accu + 1 | 0;
       ::continue:: ;
@@ -73,7 +73,7 @@ end end
 function do_bucket_iter(f, _buckets) do
   while(true) do
     buckets = _buckets;
-    if (buckets ~= undefined) then do
+    if (buckets ~= nil) then do
       f(buckets.key, buckets.value);
       _buckets = buckets.next;
       ::continue:: ;
@@ -99,7 +99,7 @@ function do_bucket_fold(f, _b, _accu) do
   while(true) do
     accu = _accu;
     b = _b;
-    if (b ~= undefined) then do
+    if (b ~= nil) then do
       _accu = f(accu, b.key, b.value);
       _b = b.next;
       ::continue:: ;
@@ -162,14 +162,14 @@ function filterMapInplaceBucket(f, h, i, _prec, _cell) do
     prec = _prec;
     n = cell.next;
     match = f(cell.key, cell.value);
-    if (match ~= undefined) then do
-      if (prec ~= undefined) then do
+    if (match ~= nil) then do
+      if (prec ~= nil) then do
         cell.next = cell;
       end else do
         h.buckets[i] = cell;
       end end 
       cell.value = Caml_option.valFromOption(match);
-      if (n ~= undefined) then do
+      if (n ~= nil) then do
         _cell = n;
         _prec = cell;
         ::continue:: ;
@@ -179,10 +179,10 @@ function filterMapInplaceBucket(f, h, i, _prec, _cell) do
       end end 
     end else do
       h.size = h.size - 1 | 0;
-      if (n ~= undefined) then do
+      if (n ~= nil) then do
         _cell = n;
         ::continue:: ;
-      end else if (prec ~= undefined) then do
+      end else if (prec ~= nil) then do
         prec.next = n;
         return --[[ () ]]0;
       end else do
@@ -197,8 +197,8 @@ function keepMapInPlaceU(h, f) do
   h_buckets = h.buckets;
   for i = 0 , #h_buckets - 1 | 0 , 1 do
     v = h_buckets[i];
-    if (v ~= undefined) then do
-      filterMapInplaceBucket(f, h, i, undefined, v);
+    if (v ~= nil) then do
+      filterMapInplaceBucket(f, h, i, nil, v);
     end
      end 
   end
@@ -218,7 +218,7 @@ function fillArray(_i, arr, _cell) do
       cell.value
     };
     match = cell.next;
-    if (match ~= undefined) then do
+    if (match ~= nil) then do
       _cell = match;
       _i = i + 1 | 0;
       ::continue:: ;
@@ -234,7 +234,7 @@ function fillArrayMap(_i, arr, _cell, f) do
     i = _i;
     arr[i] = f(cell);
     match = cell.next;
-    if (match ~= undefined) then do
+    if (match ~= nil) then do
       _cell = match;
       _i = i + 1 | 0;
       ::continue:: ;
@@ -250,7 +250,7 @@ function linear(h, f) do
   arr = new Array(h.size);
   for i = 0 , #d - 1 | 0 , 1 do
     cell = d[i];
-    if (cell ~= undefined) then do
+    if (cell ~= nil) then do
       current = fillArrayMap(current, arr, cell, f);
     end
      end 

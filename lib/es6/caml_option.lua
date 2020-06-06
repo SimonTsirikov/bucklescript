@@ -4,7 +4,7 @@
 undefinedHeader = {};
 
 function some(x) do
-  if (x == undefined) then do
+  if (x == nil) then do
     block = --[[ tuple ]]{
       undefinedHeader,
       0
@@ -25,7 +25,7 @@ function some(x) do
 end end
 
 function nullable_to_opt(x) do
-  if (x == nil or x == undefined) then do
+  if (x == nil or x == nil) then do
     return ;
   end else do
     return some(x);
@@ -33,7 +33,7 @@ function nullable_to_opt(x) do
 end end
 
 function undefined_to_opt(x) do
-  if (x == undefined) then do
+  if (x == nil) then do
     return ;
   end else do
     return some(x);
@@ -65,7 +65,7 @@ function valFromOption(x) do
 end end
 
 function option_get(x) do
-  if (x == undefined) then do
+  if (x == nil) then do
     return ;
   end else do
     return valFromOption(x);
@@ -73,7 +73,7 @@ function option_get(x) do
 end end
 
 function option_get_unwrap(x) do
-  if (x == undefined) then do
+  if (x == nil) then do
     return ;
   end else do
     return valFromOption(x)[1];

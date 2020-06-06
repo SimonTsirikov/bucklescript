@@ -81,7 +81,7 @@ eq("File \"array_subtle_test.ml\", line 29, characters 5-12", --[[ tuple ]]{
 
 function f(v) do
   match = v.pop();
-  if (match ~= undefined) then do
+  if (match ~= nil) then do
     console.log("hi");
   end else do
     console.log("hi2");

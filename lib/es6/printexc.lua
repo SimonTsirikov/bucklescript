@@ -154,9 +154,9 @@ function to_string(x) do
       xpcall(function() do
         match = Curry._1(param[0], x);
       end end,function(exn) do
-        match = undefined;
+        match = nil;
       end end)
-      if (match ~= undefined) then do
+      if (match ~= nil) then do
         return match;
       end else do
         _param = param[1];
@@ -332,11 +332,11 @@ end end
 function print_raw_backtrace(outchan, raw_backtrace) do
   outchan_1 = outchan;
   backtrace = convert_raw_backtrace(raw_backtrace);
-  if (backtrace ~= undefined) then do
+  if (backtrace ~= nil) then do
     a = backtrace;
     for i = 0 , #a - 1 | 0 , 1 do
       match = format_backtrace_slot(i, Caml_array.caml_array_get(a, i));
-      if (match ~= undefined) then do
+      if (match ~= nil) then do
         Curry._1(Printf.fprintf(outchan_1, --[[ Format ]]{
                   --[[ String ]]Block.__(2, {
                       --[[ No_padding ]]0,
@@ -368,12 +368,12 @@ end end
 
 function raw_backtrace_to_string(raw_backtrace) do
   backtrace = convert_raw_backtrace(raw_backtrace);
-  if (backtrace ~= undefined) then do
+  if (backtrace ~= nil) then do
     a = backtrace;
     b = __Buffer.create(1024);
     for i = 0 , #a - 1 | 0 , 1 do
       match = format_backtrace_slot(i, Caml_array.caml_array_get(a, i));
-      if (match ~= undefined) then do
+      if (match ~= nil) then do
         Curry._1(Printf.bprintf(b, --[[ Format ]]{
                   --[[ String ]]Block.__(2, {
                       --[[ No_padding ]]0,
@@ -420,7 +420,7 @@ end end
 
 function backtrace_slots(raw_backtrace) do
   match = convert_raw_backtrace(raw_backtrace);
-  if (match ~= undefined) then do
+  if (match ~= nil) then do
     backtrace = match;
     usable_slot = function(param) do
       if (param.tag) then do
@@ -484,7 +484,7 @@ function exn_slot_name(x) do
 end end
 
 uncaught_exception_handler = {
-  contents = undefined
+  contents = nil
 };
 
 function set_uncaught_exception_handler(fn) do

@@ -4,7 +4,7 @@ import * as Curry from "./curry.lua";
 import * as Caml_option from "./caml_option.lua";
 
 function forEachU(opt, f) do
-  if (opt ~= undefined) then do
+  if (opt ~= nil) then do
     return f(Caml_option.valFromOption(opt));
   end else do
     return --[[ () ]]0;
@@ -16,7 +16,7 @@ function forEach(opt, f) do
 end end
 
 function getExn(param) do
-  if (param ~= undefined) then do
+  if (param ~= nil) then do
     return Caml_option.valFromOption(param);
   end else do
     error(new Error("getExn"))
@@ -24,7 +24,7 @@ function getExn(param) do
 end end
 
 function mapWithDefaultU(opt, __default, f) do
-  if (opt ~= undefined) then do
+  if (opt ~= nil) then do
     return f(Caml_option.valFromOption(opt));
   end else do
     return __default;
@@ -36,7 +36,7 @@ function mapWithDefault(opt, __default, f) do
 end end
 
 function mapU(opt, f) do
-  if (opt ~= undefined) then do
+  if (opt ~= nil) then do
     return Caml_option.some(f(Caml_option.valFromOption(opt)));
   end
    end 
@@ -47,7 +47,7 @@ function map(opt, f) do
 end end
 
 function flatMapU(opt, f) do
-  if (opt ~= undefined) then do
+  if (opt ~= nil) then do
     return f(Caml_option.valFromOption(opt));
   end
    end 
@@ -58,7 +58,7 @@ function flatMap(opt, f) do
 end end
 
 function getWithDefault(opt, __default) do
-  if (opt ~= undefined) then do
+  if (opt ~= nil) then do
     return Caml_option.valFromOption(opt);
   end else do
     return __default;
@@ -66,22 +66,22 @@ function getWithDefault(opt, __default) do
 end end
 
 function isSome(param) do
-  return param ~= undefined;
+  return param ~= nil;
 end end
 
 function isNone(x) do
-  return x == undefined;
+  return x == nil;
 end end
 
 function eqU(a, b, f) do
-  if (a ~= undefined) then do
-    if (b ~= undefined) then do
+  if (a ~= nil) then do
+    if (b ~= nil) then do
       return f(Caml_option.valFromOption(a), Caml_option.valFromOption(b));
     end else do
       return false;
     end end 
   end else do
-    return b == undefined;
+    return b == nil;
   end end 
 end end
 
@@ -90,13 +90,13 @@ function eq(a, b, f) do
 end end
 
 function cmpU(a, b, f) do
-  if (a ~= undefined) then do
-    if (b ~= undefined) then do
+  if (a ~= nil) then do
+    if (b ~= nil) then do
       return f(Caml_option.valFromOption(a), Caml_option.valFromOption(b));
     end else do
       return 1;
     end end 
-  end else if (b ~= undefined) then do
+  end else if (b ~= nil) then do
     return -1;
   end else do
     return 0;

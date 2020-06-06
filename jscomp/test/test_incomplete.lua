@@ -18,7 +18,7 @@ function f(x) do
 end end
 
 function f2(x) do
-  if (x ~= undefined) then do
+  if (x ~= nil) then do
     return 0;
   end else do
     return 1;

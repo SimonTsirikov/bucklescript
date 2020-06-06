@@ -59,7 +59,7 @@ function power_2_above(_x, n) do
 end end
 
 function create(randomOpt, initial_size) do
-  random = randomOpt ~= undefined and randomOpt or randomized.contents;
+  random = randomOpt ~= nil and randomOpt or randomized.contents;
   s = power_2_above(16, initial_size);
   seed = random and Random.State.bits(CamlinternalLazy.force(prng)) or 0;
   return {
@@ -496,7 +496,7 @@ function filter_map_inplace_bucket(f, h, i, _prec, _slot) do
       data = slot[--[[ data ]]1];
       next = slot[--[[ next ]]2];
       match = Curry._2(f, key, data);
-      if (match ~= undefined) then do
+      if (match ~= nil) then do
         if (prec) then do
           prec[--[[ next ]]2] = slot;
         end else do

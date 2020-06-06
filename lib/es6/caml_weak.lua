@@ -9,7 +9,7 @@ function caml_weak_create(n) do
 end end
 
 function caml_weak_set(xs, i, v) do
-  if (v ~= undefined) then do
+  if (v ~= nil) then do
     xs[i] = Caml_option.valFromOption(v);
     return --[[ () ]]0;
   end else do
@@ -23,14 +23,14 @@ end end
 
 function caml_weak_get_copy(xs, i) do
   match = xs[i];
-  if (match ~= undefined) then do
+  if (match ~= nil) then do
     return Caml_option.some(Caml_obj.caml_obj_dup(match));
   end
    end 
 end end
 
 function caml_weak_check(xs, i) do
-  return xs[i] ~= undefined;
+  return xs[i] ~= nil;
 end end
 
 caml_weak_blit = Caml_array.caml_array_blit;

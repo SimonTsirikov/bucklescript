@@ -7,11 +7,11 @@ function some(x) do
 end end
 
 function isSome(param) do
-  return param ~= undefined;
+  return param ~= nil;
 end end
 
 function isSomeValue(eq, v, x) do
-  if (x ~= undefined) then do
+  if (x ~= nil) then do
     return eq(v, Caml_option.valFromOption(x));
   end else do
     return false;
@@ -19,11 +19,11 @@ function isSomeValue(eq, v, x) do
 end end
 
 function isNone(param) do
-  return param == undefined;
+  return param == nil;
 end end
 
 function getExn(x) do
-  if (x ~= undefined) then do
+  if (x ~= nil) then do
     return Caml_option.valFromOption(x);
   end else do
     error(new Error("getExn"))
@@ -31,33 +31,33 @@ function getExn(x) do
 end end
 
 function equal(eq, a, b) do
-  if (a ~= undefined) then do
-    if (b ~= undefined) then do
+  if (a ~= nil) then do
+    if (b ~= nil) then do
       return eq(Caml_option.valFromOption(a), Caml_option.valFromOption(b));
     end else do
       return false;
     end end 
   end else do
-    return b == undefined;
+    return b == nil;
   end end 
 end end
 
 function andThen(f, x) do
-  if (x ~= undefined) then do
+  if (x ~= nil) then do
     return f(Caml_option.valFromOption(x));
   end
    end 
 end end
 
 function map(f, x) do
-  if (x ~= undefined) then do
+  if (x ~= nil) then do
     return Caml_option.some(f(Caml_option.valFromOption(x)));
   end
    end 
 end end
 
 function getWithDefault(a, x) do
-  if (x ~= undefined) then do
+  if (x ~= nil) then do
     return Caml_option.valFromOption(x);
   end else do
     return a;
@@ -65,7 +65,7 @@ function getWithDefault(a, x) do
 end end
 
 function filter(f, x) do
-  if (x ~= undefined) then do
+  if (x ~= nil) then do
     x_1 = Caml_option.valFromOption(x);
     if (f(x_1)) then do
       return Caml_option.some(x_1);
@@ -77,9 +77,9 @@ function filter(f, x) do
 end end
 
 function firstSome(a, b) do
-  if (a ~= undefined) then do
+  if (a ~= nil) then do
     return a;
-  end else if (b ~= undefined) then do
+  end else if (b ~= nil) then do
     return b;
   end else do
     return ;

@@ -378,7 +378,7 @@ formatter_suites_001 = --[[ :: ]]{
                                   }),
                                 "%S %03d %L %a"
                               })), "32", 33, 33, "a", 33, 3, (function(param, param_1) do
-                          return Format.pp_print_list(undefined, Format.pp_print_int, param, param_1);
+                          return Format.pp_print_list(nil, Format.pp_print_int, param, param_1);
                         end end), --[[ :: ]]{
                         1,
                         --[[ :: ]]{

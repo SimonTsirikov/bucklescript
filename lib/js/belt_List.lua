@@ -227,7 +227,7 @@ function copyAuxWitFilterMap(f, _cellX, _prec) do
     if (cellX) then do
       t = cellX[1];
       match = f(cellX[0]);
-      if (match ~= undefined) then do
+      if (match ~= nil) then do
         next = --[[ :: ]]{
           Caml_option.valFromOption(match),
           --[[ [] ]]0
@@ -492,7 +492,7 @@ function splitAt(lst, n) do
       --[[ [] ]]0
     };
     rest = splitAtAux(n - 1 | 0, lst[1], cell);
-    if (rest ~= undefined) then do
+    if (rest ~= nil) then do
       return --[[ tuple ]]{
               cell,
               rest
@@ -1358,7 +1358,7 @@ function keepMapU(_xs, p) do
     if (xs) then do
       t = xs[1];
       match = p(xs[0]);
-      if (match ~= undefined) then do
+      if (match ~= nil) then do
         cell = --[[ :: ]]{
           Caml_option.valFromOption(match),
           --[[ [] ]]0
