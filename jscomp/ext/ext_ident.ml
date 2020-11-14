@@ -184,10 +184,13 @@ let name_mangle name =
    otherwise do the name mangling to make sure ocaml identifier it is
    a valid js identifier
 *)
-let convert (name : string) =
+let convert_word (name : string) = 
   if  Js_reserved_map.is_reserved name  then
     "__" ^ name
   else name_mangle name
+
+let convert (name : string) =
+  String.concat "." (List.map convert_word (String.split_on_char '.' name))
 
 (** keyword could be used in property *)
 
