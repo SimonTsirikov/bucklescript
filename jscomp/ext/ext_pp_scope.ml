@@ -49,14 +49,14 @@ and print_int_map fmt m =
     )    
 
 let add_ident ~mangled:name (stamp : int) (cxt : t) : int * t = 
-  match Map_string.find_opt cxt name with 
+  match Map_string.find_opt cxt (Ext_ident.convert name) with 
   | None -> 
-    (0, Map_string.add cxt name (Map_int.add Map_int.empty stamp 0  )  )
+    (0, Map_string.add cxt (Ext_ident.convert name) (Map_int.add Map_int.empty stamp 0  )  )
   | Some imap -> (
       match Map_int.find_opt imap stamp with
       | None -> 
         let v = Map_int.cardinal imap in
-        v, Map_string.add  cxt name (Map_int.add imap stamp v )
+        v, Map_string.add  cxt (Ext_ident.convert name) (Map_int.add imap stamp v )
       | Some i -> i, cxt
     )
 
