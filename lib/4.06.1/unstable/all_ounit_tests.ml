@@ -11264,29 +11264,29 @@ let name_mangle name =
     for j = 0 to  len - 1 do
       let c = String.unsafe_get name j in
       match c with
-      | '*' -> Buffer.add_string buffer "$star"
-      | '\'' -> Buffer.add_string buffer "$prime"
-      | '!' -> Buffer.add_string buffer "$bang"
-      | '>' -> Buffer.add_string buffer "$great"
-      | '<' -> Buffer.add_string buffer "$less"
-      | '=' -> Buffer.add_string buffer "$eq"
-      | '+' -> Buffer.add_string buffer "$plus"
-      | '-' -> Buffer.add_string buffer "$neg"
-      | '@' -> Buffer.add_string buffer "$at"
-      | '^' -> Buffer.add_string buffer "$caret"
-      | '/' -> Buffer.add_string buffer "$slash"
-      | '|' -> Buffer.add_string buffer "$pipe"
-      | '.' -> Buffer.add_string buffer "$dot"
-      | '%' -> Buffer.add_string buffer "$percent"
-      | '~' -> Buffer.add_string buffer "$tilde"
-      | '#' -> Buffer.add_string buffer "$hash"
-      | ':' -> Buffer.add_string buffer "$colon"
-      | '?' -> Buffer.add_string buffer "$question"
-      | '&' -> Buffer.add_string buffer "$amp"
+      | '*' -> Buffer.add_string buffer "_star"
+      | '\'' -> Buffer.add_string buffer "_prime"
+      | '!' -> Buffer.add_string buffer "_bang"
+      | '>' -> Buffer.add_string buffer "_great"
+      | '<' -> Buffer.add_string buffer "_less"
+      | '=' -> Buffer.add_string buffer "_eq"
+      | '+' -> Buffer.add_string buffer "_plus"
+      | '-' -> Buffer.add_string buffer "_neg"
+      | '@' -> Buffer.add_string buffer "_at"
+      | '^' -> Buffer.add_string buffer "_caret"
+      | '/' -> Buffer.add_string buffer "_slash"
+      | '|' -> Buffer.add_string buffer "_pipe"
+      | '.' -> Buffer.add_string buffer "_dot"
+      | '%' -> Buffer.add_string buffer "_percent"
+      | '~' -> Buffer.add_string buffer "_tilde"
+      | '#' -> Buffer.add_string buffer "_hash"
+      | ':' -> Buffer.add_string buffer "_colon"
+      | '?' -> Buffer.add_string buffer "_question"
+      | '&' -> Buffer.add_string buffer "_amp"
       | 'a'..'z' | 'A'..'Z'| '_'
       | '$'
       | '0'..'9'-> Buffer.add_char buffer  c
-      | _ -> Buffer.add_string buffer "$unknown"
+      | _ -> Buffer.add_string buffer "_unknown"
     done; Buffer.contents buffer
   | Not_normal_letter i ->
     String.sub name 0 i ^
@@ -11294,30 +11294,30 @@ let name_mangle name =
      for j = i to  len - 1 do
        let c = String.unsafe_get name j in
        match c with
-       | '*' -> Buffer.add_string buffer "$star"
-       | '\'' -> Buffer.add_string buffer "$prime"
-       | '!' -> Buffer.add_string buffer "$bang"
-       | '>' -> Buffer.add_string buffer "$great"
-       | '<' -> Buffer.add_string buffer "$less"
-       | '=' -> Buffer.add_string buffer "$eq"
-       | '+' -> Buffer.add_string buffer "$plus"
-       | '-' -> Buffer.add_string buffer "$"
+       | '*' -> Buffer.add_string buffer "_star"
+       | '\'' -> Buffer.add_string buffer "_prime"
+       | '!' -> Buffer.add_string buffer "_bang"
+       | '>' -> Buffer.add_string buffer "_great"
+       | '<' -> Buffer.add_string buffer "_less"
+       | '=' -> Buffer.add_string buffer "_eq"
+       | '+' -> Buffer.add_string buffer "_plus"
+       | '-' -> Buffer.add_string buffer "_"
         (* Note ocaml compiler also has [self-] *)
-       | '@' -> Buffer.add_string buffer "$at"
-       | '^' -> Buffer.add_string buffer "$caret"
-       | '/' -> Buffer.add_string buffer "$slash"
-       | '|' -> Buffer.add_string buffer "$pipe"
-       | '.' -> Buffer.add_string buffer "$dot"
-       | '%' -> Buffer.add_string buffer "$percent"
-       | '~' -> Buffer.add_string buffer "$tilde"
-       | '#' -> Buffer.add_string buffer "$hash"
-       | ':' -> Buffer.add_string buffer "$colon"
-       | '?' -> Buffer.add_string buffer "$question"
-       | '&' -> Buffer.add_string buffer "$amp"
-       | '$' -> Buffer.add_string buffer "$dollar"
+       | '@' -> Buffer.add_string buffer "_at"
+       | '^' -> Buffer.add_string buffer "_caret"
+       | '/' -> Buffer.add_string buffer "_slash"
+       | '|' -> Buffer.add_string buffer "_pipe"
+       | '.' -> Buffer.add_string buffer "_dot"
+       | '%' -> Buffer.add_string buffer "_percent"
+       | '~' -> Buffer.add_string buffer "_tilde"
+       | '#' -> Buffer.add_string buffer "_hash"
+       | ':' -> Buffer.add_string buffer "_colon"
+       | '?' -> Buffer.add_string buffer "_question"
+       | '&' -> Buffer.add_string buffer "_amp"
+       | '$' -> Buffer.add_string buffer "_dollar"
        | 'a'..'z' | 'A'..'Z'| '_'
        | '0'..'9'-> Buffer.add_char buffer  c
-       | _ -> Buffer.add_string buffer "$unknown"
+       | _ -> Buffer.add_string buffer "_unknown"
      done; Buffer.contents buffer)
 (* TODO:
     check name conflicts with javascript conventions

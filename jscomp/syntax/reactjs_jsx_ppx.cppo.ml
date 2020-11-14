@@ -212,7 +212,7 @@ let makeModuleName fileName nestedModules fnName =
   | (fileName, nestedModules, "make") -> fileName :: (List.rev nestedModules)
   | (fileName, nestedModules, fnName) -> fileName :: (List.rev (fnName :: nestedModules))
   in
-  let fullModuleName = String.concat "$" fullModuleName in
+  let fullModuleName = String.concat "." fullModuleName in
   fullModuleName
 
 (*
@@ -658,7 +658,7 @@ let jsxMapper () =
       let emptyLoc = Location.in_file fileName in
       let mapBinding binding = if (hasAttrOnBinding binding) then
         let fnName = getFnName binding in
-        let internalFnName = fnName ^ "$Internal" in
+        let internalFnName = fnName ^ ".Internal" in
         let fullModuleName = makeModuleName fileName !nestedModules fnName in
         let modifiedBindingOld binding =
           let expression = binding.pvb_expr in
