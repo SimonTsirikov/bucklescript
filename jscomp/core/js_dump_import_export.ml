@@ -46,6 +46,7 @@ let exports cxt f (idents : Ident.t list) =
   P.string f L.eq;
   P.space f;
   P.string f "{}";
+  P.string f L.semi;
   P.newline f;
   Ext_list.rev_iter reversed_list (fun (s,export) -> 
       P.group f 0 @@ (fun _ ->  
@@ -59,6 +60,11 @@ let exports cxt f (idents : Ident.t list) =
           P.string f L.semi;);
       P.newline f;
     ) ;
+  P.string f L.return;
+  P.space f; 
+  P.string f L.exports;          
+  P.string f L.semi;
+  P.newline f; 
   outer_cxt  
 
 
@@ -132,16 +138,14 @@ let imports  cxt f (modules : (Ident.t * string) list ) =
   P.force_newline f ;    
   Ext_list.rev_iter reversed_list (fun (s,file) ->
 
-      P.string f L.import;
-      P.space f ;
-      P.string f L.star ;
-      P.space f ; (* import * as xx from 'xx*) 
-      P.string f L.as_ ; 
+      P.string f L.local ;
       P.space f ; 
       P.string f s ; 
       P.space f ;
-      P.string f L.from;
-      P.space f;
+      P.string f L.eq ;
+      P.space f ; (* local xx = require 'xx' *)
+      P.string f L.require ;
+      P.space f ;
       Js_dump_string.pp_string 0  f file ;
       P.string f L.semi ;
       P.newline f ;
