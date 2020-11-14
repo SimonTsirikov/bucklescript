@@ -79,7 +79,7 @@ let property_access f s =
   if obj_property_no_need_quot s then 
     begin 
       P.string f L.dot;
-      P.string f s; 
+      P.string f ( Ext_ident.convert s); 
     end
   else
     begin 
