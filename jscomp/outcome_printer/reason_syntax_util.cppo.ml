@@ -47,7 +47,7 @@ let potentially_conflicts_with ~keyword s =
 
 (** Add/remove an appropriate suffix when mangling potential keywords *)
 let string_add_suffix x = x ^ "_"
-let string_drop_suffix x = String.sub x 0 (String.length x - 1)
+let string_drop_suffix x = x
 
 (** What do these *_swap functions do? Here's an example: Reason code uses `!`
     for logical not, while ocaml uses `not`. So, for converting between reason
