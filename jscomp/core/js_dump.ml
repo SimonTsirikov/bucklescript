@@ -574,7 +574,7 @@ and vident cxt f  (v : J.vident) =
     cxt
   | Qualified (id, External _, Some name) ->
     let cxt = Ext_pp_scope.ident cxt f id in
-    Js_dump_property.property_access f name ;
+    Js_dump_property.property_access f (Ext_ident.convert name) ;
     cxt
 
 (* The higher the level, the more likely that inner has to add parens *)
