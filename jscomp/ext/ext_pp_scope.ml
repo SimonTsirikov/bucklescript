@@ -100,7 +100,7 @@ let add_ident ~mangled:name (stamp : int) (cxt : t) : int * t =
 let str_of_ident (cxt : t) (id : Ident.t)  : string * t  =
   if Ext_ident.is_js id then 
     (* reserved by compiler *)
-    id.name , cxt
+    (Ext_ident.convert id.name) , cxt
   else 
     let id_name = id.name in
     let name = Ext_ident.convert id_name in
