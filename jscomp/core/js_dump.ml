@@ -939,7 +939,6 @@ and expression_desc cxt ~(level:int) f x : cxt  =
         P.group f 1  (fun _ ->
         let cxt = expression ~level:15 cxt f e in
         P.bracket_group f 1 (fun _ ->
-        P.string f "1 + ";
         let cxt = expression ~level:0 cxt f p in
         cxt)))
   | String_index (e,p)
