@@ -739,7 +739,7 @@ and expression_desc cxt ~(level:int) f x : cxt  =
     ->
     P.string f "type";
     P.string f "(";
-    let cxt_ = expression ~level:13 cxt f e;
+    let cxt_ = expression ~level:13 cxt f e in
     P.string f ")";
     cxt_
  
