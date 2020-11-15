@@ -1,8 +1,8 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Block = require "../../lib/js/block";
-Curry = require "../../lib/js/curry";
+Mt = require "..mt";
+Block = require "......lib.js.block";
+Curry = require "......lib.js.curry";
 
 suites = {
   contents = --[[ [] ]]0
@@ -16,7 +16,7 @@ function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[[ :: ]]{
     --[[ tuple ]]{
-      loc .. (" id " .. String(test_id.contents)),
+      loc .. (" id " .. __String(test_id.contents)),
       (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     x,
@@ -65,7 +65,7 @@ eq("File \"arity_deopt.ml\", line 48, characters 15-22", 6, (function(y, z) do
 
 Mt.from_pair_suites("Arity_deopt", suites.contents);
 
-exports = {}
+exports = {};
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
@@ -73,4 +73,5 @@ exports.f0 = f0;
 exports.f1 = f1;
 exports.f2 = f2;
 exports.f3 = f3;
+return exports;
 --[[  Not a pure module ]]

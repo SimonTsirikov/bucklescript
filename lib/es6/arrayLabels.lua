@@ -1,6 +1,6 @@
 
 
-import * as __Array from "./array.lua";
+local __Array = require "..array.lua";
 
 init = __Array.init;
 

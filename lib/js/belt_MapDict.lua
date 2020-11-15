@@ -1,8 +1,8 @@
-console = {log = print};
+__console = {log = print};
 
-Curry = require "./curry";
-Caml_option = require "./caml_option";
-Belt_internalAVLtree = require "./belt_internalAVLtree";
+Curry = require "..curry";
+Caml_option = require "..caml_option";
+Belt_internalAVLtree = require "..belt_internalAVLtree";
 
 function set(t, newK, newD, cmp) do
   if (t ~= nil) then do
@@ -145,7 +145,7 @@ function mergeMany(h, arr, cmp) do
   v = h;
   for i = 0 , len - 1 | 0 , 1 do
     match = arr[i];
-    v = set(v, match[0], match[1], cmp);
+    v = set(v, match[1], match[2], cmp);
   end
   return v;
 end end
@@ -166,8 +166,8 @@ function splitAuxPivot(n, x, pres, cmp) do
     if (l ~= nil) then do
       match = splitAuxPivot(l, x, pres, cmp);
       return --[[ tuple ]]{
-              match[0],
-              Belt_internalAVLtree.join(match[1], v, d, r)
+              match[1],
+              Belt_internalAVLtree.join(match[2], v, d, r)
             };
     end else do
       return --[[ tuple ]]{
@@ -178,8 +178,8 @@ function splitAuxPivot(n, x, pres, cmp) do
   end else if (r ~= nil) then do
     match_1 = splitAuxPivot(r, x, pres, cmp);
     return --[[ tuple ]]{
-            Belt_internalAVLtree.join(l, v, d, match_1[0]),
-            match_1[1]
+            Belt_internalAVLtree.join(l, v, d, match_1[1]),
+            match_1[2]
           };
   end else do
     return --[[ tuple ]]{
@@ -223,9 +223,9 @@ function mergeU(s1, s2, f, cmp) do
         };
         match = splitAuxPivot(s2, v1, d2, cmp);
         d2_1 = d2.contents;
-        newLeft = mergeU(l1, match[0], f, cmp);
+        newLeft = mergeU(l1, match[1], f, cmp);
         newD = f(v1, Caml_option.some(d1), d2_1);
-        newRight = mergeU(r1, match[1], f, cmp);
+        newRight = mergeU(r1, match[2], f, cmp);
         return Belt_internalAVLtree.concatOrJoin(newLeft, v1, newD, newRight);
       end else do
         l2 = s2.left;
@@ -237,9 +237,9 @@ function mergeU(s1, s2, f, cmp) do
         };
         match_1 = splitAuxPivot(s1, v2, d1_1, cmp);
         d1_2 = d1_1.contents;
-        newLeft_1 = mergeU(match_1[0], l2, f, cmp);
+        newLeft_1 = mergeU(match_1[1], l2, f, cmp);
         newD_1 = f(v2, d1_2, Caml_option.some(d2_2));
-        newRight_1 = mergeU(match_1[1], r2, f, cmp);
+        newRight_1 = mergeU(match_1[2], r2, f, cmp);
         return Belt_internalAVLtree.concatOrJoin(newLeft_1, v2, newD_1, newRight_1);
       end end 
     end else do
@@ -378,7 +378,7 @@ mapWithKeyU = Belt_internalAVLtree.mapWithKeyU;
 
 mapWithKey = Belt_internalAVLtree.mapWithKey;
 
-exports = {}
+exports = {};
 exports.empty = empty;
 exports.isEmpty = isEmpty;
 exports.has = has;
@@ -432,4 +432,5 @@ exports.mapU = mapU;
 exports.map = map;
 exports.mapWithKeyU = mapWithKeyU;
 exports.mapWithKey = mapWithKey;
+return exports;
 --[[ No side effect ]]

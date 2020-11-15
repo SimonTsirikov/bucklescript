@@ -2,9 +2,9 @@
  * copyright 
 */
 // hello
-console = {log = print};
+__console = {log = print};
 
-List = require "../../lib/js/list";
+List = require "......lib.js.list";
 
 x0 = null;
 
@@ -24,10 +24,11 @@ end end
 
 hh = List.length;
 
-exports = {}
+exports = {};
 exports.x0 = x0;
 exports.x2 = x2;
 exports.x3 = x3;
 exports.hh = hh;
 exports.f = f;
+return exports;
 --[[ No side effect ]]

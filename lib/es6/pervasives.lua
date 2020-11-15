@@ -1,16 +1,16 @@
 
 
-import * as Curry from "./curry.lua";
-import * as Caml_io from "./caml_io.lua";
-import * as Caml_sys from "./caml_sys.lua";
-import * as Caml_bytes from "./caml_bytes.lua";
-import * as Caml_format from "./caml_format.lua";
-import * as Caml_string from "./caml_string.lua";
-import * as Caml_exceptions from "./caml_exceptions.lua";
-import * as Caml_js_exceptions from "./caml_js_exceptions.lua";
-import * as Caml_external_polyfill from "./caml_external_polyfill.lua";
-import * as Caml_builtin_exceptions from "./caml_builtin_exceptions.lua";
-import * as CamlinternalFormatBasics from "./camlinternalFormatBasics.lua";
+local Curry = require "..curry.lua";
+local Caml_io = require "..caml_io.lua";
+local Caml_sys = require "..caml_sys.lua";
+local Caml_bytes = require "..caml_bytes.lua";
+local Caml_format = require "..caml_format.lua";
+local Caml_string = require "..caml_string.lua";
+local Caml_exceptions = require "..caml_exceptions.lua";
+local Caml_js_exceptions = require "..caml_js_exceptions.lua";
+local Caml_external_polyfill = require "..caml_external_polyfill.lua";
+local Caml_builtin_exceptions = require "..caml_builtin_exceptions.lua";
+local CamlinternalFormatBasics = require "..camlinternalFormatBasics.lua";
 
 function failwith(s) do
   error({
@@ -44,7 +44,7 @@ min_int = -2147483648;
 
 function classify_float(x) do
   if (isFinite(x)) then do
-    if (Math.abs(x) >= 2.22507385850720138e-308) then do
+    if (__Math.abs(x) >= 2.22507385850720138e-308) then do
       return --[[ FP_normal ]]0;
     end else if (x ~= 0) then do
       return --[[ FP_subnormal ]]1;
@@ -109,7 +109,7 @@ function int_of_string_opt(s) do
     return Caml_format.caml_int_of_string(s);
   end end,function(raw_exn) do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
-    if (exn[0] == Caml_builtin_exceptions.failure) then do
+    if (exn[1] == Caml_builtin_exceptions.failure) then do
       return ;
     end else do
       error(exn)
@@ -152,7 +152,7 @@ function float_of_string_opt(s) do
     return Caml_format.caml_float_of_string(s);
   end end,function(raw_exn) do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
-    if (exn[0] == Caml_builtin_exceptions.failure) then do
+    if (exn[1] == Caml_builtin_exceptions.failure) then do
       return ;
     end else do
       error(exn)
@@ -160,11 +160,11 @@ function float_of_string_opt(s) do
   end end)
 end end
 
-function $at(l1, l2) do
+function _at(l1, l2) do
   if (l1) then do
     return --[[ :: ]]{
-            l1[0],
-            $at(l1[1], l2)
+            l1[1],
+            _at(l1[2], l2)
           };
   end else do
     return l2;
@@ -221,15 +221,15 @@ function flush_all(param) do
     param_1 = _param;
     if (param_1) then do
       xpcall(function() do
-        Caml_io.caml_ml_flush(param_1[0]);
+        Caml_io.caml_ml_flush(param_1[1]);
       end end,function(raw_exn) do
         exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
-        if (exn[0] ~= Caml_builtin_exceptions.sys_error) then do
+        if (exn[1] ~= Caml_builtin_exceptions.sys_error) then do
           error(exn)
         end
          end 
       end end)
-      _param = param_1[1];
+      _param = param_1[2];
       ::continue:: ;
     end else do
       return --[[ () ]]0;
@@ -368,10 +368,10 @@ function input_line(chan) do
       param = _param;
       pos = _pos;
       if (param) then do
-        hd = param[0];
+        hd = param[1];
         len = #hd;
         Caml_bytes.caml_blit_bytes(hd, 0, buf, pos - len | 0, len);
-        _param = param[1];
+        _param = param[2];
         _pos = pos - len | 0;
         ::continue:: ;
       end else do
@@ -439,7 +439,7 @@ function print_bytes(s) do
 end end
 
 function print_int(i) do
-  return output_string(stdout, String(i));
+  return output_string(stdout, __String(i));
 end end
 
 function print_float(f) do
@@ -464,7 +464,7 @@ function prerr_bytes(s) do
 end end
 
 function prerr_int(i) do
-  return output_string(stderr, String(i));
+  return output_string(stderr, __String(i));
 end end
 
 function prerr_float(f) do
@@ -498,13 +498,13 @@ function read_float_opt(param) do
 end end
 
 function string_of_format(param) do
-  return param[1];
+  return param[2];
 end end
 
-function $caret$caret(param, param_1) do
+function _caret_caret(param, param_1) do
   return --[[ Format ]]{
-          CamlinternalFormatBasics.concat_fmt(param[0], param_1[0]),
-          param[1] .. ("%," .. param_1[1])
+          CamlinternalFormatBasics.concat_fmt(param[1], param_1[1]),
+          param[2] .. ("%," .. param_1[2])
         };
 end end
 
@@ -658,7 +658,7 @@ export do
   int_of_string_opt ,
   string_of_float ,
   float_of_string_opt ,
-  $at ,
+  _at ,
   stdin ,
   stdout ,
   stderr ,
@@ -717,7 +717,7 @@ export do
   set_binary_mode_in ,
   LargeFile ,
   string_of_format ,
-  $caret$caret ,
+  _caret_caret ,
   exit ,
   at_exit ,
   valid_float_lexem ,

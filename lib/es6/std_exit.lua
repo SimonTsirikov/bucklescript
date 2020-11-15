@@ -1,6 +1,6 @@
 
 
-import * as Pervasives from "./pervasives.lua";
+local Pervasives = require "..pervasives.lua";
 
 Pervasives.do_at_exit(--[[ () ]]0);
 

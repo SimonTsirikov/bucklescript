@@ -1,6 +1,6 @@
-console = {log = print};
+__console = {log = print};
 
-__Array = require "../../lib/js/array";
+__Array = require "......lib.js.array";
 
 v = {
   contents = 32
@@ -80,7 +80,7 @@ Floatarray = __Array.Floatarray;
 
 a = 3;
 
-exports = {}
+exports = {};
 exports.make_float = make_float;
 exports.init = init;
 exports.make_matrix = make_matrix;
@@ -113,4 +113,5 @@ exports.N = N;
 exports.NN = NN;
 exports.a = a;
 exports.v = v;
+return exports;
 --[[  Not a pure module ]]

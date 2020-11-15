@@ -1,4 +1,4 @@
-console = {log = print};
+__console = {log = print};
 
 
 v = {
@@ -6,6 +6,7 @@ v = {
   1
 };
 
-exports = {}
+exports = {};
 exports.v = v;
+return exports;
 --[[ No side effect ]]

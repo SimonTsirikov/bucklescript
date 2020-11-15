@@ -1,19 +1,19 @@
-console = {log = print};
+__console = {log = print};
 
-__Node = require "../../lib/js/node";
+__Node = require "......lib.js.node";
 
 function f(str) do
   match = __Node.test(str);
-  if (match[0]) then do
-    console.log(--[[ tuple ]]{
+  if (match[1]) then do
+    __console.log(--[[ tuple ]]{
           "buffer",
-          Buffer.isBuffer(match[1])
+          __Buffer.isBuffer(match[2])
         });
     return --[[ () ]]0;
   end else do
-    console.log(--[[ tuple ]]{
+    __console.log(--[[ tuple ]]{
           "string",
-          match[1]
+          match[2]
         });
     return --[[ () ]]0;
   end end 
@@ -23,6 +23,7 @@ f("xx");
 
 f((Buffer.from ('xx')));
 
-exports = {}
+exports = {};
 exports.f = f;
+return exports;
 --[[  Not a pure module ]]

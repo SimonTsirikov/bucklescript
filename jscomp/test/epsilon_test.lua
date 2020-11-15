@@ -1,8 +1,8 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Block = require "../../lib/js/block";
-Pervasives = require "../../lib/js/pervasives";
+Mt = require "..mt";
+Block = require "......lib.js.block";
+Pervasives = require "......lib.js.pervasives";
 
 v = (Number.EPSILON?Number.EPSILON:2.220446049250313e-16);
 
@@ -36,7 +36,8 @@ suites = --[[ :: ]]{
 
 Mt.from_pair_suites("Epsilon_test", suites);
 
-exports = {}
+exports = {};
 exports.v = v;
 exports.suites = suites;
+return exports;
 --[[ v Not a pure module ]]

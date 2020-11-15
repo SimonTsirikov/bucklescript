@@ -1,8 +1,8 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Curry = require "../../lib/js/curry";
-Caml_int32 = require "../../lib/js/caml_int32";
+Mt = require "..mt";
+Curry = require "......lib.js.curry";
+Caml_int32 = require "......lib.js.caml_int32";
 
 suites = {
   contents = --[[ [] ]]0
@@ -36,7 +36,7 @@ v = 5;
 
 u = --[[ Some ]]{3};
 
-exports = {}
+exports = {};
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
@@ -44,4 +44,5 @@ exports.v = v;
 exports.X = X;
 exports.u = u;
 exports.xx = xx;
+return exports;
 --[[  Not a pure module ]]

@@ -1,10 +1,10 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Block = require "../../lib/js/block";
-Curry = require "../../lib/js/curry";
-Caml_oo_curry = require "../../lib/js/caml_oo_curry";
-CamlinternalOO = require "../../lib/js/camlinternalOO";
+Mt = require "..mt";
+Block = require "......lib.js.block";
+Curry = require "......lib.js.curry";
+Caml_oo_curry = require "......lib.js.caml_oo_curry";
+CamlinternalOO = require "......lib.js.camlinternalOO";
 
 shared = {
   "hi",
@@ -20,18 +20,18 @@ __class = CamlinternalOO.create_table(shared);
 
 ids = CamlinternalOO.get_method_labels(__class, shared);
 
-hi = ids[0];
+hi = ids[1];
 
-hello = ids[1];
+hello = ids[2];
 
 CamlinternalOO.set_methods(__class, {
       hi,
-      (function(self$1, x, y) do
+      (function(self_1, x, y) do
           return x + y | 0;
         end end),
       hello,
-      (function(self$1, z) do
-          return Curry._3(self$1[0][hi], self$1, 10, z);
+      (function(self_1, z) do
+          return Curry._3(self_1[1][hi], self_1, 10, z);
         end end)
     });
 
@@ -49,17 +49,17 @@ ids_1 = CamlinternalOO.get_method_labels(__class_1, {
       "x"
     });
 
-y = ids_1[0];
+y = ids_1[1];
 
-x = ids_1[1];
+x = ids_1[2];
 
 CamlinternalOO.set_methods(__class_1, {
       x,
-      (function(self$2) do
+      (function(self_2) do
           return 3;
         end end),
       y,
-      (function(self$2) do
+      (function(self_2) do
           return 32;
         end end)
     });
@@ -82,29 +82,29 @@ ids_2 = CamlinternalOO.get_method_labels(__class_2, {
       "hello"
     });
 
-id2 = ids_2[0];
+id2 = ids_2[1];
 
-id1 = ids_2[1];
+id1 = ids_2[2];
 
-hi_1 = ids_2[2];
+hi_1 = ids_2[3];
 
-hello_1 = ids_2[3];
+hello_1 = ids_2[4];
 
 CamlinternalOO.set_methods(__class_2, {
       hi_1,
-      (function(self$3, v, z) do
+      (function(self_3, v, z) do
           return v + z | 0;
         end end),
       id1,
-      (function(self$3) do
+      (function(self_3) do
           return 3;
         end end),
       id2,
-      (function(self$3) do
+      (function(self_3) do
           return 4;
         end end),
       hello_1,
-      (function(self$3, v) do
+      (function(self_3, v) do
           return v;
         end end)
     });
@@ -117,7 +117,7 @@ __class_3 = CamlinternalOO.create_table({"id"});
 
 id = CamlinternalOO.get_method_label(__class_3, "id");
 
-CamlinternalOO.set_method(__class_3, id, (function(self$4) do
+CamlinternalOO.set_method(__class_3, id, (function(self_4) do
         return "uu";
       end end));
 
@@ -129,7 +129,7 @@ __class_4 = CamlinternalOO.create_table({"add"});
 
 add = CamlinternalOO.get_method_label(__class_4, "add");
 
-CamlinternalOO.set_method(__class_4, add, (function(self$5, x, y) do
+CamlinternalOO.set_method(__class_4, add, (function(self_5, x, y) do
         return x + y | 0;
       end end));
 
@@ -141,18 +141,18 @@ __class_5 = CamlinternalOO.create_table(shared_1);
 
 ids_3 = CamlinternalOO.get_method_labels(__class_5, shared_1);
 
-hi_2 = ids_3[0];
+hi_2 = ids_3[1];
 
-add_1 = ids_3[1];
+add_1 = ids_3[2];
 
 CamlinternalOO.set_methods(__class_5, {
       add_1,
-      (function(self$6, x, y) do
+      (function(self_6, x, y) do
           return x + y | 0;
         end end),
       hi_2,
-      (function(self$6, x) do
-          return Curry._3(self$6[0][add_1], self$6, x, 32);
+      (function(self_6, x) do
+          return Curry._3(self_6[1][add_1], self_6, x, 32);
         end end)
     });
 
@@ -323,7 +323,7 @@ suites = --[[ :: ]]{
 
 Mt.from_pair_suites("Obj_test", suites);
 
-exports = {}
+exports = {};
 exports.vv = vv;
 exports.v = v;
 exports.u = u;
@@ -331,4 +331,5 @@ exports.uu = uu;
 exports.uuu = uuu;
 exports.vvvv = vvvv;
 exports.suites = suites;
+return exports;
 --[[ class Not a pure module ]]

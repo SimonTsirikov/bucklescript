@@ -1,14 +1,14 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-__Array = require "../../lib/js/array";
-Block = require "../../lib/js/block";
-Curry = require "../../lib/js/curry";
-__Buffer = require "../../lib/js/buffer";
-Format = require "../../lib/js/format";
-Mt_global = require "./mt_global";
-Pervasives = require "../../lib/js/pervasives";
-Float_array = require "./float_array";
+Mt = require "..mt";
+__Array = require "......lib.js.array";
+Block = require "......lib.js.block";
+Curry = require "......lib.js.curry";
+__Buffer = require "......lib.js.buffer";
+Format = require "......lib.js.format";
+Mt_global = require "..mt_global";
+Pervasives = require "......lib.js.pervasives";
+Float_array = require "..float_array";
 
 buf = __Buffer.create(50);
 
@@ -54,9 +54,9 @@ function print_array(a) do
   return print_newline(--[[ () ]]0);
 end end
 
-print_array(b[0]);
+print_array(b[1]);
 
-print_array(c[0]);
+print_array(c[1]);
 
 suites = {
   contents = --[[ [] ]]0
@@ -74,7 +74,7 @@ eq("File \"tfloat_record_test.ml\", line 43, characters 5-12", __Buffer.contents
 
 Mt.from_pair_suites("Tfloat_record_test", suites.contents);
 
-exports = {}
+exports = {};
 exports.buf = buf;
 exports.fmt = fmt;
 exports.print_float = print_float;
@@ -86,4 +86,5 @@ exports.print_array = print_array;
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
+return exports;
 --[[ buf Not a pure module ]]

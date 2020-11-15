@@ -1,4 +1,4 @@
-console = {log = print};
+__console = {log = print};
 
 
 function get_uint8(str, off) do
@@ -28,8 +28,9 @@ Test = {
   v = v
 };
 
-exports = {}
+exports = {};
 exports.ExtUnixAll = ExtUnixAll;
 exports.ExtUnix = ExtUnix;
 exports.Test = Test;
+return exports;
 --[[ No side effect ]]

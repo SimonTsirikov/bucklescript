@@ -1,7 +1,7 @@
-console = {log = print};
+__console = {log = print};
 
-Curry = require "../../lib/js/curry";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
+Curry = require "......lib.js.curry";
+Caml_builtin_exceptions = require "......lib.js.caml_builtin_exceptions";
 
 delayed = {
   contents = (function(param) do
@@ -38,5 +38,6 @@ end
 
 Curry._1(delayed.contents, --[[ () ]]0);
 
-exports = {}
+exports = {};
+return exports;
 --[[  Not a pure module ]]

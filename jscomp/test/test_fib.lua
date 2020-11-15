@@ -1,6 +1,6 @@
-console = {log = print};
+__console = {log = print};
 
-Curry = require "../../lib/js/curry";
+Curry = require "......lib.js.curry";
 
 function fib(n) do
   if (n == 0 or n == 1) then do
@@ -43,7 +43,7 @@ end end
 
 function length(x) do
   if (x) then do
-    return 1 + length(x[1]) | 0;
+    return 1 + length(x[2]) | 0;
   end else do
     return 0;
   end end 
@@ -52,8 +52,8 @@ end end
 function map(f, x) do
   if (x) then do
     return --[[ Cons ]]{
-            Curry._1(f, x[0]),
-            map(f, x[1])
+            Curry._1(f, x[1]),
+            map(f, x[2])
           };
   end else do
     return --[[ Nil ]]0;
@@ -91,7 +91,7 @@ end end
 
 b = fib;
 
-exports = {}
+exports = {};
 exports.fib = fib;
 exports.fib2 = fib2;
 exports.b = b;
@@ -102,4 +102,5 @@ exports.length = length;
 exports.map = map;
 exports.f = f;
 exports.fib3 = fib3;
+return exports;
 --[[  Not a pure module ]]

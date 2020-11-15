@@ -1,4 +1,4 @@
-console = {log = print};
+__console = {log = print};
 
 
 function f(x) do
@@ -17,11 +17,12 @@ c = g(--[[ () ]]0);
 
 d = g(--[[ () ]]0);
 
-exports = {}
+exports = {};
 exports.f = f;
 exports.a = a;
 exports.b = b;
 exports.g = g;
 exports.c = c;
 exports.d = d;
+return exports;
 --[[ a Not a pure module ]]

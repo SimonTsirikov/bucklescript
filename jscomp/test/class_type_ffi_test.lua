@@ -1,11 +1,11 @@
-console = {log = print};
+__console = {log = print};
 
-Curry = require "../../lib/js/curry";
+Curry = require "......lib.js.curry";
 
 function sum_float_array(arr) do
   v = 0;
   for i = 0 , arr.length - 1 | 0 , 1 do
-    v = v + arr.case(i);
+    v = v + arr.__case(i);
   end
   return v;
 end end
@@ -13,7 +13,7 @@ end end
 function sum_int_array(arr) do
   v = 0;
   for i = 0 , arr.length - 1 | 0 , 1 do
-    v = v + arr.case(i) | 0;
+    v = v + arr.__case(i) | 0;
   end
   return v;
 end end
@@ -21,7 +21,7 @@ end end
 function sum_poly(zero, add, arr) do
   v = zero;
   for i = 0 , arr.length - 1 | 0 , 1 do
-    v = add(v, arr.case(i));
+    v = add(v, arr.__case(i));
   end
   return v;
 end end
@@ -88,7 +88,7 @@ function omk_f(param) do
         };
 end end
 
-exports = {}
+exports = {};
 exports.sum_float_array = sum_float_array;
 exports.sum_int_array = sum_int_array;
 exports.sum_poly = sum_poly;
@@ -99,4 +99,5 @@ exports.ff2 = ff2;
 exports.off2 = off2;
 exports.mk_f = mk_f;
 exports.omk_f = omk_f;
+return exports;
 --[[ No side effect ]]

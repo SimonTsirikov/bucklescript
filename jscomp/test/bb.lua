@@ -1,6 +1,6 @@
-console = {log = print};
+__console = {log = print};
 
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
+Caml_builtin_exceptions = require "......lib.js.caml_builtin_exceptions";
 
 function f(x) do
   if (x ~= 98) then do
@@ -75,7 +75,7 @@ d = f(--[[ b ]]98);
 
 e = f(--[[ c ]]99);
 
-exports = {}
+exports = {};
 exports.f = f;
 exports.ff = ff;
 exports.test = test;
@@ -83,4 +83,5 @@ exports.test_poly = test_poly;
 exports.c = c;
 exports.d = d;
 exports.e = e;
+return exports;
 --[[ c Not a pure module ]]

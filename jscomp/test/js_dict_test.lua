@@ -1,8 +1,8 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Block = require "../../lib/js/block";
-Js_dict = require "../../lib/js/js_dict";
+Mt = require "..mt";
+Block = require "......lib.js.block";
+Js_dict = require "......lib.js.js_dict";
 
 function obj(param) do
   return {
@@ -16,7 +16,7 @@ suites_000 = --[[ tuple ]]{
   (function(param) do
       return --[[ Eq ]]Block.__(0, {
                 {},
-                Object.keys({ })
+                __Object.keys({ })
               });
     end end)
 };
@@ -84,7 +84,7 @@ suites_001 = --[[ :: ]]{
                             "foo",
                             "bar"
                           },
-                          Object.keys({
+                          __Object.keys({
                                 foo = 43,
                                 bar = 86
                               })
@@ -218,7 +218,7 @@ suites_001 = --[[ :: ]]{
                                           bar = "86"
                                         },
                                         Js_dict.map((function(i) do
-                                                return String(i);
+                                                return __String(i);
                                               end end), {
                                               foo = 43,
                                               bar = 86
@@ -247,7 +247,8 @@ suites = --[[ :: ]]{
 
 Mt.from_pair_suites("Js_dict_test", suites);
 
-exports = {}
+exports = {};
 exports.obj = obj;
 exports.suites = suites;
+return exports;
 --[[  Not a pure module ]]

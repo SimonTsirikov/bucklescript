@@ -1,8 +1,8 @@
 
 
-import * as Curry from "./curry.lua";
-import * as Caml_option from "./caml_option.lua";
-import * as Belt_SortArray from "./belt_SortArray.lua";
+local Curry = require "..curry.lua";
+local Caml_option = require "..caml_option.lua";
+local Belt_SortArray = require "..belt_SortArray.lua";
 
 function treeHeight(n) do
   if (n ~= nil) then do
@@ -539,12 +539,12 @@ function partitionSharedU(n, p) do
     key = n.key;
     value = n.value;
     match = partitionSharedU(n.left, p);
-    lf = match[1];
-    lt = match[0];
+    lf = match[2];
+    lt = match[1];
     pvd = p(key, value);
     match_1 = partitionSharedU(n.right, p);
-    rf = match_1[1];
-    rt = match_1[0];
+    rf = match_1[2];
+    rt = match_1[1];
     if (pvd) then do
       return --[[ tuple ]]{
               join(lt, key, value, rt),
@@ -620,7 +620,7 @@ function checkInvariantInternal(_v) do
       r = v.right;
       diff = treeHeight(l) - treeHeight(r) | 0;
       if (not (diff <= 2 and diff >= -2)) then do
-        error(new Error("File \"belt_internalAVLtree.ml\", line 385, characters 6-12"))
+        error(new __Error("File \"belt_internalAVLtree.ml\", line 385, characters 6-12"))
       end
        end 
       checkInvariantInternal(l);
@@ -697,7 +697,7 @@ end end
 function toArray(n) do
   if (n ~= nil) then do
     size = lengthNode(n);
-    v = new Array(size);
+    v = new __Array(size);
     fillArray(n, 0, v);
     return v;
   end else do
@@ -708,7 +708,7 @@ end end
 function keysToArray(n) do
   if (n ~= nil) then do
     size = lengthNode(n);
-    v = new Array(size);
+    v = new __Array(size);
     fillArrayKey(n, 0, v);
     return v;
   end else do
@@ -719,7 +719,7 @@ end end
 function valuesToArray(n) do
   if (n ~= nil) then do
     size = lengthNode(n);
-    v = new Array(size);
+    v = new __Array(size);
     fillArrayValue(n, 0, v);
     return v;
   end else do
@@ -734,38 +734,47 @@ function fromSortedArrayRevAux(arr, off, len) do
         return nil; end end 
      if ___conditional___ == 1 then do
         match = arr[off];
-        return singleton(match[0], match[1]); end end 
+        return singleton(match[1], match[2]); end end 
      if ___conditional___ == 2 then do
         match_000 = arr[off];
         match_001 = arr[off - 1 | 0];
-        match_1 = match_001;
-        match_2 = match_000;
+        match_1 = --[[ tuple ]]{
+          match_000,
+          match_001
+        };
+        match_2 = match_1[2];
+        match_3 = match_001;
         return {
-                key = match_1[0],
-                value = match_1[1],
+                key = match_2[1],
+                value = match_2[2],
                 height = 2,
-                left = singleton(match_2[0], match_2[1]),
+                left = singleton(match_3[1], match_3[2]),
                 right = nil
               }; end end 
      if ___conditional___ == 3 then do
         match_000_1 = arr[off];
         match_001_1 = arr[off - 1 | 0];
         match_002 = arr[off - 2 | 0];
-        match_3 = match_002;
-        match_4 = match_001_1;
-        match_5 = match_000_1;
+        match_4 = --[[ tuple ]]{
+          match_000_1,
+          match_001_1,
+          match_002
+        };
+        match_5 = match_4[3];
+        match_6 = match_002;
+        match_7 = match_001_1;
         return {
-                key = match_4[0],
-                value = match_4[1],
+                key = match_6[1],
+                value = match_6[2],
                 height = 2,
-                left = singleton(match_5[0], match_5[1]),
-                right = singleton(match_3[0], match_3[1])
+                left = singleton(match_7[1], match_7[2]),
+                right = singleton(match_5[1], match_5[2])
               }; end end 
     nl = len / 2 | 0;
       left = fromSortedArrayRevAux(arr, off, nl);
-      match_6 = arr[off - nl | 0];
+      match_8 = arr[off - nl | 0];
       right = fromSortedArrayRevAux(arr, (off - nl | 0) - 1 | 0, (len - nl | 0) - 1 | 0);
-      return create(left, match_6[0], match_6[1], right);
+      return create(left, match_8[1], match_8[2], right);
       
   end
 end end
@@ -777,38 +786,47 @@ function fromSortedArrayAux(arr, off, len) do
         return nil; end end 
      if ___conditional___ == 1 then do
         match = arr[off];
-        return singleton(match[0], match[1]); end end 
+        return singleton(match[1], match[2]); end end 
      if ___conditional___ == 2 then do
         match_000 = arr[off];
         match_001 = arr[off + 1 | 0];
-        match_1 = match_001;
-        match_2 = match_000;
+        match_1 = --[[ tuple ]]{
+          match_000,
+          match_001
+        };
+        match_2 = match_1[2];
+        match_3 = match_001;
         return {
-                key = match_1[0],
-                value = match_1[1],
+                key = match_2[1],
+                value = match_2[2],
                 height = 2,
-                left = singleton(match_2[0], match_2[1]),
+                left = singleton(match_3[1], match_3[2]),
                 right = nil
               }; end end 
      if ___conditional___ == 3 then do
         match_000_1 = arr[off];
         match_001_1 = arr[off + 1 | 0];
         match_002 = arr[off + 2 | 0];
-        match_3 = match_002;
-        match_4 = match_001_1;
-        match_5 = match_000_1;
+        match_4 = --[[ tuple ]]{
+          match_000_1,
+          match_001_1,
+          match_002
+        };
+        match_5 = match_4[3];
+        match_6 = match_002;
+        match_7 = match_001_1;
         return {
-                key = match_4[0],
-                value = match_4[1],
+                key = match_6[1],
+                value = match_6[2],
                 height = 2,
-                left = singleton(match_5[0], match_5[1]),
-                right = singleton(match_3[0], match_3[1])
+                left = singleton(match_7[1], match_7[2]),
+                right = singleton(match_5[1], match_5[2])
               }; end end 
     nl = len / 2 | 0;
       left = fromSortedArrayAux(arr, off, nl);
-      match_6 = arr[off + nl | 0];
+      match_8 = arr[off + nl | 0];
       right = fromSortedArrayAux(arr, (off + nl | 0) + 1 | 0, (len - nl | 0) - 1 | 0);
-      return create(left, match_6[0], match_6[1], right);
+      return create(left, match_8[1], match_8[2], right);
       
   end
 end end
@@ -829,14 +847,14 @@ function cmpU(s1, s2, kcmp, vcmp) do
       e2 = _e2;
       e1 = _e1;
       if (e1 and e2) then do
-        h2 = e2[0];
-        h1 = e1[0];
+        h2 = e2[1];
+        h1 = e1[1];
         c = kcmp_1(h1.key, h2.key);
         if (c == 0) then do
           cx = vcmp_1(h1.value, h2.value);
           if (cx == 0) then do
-            _e2 = stackAllLeft(h2.right, e2[1]);
-            _e1 = stackAllLeft(h1.right, e1[1]);
+            _e2 = stackAllLeft(h2.right, e2[2]);
+            _e1 = stackAllLeft(h1.right, e1[2]);
             ::continue:: ;
           end else do
             return cx;
@@ -871,11 +889,11 @@ function eqU(s1, s2, kcmp, veq) do
       e2 = _e2;
       e1 = _e1;
       if (e1 and e2) then do
-        h2 = e2[0];
-        h1 = e1[0];
+        h2 = e2[1];
+        h1 = e1[1];
         if (kcmp_1(h1.key, h2.key) == 0 and veq_1(h1.value, h2.value)) then do
-          _e2 = stackAllLeft(h2.right, e2[1]);
-          _e1 = stackAllLeft(h1.right, e1[1]);
+          _e2 = stackAllLeft(h2.right, e2[2]);
+          _e1 = stackAllLeft(h1.right, e1[2]);
           ::continue:: ;
         end else do
           return false;
@@ -942,7 +960,7 @@ function getExn(_n, x, cmp) do
         ::continue:: ;
       end end 
     end else do
-      error(new Error("getExn0"))
+      error(new __Error("getExn0"))
     end end 
   end;
 end end
@@ -1096,7 +1114,7 @@ function fromArray(xs, cmp) do
     return nil;
   end else do
     next = Belt_SortArray.strictlySortedLengthU(xs, (function(param, param_1) do
-            return cmp(param[0], param_1[0]) < 0;
+            return cmp(param[1], param_1[1]) < 0;
           end end));
     result;
     if (next >= 0) then do
@@ -1107,7 +1125,7 @@ function fromArray(xs, cmp) do
     end end 
     for i = next , len - 1 | 0 , 1 do
       match = xs[i];
-      result = updateMutate(result, match[0], match[1], cmp);
+      result = updateMutate(result, match[1], match[2], cmp);
     end
     return result;
   end end 

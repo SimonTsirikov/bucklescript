@@ -1,7 +1,7 @@
-console = {log = print};
+__console = {log = print};
 
-Curry = require "./curry";
-Belt_Array = require "./belt_Array";
+Curry = require "..curry";
+Belt_Array = require "..belt_Array";
 
 function sortedLengthAuxMore(xs, _prec, _acc, len, lt) do
   while(true) do
@@ -346,7 +346,7 @@ function stableSortInPlaceByU(a, cmp) do
   end else do
     l1 = l / 2 | 0;
     l2 = l - l1 | 0;
-    t = new Array(l2);
+    t = new __Array(l2);
     sortTo(a, l1, t, 0, l2, cmp);
     sortTo(a, 0, a, l2, l1, cmp);
     return merge(a, l2, l1, t, 0, l2, a, 0, cmp);
@@ -430,7 +430,7 @@ Int = --[[ alias ]]0;
 
 __String = --[[ alias ]]0;
 
-exports = {}
+exports = {};
 exports.Int = Int;
 exports.__String = __String;
 exports.strictlySortedLengthU = strictlySortedLengthU;
@@ -449,4 +449,5 @@ exports.intersectU = intersectU;
 exports.intersect = intersect;
 exports.diffU = diffU;
 exports.diff = diff;
+return exports;
 --[[ No side effect ]]

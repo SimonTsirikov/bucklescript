@@ -1,8 +1,8 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-List = require "../../lib/js/list";
-Js_mapperRt = require "../../lib/js/js_mapperRt";
+Mt = require "..mt";
+List = require "......lib.js.list";
+Js_mapperRt = require "......lib.js.js_mapperRt";
 
 suites = {
   contents = --[[ [] ]]0
@@ -56,7 +56,7 @@ Mt.from_pair_suites("Re_first_test", suites.contents);
 
 u = 3;
 
-exports = {}
+exports = {};
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
@@ -64,4 +64,5 @@ exports.x = x;
 exports.u = u;
 exports.adapterToJs = adapterToJs;
 exports.adapterFromJs = adapterFromJs;
+return exports;
 --[[ x Not a pure module ]]

@@ -1,6 +1,6 @@
 
 
-import * as Caml_option from "./caml_option.lua";
+local Caml_option = require "..caml_option.lua";
 
 function test(x) do
   return x == nil;
@@ -14,7 +14,7 @@ function getExn(f) do
   if (f ~= nil) then do
     return f;
   end else do
-    error(new Error("Js.Undefined.getExn"))
+    error(new __Error("Js.Undefined.getExn"))
   end end 
 end end
 

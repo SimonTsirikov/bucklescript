@@ -1,7 +1,7 @@
-console = {log = print};
+__console = {log = print};
 
-Caml_int32 = require "../../lib/js/caml_int32";
-Caml_external_polyfill = require "../../lib/js/caml_external_polyfill";
+Caml_int32 = require "......lib.js.caml_int32";
+Caml_external_polyfill = require "......lib.js.caml_external_polyfill";
 
 function sum(v) do
   result = 0;
@@ -37,10 +37,11 @@ end end
 
 BA1 = --[[ alias ]]0;
 
-exports = {}
+exports = {};
 exports.BA1 = BA1;
 exports.sum = sum;
 exports.init = init;
 exports.init2 = init2;
 exports.init3 = init3;
+return exports;
 --[[ No side effect ]]

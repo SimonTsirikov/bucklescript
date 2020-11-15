@@ -1,13 +1,13 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Block = require "../../lib/js/block";
-Pervasives = require "../../lib/js/pervasives";
+Mt = require "..mt";
+Block = require "......lib.js.block";
+Pervasives = require "......lib.js.pervasives";
 
 ff = Pervasives.string_of_float;
 
 function f(v) do
-  return String(v);
+  return __String(v);
 end end
 
 Mt.from_pair_suites("To_string_test", --[[ :: ]]{
@@ -34,7 +34,8 @@ Mt.from_pair_suites("To_string_test", --[[ :: ]]{
       }
     });
 
-exports = {}
+exports = {};
 exports.ff = ff;
 exports.f = f;
+return exports;
 --[[  Not a pure module ]]

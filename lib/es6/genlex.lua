@@ -1,15 +1,15 @@
 
 
-import * as Char from "./char.lua";
-import * as List from "./list.lua";
-import * as Block from "./block.lua";
-import * as Bytes from "./bytes.lua";
-import * as Stream from "./stream.lua";
-import * as Hashtbl from "./hashtbl.lua";
-import * as Caml_bytes from "./caml_bytes.lua";
-import * as Caml_int32 from "./caml_int32.lua";
-import * as Caml_format from "./caml_format.lua";
-import * as Caml_builtin_exceptions from "./caml_builtin_exceptions.lua";
+local Char = require "..char.lua";
+local List = require "..list.lua";
+local Block = require "..block.lua";
+local Bytes = require "..bytes.lua";
+local Stream = require "..stream.lua";
+local Hashtbl = require "..hashtbl.lua";
+local Caml_bytes = require "..caml_bytes.lua";
+local Caml_int32 = require "..caml_int32.lua";
+local Caml_format = require "..caml_format.lua";
+local Caml_builtin_exceptions = require "..caml_builtin_exceptions.lua";
 
 initial_buffer = Caml_bytes.caml_create_bytes(32);
 

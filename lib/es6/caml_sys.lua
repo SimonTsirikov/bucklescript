@@ -1,9 +1,9 @@
 
 
-import * as Caml_builtin_exceptions from "./caml_builtin_exceptions.lua";
+local Caml_builtin_exceptions = require "..caml_builtin_exceptions.lua";
 
 function caml_sys_getenv(s) do
-  if (typeof process == "undefined" or process.env == nil) then do
+  if (type(process) == "undefined" or process.env == nil) then do
     error(Caml_builtin_exceptions.not_found)
   end
    end 
@@ -25,7 +25,7 @@ os_type = (function(_){
 });
 
 function caml_sys_time(param) do
-  if (typeof process == "undefined" or process.uptime == nil) then do
+  if (type(process) == "undefined" or process.uptime == nil) then do
     return -1;
   end else do
     return process.uptime();
@@ -33,7 +33,7 @@ function caml_sys_time(param) do
 end end
 
 function caml_sys_random_seed(param) do
-  return {((Date.now() | 0) ^ 4294967295) * Math.random() | 0};
+  return {((__Date.now() | 0) ^ 4294967295) * __Math.random() | 0};
 end end
 
 function caml_sys_system_command(_cmd) do
@@ -48,7 +48,7 @@ caml_sys_getcwd = (function(param){
   });
 
 function caml_sys_get_argv(param) do
-  if (typeof process == "undefined") then do
+  if (type(process) == "undefined") then do
     return --[[ tuple ]]{
             "",
             {""}
@@ -70,7 +70,7 @@ function caml_sys_get_argv(param) do
 end end
 
 function caml_sys_exit(exit_code) do
-  if (typeof process ~= "undefined") then do
+  if (type(process) ~= "undefined") then do
     return process.exit(exit_code);
   end else do
     return 0;

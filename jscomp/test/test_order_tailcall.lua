@@ -1,4 +1,4 @@
-console = {log = print};
+__console = {log = print};
 
 
 function f(_x, _y) do
@@ -16,7 +16,7 @@ function f1(_x, _y, _z) do
     z = _z;
     y = _y;
     x = _x;
-    console.log(z);
+    __console.log(z);
     _z = x;
     _y = z;
     _x = y;
@@ -100,7 +100,7 @@ function f8(_x, _y) do
   end;
 end end
 
-exports = {}
+exports = {};
 exports.f = f;
 exports.f1 = f1;
 exports.f2 = f2;
@@ -110,4 +110,5 @@ exports.f5 = f5;
 exports.f6 = f6;
 exports.f7 = f7;
 exports.f8 = f8;
+return exports;
 --[[ No side effect ]]

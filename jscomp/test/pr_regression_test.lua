@@ -1,8 +1,8 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Block = require "../../lib/js/block";
-Curry = require "../../lib/js/curry";
+Mt = require "..mt";
+Block = require "......lib.js.block";
+Curry = require "......lib.js.curry";
 
 v = {
   contents = 3
@@ -111,9 +111,10 @@ Mt.from_pair_suites("Pr_regression_test", --[[ :: ]]{
       --[[ [] ]]0
     });
 
-exports = {}
+exports = {};
 exports.a = a;
 exports.b = b;
 exports.c = c;
 exports.d = d;
+return exports;
 --[[  Not a pure module ]]

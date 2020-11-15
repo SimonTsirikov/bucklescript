@@ -1,7 +1,7 @@
-console = {log = print};
+__console = {log = print};
 
-List = require "../../lib/js/list";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
+List = require "......lib.js.list";
+Caml_builtin_exceptions = require "......lib.js.caml_builtin_exceptions";
 
 a0 = Caml_builtin_exceptions.not_found;
 
@@ -79,7 +79,7 @@ a4 = a0;
 
 a5 = a0;
 
-exports = {}
+exports = {};
 exports.a0 = a0;
 exports.a1 = a1;
 exports.a2 = a2;
@@ -87,4 +87,5 @@ exports.a3 = a3;
 exports.a4 = a4;
 exports.a5 = a5;
 exports.List = List_1;
+return exports;
 --[[ b Not a pure module ]]

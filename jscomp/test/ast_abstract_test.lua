@@ -1,8 +1,8 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Block = require "../../lib/js/block";
-Js_mapperRt = require "../../lib/js/js_mapperRt";
+Mt = require "..mt";
+Block = require "......lib.js.block";
+Js_mapperRt = require "......lib.js.js_mapperRt";
 
 suites = {
   contents = --[[ [] ]]0
@@ -16,7 +16,7 @@ function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[[ :: ]]{
     --[[ tuple ]]{
-      loc .. (" id " .. String(test_id.contents)),
+      loc .. (" id " .. __String(test_id.contents)),
       (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     x,
@@ -128,7 +128,7 @@ end end
 
 function bFromJs(param) do
   if (not (param <= 3 and 0 <= param)) then do
-    error(new Error("ASSERT FAILURE"))
+    error(new __Error("ASSERT FAILURE"))
   end
    end 
   return param - 0 | 0;
@@ -156,7 +156,7 @@ end end
 
 function cFromJs(param) do
   if (not (param <= 6 and 3 <= param)) then do
-    error(new Error("ASSERT FAILURE"))
+    error(new __Error("ASSERT FAILURE"))
   end
    end 
   return param - 3 | 0;
@@ -182,7 +182,7 @@ end end
 
 function hFromJs(param) do
   if (not (param <= 1 and 0 <= param)) then do
-    error(new Error("ASSERT FAILURE"))
+    error(new __Error("ASSERT FAILURE"))
   end
    end 
   return param - 0 | 0;
@@ -207,7 +207,7 @@ b = --[[ B ]]1;
 
 zXx = --[[ ZXx ]]2;
 
-exports = {}
+exports = {};
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
@@ -241,4 +241,5 @@ exports.hFromJs = hFromJs;
 exports.zXx = zXx;
 exports.zToJs = zToJs;
 exports.zFromJs = zFromJs;
+return exports;
 --[[ x0 Not a pure module ]]

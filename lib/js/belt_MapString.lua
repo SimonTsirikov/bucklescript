@@ -1,9 +1,9 @@
-console = {log = print};
+__console = {log = print};
 
-Curry = require "./curry";
-Caml_option = require "./caml_option";
-Belt_internalAVLtree = require "./belt_internalAVLtree";
-Belt_internalMapString = require "./belt_internalMapString";
+Curry = require "..curry";
+Caml_option = require "..caml_option";
+Belt_internalAVLtree = require "..belt_internalAVLtree";
+Belt_internalMapString = require "..belt_internalMapString";
 
 function set(t, newK, newD) do
   if (t ~= nil) then do
@@ -166,7 +166,7 @@ function mergeMany(h, arr) do
   v = h;
   for i = 0 , len - 1 | 0 , 1 do
     match = arr[i];
-    v = set(v, match[0], match[1]);
+    v = set(v, match[1], match[2]);
   end
   return v;
 end end
@@ -265,7 +265,7 @@ mapWithKeyU = Belt_internalAVLtree.mapWithKeyU;
 
 mapWithKey = Belt_internalAVLtree.mapWithKey;
 
-exports = {}
+exports = {};
 exports.empty = empty;
 exports.isEmpty = isEmpty;
 exports.has = has;
@@ -319,4 +319,5 @@ exports.mapU = mapU;
 exports.map = map;
 exports.mapWithKeyU = mapWithKeyU;
 exports.mapWithKey = mapWithKey;
+return exports;
 --[[ No side effect ]]

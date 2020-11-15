@@ -1,19 +1,19 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-List = require "../../lib/js/list";
-__Array = require "../../lib/js/array";
-Block = require "../../lib/js/block";
-Curry = require "../../lib/js/curry";
-Hashtbl = require "../../lib/js/hashtbl";
-Caml_primitive = require "../../lib/js/caml_primitive";
+Mt = require "..mt";
+List = require "......lib.js.list";
+__Array = require "......lib.js.array";
+Block = require "......lib.js.block";
+Curry = require "......lib.js.curry";
+Hashtbl = require "......lib.js.hashtbl";
+Caml_primitive = require "......lib.js.caml_primitive";
 
 function f(H) do
   tbl = Curry._1(H.create, 17);
   Curry._3(H.add, tbl, 1, --[[ "1" ]]49);
   Curry._3(H.add, tbl, 2, --[[ "2" ]]50);
   return List.sort((function(param, param_1) do
-                return Caml_primitive.caml_int_compare(param[0], param_1[0]);
+                return Caml_primitive.caml_int_compare(param[1], param_1[1]);
               end end), Curry._3(H.fold, (function(k, v, acc) do
                     return --[[ :: ]]{
                             --[[ tuple ]]{
@@ -28,10 +28,10 @@ end end
 function g(H, count) do
   tbl = Curry._1(H.create, 17);
   for i = 0 , count , 1 do
-    Curry._3(H.replace, tbl, (i << 1), String(i));
+    Curry._3(H.replace, tbl, (i << 1), __String(i));
   end
   for i_1 = 0 , count , 1 do
-    Curry._3(H.replace, tbl, (i_1 << 1), String(i_1));
+    Curry._3(H.replace, tbl, (i_1 << 1), __String(i_1));
   end
   v = Curry._3(H.fold, (function(k, v, acc) do
           return --[[ :: ]]{
@@ -43,7 +43,7 @@ function g(H, count) do
                 };
         end end), tbl, --[[ [] ]]0);
   return __Array.of_list(List.sort((function(param, param_1) do
-                    return Caml_primitive.caml_int_compare(param[0], param_1[0]);
+                    return Caml_primitive.caml_int_compare(param[1], param_1[1]);
                   end end), v));
 end end
 
@@ -88,7 +88,7 @@ suites_001 = --[[ :: ]]{
                   __Array.init(1001, (function(i) do
                           return --[[ tuple ]]{
                                   (i << 1),
-                                  String(i)
+                                  __String(i)
                                 };
                         end end)),
                   g(Int_hash, 1000)
@@ -105,9 +105,10 @@ suites = --[[ :: ]]{
 
 Mt.from_pair_suites("Int_hashtbl_test", suites);
 
-exports = {}
+exports = {};
 exports.f = f;
 exports.g = g;
 exports.Int_hash = Int_hash;
 exports.suites = suites;
+return exports;
 --[[ Int_hash Not a pure module ]]

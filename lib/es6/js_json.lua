@@ -1,10 +1,10 @@
 
 
-import * as Block from "./block.lua";
-import * as Caml_option from "./caml_option.lua";
+local Block = require "..block.lua";
+local Caml_option = require "..caml_option.lua";
 
 function classify(x) do
-  ty = typeof x;
+  ty = type(x);
   if (ty == "string") then do
     return --[[ JSONString ]]Block.__(0, {x});
   end else if (ty == "number") then do
@@ -17,7 +17,7 @@ function classify(x) do
     end end 
   end else if (x == nil) then do
     return --[[ JSONNull ]]2;
-  end else if (Array.isArray(x)) then do
+  end else if (__Array.isArray(x)) then do
     return --[[ JSONArray ]]Block.__(3, {x});
   end else do
     return --[[ JSONObject ]]Block.__(2, {x});
@@ -28,19 +28,19 @@ function test(x, v) do
   local ___conditional___=(v);
   do
      if ___conditional___ == 0--[[ String ]] then do
-        return typeof x == "string"; end end 
+        return type(x) == "string"; end end 
      if ___conditional___ == 1--[[ Number ]] then do
-        return typeof x == "number"; end end 
+        return type(x) == "number"; end end 
      if ___conditional___ == 2--[[ Object ]] then do
-        if (x ~= nil and typeof x == "object") then do
-          return not Array.isArray(x);
+        if (x ~= nil and type(x) == "object") then do
+          return not __Array.isArray(x);
         end else do
           return false;
         end end  end end 
      if ___conditional___ == 3--[[ Array ]] then do
-        return Array.isArray(x); end end 
+        return __Array.isArray(x); end end 
      if ___conditional___ == 4--[[ Boolean ]] then do
-        return typeof x == "boolean"; end end 
+        return type(x) == "boolean"; end end 
      if ___conditional___ == 5--[[ Null ]] then do
         return x == nil; end end 
     
@@ -48,35 +48,35 @@ function test(x, v) do
 end end
 
 function decodeString(json) do
-  if (typeof json == "string") then do
+  if (type(json) == "string") then do
     return json;
   end
    end 
 end end
 
 function decodeNumber(json) do
-  if (typeof json == "number") then do
+  if (type(json) == "number") then do
     return json;
   end
    end 
 end end
 
 function decodeObject(json) do
-  if (typeof json == "object" and not Array.isArray(json) and json ~= nil) then do
+  if (type(json) == "object" and not __Array.isArray(json) and json ~= nil) then do
     return Caml_option.some(json);
   end
    end 
 end end
 
 function decodeArray(json) do
-  if (Array.isArray(json)) then do
+  if (__Array.isArray(json)) then do
     return json;
   end
    end 
 end end
 
 function decodeBoolean(json) do
-  if (typeof json == "boolean") then do
+  if (type(json) == "boolean") then do
     return json;
   end
    end 

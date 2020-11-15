@@ -1,4 +1,4 @@
-console = {log = print};
+__console = {log = print};
 
 
 v1 = {
@@ -11,20 +11,20 @@ v2 = {
   v = 2
 };
 
-process.on("exit", (function(exit_code) do
-        return String(exit_code);
+__process.on("exit", (function(exit_code) do
+        return __String(exit_code);
       end end));
 
-process.on(1, (function(param) do
+__process.on(1, (function(param) do
         return --[[ () ]]0;
       end end));
 
-process.on((function(i) do
-        return String(i);
+__process.on((function(i) do
+        return __String(i);
       end end), "exit");
 
-process.on((function(i) do
-        return String(i);
+__process.on((function(i) do
+        return __String(i);
       end end), 1);
 
 xx(3, 3, "xxx", "a", "b");
@@ -46,14 +46,14 @@ function f(x) do
   return --[[ () ]]0;
 end end
 
-process.on("exit", (function(exit_code) do
-        console.log("error code: " .. String(exit_code));
+__process.on("exit", (function(exit_code) do
+        __console.log("error code: " .. __String(exit_code));
         return --[[ () ]]0;
       end end));
 
 function register(p) do
   p.on("exit", (function(i) do
-          console.log(i);
+          __console.log(i);
           return --[[ () ]]0;
         end end));
   return --[[ () ]]0;
@@ -64,10 +64,11 @@ config = {
   cwd = "."
 };
 
-exports = {}
+exports = {};
 exports.v1 = v1;
 exports.v2 = v2;
 exports.f = f;
 exports.register = register;
 exports.config = config;
+return exports;
 --[[  Not a pure module ]]

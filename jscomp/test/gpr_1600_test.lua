@@ -1,9 +1,9 @@
-console = {log = print};
+__console = {log = print};
 
 
 obj = {
   hi = (function(x) do
-      console.log(x);
+      __console.log(x);
       return --[[ () ]]0; end
     end)
 };
@@ -32,8 +32,9 @@ function f(param) do
   return eventObj;
 end end
 
-exports = {}
+exports = {};
 exports.obj = obj;
 exports.eventObj = eventObj;
 exports.f = f;
+return exports;
 --[[ obj Not a pure module ]]

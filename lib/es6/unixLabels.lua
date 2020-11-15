@@ -1,6 +1,6 @@
 
 
-import * as Unix from "./unix.lua";
+local Unix = require "..unix.lua";
 
 Unix_error = Unix.Unix_error;
 

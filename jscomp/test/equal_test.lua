@@ -1,4 +1,4 @@
-console = {log = print};
+__console = {log = print};
 
 
 function str_equal(x, y) do
@@ -13,9 +13,10 @@ end end
 
 v = false;
 
-exports = {}
+exports = {};
 exports.str_equal = str_equal;
 exports.str_b = str_b;
 exports.int_equal = int_equal;
 exports.v = v;
+return exports;
 --[[ str_b Not a pure module ]]

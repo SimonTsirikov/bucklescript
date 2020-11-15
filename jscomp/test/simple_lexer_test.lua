@@ -1,11 +1,11 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Block = require "../../lib/js/block";
-Bytes = require "../../lib/js/bytes";
-Curry = require "../../lib/js/curry";
-Lexing = require "../../lib/js/lexing";
-Caml_bytes = require "../../lib/js/caml_bytes";
+Mt = require "..mt";
+Block = require "......lib.js.block";
+Bytes = require "......lib.js.bytes";
+Curry = require "......lib.js.curry";
+Lexing = require "......lib.js.lexing";
+Caml_bytes = require "......lib.js.caml_bytes";
 
 __ocaml_lex_tables = {
   lex_base = "\0\0\xfd\xff\xfe\xff\0\0\0\0\x01\0\0\0\0\0\0\0\0\0\0\0\0\0\x04\0\x01\0\x04\0\x03\0\0\0\x06\0\0\0\xff\xff",
@@ -63,9 +63,10 @@ suites = --[[ :: ]]{
 
 Mt.from_pair_suites("Simple_lexer_test", suites);
 
-exports = {}
+exports = {};
 exports.__ocaml_lex_tables = __ocaml_lex_tables;
 exports.translate = translate;
 exports.__ocaml_lex_translate_rec = __ocaml_lex_translate_rec;
 exports.suites = suites;
+return exports;
 --[[  Not a pure module ]]

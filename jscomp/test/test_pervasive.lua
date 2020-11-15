@@ -1,7 +1,7 @@
-console = {log = print};
+__console = {log = print};
 
-List = require "../../lib/js/list";
-Pervasives = require "../../lib/js/pervasives";
+List = require "......lib.js.list";
+Pervasives = require "......lib.js.pervasives";
 
 Pervasives_1 = {
   length = List.length,
@@ -76,7 +76,7 @@ Pervasives_1 = {
   int_of_string_opt = Pervasives.int_of_string_opt,
   string_of_float = Pervasives.string_of_float,
   float_of_string_opt = Pervasives.float_of_string_opt,
-  $at = Pervasives.$at,
+  _at = Pervasives._at,
   stdin = Pervasives.stdin,
   stdout = Pervasives.stdout,
   stderr = Pervasives.stderr,
@@ -135,7 +135,7 @@ Pervasives_1 = {
   set_binary_mode_in = Pervasives.set_binary_mode_in,
   LargeFile = Pervasives.LargeFile,
   string_of_format = Pervasives.string_of_format,
-  $caret$caret = Pervasives.$caret$caret,
+  _caret_caret = Pervasives._caret_caret,
   exit = Pervasives.exit,
   at_exit = Pervasives.at_exit,
   valid_float_lexem = Pervasives.valid_float_lexem,
@@ -144,84 +144,84 @@ Pervasives_1 = {
 };
 
 function a0(prim) do
-  return Math.abs(prim);
+  return __Math.abs(prim);
 end end
 
 function a1(prim) do
-  return Math.acos(prim);
+  return __Math.acos(prim);
 end end
 
 function a2(prim) do
-  return Math.tan(prim);
+  return __Math.tan(prim);
 end end
 
 function a3(prim) do
-  return Math.tanh(prim);
+  return __Math.tanh(prim);
 end end
 
 function a4(prim) do
-  return Math.asin(prim);
+  return __Math.asin(prim);
 end end
 
 function a5(prim, prim_1) do
-  return Math.atan2(prim, prim_1);
+  return __Math.atan2(prim, prim_1);
 end end
 
 function a6(prim) do
-  return Math.atan(prim);
+  return __Math.atan(prim);
 end end
 
 function a7(prim) do
-  return Math.ceil(prim);
+  return __Math.ceil(prim);
 end end
 
 function a8(prim) do
-  return Math.cos(prim);
+  return __Math.cos(prim);
 end end
 
 function a9(prim) do
-  return Math.cosh(prim);
+  return __Math.cosh(prim);
 end end
 
 function a10(prim) do
-  return Math.exp(prim);
+  return __Math.exp(prim);
 end end
 
 function a11(prim) do
-  return Math.sin(prim);
+  return __Math.sin(prim);
 end end
 
 function a12(prim) do
-  return Math.sinh(prim);
+  return __Math.sinh(prim);
 end end
 
 function a13(prim) do
-  return Math.sqrt(prim);
+  return __Math.sqrt(prim);
 end end
 
 function a14(prim) do
-  return Math.floor(prim);
+  return __Math.floor(prim);
 end end
 
 function a15(prim) do
-  return Math.log(prim);
+  return __Math.log(prim);
 end end
 
 function a16(prim) do
-  return Math.log10(prim);
+  return __Math.log10(prim);
 end end
 
 function a17(prim) do
-  return Math.log1p(prim);
+  return __Math.log1p(prim);
 end end
 
 function a18(prim, prim_1) do
-  return Math.pow(prim, prim_1);
+  return __Math.pow(prim, prim_1);
 end end
 
-f = Pervasives.$at;
+f = Pervasives._at;
 
-exports = {}
+exports = {};
 exports.Pervasives = Pervasives_1;
 exports.f = f;
 exports.a0 = a0;
@@ -243,4 +243,5 @@ exports.a15 = a15;
 exports.a16 = a16;
 exports.a17 = a17;
 exports.a18 = a18;
+return exports;
 --[[ No side effect ]]

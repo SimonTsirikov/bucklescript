@@ -1,7 +1,7 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Caml_array = require "../../lib/js/caml_array";
+Mt = require "..mt";
+Caml_array = require "......lib.js.caml_array";
 
 suites = {
   contents = --[[ [] ]]0
@@ -37,9 +37,10 @@ Mt.from_pair_suites("Floatarray_test", suites.contents);
 
 K = --[[ alias ]]0;
 
-exports = {}
+exports = {};
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
 exports.K = K;
+return exports;
 --[[ v Not a pure module ]]

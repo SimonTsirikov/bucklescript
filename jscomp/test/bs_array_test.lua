@@ -1,16 +1,16 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Block = require "../../lib/js/block";
-Curry = require "../../lib/js/curry";
-Js_list = require "../../lib/js/js_list";
-Caml_obj = require "../../lib/js/caml_obj";
-Belt_List = require "../../lib/js/belt_List";
-Js_vector = require "../../lib/js/js_vector";
-Belt_Array = require "../../lib/js/belt_Array";
-Caml_array = require "../../lib/js/caml_array";
-Caml_primitive = require "../../lib/js/caml_primitive";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
+Mt = require "..mt";
+Block = require "......lib.js.block";
+Curry = require "......lib.js.curry";
+Js_list = require "......lib.js.js_list";
+Caml_obj = require "......lib.js.caml_obj";
+Belt_List = require "......lib.js.belt_List";
+Js_vector = require "......lib.js.js_vector";
+Belt_Array = require "......lib.js.belt_Array";
+Caml_array = require "......lib.js.caml_array";
+Caml_primitive = require "......lib.js.caml_primitive";
+Caml_builtin_exceptions = require "......lib.js.caml_builtin_exceptions";
 
 suites = {
   contents = --[[ [] ]]0
@@ -36,7 +36,7 @@ function neq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[[ :: ]]{
     --[[ tuple ]]{
-      loc .. (" id " .. String(test_id.contents)),
+      loc .. (" id " .. __String(test_id.contents)),
       (function(param) do
           return --[[ Neq ]]Block.__(1, {
                     x,
@@ -49,7 +49,7 @@ function neq(loc, x, y) do
   return --[[ () ]]0;
 end end
 
-console.log({
+__console.log({
             1,
             2,
             3,
@@ -391,12 +391,12 @@ end end
 
 function makeMatrixExn(sx, sy, init) do
   if (not (sx >= 0 and sy >= 0)) then do
-    error(new Error("File \"bs_array_test.ml\", line 109, characters 4-10"))
+    error(new __Error("File \"bs_array_test.ml\", line 109, characters 4-10"))
   end
    end 
-  res = new Array(sx);
+  res = new __Array(sx);
   for x = 0 , sx - 1 | 0 , 1 do
-    initY = new Array(sy);
+    initY = new __Array(sy);
     for y = 0 , sy - 1 | 0 , 1 do
       initY[y] = init;
     end
@@ -587,12 +587,12 @@ match = Belt_Array.partition(a_2, (function(x) do
         return x % 2 == 0;
       end end));
 
-eq("File \"bs_array_test.ml\", line 154, characters 5-12", match[0], {
+eq("File \"bs_array_test.ml\", line 154, characters 5-12", match[1], {
       2,
       4
     });
 
-eq("File \"bs_array_test.ml\", line 155, characters 5-12", match[1], {
+eq("File \"bs_array_test.ml\", line 155, characters 5-12", match[2], {
       1,
       3,
       5
@@ -602,9 +602,9 @@ match_1 = Belt_Array.partition(a_2, (function(x) do
         return x == 2;
       end end));
 
-eq("File \"bs_array_test.ml\", line 157, characters 5-12", match_1[0], {2});
+eq("File \"bs_array_test.ml\", line 157, characters 5-12", match_1[1], {2});
 
-eq("File \"bs_array_test.ml\", line 158, characters 5-12", match_1[1], {
+eq("File \"bs_array_test.ml\", line 158, characters 5-12", match_1[2], {
       1,
       3,
       4,
@@ -615,9 +615,9 @@ match_2 = Belt_Array.partition({}, (function(x) do
         return false;
       end end));
 
-eq("File \"bs_array_test.ml\", line 160, characters 5-12", match_2[0], {});
+eq("File \"bs_array_test.ml\", line 160, characters 5-12", match_2[1], {});
 
-eq("File \"bs_array_test.ml\", line 161, characters 5-12", match_2[1], {});
+eq("File \"bs_array_test.ml\", line 161, characters 5-12", match_2[2], {});
 
 a_3 = {
   1,
@@ -1593,7 +1593,7 @@ A = --[[ alias ]]0;
 
 L = --[[ alias ]]0;
 
-exports = {}
+exports = {};
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
@@ -1607,4 +1607,5 @@ exports.addone = addone;
 exports.makeMatrixExn = makeMatrixExn;
 exports.sumUsingForEach = sumUsingForEach;
 exports.id = id_1;
+return exports;
 --[[  Not a pure module ]]

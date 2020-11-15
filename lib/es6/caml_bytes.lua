@@ -1,6 +1,6 @@
 
 
-import * as Caml_builtin_exceptions from "./caml_builtin_exceptions.lua";
+local Caml_builtin_exceptions = require "..caml_builtin_exceptions.lua";
 
 function get(s, i) do
   if (i < 0 or i >= #s) then do
@@ -32,7 +32,7 @@ function caml_create_bytes(len) do
     })
   end
    end 
-  result = new Array(len);
+  result = new __Array(len);
   for i = 0 , len - 1 | 0 , 1 do
     result[i] = --[[ "\000" ]]0;
   end
@@ -94,14 +94,14 @@ function bytes_to_string(a) do
   s = "";
   s_len = len;
   if (i == 0 and len <= 4096 and len == #bytes) then do
-    return String.fromCharCode.apply(nil, bytes);
+    return __String.fromCharCode.apply(nil, bytes);
   end else do
     offset = 0;
     while(s_len > 0) do
       next = s_len < 1024 and s_len or 1024;
-      tmp_bytes = new Array(next);
+      tmp_bytes = new __Array(next);
       caml_blit_bytes(bytes, offset, tmp_bytes, 0, next);
-      s = s .. String.fromCharCode.apply(nil, tmp_bytes);
+      s = s .. __String.fromCharCode.apply(nil, tmp_bytes);
       s_len = s_len - next | 0;
       offset = offset + next | 0;
     end;
@@ -133,7 +133,7 @@ end end
 
 function bytes_of_string(s) do
   len = #s;
-  res = new Array(len);
+  res = new __Array(len);
   for i = 0 , len - 1 | 0 , 1 do
     res[i] = s.charCodeAt(i);
   end

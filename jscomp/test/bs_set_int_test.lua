@@ -1,11 +1,11 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-List = require "../../lib/js/list";
-__Array = require "../../lib/js/array";
-Belt_Array = require "../../lib/js/belt_Array";
-Belt_SetInt = require "../../lib/js/belt_SetInt";
-Array_data_util = require "./array_data_util";
+Mt = require "..mt";
+List = require "......lib.js.list";
+__Array = require "......lib.js.array";
+Belt_Array = require "......lib.js.belt_Array";
+Belt_SetInt = require "......lib.js.belt_SetInt";
+Array_data_util = require "..array_data_util";
 
 suites = {
   contents = --[[ [] ]]0
@@ -23,15 +23,15 @@ function b(loc, v) do
   return Mt.bool_suites(test_id, suites, loc, v);
 end end
 
-function $eq$tilde(s, i) do
+function _eq_tilde(s, i) do
   return Belt_SetInt.eq(Belt_SetInt.fromArray(i), s);
 end end
 
-function $eq$star(a, b) do
+function _eq_star(a, b) do
   return Belt_SetInt.eq(Belt_SetInt.fromArray(a), Belt_SetInt.fromArray(b));
 end end
 
-b("File \"bs_set_int_test.ml\", line 17, characters 4-11", $eq$star({
+b("File \"bs_set_int_test.ml\", line 17, characters 4-11", _eq_star({
           1,
           2,
           3
@@ -91,9 +91,9 @@ nl = l;
 
 nr = r;
 
-b("File \"bs_set_int_test.ml\", line 47, characters 4-11", Belt_SetInt.eq(match[0], nl));
+b("File \"bs_set_int_test.ml\", line 47, characters 4-11", Belt_SetInt.eq(match[1], nl));
 
-b("File \"bs_set_int_test.ml\", line 48, characters 4-11", Belt_SetInt.eq(match[1], nr));
+b("File \"bs_set_int_test.ml\", line 48, characters 4-11", Belt_SetInt.eq(match[2], nr));
 
 i_2 = range(50, 100);
 
@@ -277,17 +277,17 @@ a3 = Belt_SetInt.fromArray(Array_data_util.randomRange(0, 39));
 
 match_1 = Belt_SetInt.split(a1, 40);
 
-match_2 = match_1[0];
+match_2 = match_1[1];
 
-a5 = match_2[1];
+a5 = match_2[2];
 
-a4 = match_2[0];
+a4 = match_2[1];
 
 b("File \"bs_set_int_test.ml\", line 138, characters 4-11", Belt_SetInt.eq(a1, Belt_SetInt.fromArray(Array_data_util.randomRange(0, 100))));
 
 b("File \"bs_set_int_test.ml\", line 139, characters 4-11", Belt_SetInt.eq(a2, a3));
 
-b("File \"bs_set_int_test.ml\", line 140, characters 4-11", match_1[1]);
+b("File \"bs_set_int_test.ml\", line 140, characters 4-11", match_1[2]);
 
 b("File \"bs_set_int_test.ml\", line 141, characters 4-11", Belt_SetInt.eq(a3, a4));
 
@@ -299,13 +299,13 @@ a7 = Belt_SetInt.remove(a1, 40);
 
 match_3 = Belt_SetInt.split(a7, 40);
 
-match_4 = match_3[0];
+match_4 = match_3[1];
 
-a9 = match_4[1];
+a9 = match_4[2];
 
-b("File \"bs_set_int_test.ml\", line 146, characters 4-11", not match_3[1]);
+b("File \"bs_set_int_test.ml\", line 146, characters 4-11", not match_3[2]);
 
-b("File \"bs_set_int_test.ml\", line 147, characters 4-11", Belt_SetInt.eq(a4, match_4[0]));
+b("File \"bs_set_int_test.ml\", line 147, characters 4-11", Belt_SetInt.eq(a4, match_4[1]));
 
 b("File \"bs_set_int_test.ml\", line 148, characters 4-11", Belt_SetInt.eq(a5, a9));
 
@@ -319,13 +319,13 @@ b("File \"bs_set_int_test.ml\", line 152, characters 4-11", Belt_SetInt.isEmpty(
 
 match_5 = Belt_SetInt.split(Belt_SetInt.empty, 0);
 
-match_6 = match_5[0];
+match_6 = match_5[1];
 
-b("File \"bs_set_int_test.ml\", line 156, characters 4-11", Belt_SetInt.isEmpty(match_6[0]));
+b("File \"bs_set_int_test.ml\", line 156, characters 4-11", Belt_SetInt.isEmpty(match_6[1]));
 
-b("File \"bs_set_int_test.ml\", line 157, characters 4-11", Belt_SetInt.isEmpty(match_6[1]));
+b("File \"bs_set_int_test.ml\", line 157, characters 4-11", Belt_SetInt.isEmpty(match_6[2]));
 
-b("File \"bs_set_int_test.ml\", line 158, characters 4-11", not match_5[1]);
+b("File \"bs_set_int_test.ml\", line 158, characters 4-11", not match_5[2]);
 
 v_12 = Belt_SetInt.fromArray(Array_data_util.randomRange(0, 2000));
 
@@ -380,7 +380,7 @@ A = --[[ alias ]]0;
 
 ofA = Belt_SetInt.fromArray;
 
-exports = {}
+exports = {};
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
@@ -388,10 +388,11 @@ exports.b = b;
 exports.N = N;
 exports.I = I;
 exports.A = A;
-exports.$eq$tilde = $eq$tilde;
-exports.$eq$star = $eq$star;
+exports._eq_tilde = _eq_tilde;
+exports._eq_star = _eq_star;
 exports.ofA = ofA;
 exports.u = u;
 exports.range = range;
 exports.revRange = revRange;
+return exports;
 --[[  Not a pure module ]]

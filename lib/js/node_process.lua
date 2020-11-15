@@ -1,6 +1,6 @@
-console = {log = print};
+__console = {log = print};
 
-Js_dict = require "./js_dict";
+Js_dict = require "..js_dict";
 Process = require "pro";
 
 function putEnvVar(key, __var) do
@@ -12,7 +12,8 @@ function deleteEnvVar(s) do
   return Js_dict.unsafeDeleteKey(Process.env, s);
 end end
 
-exports = {}
+exports = {};
 exports.putEnvVar = putEnvVar;
 exports.deleteEnvVar = deleteEnvVar;
+return exports;
 --[[ process Not a pure module ]]

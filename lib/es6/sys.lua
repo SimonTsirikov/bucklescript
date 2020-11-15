@@ -1,7 +1,7 @@
 
 
-import * as Caml_sys from "./caml_sys.lua";
-import * as Caml_exceptions from "./caml_exceptions.lua";
+local Caml_sys = require "..caml_sys.lua";
+local Caml_exceptions = require "..caml_exceptions.lua";
 
 match = Caml_sys.caml_sys_get_argv(--[[ () ]]0);
 
@@ -16,7 +16,7 @@ unix = Caml_sys.os_type(--[[ () ]]0) == "Unix";
 win32 = Caml_sys.os_type(--[[ () ]]0) == "Win32";
 
 function getenv_opt(s) do
-  match = typeof process == "undefined" and nil or process;
+  match = type(process) == "undefined" and nil or process;
   if (match ~= nil) then do
     return match.env[s];
   end
@@ -45,9 +45,9 @@ function runtime_warnings_enabled(param) do
   return false;
 end end
 
-argv = match[1];
+argv = match[2];
 
-executable_name = match[0];
+executable_name = match[1];
 
 cygwin = false;
 

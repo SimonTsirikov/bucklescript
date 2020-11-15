@@ -1,8 +1,8 @@
 
 
-import * as Curry from "./curry.lua";
-import * as Caml_option from "./caml_option.lua";
-import * as Belt_internalAVLtree from "./belt_internalAVLtree.lua";
+local Curry = require "..curry.lua";
+local Caml_option = require "..caml_option.lua";
+local Belt_internalAVLtree = require "..belt_internalAVLtree.lua";
 
 function removeMutateAux(nt, x, cmp) do
   k = nt.key;
@@ -339,7 +339,7 @@ function mergeManyAux(t, xs, cmp) do
   v = t;
   for i = 0 , #xs - 1 | 0 , 1 do
     match = xs[i];
-    v = Belt_internalAVLtree.updateMutate(v, match[0], match[1], cmp);
+    v = Belt_internalAVLtree.updateMutate(v, match[1], match[2], cmp);
   end
   return v;
 end end

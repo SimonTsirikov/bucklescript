@@ -1,7 +1,7 @@
 
 
-import * as Caml_bytes from "./caml_bytes.lua";
-import * as Caml_builtin_exceptions from "./caml_builtin_exceptions.lua";
+local Caml_bytes = require "..caml_bytes.lua";
+local Caml_builtin_exceptions = require "..caml_builtin_exceptions.lua";
 
 function chr(n) do
   if (n < 0 or n > 255) then do

@@ -1,10 +1,10 @@
-console = {log = print};
+__console = {log = print};
 
-Bytes = require "./bytes";
-Curry = require "./curry";
-Caml_bytes = require "./caml_bytes";
-Caml_primitive = require "./caml_primitive";
-Caml_builtin_exceptions = require "./caml_builtin_exceptions";
+Bytes = require "..bytes";
+Curry = require "..curry";
+Caml_bytes = require "..caml_bytes";
+Caml_primitive = require "..caml_primitive";
+Caml_builtin_exceptions = require "..caml_builtin_exceptions";
 
 function make(n, c) do
   return Caml_bytes.bytes_to_string(Bytes.make(n, c));
@@ -38,8 +38,8 @@ function sum_lengths(_acc, seplen, _param) do
     param = _param;
     acc = _acc;
     if (param) then do
-      tl = param[1];
-      hd = param[0];
+      tl = param[2];
+      hd = param[1];
       if (tl) then do
         _param = tl;
         _acc = ensure_ge((#hd + seplen | 0) + acc | 0, acc);
@@ -58,8 +58,8 @@ function unsafe_blits(dst, _pos, sep, seplen, _param) do
     param = _param;
     pos = _pos;
     if (param) then do
-      tl = param[1];
-      hd = param[0];
+      tl = param[2];
+      hd = param[1];
       if (tl) then do
         Caml_bytes.caml_blit_string(hd, 0, dst, pos, #hd);
         Caml_bytes.caml_blit_string(sep, 0, dst, pos + #hd | 0, seplen);
@@ -388,7 +388,7 @@ function equal(prim, prim_1) do
   return prim == prim_1;
 end end
 
-exports = {}
+exports = {};
 exports.make = make;
 exports.init = init;
 exports.copy = copy;
@@ -424,4 +424,5 @@ exports.uncapitalize_ascii = uncapitalize_ascii;
 exports.compare = compare;
 exports.equal = equal;
 exports.split_on_char = split_on_char;
+return exports;
 --[[ No side effect ]]

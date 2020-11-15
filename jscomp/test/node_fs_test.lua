@@ -1,13 +1,14 @@
-console = {log = print};
+__console = {log = print};
 
-Fs = require "";
+Fs = require "fs";
 
-match = typeof __filename == "undefined" and nil or __filename;
+match = type(__filename) == "undefined" and nil or __filename;
 
 if (match ~= nil) then do
-  console.log(Fs.readFileSync(match, "utf8"));
+  __console.log(Fs.readFileSync(match, "utf8"));
 end
  end 
 
-exports = {}
+exports = {};
+return exports;
 --[[ match Not a pure module ]]

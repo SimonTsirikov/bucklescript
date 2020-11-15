@@ -1,8 +1,9 @@
-console = {log = print};
+__console = {log = print};
 
 
 Ops = { };
 
-exports = {}
+exports = {};
 exports.Ops = Ops;
+return exports;
 --[[ No side effect ]]

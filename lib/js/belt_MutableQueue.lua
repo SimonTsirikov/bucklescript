@@ -1,7 +1,7 @@
-console = {log = print};
+__console = {log = print};
 
-Curry = require "./curry";
-Caml_option = require "./caml_option";
+Curry = require "..curry";
+Caml_option = require "..caml_option";
 
 __null = nil;
 
@@ -60,7 +60,7 @@ function peekExn(q) do
   if (match ~= nil) then do
     return match.content;
   end else do
-    error(new Error("Belt.Queue.Empty"))
+    error(new __Error("Belt.Queue.Empty"))
   end end 
 end end
 
@@ -93,7 +93,7 @@ function popExn(q) do
       return match.content;
     end end 
   end else do
-    error(new Error("Empty"))
+    error(new __Error("Empty"))
   end end 
 end end
 
@@ -266,7 +266,7 @@ function fillAux(_i, arr, _cell) do
 end end
 
 function toArray(x) do
-  v = new Array(x.length);
+  v = new __Array(x.length);
   fillAux(0, v, x.first);
   return v;
 end end
@@ -279,7 +279,7 @@ function fromArray(arr) do
   return q;
 end end
 
-exports = {}
+exports = {};
 exports.make = make;
 exports.clear = clear;
 exports.isEmpty = isEmpty;
@@ -301,4 +301,5 @@ exports.reduceU = reduceU;
 exports.reduce = reduce;
 exports.transfer = transfer;
 exports.toArray = toArray;
+return exports;
 --[[ No side effect ]]

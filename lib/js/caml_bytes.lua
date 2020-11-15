@@ -1,6 +1,6 @@
-console = {log = print};
+__console = {log = print};
 
-Caml_builtin_exceptions = require "./caml_builtin_exceptions";
+Caml_builtin_exceptions = require "..caml_builtin_exceptions";
 
 function get(s, i) do
   if (i < 0 or i >= #s) then do
@@ -32,7 +32,7 @@ function caml_create_bytes(len) do
     })
   end
    end 
-  result = new Array(len);
+  result = new __Array(len);
   for i = 0 , len - 1 | 0 , 1 do
     result[i] = --[[ "\000" ]]0;
   end
@@ -94,14 +94,14 @@ function bytes_to_string(a) do
   s = "";
   s_len = len;
   if (i == 0 and len <= 4096 and len == #bytes) then do
-    return String.fromCharCode.apply(nil, bytes);
+    return __String.fromCharCode.apply(nil, bytes);
   end else do
     offset = 0;
     while(s_len > 0) do
       next = s_len < 1024 and s_len or 1024;
-      tmp_bytes = new Array(next);
+      tmp_bytes = new __Array(next);
       caml_blit_bytes(bytes, offset, tmp_bytes, 0, next);
-      s = s .. String.fromCharCode.apply(nil, tmp_bytes);
+      s = s .. __String.fromCharCode.apply(nil, tmp_bytes);
       s_len = s_len - next | 0;
       offset = offset + next | 0;
     end;
@@ -133,14 +133,14 @@ end end
 
 function bytes_of_string(s) do
   len = #s;
-  res = new Array(len);
+  res = new __Array(len);
   for i = 0 , len - 1 | 0 , 1 do
     res[i] = s.charCodeAt(i);
   end
   return res;
 end end
 
-exports = {}
+exports = {};
 exports.caml_create_bytes = caml_create_bytes;
 exports.caml_fill_bytes = caml_fill_bytes;
 exports.get = get;
@@ -148,4 +148,5 @@ exports.bytes_to_string = bytes_to_string;
 exports.caml_blit_bytes = caml_blit_bytes;
 exports.caml_blit_string = caml_blit_string;
 exports.bytes_of_string = bytes_of_string;
+return exports;
 --[[ No side effect ]]

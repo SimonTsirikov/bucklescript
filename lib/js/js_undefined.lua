@@ -1,6 +1,6 @@
-console = {log = print};
+__console = {log = print};
 
-Caml_option = require "./caml_option";
+Caml_option = require "..caml_option";
 
 function test(x) do
   return x == nil;
@@ -14,7 +14,7 @@ function getExn(f) do
   if (f ~= nil) then do
     return f;
   end else do
-    error(new Error("Js.Undefined.getExn"))
+    error(new __Error("Js.Undefined.getExn"))
   end end 
 end end
 
@@ -42,7 +42,7 @@ end end
 
 from_opt = fromOption;
 
-exports = {}
+exports = {};
 exports.test = test;
 exports.testAny = testAny;
 exports.getExn = getExn;
@@ -50,4 +50,5 @@ exports.bind = bind;
 exports.iter = iter;
 exports.fromOption = fromOption;
 exports.from_opt = from_opt;
+return exports;
 --[[ No side effect ]]

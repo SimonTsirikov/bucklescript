@@ -1,4 +1,4 @@
-console = {log = print};
+__console = {log = print};
 
 
 function to_unsgined(x) do
@@ -17,9 +17,10 @@ function fff(x) do
   return 3 + (3 + (4 + (1 + x)));
 end end
 
-exports = {}
+exports = {};
 exports.to_unsgined = to_unsgined;
 exports.f = f;
 exports.ff = ff;
 exports.fff = fff;
+return exports;
 --[[ No side effect ]]

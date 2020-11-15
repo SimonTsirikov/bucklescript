@@ -1,18 +1,18 @@
 
 
-import * as Obj from "./obj.lua";
-import * as List from "./list.lua";
-import * as __Array from "./array.lua";
-import * as Curry from "./curry.lua";
-import * as Caml_oo from "./caml_oo.lua";
-import * as Caml_obj from "./caml_obj.lua";
-import * as Caml_array from "./caml_array.lua";
-import * as Caml_int32 from "./caml_int32.lua";
-import * as Belt_MapInt from "./belt_MapInt.lua";
-import * as Caml_string from "./caml_string.lua";
-import * as Belt_MapString from "./belt_MapString.lua";
-import * as Caml_exceptions from "./caml_exceptions.lua";
-import * as Caml_builtin_exceptions from "./caml_builtin_exceptions.lua";
+local Obj = require "..obj.lua";
+local List = require "..list.lua";
+local __Array = require "..array.lua";
+local Curry = require "..curry.lua";
+local Caml_oo = require "..caml_oo.lua";
+local Caml_obj = require "..caml_obj.lua";
+local Caml_array = require "..caml_array.lua";
+local Caml_int32 = require "..caml_int32.lua";
+local Belt_MapInt = require "..belt_MapInt.lua";
+local Caml_string = require "..caml_string.lua";
+local Belt_MapString = require "..belt_MapString.lua";
+local Caml_exceptions = require "..caml_exceptions.lua";
+local Caml_builtin_exceptions = require "..caml_builtin_exceptions.lua";
 
 function copy(o) do
   return Caml_exceptions.caml_set_oo_id(Caml_obj.caml_obj_dup(o));
@@ -216,7 +216,7 @@ function narrow(table, vars, virt_meths, concr_meths) do
   table.methods_by_name = by_name.contents;
   table.methods_by_label = by_label.contents;
   table.hidden_meths = List.fold_right((function(met, hm) do
-          if (List.mem(met[0], virt_meth_labs)) then do
+          if (List.mem(met[1], virt_meth_labs)) then do
             return hm;
           end else do
             return --[[ :: ]]{
@@ -230,15 +230,15 @@ end end
 
 function widen(table) do
   match = List.hd(table.previous_states);
-  virt_meths = match[4];
+  virt_meths = match[5];
   table.previous_states = List.tl(table.previous_states);
   table.vars = List.fold_left((function(s, v) do
           return Belt_MapString.set(s, v, Belt_MapString.getExn(table.vars, v));
-        end end), match[3], match[5]);
-  table.methods_by_name = match[0];
-  table.methods_by_label = match[1];
+        end end), match[4], match[6]);
+  table.methods_by_name = match[1];
+  table.methods_by_label = match[2];
   table.hidden_meths = List.fold_right((function(met, hm) do
-          if (List.mem(met[0], virt_meths)) then do
+          if (List.mem(met[1], virt_meths)) then do
             return hm;
           end else do
             return --[[ :: ]]{
@@ -246,7 +246,7 @@ function widen(table) do
                     hm
                   };
           end end 
-        end end), table.hidden_meths, match[2]);
+        end end), table.hidden_meths, match[3]);
   return --[[ () ]]0;
 end end
 
@@ -333,9 +333,9 @@ function init_class(table) do
 end end
 
 function inherits(cla, vals, virt_meths, concr_meths, param, top) do
-  __super = param[1];
+  __super = param[2];
   narrow(cla, vals, virt_meths, concr_meths);
-  init = top and Curry._2(__super, cla, param[3]) or Curry._1(__super, cla);
+  init = top and Curry._2(__super, cla, param[4]) or Curry._1(__super, cla);
   widen(cla);
   return Caml_array.caml_array_concat(--[[ :: ]]{
               {init},
@@ -394,8 +394,8 @@ function iter_f(obj, _param) do
   while(true) do
     param = _param;
     if (param) then do
-      Curry._1(param[0], obj);
-      _param = param[1];
+      Curry._1(param[1], obj);
+      _param = param[2];
       ::continue:: ;
     end else do
       return --[[ () ]]0;
@@ -469,7 +469,7 @@ end end
 
 function get_key(param) do
   if (param) then do
-    return param[--[[ key ]]0];
+    return param[--[[ key ]]1];
   end else do
     error({
       Caml_builtin_exceptions.assert_failure,
@@ -484,7 +484,7 @@ end end
 
 function get_data(param) do
   if (param) then do
-    return param[--[[ data ]]1];
+    return param[--[[ data ]]2];
   end else do
     error({
       Caml_builtin_exceptions.assert_failure,
@@ -499,7 +499,7 @@ end end
 
 function get_next(param) do
   if (param) then do
-    return param[--[[ next ]]2];
+    return param[--[[ next ]]3];
   end else do
     error({
       Caml_builtin_exceptions.assert_failure,
@@ -593,7 +593,7 @@ function method_impl(table, i, arr) do
     return Caml_array.caml_array_get(arr, i.contents);
   end end;
   clo = next(--[[ () ]]0);
-  if (typeof clo == "number") then do
+  if (type(clo) == "number") then do
     local ___conditional___=(clo);
     do
        if ___conditional___ == 0--[[ GetConst ]] then do
@@ -617,7 +617,7 @@ function method_impl(table, i, arr) do
        if ___conditional___ == 3--[[ GetMeth ]] then do
           n_3 = next(--[[ () ]]0);
           return (function(obj) do
-              return Curry._1(obj[0][n_3], obj);
+              return Curry._1(obj[1][n_3], obj);
             end end); end end 
        if ___conditional___ == 4--[[ SetVar ]] then do
           n_4 = next(--[[ () ]]0);
@@ -653,7 +653,7 @@ function method_impl(table, i, arr) do
           f_5 = f_4;
           n_9 = n_8;
           return (function(obj) do
-              return Curry._1(f_5, Curry._1(obj[0][n_9], obj));
+              return Curry._1(f_5, Curry._1(obj[1][n_9], obj));
             end end); end end 
        if ___conditional___ == 9--[[ AppConstConst ]] then do
           f_6 = next(--[[ () ]]0);
@@ -692,7 +692,7 @@ function method_impl(table, i, arr) do
           x_8 = x_7;
           n_15 = n_14;
           return (function(obj) do
-              return Curry._2(f_12, x_8, Curry._1(obj[0][n_15], obj));
+              return Curry._2(f_12, x_8, Curry._1(obj[1][n_15], obj));
             end end); end end 
        if ___conditional___ == 13--[[ AppVarConst ]] then do
           f_13 = next(--[[ () ]]0);
@@ -724,7 +724,7 @@ function method_impl(table, i, arr) do
           n_21 = n_20;
           x_14 = x_13;
           return (function(obj) do
-              return Curry._2(f_18, Curry._1(obj[0][n_21], obj), x_14);
+              return Curry._2(f_18, Curry._1(obj[1][n_21], obj), x_14);
             end end); end end 
        if ___conditional___ == 16--[[ MethAppConst ]] then do
           n_22 = next(--[[ () ]]0);
@@ -732,7 +732,7 @@ function method_impl(table, i, arr) do
           n_23 = n_22;
           x_16 = x_15;
           return (function(obj) do
-              return Curry._2(obj[0][n_23], obj, x_16);
+              return Curry._2(obj[1][n_23], obj, x_16);
             end end); end end 
        if ___conditional___ == 17--[[ MethAppVar ]] then do
           n_24 = next(--[[ () ]]0);
@@ -740,7 +740,7 @@ function method_impl(table, i, arr) do
           n_25 = n_24;
           m_1 = m;
           return (function(obj) do
-              return Curry._2(obj[0][n_25], obj, obj[m_1]);
+              return Curry._2(obj[1][n_25], obj, obj[m_1]);
             end end); end end 
        if ___conditional___ == 18--[[ MethAppEnv ]] then do
           n_26 = next(--[[ () ]]0);
@@ -750,7 +750,7 @@ function method_impl(table, i, arr) do
           e_9 = e_8;
           m_3 = m_2;
           return (function(obj) do
-              return Curry._2(obj[0][n_27], obj, obj[e_9][m_3]);
+              return Curry._2(obj[1][n_27], obj, obj[e_9][m_3]);
             end end); end end 
        if ___conditional___ == 19--[[ MethAppMeth ]] then do
           n_28 = next(--[[ () ]]0);
@@ -758,7 +758,7 @@ function method_impl(table, i, arr) do
           n_29 = n_28;
           m_5 = m_4;
           return (function(obj) do
-              return Curry._2(obj[0][n_29], obj, Curry._1(obj[0][m_5], obj));
+              return Curry._2(obj[1][n_29], obj, Curry._1(obj[1][m_5], obj));
             end end); end end 
        if ___conditional___ == 20--[[ SendConst ]] then do
           m_6 = next(--[[ () ]]0);
@@ -798,7 +798,7 @@ function method_impl(table, i, arr) do
           n_35 = n_34;
           new_cache(table);
           return (function(obj) do
-              tmp = Curry._1(obj[0][n_35], obj);
+              tmp = Curry._1(obj[1][n_35], obj);
               return Curry._1(Curry._3(Caml_oo.caml_get_public_method, tmp, m_13, 4), tmp);
             end end); end end 
       

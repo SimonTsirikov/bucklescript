@@ -1,55 +1,55 @@
-console = {log = print};
+__console = {log = print};
 
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
+Caml_builtin_exceptions = require "......lib.js.caml_builtin_exceptions";
 
 function f(children) do
   if (children) then do
-    children_1 = children[1];
-    a0 = children[0];
+    children_1 = children[2];
+    a0 = children[1];
     if (children_1) then do
-      children_2 = children_1[1];
-      a1 = children_1[0];
+      children_2 = children_1[2];
+      a1 = children_1[1];
       if (children_2) then do
-        children_3 = children_2[1];
-        a2 = children_2[0];
+        children_3 = children_2[2];
+        a2 = children_2[1];
         if (children_3) then do
-          children_4 = children_3[1];
-          a3 = children_3[0];
+          children_4 = children_3[2];
+          a3 = children_3[1];
           if (children_4) then do
-            children_5 = children_4[1];
-            a4 = children_4[0];
+            children_5 = children_4[2];
+            a4 = children_4[1];
             if (children_5) then do
-              children_6 = children_5[1];
-              a5 = children_5[0];
+              children_6 = children_5[2];
+              a5 = children_5[1];
               if (children_6) then do
-                children_7 = children_6[1];
-                a6 = children_6[0];
+                children_7 = children_6[2];
+                a6 = children_6[1];
                 if (children_7) then do
-                  children_8 = children_7[1];
-                  a7 = children_7[0];
+                  children_8 = children_7[2];
+                  a7 = children_7[1];
                   if (children_8) then do
-                    children_9 = children_8[1];
-                    a8 = children_8[0];
+                    children_9 = children_8[2];
+                    a8 = children_8[1];
                     if (children_9) then do
-                      children_10 = children_9[1];
-                      a9 = children_9[0];
+                      children_10 = children_9[2];
+                      a9 = children_9[1];
                       if (children_10) then do
-                        children_11 = children_10[1];
-                        a10 = children_10[0];
+                        children_11 = children_10[2];
+                        a10 = children_10[1];
                         if (children_11) then do
-                          children_12 = children_11[1];
-                          a11 = children_11[0];
+                          children_12 = children_11[2];
+                          a11 = children_11[1];
                           if (children_12) then do
-                            children_13 = children_12[1];
-                            a12 = children_12[0];
+                            children_13 = children_12[2];
+                            a12 = children_12[1];
                             if (children_13) then do
-                              children_14 = children_13[1];
-                              a13 = children_13[0];
+                              children_14 = children_13[2];
+                              a13 = children_13[1];
                               if (children_14) then do
-                                children_15 = children_14[1];
-                                a14 = children_14[0];
+                                children_15 = children_14[2];
+                                a14 = children_14[1];
                                 if (children_15) then do
-                                  if (children_15[1]) then do
+                                  if (children_15[2]) then do
                                     error({
                                       Caml_builtin_exceptions.assert_failure,
                                       --[[ tuple ]]{
@@ -76,7 +76,7 @@ function f(children) do
                                           a12,
                                           a13,
                                           a14,
-                                          children_15[0]
+                                          children_15[1]
                                         };
                                 end else do
                                   return {
@@ -261,6 +261,7 @@ function f(children) do
   end end 
 end end
 
-exports = {}
+exports = {};
 exports.f = f;
+return exports;
 --[[ No side effect ]]

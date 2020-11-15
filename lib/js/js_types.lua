@@ -1,9 +1,9 @@
-console = {log = print};
+__console = {log = print};
 
-Block = require "./block";
+Block = require "..block";
 
 function classify(x) do
-  ty = typeof x;
+  ty = type(x);
   if (ty == "undefined") then do
     return --[[ JSUndefined ]]3;
   end else if (x == nil) then do
@@ -31,26 +31,27 @@ function test(x, v) do
   local ___conditional___=(v);
   do
      if ___conditional___ == 0--[[ Undefined ]] then do
-        return typeof x == "undefined"; end end 
+        return type(x) == "undefined"; end end 
      if ___conditional___ == 1--[[ Null ]] then do
         return x == nil; end end 
      if ___conditional___ == 2--[[ Boolean ]] then do
-        return typeof x == "boolean"; end end 
+        return type(x) == "boolean"; end end 
      if ___conditional___ == 3--[[ Number ]] then do
-        return typeof x == "number"; end end 
+        return type(x) == "number"; end end 
      if ___conditional___ == 4--[[ String ]] then do
-        return typeof x == "string"; end end 
+        return type(x) == "string"; end end 
      if ___conditional___ == 5--[[ Function ]] then do
-        return typeof x == "function"; end end 
+        return type(x) == "function"; end end 
      if ___conditional___ == 6--[[ Object ]] then do
-        return typeof x == "object"; end end 
+        return type(x) == "object"; end end 
      if ___conditional___ == 7--[[ Symbol ]] then do
-        return typeof x == "symbol"; end end 
+        return type(x) == "symbol"; end end 
     
   end
 end end
 
-exports = {}
+exports = {};
 exports.test = test;
 exports.classify = classify;
+return exports;
 --[[ No side effect ]]

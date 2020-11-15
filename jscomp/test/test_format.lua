@@ -1,8 +1,8 @@
-console = {log = print};
+__console = {log = print};
 
-Block = require "../../lib/js/block";
-Curry = require "../../lib/js/curry";
-Format = require "../../lib/js/format";
+Block = require "......lib.js.block";
+Curry = require "......lib.js.curry";
+Format = require "......lib.js.format";
 
 Curry._1(Format.fprintf(Format.std_formatter, --[[ Format ]]{
           --[[ Int ]]Block.__(4, {
@@ -14,5 +14,6 @@ Curry._1(Format.fprintf(Format.std_formatter, --[[ Format ]]{
           "%d"
         }), 3);
 
-exports = {}
+exports = {};
+return exports;
 --[[  Not a pure module ]]

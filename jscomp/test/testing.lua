@@ -1,14 +1,14 @@
-console = {log = print};
+__console = {log = print};
 
-Block = require "../../lib/js/block";
-Curry = require "../../lib/js/curry";
-Scanf = require "../../lib/js/scanf";
-Printf = require "../../lib/js/printf";
-Caml_io = require "../../lib/js/caml_io";
-Caml_obj = require "../../lib/js/caml_obj";
-Pervasives = require "../../lib/js/pervasives";
-Caml_js_exceptions = require "../../lib/js/caml_js_exceptions";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
+Block = require "......lib.js.block";
+Curry = require "......lib.js.curry";
+Scanf = require "......lib.js.scanf";
+Printf = require "......lib.js.printf";
+Caml_io = require "......lib.js.caml_io";
+Caml_obj = require "......lib.js.caml_obj";
+Pervasives = require "......lib.js.pervasives";
+Caml_js_exceptions = require "......lib.js.caml_js_exceptions";
+Caml_builtin_exceptions = require "......lib.js.caml_builtin_exceptions";
 
 all_tests_ok = {
   contents = true
@@ -17,10 +17,10 @@ all_tests_ok = {
 function finish(param) do
   match = all_tests_ok.contents;
   if (match) then do
-    console.log("\nAll tests succeeded.");
+    __console.log("\nAll tests succeeded.");
     return --[[ () ]]0;
   end else do
-    console.log("\n\n********* Test suite failed. ***********\n");
+    __console.log("\n\n********* Test suite failed. ***********\n");
     return --[[ () ]]0;
   end end 
 end end
@@ -148,15 +148,16 @@ end end
 
 function scan_failure_test(f, x) do
   return test_raises_exc_p((function(param) do
-                return param[0] == Scanf.Scan_failure;
+                return param[1] == Scanf.Scan_failure;
               end end), f, x);
 end end
 
-exports = {}
+exports = {};
 exports.test = test;
 exports.failure_test = failure_test;
 exports.test_raises_some_exc = test_raises_some_exc;
 exports.test_raises_this_exc = test_raises_this_exc;
 exports.test_raises_exc_p = test_raises_exc_p;
 exports.scan_failure_test = scan_failure_test;
+return exports;
 --[[  Not a pure module ]]

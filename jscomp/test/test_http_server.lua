@@ -1,6 +1,6 @@
-console = {log = print};
+__console = {log = print};
 
-Http = require "";
+Http = require "http";
 
 hostname = "127.0.0.1";
 
@@ -11,12 +11,13 @@ function create_server(http) do
           return resp.end("Hello world\n");
         end end));
   return server.listen(3000, hostname, (function() do
-                console.log("Server running at http://" .. (hostname .. (":" .. (String(3000) .. "/"))));
+                __console.log("Server running at http://" .. (hostname .. (":" .. (__String(3000) .. "/"))));
                 return --[[ () ]]0;
               end end));
 end end
 
 create_server(Http);
 
-exports = {}
+exports = {};
+return exports;
 --[[  Not a pure module ]]

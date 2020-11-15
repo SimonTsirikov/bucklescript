@@ -1,11 +1,11 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Curry = require "../../lib/js/curry";
-Caml_obj = require "../../lib/js/caml_obj";
-Caml_oo_curry = require "../../lib/js/caml_oo_curry";
-CamlinternalOO = require "../../lib/js/camlinternalOO";
-Caml_exceptions = require "../../lib/js/caml_exceptions";
+Mt = require "..mt";
+Curry = require "......lib.js.curry";
+Caml_obj = require "......lib.js.caml_obj";
+Caml_oo_curry = require "......lib.js.caml_oo_curry";
+CamlinternalOO = require "......lib.js.camlinternalOO";
+Caml_exceptions = require "......lib.js.caml_exceptions";
 
 shared = {
   "leq",
@@ -46,19 +46,19 @@ function money_init(__class) do
         "value",
         "leq"
       }, shared_1);
-  value = ids[0];
-  leq = ids[1];
-  repr = ids[2];
+  value = ids[1];
+  leq = ids[2];
+  repr = ids[3];
   inh = CamlinternalOO.inherits(__class, 0, {"leq"}, 0, comparable, true);
-  obj_init = inh[0];
+  obj_init = inh[1];
   CamlinternalOO.set_methods(__class, {
         value,
-        (function(self$2) do
-            return self$2[repr];
+        (function(self_2) do
+            return self_2[repr];
           end end),
         leq,
-        (function(self$2, p) do
-            return self$2[repr] <= Caml_oo_curry.js1(834174833, 1, p);
+        (function(self_2, p) do
+            return self_2[repr] <= Caml_oo_curry.js1(834174833, 1, p);
           end end)
       });
   return (function(env, self, x_1) do
@@ -76,11 +76,11 @@ function money2_init(__class) do
   x = CamlinternalOO.new_variable(__class, "");
   times = CamlinternalOO.get_method_label(__class, "times");
   inh = CamlinternalOO.inherits(__class, shared_1, 0, shared, money, true);
-  obj_init = inh[0];
-  repr = inh[1];
-  CamlinternalOO.set_method(__class, times, (function(self$3, k) do
-          copy = Caml_exceptions.caml_set_oo_id(Caml_obj.caml_obj_dup(self$3));
-          copy[repr] = k * self$3[repr];
+  obj_init = inh[1];
+  repr = inh[2];
+  CamlinternalOO.set_method(__class, times, (function(self_3, k) do
+          copy = Caml_exceptions.caml_set_oo_id(Caml_obj.caml_obj_dup(self_3));
+          copy[repr] = k * self_3[repr];
           return copy;
         end end));
   return (function(env, self, x_1) do
@@ -105,17 +105,17 @@ function min(x, y) do
   end end 
 end end
 
-tmp = min(Curry._2(money[0], 0, 1.0), Curry._2(money[0], 0, 3.0));
+tmp = min(Curry._2(money[1], 0, 1.0), Curry._2(money[1], 0, 3.0));
 
 eq("File \"class8_test.ml\", line 30, characters 5-12", 1, Caml_oo_curry.js1(834174833, 3, tmp));
 
-tmp_1 = min(Curry._2(money2[0], 0, 5.0), Curry._2(money2[0], 0, 3));
+tmp_1 = min(Curry._2(money2[1], 0, 5.0), Curry._2(money2[1], 0, 3));
 
 eq("File \"class8_test.ml\", line 35, characters 5-12", 3, Caml_oo_curry.js1(834174833, 4, tmp_1));
 
 Mt.from_pair_suites("Class8_test", suites.contents);
 
-exports = {}
+exports = {};
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
@@ -123,4 +123,5 @@ exports.comparable = comparable;
 exports.money = money;
 exports.money2 = money2;
 exports.min = min;
+return exports;
 --[[ money Not a pure module ]]

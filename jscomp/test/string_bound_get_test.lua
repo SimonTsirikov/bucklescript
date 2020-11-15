@@ -1,7 +1,7 @@
-console = {log = print};
+__console = {log = print};
 
-Caml_bytes = require "../../lib/js/caml_bytes";
-Caml_string = require "../../lib/js/caml_string";
+Caml_bytes = require "......lib.js.caml_bytes";
+Caml_string = require "......lib.js.caml_string";
 
 v = "ghos";
 
@@ -25,7 +25,7 @@ end end
 
 u_c = --[[ "g" ]]103;
 
-exports = {}
+exports = {};
 exports.v = v;
 exports.u_a = u_a;
 exports.u_b = u_b;
@@ -34,4 +34,5 @@ exports.u_d = u_d;
 exports.u_e = u_e;
 exports.u_f = u_f;
 exports.u_g = u_g;
+return exports;
 --[[ No side effect ]]

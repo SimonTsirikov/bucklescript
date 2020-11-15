@@ -1,33 +1,33 @@
-console = {log = print};
+__console = {log = print};
 
-Caml_array = require "../../lib/js/caml_array";
-Caml_int32 = require "../../lib/js/caml_int32";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
+Caml_array = require "......lib.js.caml_array";
+Caml_int32 = require "......lib.js.caml_int32";
+Caml_builtin_exceptions = require "......lib.js.caml_builtin_exceptions";
 
 function __eval(_bdd, vars) do
   while(true) do
     bdd = _bdd;
-    if (typeof bdd == "number") then do
+    if (type(bdd) == "number") then do
       return bdd == 0;
-    end else if (Caml_array.caml_array_get(vars, bdd[1])) then do
-      _bdd = bdd[3];
+    end else if (Caml_array.caml_array_get(vars, bdd[2])) then do
+      _bdd = bdd[4];
       ::continue:: ;
     end else do
-      _bdd = bdd[0];
+      _bdd = bdd[1];
       ::continue:: ;
     end end  end 
   end;
 end end
 
 function getId(bdd) do
-  if (typeof bdd == "number") then do
+  if (type(bdd) == "number") then do
     if (bdd ~= 0) then do
       return 0;
     end else do
       return 1;
     end end 
   end else do
-    return bdd[2];
+    return bdd[3];
   end end 
 end end
 
@@ -59,8 +59,8 @@ function resize(newSize) do
     while(true) do
       bucket = _bucket;
       if (bucket) then do
-        n = bucket[0];
-        if (typeof n == "number") then do
+        n = bucket[1];
+        if (type(n) == "number") then do
           error({
             Caml_builtin_exceptions.assert_failure,
             --[[ tuple ]]{
@@ -71,12 +71,12 @@ function resize(newSize) do
           })
         end
          end 
-        ind = hashVal(getId(n[0]), getId(n[3]), n[1]) & newSz_1;
+        ind = hashVal(getId(n[1]), getId(n[4]), n[2]) & newSz_1;
         Caml_array.caml_array_set(newArr, ind, --[[ :: ]]{
               n,
               Caml_array.caml_array_get(newArr, ind)
             });
-        _bucket = bucket[1];
+        _bucket = bucket[2];
         ::continue:: ;
       end else do
         return --[[ () ]]0;
@@ -129,8 +129,8 @@ function mkNode(low, v, high) do
     while(true) do
       b = _b;
       if (b) then do
-        n = b[0];
-        if (typeof n == "number") then do
+        n = b[1];
+        if (type(n) == "number") then do
           error({
             Caml_builtin_exceptions.assert_failure,
             --[[ tuple ]]{
@@ -141,10 +141,10 @@ function mkNode(low, v, high) do
           })
         end
          end 
-        if (v == n[1] and idl == getId(n[0]) and idh == getId(n[3])) then do
+        if (v == n[2] and idl == getId(n[1]) and idh == getId(n[4])) then do
           return n;
         end else do
-          _b = b[1];
+          _b = b[2];
           ::continue:: ;
         end end 
       end else do
@@ -197,19 +197,19 @@ function hash(x, y) do
 end end
 
 function not(n) do
-  if (typeof n == "number") then do
+  if (type(n) == "number") then do
     if (n ~= 0) then do
       return --[[ One ]]0;
     end else do
       return --[[ Zero ]]1;
     end end 
   end else do
-    id = n[2];
+    id = n[3];
     h = id % 1999;
     if (id == Caml_array.caml_array_get(notslot1, h)) then do
       return Caml_array.caml_array_get(notslot2, h);
     end else do
-      f = mkNode(not(n[0]), n[1], not(n[3]));
+      f = mkNode(not(n[1]), n[2], not(n[4]));
       Caml_array.caml_array_set(notslot1, h, id);
       Caml_array.caml_array_set(notslot2, h, f);
       return f;
@@ -218,28 +218,28 @@ function not(n) do
 end end
 
 function and2(n1, n2) do
-  if (typeof n1 == "number") then do
+  if (type(n1) == "number") then do
     if (n1 ~= 0) then do
       return --[[ Zero ]]1;
     end else do
       return n2;
     end end 
   end else do
-    r1 = n1[3];
-    i1 = n1[2];
-    v1 = n1[1];
-    l1 = n1[0];
-    if (typeof n2 == "number") then do
+    r1 = n1[4];
+    i1 = n1[3];
+    v1 = n1[2];
+    l1 = n1[1];
+    if (type(n2) == "number") then do
       if (n2 ~= 0) then do
         return --[[ Zero ]]1;
       end else do
         return n1;
       end end 
     end else do
-      r2 = n2[3];
-      i2 = n2[2];
-      v2 = n2[1];
-      l2 = n2[0];
+      r2 = n2[4];
+      i2 = n2[3];
+      v2 = n2[2];
+      l2 = n2[1];
       h = hash(i1, i2);
       if (i1 == Caml_array.caml_array_get(andslot1, h) and i2 == Caml_array.caml_array_get(andslot2, h)) then do
         return Caml_array.caml_array_get(andslot3, h);
@@ -267,28 +267,28 @@ function and2(n1, n2) do
 end end
 
 function xor(n1, n2) do
-  if (typeof n1 == "number") then do
+  if (type(n1) == "number") then do
     if (n1 ~= 0) then do
       return n2;
     end else do
       return not(n2);
     end end 
   end else do
-    r1 = n1[3];
-    i1 = n1[2];
-    v1 = n1[1];
-    l1 = n1[0];
-    if (typeof n2 == "number") then do
+    r1 = n1[4];
+    i1 = n1[3];
+    v1 = n1[2];
+    l1 = n1[1];
+    if (type(n2) == "number") then do
       if (n2 ~= 0) then do
         return n1;
       end else do
         return not(n1);
       end end 
     end else do
-      r2 = n2[3];
-      i2 = n2[2];
-      v2 = n2[1];
-      l2 = n2[0];
+      r2 = n2[4];
+      i2 = n2[3];
+      v2 = n2[2];
+      l2 = n2[1];
       h = hash(i1, i2);
       if (i1 == Caml_array.caml_array_get(andslot1, h) and i2 == Caml_array.caml_array_get(andslot2, h)) then do
         return Caml_array.caml_array_get(andslot3, h);
@@ -405,7 +405,7 @@ one = --[[ One ]]0;
 
 cacheSize = 1999;
 
-exports = {}
+exports = {};
 exports.__eval = __eval;
 exports.getId = getId;
 exports.initSize_1 = initSize_1;
@@ -442,4 +442,5 @@ exports.random_vars = random_vars;
 exports.bool_equal = bool_equal;
 exports.test_hwb = test_hwb;
 exports.main = main;
+return exports;
 --[[  Not a pure module ]]

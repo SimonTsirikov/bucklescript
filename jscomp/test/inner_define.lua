@@ -1,4 +1,4 @@
-console = {log = print};
+__console = {log = print};
 
 
 function add(x, y) do
@@ -40,8 +40,9 @@ N1 = {
   f3 = f3_1
 };
 
-exports = {}
+exports = {};
 exports.N = N;
 exports.N0 = N0;
 exports.N1 = N1;
+return exports;
 --[[ No side effect ]]

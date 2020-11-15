@@ -1,4 +1,4 @@
-console = {log = print};
+__console = {log = print};
 
 
 f = {
@@ -67,9 +67,10 @@ f_record = {
   }
 };
 
-exports = {}
+exports = {};
 exports.f_record = f_record;
 exports.f = f;
 exports.f2 = f2;
 exports.f3 = f3;
+return exports;
 --[[ No side effect ]]

@@ -1,16 +1,16 @@
 
 
-import * as __Array from "./array.lua";
-import * as Curry from "./curry.lua";
-import * as Random from "./random.lua";
-import * as Caml_obj from "./caml_obj.lua";
-import * as Caml_hash from "./caml_hash.lua";
-import * as Caml_array from "./caml_array.lua";
-import * as Pervasives from "./pervasives.lua";
-import * as Caml_option from "./caml_option.lua";
-import * as Caml_primitive from "./caml_primitive.lua";
-import * as CamlinternalLazy from "./camlinternalLazy.lua";
-import * as Caml_builtin_exceptions from "./caml_builtin_exceptions.lua";
+local __Array = require "..array.lua";
+local Curry = require "..curry.lua";
+local Random = require "..random.lua";
+local Caml_obj = require "..caml_obj.lua";
+local Caml_hash = require "..caml_hash.lua";
+local Caml_array = require "..caml_array.lua";
+local Pervasives = require "..pervasives.lua";
+local Caml_option = require "..caml_option.lua";
+local Caml_primitive = require "..caml_primitive.lua";
+local CamlinternalLazy = require "..camlinternalLazy.lua";
+local Caml_builtin_exceptions = require "..caml_builtin_exceptions.lua";
 
 function hash(x) do
   return Caml_hash.caml_hash(10, 100, 0, x);
@@ -92,17 +92,17 @@ end end
 
 function copy_bucketlist(param) do
   if (param) then do
-    key = param[--[[ key ]]0];
-    data = param[--[[ data ]]1];
-    next = param[--[[ next ]]2];
+    key = param[--[[ key ]]1];
+    data = param[--[[ data ]]2];
+    next = param[--[[ next ]]3];
     loop = function(_prec, _param) do
       while(true) do
         param = _param;
         prec = _prec;
         if (param) then do
-          key = param[--[[ key ]]0];
-          data = param[--[[ data ]]1];
-          next = param[--[[ next ]]2];
+          key = param[--[[ key ]]1];
+          data = param[--[[ data ]]2];
+          next = param[--[[ next ]]3];
           r = --[[ Cons ]]{
             --[[ key ]]key,
             --[[ data ]]data,
@@ -166,9 +166,9 @@ function resize(indexfun, h) do
       while(true) do
         cell = _cell;
         if (cell) then do
-          key = cell[--[[ key ]]0];
-          data = cell[--[[ data ]]1];
-          next = cell[--[[ next ]]2];
+          key = cell[--[[ key ]]1];
+          data = cell[--[[ data ]]2];
+          next = cell[--[[ next ]]3];
           cell_1 = inplace and cell or --[[ Cons ]]{
               --[[ key ]]key,
               --[[ data ]]data,
@@ -240,8 +240,8 @@ function remove(h, key) do
     c = _c;
     prec = _prec;
     if (c) then do
-      k = c[--[[ key ]]0];
-      next = c[--[[ next ]]2];
+      k = c[--[[ key ]]1];
+      next = c[--[[ next ]]3];
       if (Caml_obj.caml_equal(k, key_1)) then do
         h_1.size = h_1.size - 1 | 0;
         if (prec) then do
@@ -264,21 +264,21 @@ end end
 function find(h, key) do
   match = Caml_array.caml_array_get(h.data, key_index(h, key));
   if (match) then do
-    k1 = match[--[[ key ]]0];
-    d1 = match[--[[ data ]]1];
-    next1 = match[--[[ next ]]2];
+    k1 = match[--[[ key ]]1];
+    d1 = match[--[[ data ]]2];
+    next1 = match[--[[ next ]]3];
     if (Caml_obj.caml_equal(key, k1)) then do
       return d1;
     end else if (next1) then do
-      k2 = next1[--[[ key ]]0];
-      d2 = next1[--[[ data ]]1];
-      next2 = next1[--[[ next ]]2];
+      k2 = next1[--[[ key ]]1];
+      d2 = next1[--[[ data ]]2];
+      next2 = next1[--[[ next ]]3];
       if (Caml_obj.caml_equal(key, k2)) then do
         return d2;
       end else if (next2) then do
-        k3 = next2[--[[ key ]]0];
-        d3 = next2[--[[ data ]]1];
-        next3 = next2[--[[ next ]]2];
+        k3 = next2[--[[ key ]]1];
+        d3 = next2[--[[ data ]]2];
+        next3 = next2[--[[ next ]]3];
         if (Caml_obj.caml_equal(key, k3)) then do
           return d3;
         end else do
@@ -287,9 +287,9 @@ function find(h, key) do
           while(true) do
             param = _param;
             if (param) then do
-              k = param[--[[ key ]]0];
-              data = param[--[[ data ]]1];
-              next = param[--[[ next ]]2];
+              k = param[--[[ key ]]1];
+              data = param[--[[ data ]]2];
+              next = param[--[[ next ]]3];
               if (Caml_obj.caml_equal(key_1, k)) then do
                 return data;
               end else do
@@ -315,21 +315,21 @@ end end
 function find_opt(h, key) do
   match = Caml_array.caml_array_get(h.data, key_index(h, key));
   if (match) then do
-    k1 = match[--[[ key ]]0];
-    d1 = match[--[[ data ]]1];
-    next1 = match[--[[ next ]]2];
+    k1 = match[--[[ key ]]1];
+    d1 = match[--[[ data ]]2];
+    next1 = match[--[[ next ]]3];
     if (Caml_obj.caml_equal(key, k1)) then do
       return Caml_option.some(d1);
     end else if (next1) then do
-      k2 = next1[--[[ key ]]0];
-      d2 = next1[--[[ data ]]1];
-      next2 = next1[--[[ next ]]2];
+      k2 = next1[--[[ key ]]1];
+      d2 = next1[--[[ data ]]2];
+      next2 = next1[--[[ next ]]3];
       if (Caml_obj.caml_equal(key, k2)) then do
         return Caml_option.some(d2);
       end else if (next2) then do
-        k3 = next2[--[[ key ]]0];
-        d3 = next2[--[[ data ]]1];
-        next3 = next2[--[[ next ]]2];
+        k3 = next2[--[[ key ]]1];
+        d3 = next2[--[[ data ]]2];
+        next3 = next2[--[[ next ]]3];
         if (Caml_obj.caml_equal(key, k3)) then do
           return Caml_option.some(d3);
         end else do
@@ -338,9 +338,9 @@ function find_opt(h, key) do
           while(true) do
             param = _param;
             if (param) then do
-              k = param[--[[ key ]]0];
-              data = param[--[[ data ]]1];
-              next = param[--[[ next ]]2];
+              k = param[--[[ key ]]1];
+              data = param[--[[ data ]]2];
+              next = param[--[[ next ]]3];
               if (Caml_obj.caml_equal(key_1, k)) then do
                 return Caml_option.some(data);
               end else do
@@ -367,9 +367,9 @@ function find_all(h, key) do
     while(true) do
       param = _param;
       if (param) then do
-        k = param[--[[ key ]]0];
-        data = param[--[[ data ]]1];
-        next = param[--[[ next ]]2];
+        k = param[--[[ key ]]1];
+        data = param[--[[ data ]]2];
+        next = param[--[[ next ]]3];
         if (Caml_obj.caml_equal(k, key)) then do
           return --[[ :: ]]{
                   data,
@@ -391,8 +391,8 @@ function replace_bucket(key, data, _param) do
   while(true) do
     param = _param;
     if (param) then do
-      k = param[--[[ key ]]0];
-      next = param[--[[ next ]]2];
+      k = param[--[[ key ]]1];
+      next = param[--[[ next ]]3];
       if (Caml_obj.caml_equal(k, key)) then do
         param[--[[ key ]]0] = key;
         param[--[[ data ]]1] = data;
@@ -432,8 +432,8 @@ function mem(h, key) do
   while(true) do
     param = _param;
     if (param) then do
-      k = param[--[[ key ]]0];
-      next = param[--[[ next ]]2];
+      k = param[--[[ key ]]1];
+      next = param[--[[ next ]]3];
       if (Caml_obj.caml_equal(k, key)) then do
         return true;
       end else do
@@ -451,9 +451,9 @@ function iter(f, h) do
     while(true) do
       param = _param;
       if (param) then do
-        key = param[--[[ key ]]0];
-        data = param[--[[ data ]]1];
-        next = param[--[[ next ]]2];
+        key = param[--[[ key ]]1];
+        data = param[--[[ data ]]2];
+        next = param[--[[ next ]]3];
         Curry._2(f, key, data);
         _param = next;
         ::continue:: ;
@@ -492,9 +492,9 @@ function filter_map_inplace_bucket(f, h, i, _prec, _slot) do
     slot = _slot;
     prec = _prec;
     if (slot) then do
-      key = slot[--[[ key ]]0];
-      data = slot[--[[ data ]]1];
-      next = slot[--[[ next ]]2];
+      key = slot[--[[ key ]]1];
+      data = slot[--[[ data ]]2];
+      next = slot[--[[ next ]]3];
       match = Curry._2(f, key, data);
       if (match ~= nil) then do
         if (prec) then do
@@ -548,9 +548,9 @@ function fold(f, h, init) do
       accu = _accu;
       b = _b;
       if (b) then do
-        key = b[--[[ key ]]0];
-        data = b[--[[ data ]]1];
-        next = b[--[[ next ]]2];
+        key = b[--[[ key ]]1];
+        data = b[--[[ data ]]2];
+        next = b[--[[ next ]]3];
         _accu = Curry._3(f, key, data, accu);
         _b = next;
         ::continue:: ;
@@ -590,7 +590,7 @@ function bucket_length(_accu, _param) do
     param = _param;
     accu = _accu;
     if (param) then do
-      next = param[--[[ next ]]2];
+      next = param[--[[ next ]]3];
       _param = next;
       _accu = accu + 1 | 0;
       ::continue:: ;
@@ -647,8 +647,8 @@ function MakeSeeded(H) do
       c = _c;
       prec = _prec;
       if (c) then do
-        k = c[--[[ key ]]0];
-        next = c[--[[ next ]]2];
+        k = c[--[[ key ]]1];
+        next = c[--[[ next ]]3];
         if (Curry._2(H.equal, k, key_1)) then do
           h_1.size = h_1.size - 1 | 0;
           if (prec) then do
@@ -670,21 +670,21 @@ function MakeSeeded(H) do
   find = function(h, key) do
     match = Caml_array.caml_array_get(h.data, key_index(h, key));
     if (match) then do
-      k1 = match[--[[ key ]]0];
-      d1 = match[--[[ data ]]1];
-      next1 = match[--[[ next ]]2];
+      k1 = match[--[[ key ]]1];
+      d1 = match[--[[ data ]]2];
+      next1 = match[--[[ next ]]3];
       if (Curry._2(H.equal, key, k1)) then do
         return d1;
       end else if (next1) then do
-        k2 = next1[--[[ key ]]0];
-        d2 = next1[--[[ data ]]1];
-        next2 = next1[--[[ next ]]2];
+        k2 = next1[--[[ key ]]1];
+        d2 = next1[--[[ data ]]2];
+        next2 = next1[--[[ next ]]3];
         if (Curry._2(H.equal, key, k2)) then do
           return d2;
         end else if (next2) then do
-          k3 = next2[--[[ key ]]0];
-          d3 = next2[--[[ data ]]1];
-          next3 = next2[--[[ next ]]2];
+          k3 = next2[--[[ key ]]1];
+          d3 = next2[--[[ data ]]2];
+          next3 = next2[--[[ next ]]3];
           if (Curry._2(H.equal, key, k3)) then do
             return d3;
           end else do
@@ -693,9 +693,9 @@ function MakeSeeded(H) do
             while(true) do
               param = _param;
               if (param) then do
-                k = param[--[[ key ]]0];
-                data = param[--[[ data ]]1];
-                next = param[--[[ next ]]2];
+                k = param[--[[ key ]]1];
+                data = param[--[[ data ]]2];
+                next = param[--[[ next ]]3];
                 if (Curry._2(H.equal, key_1, k)) then do
                   return data;
                 end else do
@@ -720,21 +720,21 @@ function MakeSeeded(H) do
   find_opt = function(h, key) do
     match = Caml_array.caml_array_get(h.data, key_index(h, key));
     if (match) then do
-      k1 = match[--[[ key ]]0];
-      d1 = match[--[[ data ]]1];
-      next1 = match[--[[ next ]]2];
+      k1 = match[--[[ key ]]1];
+      d1 = match[--[[ data ]]2];
+      next1 = match[--[[ next ]]3];
       if (Curry._2(H.equal, key, k1)) then do
         return Caml_option.some(d1);
       end else if (next1) then do
-        k2 = next1[--[[ key ]]0];
-        d2 = next1[--[[ data ]]1];
-        next2 = next1[--[[ next ]]2];
+        k2 = next1[--[[ key ]]1];
+        d2 = next1[--[[ data ]]2];
+        next2 = next1[--[[ next ]]3];
         if (Curry._2(H.equal, key, k2)) then do
           return Caml_option.some(d2);
         end else if (next2) then do
-          k3 = next2[--[[ key ]]0];
-          d3 = next2[--[[ data ]]1];
-          next3 = next2[--[[ next ]]2];
+          k3 = next2[--[[ key ]]1];
+          d3 = next2[--[[ data ]]2];
+          next3 = next2[--[[ next ]]3];
           if (Curry._2(H.equal, key, k3)) then do
             return Caml_option.some(d3);
           end else do
@@ -743,9 +743,9 @@ function MakeSeeded(H) do
             while(true) do
               param = _param;
               if (param) then do
-                k = param[--[[ key ]]0];
-                data = param[--[[ data ]]1];
-                next = param[--[[ next ]]2];
+                k = param[--[[ key ]]1];
+                data = param[--[[ data ]]2];
+                next = param[--[[ next ]]3];
                 if (Curry._2(H.equal, key_1, k)) then do
                   return Caml_option.some(data);
                 end else do
@@ -771,9 +771,9 @@ function MakeSeeded(H) do
       while(true) do
         param = _param;
         if (param) then do
-          k = param[--[[ key ]]0];
-          d = param[--[[ data ]]1];
-          next = param[--[[ next ]]2];
+          k = param[--[[ key ]]1];
+          d = param[--[[ data ]]2];
+          next = param[--[[ next ]]3];
           if (Curry._2(H.equal, k, key)) then do
             return --[[ :: ]]{
                     d,
@@ -794,8 +794,8 @@ function MakeSeeded(H) do
     while(true) do
       param = _param;
       if (param) then do
-        k = param[--[[ key ]]0];
-        next = param[--[[ next ]]2];
+        k = param[--[[ key ]]1];
+        next = param[--[[ next ]]3];
         if (Curry._2(H.equal, k, key)) then do
           param[--[[ key ]]0] = key;
           param[--[[ data ]]1] = data;
@@ -833,8 +833,8 @@ function MakeSeeded(H) do
     while(true) do
       param = _param;
       if (param) then do
-        k = param[--[[ key ]]0];
-        next = param[--[[ next ]]2];
+        k = param[--[[ key ]]1];
+        next = param[--[[ next ]]3];
         if (Curry._2(H.equal, k, key)) then do
           return true;
         end else do
@@ -897,8 +897,8 @@ function Make(H) do
       c = _c;
       prec = _prec;
       if (c) then do
-        k = c[--[[ key ]]0];
-        next = c[--[[ next ]]2];
+        k = c[--[[ key ]]1];
+        next = c[--[[ next ]]3];
         if (Curry._2(equal, k, key_1)) then do
           h_1.size = h_1.size - 1 | 0;
           if (prec) then do
@@ -920,21 +920,21 @@ function Make(H) do
   find = function(h, key) do
     match = Caml_array.caml_array_get(h.data, key_index(h, key));
     if (match) then do
-      k1 = match[--[[ key ]]0];
-      d1 = match[--[[ data ]]1];
-      next1 = match[--[[ next ]]2];
+      k1 = match[--[[ key ]]1];
+      d1 = match[--[[ data ]]2];
+      next1 = match[--[[ next ]]3];
       if (Curry._2(equal, key, k1)) then do
         return d1;
       end else if (next1) then do
-        k2 = next1[--[[ key ]]0];
-        d2 = next1[--[[ data ]]1];
-        next2 = next1[--[[ next ]]2];
+        k2 = next1[--[[ key ]]1];
+        d2 = next1[--[[ data ]]2];
+        next2 = next1[--[[ next ]]3];
         if (Curry._2(equal, key, k2)) then do
           return d2;
         end else if (next2) then do
-          k3 = next2[--[[ key ]]0];
-          d3 = next2[--[[ data ]]1];
-          next3 = next2[--[[ next ]]2];
+          k3 = next2[--[[ key ]]1];
+          d3 = next2[--[[ data ]]2];
+          next3 = next2[--[[ next ]]3];
           if (Curry._2(equal, key, k3)) then do
             return d3;
           end else do
@@ -943,9 +943,9 @@ function Make(H) do
             while(true) do
               param = _param;
               if (param) then do
-                k = param[--[[ key ]]0];
-                data = param[--[[ data ]]1];
-                next = param[--[[ next ]]2];
+                k = param[--[[ key ]]1];
+                data = param[--[[ data ]]2];
+                next = param[--[[ next ]]3];
                 if (Curry._2(equal, key_1, k)) then do
                   return data;
                 end else do
@@ -970,21 +970,21 @@ function Make(H) do
   find_opt = function(h, key) do
     match = Caml_array.caml_array_get(h.data, key_index(h, key));
     if (match) then do
-      k1 = match[--[[ key ]]0];
-      d1 = match[--[[ data ]]1];
-      next1 = match[--[[ next ]]2];
+      k1 = match[--[[ key ]]1];
+      d1 = match[--[[ data ]]2];
+      next1 = match[--[[ next ]]3];
       if (Curry._2(equal, key, k1)) then do
         return Caml_option.some(d1);
       end else if (next1) then do
-        k2 = next1[--[[ key ]]0];
-        d2 = next1[--[[ data ]]1];
-        next2 = next1[--[[ next ]]2];
+        k2 = next1[--[[ key ]]1];
+        d2 = next1[--[[ data ]]2];
+        next2 = next1[--[[ next ]]3];
         if (Curry._2(equal, key, k2)) then do
           return Caml_option.some(d2);
         end else if (next2) then do
-          k3 = next2[--[[ key ]]0];
-          d3 = next2[--[[ data ]]1];
-          next3 = next2[--[[ next ]]2];
+          k3 = next2[--[[ key ]]1];
+          d3 = next2[--[[ data ]]2];
+          next3 = next2[--[[ next ]]3];
           if (Curry._2(equal, key, k3)) then do
             return Caml_option.some(d3);
           end else do
@@ -993,9 +993,9 @@ function Make(H) do
             while(true) do
               param = _param;
               if (param) then do
-                k = param[--[[ key ]]0];
-                data = param[--[[ data ]]1];
-                next = param[--[[ next ]]2];
+                k = param[--[[ key ]]1];
+                data = param[--[[ data ]]2];
+                next = param[--[[ next ]]3];
                 if (Curry._2(equal, key_1, k)) then do
                   return Caml_option.some(data);
                 end else do
@@ -1021,9 +1021,9 @@ function Make(H) do
       while(true) do
         param = _param;
         if (param) then do
-          k = param[--[[ key ]]0];
-          d = param[--[[ data ]]1];
-          next = param[--[[ next ]]2];
+          k = param[--[[ key ]]1];
+          d = param[--[[ data ]]2];
+          next = param[--[[ next ]]3];
           if (Curry._2(equal, k, key)) then do
             return --[[ :: ]]{
                     d,
@@ -1044,8 +1044,8 @@ function Make(H) do
     while(true) do
       param = _param;
       if (param) then do
-        k = param[--[[ key ]]0];
-        next = param[--[[ next ]]2];
+        k = param[--[[ key ]]1];
+        next = param[--[[ next ]]3];
         if (Curry._2(equal, k, key)) then do
           param[--[[ key ]]0] = key;
           param[--[[ data ]]1] = data;
@@ -1083,8 +1083,8 @@ function Make(H) do
     while(true) do
       param = _param;
       if (param) then do
-        k = param[--[[ key ]]0];
-        next = param[--[[ next ]]2];
+        k = param[--[[ key ]]1];
+        next = param[--[[ next ]]3];
         if (Curry._2(equal, k, key)) then do
           return true;
         end else do

@@ -1,14 +1,14 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-List = require "../../lib/js/list";
-__Array = require "../../lib/js/array";
-Block = require "../../lib/js/block";
-Curry = require "../../lib/js/curry";
-Printf = require "../../lib/js/printf";
-Caml_float = require "../../lib/js/caml_float";
-Caml_int64 = require "../../lib/js/caml_int64";
-Pervasives = require "../../lib/js/pervasives";
+Mt = require "..mt";
+List = require "......lib.js.list";
+__Array = require "......lib.js.array";
+Block = require "......lib.js.block";
+Curry = require "......lib.js.curry";
+Printf = require "......lib.js.printf";
+Caml_float = require "......lib.js.caml_float";
+Caml_int64 = require "......lib.js.caml_int64";
+Pervasives = require "......lib.js.pervasives";
 
 one_float = --[[ int64 ]]{
   --[[ hi ]]1072693248,
@@ -28,8 +28,8 @@ int32_pairs = {
 
 function from_pairs(pair) do
   return List.concat(__Array.to_list(__Array.mapi((function(i, param) do
-                        f = param[1];
-                        i32 = param[0];
+                        f = param[2];
+                        i32 = param[1];
                         return --[[ :: ]]{
                                 --[[ tuple ]]{
                                   Curry._1(Printf.sprintf(--[[ Format ]]{
@@ -78,7 +78,7 @@ function from_pairs(pair) do
                       end end), int32_pairs)));
 end end
 
-suites = Pervasives.$at(--[[ :: ]]{
+suites = Pervasives._at(--[[ :: ]]{
       --[[ tuple ]]{
         "one",
         (function(param) do
@@ -104,9 +104,10 @@ suites = Pervasives.$at(--[[ :: ]]{
 
 Mt.from_pair_suites("Float_of_bits_test", suites);
 
-exports = {}
+exports = {};
 exports.one_float = one_float;
 exports.int32_pairs = int32_pairs;
 exports.from_pairs = from_pairs;
 exports.suites = suites;
+return exports;
 --[[ suites Not a pure module ]]

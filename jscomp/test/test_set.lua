@@ -1,20 +1,20 @@
-console = {log = print};
+__console = {log = print};
 
-List = require "../../lib/js/list";
-Curry = require "../../lib/js/curry";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
+List = require "......lib.js.list";
+Curry = require "......lib.js.curry";
+Caml_builtin_exceptions = require "......lib.js.caml_builtin_exceptions";
 
 function Make(Ord) do
   height = function(param) do
     if (param) then do
-      return param[3];
+      return param[4];
     end else do
       return 0;
     end end 
   end end;
   create = function(l, v, r) do
-    hl = l and l[3] or 0;
-    hr = r and r[3] or 0;
+    hl = l and l[4] or 0;
+    hr = r and r[4] or 0;
     return --[[ Node ]]{
             l,
             v,
@@ -23,17 +23,17 @@ function Make(Ord) do
           };
   end end;
   bal = function(l, v, r) do
-    hl = l and l[3] or 0;
-    hr = r and r[3] or 0;
+    hl = l and l[4] or 0;
+    hr = r and r[4] or 0;
     if (hl > (hr + 2 | 0)) then do
       if (l) then do
-        lr = l[2];
-        lv = l[1];
-        ll = l[0];
+        lr = l[3];
+        lv = l[2];
+        ll = l[1];
         if (height(ll) >= height(lr)) then do
           return create(ll, lv, create(lr, v, r));
         end else if (lr) then do
-          return create(create(ll, lv, lr[0]), lr[1], create(lr[2], v, r));
+          return create(create(ll, lv, lr[1]), lr[2], create(lr[3], v, r));
         end else do
           error({
             Caml_builtin_exceptions.invalid_argument,
@@ -48,13 +48,13 @@ function Make(Ord) do
       end end 
     end else if (hr > (hl + 2 | 0)) then do
       if (r) then do
-        rr = r[2];
-        rv = r[1];
-        rl = r[0];
+        rr = r[3];
+        rv = r[2];
+        rl = r[1];
         if (height(rr) >= height(rl)) then do
           return create(create(l, v, rl), rv, rr);
         end else if (rl) then do
-          return create(create(l, v, rl[0]), rl[1], create(rl[2], rv, rr));
+          return create(create(l, v, rl[1]), rl[2], create(rl[3], rv, rr));
         end else do
           error({
             Caml_builtin_exceptions.invalid_argument,
@@ -78,9 +78,9 @@ function Make(Ord) do
   end end;
   add = function(x, t) do
     if (t) then do
-      r = t[2];
-      v = t[1];
-      l = t[0];
+      r = t[3];
+      v = t[2];
+      l = t[1];
       c = Curry._2(Ord.compare, x, v);
       if (c == 0) then do
         return t;
@@ -108,14 +108,14 @@ function Make(Ord) do
   end end;
   add_min_element = function(v, param) do
     if (param) then do
-      return bal(add_min_element(v, param[0]), param[1], param[2]);
+      return bal(add_min_element(v, param[1]), param[2], param[3]);
     end else do
       return singleton(v);
     end end 
   end end;
   add_max_element = function(v, param) do
     if (param) then do
-      return bal(param[0], param[1], add_max_element(v, param[2]));
+      return bal(param[1], param[2], add_max_element(v, param[3]));
     end else do
       return singleton(v);
     end end 
@@ -123,12 +123,12 @@ function Make(Ord) do
   join = function(l, v, r) do
     if (l) then do
       if (r) then do
-        rh = r[3];
-        lh = l[3];
+        rh = r[4];
+        lh = l[4];
         if (lh > (rh + 2 | 0)) then do
-          return bal(l[0], l[1], join(l[2], v, r));
+          return bal(l[1], l[2], join(l[3], v, r));
         end else if (rh > (lh + 2 | 0)) then do
-          return bal(join(l, v, r[0]), r[1], r[2]);
+          return bal(join(l, v, r[1]), r[2], r[3]);
         end else do
           return create(l, v, r);
         end end  end 
@@ -143,12 +143,12 @@ function Make(Ord) do
     while(true) do
       param = _param;
       if (param) then do
-        l = param[0];
+        l = param[1];
         if (l) then do
           _param = l;
           ::continue:: ;
         end else do
-          return param[1];
+          return param[2];
         end end 
       end else do
         error(Caml_builtin_exceptions.not_found)
@@ -159,12 +159,12 @@ function Make(Ord) do
     while(true) do
       param = _param;
       if (param) then do
-        r = param[2];
+        r = param[3];
         if (r) then do
           _param = r;
           ::continue:: ;
         end else do
-          return param[1];
+          return param[2];
         end end 
       end else do
         error(Caml_builtin_exceptions.not_found)
@@ -173,11 +173,11 @@ function Make(Ord) do
   end end;
   remove_min_elt = function(param) do
     if (param) then do
-      l = param[0];
+      l = param[1];
       if (l) then do
-        return bal(remove_min_elt(l), param[1], param[2]);
+        return bal(remove_min_elt(l), param[2], param[3]);
       end else do
-        return param[2];
+        return param[3];
       end end 
     end else do
       error({
@@ -210,9 +210,9 @@ function Make(Ord) do
   end end;
   split = function(x, param) do
     if (param) then do
-      r = param[2];
-      v = param[1];
-      l = param[0];
+      r = param[3];
+      v = param[2];
+      l = param[1];
       c = Curry._2(Ord.compare, x, v);
       if (c == 0) then do
         return --[[ tuple ]]{
@@ -223,16 +223,16 @@ function Make(Ord) do
       end else if (c < 0) then do
         match = split(x, l);
         return --[[ tuple ]]{
-                match[0],
                 match[1],
-                join(match[2], v, r)
+                match[2],
+                join(match[3], v, r)
               };
       end else do
         match_1 = split(x, r);
         return --[[ tuple ]]{
-                join(l, v, match_1[0]),
-                match_1[1],
-                match_1[2]
+                join(l, v, match_1[1]),
+                match_1[2],
+                match_1[3]
               };
       end end  end 
     end else do
@@ -254,11 +254,11 @@ function Make(Ord) do
     while(true) do
       param = _param;
       if (param) then do
-        c = Curry._2(Ord.compare, x, param[1]);
+        c = Curry._2(Ord.compare, x, param[2]);
         if (c == 0) then do
           return true;
         end else do
-          _param = c < 0 and param[0] or param[2];
+          _param = c < 0 and param[1] or param[3];
           ::continue:: ;
         end end 
       end else do
@@ -268,9 +268,9 @@ function Make(Ord) do
   end end;
   remove = function(x, param) do
     if (param) then do
-      r = param[2];
-      v = param[1];
-      l = param[0];
+      r = param[3];
+      v = param[2];
+      l = param[1];
       c = Curry._2(Ord.compare, x, v);
       if (c == 0) then do
         return merge(l, r);
@@ -286,22 +286,22 @@ function Make(Ord) do
   union = function(s1, s2) do
     if (s1) then do
       if (s2) then do
-        h2 = s2[3];
-        v2 = s2[1];
-        h1 = s1[3];
-        v1 = s1[1];
+        h2 = s2[4];
+        v2 = s2[2];
+        h1 = s1[4];
+        v1 = s1[2];
         if (h1 >= h2) then do
           if (h2 == 1) then do
             return add(v2, s1);
           end else do
             match = split(v1, s2);
-            return join(union(s1[0], match[0]), v1, union(s1[2], match[2]));
+            return join(union(s1[1], match[1]), v1, union(s1[3], match[3]));
           end end 
         end else if (h1 == 1) then do
           return add(v1, s2);
         end else do
           match_1 = split(v2, s1);
-          return join(union(match_1[0], s2[0]), v2, union(match_1[2], s2[2]));
+          return join(union(match_1[1], s2[1]), v2, union(match_1[3], s2[3]));
         end end  end 
       end else do
         return s1;
@@ -312,15 +312,15 @@ function Make(Ord) do
   end end;
   inter = function(s1, s2) do
     if (s1 and s2) then do
-      r1 = s1[2];
-      v1 = s1[1];
-      l1 = s1[0];
+      r1 = s1[3];
+      v1 = s1[2];
+      l1 = s1[1];
       match = split(v1, s2);
-      l2 = match[0];
-      if (match[1]) then do
-        return join(inter(l1, l2), v1, inter(r1, match[2]));
+      l2 = match[1];
+      if (match[2]) then do
+        return join(inter(l1, l2), v1, inter(r1, match[3]));
       end else do
-        return concat(inter(l1, l2), inter(r1, match[2]));
+        return concat(inter(l1, l2), inter(r1, match[3]));
       end end 
     end else do
       return --[[ Empty ]]0;
@@ -329,15 +329,15 @@ function Make(Ord) do
   diff = function(s1, s2) do
     if (s1) then do
       if (s2) then do
-        r1 = s1[2];
-        v1 = s1[1];
-        l1 = s1[0];
+        r1 = s1[3];
+        v1 = s1[2];
+        l1 = s1[1];
         match = split(v1, s2);
-        l2 = match[0];
-        if (match[1]) then do
-          return concat(diff(l1, l2), diff(r1, match[2]));
+        l2 = match[1];
+        if (match[2]) then do
+          return concat(diff(l1, l2), diff(r1, match[3]));
         end else do
-          return join(diff(l1, l2), v1, diff(r1, match[2]));
+          return join(diff(l1, l2), v1, diff(r1, match[3]));
         end end 
       end else do
         return s1;
@@ -352,11 +352,11 @@ function Make(Ord) do
       s = _s;
       if (s) then do
         _e = --[[ More ]]{
-          s[1],
           s[2],
+          s[3],
           e
         };
-        _s = s[0];
+        _s = s[1];
         ::continue:: ;
       end else do
         return e;
@@ -369,12 +369,12 @@ function Make(Ord) do
       e1 = _e1;
       if (e1) then do
         if (e2) then do
-          c = Curry._2(Ord.compare, e1[0], e2[0]);
+          c = Curry._2(Ord.compare, e1[1], e2[1]);
           if (c ~= 0) then do
             return c;
           end else do
-            _e2 = cons_enum(e2[1], e2[2]);
-            _e1 = cons_enum(e1[1], e1[2]);
+            _e2 = cons_enum(e2[2], e2[3]);
+            _e1 = cons_enum(e1[2], e1[3]);
             ::continue:: ;
           end end 
         end else do
@@ -399,12 +399,12 @@ function Make(Ord) do
       s1 = _s1;
       if (s1) then do
         if (s2) then do
-          r2 = s2[2];
-          l2 = s2[0];
-          r1 = s1[2];
-          v1 = s1[1];
-          l1 = s1[0];
-          c = Curry._2(Ord.compare, v1, s2[1]);
+          r2 = s2[3];
+          l2 = s2[1];
+          r1 = s1[3];
+          v1 = s1[2];
+          l1 = s1[1];
+          c = Curry._2(Ord.compare, v1, s2[2]);
           if (c == 0) then do
             if (subset(l1, l2)) then do
               _s2 = r2;
@@ -448,9 +448,9 @@ function Make(Ord) do
     while(true) do
       param = _param;
       if (param) then do
-        iter(f, param[0]);
-        Curry._1(f, param[1]);
-        _param = param[2];
+        iter(f, param[1]);
+        Curry._1(f, param[2]);
+        _param = param[3];
         ::continue:: ;
       end else do
         return --[[ () ]]0;
@@ -462,8 +462,8 @@ function Make(Ord) do
       accu = _accu;
       s = _s;
       if (s) then do
-        _accu = Curry._2(f, s[1], fold(f, s[0], accu));
-        _s = s[2];
+        _accu = Curry._2(f, s[2], fold(f, s[1], accu));
+        _s = s[3];
         ::continue:: ;
       end else do
         return accu;
@@ -474,8 +474,8 @@ function Make(Ord) do
     while(true) do
       param = _param;
       if (param) then do
-        if (Curry._1(p, param[1]) and for_all(p, param[0])) then do
-          _param = param[2];
+        if (Curry._1(p, param[2]) and for_all(p, param[1])) then do
+          _param = param[3];
           ::continue:: ;
         end else do
           return false;
@@ -489,10 +489,10 @@ function Make(Ord) do
     while(true) do
       param = _param;
       if (param) then do
-        if (Curry._1(p, param[1]) or exists(p, param[0])) then do
+        if (Curry._1(p, param[2]) or exists(p, param[1])) then do
           return true;
         end else do
-          _param = param[2];
+          _param = param[3];
           ::continue:: ;
         end end 
       end else do
@@ -502,14 +502,14 @@ function Make(Ord) do
   end end;
   filter = function(p, param) do
     if (param) then do
-      v = param[1];
-      l$prime = filter(p, param[0]);
+      v = param[2];
+      l_prime = filter(p, param[1]);
       pv = Curry._1(p, v);
-      r$prime = filter(p, param[2]);
+      r_prime = filter(p, param[3]);
       if (pv) then do
-        return join(l$prime, v, r$prime);
+        return join(l_prime, v, r_prime);
       end else do
-        return concat(l$prime, r$prime);
+        return concat(l_prime, r_prime);
       end end 
     end else do
       return --[[ Empty ]]0;
@@ -517,14 +517,14 @@ function Make(Ord) do
   end end;
   partition = function(p, param) do
     if (param) then do
-      v = param[1];
-      match = partition(p, param[0]);
-      lf = match[1];
-      lt = match[0];
+      v = param[2];
+      match = partition(p, param[1]);
+      lf = match[2];
+      lt = match[1];
       pv = Curry._1(p, v);
-      match_1 = partition(p, param[2]);
-      rf = match_1[1];
-      rt = match_1[0];
+      match_1 = partition(p, param[3]);
+      rf = match_1[2];
+      rt = match_1[1];
       if (pv) then do
         return --[[ tuple ]]{
                 join(lt, v, rt),
@@ -545,7 +545,7 @@ function Make(Ord) do
   end end;
   cardinal = function(param) do
     if (param) then do
-      return (cardinal(param[0]) + 1 | 0) + cardinal(param[2]) | 0;
+      return (cardinal(param[1]) + 1 | 0) + cardinal(param[3]) | 0;
     end else do
       return 0;
     end end 
@@ -555,10 +555,10 @@ function Make(Ord) do
       param = _param;
       accu = _accu;
       if (param) then do
-        _param = param[0];
+        _param = param[1];
         _accu = --[[ :: ]]{
-          param[1],
-          elements_aux(accu, param[2])
+          param[2],
+          elements_aux(accu, param[3])
         };
         ::continue:: ;
       end else do
@@ -573,12 +573,12 @@ function Make(Ord) do
     while(true) do
       param = _param;
       if (param) then do
-        v = param[1];
+        v = param[2];
         c = Curry._2(Ord.compare, x, v);
         if (c == 0) then do
           return v;
         end else do
-          _param = c < 0 and param[0] or param[2];
+          _param = c < 0 and param[1] or param[3];
           ::continue:: ;
         end end 
       end else do
@@ -600,31 +600,31 @@ function Make(Ord) do
               return --[[ tuple ]]{
                       --[[ Node ]]{
                         --[[ Empty ]]0,
-                        l[0],
+                        l[1],
                         --[[ Empty ]]0,
                         1
                       },
-                      l[1]
+                      l[2]
                     };
             end
              end  end else 
          if ___conditional___ == 2 then do
             if (l) then do
-              match = l[1];
+              match = l[2];
               if (match) then do
                 return --[[ tuple ]]{
                         --[[ Node ]]{
                           --[[ Node ]]{
                             --[[ Empty ]]0,
-                            l[0],
+                            l[1],
                             --[[ Empty ]]0,
                             1
                           },
-                          match[0],
+                          match[1],
                           --[[ Empty ]]0,
                           2
                         },
-                        match[1]
+                        match[2]
                       };
               end
                end 
@@ -632,28 +632,28 @@ function Make(Ord) do
              end  end else 
          if ___conditional___ == 3 then do
             if (l) then do
-              match_1 = l[1];
+              match_1 = l[2];
               if (match_1) then do
-                match_2 = match_1[1];
+                match_2 = match_1[2];
                 if (match_2) then do
                   return --[[ tuple ]]{
                           --[[ Node ]]{
                             --[[ Node ]]{
                               --[[ Empty ]]0,
-                              l[0],
+                              l[1],
                               --[[ Empty ]]0,
                               1
                             },
-                            match_1[0],
+                            match_1[1],
                             --[[ Node ]]{
                               --[[ Empty ]]0,
-                              match_2[0],
+                              match_2[1],
                               --[[ Empty ]]0,
                               1
                             },
                             2
                           },
-                          match_2[1]
+                          match_2[2]
                         };
                 end
                  end 
@@ -666,12 +666,12 @@ function Make(Ord) do
       end
       nl = n / 2 | 0;
       match_3 = sub(nl, l);
-      l_1 = match_3[1];
+      l_1 = match_3[2];
       if (l_1) then do
-        match_4 = sub((n - nl | 0) - 1 | 0, l_1[1]);
+        match_4 = sub((n - nl | 0) - 1 | 0, l_1[2]);
         return --[[ tuple ]]{
-                create(match_3[0], l_1[0], match_4[0]),
-                match_4[1]
+                create(match_3[1], l_1[1], match_4[1]),
+                match_4[2]
               };
       end else do
         error({
@@ -684,26 +684,26 @@ function Make(Ord) do
         })
       end end 
     end end;
-    return sub(List.length(l), l)[0];
+    return sub(List.length(l), l)[1];
   end end;
   of_list = function(l) do
     if (l) then do
-      match = l[1];
-      x0 = l[0];
+      match = l[2];
+      x0 = l[1];
       if (match) then do
-        match_1 = match[1];
-        x1 = match[0];
+        match_1 = match[2];
+        x1 = match[1];
         if (match_1) then do
-          match_2 = match_1[1];
-          x2 = match_1[0];
+          match_2 = match_1[2];
+          x2 = match_1[1];
           if (match_2) then do
-            match_3 = match_2[1];
-            x3 = match_2[0];
+            match_3 = match_2[2];
+            x3 = match_2[1];
             if (match_3) then do
-              if (match_3[1]) then do
+              if (match_3[2]) then do
                 return of_sorted_list(List.sort_uniq(Ord.compare, l));
               end else do
-                return add(match_3[0], add(x3, add(x2, add(x1, singleton(x0)))));
+                return add(match_3[1], add(x3, add(x2, add(x1, singleton(x0)))));
               end end 
             end else do
               return add(x3, add(x2, add(x1, singleton(x0))));
@@ -768,7 +768,8 @@ N = {
   a = 3
 };
 
-exports = {}
+exports = {};
 exports.Make = Make;
 exports.N = N;
+return exports;
 --[[ No side effect ]]

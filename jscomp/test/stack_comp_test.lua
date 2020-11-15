@@ -1,11 +1,11 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-List = require "../../lib/js/list";
-Curry = require "../../lib/js/curry";
-Stack = require "../../lib/js/stack";
-Caml_obj = require "../../lib/js/caml_obj";
-Mt_global = require "./mt_global";
+Mt = require "..mt";
+List = require "......lib.js.list";
+Curry = require "......lib.js.curry";
+Stack = require "......lib.js.stack";
+Caml_obj = require "......lib.js.caml_obj";
+Mt_global = require "..mt_global";
 
 suites = {
   contents = --[[ [] ]]0
@@ -16,7 +16,7 @@ test_id = {
 };
 
 function eq(f, param) do
-  return Mt_global.collect_eq(test_id, suites, f, param[0], param[1]);
+  return Mt_global.collect_eq(test_id, suites, f, param[1], param[2]);
 end end
 
 function assert_(loc, v) do
@@ -442,11 +442,12 @@ assert_("File \"stack_comp_test.ml\", line 129, characters 45-52", Caml_obj.caml
 
 Mt.from_pair_suites("Stack_comp_test", suites.contents);
 
-exports = {}
+exports = {};
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
 exports.assert_ = assert_;
 exports.S = S;
 exports.does_raise = does_raise;
+return exports;
 --[[ s Not a pure module ]]

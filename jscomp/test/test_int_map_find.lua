@@ -1,12 +1,12 @@
-console = {log = print};
+__console = {log = print};
 
-List = require "../../lib/js/list";
-Caml_primitive = require "../../lib/js/caml_primitive";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
+List = require "......lib.js.list";
+Caml_primitive = require "......lib.js.caml_primitive";
+Caml_builtin_exceptions = require "......lib.js.caml_builtin_exceptions";
 
 function height(param) do
   if (param) then do
-    return param[--[[ h ]]4];
+    return param[--[[ h ]]5];
   end else do
     return 0;
   end end 
@@ -25,18 +25,18 @@ function create(l, x, d, r) do
 end end
 
 function bal(l, x, d, r) do
-  hl = l and l[--[[ h ]]4] or 0;
-  hr = r and r[--[[ h ]]4] or 0;
+  hl = l and l[--[[ h ]]5] or 0;
+  hr = r and r[--[[ h ]]5] or 0;
   if (hl > (hr + 2 | 0)) then do
     if (l) then do
-      lr = l[--[[ r ]]3];
-      ld = l[--[[ d ]]2];
-      lv = l[--[[ v ]]1];
-      ll = l[--[[ l ]]0];
+      lr = l[--[[ r ]]4];
+      ld = l[--[[ d ]]3];
+      lv = l[--[[ v ]]2];
+      ll = l[--[[ l ]]1];
       if (height(ll) >= height(lr)) then do
         return create(ll, lv, ld, create(lr, x, d, r));
       end else if (lr) then do
-        return create(create(ll, lv, ld, lr[--[[ l ]]0]), lr[--[[ v ]]1], lr[--[[ d ]]2], create(lr[--[[ r ]]3], x, d, r));
+        return create(create(ll, lv, ld, lr[--[[ l ]]1]), lr[--[[ v ]]2], lr[--[[ d ]]3], create(lr[--[[ r ]]4], x, d, r));
       end else do
         error({
           Caml_builtin_exceptions.invalid_argument,
@@ -51,14 +51,14 @@ function bal(l, x, d, r) do
     end end 
   end else if (hr > (hl + 2 | 0)) then do
     if (r) then do
-      rr = r[--[[ r ]]3];
-      rd = r[--[[ d ]]2];
-      rv = r[--[[ v ]]1];
-      rl = r[--[[ l ]]0];
+      rr = r[--[[ r ]]4];
+      rd = r[--[[ d ]]3];
+      rv = r[--[[ v ]]2];
+      rl = r[--[[ l ]]1];
       if (height(rr) >= height(rl)) then do
         return create(create(l, x, d, rl), rv, rd, rr);
       end else if (rl) then do
-        return create(create(l, x, d, rl[--[[ l ]]0]), rl[--[[ v ]]1], rl[--[[ d ]]2], create(rl[--[[ r ]]3], rv, rd, rr));
+        return create(create(l, x, d, rl[--[[ l ]]1]), rl[--[[ v ]]2], rl[--[[ d ]]3], create(rl[--[[ r ]]4], rv, rd, rr));
       end else do
         error({
           Caml_builtin_exceptions.invalid_argument,
@@ -84,10 +84,10 @@ end end
 
 function add(x, data, m) do
   if (m) then do
-    r = m[--[[ r ]]3];
-    d = m[--[[ d ]]2];
-    v = m[--[[ v ]]1];
-    l = m[--[[ l ]]0];
+    r = m[--[[ r ]]4];
+    d = m[--[[ d ]]3];
+    v = m[--[[ v ]]2];
+    l = m[--[[ l ]]1];
     c = Caml_primitive.caml_int_compare(x, v);
     if (c == 0) then do
       if (d == data) then do
@@ -98,7 +98,7 @@ function add(x, data, m) do
                 --[[ v ]]x,
                 --[[ d ]]data,
                 --[[ r ]]r,
-                --[[ h ]]m[--[[ h ]]4]
+                --[[ h ]]m[--[[ h ]]5]
               };
       end end 
     end else if (c < 0) then do
@@ -128,7 +128,7 @@ function add(x, data, m) do
 end end
 
 List.fold_left((function(acc, param) do
-        return add(param[0], param[1], acc);
+        return add(param[1], param[2], acc);
       end end), --[[ Empty ]]0, --[[ :: ]]{
       --[[ tuple ]]{
         10,
@@ -155,5 +155,6 @@ List.fold_left((function(acc, param) do
       }
     });
 
-exports = {}
+exports = {};
+return exports;
 --[[  Not a pure module ]]

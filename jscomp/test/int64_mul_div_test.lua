@@ -1,15 +1,15 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-List = require "../../lib/js/list";
-__Array = require "../../lib/js/array";
-Block = require "../../lib/js/block";
-Curry = require "../../lib/js/curry";
-Int64 = require "../../lib/js/int64";
-Printf = require "../../lib/js/printf";
-Caml_int64 = require "../../lib/js/caml_int64";
-Pervasives = require "../../lib/js/pervasives";
-Caml_format = require "../../lib/js/caml_format";
+Mt = require "..mt";
+List = require "......lib.js.list";
+__Array = require "......lib.js.array";
+Block = require "......lib.js.block";
+Curry = require "......lib.js.curry";
+Int64 = require "......lib.js.int64";
+Printf = require "......lib.js.printf";
+Caml_int64 = require "......lib.js.caml_int64";
+Pervasives = require "......lib.js.pervasives";
+Caml_format = require "......lib.js.caml_format";
 
 function commutative_mul(result, a, b) do
   return --[[ Eq ]]Block.__(0, {
@@ -309,9 +309,9 @@ pairs = {
 
 function from_pairs(prefix, pairs) do
   return __Array.to_list(__Array.mapi((function(i, param) do
-                    b = param[2];
-                    a = param[1];
-                    result = param[0];
+                    b = param[3];
+                    a = param[2];
+                    result = param[1];
                     return --[[ tuple ]]{
                             Curry._2(Printf.sprintf(--[[ Format ]]{
                                       --[[ String ]]Block.__(2, {
@@ -1586,10 +1586,10 @@ simple_divs = {
 
 function from(xs) do
   return List.mapi((function(i, param) do
-                d = param[3];
-                c = param[2];
-                b = param[1];
-                a = param[0];
+                d = param[4];
+                c = param[3];
+                b = param[2];
+                a = param[1];
                 return --[[ tuple ]]{
                         Curry._1(Printf.sprintf(--[[ Format ]]{
                                   --[[ String_literal ]]Block.__(11, {
@@ -1663,9 +1663,9 @@ int64_compare_tests = {
 
 function from_compare(xs) do
   return List.mapi((function(i, param) do
-                c = param[2];
-                b = param[1];
-                a = param[0];
+                c = param[3];
+                b = param[2];
+                a = param[1];
                 return --[[ tuple ]]{
                         Curry._1(Printf.sprintf(--[[ Format ]]{
                                   --[[ String_literal ]]Block.__(11, {
@@ -1689,8 +1689,8 @@ end end
 
 function from_to_string(xs) do
   return List.mapi((function(i, param) do
-                str_a = param[1];
-                a = param[0];
+                str_a = param[2];
+                a = param[1];
                 return --[[ tuple ]]{
                         Curry._1(Printf.sprintf(--[[ Format ]]{
                                   --[[ String_literal ]]Block.__(11, {
@@ -1712,9 +1712,9 @@ function from_to_string(xs) do
               end end), __Array.to_list(xs));
 end end
 
-Mt.from_pair_suites("Int64_mul_div_test", Pervasives.$at(from_pairs("random", pairs), Pervasives.$at(from_pairs("small", small_pairs), Pervasives.$at(List.mapi((function(i, param) do
-                        f = param[1];
-                        i64 = param[0];
+Mt.from_pair_suites("Int64_mul_div_test", Pervasives._at(from_pairs("random", pairs), Pervasives._at(from_pairs("small", small_pairs), Pervasives._at(List.mapi((function(i, param) do
+                        f = param[2];
+                        i64 = param[1];
                         return --[[ tuple ]]{
                                 Curry._1(Printf.sprintf(--[[ Format ]]{
                                           --[[ String_literal ]]Block.__(11, {
@@ -1735,9 +1735,9 @@ Mt.from_pair_suites("Int64_mul_div_test", Pervasives.$at(from_pairs("random", pa
                                             });
                                   end end)
                               };
-                      end end), __Array.to_list(to_floats)), Pervasives.$at(List.mapi((function(i, param) do
-                            i64 = param[1];
-                            f = param[0];
+                      end end), __Array.to_list(to_floats)), Pervasives._at(List.mapi((function(i, param) do
+                            i64 = param[2];
+                            f = param[1];
                             return --[[ tuple ]]{
                                     Curry._1(Printf.sprintf(--[[ Format ]]{
                                               --[[ String_literal ]]Block.__(11, {
@@ -1758,7 +1758,7 @@ Mt.from_pair_suites("Int64_mul_div_test", Pervasives.$at(from_pairs("random", pa
                                                 });
                                       end end)
                                   };
-                          end end), __Array.to_list(of_float_pairs)), Pervasives.$at(--[[ :: ]]{
+                          end end), __Array.to_list(of_float_pairs)), Pervasives._at(--[[ :: ]]{
                           --[[ tuple ]]{
                             "compare_check_complete",
                             (function(param) do
@@ -1771,7 +1771,7 @@ Mt.from_pair_suites("Int64_mul_div_test", Pervasives.$at(from_pairs("random", pa
                               end end)
                           },
                           --[[ [] ]]0
-                        }, Pervasives.$at(from(simple_divs), Pervasives.$at(from_compare(int64_compare_tests), --[[ :: ]]{
+                        }, Pervasives._at(from(simple_divs), Pervasives._at(from_compare(int64_compare_tests), --[[ :: ]]{
                                   --[[ tuple ]]{
                                     "div_rem_0",
                                     (function(param) do
@@ -1818,7 +1818,7 @@ Mt.from_pair_suites("Int64_mul_div_test", Pervasives.$at(from_pairs("random", pa
                                   }
                                 }))))))));
 
-exports = {}
+exports = {};
 exports.commutative_mul = commutative_mul;
 exports.pairs = pairs;
 exports.from_pairs = from_pairs;
@@ -1832,4 +1832,5 @@ exports.to_string = to_string;
 exports.int64_compare_tests = int64_compare_tests;
 exports.from_compare = from_compare;
 exports.from_to_string = from_to_string;
+return exports;
 --[[  Not a pure module ]]

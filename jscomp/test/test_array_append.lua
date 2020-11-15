@@ -1,12 +1,13 @@
-console = {log = print};
+__console = {log = print};
 
-__Array = require "../../lib/js/array";
+__Array = require "......lib.js.array";
 
 const_v = __Array.append({
       1,
       2
     }, {3});
 
-exports = {}
+exports = {};
 exports.const_v = const_v;
+return exports;
 --[[ const_v Not a pure module ]]

@@ -1,9 +1,9 @@
 
 
-import * as Obj from "./obj.lua";
-import * as Curry from "./curry.lua";
-import * as Caml_obj from "./caml_obj.lua";
-import * as Caml_exceptions from "./caml_exceptions.lua";
+local Obj = require "..obj.lua";
+local Curry = require "..curry.lua";
+local Caml_obj = require "..caml_obj.lua";
+local Caml_exceptions = require "..caml_exceptions.lua";
 
 Undefined = Caml_exceptions.create("CamlinternalLazy.Undefined");
 

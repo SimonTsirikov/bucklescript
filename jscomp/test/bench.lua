@@ -1,9 +1,9 @@
-console = {log = print};
+__console = {log = print};
 
-Curry = require "../../lib/js/curry";
-Caml_array = require "../../lib/js/caml_array";
-Pervasives = require "../../lib/js/pervasives";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
+Curry = require "......lib.js.curry";
+Caml_array = require "......lib.js.caml_array";
+Pervasives = require "......lib.js.pervasives";
+Caml_builtin_exceptions = require "......lib.js.caml_builtin_exceptions";
 
 function map(f, a) do
   f_1 = Curry.__1(f);
@@ -62,15 +62,16 @@ function f2(param) do
   v = fold_left((function(prim, prim_1) do
           return prim + prim_1;
         end end), 0, b);
-  console.log(Pervasives.string_of_float(v));
+  __console.log(Pervasives.string_of_float(v));
   return --[[ () ]]0;
 end end
 
 f2(--[[ () ]]0);
 
-exports = {}
+exports = {};
 exports.map = map;
 exports.init = init;
 exports.fold_left = fold_left;
 exports.f2 = f2;
+return exports;
 --[[  Not a pure module ]]

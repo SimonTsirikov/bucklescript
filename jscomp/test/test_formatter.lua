@@ -1,6 +1,6 @@
-console = {log = print};
+__console = {log = print};
 
-Block = require "../../lib/js/block";
+Block = require "......lib.js.block";
 
 function f(param) do
   return --[[ Format ]]{
@@ -17,6 +17,7 @@ function f(param) do
         };
 end end
 
-exports = {}
+exports = {};
 exports.f = f;
+return exports;
 --[[ No side effect ]]

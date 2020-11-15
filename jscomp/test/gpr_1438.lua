@@ -1,4 +1,4 @@
-console = {log = print};
+__console = {log = print};
 
 
 function actionKey(key, a, b, c, d, e) do
@@ -37,6 +37,7 @@ function actionKey(key, a, b, c, d, e) do
     end end);
 end end
 
-exports = {}
+exports = {};
 exports.actionKey = actionKey;
+return exports;
 --[[ No side effect ]]

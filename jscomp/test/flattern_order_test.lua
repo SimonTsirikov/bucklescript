@@ -1,4 +1,4 @@
-console = {log = print};
+__console = {log = print};
 
 
 function even(_n) do
@@ -44,9 +44,10 @@ obj = {
   set = obj_set
 };
 
-exports = {}
+exports = {};
 exports.even = even;
 exports.even2 = even2;
 exports.v = v;
 exports.obj = obj;
+return exports;
 --[[ No side effect ]]

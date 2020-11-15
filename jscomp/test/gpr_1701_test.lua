@@ -1,9 +1,9 @@
-console = {log = print};
+__console = {log = print};
 
-List = require "../../lib/js/list";
-Pervasives = require "../../lib/js/pervasives";
-Caml_exceptions = require "../../lib/js/caml_exceptions";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
+List = require "......lib.js.list";
+Pervasives = require "......lib.js.pervasives";
+Caml_exceptions = require "......lib.js.caml_exceptions";
+Caml_builtin_exceptions = require "......lib.js.caml_builtin_exceptions";
 
 Foo = Caml_exceptions.create("Gpr_1701_test.Foo");
 
@@ -100,11 +100,12 @@ function fff(f, x) do
   end end)
 end end
 
-exports = {}
+exports = {};
 exports.Foo = Foo;
 exports.test = test;
 exports.read_lines = read_lines;
 exports.read_lines2 = read_lines2;
 exports.read_lines3 = read_lines3;
 exports.fff = fff;
+return exports;
 --[[  Not a pure module ]]

@@ -1,8 +1,8 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Block = require "../../lib/js/block";
-Caml_array = require "../../lib/js/caml_array";
+Mt = require "..mt";
+Block = require "......lib.js.block";
+Caml_array = require "......lib.js.caml_array";
 
 a = {
   0,
@@ -91,11 +91,12 @@ v = --[[ tuple ]]{
   5
 };
 
-exports = {}
+exports = {};
 exports.a = a;
 exports.b = b;
 exports.c = c;
 exports.v = v;
 exports.f = f;
 exports.h = h;
+return exports;
 --[[  Not a pure module ]]

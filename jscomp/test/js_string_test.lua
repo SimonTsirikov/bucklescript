@@ -1,15 +1,15 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Block = require "../../lib/js/block";
-Caml_option = require "../../lib/js/caml_option";
+Mt = require "..mt";
+Block = require "......lib.js.block";
+Caml_option = require "......lib.js.caml_option";
 
 suites_000 = --[[ tuple ]]{
   "make",
   (function(param) do
       return --[[ Eq ]]Block.__(0, {
                 "null",
-                String(nil).concat("")
+                __String(nil).concat("")
               });
     end end)
 };
@@ -20,7 +20,7 @@ suites_001 = --[[ :: ]]{
     (function(param) do
         return --[[ Eq ]]Block.__(0, {
                   "a",
-                  String.fromCharCode(97)
+                  __String.fromCharCode(97)
                 });
       end end)
   },
@@ -30,7 +30,7 @@ suites_001 = --[[ :: ]]{
       (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     "az",
-                    String.fromCharCode(97, 122)
+                    __String.fromCharCode(97, 122)
                   });
         end end)
     },
@@ -40,7 +40,7 @@ suites_001 = --[[ :: ]]{
         (function(param) do
             return --[[ Eq ]]Block.__(0, {
                       "a",
-                      String.fromCodePoint(97)
+                      __String.fromCodePoint(97)
                     });
           end end)
       },
@@ -50,7 +50,7 @@ suites_001 = --[[ :: ]]{
           (function(param) do
               return --[[ Eq ]]Block.__(0, {
                         "az",
-                        String.fromCodePoint(97, 122)
+                        __String.fromCodePoint(97, 122)
                       });
             end end)
         },
@@ -653,6 +653,7 @@ suites = --[[ :: ]]{
 
 Mt.from_pair_suites("Js_string_test", suites);
 
-exports = {}
+exports = {};
 exports.suites = suites;
+return exports;
 --[[  Not a pure module ]]

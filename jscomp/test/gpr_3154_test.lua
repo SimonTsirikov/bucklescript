@@ -1,8 +1,8 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Js_dict = require "../../lib/js/js_dict";
-Caml_option = require "../../lib/js/caml_option";
+Mt = require "..mt";
+Js_dict = require "......lib.js.js_dict";
+Caml_option = require "......lib.js.caml_option";
 
 suites = {
   contents = --[[ [] ]]0
@@ -42,10 +42,11 @@ Mt.from_pair_suites("Gpr_3154_test", suites.contents);
 
 J = --[[ alias ]]0;
 
-exports = {}
+exports = {};
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
 exports.b = b;
 exports.J = J;
+return exports;
 --[[  Not a pure module ]]

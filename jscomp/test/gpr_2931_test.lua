@@ -1,6 +1,6 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
+Mt = require "..mt";
 
 suites = {
   contents = --[[ [] ]]0
@@ -41,9 +41,10 @@ eq("File \"gpr_2931_test.ml\", line 19, characters 6-13", 3, fake_c2("number", "
 
 Mt.from_pair_suites("Gpr_2931_test", suites.contents);
 
-exports = {}
+exports = {};
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
 exports.fake_c2 = fake_c2;
+return exports;
 --[[  Not a pure module ]]

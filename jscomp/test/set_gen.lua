@@ -1,10 +1,10 @@
-console = {log = print};
+__console = {log = print};
 
-List = require "../../lib/js/list";
-Curry = require "../../lib/js/curry";
-Pervasives = require "../../lib/js/pervasives";
-Caml_exceptions = require "../../lib/js/caml_exceptions";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
+List = require "......lib.js.list";
+Curry = require "......lib.js.curry";
+Pervasives = require "......lib.js.pervasives";
+Caml_exceptions = require "......lib.js.caml_exceptions";
+Caml_builtin_exceptions = require "......lib.js.caml_builtin_exceptions";
 
 function cons_enum(_s, _e) do
   while(true) do
@@ -12,11 +12,11 @@ function cons_enum(_s, _e) do
     s = _s;
     if (s) then do
       _e = --[[ More ]]{
-        s[1],
         s[2],
+        s[3],
         e
       };
-      _s = s[0];
+      _s = s[1];
       ::continue:: ;
     end else do
       return e;
@@ -26,7 +26,7 @@ end end
 
 function height(param) do
   if (param) then do
-    return param[3];
+    return param[4];
   end else do
     return 0;
   end end 
@@ -36,12 +36,12 @@ function min_elt(_param) do
   while(true) do
     param = _param;
     if (param) then do
-      l = param[0];
+      l = param[1];
       if (l) then do
         _param = l;
         ::continue:: ;
       end else do
-        return param[1];
+        return param[2];
       end end 
     end else do
       error(Caml_builtin_exceptions.not_found)
@@ -53,12 +53,12 @@ function max_elt(_param) do
   while(true) do
     param = _param;
     if (param) then do
-      r = param[2];
+      r = param[3];
       if (r) then do
         _param = r;
         ::continue:: ;
       end else do
-        return param[1];
+        return param[2];
       end end 
     end else do
       error(Caml_builtin_exceptions.not_found)
@@ -79,8 +79,8 @@ function cardinal_aux(_acc, _param) do
     param = _param;
     acc = _acc;
     if (param) then do
-      _param = param[0];
-      _acc = cardinal_aux(acc + 1 | 0, param[2]);
+      _param = param[1];
+      _acc = cardinal_aux(acc + 1 | 0, param[3]);
       ::continue:: ;
     end else do
       return acc;
@@ -97,10 +97,10 @@ function elements_aux(_accu, _param) do
     param = _param;
     accu = _accu;
     if (param) then do
-      _param = param[0];
+      _param = param[1];
       _accu = --[[ :: ]]{
-        param[1],
-        elements_aux(accu, param[2])
+        param[2],
+        elements_aux(accu, param[3])
       };
       ::continue:: ;
     end else do
@@ -117,9 +117,9 @@ function iter(f, _param) do
   while(true) do
     param = _param;
     if (param) then do
-      iter(f, param[0]);
-      Curry._1(f, param[1]);
-      _param = param[2];
+      iter(f, param[1]);
+      Curry._1(f, param[2]);
+      _param = param[3];
       ::continue:: ;
     end else do
       return --[[ () ]]0;
@@ -132,8 +132,8 @@ function fold(f, _s, _accu) do
     accu = _accu;
     s = _s;
     if (s) then do
-      _accu = Curry._2(f, s[1], fold(f, s[0], accu));
-      _s = s[2];
+      _accu = Curry._2(f, s[2], fold(f, s[1], accu));
+      _s = s[3];
       ::continue:: ;
     end else do
       return accu;
@@ -145,8 +145,8 @@ function for_all(p, _param) do
   while(true) do
     param = _param;
     if (param) then do
-      if (Curry._1(p, param[1]) and for_all(p, param[0])) then do
-        _param = param[2];
+      if (Curry._1(p, param[2]) and for_all(p, param[1])) then do
+        _param = param[3];
         ::continue:: ;
       end else do
         return false;
@@ -161,10 +161,10 @@ function exists(p, _param) do
   while(true) do
     param = _param;
     if (param) then do
-      if (Curry._1(p, param[1]) or exists(p, param[0])) then do
+      if (Curry._1(p, param[2]) or exists(p, param[1])) then do
         return true;
       end else do
-        _param = param[2];
+        _param = param[3];
         ::continue:: ;
       end end 
     end else do
@@ -201,9 +201,9 @@ Height_diff_borken = Caml_exceptions.create("Set_gen.Height_diff_borken");
 
 function check_height_and_diff(param) do
   if (param) then do
-    h = param[3];
-    hl = check_height_and_diff(param[0]);
-    hr = check_height_and_diff(param[2]);
+    h = param[4];
+    hl = check_height_and_diff(param[1]);
+    hr = check_height_and_diff(param[3]);
     if (h ~= (max_int_2(hl, hr) + 1 | 0)) then do
       error(Height_invariant_broken)
     end
@@ -225,8 +225,8 @@ function check(tree) do
 end end
 
 function create(l, v, r) do
-  hl = l and l[3] or 0;
-  hr = r and r[3] or 0;
+  hl = l and l[4] or 0;
+  hr = r and r[4] or 0;
   return --[[ Node ]]{
           l,
           v,
@@ -236,17 +236,17 @@ function create(l, v, r) do
 end end
 
 function internal_bal(l, v, r) do
-  hl = l and l[3] or 0;
-  hr = r and r[3] or 0;
+  hl = l and l[4] or 0;
+  hr = r and r[4] or 0;
   if (hl > (hr + 2 | 0)) then do
     if (l) then do
-      lr = l[2];
-      lv = l[1];
-      ll = l[0];
+      lr = l[3];
+      lv = l[2];
+      ll = l[1];
       if (height(ll) >= height(lr)) then do
         return create(ll, lv, create(lr, v, r));
       end else if (lr) then do
-        return create(create(ll, lv, lr[0]), lr[1], create(lr[2], v, r));
+        return create(create(ll, lv, lr[1]), lr[2], create(lr[3], v, r));
       end else do
         error({
           Caml_builtin_exceptions.assert_failure,
@@ -269,13 +269,13 @@ function internal_bal(l, v, r) do
     end end 
   end else if (hr > (hl + 2 | 0)) then do
     if (r) then do
-      rr = r[2];
-      rv = r[1];
-      rl = r[0];
+      rr = r[3];
+      rv = r[2];
+      rl = r[1];
       if (height(rr) >= height(rl)) then do
         return create(create(l, v, rl), rv, rr);
       end else if (rl) then do
-        return create(create(l, v, rl[0]), rl[1], create(rl[2], rv, rr));
+        return create(create(l, v, rl[1]), rl[2], create(rl[3], rv, rr));
       end else do
         error({
           Caml_builtin_exceptions.assert_failure,
@@ -308,11 +308,11 @@ end end
 
 function remove_min_elt(param) do
   if (param) then do
-    l = param[0];
+    l = param[1];
     if (l) then do
-      return internal_bal(remove_min_elt(l), param[1], param[2]);
+      return internal_bal(remove_min_elt(l), param[2], param[3]);
     end else do
-      return param[2];
+      return param[3];
     end end 
   end else do
     error({
@@ -345,7 +345,7 @@ end end
 
 function add_min_element(v, param) do
   if (param) then do
-    return internal_bal(add_min_element(v, param[0]), param[1], param[2]);
+    return internal_bal(add_min_element(v, param[1]), param[2], param[3]);
   end else do
     return singleton(v);
   end end 
@@ -353,7 +353,7 @@ end end
 
 function add_max_element(v, param) do
   if (param) then do
-    return internal_bal(param[0], param[1], add_max_element(v, param[2]));
+    return internal_bal(param[1], param[2], add_max_element(v, param[3]));
   end else do
     return singleton(v);
   end end 
@@ -362,12 +362,12 @@ end end
 function internal_join(l, v, r) do
   if (l) then do
     if (r) then do
-      rh = r[3];
-      lh = l[3];
+      rh = r[4];
+      lh = l[4];
       if (lh > (rh + 2 | 0)) then do
-        return internal_bal(l[0], l[1], internal_join(l[2], v, r));
+        return internal_bal(l[1], l[2], internal_join(l[3], v, r));
       end else if (rh > (lh + 2 | 0)) then do
-        return internal_bal(internal_join(l, v, r[0]), r[1], r[2]);
+        return internal_bal(internal_join(l, v, r[1]), r[2], r[3]);
       end else do
         return create(l, v, r);
       end end  end 
@@ -393,14 +393,14 @@ end end
 
 function filter(p, param) do
   if (param) then do
-    v = param[1];
-    l$prime = filter(p, param[0]);
+    v = param[2];
+    l_prime = filter(p, param[1]);
     pv = Curry._1(p, v);
-    r$prime = filter(p, param[2]);
+    r_prime = filter(p, param[3]);
     if (pv) then do
-      return internal_join(l$prime, v, r$prime);
+      return internal_join(l_prime, v, r_prime);
     end else do
-      return internal_concat(l$prime, r$prime);
+      return internal_concat(l_prime, r_prime);
     end end 
   end else do
     return --[[ Empty ]]0;
@@ -409,14 +409,14 @@ end end
 
 function partition(p, param) do
   if (param) then do
-    v = param[1];
-    match = partition(p, param[0]);
-    lf = match[1];
-    lt = match[0];
+    v = param[2];
+    match = partition(p, param[1]);
+    lf = match[2];
+    lt = match[1];
     pv = Curry._1(p, v);
-    match_1 = partition(p, param[2]);
-    rf = match_1[1];
-    rt = match_1[0];
+    match_1 = partition(p, param[3]);
+    rf = match_1[2];
+    rt = match_1[1];
     if (pv) then do
       return --[[ tuple ]]{
               internal_join(lt, v, rt),
@@ -450,31 +450,31 @@ function of_sorted_list(l) do
             return --[[ tuple ]]{
                     --[[ Node ]]{
                       --[[ Empty ]]0,
-                      l[0],
+                      l[1],
                       --[[ Empty ]]0,
                       1
                     },
-                    l[1]
+                    l[2]
                   };
           end
            end  end else 
        if ___conditional___ == 2 then do
           if (l) then do
-            match = l[1];
+            match = l[2];
             if (match) then do
               return --[[ tuple ]]{
                       --[[ Node ]]{
                         --[[ Node ]]{
                           --[[ Empty ]]0,
-                          l[0],
+                          l[1],
                           --[[ Empty ]]0,
                           1
                         },
-                        match[0],
+                        match[1],
                         --[[ Empty ]]0,
                         2
                       },
-                      match[1]
+                      match[2]
                     };
             end
              end 
@@ -482,28 +482,28 @@ function of_sorted_list(l) do
            end  end else 
        if ___conditional___ == 3 then do
           if (l) then do
-            match_1 = l[1];
+            match_1 = l[2];
             if (match_1) then do
-              match_2 = match_1[1];
+              match_2 = match_1[2];
               if (match_2) then do
                 return --[[ tuple ]]{
                         --[[ Node ]]{
                           --[[ Node ]]{
                             --[[ Empty ]]0,
-                            l[0],
+                            l[1],
                             --[[ Empty ]]0,
                             1
                           },
-                          match_1[0],
+                          match_1[1],
                           --[[ Node ]]{
                             --[[ Empty ]]0,
-                            match_2[0],
+                            match_2[1],
                             --[[ Empty ]]0,
                             1
                           },
                           2
                         },
-                        match_2[1]
+                        match_2[2]
                       };
               end
                end 
@@ -516,12 +516,12 @@ function of_sorted_list(l) do
     end
     nl = n / 2 | 0;
     match_3 = sub(nl, l);
-    l_1 = match_3[1];
+    l_1 = match_3[2];
     if (l_1) then do
-      match_4 = sub((n - nl | 0) - 1 | 0, l_1[1]);
+      match_4 = sub((n - nl | 0) - 1 | 0, l_1[2]);
       return --[[ tuple ]]{
-              create(match_3[0], l_1[0], match_4[0]),
-              match_4[1]
+              create(match_3[1], l_1[1], match_4[1]),
+              match_4[2]
             };
     end else do
       error({
@@ -534,7 +534,7 @@ function of_sorted_list(l) do
       })
     end end 
   end end;
-  return sub(List.length(l), l)[0];
+  return sub(List.length(l), l)[1];
 end end
 
 function of_sorted_array(l) do
@@ -598,13 +598,13 @@ end end
 function is_ordered(cmp, tree) do
   is_ordered_min_max = function(tree) do
     if (tree) then do
-      r = tree[2];
-      v = tree[1];
-      match = is_ordered_min_max(tree[0]);
-      if (typeof match == "number") then do
+      r = tree[3];
+      v = tree[2];
+      match = is_ordered_min_max(tree[1]);
+      if (type(match) == "number") then do
         if (match >= 50834029) then do
           match_1 = is_ordered_min_max(r);
-          if (typeof match_1 == "number") then do
+          if (type(match_1) == "number") then do
             if (match_1 >= 50834029) then do
               return --[[ `V ]]{
                       86,
@@ -617,13 +617,13 @@ function is_ordered(cmp, tree) do
               return --[[ No ]]17505;
             end end 
           end else do
-            match_2 = match_1[1];
-            if (Curry._2(cmp, v, match_2[0]) < 0) then do
+            match_2 = match_1[2];
+            if (Curry._2(cmp, v, match_2[1]) < 0) then do
               return --[[ `V ]]{
                       86,
                       --[[ tuple ]]{
                         v,
-                        match_2[1]
+                        match_2[2]
                       }
                     };
             end else do
@@ -634,11 +634,11 @@ function is_ordered(cmp, tree) do
           return --[[ No ]]17505;
         end end 
       end else do
-        match_3 = match[1];
-        max_v = match_3[1];
-        min_v = match_3[0];
+        match_3 = match[2];
+        max_v = match_3[2];
+        min_v = match_3[1];
         match_4 = is_ordered_min_max(r);
-        if (typeof match_4 == "number") then do
+        if (type(match_4) == "number") then do
           if (match_4 >= 50834029 and Curry._2(cmp, max_v, v) < 0) then do
             return --[[ `V ]]{
                     86,
@@ -651,13 +651,13 @@ function is_ordered(cmp, tree) do
             return --[[ No ]]17505;
           end end 
         end else do
-          match_5 = match_4[1];
-          if (Curry._2(cmp, max_v, match_5[0]) < 0) then do
+          match_5 = match_4[2];
+          if (Curry._2(cmp, max_v, match_5[1]) < 0) then do
             return --[[ `V ]]{
                     86,
                     --[[ tuple ]]{
                       min_v,
-                      match_5[1]
+                      match_5[2]
                     }
                   };
           end else do
@@ -683,12 +683,12 @@ function compare_aux(cmp, _e1, _e2) do
     e1 = _e1;
     if (e1) then do
       if (e2) then do
-        c = Curry._2(cmp, e1[0], e2[0]);
+        c = Curry._2(cmp, e1[1], e2[1]);
         if (c ~= 0) then do
           return c;
         end else do
-          _e2 = cons_enum(e2[1], e2[2]);
-          _e1 = cons_enum(e1[1], e1[2]);
+          _e2 = cons_enum(e2[2], e2[3]);
+          _e1 = cons_enum(e1[2], e1[3]);
           ::continue:: ;
         end end 
       end else do
@@ -710,7 +710,7 @@ empty = --[[ Empty ]]0;
 
 choose = min_elt;
 
-exports = {}
+exports = {};
 exports.cons_enum = cons_enum;
 exports.height = height;
 exports.min_elt = min_elt;
@@ -749,4 +749,5 @@ exports.is_ordered = is_ordered;
 exports.invariant = invariant;
 exports.compare_aux = compare_aux;
 exports.compare = compare;
+return exports;
 --[[ No side effect ]]

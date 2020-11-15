@@ -1,9 +1,9 @@
-console = {log = print};
+__console = {log = print};
 
-Curry = require "./curry";
-Caml_option = require "./caml_option";
-Belt_internalMapInt = require "./belt_internalMapInt";
-Belt_internalAVLtree = require "./belt_internalAVLtree";
+Curry = require "..curry";
+Caml_option = require "..caml_option";
+Belt_internalMapInt = require "..belt_internalMapInt";
+Belt_internalAVLtree = require "..belt_internalAVLtree";
 
 function make(param) do
   return {
@@ -325,7 +325,7 @@ function getExn(d, x) do
   return Belt_internalMapInt.getExn(d.data, x);
 end end
 
-exports = {}
+exports = {};
 exports.make = make;
 exports.clear = clear;
 exports.isEmpty = isEmpty;
@@ -370,4 +370,5 @@ exports.mapU = mapU;
 exports.map = map;
 exports.mapWithKeyU = mapWithKeyU;
 exports.mapWithKey = mapWithKey;
+return exports;
 --[[ No side effect ]]

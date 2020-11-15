@@ -1,7 +1,7 @@
-console = {log = print};
+__console = {log = print};
 
-Curry = require "./curry";
-Caml_oo = require "./caml_oo";
+Curry = require "..curry";
+Caml_oo = require "..caml_oo";
 
 function js(label, cacheid, obj, args) do
   meth = Caml_oo.caml_get_public_method(obj, label, cacheid);
@@ -40,7 +40,7 @@ function js8(label, cacheid, a0, a1, a2, a3, a4, a5, a6, a7) do
   return Curry._8(Caml_oo.caml_get_public_method(a0, label, cacheid), a0, a1, a2, a3, a4, a5, a6, a7);
 end end
 
-exports = {}
+exports = {};
 exports.js = js;
 exports.js1 = js1;
 exports.js2 = js2;
@@ -50,4 +50,5 @@ exports.js5 = js5;
 exports.js6 = js6;
 exports.js7 = js7;
 exports.js8 = js8;
+return exports;
 --[[ No side effect ]]

@@ -1,8 +1,8 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Block = require "../../lib/js/block";
-Caml_int32 = require "../../lib/js/caml_int32";
+Mt = require "..mt";
+Block = require "......lib.js.block";
+Caml_int32 = require "......lib.js.caml_int32";
 
 function u(param) do
   n;
@@ -27,6 +27,7 @@ Mt.from_pair_suites("Jsoo_400_test", --[[ :: ]]{
       --[[ [] ]]0
     });
 
-exports = {}
+exports = {};
 exports.u = u;
+return exports;
 --[[  Not a pure module ]]

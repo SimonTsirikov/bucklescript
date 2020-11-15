@@ -1,4 +1,4 @@
-console = {log = print};
+__console = {log = print};
 
 
 hh = {
@@ -23,10 +23,11 @@ u = v.hi;
 
 uu = v.width;
 
-exports = {}
+exports = {};
 exports.hh = hh;
 exports.v = v;
 exports.vv = vv;
 exports.u = u;
 exports.uu = uu;
+return exports;
 --[[  Not a pure module ]]

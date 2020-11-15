@@ -1,11 +1,11 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Block = require "../../lib/js/block";
-Curry = require "../../lib/js/curry";
-Caml_array = require "../../lib/js/caml_array";
-Pervasives = require "../../lib/js/pervasives";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
+Mt = require "..mt";
+Block = require "......lib.js.block";
+Curry = require "......lib.js.curry";
+Caml_array = require "......lib.js.caml_array";
+Pervasives = require "......lib.js.pervasives";
+Caml_builtin_exceptions = require "......lib.js.caml_builtin_exceptions";
 
 function map(f, a) do
   f_1 = Curry.__1(f);
@@ -64,7 +64,7 @@ function f2(param) do
   v = fold_left((function(prim, prim_1) do
           return prim + prim_1;
         end end), 0, b);
-  console.log(Pervasives.string_of_float(v));
+  __console.log(Pervasives.string_of_float(v));
   return --[[ () ]]0;
 end end
 
@@ -82,7 +82,7 @@ function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[[ :: ]]{
     --[[ tuple ]]{
-      loc .. (" id " .. String(test_id.contents)),
+      loc .. (" id " .. __String(test_id.contents)),
       (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     x,
@@ -104,7 +104,7 @@ all_v = {
 };
 
 function add5(a0, a1, a2, a3, a4) do
-  console.log(--[[ tuple ]]{
+  __console.log(--[[ tuple ]]{
         a0,
         a1,
         a2,
@@ -181,7 +181,7 @@ eq("File \"earger_curry_test.ml\", line 122, characters 7-14", all_v.contents, -
 
 Mt.from_pair_suites("Earger_curry_test", suites.contents);
 
-exports = {}
+exports = {};
 exports.map = map;
 exports.init = init;
 exports.fold_left = fold_left;
@@ -198,4 +198,5 @@ exports.a = a;
 exports.b = b;
 exports.c = c;
 exports.d = d;
+return exports;
 --[[  Not a pure module ]]

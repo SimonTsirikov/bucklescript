@@ -1,6 +1,6 @@
-console = {log = print};
+__console = {log = print};
 
-Bytes = require "./bytes";
+Bytes = require "..bytes";
 
 make = Bytes.make;
 
@@ -88,7 +88,7 @@ unsafe_to_string = Bytes.unsafe_to_string;
 
 unsafe_of_string = Bytes.unsafe_of_string;
 
-exports = {}
+exports = {};
 exports.make = make;
 exports.init = init;
 exports.empty = empty;
@@ -132,4 +132,5 @@ exports.compare = compare;
 exports.equal = equal;
 exports.unsafe_to_string = unsafe_to_string;
 exports.unsafe_of_string = unsafe_of_string;
+return exports;
 --[[ No side effect ]]

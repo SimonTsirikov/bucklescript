@@ -1,8 +1,8 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Block = require "../../lib/js/block";
-Belt_Float = require "../../lib/js/belt_Float";
+Mt = require "..mt";
+Block = require "......lib.js.block";
+Belt_Float = require "......lib.js.belt_Float";
 
 suites = {
   contents = --[[ [] ]]0
@@ -28,7 +28,7 @@ function neq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[[ :: ]]{
     --[[ tuple ]]{
-      loc .. (" id " .. String(test_id.contents)),
+      loc .. (" id " .. __String(test_id.contents)),
       (function(param) do
           return --[[ Neq ]]Block.__(1, {
                     x,
@@ -71,11 +71,11 @@ eq("File \"bs_float_test.ml\", line 31, characters 5-12", Belt_Float.fromString(
 
 eq("File \"bs_float_test.ml\", line 32, characters 5-12", Belt_Float.fromString("not a float"), nil);
 
-eq("File \"bs_float_test.ml\", line 35, characters 5-12", String(1.0), "1");
+eq("File \"bs_float_test.ml\", line 35, characters 5-12", __String(1.0), "1");
 
-eq("File \"bs_float_test.ml\", line 36, characters 5-12", String(-1.0), "-1");
+eq("File \"bs_float_test.ml\", line 36, characters 5-12", __String(-1.0), "-1");
 
-eq("File \"bs_float_test.ml\", line 37, characters 5-12", String(-1.5), "-1.5");
+eq("File \"bs_float_test.ml\", line 37, characters 5-12", __String(-1.5), "-1.5");
 
 eq("File \"bs_float_test.ml\", line 41, characters 5-12", 2.0 + 3.0, 5.0);
 
@@ -89,7 +89,7 @@ Mt.from_pair_suites("File \"bs_float_test.ml\", line 46, characters 23-30", suit
 
 F = --[[ alias ]]0;
 
-exports = {}
+exports = {};
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
@@ -97,4 +97,5 @@ exports.b = b;
 exports.__throw = __throw;
 exports.neq = neq;
 exports.F = F;
+return exports;
 --[[  Not a pure module ]]

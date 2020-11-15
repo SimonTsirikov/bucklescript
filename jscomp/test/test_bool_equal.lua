@@ -1,6 +1,6 @@
-console = {log = print};
+__console = {log = print};
 
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
+Caml_builtin_exceptions = require "......lib.js.caml_builtin_exceptions";
 
 function bool_equal(x, y) do
   if (x) then do
@@ -132,7 +132,7 @@ function f8(x) do
   return 1;
 end end
 
-exports = {}
+exports = {};
 exports.bool_equal = bool_equal;
 exports.assertions = assertions;
 exports.f0 = f0;
@@ -144,4 +144,5 @@ exports.f5 = f5;
 exports.f6 = f6;
 exports.f7 = f7;
 exports.f8 = f8;
+return exports;
 --[[ No side effect ]]

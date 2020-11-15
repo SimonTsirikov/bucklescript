@@ -1,6 +1,6 @@
-console = {log = print};
+__console = {log = print};
 
-Caml_array = require "./caml_array";
+Caml_array = require "..caml_array";
 
 function app(_f, _args) do
   while(true) do
@@ -544,7 +544,7 @@ function __8(o) do
   end end 
 end end
 
-exports = {}
+exports = {};
 exports.app = app;
 exports.curry_1 = curry_1;
 exports._1 = _1;
@@ -570,4 +570,5 @@ exports.__7 = __7;
 exports.curry_8 = curry_8;
 exports._8 = _8;
 exports.__8 = __8;
+return exports;
 --[[ No side effect ]]

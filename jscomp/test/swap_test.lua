@@ -1,15 +1,15 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-List = require "../../lib/js/list";
-__Array = require "../../lib/js/array";
-Block = require "../../lib/js/block";
-Curry = require "../../lib/js/curry";
-Format = require "../../lib/js/format";
-Printf = require "../../lib/js/printf";
-Caml_int32 = require "../../lib/js/caml_int32";
-Caml_int64 = require "../../lib/js/caml_int64";
-Pervasives = require "../../lib/js/pervasives";
+Mt = require "..mt";
+List = require "......lib.js.list";
+__Array = require "......lib.js.array";
+Block = require "......lib.js.block";
+Curry = require "......lib.js.curry";
+Format = require "......lib.js.format";
+Printf = require "......lib.js.printf";
+Caml_int32 = require "......lib.js.caml_int32";
+Caml_int64 = require "......lib.js.caml_int64";
+Pervasives = require "......lib.js.pervasives";
 
 tests_16 = {
   --[[ tuple ]]{
@@ -853,8 +853,8 @@ tests_64 = {
 };
 
 suites_16 = List.map((function(param) do
-        b = param[1];
-        a = param[0];
+        b = param[2];
+        a = param[1];
         return --[[ tuple ]]{
                 Curry._1(Printf.sprintf(--[[ Format ]]{
                           --[[ String_literal ]]Block.__(11, {
@@ -878,8 +878,8 @@ suites_16 = List.map((function(param) do
       end end), __Array.to_list(tests_16));
 
 suites_32 = List.map((function(param) do
-        b = param[1];
-        a = param[0];
+        b = param[2];
+        a = param[1];
         return --[[ tuple ]]{
                 Curry._1(Printf.sprintf(--[[ Format ]]{
                           --[[ String_literal ]]Block.__(11, {
@@ -903,8 +903,8 @@ suites_32 = List.map((function(param) do
       end end), __Array.to_list(tests_32));
 
 suites_64 = List.map((function(param) do
-        b = param[1];
-        a = param[0];
+        b = param[2];
+        a = param[1];
         return --[[ tuple ]]{
                 Curry._1(Printf.sprintf(--[[ Format ]]{
                           --[[ String_literal ]]Block.__(11, {
@@ -986,11 +986,11 @@ d32 = --[[ tuple ]]{
 };
 
 function f(s, param) do
-  swap = param[1];
-  x = param[0];
+  swap = param[2];
+  x = param[1];
   return __Array.to_list(__Array.mapi((function(i, param) do
-                    b = param[1];
-                    a = param[0];
+                    b = param[2];
+                    a = param[1];
                     return --[[ tuple ]]{
                             Curry._2(Format.asprintf(--[[ Format ]]{
                                       --[[ String ]]Block.__(2, {
@@ -1014,12 +1014,12 @@ function f(s, param) do
                                         });
                               end end)
                           };
-                  end end), param[2]));
+                  end end), param[3]));
 end end
 
-Mt.from_pair_suites("Swap_test", Pervasives.$at(suites_16, Pervasives.$at(suites_32, Pervasives.$at(suites_64, Pervasives.$at(f("d16", d16), f("d32", d32))))));
+Mt.from_pair_suites("Swap_test", Pervasives._at(suites_16, Pervasives._at(suites_32, Pervasives._at(suites_64, Pervasives._at(f("d16", d16), f("d32", d32))))));
 
-exports = {}
+exports = {};
 exports.tests_16 = tests_16;
 exports.tests_32 = tests_32;
 exports.tests_64 = tests_64;
@@ -1029,4 +1029,5 @@ exports.suites_64 = suites_64;
 exports.d16 = d16;
 exports.d32 = d32;
 exports.f = f;
+return exports;
 --[[ suites_16 Not a pure module ]]

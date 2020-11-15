@@ -1,9 +1,9 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-List = require "../../lib/js/list";
-Block = require "../../lib/js/block";
-Caml_obj = require "../../lib/js/caml_obj";
+Mt = require "..mt";
+List = require "......lib.js.list";
+Block = require "......lib.js.block";
+Caml_obj = require "......lib.js.caml_obj";
 
 suites = {
   contents = --[[ [] ]]0
@@ -69,7 +69,7 @@ Mt.from_pair_suites("Block_alias_test", suites.contents);
 
 h = List.length;
 
-exports = {}
+exports = {};
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
@@ -81,4 +81,5 @@ exports.Caml_obj = Caml_obj_1;
 exports.V = V;
 exports.f = f;
 exports.h = h;
+return exports;
 --[[  Not a pure module ]]

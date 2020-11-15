@@ -1,10 +1,10 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-List = require "../../lib/js/list";
-__Array = require "../../lib/js/array";
-Block = require "../../lib/js/block";
-Caml_primitive = require "../../lib/js/caml_primitive";
+Mt = require "..mt";
+List = require "......lib.js.list";
+__Array = require "......lib.js.array";
+Block = require "......lib.js.block";
+Caml_primitive = require "......lib.js.caml_primitive";
 
 list_suites_000 = --[[ tuple ]]{
   "length",
@@ -108,6 +108,7 @@ list_suites = --[[ :: ]]{
 
 Mt.from_pair_suites("List_test", list_suites);
 
-exports = {}
+exports = {};
 exports.list_suites = list_suites;
+return exports;
 --[[  Not a pure module ]]

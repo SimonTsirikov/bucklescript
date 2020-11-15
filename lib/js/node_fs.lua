@@ -1,8 +1,9 @@
-console = {log = print};
+__console = {log = print};
 
 
 Watch = { };
 
-exports = {}
+exports = {};
 exports.Watch = Watch;
+return exports;
 --[[ No side effect ]]

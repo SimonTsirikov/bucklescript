@@ -1,17 +1,18 @@
-console = {log = print};
+__console = {log = print};
 
 
 ({ })["hi"] = "hello";
 
-console.log("hi");
+__console.log("hi");
 
 function f(x) do
   ({
-      x = (console.log("hi"), x)
+      x = (__console.log("hi"), x)
     }).x = x + 1 | 0;
   return --[[ () ]]0;
 end end
 
-exports = {}
+exports = {};
 exports.f = f;
+return exports;
 --[[  Not a pure module ]]

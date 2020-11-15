@@ -1,6 +1,6 @@
-console = {log = print};
+__console = {log = print};
 
-Block = require "../../lib/js/block";
+Block = require "......lib.js.block";
 
 function f(x) do
   return x;
@@ -42,11 +42,12 @@ end end
 
 g = h(--[[ A ]]65);
 
-exports = {}
+exports = {};
 exports.f = f;
 exports.ff = ff;
 exports.fff = fff;
 exports.h = h;
 exports.hh = hh;
 exports.g = g;
+return exports;
 --[[ g Not a pure module ]]

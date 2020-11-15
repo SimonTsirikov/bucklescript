@@ -1,8 +1,8 @@
-console = {log = print};
+__console = {log = print};
 
-Test_common = require "./test_common";
-Caml_exceptions = require "../../lib/js/caml_exceptions";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
+Test_common = require "..test_common";
+Caml_exceptions = require "......lib.js.caml_exceptions";
+Caml_builtin_exceptions = require "......lib.js.caml_builtin_exceptions";
 
 Local = Caml_exceptions.create("Test_exception.Local");
 
@@ -39,7 +39,7 @@ Nullary = Caml_exceptions.create("Test_exception.Nullary");
 
 a = Nullary;
 
-exports = {}
+exports = {};
 exports.Local = Local;
 exports.f = f;
 exports.g = g;
@@ -48,4 +48,5 @@ exports.x = x;
 exports.xx = xx;
 exports.Nullary = Nullary;
 exports.a = a;
+return exports;
 --[[ No side effect ]]

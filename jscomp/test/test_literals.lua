@@ -1,4 +1,4 @@
-console = {log = print};
+__console = {log = print};
 
 
 setter_suffix = "#=";
@@ -143,7 +143,7 @@ bytecode = "bytecode";
 
 js = "js";
 
-exports = {}
+exports = {};
 exports.js_array_ctor = js_array_ctor;
 exports.js_type_number = js_type_number;
 exports.js_type_string = js_type_string;
@@ -215,4 +215,5 @@ exports.unescaped_js_delimiter = unescaped_js_delimiter;
 exports.__native = __native;
 exports.bytecode = bytecode;
 exports.js = js;
+return exports;
 --[[ No side effect ]]

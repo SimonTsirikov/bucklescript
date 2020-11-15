@@ -1,13 +1,13 @@
 
 
-import * as __Array from "./array.lua";
-import * as Curry from "./curry.lua";
-import * as Lexing from "./lexing.lua";
-import * as Caml_obj from "./caml_obj.lua";
-import * as Caml_array from "./caml_array.lua";
-import * as Caml_parser from "./caml_parser.lua";
-import * as Caml_exceptions from "./caml_exceptions.lua";
-import * as Caml_js_exceptions from "./caml_js_exceptions.lua";
+local __Array = require "..array.lua";
+local Curry = require "..curry.lua";
+local Lexing = require "..lexing.lua";
+local Caml_obj = require "..caml_obj.lua";
+local Caml_array = require "..caml_array.lua";
+local Caml_parser = require "..caml_parser.lua";
+local Caml_exceptions = require "..caml_exceptions.lua";
+local Caml_js_exceptions = require "..caml_js_exceptions.lua";
 
 YYexit = Caml_exceptions.create("Parsing.YYexit");
 
@@ -119,8 +119,8 @@ function yyparse(tables, start, lexer, lexbuf) do
                 error(exn)
               end end 
             end end)
-            _arg = match_1[1];
-            _cmd = match_1[0];
+            _arg = match_1[2];
+            _cmd = match_1[1];
             ::continue:: ; end end 
          if ___conditional___ == 5--[[ Call_error_function ]] then do
             Curry._1(tables.error_function, "syntax error");
@@ -140,11 +140,11 @@ function yyparse(tables, start, lexer, lexbuf) do
     env.curr_char = init_curr_char;
     env.lval = init_lval;
     env.errflag = init_errflag;
-    if (exn_1[0] == YYexit) then do
-      return exn_1[1];
+    if (exn_1[1] == YYexit) then do
+      return exn_1[2];
     end else do
       current_lookahead_fun.contents = (function(tok) do
-          if (typeof tok ~= "number") then do
+          if (type(tok) ~= "number") then do
             return Caml_array.caml_array_get(tables.transl_block, tok.tag | 0) == curr_char;
           end else do
             return Caml_array.caml_array_get(tables.transl_const, tok) == curr_char;

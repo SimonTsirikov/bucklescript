@@ -1,7 +1,7 @@
-console = {log = print};
+__console = {log = print};
 
-Caml_bytes = require "./caml_bytes";
-Caml_builtin_exceptions = require "./caml_builtin_exceptions";
+Caml_bytes = require "..caml_bytes";
+Caml_builtin_exceptions = require "..caml_builtin_exceptions";
 
 function chr(n) do
   if (n < 0 or n > 255) then do
@@ -117,7 +117,7 @@ function equal(c1, c2) do
   return (c1 - c2 | 0) == 0;
 end end
 
-exports = {}
+exports = {};
 exports.chr = chr;
 exports.escaped = escaped;
 exports.lowercase = lowercase;
@@ -126,4 +126,5 @@ exports.lowercase_ascii = lowercase_ascii;
 exports.uppercase_ascii = uppercase_ascii;
 exports.compare = compare;
 exports.equal = equal;
+return exports;
 --[[ No side effect ]]

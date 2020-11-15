@@ -1,89 +1,90 @@
-console = {log = print};
+__console = {log = print};
 
-List = require "../../lib/js/list";
-Curry = require "../../lib/js/curry";
+List = require "......lib.js.list";
+Curry = require "......lib.js.curry";
 
 function from_pair_suites(name, suites) do
-  console.log(--[[ tuple ]]{
+  __console.log(--[[ tuple ]]{
         name,
         "testing"
       });
   return List.iter((function(param) do
-                name = param[0];
-                match = Curry._1(param[1], --[[ () ]]0);
+                name = param[1];
+                match = Curry._1(param[2], --[[ () ]]0);
                 local ___conditional___=(match.tag | 0);
                 do
                    if ___conditional___ == 0--[[ Eq ]] then do
-                      console.log(--[[ tuple ]]{
+                      __console.log(--[[ tuple ]]{
                             name,
-                            match[0],
+                            match[1],
                             "eq?",
-                            match[1]
+                            match[2]
                           });
                       return --[[ () ]]0; end end 
                    if ___conditional___ == 1--[[ Neq ]] then do
-                      console.log(--[[ tuple ]]{
+                      __console.log(--[[ tuple ]]{
                             name,
-                            match[0],
+                            match[1],
                             "neq?",
-                            match[1]
+                            match[2]
                           });
                       return --[[ () ]]0; end end 
                    if ___conditional___ == 2--[[ StrictEq ]] then do
-                      console.log(--[[ tuple ]]{
+                      __console.log(--[[ tuple ]]{
                             name,
-                            match[0],
+                            match[1],
                             "strict_eq?",
-                            match[1]
+                            match[2]
                           });
                       return --[[ () ]]0; end end 
                    if ___conditional___ == 3--[[ StrictNeq ]] then do
-                      console.log(--[[ tuple ]]{
+                      __console.log(--[[ tuple ]]{
                             name,
-                            match[0],
+                            match[1],
                             "strict_neq?",
-                            match[1]
+                            match[2]
                           });
                       return --[[ () ]]0; end end 
                    if ___conditional___ == 4--[[ Ok ]] then do
-                      console.log(--[[ tuple ]]{
+                      __console.log(--[[ tuple ]]{
                             name,
-                            match[0],
+                            match[1],
                             "ok?"
                           });
                       return --[[ () ]]0; end end 
                    if ___conditional___ == 5--[[ Approx ]] then do
-                      console.log(--[[ tuple ]]{
-                            name,
-                            match[0],
-                            "~",
-                            match[1]
-                          });
-                      return --[[ () ]]0; end end 
-                   if ___conditional___ == 6--[[ ApproxThreshold ]] then do
-                      console.log(--[[ tuple ]]{
+                      __console.log(--[[ tuple ]]{
                             name,
                             match[1],
                             "~",
+                            match[2]
+                          });
+                      return --[[ () ]]0; end end 
+                   if ___conditional___ == 6--[[ ApproxThreshold ]] then do
+                      __console.log(--[[ tuple ]]{
+                            name,
                             match[2],
+                            "~",
+                            match[3],
                             " (",
-                            match[0],
+                            match[1],
                             ")"
                           });
                       return --[[ () ]]0; end end 
                    if ___conditional___ == 7--[[ ThrowAny ]] then do
                       return --[[ () ]]0; end end 
                    if ___conditional___ == 8--[[ Fail ]] then do
-                      console.log("failed");
+                      __console.log("failed");
                       return --[[ () ]]0; end end 
                    if ___conditional___ == 9--[[ FailWith ]] then do
-                      console.log("failed: " .. match[0]);
+                      __console.log("failed: " .. match[1]);
                       return --[[ () ]]0; end end 
                   
                 end
               end end), suites);
 end end
 
-exports = {}
+exports = {};
 exports.from_pair_suites = from_pair_suites;
+return exports;
 --[[ No side effect ]]

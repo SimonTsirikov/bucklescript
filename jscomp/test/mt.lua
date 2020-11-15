@@ -1,10 +1,10 @@
-console = {log = print};
+__console = {log = print};
 
-List = require "../../lib/js/list";
-Path = require "";
-__Array = require "../../lib/js/array";
-Block = require "../../lib/js/block";
-Curry = require "../../lib/js/curry";
+List = require "......lib.js.list";
+Path = require "path";
+__Array = require "......lib.js.array";
+Block = require "......lib.js.block";
+Curry = require "......lib.js.curry";
 Assert = require "as";
 Process = require "pro";
 
@@ -16,9 +16,9 @@ end end
 function is_mocha(param) do
   match = __Array.to_list(Process.argv);
   if (match) then do
-    match_1 = match[1];
+    match_1 = match[2];
     if (match_1) then do
-      exec = Path.basename(match_1[0]);
+      exec = Path.basename(match_1[1]);
       if (exec == "mocha") then do
         return true;
       end else do
@@ -37,8 +37,8 @@ function from_suites(name, suite) do
   if (match and is_mocha(--[[ () ]]0)) then do
     describe(name, (function() do
             return List.iter((function(param) do
-                          partial_arg = param[1];
-                          it(param[0], (function() do
+                          partial_arg = param[2];
+                          it(param[1], (function() do
                                   return Curry._1(partial_arg, --[[ () ]]0);
                                 end end));
                           return --[[ () ]]0;
@@ -52,30 +52,30 @@ end end
 
 function close_enough(thresholdOpt, a, b) do
   threshold = thresholdOpt ~= nil and thresholdOpt or 0.0000001;
-  return Math.abs(a - b) < threshold;
+  return __Math.abs(a - b) < threshold;
 end end
 
 function handleCode(spec) do
   local ___conditional___=(spec.tag | 0);
   do
      if ___conditional___ == 0--[[ Eq ]] then do
-        Assert.deepEqual(spec[0], spec[1]);
+        Assert.deepEqual(spec[1], spec[2]);
         return --[[ () ]]0; end end 
      if ___conditional___ == 1--[[ Neq ]] then do
-        Assert.notDeepEqual(spec[0], spec[1]);
+        Assert.notDeepEqual(spec[1], spec[2]);
         return --[[ () ]]0; end end 
      if ___conditional___ == 2--[[ StrictEq ]] then do
-        Assert.strictEqual(spec[0], spec[1]);
+        Assert.strictEqual(spec[1], spec[2]);
         return --[[ () ]]0; end end 
      if ___conditional___ == 3--[[ StrictNeq ]] then do
-        Assert.notStrictEqual(spec[0], spec[1]);
+        Assert.notStrictEqual(spec[1], spec[2]);
         return --[[ () ]]0; end end 
      if ___conditional___ == 4--[[ Ok ]] then do
-        Assert.ok(spec[0]);
+        Assert.ok(spec[1]);
         return --[[ () ]]0; end end 
      if ___conditional___ == 5--[[ Approx ]] then do
-        b = spec[1];
-        a = spec[0];
+        b = spec[2];
+        a = spec[1];
         if (close_enough(nil, a, b)) then do
           return 0;
         end else do
@@ -83,21 +83,21 @@ function handleCode(spec) do
           return --[[ () ]]0;
         end end  end end 
      if ___conditional___ == 6--[[ ApproxThreshold ]] then do
-        b_1 = spec[2];
-        a_1 = spec[1];
-        if (close_enough(spec[0], a_1, b_1)) then do
+        b_1 = spec[3];
+        a_1 = spec[2];
+        if (close_enough(spec[1], a_1, b_1)) then do
           return 0;
         end else do
           Assert.deepEqual(a_1, b_1);
           return --[[ () ]]0;
         end end  end end 
      if ___conditional___ == 7--[[ ThrowAny ]] then do
-        Assert.throws(spec[0]);
+        Assert.throws(spec[1]);
         return --[[ () ]]0; end end 
      if ___conditional___ == 8--[[ Fail ]] then do
         return assert_fail("failed"); end end 
      if ___conditional___ == 9--[[ FailWith ]] then do
-        return assert_fail(spec[0]); end end 
+        return assert_fail(spec[1]); end end 
     
   end
 end end
@@ -108,8 +108,8 @@ function from_pair_suites(name, suites) do
     if (is_mocha(--[[ () ]]0)) then do
       describe(name, (function() do
               return List.iter((function(param) do
-                            code = param[1];
-                            it(param[0], (function() do
+                            code = param[2];
+                            it(param[1], (function() do
                                     return handleCode(Curry._1(code, --[[ () ]]0));
                                   end end));
                             return --[[ () ]]0;
@@ -119,80 +119,80 @@ function from_pair_suites(name, suites) do
     end else do
       name_1 = name;
       suites_1 = suites;
-      console.log(--[[ tuple ]]{
+      __console.log(--[[ tuple ]]{
             name_1,
             "testing"
           });
       return List.iter((function(param) do
-                    name = param[0];
-                    match = Curry._1(param[1], --[[ () ]]0);
+                    name = param[1];
+                    match = Curry._1(param[2], --[[ () ]]0);
                     local ___conditional___=(match.tag | 0);
                     do
                        if ___conditional___ == 0--[[ Eq ]] then do
-                          console.log(--[[ tuple ]]{
+                          __console.log(--[[ tuple ]]{
                                 name,
-                                match[0],
+                                match[1],
                                 "eq?",
-                                match[1]
+                                match[2]
                               });
                           return --[[ () ]]0; end end 
                        if ___conditional___ == 1--[[ Neq ]] then do
-                          console.log(--[[ tuple ]]{
+                          __console.log(--[[ tuple ]]{
                                 name,
-                                match[0],
+                                match[1],
                                 "neq?",
-                                match[1]
+                                match[2]
                               });
                           return --[[ () ]]0; end end 
                        if ___conditional___ == 2--[[ StrictEq ]] then do
-                          console.log(--[[ tuple ]]{
+                          __console.log(--[[ tuple ]]{
                                 name,
-                                match[0],
+                                match[1],
                                 "strict_eq?",
-                                match[1]
+                                match[2]
                               });
                           return --[[ () ]]0; end end 
                        if ___conditional___ == 3--[[ StrictNeq ]] then do
-                          console.log(--[[ tuple ]]{
+                          __console.log(--[[ tuple ]]{
                                 name,
-                                match[0],
+                                match[1],
                                 "strict_neq?",
-                                match[1]
+                                match[2]
                               });
                           return --[[ () ]]0; end end 
                        if ___conditional___ == 4--[[ Ok ]] then do
-                          console.log(--[[ tuple ]]{
+                          __console.log(--[[ tuple ]]{
                                 name,
-                                match[0],
+                                match[1],
                                 "ok?"
                               });
                           return --[[ () ]]0; end end 
                        if ___conditional___ == 5--[[ Approx ]] then do
-                          console.log(--[[ tuple ]]{
-                                name,
-                                match[0],
-                                "~",
-                                match[1]
-                              });
-                          return --[[ () ]]0; end end 
-                       if ___conditional___ == 6--[[ ApproxThreshold ]] then do
-                          console.log(--[[ tuple ]]{
+                          __console.log(--[[ tuple ]]{
                                 name,
                                 match[1],
                                 "~",
+                                match[2]
+                              });
+                          return --[[ () ]]0; end end 
+                       if ___conditional___ == 6--[[ ApproxThreshold ]] then do
+                          __console.log(--[[ tuple ]]{
+                                name,
                                 match[2],
+                                "~",
+                                match[3],
                                 " (",
-                                match[0],
+                                match[1],
                                 ")"
                               });
                           return --[[ () ]]0; end end 
                        if ___conditional___ == 7--[[ ThrowAny ]] then do
                           return --[[ () ]]0; end end 
                        if ___conditional___ == 8--[[ Fail ]] then do
-                          console.log("failed");
+                          __console.log("failed");
                           return --[[ () ]]0; end end 
                        if ___conditional___ == 9--[[ FailWith ]] then do
-                          console.log("failed: " .. match[0]);
+                          __console.log("failed: " .. match[1]);
                           return --[[ () ]]0; end end 
                       
                     end
@@ -203,7 +203,7 @@ function from_pair_suites(name, suites) do
   end end 
 end end
 
-val_unit = Promise.resolve(--[[ () ]]0);
+val_unit = __Promise.resolve(--[[ () ]]0);
 
 function from_promise_suites(name, suites) do
   match = __Array.to_list(Process.argv);
@@ -211,9 +211,9 @@ function from_promise_suites(name, suites) do
     if (is_mocha(--[[ () ]]0)) then do
       describe(name, (function() do
               return List.iter((function(param) do
-                            code = param[1];
-                            it(param[0], (function() do
-                                    return code.then((function(x) do
+                            code = param[2];
+                            it(param[1], (function() do
+                                    return code.__then((function(x) do
                                                   handleCode(x);
                                                   return val_unit;
                                                 end end));
@@ -223,7 +223,7 @@ function from_promise_suites(name, suites) do
             end end));
       return --[[ () ]]0;
     end else do
-      console.log("promise suites");
+      __console.log("promise suites");
       return --[[ () ]]0;
     end end 
   end else do
@@ -235,7 +235,7 @@ function eq_suites(test_id, suites, loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[[ :: ]]{
     --[[ tuple ]]{
-      loc .. (" id " .. String(test_id.contents)),
+      loc .. (" id " .. __String(test_id.contents)),
       (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     x,
@@ -252,7 +252,7 @@ function bool_suites(test_id, suites, loc, x) do
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[[ :: ]]{
     --[[ tuple ]]{
-      loc .. (" id " .. String(test_id.contents)),
+      loc .. (" id " .. __String(test_id.contents)),
       (function(param) do
           return --[[ Ok ]]Block.__(4, {x});
         end end)
@@ -266,7 +266,7 @@ function throw_suites(test_id, suites, loc, x) do
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[[ :: ]]{
     --[[ tuple ]]{
-      loc .. (" id " .. String(test_id.contents)),
+      loc .. (" id " .. __String(test_id.contents)),
       (function(param) do
           return --[[ ThrowAny ]]Block.__(7, {x});
         end end)
@@ -276,11 +276,12 @@ function throw_suites(test_id, suites, loc, x) do
   return --[[ () ]]0;
 end end
 
-exports = {}
+exports = {};
 exports.from_suites = from_suites;
 exports.from_pair_suites = from_pair_suites;
 exports.from_promise_suites = from_promise_suites;
 exports.eq_suites = eq_suites;
 exports.bool_suites = bool_suites;
 exports.throw_suites = throw_suites;
+return exports;
 --[[ val_unit Not a pure module ]]

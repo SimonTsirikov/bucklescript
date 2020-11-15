@@ -1,7 +1,7 @@
-console = {log = print};
+__console = {log = print};
 
-__Array = require "../../lib/js/array";
-Caml_array = require "../../lib/js/caml_array";
+__Array = require "......lib.js.array";
+Caml_array = require "......lib.js.caml_array";
 
 v = Caml_array.caml_make_vect(6, 5);
 
@@ -43,10 +43,11 @@ u = Caml_array.caml_array_concat(--[[ :: ]]{
 
 hh = __Array.blit;
 
-exports = {}
+exports = {};
 exports.v = v;
 exports.h = h;
 exports.hh = hh;
 exports.hhh = hhh;
 exports.u = u;
+return exports;
 --[[  Not a pure module ]]

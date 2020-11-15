@@ -1,10 +1,10 @@
-console = {log = print};
+__console = {log = print};
 
-Block = require "../../lib/js/block";
-Curry = require "../../lib/js/curry";
-Lexing = require "../../lib/js/lexing";
-Pervasives = require "../../lib/js/pervasives";
-Caml_format = require "../../lib/js/caml_format";
+Block = require "......lib.js.block";
+Curry = require "......lib.js.curry";
+Lexing = require "......lib.js.lexing";
+Pervasives = require "......lib.js.pervasives";
+Caml_format = require "......lib.js.caml_format";
 
 __ocaml_lex_tables = {
   lex_base = "\0\0\xf6\xff\xf7\xff\xf8\xff\xf9\xff\xfa\xff\xfb\xff\xfc\xff:\0\x85\0\xff\xff",
@@ -63,26 +63,27 @@ function str(e) do
   local ___conditional___=(e.tag | 0);
   do
      if ___conditional___ == 0--[[ Numeral ]] then do
-        return Pervasives.string_of_float(e[0]); end end 
+        return Pervasives.string_of_float(e[1]); end end 
      if ___conditional___ == 1--[[ Plus ]] then do
-        return str(e[0]) .. ("+" .. str(e[1])); end end 
+        return str(e[1]) .. ("+" .. str(e[2])); end end 
      if ___conditional___ == 2--[[ Minus ]] then do
-        return str(e[0]) .. ("-" .. str(e[1])); end end 
+        return str(e[1]) .. ("-" .. str(e[2])); end end 
      if ___conditional___ == 3--[[ Times ]] then do
-        return str(e[0]) .. ("*" .. str(e[1])); end end 
+        return str(e[1]) .. ("*" .. str(e[2])); end end 
      if ___conditional___ == 4--[[ Divide ]] then do
-        return str(e[0]) .. ("/" .. str(e[1])); end end 
+        return str(e[1]) .. ("/" .. str(e[2])); end end 
      if ___conditional___ == 5--[[ Negate ]] then do
-        return "-" .. str(e[0]); end end 
+        return "-" .. str(e[1]); end end 
      if ___conditional___ == 6--[[ Variable ]] then do
-        return e[0]; end end 
+        return e[1]; end end 
     
   end
 end end
 
-exports = {}
+exports = {};
 exports.__ocaml_lex_tables = __ocaml_lex_tables;
 exports.lexeme = lexeme;
 exports.__ocaml_lex_lexeme_rec = __ocaml_lex_lexeme_rec;
 exports.str = str;
+return exports;
 --[[ No side effect ]]

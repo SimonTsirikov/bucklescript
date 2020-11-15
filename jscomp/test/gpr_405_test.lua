@@ -1,9 +1,9 @@
-console = {log = print};
+__console = {log = print};
 
-Curry = require "../../lib/js/curry";
-Hashtbl = require "../../lib/js/hashtbl";
-Caml_primitive = require "../../lib/js/caml_primitive";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
+Curry = require "......lib.js.curry";
+Hashtbl = require "......lib.js.hashtbl";
+Caml_primitive = require "......lib.js.caml_primitive";
+Caml_builtin_exceptions = require "......lib.js.caml_builtin_exceptions";
 
 function Make(funarg) do
   __let = funarg.V;
@@ -69,11 +69,11 @@ function Make(funarg) do
         top_1 = _top;
         successors = _successors;
         if (successors) then do
-          successor = successors[0];
+          successor = successors[1];
           if (find_default(already_processed, successor)) then do
             x = find_default(on_the_stack, successor) and Curry._2(H.find, n_labels, successor) or Curry._2(H.find, l_labels, successor);
             Curry._3(H.add, l_labels, top_1, Caml_primitive.caml_int_max(Curry._2(H.find, l_labels, top_1), x));
-            _successors = successors[1];
+            _successors = successors[2];
             ::continue:: ;
           end else do
             return step2(successor, --[[ :: ]]{
@@ -101,13 +101,13 @@ function Make(funarg) do
           end
            end 
           if (rest_of_stack_1) then do
-            match = rest_of_stack_1[0];
-            new_top = match[0];
+            match = rest_of_stack_1[1];
+            new_top = match[1];
             Curry._3(H.add, on_the_stack, top_1, false);
             Curry._3(H.add, l_labels, new_top, Caml_primitive.caml_int_max(Curry._2(H.find, l_labels, top_1), Curry._2(H.find, l_labels, new_top)));
-            _rest_of_stack = rest_of_stack_1[1];
+            _rest_of_stack = rest_of_stack_1[2];
             _top = new_top;
-            _successors = match[1];
+            _successors = match[2];
             ::continue:: ;
           end else do
             return cut_set.contents;
@@ -122,6 +122,7 @@ function Make(funarg) do
         };
 end end
 
-exports = {}
+exports = {};
 exports.Make = Make;
+return exports;
 --[[ No side effect ]]

@@ -1,9 +1,9 @@
 
 
-import * as Caml_format from "./caml_format.lua";
-import * as Caml_primitive from "./caml_primitive.lua";
-import * as Caml_js_exceptions from "./caml_js_exceptions.lua";
-import * as Caml_builtin_exceptions from "./caml_builtin_exceptions.lua";
+local Caml_format = require "..caml_format.lua";
+local Caml_primitive = require "..caml_primitive.lua";
+local Caml_js_exceptions = require "..caml_js_exceptions.lua";
+local Caml_builtin_exceptions = require "..caml_builtin_exceptions.lua";
 
 function succ(n) do
   return n + 1;
@@ -34,7 +34,7 @@ function of_string_opt(s) do
     return Caml_format.caml_nativeint_of_string(s);
   end end,function(raw_exn) do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
-    if (exn[0] == Caml_builtin_exceptions.failure) then do
+    if (exn[1] == Caml_builtin_exceptions.failure) then do
       return ;
     end else do
       error(exn)

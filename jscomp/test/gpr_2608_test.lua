@@ -1,7 +1,7 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-List = require "../../lib/js/list";
+Mt = require "..mt";
+List = require "......lib.js.list";
 
 suites = {
   contents = --[[ [] ]]0
@@ -48,7 +48,7 @@ Mt.from_pair_suites("Gpr_2608_test", suites.contents);
 
 nearestGroots = --[[ [] ]]0;
 
-exports = {}
+exports = {};
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
@@ -56,4 +56,5 @@ exports.nearestGroots = nearestGroots;
 exports.oppHeroes = oppHeroes;
 exports.huntGrootCondition = huntGrootCondition;
 exports.huntGrootCondition2 = huntGrootCondition2;
+return exports;
 --[[ huntGrootCondition Not a pure module ]]

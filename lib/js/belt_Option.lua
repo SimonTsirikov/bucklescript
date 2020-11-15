@@ -1,7 +1,7 @@
-console = {log = print};
+__console = {log = print};
 
-Curry = require "./curry";
-Caml_option = require "./caml_option";
+Curry = require "..curry";
+Caml_option = require "..caml_option";
 
 function forEachU(opt, f) do
   if (opt ~= nil) then do
@@ -19,7 +19,7 @@ function getExn(param) do
   if (param ~= nil) then do
     return Caml_option.valFromOption(param);
   end else do
-    error(new Error("getExn"))
+    error(new __Error("getExn"))
   end end 
 end end
 
@@ -107,7 +107,7 @@ function cmp(a, b, f) do
   return cmpU(a, b, Curry.__2(f));
 end end
 
-exports = {}
+exports = {};
 exports.forEachU = forEachU;
 exports.forEach = forEach;
 exports.getExn = getExn;
@@ -124,4 +124,5 @@ exports.eqU = eqU;
 exports.eq = eq;
 exports.cmpU = cmpU;
 exports.cmp = cmp;
+return exports;
 --[[ No side effect ]]

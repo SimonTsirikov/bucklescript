@@ -1,10 +1,11 @@
-console = {log = print};
+__console = {log = print};
 
 
 function busted(a1, a2, param) do
   return a1 .. a2;
 end end
 
-exports = {}
+exports = {};
 exports.busted = busted;
+return exports;
 --[[ No side effect ]]

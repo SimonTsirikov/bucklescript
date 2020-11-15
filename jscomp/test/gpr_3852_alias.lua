@@ -1,8 +1,9 @@
-console = {log = print};
+__console = {log = print};
 
 
 A = --[[ alias ]]0;
 
-exports = {}
+exports = {};
 exports.A = A;
+return exports;
 --[[ No side effect ]]

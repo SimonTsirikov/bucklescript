@@ -1,6 +1,6 @@
-console = {log = print};
+__console = {log = print};
 
-Sys = require "../../lib/js/sys";
+Sys = require "......lib.js.sys";
 
 os_version;
 
@@ -15,6 +15,7 @@ do
     
 end
 
-exports = {}
+exports = {};
 exports.os_version = os_version;
+return exports;
 --[[ os_version Not a pure module ]]

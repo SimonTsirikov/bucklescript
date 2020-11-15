@@ -1,7 +1,7 @@
-console = {log = print};
+__console = {log = print};
 
-UI = require "";
-Curry = require "../../lib/js/curry";
+UI = require "@ui";
+Curry = require "......lib.js.curry";
 BUI = require "@bl";
 Runtime = require "@run";
 
@@ -102,11 +102,11 @@ function ui_layout(compile, lookup, appContext) do
             return --[[ () ]]0;
           end end)
         end end));
-  Runtime.setInterval((function() do
-          grid.dataSource = Array.prototype.map.call(data, (function(param) do
+  Runtime.__setInterval((function() do
+          grid.dataSource = __Array.prototype.map.call(data, (function(param) do
                   price = param.price;
-                  bid = price + 20 * Math.random();
-                  ask = price + 20 * Math.random();
+                  bid = price + 20 * __Math.random();
+                  ask = price + 20 * __Math.random();
                   result = Curry._1(computeFunction.contents, {
                         bid = bid,
                         ask = ask
@@ -123,7 +123,8 @@ function ui_layout(compile, lookup, appContext) do
   return hw1;
 end end
 
-exports = {}
+exports = {};
 exports.data = data;
 exports.ui_layout = ui_layout;
+return exports;
 --[[ @ui Not a pure module ]]

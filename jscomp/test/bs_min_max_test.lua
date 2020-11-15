@@ -1,9 +1,9 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Caml_obj = require "../../lib/js/caml_obj";
-Caml_int64 = require "../../lib/js/caml_int64";
-Caml_primitive = require "../../lib/js/caml_primitive";
+Mt = require "..mt";
+Caml_obj = require "......lib.js.caml_obj";
+Caml_int64 = require "......lib.js.caml_int64";
+Caml_primitive = require "......lib.js.caml_primitive";
 
 suites = {
   contents = --[[ [] ]]0
@@ -94,7 +94,7 @@ b("File \"bs_min_max_test.ml\", line 38, characters 4-11", true);
 
 Mt.from_pair_suites("Bs_min_max_test", suites.contents);
 
-exports = {}
+exports = {};
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
@@ -105,4 +105,5 @@ exports.f3 = f3;
 exports.f4 = f4;
 exports.f5_min = f5_min;
 exports.f5_max = f5_max;
+return exports;
 --[[  Not a pure module ]]

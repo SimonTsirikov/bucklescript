@@ -1,8 +1,8 @@
-console = {log = print};
+__console = {log = print};
 
-List = require "../../lib/js/list";
-Stack = require "../../lib/js/stack";
-Pervasives = require "../../lib/js/pervasives";
+List = require "......lib.js.list";
+Stack = require "......lib.js.stack";
+Pervasives = require "......lib.js.pervasives";
 
 List_1 = {
   length = List.length,
@@ -77,7 +77,7 @@ List_1 = {
   int_of_string_opt = Pervasives.int_of_string_opt,
   string_of_float = Pervasives.string_of_float,
   float_of_string_opt = Pervasives.float_of_string_opt,
-  $at = Pervasives.$at,
+  _at = Pervasives._at,
   stdin = Pervasives.stdin,
   stdout = Pervasives.stdout,
   stderr = Pervasives.stderr,
@@ -136,7 +136,7 @@ List_1 = {
   set_binary_mode_in = Pervasives.set_binary_mode_in,
   LargeFile = Pervasives.LargeFile,
   string_of_format = Pervasives.string_of_format,
-  $caret$caret = Pervasives.$caret$caret,
+  _caret_caret = Pervasives._caret_caret,
   exit = Pervasives.exit,
   at_exit = Pervasives.at_exit,
   valid_float_lexem = Pervasives.valid_float_lexem,
@@ -176,7 +176,7 @@ U = {
   int_of_string_opt = Pervasives.int_of_string_opt,
   string_of_float = Pervasives.string_of_float,
   float_of_string_opt = Pervasives.float_of_string_opt,
-  $at = Pervasives.$at,
+  _at = Pervasives._at,
   stdin = Pervasives.stdin,
   stdout = Pervasives.stdout,
   stderr = Pervasives.stderr,
@@ -235,7 +235,7 @@ U = {
   set_binary_mode_in = Pervasives.set_binary_mode_in,
   LargeFile = Pervasives.LargeFile,
   string_of_format = Pervasives.string_of_format,
-  $caret$caret = Pervasives.$caret$caret,
+  _caret_caret = Pervasives._caret_caret,
   exit = Pervasives.exit,
   at_exit = Pervasives.at_exit,
   valid_float_lexem = Pervasives.valid_float_lexem,
@@ -243,16 +243,17 @@ U = {
   do_at_exit = Pervasives.do_at_exit
 };
 
-f = Pervasives.$at;
+f = Pervasives._at;
 
 ff = List.length;
 
-fff = Pervasives.$at;
+fff = Pervasives._at;
 
-exports = {}
+exports = {};
 exports.List = List_1;
 exports.U = U;
 exports.f = f;
 exports.ff = ff;
 exports.fff = fff;
+return exports;
 --[[ No side effect ]]

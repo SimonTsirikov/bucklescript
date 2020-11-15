@@ -1,32 +1,32 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Fs = require "";
-Sys = require "../../lib/js/sys";
-Char = require "../../lib/js/char";
-List = require "../../lib/js/list";
-Path = require "";
-__Array = require "../../lib/js/array";
-Block = require "../../lib/js/block";
-Curry = require "../../lib/js/curry";
-Queue = require "../../lib/js/queue";
-__Buffer = require "../../lib/js/buffer";
-Lexing = require "../../lib/js/lexing";
-Printf = require "../../lib/js/printf";
-__String = require "../../lib/js/string";
-Hashtbl = require "../../lib/js/hashtbl";
-Caml_obj = require "../../lib/js/caml_obj";
-Filename = require "../../lib/js/filename";
-Caml_array = require "../../lib/js/caml_array";
-Caml_bytes = require "../../lib/js/caml_bytes";
-Pervasives = require "../../lib/js/pervasives";
-Caml_format = require "../../lib/js/caml_format";
-Caml_module = require "../../lib/js/caml_module";
-Caml_option = require "../../lib/js/caml_option";
-Caml_primitive = require "../../lib/js/caml_primitive";
-Caml_exceptions = require "../../lib/js/caml_exceptions";
-Caml_js_exceptions = require "../../lib/js/caml_js_exceptions";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
+Mt = require "..mt";
+Fs = require "fs";
+Sys = require "......lib.js.sys";
+Char = require "......lib.js.char";
+List = require "......lib.js.list";
+Path = require "path";
+__Array = require "......lib.js.array";
+Block = require "......lib.js.block";
+Curry = require "......lib.js.curry";
+Queue = require "......lib.js.queue";
+__Buffer = require "......lib.js.buffer";
+Lexing = require "......lib.js.lexing";
+Printf = require "......lib.js.printf";
+__String = require "......lib.js.string";
+Hashtbl = require "......lib.js.hashtbl";
+Caml_obj = require "......lib.js.caml_obj";
+Filename = require "......lib.js.filename";
+Caml_array = require "......lib.js.caml_array";
+Caml_bytes = require "......lib.js.caml_bytes";
+Pervasives = require "......lib.js.pervasives";
+Caml_format = require "......lib.js.caml_format";
+Caml_module = require "......lib.js.caml_module";
+Caml_option = require "......lib.js.caml_option";
+Caml_primitive = require "......lib.js.caml_primitive";
+Caml_exceptions = require "......lib.js.caml_exceptions";
+Caml_js_exceptions = require "......lib.js.caml_js_exceptions";
+Caml_builtin_exceptions = require "......lib.js.caml_builtin_exceptions";
 
 none = {
   source = nil,
@@ -86,15 +86,15 @@ function btwn_exclusive(loc1, loc2) do
 end end
 
 function string_of_filename(param) do
-  if (typeof param == "number") then do
+  if (type(param) == "number") then do
     return "(global)";
   end else do
-    return param[0];
+    return param[1];
   end end 
 end end
 
 function order_of_filename(param) do
-  if (typeof param == "number") then do
+  if (type(param) == "number") then do
     return 1;
   end else do
     local ___conditional___=(param.tag | 0);
@@ -157,7 +157,7 @@ end end
 __Error = Caml_exceptions.create("Flow_parser_reg_test.Parse_error.Error");
 
 function error(param) do
-  if (typeof param == "number") then do
+  if (type(param) == "number") then do
     local ___conditional___=(param);
     do
        if ___conditional___ == 0--[[ UnexpectedNumber ]] then do
@@ -290,9 +290,9 @@ function error(param) do
     local ___conditional___=(param.tag | 0);
     do
        if ___conditional___ == 0--[[ Assertion ]] then do
-          return "Unexpected parser state: " .. param[0]; end end 
+          return "Unexpected parser state: " .. param[1]; end end 
        if ___conditional___ == 1--[[ UnexpectedToken ]] then do
-          return "Unexpected token " .. param[0]; end end 
+          return "Unexpected token " .. param[1]; end end 
        if ___conditional___ == 2--[[ UnexpectedTokenWithSuggestion ]] then do
           return Curry._2(Printf.sprintf(--[[ Format ]]{
                           --[[ String_literal ]]Block.__(11, {
@@ -312,15 +312,15 @@ function error(param) do
                                 })
                             }),
                           "Unexpected token `%s`. Did you mean `%s`?"
-                        }), param[0], param[1]); end end 
+                        }), param[1], param[2]); end end 
        if ___conditional___ == 3--[[ InvalidRegExpFlags ]] then do
-          return "Invalid flags supplied to RegExp constructor '" .. (param[0] .. "'"); end end 
+          return "Invalid flags supplied to RegExp constructor '" .. (param[1] .. "'"); end end 
        if ___conditional___ == 4--[[ UnknownLabel ]] then do
-          return "Undefined label '" .. (param[0] .. "'"); end end 
+          return "Undefined label '" .. (param[1] .. "'"); end end 
        if ___conditional___ == 5--[[ Redeclaration ]] then do
-          return param[0] .. (" '" .. (param[1] .. "' has already been declared")); end end 
+          return param[1] .. (" '" .. (param[2] .. "' has already been declared")); end end 
        if ___conditional___ == 6--[[ ExpectedJSXClosingTag ]] then do
-          return "Expected corresponding JSX closing tag for " .. param[0]; end end 
+          return "Expected corresponding JSX closing tag for " .. param[1]; end end 
        if ___conditional___ == 7--[[ DuplicateExport ]] then do
           return Curry._1(Printf.sprintf(--[[ Format ]]{
                           --[[ String_literal ]]Block.__(11, {
@@ -334,7 +334,7 @@ function error(param) do
                                 })
                             }),
                           "Duplicate export for `%s`"
-                        }), param[0]); end end 
+                        }), param[1]); end end 
       
     end
   end end 
@@ -1109,7 +1109,7 @@ Caml_module.update_mod(--[[ Module ]]Block.__(0, {{
         }}), Class, Class);
 
 function token_to_string(param) do
-  if (typeof param == "number") then do
+  if (type(param) == "number") then do
     local ___conditional___=(param);
     do
        if ___conditional___ == 0--[[ T_IDENTIFIER ]] then do
@@ -1430,28 +1430,28 @@ function in_comment_syntax(is_in, env) do
 end end
 
 function get_result_and_clear_state(param) do
-  lex_token = param[1];
-  match = get_and_clear_state(param[0]);
-  state = match[1];
-  env = match[0];
+  lex_token = param[2];
+  match = get_and_clear_state(param[1]);
+  state = match[2];
+  env = match[1];
   match_1;
   exit = 0;
-  if (typeof lex_token == "number") then do
+  if (type(lex_token) == "number") then do
     exit = 2;
   end else do
     local ___conditional___=(lex_token.tag | 0);
     do
        if ___conditional___ == 2--[[ T_TEMPLATE_PART ]] then do
-          match_2 = lex_token[0];
+          match_2 = lex_token[1];
           match_1 = --[[ tuple ]]{
-            match_2[0],
-            match_2[1].literal
+            match_2[1],
+            match_2[2].literal
           }; end else 
        if ___conditional___ == 3--[[ T_REGEXP ]] then do
-          match_3 = lex_token[0];
+          match_3 = lex_token[1];
           match_1 = --[[ tuple ]]{
-            match_3[0],
-            "/" .. (match_3[1] .. ("/" .. match_3[2]))
+            match_3[1],
+            "/" .. (match_3[2] .. ("/" .. match_3[3]))
           }; end else 
        if ___conditional___ == 1--[[ T_STRING ]]
        or ___conditional___ == 4--[[ T_JSX_TEXT ]] then do
@@ -1464,10 +1464,10 @@ function get_result_and_clear_state(param) do
   local ___conditional___=(exit);
   do
      if ___conditional___ == 1 then do
-        match_4 = lex_token[0];
+        match_4 = lex_token[1];
         match_1 = --[[ tuple ]]{
-          match_4[0],
-          match_4[2]
+          match_4[1],
+          match_4[3]
         }; end else 
      if ___conditional___ == 2 then do
         match_1 = --[[ tuple ]]{
@@ -1481,8 +1481,8 @@ function get_result_and_clear_state(param) do
           env,
           {
             lex_token = lex_token,
-            lex_loc = match_1[0],
-            lex_value = match_1[1],
+            lex_loc = match_1[1],
+            lex_value = match_1[2],
             lex_errors = List.rev(state.lex_errors_acc),
             lex_comments = List.rev(state.lex_comments_acc)
           }
@@ -1543,7 +1543,7 @@ function eat(f) do
             mantissa = f.mantissa,
             exponent = f.exponent,
             decimal_exponent = f.decimal_exponent,
-            todo = match[1]
+            todo = match[2]
           };
   end else do
     error(No_good)
@@ -1573,7 +1573,7 @@ end end
 function parse_sign(f) do
   match = f.todo;
   if (match) then do
-    local ___conditional___=(match[0]);
+    local ___conditional___=(match[1]);
     do
        if ___conditional___ == 43 then do
           return eat(f); end end 
@@ -1599,13 +1599,13 @@ end end
 function parse_hex_symbol(f) do
   match = f.todo;
   if (match) then do
-    if (match[0] ~= 48) then do
+    if (match[1] ~= 48) then do
       error(No_good)
     end
      end 
-    match_1 = match[1];
+    match_1 = match[2];
     if (match_1) then do
-      match_2 = match_1[0];
+      match_2 = match_1[1];
       if (match_2 ~= 88) then do
         if (match_2 ~= 120) then do
           error(No_good)
@@ -1630,7 +1630,7 @@ function parse_exponent(f) do
     exponent = Caml_format.caml_int_of_string(todo_str);
   end end,function(raw_exn) do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
-    if (exn[0] == Caml_builtin_exceptions.failure) then do
+    if (exn[1] == Caml_builtin_exceptions.failure) then do
       error(No_good)
     end
      end 
@@ -1650,7 +1650,7 @@ function parse_body(_f) do
     f = _f;
     match = f.todo;
     if (match) then do
-      c = match[0];
+      c = match[1];
       if (c >= 81) then do
         if (c ~= 95) then do
           if (c == 112) then do
@@ -1729,7 +1729,7 @@ function float_of_string(str) do
         ret = f.mantissa;
         match = f.decimal_exponent;
         exponent = match ~= nil and f.exponent + match | 0 or f.exponent;
-        ret_1 = exponent == 0 and ret or Math.pow(ret, exponent);
+        ret_1 = exponent == 0 and ret or __Math.pow(ret, exponent);
         if (f.negative) then do
           return -ret_1;
         end else do
@@ -1913,7 +1913,7 @@ keywords = Hashtbl.create(nil, 53);
 type_keywords = Hashtbl.create(nil, 53);
 
 List.iter((function(param) do
-        return Hashtbl.add(keywords, param[0], param[1]);
+        return Hashtbl.add(keywords, param[1], param[2]);
       end end), --[[ :: ]]{
       --[[ tuple ]]{
         "function",
@@ -2217,7 +2217,7 @@ List.iter((function(param) do
     });
 
 List.iter((function(param) do
-        return Hashtbl.add(type_keywords, param[0], param[1]);
+        return Hashtbl.add(type_keywords, param[1], param[2]);
       end end), --[[ :: ]]{
       --[[ tuple ]]{
         "static",
@@ -2323,7 +2323,7 @@ function token(env, lexbuf) do
           start = from_lb(env_1.lex_source, lexbuf_1);
           buf = __Buffer.create(127);
           match = comment(env_1, buf, lexbuf_1);
-          env_3 = save_comment(match[0], start, match[1], buf, true);
+          env_3 = save_comment(match[1], start, match[2], buf, true);
           return token(env_3, lexbuf_1); end end 
        if ___conditional___ == 4 then do
           sp = Lexing.sub_lexeme(lexbuf_1, lexbuf_1.lex_start_pos + 2 | 0, Caml_array.caml_array_get(lexbuf_1.lex_mem, 0));
@@ -2352,7 +2352,7 @@ function token(env, lexbuf) do
             __Buffer.add_string(buf_1, sp);
             __Buffer.add_string(buf_1, escape_type);
             match_1 = comment(env_1, buf_1, lexbuf_1);
-            env_6 = save_comment(match_1[0], start_1, match_1[1], buf_1, true);
+            env_6 = save_comment(match_1[1], start_1, match_1[2], buf_1, true);
             return token(env_6, lexbuf_1);
           end end  end end 
        if ___conditional___ == 5 then do
@@ -2370,12 +2370,12 @@ function token(env, lexbuf) do
           start_2 = from_lb(env_1.lex_source, lexbuf_1);
           buf_2 = __Buffer.create(127);
           match_2 = line_comment(env_1, buf_2, lexbuf_1);
-          env_8 = save_comment(match_2[0], start_2, match_2[1], buf_2, false);
+          env_8 = save_comment(match_2[1], start_2, match_2[2], buf_2, false);
           return token(env_8, lexbuf_1); end end 
        if ___conditional___ == 7 then do
           if (lexbuf_1.lex_start_pos == 0) then do
             match_3 = line_comment(env_1, __Buffer.create(127), lexbuf_1);
-            return token(match_3[0], lexbuf_1);
+            return token(match_3[1], lexbuf_1);
           end else do
             return --[[ tuple ]]{
                     env_1,
@@ -2390,12 +2390,12 @@ function token(env, lexbuf) do
           __Buffer.add_char(raw, quote);
           match_4 = string_quote(env_1, quote, buf_3, raw, false, lexbuf_1);
           return --[[ tuple ]]{
-                  match_4[0],
+                  match_4[1],
                   --[[ T_STRING ]]Block.__(1, {--[[ tuple ]]{
-                        btwn(start_3, match_4[1]),
+                        btwn(start_3, match_4[2]),
                         __Buffer.contents(buf_3),
                         __Buffer.contents(raw),
-                        match_4[2]
+                        match_4[3]
                       }})
                 }; end end 
        if ___conditional___ == 9 then do
@@ -2406,15 +2406,15 @@ function token(env, lexbuf) do
           start_4 = from_lb(env_1.lex_source, lexbuf_1);
           match_5 = template_part(env_1, start_4, cooked, raw_1, literal, lexbuf_1);
           return --[[ tuple ]]{
-                  match_5[0],
+                  match_5[1],
                   --[[ T_TEMPLATE_PART ]]Block.__(2, {--[[ tuple ]]{
-                        match_5[1],
+                        match_5[2],
                         {
                           cooked = __Buffer.contents(cooked),
                           raw = __Buffer.contents(raw_1),
                           literal = __Buffer.contents(literal)
                         },
-                        match_5[2]
+                        match_5[3]
                       }})
                 }; end end 
        if ___conditional___ == 10 then do
@@ -2995,7 +2995,7 @@ function template_part(env, start, cooked, raw, literal, lexbuf) do
           str = Lexing.lexeme(lexbuf_1);
           __Buffer.add_string(raw_1, str);
           __Buffer.add_string(literal_1, str);
-          return template_part(match[0], start_1, cooked_1, raw_1, literal_1, lexbuf_1); end end 
+          return template_part(match[1], start_1, cooked_1, raw_1, literal_1, lexbuf_1); end end 
        if ___conditional___ == 4 then do
           lf = Lexing.sub_lexeme(lexbuf_1, lexbuf_1.lex_start_pos, lexbuf_1.lex_start_pos + 2 | 0);
           __Buffer.add_string(raw_1, lf);
@@ -3038,25 +3038,25 @@ function string_quote(env, q, buf, raw, octal, lexbuf) do
     local ___conditional___=(__ocaml_lex_state_1);
     do
        if ___conditional___ == 0 then do
-          q$prime = Caml_bytes.get(lexbuf_1.lex_buffer, lexbuf_1.lex_start_pos);
-          __Buffer.add_char(raw_1, q$prime);
-          if (q_1 == q$prime) then do
+          q_prime = Caml_bytes.get(lexbuf_1.lex_buffer, lexbuf_1.lex_start_pos);
+          __Buffer.add_char(raw_1, q_prime);
+          if (q_1 == q_prime) then do
             return --[[ tuple ]]{
                     env_1,
                     from_lb(env_1.lex_source, lexbuf_1),
                     octal_1
                   };
           end else do
-            __Buffer.add_char(buf_1, q$prime);
+            __Buffer.add_char(buf_1, q_prime);
             return string_quote(env_1, q_1, buf_1, raw_1, octal_1, lexbuf_1);
           end end  end end 
        if ___conditional___ == 1 then do
           e = Caml_bytes.get(lexbuf_1.lex_buffer, lexbuf_1.lex_start_pos);
           __Buffer.add_char(raw_1, e);
           match = string_escape(env_1, buf_1, lexbuf_1);
-          octal_2 = match[1] or octal_1;
+          octal_2 = match[2] or octal_1;
           __Buffer.add_string(raw_1, Lexing.lexeme(lexbuf_1));
-          return string_quote(match[0], q_1, buf_1, raw_1, octal_2, lexbuf_1); end end 
+          return string_quote(match[1], q_1, buf_1, raw_1, octal_2, lexbuf_1); end end 
        if ___conditional___ == 2 then do
           x = Lexing.sub_lexeme(lexbuf_1, lexbuf_1.lex_start_pos, lexbuf_1.lex_curr_pos);
           __Buffer.add_string(raw_1, x);
@@ -3099,7 +3099,7 @@ function __ocaml_lex_template_tail_rec(_env, lexbuf, ___ocaml_lex_state) do
           start = from_lb(env.lex_source, lexbuf);
           buf = __Buffer.create(127);
           match = line_comment(env, buf, lexbuf);
-          env_1 = save_comment(match[0], start, match[1], buf, true);
+          env_1 = save_comment(match[1], start, match[2], buf, true);
           ___ocaml_lex_state = 393;
           _env = env_1;
           ::continue:: ; end end 
@@ -3107,7 +3107,7 @@ function __ocaml_lex_template_tail_rec(_env, lexbuf, ___ocaml_lex_state) do
           start_1 = from_lb(env.lex_source, lexbuf);
           buf_1 = __Buffer.create(127);
           match_1 = comment(env, buf_1, lexbuf);
-          env_2 = save_comment(match_1[0], start_1, match_1[1], buf_1, true);
+          env_2 = save_comment(match_1[1], start_1, match_1[2], buf_1, true);
           ___ocaml_lex_state = 393;
           _env = env_2;
           ::continue:: ; end end 
@@ -3119,15 +3119,15 @@ function __ocaml_lex_template_tail_rec(_env, lexbuf, ___ocaml_lex_state) do
           __Buffer.add_string(literal, "}");
           match_2 = template_part(env, start_2, cooked, raw, literal, lexbuf);
           return --[[ tuple ]]{
-                  match_2[0],
+                  match_2[1],
                   --[[ T_TEMPLATE_PART ]]Block.__(2, {--[[ tuple ]]{
-                        match_2[1],
+                        match_2[2],
                         {
                           cooked = __Buffer.contents(cooked),
                           raw = __Buffer.contents(raw),
                           literal = __Buffer.contents(literal)
                         },
-                        match_2[2]
+                        match_2[3]
                       }})
                 }; end end 
        if ___conditional___ == 5 then do
@@ -3176,7 +3176,7 @@ function __ocaml_lex_jsx_tag_rec(_env, lexbuf, ___ocaml_lex_state) do
           start = from_lb(env.lex_source, lexbuf);
           buf = __Buffer.create(127);
           match = line_comment(env, buf, lexbuf);
-          env_1 = save_comment(match[0], start, match[1], buf, true);
+          env_1 = save_comment(match[1], start, match[2], buf, true);
           ___ocaml_lex_state = 333;
           _env = env_1;
           ::continue:: ; end end 
@@ -3184,7 +3184,7 @@ function __ocaml_lex_jsx_tag_rec(_env, lexbuf, ___ocaml_lex_state) do
           start_1 = from_lb(env.lex_source, lexbuf);
           buf_1 = __Buffer.create(127);
           match_1 = comment(env, buf_1, lexbuf);
-          env_2 = save_comment(match_1[0], start_1, match_1[1], buf_1, true);
+          env_2 = save_comment(match_1[1], start_1, match_1[2], buf_1, true);
           ___ocaml_lex_state = 333;
           _env = env_2;
           ::continue:: ; end end 
@@ -3241,9 +3241,9 @@ function __ocaml_lex_jsx_tag_rec(_env, lexbuf, ___ocaml_lex_state) do
           value = __Buffer.contents(buf_2);
           raw_1 = __Buffer.contents(raw);
           return --[[ tuple ]]{
-                  match_2[0],
+                  match_2[1],
                   --[[ T_JSX_TEXT ]]Block.__(4, {--[[ tuple ]]{
-                        btwn(start_2, match_2[1]),
+                        btwn(start_2, match_2[2]),
                         value,
                         raw_1
                       }})
@@ -3915,7 +3915,7 @@ function type_token(env, lexbuf) do
           start = from_lb(env_1.lex_source, lexbuf_1);
           buf = __Buffer.create(127);
           match = comment(env_1, buf, lexbuf_1);
-          env_2 = save_comment(match[0], start, match[1], buf, true);
+          env_2 = save_comment(match[1], start, match[2], buf, true);
           return type_token(env_2, lexbuf_1); end end 
        if ___conditional___ == 3 then do
           sp = Lexing.sub_lexeme(lexbuf_1, lexbuf_1.lex_start_pos + 2 | 0, Caml_array.caml_array_get(lexbuf_1.lex_mem, 0));
@@ -3944,7 +3944,7 @@ function type_token(env, lexbuf) do
             __Buffer.add_string(buf_1, sp);
             __Buffer.add_string(buf_1, escape_type);
             match_1 = comment(env_1, buf_1, lexbuf_1);
-            env_5 = save_comment(match_1[0], start_1, match_1[1], buf_1, true);
+            env_5 = save_comment(match_1[1], start_1, match_1[2], buf_1, true);
             return type_token(env_5, lexbuf_1);
           end end  end end 
        if ___conditional___ == 4 then do
@@ -3962,7 +3962,7 @@ function type_token(env, lexbuf) do
           start_2 = from_lb(env_1.lex_source, lexbuf_1);
           buf_2 = __Buffer.create(127);
           match_2 = line_comment(env_1, buf_2, lexbuf_1);
-          env_7 = save_comment(match_2[0], start_2, match_2[1], buf_2, true);
+          env_7 = save_comment(match_2[1], start_2, match_2[2], buf_2, true);
           return type_token(env_7, lexbuf_1); end end 
        if ___conditional___ == 6 then do
           quote = Caml_bytes.get(lexbuf_1.lex_buffer, lexbuf_1.lex_start_pos);
@@ -3972,12 +3972,12 @@ function type_token(env, lexbuf) do
           __Buffer.add_char(raw, quote);
           match_3 = string_quote(env_1, quote, buf_3, raw, false, lexbuf_1);
           return --[[ tuple ]]{
-                  match_3[0],
+                  match_3[1],
                   --[[ T_STRING ]]Block.__(1, {--[[ tuple ]]{
-                        btwn(start_3, match_3[1]),
+                        btwn(start_3, match_3[2]),
                         __Buffer.contents(buf_3),
                         __Buffer.contents(raw),
-                        match_3[2]
+                        match_3[3]
                       }})
                 }; end end 
        if ___conditional___ == 7 then do
@@ -4041,7 +4041,7 @@ function type_token(env, lexbuf) do
               error(exn)
             end end 
           end end)
-          return illegal_number(match_4[0], lexbuf_1, w_3, match_4[1]); end end 
+          return illegal_number(match_4[1], lexbuf_1, w_3, match_4[2]); end end 
        if ___conditional___ == 14 then do
           neg_7 = Lexing.sub_lexeme(lexbuf_1, lexbuf_1.lex_start_pos, Caml_array.caml_array_get(lexbuf_1.lex_mem, 0));
           num_7 = Lexing.sub_lexeme(lexbuf_1, Caml_array.caml_array_get(lexbuf_1.lex_mem, 0), lexbuf_1.lex_curr_pos);
@@ -4439,7 +4439,7 @@ function __ocaml_lex_regexp_rec(_env, lexbuf, ___ocaml_lex_state) do
           start = from_lb(env.lex_source, lexbuf);
           buf = __Buffer.create(127);
           match = line_comment(env, buf, lexbuf);
-          env_1 = save_comment(match[0], start, match[1], buf, true);
+          env_1 = save_comment(match[1], start, match[2], buf, true);
           ___ocaml_lex_state = 291;
           _env = env_1;
           ::continue:: ; end end 
@@ -4447,7 +4447,7 @@ function __ocaml_lex_regexp_rec(_env, lexbuf, ___ocaml_lex_state) do
           start_1 = from_lb(env.lex_source, lexbuf);
           buf_1 = __Buffer.create(127);
           match_1 = comment(env, buf_1, lexbuf);
-          env_2 = save_comment(match_1[0], start_1, match_1[1], buf_1, true);
+          env_2 = save_comment(match_1[1], start_1, match_1[2], buf_1, true);
           ___ocaml_lex_state = 291;
           _env = env_2;
           ::continue:: ; end end 
@@ -4455,7 +4455,7 @@ function __ocaml_lex_regexp_rec(_env, lexbuf, ___ocaml_lex_state) do
           start_2 = from_lb(env.lex_source, lexbuf);
           buf_2 = __Buffer.create(127);
           match_2 = regexp_body(env, buf_2, lexbuf);
-          env_3 = match_2[0];
+          env_3 = match_2[1];
           end_ = from_lb(env_3.lex_source, lexbuf);
           loc = btwn(start_2, end_);
           return --[[ tuple ]]{
@@ -4463,7 +4463,7 @@ function __ocaml_lex_regexp_rec(_env, lexbuf, ___ocaml_lex_state) do
                   --[[ T_REGEXP ]]Block.__(3, {--[[ tuple ]]{
                         loc,
                         __Buffer.contents(buf_2),
-                        match_2[1]
+                        match_2[2]
                       }})
                 }; end end 
        if ___conditional___ == 6 then do
@@ -4501,9 +4501,9 @@ function jsx_child(env, start, buf, raw, lexbuf) do
           value = __Buffer.contents(buf_1);
           raw_2 = __Buffer.contents(raw_1);
           return --[[ tuple ]]{
-                  match[0],
+                  match[1],
                   --[[ T_JSX_TEXT ]]Block.__(4, {--[[ tuple ]]{
-                        btwn(start_1, match[1]),
+                        btwn(start_1, match[2]),
                         value,
                         raw_2
                       }})
@@ -4531,9 +4531,9 @@ function jsx_child(env, start, buf, raw, lexbuf) do
           value_1 = __Buffer.contents(buf_1);
           raw_3 = __Buffer.contents(raw_1);
           return --[[ tuple ]]{
-                  match_1[0],
+                  match_1[1],
                   --[[ T_JSX_TEXT ]]Block.__(4, {--[[ tuple ]]{
-                        btwn(start_1, match_1[1]),
+                        btwn(start_1, match_1[2]),
                         value_1,
                         raw_3
                       }})
@@ -4556,8 +4556,8 @@ function jsx_child_1(env) do
   raw = __Buffer.create(127);
   match = jsx_child(env, start, buf, raw, env.lex_lb);
   return get_result_and_clear_state(--[[ tuple ]]{
-              match[0],
-              match[1]
+              match[1],
+              match[2]
             });
 end end
 
@@ -4579,15 +4579,15 @@ end end
 
 function height(param) do
   if (param) then do
-    return param[--[[ h ]]3];
+    return param[--[[ h ]]4];
   end else do
     return 0;
   end end 
 end end
 
 function create(l, v, r) do
-  hl = l and l[--[[ h ]]3] or 0;
-  hr = r and r[--[[ h ]]3] or 0;
+  hl = l and l[--[[ h ]]4] or 0;
+  hr = r and r[--[[ h ]]4] or 0;
   return --[[ Node ]]{
           --[[ l ]]l,
           --[[ v ]]v,
@@ -4597,17 +4597,17 @@ function create(l, v, r) do
 end end
 
 function bal(l, v, r) do
-  hl = l and l[--[[ h ]]3] or 0;
-  hr = r and r[--[[ h ]]3] or 0;
+  hl = l and l[--[[ h ]]4] or 0;
+  hr = r and r[--[[ h ]]4] or 0;
   if (hl > (hr + 2 | 0)) then do
     if (l) then do
-      lr = l[--[[ r ]]2];
-      lv = l[--[[ v ]]1];
-      ll = l[--[[ l ]]0];
+      lr = l[--[[ r ]]3];
+      lv = l[--[[ v ]]2];
+      ll = l[--[[ l ]]1];
       if (height(ll) >= height(lr)) then do
         return create(ll, lv, create(lr, v, r));
       end else if (lr) then do
-        return create(create(ll, lv, lr[--[[ l ]]0]), lr[--[[ v ]]1], create(lr[--[[ r ]]2], v, r));
+        return create(create(ll, lv, lr[--[[ l ]]1]), lr[--[[ v ]]2], create(lr[--[[ r ]]3], v, r));
       end else do
         error({
           Caml_builtin_exceptions.invalid_argument,
@@ -4622,13 +4622,13 @@ function bal(l, v, r) do
     end end 
   end else if (hr > (hl + 2 | 0)) then do
     if (r) then do
-      rr = r[--[[ r ]]2];
-      rv = r[--[[ v ]]1];
-      rl = r[--[[ l ]]0];
+      rr = r[--[[ r ]]3];
+      rv = r[--[[ v ]]2];
+      rl = r[--[[ l ]]1];
       if (height(rr) >= height(rl)) then do
         return create(create(l, v, rl), rv, rr);
       end else if (rl) then do
-        return create(create(l, v, rl[--[[ l ]]0]), rl[--[[ v ]]1], create(rl[--[[ r ]]2], rv, rr));
+        return create(create(l, v, rl[--[[ l ]]1]), rl[--[[ v ]]2], create(rl[--[[ r ]]3], rv, rr));
       end else do
         error({
           Caml_builtin_exceptions.invalid_argument,
@@ -4653,9 +4653,9 @@ end end
 
 function add(x, t) do
   if (t) then do
-    r = t[--[[ r ]]2];
-    v = t[--[[ v ]]1];
-    l = t[--[[ l ]]0];
+    r = t[--[[ r ]]3];
+    v = t[--[[ v ]]2];
+    l = t[--[[ l ]]1];
     c = Caml_primitive.caml_string_compare(x, v);
     if (c == 0) then do
       return t;
@@ -4688,11 +4688,11 @@ function mem(x, _param) do
   while(true) do
     param = _param;
     if (param) then do
-      c = Caml_primitive.caml_string_compare(x, param[--[[ v ]]1]);
+      c = Caml_primitive.caml_string_compare(x, param[--[[ v ]]2]);
       if (c == 0) then do
         return true;
       end else do
-        _param = c < 0 and param[--[[ l ]]0] or param[--[[ r ]]2];
+        _param = c < 0 and param[--[[ l ]]1] or param[--[[ r ]]3];
         ::continue:: ;
       end end 
     end else do
@@ -4778,7 +4778,7 @@ function lex(t) do
      end end end end end end end end end end end end
     
   end
-  lex_env_1 = match_1[0];
+  lex_env_1 = match_1[1];
   lexbuf = lex_env_1.lex_lb;
   lexbuf_1 = {
     refill_buff = lexbuf.refill_buff,
@@ -4798,7 +4798,7 @@ function lex(t) do
   t.la_lex_env = lex_env_1;
   Caml_array.caml_array_set(t.la_results, t.la_num_lexed, --[[ tuple ]]{
         cloned_env,
-        match_1[1]
+        match_1[2]
       });
   t.la_num_lexed = t.la_num_lexed + 1 | 0;
   return --[[ () ]]0;
@@ -4827,10 +4827,10 @@ function init_env(token_sinkOpt, parse_optionsOpt, source, content) do
   lb = Lexing.from_string(content);
   if (source ~= nil) then do
     match = source;
-    if (typeof match ~= "number") then do
+    if (type(match) ~= "number") then do
       init = lb.lex_curr_p;
       lb.lex_curr_p = {
-        pos_fname = match[0],
+        pos_fname = match[1],
         pos_lnum = init.pos_lnum,
         pos_bol = init.pos_bol,
         pos_cnum = init.pos_cnum
@@ -4888,10 +4888,10 @@ function init_env(token_sinkOpt, parse_optionsOpt, source, content) do
 end end
 
 function error_at(env, param) do
-  e = param[1];
+  e = param[2];
   env.errors.contents = --[[ :: ]]{
     --[[ tuple ]]{
-      param[0],
+      param[1],
       e
     },
     env.errors.contents
@@ -4917,15 +4917,15 @@ function comment_list(env) do
 end end
 
 function record_export(env, param) do
-  export_name = param[1];
-  __exports = env.exports.contents;
+  export_name = param[2];
+  __exports = env.__exports.contents;
   if (mem(export_name, __exports)) then do
     return error_at(env, --[[ tuple ]]{
-                param[0],
+                param[1],
                 --[[ DuplicateExport ]]Block.__(7, {export_name})
               });
   end else do
-    env.exports.contents = add(export_name, env.exports.contents);
+    env.__exports.contents = add(export_name, env.__exports.contents);
     return --[[ () ]]0;
   end end 
 end end
@@ -4948,7 +4948,7 @@ function lookahead(iOpt, env) do
   lex_until(t, i_1);
   match = Caml_array.caml_array_get(t.la_results, i_1);
   if (match ~= nil) then do
-    return match[1];
+    return match[2];
   end else do
     error({
       Caml_builtin_exceptions.failure,
@@ -5116,7 +5116,7 @@ function lex_env(iOpt, env) do
   lex_until(t, i_1);
   match = Caml_array.caml_array_get(t.la_results, i_1);
   if (match ~= nil) then do
-    return match[0];
+    return match[1];
   end else do
     error({
       Caml_builtin_exceptions.failure,
@@ -5136,7 +5136,7 @@ end end
 
 function is_implicit_semicolon(env) do
   match = token_2(nil, env);
-  if (typeof match == "number") then do
+  if (type(match) == "number") then do
     switcher = match - 3 | 0;
     if (switcher > 101 or switcher < 0) then do
       if ((switcher + 1 >>> 0) > 103) then do
@@ -5168,7 +5168,7 @@ function is_identifier(iOpt, env) do
   match = token_2(i, env);
   if (is_strict_reserved(name) or is_restricted(name) or is_future_reserved(name)) then do
     return true;
-  end else if (typeof match == "number") then do
+  end else if (type(match) == "number") then do
     switcher = match - 1 | 0;
     if (switcher > 56 or switcher < 0) then do
       return switcher < 62;
@@ -5194,7 +5194,7 @@ end end
 function is_class(iOpt, env) do
   i = iOpt ~= nil and iOpt or 0;
   match = token_2(i, env);
-  if (typeof match == "number") then do
+  if (type(match) == "number") then do
     if (match ~= 12) then do
       return match == 38;
     end else do
@@ -5214,8 +5214,8 @@ function error_1(env, e) do
 end end
 
 function get_unexpected_error(param) do
-  tmp = param[0];
-  if (typeof tmp == "number") then do
+  tmp = param[1];
+  if (type(tmp) == "number") then do
     local ___conditional___=(tmp);
     do
        if ___conditional___ == 0--[[ T_IDENTIFIER ]] then do
@@ -5235,7 +5235,7 @@ function get_unexpected_error(param) do
       
     end
   end end 
-  word = param[1];
+  word = param[2];
   if (is_future_reserved(word)) then do
     return --[[ UnexpectedReserved ]]3;
   end else if (is_strict_reserved(word)) then do
@@ -5257,7 +5257,7 @@ function error_on_decorators(env) do
   return (function(param) do
       return List.iter((function(decorator) do
                     return error_at(env, --[[ tuple ]]{
-                                decorator[0],
+                                decorator[1],
                                 --[[ UnsupportedDecorator ]]57
                               });
                   end end), param);
@@ -5275,8 +5275,8 @@ end end
 function strict_error_at(env, param) do
   if (env.in_strict_mode) then do
     return error_at(env, --[[ tuple ]]{
-                param[0],
-                param[1]
+                param[1],
+                param[2]
               });
   end else do
     return 0;
@@ -5325,7 +5325,7 @@ function pop_lex_mode(env) do
   match = env.lex_mode_stack.contents;
   new_stack;
   if (match) then do
-    new_stack = match[1];
+    new_stack = match[2];
   end else do
     error({
       Caml_builtin_exceptions.failure,
@@ -5341,9 +5341,9 @@ function double_pop_lex_mode(env) do
   match = env.lex_mode_stack.contents;
   new_stack;
   if (match) then do
-    match_1 = match[1];
+    match_1 = match[2];
     if (match_1) then do
-      new_stack = match_1[1];
+      new_stack = match_1[2];
     end else do
       error({
         Caml_builtin_exceptions.failure,
@@ -5430,10 +5430,10 @@ end end
 function reset_token_sink(flush, env, token_buffer_info) do
   if (token_buffer_info ~= nil) then do
     match = token_buffer_info;
-    orig_token_sink = match[0];
+    orig_token_sink = match[1];
     env.token_sink.contents = orig_token_sink;
     if (flush) then do
-      return Queue.iter(orig_token_sink, match[1]);
+      return Queue.iter(orig_token_sink, match[2]);
     end else do
       return 0;
     end end 
@@ -5489,15 +5489,15 @@ Parser_env_Try = {
 
 function height_1(param) do
   if (param) then do
-    return param[--[[ h ]]3];
+    return param[--[[ h ]]4];
   end else do
     return 0;
   end end 
 end end
 
 function create_2(l, v, r) do
-  hl = l and l[--[[ h ]]3] or 0;
-  hr = r and r[--[[ h ]]3] or 0;
+  hl = l and l[--[[ h ]]4] or 0;
+  hr = r and r[--[[ h ]]4] or 0;
   return --[[ Node ]]{
           --[[ l ]]l,
           --[[ v ]]v,
@@ -5507,17 +5507,17 @@ function create_2(l, v, r) do
 end end
 
 function bal_1(l, v, r) do
-  hl = l and l[--[[ h ]]3] or 0;
-  hr = r and r[--[[ h ]]3] or 0;
+  hl = l and l[--[[ h ]]4] or 0;
+  hr = r and r[--[[ h ]]4] or 0;
   if (hl > (hr + 2 | 0)) then do
     if (l) then do
-      lr = l[--[[ r ]]2];
-      lv = l[--[[ v ]]1];
-      ll = l[--[[ l ]]0];
+      lr = l[--[[ r ]]3];
+      lv = l[--[[ v ]]2];
+      ll = l[--[[ l ]]1];
       if (height_1(ll) >= height_1(lr)) then do
         return create_2(ll, lv, create_2(lr, v, r));
       end else if (lr) then do
-        return create_2(create_2(ll, lv, lr[--[[ l ]]0]), lr[--[[ v ]]1], create_2(lr[--[[ r ]]2], v, r));
+        return create_2(create_2(ll, lv, lr[--[[ l ]]1]), lr[--[[ v ]]2], create_2(lr[--[[ r ]]3], v, r));
       end else do
         error({
           Caml_builtin_exceptions.invalid_argument,
@@ -5532,13 +5532,13 @@ function bal_1(l, v, r) do
     end end 
   end else if (hr > (hl + 2 | 0)) then do
     if (r) then do
-      rr = r[--[[ r ]]2];
-      rv = r[--[[ v ]]1];
-      rl = r[--[[ l ]]0];
+      rr = r[--[[ r ]]3];
+      rv = r[--[[ v ]]2];
+      rl = r[--[[ l ]]1];
       if (height_1(rr) >= height_1(rl)) then do
         return create_2(create_2(l, v, rl), rv, rr);
       end else if (rl) then do
-        return create_2(create_2(l, v, rl[--[[ l ]]0]), rl[--[[ v ]]1], create_2(rl[--[[ r ]]2], rv, rr));
+        return create_2(create_2(l, v, rl[--[[ l ]]1]), rl[--[[ v ]]2], create_2(rl[--[[ r ]]3], rv, rr));
       end else do
         error({
           Caml_builtin_exceptions.invalid_argument,
@@ -5563,9 +5563,9 @@ end end
 
 function add_1(x, t) do
   if (t) then do
-    r = t[--[[ r ]]2];
-    v = t[--[[ v ]]1];
-    l = t[--[[ l ]]0];
+    r = t[--[[ r ]]3];
+    v = t[--[[ v ]]2];
+    l = t[--[[ l ]]1];
     c = Caml_primitive.caml_string_compare(x, v);
     if (c == 0) then do
       return t;
@@ -5598,11 +5598,11 @@ function mem_1(x, _param) do
   while(true) do
     param = _param;
     if (param) then do
-      c = Caml_primitive.caml_string_compare(x, param[--[[ v ]]1]);
+      c = Caml_primitive.caml_string_compare(x, param[--[[ v ]]2]);
       if (c == 0) then do
         return true;
       end else do
-        _param = c < 0 and param[--[[ l ]]0] or param[--[[ r ]]2];
+        _param = c < 0 and param[--[[ l ]]1] or param[--[[ r ]]3];
         ::continue:: ;
       end end 
     end else do
@@ -5613,7 +5613,7 @@ end end
 
 function height_2(param) do
   if (param) then do
-    return param[--[[ h ]]4];
+    return param[--[[ h ]]5];
   end else do
     return 0;
   end end 
@@ -5632,18 +5632,18 @@ function create_3(l, x, d, r) do
 end end
 
 function bal_2(l, x, d, r) do
-  hl = l and l[--[[ h ]]4] or 0;
-  hr = r and r[--[[ h ]]4] or 0;
+  hl = l and l[--[[ h ]]5] or 0;
+  hr = r and r[--[[ h ]]5] or 0;
   if (hl > (hr + 2 | 0)) then do
     if (l) then do
-      lr = l[--[[ r ]]3];
-      ld = l[--[[ d ]]2];
-      lv = l[--[[ v ]]1];
-      ll = l[--[[ l ]]0];
+      lr = l[--[[ r ]]4];
+      ld = l[--[[ d ]]3];
+      lv = l[--[[ v ]]2];
+      ll = l[--[[ l ]]1];
       if (height_2(ll) >= height_2(lr)) then do
         return create_3(ll, lv, ld, create_3(lr, x, d, r));
       end else if (lr) then do
-        return create_3(create_3(ll, lv, ld, lr[--[[ l ]]0]), lr[--[[ v ]]1], lr[--[[ d ]]2], create_3(lr[--[[ r ]]3], x, d, r));
+        return create_3(create_3(ll, lv, ld, lr[--[[ l ]]1]), lr[--[[ v ]]2], lr[--[[ d ]]3], create_3(lr[--[[ r ]]4], x, d, r));
       end else do
         error({
           Caml_builtin_exceptions.invalid_argument,
@@ -5658,14 +5658,14 @@ function bal_2(l, x, d, r) do
     end end 
   end else if (hr > (hl + 2 | 0)) then do
     if (r) then do
-      rr = r[--[[ r ]]3];
-      rd = r[--[[ d ]]2];
-      rv = r[--[[ v ]]1];
-      rl = r[--[[ l ]]0];
+      rr = r[--[[ r ]]4];
+      rd = r[--[[ d ]]3];
+      rv = r[--[[ v ]]2];
+      rl = r[--[[ l ]]1];
       if (height_2(rr) >= height_2(rl)) then do
         return create_3(create_3(l, x, d, rl), rv, rd, rr);
       end else if (rl) then do
-        return create_3(create_3(l, x, d, rl[--[[ l ]]0]), rl[--[[ v ]]1], rl[--[[ d ]]2], create_3(rl[--[[ r ]]3], rv, rd, rr));
+        return create_3(create_3(l, x, d, rl[--[[ l ]]1]), rl[--[[ v ]]2], rl[--[[ d ]]3], create_3(rl[--[[ r ]]4], rv, rd, rr));
       end else do
         error({
           Caml_builtin_exceptions.invalid_argument,
@@ -5691,10 +5691,10 @@ end end
 
 function add_2(x, data, m) do
   if (m) then do
-    r = m[--[[ r ]]3];
-    d = m[--[[ d ]]2];
-    v = m[--[[ v ]]1];
-    l = m[--[[ l ]]0];
+    r = m[--[[ r ]]4];
+    d = m[--[[ d ]]3];
+    v = m[--[[ v ]]2];
+    l = m[--[[ l ]]1];
     c = Caml_primitive.caml_string_compare(x, v);
     if (c == 0) then do
       if (d == data) then do
@@ -5705,7 +5705,7 @@ function add_2(x, data, m) do
                 --[[ v ]]x,
                 --[[ d ]]data,
                 --[[ r ]]r,
-                --[[ h ]]m[--[[ h ]]4]
+                --[[ h ]]m[--[[ h ]]5]
               };
       end end 
     end else if (c < 0) then do
@@ -5738,11 +5738,11 @@ function find(x, _param) do
   while(true) do
     param = _param;
     if (param) then do
-      c = Caml_primitive.caml_string_compare(x, param[--[[ v ]]1]);
+      c = Caml_primitive.caml_string_compare(x, param[--[[ v ]]2]);
       if (c == 0) then do
-        return param[--[[ d ]]2];
+        return param[--[[ d ]]3];
       end else do
-        _param = c < 0 and param[--[[ l ]]0] or param[--[[ r ]]3];
+        _param = c < 0 and param[--[[ l ]]1] or param[--[[ r ]]4];
         ::continue:: ;
       end end 
     end else do
@@ -5752,9 +5752,9 @@ function find(x, _param) do
 end end
 
 function compare_1(param, param_1) do
-  loc = compare(param[0], param_1[0]);
+  loc = compare(param[1], param_1[1]);
   if (loc == 0) then do
-    return Caml_obj.caml_compare(param[1], param_1[1]);
+    return Caml_obj.caml_compare(param[2], param_1[2]);
   end else do
     return loc;
   end end 
@@ -5762,15 +5762,15 @@ end end
 
 function height_3(param) do
   if (param) then do
-    return param[--[[ h ]]3];
+    return param[--[[ h ]]4];
   end else do
     return 0;
   end end 
 end end
 
 function create_4(l, v, r) do
-  hl = l and l[--[[ h ]]3] or 0;
-  hr = r and r[--[[ h ]]3] or 0;
+  hl = l and l[--[[ h ]]4] or 0;
+  hr = r and r[--[[ h ]]4] or 0;
   return --[[ Node ]]{
           --[[ l ]]l,
           --[[ v ]]v,
@@ -5780,17 +5780,17 @@ function create_4(l, v, r) do
 end end
 
 function bal_3(l, v, r) do
-  hl = l and l[--[[ h ]]3] or 0;
-  hr = r and r[--[[ h ]]3] or 0;
+  hl = l and l[--[[ h ]]4] or 0;
+  hr = r and r[--[[ h ]]4] or 0;
   if (hl > (hr + 2 | 0)) then do
     if (l) then do
-      lr = l[--[[ r ]]2];
-      lv = l[--[[ v ]]1];
-      ll = l[--[[ l ]]0];
+      lr = l[--[[ r ]]3];
+      lv = l[--[[ v ]]2];
+      ll = l[--[[ l ]]1];
       if (height_3(ll) >= height_3(lr)) then do
         return create_4(ll, lv, create_4(lr, v, r));
       end else if (lr) then do
-        return create_4(create_4(ll, lv, lr[--[[ l ]]0]), lr[--[[ v ]]1], create_4(lr[--[[ r ]]2], v, r));
+        return create_4(create_4(ll, lv, lr[--[[ l ]]1]), lr[--[[ v ]]2], create_4(lr[--[[ r ]]3], v, r));
       end else do
         error({
           Caml_builtin_exceptions.invalid_argument,
@@ -5805,13 +5805,13 @@ function bal_3(l, v, r) do
     end end 
   end else if (hr > (hl + 2 | 0)) then do
     if (r) then do
-      rr = r[--[[ r ]]2];
-      rv = r[--[[ v ]]1];
-      rl = r[--[[ l ]]0];
+      rr = r[--[[ r ]]3];
+      rv = r[--[[ v ]]2];
+      rl = r[--[[ l ]]1];
       if (height_3(rr) >= height_3(rl)) then do
         return create_4(create_4(l, v, rl), rv, rr);
       end else if (rl) then do
-        return create_4(create_4(l, v, rl[--[[ l ]]0]), rl[--[[ v ]]1], create_4(rl[--[[ r ]]2], rv, rr));
+        return create_4(create_4(l, v, rl[--[[ l ]]1]), rl[--[[ v ]]2], create_4(rl[--[[ r ]]3], rv, rr));
       end else do
         error({
           Caml_builtin_exceptions.invalid_argument,
@@ -5836,9 +5836,9 @@ end end
 
 function add_3(x, t) do
   if (t) then do
-    r = t[--[[ r ]]2];
-    v = t[--[[ v ]]1];
-    l = t[--[[ l ]]0];
+    r = t[--[[ r ]]3];
+    v = t[--[[ v ]]2];
+    l = t[--[[ l ]]1];
     c = compare_1(x, v);
     if (c == 0) then do
       return t;
@@ -5871,11 +5871,11 @@ function mem_2(x, _param) do
   while(true) do
     param = _param;
     if (param) then do
-      c = compare_1(x, param[--[[ v ]]1]);
+      c = compare_1(x, param[--[[ v ]]2]);
       if (c == 0) then do
         return true;
       end else do
-        _param = c < 0 and param[--[[ l ]]0] or param[--[[ r ]]2];
+        _param = c < 0 and param[--[[ l ]]1] or param[--[[ r ]]3];
         ::continue:: ;
       end end 
     end else do
@@ -5887,8 +5887,8 @@ end end
 function filter_duplicate_errors(errs) do
   errs_1 = List.rev(errs);
   match = List.fold_left((function(param, err) do
-          deduped = param[1];
-          set = param[0];
+          deduped = param[2];
+          set = param[1];
           if (mem_2(err, set)) then do
             return --[[ tuple ]]{
                     set,
@@ -5907,7 +5907,7 @@ function filter_duplicate_errors(errs) do
         --[[ Empty ]]0,
         --[[ [] ]]0
       }, errs_1);
-  return List.rev(match[1]);
+  return List.rev(match[2]);
 end end
 
 function with_loc(fn, env) do
@@ -6034,38 +6034,38 @@ function primary(env) do
   loc = Curry._2(Parser_env_Peek.loc, nil, env);
   token_5 = Curry._2(Parser_env_Peek.token, nil, env);
   exit = 0;
-  if (typeof token_5 == "number") then do
+  if (type(token_5) == "number") then do
     local ___conditional___=(token_5);
     do
        if ___conditional___ == 0--[[ T_IDENTIFIER ]] then do
           match = generic(env);
           return --[[ tuple ]]{
-                  match[0],
-                  --[[ Generic ]]Block.__(4, {match[1]})
+                  match[1],
+                  --[[ Generic ]]Block.__(4, {match[2]})
                 }; end end 
        if ___conditional___ == 1--[[ T_LCURLY ]] then do
           match_1 = Curry._2(_object, nil, env);
           return --[[ tuple ]]{
-                  match_1[0],
-                  --[[ Object ]]Block.__(2, {match_1[1]})
+                  match_1[1],
+                  --[[ Object ]]Block.__(2, {match_1[2]})
                 }; end end 
        if ___conditional___ == 3--[[ T_LPAREN ]] then do
           env_1 = env;
           start_loc = Curry._2(Parser_env_Peek.loc, nil, env_1);
           match_2 = param_list_or_type(env_1);
           if (match_2.tag) then do
-            return match_2[0];
+            return match_2[1];
           end else do
-            match_3 = match_2[0];
+            match_3 = match_2[1];
             token_4(env_1, --[[ T_ARROW ]]10);
             returnType = union(env_1);
-            end_loc = returnType[0];
+            end_loc = returnType[1];
             return --[[ tuple ]]{
                     btwn(start_loc, end_loc),
                     --[[ Function ]]Block.__(1, {{
-                          params = match_3[1],
+                          params = match_3[2],
                           returnType = returnType,
-                          rest = match_3[0],
+                          rest = match_3[1],
                           typeParameters = nil
                         }})
                   };
@@ -6089,7 +6089,7 @@ function primary(env) do
           token_4(env, --[[ T_TYPEOF ]]44);
           t = primary(env);
           return --[[ tuple ]]{
-                  btwn(start_loc_2, t[0]),
+                  btwn(start_loc_2, t[1]),
                   --[[ Typeof ]]Block.__(7, {t})
                 }; end end end end 
        if ___conditional___ == 89--[[ T_LESS_THAN ]] then do
@@ -6099,13 +6099,13 @@ function primary(env) do
           match_4 = function_param_list(env_3);
           token_4(env_3, --[[ T_ARROW ]]10);
           returnType_1 = union(env_3);
-          end_loc_2 = returnType_1[0];
+          end_loc_2 = returnType_1[1];
           return --[[ tuple ]]{
                   btwn(start_loc_3, end_loc_2),
                   --[[ Function ]]Block.__(1, {{
-                        params = match_4[1],
+                        params = match_4[2],
                         returnType = returnType_1,
-                        rest = match_4[0],
+                        rest = match_4[1],
                         typeParameters = typeParameters
                       }})
                 }; end end 
@@ -6122,11 +6122,11 @@ function primary(env) do
     local ___conditional___=(token_5.tag | 0);
     do
        if ___conditional___ == 1--[[ T_STRING ]] then do
-          match_5 = token_5[0];
-          octal = match_5[3];
-          raw = match_5[2];
-          value = match_5[1];
-          loc_1 = match_5[0];
+          match_5 = token_5[1];
+          octal = match_5[4];
+          raw = match_5[3];
+          value = match_5[2];
+          loc_1 = match_5[1];
           if (octal) then do
             strict_error(env, --[[ StrictOctalLiteral ]]31);
           end
@@ -6145,8 +6145,8 @@ function primary(env) do
                       }})
                 }; end end 
        if ___conditional___ == 5--[[ T_NUMBER_SINGLETON_TYPE ]] then do
-          value_1 = token_5[1];
-          number_type = token_5[0];
+          value_1 = token_5[2];
+          number_type = token_5[1];
           raw_1 = Curry._2(Parser_env_Peek.value, nil, env);
           token_4(env, --[[ T_NUMBER_SINGLETON_TYPE ]]Block.__(5, {
                   number_type,
@@ -6200,7 +6200,7 @@ function primary(env) do
 end end
 
 function primitive(param) do
-  if (typeof param == "number") then do
+  if (type(param) == "number") then do
     if (param ~= 27) then do
       if (param >= 107) then do
         local ___conditional___=(param - 107 | 0);
@@ -6230,7 +6230,7 @@ end end
 function function_param_or_generic_type(env) do
   id = Curry._2(Parse.identifier, nil, env);
   match = Curry._2(Parser_env_Peek.token, nil, env);
-  if (typeof match == "number" and (match == 77 or match == 76)) then do
+  if (type(match) == "number" and (match == 77 or match == 76)) then do
     param = function_param_with_id(env, id);
     maybe(env, --[[ T_COMMA ]]8);
     return --[[ ParamList ]]Block.__(0, {Curry._2(function_param_list_without_parens, env, --[[ :: ]]{
@@ -6257,7 +6257,7 @@ function function_param_with_id(env, name) do
   token_4(env, --[[ T_COLON ]]77);
   typeAnnotation = union(env);
   return --[[ tuple ]]{
-          btwn(name[0], typeAnnotation[0]),
+          btwn(name[1], typeAnnotation[1]),
           {
             name = name,
             typeAnnotation = typeAnnotation,
@@ -6269,8 +6269,8 @@ end end
 function generic_type_with_identifier(env, id) do
   match = Curry._2(raw_generic_with_identifier, env, id);
   return --[[ tuple ]]{
-          match[0],
-          --[[ Generic ]]Block.__(4, {match[1]})
+          match[1],
+          --[[ Generic ]]Block.__(4, {match[2]})
         };
 end end
 
@@ -6280,7 +6280,7 @@ function postfix_with(env, _t) do
     if (not Curry._1(Parser_env_Peek.is_line_terminator, env) and maybe(env, --[[ T_LBRACKET ]]5)) then do
       end_loc = Curry._2(Parser_env_Peek.loc, nil, env);
       token_4(env, --[[ T_RBRACKET ]]6);
-      loc = btwn(t[0], end_loc);
+      loc = btwn(t[1], end_loc);
       t_001 = --[[ Array ]]Block.__(3, {t});
       t_1 = --[[ tuple ]]{
         loc,
@@ -6303,12 +6303,12 @@ end end
 
 function prefix(env) do
   match = Curry._2(Parser_env_Peek.token, nil, env);
-  if (typeof match == "number" and match == 76) then do
+  if (type(match) == "number" and match == 76) then do
     loc = Curry._2(Parser_env_Peek.loc, nil, env);
     token_4(env, --[[ T_PLING ]]76);
     t = prefix(env);
     return --[[ tuple ]]{
-            btwn(loc, t[0]),
+            btwn(loc, t[1]),
             --[[ Nullable ]]Block.__(0, {t})
           };
   end else do
@@ -6321,7 +6321,7 @@ end end
 function rev_nonempty_acc(acc) do
   end_loc;
   if (acc) then do
-    end_loc = acc[0][0];
+    end_loc = acc[1][1];
   end else do
     error({
       Caml_builtin_exceptions.assert_failure,
@@ -6335,7 +6335,7 @@ function rev_nonempty_acc(acc) do
   acc_1 = List.rev(acc);
   start_loc;
   if (acc_1) then do
-    start_loc = acc_1[0][0];
+    start_loc = acc_1[1][1];
   end else do
     error({
       Caml_builtin_exceptions.assert_failure,
@@ -6357,7 +6357,7 @@ function param_list_or_type(env) do
   token_5 = Curry._2(Parser_env_Peek.token, nil, env);
   ret;
   exit = 0;
-  if (typeof token_5 == "number") then do
+  if (type(token_5) == "number") then do
     if (token_5 ~= 105) then do
       if (token_5 >= 12) then do
         exit = 1;
@@ -6397,9 +6397,9 @@ function param_list_or_type(env) do
     match = primitive(token_5);
     if (match ~= nil) then do
       match_1 = Curry._2(Parser_env_Peek.token, 1, env);
-      if (typeof match_1 == "number" and (match_1 == 77 or match_1 == 76)) then do
+      if (type(match_1) == "number" and (match_1 == 77 or match_1 == 76)) then do
         match_2 = Curry._1(Parse.identifier_or_reserved_keyword, env);
-        name = match_2[0];
+        name = match_2[1];
         if (not env.parse_options.types) then do
           error_1(env, --[[ UnexpectedTypeAnnotation ]]6);
         end
@@ -6411,7 +6411,7 @@ function param_list_or_type(env) do
           token_4(env, --[[ T_COMMA ]]8);
         end
          end 
-        param_000 = btwn(name[0], typeAnnotation[0]);
+        param_000 = btwn(name[1], typeAnnotation[1]);
         param_001 = {
           name = name,
           typeAnnotation = typeAnnotation,
@@ -6447,7 +6447,7 @@ function union_with(env, left) do
     while(true) do
       acc = _acc;
       match = Curry._2(Parser_env_Peek.token, nil, env_1);
-      if (typeof match == "number" and match == 80) then do
+      if (type(match) == "number" and match == 80) then do
         token_4(env_1, --[[ T_BIT_OR ]]80);
         _acc = --[[ :: ]]{
           intersection(env_1),
@@ -6458,8 +6458,8 @@ function union_with(env, left) do
        end 
       match_1 = rev_nonempty_acc(acc);
       return --[[ tuple ]]{
-              match_1[0],
-              --[[ Union ]]Block.__(5, {match_1[1]})
+              match_1[1],
+              --[[ Union ]]Block.__(5, {match_1[2]})
             };
     end;
   end else do
@@ -6472,13 +6472,13 @@ function methodish(env, start_loc) do
   match = function_param_list(env);
   token_4(env, --[[ T_COLON ]]77);
   returnType = union(env);
-  loc = btwn(start_loc, returnType[0]);
+  loc = btwn(start_loc, returnType[1]);
   return --[[ tuple ]]{
           loc,
           {
-            params = match[1],
+            params = match[2],
             returnType = returnType,
-            rest = match[0],
+            rest = match[1],
             typeParameters = typeParameters
           }
         };
@@ -6486,14 +6486,14 @@ end end
 
 function method_property(env, start_loc, __static, key) do
   value = methodish(env, start_loc);
-  value_000 = value[0];
-  value_001 = --[[ Function ]]Block.__(1, {value[1]});
+  value_000 = value[1];
+  value_001 = --[[ Function ]]Block.__(1, {value[2]});
   value_1 = --[[ tuple ]]{
     value_000,
     value_001
   };
   return --[[ tuple ]]{
-          value_000,
+          value_001,
           {
             key = key,
             value = value_1,
@@ -6507,7 +6507,7 @@ end end
 function call_property(env, start_loc, __static) do
   value = methodish(env, Curry._2(Parser_env_Peek.loc, nil, env));
   return --[[ tuple ]]{
-          btwn(start_loc, value[0]),
+          btwn(start_loc, value[1]),
           {
             value = value,
             static = __static
@@ -6524,7 +6524,7 @@ function property(env, start_loc, __static, key) do
   token_4(env, --[[ T_COLON ]]77);
   value = union(env);
   return --[[ tuple ]]{
-          btwn(start_loc, value[0]),
+          btwn(start_loc, value[1]),
           {
             key = key,
             value = value,
@@ -6544,9 +6544,9 @@ function indexer_property(env, start_loc, __static) do
   token_4(env, --[[ T_COLON ]]77);
   value = union(env);
   return --[[ tuple ]]{
-          btwn(start_loc, value[0]),
+          btwn(start_loc, value[1]),
           {
-            id = match[0],
+            id = match[1],
             key = key,
             value = value,
             static = __static
@@ -6556,7 +6556,7 @@ end end
 
 function semicolon_1(env) do
   match = Curry._2(Parser_env_Peek.token, nil, env);
-  if (typeof match == "number") then do
+  if (type(match) == "number") then do
     if (match >= 7) then do
       if (match >= 9) then do
         return error_unexpected(env);
@@ -6576,14 +6576,14 @@ end end
 function properties(allow_static, env, _param) do
   while(true) do
     param = _param;
-    callProperties = param[2];
-    indexers = param[1];
-    acc = param[0];
+    callProperties = param[3];
+    indexers = param[2];
+    acc = param[1];
     start_loc = Curry._2(Parser_env_Peek.loc, nil, env);
     __static = allow_static and maybe(env, --[[ T_STATIC ]]40);
     match = Curry._2(Parser_env_Peek.token, nil, env);
     exit = 0;
-    if (typeof match == "number") then do
+    if (type(match) == "number") then do
       if (match ~= 89) then do
         if (match ~= 105) then do
           if (match >= 6) then do
@@ -6629,7 +6629,7 @@ function properties(allow_static, env, _param) do
           match_1 = Curry._2(Parser_env_Peek.token, nil, env);
           match_2;
           exit_1 = 0;
-          if (__static and typeof match_1 == "number" and match_1 == 77) then do
+          if (__static and type(match_1) == "number" and match_1 == 77) then do
             strict_error_at(env, --[[ tuple ]]{
                   start_loc,
                   --[[ StrictReservedWord ]]39
@@ -6663,10 +6663,10 @@ function properties(allow_static, env, _param) do
             };
           end
            end 
-          key_1 = match_2[1][1];
-          __static_1 = match_2[0];
+          key_1 = match_2[2][2];
+          __static_1 = match_2[1];
           match_3 = Curry._2(Parser_env_Peek.token, nil, env);
-          property_1 = typeof match_3 == "number" and not (match_3 ~= 3 and match_3 ~= 89) and method_property(env, start_loc, __static_1, key_1) or property(env, start_loc, __static_1, key_1);
+          property_1 = type(match_3) == "number" and not (match_3 ~= 3 and match_3 ~= 89) and method_property(env, start_loc, __static_1, key_1) or property(env, start_loc, __static_1, key_1);
           semicolon_1(env);
           _param = --[[ tuple ]]{
             --[[ :: ]]{
@@ -6714,9 +6714,9 @@ function _object(allow_staticOpt, env) do
   return --[[ tuple ]]{
           btwn(start_loc, end_loc),
           {
-            properties = match[0],
-            indexers = match[1],
-            callProperties = match[2]
+            properties = match[1],
+            indexers = match[2],
+            callProperties = match[3]
           }
         };
 end end
@@ -6725,7 +6725,7 @@ function types(env, _acc) do
   while(true) do
     acc = _acc;
     match = Curry._2(Parser_env_Peek.token, nil, env);
-    if (typeof match == "number" and not (match ~= 6 and match ~= 105)) then do
+    if (type(match) == "number" and not (match ~= 6 and match ~= 105)) then do
       return List.rev(acc);
     end
      end 
@@ -6745,7 +6745,7 @@ end end
 
 function param(env) do
   match = Curry._1(Parse.identifier_or_reserved_keyword, env);
-  return function_param_with_id(env, match[0]);
+  return function_param_with_id(env, match[1]);
 end end
 
 function function_param_list_without_parens(env) do
@@ -6756,7 +6756,7 @@ function function_param_list_without_parens(env) do
         acc = _acc;
         t = Curry._2(Parser_env_Peek.token, nil, env_1);
         exit = 0;
-        if (typeof t == "number") then do
+        if (type(t) == "number") then do
           switcher = t - 4 | 0;
           exit = switcher > 7 or switcher < 0 and (
               switcher ~= 101 and 1 or 2
@@ -6796,7 +6796,7 @@ function params(env, _acc) do
   while(true) do
     acc = _acc;
     match = Curry._2(Parser_env_Peek.token, nil, env);
-    if (typeof match == "number" and not (match ~= 90 and match ~= 105)) then do
+    if (type(match) == "number" and not (match ~= 90 and match ~= 105)) then do
       return List.rev(acc);
     end
      end 
@@ -6841,7 +6841,7 @@ function intersection_with(env, left) do
     while(true) do
       acc = _acc;
       match = Curry._2(Parser_env_Peek.token, nil, env_1);
-      if (typeof match == "number" and match == 82) then do
+      if (type(match) == "number" and match == 82) then do
         token_4(env_1, --[[ T_BIT_AND ]]82);
         _acc = --[[ :: ]]{
           prefix(env_1),
@@ -6852,8 +6852,8 @@ function intersection_with(env, left) do
        end 
       match_1 = rev_nonempty_acc(acc);
       return --[[ tuple ]]{
-              match_1[0],
-              --[[ Intersection ]]Block.__(6, {match_1[1]})
+              match_1[1],
+              --[[ Intersection ]]Block.__(6, {match_1[2]})
             };
     end;
   end else do
@@ -6866,19 +6866,19 @@ function params_1(env, allow_default, _require_default, _acc) do
     acc = _acc;
     require_default = _require_default;
     match = Curry._2(Parser_env_Peek.token, nil, env);
-    variance = typeof match == "number" and (
+    variance = type(match) == "number" and (
         match ~= 94 and (
             match ~= 95 and nil or (token_3(env), --[[ Minus ]]1)
           ) or (token_3(env), --[[ Plus ]]0)
       ) or nil;
     match_1 = Curry._2(Parse.identifier_with_type, env, --[[ StrictParamName ]]28);
-    id = match_1[1];
-    loc = match_1[0];
+    id = match_1[2];
+    loc = match_1[1];
     match_2 = Curry._2(Parser_env_Peek.token, nil, env);
     match_3;
     if (allow_default) then do
       exit = 0;
-      if (typeof match_2 == "number" and match_2 == 75) then do
+      if (type(match_2) == "number" and match_2 == 75) then do
         token_3(env);
         match_3 = --[[ tuple ]]{
           union(env),
@@ -6911,7 +6911,7 @@ function params_1(env, allow_default, _require_default, _acc) do
       name = id.name,
       bound = id.typeAnnotation,
       variance = variance,
-      default = match_3[0]
+      default = match_3[1]
     };
     param = --[[ tuple ]]{
       loc,
@@ -6922,7 +6922,7 @@ function params_1(env, allow_default, _require_default, _acc) do
       acc
     };
     match_4 = Curry._2(Parser_env_Peek.token, nil, env);
-    if (typeof match_4 == "number" and not (match_4 ~= 90 and match_4 ~= 105)) then do
+    if (type(match_4) == "number" and not (match_4 ~= 90 and match_4 ~= 105)) then do
       return List.rev(acc_1);
     end
      end 
@@ -6931,7 +6931,7 @@ function params_1(env, allow_default, _require_default, _acc) do
       return List.rev(acc_1);
     end else do
       _acc = acc_1;
-      _require_default = match_3[1];
+      _require_default = match_3[2];
       ::continue:: ;
     end end 
   end;
@@ -6961,12 +6961,12 @@ end end
 function identifier(env, _param) do
   while(true) do
     param = _param;
-    qualification = param[1];
-    q_loc = param[0];
+    qualification = param[2];
+    q_loc = param[1];
     if (Curry._2(Parser_env_Peek.token, nil, env) == --[[ T_PERIOD ]]9) then do
       token_4(env, --[[ T_PERIOD ]]9);
       id = Curry._2(Parse.identifier, nil, env);
-      loc = btwn(q_loc, id[0]);
+      loc = btwn(q_loc, id[1]);
       qualification_1 = --[[ Qualified ]]Block.__(1, {--[[ tuple ]]{
             loc,
             {
@@ -6989,20 +6989,20 @@ function identifier(env, _param) do
 end end
 
 function raw_generic_with_identifier(env, id) do
-  id_000 = id[0];
+  id_000 = id[1];
   id_001 = --[[ Unqualified ]]Block.__(0, {id});
   id_1 = --[[ tuple ]]{
     id_000,
     id_001
   };
   match = identifier(env, id_1);
-  id_loc = match[0];
+  id_loc = match[1];
   typeParameters = Curry._1(type_parameter_instantiation, env);
-  loc = typeParameters ~= nil and btwn(id_loc, typeParameters[0]) or id_loc;
+  loc = typeParameters ~= nil and btwn(id_loc, typeParameters[1]) or id_loc;
   return --[[ tuple ]]{
           loc,
           {
-            id = match[1],
+            id = match[2],
             typeParameters = typeParameters
           }
         };
@@ -7040,7 +7040,7 @@ end end
 
 function annotation_opt(env) do
   match = Curry._2(Parser_env_Peek.token, nil, env);
-  if (typeof match == "number" and match == 77) then do
+  if (type(match) == "number" and match == 77) then do
     return annotation(env);
   end
    end 
@@ -7074,29 +7074,29 @@ end end
 function pattern(check_env, _param) do
   while(true) do
     param = _param;
-    p = param[1];
+    p = param[2];
     local ___conditional___=(p.tag | 0);
     do
        if ___conditional___ == 0--[[ Object ]] then do
           check_env_1 = check_env;
-          o = p[0];
+          o = p[1];
           return List.fold_left(object_property, check_env_1, o.properties); end end 
        if ___conditional___ == 1--[[ Array ]] then do
           check_env_2 = check_env;
-          arr = p[0];
+          arr = p[1];
           return List.fold_left(array_element, check_env_2, arr.elements); end end 
        if ___conditional___ == 2--[[ Assignment ]] then do
-          _param = p[0].left;
+          _param = p[1].left;
           ::continue:: ; end end 
        if ___conditional___ == 3--[[ Identifier ]] then do
           param_1 = check_env;
-          id = p[0];
-          name = id[1].name;
-          param_names = param_1[1];
-          env = param_1[0];
+          id = p[1];
+          name = id[2].name;
+          param_names = param_1[2];
+          env = param_1[1];
           if (mem_1(name, param_names)) then do
             error_at(env, --[[ tuple ]]{
-                  id[0],
+                  id[1],
                   --[[ StrictParamDupe ]]29
                 });
           end
@@ -7106,12 +7106,12 @@ function pattern(check_env, _param) do
                 param_names
               }, id);
           return --[[ tuple ]]{
-                  match[0],
-                  add_1(name, match[1])
+                  match[1],
+                  add_1(name, match[2])
                 }; end end 
        if ___conditional___ == 4--[[ Expression ]] then do
-          error_at(check_env[0], --[[ tuple ]]{
-                param[0],
+          error_at(check_env[1], --[[ tuple ]]{
+                param[1],
                 --[[ ExpectedPatternFoundExpression ]]18
               });
           return check_env; end end 
@@ -7122,15 +7122,15 @@ end end
 
 function object_property(check_env, param) do
   if (param.tag) then do
-    return pattern(check_env, param[0][1].argument);
+    return pattern(check_env, param[1][2].argument);
   end else do
-    property = param[0][1];
+    property = param[1][2];
     match = property.key;
     check_env_1;
     local ___conditional___=(match.tag | 0);
     do
        if ___conditional___ == 1--[[ Identifier ]] then do
-          check_env_1 = identifier_no_dupe_check(check_env, match[0]); end else 
+          check_env_1 = identifier_no_dupe_check(check_env, match[1]); end else 
        if ___conditional___ == 0--[[ Literal ]]
        or ___conditional___ == 2--[[ Computed ]] then do
           check_env_1 = check_env; end else 
@@ -7145,9 +7145,9 @@ function array_element(check_env, param) do
   if (param ~= nil) then do
     match = param;
     if (match.tag) then do
-      return pattern(check_env, match[0][1].argument);
+      return pattern(check_env, match[1][2].argument);
     end else do
-      return pattern(check_env, match[0]);
+      return pattern(check_env, match[1]);
     end end 
   end else do
     return check_env;
@@ -7155,9 +7155,9 @@ function array_element(check_env, param) do
 end end
 
 function identifier_no_dupe_check(param, param_1) do
-  name = param_1[1].name;
-  loc = param_1[0];
-  env = param[0];
+  name = param_1[2].name;
+  loc = param_1[1];
+  env = param[1];
   if (is_restricted(name)) then do
     strict_error_at(env, --[[ tuple ]]{
           loc,
@@ -7174,7 +7174,7 @@ function identifier_no_dupe_check(param, param_1) do
    end 
   return --[[ tuple ]]{
           env,
-          param[1]
+          param[2]
         };
 end end
 
@@ -7183,8 +7183,8 @@ function strict_post_check(env, strict, simple, id, params) do
     env_1 = strict and with_strict(not env.in_strict_mode, env) or env;
     if (id ~= nil) then do
       match = id;
-      name = match[1].name;
-      loc = match[0];
+      name = match[2].name;
+      loc = match[1];
       if (is_restricted(name)) then do
         strict_error_at(env_1, --[[ tuple ]]{
               loc,
@@ -7231,12 +7231,12 @@ end end
 function param_list(env, _param) do
   while(true) do
     param_2 = _param;
-    has_default = param_2[2];
-    defaults = param_2[1];
-    params = param_2[0];
+    has_default = param_2[3];
+    defaults = param_2[2];
+    params = param_2[1];
     t = Curry._2(Parser_env_Peek.token, nil, env);
     exit = 0;
-    if (typeof t == "number") then do
+    if (type(t) == "number") then do
       switcher = t - 4 | 0;
       exit = switcher > 7 or switcher < 0 and (
           switcher ~= 101 and 1 or 2
@@ -7250,7 +7250,7 @@ function param_list(env, _param) do
     do
        if ___conditional___ == 1 then do
           match = param_1(env);
-          __default = match[1];
+          __default = match[2];
           has_default_1 = has_default or __default ~= nil;
           if (Curry._2(Parser_env_Peek.token, nil, env) ~= --[[ T_RPAREN ]]4) then do
             token_4(env, --[[ T_COMMA ]]8);
@@ -7258,7 +7258,7 @@ function param_list(env, _param) do
            end 
           _param = --[[ tuple ]]{
             --[[ :: ]]{
-              match[0],
+              match[1],
               params
             },
             --[[ :: ]]{
@@ -7293,23 +7293,23 @@ function function_params(env) do
       });
   token_4(env, --[[ T_RPAREN ]]4);
   return --[[ tuple ]]{
-          match[0],
           match[1],
-          match[2]
+          match[2],
+          match[3]
         };
 end end
 
 function function_body(env, async, generator) do
   env_1 = enter_function(env, async, generator);
   match = Curry._1(Parse.function_block_body, env_1);
-  loc = match[0];
+  loc = match[1];
   return --[[ tuple ]]{
           loc,
           --[[ BodyBlock ]]Block.__(0, {--[[ tuple ]]{
                 loc,
-                match[1]
+                match[2]
               }}),
-          match[2]
+          match[3]
         };
 end end
 
@@ -7324,7 +7324,7 @@ function generator(env, is_async) do
 end end
 
 function is_simple_param(param) do
-  if (param[1].tag == --[[ Identifier ]]3) then do
+  if (param[2].tag == --[[ Identifier ]]3) then do
     return true;
   end else do
     return false;
@@ -7348,7 +7348,7 @@ function _function(env) do
   match_1 = Curry._2(Parser_env_Peek.token, nil, env);
   match_2;
   exit = 0;
-  if (match and typeof match_1 == "number") then do
+  if (match and type(match_1) == "number") then do
     if (match_1 ~= 3) then do
       if (match_1 ~= 89) then do
         exit = 1;
@@ -7377,27 +7377,27 @@ function _function(env) do
     };
   end
    end 
-  id_2 = match_2[1];
+  id_2 = match_2[2];
   match_3 = function_params(env);
-  rest = match_3[2];
-  defaults = match_3[1];
-  params = match_3[0];
+  rest = match_3[3];
+  defaults = match_3[2];
+  params = match_3[1];
   returnType = wrap(annotation_opt, env);
   predicate = Curry._1(Parse.predicate, env);
   match_4 = function_body(env, async, generator_1);
-  body = match_4[1];
+  body = match_4[2];
   simple = is_simple_function_params(params, defaults, rest);
-  strict_post_check(env, match_4[2], simple, id_2, params);
+  strict_post_check(env, match_4[3], simple, id_2, params);
   match_5;
   match_5 = body.tag and --[[ tuple ]]{
-      body[0][0],
+      body[1][1],
       true
     } or --[[ tuple ]]{
-      body[0][0],
+      body[1][1],
       false
     };
   return --[[ tuple ]]{
-          btwn(start_loc, match_5[0]),
+          btwn(start_loc, match_5[1]),
           --[[ FunctionDeclaration ]]Block.__(18, {{
                 id = id_2,
                 params = params,
@@ -7407,9 +7407,9 @@ function _function(env) do
                 async = async,
                 generator = generator_1,
                 predicate = predicate,
-                expression = match_5[1],
+                expression = match_5[2],
                 returnType = returnType,
-                typeParameters = match_2[0]
+                typeParameters = match_2[1]
               }})
         };
 end end
@@ -7424,31 +7424,31 @@ function variable_declaration(env) do
       --[[ [] ]]0
     };
   end else do
-    match = id[1].tag == --[[ Identifier ]]3 and --[[ tuple ]]{
+    match = id[2].tag == --[[ Identifier ]]3 and --[[ tuple ]]{
         nil,
         --[[ [] ]]0
       } or --[[ tuple ]]{
         nil,
         --[[ :: ]]{
           --[[ tuple ]]{
-            id[0],
+            id[1],
             --[[ NoUninitializedDestructuring ]]43
           },
           --[[ [] ]]0
         }
       };
   end end 
-  init = match[0];
-  end_loc = init ~= nil and init[0] or id[0];
+  init = match[1];
+  end_loc = init ~= nil and init[1] or id[1];
   return --[[ tuple ]]{
           --[[ tuple ]]{
-            btwn(id[0], end_loc),
+            btwn(id[1], end_loc),
             {
               id = id,
               init = init
             }
           },
-          match[1]
+          match[2]
         };
 end end
 
@@ -7457,21 +7457,21 @@ function helper(env, _decls, _errs) do
     errs = _errs;
     decls = _decls;
     match = variable_declaration(env);
-    decl = match[0];
+    decl = match[1];
     decls_1 = --[[ :: ]]{
       decl,
       decls
     };
-    errs_1 = Pervasives.$at(match[1], errs);
+    errs_1 = Pervasives._at(match[2], errs);
     if (Curry._2(Parser_env_Peek.token, nil, env) == --[[ T_COMMA ]]8) then do
       token_4(env, --[[ T_COMMA ]]8);
       _errs = errs_1;
       _decls = decls_1;
       ::continue:: ;
     end else do
-      end_loc = decl[0];
+      end_loc = decl[1];
       declarations = List.rev(decls_1);
-      start_loc = decl[0];
+      start_loc = decl[1];
       return --[[ tuple ]]{
               btwn(start_loc, end_loc),
               declarations,
@@ -7487,37 +7487,37 @@ function declarations(token_5, kind, env) do
   match = helper(env, --[[ [] ]]0, --[[ [] ]]0);
   return --[[ tuple ]]{
           --[[ tuple ]]{
-            btwn(start_loc, match[0]),
+            btwn(start_loc, match[1]),
             {
-              declarations = match[1],
+              declarations = match[2],
               kind = kind
             }
           },
-          match[2]
+          match[3]
         };
 end end
 
 function __const(env) do
   env_1 = with_no_let(true, env);
   match = declarations(--[[ T_CONST ]]25, --[[ Const ]]2, env_1);
-  match_1 = match[0];
-  variable = match_1[1];
+  match_1 = match[1];
+  variable = match_1[2];
   errs = List.fold_left((function(errs, decl) do
-          if (decl[1].init ~= nil) then do
+          if (decl[2].init ~= nil) then do
             return errs;
           end else do
             return --[[ :: ]]{
                     --[[ tuple ]]{
-                      decl[0],
+                      decl[1],
                       --[[ NoUninitializedConst ]]42
                     },
                     errs
                   };
           end end 
-        end end), match[1], variable.declarations);
+        end end), match[2], variable.declarations);
   return --[[ tuple ]]{
           --[[ tuple ]]{
-            match_1[0],
+            match_1[1],
             variable
           },
           List.rev(errs)
@@ -7533,7 +7533,7 @@ function variable(env) do
   start_loc = Curry._2(Parser_env_Peek.loc, nil, env);
   match = Curry._2(Parser_env_Peek.token, nil, env);
   match_1;
-  if (typeof match == "number") then do
+  if (type(match) == "number") then do
     local ___conditional___=(match);
     do
        if ___conditional___ == 22--[[ T_VAR ]] then do
@@ -7555,25 +7555,25 @@ function variable(env) do
     error_unexpected(env);
     match_1 = declarations(--[[ T_VAR ]]22, --[[ Var ]]0, env);
   end end 
-  match_2 = match_1[0];
+  match_2 = match_1[1];
   return --[[ tuple ]]{
           --[[ tuple ]]{
-            btwn(start_loc, match_2[0]),
-            --[[ VariableDeclaration ]]Block.__(19, {match_2[1]})
+            btwn(start_loc, match_2[1]),
+            --[[ VariableDeclaration ]]Block.__(19, {match_2[2]})
           },
-          match_1[1]
+          match_1[2]
         };
 end end
 
 function is_tighter(a, b) do
   a_prec;
-  a_prec = a.tag and a[0] - 1 | 0 or a[0];
-  return a_prec >= b[0];
+  a_prec = a.tag and a[1] - 1 | 0 or a[1];
+  return a_prec >= b[1];
 end end
 
 function is_lhs(param) do
-  tmp = param[1];
-  if (typeof tmp == "number") then do
+  tmp = param[2];
+  if (type(tmp) == "number") then do
     return false;
   end else do
     local ___conditional___=(tmp.tag | 0);
@@ -7588,8 +7588,8 @@ function is_lhs(param) do
 end end
 
 function is_assignable_lhs(param) do
-  tmp = param[1];
-  if (typeof tmp == "number") then do
+  tmp = param[2];
+  if (type(tmp) == "number") then do
     return false;
   end else do
     local ___conditional___=(tmp.tag | 0);
@@ -7608,7 +7608,7 @@ end end
 function assignment_op(env) do
   match = Curry._2(Parser_env_Peek.token, nil, env);
   op;
-  if (typeof match == "number") then do
+  if (type(match) == "number") then do
     local ___conditional___=(match);
     do
        if ___conditional___ == 63--[[ T_RSHIFT3_ASSIGN ]] then do
@@ -7656,17 +7656,17 @@ function conditional(env) do
   expr = Curry._1(logical, env);
   if (Curry._2(Parser_env_Peek.token, nil, env) == --[[ T_PLING ]]76) then do
     token_4(env, --[[ T_PLING ]]76);
-    env$prime = with_no_in(false, env);
-    consequent = Curry._1(assignment, env$prime);
+    env_prime = with_no_in(false, env);
+    consequent = Curry._1(assignment, env_prime);
     token_4(env, --[[ T_COLON ]]77);
     match = with_loc(assignment, env);
-    loc = btwn(start_loc, match[0]);
+    loc = btwn(start_loc, match[1]);
     return --[[ tuple ]]{
             loc,
             --[[ Conditional ]]Block.__(10, {{
                   test = expr,
                   consequent = consequent,
-                  alternate = match[1]
+                  alternate = match[2]
                 }})
           };
   end else do
@@ -7676,7 +7676,7 @@ end end
 
 function peek_unary_op(env) do
   match = Curry._2(Parser_env_Peek.token, nil, env);
-  if (typeof match == "number") then do
+  if (type(match) == "number") then do
     if (match >= 46) then do
       if (match >= 94) then do
         if (match >= 102) then do
@@ -7730,10 +7730,10 @@ function unary(env) do
     operator = op;
     token_3(env);
     argument = unary(env);
-    loc = btwn(begin_loc, argument[0]);
+    loc = btwn(begin_loc, argument[1]);
     if (operator == 6) then do
-      tmp = argument[1];
-      if (typeof tmp ~= "number" and tmp.tag == --[[ Identifier ]]18) then do
+      tmp = argument[2];
+      if (type(tmp) ~= "number" and tmp.tag == --[[ Identifier ]]18) then do
         strict_error_at(env, --[[ tuple ]]{
               loc,
               --[[ StrictDelete ]]32
@@ -7752,7 +7752,7 @@ function unary(env) do
           };
   end else do
     match = Curry._2(Parser_env_Peek.token, nil, env);
-    op_1 = typeof match == "number" and (
+    op_1 = type(match) == "number" and (
         match ~= 102 and (
             match ~= 103 and nil or --[[ Decrement ]]1
           ) or --[[ Increment ]]0
@@ -7762,18 +7762,18 @@ function unary(env) do
       argument_1 = unary(env);
       if (not is_lhs(argument_1)) then do
         error_at(env, --[[ tuple ]]{
-              argument_1[0],
+              argument_1[1],
               --[[ InvalidLHSInAssignment ]]14
             });
       end
        end 
-      match_1 = argument_1[1];
-      if (typeof match_1 ~= "number" and match_1.tag == --[[ Identifier ]]18 and is_restricted(match_1[0][1].name)) then do
+      match_1 = argument_1[2];
+      if (type(match_1) ~= "number" and match_1.tag == --[[ Identifier ]]18 and is_restricted(match_1[1][2].name)) then do
         strict_error(env, --[[ StrictLHSPrefix ]]38);
       end
        end 
       return --[[ tuple ]]{
-              btwn(begin_loc, argument_1[0]),
+              btwn(begin_loc, argument_1[1]),
               --[[ Update ]]Block.__(8, {{
                     operator = op_1,
                     argument = argument_1,
@@ -7787,7 +7787,7 @@ function unary(env) do
         return argument_2;
       end else do
         match_2 = Curry._2(Parser_env_Peek.token, nil, env_1);
-        op_2 = typeof match_2 == "number" and (
+        op_2 = type(match_2) == "number" and (
             match_2 ~= 102 and (
                 match_2 ~= 103 and nil or --[[ Decrement ]]1
               ) or --[[ Increment ]]0
@@ -7795,20 +7795,20 @@ function unary(env) do
         if (op_2 ~= nil) then do
           if (not is_lhs(argument_2)) then do
             error_at(env_1, --[[ tuple ]]{
-                  argument_2[0],
+                  argument_2[1],
                   --[[ InvalidLHSInAssignment ]]14
                 });
           end
            end 
-          match_3 = argument_2[1];
-          if (typeof match_3 ~= "number" and match_3.tag == --[[ Identifier ]]18 and is_restricted(match_3[0][1].name)) then do
+          match_3 = argument_2[2];
+          if (type(match_3) ~= "number" and match_3.tag == --[[ Identifier ]]18 and is_restricted(match_3[1][2].name)) then do
             strict_error(env_1, --[[ StrictLHSPostfix ]]37);
           end
            end 
           end_loc = Curry._2(Parser_env_Peek.loc, nil, env_1);
           token_3(env_1);
           return --[[ tuple ]]{
-                  btwn(argument_2[0], end_loc),
+                  btwn(argument_2[1], end_loc),
                   --[[ Update ]]Block.__(8, {{
                         operator = op_2,
                         argument = argument_2,
@@ -7827,7 +7827,7 @@ function left_hand_side(env) do
   match = Curry._2(Parser_env_Peek.token, nil, env);
   expr;
   exit = 0;
-  if (typeof match == "number" and match == 42) then do
+  if (type(match) == "number" and match == 42) then do
     expr = _new(env, (function(new_expr, _args) do
             return new_expr;
           end end));
@@ -7840,14 +7840,14 @@ function left_hand_side(env) do
    end 
   expr_1 = member(env, expr);
   match_1 = Curry._2(Parser_env_Peek.token, nil, env);
-  if (typeof match_1 == "number") then do
+  if (type(match_1) == "number") then do
     if (match_1 == --[[ T_LPAREN ]]3) then do
       return call(env, expr_1);
     end else do
       return expr_1;
     end end 
   end else if (match_1.tag == --[[ T_TEMPLATE_PART ]]2) then do
-    return member(env, tagged_template(env, expr_1, match_1[0]));
+    return member(env, tagged_template(env, expr_1, match_1[1]));
   end else do
     return expr_1;
   end end  end 
@@ -7857,7 +7857,7 @@ function call(env, _left) do
   while(true) do
     left = _left;
     match = Curry._2(Parser_env_Peek.token, nil, env);
-    if (typeof match == "number") then do
+    if (type(match) == "number") then do
       local ___conditional___=(match);
       do
          if ___conditional___ == 3--[[ T_LPAREN ]] then do
@@ -7866,10 +7866,10 @@ function call(env, _left) do
             end else do
               match_1 = Curry._1(__arguments, env);
               _left = --[[ tuple ]]{
-                btwn(left[0], match_1[0]),
+                btwn(left[1], match_1[1]),
                 --[[ Call ]]Block.__(12, {{
                       callee = left,
-                      arguments = match_1[1]
+                      arguments = match_1[2]
                     }})
               };
               ::continue:: ;
@@ -7878,7 +7878,7 @@ function call(env, _left) do
             token_4(env, --[[ T_LBRACKET ]]5);
             expr = Curry._1(Parse.expression, env);
             last_loc = Curry._2(Parser_env_Peek.loc, nil, env);
-            loc = btwn(left[0], last_loc);
+            loc = btwn(left[1], last_loc);
             token_4(env, --[[ T_RBRACKET ]]6);
             _left = --[[ tuple ]]{
               loc,
@@ -7892,9 +7892,9 @@ function call(env, _left) do
          if ___conditional___ == 9--[[ T_PERIOD ]] then do
             token_4(env, --[[ T_PERIOD ]]9);
             match_2 = identifier_or_reserved_keyword(env);
-            id = match_2[0];
+            id = match_2[1];
             _left = --[[ tuple ]]{
-              btwn(left[0], id[0]),
+              btwn(left[1], id[1]),
               --[[ Member ]]Block.__(13, {{
                     _object = left,
                     property = --[[ PropertyIdentifier ]]Block.__(0, {id}),
@@ -7906,7 +7906,7 @@ function call(env, _left) do
           
       end
     end else if (match.tag == --[[ T_TEMPLATE_PART ]]2) then do
-      return tagged_template(env, left, match[0]);
+      return tagged_template(env, left, match[1]);
     end else do
       return left;
     end end  end 
@@ -7917,37 +7917,37 @@ function _new(env, _finish_fn) do
   while(true) do
     finish_fn = _finish_fn;
     match = Curry._2(Parser_env_Peek.token, nil, env);
-    if (typeof match == "number" and match == 42) then do
+    if (type(match) == "number" and match == 42) then do
       start_loc = Curry._2(Parser_env_Peek.loc, nil, env);
       token_4(env, --[[ T_NEW ]]42);
-      finish_fn$prime = (function(finish_fn,start_loc)do
-      return function finish_fn$prime(callee, args) do
+      finish_fn_prime = (function(finish_fn,start_loc)do
+      return function finish_fn_prime(callee, args) do
         match;
         if (args ~= nil) then do
           match_1 = args;
           match = --[[ tuple ]]{
-            match_1[0],
-            match_1[1]
+            match_1[1],
+            match_1[2]
           };
         end else do
           match = --[[ tuple ]]{
-            callee[0],
+            callee[1],
             --[[ [] ]]0
           };
         end end 
-        callee$prime_000 = btwn(start_loc, match[0]);
-        callee$prime_001 = --[[ New ]]Block.__(11, {{
+        callee_prime_000 = btwn(start_loc, match[1]);
+        callee_prime_001 = --[[ New ]]Block.__(11, {{
               callee = callee,
-              arguments = match[1]
+              arguments = match[2]
             }});
-        callee$prime = --[[ tuple ]]{
-          callee$prime_000,
-          callee$prime_001
+        callee_prime = --[[ tuple ]]{
+          callee_prime_000,
+          callee_prime_001
         };
-        return Curry._2(finish_fn, callee$prime, nil);
+        return Curry._2(finish_fn, callee_prime, nil);
       end end
       end end)(finish_fn,start_loc);
-      _finish_fn = finish_fn$prime;
+      _finish_fn = finish_fn_prime;
       ::continue:: ;
     end
      end 
@@ -7956,25 +7956,25 @@ function _new(env, _finish_fn) do
     callee = member(with_no_call(true, env), expr);
     match_1 = Curry._2(Parser_env_Peek.token, nil, env);
     callee_1;
-    callee_1 = typeof match_1 == "number" or match_1.tag ~= --[[ T_TEMPLATE_PART ]]2 and callee or tagged_template(env, callee, match_1[0]);
+    callee_1 = type(match_1) == "number" or match_1.tag ~= --[[ T_TEMPLATE_PART ]]2 and callee or tagged_template(env, callee, match_1[1]);
     match_2 = Curry._2(Parser_env_Peek.token, nil, env);
-    args = typeof match_2 == "number" and match_2 == 3 and Curry._1(__arguments, env) or nil;
+    args = type(match_2) == "number" and match_2 == 3 and Curry._1(__arguments, env) or nil;
     return Curry._2(finish_fn, callee_1, args);
   end;
 end end
 
 function member(env, left) do
   match = Curry._2(Parser_env_Peek.token, nil, env);
-  if (typeof match == "number") then do
+  if (type(match) == "number") then do
     if (match ~= 5) then do
       if (match ~= 9) then do
         return left;
       end else do
         token_4(env, --[[ T_PERIOD ]]9);
         match_1 = identifier_or_reserved_keyword(env);
-        id = match_1[0];
+        id = match_1[1];
         return call(env, --[[ tuple ]]{
-                    btwn(left[0], id[0]),
+                    btwn(left[1], id[1]),
                     --[[ Member ]]Block.__(13, {{
                           _object = left,
                           property = --[[ PropertyIdentifier ]]Block.__(0, {id}),
@@ -7988,7 +7988,7 @@ function member(env, left) do
       last_loc = Curry._2(Parser_env_Peek.loc, nil, env);
       token_4(env, --[[ T_RBRACKET ]]6);
       return call(env, --[[ tuple ]]{
-                  btwn(left[0], last_loc),
+                  btwn(left[1], last_loc),
                   --[[ Member ]]Block.__(13, {{
                         _object = left,
                         property = --[[ PropertyExpression ]]Block.__(1, {expr}),
@@ -8014,27 +8014,27 @@ function _function_1(env) do
     };
   end else do
     match_1 = Curry._2(Parser_env_Peek.token, nil, env);
-    id = typeof match_1 == "number" and match_1 == 89 and nil or Curry._2(Parse.identifier, --[[ StrictFunctionName ]]30, env);
+    id = type(match_1) == "number" and match_1 == 89 and nil or Curry._2(Parse.identifier, --[[ StrictFunctionName ]]30, env);
     match = --[[ tuple ]]{
       id,
       Curry._1(type_parameter_declaration_1, env)
     };
   end end 
-  id_1 = match[0];
+  id_1 = match[1];
   match_2 = function_params(env);
-  rest = match_2[2];
-  defaults = match_2[1];
-  params = match_2[0];
+  rest = match_2[3];
+  defaults = match_2[2];
+  params = match_2[1];
   returnType = wrap(annotation_opt, env);
   predicate = Curry._1(Parse.predicate, env);
   match_3 = function_body(env, async, generator_1);
-  body = match_3[1];
+  body = match_3[2];
   simple = is_simple_function_params(params, defaults, rest);
-  strict_post_check(env, match_3[2], simple, id_1, params);
+  strict_post_check(env, match_3[3], simple, id_1, params);
   expression;
   expression = body.tag and true or false;
   return --[[ tuple ]]{
-          btwn(start_loc, match_3[0]),
+          btwn(start_loc, match_3[1]),
           --[[ Function ]]Block.__(2, {{
                 id = id_1,
                 params = params,
@@ -8046,7 +8046,7 @@ function _function_1(env) do
                 predicate = predicate,
                 expression = expression,
                 returnType = returnType,
-                typeParameters = match[1]
+                typeParameters = match[2]
               }})
         };
 end end
@@ -8087,15 +8087,15 @@ function primary_1(env) do
   loc = Curry._2(Parser_env_Peek.loc, nil, env);
   token_5 = Curry._2(Parser_env_Peek.token, nil, env);
   exit = 0;
-  if (typeof token_5 == "number") then do
+  if (type(token_5) == "number") then do
     local ___conditional___=(token_5);
     do
        if ___conditional___ == 1--[[ T_LCURLY ]] then do
           env_1 = env;
           match = Curry._1(Parse.object_initializer, env_1);
           return --[[ tuple ]]{
-                  match[0],
-                  --[[ Object ]]Block.__(1, {match[1]})
+                  match[1],
+                  --[[ Object ]]Block.__(1, {match[2]})
                 }; end end 
        if ___conditional___ == 3--[[ T_LPAREN ]] then do
           env_2 = env;
@@ -8103,14 +8103,14 @@ function primary_1(env) do
           expression = Curry._1(assignment, env_2);
           match_1 = Curry._2(Parser_env_Peek.token, nil, env_2);
           ret;
-          if (typeof match_1 == "number") then do
+          if (type(match_1) == "number") then do
             if (match_1 ~= 8) then do
               if (match_1 ~= 77) then do
                 ret = expression;
               end else do
                 typeAnnotation = wrap(annotation, env_2);
                 ret = --[[ tuple ]]{
-                  btwn(expression[0], typeAnnotation[0]),
+                  btwn(expression[1], typeAnnotation[1]),
                   --[[ TypeCast ]]Block.__(24, {{
                         expression = expression,
                         typeAnnotation = typeAnnotation
@@ -8131,8 +8131,8 @@ function primary_1(env) do
        if ___conditional___ == 5--[[ T_LBRACKET ]] then do
           match_2 = Curry._1(array_initializer, env);
           return --[[ tuple ]]{
-                  match_2[0],
-                  --[[ Array ]]Block.__(0, {match_2[1]})
+                  match_2[1],
+                  --[[ Array ]]Block.__(0, {match_2[2]})
                 }; end end 
        if ___conditional___ == 19--[[ T_THIS ]] then do
           token_4(env, --[[ T_THIS ]]19);
@@ -8174,8 +8174,8 @@ function primary_1(env) do
        if ___conditional___ == 89--[[ T_LESS_THAN ]] then do
           match_3 = Curry._1(Parse.jsx_element, env);
           return --[[ tuple ]]{
-                  match_3[0],
-                  --[[ JSXElement ]]Block.__(22, {match_3[1]})
+                  match_3[1],
+                  --[[ JSXElement ]]Block.__(22, {match_3[2]})
                 }; end end 
        if ___conditional___ == 70--[[ T_DIV_ASSIGN ]]
        or ___conditional___ == 96--[[ T_DIV ]] then do
@@ -8184,7 +8184,7 @@ function primary_1(env) do
           loc_2 = Curry._2(Parser_env_Peek.loc, nil, env_3);
           match_4 = Curry._2(Parser_env_Peek.token, nil, env_3);
           match_5;
-          if (typeof match_4 == "number") then do
+          if (type(match_4) == "number") then do
             error({
               Caml_builtin_exceptions.assert_failure,
               --[[ tuple ]]{
@@ -8194,13 +8194,13 @@ function primary_1(env) do
               }
             })
           end else if (match_4.tag == --[[ T_REGEXP ]]3) then do
-            match_6 = match_4[0];
+            match_6 = match_4[1];
             raw_1 = Curry._2(Parser_env_Peek.value, nil, env_3);
             token_3(env_3);
             match_5 = --[[ tuple ]]{
               raw_1,
-              match_6[1],
-              match_6[2]
+              match_6[2],
+              match_6[3]
             };
           end else do
             error({
@@ -8212,7 +8212,7 @@ function primary_1(env) do
               }
             })
           end end  end 
-          raw_flags = match_5[2];
+          raw_flags = match_5[3];
           pop_lex_mode(env_3);
           filtered_flags = __Buffer.create(#raw_flags);
           __String.iter((function(c) do
@@ -8246,14 +8246,14 @@ function primary_1(env) do
           end
            end 
           value = --[[ RegExp ]]Block.__(3, {{
-                pattern = match_5[1],
+                pattern = match_5[2],
                 flags = flags
               }});
           return --[[ tuple ]]{
                   loc_2,
                   --[[ Literal ]]Block.__(19, {{
                         value = value,
-                        raw = match_5[0]
+                        raw = match_5[1]
                       }})
                 }; end end 
       exit = 1;
@@ -8264,7 +8264,7 @@ function primary_1(env) do
     do
        if ___conditional___ == 0--[[ T_NUMBER ]] then do
           raw_2 = Curry._2(Parser_env_Peek.value, nil, env);
-          value_1 = --[[ Number ]]Block.__(2, {number(env, token_5[0])});
+          value_1 = --[[ Number ]]Block.__(2, {number(env, token_5[1])});
           return --[[ tuple ]]{
                   loc,
                   --[[ Literal ]]Block.__(19, {{
@@ -8273,11 +8273,11 @@ function primary_1(env) do
                       }})
                 }; end end 
        if ___conditional___ == 1--[[ T_STRING ]] then do
-          match_7 = token_5[0];
-          octal = match_7[3];
-          raw_3 = match_7[2];
-          value_2 = match_7[1];
-          loc_3 = match_7[0];
+          match_7 = token_5[1];
+          octal = match_7[4];
+          raw_3 = match_7[3];
+          value_2 = match_7[2];
+          loc_3 = match_7[1];
           if (octal) then do
             strict_error(env, --[[ StrictOctalLiteral ]]31);
           end
@@ -8297,10 +8297,10 @@ function primary_1(env) do
                       }})
                 }; end end 
        if ___conditional___ == 2--[[ T_TEMPLATE_PART ]] then do
-          match_8 = Curry._2(template_literal, env, token_5[0]);
+          match_8 = Curry._2(template_literal, env, token_5[1]);
           return --[[ tuple ]]{
-                  match_8[0],
-                  --[[ TemplateLiteral ]]Block.__(20, {match_8[1]})
+                  match_8[1],
+                  --[[ TemplateLiteral ]]Block.__(20, {match_8[2]})
                 }; end end 
       exit = 1;
         
@@ -8312,7 +8312,7 @@ function primary_1(env) do
         if (Curry._2(Parser_env_Peek.is_identifier, nil, env)) then do
           id_1 = Curry._2(Parse.identifier, nil, env);
           return --[[ tuple ]]{
-                  id_1[0],
+                  id_1[1],
                   --[[ Identifier ]]Block.__(18, {id_1})
                 };
         end else do
@@ -8347,7 +8347,7 @@ end end
 function tagged_template(env, tag, part) do
   quasi = Curry._2(template_literal, env, part);
   return --[[ tuple ]]{
-          btwn(tag[0], quasi[0]),
+          btwn(tag[1], quasi[1]),
           --[[ TaggedTemplate ]]Block.__(21, {{
                 tag = tag,
                 quasi = quasi
@@ -8359,7 +8359,7 @@ function sequence(env, _acc) do
   while(true) do
     acc = _acc;
     match = Curry._2(Parser_env_Peek.token, nil, env);
-    if (typeof match == "number" and match == 8) then do
+    if (type(match) == "number" and match == 8) then do
       token_4(env, --[[ T_COMMA ]]8);
       expr = Curry._1(assignment, env);
       _acc = --[[ :: ]]{
@@ -8369,9 +8369,9 @@ function sequence(env, _acc) do
       ::continue:: ;
     end
      end 
-    last_loc = acc and acc[0][0] or none;
+    last_loc = acc and acc[1][1] or none;
     expressions = List.rev(acc);
-    first_loc = expressions and expressions[0][0] or none;
+    first_loc = expressions and expressions[1][1] or none;
     return --[[ tuple ]]{
             btwn(first_loc, last_loc),
             --[[ Sequence ]]Block.__(4, {{
@@ -8386,7 +8386,7 @@ function identifier_or_reserved_keyword(env) do
   lex_value = Curry._2(Parser_env_Peek.value, nil, env);
   lex_loc = Curry._2(Parser_env_Peek.loc, nil, env);
   exit = 0;
-  if (typeof lex_token == "number") then do
+  if (type(lex_token) == "number") then do
     if (lex_token >= 58) then do
       if (lex_token >= 62) then do
         exit = 1;
@@ -8410,7 +8410,7 @@ function identifier_or_reserved_keyword(env) do
   if (exit == 1) then do
     err;
     exit_1 = 0;
-    if (typeof lex_token == "number") then do
+    if (type(lex_token) == "number") then do
       switcher = lex_token - 58 | 0;
       if (switcher > 48 or switcher < 0) then do
         if (switcher >= -45) then do
@@ -8461,22 +8461,22 @@ function assignment_but_not_arrow_function(env) do
   if (match ~= nil) then do
     if (not is_assignable_lhs(expr)) then do
       error_at(env, --[[ tuple ]]{
-            expr[0],
+            expr[1],
             --[[ InvalidLHSInAssignment ]]14
           });
     end
      end 
-    match_1 = expr[1];
-    if (typeof match_1 ~= "number" and match_1.tag == --[[ Identifier ]]18 and is_restricted(match_1[0][1].name)) then do
+    match_1 = expr[2];
+    if (type(match_1) ~= "number" and match_1.tag == --[[ Identifier ]]18 and is_restricted(match_1[1][2].name)) then do
       strict_error_at(env, --[[ tuple ]]{
-            expr[0],
+            expr[1],
             --[[ StrictLHSAssignment ]]36
           });
     end
      end 
     left = Curry._2(Parse.pattern_from_expr, env, expr);
     right = Curry._1(assignment, env);
-    loc = btwn(left[0], right[0]);
+    loc = btwn(left[1], right[1]);
     return --[[ tuple ]]{
             loc,
             --[[ Assignment ]]Block.__(7, {{
@@ -8498,7 +8498,7 @@ function try_assignment_but_not_arrow_function(env) do
   env_1 = with_error_callback(error_callback, env);
   ret = assignment_but_not_arrow_function(env_1);
   match = Curry._2(Parser_env_Peek.token, nil, env_1);
-  if (typeof match == "number") then do
+  if (type(match) == "number") then do
     if (match ~= 10) then do
       if (match == 77) then do
         error(Parser_env_Try.Rollback)
@@ -8514,8 +8514,8 @@ function try_assignment_but_not_arrow_function(env) do
       error(Parser_env_Try.Rollback)
     end
      end 
-    match_1 = ret[1];
-    if (typeof match_1 == "number" or not (match_1.tag == --[[ Identifier ]]18 and match_1[0][1].name == "async")) then do
+    match_1 = ret[2];
+    if (type(match_1) == "number" or not (match_1.tag == --[[ Identifier ]]18 and match_1[1][2].name == "async")) then do
       return ret;
     end else do
       if (not Curry._1(Parser_env_Peek.is_line_terminator, env_1)) then do
@@ -8533,7 +8533,7 @@ function assignment(env) do
   match = Curry._2(Parser_env_Peek.token, nil, env);
   match_1 = Curry._2(Parser_env_Peek.is_identifier, nil, env);
   exit = 0;
-  if (typeof match == "number") then do
+  if (type(match) == "number") then do
     switcher = match - 4 | 0;
     if (switcher > 84 or switcher < 0) then do
       if ((switcher + 1 >>> 0) > 86) then do
@@ -8555,7 +8555,7 @@ function assignment(env) do
       argument = delegate or has_argument and Curry._1(assignment, env_1) or nil;
       end_loc;
       if (argument ~= nil) then do
-        end_loc = argument[0];
+        end_loc = argument[1];
       end else do
         match_2 = Curry._2(Parser_env_Peek.semicolon_loc, nil, env_1);
         end_loc_1 = match_2 ~= nil and match_2 or start_loc;
@@ -8579,11 +8579,11 @@ function assignment(env) do
    end 
   match_3 = Curry._2(Parser_env_Try.to_parse, env, try_assignment_but_not_arrow_function);
   if (match_3) then do
-    return match_3[0];
+    return match_3[1];
   end else do
     match_4 = Curry._2(Parser_env_Try.to_parse, env, try_arrow_function);
     if (match_4) then do
-      return match_4[0];
+      return match_4[1];
     end else do
       return assignment_but_not_arrow_function(env);
     end end 
@@ -8606,12 +8606,12 @@ function logical_and(env, _left, _lloc) do
     lloc = _lloc;
     left = _left;
     match = Curry._2(Parser_env_Peek.token, nil, env);
-    if (typeof match == "number" and match == 79) then do
+    if (type(match) == "number" and match == 79) then do
       token_4(env, --[[ T_AND ]]79);
       match_1 = with_loc(binary, env);
-      loc = btwn(lloc, match_1[0]);
+      loc = btwn(lloc, match_1[1]);
       _lloc = loc;
-      _left = make_logical(left, match_1[1], --[[ And ]]1, loc);
+      _left = make_logical(left, match_1[2], --[[ And ]]1, loc);
       ::continue:: ;
     end else do
       return --[[ tuple ]]{
@@ -8627,13 +8627,13 @@ function logical_or(env, _left, _lloc) do
     lloc = _lloc;
     left = _left;
     match = Curry._2(Parser_env_Peek.token, nil, env);
-    if (typeof match == "number" and match == 78) then do
+    if (type(match) == "number" and match == 78) then do
       token_4(env, --[[ T_OR ]]78);
       match_1 = with_loc(binary, env);
-      match_2 = logical_and(env, match_1[1], match_1[0]);
-      loc = btwn(lloc, match_2[0]);
+      match_2 = logical_and(env, match_1[2], match_1[1]);
+      loc = btwn(lloc, match_2[1]);
       _lloc = loc;
-      _left = make_logical(left, match_2[1], --[[ Or ]]0, loc);
+      _left = make_logical(left, match_2[2], --[[ Or ]]0, loc);
       ::continue:: ;
     end else do
       return --[[ tuple ]]{
@@ -8646,14 +8646,14 @@ end end
 
 function logical(env) do
   match = with_loc(binary, env);
-  match_1 = logical_and(env, match[1], match[0]);
-  return logical_or(env, match_1[1], match_1[0])[1];
+  match_1 = logical_and(env, match[2], match[1]);
+  return logical_or(env, match_1[2], match_1[1])[2];
 end end
 
 function binary_op(env) do
   match = Curry._2(Parser_env_Peek.token, nil, env);
   ret;
-  if (typeof match == "number") then do
+  if (type(match) == "number") then do
     switcher = match - 15 | 0;
     if (switcher == 0 or switcher == 1) then do
       ret = switcher ~= 0 and --[[ tuple ]]{
@@ -8814,15 +8814,15 @@ function add_to_stack(_right, _param, _rloc, _stack) do
     stack = _stack;
     rloc = _rloc;
     right = _right;
-    rpri = param[1];
-    rop = param[0];
+    rpri = param[2];
+    rop = param[1];
     if (stack) then do
-      match = stack[0];
-      match_1 = match[1];
-      if (is_tighter(match_1[1], rpri)) then do
-        loc = btwn(match[2], rloc);
-        right_1 = make_binary(match[0], right, match_1[0], loc);
-        _stack = stack[1];
+      match = stack[1];
+      match_1 = match[2];
+      if (is_tighter(match_1[2], rpri)) then do
+        loc = btwn(match[3], rloc);
+        right_1 = make_binary(match[1], right, match_1[1], loc);
+        _stack = stack[2];
         _rloc = loc;
         _param = --[[ tuple ]]{
           rop,
@@ -8857,11 +8857,11 @@ function binary(env) do
     is_unary = peek_unary_op(env_1) ~= nil;
     right = unary(with_no_in(false, env_1));
     match = env_1.last_loc.contents;
-    end_loc = match ~= nil and match or right[0];
+    end_loc = match ~= nil and match or right[1];
     right_loc = btwn(start_loc, end_loc);
     if (Curry._2(Parser_env_Peek.token, nil, env_1) == --[[ T_LESS_THAN ]]89) then do
-      tmp = right[1];
-      if (typeof tmp ~= "number" and tmp.tag == --[[ JSXElement ]]22) then do
+      tmp = right[2];
+      if (type(tmp) ~= "number" and tmp.tag == --[[ JSXElement ]]22) then do
         error_1(env_1, --[[ AdjacentJSXElements ]]46);
       end
        end 
@@ -8870,7 +8870,7 @@ function binary(env) do
     match_1 = binary_op(env_1);
     if (match_1 ~= nil) then do
       match_2 = match_1;
-      rop = match_2[0];
+      rop = match_2[1];
       if (is_unary and rop == --[[ Exp ]]14) then do
         error_at(env_1, --[[ tuple ]]{
               right_loc,
@@ -8880,7 +8880,7 @@ function binary(env) do
        end 
       _stack = add_to_stack(right, --[[ tuple ]]{
             rop,
-            match_2[1]
+            match_2[2]
           }, right_loc, stack);
       ::continue:: ;
     end else do
@@ -8892,11 +8892,11 @@ function binary(env) do
         rloc = _rloc;
         right_1 = _right;
         if (param) then do
-          match_3 = param[0];
-          loc = btwn(match_3[2], rloc);
-          _param = param[1];
+          match_3 = param[1];
+          loc = btwn(match_3[3], rloc);
+          _param = param[2];
           _rloc = loc;
-          _right = make_binary(match_3[0], right_1, match_3[1][0], loc);
+          _right = make_binary(match_3[1], right_1, match_3[2][1], loc);
           ::continue:: ;
         end else do
           return right_1;
@@ -8908,11 +8908,11 @@ end end
 
 function argument(env) do
   match = Curry._2(Parser_env_Peek.token, nil, env);
-  if (typeof match == "number" and match == 11) then do
+  if (type(match) == "number" and match == 11) then do
     start_loc = Curry._2(Parser_env_Peek.loc, nil, env);
     token_4(env, --[[ T_ELLIPSIS ]]11);
     argument_1 = Curry._1(assignment, env);
-    loc = btwn(start_loc, argument_1[0]);
+    loc = btwn(start_loc, argument_1[1]);
     return --[[ Spread ]]Block.__(1, {--[[ tuple ]]{
                 loc,
                 {
@@ -8924,11 +8924,11 @@ function argument(env) do
   end end 
 end end
 
-function arguments$prime(env, _acc) do
+function arguments_prime(env, _acc) do
   while(true) do
     acc = _acc;
     match = Curry._2(Parser_env_Peek.token, nil, env);
-    if (typeof match == "number" and not (match ~= 4 and match ~= 105)) then do
+    if (type(match) == "number" and not (match ~= 4 and match ~= 105)) then do
       return List.rev(acc);
     end
      end 
@@ -8949,7 +8949,7 @@ end end
 function __arguments(env) do
   start_loc = Curry._2(Parser_env_Peek.loc, nil, env);
   token_4(env, --[[ T_LPAREN ]]3);
-  args = arguments$prime(env, --[[ [] ]]0);
+  args = arguments_prime(env, --[[ [] ]]0);
   end_loc = Curry._2(Parser_env_Peek.loc, nil, env);
   token_4(env, --[[ T_RPAREN ]]4);
   return --[[ tuple ]]{
@@ -8968,11 +8968,11 @@ function template_parts(env, _quasis, _expressions) do
       expressions
     };
     match = Curry._2(Parser_env_Peek.token, nil, env);
-    if (typeof match == "number" and match == 2) then do
+    if (type(match) == "number" and match == 2) then do
       push_lex_mode(env, --[[ TEMPLATE ]]4);
       match_1 = Curry._2(Parser_env_Peek.token, nil, env);
       match_2;
-      if (typeof match_1 == "number") then do
+      if (type(match_1) == "number") then do
         error({
           Caml_builtin_exceptions.assert_failure,
           --[[ tuple ]]{
@@ -8982,12 +8982,12 @@ function template_parts(env, _quasis, _expressions) do
           }
         })
       end else if (match_1.tag == --[[ T_TEMPLATE_PART ]]2) then do
-        match_3 = match_1[0];
-        tail = match_3[2];
-        match_4 = match_3[1];
+        match_3 = match_1[1];
+        tail = match_3[3];
+        match_4 = match_3[2];
         token_3(env);
         match_2 = --[[ tuple ]]{
-          match_3[0],
+          match_3[1],
           {
             value = {
               raw = match_4.raw,
@@ -9007,17 +9007,17 @@ function template_parts(env, _quasis, _expressions) do
           }
         })
       end end  end 
-      loc = match_2[0];
+      loc = match_2[1];
       pop_lex_mode(env);
       quasis_000 = --[[ tuple ]]{
         loc,
-        match_2[1]
+        match_2[2]
       };
       quasis_1 = --[[ :: ]]{
         quasis_000,
         quasis
       };
-      if (match_2[2]) then do
+      if (match_2[3]) then do
         return --[[ tuple ]]{
                 loc,
                 List.rev(quasis_1),
@@ -9031,7 +9031,7 @@ function template_parts(env, _quasis, _expressions) do
     end
      end 
     error_unexpected(env);
-    imaginary_quasi_000 = expr[0];
+    imaginary_quasi_000 = expr[1];
     imaginary_quasi_001 = {
       value = {
         raw = "",
@@ -9044,7 +9044,7 @@ function template_parts(env, _quasis, _expressions) do
       imaginary_quasi_001
     };
     return --[[ tuple ]]{
-            expr[0],
+            expr[1],
             List.rev(--[[ :: ]]{
                   imaginary_quasi,
                   quasis
@@ -9055,9 +9055,9 @@ function template_parts(env, _quasis, _expressions) do
 end end
 
 function template_literal(env, part) do
-  is_tail = part[2];
-  match = part[1];
-  start_loc = part[0];
+  is_tail = part[3];
+  match = part[2];
+  start_loc = part[1];
   token_4(env, --[[ T_TEMPLATE_PART ]]Block.__(2, {part}));
   head_001 = {
     value = {
@@ -9081,12 +9081,12 @@ function template_literal(env, part) do
           head,
           --[[ [] ]]0
         }, --[[ [] ]]0);
-  loc = btwn(start_loc, match_1[0]);
+  loc = btwn(start_loc, match_1[1]);
   return --[[ tuple ]]{
           loc,
           {
-            quasis = match_1[1],
-            expressions = match_1[2]
+            quasis = match_1[2],
+            expressions = match_1[3]
           }
         };
 end end
@@ -9095,7 +9095,7 @@ function elements(env, _acc) do
   while(true) do
     acc = _acc;
     match = Curry._2(Parser_env_Peek.token, nil, env);
-    if (typeof match == "number") then do
+    if (type(match) == "number") then do
       if (match ~= 105) then do
         if (match < 12) then do
           local ___conditional___=(match);
@@ -9122,7 +9122,7 @@ function elements(env, _acc) do
                 start_loc = Curry._2(Parser_env_Peek.loc, nil, env);
                 token_4(env, --[[ T_ELLIPSIS ]]11);
                 argument = Curry._1(assignment, env);
-                loc = btwn(start_loc, argument[0]);
+                loc = btwn(start_loc, argument[1]);
                 elem = --[[ Spread ]]Block.__(1, {--[[ tuple ]]{
                       loc,
                       {
@@ -9171,7 +9171,7 @@ function array_initializer(env) do
 end end
 
 function error_callback_1(param, param_1) do
-  if (typeof param_1 == "number") then do
+  if (type(param_1) == "number") then do
     switcher = param_1 - 28 | 0;
     if (switcher > 16 or switcher < 0) then do
       if (switcher ~= 19) then do
@@ -9197,7 +9197,7 @@ function try_arrow_function(env) do
   match;
   if (Curry._2(Parser_env_Peek.is_identifier, nil, env_1) and typeParameters == nil) then do
     id = Curry._2(Parse.identifier, --[[ StrictParamName ]]28, env_1);
-    param_000 = id[0];
+    param_000 = id[1];
     param_001 = --[[ Identifier ]]Block.__(3, {id});
     param = --[[ tuple ]]{
       param_000,
@@ -9215,15 +9215,15 @@ function try_arrow_function(env) do
   end else do
     match_1 = function_params(env_1);
     match = --[[ tuple ]]{
-      match_1[0],
       match_1[1],
       match_1[2],
+      match_1[3],
       wrap(annotation_opt, env_1)
     };
   end end 
-  rest = match[2];
-  defaults = match[1];
-  params = match[0];
+  rest = match[3];
+  defaults = match[2];
+  params = match[1];
   predicate = Curry._1(Parse.predicate, env_1);
   env_2 = params == --[[ [] ]]0 or rest ~= nil and without_error_callback(env_1) or env_1;
   if (Curry._1(Parser_env_Peek.is_line_terminator, env_2) and Curry._2(Parser_env_Peek.token, nil, env_2) == --[[ T_ARROW ]]10) then do
@@ -9238,11 +9238,11 @@ function try_arrow_function(env) do
           generator = false;
           env_1 = with_in_function(true, env);
           match = Curry._2(Parser_env_Peek.token, nil, env_1);
-          if (typeof match == "number" and match == 1) then do
+          if (type(match) == "number" and match == 1) then do
             match_1 = function_body(env_1, async_1, generator);
             return --[[ tuple ]]{
-                    match_1[1],
-                    match_1[2]
+                    match_1[2],
+                    match_1[3]
                   };
           end
            end 
@@ -9253,13 +9253,13 @@ function try_arrow_function(env) do
                   env_2.in_strict_mode
                 };
         end end), env_3);
-  match_3 = match_2[1];
-  body = match_3[0];
+  match_3 = match_2[2];
+  body = match_3[1];
   simple = is_simple_function_params(params, defaults, rest);
-  strict_post_check(env_3, match_3[1], simple, nil, params);
+  strict_post_check(env_3, match_3[2], simple, nil, params);
   expression;
   expression = body.tag and true or false;
-  loc = btwn(start_loc, match_2[0]);
+  loc = btwn(start_loc, match_2[1]);
   return --[[ tuple ]]{
           loc,
           --[[ ArrowFunction ]]Block.__(3, {{
@@ -9272,7 +9272,7 @@ function try_arrow_function(env) do
                 generator = false,
                 predicate = predicate,
                 expression = expression,
-                returnType = match[3],
+                returnType = match[4],
                 typeParameters = typeParameters
               }})
         };
@@ -9282,7 +9282,7 @@ function decorator_list_helper(env, _decorators) do
   while(true) do
     decorators = _decorators;
     match = Curry._2(Parser_env_Peek.token, nil, env);
-    if (typeof match == "number" and match == 12) then do
+    if (type(match) == "number" and match == 12) then do
       token_3(env);
       _decorators = --[[ :: ]]{
         left_hand_side(env),
@@ -9305,7 +9305,7 @@ end end
 
 function key(env) do
   match = Curry._2(Parser_env_Peek.token, nil, env);
-  if (typeof match == "number") then do
+  if (type(match) == "number") then do
     if (match == --[[ T_LBRACKET ]]5) then do
       start_loc = Curry._2(Parser_env_Peek.loc, nil, env);
       token_4(env, --[[ T_LBRACKET ]]5);
@@ -9324,7 +9324,7 @@ function key(env) do
        if ___conditional___ == 0--[[ T_NUMBER ]] then do
           raw = Curry._2(Parser_env_Peek.value, nil, env);
           loc = Curry._2(Parser_env_Peek.loc, nil, env);
-          value = number(env, match[0]);
+          value = number(env, match[1]);
           value_1 = --[[ Number ]]Block.__(2, {value});
           return --[[ tuple ]]{
                   loc,
@@ -9337,11 +9337,11 @@ function key(env) do
                       }})
                 }; end end 
        if ___conditional___ == 1--[[ T_STRING ]] then do
-          match_1 = match[0];
-          octal = match_1[3];
-          raw_1 = match_1[2];
-          value_2 = match_1[1];
-          loc_1 = match_1[0];
+          match_1 = match[1];
+          octal = match_1[4];
+          raw_1 = match_1[3];
+          value_2 = match_1[2];
+          loc_1 = match_1[1];
           if (octal) then do
             strict_error(env, --[[ StrictOctalLiteral ]]31);
           end
@@ -9367,9 +9367,9 @@ function key(env) do
     end
   end end 
   match_2 = identifier_or_reserved_keyword(env);
-  id = match_2[0];
+  id = match_2[1];
   return --[[ tuple ]]{
-          id[0],
+          id[1],
           --[[ Identifier ]]Block.__(1, {id})
         };
 end end
@@ -9397,7 +9397,7 @@ function _method(env, kind) do
         param = Curry._2(Parse.identifier_with_type, env, --[[ StrictParamName ]]28);
         params = --[[ :: ]]{
           --[[ tuple ]]{
-            param[0],
+            param[1],
             --[[ Identifier ]]Block.__(3, {param})
           },
           --[[ [] ]]0
@@ -9408,18 +9408,18 @@ function _method(env, kind) do
   token_4(env, --[[ T_RPAREN ]]4);
   returnType = wrap(annotation_opt, env);
   match_1 = function_body(env, false, generator_1);
-  body = match_1[1];
+  body = match_1[2];
   simple = is_simple_function_params(params, --[[ [] ]]0, nil);
-  strict_post_check(env, match_1[2], simple, nil, params);
+  strict_post_check(env, match_1[3], simple, nil, params);
   match_2;
   match_2 = body.tag and --[[ tuple ]]{
-      body[0][0],
+      body[1][1],
       true
     } or --[[ tuple ]]{
-      body[0][0],
+      body[1][1],
       false
     };
-  value_000 = match_2[0];
+  value_000 = match_2[1];
   value_001 = {
     id = nil,
     params = params,
@@ -9429,7 +9429,7 @@ function _method(env, kind) do
     async = false,
     generator = generator_1,
     predicate = nil,
-    expression = match_2[1],
+    expression = match_2[2],
     returnType = returnType,
     typeParameters = typeParameters
   };
@@ -9438,7 +9438,7 @@ function _method(env, kind) do
     value_001
   };
   return --[[ tuple ]]{
-          match[1],
+          match[2],
           value
         };
 end end
@@ -9449,7 +9449,7 @@ function property_1(env) do
     token_4(env, --[[ T_ELLIPSIS ]]11);
     argument = Curry._1(Parse.assignment, env);
     return --[[ SpreadProperty ]]Block.__(1, {--[[ tuple ]]{
-                btwn(start_loc, argument[0]),
+                btwn(start_loc, argument[1]),
                 {
                   argument = argument
                 }
@@ -9463,15 +9463,15 @@ function property_1(env) do
     if (async or match) then do
       exit = 1;
     end else do
-      key_1 = match_1[1];
+      key_1 = match_1[2];
       local ___conditional___=(key_1.tag | 0);
       do
          if ___conditional___ == 1--[[ Identifier ]] then do
-            local ___conditional___=(key_1[0][1].name);
+            local ___conditional___=(key_1[1][2].name);
             do
                if ___conditional___ == "get" then do
                   match_2 = Curry._2(Parser_env_Peek.token, nil, env);
-                  if (typeof match_2 == "number") then do
+                  if (type(match_2) == "number") then do
                     switcher = match_2 - 3 | 0;
                     tmp = switcher > 74 or switcher < 0 and (
                         switcher ~= 86 and get(env, start_loc) or init(env, start_loc, key_1, false, false)
@@ -9483,7 +9483,7 @@ function property_1(env) do
                   end end  end else 
                if ___conditional___ == "set" then do
                   match_3 = Curry._2(Parser_env_Peek.token, nil, env);
-                  if (typeof match_3 == "number") then do
+                  if (type(match_3) == "number") then do
                     switcher_1 = match_3 - 3 | 0;
                     tmp = switcher_1 > 74 or switcher_1 < 0 and (
                         switcher_1 ~= 86 and set(env, start_loc) or init(env, start_loc, key_1, false, false)
@@ -9505,7 +9505,7 @@ function property_1(env) do
       end
     end end 
     if (exit == 1) then do
-      tmp = init(env, start_loc, match_1[1], async, match);
+      tmp = init(env, start_loc, match_1[2], async, match);
     end
      end 
     return --[[ Property ]]Block.__(0, {tmp});
@@ -9514,9 +9514,9 @@ end end
 
 function get(env, start_loc) do
   match = _method(env, --[[ Get ]]1);
-  match_1 = match[1];
-  end_loc = match_1[0];
-  value_001 = --[[ Function ]]Block.__(2, {match_1[1]});
+  match_1 = match[2];
+  end_loc = match_1[1];
+  value_001 = --[[ Function ]]Block.__(2, {match_1[2]});
   value = --[[ tuple ]]{
     end_loc,
     value_001
@@ -9524,7 +9524,7 @@ function get(env, start_loc) do
   return --[[ tuple ]]{
           btwn(start_loc, end_loc),
           {
-            key = match[0],
+            key = match[1],
             value = value,
             kind = --[[ Get ]]1,
             _method = false,
@@ -9535,9 +9535,9 @@ end end
 
 function set(env, start_loc) do
   match = _method(env, --[[ Set ]]2);
-  match_1 = match[1];
-  end_loc = match_1[0];
-  value_001 = --[[ Function ]]Block.__(2, {match_1[1]});
+  match_1 = match[2];
+  end_loc = match_1[1];
+  value_001 = --[[ Function ]]Block.__(2, {match_1[2]});
   value = --[[ tuple ]]{
     end_loc,
     value_001
@@ -9545,7 +9545,7 @@ function set(env, start_loc) do
   return --[[ tuple ]]{
           btwn(start_loc, end_loc),
           {
-            key = match[0],
+            key = match[1],
             value = value,
             kind = --[[ Set ]]2,
             _method = false,
@@ -9558,7 +9558,7 @@ function init(env, start_loc, key, async, generator) do
   match = Curry._2(Parser_env_Peek.token, nil, env);
   match_1;
   exit = 0;
-  if (typeof match == "number") then do
+  if (type(match) == "number") then do
     if (match ~= 89) then do
       if (match >= 9) then do
         exit = 1;
@@ -9601,19 +9601,19 @@ function init(env, start_loc, key, async, generator) do
         local ___conditional___=(key.tag | 0);
         do
            if ___conditional___ == 0--[[ Literal ]] then do
-              lit = key[0];
+              lit = key[1];
               tmp = --[[ tuple ]]{
-                lit[0],
-                --[[ Literal ]]Block.__(19, {lit[1]})
+                lit[1],
+                --[[ Literal ]]Block.__(19, {lit[2]})
               }; end else 
            if ___conditional___ == 1--[[ Identifier ]] then do
-              id = key[0];
+              id = key[1];
               tmp = --[[ tuple ]]{
-                id[0],
+                id[1],
                 --[[ Identifier ]]Block.__(18, {id})
               }; end else 
            if ___conditional___ == 2--[[ Computed ]] then do
-              tmp = key[0]; end else 
+              tmp = key[1]; end else 
            end end end end end end
           
         end
@@ -9625,23 +9625,23 @@ function init(env, start_loc, key, async, generator) do
      if ___conditional___ == 3 then do
         typeParameters = Curry._1(type_parameter_declaration_1, env);
         match_2 = function_params(env);
-        rest = match_2[2];
-        defaults = match_2[1];
-        params = match_2[0];
+        rest = match_2[3];
+        defaults = match_2[2];
+        params = match_2[1];
         returnType = wrap(annotation_opt, env);
         match_3 = function_body(env, async, generator);
-        body = match_3[1];
+        body = match_3[2];
         simple = is_simple_function_params(params, defaults, rest);
-        strict_post_check(env, match_3[2], simple, nil, params);
+        strict_post_check(env, match_3[3], simple, nil, params);
         match_4;
         match_4 = body.tag and --[[ tuple ]]{
-            body[0][0],
+            body[1][1],
             true
           } or --[[ tuple ]]{
-            body[0][0],
+            body[1][1],
             false
           };
-        value_000 = match_4[0];
+        value_000 = match_4[1];
         value_001 = --[[ Function ]]Block.__(2, {{
               id = nil,
               params = params,
@@ -9651,7 +9651,7 @@ function init(env, start_loc, key, async, generator) do
               async = async,
               generator = generator,
               predicate = nil,
-              expression = match_4[1],
+              expression = match_4[2],
               returnType = returnType,
               typeParameters = typeParameters
             }});
@@ -9667,15 +9667,15 @@ function init(env, start_loc, key, async, generator) do
      end end end end end end
     
   end
-  value_1 = match_1[0];
+  value_1 = match_1[1];
   return --[[ tuple ]]{
-          btwn(start_loc, value_1[0]),
+          btwn(start_loc, value_1[1]),
           {
             key = key,
             value = value_1,
             kind = --[[ Init ]]0,
-            _method = match_1[2],
-            shorthand = match_1[1]
+            _method = match_1[3],
+            shorthand = match_1[2]
           }
         };
 end end
@@ -9684,9 +9684,9 @@ function check_property(env, prop_map, prop) do
   if (prop.tag) then do
     return prop_map;
   end else do
-    match = prop[0];
-    prop_1 = match[1];
-    prop_loc = match[0];
+    match = prop[1];
+    prop_1 = match[2];
+    prop_loc = match[1];
     exit = 0;
     local ___conditional___=(prop_1.key.tag | 0);
     do
@@ -9703,19 +9703,19 @@ function check_property(env, prop_map, prop) do
       local ___conditional___=(match_1.tag | 0);
       do
          if ___conditional___ == 0--[[ Literal ]] then do
-            match_2 = match_1[0][1].value;
-            if (typeof match_2 == "number") then do
+            match_2 = match_1[1][2].value;
+            if (type(match_2) == "number") then do
               key = "nil";
             end else do
               local ___conditional___=(match_2.tag | 0);
               do
                  if ___conditional___ == 0--[[ String ]] then do
-                    key = match_2[0]; end else 
+                    key = match_2[1]; end else 
                  if ___conditional___ == 1--[[ Boolean ]] then do
-                    b = match_2[0];
+                    b = match_2[1];
                     key = b and "true" or "false"; end else 
                  if ___conditional___ == 2--[[ Number ]] then do
-                    key = Pervasives.string_of_float(match_2[0]); end else 
+                    key = Pervasives.string_of_float(match_2[1]); end else 
                  if ___conditional___ == 3--[[ RegExp ]] then do
                     error({
                       Caml_builtin_exceptions.failure,
@@ -9725,7 +9725,7 @@ function check_property(env, prop_map, prop) do
               end
             end end  end else 
          if ___conditional___ == 1--[[ Identifier ]] then do
-            key = match_1[0][1].name; end else 
+            key = match_1[1][2].name; end else 
          if ___conditional___ == 2--[[ Computed ]] then do
             error({
               Caml_builtin_exceptions.assert_failure,
@@ -9807,14 +9807,14 @@ end end
 function properties_1(env, _param) do
   while(true) do
     param = _param;
-    acc = param[1];
+    acc = param[2];
     match = Curry._2(Parser_env_Peek.token, nil, env);
-    if (typeof match == "number" and not (match ~= 2 and match ~= 105)) then do
+    if (type(match) == "number" and not (match ~= 2 and match ~= 105)) then do
       return List.rev(acc);
     end
      end 
     prop = property_1(env);
-    prop_map = check_property(env, param[0], prop);
+    prop_map = check_property(env, param[1], prop);
     if (Curry._2(Parser_env_Peek.token, nil, env) ~= --[[ T_RCURLY ]]2) then do
       token_4(env, --[[ T_COMMA ]]8);
     end
@@ -9852,7 +9852,7 @@ function class_implements(env, _acc) do
     acc = _acc;
     id = Curry._2(Parse.identifier, nil, env);
     typeParameters = wrap(type_parameter_instantiation, env);
-    loc = typeParameters ~= nil and btwn(id[0], typeParameters[0]) or id[0];
+    loc = typeParameters ~= nil and btwn(id[1], typeParameters[1]) or id[1];
     implement_001 = {
       id = id,
       typeParameters = typeParameters
@@ -9866,7 +9866,7 @@ function class_implements(env, _acc) do
       acc
     };
     match = Curry._2(Parser_env_Peek.token, nil, env);
-    if (typeof match == "number" and match == 8) then do
+    if (type(match) == "number" and match == 8) then do
       token_4(env, --[[ T_COMMA ]]8);
       _acc = acc_1;
       ::continue:: ;
@@ -9879,7 +9879,7 @@ end end
 function init_1(env, start_loc, decorators, key, async, generator, __static) do
   match = Curry._2(Parser_env_Peek.token, nil, env);
   exit = 0;
-  if (typeof match == "number") then do
+  if (type(match) == "number") then do
     switcher = match - 75 | 0;
     if (switcher > 2 or switcher < 0) then do
       if (switcher == -68) then do
@@ -9918,23 +9918,23 @@ function init_1(env, start_loc, decorators, key, async, generator, __static) do
    end 
   typeParameters = Curry._1(type_parameter_declaration_1, env);
   match_1 = function_params(env);
-  rest = match_1[2];
-  defaults = match_1[1];
-  params = match_1[0];
+  rest = match_1[3];
+  defaults = match_1[2];
+  params = match_1[1];
   returnType = wrap(annotation_opt, env);
   match_2 = function_body(env, async, generator);
-  body = match_2[1];
+  body = match_2[2];
   simple = is_simple_function_params(params, defaults, rest);
-  strict_post_check(env, match_2[2], simple, nil, params);
+  strict_post_check(env, match_2[3], simple, nil, params);
   match_3;
   match_3 = body.tag and --[[ tuple ]]{
-      body[0][0],
+      body[1][1],
       true
     } or --[[ tuple ]]{
-      body[0][0],
+      body[1][1],
       false
     };
-  end_loc_1 = match_3[0];
+  end_loc_1 = match_3[1];
   value_001 = {
     id = nil,
     params = params,
@@ -9944,7 +9944,7 @@ function init_1(env, start_loc, decorators, key, async, generator, __static) do
     async = async,
     generator = generator,
     predicate = nil,
-    expression = match_3[1],
+    expression = match_3[2],
     returnType = returnType,
     typeParameters = typeParameters
   };
@@ -9956,10 +9956,10 @@ function init_1(env, start_loc, decorators, key, async, generator, __static) do
   local ___conditional___=(key.tag | 0);
   do
      if ___conditional___ == 0--[[ Literal ]] then do
-        match_4 = key[0][1].value;
-        kind = typeof match_4 == "number" or match_4.tag or match_4[0] ~= "constructor" and --[[ Method ]]1 or --[[ Constructor ]]0; end else 
+        match_4 = key[1][2].value;
+        kind = type(match_4) == "number" or match_4.tag or match_4[1] ~= "constructor" and --[[ Method ]]1 or --[[ Constructor ]]0; end else 
      if ___conditional___ == 1--[[ Identifier ]] then do
-        kind = key[0][1].name == "constructor" and --[[ Constructor ]]0 or --[[ Method ]]1; end else 
+        kind = key[1][2].name == "constructor" and --[[ Constructor ]]0 or --[[ Method ]]1; end else 
      if ___conditional___ == 2--[[ Computed ]] then do
         kind = --[[ Method ]]1; end else 
      end end end end end end
@@ -9985,16 +9985,16 @@ function class_element(env) do
   generator_1 = generator(env, async);
   match = key(env);
   if (not async and not generator_1) then do
-    key_1 = match[1];
+    key_1 = match[2];
     local ___conditional___=(key_1.tag | 0);
     do
        if ___conditional___ == 1--[[ Identifier ]] then do
-          local ___conditional___=(key_1[0][1].name);
+          local ___conditional___=(key_1[1][2].name);
           do
              if ___conditional___ == "get" then do
                 match_1 = Curry._2(Parser_env_Peek.token, nil, env);
                 exit = 0;
-                exit = typeof match_1 == "number" and (
+                exit = type(match_1) == "number" and (
                     match_1 >= 75 and (
                         match_1 >= 78 and (
                             match_1 ~= 89 and 2 or 3
@@ -10013,12 +10013,12 @@ function class_element(env) do
                       decorators_1 = decorators;
                       __static_1 = __static;
                       match_2 = _method(env_1, --[[ Get ]]1);
-                      value = match_2[1];
+                      value = match_2[2];
                       return --[[ Method ]]Block.__(0, {--[[ tuple ]]{
-                                  btwn(start_loc_1, value[0]),
+                                  btwn(start_loc_1, value[1]),
                                   {
                                     kind = --[[ Get ]]2,
-                                    key = match_2[0],
+                                    key = match_2[1],
                                     value = value,
                                     static = __static_1,
                                     decorators = decorators_1
@@ -10031,7 +10031,7 @@ function class_element(env) do
              if ___conditional___ == "set" then do
                 match_3 = Curry._2(Parser_env_Peek.token, nil, env);
                 exit_1 = 0;
-                exit_1 = typeof match_3 == "number" and (
+                exit_1 = type(match_3) == "number" and (
                     match_3 >= 75 and (
                         match_3 >= 78 and (
                             match_3 ~= 89 and 2 or 3
@@ -10050,12 +10050,12 @@ function class_element(env) do
                       decorators_2 = decorators;
                       __static_2 = __static;
                       match_4 = _method(env_2, --[[ Set ]]2);
-                      value_1 = match_4[1];
+                      value_1 = match_4[2];
                       return --[[ Method ]]Block.__(0, {--[[ tuple ]]{
-                                  btwn(start_loc_2, value_1[0]),
+                                  btwn(start_loc_2, value_1[1]),
                                   {
                                     kind = --[[ Set ]]3,
-                                    key = match_4[0],
+                                    key = match_4[1],
                                     value = value_1,
                                     static = __static_2,
                                     decorators = decorators_2
@@ -10075,14 +10075,14 @@ function class_element(env) do
     end
   end
    end 
-  return init_1(env, start_loc, decorators, match[1], async, generator_1, __static);
+  return init_1(env, start_loc, decorators, match[2], async, generator_1, __static);
 end end
 
 function elements_1(env, _acc) do
   while(true) do
     acc = _acc;
     match = Curry._2(Parser_env_Peek.token, nil, env);
-    if (typeof match == "number") then do
+    if (type(match) == "number") then do
       switcher = match - 3 | 0;
       if (switcher > 101 or switcher < 0) then do
         if ((switcher + 1 >>> 0) <= 103) then do
@@ -10148,8 +10148,8 @@ function _class(env) do
   body = Curry._1(class_body, env);
   return --[[ tuple ]]{
           body,
-          match[0],
           match[1],
+          match[2],
           __implements
         };
 end end
@@ -10157,7 +10157,7 @@ end end
 function class_declaration(env, decorators) do
   env_1 = with_strict(true, env);
   start_loc = Curry._2(Parser_env_Peek.loc, nil, env_1);
-  decorators_1 = Pervasives.$at(decorators, decorator_list(env_1));
+  decorators_1 = Pervasives._at(decorators, decorator_list(env_1));
   token_4(env_1, --[[ T_CLASS ]]38);
   tmp_env = with_no_let(true, env_1);
   match = env_1.in_export;
@@ -10165,17 +10165,17 @@ function class_declaration(env, decorators) do
   id = match and not match_1 and nil or Curry._2(Parse.identifier, nil, tmp_env);
   typeParameters = Curry._1(type_parameter_declaration_with_defaults, env_1);
   match_2 = _class(env_1);
-  body = match_2[0];
-  loc = btwn(start_loc, body[0]);
+  body = match_2[1];
+  loc = btwn(start_loc, body[1]);
   return --[[ tuple ]]{
           loc,
           --[[ ClassDeclaration ]]Block.__(20, {{
                 id = id,
                 body = body,
-                superClass = match_2[1],
+                superClass = match_2[2],
                 typeParameters = typeParameters,
-                superTypeParameters = match_2[2],
-                implements = match_2[3],
+                superTypeParameters = match_2[3],
+                implements = match_2[4],
                 classDecorators = decorators_1
               }})
         };
@@ -10188,7 +10188,7 @@ function class_expression(env) do
   match = Curry._2(Parser_env_Peek.token, nil, env);
   match_1;
   exit = 0;
-  if (typeof match == "number") then do
+  if (type(match) == "number") then do
     switcher = match - 1 | 0;
     if (switcher > 38 or switcher < 0) then do
       if (switcher ~= 88) then do
@@ -10220,17 +10220,17 @@ function class_expression(env) do
   end
    end 
   match_2 = _class(env);
-  body = match_2[0];
-  loc = btwn(start_loc, body[0]);
+  body = match_2[1];
+  loc = btwn(start_loc, body[1]);
   return --[[ tuple ]]{
           loc,
           --[[ Class ]]Block.__(23, {{
-                id = match_1[0],
+                id = match_1[1],
                 body = body,
-                superClass = match_2[1],
-                typeParameters = match_1[1],
-                superTypeParameters = match_2[2],
-                implements = match_2[3],
+                superClass = match_2[2],
+                typeParameters = match_1[2],
+                superTypeParameters = match_2[3],
+                implements = match_2[4],
                 classDecorators = decorators
               }})
         };
@@ -10239,12 +10239,12 @@ end end
 function export_source(env) do
   contextual(env, "from");
   match = Curry._2(Parser_env_Peek.token, nil, env);
-  if (typeof match ~= "number" and match.tag == --[[ T_STRING ]]1) then do
-    match_1 = match[0];
-    octal = match_1[3];
-    raw = match_1[2];
-    value = match_1[1];
-    loc = match_1[0];
+  if (type(match) ~= "number" and match.tag == --[[ T_STRING ]]1) then do
+    match_1 = match[1];
+    octal = match_1[4];
+    raw = match_1[3];
+    value = match_1[2];
+    loc = match_1[1];
     if (octal) then do
       strict_error(env, --[[ StrictOctalLiteral ]]31);
     end
@@ -10283,10 +10283,10 @@ end end
 function expression(env) do
   expression_1 = Curry._1(Parse.expression, env);
   match = Curry._2(Parser_env_Peek.semicolon_loc, nil, env);
-  end_loc = match ~= nil and match or expression_1[0];
+  end_loc = match ~= nil and match or expression_1[1];
   semicolon(env);
   return --[[ tuple ]]{
-          btwn(expression_1[0], end_loc),
+          btwn(expression_1[1], end_loc),
           --[[ Expression ]]Block.__(1, {{
                 expression = expression_1
               }})
@@ -10301,12 +10301,12 @@ function declare_function(env, start_loc) do
   match = wrap(function_param_list, env);
   token_4(env, --[[ T_COLON ]]77);
   returnType = wrap(_type, env);
-  end_loc = returnType[0];
+  end_loc = returnType[1];
   loc = btwn(start_sig_loc, end_loc);
   value_001 = --[[ Function ]]Block.__(1, {{
-        params = match[1],
+        params = match[2],
         returnType = returnType,
-        rest = match[0],
+        rest = match[1],
         typeParameters = typeParameters
       }});
   value = --[[ tuple ]]{
@@ -10317,8 +10317,8 @@ function declare_function(env, start_loc) do
     loc,
     value
   };
-  init = id[1];
-  id_000 = btwn(id[0], end_loc);
+  init = id[2];
+  id_000 = btwn(id[1], end_loc);
   id_001 = {
     name = init.name,
     typeAnnotation = typeAnnotation,
@@ -10347,7 +10347,7 @@ function export_specifiers_and_errs(env, _specifiers, _errs) do
     errs = _errs;
     specifiers = _specifiers;
     match = Curry._2(Parser_env_Peek.token, nil, env);
-    if (typeof match == "number" and not (match ~= 2 and match ~= 105)) then do
+    if (type(match) == "number" and not (match ~= 2 and match ~= 105)) then do
       return --[[ tuple ]]{
               List.rev(specifiers),
               List.rev(errs)
@@ -10355,38 +10355,38 @@ function export_specifiers_and_errs(env, _specifiers, _errs) do
     end
      end 
     match_1 = Curry._1(Parse.identifier_or_reserved_keyword, env);
-    id = match_1[0];
+    id = match_1[1];
     match_2;
     if (Curry._2(Parser_env_Peek.value, nil, env) == "as") then do
       contextual(env, "as");
       match_3 = Curry._1(Parse.identifier_or_reserved_keyword, env);
-      name = match_3[0];
+      name = match_3[1];
       record_export(env, --[[ tuple ]]{
-            name[0],
+            name[1],
             extract_ident_name(name)
           });
       match_2 = --[[ tuple ]]{
         name,
         nil,
-        name[0]
+        name[1]
       };
     end else do
-      loc = id[0];
+      loc = id[1];
       record_export(env, --[[ tuple ]]{
             loc,
             extract_ident_name(id)
           });
       match_2 = --[[ tuple ]]{
         nil,
-        match_1[1],
+        match_1[2],
         loc
       };
     end end 
-    err = match_2[1];
-    loc_1 = btwn(id[0], match_2[2]);
+    err = match_2[2];
+    loc_1 = btwn(id[1], match_2[3]);
     specifier_001 = {
       id = id,
-      name = match_2[0]
+      name = match_2[1]
     };
     specifier = --[[ tuple ]]{
       loc_1,
@@ -10422,7 +10422,7 @@ function type_alias_helper(env) do
   token_4(env, --[[ T_ASSIGN ]]75);
   right = wrap(_type, env);
   match = Curry._2(Parser_env_Peek.semicolon_loc, nil, env);
-  end_loc = match ~= nil and match or right[0];
+  end_loc = match ~= nil and match or right[1];
   semicolon(env);
   pop_lex_mode(env);
   return --[[ tuple ]]{
@@ -10439,7 +10439,7 @@ function declare_var(env, start_loc) do
   token_4(env, --[[ T_VAR ]]22);
   id = Curry._2(Parse.identifier_with_type, env, --[[ StrictVarName ]]27);
   match = Curry._2(Parser_env_Peek.semicolon_loc, nil, env);
-  end_loc = match ~= nil and match or id[0];
+  end_loc = match ~= nil and match or id[1];
   loc = btwn(start_loc, end_loc);
   semicolon(env);
   return --[[ tuple ]]{
@@ -10454,8 +10454,8 @@ function __interface(env) do
   if (Curry._2(Parser_env_Peek.is_identifier, 1, env)) then do
     match = Curry._1(interface_helper, env);
     return --[[ tuple ]]{
-            match[0],
-            --[[ InterfaceDeclaration ]]Block.__(21, {match[1]})
+            match[1],
+            --[[ InterfaceDeclaration ]]Block.__(21, {match[2]})
           };
   end else do
     return expression(env);
@@ -10474,7 +10474,7 @@ function declare_export_declaration(allow_export_typeOpt, env) do
   token_4(env_1, --[[ T_EXPORT ]]47);
   match = Curry._2(Parser_env_Peek.token, nil, env_1);
   exit = 0;
-  if (typeof match == "number") then do
+  if (type(match) == "number") then do
     if (match >= 52) then do
       if (match ~= 59) then do
         if (match ~= 97) then do
@@ -10490,7 +10490,7 @@ function declare_export_declaration(allow_export_typeOpt, env) do
             });
           source = export_source(env_1);
           match_1 = Curry._2(Parser_env_Peek.semicolon_loc, nil, env_1);
-          end_loc = match_1 ~= nil and match_1 or source[0];
+          end_loc = match_1 ~= nil and match_1 or source[1];
           source_1 = source;
           semicolon(env_1);
           return --[[ tuple ]]{
@@ -10505,7 +10505,7 @@ function declare_export_declaration(allow_export_typeOpt, env) do
         end end 
       end else if (allow_export_type) then do
         match_2 = type_alias_helper(env_1);
-        alias_loc = match_2[0];
+        alias_loc = match_2[1];
         loc_1 = btwn(start_loc, alias_loc);
         return --[[ tuple ]]{
                 loc_1,
@@ -10513,7 +10513,7 @@ function declare_export_declaration(allow_export_typeOpt, env) do
                       default = false,
                       declaration = --[[ NamedType ]]Block.__(4, {--[[ tuple ]]{
                             alias_loc,
-                            match_2[1]
+                            match_2[2]
                           }}),
                       specifiers = nil,
                       source = nil
@@ -10525,7 +10525,7 @@ function declare_export_declaration(allow_export_typeOpt, env) do
     end else if (match >= 39) then do
       if (match >= 51 and allow_export_type) then do
         match_3 = Curry._1(interface_helper, env_1);
-        iface_loc = match_3[0];
+        iface_loc = match_3[1];
         loc_2 = btwn(start_loc, iface_loc);
         return --[[ tuple ]]{
                 loc_2,
@@ -10533,7 +10533,7 @@ function declare_export_declaration(allow_export_typeOpt, env) do
                       default = false,
                       declaration = --[[ Interface ]]Block.__(5, {--[[ tuple ]]{
                             iface_loc,
-                            match_3[1]
+                            match_3[2]
                           }}),
                       specifiers = nil,
                       source = nil
@@ -10550,21 +10550,21 @@ function declare_export_declaration(allow_export_typeOpt, env) do
             match_4 = Curry._2(Parser_env_Peek.token, nil, env_1);
             match_5;
             exit_1 = 0;
-            if (typeof match_4 == "number") then do
+            if (type(match_4) == "number") then do
               if (match_4 ~= 13) then do
                 if (match_4 ~= 38) then do
                   exit_1 = 3;
                 end else do
                   _class = Curry._2(declare_class, env_1, start_loc);
                   match_5 = --[[ tuple ]]{
-                    _class[0],
+                    _class[1],
                     --[[ Class ]]Block.__(2, {_class})
                   };
                 end end 
               end else do
                 fn = declare_function(env_1, start_loc);
                 match_5 = --[[ tuple ]]{
-                  fn[0],
+                  fn[1],
                   --[[ Function ]]Block.__(1, {fn})
                 };
               end end 
@@ -10574,7 +10574,7 @@ function declare_export_declaration(allow_export_typeOpt, env) do
             if (exit_1 == 3) then do
               _type_1 = wrap(_type, env_1);
               match_6 = Curry._2(Parser_env_Peek.semicolon_loc, nil, env_1);
-              end_loc_1 = match_6 ~= nil and match_6 or _type_1[0];
+              end_loc_1 = match_6 ~= nil and match_6 or _type_1[1];
               semicolon(env_1);
               match_5 = --[[ tuple ]]{
                 end_loc_1,
@@ -10583,10 +10583,10 @@ function declare_export_declaration(allow_export_typeOpt, env) do
             end
              end 
             return --[[ tuple ]]{
-                    btwn(start_loc, match_5[0]),
+                    btwn(start_loc, match_5[1]),
                     --[[ DeclareExportDeclaration ]]Block.__(27, {{
                           default = true,
-                          declaration = match_5[1],
+                          declaration = match_5[2],
                           specifiers = nil,
                           source = nil
                         }})
@@ -10631,7 +10631,7 @@ function declare_export_declaration(allow_export_typeOpt, env) do
   do
      if ___conditional___ == 1 then do
         match_7 = Curry._2(Parser_env_Peek.token, nil, env_1);
-        if (typeof match_7 == "number") then do
+        if (type(match_7) == "number") then do
           if (match_7 ~= 51) then do
             if (match_7 ~= 59) then do
               
@@ -10645,15 +10645,15 @@ function declare_export_declaration(allow_export_typeOpt, env) do
          end 
         token_4(env_1, --[[ T_LCURLY ]]1);
         match_8 = export_specifiers_and_errs(env_1, --[[ [] ]]0, --[[ [] ]]0);
-        specifiers_1 = --[[ ExportSpecifiers ]]Block.__(0, {match_8[0]});
+        specifiers_1 = --[[ ExportSpecifiers ]]Block.__(0, {match_8[1]});
         end_loc_2 = Curry._2(Parser_env_Peek.loc, nil, env_1);
         token_4(env_1, --[[ T_RCURLY ]]2);
         source_2 = Curry._2(Parser_env_Peek.value, nil, env_1) == "from" and export_source(env_1) or (List.iter((function(param) do
                     return error_at(env_1, param);
-                  end end), match_8[1]), nil);
+                  end end), match_8[2]), nil);
         match_9 = Curry._2(Parser_env_Peek.semicolon_loc, nil, env_1);
         end_loc_3 = match_9 ~= nil and match_9 or (
-            source_2 ~= nil and source_2[0] or end_loc_2
+            source_2 ~= nil and source_2[1] or end_loc_2
           );
         semicolon(env_1);
         return --[[ tuple ]]{
@@ -10669,7 +10669,7 @@ function declare_export_declaration(allow_export_typeOpt, env) do
         token_5 = Curry._2(Parser_env_Peek.token, nil, env_1);
         match_10;
         exit_2 = 0;
-        if (typeof token_5 == "number") then do
+        if (type(token_5) == "number") then do
           if (token_5 >= 23) then do
             if (token_5 >= 27) then do
               if (token_5 ~= 38) then do
@@ -10677,7 +10677,7 @@ function declare_export_declaration(allow_export_typeOpt, env) do
               end else do
                 _class_1 = Curry._2(declare_class, env_1, start_loc);
                 match_10 = --[[ tuple ]]{
-                  _class_1[0],
+                  _class_1[1],
                   --[[ Class ]]Block.__(2, {_class_1})
                 };
               end end 
@@ -10689,7 +10689,7 @@ function declare_export_declaration(allow_export_typeOpt, env) do
           end else do
             fn_1 = declare_function(env_1, start_loc);
             match_10 = --[[ tuple ]]{
-              fn_1[0],
+              fn_1[1],
               --[[ Function ]]Block.__(1, {fn_1})
             };
           end end  end 
@@ -10708,7 +10708,7 @@ function declare_export_declaration(allow_export_typeOpt, env) do
                 }
               }) end end 
            if ___conditional___ == 4 then do
-              if (typeof token_5 == "number") then do
+              if (type(token_5) == "number") then do
                 if (token_5 ~= 25) then do
                   if (token_5 ~= 26) then do
                     
@@ -10722,17 +10722,17 @@ function declare_export_declaration(allow_export_typeOpt, env) do
                end 
               __var = declare_var(env_1, start_loc);
               match_10 = --[[ tuple ]]{
-                __var[0],
+                __var[1],
                 --[[ Variable ]]Block.__(0, {__var})
               }; end else 
            end end
           
         end
         return --[[ tuple ]]{
-                btwn(start_loc, match_10[0]),
+                btwn(start_loc, match_10[1]),
                 --[[ DeclareExportDeclaration ]]Block.__(27, {{
                       default = false,
-                      declaration = match_10[1],
+                      declaration = match_10[2],
                       specifiers = nil,
                       source = nil
                     }})
@@ -10744,8 +10744,8 @@ end end
 function declare_function_statement(env, start_loc) do
   match = declare_function(env, start_loc);
   return --[[ tuple ]]{
-          match[0],
-          --[[ DeclareFunction ]]Block.__(23, {match[1]})
+          match[1],
+          --[[ DeclareFunction ]]Block.__(23, {match[2]})
         };
 end end
 
@@ -10753,8 +10753,8 @@ function type_alias(env) do
   if (Curry._2(Parser_env_Peek.is_identifier, 1, env)) then do
     match = type_alias_helper(env);
     return --[[ tuple ]]{
-            match[0],
-            --[[ TypeAlias ]]Block.__(7, {match[1]})
+            match[1],
+            --[[ TypeAlias ]]Block.__(7, {match[2]})
           };
   end else do
     return Curry._1(Parse.statement, env);
@@ -10764,8 +10764,8 @@ end end
 function declare_var_statement(env, start_loc) do
   match = declare_var(env, start_loc);
   return --[[ tuple ]]{
-          match[0],
-          --[[ DeclareVariable ]]Block.__(22, {match[1]})
+          match[1],
+          --[[ DeclareVariable ]]Block.__(22, {match[2]})
         };
 end end
 
@@ -10777,7 +10777,7 @@ function declare(in_moduleOpt, env) do
    end 
   start_loc = Curry._2(Parser_env_Peek.loc, nil, env);
   match = Curry._2(Parser_env_Peek.token, 1, env);
-  if (typeof match == "number") then do
+  if (type(match) == "number") then do
     if (match >= 22) then do
       if (match >= 38) then do
         if (match < 62) then do
@@ -10789,8 +10789,8 @@ function declare(in_moduleOpt, env) do
                 start_loc_1 = start_loc;
                 match_1 = Curry._2(declare_class, env_1, start_loc_1);
                 return --[[ tuple ]]{
-                        match_1[0],
-                        --[[ DeclareClass ]]Block.__(24, {match_1[1]})
+                        match_1[1],
+                        --[[ DeclareClass ]]Block.__(24, {match_1[2]})
                       }; end end 
              if ___conditional___ == 9--[[ T_PERIOD ]] then do
                 if (in_module) then do
@@ -10847,7 +10847,7 @@ function declare(in_moduleOpt, env) do
           contextual(env_2, "exports");
           type_annot = wrap(annotation, env_2);
           match_2 = Curry._2(Parser_env_Peek.semicolon_loc, nil, env_2);
-          end_loc = match_2 ~= nil and match_2 or type_annot[0];
+          end_loc = match_2 ~= nil and match_2 or type_annot[1];
           semicolon(env_2);
           loc = btwn(start_loc_2, end_loc);
           return --[[ tuple ]]{
@@ -10859,14 +10859,14 @@ function declare(in_moduleOpt, env) do
           start_loc_3 = start_loc;
           match_3 = Curry._2(Parser_env_Peek.token, nil, env_3);
           id;
-          if (typeof match_3 == "number" or match_3.tag ~= --[[ T_STRING ]]1) then do
+          if (type(match_3) == "number" or match_3.tag ~= --[[ T_STRING ]]1) then do
             id = --[[ Identifier ]]Block.__(0, {Curry._2(Parse.identifier, nil, env_3)});
           end else do
-            match_4 = match_3[0];
-            octal = match_4[3];
-            raw = match_4[2];
-            value = match_4[1];
-            loc_1 = match_4[0];
+            match_4 = match_3[1];
+            octal = match_4[4];
+            raw = match_4[3];
+            value = match_4[2];
+            loc_1 = match_4[1];
             if (octal) then do
               strict_error(env_3, --[[ StrictOctalLiteral ]]31);
             end
@@ -10889,12 +10889,12 @@ function declare(in_moduleOpt, env) do
           body_start_loc = Curry._2(Parser_env_Peek.loc, nil, env_3);
           token_4(env_3, --[[ T_LCURLY ]]1);
           match_5 = module_items(env_3, nil, --[[ [] ]]0);
-          module_kind = match_5[0];
+          module_kind = match_5[1];
           token_4(env_3, --[[ T_RCURLY ]]2);
           body_end_loc = Curry._2(Parser_env_Peek.loc, nil, env_3);
           body_loc = btwn(body_start_loc, body_end_loc);
           body_001 = {
-            body = match_5[1]
+            body = match_5[2]
           };
           body = --[[ tuple ]]{
             body_loc,
@@ -10928,7 +10928,7 @@ function declare(in_moduleOpt, env) do
 end end
 
 function extract_ident_name(param) do
-  return param[1].name;
+  return param[2].name;
 end end
 
 function supers(env, _acc) do
@@ -10940,7 +10940,7 @@ function supers(env, _acc) do
       acc
     };
     match = Curry._2(Parser_env_Peek.token, nil, env);
-    if (typeof match == "number" and match == 8) then do
+    if (type(match) == "number" and match == 8) then do
       token_4(env, --[[ T_COMMA ]]8);
       _acc = acc_1;
       ::continue:: ;
@@ -10961,7 +10961,7 @@ function interface_helper(env) do
   typeParameters = Curry._1(type_parameter_declaration_with_defaults, env);
   __extends = Curry._2(Parser_env_Peek.token, nil, env) == --[[ T_EXTENDS ]]39 and (token_4(env, --[[ T_EXTENDS ]]39), supers(env, --[[ [] ]]0)) or --[[ [] ]]0;
   body = _object_1(true, env);
-  loc = btwn(start_loc, body[0]);
+  loc = btwn(start_loc, body[1]);
   return --[[ tuple ]]{
           loc,
           {
@@ -10983,7 +10983,7 @@ function supers_1(env, _acc) do
       acc
     };
     match = Curry._2(Parser_env_Peek.token, nil, env);
-    if (typeof match == "number" and match == 8) then do
+    if (type(match) == "number" and match == 8) then do
       token_4(env, --[[ T_COMMA ]]8);
       _acc = acc_1;
       ::continue:: ;
@@ -11001,7 +11001,7 @@ function declare_class(env, start_loc) do
   __extends = Curry._2(Parser_env_Peek.token, nil, env_1) == --[[ T_EXTENDS ]]39 and (token_4(env_1, --[[ T_EXTENDS ]]39), supers_1(env_1, --[[ [] ]]0)) or --[[ [] ]]0;
   mixins = Curry._2(Parser_env_Peek.value, nil, env_1) == "mixins" and (contextual(env_1, "mixins"), supers_1(env_1, --[[ [] ]]0)) or --[[ [] ]]0;
   body = _object_1(true, env_1);
-  loc = btwn(start_loc, body[0]);
+  loc = btwn(start_loc, body[1]);
   return --[[ tuple ]]{
           loc,
           {
@@ -11019,7 +11019,7 @@ function module_items(env, _module_kind, _acc) do
     acc = _acc;
     module_kind = _module_kind;
     match = Curry._2(Parser_env_Peek.token, nil, env);
-    if (typeof match == "number" and not (match ~= 2 and match ~= 105)) then do
+    if (type(match) == "number" and not (match ~= 2 and match ~= 105)) then do
       return --[[ tuple ]]{
               module_kind,
               List.rev(acc)
@@ -11027,18 +11027,18 @@ function module_items(env, _module_kind, _acc) do
     end
      end 
     stmt = declare(true, env);
-    stmt_1 = stmt[1];
-    loc = stmt[0];
+    stmt_1 = stmt[2];
+    loc = stmt[1];
     module_kind_1;
     if (module_kind ~= nil) then do
       if (module_kind.tag) then do
-        if (typeof stmt_1 == "number" or stmt_1.tag ~= --[[ DeclareModuleExports ]]26) then do
+        if (type(stmt_1) == "number" or stmt_1.tag ~= --[[ DeclareModuleExports ]]26) then do
           module_kind_1 = module_kind;
         end else do
           error_1(env, --[[ AmbiguousDeclareModuleKind ]]61);
           module_kind_1 = module_kind;
         end end 
-      end else if (typeof stmt_1 == "number") then do
+      end else if (type(stmt_1) == "number") then do
         module_kind_1 = module_kind;
       end else do
         local ___conditional___=(stmt_1.tag | 0);
@@ -11047,7 +11047,7 @@ function module_items(env, _module_kind, _acc) do
               error_1(env, --[[ DuplicateDeclareModuleExports ]]60);
               module_kind_1 = module_kind; end else 
            if ___conditional___ == 27--[[ DeclareExportDeclaration ]] then do
-              declaration = stmt_1[0].declaration;
+              declaration = stmt_1[1].declaration;
               if (declaration ~= nil) then do
                 local ___conditional___=(declaration.tag | 0);
                 do
@@ -11066,7 +11066,7 @@ function module_items(env, _module_kind, _acc) do
             
         end
       end end  end 
-    end else if (typeof stmt_1 == "number") then do
+    end else if (type(stmt_1) == "number") then do
       module_kind_1 = module_kind;
     end else do
       local ___conditional___=(stmt_1.tag | 0);
@@ -11074,7 +11074,7 @@ function module_items(env, _module_kind, _acc) do
          if ___conditional___ == 26--[[ DeclareModuleExports ]] then do
             module_kind_1 = --[[ CommonJS ]]Block.__(0, {loc}); end else 
          if ___conditional___ == 27--[[ DeclareExportDeclaration ]] then do
-            declaration_1 = stmt_1[0].declaration;
+            declaration_1 = stmt_1[1].declaration;
             if (declaration_1 ~= nil) then do
               local ___conditional___=(declaration_1.tag | 0);
               do
@@ -11105,39 +11105,39 @@ end end
 function fold(acc, _param) do
   while(true) do
     param = _param;
-    match = param[1];
+    match = param[2];
     local ___conditional___=(match.tag | 0);
     do
        if ___conditional___ == 0--[[ Object ]] then do
           return List.fold_left((function(acc, prop) do
                         if (prop.tag) then do
-                          return fold(acc, prop[0][1].argument);
+                          return fold(acc, prop[1][2].argument);
                         end else do
-                          return fold(acc, prop[0][1].pattern);
+                          return fold(acc, prop[1][2].pattern);
                         end end 
-                      end end), acc, match[0].properties); end end 
+                      end end), acc, match[1].properties); end end 
        if ___conditional___ == 1--[[ Array ]] then do
           return List.fold_left((function(acc, elem) do
                         if (elem ~= nil) then do
                           match = elem;
                           if (match.tag) then do
-                            return fold(acc, match[0][1].argument);
+                            return fold(acc, match[1][2].argument);
                           end else do
-                            return fold(acc, match[0]);
+                            return fold(acc, match[1]);
                           end end 
                         end else do
                           return acc;
                         end end 
-                      end end), acc, match[0].elements); end end 
+                      end end), acc, match[1].elements); end end 
        if ___conditional___ == 2--[[ Assignment ]] then do
-          _param = match[0].left;
+          _param = match[1].left;
           ::continue:: ; end end 
        if ___conditional___ == 3--[[ Identifier ]] then do
-          match_1 = match[0];
+          match_1 = match[1];
           return --[[ :: ]]{
                   --[[ tuple ]]{
-                    match_1[0],
-                    match_1[1].name
+                    match_1[1],
+                    match_1[2].name
                   },
                   acc
                 }; end end 
@@ -11155,11 +11155,11 @@ function assert_can_be_forin_or_forof(env, err, param) do
   if (param ~= nil) then do
     match = param;
     if (match.tag) then do
-      match_1 = match[0];
-      loc = match_1[0];
+      match_1 = match[1];
+      loc = match_1[1];
       if (Curry._1(Parse.is_assignable_lhs, --[[ tuple ]]{
               loc,
-              match_1[1]
+              match_1[2]
             })) then do
         return 0;
       end else do
@@ -11169,14 +11169,14 @@ function assert_can_be_forin_or_forof(env, err, param) do
                   });
       end end 
     end else do
-      match_2 = match[0];
-      declarations = match_2[1].declarations;
-      if (declarations and declarations[0][1].init == nil and not declarations[1]) then do
+      match_2 = match[1];
+      declarations = match_2[2].declarations;
+      if (declarations and declarations[1][2].init == nil and not declarations[2]) then do
         return --[[ () ]]0;
       end
        end 
       return error_at(env, --[[ tuple ]]{
-                  match_2[0],
+                  match_2[1],
                   err
                 });
     end end 
@@ -11194,7 +11194,7 @@ function _if(env) do
   Curry._2(Parser_env_Peek.token, nil, env);
   consequent = Curry._2(Parser_env_Peek.is_function, nil, env) and (strict_error(env, --[[ StrictFunctionStatement ]]45), _function(env)) or Curry._1(Parse.statement, env);
   alternate = Curry._2(Parser_env_Peek.token, nil, env) == --[[ T_ELSE ]]41 and (token_4(env, --[[ T_ELSE ]]41), Curry._1(Parse.statement, env)) or nil;
-  end_loc = alternate ~= nil and alternate[0] or consequent[0];
+  end_loc = alternate ~= nil and alternate[1] or consequent[1];
   return --[[ tuple ]]{
           btwn(start_loc, end_loc),
           --[[ If ]]Block.__(2, {{
@@ -11208,17 +11208,17 @@ end end
 function case_list(env, _param) do
   while(true) do
     param = _param;
-    acc = param[1];
-    seen_default = param[0];
+    acc = param[2];
+    seen_default = param[1];
     match = Curry._2(Parser_env_Peek.token, nil, env);
-    if (typeof match == "number" and not (match ~= 2 and match ~= 105)) then do
+    if (type(match) == "number" and not (match ~= 2 and match ~= 105)) then do
       return List.rev(acc);
     end
      end 
     start_loc = Curry._2(Parser_env_Peek.loc, nil, env);
     match_1 = Curry._2(Parser_env_Peek.token, nil, env);
     test;
-    if (typeof match_1 == "number" and match_1 == 34) then do
+    if (type(match_1) == "number" and match_1 == 34) then do
       if (seen_default) then do
         error_1(env, --[[ MultipleDefaultsInSwitch ]]19);
       end
@@ -11233,7 +11233,7 @@ function case_list(env, _param) do
     end_loc = Curry._2(Parser_env_Peek.loc, nil, env);
     token_4(env, --[[ T_COLON ]]77);
     term_fn = function(param) do
-      if (typeof param == "number") then do
+      if (type(param) == "number") then do
         switcher = param - 2 | 0;
         if (switcher > 29 or switcher < 0) then do
           return switcher == 32;
@@ -11246,7 +11246,7 @@ function case_list(env, _param) do
     end end;
     consequent = Curry._2(Parse.statement_list, term_fn, with_in_switch(true, env));
     match_2 = List.rev(consequent);
-    end_loc_1 = match_2 and match_2[0][0] or end_loc;
+    end_loc_1 = match_2 and match_2[1][1] or end_loc;
     acc_000 = --[[ tuple ]]{
       btwn(start_loc, end_loc_1),
       {
@@ -11268,29 +11268,29 @@ end end
 
 function var_or_const(env) do
   match = variable(env);
-  match_1 = match[0];
-  start_loc = match_1[0];
+  match_1 = match[1];
+  start_loc = match_1[1];
   match_2 = Curry._2(Parser_env_Peek.semicolon_loc, nil, env);
   end_loc = match_2 ~= nil and match_2 or start_loc;
   semicolon(env);
   List.iter((function(param) do
           return error_at(env, param);
-        end end), match[1]);
+        end end), match[2]);
   return --[[ tuple ]]{
           btwn(start_loc, end_loc),
-          match_1[1]
+          match_1[2]
         };
 end end
 
 function source(env) do
   contextual(env, "from");
   match = Curry._2(Parser_env_Peek.token, nil, env);
-  if (typeof match ~= "number" and match.tag == --[[ T_STRING ]]1) then do
-    match_1 = match[0];
-    octal = match_1[3];
-    raw = match_1[2];
-    value = match_1[1];
-    loc = match_1[0];
+  if (type(match) ~= "number" and match.tag == --[[ T_STRING ]]1) then do
+    match_1 = match[1];
+    octal = match_1[4];
+    raw = match_1[3];
+    value = match_1[2];
+    loc = match_1[1];
     if (octal) then do
       strict_error(env, --[[ StrictOctalLiteral ]]31);
     end
@@ -11330,13 +11330,13 @@ function specifier_list(env, _acc) do
   while(true) do
     acc = _acc;
     match = Curry._2(Parser_env_Peek.token, nil, env);
-    if (typeof match == "number" and not (match ~= 2 and match ~= 105)) then do
+    if (type(match) == "number" and not (match ~= 2 and match ~= 105)) then do
       return List.rev(acc);
     end
      end 
     match_1 = Curry._1(Parse.identifier_or_reserved_keyword, env);
-    err = match_1[1];
-    remote = match_1[0];
+    err = match_1[2];
+    remote = match_1[1];
     specifier;
     if (Curry._2(Parser_env_Peek.value, nil, env) == "as") then do
       contextual(env, "as");
@@ -11370,13 +11370,13 @@ end end
 function named_or_namespace_specifier(env) do
   start_loc = Curry._2(Parser_env_Peek.loc, nil, env);
   match = Curry._2(Parser_env_Peek.token, nil, env);
-  if (typeof match == "number" and match == 97) then do
+  if (type(match) == "number" and match == 97) then do
     token_4(env, --[[ T_MULT ]]97);
     contextual(env, "as");
     id = Curry._2(Parse.identifier, nil, env);
     return --[[ :: ]]{
             --[[ ImportNamespaceSpecifier ]]Block.__(2, {--[[ tuple ]]{
-                  btwn(start_loc, id[0]),
+                  btwn(start_loc, id[1]),
                   id
                 }}),
             --[[ [] ]]0
@@ -11390,16 +11390,16 @@ function named_or_namespace_specifier(env) do
 end end
 
 function from_expr(env, param) do
-  expr = param[1];
-  loc = param[0];
-  if (typeof expr ~= "number") then do
+  expr = param[2];
+  loc = param[1];
+  if (type(expr) ~= "number") then do
     local ___conditional___=(expr.tag | 0);
     do
        if ___conditional___ == 0--[[ Array ]] then do
           env_1 = env;
           param_1 = --[[ tuple ]]{
             loc,
-            expr[0]
+            expr[1]
           };
           elements = List.map((function(param) do
                   env_2 = env_1;
@@ -11407,26 +11407,26 @@ function from_expr(env, param) do
                   if (param_1 ~= nil) then do
                     match = param_1;
                     if (match.tag) then do
-                      match_1 = match[0];
-                      argument = Curry._2(Parse.pattern_from_expr, env_2, match_1[1].argument);
+                      match_1 = match[1];
+                      argument = Curry._2(Parse.pattern_from_expr, env_2, match_1[2].argument);
                       return --[[ Spread ]]Block.__(1, {--[[ tuple ]]{
-                                  match_1[0],
+                                  match_1[1],
                                   {
                                     argument = argument
                                   }
                                 }});
                     end else do
-                      match_2 = match[0];
+                      match_2 = match[1];
                       return --[[ Element ]]Block.__(0, {Curry._2(Parse.pattern_from_expr, env_2, --[[ tuple ]]{
-                                      match_2[0],
-                                      match_2[1]
+                                      match_2[1],
+                                      match_2[2]
                                     })});
                     end end 
                   end
                    end 
-                end end), param_1[1].elements);
+                end end), param_1[2].elements);
           return --[[ tuple ]]{
-                  param_1[0],
+                  param_1[1],
                   --[[ Array ]]Block.__(1, {{
                         elements = elements,
                         typeAnnotation = nil
@@ -11436,39 +11436,39 @@ function from_expr(env, param) do
           env_2 = env;
           param_2 = --[[ tuple ]]{
             loc,
-            expr[0]
+            expr[1]
           };
           properties = List.map((function(param) do
                   env_3 = env_2;
                   prop = param;
                   if (prop.tag) then do
-                    match = prop[0];
-                    argument = Curry._2(Parse.pattern_from_expr, env_3, match[1].argument);
+                    match = prop[1];
+                    argument = Curry._2(Parse.pattern_from_expr, env_3, match[2].argument);
                     return --[[ SpreadProperty ]]Block.__(1, {--[[ tuple ]]{
-                                match[0],
+                                match[1],
                                 {
                                   argument = argument
                                 }
                               }});
                   end else do
-                    match_1 = prop[0];
-                    match_2 = match_1[1];
+                    match_1 = prop[1];
+                    match_2 = match_1[2];
                     key = match_2.key;
                     key_1;
                     local ___conditional___=(key.tag | 0);
                     do
                        if ___conditional___ == 0--[[ Literal ]] then do
-                          key_1 = --[[ Literal ]]Block.__(0, {key[0]}); end else 
+                          key_1 = --[[ Literal ]]Block.__(0, {key[1]}); end else 
                        if ___conditional___ == 1--[[ Identifier ]] then do
-                          key_1 = --[[ Identifier ]]Block.__(1, {key[0]}); end else 
+                          key_1 = --[[ Identifier ]]Block.__(1, {key[1]}); end else 
                        if ___conditional___ == 2--[[ Computed ]] then do
-                          key_1 = --[[ Computed ]]Block.__(2, {key[0]}); end else 
+                          key_1 = --[[ Computed ]]Block.__(2, {key[1]}); end else 
                        end end end end end end
                       
                     end
                     pattern = Curry._2(Parse.pattern_from_expr, env_3, match_2.value);
                     return --[[ Property ]]Block.__(0, {--[[ tuple ]]{
-                                match_1[0],
+                                match_1[1],
                                 {
                                   key = key_1,
                                   pattern = pattern,
@@ -11476,16 +11476,16 @@ function from_expr(env, param) do
                                 }
                               }});
                   end end 
-                end end), param_2[1].properties);
+                end end), param_2[2].properties);
           return --[[ tuple ]]{
-                  param_2[0],
+                  param_2[1],
                   --[[ Object ]]Block.__(0, {{
                         properties = properties,
                         typeAnnotation = nil
                       }})
                 }; end end 
        if ___conditional___ == 7--[[ Assignment ]] then do
-          match = expr[0];
+          match = expr[1];
           if (match.operator == 0) then do
             return --[[ tuple ]]{
                     loc,
@@ -11499,7 +11499,7 @@ function from_expr(env, param) do
        if ___conditional___ == 18--[[ Identifier ]] then do
           return --[[ tuple ]]{
                   loc,
-                  --[[ Identifier ]]Block.__(3, {expr[0]})
+                  --[[ Identifier ]]Block.__(3, {expr[1]})
                 }; end end end end 
       
     end
@@ -11519,7 +11519,7 @@ function _object_2(restricted_error) do
     start_loc = Curry._2(Parser_env_Peek.loc, nil, env);
     if (maybe(env, --[[ T_ELLIPSIS ]]11)) then do
       argument = pattern_1(env, restricted_error);
-      loc = btwn(start_loc, argument[0]);
+      loc = btwn(start_loc, argument[1]);
       return --[[ SpreadProperty ]]Block.__(1, {--[[ tuple ]]{
                   loc,
                   {
@@ -11528,23 +11528,23 @@ function _object_2(restricted_error) do
                 }});
     end else do
       match = Curry._1(Parse.object_key, env);
-      match_1 = match[1];
+      match_1 = match[2];
       key;
       local ___conditional___=(match_1.tag | 0);
       do
          if ___conditional___ == 0--[[ Literal ]] then do
-            key = --[[ Literal ]]Block.__(0, {match_1[0]}); end else 
+            key = --[[ Literal ]]Block.__(0, {match_1[1]}); end else 
          if ___conditional___ == 1--[[ Identifier ]] then do
-            key = --[[ Identifier ]]Block.__(1, {match_1[0]}); end else 
+            key = --[[ Identifier ]]Block.__(1, {match_1[1]}); end else 
          if ___conditional___ == 2--[[ Computed ]] then do
-            key = --[[ Computed ]]Block.__(2, {match_1[0]}); end else 
+            key = --[[ Computed ]]Block.__(2, {match_1[1]}); end else 
          end end end end end end
         
       end
       match_2 = Curry._2(Parser_env_Peek.token, nil, env);
       prop;
       exit = 0;
-      if (typeof match_2 == "number" and match_2 == 77) then do
+      if (type(match_2) == "number" and match_2 == 77) then do
         token_4(env, --[[ T_COLON ]]77);
         prop = --[[ tuple ]]{
           pattern_1(env, restricted_error),
@@ -11557,8 +11557,8 @@ function _object_2(restricted_error) do
         local ___conditional___=(key.tag | 0);
         do
            if ___conditional___ == 1--[[ Identifier ]] then do
-              id = key[0];
-              pattern_000 = id[0];
+              id = key[1];
+              pattern_000 = id[1];
               pattern_001 = --[[ Identifier ]]Block.__(3, {id});
               pattern_2 = --[[ tuple ]]{
                 pattern_000,
@@ -11579,13 +11579,13 @@ function _object_2(restricted_error) do
        end 
       if (prop ~= nil) then do
         match_3 = prop;
-        pattern_3 = match_3[0];
+        pattern_3 = match_3[1];
         match_4 = Curry._2(Parser_env_Peek.token, nil, env);
         pattern_4;
-        if (typeof match_4 == "number" and match_4 == 75) then do
+        if (type(match_4) == "number" and match_4 == 75) then do
           token_4(env, --[[ T_ASSIGN ]]75);
           __default = Curry._1(Parse.assignment, env);
-          loc_1 = btwn(pattern_3[0], __default[0]);
+          loc_1 = btwn(pattern_3[1], __default[1]);
           pattern_4 = --[[ tuple ]]{
             loc_1,
             --[[ Assignment ]]Block.__(2, {{
@@ -11596,13 +11596,13 @@ function _object_2(restricted_error) do
         end else do
           pattern_4 = pattern_3;
         end end 
-        loc_2 = btwn(start_loc, pattern_4[0]);
+        loc_2 = btwn(start_loc, pattern_4[1]);
         return --[[ Property ]]Block.__(0, {--[[ tuple ]]{
                     loc_2,
                     {
                       key = key,
                       pattern = pattern_4,
-                      shorthand = match_3[1]
+                      shorthand = match_3[2]
                     }
                   }});
       end else do
@@ -11614,7 +11614,7 @@ function _object_2(restricted_error) do
     while(true) do
       acc = _acc;
       match = Curry._2(Parser_env_Peek.token, nil, env);
-      if (typeof match == "number" and not (match ~= 2 and match ~= 105)) then do
+      if (type(match) == "number" and not (match ~= 2 and match ~= 105)) then do
         return List.rev(acc);
       end
        end 
@@ -11644,7 +11644,7 @@ function _object_2(restricted_error) do
       if (Curry._2(Parser_env_Peek.token, nil, env) == --[[ T_COLON ]]77) then do
         typeAnnotation = wrap(annotation, env);
         match = --[[ tuple ]]{
-          typeAnnotation[0],
+          typeAnnotation[1],
           typeAnnotation
         };
       end else do
@@ -11654,10 +11654,10 @@ function _object_2(restricted_error) do
         };
       end end 
       return --[[ tuple ]]{
-              btwn(start_loc, match[0]),
+              btwn(start_loc, match[1]),
               --[[ Object ]]Block.__(0, {{
                     properties = properties_1,
-                    typeAnnotation = match[1]
+                    typeAnnotation = match[2]
                   }})
             };
     end end);
@@ -11668,7 +11668,7 @@ function _array(restricted_error) do
     while(true) do
       acc = _acc;
       match = Curry._2(Parser_env_Peek.token, nil, env);
-      if (typeof match == "number") then do
+      if (type(match) == "number") then do
         if (match ~= 105) then do
           if (match < 12) then do
             local ___conditional___=(match);
@@ -11695,7 +11695,7 @@ function _array(restricted_error) do
                   start_loc = Curry._2(Parser_env_Peek.loc, nil, env);
                   token_4(env, --[[ T_ELLIPSIS ]]11);
                   argument = pattern_1(env, restricted_error);
-                  loc = btwn(start_loc, argument[0]);
+                  loc = btwn(start_loc, argument[1]);
                   element = --[[ Spread ]]Block.__(1, {--[[ tuple ]]{
                         loc,
                         {
@@ -11719,10 +11719,10 @@ function _array(restricted_error) do
       pattern_2 = pattern_1(env, restricted_error);
       match_1 = Curry._2(Parser_env_Peek.token, nil, env);
       pattern_3;
-      if (typeof match_1 == "number" and match_1 == 75) then do
+      if (type(match_1) == "number" and match_1 == 75) then do
         token_4(env, --[[ T_ASSIGN ]]75);
         __default = Curry._1(Parse.expression, env);
-        loc_1 = btwn(pattern_2[0], __default[0]);
+        loc_1 = btwn(pattern_2[1], __default[1]);
         pattern_3 = --[[ tuple ]]{
           loc_1,
           --[[ Assignment ]]Block.__(2, {{
@@ -11755,7 +11755,7 @@ function _array(restricted_error) do
       if (Curry._2(Parser_env_Peek.token, nil, env) == --[[ T_COLON ]]77) then do
         typeAnnotation = wrap(annotation, env);
         match = --[[ tuple ]]{
-          typeAnnotation[0],
+          typeAnnotation[1],
           typeAnnotation
         };
       end else do
@@ -11765,10 +11765,10 @@ function _array(restricted_error) do
         };
       end end 
       return --[[ tuple ]]{
-              btwn(start_loc, match[0]),
+              btwn(start_loc, match[1]),
               --[[ Array ]]Block.__(1, {{
                     elements = elements_1,
-                    typeAnnotation = match[1]
+                    typeAnnotation = match[2]
                   }})
             };
     end end);
@@ -11776,7 +11776,7 @@ end end
 
 function pattern_1(env, restricted_error) do
   match = Curry._2(Parser_env_Peek.token, nil, env);
-  if (typeof match == "number") then do
+  if (type(match) == "number") then do
     if (match ~= 1) then do
       if (match == 5) then do
         return _array(restricted_error)(env);
@@ -11789,7 +11789,7 @@ function pattern_1(env, restricted_error) do
    end 
   id = Curry._2(Parse.identifier_with_type, env, restricted_error);
   return --[[ tuple ]]{
-          id[0],
+          id[1],
           --[[ Identifier ]]Block.__(3, {id})
         };
 end end
@@ -11849,11 +11849,11 @@ function member_expression(env, _member) do
   while(true) do
     member = _member;
     match = Curry._2(Parser_env_Peek.token, nil, env);
-    if (typeof match == "number" and match == 9) then do
+    if (type(match) == "number" and match == 9) then do
       _object = --[[ MemberExpression ]]Block.__(1, {member});
       token_4(env, --[[ T_PERIOD ]]9);
       property = identifier_1(env);
-      loc = btwn(member[0], property[0]);
+      loc = btwn(member[1], property[1]);
       member_001 = {
         _object = _object,
         property = property
@@ -11873,14 +11873,14 @@ end end
 function name(env) do
   name_1 = identifier_1(env);
   match = Curry._2(Parser_env_Peek.token, nil, env);
-  if (typeof match == "number") then do
+  if (type(match) == "number") then do
     if (match ~= 9) then do
       if (match ~= 77) then do
         return --[[ Identifier ]]Block.__(0, {name_1});
       end else do
         token_4(env, --[[ T_COLON ]]77);
         name_2 = identifier_1(env);
-        loc = btwn(name_1[0], name_2[0]);
+        loc = btwn(name_1[1], name_2[1]);
         return --[[ NamespacedName ]]Block.__(1, {--[[ tuple ]]{
                     loc,
                     {
@@ -11893,7 +11893,7 @@ function name(env) do
       _object = --[[ Identifier ]]Block.__(0, {name_1});
       token_4(env, --[[ T_PERIOD ]]9);
       property = identifier_1(env);
-      loc_1 = btwn(name_1[0], property[0]);
+      loc_1 = btwn(name_1[1], property[1]);
       member_001 = {
         _object = _object,
         property = property
@@ -11916,7 +11916,7 @@ function attribute(env) do
   if (Curry._2(Parser_env_Peek.token, nil, env) == --[[ T_COLON ]]77) then do
     token_4(env, --[[ T_COLON ]]77);
     name_1 = identifier_1(env);
-    loc = btwn(name[0], name_1[0]);
+    loc = btwn(name[1], name_1[1]);
     match = --[[ tuple ]]{
       loc,
       --[[ NamespacedName ]]Block.__(1, {--[[ tuple ]]{
@@ -11929,7 +11929,7 @@ function attribute(env) do
     };
   end else do
     match = --[[ tuple ]]{
-      name[0],
+      name[1],
       --[[ Identifier ]]Block.__(0, {name})
     };
   end end 
@@ -11938,11 +11938,11 @@ function attribute(env) do
     token_4(env, --[[ T_ASSIGN ]]75);
     token_5 = Curry._2(Parser_env_Peek.token, nil, env);
     exit = 0;
-    if (typeof token_5 == "number") then do
+    if (type(token_5) == "number") then do
       if (token_5 == --[[ T_LCURLY ]]1) then do
         match_2 = expression_container(env);
-        expression_container_1 = match_2[1];
-        loc_1 = match_2[0];
+        expression_container_1 = match_2[2];
+        loc_1 = match_2[1];
         match_3 = expression_container_1.expression;
         if (match_3.tag) then do
           error_1(env, --[[ JSXAttributeValueEmptyExpression ]]40);
@@ -11959,17 +11959,17 @@ function attribute(env) do
         exit = 1;
       end end 
     end else if (token_5.tag == --[[ T_JSX_TEXT ]]4) then do
-      match_4 = token_5[0];
-      loc_2 = match_4[0];
+      match_4 = token_5[1];
+      loc_2 = match_4[1];
       token_4(env, token_5);
-      value = --[[ String ]]Block.__(0, {match_4[1]});
+      value = --[[ String ]]Block.__(0, {match_4[2]});
       match_1 = --[[ tuple ]]{
         loc_2,
         --[[ Literal ]]Block.__(0, {
             loc_2,
             {
               value = value,
-              raw = match_4[2]
+              raw = match_4[3]
             }
           })
       };
@@ -11993,15 +11993,15 @@ function attribute(env) do
      end 
   end else do
     match_1 = --[[ tuple ]]{
-      match[0],
+      match[1],
       nil
     };
   end end 
   return --[[ tuple ]]{
-          btwn(start_loc, match_1[0]),
+          btwn(start_loc, match_1[1]),
           {
-            name = match[1],
-            value = match_1[1]
+            name = match[2],
+            value = match_1[2]
           }
         };
 end end
@@ -12010,7 +12010,7 @@ function attributes(env, _acc) do
   while(true) do
     acc = _acc;
     match = Curry._2(Parser_env_Peek.token, nil, env);
-    if (typeof match == "number") then do
+    if (type(match) == "number") then do
       if (match >= 91) then do
         if (not (match ~= 96 and match ~= 105)) then do
           return List.rev(acc);
@@ -12077,31 +12077,31 @@ end end
 
 function child(env) do
   token_5 = Curry._2(Parser_env_Peek.token, nil, env);
-  if (typeof token_5 == "number") then do
+  if (type(token_5) == "number") then do
     if (token_5 == --[[ T_LCURLY ]]1) then do
       expression_container_1 = expression_container(env);
       return --[[ tuple ]]{
-              expression_container_1[0],
-              --[[ ExpressionContainer ]]Block.__(1, {expression_container_1[1]})
+              expression_container_1[1],
+              --[[ ExpressionContainer ]]Block.__(1, {expression_container_1[2]})
             };
     end
      end 
   end else if (token_5.tag == --[[ T_JSX_TEXT ]]4) then do
-    match = token_5[0];
+    match = token_5[1];
     token_4(env, token_5);
     return --[[ tuple ]]{
-            match[0],
+            match[1],
             --[[ Text ]]Block.__(2, {{
-                  value = match[1],
-                  raw = match[2]
+                  value = match[2],
+                  raw = match[3]
                 }})
           };
   end
    end  end 
   element_1 = element(env);
   return --[[ tuple ]]{
-          element_1[0],
-          --[[ Element ]]Block.__(0, {element_1[1]})
+          element_1[1],
+          --[[ Element ]]Block.__(0, {element_1[2]})
         };
 end end
 
@@ -12117,7 +12117,7 @@ function element_or_closing(env) do
   start_loc = Curry._2(Parser_env_Peek.loc, nil, env);
   token_4(env, --[[ T_LESS_THAN ]]89);
   match = Curry._2(Parser_env_Peek.token, nil, env);
-  if (typeof match == "number" and not (match ~= 96 and match ~= 105)) then do
+  if (type(match) == "number" and not (match ~= 96 and match ~= 105)) then do
     return --[[ Closing ]]Block.__(0, {closing_element_without_lt(env, start_loc)});
   end else do
     return --[[ ChildElement ]]Block.__(1, {Curry._2(element_without_lt, env, start_loc)});
@@ -12128,7 +12128,7 @@ function children_and_closing(env, _acc) do
   while(true) do
     acc = _acc;
     match = Curry._2(Parser_env_Peek.token, nil, env);
-    if (typeof match == "number") then do
+    if (type(match) == "number") then do
       if (match ~= 89) then do
         if (match ~= 105) then do
           _acc = --[[ :: ]]{
@@ -12146,9 +12146,9 @@ function children_and_closing(env, _acc) do
       end else do
         match_1 = element_or_closing(env);
         if (match_1.tag) then do
-          element = match_1[0];
-          element_000 = element[0];
-          element_001 = --[[ Element ]]Block.__(0, {element[1]});
+          element = match_1[1];
+          element_000 = element[1];
+          element_001 = --[[ Element ]]Block.__(0, {element[2]});
           element_1 = --[[ tuple ]]{
             element_000,
             element_001
@@ -12161,7 +12161,7 @@ function children_and_closing(env, _acc) do
         end else do
           return --[[ tuple ]]{
                   List.rev(acc),
-                  match_1[0]
+                  match_1[1]
                 };
         end end 
       end end 
@@ -12179,45 +12179,45 @@ function normalize(name) do
   local ___conditional___=(name.tag | 0);
   do
      if ___conditional___ == 0--[[ Identifier ]] then do
-        return name[0][1].name; end end 
+        return name[1][2].name; end end 
      if ___conditional___ == 1--[[ NamespacedName ]] then do
-        match = name[0][1];
-        return match.namespace[1].name .. (":" .. match.name[1].name); end end 
+        match = name[1][2];
+        return match.namespace[2].name .. (":" .. match.name[2].name); end end 
      if ___conditional___ == 2--[[ MemberExpression ]] then do
-        match_1 = name[0][1];
+        match_1 = name[1][2];
         _object = match_1._object;
         _object_1;
-        _object_1 = _object.tag and normalize(--[[ MemberExpression ]]Block.__(2, {_object[0]})) or _object[0][1].name;
-        return _object_1 .. ("." .. match_1.property[1].name); end end 
+        _object_1 = _object.tag and normalize(--[[ MemberExpression ]]Block.__(2, {_object[1]})) or _object[1][2].name;
+        return _object_1 .. ("." .. match_1.property[2].name); end end 
     
   end
 end end
 
 function element_without_lt(env, start_loc) do
   openingElement = opening_element_without_lt(env, start_loc);
-  match = openingElement[1].selfClosing and --[[ tuple ]]{
+  match = openingElement[2].selfClosing and --[[ tuple ]]{
       --[[ [] ]]0,
       nil
     } or (push_lex_mode(env, --[[ JSX_CHILD ]]3), children_and_closing(env, --[[ [] ]]0));
-  closingElement = match[1];
+  closingElement = match[2];
   end_loc;
   if (closingElement ~= nil) then do
     match_1 = closingElement;
-    opening_name = normalize(openingElement[1].name);
-    if (normalize(match_1[1].name) ~= opening_name) then do
+    opening_name = normalize(openingElement[2].name);
+    if (normalize(match_1[2].name) ~= opening_name) then do
       error_1(env, --[[ ExpectedJSXClosingTag ]]Block.__(6, {opening_name}));
     end
      end 
-    end_loc = match_1[0];
+    end_loc = match_1[1];
   end else do
-    end_loc = openingElement[0];
+    end_loc = openingElement[1];
   end end 
   return --[[ tuple ]]{
-          btwn(openingElement[0], end_loc),
+          btwn(openingElement[1], end_loc),
           {
             openingElement = openingElement,
             closingElement = closingElement,
-            children = match[0]
+            children = match[1]
           }
         };
 end end
@@ -12229,7 +12229,7 @@ function statement_list_item(decoratorsOpt, env) do
   end
    end 
   match = Curry._2(Parser_env_Peek.token, nil, env);
-  if (typeof match == "number") then do
+  if (type(match) == "number") then do
     if (match ~= 25) then do
       if (match == 26) then do
         env_1 = env;
@@ -12239,20 +12239,20 @@ function statement_list_item(decoratorsOpt, env) do
           token_4(env_1, --[[ T_LPAREN ]]3);
           match_1 = helper(with_no_let(true, env_1), --[[ [] ]]0, --[[ [] ]]0);
           head = List.map((function(param) do
-                  match = param[1];
+                  match = param[2];
                   return {
                           id = match.id,
                           init = match.init
                         };
-                end end), match_1[1]);
+                end end), match_1[2]);
           token_4(env_1, --[[ T_RPAREN ]]4);
           body = Curry._1(Parse.statement, env_1);
           match_2 = Curry._2(Parser_env_Peek.semicolon_loc, nil, env_1);
-          end_loc = match_2 ~= nil and match_2 or match_1[0];
+          end_loc = match_2 ~= nil and match_2 or match_1[1];
           semicolon(env_1);
           List.iter((function(param) do
                   return error_at(env_1, param);
-                end end), match_1[2]);
+                end end), match_1[3]);
           return --[[ tuple ]]{
                   btwn(start_loc, end_loc),
                   --[[ Let ]]Block.__(17, {{
@@ -12263,15 +12263,15 @@ function statement_list_item(decoratorsOpt, env) do
         end else do
           match_3 = helper(with_no_let(true, env_1), --[[ [] ]]0, --[[ [] ]]0);
           declaration = --[[ VariableDeclaration ]]Block.__(19, {{
-                declarations = match_3[1],
+                declarations = match_3[2],
                 kind = --[[ Let ]]1
               }});
           match_4 = Curry._2(Parser_env_Peek.semicolon_loc, nil, env_1);
-          end_loc_1 = match_4 ~= nil and match_4 or match_3[0];
+          end_loc_1 = match_4 ~= nil and match_4 or match_3[1];
           semicolon(env_1);
           List.iter((function(param) do
                   return error_at(env_1, param);
-                end end), match_3[2]);
+                end end), match_3[3]);
           return --[[ tuple ]]{
                   btwn(start_loc, end_loc_1),
                   declaration
@@ -12288,7 +12288,7 @@ function statement_list_item(decoratorsOpt, env) do
     return _function(env);
   end else if (Curry._2(Parser_env_Peek.is_class, nil, env)) then do
     return class_declaration_1(env, decorators);
-  end else if (typeof match == "number") then do
+  end else if (type(match) == "number") then do
     local ___conditional___=(match);
     do
        if ___conditional___ == 51--[[ T_INTERFACE ]] then do
@@ -12315,7 +12315,7 @@ end end
 function module_item(env) do
   decorators = decorator_list(env);
   match = Curry._2(Parser_env_Peek.token, nil, env);
-  if (typeof match == "number") then do
+  if (type(match) == "number") then do
     local ___conditional___=(match);
     do
        if ___conditional___ == 47--[[ T_EXPORT ]] then do
@@ -12326,7 +12326,7 @@ function module_item(env) do
           token_4(env_2, --[[ T_EXPORT ]]47);
           match_1 = Curry._2(Parser_env_Peek.token, nil, env_2);
           exit = 0;
-          if (typeof match_1 == "number") then do
+          if (type(match_1) == "number") then do
             if (match_1 >= 51) then do
               if (match_1 ~= 97) then do
                 if (match_1 >= 62) then do
@@ -12340,16 +12340,16 @@ function module_item(env) do
                         end
                          end 
                         __interface_1 = __interface(env_2);
-                        match_2 = __interface_1[1];
-                        if (typeof match_2 == "number") then do
+                        match_2 = __interface_1[2];
+                        if (type(match_2) == "number") then do
                           error({
                             Caml_builtin_exceptions.failure,
                             "Internal Flow Error! Parsed `export interface` into something other than an interface declaration!"
                           })
                         end else if (match_2.tag == --[[ InterfaceDeclaration ]]21) then do
                           record_export(env_2, --[[ tuple ]]{
-                                __interface_1[0],
-                                extract_ident_name(match_2[0].id)
+                                __interface_1[1],
+                                extract_ident_name(match_2[1].id)
                               });
                         end else do
                           error({
@@ -12357,7 +12357,7 @@ function module_item(env) do
                             "Internal Flow Error! Parsed `export interface` into something other than an interface declaration!"
                           })
                         end end  end 
-                        end_loc = __interface_1[0];
+                        end_loc = __interface_1[1];
                         return --[[ tuple ]]{
                                 btwn(start_loc, end_loc),
                                 --[[ ExportDeclaration ]]Block.__(28, {{
@@ -12375,16 +12375,16 @@ function module_item(env) do
                           end
                            end 
                           type_alias_1 = type_alias(env_2);
-                          match_3 = type_alias_1[1];
-                          if (typeof match_3 == "number") then do
+                          match_3 = type_alias_1[2];
+                          if (type(match_3) == "number") then do
                             error({
                               Caml_builtin_exceptions.failure,
                               "Internal Flow Error! Parsed `export type` into something other than a type alias!"
                             })
                           end else if (match_3.tag == --[[ TypeAlias ]]7) then do
                             record_export(env_2, --[[ tuple ]]{
-                                  type_alias_1[0],
-                                  extract_ident_name(match_3[0].id)
+                                  type_alias_1[1],
+                                  extract_ident_name(match_3[1].id)
                                 });
                           end else do
                             error({
@@ -12392,7 +12392,7 @@ function module_item(env) do
                               "Internal Flow Error! Parsed `export type` into something other than a type alias!"
                             })
                           end end  end 
-                          end_loc_1 = type_alias_1[0];
+                          end_loc_1 = type_alias_1[1];
                           return --[[ tuple ]]{
                                   btwn(start_loc, end_loc_1),
                                   --[[ ExportDeclaration ]]Block.__(28, {{
@@ -12432,7 +12432,7 @@ function module_item(env) do
                   });
                 source_1 = export_source(env_2);
                 match_4 = Curry._2(Parser_env_Peek.semicolon_loc, nil, env_2);
-                end_loc_2 = match_4 ~= nil and match_4 or source_1[0];
+                end_loc_2 = match_4 ~= nil and match_4 or source_1[1];
                 source_2 = source_1;
                 semicolon(env_2);
                 return --[[ tuple ]]{
@@ -12458,10 +12458,10 @@ function module_item(env) do
                     match_5 = Curry._2(Parser_env_Peek.token, nil, env_2);
                     match_6;
                     exit_1 = 0;
-                    if (typeof match_5 == "number" and match_5 == 13) then do
+                    if (type(match_5) == "number" and match_5 == 13) then do
                       fn = _function(env_2);
                       match_6 = --[[ tuple ]]{
-                        fn[0],
+                        fn[1],
                         --[[ Declaration ]]Block.__(0, {fn})
                       };
                     end else do
@@ -12471,13 +12471,13 @@ function module_item(env) do
                       if (Curry._2(Parser_env_Peek.is_class, nil, env_2)) then do
                         _class = class_declaration(env_2, decorators_1);
                         match_6 = --[[ tuple ]]{
-                          _class[0],
+                          _class[1],
                           --[[ Declaration ]]Block.__(0, {_class})
                         };
                       end else do
                         expr = Curry._1(Parse.assignment, env_2);
                         match_7 = Curry._2(Parser_env_Peek.semicolon_loc, nil, env_2);
-                        end_loc_3 = match_7 ~= nil and match_7 or expr[0];
+                        end_loc_3 = match_7 ~= nil and match_7 or expr[1];
                         semicolon(env_2);
                         match_6 = --[[ tuple ]]{
                           end_loc_3,
@@ -12487,10 +12487,10 @@ function module_item(env) do
                     end
                      end 
                     return --[[ tuple ]]{
-                            btwn(start_loc, match_6[0]),
+                            btwn(start_loc, match_6[1]),
                             --[[ ExportDeclaration ]]Block.__(28, {{
                                   default = true,
-                                  declaration = match_6[1],
+                                  declaration = match_6[2],
                                   specifiers = nil,
                                   source = nil,
                                   exportKind = --[[ ExportValue ]]1
@@ -12536,18 +12536,18 @@ function module_item(env) do
           do
              if ___conditional___ == 1 then do
                 match_8 = Curry._2(Parser_env_Peek.token, nil, env_2);
-                exportKind = typeof match_8 == "number" and match_8 == 59 and (token_3(env_2), --[[ ExportType ]]0) or --[[ ExportValue ]]1;
+                exportKind = type(match_8) == "number" and match_8 == 59 and (token_3(env_2), --[[ ExportType ]]0) or --[[ ExportValue ]]1;
                 token_4(env_2, --[[ T_LCURLY ]]1);
                 match_9 = export_specifiers_and_errs(env_2, --[[ [] ]]0, --[[ [] ]]0);
-                specifiers_1 = --[[ ExportSpecifiers ]]Block.__(0, {match_9[0]});
+                specifiers_1 = --[[ ExportSpecifiers ]]Block.__(0, {match_9[1]});
                 end_loc_4 = Curry._2(Parser_env_Peek.loc, nil, env_2);
                 token_4(env_2, --[[ T_RCURLY ]]2);
                 source_3 = Curry._2(Parser_env_Peek.value, nil, env_2) == "from" and export_source(env_2) or (List.iter((function(param) do
                             return error_at(env_2, param);
-                          end end), match_9[1]), nil);
+                          end end), match_9[2]), nil);
                 match_10 = Curry._2(Parser_env_Peek.semicolon_loc, nil, env_2);
                 end_loc_5 = match_10 ~= nil and match_10 or (
-                    source_3 ~= nil and source_3[0] or end_loc_4
+                    source_3 ~= nil and source_3[1] or end_loc_4
                   );
                 semicolon(env_2);
                 return --[[ tuple ]]{
@@ -12562,10 +12562,10 @@ function module_item(env) do
                       }; end end 
              if ___conditional___ == 2 then do
                 stmt = Curry._2(Parse.statement_list_item, decorators_1, env_2);
-                match_11 = stmt[1];
-                loc_1 = stmt[0];
+                match_11 = stmt[2];
+                loc_1 = stmt[1];
                 names;
-                if (typeof match_11 == "number") then do
+                if (type(match_11) == "number") then do
                   error({
                     Caml_builtin_exceptions.failure,
                     "Internal Flow Error! Unexpected export statement declaration!"
@@ -12574,7 +12574,7 @@ function module_item(env) do
                   local ___conditional___=(match_11.tag | 0);
                   do
                      if ___conditional___ == 18--[[ FunctionDeclaration ]] then do
-                        match_12 = match_11[0].id;
+                        match_12 = match_11[1].id;
                         if (match_12 ~= nil) then do
                           names = --[[ :: ]]{
                             --[[ tuple ]]{
@@ -12592,16 +12592,16 @@ function module_item(env) do
                         end end  end else 
                      if ___conditional___ == 19--[[ VariableDeclaration ]] then do
                         names = List.fold_left((function(names, param) do
-                                id = param[1].id;
+                                id = param[2].id;
                                 param_1 = names;
                                 param_2 = --[[ :: ]]{
                                   id,
                                   --[[ [] ]]0
                                 };
                                 return List.fold_left(fold, param_1, param_2);
-                              end end), --[[ [] ]]0, match_11[0].declarations); end else 
+                              end end), --[[ [] ]]0, match_11[1].declarations); end else 
                      if ___conditional___ == 20--[[ ClassDeclaration ]] then do
-                        match_13 = match_11[0].id;
+                        match_13 = match_11[1].id;
                         if (match_13 ~= nil) then do
                           names = --[[ :: ]]{
                             --[[ tuple ]]{
@@ -12630,7 +12630,7 @@ function module_item(env) do
                       end end), names);
                 declaration = --[[ Declaration ]]Block.__(0, {stmt});
                 return --[[ tuple ]]{
-                        btwn(start_loc, stmt[0]),
+                        btwn(start_loc, stmt[1]),
                         --[[ ExportDeclaration ]]Block.__(28, {{
                               default = false,
                               declaration = declaration,
@@ -12649,7 +12649,7 @@ function module_item(env) do
           token_4(env_4, --[[ T_IMPORT ]]48);
           match_14 = Curry._2(Parser_env_Peek.token, nil, env_4);
           match_15;
-          if (typeof match_14 == "number") then do
+          if (type(match_14) == "number") then do
             if (match_14 ~= 44) then do
               if (match_14 ~= 59) then do
                 match_15 = --[[ tuple ]]{
@@ -12683,24 +12683,24 @@ function module_item(env) do
               nil
             };
           end end 
-          type_ident = match_15[1];
-          importKind = match_15[0];
+          type_ident = match_15[2];
+          importKind = match_15[1];
           match_16 = Curry._2(Parser_env_Peek.token, nil, env_4);
           match_17 = Curry._2(Parser_env_Peek.is_identifier, nil, env_4);
           exit_2 = 0;
           exit_3 = 0;
-          if (typeof match_16 == "number") then do
+          if (type(match_16) == "number") then do
             if (match_16 == --[[ T_COMMA ]]8) then do
               exit_2 = 1;
             end else do
               exit_3 = 2;
             end end 
           end else if (match_16.tag == --[[ T_STRING ]]1 and importKind == --[[ ImportValue ]]2) then do
-            match_18 = match_16[0];
-            octal = match_18[3];
-            raw = match_18[2];
-            value = match_18[1];
-            str_loc = match_18[0];
+            match_18 = match_16[1];
+            octal = match_18[4];
+            raw = match_18[3];
+            value = match_18[2];
+            str_loc = match_18[1];
             if (octal) then do
               strict_error(env_4, --[[ StrictOctalLiteral ]]31);
             end
@@ -12741,7 +12741,7 @@ function module_item(env) do
               specifiers_2 = named_or_namespace_specifier(env_4);
               source_5 = source(env_4);
               match_20 = Curry._2(Parser_env_Peek.semicolon_loc, nil, env_4);
-              end_loc_7 = match_20 ~= nil and match_20 or source_5[0];
+              end_loc_7 = match_20 ~= nil and match_20 or source_5[1];
               semicolon(env_4);
               return --[[ tuple ]]{
                       btwn(start_loc_1, end_loc_7),
@@ -12759,7 +12759,7 @@ function module_item(env) do
             match_22 = Curry._2(Parser_env_Peek.value, nil, env_4);
             match_23;
             exit_4 = 0;
-            if (type_ident ~= nil and typeof match_21 == "number") then do
+            if (type_ident ~= nil and type(match_21) == "number") then do
               type_ident_1 = type_ident;
               if (match_21 ~= 8 and (match_21 ~= 0 or match_22 ~= "from")) then do
                 exit_4 = 2;
@@ -12780,18 +12780,18 @@ function module_item(env) do
             end
              end 
             match_24 = Curry._2(Parser_env_Peek.token, nil, env_4);
-            additional_specifiers = typeof match_24 == "number" and match_24 == 8 and (token_4(env_4, --[[ T_COMMA ]]8), named_or_namespace_specifier(env_4)) or --[[ [] ]]0;
+            additional_specifiers = type(match_24) == "number" and match_24 == 8 and (token_4(env_4, --[[ T_COMMA ]]8), named_or_namespace_specifier(env_4)) or --[[ [] ]]0;
             source_6 = source(env_4);
             match_25 = Curry._2(Parser_env_Peek.semicolon_loc, nil, env_4);
-            end_loc_8 = match_25 ~= nil and match_25 or source_6[0];
+            end_loc_8 = match_25 ~= nil and match_25 or source_6[1];
             semicolon(env_4);
             return --[[ tuple ]]{
                     btwn(start_loc_1, end_loc_8),
                     --[[ ImportDeclaration ]]Block.__(29, {{
-                          importKind = match_23[0],
+                          importKind = match_23[1],
                           source = source_6,
                           specifiers = --[[ :: ]]{
-                            match_23[1],
+                            match_23[2],
                             additional_specifiers
                           }
                         }})
@@ -12827,7 +12827,7 @@ function statement(env) do
   while(true) do
     match = Curry._2(Parser_env_Peek.token, nil, env);
     exit = 0;
-    if (typeof match == "number") then do
+    if (type(match) == "number") then do
       if (match ~= 105) then do
         if (match >= 58) then do
           exit = 2;
@@ -12838,8 +12838,8 @@ function statement(env) do
                 env_1 = env;
                 match_1 = Curry._1(Parse.block_body, env_1);
                 return --[[ tuple ]]{
-                        match_1[0],
-                        --[[ Block ]]Block.__(0, {match_1[1]})
+                        match_1[1],
+                        --[[ Block ]]Block.__(0, {match_1[2]})
                       }; end end 
              if ___conditional___ == 7--[[ T_SEMICOLON ]] then do
                 env_2 = env;
@@ -12862,7 +12862,7 @@ function statement(env) do
                 argument = Curry._2(Parser_env_Peek.token, nil, env_3) == --[[ T_SEMICOLON ]]7 or Curry._1(Parser_env_Peek.is_implicit_semicolon, env_3) and nil or Curry._1(Parse.expression, env_3);
                 match_2 = Curry._2(Parser_env_Peek.semicolon_loc, nil, env_3);
                 end_loc = match_2 ~= nil and match_2 or (
-                    argument ~= nil and argument[0] or start_loc
+                    argument ~= nil and argument[1] or start_loc
                   );
                 semicolon(env_3);
                 return --[[ tuple ]]{
@@ -12906,7 +12906,7 @@ function statement(env) do
                  end 
                 argument_1 = Curry._1(Parse.expression, env_5);
                 match_3 = Curry._2(Parser_env_Peek.semicolon_loc, nil, env_5);
-                end_loc_2 = match_3 ~= nil and match_3 or argument_1[0];
+                end_loc_2 = match_3 ~= nil and match_3 or argument_1[1];
                 semicolon(env_5);
                 return --[[ tuple ]]{
                         btwn(start_loc_2, end_loc_2),
@@ -12921,12 +12921,12 @@ function statement(env) do
                 block = Curry._1(Parse.block_body, env_6);
                 match_4 = Curry._2(Parser_env_Peek.token, nil, env_6);
                 handler;
-                if (typeof match_4 == "number" and match_4 == 32) then do
+                if (type(match_4) == "number" and match_4 == 32) then do
                   start_loc_4 = Curry._2(Parser_env_Peek.loc, nil, env_6);
                   token_4(env_6, --[[ T_CATCH ]]32);
                   token_4(env_6, --[[ T_LPAREN ]]3);
                   id = Curry._2(Parse.identifier, --[[ StrictCatchVariable ]]26, env_6);
-                  param_000 = id[0];
+                  param_000 = id[1];
                   param_001 = --[[ Identifier ]]Block.__(3, {id});
                   param = --[[ tuple ]]{
                     param_000,
@@ -12934,7 +12934,7 @@ function statement(env) do
                   };
                   token_4(env_6, --[[ T_RPAREN ]]4);
                   body = Curry._1(Parse.block_body, env_6);
-                  loc_1 = btwn(start_loc_4, body[0]);
+                  loc_1 = btwn(start_loc_4, body[1]);
                   handler = --[[ tuple ]]{
                     loc_1,
                     {
@@ -12947,12 +12947,12 @@ function statement(env) do
                   handler = nil;
                 end end 
                 match_5 = Curry._2(Parser_env_Peek.token, nil, env_6);
-                finalizer = typeof match_5 == "number" and match_5 == 36 and (token_4(env_6, --[[ T_FINALLY ]]36), Curry._1(Parse.block_body, env_6)) or nil;
-                end_loc_3 = finalizer ~= nil and finalizer[0] or (
-                    handler ~= nil and handler[0] or (error_at(env_6, --[[ tuple ]]{
-                              block[0],
+                finalizer = type(match_5) == "number" and match_5 == 36 and (token_4(env_6, --[[ T_FINALLY ]]36), Curry._1(Parse.block_body, env_6)) or nil;
+                end_loc_3 = finalizer ~= nil and finalizer[1] or (
+                    handler ~= nil and handler[1] or (error_at(env_6, --[[ tuple ]]{
+                              block[1],
                               --[[ NoCatchOrFinally ]]20
-                            }), block[0])
+                            }), block[1])
                   );
                 return --[[ tuple ]]{
                         btwn(start_loc_3, end_loc_3),
@@ -12974,7 +12974,7 @@ function statement(env) do
                 token_4(env_7, --[[ T_RPAREN ]]4);
                 body_1 = Curry._1(Parse.statement, with_in_loop(true, env_7));
                 return --[[ tuple ]]{
-                        btwn(start_loc_5, body_1[0]),
+                        btwn(start_loc_5, body_1[1]),
                         --[[ While ]]Block.__(12, {{
                               test = test,
                               body = body_1
@@ -12988,7 +12988,7 @@ function statement(env) do
                 _object = Curry._1(Parse.expression, env_8);
                 token_4(env_8, --[[ T_RPAREN ]]4);
                 body_2 = Curry._1(Parse.statement, env_8);
-                loc_2 = btwn(start_loc_6, body_2[0]);
+                loc_2 = btwn(start_loc_6, body_2[1]);
                 strict_error_at(env_8, --[[ tuple ]]{
                       loc_2,
                       --[[ StrictModeWith ]]25
@@ -13009,7 +13009,7 @@ function statement(env) do
                   label = nil;
                 end else do
                   label_1 = Curry._2(Parse.identifier, nil, env_9);
-                  name = label_1[1].name;
+                  name = label_1[2].name;
                   if (not mem_1(name, env_9.labels)) then do
                     error_1(env_9, --[[ UnknownLabel ]]Block.__(4, {name}));
                   end
@@ -13018,7 +13018,7 @@ function statement(env) do
                 end end 
                 match_6 = Curry._2(Parser_env_Peek.semicolon_loc, nil, env_9);
                 end_loc_4 = match_6 ~= nil and match_6 or (
-                    label ~= nil and label[0] or start_loc_7
+                    label ~= nil and label[1] or start_loc_7
                   );
                 loc_3 = btwn(start_loc_7, end_loc_4);
                 if (label == nil and not (env_9.in_loop or env_9.in_switch)) then do
@@ -13044,7 +13044,7 @@ function statement(env) do
                   label_2 = nil;
                 end else do
                   label_3 = Curry._2(Parse.identifier, nil, env_10);
-                  name_1 = label_3[1].name;
+                  name_1 = label_3[2].name;
                   if (not mem_1(name_1, env_10.labels)) then do
                     error_1(env_10, --[[ UnknownLabel ]]Block.__(4, {name_1}));
                   end
@@ -13053,7 +13053,7 @@ function statement(env) do
                 end end 
                 match_7 = Curry._2(Parser_env_Peek.semicolon_loc, nil, env_10);
                 end_loc_5 = match_7 ~= nil and match_7 or (
-                    label_2 ~= nil and label_2[0] or start_loc_8
+                    label_2 ~= nil and label_2[1] or start_loc_8
                   );
                 loc_4 = btwn(start_loc_8, end_loc_5);
                 if (not env_10.in_loop) then do
@@ -13101,7 +13101,7 @@ function statement(env) do
                 match_9 = Curry._2(Parser_env_Peek.token, nil, env_12);
                 match_10;
                 exit_1 = 0;
-                if (typeof match_9 == "number") then do
+                if (type(match_9) == "number") then do
                   if (match_9 >= 22) then do
                     if (match_9 >= 27) then do
                       exit_1 = 1;
@@ -13111,8 +13111,8 @@ function statement(env) do
                          if ___conditional___ == 0--[[ T_IDENTIFIER ]] then do
                             match_11 = declarations(--[[ T_VAR ]]22, --[[ Var ]]0, with_no_in(true, env_12));
                             match_10 = --[[ tuple ]]{
-                              --[[ InitDeclaration ]]Block.__(0, {match_11[0]}),
-                              match_11[1]
+                              --[[ InitDeclaration ]]Block.__(0, {match_11[1]}),
+                              match_11[2]
                             }; end else 
                          if ___conditional___ == 1--[[ T_LCURLY ]]
                          or ___conditional___ == 2--[[ T_RCURLY ]] then do
@@ -13120,14 +13120,14 @@ function statement(env) do
                          if ___conditional___ == 3--[[ T_LPAREN ]] then do
                             match_12 = __const(with_no_in(true, env_12));
                             match_10 = --[[ tuple ]]{
-                              --[[ InitDeclaration ]]Block.__(0, {match_12[0]}),
-                              match_12[1]
+                              --[[ InitDeclaration ]]Block.__(0, {match_12[1]}),
+                              match_12[2]
                             }; end else 
                          if ___conditional___ == 4--[[ T_RPAREN ]] then do
                             match_13 = _let(with_no_in(true, env_12));
                             match_10 = --[[ tuple ]]{
-                              --[[ InitDeclaration ]]Block.__(0, {match_13[0]}),
-                              match_13[1]
+                              --[[ InitDeclaration ]]Block.__(0, {match_13[1]}),
+                              match_13[2]
                             }; end else 
                          end end end end end end end end
                         
@@ -13152,16 +13152,16 @@ function statement(env) do
                   };
                 end
                  end 
-                init = match_10[0];
+                init = match_10[1];
                 match_14 = Curry._2(Parser_env_Peek.token, nil, env_12);
-                if (typeof match_14 == "number") then do
+                if (type(match_14) == "number") then do
                   if (match_14 ~= 15) then do
                     if (match_14 == 60) then do
                       assert_can_be_forin_or_forof(env_12, --[[ InvalidLHSInForOf ]]17, init);
                       left;
                       if (init ~= nil) then do
                         match_15 = init;
-                        left = match_15.tag and --[[ LeftExpression ]]Block.__(1, {match_15[0]}) or --[[ LeftDeclaration ]]Block.__(0, {match_15[0]});
+                        left = match_15.tag and --[[ LeftExpression ]]Block.__(1, {match_15[1]}) or --[[ LeftDeclaration ]]Block.__(0, {match_15[1]});
                       end else do
                         error({
                           Caml_builtin_exceptions.assert_failure,
@@ -13177,7 +13177,7 @@ function statement(env) do
                       token_4(env_12, --[[ T_RPAREN ]]4);
                       body_4 = Curry._1(Parse.statement, with_in_loop(true, env_12));
                       return --[[ tuple ]]{
-                              btwn(start_loc_10, body_4[0]),
+                              btwn(start_loc_10, body_4[1]),
                               --[[ ForOf ]]Block.__(16, {{
                                     left = left,
                                     right = right,
@@ -13191,7 +13191,7 @@ function statement(env) do
                     left_1;
                     if (init ~= nil) then do
                       match_16 = init;
-                      left_1 = match_16.tag and --[[ LeftExpression ]]Block.__(1, {match_16[0]}) or --[[ LeftDeclaration ]]Block.__(0, {match_16[0]});
+                      left_1 = match_16.tag and --[[ LeftExpression ]]Block.__(1, {match_16[1]}) or --[[ LeftDeclaration ]]Block.__(0, {match_16[1]});
                     end else do
                       error({
                         Caml_builtin_exceptions.assert_failure,
@@ -13207,7 +13207,7 @@ function statement(env) do
                     token_4(env_12, --[[ T_RPAREN ]]4);
                     body_5 = Curry._1(Parse.statement, with_in_loop(true, env_12));
                     return --[[ tuple ]]{
-                            btwn(start_loc_10, body_5[0]),
+                            btwn(start_loc_10, body_5[1]),
                             --[[ ForIn ]]Block.__(15, {{
                                   left = left_1,
                                   right = right_1,
@@ -13222,17 +13222,17 @@ function statement(env) do
                     return function (param) do
                       return error_at(env_12, param);
                     end end
-                    end end)(env_12), match_10[1]);
+                    end end)(env_12), match_10[2]);
                 token_4(env_12, --[[ T_SEMICOLON ]]7);
                 match_17 = Curry._2(Parser_env_Peek.token, nil, env_12);
-                test_2 = typeof match_17 == "number" and match_17 == 7 and nil or Curry._1(Parse.expression, env_12);
+                test_2 = type(match_17) == "number" and match_17 == 7 and nil or Curry._1(Parse.expression, env_12);
                 token_4(env_12, --[[ T_SEMICOLON ]]7);
                 match_18 = Curry._2(Parser_env_Peek.token, nil, env_12);
-                update = typeof match_18 == "number" and match_18 == 4 and nil or Curry._1(Parse.expression, env_12);
+                update = type(match_18) == "number" and match_18 == 4 and nil or Curry._1(Parse.expression, env_12);
                 token_4(env_12, --[[ T_RPAREN ]]4);
                 body_6 = Curry._1(Parse.statement, with_in_loop(true, env_12));
                 return --[[ tuple ]]{
-                        btwn(start_loc_10, body_6[0]),
+                        btwn(start_loc_10, body_6[1]),
                         --[[ For ]]Block.__(14, {{
                               init = init,
                               test = test_2,
@@ -13313,11 +13313,11 @@ function statement(env) do
         env_14 = env;
         expr_1 = Curry._1(Parse.expression, env_14);
         match_20 = Curry._2(Parser_env_Peek.token, nil, env_14);
-        match_21 = expr_1[1];
-        loc_5 = expr_1[0];
-        if (typeof match_21 ~= "number" and match_21.tag == --[[ Identifier ]]18 and typeof match_20 == "number" and match_20 == 77) then do
-          label_4 = match_21[0];
-          match_22 = label_4[1];
+        match_21 = expr_1[2];
+        loc_5 = expr_1[1];
+        if (type(match_21) ~= "number" and match_21.tag == --[[ Identifier ]]18 and type(match_20) == "number" and match_20 == 77) then do
+          label_4 = match_21[1];
+          match_22 = label_4[2];
           name_2 = match_22.name;
           token_4(env_14, --[[ T_COLON ]]77);
           if (mem_1(name_2, env_14.labels)) then do
@@ -13333,7 +13333,7 @@ function statement(env) do
           env_15 = add_label(env_14, name_2);
           labeled_stmt = Curry._1(Parse.statement, env_15);
           return --[[ tuple ]]{
-                  btwn(loc_5, labeled_stmt[0]),
+                  btwn(loc_5, labeled_stmt[1]),
                   --[[ Labeled ]]Block.__(3, {{
                         label = label_4,
                         body = labeled_stmt
@@ -13342,15 +13342,15 @@ function statement(env) do
         end
          end 
         match_23 = Curry._2(Parser_env_Peek.semicolon_loc, nil, env_14);
-        end_loc_9 = match_23 ~= nil and match_23 or expr_1[0];
+        end_loc_9 = match_23 ~= nil and match_23 or expr_1[1];
         semicolon(env_14);
         return --[[ tuple ]]{
-                btwn(expr_1[0], end_loc_9),
+                btwn(expr_1[1], end_loc_9),
                 --[[ Expression ]]Block.__(1, {{
                       expression = expr_1
                     }})
               };
-      end else if (typeof match == "number") then do
+      end else if (type(match) == "number") then do
         if (match ~= 77) then do
           if (match >= 49) then do
             return expression(env);
@@ -13432,7 +13432,7 @@ function module_body(term_fn, env) do
   while(true) do
     acc = _acc;
     t = Curry._2(Parser_env_Peek.token, nil, env_1);
-    if (typeof t == "number" and t == 105) then do
+    if (type(t) == "number" and t == 105) then do
       return List.rev(acc);
     end
      end 
@@ -13452,10 +13452,10 @@ function statement_list(_env, term_fn, item_fn, _param) do
   while(true) do
     param = _param;
     env = _env;
-    stmts = param[1];
-    string_tokens = param[0];
+    stmts = param[2];
+    string_tokens = param[1];
     t = Curry._2(Parser_env_Peek.token, nil, env);
-    if (typeof t == "number" and t == 105) then do
+    if (type(t) == "number" and t == 105) then do
       return --[[ tuple ]]{
               env,
               string_tokens,
@@ -13481,34 +13481,34 @@ function statement_list(_env, term_fn, item_fn, _param) do
         possible_directive,
         stmts
       };
-      match = possible_directive[1];
-      if (typeof match == "number" or match.tag ~= --[[ Expression ]]1) then do
+      match = possible_directive[2];
+      if (type(match) == "number" or match.tag ~= --[[ Expression ]]1) then do
         return --[[ tuple ]]{
                 env,
                 string_tokens,
                 stmts_1
               };
       end else do
-        match_1 = match[0].expression;
-        match_2 = match_1[1];
-        if (typeof match_2 == "number" or match_2.tag ~= --[[ Literal ]]19) then do
+        match_1 = match[1].expression;
+        match_2 = match_1[2];
+        if (type(match_2) == "number" or match_2.tag ~= --[[ Literal ]]19) then do
           return --[[ tuple ]]{
                   env,
                   string_tokens,
                   stmts_1
                 };
         end else do
-          match_3 = match_2[0].value;
-          if (typeof match_3 == "number" or match_3.tag) then do
+          match_3 = match_2[1].value;
+          if (type(match_3) == "number" or match_3.tag) then do
             return --[[ tuple ]]{
                     env,
                     string_tokens,
                     stmts_1
                   };
           end else do
-            loc = match_1[0];
+            loc = match_1[1];
             len = loc._end.column - loc.start.column | 0;
-            strict = env.in_strict_mode or match_3[0] == "use strict" and len == 12;
+            strict = env.in_strict_mode or match_3[1] == "use strict" and len == 12;
             string_tokens_1 = --[[ :: ]]{
               string_token,
               string_tokens
@@ -13531,15 +13531,15 @@ function directives(env, term_fn, item_fn) do
         --[[ [] ]]0,
         --[[ [] ]]0
       });
-  env_1 = match[0];
+  env_1 = match[1];
   List.iter((function(param) do
           env_2 = env_1;
           param_1 = param;
-          token = param_1[1];
-          if (typeof token ~= "number" and token.tag == --[[ T_STRING ]]1) then do
-            if (token[0][3]) then do
+          token = param_1[2];
+          if (type(token) ~= "number" and token.tag == --[[ T_STRING ]]1) then do
+            if (token[1][4]) then do
               return strict_error_at(env_2, --[[ tuple ]]{
-                          param_1[0],
+                          param_1[1],
                           --[[ StrictOctalLiteral ]]31
                         });
             end else do
@@ -13552,10 +13552,10 @@ function directives(env, term_fn, item_fn) do
             Caml_builtin_exceptions.failure,
             s
           })
-        end end), List.rev(match[1]));
+        end end), List.rev(match[2]));
   return --[[ tuple ]]{
           env_1,
-          match[2]
+          match[3]
         };
 end end
 
@@ -13566,7 +13566,7 @@ function statement_list_1(term_fn, env) do
   while(true) do
     acc = _acc;
     t = Curry._2(Parser_env_Peek.token, nil, env_1);
-    if (typeof t == "number" and t == 105) then do
+    if (type(t) == "number" and t == 105) then do
       return List.rev(acc);
     end
      end 
@@ -13588,14 +13588,14 @@ function statement_list_with_directives(term_fn, env) do
   match = Curry._3(directives, env, term_fn, (function(eta) do
           return statement_list_item(nil, eta);
         end end));
-  env_1 = match[0];
+  env_1 = match[1];
   stmts = Curry._2(statement_list_1, term_fn, env_1);
   stmts_1 = List.fold_left((function(acc, stmt) do
           return --[[ :: ]]{
                   stmt,
                   acc
                 };
-        end end), stmts, match[1]);
+        end end), stmts, match[2]);
   return --[[ tuple ]]{
           stmts_1,
           env_1.in_strict_mode
@@ -13607,7 +13607,7 @@ function identifier_2(restricted_error, env) do
   name = Curry._2(Parser_env_Peek.value, nil, env);
   t = Curry._2(Parser_env_Peek.token, nil, env);
   exit = 0;
-  if (typeof t == "number" and t == 26) then do
+  if (type(t) == "number" and t == 26) then do
     if (env.in_strict_mode) then do
       strict_error(env, --[[ StrictReservedWord ]]39);
     end else if (env.no_let) then do
@@ -13622,7 +13622,7 @@ function identifier_2(restricted_error, env) do
     if (is_strict_reserved(name)) then do
       strict_error(env, --[[ StrictReservedWord ]]39);
       token_3(env);
-    end else if (typeof t == "number" and not (t > 62 or t < 58)) then do
+    end else if (type(t) == "number" and not (t > 62 or t < 58)) then do
       token_4(env, t);
     end else do
       token_4(env, --[[ T_IDENTIFIER ]]0);
@@ -13651,13 +13651,13 @@ end end
 
 function module_body_with_directives(env, term_fn) do
   match = Curry._3(directives, env, term_fn, module_item);
-  stmts = Curry._2(module_body, term_fn, match[0]);
+  stmts = Curry._2(module_body, term_fn, match[1]);
   return List.fold_left((function(acc, stmt) do
                 return --[[ :: ]]{
                         stmt,
                         acc
                       };
-              end end), stmts, match[1]);
+              end end), stmts, match[2]);
 end end
 
 function program(env) do
@@ -13666,7 +13666,7 @@ function program(env) do
         end end));
   end_loc = Curry._2(Parser_env_Peek.loc, nil, env);
   token_4(env, --[[ T_EOF ]]105);
-  loc = stmts and btwn(List.hd(stmts)[0], List.hd(List.rev(stmts))[0]) or end_loc;
+  loc = stmts and btwn(List.hd(stmts)[1], List.hd(List.rev(stmts))[1]) or end_loc;
   comments = List.rev(env.comments.contents);
   return --[[ tuple ]]{
           loc,
@@ -13678,7 +13678,7 @@ end end
 function expression_1(env) do
   expr = Curry._1(assignment, env);
   match = Curry._2(Parser_env_Peek.token, nil, env);
-  if (typeof match == "number" and match == 8) then do
+  if (type(match) == "number" and match == 8) then do
     return sequence(env, --[[ :: ]]{
                 expr,
                 --[[ [] ]]0
@@ -13690,8 +13690,8 @@ end end
 
 function identifier_with_type(env, restricted_error) do
   match = identifier_2(restricted_error, env);
-  id = match[1];
-  loc = match[0];
+  id = match[2];
+  loc = match[1];
   match_1;
   if (Curry._2(Parser_env_Peek.token, nil, env) == --[[ T_PLING ]]76) then do
     if (not env.parse_options.types) then do
@@ -13714,11 +13714,11 @@ function identifier_with_type(env, restricted_error) do
       id
     };
   end end 
-  id_1 = match_1[1];
-  loc_2 = match_1[0];
+  id_1 = match_1[2];
+  loc_2 = match_1[1];
   if (Curry._2(Parser_env_Peek.token, nil, env) == --[[ T_COLON ]]77) then do
     typeAnnotation = wrap(annotation, env);
-    loc_3 = btwn(loc_2, typeAnnotation[0]);
+    loc_3 = btwn(loc_2, typeAnnotation[1]);
     typeAnnotation_1 = typeAnnotation;
     return --[[ tuple ]]{
             loc_3,
@@ -13765,9 +13765,9 @@ function function_block_body(env) do
   return --[[ tuple ]]{
           btwn(start_loc, end_loc),
           {
-            body = match[0]
+            body = match[1]
           },
-          match[1]
+          match[2]
         };
 end end
 
@@ -13961,7 +13961,7 @@ __null = null;
 
 function regexp_1(loc, pattern, flags) do
   xpcall(function() do
-    return new RegExp(pattern, flags);
+    return new __RegExp(pattern, flags);
   end end,function(exn) do
     translation_errors.contents = --[[ :: ]]{
       --[[ tuple ]]{
@@ -13970,7 +13970,7 @@ function regexp_1(loc, pattern, flags) do
       },
       translation_errors.contents
     };
-    return new RegExp("", flags);
+    return new __RegExp("", flags);
   end end)
 end end
 
@@ -14005,7 +14005,7 @@ function parse(content, options) do
       source;
       if (match ~= nil) then do
         match_1 = match;
-        source = typeof match_1 == "number" and string("(global)") or string(match_1[0]);
+        source = type(match_1) == "number" and string("(global)") or string(match_1[1]);
       end else do
         source = __null;
       end end 
@@ -14051,20 +14051,20 @@ function parse(content, options) do
         return obj({
                     --[[ tuple ]]{
                       "loc",
-                      loc(param[0])
+                      loc(param[1])
                     },
                     --[[ tuple ]]{
                       "message",
-                      string(error(param[1]))
+                      string(error(param[2]))
                     }
                   });
       end end;
       return array_of_list(error_2, l);
     end end;
     _type = function(param) do
-      t = param[1];
-      loc = param[0];
-      if (typeof t == "number") then do
+      t = param[2];
+      loc = param[1];
+      if (type(t) == "number") then do
         local ___conditional___=(t);
         do
            if ___conditional___ == 0--[[ Any ]] then do
@@ -14095,7 +14095,7 @@ function parse(content, options) do
         do
            if ___conditional___ == 0--[[ Nullable ]] then do
               loc_8 = loc;
-              t_1 = t[0];
+              t_1 = t[1];
               return node("NullableTypeAnnotation", loc_8, {--[[ tuple ]]{
                             "typeAnnotation",
                             _type(t_1)
@@ -14103,16 +14103,16 @@ function parse(content, options) do
            if ___conditional___ == 1--[[ Function ]] then do
               return function_type(--[[ tuple ]]{
                           loc,
-                          t[0]
+                          t[1]
                         }); end end 
            if ___conditional___ == 2--[[ Object ]] then do
               return object_type(--[[ tuple ]]{
                           loc,
-                          t[0]
+                          t[1]
                         }); end end 
            if ___conditional___ == 3--[[ Array ]] then do
               loc_9 = loc;
-              t_2 = t[0];
+              t_2 = t[1];
               return node("ArrayTypeAnnotation", loc_9, {--[[ tuple ]]{
                             "elementType",
                             _type(t_2)
@@ -14120,13 +14120,13 @@ function parse(content, options) do
            if ___conditional___ == 4--[[ Generic ]] then do
               param_1 = --[[ tuple ]]{
                 loc,
-                t[0]
+                t[1]
               };
-              g = param_1[1];
+              g = param_1[2];
               match = g.id;
               id;
-              id = match.tag and generic_type_qualified_identifier(match[0]) or identifier(match[0]);
-              return node("GenericTypeAnnotation", param_1[0], {
+              id = match.tag and generic_type_qualified_identifier(match[1]) or identifier(match[1]);
+              return node("GenericTypeAnnotation", param_1[1], {
                           --[[ tuple ]]{
                             "id",
                             id
@@ -14139,46 +14139,46 @@ function parse(content, options) do
            if ___conditional___ == 5--[[ Union ]] then do
               param_2 = --[[ tuple ]]{
                 loc,
-                t[0]
+                t[1]
               };
-              return node("UnionTypeAnnotation", param_2[0], {--[[ tuple ]]{
+              return node("UnionTypeAnnotation", param_2[1], {--[[ tuple ]]{
                             "types",
-                            array_of_list(_type, param_2[1])
+                            array_of_list(_type, param_2[2])
                           }}); end end 
            if ___conditional___ == 6--[[ Intersection ]] then do
               param_3 = --[[ tuple ]]{
                 loc,
-                t[0]
+                t[1]
               };
-              return node("IntersectionTypeAnnotation", param_3[0], {--[[ tuple ]]{
+              return node("IntersectionTypeAnnotation", param_3[1], {--[[ tuple ]]{
                             "types",
-                            array_of_list(_type, param_3[1])
+                            array_of_list(_type, param_3[2])
                           }}); end end 
            if ___conditional___ == 7--[[ Typeof ]] then do
               param_4 = --[[ tuple ]]{
                 loc,
-                t[0]
+                t[1]
               };
-              return node("TypeofTypeAnnotation", param_4[0], {--[[ tuple ]]{
+              return node("TypeofTypeAnnotation", param_4[1], {--[[ tuple ]]{
                             "argument",
-                            _type(param_4[1])
+                            _type(param_4[2])
                           }}); end end 
            if ___conditional___ == 8--[[ Tuple ]] then do
               param_5 = --[[ tuple ]]{
                 loc,
-                t[0]
+                t[1]
               };
-              return node("TupleTypeAnnotation", param_5[0], {--[[ tuple ]]{
+              return node("TupleTypeAnnotation", param_5[1], {--[[ tuple ]]{
                             "types",
-                            array_of_list(_type, param_5[1])
+                            array_of_list(_type, param_5[2])
                           }}); end end 
            if ___conditional___ == 9--[[ StringLiteral ]] then do
               param_6 = --[[ tuple ]]{
                 loc,
-                t[0]
+                t[1]
               };
-              s = param_6[1];
-              return node("StringLiteralTypeAnnotation", param_6[0], {
+              s = param_6[2];
+              return node("StringLiteralTypeAnnotation", param_6[1], {
                           --[[ tuple ]]{
                             "value",
                             string(s.value)
@@ -14191,10 +14191,10 @@ function parse(content, options) do
            if ___conditional___ == 10--[[ NumberLiteral ]] then do
               param_7 = --[[ tuple ]]{
                 loc,
-                t[0]
+                t[1]
               };
-              s_1 = param_7[1];
-              return node("NumberLiteralTypeAnnotation", param_7[0], {
+              s_1 = param_7[2];
+              return node("NumberLiteralTypeAnnotation", param_7[1], {
                           --[[ tuple ]]{
                             "value",
                             number_1(s_1.value)
@@ -14207,10 +14207,10 @@ function parse(content, options) do
            if ___conditional___ == 11--[[ BooleanLiteral ]] then do
               param_8 = --[[ tuple ]]{
                 loc,
-                t[0]
+                t[1]
               };
-              s_2 = param_8[1];
-              return node("BooleanLiteralTypeAnnotation", param_8[0], {
+              s_2 = param_8[2];
+              return node("BooleanLiteralTypeAnnotation", param_8[1], {
                           --[[ tuple ]]{
                             "value",
                             bool(s_2.value)
@@ -14225,14 +14225,14 @@ function parse(content, options) do
       end end 
     end end;
     type_annotation = function(param) do
-      return node("TypeAnnotation", param[0], {--[[ tuple ]]{
+      return node("TypeAnnotation", param[1], {--[[ tuple ]]{
                     "typeAnnotation",
-                    _type(param[1])
+                    _type(param[2])
                   }});
     end end;
     identifier = function(param) do
-      id = param[1];
-      return node("Identifier", param[0], {
+      id = param[2];
+      return node("Identifier", param[1], {
                   --[[ tuple ]]{
                     "name",
                     string(id.name)
@@ -14248,8 +14248,8 @@ function parse(content, options) do
                 });
     end end;
     object_type = function(param) do
-      o = param[1];
-      return node("ObjectTypeAnnotation", param[0], {
+      o = param[2];
+      return node("ObjectTypeAnnotation", param[1], {
                   --[[ tuple ]]{
                     "properties",
                     array_of_list(object_type_property, o.properties)
@@ -14265,11 +14265,11 @@ function parse(content, options) do
                 });
     end end;
     interface_extends = function(param) do
-      g = param[1];
+      g = param[2];
       match = g.id;
       id;
-      id = match.tag and generic_type_qualified_identifier(match[0]) or identifier(match[0]);
-      return node("InterfaceExtends", param[0], {
+      id = match.tag and generic_type_qualified_identifier(match[1]) or identifier(match[1]);
+      return node("InterfaceExtends", param[1], {
                   --[[ tuple ]]{
                     "id",
                     id
@@ -14281,14 +14281,14 @@ function parse(content, options) do
                 });
     end end;
     type_parameter_declaration = function(param) do
-      return node("TypeParameterDeclaration", param[0], {--[[ tuple ]]{
+      return node("TypeParameterDeclaration", param[1], {--[[ tuple ]]{
                     "params",
-                    array_of_list(type_param, param[1].params)
+                    array_of_list(type_param, param[2].params)
                   }});
     end end;
     template_literal = function(param) do
-      value = param[1];
-      return node("TemplateLiteral", param[0], {
+      value = param[2];
+      return node("TemplateLiteral", param[1], {
                   --[[ tuple ]]{
                     "quasis",
                     array_of_list(template_element, value.quasis)
@@ -14300,9 +14300,9 @@ function parse(content, options) do
                 });
     end end;
     expression = function(param) do
-      match = param[1];
-      loc = param[0];
-      if (typeof match == "number") then do
+      match = param[2];
+      loc = param[1];
+      if (type(match) == "number") then do
         return node("ThisExpression", loc, {});
       end else do
         local ___conditional___=(match.tag | 0);
@@ -14312,23 +14312,23 @@ function parse(content, options) do
                             "elements",
                             array_of_list((function(param) do
                                     return option(expression_or_spread, param);
-                                  end end), match[0].elements)
+                                  end end), match[1].elements)
                           }}); end end 
            if ___conditional___ == 1--[[ Object ]] then do
               return node("ObjectExpression", loc, {--[[ tuple ]]{
                             "properties",
-                            array_of_list(object_property, match[0].properties)
+                            array_of_list(object_property, match[1].properties)
                           }}); end end 
            if ___conditional___ == 2--[[ Function ]] then do
               return function_expression(--[[ tuple ]]{
                           loc,
-                          match[0]
+                          match[1]
                         }); end end 
            if ___conditional___ == 3--[[ ArrowFunction ]] then do
-              arrow = match[0];
+              arrow = match[1];
               match_1 = arrow.body;
               body;
-              body = match_1.tag and expression(match_1[0]) or block(match_1[0]);
+              body = match_1.tag and expression(match_1[1]) or block(match_1[1]);
               return node("ArrowFunctionExpression", loc, {
                           --[[ tuple ]]{
                             "id",
@@ -14376,10 +14376,10 @@ function parse(content, options) do
            if ___conditional___ == 4--[[ Sequence ]] then do
               return node("SequenceExpression", loc, {--[[ tuple ]]{
                             "expressions",
-                            array_of_list(expression, match[0].expressions)
+                            array_of_list(expression, match[1].expressions)
                           }}); end end 
            if ___conditional___ == 5--[[ Unary ]] then do
-              unary = match[0];
+              unary = match[1];
               match_2 = unary.operator;
               if (match_2 >= 7) then do
                 return node("AwaitExpression", loc, {--[[ tuple ]]{
@@ -14428,7 +14428,7 @@ function parse(content, options) do
                           });
               end end  end end 
            if ___conditional___ == 6--[[ Binary ]] then do
-              binary = match[0];
+              binary = match[1];
               match_4 = binary.operator;
               operator_1;
               local ___conditional___=(match_4);
@@ -14494,7 +14494,7 @@ function parse(content, options) do
                           }
                         }); end end 
            if ___conditional___ == 7--[[ Assignment ]] then do
-              assignment = match[0];
+              assignment = match[1];
               match_5 = assignment.operator;
               operator_2;
               local ___conditional___=(match_5);
@@ -14543,7 +14543,7 @@ function parse(content, options) do
                           }
                         }); end end 
            if ___conditional___ == 8--[[ Update ]] then do
-              update = match[0];
+              update = match[1];
               match_6 = update.operator;
               operator_3 = match_6 and "--" or "++";
               return node("UpdateExpression", loc, {
@@ -14561,7 +14561,7 @@ function parse(content, options) do
                           }
                         }); end end 
            if ___conditional___ == 9--[[ Logical ]] then do
-              logical = match[0];
+              logical = match[1];
               match_7 = logical.operator;
               operator_4 = match_7 and "and" or "or";
               return node("LogicalExpression", loc, {
@@ -14579,7 +14579,7 @@ function parse(content, options) do
                           }
                         }); end end 
            if ___conditional___ == 10--[[ Conditional ]] then do
-              conditional = match[0];
+              conditional = match[1];
               return node("ConditionalExpression", loc, {
                           --[[ tuple ]]{
                             "test",
@@ -14595,7 +14595,7 @@ function parse(content, options) do
                           }
                         }); end end 
            if ___conditional___ == 11--[[ New ]] then do
-              _new = match[0];
+              _new = match[1];
               return node("NewExpression", loc, {
                           --[[ tuple ]]{
                             "callee",
@@ -14603,11 +14603,11 @@ function parse(content, options) do
                           },
                           --[[ tuple ]]{
                             "arguments",
-                            array_of_list(expression_or_spread, _new.arguments)
+                            array_of_list(expression_or_spread, _new.__arguments)
                           }
                         }); end end 
            if ___conditional___ == 12--[[ Call ]] then do
-              call = match[0];
+              call = match[1];
               return node("CallExpression", loc, {
                           --[[ tuple ]]{
                             "callee",
@@ -14615,14 +14615,14 @@ function parse(content, options) do
                           },
                           --[[ tuple ]]{
                             "arguments",
-                            array_of_list(expression_or_spread, call.arguments)
+                            array_of_list(expression_or_spread, call.__arguments)
                           }
                         }); end end 
            if ___conditional___ == 13--[[ Member ]] then do
-              member = match[0];
+              member = match[1];
               match_8 = member.property;
               property;
-              property = match_8.tag and expression(match_8[0]) or identifier(match_8[0]);
+              property = match_8.tag and expression(match_8[1]) or identifier(match_8[1]);
               return node("MemberExpression", loc, {
                           --[[ tuple ]]{
                             "object",
@@ -14638,7 +14638,7 @@ function parse(content, options) do
                           }
                         }); end end 
            if ___conditional___ == 14--[[ Yield ]] then do
-              __yield = match[0];
+              __yield = match[1];
               return node("YieldExpression", loc, {
                           --[[ tuple ]]{
                             "argument",
@@ -14650,7 +14650,7 @@ function parse(content, options) do
                           }
                         }); end end 
            if ___conditional___ == 15--[[ Comprehension ]] then do
-              comp = match[0];
+              comp = match[1];
               return node("ComprehensionExpression", loc, {
                           --[[ tuple ]]{
                             "blocks",
@@ -14662,7 +14662,7 @@ function parse(content, options) do
                           }
                         }); end end 
            if ___conditional___ == 16--[[ Generator ]] then do
-              gen = match[0];
+              gen = match[1];
               return node("GeneratorExpression", loc, {
                           --[[ tuple ]]{
                             "blocks",
@@ -14674,7 +14674,7 @@ function parse(content, options) do
                           }
                         }); end end 
            if ___conditional___ == 17--[[ Let ]] then do
-              _let = match[0];
+              _let = match[1];
               return node("LetExpression", loc, {
                           --[[ tuple ]]{
                             "head",
@@ -14686,24 +14686,24 @@ function parse(content, options) do
                           }
                         }); end end 
            if ___conditional___ == 18--[[ Identifier ]] then do
-              return identifier(match[0]); end end 
+              return identifier(match[1]); end end 
            if ___conditional___ == 19--[[ Literal ]] then do
               return literal(--[[ tuple ]]{
                           loc,
-                          match[0]
+                          match[1]
                         }); end end 
            if ___conditional___ == 20--[[ TemplateLiteral ]] then do
               return template_literal(--[[ tuple ]]{
                           loc,
-                          match[0]
+                          match[1]
                         }); end end 
            if ___conditional___ == 21--[[ TaggedTemplate ]] then do
               param_1 = --[[ tuple ]]{
                 loc,
-                match[0]
+                match[1]
               };
-              tagged = param_1[1];
-              return node("TaggedTemplateExpression", param_1[0], {
+              tagged = param_1[2];
+              return node("TaggedTemplateExpression", param_1[1], {
                           --[[ tuple ]]{
                             "tag",
                             expression(tagged.tag)
@@ -14716,15 +14716,15 @@ function parse(content, options) do
            if ___conditional___ == 22--[[ JSXElement ]] then do
               return jsx_element(--[[ tuple ]]{
                           loc,
-                          match[0]
+                          match[1]
                         }); end end 
            if ___conditional___ == 23--[[ Class ]] then do
               param_2 = --[[ tuple ]]{
                 loc,
-                match[0]
+                match[1]
               };
-              c = param_2[1];
-              return node("ClassExpression", param_2[0], {
+              c = param_2[2];
+              return node("ClassExpression", param_2[1], {
                           --[[ tuple ]]{
                             "id",
                             option(identifier, c.id)
@@ -14747,7 +14747,7 @@ function parse(content, options) do
                           },
                           --[[ tuple ]]{
                             "implements",
-                            array_of_list(class_implements, c.implements)
+                            array_of_list(class_implements, c.__implements)
                           },
                           --[[ tuple ]]{
                             "decorators",
@@ -14755,7 +14755,7 @@ function parse(content, options) do
                           }
                         }); end end 
            if ___conditional___ == 24--[[ TypeCast ]] then do
-              typecast = match[0];
+              typecast = match[1];
               return node("TypeCastExpression", loc, {
                           --[[ tuple ]]{
                             "expression",
@@ -14772,18 +14772,18 @@ function parse(content, options) do
     end end;
     jsx_opening_attribute = function(param) do
       if (param.tag) then do
-        param_1 = param[0];
-        return node("JSXSpreadAttribute", param_1[0], {--[[ tuple ]]{
+        param_1 = param[1];
+        return node("JSXSpreadAttribute", param_1[1], {--[[ tuple ]]{
                       "argument",
-                      expression(param_1[1].argument)
+                      expression(param_1[2].argument)
                     }});
       end else do
-        param_2 = param[0];
-        attribute = param_2[1];
+        param_2 = param[1];
+        attribute = param_2[2];
         match = attribute.name;
         name;
-        name = match.tag and jsx_namespaced_name(match[0]) or jsx_identifier(match[0]);
-        return node("JSXAttribute", param_2[0], {
+        name = match.tag and jsx_namespaced_name(match[1]) or jsx_identifier(match[1]);
+        return node("JSXAttribute", param_2[1], {
                     --[[ tuple ]]{
                       "name",
                       name
@@ -14799,33 +14799,33 @@ function parse(content, options) do
       local ___conditional___=(param.tag | 0);
       do
          if ___conditional___ == 0--[[ Identifier ]] then do
-            return jsx_identifier(param[0]); end end 
+            return jsx_identifier(param[1]); end end 
          if ___conditional___ == 1--[[ NamespacedName ]] then do
-            return jsx_namespaced_name(param[0]); end end 
+            return jsx_namespaced_name(param[1]); end end 
          if ___conditional___ == 2--[[ MemberExpression ]] then do
-            return jsx_member_expression(param[0]); end end 
+            return jsx_member_expression(param[1]); end end 
         
       end
     end end;
     literal = function(param) do
-      lit = param[1];
+      lit = param[2];
       raw = lit.raw;
       value = lit.value;
-      loc = param[0];
+      loc = param[1];
       value_;
-      if (typeof value == "number") then do
+      if (type(value) == "number") then do
         value_ = __null;
       end else do
         local ___conditional___=(value.tag | 0);
         do
            if ___conditional___ == 0--[[ String ]] then do
-              value_ = string(value[0]); end else 
+              value_ = string(value[1]); end else 
            if ___conditional___ == 1--[[ Boolean ]] then do
-              value_ = bool(value[0]); end else 
+              value_ = bool(value[1]); end else 
            if ___conditional___ == 2--[[ Number ]] then do
-              value_ = number_1(value[0]); end else 
+              value_ = number_1(value[1]); end else 
            if ___conditional___ == 3--[[ RegExp ]] then do
-              match = value[0];
+              match = value[1];
               value_ = regexp_1(loc, match.pattern, match.flags); end else 
            end end end end end end end end
           
@@ -14833,10 +14833,10 @@ function parse(content, options) do
       end end 
       props;
       exit = 0;
-      if (typeof value == "number" or value.tag ~= --[[ RegExp ]]3) then do
+      if (type(value) == "number" or value.tag ~= --[[ RegExp ]]3) then do
         exit = 1;
       end else do
-        match_1 = value[0];
+        match_1 = value[1];
         regex = obj({
               --[[ tuple ]]{
                 "pattern",
@@ -14878,17 +14878,17 @@ function parse(content, options) do
       return node("Literal", loc, props);
     end end;
     jsx_expression_container = function(param) do
-      match = param[1].expression;
+      match = param[2].expression;
       expression_1;
-      expression_1 = match.tag and node("JSXEmptyExpression", match[0], {}) or expression(match[0]);
-      return node("JSXExpressionContainer", param[0], {--[[ tuple ]]{
+      expression_1 = match.tag and node("JSXEmptyExpression", match[1], {}) or expression(match[1]);
+      return node("JSXExpressionContainer", param[1], {--[[ tuple ]]{
                     "expression",
                     expression_1
                   }});
     end end;
     jsx_namespaced_name = function(param) do
-      namespaced_name = param[1];
-      return node("JSXNamespacedName", param[0], {
+      namespaced_name = param[2];
+      return node("JSXNamespacedName", param[1], {
                   --[[ tuple ]]{
                     "namespace",
                     jsx_identifier(namespaced_name.namespace)
@@ -14900,17 +14900,17 @@ function parse(content, options) do
                 });
     end end;
     jsx_identifier = function(param) do
-      return node("JSXIdentifier", param[0], {--[[ tuple ]]{
+      return node("JSXIdentifier", param[1], {--[[ tuple ]]{
                     "name",
-                    string(param[1].name)
+                    string(param[2].name)
                   }});
     end end;
     jsx_member_expression = function(param) do
-      member_expression = param[1];
+      member_expression = param[2];
       match = member_expression._object;
       _object;
-      _object = match.tag and jsx_member_expression(match[0]) or jsx_identifier(match[0]);
-      return node("JSXMemberExpression", param[0], {
+      _object = match.tag and jsx_member_expression(match[1]) or jsx_identifier(match[1]);
+      return node("JSXMemberExpression", param[1], {
                   --[[ tuple ]]{
                     "object",
                     _object
@@ -14922,17 +14922,17 @@ function parse(content, options) do
                 });
     end end;
     type_parameter_instantiation = function(param) do
-      return node("TypeParameterInstantiation", param[0], {--[[ tuple ]]{
+      return node("TypeParameterInstantiation", param[1], {--[[ tuple ]]{
                     "params",
-                    array_of_list(_type, param[1].params)
+                    array_of_list(_type, param[2].params)
                   }});
     end end;
     generic_type_qualified_identifier = function(param) do
-      q = param[1];
+      q = param[2];
       match = q.qualification;
       qualification;
-      qualification = match.tag and generic_type_qualified_identifier(match[0]) or identifier(match[0]);
-      return node("QualifiedTypeIdentifier", param[0], {
+      qualification = match.tag and generic_type_qualified_identifier(match[1]) or identifier(match[1]);
+      return node("QualifiedTypeIdentifier", param[1], {
                   --[[ tuple ]]{
                     "qualification",
                     qualification
@@ -14944,8 +14944,8 @@ function parse(content, options) do
                 });
     end end;
     object_type_indexer = function(param) do
-      indexer = param[1];
-      return node("ObjectTypeIndexer", param[0], {
+      indexer = param[2];
+      return node("ObjectTypeIndexer", param[1], {
                   --[[ tuple ]]{
                     "id",
                     identifier(indexer.id)
@@ -14960,33 +14960,33 @@ function parse(content, options) do
                   },
                   --[[ tuple ]]{
                     "static",
-                    bool(indexer.static)
+                    bool(indexer.__static)
                   }
                 });
     end end;
     object_type_call_property = function(param) do
-      callProperty = param[1];
-      return node("ObjectTypeCallProperty", param[0], {
+      callProperty = param[2];
+      return node("ObjectTypeCallProperty", param[1], {
                   --[[ tuple ]]{
                     "value",
                     function_type(callProperty.value)
                   },
                   --[[ tuple ]]{
                     "static",
-                    bool(callProperty.static)
+                    bool(callProperty.__static)
                   }
                 });
     end end;
     object_type_property = function(param) do
-      prop = param[1];
+      prop = param[2];
       match = prop.key;
       key;
       local ___conditional___=(match.tag | 0);
       do
          if ___conditional___ == 0--[[ Literal ]] then do
-            key = literal(match[0]); end else 
+            key = literal(match[1]); end else 
          if ___conditional___ == 1--[[ Identifier ]] then do
-            key = identifier(match[0]); end else 
+            key = identifier(match[1]); end else 
          if ___conditional___ == 2--[[ Computed ]] then do
             error({
               Caml_builtin_exceptions.failure,
@@ -14994,7 +14994,7 @@ function parse(content, options) do
             }) end end end end end end 
         
       end
-      return node("ObjectTypeProperty", param[0], {
+      return node("ObjectTypeProperty", param[1], {
                   --[[ tuple ]]{
                     "key",
                     key
@@ -15009,17 +15009,17 @@ function parse(content, options) do
                   },
                   --[[ tuple ]]{
                     "static",
-                    bool(prop.static)
+                    bool(prop.__static)
                   }
                 });
     end end;
     pattern = function(param) do
-      match = param[1];
-      loc = param[0];
+      match = param[2];
+      loc = param[1];
       local ___conditional___=(match.tag | 0);
       do
          if ___conditional___ == 0--[[ Object ]] then do
-            obj = match[0];
+            obj = match[1];
             return node("ObjectPattern", loc, {
                         --[[ tuple ]]{
                           "properties",
@@ -15031,7 +15031,7 @@ function parse(content, options) do
                         }
                       }); end end 
          if ___conditional___ == 1--[[ Array ]] then do
-            arr = match[0];
+            arr = match[1];
             return node("ArrayPattern", loc, {
                         --[[ tuple ]]{
                           "elements",
@@ -15045,7 +15045,7 @@ function parse(content, options) do
                         }
                       }); end end 
          if ___conditional___ == 2--[[ Assignment ]] then do
-            match_1 = match[0];
+            match_1 = match[1];
             return node("AssignmentPattern", loc, {
                         --[[ tuple ]]{
                           "left",
@@ -15057,15 +15057,15 @@ function parse(content, options) do
                         }
                       }); end end 
          if ___conditional___ == 3--[[ Identifier ]] then do
-            return identifier(match[0]); end end 
+            return identifier(match[1]); end end 
          if ___conditional___ == 4--[[ Expression ]] then do
-            return expression(match[0]); end end 
+            return expression(match[1]); end end 
         
       end
     end end;
     class_implements = function(param) do
-      __implements = param[1];
-      return node("ClassImplements", param[0], {
+      __implements = param[2];
+      return node("ClassImplements", param[1], {
                   --[[ tuple ]]{
                     "id",
                     identifier(__implements.id)
@@ -15077,14 +15077,14 @@ function parse(content, options) do
                 });
     end end;
     class_body = function(param) do
-      return node("ClassBody", param[0], {--[[ tuple ]]{
+      return node("ClassBody", param[1], {--[[ tuple ]]{
                     "body",
-                    array_of_list(class_element, param[1].body)
+                    array_of_list(class_element, param[2].body)
                   }});
     end end;
     __catch = function(param) do
-      c = param[1];
-      return node("CatchClause", param[0], {
+      c = param[2];
+      return node("CatchClause", param[1], {
                   --[[ tuple ]]{
                     "param",
                     pattern(c.param)
@@ -15100,8 +15100,8 @@ function parse(content, options) do
                 });
     end end;
     declare_class = function(param) do
-      d = param[1];
-      return node("DeclareClass", param[0], {
+      d = param[2];
+      return node("DeclareClass", param[1], {
                   --[[ tuple ]]{
                     "id",
                     identifier(d.id)
@@ -15116,13 +15116,13 @@ function parse(content, options) do
                   },
                   --[[ tuple ]]{
                     "extends",
-                    array_of_list(interface_extends, d.extends)
+                    array_of_list(interface_extends, d.__extends)
                   }
                 });
     end end;
     type_alias = function(param) do
-      alias = param[1];
-      return node("TypeAlias", param[0], {
+      alias = param[2];
+      return node("TypeAlias", param[1], {
                   --[[ tuple ]]{
                     "id",
                     identifier(alias.id)
@@ -15150,13 +15150,13 @@ function parse(content, options) do
                 });
     end end;
     declare_function = function(param) do
-      return node("DeclareFunction", param[0], {--[[ tuple ]]{
+      return node("DeclareFunction", param[1], {--[[ tuple ]]{
                     "id",
-                    identifier(param[1].id)
+                    identifier(param[2].id)
                   }});
     end end;
     variable_declaration = function(param) do
-      __var = param[1];
+      __var = param[2];
       match = __var.kind;
       kind;
       local ___conditional___=(match);
@@ -15170,7 +15170,7 @@ function parse(content, options) do
          end end end end end end
         
       end
-      return node("VariableDeclaration", param[0], {
+      return node("VariableDeclaration", param[1], {
                   --[[ tuple ]]{
                     "declarations",
                     array_of_list(variable_declarator, __var.declarations)
@@ -15182,9 +15182,9 @@ function parse(content, options) do
                 });
     end end;
     statement = function(param) do
-      match = param[1];
-      loc = param[0];
-      if (typeof match == "number") then do
+      match = param[2];
+      loc = param[1];
+      if (type(match) == "number") then do
         if (match == --[[ Empty ]]0) then do
           return node("EmptyStatement", loc, {});
         end else do
@@ -15196,15 +15196,15 @@ function parse(content, options) do
            if ___conditional___ == 0--[[ Block ]] then do
               return block(--[[ tuple ]]{
                           loc,
-                          match[0]
+                          match[1]
                         }); end end 
            if ___conditional___ == 1--[[ Expression ]] then do
               return node("ExpressionStatement", loc, {--[[ tuple ]]{
                             "expression",
-                            expression(match[0].expression)
+                            expression(match[1].expression)
                           }}); end end 
            if ___conditional___ == 2--[[ If ]] then do
-              _if = match[0];
+              _if = match[1];
               return node("IfStatement", loc, {
                           --[[ tuple ]]{
                             "test",
@@ -15220,7 +15220,7 @@ function parse(content, options) do
                           }
                         }); end end 
            if ___conditional___ == 3--[[ Labeled ]] then do
-              labeled = match[0];
+              labeled = match[1];
               return node("LabeledStatement", loc, {
                           --[[ tuple ]]{
                             "label",
@@ -15234,15 +15234,15 @@ function parse(content, options) do
            if ___conditional___ == 4--[[ Break ]] then do
               return node("BreakStatement", loc, {--[[ tuple ]]{
                             "label",
-                            option(identifier, match[0].label)
+                            option(identifier, match[1].label)
                           }}); end end 
            if ___conditional___ == 5--[[ Continue ]] then do
               return node("ContinueStatement", loc, {--[[ tuple ]]{
                             "label",
-                            option(identifier, match[0].label)
+                            option(identifier, match[1].label)
                           }}); end end 
            if ___conditional___ == 6--[[ With ]] then do
-              _with = match[0];
+              _with = match[1];
               return node("WithStatement", loc, {
                           --[[ tuple ]]{
                             "object",
@@ -15256,10 +15256,10 @@ function parse(content, options) do
            if ___conditional___ == 7--[[ TypeAlias ]] then do
               return type_alias(--[[ tuple ]]{
                           loc,
-                          match[0]
+                          match[1]
                         }); end end 
            if ___conditional___ == 8--[[ Switch ]] then do
-              __switch = match[0];
+              __switch = match[1];
               return node("SwitchStatement", loc, {
                           --[[ tuple ]]{
                             "discriminant",
@@ -15277,15 +15277,15 @@ function parse(content, options) do
            if ___conditional___ == 9--[[ Return ]] then do
               return node("ReturnStatement", loc, {--[[ tuple ]]{
                             "argument",
-                            option(expression, match[0].argument)
+                            option(expression, match[1].argument)
                           }}); end end 
            if ___conditional___ == 10--[[ Throw ]] then do
               return node("ThrowStatement", loc, {--[[ tuple ]]{
                             "argument",
-                            expression(match[0].argument)
+                            expression(match[1].argument)
                           }}); end end 
            if ___conditional___ == 11--[[ Try ]] then do
-              _try = match[0];
+              _try = match[1];
               return node("TryStatement", loc, {
                           --[[ tuple ]]{
                             "block",
@@ -15305,7 +15305,7 @@ function parse(content, options) do
                           }
                         }); end end 
            if ___conditional___ == 12--[[ While ]] then do
-              _while = match[0];
+              _while = match[1];
               return node("WhileStatement", loc, {
                           --[[ tuple ]]{
                             "test",
@@ -15317,7 +15317,7 @@ function parse(content, options) do
                           }
                         }); end end 
            if ___conditional___ == 13--[[ DoWhile ]] then do
-              dowhile = match[0];
+              dowhile = match[1];
               return node("DoWhileStatement", loc, {
                           --[[ tuple ]]{
                             "body",
@@ -15329,12 +15329,12 @@ function parse(content, options) do
                           }
                         }); end end 
            if ___conditional___ == 14--[[ For ]] then do
-              _for = match[0];
+              _for = match[1];
               init = function(param) do
                 if (param.tag) then do
-                  return expression(param[0]);
+                  return expression(param[1]);
                 end else do
-                  return variable_declaration(param[0]);
+                  return variable_declaration(param[1]);
                 end end 
               end end;
               return node("ForStatement", loc, {
@@ -15356,10 +15356,10 @@ function parse(content, options) do
                           }
                         }); end end 
            if ___conditional___ == 15--[[ ForIn ]] then do
-              forin = match[0];
+              forin = match[1];
               match_1 = forin.left;
               left;
-              left = match_1.tag and expression(match_1[0]) or variable_declaration(match_1[0]);
+              left = match_1.tag and expression(match_1[1]) or variable_declaration(match_1[1]);
               return node("ForInStatement", loc, {
                           --[[ tuple ]]{
                             "left",
@@ -15379,10 +15379,10 @@ function parse(content, options) do
                           }
                         }); end end 
            if ___conditional___ == 16--[[ ForOf ]] then do
-              forof = match[0];
+              forof = match[1];
               match_2 = forof.left;
               left_1;
-              left_1 = match_2.tag and expression(match_2[0]) or variable_declaration(match_2[0]);
+              left_1 = match_2.tag and expression(match_2[1]) or variable_declaration(match_2[1]);
               return node("ForOfStatement", loc, {
                           --[[ tuple ]]{
                             "left",
@@ -15398,7 +15398,7 @@ function parse(content, options) do
                           }
                         }); end end 
            if ___conditional___ == 17--[[ Let ]] then do
-              _let = match[0];
+              _let = match[1];
               return node("LetStatement", loc, {
                           --[[ tuple ]]{
                             "head",
@@ -15410,7 +15410,7 @@ function parse(content, options) do
                           }
                         }); end end 
            if ___conditional___ == 18--[[ FunctionDeclaration ]] then do
-              fn = match[0];
+              fn = match[1];
               match_3 = fn.id;
               match_4 = match_3 ~= nil and --[[ tuple ]]{
                   "FunctionDeclaration",
@@ -15421,11 +15421,11 @@ function parse(content, options) do
                 };
               match_5 = fn.body;
               body;
-              body = match_5.tag and expression(match_5[0]) or block(match_5[0]);
-              return node(match_4[0], loc, {
+              body = match_5.tag and expression(match_5[1]) or block(match_5[1]);
+              return node(match_4[1], loc, {
                           --[[ tuple ]]{
                             "id",
-                            match_4[1]
+                            match_4[2]
                           },
                           --[[ tuple ]]{
                             "params",
@@ -15469,14 +15469,14 @@ function parse(content, options) do
            if ___conditional___ == 19--[[ VariableDeclaration ]] then do
               return variable_declaration(--[[ tuple ]]{
                           loc,
-                          match[0]
+                          match[1]
                         }); end end 
            if ___conditional___ == 20--[[ ClassDeclaration ]] then do
               param_1 = --[[ tuple ]]{
                 loc,
-                match[0]
+                match[1]
               };
-              c = param_1[1];
+              c = param_1[2];
               match_6 = c.id;
               match_7 = match_6 ~= nil and --[[ tuple ]]{
                   "ClassDeclaration",
@@ -15485,10 +15485,10 @@ function parse(content, options) do
                   "ClassExpression",
                   __null
                 };
-              return node(match_7[0], param_1[0], {
+              return node(match_7[1], param_1[1], {
                           --[[ tuple ]]{
                             "id",
-                            match_7[1]
+                            match_7[2]
                           },
                           --[[ tuple ]]{
                             "body",
@@ -15508,7 +15508,7 @@ function parse(content, options) do
                           },
                           --[[ tuple ]]{
                             "implements",
-                            array_of_list(class_implements, c.implements)
+                            array_of_list(class_implements, c.__implements)
                           },
                           --[[ tuple ]]{
                             "decorators",
@@ -15518,28 +15518,28 @@ function parse(content, options) do
            if ___conditional___ == 21--[[ InterfaceDeclaration ]] then do
               return interface_declaration(--[[ tuple ]]{
                           loc,
-                          match[0]
+                          match[1]
                         }); end end 
            if ___conditional___ == 22--[[ DeclareVariable ]] then do
               return declare_variable(--[[ tuple ]]{
                           loc,
-                          match[0]
+                          match[1]
                         }); end end 
            if ___conditional___ == 23--[[ DeclareFunction ]] then do
               return declare_function(--[[ tuple ]]{
                           loc,
-                          match[0]
+                          match[1]
                         }); end end 
            if ___conditional___ == 24--[[ DeclareClass ]] then do
               return declare_class(--[[ tuple ]]{
                           loc,
-                          match[0]
+                          match[1]
                         }); end end 
            if ___conditional___ == 25--[[ DeclareModule ]] then do
-              m = match[0];
+              m = match[1];
               match_8 = m.id;
               id;
-              id = match_8.tag and literal(match_8[0]) or identifier(match_8[0]);
+              id = match_8.tag and literal(match_8[1]) or identifier(match_8[1]);
               match_9 = m.kind;
               tmp;
               tmp = match_9.tag and string("ES") or string("CommonJS");
@@ -15560,10 +15560,10 @@ function parse(content, options) do
            if ___conditional___ == 26--[[ DeclareModuleExports ]] then do
               return node("DeclareModuleExports", loc, {--[[ tuple ]]{
                             "typeAnnotation",
-                            type_annotation(match[0])
+                            type_annotation(match[1])
                           }}); end end 
            if ___conditional___ == 27--[[ DeclareExportDeclaration ]] then do
-              __export = match[0];
+              __export = match[1];
               match_10 = __export.declaration;
               declaration;
               if (match_10 ~= nil) then do
@@ -15571,17 +15571,17 @@ function parse(content, options) do
                 local ___conditional___=(match_11.tag | 0);
                 do
                    if ___conditional___ == 0--[[ Variable ]] then do
-                      declaration = declare_variable(match_11[0]); end else 
+                      declaration = declare_variable(match_11[1]); end else 
                    if ___conditional___ == 1--[[ Function ]] then do
-                      declaration = declare_function(match_11[0]); end else 
+                      declaration = declare_function(match_11[1]); end else 
                    if ___conditional___ == 2--[[ Class ]] then do
-                      declaration = declare_class(match_11[0]); end else 
+                      declaration = declare_class(match_11[1]); end else 
                    if ___conditional___ == 3--[[ DefaultType ]] then do
-                      declaration = _type(match_11[0]); end else 
+                      declaration = _type(match_11[1]); end else 
                    if ___conditional___ == 4--[[ NamedType ]] then do
-                      declaration = type_alias(match_11[0]); end else 
+                      declaration = type_alias(match_11[1]); end else 
                    if ___conditional___ == 5--[[ Interface ]] then do
-                      declaration = interface_declaration(match_11[0]); end else 
+                      declaration = interface_declaration(match_11[1]); end else 
                    end end end end end end end end end end end end
                   
                 end
@@ -15591,7 +15591,7 @@ function parse(content, options) do
               return node("DeclareExportDeclaration", loc, {
                           --[[ tuple ]]{
                             "default",
-                            bool(__export.default)
+                            bool(__export.__default)
                           },
                           --[[ tuple ]]{
                             "declaration",
@@ -15607,19 +15607,19 @@ function parse(content, options) do
                           }
                         }); end end 
            if ___conditional___ == 28--[[ ExportDeclaration ]] then do
-              __export_1 = match[0];
+              __export_1 = match[1];
               match_12 = __export_1.declaration;
               declaration_1;
               if (match_12 ~= nil) then do
                 match_13 = match_12;
-                declaration_1 = match_13.tag and expression(match_13[0]) or statement(match_13[0]);
+                declaration_1 = match_13.tag and expression(match_13[1]) or statement(match_13[1]);
               end else do
                 declaration_1 = __null;
               end end 
               return node("ExportDeclaration", loc, {
                           --[[ tuple ]]{
                             "default",
-                            bool(__export_1.default)
+                            bool(__export_1.__default)
                           },
                           --[[ tuple ]]{
                             "declaration",
@@ -15639,15 +15639,15 @@ function parse(content, options) do
                           }
                         }); end end 
            if ___conditional___ == 29--[[ ImportDeclaration ]] then do
-              __import = match[0];
+              __import = match[1];
               specifiers = List.map((function(param) do
                       local ___conditional___=(param.tag | 0);
                       do
                          if ___conditional___ == 0--[[ ImportNamedSpecifier ]] then do
-                            match = param[0];
+                            match = param[1];
                             local_id = match.local;
                             remote_id = match.remote;
-                            span_loc = local_id ~= nil and btwn(remote_id[0], local_id[0]) or remote_id[0];
+                            span_loc = local_id ~= nil and btwn(remote_id[1], local_id[1]) or remote_id[1];
                             return node("ImportSpecifier", span_loc, {
                                         --[[ tuple ]]{
                                           "id",
@@ -15659,16 +15659,16 @@ function parse(content, options) do
                                         }
                                       }); end end 
                          if ___conditional___ == 1--[[ ImportDefaultSpecifier ]] then do
-                            id = param[0];
-                            return node("ImportDefaultSpecifier", id[0], {--[[ tuple ]]{
+                            id = param[1];
+                            return node("ImportDefaultSpecifier", id[1], {--[[ tuple ]]{
                                           "id",
                                           identifier(id)
                                         }}); end end 
                          if ___conditional___ == 2--[[ ImportNamespaceSpecifier ]] then do
-                            param_1 = param[0];
-                            return node("ImportNamespaceSpecifier", param_1[0], {--[[ tuple ]]{
+                            param_1 = param[1];
+                            return node("ImportNamespaceSpecifier", param_1[1], {--[[ tuple ]]{
                                           "id",
-                                          identifier(param_1[1])
+                                          identifier(param_1[2])
                                         }}); end end 
                         
                       end
@@ -15705,8 +15705,8 @@ function parse(content, options) do
       end end 
     end end;
     __case = function(param) do
-      c = param[1];
-      return node("SwitchCase", param[0], {
+      c = param[2];
+      return node("SwitchCase", param[1], {
                   --[[ tuple ]]{
                     "test",
                     option(expression, c.test)
@@ -15718,14 +15718,14 @@ function parse(content, options) do
                 });
     end end;
     declare_variable = function(param) do
-      return node("DeclareVariable", param[0], {--[[ tuple ]]{
+      return node("DeclareVariable", param[1], {--[[ tuple ]]{
                     "id",
-                    identifier(param[1].id)
+                    identifier(param[2].id)
                   }});
     end end;
     interface_declaration = function(param) do
-      i = param[1];
-      return node("InterfaceDeclaration", param[0], {
+      i = param[2];
+      return node("InterfaceDeclaration", param[1], {
                   --[[ tuple ]]{
                     "id",
                     identifier(i.id)
@@ -15740,7 +15740,7 @@ function parse(content, options) do
                   },
                   --[[ tuple ]]{
                     "extends",
-                    array_of_list(interface_extends, i.extends)
+                    array_of_list(interface_extends, i.__extends)
                   }
                 });
     end end;
@@ -15748,26 +15748,26 @@ function parse(content, options) do
       if (param ~= nil) then do
         match = param;
         if (match.tag) then do
-          return array({node("ExportBatchSpecifier", match[0], {--[[ tuple ]]{
+          return array({node("ExportBatchSpecifier", match[1], {--[[ tuple ]]{
                               "name",
-                              option(identifier, match[1])
+                              option(identifier, match[2])
                             }})});
         end else do
-          return array_of_list(export_specifier, match[0]);
+          return array_of_list(export_specifier, match[1]);
         end end 
       end else do
         return array({});
       end end 
     end end;
     block = function(param) do
-      return node("BlockStatement", param[0], {--[[ tuple ]]{
+      return node("BlockStatement", param[1], {--[[ tuple ]]{
                     "body",
-                    array_of_list(statement, param[1].body)
+                    array_of_list(statement, param[2].body)
                   }});
     end end;
     jsx_element = function(param) do
-      element = param[1];
-      return node("JSXElement", param[0], {
+      element = param[2];
+      return node("JSXElement", param[1], {
                   --[[ tuple ]]{
                     "openingElement",
                     jsx_opening(element.openingElement)
@@ -15785,19 +15785,19 @@ function parse(content, options) do
     jsx_attribute_value = function(param) do
       if (param.tag) then do
         return jsx_expression_container(--[[ tuple ]]{
-                    param[0],
-                    param[1]
+                    param[1],
+                    param[2]
                   });
       end else do
         return literal(--[[ tuple ]]{
-                    param[0],
-                    param[1]
+                    param[1],
+                    param[2]
                   });
       end end 
     end end;
     function_type_param = function(param) do
-      param_1 = param[1];
-      return node("FunctionTypeParam", param[0], {
+      param_1 = param[2];
+      return node("FunctionTypeParam", param[1], {
                   --[[ tuple ]]{
                     "name",
                     identifier(param_1.name)
@@ -15813,8 +15813,8 @@ function parse(content, options) do
                 });
     end end;
     variable_declarator = function(param) do
-      declarator = param[1];
-      return node("VariableDeclarator", param[0], {
+      declarator = param[2];
+      return node("VariableDeclarator", param[1], {
                   --[[ tuple ]]{
                     "id",
                     pattern(declarator.id)
@@ -15827,51 +15827,51 @@ function parse(content, options) do
     end end;
     array_pattern_element = function(param) do
       if (param.tag) then do
-        match = param[0];
-        return node("SpreadElementPattern", match[0], {--[[ tuple ]]{
+        match = param[1];
+        return node("SpreadElementPattern", match[1], {--[[ tuple ]]{
                       "argument",
-                      pattern(match[1].argument)
+                      pattern(match[2].argument)
                     }});
       end else do
-        return pattern(param[0]);
+        return pattern(param[1]);
       end end 
     end end;
     object_pattern_property = function(param) do
       if (param.tag) then do
-        match = param[0];
-        return node("SpreadPropertyPattern", match[0], {--[[ tuple ]]{
+        match = param[1];
+        return node("SpreadPropertyPattern", match[1], {--[[ tuple ]]{
                       "argument",
-                      pattern(match[1].argument)
+                      pattern(match[2].argument)
                     }});
       end else do
-        match_1 = param[0];
-        prop = match_1[1];
+        match_1 = param[1];
+        prop = match_1[2];
         match_2 = prop.key;
         match_3;
         local ___conditional___=(match_2.tag | 0);
         do
            if ___conditional___ == 0--[[ Literal ]] then do
               match_3 = --[[ tuple ]]{
-                literal(match_2[0]),
+                literal(match_2[1]),
                 false
               }; end else 
            if ___conditional___ == 1--[[ Identifier ]] then do
               match_3 = --[[ tuple ]]{
-                identifier(match_2[0]),
+                identifier(match_2[1]),
                 false
               }; end else 
            if ___conditional___ == 2--[[ Computed ]] then do
               match_3 = --[[ tuple ]]{
-                expression(match_2[0]),
+                expression(match_2[1]),
                 true
               }; end else 
            end end end end end end
           
         end
-        return node("PropertyPattern", match_1[0], {
+        return node("PropertyPattern", match_1[1], {
                     --[[ tuple ]]{
                       "key",
-                      match_3[0]
+                      match_3[1]
                     },
                     --[[ tuple ]]{
                       "pattern",
@@ -15879,7 +15879,7 @@ function parse(content, options) do
                     },
                     --[[ tuple ]]{
                       "computed",
-                      bool(match_3[1])
+                      bool(match_3[2])
                     },
                     --[[ tuple ]]{
                       "shorthand",
@@ -15890,34 +15890,34 @@ function parse(content, options) do
     end end;
     class_element = function(param) do
       if (param.tag) then do
-        param_1 = param[0];
-        prop = param_1[1];
+        param_1 = param[1];
+        prop = param_1[2];
         match = prop.key;
         match_1;
         local ___conditional___=(match.tag | 0);
         do
            if ___conditional___ == 0--[[ Literal ]] then do
               match_1 = --[[ tuple ]]{
-                literal(match[0]),
+                literal(match[1]),
                 false
               }; end else 
            if ___conditional___ == 1--[[ Identifier ]] then do
               match_1 = --[[ tuple ]]{
-                identifier(match[0]),
+                identifier(match[1]),
                 false
               }; end else 
            if ___conditional___ == 2--[[ Computed ]] then do
               match_1 = --[[ tuple ]]{
-                expression(match[0]),
+                expression(match[1]),
                 true
               }; end else 
            end end end end end end
           
         end
-        return node("ClassProperty", param_1[0], {
+        return node("ClassProperty", param_1[1], {
                     --[[ tuple ]]{
                       "key",
-                      match_1[0]
+                      match_1[1]
                     },
                     --[[ tuple ]]{
                       "value",
@@ -15929,33 +15929,33 @@ function parse(content, options) do
                     },
                     --[[ tuple ]]{
                       "computed",
-                      bool(match_1[1])
+                      bool(match_1[2])
                     },
                     --[[ tuple ]]{
                       "static",
-                      bool(prop.static)
+                      bool(prop.__static)
                     }
                   });
       end else do
-        param_2 = param[0];
-        method_ = param_2[1];
+        param_2 = param[1];
+        method_ = param_2[2];
         key = method_.key;
         match_2;
         local ___conditional___=(key.tag | 0);
         do
            if ___conditional___ == 0--[[ Literal ]] then do
               match_2 = --[[ tuple ]]{
-                literal(key[0]),
+                literal(key[1]),
                 false
               }; end else 
            if ___conditional___ == 1--[[ Identifier ]] then do
               match_2 = --[[ tuple ]]{
-                identifier(key[0]),
+                identifier(key[1]),
                 false
               }; end else 
            if ___conditional___ == 2--[[ Computed ]] then do
               match_2 = --[[ tuple ]]{
-                expression(key[0]),
+                expression(key[1]),
                 true
               }; end else 
            end end end end end end
@@ -15975,10 +15975,10 @@ function parse(content, options) do
            end end end end end end end end
           
         end
-        return node("MethodDefinition", param_2[0], {
+        return node("MethodDefinition", param_2[1], {
                     --[[ tuple ]]{
                       "key",
-                      match_2[0]
+                      match_2[1]
                     },
                     --[[ tuple ]]{
                       "value",
@@ -15990,11 +15990,11 @@ function parse(content, options) do
                     },
                     --[[ tuple ]]{
                       "static",
-                      bool(method_.static)
+                      bool(method_.__static)
                     },
                     --[[ tuple ]]{
                       "computed",
-                      bool(match_2[1])
+                      bool(match_2[2])
                     },
                     --[[ tuple ]]{
                       "decorators",
@@ -16004,42 +16004,42 @@ function parse(content, options) do
       end end 
     end end;
     comment = function(param) do
-      c = param[1];
+      c = param[2];
       match;
       match = c.tag and --[[ tuple ]]{
           "Line",
-          c[0]
+          c[1]
         } or --[[ tuple ]]{
           "Block",
-          c[0]
+          c[1]
         };
-      return node(match[0], param[0], {--[[ tuple ]]{
+      return node(match[1], param[1], {--[[ tuple ]]{
                     "value",
-                    string(match[1])
+                    string(match[2])
                   }});
     end end;
     jsx_child = function(param) do
-      match = param[1];
-      loc = param[0];
+      match = param[2];
+      loc = param[1];
       local ___conditional___=(match.tag | 0);
       do
          if ___conditional___ == 0--[[ Element ]] then do
             return jsx_element(--[[ tuple ]]{
                         loc,
-                        match[0]
+                        match[1]
                       }); end end 
          if ___conditional___ == 1--[[ ExpressionContainer ]] then do
             return jsx_expression_container(--[[ tuple ]]{
                         loc,
-                        match[0]
+                        match[1]
                       }); end end 
          if ___conditional___ == 2--[[ Text ]] then do
             param_1 = --[[ tuple ]]{
               loc,
-              match[0]
+              match[1]
             };
-            text = param_1[1];
-            return node("JSXText", param_1[0], {
+            text = param_1[2];
+            return node("JSXText", param_1[1], {
                         --[[ tuple ]]{
                           "value",
                           string(text.value)
@@ -16053,8 +16053,8 @@ function parse(content, options) do
       end
     end end;
     jsx_opening = function(param) do
-      opening = param[1];
-      return node("JSXOpeningElement", param[0], {
+      opening = param[2];
+      return node("JSXOpeningElement", param[1], {
                   --[[ tuple ]]{
                     "name",
                     jsx_name(opening.name)
@@ -16070,13 +16070,13 @@ function parse(content, options) do
                 });
     end end;
     jsx_closing = function(param) do
-      return node("JSXClosingElement", param[0], {--[[ tuple ]]{
+      return node("JSXClosingElement", param[1], {--[[ tuple ]]{
                     "name",
-                    jsx_name(param[1].name)
+                    jsx_name(param[2].name)
                   }});
     end end;
     template_element = function(param) do
-      element = param[1];
+      element = param[2];
       value = obj({
             --[[ tuple ]]{
               "raw",
@@ -16087,7 +16087,7 @@ function parse(content, options) do
               string(element.value.cooked)
             }
           });
-      return node("TemplateElement", param[0], {
+      return node("TemplateElement", param[1], {
                   --[[ tuple ]]{
                     "value",
                     value
@@ -16099,8 +16099,8 @@ function parse(content, options) do
                 });
     end end;
     export_specifier = function(param) do
-      specifier = param[1];
-      return node("ExportSpecifier", param[0], {
+      specifier = param[2];
+      return node("ExportSpecifier", param[1], {
                   --[[ tuple ]]{
                     "id",
                     identifier(specifier.id)
@@ -16112,7 +16112,7 @@ function parse(content, options) do
                 });
     end end;
     type_param = function(param) do
-      tp = param[1];
+      tp = param[2];
       variance = function(param) do
         if (param) then do
           return string("minus");
@@ -16120,7 +16120,7 @@ function parse(content, options) do
           return string("plus");
         end end 
       end end;
-      return node("TypeParameter", param[0], {
+      return node("TypeParameter", param[1], {
                   --[[ tuple ]]{
                     "name",
                     string(tp.name)
@@ -16135,16 +16135,16 @@ function parse(content, options) do
                   },
                   --[[ tuple ]]{
                     "default",
-                    option(_type, tp.default)
+                    option(_type, tp.__default)
                   }
                 });
     end end;
     function_expression = function(param) do
-      _function = param[1];
+      _function = param[2];
       match = _function.body;
       body;
-      body = match.tag and expression(match[0]) or block(match[0]);
-      return node("FunctionExpression", param[0], {
+      body = match.tag and expression(match[1]) or block(match[1]);
+      return node("FunctionExpression", param[1], {
                   --[[ tuple ]]{
                     "id",
                     option(identifier, _function.id)
@@ -16191,42 +16191,42 @@ function parse(content, options) do
     end end;
     expression_or_spread = function(param) do
       if (param.tag) then do
-        match = param[0];
-        return node("SpreadElement", match[0], {--[[ tuple ]]{
+        match = param[1];
+        return node("SpreadElement", match[1], {--[[ tuple ]]{
                       "argument",
-                      expression(match[1].argument)
+                      expression(match[2].argument)
                     }});
       end else do
-        return expression(param[0]);
+        return expression(param[1]);
       end end 
     end end;
     object_property = function(param) do
       if (param.tag) then do
-        match = param[0];
-        return node("SpreadProperty", match[0], {--[[ tuple ]]{
+        match = param[1];
+        return node("SpreadProperty", match[1], {--[[ tuple ]]{
                       "argument",
-                      expression(match[1].argument)
+                      expression(match[2].argument)
                     }});
       end else do
-        match_1 = param[0];
-        prop = match_1[1];
+        match_1 = param[1];
+        prop = match_1[2];
         match_2 = prop.key;
         match_3;
         local ___conditional___=(match_2.tag | 0);
         do
            if ___conditional___ == 0--[[ Literal ]] then do
               match_3 = --[[ tuple ]]{
-                literal(match_2[0]),
+                literal(match_2[1]),
                 false
               }; end else 
            if ___conditional___ == 1--[[ Identifier ]] then do
               match_3 = --[[ tuple ]]{
-                identifier(match_2[0]),
+                identifier(match_2[1]),
                 false
               }; end else 
            if ___conditional___ == 2--[[ Computed ]] then do
               match_3 = --[[ tuple ]]{
-                expression(match_2[0]),
+                expression(match_2[1]),
                 true
               }; end else 
            end end end end end end
@@ -16245,10 +16245,10 @@ function parse(content, options) do
            end end end end end end
           
         end
-        return node("Property", match_1[0], {
+        return node("Property", match_1[1], {
                     --[[ tuple ]]{
                       "key",
-                      match_3[0]
+                      match_3[1]
                     },
                     --[[ tuple ]]{
                       "value",
@@ -16268,14 +16268,14 @@ function parse(content, options) do
                     },
                     --[[ tuple ]]{
                       "computed",
-                      bool(match_3[1])
+                      bool(match_3[2])
                     }
                   });
       end end 
     end end;
     comprehension_block = function(param) do
-      b = param[1];
-      return node("ComprehensionBlock", param[0], {
+      b = param[2];
+      return node("ComprehensionBlock", param[1], {
                   --[[ tuple ]]{
                     "left",
                     pattern(b.left)
@@ -16291,8 +16291,8 @@ function parse(content, options) do
                 });
     end end;
     function_type = function(param) do
-      fn = param[1];
-      return node("FunctionTypeAnnotation", param[0], {
+      fn = param[2];
+      return node("FunctionTypeAnnotation", param[1], {
                   --[[ tuple ]]{
                     "params",
                     array_of_list(function_type_param, fn.params)
@@ -16312,27 +16312,27 @@ function parse(content, options) do
                 });
     end end;
     program_2 = function(param) do
-      return node("Program", param[0], {
+      return node("Program", param[1], {
                   --[[ tuple ]]{
                     "body",
-                    array_of_list(statement, param[1])
+                    array_of_list(statement, param[2])
                   },
                   --[[ tuple ]]{
                     "comments",
-                    array_of_list(comment, param[2])
+                    array_of_list(comment, param[3])
                   }
                 });
     end end;
-    ret = program_2(match[0]);
+    ret = program_2(match[1]);
     translation_errors_1 = translation_errors.contents;
-    ret["errors"] = errors(Pervasives.$at(match[1], translation_errors_1));
+    ret["errors"] = errors(Pervasives._at(match[2], translation_errors_1));
     return ret;
   end end,function(raw_exn) do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
-    if (exn[0] == __Error) then do
-      e = new Error(String(List.length(exn[1])) .. " errors");
+    if (exn[1] == __Error) then do
+      e = new __Error(__String(List.length(exn[2])) .. " errors");
       e["name"] = "Parse Error";
-      throw(e);
+      __throw(e);
       return ({});
     end else do
       error(exn)
@@ -16352,7 +16352,7 @@ function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[[ :: ]]{
     --[[ tuple ]]{
-      loc .. (" id " .. String(test_id.contents)),
+      loc .. (" id " .. __String(test_id.contents)),
       (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     x,
@@ -16365,7 +16365,7 @@ function eq(loc, x, y) do
   return --[[ () ]]0;
 end end
 
-match = typeof __dirname == "undefined" and nil or __dirname;
+match = type(__dirname) == "undefined" and nil or __dirname;
 
 if (match ~= nil) then do
   f = Path.join(match, "flow_parser_sample.js");
@@ -16387,5 +16387,6 @@ end end
 
 Mt.from_pair_suites("Flow_parser_reg_test", suites.contents);
 
-exports = {}
+exports = {};
+return exports;
 --[[ Literal Not a pure module ]]

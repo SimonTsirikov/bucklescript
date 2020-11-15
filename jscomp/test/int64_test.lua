@@ -1,16 +1,16 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-__Array = require "../../lib/js/array";
-Block = require "../../lib/js/block";
-Curry = require "../../lib/js/curry";
-Int32 = require "../../lib/js/int32";
-Int64 = require "../../lib/js/int64";
-Format = require "../../lib/js/format";
-Caml_obj = require "../../lib/js/caml_obj";
-Caml_int64 = require "../../lib/js/caml_int64";
-Pervasives = require "../../lib/js/pervasives";
-Ext_array_test = require "./ext_array_test";
+Mt = require "..mt";
+__Array = require "......lib.js.array";
+Block = require "......lib.js.block";
+Curry = require "......lib.js.curry";
+Int32 = require "......lib.js.int32";
+Int64 = require "......lib.js.int64";
+Format = require "......lib.js.format";
+Caml_obj = require "......lib.js.caml_obj";
+Caml_int64 = require "......lib.js.caml_int64";
+Pervasives = require "......lib.js.pervasives";
+Ext_array_test = require "..ext_array_test";
 
 function f(u, v) do
   return u > v;
@@ -883,7 +883,7 @@ function fac(_n, _acc) do
   end;
 end end
 
-suites = Pervasives.$at(--[[ :: ]]{
+suites = Pervasives._at(--[[ :: ]]{
       --[[ tuple ]]{
         "add_one",
         (function(param) do
@@ -2318,7 +2318,7 @@ suites = Pervasives.$at(--[[ :: ]]{
           }
         }
       }
-    }, Pervasives.$at(__Array.to_list(Ext_array_test.map2i((function(i, a, b) do
+    }, Pervasives._at(__Array.to_list(Ext_array_test.map2i((function(i, a, b) do
                     return --[[ tuple ]]{
                             Curry._1(Format.asprintf(--[[ Format ]]{
                                       --[[ String_literal ]]Block.__(11, {
@@ -2339,7 +2339,7 @@ suites = Pervasives.$at(--[[ :: ]]{
                                         });
                               end end)
                           };
-                  end end), shift_left_tests_000, shift_left_tests_001)), Pervasives.$at(__Array.to_list(Ext_array_test.map2i((function(i, a, b) do
+                  end end), shift_left_tests_001, shift_left_tests[2])), Pervasives._at(__Array.to_list(Ext_array_test.map2i((function(i, a, b) do
                         return --[[ tuple ]]{
                                 Curry._1(Format.asprintf(--[[ Format ]]{
                                           --[[ String_literal ]]Block.__(11, {
@@ -2360,7 +2360,7 @@ suites = Pervasives.$at(--[[ :: ]]{
                                             });
                                   end end)
                               };
-                      end end), shift_right_tests_000, shift_right_tests_001)), __Array.to_list(Ext_array_test.map2i((function(i, a, b) do
+                      end end), shift_right_tests_001, shift_right_tests[2])), __Array.to_list(Ext_array_test.map2i((function(i, a, b) do
                         return --[[ tuple ]]{
                                 Curry._1(Format.asprintf(--[[ Format ]]{
                                           --[[ String_literal ]]Block.__(11, {
@@ -2381,7 +2381,7 @@ suites = Pervasives.$at(--[[ :: ]]{
                                             });
                                   end end)
                               };
-                      end end), shift_right_logical_suites_000, shift_right_logical_suites_001)))));
+                      end end), shift_right_logical_suites_001, shift_right_logical_suites[2])))));
 
 suites_1 = {
   contents = suites
@@ -2442,7 +2442,7 @@ id("File \"int64_test.ml\", line 194, characters 5-12", --[[ int64 ]]{
 
 Mt.from_pair_suites("Int64_test", suites_1.contents);
 
-exports = {}
+exports = {};
 exports.f = f;
 exports.v = v;
 exports.h = h;
@@ -2458,4 +2458,5 @@ exports.suites = suites_1;
 exports.test_id = test_id;
 exports.eq = eq;
 exports.id = id;
+return exports;
 --[[ shift_left_tests Not a pure module ]]

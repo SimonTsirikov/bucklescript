@@ -1,15 +1,15 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-__Array = require "../../lib/js/array";
-Block = require "../../lib/js/block";
-Curry = require "../../lib/js/curry";
-Int32 = require "../../lib/js/int32";
-Format = require "../../lib/js/format";
-Caml_float = require "../../lib/js/caml_float";
-Caml_int32 = require "../../lib/js/caml_int32";
-Pervasives = require "../../lib/js/pervasives";
-Ext_array_test = require "./ext_array_test";
+Mt = require "..mt";
+__Array = require "......lib.js.array";
+Block = require "......lib.js.block";
+Curry = require "......lib.js.curry";
+Int32 = require "......lib.js.int32";
+Format = require "......lib.js.format";
+Caml_float = require "......lib.js.caml_float";
+Caml_int32 = require "......lib.js.caml_int32";
+Pervasives = require "......lib.js.pervasives";
+Ext_array_test = require "..ext_array_test";
 
 function f(x) do
   return --[[ tuple ]]{
@@ -151,10 +151,10 @@ shift_left_tests = --[[ tuple ]]{
   shift_left_tests_001
 };
 
-$star$tilde = Caml_int32.imul;
+_star_tilde = Caml_int32.imul;
 
 suites = {
-  contents = Pervasives.$at(--[[ :: ]]{
+  contents = Pervasives._at(--[[ :: ]]{
         --[[ tuple ]]{
           "File \"int32_test.ml\", line 31, characters 2-9",
           (function(param) do
@@ -176,7 +176,7 @@ suites = {
           },
           --[[ [] ]]0
         }
-      }, Pervasives.$at(__Array.to_list(Ext_array_test.map2i((function(i, a, b) do
+      }, Pervasives._at(__Array.to_list(Ext_array_test.map2i((function(i, a, b) do
                       return --[[ tuple ]]{
                               Curry._1(Format.asprintf(--[[ Format ]]{
                                         --[[ String_literal ]]Block.__(11, {
@@ -197,7 +197,7 @@ suites = {
                                           });
                                 end end)
                             };
-                    end end), shift_right_logical_tests_000, shift_right_logical_tests_001)), Pervasives.$at(__Array.to_list(Ext_array_test.map2i((function(i, a, b) do
+                    end end), shift_right_logical_tests_001, shift_right_logical_tests[2])), Pervasives._at(__Array.to_list(Ext_array_test.map2i((function(i, a, b) do
                           return --[[ tuple ]]{
                                   Curry._1(Format.asprintf(--[[ Format ]]{
                                             --[[ String_literal ]]Block.__(11, {
@@ -218,7 +218,7 @@ suites = {
                                               });
                                     end end)
                                 };
-                        end end), shift_right_tests_000, shift_right_tests_001)), __Array.to_list(Ext_array_test.map2i((function(i, a, b) do
+                        end end), shift_right_tests_001, shift_right_tests[2])), __Array.to_list(Ext_array_test.map2i((function(i, a, b) do
                           return --[[ tuple ]]{
                                   Curry._1(Format.asprintf(--[[ Format ]]{
                                             --[[ String_literal ]]Block.__(11, {
@@ -239,7 +239,7 @@ suites = {
                                               });
                                     end end)
                                 };
-                        end end), shift_left_tests_000, shift_left_tests_001)))))
+                        end end), shift_left_tests_001, shift_left_tests[2])))))
 };
 
 test_id = {
@@ -258,14 +258,15 @@ Mt.from_pair_suites("Int32_test", suites.contents);
 
 test_div = 30;
 
-exports = {}
+exports = {};
 exports.f = f;
 exports.shift_right_logical_tests = shift_right_logical_tests;
 exports.shift_right_tests = shift_right_tests;
 exports.shift_left_tests = shift_left_tests;
 exports.test_div = test_div;
-exports.$star$tilde = $star$tilde;
+exports._star_tilde = _star_tilde;
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
+return exports;
 --[[ shift_right_logical_tests Not a pure module ]]

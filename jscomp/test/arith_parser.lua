@@ -1,8 +1,8 @@
-console = {log = print};
+__console = {log = print};
 
-Block = require "../../lib/js/block";
-Parsing = require "../../lib/js/parsing";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
+Block = require "......lib.js.block";
+Parsing = require "......lib.js.parsing";
+Caml_builtin_exceptions = require "......lib.js.caml_builtin_exceptions";
 
 yytransl_const = {
   259,
@@ -134,7 +134,7 @@ end end
 
 yytablesize = 272;
 
-exports = {}
+exports = {};
 exports.yytransl_const = yytransl_const;
 exports.yytransl_block = yytransl_block;
 exports.yylhs = yylhs;
@@ -152,4 +152,5 @@ exports.yynames_block = yynames_block;
 exports.yyact = yyact;
 exports.yytables = yytables;
 exports.toplevel = toplevel;
+return exports;
 --[[ No side effect ]]

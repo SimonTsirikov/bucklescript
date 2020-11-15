@@ -1,11 +1,11 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Block = require "../../lib/js/block";
-Curry = require "../../lib/js/curry";
+Mt = require "..mt";
+Block = require "......lib.js.block";
+Curry = require "......lib.js.curry";
 
 function f(h, param) do
-  console.log(3);
+  __console.log(3);
   return Curry.__2(h);
 end end
 
@@ -24,6 +24,7 @@ Mt.from_pair_suites("Print_alpha_test", --[[ :: ]]{
       --[[ [] ]]0
     });
 
-exports = {}
+exports = {};
 exports.f = f;
+return exports;
 --[[  Not a pure module ]]

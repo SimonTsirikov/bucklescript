@@ -1,6 +1,6 @@
-console = {log = print};
+__console = {log = print};
 
-Curry = require "./curry";
+Curry = require "..curry";
 
 function MakeComparableU(M) do
   return M;
@@ -58,7 +58,7 @@ function hashable(hash, eq) do
         };
 end end
 
-exports = {}
+exports = {};
 exports.MakeComparableU = MakeComparableU;
 exports.MakeComparable = MakeComparable;
 exports.comparableU = comparableU;
@@ -67,4 +67,5 @@ exports.MakeHashableU = MakeHashableU;
 exports.MakeHashable = MakeHashable;
 exports.hashableU = hashableU;
 exports.hashable = hashable;
+return exports;
 --[[ No side effect ]]

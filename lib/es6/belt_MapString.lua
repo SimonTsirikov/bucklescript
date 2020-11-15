@@ -1,9 +1,9 @@
 
 
-import * as Curry from "./curry.lua";
-import * as Caml_option from "./caml_option.lua";
-import * as Belt_internalAVLtree from "./belt_internalAVLtree.lua";
-import * as Belt_internalMapString from "./belt_internalMapString.lua";
+local Curry = require "..curry.lua";
+local Caml_option = require "..caml_option.lua";
+local Belt_internalAVLtree = require "..belt_internalAVLtree.lua";
+local Belt_internalMapString = require "..belt_internalMapString.lua";
 
 function set(t, newK, newD) do
   if (t ~= nil) then do
@@ -166,7 +166,7 @@ function mergeMany(h, arr) do
   v = h;
   for i = 0 , len - 1 | 0 , 1 do
     match = arr[i];
-    v = set(v, match[0], match[1]);
+    v = set(v, match[1], match[2]);
   end
   return v;
 end end

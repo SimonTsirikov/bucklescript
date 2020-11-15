@@ -1,9 +1,9 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Block = require "../../lib/js/block";
-Curry = require "../../lib/js/curry";
-Gpr_1423_nav = require "./gpr_1423_nav";
+Mt = require "..mt";
+Block = require "......lib.js.block";
+Curry = require "......lib.js.curry";
+Gpr_1423_nav = require "..gpr_1423_nav";
 
 suites = {
   contents = --[[ [] ]]0
@@ -17,7 +17,7 @@ function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[[ :: ]]{
     --[[ tuple ]]{
-      loc .. (" id " .. String(test_id.contents)),
+      loc .. (" id " .. __String(test_id.contents)),
       (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     x,
@@ -31,7 +31,7 @@ function eq(loc, x, y) do
 end end
 
 function foo(f) do
-  console.log(Curry._2(f, "a1", --[[ () ]]0));
+  __console.log(Curry._2(f, "a1", --[[ () ]]0));
   return --[[ () ]]0;
 end end
 
@@ -53,10 +53,11 @@ eq("File \"gpr_1423_app_test.ml\", line 18, characters 7-14", Curry._1((function
 
 Mt.from_pair_suites("Gpr_1423_app_test", suites.contents);
 
-exports = {}
+exports = {};
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
 exports.foo = foo;
 exports.foo2 = foo2;
+return exports;
 --[[  Not a pure module ]]

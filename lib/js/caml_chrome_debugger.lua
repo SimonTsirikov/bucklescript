@@ -1,6 +1,6 @@
-console = {log = print};
+__console = {log = print};
 
-Block = require "./block";
+Block = require "..block";
 
 setupChromeDebugger = (function(_){
  
@@ -137,30 +137,31 @@ end end
 function variant(meta, tag, xs) do
   setupOnce(--[[ () ]]0);
   xs.tag = tag;
-  return Object.defineProperty(xs, Symbol.for("BsVariant"), {
+  return __Object.defineProperty(xs, __Symbol.__for("BsVariant"), {
               value = meta
             });
 end end
 
 function simpleVariant(meta, xs) do
   setupOnce(--[[ () ]]0);
-  return Object.defineProperty(xs, Symbol.for("BsVariant"), {
+  return __Object.defineProperty(xs, __Symbol.__for("BsVariant"), {
               value = meta
             });
 end end
 
 function polyVar(meta, xs) do
   setupOnce(--[[ () ]]0);
-  return Object.defineProperty(xs, Symbol.for("BsPolyVar"), {
+  return __Object.defineProperty(xs, __Symbol.__for("BsPolyVar"), {
               value = meta
             });
 end end
 
 __ = Block.__;
 
-exports = {}
+exports = {};
 exports.__ = __;
 exports.variant = variant;
 exports.simpleVariant = simpleVariant;
 exports.polyVar = polyVar;
+return exports;
 --[[ No side effect ]]

@@ -1,7 +1,7 @@
 
 
-import * as Js_dict from "./js_dict.lua";
-import * as Process from "process";
+local Js_dict = require "..js_dict.lua";
+local Process = require "process";
 
 function putEnvVar(key, __var) do
   Process.env[key] = __var;

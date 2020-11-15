@@ -1,11 +1,11 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Block = require "../../lib/js/block";
-Caml_obj = require "../../lib/js/caml_obj";
-Caml_array = require "../../lib/js/caml_array";
-Caml_exceptions = require "../../lib/js/caml_exceptions";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
+Mt = require "..mt";
+Block = require "......lib.js.block";
+Caml_obj = require "......lib.js.caml_obj";
+Caml_array = require "......lib.js.caml_array";
+Caml_exceptions = require "......lib.js.caml_exceptions";
+Caml_builtin_exceptions = require "......lib.js.caml_builtin_exceptions";
 
 suites = {
   contents = --[[ [] ]]0
@@ -53,7 +53,7 @@ v1 = --[[ A0 ]]{
 
 function get_x0(x) do
   if (x) then do
-    return x[--[[ x0 ]]0];
+    return x[--[[ x0 ]]1];
   end
    end 
 end end
@@ -100,7 +100,7 @@ function get_x0_1(x) do
   if (x.tag) then do
     return ;
   end else do
-    return x[--[[ x0 ]]0];
+    return x[--[[ x0 ]]1];
   end end 
 end end
 
@@ -119,7 +119,7 @@ eq("File \"large_record_duplication_test.ml\", line 194, characters 6-13", get_x
 A0 = Caml_exceptions.create("Large_record_duplication_test.A0");
 
 function f3(x) do
-  if (x[0] == A0) then do
+  if (x[1] == A0) then do
     newrecord = Caml_array.caml_array_dup(x);
     newrecord[--[[ x0 ]]1] = 1;
     return newrecord;
@@ -129,8 +129,8 @@ function f3(x) do
 end end
 
 function get_x0_2(x) do
-  if (x[0] == A0) then do
-    return x[--[[ x0 ]]1];
+  if (x[1] == A0) then do
+    return x[--[[ x0 ]]2];
   end
    end 
 end end
@@ -196,7 +196,7 @@ v0 = {
   x22 = 9
 };
 
-exports = {}
+exports = {};
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
@@ -210,4 +210,5 @@ exports.A0 = A0;
 exports.f3 = f3;
 exports.get_x0 = get_x0_2;
 exports.v3 = v3;
+return exports;
 --[[  Not a pure module ]]

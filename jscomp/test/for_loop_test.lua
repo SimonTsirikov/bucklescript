@@ -1,11 +1,11 @@
-console = {log = print};
+__console = {log = print};
 
-List = require "../../lib/js/list";
-__Array = require "../../lib/js/array";
-Block = require "../../lib/js/block";
-Curry = require "../../lib/js/curry";
-Caml_array = require "../../lib/js/caml_array";
-Caml_int32 = require "../../lib/js/caml_int32";
+List = require "......lib.js.list";
+__Array = require "......lib.js.array";
+Block = require "......lib.js.block";
+Curry = require "......lib.js.curry";
+Caml_array = require "......lib.js.caml_array";
+Caml_int32 = require "......lib.js.caml_int32";
 
 function for_3(x) do
   v = {
@@ -327,7 +327,7 @@ suites = --[[ :: ]]{
   suites_001
 };
 
-exports = {}
+exports = {};
 exports.for_3 = for_3;
 exports.for_4 = for_4;
 exports.for_5 = for_5;
@@ -336,4 +336,5 @@ exports.for_7 = for_7;
 exports.for_8 = for_8;
 exports.for_9 = for_9;
 exports.suites = suites;
+return exports;
 --[[ No side effect ]]

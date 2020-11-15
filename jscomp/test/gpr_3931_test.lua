@@ -1,9 +1,9 @@
-console = {log = print};
+__console = {log = print};
 
-__Array = require "../../lib/js/array";
-Block = require "../../lib/js/block";
-Curry = require "../../lib/js/curry";
-Caml_module = require "../../lib/js/caml_module";
+__Array = require "......lib.js.array";
+Block = require "......lib.js.block";
+Curry = require "......lib.js.curry";
+Caml_module = require "......lib.js.caml_module";
 
 PA = Caml_module.init_mod(--[[ tuple ]]{
       "gpr_3931_test.ml",
@@ -35,7 +35,7 @@ Caml_module.update_mod(--[[ Module ]]Block.__(0, {{--[[ tuple ]]{
     });
 
 function print_1(i) do
-  console.log(String(i));
+  __console.log(__String(i));
   return --[[ () ]]0;
 end end
 
@@ -51,7 +51,8 @@ Curry._1(PA.print, {
       2
     });
 
-exports = {}
+exports = {};
 exports.PA = PA;
 exports.P = P;
+return exports;
 --[[ PA Not a pure module ]]

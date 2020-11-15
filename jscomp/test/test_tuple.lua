@@ -1,6 +1,6 @@
-console = {log = print};
+__console = {log = print};
 
-Caml_int32 = require "../../lib/js/caml_int32";
+Caml_int32 = require "......lib.js.caml_int32";
 
 r = 0;
 
@@ -13,9 +13,10 @@ for k = 1 , 10 , 1 do
         2,
         Caml_int32.imul(i, 3)
       };
-    r = Caml_int32.imul(r, match[0]) + match[1] | 0;
+    r = Caml_int32.imul(r, match[1]) + match[2] | 0;
   end
 end
 
-exports = {}
+exports = {};
+return exports;
 --[[  Not a pure module ]]

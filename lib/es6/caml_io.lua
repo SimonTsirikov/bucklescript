@@ -1,6 +1,6 @@
 
 
-import * as Curry from "./curry.lua";
+local Curry = require "..curry.lua";
 
 stdout = {
   buffer = "",
@@ -8,11 +8,11 @@ stdout = {
       v = #s - 1 | 0;
       if (((typeof process !== "undefined") && process.stdout && process.stdout.write)) then do
         return process.stdout.write(s);
-      end else if (s[v] == "\n") then do
-        console.log(s.slice(0, v));
+      end else if (string.sub(s, v, v) == "\n") then do
+        __console.log(s.slice(0, v));
         return --[[ () ]]0;
       end else do
-        console.log(s);
+        __console.log(s);
         return --[[ () ]]0;
       end end  end 
     end end)
@@ -22,11 +22,11 @@ stderr = {
   buffer = "",
   output = (function(param, s) do
       v = #s - 1 | 0;
-      if (s[v] == "\n") then do
-        console.log(s.slice(0, v));
+      if (string.sub(s, v, v) == "\n") then do
+        __console.log(s.slice(0, v));
         return --[[ () ]]0;
       end else do
-        console.log(s);
+        __console.log(s);
         return --[[ () ]]0;
       end end 
     end end)
@@ -61,7 +61,7 @@ function caml_ml_output(oc, str, offset, len) do
 end end
 
 function caml_ml_output_char(oc, __char) do
-  return caml_ml_output(oc, String.fromCharCode(__char), 0, 1);
+  return caml_ml_output(oc, __String.fromCharCode(__char), 0, 1);
 end end
 
 function caml_ml_out_channels_list(param) do

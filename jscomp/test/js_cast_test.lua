@@ -1,7 +1,7 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Block = require "../../lib/js/block";
+Mt = require "..mt";
+Block = require "......lib.js.block";
 
 suites = {
   contents = --[[ [] ]]0
@@ -13,7 +13,7 @@ counter = {
 
 function add_test(loc, test) do
   counter.contents = counter.contents + 1 | 0;
-  id = loc .. (" id " .. String(counter.contents));
+  id = loc .. (" id " .. __String(counter.contents));
   suites.contents = --[[ :: ]]{
     --[[ tuple ]]{
       id,
@@ -45,8 +45,9 @@ eq("File \"js_cast_test.ml\", line 21, characters 12-19", 123456789, 123456789.0
 
 Mt.from_pair_suites("Js_cast_test", suites.contents);
 
-exports = {}
+exports = {};
 exports.suites = suites;
 exports.add_test = add_test;
 exports.eq = eq;
+return exports;
 --[[  Not a pure module ]]

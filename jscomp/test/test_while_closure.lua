@@ -1,9 +1,9 @@
-console = {log = print};
+__console = {log = print};
 
-__Array = require "../../lib/js/array";
-Curry = require "../../lib/js/curry";
-Caml_array = require "../../lib/js/caml_array";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
+__Array = require "......lib.js.array";
+Curry = require "......lib.js.curry";
+Caml_array = require "......lib.js.caml_array";
+Caml_builtin_exceptions = require "......lib.js.caml_builtin_exceptions";
 
 v = {
   contents = 0
@@ -34,7 +34,7 @@ __Array.iter((function(x) do
         return Curry._1(x, --[[ () ]]0);
       end end), arr);
 
-console.log(String(v.contents));
+__console.log(__String(v.contents));
 
 if (v.contents ~= 45) then do
   error({
@@ -50,9 +50,10 @@ end
 
 count = 10;
 
-exports = {}
+exports = {};
 exports.v = v;
 exports.count = count;
 exports.arr = arr;
 exports.f = f;
+return exports;
 --[[  Not a pure module ]]

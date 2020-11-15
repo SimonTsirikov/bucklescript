@@ -1,4 +1,4 @@
-console = {log = print};
+__console = {log = print};
 
 
 function uux_this(x, y) do
@@ -14,7 +14,7 @@ end
 function bark(param) do
   return (function(x, y) do
       o = this ;
-      console.log(--[[ tuple ]]{
+      __console.log(--[[ tuple ]]{
             o.length,
             o.x,
             o.y,
@@ -28,7 +28,7 @@ end end
 js_obj = {
   bark = (function(x, y) do
       o = this ;
-      console.log(o);
+      __console.log(o);
       return x + y | 0; end
     end)
 };
@@ -36,12 +36,12 @@ js_obj = {
 function f(x) do
   x.onload = (function() do
       o = this ;
-      console.log(o);
+      __console.log(o);
       return --[[ () ]]0; end
     end);
   return x.addEventListener("onload", (function() do
                 o = this ;
-                console.log(o.response);
+                __console.log(o.response);
                 return --[[ () ]]0; end
               end));
 end end
@@ -50,11 +50,12 @@ function u(x) do
   return x; end
 end
 
-exports = {}
+exports = {};
 exports.uux_this = uux_this;
 exports.even = even;
 exports.bark = bark;
 exports.js_obj = js_obj;
 exports.f = f;
 exports.u = u;
+return exports;
 --[[ uux_this Not a pure module ]]

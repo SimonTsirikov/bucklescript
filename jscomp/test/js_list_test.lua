@@ -1,10 +1,10 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Block = require "../../lib/js/block";
-Js_list = require "../../lib/js/js_list";
-Js_vector = require "../../lib/js/js_vector";
-Caml_int32 = require "../../lib/js/caml_int32";
+Mt = require "..mt";
+Block = require "......lib.js.block";
+Js_list = require "......lib.js.js_list";
+Js_vector = require "......lib.js.js_vector";
+Caml_int32 = require "......lib.js.caml_int32";
 
 suites = {
   contents = --[[ [] ]]0
@@ -18,7 +18,7 @@ function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[[ :: ]]{
     --[[ tuple ]]{
-      loc .. (" id " .. String(test_id.contents)),
+      loc .. (" id " .. __String(test_id.contents)),
       (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     x,
@@ -211,8 +211,9 @@ eq("File \"js_list_test.ml\", line 32, characters 7-14", true, Js_list.equal((fu
 
 Mt.from_pair_suites("Js_list_test", suites.contents);
 
-exports = {}
+exports = {};
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
+return exports;
 --[[  Not a pure module ]]

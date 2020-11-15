@@ -1,7 +1,7 @@
 
 
-import * as Curry from "./curry.lua";
-import * as Belt_Array from "./belt_Array.lua";
+local Curry = require "..curry.lua";
+local Belt_Array = require "..belt_Array.lua";
 
 function sortedLengthAuxMore(xs, _prec, _acc, len, lt) do
   while(true) do
@@ -346,7 +346,7 @@ function stableSortInPlaceByU(a, cmp) do
   end else do
     l1 = l / 2 | 0;
     l2 = l - l1 | 0;
-    t = new Array(l2);
+    t = new __Array(l2);
     sortTo(a, l1, t, 0, l2, cmp);
     sortTo(a, 0, a, l2, l1, cmp);
     return merge(a, l2, l1, t, 0, l2, a, 0, cmp);

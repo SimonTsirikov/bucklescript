@@ -1,10 +1,10 @@
-console = {log = print};
+__console = {log = print};
 
-Caml_array = require "../../lib/js/caml_array";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
+Caml_array = require "......lib.js.caml_array";
+Caml_builtin_exceptions = require "......lib.js.caml_builtin_exceptions";
 
 function caml_array_sub(x, offset, len) do
-  result = new Array(len);
+  result = new __Array(len);
   for j = 0 , len - 1 | 0 , 1 do
     Caml_array.caml_array_set(result, j, Caml_array.caml_array_get(x, offset + j | 0));
   end
@@ -34,16 +34,17 @@ function caml_array_get(xs, index) do
 end end
 
 function caml_make_vect(len, init) do
-  b = new Array(len);
+  b = new __Array(len);
   for i = 0 , len - 1 | 0 , 1 do
     Caml_array.caml_array_set(b, i, init);
   end
   return b;
 end end
 
-exports = {}
+exports = {};
 exports.caml_array_sub = caml_array_sub;
 exports.caml_array_set = caml_array_set;
 exports.caml_array_get = caml_array_get;
 exports.caml_make_vect = caml_make_vect;
+return exports;
 --[[ No side effect ]]

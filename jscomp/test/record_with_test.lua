@@ -1,8 +1,8 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Block = require "../../lib/js/block";
-Curry = require "../../lib/js/curry";
+Mt = require "..mt";
+Block = require "......lib.js.block";
+Curry = require "......lib.js.curry";
 
 v = {
   syntax = nil,
@@ -30,10 +30,10 @@ function f(g, h) do
           syntax = init.syntax,
           imports = 0,
           file_options = init.file_options,
-          package = init.package,
+          package = init.__package,
           messages = init.messages,
           enums = init.enums,
-          extends = init.extends
+          extends = init.__extends
         };
 end end
 
@@ -64,10 +64,11 @@ uv = {
   extends = 0
 };
 
-exports = {}
+exports = {};
 exports.v = v;
 exports.uv = uv;
 exports.u_v = u_v;
 exports.f = f;
 exports.suites = suites;
+return exports;
 --[[  Not a pure module ]]

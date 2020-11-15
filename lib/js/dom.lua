@@ -1,11 +1,12 @@
-console = {log = print};
+__console = {log = print};
 
 
 __Storage = --[[ alias ]]0;
 
 Storage2 = --[[ alias ]]0;
 
-exports = {}
+exports = {};
 exports.__Storage = __Storage;
 exports.Storage2 = Storage2;
+return exports;
 --[[ No side effect ]]

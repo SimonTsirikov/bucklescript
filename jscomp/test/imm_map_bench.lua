@@ -1,8 +1,8 @@
-console = {log = print};
+__console = {log = print};
 
 Immutable = require "immut";
-Belt_Array = require "../../lib/js/belt_Array";
-Belt_MapInt = require "../../lib/js/belt_MapInt";
+Belt_Array = require "......lib.js.belt_Array";
+Belt_MapInt = require "......lib.js.belt_MapInt";
 
 empty = new Immutable.OrderedMap();
 
@@ -10,7 +10,7 @@ function fromArray(kvs) do
   v = empty;
   for i = 0 , #kvs - 1 | 0 , 1 do
     match = kvs[i];
-    v = v.set(match[0], match[1]);
+    v = v.set(match[1], match[2]);
   end
   return v;
 end end
@@ -19,7 +19,7 @@ function should(b) do
   if (b) then do
     return 0;
   end else do
-    error(new Error("impossible"))
+    error(new __Error("impossible"))
   end end 
 end end
 
@@ -46,17 +46,17 @@ function test2(param) do
   return --[[ () ]]0;
 end end
 
-console.time("test/imm_map_bench.ml 44");
+__console.time("test/imm_map_bench.ml 44");
 
 test(--[[ () ]]0);
 
-console.timeEnd("test/imm_map_bench.ml 44");
+__console.timeEnd("test/imm_map_bench.ml 44");
 
-console.time("test/imm_map_bench.ml 45");
+__console.time("test/imm_map_bench.ml 45");
 
 test2(--[[ () ]]0);
 
-console.timeEnd("test/imm_map_bench.ml 45");
+__console.timeEnd("test/imm_map_bench.ml 45");
 
 A = --[[ alias ]]0;
 
@@ -64,7 +64,7 @@ count = 1000000;
 
 M = --[[ alias ]]0;
 
-exports = {}
+exports = {};
 exports.A = A;
 exports.empty = empty;
 exports.fromArray = fromArray;
@@ -74,4 +74,5 @@ exports.shuffledDataAdd = shuffledDataAdd;
 exports.test = test;
 exports.M = M;
 exports.test2 = test2;
+return exports;
 --[[ empty Not a pure module ]]

@@ -1,6 +1,6 @@
-console = {log = print};
+__console = {log = print};
 
-Curry = require "../../lib/js/curry";
+Curry = require "......lib.js.curry";
 
 v = {
   contents = 0
@@ -17,7 +17,7 @@ end end
 
 function Make(U) do
   h = function(x, x_1) do
-    console.log(f(x_1, x_1));
+    __console.log(f(x_1, x_1));
     return Curry._2(U.say, x_1, x_1);
   end end;
   return {
@@ -25,9 +25,10 @@ function Make(U) do
         };
 end end
 
-exports = {}
+exports = {};
 exports.v = v;
 exports.f = f;
 exports.__return = __return;
 exports.Make = Make;
+return exports;
 --[[ No side effect ]]

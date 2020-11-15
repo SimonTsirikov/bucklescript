@@ -1,4 +1,4 @@
-console = {log = print};
+__console = {log = print};
 
 
 function to_enum(param) do
@@ -612,7 +612,8 @@ function to_string(param) do
   end
 end end
 
-exports = {}
+exports = {};
 exports.to_enum = to_enum;
 exports.to_string = to_string;
+return exports;
 --[[ No side effect ]]

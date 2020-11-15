@@ -1,8 +1,8 @@
 
 
-import * as Caml_option from "./caml_option.lua";
-import * as Belt_internalBuckets from "./belt_internalBuckets.lua";
-import * as Belt_internalBucketsType from "./belt_internalBucketsType.lua";
+local Caml_option = require "..caml_option.lua";
+local Belt_internalBuckets = require "..belt_internalBuckets.lua";
+local Belt_internalBucketsType = require "..belt_internalBucketsType.lua";
 
 function size(prim) do
   return prim.size;
@@ -76,8 +76,8 @@ function set0(h, key, value, eq, hash) do
     osize = #odata;
     nsize = (osize << 1);
     if (nsize >= osize) then do
-      h_buckets_1 = new Array(nsize);
-      ndata_tail = new Array(nsize);
+      h_buckets_1 = new __Array(nsize);
+      ndata_tail = new __Array(nsize);
       h_1.buckets = h_buckets_1;
       for i_1 = 0 , osize - 1 | 0 , 1 do
         copyBucketReHash(hash_1, h_buckets_1, ndata_tail, odata[i_1]);
@@ -228,7 +228,7 @@ function fromArray(arr, id) do
   v = Belt_internalBucketsType.make(hash, eq, len);
   for i = 0 , len - 1 | 0 , 1 do
     match = arr[i];
-    set0(v, match[0], match[1], eq, hash);
+    set0(v, match[1], match[2], eq, hash);
   end
   return v;
 end end
@@ -239,7 +239,7 @@ function mergeMany(h, arr) do
   len = #arr;
   for i = 0 , len - 1 | 0 , 1 do
     match = arr[i];
-    set0(h, match[0], match[1], eq, hash);
+    set0(h, match[1], match[2], eq, hash);
   end
   return --[[ () ]]0;
 end end

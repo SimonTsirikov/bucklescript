@@ -1,4 +1,4 @@
-console = {log = print};
+__console = {log = print};
 
 
 function f(param) do
@@ -13,7 +13,7 @@ function f(param) do
           end end;
           return fib(n) > 10;
         end end)()) do
-    console.log(String(n));
+    __console.log(__String(n));
     n = n + 1 | 0;
   end;
   return --[[ () ]]0;
@@ -29,7 +29,8 @@ function ff(param) do
   return --[[ () ]]0;
 end end
 
-exports = {}
+exports = {};
 exports.f = f;
 exports.ff = ff;
+return exports;
 --[[ No side effect ]]

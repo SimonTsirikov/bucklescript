@@ -1,8 +1,8 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Block = require "../../lib/js/block";
-Curry = require "../../lib/js/curry";
+Mt = require "..mt";
+Block = require "......lib.js.block";
+Curry = require "......lib.js.curry";
 
 g = 7;
 
@@ -82,5 +82,6 @@ suites = --[[ :: ]]{
 
 Mt.from_pair_suites("Ari_regress_test", suites);
 
-exports = {}
+exports = {};
+return exports;
 --[[ x Not a pure module ]]

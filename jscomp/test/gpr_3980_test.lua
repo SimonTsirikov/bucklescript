@@ -1,7 +1,7 @@
-console = {log = print};
+__console = {log = print};
 
-Js_math = require "../../lib/js/js_math";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
+Js_math = require "......lib.js.js_math";
+Caml_builtin_exceptions = require "......lib.js.caml_builtin_exceptions";
 
 match = 1;
 
@@ -47,5 +47,6 @@ end else do
   })
 end end 
 
-exports = {}
+exports = {};
+return exports;
 --[[  Not a pure module ]]

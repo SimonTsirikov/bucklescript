@@ -1,9 +1,9 @@
-console = {log = print};
+__console = {log = print};
 
 
 function ff(x) do
-  x.case(3, 2);
-  return x.case(3);
+  x.__case(3, 2);
+  return x.__case(3);
 end end
 
 function h(x) do
@@ -19,9 +19,10 @@ function h_ext(x) do
   return x.cse(3)(2);
 end end
 
-exports = {}
+exports = {};
 exports.ff = ff;
 exports.h = h;
 exports.f_ext = f_ext;
 exports.h_ext = h_ext;
+return exports;
 --[[ No side effect ]]

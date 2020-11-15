@@ -1,7 +1,7 @@
 
 
-import * as List from "./list.lua";
-import * as Caml_exceptions from "./caml_exceptions.lua";
+local List = require "..list.lua";
+local Caml_exceptions = require "..caml_exceptions.lua";
 
 Empty = Caml_exceptions.create("Stack.Empty");
 
@@ -37,9 +37,9 @@ end end
 function pop(s) do
   match = s.c;
   if (match) then do
-    s.c = match[1];
+    s.c = match[2];
     s.len = s.len - 1 | 0;
-    return match[0];
+    return match[1];
   end else do
     error(Empty)
   end end 
@@ -48,7 +48,7 @@ end end
 function top(s) do
   match = s.c;
   if (match) then do
-    return match[0];
+    return match[1];
   end else do
     error(Empty)
   end end 

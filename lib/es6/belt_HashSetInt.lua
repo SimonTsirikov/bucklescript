@@ -1,8 +1,8 @@
 
 
-import * as Caml_hash_primitive from "./caml_hash_primitive.lua";
-import * as Belt_internalSetBuckets from "./belt_internalSetBuckets.lua";
-import * as Belt_internalBucketsType from "./belt_internalBucketsType.lua";
+local Caml_hash_primitive = require "..caml_hash_primitive.lua";
+local Belt_internalSetBuckets = require "..belt_internalSetBuckets.lua";
+local Belt_internalBucketsType = require "..belt_internalBucketsType.lua";
 
 function copyBucket(h_buckets, ndata_tail, _old_bucket) do
   while(true) do
@@ -106,8 +106,8 @@ function add(h, key) do
     osize = #odata;
     nsize = (osize << 1);
     if (nsize >= osize) then do
-      h_buckets_1 = new Array(nsize);
-      ndata_tail = new Array(nsize);
+      h_buckets_1 = new __Array(nsize);
+      ndata_tail = new __Array(nsize);
       h_1.buckets = h_buckets_1;
       for i_1 = 0 , osize - 1 | 0 , 1 do
         copyBucket(h_buckets_1, ndata_tail, odata[i_1]);

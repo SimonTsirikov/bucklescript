@@ -1,11 +1,11 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Bytes = require "../../lib/js/bytes";
-Caml_bytes = require "../../lib/js/caml_bytes";
-Caml_exceptions = require "../../lib/js/caml_exceptions";
-Caml_js_exceptions = require "../../lib/js/caml_js_exceptions";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
+Mt = require "..mt";
+Bytes = require "......lib.js.bytes";
+Caml_bytes = require "......lib.js.caml_bytes";
+Caml_exceptions = require "......lib.js.caml_exceptions";
+Caml_js_exceptions = require "......lib.js.caml_js_exceptions";
+Caml_builtin_exceptions = require "......lib.js.caml_builtin_exceptions";
 
 v = "gso";
 
@@ -70,8 +70,8 @@ function is_normal_exception(_x) do
     error(v)
   end end,function(raw_exn) do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
-    if (exn[0] == A) then do
-      if (exn[1] ~= 3) then do
+    if (exn[1] == A) then do
+      if (exn[2] ~= 3) then do
         error(exn)
       end else do
         return --[[ () ]]0;
@@ -123,11 +123,12 @@ suites = --[[ :: ]]{
 
 Mt.from_suites("exception", suites);
 
-exports = {}
+exports = {};
 exports.v = v;
 exports.is_equal = is_equal;
 exports.is_exception = is_exception;
 exports.is_normal_exception = is_normal_exception;
 exports.is_arbitrary_exception = is_arbitrary_exception;
 exports.suites = suites;
+return exports;
 --[[  Not a pure module ]]

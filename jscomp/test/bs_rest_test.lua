@@ -1,4 +1,4 @@
-console = {log = print};
+__console = {log = print};
 
 
 function x(v){return [v]}
@@ -14,9 +14,10 @@ u = xxx(3);
 
 xx = xxx("3");
 
-exports = {}
+exports = {};
 exports.v = v;
 exports.xxx = xxx;
 exports.u = u;
 exports.xx = xx;
+return exports;
 --[[  Not a pure module ]]

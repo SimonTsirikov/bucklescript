@@ -1,9 +1,10 @@
-console = {log = print};
+__console = {log = print};
 
-List = require "../../lib/js/list";
+List = require "......lib.js.list";
 
 v = List.length;
 
-exports = {}
+exports = {};
 exports.v = v;
+return exports;
 --[[ No side effect ]]

@@ -1,4 +1,4 @@
-console = {log = print};
+__console = {log = print};
 
 
 React = {
@@ -13,7 +13,8 @@ Foo = {
   make = make
 };
 
-exports = {}
+exports = {};
 exports.React = React;
 exports.Foo = Foo;
+return exports;
 --[[ No side effect ]]

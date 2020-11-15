@@ -1,29 +1,29 @@
-console = {log = print};
+__console = {log = print};
 
-Block = require "./block";
-Caml_primitive = require "./caml_primitive";
-Caml_builtin_exceptions = require "./caml_builtin_exceptions";
+Block = require "..block";
+Caml_primitive = require "..caml_primitive";
+Caml_builtin_exceptions = require "..caml_builtin_exceptions";
 
 for_in = (function(o,foo){
         for (var x in o) { foo(x) }});
 
 function caml_obj_block(tag, size) do
-  v = new Array(size);
+  v = new __Array(size);
   v.tag = tag;
   return v;
 end end
 
 function caml_obj_dup(x) do
-  if (Array.isArray(x)) then do
+  if (__Array.isArray(x)) then do
     len = #x | 0;
-    v = new Array(len);
+    v = new __Array(len);
     for i = 0 , len - 1 | 0 , 1 do
       v[i] = x[i];
     end
     v.tag = x.tag | 0;
     return v;
   end else do
-    return Object.assign(({}), x);
+    return __Object.assign(({}), x);
   end end 
 end end
 
@@ -71,8 +71,8 @@ function caml_compare(_a, _b) do
     if (a == b) then do
       return 0;
     end else do
-      a_type = typeof a;
-      b_type = typeof b;
+      a_type = type(a);
+      b_type = type(b);
       local ___conditional___=(a_type);
       do
          if ___conditional___ == "boolean" then do
@@ -176,7 +176,7 @@ function caml_compare(_a, _b) do
                 len_a = #a | 0;
                 len_b = #b | 0;
                 if (len_a == len_b) then do
-                  if (Array.isArray(a)) then do
+                  if (__Array.isArray(a)) then do
                     a_1 = a;
                     b_1 = b;
                     _i = 0;
@@ -207,9 +207,9 @@ function caml_compare(_a, _b) do
                       contents = nil
                     };
                     do_key = function(param, key) do
-                      min_key = param[2];
-                      b = param[1];
-                      if (not b.hasOwnProperty(key) or caml_compare(param[0][key], b[key]) > 0) then do
+                      min_key = param[3];
+                      b = param[2];
+                      if (not b.hasOwnProperty(key) or caml_compare(param[1][key], b[key]) > 0) then do
                         match = min_key.contents;
                         if (match ~= nil and key >= match) then do
                           return 0;
@@ -312,11 +312,11 @@ function caml_equal(_a, _b) do
     if (a == b) then do
       return true;
     end else do
-      a_type = typeof a;
+      a_type = type(a);
       if (a_type == "string" or a_type == "number" or a_type == "boolean" or a_type == "undefined" or a == null) then do
         return false;
       end else do
-        b_type = typeof b;
+        b_type = type(b);
         if (a_type == "function" or b_type == "function") then do
           error({
             Caml_builtin_exceptions.invalid_argument,
@@ -353,7 +353,7 @@ function caml_equal(_a, _b) do
               len_a = #a | 0;
               len_b = #b | 0;
               if (len_a == len_b) then do
-                if (Array.isArray(a)) then do
+                if (__Array.isArray(a)) then do
                   a_1 = a;
                   b_1 = b;
                   _i = 0;
@@ -480,7 +480,7 @@ function caml_obj_set_tag(prim, prim_1) do
   return --[[ () ]]0;
 end end
 
-exports = {}
+exports = {};
 exports.caml_obj_block = caml_obj_block;
 exports.caml_obj_dup = caml_obj_dup;
 exports.caml_obj_truncate = caml_obj_truncate;
@@ -500,4 +500,5 @@ exports.caml_lessequal = caml_lessequal;
 exports.caml_min = caml_min;
 exports.caml_max = caml_max;
 exports.caml_obj_set_tag = caml_obj_set_tag;
+return exports;
 --[[ No side effect ]]

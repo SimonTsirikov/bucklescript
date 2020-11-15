@@ -1,6 +1,6 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
+Mt = require "..mt";
 
 suites = {
   contents = --[[ [] ]]0
@@ -18,20 +18,21 @@ function foo(a){return a()}
 ;
 
 function fn(param) do
-  console.log("hi");
+  __console.log("hi");
   return 1;
 end end
 
 eq("File \"gpr_3492_test.ml\", line 14, characters 6-13", foo((function() do
-            console.log("hi");
+            __console.log("hi");
             return 1;
           end end)), 1);
 
 Mt.from_pair_suites("gpr_3492_test.ml", suites.contents);
 
-exports = {}
+exports = {};
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
 exports.fn = fn;
+return exports;
 --[[  Not a pure module ]]

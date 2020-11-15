@@ -1,10 +1,10 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Block = require "../../lib/js/block";
-Curry = require "../../lib/js/curry";
-Pervasives = require "../../lib/js/pervasives";
-Ffi_js_test = require "./ffi_js_test";
+Mt = require "..mt";
+Block = require "......lib.js.block";
+Curry = require "......lib.js.curry";
+Pervasives = require "......lib.js.pervasives";
+Ffi_js_test = require "..ffi_js_test";
 
 x = "\x01\x02\x03";
 
@@ -99,7 +99,7 @@ Mt.from_pair_suites("Unsafe_ppx_test", --[[ :: ]]{
       }
     });
 
-exports = {}
+exports = {};
 exports.x = x;
 exports.max = max;
 exports.regression3 = regression3;
@@ -112,4 +112,5 @@ exports.max3 = max3;
 exports.uu = uu;
 exports.empty = empty;
 exports.v = v;
+return exports;
 --[[ max Not a pure module ]]

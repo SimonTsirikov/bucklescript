@@ -1,10 +1,10 @@
-console = {log = print};
+__console = {log = print};
 
-Curry = require "./curry";
-Caml_option = require "./caml_option";
-Belt_SortArray = require "./belt_SortArray";
-Caml_primitive = require "./caml_primitive";
-Belt_internalAVLtree = require "./belt_internalAVLtree";
+Curry = require "..curry";
+Caml_option = require "..caml_option";
+Belt_SortArray = require "..belt_SortArray";
+Caml_primitive = require "..caml_primitive";
+Belt_internalAVLtree = require "..belt_internalAVLtree";
 
 function add(t, x, data) do
   if (t ~= nil) then do
@@ -70,7 +70,7 @@ function getExn(_n, x) do
         ::continue:: ;
       end end 
     end else do
-      error(new Error("getExn"))
+      error(new __Error("getExn"))
     end end 
   end;
 end end
@@ -156,9 +156,9 @@ function splitAux(x, n) do
     if (l ~= nil) then do
       match = splitAux(x, l);
       return --[[ tuple ]]{
-              match[0],
               match[1],
-              Belt_internalAVLtree.join(match[2], v, d, r)
+              match[2],
+              Belt_internalAVLtree.join(match[3], v, d, r)
             };
     end else do
       return --[[ tuple ]]{
@@ -170,9 +170,9 @@ function splitAux(x, n) do
   end else if (r ~= nil) then do
     match_1 = splitAux(x, r);
     return --[[ tuple ]]{
-            Belt_internalAVLtree.join(l, v, d, match_1[0]),
-            match_1[1],
-            match_1[2]
+            Belt_internalAVLtree.join(l, v, d, match_1[1]),
+            match_1[2],
+            match_1[3]
           };
   end else do
     return --[[ tuple ]]{
@@ -205,7 +205,7 @@ function mergeU(s1, s2, f) do
       d1 = s1.value;
       r1 = s1.right;
       match = split(v1, s2);
-      return Belt_internalAVLtree.concatOrJoin(mergeU(l1, match[0], f), v1, f(v1, Caml_option.some(d1), match[1]), mergeU(r1, match[2], f));
+      return Belt_internalAVLtree.concatOrJoin(mergeU(l1, match[1], f), v1, f(v1, Caml_option.some(d1), match[2]), mergeU(r1, match[3], f));
     end
      end 
   end else if (s2 == nil) then do
@@ -218,7 +218,7 @@ function mergeU(s1, s2, f) do
     d2 = s2.value;
     r2 = s2.right;
     match_1 = split(v2, s1);
-    return Belt_internalAVLtree.concatOrJoin(mergeU(match_1[0], l2, f), v2, f(v2, match_1[1], Caml_option.some(d2)), mergeU(match_1[2], r2, f));
+    return Belt_internalAVLtree.concatOrJoin(mergeU(match_1[1], l2, f), v2, f(v2, match_1[2], Caml_option.some(d2)), mergeU(match_1[3], r2, f));
   end else do
     return --[[ assert false ]]0;
   end end 
@@ -233,14 +233,14 @@ function compareAux(_e1, _e2, vcmp) do
     e2 = _e2;
     e1 = _e1;
     if (e1 and e2) then do
-      h2 = e2[0];
-      h1 = e1[0];
+      h2 = e2[1];
+      h1 = e1[1];
       c = Caml_primitive.caml_string_compare(h1.key, h2.key);
       if (c == 0) then do
         cx = vcmp(h1.value, h2.value);
         if (cx == 0) then do
-          _e2 = Belt_internalAVLtree.stackAllLeft(h2.right, e2[1]);
-          _e1 = Belt_internalAVLtree.stackAllLeft(h1.right, e1[1]);
+          _e2 = Belt_internalAVLtree.stackAllLeft(h2.right, e2[2]);
+          _e1 = Belt_internalAVLtree.stackAllLeft(h1.right, e1[2]);
           ::continue:: ;
         end else do
           return cx;
@@ -275,11 +275,11 @@ function eqAux(_e1, _e2, eq) do
     e2 = _e2;
     e1 = _e1;
     if (e1 and e2) then do
-      h2 = e2[0];
-      h1 = e1[0];
+      h2 = e2[1];
+      h1 = e1[1];
       if (h1.key == h2.key and eq(h1.value, h2.value)) then do
-        _e2 = Belt_internalAVLtree.stackAllLeft(h2.right, e2[1]);
-        _e1 = Belt_internalAVLtree.stackAllLeft(h1.right, e1[1]);
+        _e2 = Belt_internalAVLtree.stackAllLeft(h2.right, e2[2]);
+        _e1 = Belt_internalAVLtree.stackAllLeft(h1.right, e1[2]);
         ::continue:: ;
       end else do
         return false;
@@ -333,7 +333,7 @@ function fromArray(xs) do
     return nil;
   end else do
     next = Belt_SortArray.strictlySortedLengthU(xs, (function(param, param_1) do
-            return param[0] < param_1[0];
+            return param[1] < param_1[1];
           end end));
     result;
     if (next >= 0) then do
@@ -344,7 +344,7 @@ function fromArray(xs) do
     end end 
     for i = next , len - 1 | 0 , 1 do
       match = xs[i];
-      result = addMutate(result, match[0], match[1]);
+      result = addMutate(result, match[1], match[2]);
     end
     return result;
   end end 
@@ -356,7 +356,7 @@ A = --[[ alias ]]0;
 
 S = --[[ alias ]]0;
 
-exports = {}
+exports = {};
 exports.N = N;
 exports.A = A;
 exports.S = S;
@@ -379,4 +379,5 @@ exports.eqU = eqU;
 exports.eq = eq;
 exports.addMutate = addMutate;
 exports.fromArray = fromArray;
+return exports;
 --[[ No side effect ]]

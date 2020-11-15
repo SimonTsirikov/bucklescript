@@ -1,10 +1,10 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Block = require "../../lib/js/block";
-Belt_Array = require "../../lib/js/belt_Array";
-Belt_MapInt = require "../../lib/js/belt_MapInt";
-Belt_SetInt = require "../../lib/js/belt_SetInt";
+Mt = require "..mt";
+Block = require "......lib.js.block";
+Belt_Array = require "......lib.js.belt_Array";
+Belt_MapInt = require "......lib.js.belt_MapInt";
+Belt_SetInt = require "......lib.js.belt_SetInt";
 
 suites = {
   contents = --[[ [] ]]0
@@ -18,7 +18,7 @@ function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[[ :: ]]{
     --[[ tuple ]]{
-      loc .. (" id " .. String(test_id.contents)),
+      loc .. (" id " .. __String(test_id.contents)),
       (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     x,
@@ -35,7 +35,7 @@ function b(loc, v) do
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[[ :: ]]{
     --[[ tuple ]]{
-      loc .. (" id " .. String(test_id.contents)),
+      loc .. (" id " .. __String(test_id.contents)),
       (function(param) do
           return --[[ Ok ]]Block.__(4, {v});
         end end)
@@ -67,7 +67,7 @@ Belt_MapInt.checkInvariantInternal(u);
 firstHalf = Belt_Array.slice(v, 0, 2000);
 
 xx = Belt_Array.reduce(firstHalf, u, (function(acc, param) do
-        return Belt_MapInt.remove(acc, param[0]);
+        return Belt_MapInt.remove(acc, param[1]);
       end end));
 
 Belt_MapInt.checkInvariantInternal(u);
@@ -82,7 +82,7 @@ N = --[[ alias ]]0;
 
 A = --[[ alias ]]0;
 
-exports = {}
+exports = {};
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
@@ -93,4 +93,5 @@ exports.A = A;
 exports.mapOfArray = mapOfArray;
 exports.setOfArray = setOfArray;
 exports.emptyMap = emptyMap;
+return exports;
 --[[ v Not a pure module ]]

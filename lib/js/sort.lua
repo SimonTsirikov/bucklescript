@@ -1,22 +1,22 @@
-console = {log = print};
+__console = {log = print};
 
-Curry = require "./curry";
-Caml_builtin_exceptions = require "./caml_builtin_exceptions";
+Curry = require "..curry";
+Caml_builtin_exceptions = require "..caml_builtin_exceptions";
 
 function merge(order, l1, l2) do
   if (l1) then do
     if (l2) then do
-      h2 = l2[0];
-      h1 = l1[0];
+      h2 = l2[1];
+      h1 = l1[1];
       if (Curry._2(order, h1, h2)) then do
         return --[[ :: ]]{
                 h1,
-                merge(order, l1[1], l2)
+                merge(order, l1[2], l2)
               };
       end else do
         return --[[ :: ]]{
                 h2,
-                merge(order, l1, l2[1])
+                merge(order, l1, l2[2])
               };
       end end 
     end else do
@@ -30,10 +30,10 @@ end end
 function list(order, l) do
   initlist = function(param) do
     if (param) then do
-      match = param[1];
-      e = param[0];
+      match = param[2];
+      e = param[1];
       if (match) then do
-        e2 = match[0];
+        e2 = match[1];
         return --[[ :: ]]{
                 Curry._2(order, e, e2) and --[[ :: ]]{
                     e,
@@ -48,7 +48,7 @@ function list(order, l) do
                       --[[ [] ]]0
                     }
                   },
-                initlist(match[1])
+                initlist(match[2])
               };
       end else do
         return --[[ :: ]]{
@@ -65,11 +65,11 @@ function list(order, l) do
   end end;
   merge2 = function(x) do
     if (x) then do
-      match = x[1];
+      match = x[2];
       if (match) then do
         return --[[ :: ]]{
-                merge(order, x[0], match[0]),
-                merge2(match[1])
+                merge(order, x[1], match[1]),
+                merge2(match[2])
               };
       end else do
         return x;
@@ -82,11 +82,11 @@ function list(order, l) do
   while(true) do
     llist = _llist;
     if (llist) then do
-      if (llist[1]) then do
+      if (llist[2]) then do
         _llist = merge2(llist);
         ::continue:: ;
       end else do
-        return llist[0];
+        return llist[1];
       end end 
     end else do
       return --[[ [] ]]0;
@@ -175,8 +175,9 @@ function array(cmp, arr) do
   return --[[ () ]]0;
 end end
 
-exports = {}
+exports = {};
 exports.list = list;
 exports.array = array;
 exports.merge = merge;
+return exports;
 --[[ No side effect ]]

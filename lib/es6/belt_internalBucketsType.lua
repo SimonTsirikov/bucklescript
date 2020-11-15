@@ -17,7 +17,7 @@ function make(hash, eq, hintSize) do
   s = power_2_above(16, hintSize);
   return {
           size = 0,
-          buckets = new Array(s),
+          buckets = new __Array(s),
           hash = hash,
           eq = eq
         };

@@ -1,4 +1,4 @@
-console = {log = print};
+__console = {log = print};
 
 
 x = ({
@@ -19,11 +19,12 @@ zz = ({
     "5" = 3
   })["5"];
 
-console.log(({
+__console.log(({
           "5" = 3
         }).tag | 0);
 
-exports = {}
+exports = {};
 exports.x = x;
 exports.zz = zz;
+return exports;
 --[[ x Not a pure module ]]

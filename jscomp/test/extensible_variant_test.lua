@@ -1,9 +1,9 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Block = require "../../lib/js/block";
-Caml_exceptions = require "../../lib/js/caml_exceptions";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
+Mt = require "..mt";
+Block = require "......lib.js.block";
+Caml_exceptions = require "......lib.js.caml_exceptions";
+Caml_builtin_exceptions = require "......lib.js.caml_builtin_exceptions";
 
 Str = Caml_exceptions.create("Extensible_variant_test.Str");
 
@@ -16,12 +16,12 @@ N = {
 Int_1 = Caml_exceptions.create("Extensible_variant_test.Int");
 
 function to_int(x) do
-  if (x[0] == Str) then do
+  if (x[1] == Str) then do
     return -1;
-  end else if (x[0] == Int) then do
-    return x[1];
-  end else if (x[0] == Int_1) then do
+  end else if (x[1] == Int) then do
     return x[2];
+  end else if (x[1] == Int_1) then do
+    return x[3];
   end else do
     error({
       Caml_builtin_exceptions.assert_failure,
@@ -86,10 +86,11 @@ suites = --[[ :: ]]{
 
 Mt.from_pair_suites("Extensible_variant_test", suites);
 
-exports = {}
+exports = {};
 exports.Str = Str;
 exports.N = N;
 exports.Int = Int_1;
 exports.to_int = to_int;
 exports.suites = suites;
+return exports;
 --[[  Not a pure module ]]

@@ -1,6 +1,6 @@
-console = {log = print};
+__console = {log = print};
 
-Caml_option = require "../../lib/js/caml_option";
+Caml_option = require "......lib.js.caml_option";
 
 v = {
   "Content-Type" = 3,
@@ -64,7 +64,7 @@ match = u["xx-yy"];
 
 v_1 = match ~= nil and match or 0;
 
-exports = {}
+exports = {};
 exports.b = b;
 exports.c = c;
 exports.ff = ff;
@@ -75,4 +75,5 @@ exports.hh = hh;
 exports.hh2 = hh2;
 exports.u = u;
 exports.v = v_1;
+return exports;
 --[[  Not a pure module ]]

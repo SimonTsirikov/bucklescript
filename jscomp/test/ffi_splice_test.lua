@@ -1,7 +1,7 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Block = require "../../lib/js/block";
+Mt = require "..mt";
+Block = require "......lib.js.block";
 
 suites = {
   contents = --[[ [] ]]0
@@ -15,7 +15,7 @@ function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[[ :: ]]{
     --[[ tuple ]]{
-      loc .. (" id " .. String(test_id.contents)),
+      loc .. (" id " .. __String(test_id.contents)),
       (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     x,
@@ -60,11 +60,12 @@ eq("File \"ffi_splice_test.ml\", line 61, characters 12-19", u, 10);
 
 Mt.from_pair_suites("Ffi_splice_test", suites.contents);
 
-exports = {}
+exports = {};
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
 exports.f = f;
 exports.v = v;
 exports.u = u;
+return exports;
 --[[  Not a pure module ]]

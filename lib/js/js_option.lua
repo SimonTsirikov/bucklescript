@@ -1,6 +1,6 @@
-console = {log = print};
+__console = {log = print};
 
-Caml_option = require "./caml_option";
+Caml_option = require "..caml_option";
 
 function some(x) do
   return Caml_option.some(x);
@@ -26,7 +26,7 @@ function getExn(x) do
   if (x ~= nil) then do
     return Caml_option.valFromOption(x);
   end else do
-    error(new Error("getExn"))
+    error(new __Error("getExn"))
   end end 
 end end
 
@@ -88,7 +88,7 @@ end end
 
 __default = getWithDefault;
 
-exports = {}
+exports = {};
 exports.some = some;
 exports.isSome = isSome;
 exports.isSomeValue = isSomeValue;
@@ -103,4 +103,5 @@ exports.default = __default;
 exports.__esModule = true;
 exports.filter = filter;
 exports.firstSome = firstSome;
+return exports;
 --[[ No side effect ]]

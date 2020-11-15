@@ -1,7 +1,7 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Js_mapperRt = require "../../lib/js/js_mapperRt";
+Mt = require "..mt";
+Js_mapperRt = require "......lib.js.js_mapperRt";
 
 suites = {
   contents = --[[ [] ]]0
@@ -66,7 +66,7 @@ v = tToJs;
 
 u = tFromJs;
 
-exports = {}
+exports = {};
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
@@ -74,4 +74,5 @@ exports.tToJs = tToJs;
 exports.tFromJs = tFromJs;
 exports.v = v;
 exports.u = u;
+return exports;
 --[[  Not a pure module ]]

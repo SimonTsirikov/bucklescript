@@ -1,17 +1,17 @@
-console = {log = print};
+__console = {log = print};
 
-List = require "../../lib/js/list";
-Curry = require "../../lib/js/curry";
-Caml_obj = require "../../lib/js/caml_obj";
-Pervasives = require "../../lib/js/pervasives";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
+List = require "......lib.js.list";
+Curry = require "......lib.js.curry";
+Caml_obj = require "......lib.js.caml_obj";
+Pervasives = require "......lib.js.pervasives";
+Caml_builtin_exceptions = require "......lib.js.caml_builtin_exceptions";
 
 function length_aux(_len, _param) do
   while(true) do
     param = _param;
     len = _len;
     if (param) then do
-      _param = param[1];
+      _param = param[2];
       _len = len + 1 | 0;
       ::continue:: ;
     end else do
@@ -26,7 +26,7 @@ end end
 
 function hd(param) do
   if (param) then do
-    return param[0];
+    return param[1];
   end else do
     error({
       Caml_builtin_exceptions.failure,
@@ -37,7 +37,7 @@ end end
 
 function tl(param) do
   if (param) then do
-    return param[1];
+    return param[2];
   end else do
     error({
       Caml_builtin_exceptions.failure,
@@ -61,10 +61,10 @@ function nth(l, n) do
     l_1 = _l;
     if (l_1) then do
       if (n_1 == 0) then do
-        return l_1[0];
+        return l_1[1];
       end else do
         _n = n_1 - 1 | 0;
-        _l = l_1[1];
+        _l = l_1[2];
         ::continue:: ;
       end end 
     end else do
@@ -82,10 +82,10 @@ function rev_append(_l1, _l2) do
     l1 = _l1;
     if (l1) then do
       _l2 = --[[ :: ]]{
-        l1[0],
+        l1[1],
         l2
       };
-      _l1 = l1[1];
+      _l1 = l1[2];
       ::continue:: ;
     end else do
       return l2;
@@ -99,7 +99,7 @@ end end
 
 function flatten(param) do
   if (param) then do
-    return Pervasives.$at(param[0], flatten(param[1]));
+    return Pervasives._at(param[1], flatten(param[2]));
   end else do
     return --[[ [] ]]0;
   end end 
@@ -107,10 +107,10 @@ end end
 
 function map(f, param) do
   if (param) then do
-    r = Curry._1(f, param[0]);
+    r = Curry._1(f, param[1]);
     return --[[ :: ]]{
             r,
-            map(f, param[1])
+            map(f, param[2])
           };
   end else do
     return --[[ [] ]]0;
@@ -119,10 +119,10 @@ end end
 
 function mapi(i, f, param) do
   if (param) then do
-    r = Curry._2(f, i, param[0]);
+    r = Curry._2(f, i, param[1]);
     return --[[ :: ]]{
             r,
-            mapi(i + 1 | 0, f, param[1])
+            mapi(i + 1 | 0, f, param[2])
           };
   end else do
     return --[[ [] ]]0;
@@ -140,9 +140,9 @@ function rev_map(f, l) do
     param = _param;
     accu = _accu;
     if (param) then do
-      _param = param[1];
+      _param = param[2];
       _accu = --[[ :: ]]{
-        Curry._1(f, param[0]),
+        Curry._1(f, param[1]),
         accu
       };
       ::continue:: ;
@@ -156,8 +156,8 @@ function iter(f, _param) do
   while(true) do
     param = _param;
     if (param) then do
-      Curry._1(f, param[0]);
-      _param = param[1];
+      Curry._1(f, param[1]);
+      _param = param[2];
       ::continue:: ;
     end else do
       return --[[ () ]]0;
@@ -173,8 +173,8 @@ function iteri(f, l) do
     param = _param;
     i = _i;
     if (param) then do
-      Curry._2(f_1, i, param[0]);
-      _param = param[1];
+      Curry._2(f_1, i, param[1]);
+      _param = param[2];
       _i = i + 1 | 0;
       ::continue:: ;
     end else do
@@ -188,8 +188,8 @@ function fold_left(f, _accu, _l) do
     l = _l;
     accu = _accu;
     if (l) then do
-      _l = l[1];
-      _accu = Curry._2(f, accu, l[0]);
+      _l = l[2];
+      _accu = Curry._2(f, accu, l[1]);
       ::continue:: ;
     end else do
       return accu;
@@ -199,7 +199,7 @@ end end
 
 function fold_right(f, l, accu) do
   if (l) then do
-    return Curry._2(f, l[0], fold_right(f, l[1], accu));
+    return Curry._2(f, l[1], fold_right(f, l[2], accu));
   end else do
     return accu;
   end end 
@@ -208,10 +208,10 @@ end end
 function map2(f, l1, l2) do
   if (l1) then do
     if (l2) then do
-      r = Curry._2(f, l1[0], l2[0]);
+      r = Curry._2(f, l1[1], l2[1]);
       return --[[ :: ]]{
               r,
-              map2(f, l1[1], l2[1])
+              map2(f, l1[2], l2[2])
             };
     end else do
       error({
@@ -239,10 +239,10 @@ function rev_map2(f, l1, l2) do
     accu = _accu;
     if (l1_1) then do
       if (l2_1) then do
-        _l2 = l2_1[1];
-        _l1 = l1_1[1];
+        _l2 = l2_1[2];
+        _l1 = l1_1[2];
         _accu = --[[ :: ]]{
-          Curry._2(f, l1_1[0], l2_1[0]),
+          Curry._2(f, l1_1[1], l2_1[1]),
           accu
         };
         ::continue:: ;
@@ -271,9 +271,9 @@ function iter2(f, _l1, _l2) do
     l1 = _l1;
     if (l1) then do
       if (l2) then do
-        Curry._2(f, l1[0], l2[0]);
-        _l2 = l2[1];
-        _l1 = l1[1];
+        Curry._2(f, l1[1], l2[1]);
+        _l2 = l2[2];
+        _l1 = l1[2];
         ::continue:: ;
       end else do
         error({
@@ -299,9 +299,9 @@ function fold_left2(f, _accu, _l1, _l2) do
     accu = _accu;
     if (l1) then do
       if (l2) then do
-        _l2 = l2[1];
-        _l1 = l1[1];
-        _accu = Curry._3(f, accu, l1[0], l2[0]);
+        _l2 = l2[2];
+        _l1 = l1[2];
+        _accu = Curry._3(f, accu, l1[1], l2[1]);
         ::continue:: ;
       end else do
         error({
@@ -325,7 +325,7 @@ end end
 function fold_right2(f, l1, l2, accu) do
   if (l1) then do
     if (l2) then do
-      return Curry._3(f, l1[0], l2[0], fold_right2(f, l1[1], l2[1], accu));
+      return Curry._3(f, l1[1], l2[1], fold_right2(f, l1[2], l2[2], accu));
     end else do
       error({
         Caml_builtin_exceptions.invalid_argument,
@@ -348,8 +348,8 @@ function for_all(p, _param) do
   while(true) do
     param = _param;
     if (param) then do
-      if (Curry._1(p, param[0])) then do
-        _param = param[1];
+      if (Curry._1(p, param[1])) then do
+        _param = param[2];
         ::continue:: ;
       end else do
         return false;
@@ -364,10 +364,10 @@ function exists(p, _param) do
   while(true) do
     param = _param;
     if (param) then do
-      if (Curry._1(p, param[0])) then do
+      if (Curry._1(p, param[1])) then do
         return true;
       end else do
-        _param = param[1];
+        _param = param[2];
         ::continue:: ;
       end end 
     end else do
@@ -382,9 +382,9 @@ function for_all2(p, _l1, _l2) do
     l1 = _l1;
     if (l1) then do
       if (l2) then do
-        if (Curry._2(p, l1[0], l2[0])) then do
-          _l2 = l2[1];
-          _l1 = l1[1];
+        if (Curry._2(p, l1[1], l2[1])) then do
+          _l2 = l2[2];
+          _l1 = l1[2];
           ::continue:: ;
         end else do
           return false;
@@ -412,11 +412,11 @@ function exists2(p, _l1, _l2) do
     l1 = _l1;
     if (l1) then do
       if (l2) then do
-        if (Curry._2(p, l1[0], l2[0])) then do
+        if (Curry._2(p, l1[1], l2[1])) then do
           return true;
         end else do
-          _l2 = l2[1];
-          _l1 = l1[1];
+          _l2 = l2[2];
+          _l1 = l1[2];
           ::continue:: ;
         end end 
       end else do
@@ -440,10 +440,10 @@ function mem(x, _param) do
   while(true) do
     param = _param;
     if (param) then do
-      if (Caml_obj.caml_equal(param[0], x)) then do
+      if (Caml_obj.caml_equal(param[1], x)) then do
         return true;
       end else do
-        _param = param[1];
+        _param = param[2];
         ::continue:: ;
       end end 
     end else do
@@ -456,10 +456,10 @@ function memq(x, _param) do
   while(true) do
     param = _param;
     if (param) then do
-      if (param[0] == x) then do
+      if (param[1] == x) then do
         return true;
       end else do
-        _param = param[1];
+        _param = param[2];
         ::continue:: ;
       end end 
     end else do
@@ -472,11 +472,11 @@ function assoc(x, _param) do
   while(true) do
     param = _param;
     if (param) then do
-      match = param[0];
-      if (Caml_obj.caml_equal(match[0], x)) then do
-        return match[1];
+      match = param[1];
+      if (Caml_obj.caml_equal(match[1], x)) then do
+        return match[2];
       end else do
-        _param = param[1];
+        _param = param[2];
         ::continue:: ;
       end end 
     end else do
@@ -489,11 +489,11 @@ function assq(x, _param) do
   while(true) do
     param = _param;
     if (param) then do
-      match = param[0];
-      if (match[0] == x) then do
-        return match[1];
+      match = param[1];
+      if (match[1] == x) then do
+        return match[2];
       end else do
-        _param = param[1];
+        _param = param[2];
         ::continue:: ;
       end end 
     end else do
@@ -506,10 +506,10 @@ function mem_assoc(x, _param) do
   while(true) do
     param = _param;
     if (param) then do
-      if (Caml_obj.caml_equal(param[0][0], x)) then do
+      if (Caml_obj.caml_equal(param[1][1], x)) then do
         return true;
       end else do
-        _param = param[1];
+        _param = param[2];
         ::continue:: ;
       end end 
     end else do
@@ -522,10 +522,10 @@ function mem_assq(x, _param) do
   while(true) do
     param = _param;
     if (param) then do
-      if (param[0][0] == x) then do
+      if (param[1][1] == x) then do
         return true;
       end else do
-        _param = param[1];
+        _param = param[2];
         ::continue:: ;
       end end 
     end else do
@@ -536,9 +536,9 @@ end end
 
 function remove_assoc(x, param) do
   if (param) then do
-    l = param[1];
-    pair = param[0];
-    if (Caml_obj.caml_equal(pair[0], x)) then do
+    l = param[2];
+    pair = param[1];
+    if (Caml_obj.caml_equal(pair[1], x)) then do
       return l;
     end else do
       return --[[ :: ]]{
@@ -553,9 +553,9 @@ end end
 
 function remove_assq(x, param) do
   if (param) then do
-    l = param[1];
-    pair = param[0];
-    if (pair[0] == x) then do
+    l = param[2];
+    pair = param[1];
+    if (pair[1] == x) then do
       return l;
     end else do
       return --[[ :: ]]{
@@ -572,11 +572,11 @@ function find(p, _param) do
   while(true) do
     param = _param;
     if (param) then do
-      x = param[0];
+      x = param[1];
       if (Curry._1(p, x)) then do
         return x;
       end else do
-        _param = param[1];
+        _param = param[2];
         ::continue:: ;
       end end 
     end else do
@@ -593,8 +593,8 @@ function find_all(p) do
         param_1 = _param;
         accu = _accu;
         if (param_1) then do
-          l = param_1[1];
-          x = param_1[0];
+          l = param_1[2];
+          x = param_1[1];
           if (Curry._1(p, x)) then do
             _param = l;
             _accu = --[[ :: ]]{
@@ -622,8 +622,8 @@ function partition(p, l) do
     no = _no;
     yes = _yes;
     if (param) then do
-      l_1 = param[1];
-      x = param[0];
+      l_1 = param[2];
+      x = param[1];
       if (Curry._1(p, x)) then do
         _param = l_1;
         _yes = --[[ :: ]]{
@@ -650,16 +650,16 @@ end end
 
 function split(param) do
   if (param) then do
-    match = param[0];
-    match_1 = split(param[1]);
+    match = param[1];
+    match_1 = split(param[2]);
     return --[[ tuple ]]{
-            --[[ :: ]]{
-              match[0],
-              match_1[0]
-            },
             --[[ :: ]]{
               match[1],
               match_1[1]
+            },
+            --[[ :: ]]{
+              match[2],
+              match_1[2]
             }
           };
   end else do
@@ -675,10 +675,10 @@ function combine(l1, l2) do
     if (l2) then do
       return --[[ :: ]]{
               --[[ tuple ]]{
-                l1[0],
-                l2[0]
+                l1[1],
+                l2[1]
               },
-              combine(l1[1], l2[1])
+              combine(l1[2], l2[2])
             };
     end else do
       error({
@@ -699,17 +699,17 @@ end end
 function merge(cmp, l1, l2) do
   if (l1) then do
     if (l2) then do
-      h2 = l2[0];
-      h1 = l1[0];
+      h2 = l2[1];
+      h1 = l1[1];
       if (Curry._2(cmp, h1, h2) <= 0) then do
         return --[[ :: ]]{
                 h1,
-                merge(cmp, l1[1], l2)
+                merge(cmp, l1[2], l2)
               };
       end else do
         return --[[ :: ]]{
                 h2,
-                merge(cmp, l1, l2[1])
+                merge(cmp, l1, l2[2])
               };
       end end 
     end else do
@@ -727,7 +727,7 @@ function chop(_k, _l) do
     if (k == 0) then do
       return l;
     end else if (l) then do
-      _l = l[1];
+      _l = l[2];
       _k = k - 1 | 0;
       ::continue:: ;
     end else do
@@ -747,13 +747,13 @@ function stable_sort(cmp, l) do
   sort = function(n, l) do
     if (n ~= 2) then do
       if (n == 3 and l) then do
-        match = l[1];
+        match = l[2];
         if (match) then do
-          match_1 = match[1];
+          match_1 = match[2];
           if (match_1) then do
-            x3 = match_1[0];
-            x2 = match[0];
-            x1 = l[0];
+            x3 = match_1[1];
+            x2 = match[1];
+            x1 = l[1];
             if (Curry._2(cmp, x1, x2) <= 0) then do
               if (Curry._2(cmp, x2, x3) <= 0) then do
                 return --[[ :: ]]{
@@ -830,10 +830,10 @@ function stable_sort(cmp, l) do
       end
        end 
     end else if (l) then do
-      match_2 = l[1];
+      match_2 = l[2];
       if (match_2) then do
-        x2_1 = match_2[0];
-        x1_1 = l[0];
+        x2_1 = match_2[1];
+        x1_1 = l[1];
         if (Curry._2(cmp, x1_1, x2_1) <= 0) then do
           return --[[ :: ]]{
                   x1_1,
@@ -869,21 +869,21 @@ function stable_sort(cmp, l) do
       l1 = _l1;
       if (l1) then do
         if (l2_1) then do
-          h2 = l2_1[0];
-          h1 = l1[0];
+          h2 = l2_1[1];
+          h1 = l1[1];
           if (Curry._2(cmp, h1, h2) > 0) then do
             _accu = --[[ :: ]]{
               h1,
               accu
             };
-            _l1 = l1[1];
+            _l1 = l1[2];
             ::continue:: ;
           end else do
             _accu = --[[ :: ]]{
               h2,
               accu
             };
-            _l2 = l2_1[1];
+            _l2 = l2_1[2];
             ::continue:: ;
           end end 
         end else do
@@ -897,13 +897,13 @@ function stable_sort(cmp, l) do
   rev_sort = function(n, l) do
     if (n ~= 2) then do
       if (n == 3 and l) then do
-        match = l[1];
+        match = l[2];
         if (match) then do
-          match_1 = match[1];
+          match_1 = match[2];
           if (match_1) then do
-            x3 = match_1[0];
-            x2 = match[0];
-            x1 = l[0];
+            x3 = match_1[1];
+            x2 = match[1];
+            x1 = l[1];
             if (Curry._2(cmp, x1, x2) > 0) then do
               if (Curry._2(cmp, x2, x3) > 0) then do
                 return --[[ :: ]]{
@@ -980,10 +980,10 @@ function stable_sort(cmp, l) do
       end
        end 
     end else if (l) then do
-      match_2 = l[1];
+      match_2 = l[2];
       if (match_2) then do
-        x2_1 = match_2[0];
-        x1_1 = l[0];
+        x2_1 = match_2[1];
+        x1_1 = l[1];
         if (Curry._2(cmp, x1_1, x2_1) > 0) then do
           return --[[ :: ]]{
                   x1_1,
@@ -1019,21 +1019,21 @@ function stable_sort(cmp, l) do
       l1 = _l1;
       if (l1) then do
         if (l2_1) then do
-          h2 = l2_1[0];
-          h1 = l1[0];
+          h2 = l2_1[1];
+          h1 = l1[1];
           if (Curry._2(cmp, h1, h2) <= 0) then do
             _accu = --[[ :: ]]{
               h1,
               accu
             };
-            _l1 = l1[1];
+            _l1 = l1[2];
             ::continue:: ;
           end else do
             _accu = --[[ :: ]]{
               h2,
               accu
             };
-            _l2 = l2_1[1];
+            _l2 = l2_1[2];
             ::continue:: ;
           end end 
         end else do
@@ -1056,13 +1056,13 @@ function sort_uniq(cmp, l) do
   sort = function(n, l) do
     if (n ~= 2) then do
       if (n == 3 and l) then do
-        match = l[1];
+        match = l[2];
         if (match) then do
-          match_1 = match[1];
+          match_1 = match[2];
           if (match_1) then do
-            x3 = match_1[0];
-            x2 = match[0];
-            x1 = l[0];
+            x3 = match_1[1];
+            x2 = match[1];
+            x1 = l[1];
             c = Curry._2(cmp, x1, x2);
             if (c == 0) then do
               c_1 = Curry._2(cmp, x2, x3);
@@ -1206,10 +1206,10 @@ function sort_uniq(cmp, l) do
       end
        end 
     end else if (l) then do
-      match_2 = l[1];
+      match_2 = l[2];
       if (match_2) then do
-        x2_1 = match_2[0];
-        x1_1 = l[0];
+        x2_1 = match_2[1];
+        x1_1 = l[1];
         c_6 = Curry._2(cmp, x1_1, x2_1);
         if (c_6 == 0) then do
           return --[[ :: ]]{
@@ -1251,10 +1251,10 @@ function sort_uniq(cmp, l) do
       l1 = _l1;
       if (l1) then do
         if (l2_1) then do
-          t2 = l2_1[1];
-          h2 = l2_1[0];
-          t1 = l1[1];
-          h1 = l1[0];
+          t2 = l2_1[2];
+          h2 = l2_1[1];
+          t1 = l1[2];
+          h1 = l1[1];
           c_7 = Curry._2(cmp, h1, h2);
           if (c_7 == 0) then do
             _accu = --[[ :: ]]{
@@ -1290,13 +1290,13 @@ function sort_uniq(cmp, l) do
   rev_sort = function(n, l) do
     if (n ~= 2) then do
       if (n == 3 and l) then do
-        match = l[1];
+        match = l[2];
         if (match) then do
-          match_1 = match[1];
+          match_1 = match[2];
           if (match_1) then do
-            x3 = match_1[0];
-            x2 = match[0];
-            x1 = l[0];
+            x3 = match_1[1];
+            x2 = match[1];
+            x1 = l[1];
             c = Curry._2(cmp, x1, x2);
             if (c == 0) then do
               c_1 = Curry._2(cmp, x2, x3);
@@ -1440,10 +1440,10 @@ function sort_uniq(cmp, l) do
       end
        end 
     end else if (l) then do
-      match_2 = l[1];
+      match_2 = l[2];
       if (match_2) then do
-        x2_1 = match_2[0];
-        x1_1 = l[0];
+        x2_1 = match_2[1];
+        x1_1 = l[1];
         c_6 = Curry._2(cmp, x1_1, x2_1);
         if (c_6 == 0) then do
           return --[[ :: ]]{
@@ -1485,10 +1485,10 @@ function sort_uniq(cmp, l) do
       l1 = _l1;
       if (l1) then do
         if (l2_1) then do
-          t2 = l2_1[1];
-          h2 = l2_1[0];
-          t1 = l1[1];
-          h1 = l1[0];
+          t2 = l2_1[2];
+          h2 = l2_1[1];
+          t1 = l1[2];
+          h1 = l1[1];
           c_7 = Curry._2(cmp, h1, h2);
           if (c_7 == 0) then do
             _accu = --[[ :: ]]{
@@ -1531,7 +1531,7 @@ end end
 
 u = List.length;
 
-append = Pervasives.$at;
+append = Pervasives._at;
 
 concat = flatten;
 
@@ -1541,7 +1541,7 @@ sort = stable_sort;
 
 fast_sort = stable_sort;
 
-exports = {}
+exports = {};
 exports.u = u;
 exports.length_aux = length_aux;
 exports.length = length;
@@ -1589,4 +1589,5 @@ exports.stable_sort = stable_sort;
 exports.sort = sort;
 exports.fast_sort = fast_sort;
 exports.sort_uniq = sort_uniq;
+return exports;
 --[[ No side effect ]]

@@ -1,12 +1,12 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-List = require "../../lib/js/list";
-Block = require "../../lib/js/block";
-Curry = require "../../lib/js/curry";
-Stream = require "../../lib/js/stream";
-Caml_bytes = require "../../lib/js/caml_bytes";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
+Mt = require "..mt";
+List = require "......lib.js.list";
+Block = require "......lib.js.block";
+Curry = require "......lib.js.curry";
+Stream = require "......lib.js.stream";
+Caml_bytes = require "......lib.js.caml_bytes";
+Caml_builtin_exceptions = require "......lib.js.caml_builtin_exceptions";
 
 function classify(chr) do
   if ((chr & 128) == 0) then do
@@ -49,7 +49,7 @@ function utf8_decode(strm) do
                 if (match ~= nil) then do
                   Stream.junk(strm);
                   match_1 = classify(match);
-                  if (typeof match_1 == "number") then do
+                  if (type(match_1) == "number") then do
                     error({
                       Stream.__Error,
                       "Invalid byte"
@@ -58,7 +58,7 @@ function utf8_decode(strm) do
                     local ___conditional___=(match_1.tag | 0);
                     do
                        if ___conditional___ == 0--[[ Single ]] then do
-                          return Stream.icons(match_1[0], utf8_decode(strm)); end end 
+                          return Stream.icons(match_1[1], utf8_decode(strm)); end end 
                        if ___conditional___ == 1--[[ Cont ]] then do
                           error({
                             Stream.__Error,
@@ -73,13 +73,13 @@ function utf8_decode(strm) do
                                 return c;
                               end else do
                                 match = classify(Stream.next(strm));
-                                if (typeof match == "number") then do
+                                if (type(match) == "number") then do
                                   error({
                                     Stream.__Error,
                                     "Continuation byte expected"
                                   })
                                 end else if (match.tag == --[[ Cont ]]1) then do
-                                  _c = (c << 6) | match[0] & 63;
+                                  _c = (c << 6) | match[1] & 63;
                                   _n = n - 1 | 0;
                                   ::continue:: ;
                                 end else do
@@ -91,7 +91,7 @@ function utf8_decode(strm) do
                               end end 
                             end;
                           end end;
-                          return Stream.icons(follow(strm, match_1[0], match_1[1]), utf8_decode(strm)); end end 
+                          return Stream.icons(follow(strm, match_1[1], match_1[2]), utf8_decode(strm)); end end 
                       
                     end
                   end end 
@@ -121,7 +121,7 @@ end end
 function decode(bytes, offset) do
   offset_1 = offset;
   match = classify(Caml_bytes.get(bytes, offset_1));
-  if (typeof match == "number") then do
+  if (type(match) == "number") then do
     error({
       Caml_builtin_exceptions.invalid_argument,
       "decode"
@@ -131,7 +131,7 @@ function decode(bytes, offset) do
     do
        if ___conditional___ == 0--[[ Single ]] then do
           return --[[ tuple ]]{
-                  match[0],
+                  match[1],
                   offset_1 + 1 | 0
                 }; end end 
        if ___conditional___ == 1--[[ Cont ]] then do
@@ -140,8 +140,8 @@ function decode(bytes, offset) do
             "decode"
           }) end end 
        if ___conditional___ == 2--[[ Leading ]] then do
-          _n = match[0];
-          _c = match[1];
+          _n = match[1];
+          _c = match[2];
           _offset = offset_1 + 1 | 0;
           while(true) do
             offset_2 = _offset;
@@ -154,14 +154,14 @@ function decode(bytes, offset) do
                     };
             end else do
               match_1 = classify(Caml_bytes.get(bytes, offset_2));
-              if (typeof match_1 == "number") then do
+              if (type(match_1) == "number") then do
                 error({
                   Caml_builtin_exceptions.invalid_argument,
                   "decode"
                 })
               end else if (match_1.tag == --[[ Cont ]]1) then do
                 _offset = offset_2 + 1 | 0;
-                _c = (c << 6) | match_1[0] & 63;
+                _c = (c << 6) | match_1[1] & 63;
                 _n = n - 1 | 0;
                 ::continue:: ;
               end else do
@@ -182,9 +182,9 @@ function eq_list(cmp, _xs, _ys) do
     ys = _ys;
     xs = _xs;
     if (xs) then do
-      if (ys and Curry._2(cmp, xs[0], ys[0])) then do
-        _ys = ys[1];
-        _xs = xs[1];
+      if (ys and Curry._2(cmp, xs[1], ys[1])) then do
+        _ys = ys[2];
+        _xs = xs[2];
         ::continue:: ;
       end else do
         return false;
@@ -206,16 +206,16 @@ test_id = {
 };
 
 function eq(loc, param) do
-  y = param[1];
-  x = param[0];
+  y = param[2];
+  x = param[1];
   test_id.contents = test_id.contents + 1 | 0;
-  console.log(--[[ tuple ]]{
+  __console.log(--[[ tuple ]]{
         x,
         y
       });
   suites.contents = --[[ :: ]]{
     --[[ tuple ]]{
-      loc .. (" id " .. String(test_id.contents)),
+      loc .. (" id " .. __String(test_id.contents)),
       (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     x,
@@ -233,7 +233,7 @@ List.iter((function(param) do
                     true,
                     eq_list((function(prim, prim_1) do
                             return prim == prim_1;
-                          end end), to_list(utf8_decode(Stream.of_string(param[0]))), param[1])
+                          end end), to_list(utf8_decode(Stream.of_string(param[1]))), param[2])
                   });
       end end), --[[ :: ]]{
       --[[ tuple ]]{
@@ -368,7 +368,7 @@ List.iter((function(param) do
 
 Mt.from_pair_suites("Utf8_decode_test", suites.contents);
 
-exports = {}
+exports = {};
 exports.classify = classify;
 exports.utf8_decode = utf8_decode;
 exports.to_list = to_list;
@@ -378,4 +378,5 @@ exports.eq_list = eq_list;
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
+return exports;
 --[[  Not a pure module ]]

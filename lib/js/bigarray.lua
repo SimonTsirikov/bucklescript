@@ -1,11 +1,11 @@
-console = {log = print};
+__console = {log = print};
 
-Sys = require "./sys";
-__Array = require "./array";
-Caml_array = require "./caml_array";
-Caml_int32 = require "./caml_int32";
-Caml_external_polyfill = require "./caml_external_polyfill";
-Caml_builtin_exceptions = require "./caml_builtin_exceptions";
+Sys = require "..sys";
+__Array = require "..array";
+Caml_array = require "..caml_array";
+Caml_int32 = require "..caml_int32";
+Caml_external_polyfill = require "..caml_external_polyfill";
+Caml_builtin_exceptions = require "..caml_builtin_exceptions";
 
 function kind_size_in_bytes(param) do
   local ___conditional___=(param);
@@ -389,7 +389,7 @@ function reshape(prim, prim_1) do
   return Caml_external_polyfill.resolve("caml_ba_reshape")(prim, prim_1);
 end end
 
-exports = {}
+exports = {};
 exports.float32 = float32;
 exports.float64 = float64;
 exports.complex32 = complex32;
@@ -420,4 +420,5 @@ exports.reshape_0 = reshape_0;
 exports.reshape_1 = reshape_1;
 exports.reshape_2 = reshape_2;
 exports.reshape_3 = reshape_3;
+return exports;
 --[[ No side effect ]]

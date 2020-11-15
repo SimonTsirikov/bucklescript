@@ -1,8 +1,8 @@
-console = {log = print};
+__console = {log = print};
 
-Curry = require "../../lib/js/curry";
-Belt_Array = require "../../lib/js/belt_Array";
-Caml_option = require "../../lib/js/caml_option";
+Curry = require "......lib.js.curry";
+Belt_Array = require "......lib.js.belt_Array";
+Caml_option = require "......lib.js.caml_option";
 
 function t0(x, f) do
   return Curry._1(f, Curry._1(f, Curry._1(f, x)));
@@ -91,7 +91,7 @@ with_poly = --[[ `Foo ]]{
   1
 };
 
-exports = {}
+exports = {};
 exports.t0 = t0;
 exports.t1 = t1;
 exports.t2 = t2;
@@ -107,4 +107,5 @@ exports.f7 = f7;
 exports.f8 = f8;
 exports.hi = hi;
 exports.with_poly = with_poly;
+return exports;
 --[[ No side effect ]]

@@ -1,6 +1,6 @@
-console = {log = print};
+__console = {log = print};
 
-List = require "./list";
+List = require "..list";
 
 length = List.length;
 
@@ -106,7 +106,7 @@ sort_uniq = List.sort_uniq;
 
 merge = List.merge;
 
-exports = {}
+exports = {};
 exports.length = length;
 exports.hd = hd;
 exports.compare_lengths = compare_lengths;
@@ -159,4 +159,5 @@ exports.stable_sort = stable_sort;
 exports.fast_sort = fast_sort;
 exports.sort_uniq = sort_uniq;
 exports.merge = merge;
+return exports;
 --[[ No side effect ]]

@@ -1,6 +1,6 @@
-console = {log = print};
+__console = {log = print};
 
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
+Caml_builtin_exceptions = require "......lib.js.caml_builtin_exceptions";
 
 function f(x) do
   return x + 1 | 0;
@@ -27,7 +27,7 @@ function f4(param) do
 end end
 
 function f5(param) do
-  if (typeof param == "number") then do
+  if (type(param) == "number") then do
     local ___conditional___=(param);
     do
        if ___conditional___ == 0--[[ A ]] then do
@@ -52,7 +52,7 @@ function f5(param) do
 end end
 
 function f6(param) do
-  if (typeof param == "number") then do
+  if (type(param) == "number") then do
     if (param >= 2) then do
       return 2;
     end else do
@@ -64,7 +64,7 @@ function f6(param) do
 end end
 
 function f7(param) do
-  if (typeof param == "number") then do
+  if (type(param) == "number") then do
     local ___conditional___=(param);
     do
        if ___conditional___ == 0--[[ A ]] then do
@@ -90,7 +90,7 @@ function f7(param) do
 end end
 
 function f8(param) do
-  if (typeof param == "number") then do
+  if (type(param) == "number") then do
     local ___conditional___=(param);
     do
        if ___conditional___ == 0--[[ T60 ]]
@@ -112,7 +112,7 @@ function f8(param) do
 end end
 
 function f9(param) do
-  if (typeof param == "number") then do
+  if (type(param) == "number") then do
     if (param == --[[ T63 ]]3) then do
       return 3;
     end else do
@@ -133,7 +133,7 @@ function f9(param) do
 end end
 
 function f10(param) do
-  if (typeof param == "number") then do
+  if (type(param) == "number") then do
     local ___conditional___=(param);
     do
        if ___conditional___ == 0--[[ T60 ]] then do
@@ -161,7 +161,7 @@ function f10(param) do
 end end
 
 function f11(x) do
-  if (typeof x == "number") then do
+  if (type(x) == "number") then do
     return 2;
   end else if (x.tag) then do
     error({
@@ -177,7 +177,7 @@ function f11(x) do
   end end  end 
 end end
 
-exports = {}
+exports = {};
 exports.f = f;
 exports.f_0 = f_0;
 exports.f2 = f2;
@@ -190,4 +190,5 @@ exports.f8 = f8;
 exports.f9 = f9;
 exports.f10 = f10;
 exports.f11 = f11;
+return exports;
 --[[ No side effect ]]

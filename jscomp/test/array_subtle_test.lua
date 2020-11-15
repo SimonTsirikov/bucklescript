@@ -1,8 +1,8 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Block = require "../../lib/js/block";
-Caml_array = require "../../lib/js/caml_array";
+Mt = require "..mt";
+Block = require "......lib.js.block";
+Caml_array = require "......lib.js.caml_array";
 
 suites = {
   contents = --[[ [] ]]0
@@ -13,12 +13,12 @@ test_id = {
 };
 
 function eq(loc, param) do
-  y = param[1];
-  x = param[0];
+  y = param[2];
+  x = param[1];
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[[ :: ]]{
     --[[ tuple ]]{
-      loc .. (" id " .. String(test_id.contents)),
+      loc .. (" id " .. __String(test_id.contents)),
       (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     x,
@@ -82,11 +82,11 @@ eq("File \"array_subtle_test.ml\", line 29, characters 5-12", --[[ tuple ]]{
 function f(v) do
   match = v.pop();
   if (match ~= nil) then do
-    console.log("hi");
+    __console.log("hi");
   end else do
-    console.log("hi2");
+    __console.log("hi2");
   end end 
-  console.log((v.pop(), --[[ () ]]0));
+  __console.log((v.pop(), --[[ () ]]0));
   return --[[ () ]]0;
 end end
 
@@ -96,7 +96,7 @@ end end
 
 function fff2(x) do
   if (#x >= 10) then do
-    console.log("hi");
+    __console.log("hi");
     return --[[ () ]]0;
   end else do
     return 0;
@@ -132,7 +132,7 @@ eq("File \"array_subtle_test.ml\", line 53, characters 6-13", --[[ tuple ]]{
 
 Mt.from_pair_suites("Array_subtle_test", suites.contents);
 
-exports = {}
+exports = {};
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
@@ -142,4 +142,5 @@ exports.fff = fff;
 exports.fff2 = fff2;
 exports.fff3 = fff3;
 exports.fff4 = fff4;
+return exports;
 --[[  Not a pure module ]]

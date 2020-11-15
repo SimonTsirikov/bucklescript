@@ -1,12 +1,12 @@
-console = {log = print};
+__console = {log = print};
 
-Caml_array = require "./caml_array";
-Caml_builtin_exceptions = require "./caml_builtin_exceptions";
+Caml_array = require "..caml_array";
+Caml_builtin_exceptions = require "..caml_builtin_exceptions";
 
 caml_methods_cache = Caml_array.caml_make_vect(1000, 0);
 
 function caml_get_public_method(obj, tag, cacheid) do
-  meths = obj[0];
+  meths = obj[1];
   offs = caml_methods_cache[cacheid];
   if (meths[offs] == tag) then do
     return meths[offs - 1 | 0];
@@ -38,6 +38,7 @@ function caml_get_public_method(obj, tag, cacheid) do
   end end 
 end end
 
-exports = {}
+exports = {};
 exports.caml_get_public_method = caml_get_public_method;
+return exports;
 --[[ No side effect ]]

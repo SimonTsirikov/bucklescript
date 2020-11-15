@@ -1,7 +1,7 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Block = require "../../lib/js/block";
+Mt = require "..mt";
+Block = require "......lib.js.block";
 
 suites = {
   contents = --[[ [] ]]0
@@ -15,7 +15,7 @@ function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[[ :: ]]{
     --[[ tuple ]]{
-      loc .. (" id " .. String(test_id.contents)),
+      loc .. (" id " .. __String(test_id.contents)),
       (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     x,
@@ -120,8 +120,9 @@ eq("File \"bs_auto_uncurry_test.ml\", line 52, characters 7-14", {
 
 Mt.from_pair_suites("Bs_auto_uncurry_test", suites.contents);
 
-exports = {}
+exports = {};
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
+return exports;
 --[[  Not a pure module ]]

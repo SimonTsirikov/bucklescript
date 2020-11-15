@@ -1,9 +1,9 @@
 
 
-import * as Caml_int32 from "./caml_int32.lua";
-import * as Caml_utils from "./caml_utils.lua";
-import * as Caml_primitive from "./caml_primitive.lua";
-import * as Caml_builtin_exceptions from "./caml_builtin_exceptions.lua";
+local Caml_int32 = require "..caml_int32.lua";
+local Caml_utils = require "..caml_utils.lua";
+local Caml_primitive = require "..caml_primitive.lua";
+local Caml_builtin_exceptions = require "..caml_builtin_exceptions.lua";
 
 min_int = --[[ Int64 ]]{
   --[[ hi ]]-2147483648,
@@ -35,11 +35,11 @@ function neg_signed(x) do
 end end
 
 function add(param, param_1) do
-  other_low_ = param_1[--[[ lo ]]1];
-  this_low_ = param[--[[ lo ]]1];
+  other_low_ = param_1[--[[ lo ]]2];
+  this_low_ = param[--[[ lo ]]2];
   lo = this_low_ + other_low_ & 4294967295;
   overflow = neg_signed(this_low_) and (neg_signed(other_low_) or not neg_signed(lo)) or neg_signed(other_low_) and not neg_signed(lo) and 1 or 0;
-  hi = param[--[[ hi ]]0] + param_1[--[[ hi ]]0] + overflow & 4294967295;
+  hi = param[--[[ hi ]]1] + param_1[--[[ hi ]]1] + overflow & 4294967295;
   return --[[ Int64 ]]{
           --[[ hi ]]hi,
           --[[ lo ]](lo >>> 0)
@@ -47,8 +47,8 @@ function add(param, param_1) do
 end end
 
 function not(param) do
-  hi = param[--[[ hi ]]0] ^ -1;
-  lo = param[--[[ lo ]]1] ^ -1;
+  hi = param[--[[ hi ]]1] ^ -1;
+  lo = param[--[[ lo ]]2] ^ -1;
   return --[[ Int64 ]]{
           --[[ hi ]]hi,
           --[[ lo ]](lo >>> 0)
@@ -56,8 +56,8 @@ function not(param) do
 end end
 
 function eq(param, param_1) do
-  if (param[--[[ hi ]]0] == param_1[--[[ hi ]]0]) then do
-    return param[--[[ lo ]]1] == param_1[--[[ lo ]]1];
+  if (param[--[[ hi ]]1] == param_1[--[[ hi ]]1]) then do
+    return param[--[[ lo ]]2] == param_1[--[[ lo ]]2];
   end else do
     return false;
   end end 
@@ -103,14 +103,14 @@ function lsl_(x, numBits) do
   if (numBits == 0) then do
     return x;
   end else do
-    lo = x[--[[ lo ]]1];
+    lo = x[--[[ lo ]]2];
     if (numBits >= 32) then do
       return --[[ Int64 ]]{
               --[[ hi ]](lo << (numBits - 32 | 0)),
               --[[ lo ]]0
             };
     end else do
-      hi = (lo >>> (32 - numBits | 0)) | (x[--[[ hi ]]0] << numBits);
+      hi = (lo >>> (32 - numBits | 0)) | (x[--[[ hi ]]1] << numBits);
       return --[[ Int64 ]]{
               --[[ hi ]]hi,
               --[[ lo ]]((lo << numBits) >>> 0)
@@ -123,7 +123,7 @@ function lsr_(x, numBits) do
   if (numBits == 0) then do
     return x;
   end else do
-    hi = x[--[[ hi ]]0];
+    hi = x[--[[ hi ]]1];
     offset = numBits - 32 | 0;
     if (offset == 0) then do
       return --[[ Int64 ]]{
@@ -138,7 +138,7 @@ function lsr_(x, numBits) do
             };
     end else do
       hi_1 = (hi >>> numBits);
-      lo_1 = (hi << (-offset | 0)) | (x[--[[ lo ]]1] >>> numBits);
+      lo_1 = (hi << (-offset | 0)) | (x[--[[ lo ]]2] >>> numBits);
       return --[[ Int64 ]]{
               --[[ hi ]]hi_1,
               --[[ lo ]](lo_1 >>> 0)
@@ -151,10 +151,10 @@ function asr_(x, numBits) do
   if (numBits == 0) then do
     return x;
   end else do
-    hi = x[--[[ hi ]]0];
+    hi = x[--[[ hi ]]1];
     if (numBits < 32) then do
       hi_1 = (hi >> numBits);
-      lo = (hi << (32 - numBits | 0)) | (x[--[[ lo ]]1] >>> numBits);
+      lo = (hi << (32 - numBits | 0)) | (x[--[[ lo ]]2] >>> numBits);
       return --[[ Int64 ]]{
               --[[ hi ]]hi_1,
               --[[ lo ]](lo >>> 0)
@@ -170,7 +170,7 @@ function asr_(x, numBits) do
 end end
 
 function is_zero(param) do
-  if (param[--[[ hi ]]0] ~= 0 or param[--[[ lo ]]1] ~= 0) then do
+  if (param[--[[ hi ]]1] ~= 0 or param[--[[ lo ]]2] ~= 0) then do
     return false;
   end else do
     return true;
@@ -184,13 +184,13 @@ function mul(_this, _other) do
     lo;
     exit = 0;
     exit_1 = 0;
-    if (__this[--[[ hi ]]0] ~= 0 or __this[--[[ lo ]]1] ~= 0) then do
+    if (__this[--[[ hi ]]1] ~= 0 or __this[--[[ lo ]]2] ~= 0) then do
       exit_1 = 3;
     end else do
       return zero;
     end end 
     if (exit_1 == 3) then do
-      if (other[--[[ hi ]]0] ~= 0 or other[--[[ lo ]]1] ~= 0) then do
+      if (other[--[[ hi ]]1] ~= 0 or other[--[[ lo ]]2] ~= 0) then do
         exit = 2;
       end else do
         return zero;
@@ -198,24 +198,24 @@ function mul(_this, _other) do
     end
      end 
     if (exit == 2) then do
-      this_hi = __this[--[[ hi ]]0];
+      this_hi = __this[--[[ hi ]]1];
       exit_2 = 0;
-      if (this_hi ~= -2147483648 or __this[--[[ lo ]]1] ~= 0) then do
+      if (this_hi ~= -2147483648 or __this[--[[ lo ]]2] ~= 0) then do
         exit_2 = 3;
       end else do
-        lo = other[--[[ lo ]]1];
+        lo = other[--[[ lo ]]2];
       end end 
       if (exit_2 == 3) then do
-        other_hi = other[--[[ hi ]]0];
-        lo_1 = __this[--[[ lo ]]1];
+        other_hi = other[--[[ hi ]]1];
+        lo_1 = __this[--[[ lo ]]2];
         exit_3 = 0;
-        if (other_hi ~= -2147483648 or other[--[[ lo ]]1] ~= 0) then do
+        if (other_hi ~= -2147483648 or other[--[[ lo ]]2] ~= 0) then do
           exit_3 = 4;
         end else do
           lo = lo_1;
         end end 
         if (exit_3 == 4) then do
-          other_lo = other[--[[ lo ]]1];
+          other_lo = other[--[[ lo ]]2];
           if (this_hi < 0) then do
             if (other_hi < 0) then do
               _other = neg(other);
@@ -272,8 +272,8 @@ function mul(_this, _other) do
 end end
 
 function swap(param) do
-  hi = Caml_int32.caml_int32_bswap(param[--[[ lo ]]1]);
-  lo = Caml_int32.caml_int32_bswap(param[--[[ hi ]]0]);
+  hi = Caml_int32.caml_int32_bswap(param[--[[ lo ]]2]);
+  lo = Caml_int32.caml_int32_bswap(param[--[[ hi ]]1]);
   return --[[ Int64 ]]{
           --[[ hi ]]hi,
           --[[ lo ]](lo >>> 0)
@@ -282,34 +282,34 @@ end end
 
 function xor(param, param_1) do
   return --[[ Int64 ]]{
-          --[[ hi ]]param[--[[ hi ]]0] ^ param_1[--[[ hi ]]0],
-          --[[ lo ]]((param[--[[ lo ]]1] ^ param_1[--[[ lo ]]1]) >>> 0)
+          --[[ hi ]]param[--[[ hi ]]1] ^ param_1[--[[ hi ]]1],
+          --[[ lo ]]((param[--[[ lo ]]2] ^ param_1[--[[ lo ]]2]) >>> 0)
         };
 end end
 
 function or_(param, param_1) do
   return --[[ Int64 ]]{
-          --[[ hi ]]param[--[[ hi ]]0] | param_1[--[[ hi ]]0],
-          --[[ lo ]]((param[--[[ lo ]]1] | param_1[--[[ lo ]]1]) >>> 0)
+          --[[ hi ]]param[--[[ hi ]]1] | param_1[--[[ hi ]]1],
+          --[[ lo ]]((param[--[[ lo ]]2] | param_1[--[[ lo ]]2]) >>> 0)
         };
 end end
 
 function and_(param, param_1) do
   return --[[ Int64 ]]{
-          --[[ hi ]]param[--[[ hi ]]0] & param_1[--[[ hi ]]0],
-          --[[ lo ]]((param[--[[ lo ]]1] & param_1[--[[ lo ]]1]) >>> 0)
+          --[[ hi ]]param[--[[ hi ]]1] & param_1[--[[ hi ]]1],
+          --[[ lo ]]((param[--[[ lo ]]2] & param_1[--[[ lo ]]2]) >>> 0)
         };
 end end
 
 function ge(param, param_1) do
-  other_hi = param_1[--[[ hi ]]0];
-  hi = param[--[[ hi ]]0];
+  other_hi = param_1[--[[ hi ]]1];
+  hi = param[--[[ hi ]]1];
   if (hi > other_hi) then do
     return true;
   end else if (hi < other_hi) then do
     return false;
   end else do
-    return param[--[[ lo ]]1] >= param_1[--[[ lo ]]1];
+    return param[--[[ lo ]]2] >= param_1[--[[ lo ]]2];
   end end  end 
 end end
 
@@ -322,12 +322,12 @@ function lt(x, y) do
 end end
 
 function gt(param, param_1) do
-  if (param[--[[ hi ]]0] > param_1[--[[ hi ]]0]) then do
+  if (param[--[[ hi ]]1] > param_1[--[[ hi ]]1]) then do
     return true;
-  end else if (param[--[[ hi ]]0] < param_1[--[[ hi ]]0]) then do
+  end else if (param[--[[ hi ]]1] < param_1[--[[ hi ]]1]) then do
     return false;
   end else do
-    return param[--[[ lo ]]1] > param_1[--[[ lo ]]1];
+    return param[--[[ lo ]]2] > param_1[--[[ lo ]]2];
   end end  end 
 end end
 
@@ -352,11 +352,11 @@ function max(x, y) do
 end end
 
 function to_float(param) do
-  return param[--[[ hi ]]0] * 0x100000000 + param[--[[ lo ]]1];
+  return param[--[[ hi ]]1] * 0x100000000 + param[--[[ lo ]]2];
 end end
 
 function of_float(x) do
-  if (isNaN(x) or not isFinite(x)) then do
+  if (__isNaN(x) or not __isFinite(x)) then do
     return zero;
   end else if (x <= -9.22337203685477581e+18) then do
     return min_int;
@@ -380,20 +380,20 @@ function div(_self, _other) do
     self = _self;
     exit = 0;
     exit_1 = 0;
-    if (other[--[[ hi ]]0] ~= 0 or other[--[[ lo ]]1] ~= 0) then do
+    if (other[--[[ hi ]]1] ~= 0 or other[--[[ lo ]]2] ~= 0) then do
       exit_1 = 3;
     end else do
       error(Caml_builtin_exceptions.division_by_zero)
     end end 
     if (exit_1 == 3) then do
-      match = self[--[[ hi ]]0];
+      match = self[--[[ hi ]]1];
       if (match ~= -2147483648) then do
-        if (match ~= 0 or self[--[[ lo ]]1] ~= 0) then do
+        if (match ~= 0 or self[--[[ lo ]]2] ~= 0) then do
           exit = 2;
         end else do
           return zero;
         end end 
-      end else if (self[--[[ lo ]]1] ~= 0) then do
+      end else if (self[--[[ lo ]]2] ~= 0) then do
         exit = 2;
       end else if (eq(other, one) or eq(other, neg_one)) then do
         return self;
@@ -403,9 +403,9 @@ function div(_self, _other) do
         half_this = asr_(self, 1);
         approx = lsl_(div(half_this, other), 1);
         exit_2 = 0;
-        if (approx[--[[ hi ]]0] ~= 0 or approx[--[[ lo ]]1] ~= 0) then do
+        if (approx[--[[ hi ]]1] ~= 0 or approx[--[[ lo ]]2] ~= 0) then do
           exit_2 = 4;
-        end else if (other[--[[ hi ]]0] < 0) then do
+        end else if (other[--[[ hi ]]1] < 0) then do
           return one;
         end else do
           return neg(one);
@@ -419,12 +419,12 @@ function div(_self, _other) do
       end end  end  end  end 
     end
      end 
-    if (exit == 2 and other[--[[ hi ]]0] == -2147483648 and other[--[[ lo ]]1] == 0) then do
+    if (exit == 2 and other[--[[ hi ]]1] == -2147483648 and other[--[[ lo ]]2] == 0) then do
       return zero;
     end
      end 
-    other_hi = other[--[[ hi ]]0];
-    if (self[--[[ hi ]]0] < 0) then do
+    other_hi = other[--[[ hi ]]1];
+    if (self[--[[ hi ]]1] < 0) then do
       if (other_hi < 0) then do
         _other = neg(other);
         _self = neg(self);
@@ -438,12 +438,12 @@ function div(_self, _other) do
       res = zero;
       rem_1 = self;
       while(ge(rem_1, other)) do
-        approx_1 = Caml_primitive.caml_float_max(1, Math.floor(to_float(rem_1) / to_float(other)));
-        log2 = Math.ceil(Math.log(approx_1) / Math.LN2);
-        delta = log2 <= 48 and 1 or Math.pow(2, log2 - 48);
+        approx_1 = Caml_primitive.caml_float_max(1, __Math.floor(to_float(rem_1) / to_float(other)));
+        log2 = __Math.ceil(__Math.log(approx_1) / __Math.LN2);
+        delta = log2 <= 48 and 1 or __Math.pow(2, log2 - 48);
         approxRes = of_float(approx_1);
         approxRem = mul(approxRes, other);
-        while(approxRem[--[[ hi ]]0] < 0 or gt(approxRem, rem_1)) do
+        while(approxRem[--[[ hi ]]1] < 0 or gt(approxRem, rem_1)) do
           approx_1 = approx_1 - delta;
           approxRes = of_float(approx_1);
           approxRem = mul(approxRes, other);
@@ -475,9 +475,9 @@ function div_mod(self, other) do
 end end
 
 function compare(param, param_1) do
-  v = Caml_primitive.caml_nativeint_compare(param[--[[ hi ]]0], param_1[--[[ hi ]]0]);
+  v = Caml_primitive.caml_nativeint_compare(param[--[[ hi ]]1], param_1[--[[ hi ]]1]);
   if (v == 0) then do
-    return Caml_primitive.caml_nativeint_compare(param[--[[ lo ]]1], param_1[--[[ lo ]]1]);
+    return Caml_primitive.caml_nativeint_compare(param[--[[ lo ]]2], param_1[--[[ lo ]]2]);
   end else do
     return v;
   end end 
@@ -491,12 +491,12 @@ function of_int32(lo) do
 end end
 
 function to_int32(param) do
-  return param[--[[ lo ]]1] | 0;
+  return param[--[[ lo ]]2] | 0;
 end end
 
 function to_hex(x) do
-  x_lo = x[--[[ lo ]]1];
-  x_hi = x[--[[ hi ]]0];
+  x_lo = x[--[[ lo ]]2];
+  x_hi = x[--[[ hi ]]1];
   aux = function(v) do
     return (v >>> 0).toString(16);
   end end;
@@ -523,20 +523,20 @@ end end
 
 function discard_sign(x) do
   return --[[ Int64 ]]{
-          --[[ hi ]]2147483647 & x[--[[ hi ]]0],
-          --[[ lo ]]x[--[[ lo ]]1]
+          --[[ hi ]]2147483647 & x[--[[ hi ]]1],
+          --[[ lo ]]x[--[[ lo ]]2]
         };
 end end
 
 function float_of_bits(param) do
-  return (function(lo,hi){ return (new Float64Array(new Int32Array([lo,hi]).buffer))[0]})(param[--[[ lo ]]1], param[--[[ hi ]]0]);
+  return (function(lo,hi){ return (new Float64Array(new Int32Array([lo,hi]).buffer))[0]})(param[--[[ lo ]]2], param[--[[ hi ]]1]);
 end end
 
 function bits_of_float(x) do
   buf = (function(x){return new Int32Array(new Float64Array([x]).buffer)})(x);
   return --[[ Int64 ]]{
-          --[[ hi ]]buf[1],
-          --[[ lo ]](buf[0] >>> 0)
+          --[[ hi ]]buf[2],
+          --[[ lo ]](buf[1] >>> 0)
         };
 end end
 

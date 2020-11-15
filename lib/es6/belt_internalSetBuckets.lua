@@ -1,7 +1,7 @@
 
 
-import * as Curry from "./curry.lua";
-import * as Belt_Array from "./belt_Array.lua";
+local Curry = require "..curry.lua";
+local Belt_Array = require "..belt_Array.lua";
 
 function copyAuxCont(_c, _prec) do
   while(true) do
@@ -37,7 +37,7 @@ end end
 
 function copyBuckets(buckets) do
   len = #buckets;
-  newBuckets = new Array(len);
+  newBuckets = new __Array(len);
   for i = 0 , len - 1 | 0 , 1 do
     newBuckets[i] = copyBucket(buckets[i]);
   end
@@ -111,7 +111,7 @@ end end
 function toArray(h) do
   d = h.buckets;
   current = 0;
-  arr = new Array(h.size);
+  arr = new __Array(h.size);
   for i = 0 , #d - 1 | 0 , 1 do
     cell = d[i];
     if (cell ~= nil) then do
@@ -175,7 +175,7 @@ end end
 
 function logStats(h) do
   histogram = getBucketHistogram(h);
-  console.log({
+  __console.log({
         bindings = h.size,
         buckets = #h.buckets,
         histogram = histogram

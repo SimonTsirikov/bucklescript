@@ -1,4 +1,4 @@
-console = {log = print};
+__console = {log = print};
 
 
 function binarySearch(upper, id, array) do
@@ -10,14 +10,14 @@ function binarySearch(upper, id, array) do
     upper_1 = _upper;
     lower = _lower;
     if (lower >= upper_1) then do
-      error(new Error("binarySearchAux"))
+      error(new __Error("binarySearchAux"))
     end
      end 
     mid = (lower + upper_1 | 0) / 2 | 0;
     match = xs[mid];
-    i = match[0];
+    i = match[1];
     if (i == k) then do
-      return match[1];
+      return match[2];
     end else if (i < k) then do
       _lower = mid + 1 | 0;
       ::continue:: ;
@@ -39,8 +39,8 @@ function revSearch(len, array, x) do
       return ;
     end else do
       match = xs[i];
-      if (match[1] == k) then do
-        return match[0];
+      if (match[2] == k) then do
+        return match[1];
       end else do
         _i = i + 1 | 0;
         ::continue:: ;
@@ -57,12 +57,12 @@ function revSearchAssert(len, array, x) do
   while(true) do
     i = _i;
     if (i >= len_1) then do
-      error(new Error("File \"js_mapperRt.ml\", line 63, characters 4-10"))
+      error(new __Error("File \"js_mapperRt.ml\", line 63, characters 4-10"))
     end
      end 
     match = xs[i];
-    if (match[1] == k) then do
-      return match[0];
+    if (match[2] == k) then do
+      return match[1];
     end else do
       _i = i + 1 | 0;
       ::continue:: ;
@@ -103,7 +103,7 @@ function fromIntAssert(len, xs, __enum) do
   while(true) do
     i = _i;
     if (i >= len_1) then do
-      error(new Error("File \"js_mapperRt.ml\", line 87, characters 4-10"))
+      error(new __Error("File \"js_mapperRt.ml\", line 87, characters 4-10"))
     end
      end 
     k = xs_1[i];
@@ -116,11 +116,12 @@ function fromIntAssert(len, xs, __enum) do
   end;
 end end
 
-exports = {}
+exports = {};
 exports.binarySearch = binarySearch;
 exports.revSearch = revSearch;
 exports.revSearchAssert = revSearchAssert;
 exports.toInt = toInt;
 exports.fromInt = fromInt;
 exports.fromIntAssert = fromIntAssert;
+return exports;
 --[[ No side effect ]]

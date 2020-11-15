@@ -1,14 +1,14 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Oo = require "../../lib/js/oo";
-Block = require "../../lib/js/block";
-Curry = require "../../lib/js/curry";
-Caml_obj = require "../../lib/js/caml_obj";
-Caml_option = require "../../lib/js/caml_option";
-Caml_oo_curry = require "../../lib/js/caml_oo_curry";
-CamlinternalOO = require "../../lib/js/camlinternalOO";
-Caml_exceptions = require "../../lib/js/caml_exceptions";
+Mt = require "..mt";
+Oo = require "......lib.js.oo";
+Block = require "......lib.js.block";
+Curry = require "......lib.js.curry";
+Caml_obj = require "......lib.js.caml_obj";
+Caml_option = require "......lib.js.caml_option";
+Caml_oo_curry = require "......lib.js.caml_oo_curry";
+CamlinternalOO = require "......lib.js.camlinternalOO";
+Caml_exceptions = require "......lib.js.caml_exceptions";
 
 shared = {"window"};
 
@@ -45,7 +45,7 @@ function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[[ :: ]]{
     --[[ tuple ]]{
-      loc .. (" id " .. String(test_id.contents)),
+      loc .. (" id " .. __String(test_id.contents)),
       (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     x,
@@ -61,17 +61,17 @@ end end
 function point_init(__class) do
   x_init = CamlinternalOO.new_variable(__class, "");
   ids = CamlinternalOO.new_methods_variables(__class, shared_4, shared_2);
-  move = ids[0];
-  get_x = ids[1];
-  x = ids[2];
+  move = ids[1];
+  get_x = ids[2];
+  x = ids[3];
   CamlinternalOO.set_methods(__class, {
         get_x,
-        (function(self$1) do
-            return self$1[x];
+        (function(self_1) do
+            return self_1[x];
           end end),
         move,
-        (function(self$1, d) do
-            self$1[x] = self$1[x] + d | 0;
+        (function(self_1, d) do
+            self_1[x] = self_1[x] + d | 0;
             return --[[ () ]]0;
           end end)
       });
@@ -85,7 +85,7 @@ end end
 
 point = CamlinternalOO.make_class(shared_4, point_init);
 
-p = Curry._2(point[0], 0, 55);
+p = Curry._2(point[1], 0, 55);
 
 q = Oo.copy(p);
 
@@ -105,17 +105,17 @@ function ref_init(__class) do
         "set",
         "get"
       }, shared_2);
-  set = ids[0];
-  get = ids[1];
-  x = ids[2];
+  set = ids[1];
+  get = ids[2];
+  x = ids[3];
   CamlinternalOO.set_methods(__class, {
         get,
-        (function(self$2) do
-            return self$2[x];
+        (function(self_2) do
+            return self_2[x];
           end end),
         set,
-        (function(self$2, y) do
-            self$2[x] = y;
+        (function(self_2, y) do
+            self_2[x] = y;
             return --[[ () ]]0;
           end end)
       });
@@ -131,23 +131,23 @@ ref = CamlinternalOO.make_class(shared_6, ref_init);
 
 function backup_init(__class) do
   ids = CamlinternalOO.new_methods_variables(__class, shared_5, shared_3);
-  save = ids[0];
-  restore = ids[1];
-  copy = ids[2];
+  save = ids[1];
+  restore = ids[2];
+  copy = ids[3];
   CamlinternalOO.set_methods(__class, {
         save,
-        (function(self$3) do
-            copy_1 = Caml_exceptions.caml_set_oo_id(Caml_obj.caml_obj_dup(self$3));
-            self$3[copy] = Caml_option.some((copy_1[copy] = nil, copy_1));
+        (function(self_3) do
+            copy_1 = Caml_exceptions.caml_set_oo_id(Caml_obj.caml_obj_dup(self_3));
+            self_3[copy] = Caml_option.some((copy_1[copy] = nil, copy_1));
             return --[[ () ]]0;
           end end),
         restore,
-        (function(self$3) do
-            match = self$3[copy];
+        (function(self_3) do
+            match = self_3[copy];
             if (match ~= nil) then do
               return Caml_option.valFromOption(match);
             end else do
-              return self$3;
+              return self_3;
             end end 
           end end)
       });
@@ -163,12 +163,12 @@ backup = CamlinternalOO.make_class(shared_5, backup_init);
 function backup_ref_init(__class) do
   x = CamlinternalOO.new_variable(__class, "");
   inh = CamlinternalOO.inherits(__class, shared_2, 0, shared_6, ref, true);
-  obj_init = inh[0];
+  obj_init = inh[1];
   inh_1 = CamlinternalOO.inherits(__class, shared_3, 0, {
         "restore",
         "save"
       }, backup, true);
-  obj_init_1 = inh_1[0];
+  obj_init_1 = inh_1[1];
   return (function(env, self, x_1) do
       self_1 = CamlinternalOO.create_object_opt(self, __class);
       self_1[x] = x_1;
@@ -199,7 +199,7 @@ function get(_p, _n) do
   end;
 end end
 
-p_1 = Curry._2(backup_ref[0], 0, 0);
+p_1 = Curry._2(backup_ref[1], 0, 0);
 
 Caml_oo_curry.js1(-867333315, 8, p_1);
 
@@ -229,28 +229,28 @@ function backup2_init(__class) do
         "restore",
         "clear"
       }, shared_3);
-  save = ids[0];
-  restore = ids[1];
-  clear = ids[2];
-  copy = ids[3];
+  save = ids[1];
+  restore = ids[2];
+  clear = ids[3];
+  copy = ids[4];
   CamlinternalOO.set_methods(__class, {
         save,
-        (function(self$5) do
-            self$5[copy] = Caml_option.some(Caml_exceptions.caml_set_oo_id(Caml_obj.caml_obj_dup(self$5)));
+        (function(self_5) do
+            self_5[copy] = Caml_option.some(Caml_exceptions.caml_set_oo_id(Caml_obj.caml_obj_dup(self_5)));
             return --[[ () ]]0;
           end end),
         restore,
-        (function(self$5) do
-            match = self$5[copy];
+        (function(self_5) do
+            match = self_5[copy];
             if (match ~= nil) then do
               return Caml_option.valFromOption(match);
             end else do
-              return self$5;
+              return self_5;
             end end 
           end end),
         clear,
-        (function(self$5) do
-            self$5[copy] = nil;
+        (function(self_5) do
+            self_5[copy] = nil;
             return --[[ () ]]0;
           end end)
       });
@@ -270,13 +270,13 @@ backup2 = CamlinternalOO.make_class({
 function backup_ref2_init(__class) do
   x = CamlinternalOO.new_variable(__class, "");
   inh = CamlinternalOO.inherits(__class, shared_2, 0, shared_6, ref, true);
-  obj_init = inh[0];
+  obj_init = inh[1];
   inh_1 = CamlinternalOO.inherits(__class, shared_3, 0, {
         "clear",
         "restore",
         "save"
       }, backup2, true);
-  obj_init_1 = inh_1[0];
+  obj_init_1 = inh_1[1];
   return (function(env, self, x_1) do
       self_1 = CamlinternalOO.create_object_opt(self, __class);
       self_1[x] = x_1;
@@ -294,7 +294,7 @@ backup_ref2 = CamlinternalOO.make_class({
       "set"
     }, backup_ref2_init);
 
-p_2 = Curry._2(backup_ref2[0], 0, 0);
+p_2 = Curry._2(backup_ref2[1], 0, 0);
 
 Caml_oo_curry.js1(-867333315, 12, p_2);
 
@@ -320,10 +320,10 @@ eq("File \"class7_test.ml\", line 63, characters 5-12", {
 
 function window_init(__class) do
   ids = CamlinternalOO.new_methods_variables(__class, shared_1, shared_1);
-  top_widget = ids[0];
-  top_widget_1 = ids[1];
-  CamlinternalOO.set_method(__class, top_widget, (function(self$7) do
-          return self$7[top_widget_1];
+  top_widget = ids[1];
+  top_widget_1 = ids[2];
+  CamlinternalOO.set_method(__class, top_widget, (function(self_7) do
+          return self_7[top_widget_1];
         end end));
   return (function(env, self) do
       self_1 = CamlinternalOO.create_object_opt(self, __class);
@@ -337,10 +337,10 @@ __window = CamlinternalOO.make_class(shared_1, window_init);
 function widget_init(__class) do
   w = CamlinternalOO.new_variable(__class, "");
   ids = CamlinternalOO.new_methods_variables(__class, shared, shared);
-  __window = ids[0];
-  __window_1 = ids[1];
-  CamlinternalOO.set_method(__class, __window, (function(self$8) do
-          return self$8[__window_1];
+  __window = ids[1];
+  __window_1 = ids[2];
+  CamlinternalOO.set_method(__class, __window, (function(self_8) do
+          return self_8[__window_1];
         end end));
   return (function(env, self, w_1) do
       self_1 = CamlinternalOO.create_object_opt(self, __class);
@@ -354,7 +354,7 @@ widget = CamlinternalOO.make_class(shared, widget_init);
 
 Mt.from_pair_suites("Class7_test", suites.contents);
 
-exports = {}
+exports = {};
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
@@ -367,4 +367,5 @@ exports.backup2 = backup2;
 exports.backup_ref2 = backup_ref2;
 exports.__window = __window;
 exports.widget = widget;
+return exports;
 --[[ point Not a pure module ]]

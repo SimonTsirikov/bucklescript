@@ -1,6 +1,6 @@
-console = {log = print};
+__console = {log = print};
 
-Curry = require "../../lib/js/curry";
+Curry = require "......lib.js.curry";
 
 function u(x, x_1) do
   return x_1 + x_1 | 0;
@@ -11,7 +11,8 @@ function f(g, x) do
   return u + u | 0;
 end end
 
-exports = {}
+exports = {};
 exports.u = u;
 exports.f = f;
+return exports;
 --[[ No side effect ]]

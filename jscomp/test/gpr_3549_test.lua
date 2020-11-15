@@ -1,6 +1,6 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
+Mt = require "..mt";
 
 suites = {
   contents = --[[ [] ]]0
@@ -48,7 +48,7 @@ y = 2e3;
 
 z = 0.2;
 
-exports = {}
+exports = {};
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
@@ -57,4 +57,5 @@ exports.x = x;
 exports.y = y;
 exports.z = z;
 exports.others = others;
+return exports;
 --[[  Not a pure module ]]

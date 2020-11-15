@@ -1,8 +1,8 @@
-console = {log = print};
+__console = {log = print};
 
-Curry = require "../../lib/js/curry";
+Curry = require "......lib.js.curry";
 
-function $pipe$great(x, f) do
+function _pipe_great(x, f) do
   return Curry._1(f, x);
 end end
 
@@ -54,8 +54,8 @@ function fff(_x, _y) do
   end;
 end end
 
-exports = {}
-exports.$pipe$great = $pipe$great;
+exports = {};
+exports._pipe_great = _pipe_great;
 exports.hello1 = hello1;
 exports.hello2 = hello2;
 exports.hello3 = hello3;
@@ -64,4 +64,5 @@ exports.hello5 = hello5;
 exports.f = f;
 exports.ff = ff;
 exports.fff = fff;
+return exports;
 --[[ No side effect ]]

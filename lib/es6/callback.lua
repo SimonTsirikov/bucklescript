@@ -1,6 +1,6 @@
 
 
-import * as Obj from "./obj.lua";
+local Obj = require "..obj.lua";
 
 function register(name, v) do
   return --[[ () ]]0;

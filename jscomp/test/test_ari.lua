@@ -1,9 +1,9 @@
-console = {log = print};
+__console = {log = print};
 
-U = require "";
-VV = require "";
-List = require "../../lib/js/list";
-Curry = require "../../lib/js/curry";
+U = require "U";
+VV = require "VV";
+List = require "......lib.js.list";
+Curry = require "......lib.js.curry";
 
 function f(x) do
   return (function(param) do
@@ -36,7 +36,7 @@ function length_aux(_len, _param) do
     param = _param;
     len = _len;
     if (param) then do
-      _param = param[1];
+      _param = param[2];
       _len = len + 1 | 0;
       ::continue:: ;
     end else do
@@ -149,7 +149,7 @@ sort_uniq = List.sort_uniq;
 
 merge = List.merge;
 
-exports = {}
+exports = {};
 exports.f = f;
 exports.f1 = f1;
 exports.f3 = f3;
@@ -210,4 +210,5 @@ exports.stable_sort = stable_sort;
 exports.fast_sort = fast_sort;
 exports.sort_uniq = sort_uniq;
 exports.merge = merge;
+return exports;
 --[[ fff Not a pure module ]]

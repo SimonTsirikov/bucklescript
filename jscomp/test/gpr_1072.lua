@@ -1,4 +1,4 @@
-console = {log = print};
+__console = {log = print};
 
 
 u = {
@@ -171,7 +171,7 @@ again4(nil, (side_effect.contents = side_effect.contents - 1 | 0, --[[ () ]]0), 
 
 again4((side_effect.contents = side_effect.contents + 1 | 0, --[[ () ]]0), --[[ () ]]0, 174);
 
-exports = {}
+exports = {};
 exports.u = u;
 exports.v_ice_cream3 = v_ice_cream3;
 exports.v_ice_cream4 = v_ice_cream4;
@@ -189,4 +189,5 @@ exports.v_mk6_1 = v_mk6_1;
 exports.mk_u = mk_u;
 exports.v_mk7 = v_mk7;
 exports.side_effect = side_effect;
+return exports;
 --[[  Not a pure module ]]

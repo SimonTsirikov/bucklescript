@@ -1,8 +1,8 @@
 
 
-import * as Caml_format from "./caml_format.lua";
-import * as Caml_primitive from "./caml_primitive.lua";
-import * as Caml_builtin_exceptions from "./caml_builtin_exceptions.lua";
+local Caml_format = require "..caml_format.lua";
+local Caml_primitive = require "..caml_primitive.lua";
+local Caml_builtin_exceptions = require "..caml_builtin_exceptions.lua";
 
 function err_not_sv(i) do
   return Caml_format.caml_format_int("%X", i) .. " is not an Unicode scalar value";

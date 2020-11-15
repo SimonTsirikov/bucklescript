@@ -1,4 +1,4 @@
-console = {log = print};
+__console = {log = print};
 
 
 N = {
@@ -15,11 +15,12 @@ g = 3;
 
 gg = 4;
 
-exports = {}
+exports = {};
 exports.N = N;
 exports.v = v;
 exports.u = u;
 exports.h = h;
 exports.g = g;
 exports.gg = gg;
+return exports;
 --[[ No side effect ]]

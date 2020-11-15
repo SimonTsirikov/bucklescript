@@ -1,4 +1,4 @@
-console = {log = print};
+__console = {log = print};
 
 
 function u(x, y) do
@@ -15,16 +15,17 @@ hh = max2(1, 2);
 
 function f(x) do
   des(x, (function() do
-          console.log("hei");
+          __console.log("hei");
           return --[[ () ]]0;
         end end));
   return --[[ () ]]0;
 end end
 
-exports = {}
+exports = {};
 exports.u = u;
 exports.h = h;
 exports.max2 = max2;
 exports.hh = hh;
 exports.f = f;
+return exports;
 --[[ h Not a pure module ]]

@@ -1,9 +1,9 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Block = require "../../lib/js/block";
-Caml_int64 = require "../../lib/js/caml_int64";
-Caml_string = require "../../lib/js/caml_string";
+Mt = require "..mt";
+Block = require "......lib.js.block";
+Caml_int64 = require "......lib.js.caml_int64";
+Caml_string = require "......lib.js.caml_string";
 
 Mt.from_pair_suites("String_get_set_test", --[[ :: ]]{
       --[[ tuple ]]{
@@ -90,5 +90,6 @@ Mt.from_pair_suites("String_get_set_test", --[[ :: ]]{
       }
     });
 
-exports = {}
+exports = {};
+return exports;
 --[[  Not a pure module ]]

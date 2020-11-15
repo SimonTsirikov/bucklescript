@@ -1,14 +1,15 @@
-console = {log = print};
+__console = {log = print};
 
-__Buffer = require "../../lib/js/buffer";
+__Buffer = require "......lib.js.buffer";
 
 foo = __Buffer.contents;
 
 function bar(str) do
-  return Buffer.from(str);
+  return __Buffer.from(str);
 end end
 
-exports = {}
+exports = {};
 exports.foo = foo;
 exports.bar = bar;
+return exports;
 --[[ No side effect ]]

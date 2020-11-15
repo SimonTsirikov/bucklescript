@@ -1,8 +1,8 @@
 
 
-import * as __Map from "./map.lua";
-import * as __Set from "./set.lua";
-import * as Hashtbl from "./hashtbl.lua";
+local __Map = require "..map.lua";
+local __Set = require "..set.lua";
+local Hashtbl = require "..hashtbl.lua";
 
 Hashtbl_1 = Hashtbl;
 

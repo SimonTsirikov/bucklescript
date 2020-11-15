@@ -1,16 +1,16 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-__Array = require "../../lib/js/array";
-Block = require "../../lib/js/block";
-Curry = require "../../lib/js/curry";
-Int64 = require "../../lib/js/int64";
-__Buffer = require "../../lib/js/buffer";
-Format = require "../../lib/js/format";
-Printf = require "../../lib/js/printf";
-Caml_int64 = require "../../lib/js/caml_int64";
-Pervasives = require "../../lib/js/pervasives";
-Caml_format = require "../../lib/js/caml_format";
+Mt = require "..mt";
+__Array = require "......lib.js.array";
+Block = require "......lib.js.block";
+Curry = require "......lib.js.curry";
+Int64 = require "......lib.js.int64";
+__Buffer = require "......lib.js.buffer";
+Format = require "......lib.js.format";
+Printf = require "......lib.js.printf";
+Caml_int64 = require "......lib.js.caml_int64";
+Pervasives = require "......lib.js.pervasives";
+Caml_format = require "......lib.js.caml_format";
 
 of_string = {
   --[[ tuple ]]{
@@ -91,8 +91,8 @@ end end
 
 function from_of_string(xs) do
   return __Array.to_list(__Array.mapi((function(i, param) do
-                    b = param[1];
-                    a = param[0];
+                    b = param[2];
+                    a = param[1];
                     return --[[ tuple ]]{
                             Curry._1(Printf.sprintf(--[[ Format ]]{
                                       --[[ String_literal ]]Block.__(11, {
@@ -182,7 +182,7 @@ pairs_1 = {
   }
 };
 
-suites = Pervasives.$at(from_of_string(of_string), Pervasives.$at(--[[ :: ]]{
+suites = Pervasives._at(from_of_string(of_string), Pervasives._at(--[[ :: ]]{
           --[[ tuple ]]{
             "isnan_of_string",
             (function(param) do
@@ -193,9 +193,9 @@ suites = Pervasives.$at(from_of_string(of_string), Pervasives.$at(--[[ :: ]]{
               end end)
           },
           --[[ [] ]]0
-        }, Pervasives.$at(__Array.to_list(__Array.mapi((function(i, param) do
-                        b = param[1];
-                        a = param[0];
+        }, Pervasives._at(__Array.to_list(__Array.mapi((function(i, param) do
+                        b = param[2];
+                        a = param[1];
                         return --[[ tuple ]]{
                                 Curry._1(Printf.sprintf(--[[ Format ]]{
                                           --[[ String_literal ]]Block.__(11, {
@@ -216,7 +216,7 @@ suites = Pervasives.$at(from_of_string(of_string), Pervasives.$at(--[[ :: ]]{
                                             });
                                   end end)
                               };
-                      end end), pairs)), Pervasives.$at(--[[ :: ]]{
+                      end end), pairs)), Pervasives._at(--[[ :: ]]{
                   --[[ tuple ]]{
                     "throw",
                     (function(param) do
@@ -239,8 +239,8 @@ suites = Pervasives.$at(from_of_string(of_string), Pervasives.$at(--[[ :: ]]{
                     --[[ [] ]]0
                   }
                 }, __Array.to_list(__Array.mapi((function(i, param) do
-                            b = param[1];
-                            a = param[0];
+                            b = param[2];
+                            a = param[1];
                             return --[[ tuple ]]{
                                     Curry._1(Printf.sprintf(--[[ Format ]]{
                                               --[[ String_literal ]]Block.__(11, {
@@ -271,7 +271,7 @@ formatter_suites_000 = --[[ tuple ]]{
   "fmt_concat",
   (function(param) do
       return --[[ Eq ]]Block.__(0, {
-                Curry._6(Format.asprintf(Pervasives.$caret$caret(--[[ Format ]]{
+                Curry._6(Format.asprintf(Pervasives._caret_caret(--[[ Format ]]{
                               --[[ String ]]Block.__(2, {
                                   --[[ No_padding ]]0,
                                   --[[ Char_literal ]]Block.__(12, {
@@ -328,7 +328,7 @@ formatter_suites_001 = --[[ :: ]]{
     "fmt_gen",
     (function(param) do
         return --[[ Eq ]]Block.__(0, {
-                  Curry._8(Format.asprintf(Pervasives.$caret$caret(--[[ Format ]]{
+                  Curry._8(Format.asprintf(Pervasives._caret_caret(--[[ Format ]]{
                                 --[[ String ]]Block.__(2, {
                                     --[[ No_padding ]]0,
                                     --[[ Char_literal ]]Block.__(12, {
@@ -1316,7 +1316,7 @@ float_data = {
   },
   --[[ tuple ]]{
     "%f",
-    Number.NaN,
+    __Number.__NaN,
     "nan"
   },
   --[[ tuple ]]{
@@ -1443,7 +1443,7 @@ function pr_exp0(ppf, lam) do
         return Curry._2(Format.fprintf(ppf, --[[ Format ]]{
                         --[[ Alpha ]]Block.__(15, {--[[ End_of_format ]]0}),
                         "%a"
-                      }), ident, lam[0]); end end 
+                      }), ident, lam[1]); end end 
      if ___conditional___ == 0--[[ Lambda ]]
      or ___conditional___ == 2--[[ Apply ]]
      end
@@ -1509,7 +1509,7 @@ function pr_other_applications(ppf, f) do
                                 --[[ Alpha ]]Block.__(15, {--[[ End_of_format ]]0})
                               })}),
                         "%a@ %a"
-                      }), pr_app, f[0], pr_exp0, f[1]); end end 
+                      }), pr_app, f[1], pr_exp0, f[2]); end end 
     
   end
 end end
@@ -1540,7 +1540,7 @@ function pr_lambda(ppf, e) do
                                           })})})})
                           }),
                         "@[<1>%a%a%a@ %a@]"
-                      }), kwd, "\\", ident, e[0], kwd, ".", pr_lambda, e[1]); end end 
+                      }), kwd, "\\", ident, e[1], kwd, ".", pr_lambda, e[2]); end end 
      if ___conditional___ == 1--[[ Var ]]
      or ___conditional___ == 2--[[ Apply ]] then do
         return pr_app(ppf, e); end end 
@@ -1602,8 +1602,8 @@ lambda_suites = {
 
 function from_lambda_pairs(p) do
   return __Array.to_list(__Array.mapi((function(i, param) do
-                    b = param[1];
-                    a = param[0];
+                    b = param[2];
+                    a = param[1];
                     return --[[ tuple ]]{
                             Curry._1(Printf.sprintf(--[[ Format ]]{
                                       --[[ String_literal ]]Block.__(11, {
@@ -2337,10 +2337,10 @@ of_string_data = {
   }
 };
 
-Mt.from_pair_suites("Caml_format_test", Pervasives.$at(suites, Pervasives.$at(formatter_suites, Pervasives.$at(from_lambda_pairs(lambda_suites), Pervasives.$at(ksprintf_suites, Pervasives.$at(__Array.to_list(__Array.mapi((function(i, param) do
-                                    str_result = param[2];
-                                    f = param[1];
-                                    fmt = param[0];
+Mt.from_pair_suites("Caml_format_test", Pervasives._at(suites, Pervasives._at(formatter_suites, Pervasives._at(from_lambda_pairs(lambda_suites), Pervasives._at(ksprintf_suites, Pervasives._at(__Array.to_list(__Array.mapi((function(i, param) do
+                                    str_result = param[3];
+                                    f = param[2];
+                                    fmt = param[1];
                                     return --[[ tuple ]]{
                                             Curry._1(Printf.sprintf(--[[ Format ]]{
                                                       --[[ String_literal ]]Block.__(11, {
@@ -2361,9 +2361,9 @@ Mt.from_pair_suites("Caml_format_test", Pervasives.$at(suites, Pervasives.$at(fo
                                                         });
                                               end end)
                                           };
-                                  end end), float_data)), Pervasives.$at(int64_suites, __Array.to_list(__Array.mapi((function(i, param) do
-                                        b = param[1];
-                                        a = param[0];
+                                  end end), float_data)), Pervasives._at(int64_suites, __Array.to_list(__Array.mapi((function(i, param) do
+                                        b = param[2];
+                                        a = param[1];
                                         return --[[ tuple ]]{
                                                 Curry._1(Printf.sprintf(--[[ Format ]]{
                                                           --[[ String_literal ]]Block.__(11, {
@@ -2406,7 +2406,7 @@ hhh = --[[ int64 ]]{
   --[[ lo ]]0
 };
 
-exports = {}
+exports = {};
 exports.of_string = of_string;
 exports.from_float_of_string = from_float_of_string;
 exports.from_of_string = from_of_string;
@@ -2427,4 +2427,5 @@ exports.int64_suites = int64_suites;
 exports.hh = hh;
 exports.hhh = hhh;
 exports.of_string_data = of_string_data;
+return exports;
 --[[ v Not a pure module ]]

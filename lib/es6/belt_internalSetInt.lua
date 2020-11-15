@@ -1,7 +1,7 @@
 
 
-import * as Belt_SortArrayInt from "./belt_SortArrayInt.lua";
-import * as Belt_internalAVLset from "./belt_internalAVLset.lua";
+local Belt_SortArrayInt = require "..belt_SortArrayInt.lua";
+local Belt_internalAVLset = require "..belt_internalAVLset.lua";
 
 function has(_t, x) do
   while(true) do
@@ -25,13 +25,13 @@ function compareAux(_e1, _e2) do
     e2 = _e2;
     e1 = _e1;
     if (e1 and e2) then do
-      h2 = e2[0];
-      h1 = e1[0];
+      h2 = e2[1];
+      h1 = e1[1];
       k1 = h1.value;
       k2 = h2.value;
       if (k1 == k2) then do
-        _e2 = Belt_internalAVLset.stackAllLeft(h2.right, e2[1]);
-        _e1 = Belt_internalAVLset.stackAllLeft(h1.right, e1[1]);
+        _e2 = Belt_internalAVLset.stackAllLeft(h2.right, e2[2]);
+        _e1 = Belt_internalAVLset.stackAllLeft(h1.right, e1[2]);
         ::continue:: ;
       end else if (k1 < k2) then do
         return -1;
@@ -148,7 +148,7 @@ function getExn(_n, x) do
         ::continue:: ;
       end end 
     end else do
-      error(new Error("getExn"))
+      error(new __Error("getExn"))
     end end 
   end;
 end end

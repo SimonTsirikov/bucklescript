@@ -1,16 +1,16 @@
-console = {log = print};
+__console = {log = print};
 
-Sys = require "./sys";
-__Array = require "./array";
-Curry = require "./curry";
-Caml_obj = require "./caml_obj";
-Caml_weak = require "./caml_weak";
-Caml_array = require "./caml_array";
-Caml_int32 = require "./caml_int32";
-Pervasives = require "./pervasives";
-Caml_option = require "./caml_option";
-Caml_primitive = require "./caml_primitive";
-Caml_builtin_exceptions = require "./caml_builtin_exceptions";
+Sys = require "..sys";
+__Array = require "..array";
+Curry = require "..curry";
+Caml_obj = require "..caml_obj";
+Caml_weak = require "..caml_weak";
+Caml_array = require "..caml_array";
+Caml_int32 = require "..caml_int32";
+Pervasives = require "..pervasives";
+Caml_option = require "..caml_option";
+Caml_primitive = require "..caml_primitive";
+Caml_builtin_exceptions = require "..caml_builtin_exceptions";
 
 function fill(ar, ofs, len, x) do
   if (ofs < 0 or len < 0 or (ofs + len | 0) > #ar) then do
@@ -481,7 +481,7 @@ check = Caml_weak.caml_weak_check;
 
 blit = Caml_weak.caml_weak_blit;
 
-exports = {}
+exports = {};
 exports.create = create;
 exports.length = length;
 exports.set = set;
@@ -491,4 +491,5 @@ exports.check = check;
 exports.fill = fill;
 exports.blit = blit;
 exports.Make = Make;
+return exports;
 --[[ No side effect ]]

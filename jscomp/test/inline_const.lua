@@ -1,9 +1,9 @@
-console = {log = print};
+__console = {log = print};
 
 
 N = { };
 
-function N1($star) do
+function N1(_star) do
   return { };
 end end
 
@@ -13,10 +13,11 @@ h = "hello";
 
 hh = "hellohello";
 
-exports = {}
+exports = {};
 exports.x = x;
 exports.N = N;
 exports.N1 = N1;
 exports.h = h;
 exports.hh = hh;
+return exports;
 --[[ No side effect ]]

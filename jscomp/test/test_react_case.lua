@@ -1,10 +1,11 @@
-console = {log = print};
+__console = {log = print};
 
 
 function v(prim) do
   return { };
 end end
 
-exports = {}
+exports = {};
 exports.v = v;
+return exports;
 --[[ No side effect ]]

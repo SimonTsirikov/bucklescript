@@ -1,4 +1,4 @@
-console = {log = print};
+__console = {log = print};
 
 
 function ff(x) do
@@ -50,9 +50,10 @@ function f3(x) do
   return y + 32 | 0;
 end end
 
-exports = {}
+exports = {};
 exports.ff = ff;
 exports.f = f;
 exports.f2 = f2;
 exports.f3 = f3;
+return exports;
 --[[ No side effect ]]

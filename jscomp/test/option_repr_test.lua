@@ -1,9 +1,9 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Caml_obj = require "../../lib/js/caml_obj";
-Belt_List = require "../../lib/js/belt_List";
-Caml_option = require "../../lib/js/caml_option";
+Mt = require "..mt";
+Caml_obj = require "......lib.js.caml_obj";
+Belt_List = require "......lib.js.belt_List";
+Caml_option = require "......lib.js.caml_option";
 
 suites = {
   contents = --[[ [] ]]0
@@ -22,7 +22,7 @@ function b(loc, v) do
 end end
 
 function f0(x) do
-  match = x[1];
+  match = x[2];
   if (match ~= nil and match) then do
     return 1;
   end else do
@@ -40,7 +40,7 @@ end end
 
 function f2(x, y, zOpt, param) do
   z = zOpt ~= nil and zOpt or 3;
-  console.log(x);
+  __console.log(x);
   if (y ~= nil) then do
     return y + z | 0;
   end else do
@@ -134,7 +134,7 @@ b("File \"option_repr_test.ml\", line 97, characters 4-11", Caml_obj.caml_lessth
 
 b("File \"option_repr_test.ml\", line 98, characters 4-11", Caml_obj.caml_greaterthan(Caml_option.some(nil), nil));
 
-console.log(6, nil);
+__console.log(6, nil);
 
 function ltx(a, b) do
   if (Caml_obj.caml_lessthan(a, b)) then do
@@ -280,7 +280,7 @@ N = --[[ alias ]]0;
 
 none_arg = nil;
 
-exports = {}
+exports = {};
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
@@ -313,4 +313,5 @@ exports.eqx = eqx;
 exports.neqx = neqx;
 exports.all_true = all_true;
 exports.N0 = N0;
+return exports;
 --[[ ff Not a pure module ]]

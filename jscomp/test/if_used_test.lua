@@ -1,7 +1,7 @@
-console = {log = print};
+__console = {log = print};
 
-Curry = require "../../lib/js/curry";
-CamlinternalOO = require "../../lib/js/camlinternalOO";
+Curry = require "......lib.js.curry";
+CamlinternalOO = require "......lib.js.camlinternalOO";
 
 shared = {
   "move",
@@ -11,17 +11,17 @@ shared = {
 function point_init(__class) do
   x_init = CamlinternalOO.new_variable(__class, "");
   ids = CamlinternalOO.new_methods_variables(__class, shared, {"x"});
-  move = ids[0];
-  get_x = ids[1];
-  x = ids[2];
+  move = ids[1];
+  get_x = ids[2];
+  x = ids[3];
   CamlinternalOO.set_methods(__class, {
         get_x,
-        (function(self$1) do
-            return self$1[x];
+        (function(self_1) do
+            return self_1[x];
           end end),
         move,
-        (function(self$1, d) do
-            self$1[x] = self$1[x] + d | 0;
+        (function(self_1, d) do
+            self_1[x] = self_1[x] + d | 0;
             return --[[ () ]]0;
           end end)
       });
@@ -35,9 +35,10 @@ end end
 
 point = CamlinternalOO.make_class(shared, point_init);
 
-p = Curry._2(point[0], 0, 7);
+p = Curry._2(point[1], 0, 7);
 
-exports = {}
+exports = {};
 exports.point = point;
 exports.p = p;
+return exports;
 --[[ point Not a pure module ]]

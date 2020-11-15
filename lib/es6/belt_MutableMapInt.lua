@@ -1,9 +1,9 @@
 
 
-import * as Curry from "./curry.lua";
-import * as Caml_option from "./caml_option.lua";
-import * as Belt_internalMapInt from "./belt_internalMapInt.lua";
-import * as Belt_internalAVLtree from "./belt_internalAVLtree.lua";
+local Curry = require "..curry.lua";
+local Caml_option = require "..caml_option.lua";
+local Belt_internalMapInt = require "..belt_internalMapInt.lua";
+local Belt_internalAVLtree = require "..belt_internalAVLtree.lua";
 
 function make(param) do
   return {

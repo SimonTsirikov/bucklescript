@@ -1,7 +1,7 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Curry = require "../../lib/js/curry";
+Mt = require "..mt";
+Curry = require "......lib.js.curry";
 
 suites = {
   contents = --[[ [] ]]0
@@ -87,7 +87,7 @@ eq("File \"int_switch_test.ml\", line 39, characters 6-13", f((function(param) d
 
 Mt.from_pair_suites("Int_switch_test", suites.contents);
 
-exports = {}
+exports = {};
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
@@ -95,4 +95,5 @@ exports.b = b;
 exports.f = f;
 exports.f22 = f22;
 exports.f33 = f33;
+return exports;
 --[[  Not a pure module ]]

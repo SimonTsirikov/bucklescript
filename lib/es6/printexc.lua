@@ -1,16 +1,16 @@
 
 
-import * as Obj from "./obj.lua";
-import * as Block from "./block.lua";
-import * as Curry from "./curry.lua";
-import * as __Buffer from "./buffer.lua";
-import * as Printf from "./printf.lua";
-import * as Caml_io from "./caml_io.lua";
-import * as Caml_array from "./caml_array.lua";
-import * as Pervasives from "./pervasives.lua";
-import * as Caml_js_exceptions from "./caml_js_exceptions.lua";
-import * as Caml_external_polyfill from "./caml_external_polyfill.lua";
-import * as Caml_builtin_exceptions from "./caml_builtin_exceptions.lua";
+local Obj = require "..obj.lua";
+local Block = require "..block.lua";
+local Curry = require "..curry.lua";
+local __Buffer = require "..buffer.lua";
+local Printf = require "..printf.lua";
+local Caml_io = require "..caml_io.lua";
+local Caml_array = require "..caml_array.lua";
+local Pervasives = require "..pervasives.lua";
+local Caml_js_exceptions = require "..caml_js_exceptions.lua";
+local Caml_external_polyfill = require "..caml_external_polyfill.lua";
+local Caml_builtin_exceptions = require "..caml_builtin_exceptions.lua";
 
 printers = {
   contents = --[[ [] ]]0
@@ -59,7 +59,7 @@ locfmt = --[[ Format ]]{
 
 function field(x, i) do
   f = x[i];
-  if (typeof f == "number") then do
+  if (type(f) == "number") then do
     return Curry._1(Printf.sprintf(--[[ Format ]]{
                     --[[ Int ]]Block.__(4, {
                         --[[ Int_d ]]0,
@@ -152,32 +152,32 @@ function to_string(x) do
     if (param) then do
       match;
       xpcall(function() do
-        match = Curry._1(param[0], x);
+        match = Curry._1(param[1], x);
       end end,function(exn) do
         match = nil;
       end end)
       if (match ~= nil) then do
         return match;
       end else do
-        _param = param[1];
+        _param = param[2];
         ::continue:: ;
       end end 
     end else if (x == Caml_builtin_exceptions.out_of_memory) then do
       return "Out of memory";
     end else if (x == Caml_builtin_exceptions.stack_overflow) then do
       return "Stack overflow";
-    end else if (x[0] == Caml_builtin_exceptions.match_failure) then do
-      match_1 = x[1];
-      __char = match_1[2];
-      return Curry._5(Printf.sprintf(locfmt), match_1[0], match_1[1], __char, __char + 5 | 0, "Pattern matching failed");
-    end else if (x[0] == Caml_builtin_exceptions.assert_failure) then do
-      match_2 = x[1];
-      __char_1 = match_2[2];
-      return Curry._5(Printf.sprintf(locfmt), match_2[0], match_2[1], __char_1, __char_1 + 6 | 0, "Assertion failed");
-    end else if (x[0] == Caml_builtin_exceptions.undefined_recursive_module) then do
-      match_3 = x[1];
-      __char_2 = match_3[2];
-      return Curry._5(Printf.sprintf(locfmt), match_3[0], match_3[1], __char_2, __char_2 + 6 | 0, "Undefined recursive module");
+    end else if (x[1] == Caml_builtin_exceptions.match_failure) then do
+      match_1 = x[2];
+      __char = match_1[3];
+      return Curry._5(Printf.sprintf(locfmt), match_1[1], match_1[2], __char, __char + 5 | 0, "Pattern matching failed");
+    end else if (x[1] == Caml_builtin_exceptions.assert_failure) then do
+      match_2 = x[2];
+      __char_1 = match_2[3];
+      return Curry._5(Printf.sprintf(locfmt), match_2[1], match_2[2], __char_1, __char_1 + 6 | 0, "Assertion failed");
+    end else if (x[1] == Caml_builtin_exceptions.undefined_recursive_module) then do
+      match_3 = x[2];
+      __char_2 = match_3[3];
+      return Curry._5(Printf.sprintf(locfmt), match_3[1], match_3[2], __char_2, __char_2 + 6 | 0, "Undefined recursive module");
     end else if ((x.tag | 0) ~= 0) then do
       return x[0];
     end else do
@@ -245,7 +245,7 @@ function convert_raw_backtrace(bt) do
     return --[[ () ]]0;
   end end,function(raw_exn) do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
-    if (exn[0] == Caml_builtin_exceptions.failure) then do
+    if (exn[1] == Caml_builtin_exceptions.failure) then do
       return ;
     end else do
       error(exn)
@@ -268,7 +268,7 @@ function format_backtrace_slot(pos, slot) do
     end end  end 
   end end;
   if (slot.tag) then do
-    if (slot[--[[ is_raise ]]0]) then do
+    if (slot[--[[ is_raise ]]1]) then do
       return ;
     end else do
       return Curry._1(Printf.sprintf(--[[ Format ]]{
@@ -325,7 +325,7 @@ function format_backtrace_slot(pos, slot) do
                           })
                       }),
                     "%s file \"%s\"%s, line %d, characters %d-%d"
-                  }), info(slot[--[[ is_raise ]]0]), slot[--[[ filename ]]1], slot[--[[ is_inline ]]5] and " (inlined)" or "", slot[--[[ line_number ]]2], slot[--[[ start_char ]]3], slot[--[[ end_char ]]4]);
+                  }), info(slot[--[[ is_raise ]]1]), slot[--[[ filename ]]2], slot[--[[ is_inline ]]6] and " (inlined)" or "", slot[--[[ line_number ]]3], slot[--[[ start_char ]]4], slot[--[[ end_char ]]5]);
   end end 
 end end
 
@@ -394,14 +394,14 @@ function raw_backtrace_to_string(raw_backtrace) do
 end end
 
 function backtrace_slot_is_raise(param) do
-  return param[--[[ is_raise ]]0];
+  return param[--[[ is_raise ]]1];
 end end
 
 function backtrace_slot_is_inline(param) do
   if (param.tag) then do
     return false;
   end else do
-    return param[--[[ is_inline ]]5];
+    return param[--[[ is_inline ]]6];
   end end 
 end end
 
@@ -410,10 +410,10 @@ function backtrace_slot_location(param) do
     return ;
   end else do
     return {
-            filename = param[--[[ filename ]]1],
-            line_number = param[--[[ line_number ]]2],
-            start_char = param[--[[ start_char ]]3],
-            end_char = param[--[[ end_char ]]4]
+            filename = param[--[[ filename ]]2],
+            line_number = param[--[[ line_number ]]3],
+            start_char = param[--[[ start_char ]]4],
+            end_char = param[--[[ end_char ]]5]
           };
   end end 
 end end

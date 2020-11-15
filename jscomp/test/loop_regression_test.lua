@@ -1,7 +1,7 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Block = require "../../lib/js/block";
+Mt = require "..mt";
+Block = require "......lib.js.block";
 
 function f(param) do
   v = {
@@ -39,7 +39,8 @@ suites = --[[ :: ]]{
 
 Mt.from_pair_suites("Loop_regression_test", suites);
 
-exports = {}
+exports = {};
 exports.f = f;
 exports.suites = suites;
+return exports;
 --[[  Not a pure module ]]

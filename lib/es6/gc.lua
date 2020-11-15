@@ -1,9 +1,9 @@
 
 
-import * as Block from "./block.lua";
-import * as Curry from "./curry.lua";
-import * as Printf from "./printf.lua";
-import * as Caml_gc from "./caml_gc.lua";
+local Block = require "..block.lua";
+local Curry = require "..curry.lua";
+local Printf = require "..printf.lua";
+local Caml_gc = require "..caml_gc.lua";
 
 dummy_stat = {
   minor_words = 0,
@@ -315,7 +315,7 @@ end end
 
 function allocated_bytes(param) do
   match = Caml_gc.caml_gc_counters(--[[ () ]]0);
-  return (match[0] + match[2] - match[1]) * 4;
+  return (match[1] + match[3] - match[2]) * 4;
 end end
 
 function finalise_last(param, param_1) do

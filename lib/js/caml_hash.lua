@@ -1,7 +1,7 @@
-console = {log = print};
+__console = {log = print};
 
-Caml_hash_primitive = require "./caml_hash_primitive";
-Caml_builtin_exceptions = require "./caml_builtin_exceptions";
+Caml_hash_primitive = require "..caml_hash_primitive";
+Caml_builtin_exceptions = require "..caml_builtin_exceptions";
 
 function push_back(q, v) do
   cell = {
@@ -38,11 +38,11 @@ end end
 
 function caml_hash(count, _limit, seed, obj) do
   hash = seed;
-  if (typeof obj == "number") then do
+  if (type(obj) == "number") then do
     u = obj | 0;
     hash = Caml_hash_primitive.caml_hash_mix_int(hash, (u + u | 0) + 1 | 0);
     return Caml_hash_primitive.caml_hash_final_mix(hash);
-  end else if (typeof obj == "string") then do
+  end else if (type(obj) == "string") then do
     hash = Caml_hash_primitive.caml_hash_mix_string(hash, obj);
     return Caml_hash_primitive.caml_hash_final_mix(hash);
   end else do
@@ -56,15 +56,15 @@ function caml_hash(count, _limit, seed, obj) do
     num = num - 1 | 0;
     while(queue.length ~= 0 and num > 0) do
       obj_1 = unsafe_pop(queue);
-      if (typeof obj_1 == "number") then do
+      if (type(obj_1) == "number") then do
         u_1 = obj_1 | 0;
         hash = Caml_hash_primitive.caml_hash_mix_int(hash, (u_1 + u_1 | 0) + 1 | 0);
         num = num - 1 | 0;
-      end else if (typeof obj_1 == "string") then do
+      end else if (type(obj_1) == "string") then do
         hash = Caml_hash_primitive.caml_hash_mix_string(hash, obj_1);
         num = num - 1 | 0;
-      end else if (typeof obj_1 ~= "boolean" and typeof obj_1 ~= "undefined") then do
-        if (typeof obj_1 == "symbol") then do
+      end else if (type(obj_1) ~= "boolean" and type(obj_1) ~= "undefined") then do
+        if (type(obj_1) == "symbol") then do
           error({
             Caml_builtin_exceptions.assert_failure,
             --[[ tuple ]]{
@@ -75,13 +75,13 @@ function caml_hash(count, _limit, seed, obj) do
           })
         end
          end 
-        if (typeof obj_1 ~= "function") then do
+        if (type(obj_1) ~= "function") then do
           size = obj_1.length;
           if (size ~= nil) then do
             obj_tag = obj_1.tag | 0;
             tag = (size << 10) | obj_tag;
             if (tag == 248) then do
-              hash = Caml_hash_primitive.caml_hash_mix_int(hash, obj_1[1]);
+              hash = Caml_hash_primitive.caml_hash_mix_int(hash, obj_1[2]);
             end else do
               hash = Caml_hash_primitive.caml_hash_mix_int(hash, tag);
               v = size - 1 | 0;
@@ -101,6 +101,7 @@ function caml_hash(count, _limit, seed, obj) do
   end end  end 
 end end
 
-exports = {}
+exports = {};
 exports.caml_hash = caml_hash;
+return exports;
 --[[ No side effect ]]

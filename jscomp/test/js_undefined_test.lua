@@ -1,9 +1,9 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Block = require "../../lib/js/block";
-Caml_option = require "../../lib/js/caml_option";
-Js_undefined = require "../../lib/js/js_undefined";
+Mt = require "..mt";
+Block = require "......lib.js.block";
+Caml_option = require "......lib.js.caml_option";
+Js_undefined = require "......lib.js.js_undefined";
 
 suites_000 = --[[ tuple ]]{
   "toOption - empty",
@@ -152,6 +152,7 @@ suites = --[[ :: ]]{
 
 Mt.from_pair_suites("Js_undefined_test", suites);
 
-exports = {}
+exports = {};
 exports.suites = suites;
+return exports;
 --[[  Not a pure module ]]

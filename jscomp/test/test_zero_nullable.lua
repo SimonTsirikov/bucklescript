@@ -1,9 +1,9 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Block = require "../../lib/js/block";
-Curry = require "../../lib/js/curry";
-Caml_option = require "../../lib/js/caml_option";
+Mt = require "..mt";
+Block = require "......lib.js.block";
+Curry = require "......lib.js.curry";
+Caml_option = require "......lib.js.caml_option";
 
 suites = {
   contents = --[[ [] ]]0
@@ -17,7 +17,7 @@ function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[[ :: ]]{
     --[[ tuple ]]{
-      loc .. (" id " .. String(test_id.contents)),
+      loc .. (" id " .. __String(test_id.contents)),
       (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     x,
@@ -299,11 +299,12 @@ eq("File \"test_zero_nullable.ml\", line 235, characters 7-14", f1_1(undefined),
 
 Mt.from_pair_suites("Test_zero_nullable", suites.contents);
 
-exports = {}
+exports = {};
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
 exports.Test_null = Test_null;
 exports.Test_def = Test_def;
 exports.Test_null_def = Test_null_def;
+return exports;
 --[[ u Not a pure module ]]

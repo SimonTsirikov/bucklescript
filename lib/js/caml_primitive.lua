@@ -1,4 +1,4 @@
-console = {log = print};
+__console = {log = print};
 
 
 function caml_int_compare(x, y) do
@@ -209,7 +209,7 @@ caml_nativeint_compare = caml_int_compare;
 
 caml_int32_compare = caml_int_compare;
 
-exports = {}
+exports = {};
 exports.caml_bytes_compare = caml_bytes_compare;
 exports.caml_bytes_equal = caml_bytes_equal;
 exports.caml_int_compare = caml_int_compare;
@@ -230,4 +230,5 @@ exports.caml_float_max = caml_float_max;
 exports.caml_string_max = caml_string_max;
 exports.caml_nativeint_max = caml_nativeint_max;
 exports.caml_int32_max = caml_int32_max;
+return exports;
 --[[ No side effect ]]

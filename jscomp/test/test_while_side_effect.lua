@@ -1,11 +1,11 @@
-console = {log = print};
+__console = {log = print};
 
 
 v = {
   contents = 0
 };
 
-while(console.log(String(v.contents)), v.contents = v.contents + 1 | 0, v.contents < 10) do
+while(__console.log(__String(v.contents)), v.contents = v.contents + 1 | 0, v.contents < 10) do
   
 end;
 
@@ -23,16 +23,17 @@ x = {
 
 while((function() do
         y = 3;
-        console.log(String(x.contents));
+        __console.log(__String(x.contents));
         y = y + 1 | 0;
         x.contents = x.contents + 1 | 0;
         return (fib(x.contents) + fib(x.contents) | 0) < 20;
       end end)()) do
-  console.log(String(3));
+  __console.log(__String(3));
 end;
 
-exports = {}
+exports = {};
 exports.v = v;
 exports.fib = fib;
 exports.x = x;
+return exports;
 --[[  Not a pure module ]]

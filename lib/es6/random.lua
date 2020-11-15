@@ -1,16 +1,16 @@
 
 
-import * as __Array from "./array.lua";
-import * as Curry from "./curry.lua";
-import * as Int32 from "./int32.lua";
-import * as Int64 from "./int64.lua";
-import * as Digest from "./digest.lua";
-import * as Caml_sys from "./caml_sys.lua";
-import * as Nativeint from "./nativeint.lua";
-import * as Caml_array from "./caml_array.lua";
-import * as Caml_int64 from "./caml_int64.lua";
-import * as Caml_string from "./caml_string.lua";
-import * as Caml_builtin_exceptions from "./caml_builtin_exceptions.lua";
+local __Array = require "..array.lua";
+local Curry = require "..curry.lua";
+local Int32 = require "..int32.lua";
+local Int64 = require "..int64.lua";
+local Digest = require "..digest.lua";
+local Caml_sys = require "..caml_sys.lua";
+local Nativeint = require "..nativeint.lua";
+local Caml_array = require "..caml_array.lua";
+local Caml_int64 = require "..caml_int64.lua";
+local Caml_string = require "..caml_string.lua";
+local Caml_builtin_exceptions = require "..caml_builtin_exceptions.lua";
 
 function assign(st1, st2) do
   __Array.blit(st2.st, 0, st1.st, 0, 55);
@@ -20,7 +20,7 @@ end end
 
 function full_init(s, seed) do
   combine = function(accu, x) do
-    return Digest.string(accu .. String(x));
+    return Digest.string(accu .. __String(x));
   end end;
   extract = function(d) do
     return ((Caml_string.get(d, 0) + (Caml_string.get(d, 1) << 8) | 0) + (Caml_string.get(d, 2) << 16) | 0) + (Caml_string.get(d, 3) << 24) | 0;

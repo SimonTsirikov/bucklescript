@@ -1,4 +1,4 @@
-console = {log = print};
+__console = {log = print};
 
 
 function power_2_above(_x, n) do
@@ -17,7 +17,7 @@ function make(hash, eq, hintSize) do
   s = power_2_above(16, hintSize);
   return {
           size = 0,
-          buckets = new Array(s),
+          buckets = new __Array(s),
           hash = hash,
           eq = eq
         };
@@ -39,9 +39,10 @@ end end
 
 emptyOpt = nil;
 
-exports = {}
+exports = {};
 exports.emptyOpt = emptyOpt;
 exports.make = make;
 exports.clear = clear;
 exports.isEmpty = isEmpty;
+return exports;
 --[[ No side effect ]]

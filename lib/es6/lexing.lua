@@ -1,12 +1,12 @@
 
 
-import * as Bytes from "./bytes.lua";
-import * as Curry from "./curry.lua";
-import * as Caml_array from "./caml_array.lua";
-import * as Caml_bytes from "./caml_bytes.lua";
-import * as Caml_lexer from "./caml_lexer.lua";
-import * as Pervasives from "./pervasives.lua";
-import * as Caml_builtin_exceptions from "./caml_builtin_exceptions.lua";
+local Bytes = require "..bytes.lua";
+local Curry = require "..curry.lua";
+local Caml_array = require "..caml_array.lua";
+local Caml_bytes = require "..caml_bytes.lua";
+local Caml_lexer = require "..caml_lexer.lua";
+local Pervasives = require "..pervasives.lua";
+local Caml_builtin_exceptions = require "..caml_builtin_exceptions.lua";
 
 function engine(tbl, state, buf) do
   result = Caml_lexer.caml_lex_engine(tbl, state, buf);

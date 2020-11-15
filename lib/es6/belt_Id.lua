@@ -1,6 +1,6 @@
 
 
-import * as Curry from "./curry.lua";
+local Curry = require "..curry.lua";
 
 function MakeComparableU(M) do
   return M;

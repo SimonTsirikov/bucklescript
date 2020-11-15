@@ -1,4 +1,4 @@
-console = {log = print};
+__console = {log = print};
 
 
 function add(x,y){
@@ -6,9 +6,9 @@ function add(x,y){
 }
 ;
 
-console.log(add(3.0, 2.0));
+__console.log(add(3.0, 2.0));
 
-console.log(add("x", "y"));
+__console.log(add("x", "y"));
 
 function add_dyn(kind,x,y){
   switch(kind){
@@ -30,11 +30,12 @@ function add2(k, x, y) do
   return add_dyn(k and "string" or "float", x, y);
 end end
 
-console.log(add2(--[[ Float ]]0, 3.0, 2.0));
+__console.log(add2(--[[ Float ]]0, 3.0, 2.0));
 
-console.log(add2(--[[ String ]]1, "x", "y"));
+__console.log(add2(--[[ String ]]1, "x", "y"));
 
-exports = {}
+exports = {};
 exports.string_of_kind = string_of_kind;
 exports.add2 = add2;
+return exports;
 --[[  Not a pure module ]]

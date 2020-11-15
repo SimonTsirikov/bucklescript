@@ -1,8 +1,8 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-List = require "../../lib/js/list";
-Block = require "../../lib/js/block";
+Mt = require "..mt";
+List = require "......lib.js.list";
+Block = require "......lib.js.block";
 
 function length(param) do
   return 3;
@@ -38,6 +38,7 @@ Mt.from_pair_suites("Es6_module_test", --[[ :: ]]{
       }
     });
 
-exports = {}
+exports = {};
 exports.length = length;
+return exports;
 --[[  Not a pure module ]]

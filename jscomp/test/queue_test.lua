@@ -1,12 +1,12 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-__Array = require "../../lib/js/array";
-Block = require "../../lib/js/block";
-Curry = require "../../lib/js/curry";
-Queue = require "../../lib/js/queue";
-Queue_402 = require "./queue_402";
-Caml_array = require "../../lib/js/caml_array";
+Mt = require "..mt";
+__Array = require "......lib.js.array";
+Block = require "......lib.js.block";
+Curry = require "......lib.js.curry";
+Queue = require "......lib.js.queue";
+Queue_402 = require "..queue_402";
+Caml_array = require "......lib.js.caml_array";
 
 function Test(Queue) do
   to_array = function(q) do
@@ -123,9 +123,10 @@ suites = --[[ :: ]]{
 
 Mt.from_pair_suites("Queue_test", suites);
 
-exports = {}
+exports = {};
 exports.Test = Test;
 exports.T1 = T1;
 exports.T2 = T2;
 exports.suites = suites;
+return exports;
 --[[  Not a pure module ]]

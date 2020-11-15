@@ -1,12 +1,12 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-List = require "../../lib/js/list";
-Block = require "../../lib/js/block";
-Curry = require "../../lib/js/curry";
-Caml_obj = require "../../lib/js/caml_obj";
-CamlinternalLazy = require "../../lib/js/camlinternalLazy";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
+Mt = require "..mt";
+List = require "......lib.js.list";
+Block = require "......lib.js.block";
+Curry = require "......lib.js.curry";
+Caml_obj = require "......lib.js.caml_obj";
+CamlinternalLazy = require "......lib.js.camlinternalLazy";
+Caml_builtin_exceptions = require "......lib.js.caml_builtin_exceptions";
 
 x = {};
 
@@ -88,7 +88,7 @@ function fib(n) do
 end end
 
 function zs(param) do
-  return List.hd(xs[0]);
+  return List.hd(xs[1]);
 end end
 
 xs_000 = --[[ :: ]]{
@@ -236,9 +236,9 @@ suites_001 = --[[ :: ]]{
     (function(param) do
         tmp;
         if (a) then do
-          match = a[1];
+          match = a[2];
           if (match) then do
-            tmp = match[0];
+            tmp = match[1];
           end else do
             error({
               Caml_builtin_exceptions.assert_failure,
@@ -389,7 +389,7 @@ suites_001 = --[[ :: ]]{
                           })
                         end else do
                           return --[[ Eq ]]Block.__(0, {
-                                    Curry._1(rec_variant_b[1], --[[ () ]]0),
+                                    Curry._1(rec_variant_b[2], --[[ () ]]0),
                                     rec_variant_a
                                   });
                         end end 
@@ -401,7 +401,7 @@ suites_001 = --[[ :: ]]{
                       (function(param) do
                           if (rec_variant_a.tag) then do
                             return --[[ Eq ]]Block.__(0, {
-                                      Curry._1(rec_variant_a[1], --[[ () ]]0),
+                                      Curry._1(rec_variant_a[2], --[[ () ]]0),
                                       rec_variant_b
                                     });
                           end else do
@@ -434,7 +434,7 @@ suites = --[[ :: ]]{
 };
 
 function fake_minus(n) do
-  console.log(n);
+  __console.log(n);
   return n + 1 | 0;
 end end
 
@@ -452,7 +452,7 @@ Mt.from_pair_suites("Rec_value_test", suites);
 
 v_1 = 3;
 
-exports = {}
+exports = {};
 exports.x = x;
 exports.a = a;
 exports.b = b;
@@ -482,4 +482,5 @@ exports.fake_minus = fake_minus;
 exports.fake_inline = fake_inline;
 exports.fake_inline_minus = fake_inline_minus;
 exports.fake_inline_inlie2 = fake_inline_inlie2;
+return exports;
 --[[ fake_z2 Not a pure module ]]

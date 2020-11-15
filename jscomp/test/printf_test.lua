@@ -1,10 +1,10 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Block = require "../../lib/js/block";
-Curry = require "../../lib/js/curry";
-Format = require "../../lib/js/format";
-Printf = require "../../lib/js/printf";
+Mt = require "..mt";
+Block = require "......lib.js.block";
+Curry = require "......lib.js.curry";
+Format = require "......lib.js.format";
+Printf = require "......lib.js.printf";
 
 function print_pair(fmt, param) do
   return Curry._2(Format.fprintf(fmt, --[[ Format ]]{
@@ -29,7 +29,7 @@ function print_pair(fmt, param) do
                         })
                     }),
                   "(%d,%d)"
-                }), param[0], param[1]);
+                }), param[1], param[2]);
 end end
 
 suites_000 = --[[ tuple ]]{
@@ -104,8 +104,9 @@ v = Format.asprintf(--[[ Format ]]{
 
 Mt.from_pair_suites("Printf_test", suites);
 
-exports = {}
+exports = {};
 exports.print_pair = print_pair;
 exports.suites = suites;
 exports.v = v;
+return exports;
 --[[ v Not a pure module ]]

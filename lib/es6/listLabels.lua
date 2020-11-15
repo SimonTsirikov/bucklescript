@@ -1,6 +1,6 @@
 
 
-import * as List from "./list.lua";
+local List = require "..list.lua";
 
 length = List.length;
 

@@ -1,9 +1,9 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Block = require "../../lib/js/block";
-Bytes = require "../../lib/js/bytes";
-Caml_bytes = require "../../lib/js/caml_bytes";
+Mt = require "..mt";
+Block = require "......lib.js.block";
+Bytes = require "......lib.js.bytes";
+Caml_bytes = require "......lib.js.caml_bytes";
 
 suites = {
   contents = --[[ [] ]]0
@@ -14,12 +14,12 @@ test_id = {
 };
 
 function eq(loc, param) do
-  y = param[1];
-  x = param[0];
+  y = param[2];
+  x = param[1];
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[[ :: ]]{
     --[[ tuple ]]{
-      loc .. (" id " .. String(test_id.contents)),
+      loc .. (" id " .. __String(test_id.contents)),
       (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     x,
@@ -48,7 +48,7 @@ Bytes.blit(b, 0, b, 1, 2);
 
 res = Caml_bytes.bytes_to_string(b);
 
-console.log(res);
+__console.log(res);
 
 eq("File \"bytes_split_gpr_743_test.ml\", line 17, characters 5-12", --[[ tuple ]]{
       "aab",
@@ -71,7 +71,7 @@ Bytes.blit(b_1, 1, b_1, 0, 2);
 
 res2 = Caml_bytes.bytes_to_string(b_1);
 
-console.log(res2);
+__console.log(res2);
 
 eq("File \"bytes_split_gpr_743_test.ml\", line 32, characters 5-12", --[[ tuple ]]{
       "bcc",
@@ -80,8 +80,9 @@ eq("File \"bytes_split_gpr_743_test.ml\", line 32, characters 5-12", --[[ tuple 
 
 Mt.from_pair_suites("Bytes_split_gpr_743_test", suites.contents);
 
-exports = {}
+exports = {};
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
+return exports;
 --[[  Not a pure module ]]

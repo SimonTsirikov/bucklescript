@@ -1,6 +1,6 @@
-console = {log = print};
+__console = {log = print};
 
-Block = require "../../lib/js/block";
+Block = require "......lib.js.block";
 
 function u_x(param) do
   return param.u_x;
@@ -80,7 +80,7 @@ d_empty = --[[ D_empty ]]0;
 
 hei = --[[ Hei ]]0;
 
-exports = {}
+exports = {};
 exports.u_x = u_x;
 exports.b_x = b_x;
 exports.c_x = c_x;
@@ -96,4 +96,5 @@ exports.v = v;
 exports.h = h;
 exports.xx = xx;
 exports.a = a;
+return exports;
 --[[ No side effect ]]

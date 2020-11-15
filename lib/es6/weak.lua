@@ -1,16 +1,16 @@
 
 
-import * as Sys from "./sys.lua";
-import * as __Array from "./array.lua";
-import * as Curry from "./curry.lua";
-import * as Caml_obj from "./caml_obj.lua";
-import * as Caml_weak from "./caml_weak.lua";
-import * as Caml_array from "./caml_array.lua";
-import * as Caml_int32 from "./caml_int32.lua";
-import * as Pervasives from "./pervasives.lua";
-import * as Caml_option from "./caml_option.lua";
-import * as Caml_primitive from "./caml_primitive.lua";
-import * as Caml_builtin_exceptions from "./caml_builtin_exceptions.lua";
+local Sys = require "..sys.lua";
+local __Array = require "..array.lua";
+local Curry = require "..curry.lua";
+local Caml_obj = require "..caml_obj.lua";
+local Caml_weak = require "..caml_weak.lua";
+local Caml_array = require "..caml_array.lua";
+local Caml_int32 = require "..caml_int32.lua";
+local Pervasives = require "..pervasives.lua";
+local Caml_option = require "..caml_option.lua";
+local Caml_primitive = require "..caml_primitive.lua";
+local Caml_builtin_exceptions = require "..caml_builtin_exceptions.lua";
 
 function fill(ar, ofs, len, x) do
   if (ofs < 0 or len < 0 or (ofs + len | 0) > #ar) then do

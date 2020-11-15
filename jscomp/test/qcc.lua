@@ -1,23 +1,23 @@
-console = {log = print};
+__console = {log = print};
 
-Sys = require "../../lib/js/sys";
-Char = require "../../lib/js/char";
-List = require "../../lib/js/list";
-Block = require "../../lib/js/block";
-Bytes = require "../../lib/js/bytes";
-Curry = require "../../lib/js/curry";
-Printf = require "../../lib/js/printf";
-__String = require "../../lib/js/string";
-Caml_io = require "../../lib/js/caml_io";
-Caml_obj = require "../../lib/js/caml_obj";
-Caml_array = require "../../lib/js/caml_array";
-Caml_bytes = require "../../lib/js/caml_bytes";
-Caml_int32 = require "../../lib/js/caml_int32";
-Pervasives = require "../../lib/js/pervasives";
-Caml_option = require "../../lib/js/caml_option";
-Caml_string = require "../../lib/js/caml_string";
-Caml_external_polyfill = require "../../lib/js/caml_external_polyfill";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
+Sys = require "......lib.js.sys";
+Char = require "......lib.js.char";
+List = require "......lib.js.list";
+Block = require "......lib.js.block";
+Bytes = require "......lib.js.bytes";
+Curry = require "......lib.js.curry";
+Printf = require "......lib.js.printf";
+__String = require "......lib.js.string";
+Caml_io = require "......lib.js.caml_io";
+Caml_obj = require "......lib.js.caml_obj";
+Caml_array = require "......lib.js.caml_array";
+Caml_bytes = require "......lib.js.caml_bytes";
+Caml_int32 = require "......lib.js.caml_int32";
+Pervasives = require "......lib.js.pervasives";
+Caml_option = require "......lib.js.caml_option";
+Caml_string = require "......lib.js.caml_string";
+Caml_external_polyfill = require "......lib.js.caml_external_polyfill";
+Caml_builtin_exceptions = require "......lib.js.caml_builtin_exceptions";
 
 dbg = {
   contents = true
@@ -63,9 +63,9 @@ match = bufferize((function(param) do
         return Caml_external_polyfill.resolve("caml_ml_input_char")(inch.contents);
       end end));
 
-ungetch = match[1];
+ungetch = match[2];
 
-getch = match[0];
+getch = match[1];
 
 function peekch(param) do
   ch = Curry._1(getch, --[[ () ]]0);
@@ -304,12 +304,12 @@ function next(param) do
       while(true) do
         param_1 = _param;
         if (param_1) then do
-          lop = param_1[0];
+          lop = param_1[1];
           if (Caml_string.get(lop, 0) == ch_2 and Caml_string.get(lop, 1) == peekch(--[[ () ]]0)) then do
             Curry._1(getch, --[[ () ]]0);
             return --[[ Op ]]Block.__(0, {lop});
           end else do
-            _param = param_1[1];
+            _param = param_1[2];
             ::continue:: ;
           end end 
         end else do
@@ -324,9 +324,9 @@ end end
 
 match_1 = bufferize(next);
 
-unnext = match_1[1];
+unnext = match_1[2];
 
-next_1 = match_1[0];
+next_1 = match_1[1];
 
 function nextis(t) do
   nt = Curry._1(next_1, --[[ () ]]0);
@@ -378,7 +378,7 @@ function patch(rel, loc, n) do
    end 
   if (loc ~= 0) then do
     i = opos.contents;
-    loc$prime = get32(loc);
+    loc_prime = get32(loc);
     x = rel and n - (loc + 4 | 0) | 0 or n;
     if (dbg.contents) then do
       Curry._3(Printf.eprintf(--[[ Format ]]{
@@ -416,7 +416,7 @@ function patch(rel, loc, n) do
      end 
     opos.contents = loc;
     le(32, x);
-    patch(rel, loc$prime, n);
+    patch(rel, loc_prime, n);
     opos.contents = i;
     return --[[ () ]]0;
   end else do
@@ -472,12 +472,12 @@ lval = {
 };
 
 function patchlval(param) do
-  match = lval.contents[0];
+  match = lval.contents[1];
   if (match.tag) then do
-    opos.contents = opos.contents - match[0] | 0;
+    opos.contents = opos.contents - match[1] | 0;
     return --[[ () ]]0;
   end else do
-    obuf[opos.contents - match[0] | 0] = --[[ "\141" ]]141;
+    obuf[opos.contents - match[1] | 0] = --[[ "\141" ]]141;
     return --[[ () ]]0;
   end end 
 end end
@@ -800,13 +800,13 @@ function binary(stk, lvl) do
       while(true) do
         loc = _loc;
         t = Curry._1(next_1, --[[ () ]]0);
-        if (t.tag or lvlof(t[0]) ~= lvl) then do
+        if (t.tag or lvlof(t[1]) ~= lvl) then do
           Curry._1(unnext, t);
           return loc;
         end else do
-          loc$prime = test(lvl - 8 | 0, loc);
+          loc_prime = test(lvl - 8 | 0, loc);
           binary(stk, lvl - 1 | 0);
-          _loc = loc$prime;
+          _loc = loc_prime;
           ::continue:: ;
         end end 
       end;
@@ -819,7 +819,7 @@ function binary(stk, lvl) do
         if (t.tag) then do
           return Curry._1(unnext, t);
         end else do
-          o = t[0];
+          o = t[1];
           if (lvlof(o) == lvl) then do
             push(0);
             binary(stk, lvl - 1 | 0);
@@ -827,9 +827,9 @@ function binary(stk, lvl) do
             match = List.assoc(o, inss);
             if (match.tag) then do
               out(4733377);
-              cmp(match[0]);
+              cmp(match[1]);
             end else do
-              List.iter(out, match[0]);
+              List.iter(out, match[1]);
             end end 
             _param = --[[ () ]]0;
             ::continue:: ;
@@ -850,7 +850,7 @@ function unary(stk) do
   local ___conditional___=(match.tag | 0);
   do
      if ___conditional___ == 0--[[ Op ]] then do
-        o = match[0];
+        o = match[1];
         local ___conditional___=(o);
         do
            if ___conditional___ == "&" then do
@@ -883,11 +883,11 @@ function unary(stk) do
                   "[cast] expected"
                 })
               end end  end 
-              for k = 1 , match_1[1] , 1 do
+              for k = 1 , match_1[2] , 1 do
                 Curry._1(next_1, --[[ () ]]0);
               end
               unary(stk);
-              return read(match_1[0]); end end 
+              return read(match_1[1]); end end 
           unops = --[[ :: ]]{
               --[[ tuple ]]{
                 "+",
@@ -940,12 +940,12 @@ function unary(stk) do
             
         end end end 
      if ___conditional___ == 1--[[ ILit ]] then do
-        return load(0, match[0]); end end 
+        return load(0, match[1]); end end 
      if ___conditional___ == 2--[[ SLit ]] then do
         out(18616);
-        return le(64, match[0]); end end 
+        return le(64, match[1]); end end 
      if ___conditional___ == 3--[[ Sym ]] then do
-        i = match[0];
+        i = match[1];
         if (List.mem_assoc(i, stk)) then do
           l = List.assoc(i, stk);
           if (l <= -256) then do
@@ -986,7 +986,7 @@ function postfix(stk) do
   if (t.tag) then do
     return Curry._1(unnext, t);
   end else do
-    op = t[0];
+    op = t[1];
     local ___conditional___=(op);
     do
        if ___conditional___ == "(" then do
@@ -1053,10 +1053,10 @@ function postfix(stk) do
     end
     patchlval(--[[ () ]]0);
     out(4753857);
-    read(lval.contents[1]);
+    read(lval.contents[2]);
     return out(List.assoc(--[[ tuple ]]{
                     op,
-                    lval.contents[1]
+                    lval.contents[2]
                   }, --[[ :: ]]{
                     --[[ tuple ]]{
                       --[[ tuple ]]{
@@ -1102,11 +1102,11 @@ function expr(stk) do
   _param = --[[ () ]]0;
   while(true) do
     t = Curry._1(next_1, --[[ () ]]0);
-    if (t.tag or t[0] ~= "=") then do
+    if (t.tag or t[1] ~= "=") then do
       return Curry._1(unnext, t);
     end else do
       patchlval(--[[ () ]]0);
-      ty = lval.contents[1];
+      ty = lval.contents[2];
       push(0);
       expr(stk);
       pop(1);
@@ -1127,7 +1127,7 @@ function decl(g, _n, _stk) do
     n = _n;
     t = Curry._1(next_1, --[[ () ]]0);
     if (Caml_obj.caml_equal(t, tokint)) then do
-      top = stk and stk[0][1] or 0;
+      top = stk and stk[1][2] or 0;
       vars = (function(top)do
       return function vars(_n, _stk) do
         while(true) do
@@ -1144,9 +1144,9 @@ function decl(g, _n, _stk) do
           end else do
             match = Curry._1(next_1, --[[ () ]]0);
             if (match.tag == --[[ Sym ]]3) then do
-              s = match[0];
-              n$prime = n + 1 | 0;
-              stk$prime;
+              s = match[1];
+              n_prime = n + 1 | 0;
+              stk_prime;
               if (g) then do
                 glo = Caml_array.caml_array_get(globs, s);
                 if (glo.va >= 0) then do
@@ -1162,25 +1162,25 @@ function decl(g, _n, _stk) do
                       va = va
                     });
                 gpos.contents = gpos.contents + 8 | 0;
-                stk$prime = stk;
+                stk_prime = stk;
               end else do
-                stk$prime = --[[ :: ]]{
+                stk_prime = --[[ :: ]]{
                   --[[ tuple ]]{
                     s,
-                    top - (n$prime << 3) | 0
+                    top - (n_prime << 3) | 0
                   },
                   stk
                 };
               end end 
               if (nextis(--[[ Op ]]Block.__(0, {","}))) then do
                 Curry._1(next_1, --[[ () ]]0);
-                _stk = stk$prime;
-                _n = n$prime;
+                _stk = stk_prime;
+                _n = n_prime;
                 ::continue:: ;
               end else do
                 return --[[ tuple ]]{
-                        n$prime,
-                        stk$prime
+                        n_prime,
+                        stk_prime
                       };
               end end 
             end else do
@@ -1213,8 +1213,8 @@ function decl(g, _n, _stk) do
                 }), n);
       end
        end 
-      _stk = match[1];
-      _n = n + match[0] | 0;
+      _stk = match[2];
+      _n = n + match[1] | 0;
       ::continue:: ;
     end else do
       Curry._1(unnext, t);
@@ -1236,7 +1236,7 @@ function decl(g, _n, _stk) do
       end
        end 
       if (dbg.contents and not g) then do
-        console.error("end of blk decls");
+        __console.error("end of blk decls");
       end
        end 
       return --[[ tuple ]]{
@@ -1318,13 +1318,13 @@ function stmt(brk, stk) do
         itr
       };
     end end 
-    patch(true, match[0], opos.contents);
+    patch(true, match[1], opos.contents);
     stmt(--[[ tuple ]]{
           bl,
           ba
         }, stk);
     out(233);
-    le(32, (match[1] - opos.contents | 0) - 4 | 0);
+    le(32, (match[2] - opos.contents | 0) - 4 | 0);
     return patch(true, bl.contents, opos.contents);
   end else if (Caml_obj.caml_equal(t, tokret)) then do
     if (not nextis(--[[ Op ]]Block.__(0, {";"}))) then do
@@ -1339,8 +1339,8 @@ function stmt(brk, stk) do
     return --[[ () ]]0;
   end else if (Caml_obj.caml_equal(t, tokbreak)) then do
     Curry._1(next_1, --[[ () ]]0);
-    brkl = brk[0];
-    n = align.contents - brk[1] | 0;
+    brkl = brk[1];
+    n = align.contents - brk[2] | 0;
     if (n < 0) then do
       error({
         Caml_builtin_exceptions.assert_failure,
@@ -1363,7 +1363,7 @@ function stmt(brk, stk) do
     brkl.contents = loc_4;
     return --[[ () ]]0;
   end else if (not t.tag) then do
-    local ___conditional___=(t[0]);
+    local ___conditional___=(t[1]);
     do
        if ___conditional___ == ";" then do
           return --[[ () ]]0; end end 
@@ -1381,10 +1381,10 @@ end end
 
 function block(brk, stk) do
   match = decl(false, 0, stk);
-  stk$prime = match[1];
-  n = match[0];
+  stk_prime = match[2];
+  n = match[1];
   while(not nextis(--[[ Op ]]Block.__(0, {"}"}))) do
-    stmt(brk, stk$prime);
+    stmt(brk, stk_prime);
   end;
   Curry._1(next_1, --[[ () ]]0);
   if (n ~= 0) then do
@@ -1408,7 +1408,7 @@ function top(_param) do
     end else do
       match = Curry._1(next_1, --[[ () ]]0);
       if (match.tag == --[[ Sym ]]3) then do
-        f = match[0];
+        f = match[1];
         g = Caml_array.caml_array_get(globs, f);
         if (g.va >= 0) then do
           error({
@@ -1430,7 +1430,7 @@ function top(_param) do
             local ___conditional___=(match.tag | 0);
             do
                if ___conditional___ == 0--[[ Op ]] then do
-                  if (match[0] == ")") then do
+                  if (match[1] == ")") then do
                     return stk;
                   end else do
                     error({
@@ -1451,15 +1451,15 @@ function top(_param) do
                     Curry._1(next_1, --[[ () ]]0);
                   end
                    end 
-                  stk$prime_000 = --[[ tuple ]]{
-                    match[0],
+                  stk_prime_000 = --[[ tuple ]]{
+                    match[1],
                     ((-n | 0) << 3)
                   };
-                  stk$prime = --[[ :: ]]{
-                    stk$prime_000,
+                  stk_prime = --[[ :: ]]{
+                    stk_prime_000,
                     stk
                   };
-                  _stk = stk$prime;
+                  _stk = stk_prime;
                   _n = n + 1 | 0;
                   _regs = List.tl(regs);
                   ::continue:: ; end end 
@@ -1785,7 +1785,7 @@ function main(param) do
                                 })
                             }),
                           "Operator '%s'\n"
-                        }), param[0]); end end 
+                        }), param[1]); end end 
        if ___conditional___ == 1--[[ ILit ]] then do
           return Curry._1(Printf.printf(--[[ Format ]]{
                           --[[ String_literal ]]Block.__(11, {
@@ -1801,7 +1801,7 @@ function main(param) do
                                 })
                             }),
                           "Int literal %d\n"
-                        }), param[0]); end end 
+                        }), param[1]); end end 
        if ___conditional___ == 2--[[ SLit ]] then do
           return Curry._1(Printf.printf(--[[ Format ]]{
                           --[[ String_literal ]]Block.__(11, {
@@ -1815,9 +1815,9 @@ function main(param) do
                                 })
                             }),
                           "Str literal %S\n"
-                        }), param[1]); end end 
+                        }), param[2]); end end 
        if ___conditional___ == 3--[[ Sym ]] then do
-          i = param[0];
+          i = param[1];
           return Curry._2(Printf.printf(--[[ Format ]]{
                           --[[ String_literal ]]Block.__(11, {
                               "Symbol '",
@@ -1868,7 +1868,7 @@ function main(param) do
             ppsym(tok);
             _param = --[[ () ]]0;
             ::continue:: ;
-          end else if (tok[0] == "EOF!") then do
+          end else if (tok[1] == "EOF!") then do
             return Printf.printf(--[[ Format ]]{
                         --[[ String_literal ]]Block.__(11, {
                             "End of input stream\n",
@@ -1898,7 +1898,7 @@ base = 4194304;
 
 textoff = 232;
 
-exports = {}
+exports = {};
 exports.dbg = dbg;
 exports.inch = inch;
 exports.bufferize = bufferize;
@@ -1954,4 +1954,5 @@ exports.elfhdr = elfhdr;
 exports.elfphdr = elfphdr;
 exports.elfgen = elfgen;
 exports.main = main;
+return exports;
 --[[ match Not a pure module ]]

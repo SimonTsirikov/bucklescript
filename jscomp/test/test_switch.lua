@@ -1,10 +1,10 @@
-console = {log = print};
+__console = {log = print};
 
-Block = require "../../lib/js/block";
-Curry = require "../../lib/js/curry";
+Block = require "......lib.js.block";
+Curry = require "......lib.js.curry";
 
 function f(param) do
-  if (typeof param == "number") then do
+  if (type(param) == "number") then do
     if (param == --[[ G ]]0) then do
       return 4;
     end else do
@@ -30,11 +30,12 @@ function bind(x, f) do
   if (x.tag) then do
     return x;
   end else do
-    return --[[ Left ]]Block.__(0, {Curry._1(f, x[0])});
+    return --[[ Left ]]Block.__(0, {Curry._1(f, x[1])});
   end end 
 end end
 
-exports = {}
+exports = {};
 exports.f = f;
 exports.bind = bind;
+return exports;
 --[[ No side effect ]]

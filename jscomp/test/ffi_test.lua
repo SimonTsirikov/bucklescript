@@ -1,4 +1,4 @@
-console = {log = print};
+__console = {log = print};
 
 
 function u(param) do
@@ -16,7 +16,7 @@ function v(param) do
 end end
 
 function f(param) do
-  v = new Int32Array(32);
+  v = new __Int32Array(32);
   v[0] = 3;
   return v[0];
 end end
@@ -29,7 +29,7 @@ c = nil;
 
 d = nil;
 
-exports = {}
+exports = {};
 exports.u = u;
 exports.a = a;
 exports.b = b;
@@ -39,4 +39,5 @@ exports.Textarea = Textarea;
 exports.__Int32Array = __Int32Array;
 exports.v = v;
 exports.f = f;
+return exports;
 --[[ No side effect ]]

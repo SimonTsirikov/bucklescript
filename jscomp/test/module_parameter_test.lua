@@ -1,8 +1,8 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Block = require "../../lib/js/block";
-__String = require "../../lib/js/string";
+Mt = require "..mt";
+Block = require "......lib.js.block";
+__String = require "......lib.js.string";
 
 function u(v) do
   return v;
@@ -50,10 +50,11 @@ Mt.from_pair_suites("Module_parameter_test", suites);
 
 v0 = 1;
 
-exports = {}
+exports = {};
 exports.u = u;
 exports.N = N;
 exports.v0 = v0;
 exports.v = v;
 exports.suites = suites;
+return exports;
 --[[  Not a pure module ]]

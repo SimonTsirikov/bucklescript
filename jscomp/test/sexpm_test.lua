@@ -1,10 +1,10 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Block = require "../../lib/js/block";
-Curry = require "../../lib/js/curry";
-Sexpm = require "./sexpm";
-Format = require "../../lib/js/format";
+Mt = require "..mt";
+Block = require "......lib.js.block";
+Curry = require "......lib.js.curry";
+Sexpm = require "..sexpm";
+Format = require "......lib.js.format";
 
 suites = {
   contents = --[[ [] ]]0
@@ -15,12 +15,12 @@ test_id = {
 };
 
 function eq(loc, param) do
-  y = param[1];
-  x = param[0];
+  y = param[2];
+  x = param[1];
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[[ :: ]]{
     --[[ tuple ]]{
-      loc .. (" id " .. String(test_id.contents)),
+      loc .. (" id " .. __String(test_id.contents)),
       (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     x,
@@ -34,7 +34,7 @@ function eq(loc, param) do
 end end
 
 function print_or_error(fmt, x) do
-  if (x[0] >= 106380200) then do
+  if (x[1] >= 106380200) then do
     return Curry._1(Format.fprintf(fmt, --[[ Format ]]{
                     --[[ Formatting_gen ]]Block.__(18, {
                         --[[ Open_box ]]Block.__(1, {--[[ Format ]]{
@@ -56,7 +56,7 @@ function print_or_error(fmt, x) do
                           })
                       }),
                     "@[Error:%s@]@."
-                  }), x[1]);
+                  }), x[2]);
   end else do
     return Curry._2(Format.fprintf(fmt, --[[ Format ]]{
                     --[[ Formatting_gen ]]Block.__(18, {
@@ -76,7 +76,7 @@ function print_or_error(fmt, x) do
                           })
                       }),
                     "@[Ok:%a@]@."
-                  }), Sexpm.print, x[1]);
+                  }), Sexpm.print, x[2]);
   end end 
 end end
 
@@ -133,9 +133,10 @@ eq("File \"sexpm_test.ml\", line 21, characters 7-14", --[[ tuple ]]{
 
 Mt.from_pair_suites("Sexpm_test", suites.contents);
 
-exports = {}
+exports = {};
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
 exports.print_or_error = print_or_error;
+return exports;
 --[[ a Not a pure module ]]

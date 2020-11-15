@@ -1,4 +1,4 @@
-console = {log = print};
+__console = {log = print};
 
 
 v = /b/ig;
@@ -7,8 +7,9 @@ r = /Bucklescript是一个程序语言/;
 
 c = v;
 
-exports = {}
+exports = {};
 exports.v = v;
 exports.r = r;
 exports.c = c;
+return exports;
 --[[ No side effect ]]

@@ -1,11 +1,11 @@
-console = {log = print};
+__console = {log = print};
 
-Curry = require "../../lib/js/curry";
+Curry = require "......lib.js.curry";
 
 function map_pair(r, param) do
   return --[[ tuple ]]{
-          Curry._1(r, param[0]),
-          Curry._1(r, param[1])
+          Curry._1(r, param[1]),
+          Curry._1(r, param[2])
         };
 end end
 
@@ -24,9 +24,9 @@ hi = {
   "x"
 };
 
-console.log(3);
+__console.log(3);
 
-console.log("x");
+__console.log("x");
 
 v0 = {};
 
@@ -39,8 +39,9 @@ v1 = --[[ `A ]]{
   --[[ B ]]66
 };
 
-exports = {}
+exports = {};
 exports.hi = hi;
 exports.v0 = v0;
 exports.v1 = v1;
+return exports;
 --[[  Not a pure module ]]

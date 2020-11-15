@@ -1,9 +1,9 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Block = require "../../lib/js/block";
+Mt = require "..mt";
+Block = require "......lib.js.block";
 
-console.log(JSON.stringify(--[[ :: ]]{
+__console.log(__JSON.stringify(--[[ :: ]]{
           1,
           --[[ :: ]]{
             2,
@@ -14,14 +14,14 @@ console.log(JSON.stringify(--[[ :: ]]{
           }
         }));
 
-console.log("hey");
+__console.log("hey");
 
 suites_000 = --[[ tuple ]]{
   "anything_to_string",
   (function(param) do
       return --[[ Eq ]]Block.__(0, {
                 "3",
-                String(3)
+                __String(3)
               });
     end end)
 };
@@ -33,6 +33,7 @@ suites = --[[ :: ]]{
 
 Mt.from_pair_suites("Lib_js_test", suites);
 
-exports = {}
+exports = {};
 exports.suites = suites;
+return exports;
 --[[  Not a pure module ]]

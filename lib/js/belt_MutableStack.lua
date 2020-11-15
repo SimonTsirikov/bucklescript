@@ -1,7 +1,7 @@
-console = {log = print};
+__console = {log = print};
 
-Curry = require "./curry";
-Caml_option = require "./caml_option";
+Curry = require "..curry";
+Caml_option = require "..caml_option";
 
 function make(param) do
   return {
@@ -122,7 +122,7 @@ function dynamicPopIter(s, f) do
   return dynamicPopIterU(s, Curry.__1(f));
 end end
 
-exports = {}
+exports = {};
 exports.make = make;
 exports.clear = clear;
 exports.copy = copy;
@@ -137,4 +137,5 @@ exports.forEachU = forEachU;
 exports.forEach = forEach;
 exports.dynamicPopIterU = dynamicPopIterU;
 exports.dynamicPopIter = dynamicPopIter;
+return exports;
 --[[ No side effect ]]

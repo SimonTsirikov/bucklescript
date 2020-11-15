@@ -1,4 +1,4 @@
-console = {log = print};
+__console = {log = print};
 
 
 function f(re) do
@@ -6,6 +6,7 @@ function f(re) do
   return 3;
 end end
 
-exports = {}
+exports = {};
 exports.f = f;
+return exports;
 --[[ No side effect ]]

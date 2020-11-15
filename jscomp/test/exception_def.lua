@@ -1,8 +1,8 @@
-console = {log = print};
+__console = {log = print};
 
-Printexc = require "../../lib/js/printexc";
-Caml_exceptions = require "../../lib/js/caml_exceptions";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
+Printexc = require "......lib.js.printexc";
+Caml_exceptions = require "......lib.js.caml_exceptions";
+Caml_builtin_exceptions = require "......lib.js.caml_builtin_exceptions";
 
 A = Caml_exceptions.create("Exception_def.A");
 
@@ -34,7 +34,7 @@ v = {
 };
 
 Printexc.register_printer((function(param) do
-        if (param[0] == A) then do
+        if (param[1] == A) then do
           return "A";
         end
          end 
@@ -44,7 +44,7 @@ a = 3;
 
 u = Bx;
 
-exports = {}
+exports = {};
 exports.A = A;
 exports.U = U;
 exports.H = H;
@@ -55,4 +55,5 @@ exports.Ax = Ax;
 exports.XXX = XXX;
 exports.Aa = Aa;
 exports.v = v;
+return exports;
 --[[  Not a pure module ]]

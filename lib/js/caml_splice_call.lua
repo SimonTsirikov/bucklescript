@@ -1,4 +1,4 @@
-console = {log = print};
+__console = {log = print};
 
 
 spliceApply = (function(fn,args){
@@ -29,7 +29,8 @@ spliceObjApply = (function(obj,name,args){
   return (obj[name]).apply(obj,applied)
 });
 
-exports = {}
+exports = {};
 exports.spliceApply = spliceApply;
 exports.spliceObjApply = spliceObjApply;
+return exports;
 --[[ No side effect ]]

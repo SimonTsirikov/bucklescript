@@ -1,15 +1,15 @@
-console = {log = print};
+__console = {log = print};
 
-Char = require "./char";
-List = require "./list";
-Block = require "./block";
-Bytes = require "./bytes";
-Stream = require "./stream";
-Hashtbl = require "./hashtbl";
-Caml_bytes = require "./caml_bytes";
-Caml_int32 = require "./caml_int32";
-Caml_format = require "./caml_format";
-Caml_builtin_exceptions = require "./caml_builtin_exceptions";
+Char = require "..char";
+List = require "..list";
+Block = require "..block";
+Bytes = require "..bytes";
+Stream = require "..stream";
+Hashtbl = require "..hashtbl";
+Caml_bytes = require "..caml_bytes";
+Caml_int32 = require "..caml_int32";
+Caml_format = require "..caml_format";
+Caml_builtin_exceptions = require "..caml_builtin_exceptions";
 
 initial_buffer = Caml_bytes.caml_create_bytes(32);
 
@@ -659,6 +659,7 @@ function make_lexer(keywords) do
     end end);
 end end
 
-exports = {}
+exports = {};
 exports.make_lexer = make_lexer;
+return exports;
 --[[ No side effect ]]

@@ -1,8 +1,8 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Block = require "../../lib/js/block";
-Caml_format = require "../../lib/js/caml_format";
+Mt = require "..mt";
+Block = require "......lib.js.block";
+Caml_format = require "......lib.js.caml_format";
 
 suites = {
   contents = --[[ [] ]]0
@@ -16,7 +16,7 @@ function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[[ :: ]]{
     --[[ tuple ]]{
-      loc .. (" id " .. String(test_id.contents)),
+      loc .. (" id " .. __String(test_id.contents)),
       (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     x,
@@ -63,10 +63,11 @@ eq("File \"gpr_1728_test.ml\", line 27, characters 6-13", Caml_format.caml_int_o
 
 Mt.from_pair_suites("Gpr_1728_test", suites.contents);
 
-exports = {}
+exports = {};
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
 exports.foo = foo;
 exports.badInlining = badInlining;
+return exports;
 --[[  Not a pure module ]]

@@ -1,8 +1,8 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Caml_exceptions = require "../../lib/js/caml_exceptions";
-Caml_js_exceptions = require "../../lib/js/caml_js_exceptions";
+Mt = require "..mt";
+Caml_exceptions = require "......lib.js.caml_exceptions";
+Caml_js_exceptions = require "......lib.js.caml_js_exceptions";
 
 suites = {
   contents = --[[ [] ]]0
@@ -37,7 +37,7 @@ function f(param) do
     return --[[ () ]]0;
   end end,function(raw_exn) do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
-    if (exn[0] == A) then do
+    if (exn[1] == A) then do
       return --[[ () ]]0;
     end else do
       error(exn)
@@ -51,7 +51,7 @@ v = 32;
 
 max_array_length = 2147483647;
 
-exports = {}
+exports = {};
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
@@ -59,4 +59,5 @@ exports.v = v;
 exports.backend_type = backend_type;
 exports.max_array_length = max_array_length;
 exports.f = f;
+return exports;
 --[[  Not a pure module ]]

@@ -1,16 +1,16 @@
-console = {log = print};
+__console = {log = print};
 
-Belt_Id = require "../../lib/js/belt_Id";
-Hashtbl = require "../../lib/js/hashtbl";
-Belt_HashMap = require "../../lib/js/belt_HashMap";
-Belt_MapDict = require "../../lib/js/belt_MapDict";
-Caml_primitive = require "../../lib/js/caml_primitive";
-Belt_HashMapInt = require "../../lib/js/belt_HashMapInt";
-Belt_HashSetInt = require "../../lib/js/belt_HashSetInt";
-Belt_HashMapString = require "../../lib/js/belt_HashMapString";
-Caml_hash_primitive = require "../../lib/js/caml_hash_primitive";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
-Belt_internalBucketsType = require "../../lib/js/belt_internalBucketsType";
+Belt_Id = require "......lib.js.belt_Id";
+Hashtbl = require "......lib.js.hashtbl";
+Belt_HashMap = require "......lib.js.belt_HashMap";
+Belt_MapDict = require "......lib.js.belt_MapDict";
+Caml_primitive = require "......lib.js.caml_primitive";
+Belt_HashMapInt = require "......lib.js.belt_HashMapInt";
+Belt_HashSetInt = require "......lib.js.belt_HashSetInt";
+Belt_HashMapString = require "......lib.js.belt_HashMapString";
+Caml_hash_primitive = require "......lib.js.caml_hash_primitive";
+Caml_builtin_exceptions = require "......lib.js.caml_builtin_exceptions";
+Belt_internalBucketsType = require "......lib.js.belt_internalBucketsType";
 
 function hash_string(s) do
   return Caml_hash_primitive.caml_hash_final_mix(Caml_hash_primitive.caml_hash_mix_string(0, s));
@@ -70,10 +70,10 @@ end end
 function bench2(m) do
   empty = Belt_internalBucketsType.make(m.hash, m.eq, 1000000);
   for i = 0 , 1000000 , 1 do
-    Belt_HashMap.set(empty, String(i), i);
+    Belt_HashMap.set(empty, __String(i), i);
   end
   for i_1 = 0 , 1000000 , 1 do
-    if (not Belt_HashMap.has(empty, String(i_1))) then do
+    if (not Belt_HashMap.has(empty, __String(i_1))) then do
       error({
         Caml_builtin_exceptions.assert_failure,
         --[[ tuple ]]{
@@ -86,7 +86,7 @@ function bench2(m) do
      end 
   end
   for i_2 = 0 , 1000000 , 1 do
-    Belt_HashMap.remove(empty, String(i_2));
+    Belt_HashMap.remove(empty, __String(i_2));
   end
   if (empty.size == 0) then do
     return 0;
@@ -110,10 +110,10 @@ function bench3(m) do
   cmp = m.cmp;
   table = empty.data;
   for i = 0 , 1000000 , 1 do
-    table = Belt_MapDict.set(table, String(i), i, cmp);
+    table = Belt_MapDict.set(table, __String(i), i, cmp);
   end
   for i_1 = 0 , 1000000 , 1 do
-    if (not Belt_MapDict.has(table, String(i_1), cmp)) then do
+    if (not Belt_MapDict.has(table, __String(i_1), cmp)) then do
       error({
         Caml_builtin_exceptions.assert_failure,
         --[[ tuple ]]{
@@ -126,7 +126,7 @@ function bench3(m) do
      end 
   end
   for i_2 = 0 , 1000000 , 1 do
-    table = Belt_MapDict.remove(table, String(i_2), cmp);
+    table = Belt_MapDict.remove(table, __String(i_2), cmp);
   end
   if (Belt_MapDict.size(table) == 0) then do
     return 0;
@@ -147,10 +147,10 @@ Sx = Belt_Id.comparable(Caml_primitive.caml_string_compare);
 function bench4(param) do
   table = Belt_internalBucketsType.make(--[[ () ]]0, --[[ () ]]0, 1000000);
   for i = 0 , 1000000 , 1 do
-    Belt_HashMapString.set(table, String(i), i);
+    Belt_HashMapString.set(table, __String(i), i);
   end
   for i_1 = 0 , 1000000 , 1 do
-    if (not Belt_HashMapString.has(table, String(i_1))) then do
+    if (not Belt_HashMapString.has(table, __String(i_1))) then do
       error({
         Caml_builtin_exceptions.assert_failure,
         --[[ tuple ]]{
@@ -163,7 +163,7 @@ function bench4(param) do
      end 
   end
   for i_2 = 0 , 1000000 , 1 do
-    Belt_HashMapString.remove(table, String(i_2));
+    Belt_HashMapString.remove(table, __String(i_2));
   end
   if (Belt_HashMapString.isEmpty(table)) then do
     return 0;
@@ -181,12 +181,12 @@ end end
 
 function bench5(param) do
   table = Belt_internalBucketsType.make(Int.hash, Int.eq, 1000000);
-  console.time("test/bs_hashtbl_string_test.ml 133");
+  __console.time("test/bs_hashtbl_string_test.ml 133");
   for i = 0 , 1000000 , 1 do
     Belt_HashMap.set(table, i, i);
   end
-  console.timeEnd("test/bs_hashtbl_string_test.ml 133");
-  console.time("test/bs_hashtbl_string_test.ml 137");
+  __console.timeEnd("test/bs_hashtbl_string_test.ml 133");
+  __console.time("test/bs_hashtbl_string_test.ml 137");
   for i_1 = 0 , 1000000 , 1 do
     if (not Belt_HashMap.has(table, i_1)) then do
       error({
@@ -200,12 +200,12 @@ function bench5(param) do
     end
      end 
   end
-  console.timeEnd("test/bs_hashtbl_string_test.ml 137");
-  console.time("test/bs_hashtbl_string_test.ml 141");
+  __console.timeEnd("test/bs_hashtbl_string_test.ml 137");
+  __console.time("test/bs_hashtbl_string_test.ml 141");
   for i_2 = 0 , 1000000 , 1 do
     Belt_HashMap.remove(table, i_2);
   end
-  console.timeEnd("test/bs_hashtbl_string_test.ml 141");
+  __console.timeEnd("test/bs_hashtbl_string_test.ml 141");
   if (Belt_HashMap.isEmpty(table)) then do
     return 0;
   end else do
@@ -291,11 +291,11 @@ function bench7(param) do
   end end 
 end end
 
-console.time("test/bs_hashtbl_string_test.ml 203");
+__console.time("test/bs_hashtbl_string_test.ml 203");
 
 bench7(--[[ () ]]0);
 
-console.timeEnd("test/bs_hashtbl_string_test.ml 203");
+__console.timeEnd("test/bs_hashtbl_string_test.ml 203");
 
 N = --[[ alias ]]0;
 
@@ -317,7 +317,7 @@ HI = --[[ alias ]]0;
 
 S = --[[ alias ]]0;
 
-exports = {}
+exports = {};
 exports.hash_string = hash_string;
 exports.hashString = hashString;
 exports.__String = __String;
@@ -343,4 +343,5 @@ exports.HI = HI;
 exports.bench6 = bench6;
 exports.S = S;
 exports.bench7 = bench7;
+return exports;
 --[[ String Not a pure module ]]

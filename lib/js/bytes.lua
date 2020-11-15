@@ -1,10 +1,10 @@
-console = {log = print};
+__console = {log = print};
 
-Char = require "./char";
-Curry = require "./curry";
-Caml_bytes = require "./caml_bytes";
-Caml_primitive = require "./caml_primitive";
-Caml_builtin_exceptions = require "./caml_builtin_exceptions";
+Char = require "..char";
+Curry = require "..curry";
+Caml_bytes = require "..caml_bytes";
+Caml_primitive = require "..caml_primitive";
+Caml_builtin_exceptions = require "..caml_builtin_exceptions";
 
 function make(n, c) do
   s = Caml_bytes.caml_create_bytes(n);
@@ -54,7 +54,7 @@ function sub_string(b, ofs, len) do
   return Caml_bytes.bytes_to_string(sub(b, ofs, len));
 end end
 
-function $plus$plus(a, b) do
+function _plus_plus(a, b) do
   c = a + b | 0;
   match = a < 0;
   match_1 = b < 0;
@@ -83,7 +83,7 @@ function $plus$plus(a, b) do
 end end
 
 function extend(s, left, right) do
-  len = $plus$plus($plus$plus(#s, left), right);
+  len = _plus_plus(_plus_plus(#s, left), right);
   r = Caml_bytes.caml_create_bytes(len);
   match = left < 0 and --[[ tuple ]]{
       -left | 0,
@@ -92,8 +92,8 @@ function extend(s, left, right) do
       0,
       left
     };
-  dstoff = match[1];
-  srcoff = match[0];
+  dstoff = match[2];
+  srcoff = match[1];
   cpylen = Caml_primitive.caml_int_min(#s - srcoff | 0, len - dstoff | 0);
   if (cpylen > 0) then do
     Caml_bytes.caml_blit_bytes(s, srcoff, r, dstoff, cpylen);
@@ -165,8 +165,8 @@ function sum_lengths(_acc, seplen, _param) do
     param = _param;
     acc = _acc;
     if (param) then do
-      tl = param[1];
-      hd = param[0];
+      tl = param[2];
+      hd = param[1];
       if (tl) then do
         _param = tl;
         _acc = ensure_ge((#hd + seplen | 0) + acc | 0, acc);
@@ -192,8 +192,8 @@ function concat(sep, l) do
       param = _param;
       pos = _pos;
       if (param) then do
-        tl = param[1];
-        hd = param[0];
+        tl = param[2];
+        hd = param[1];
         if (tl) then do
           Caml_bytes.caml_blit_bytes(hd, 0, dst, pos, #hd);
           Caml_bytes.caml_blit_bytes(sep_1, 0, dst, pos + #hd | 0, seplen_1);
@@ -272,7 +272,7 @@ function escaped(s) do
   if (n == #s) then do
     return copy(s);
   end else do
-    s$prime = Caml_bytes.caml_create_bytes(n);
+    s_prime = Caml_bytes.caml_create_bytes(n);
     n = 0;
     for i_1 = 0 , #s - 1 | 0 , 1 do
       c = s[i_1];
@@ -282,7 +282,7 @@ function escaped(s) do
           if (c >= 127) then do
             exit = 1;
           end else do
-            s$prime[n] = c;
+            s_prime[n] = c;
           end end 
         end else do
           exit = 2;
@@ -291,7 +291,7 @@ function escaped(s) do
         if (c >= 34) then do
           exit = 2;
         end else do
-          s$prime[n] = c;
+          s_prime[n] = c;
         end end 
       end else if (c >= 14) then do
         exit = 1;
@@ -299,17 +299,17 @@ function escaped(s) do
         local ___conditional___=(c);
         do
            if ___conditional___ == 8 then do
-              s$prime[n] = --[[ "\\" ]]92;
+              s_prime[n] = --[[ "\\" ]]92;
               n = n + 1 | 0;
-              s$prime[n] = --[[ "b" ]]98; end else 
+              s_prime[n] = --[[ "b" ]]98; end else 
            if ___conditional___ == 9 then do
-              s$prime[n] = --[[ "\\" ]]92;
+              s_prime[n] = --[[ "\\" ]]92;
               n = n + 1 | 0;
-              s$prime[n] = --[[ "t" ]]116; end else 
+              s_prime[n] = --[[ "t" ]]116; end else 
            if ___conditional___ == 10 then do
-              s$prime[n] = --[[ "\\" ]]92;
+              s_prime[n] = --[[ "\\" ]]92;
               n = n + 1 | 0;
-              s$prime[n] = --[[ "n" ]]110; end else 
+              s_prime[n] = --[[ "n" ]]110; end else 
            if ___conditional___ == 0
            or ___conditional___ == 1
            or ___conditional___ == 2
@@ -322,9 +322,9 @@ function escaped(s) do
            or ___conditional___ == 12 then do
               exit = 1; end else 
            if ___conditional___ == 13 then do
-              s$prime[n] = --[[ "\\" ]]92;
+              s_prime[n] = --[[ "\\" ]]92;
               n = n + 1 | 0;
-              s$prime[n] = --[[ "r" ]]114; end else 
+              s_prime[n] = --[[ "r" ]]114; end else 
            end end end end end end end end end end
           
         end
@@ -332,23 +332,23 @@ function escaped(s) do
       local ___conditional___=(exit);
       do
          if ___conditional___ == 1 then do
-            s$prime[n] = --[[ "\\" ]]92;
+            s_prime[n] = --[[ "\\" ]]92;
             n = n + 1 | 0;
-            s$prime[n] = 48 + (c / 100 | 0) | 0;
+            s_prime[n] = 48 + (c / 100 | 0) | 0;
             n = n + 1 | 0;
-            s$prime[n] = 48 + (c / 10 | 0) % 10 | 0;
+            s_prime[n] = 48 + (c / 10 | 0) % 10 | 0;
             n = n + 1 | 0;
-            s$prime[n] = 48 + c % 10 | 0; end else 
+            s_prime[n] = 48 + c % 10 | 0; end else 
          if ___conditional___ == 2 then do
-            s$prime[n] = --[[ "\\" ]]92;
+            s_prime[n] = --[[ "\\" ]]92;
             n = n + 1 | 0;
-            s$prime[n] = c; end else 
+            s_prime[n] = c; end else 
          end end end end
         
       end
       n = n + 1 | 0;
     end
-    return s$prime;
+    return s_prime;
   end end 
 end end
 
@@ -595,7 +595,7 @@ unsafe_to_string = Caml_bytes.bytes_to_string;
 
 unsafe_of_string = Caml_bytes.bytes_of_string;
 
-exports = {}
+exports = {};
 exports.make = make;
 exports.init = init;
 exports.empty = empty;
@@ -639,4 +639,5 @@ exports.compare = compare;
 exports.equal = equal;
 exports.unsafe_to_string = unsafe_to_string;
 exports.unsafe_of_string = unsafe_of_string;
+return exports;
 --[[ No side effect ]]

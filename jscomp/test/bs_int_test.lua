@@ -1,8 +1,8 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Block = require "../../lib/js/block";
-Belt_Int = require "../../lib/js/belt_Int";
+Mt = require "..mt";
+Block = require "......lib.js.block";
+Belt_Int = require "......lib.js.belt_Int";
 
 suites = {
   contents = --[[ [] ]]0
@@ -28,7 +28,7 @@ function neq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[[ :: ]]{
     --[[ tuple ]]{
-      loc .. (" id " .. String(test_id.contents)),
+      loc .. (" id " .. __String(test_id.contents)),
       (function(param) do
           return --[[ Neq ]]Block.__(1, {
                     x,
@@ -71,9 +71,9 @@ eq("File \"bs_int_test.ml\", line 31, characters 5-12", Belt_Int.fromString("-1.
 
 eq("File \"bs_int_test.ml\", line 32, characters 5-12", Belt_Int.fromString("not an int"), nil);
 
-eq("File \"bs_int_test.ml\", line 35, characters 5-12", String(1), "1");
+eq("File \"bs_int_test.ml\", line 35, characters 5-12", __String(1), "1");
 
-eq("File \"bs_int_test.ml\", line 36, characters 5-12", String(-1), "-1");
+eq("File \"bs_int_test.ml\", line 36, characters 5-12", __String(-1), "-1");
 
 eq("File \"bs_int_test.ml\", line 40, characters 5-12", 5, 5);
 
@@ -87,7 +87,7 @@ Mt.from_pair_suites("File \"bs_int_test.ml\", line 45, characters 23-30", suites
 
 I = --[[ alias ]]0;
 
-exports = {}
+exports = {};
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
@@ -95,4 +95,5 @@ exports.b = b;
 exports.__throw = __throw;
 exports.neq = neq;
 exports.I = I;
+return exports;
 --[[  Not a pure module ]]

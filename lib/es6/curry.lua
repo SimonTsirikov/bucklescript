@@ -1,6 +1,6 @@
 
 
-import * as Caml_array from "./caml_array.lua";
+local Caml_array = require "..caml_array.lua";
 
 function app(_f, _args) do
   while(true) do

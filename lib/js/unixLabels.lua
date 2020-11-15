@@ -1,6 +1,6 @@
-console = {log = print};
+__console = {log = print};
 
-Unix = require "./unix";
+Unix = require "..unix";
 
 Unix_error = Unix.Unix_error;
 
@@ -326,7 +326,7 @@ tcflow = Unix.tcflow;
 
 setsid = Unix.setsid;
 
-exports = {}
+exports = {};
 exports.Unix_error = Unix_error;
 exports.error_message = error_message;
 exports.handle_unix_error = handle_unix_error;
@@ -489,4 +489,5 @@ exports.tcdrain = tcdrain;
 exports.tcflush = tcflush;
 exports.tcflow = tcflow;
 exports.setsid = setsid;
+return exports;
 --[[ Unix Not a pure module ]]

@@ -2,8 +2,8 @@
 
 
 function fromString(i) do
-  i_1 = parseFloat(i);
-  if (isNaN(i_1)) then do
+  i_1 = __parseFloat(i);
+  if (__isNaN(i_1)) then do
     return ;
   end else do
     return i_1;

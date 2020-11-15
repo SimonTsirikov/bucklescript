@@ -1,6 +1,6 @@
-console = {log = print};
+__console = {log = print};
 
-Belt_Array = require "../../lib/js/belt_Array";
+Belt_Array = require "......lib.js.belt_Array";
 
 b = Belt_Array.eq({
       1,
@@ -16,7 +16,8 @@ b = Belt_Array.eq({
 
 A = --[[ alias ]]0;
 
-exports = {}
+exports = {};
 exports.A = A;
 exports.b = b;
+return exports;
 --[[ b Not a pure module ]]

@@ -1,9 +1,9 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-List = require "../../lib/js/list";
-Block = require "../../lib/js/block";
-Curry = require "../../lib/js/curry";
+Mt = require "..mt";
+List = require "......lib.js.list";
+Block = require "......lib.js.block";
+Curry = require "......lib.js.curry";
 
 suites = {
   contents = --[[ [] ]]0
@@ -17,7 +17,7 @@ function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[[ :: ]]{
     --[[ tuple ]]{
-      loc .. (" id " .. String(test_id.contents)),
+      loc .. (" id " .. __String(test_id.contents)),
       (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     x,
@@ -31,8 +31,8 @@ function eq(loc, x, y) do
 end end
 
 function f(x) do
-  console.log(x);
-  console.log(List.length(x));
+  __console.log(x);
+  __console.log(List.length(x));
   return List;
 end end
 
@@ -59,7 +59,7 @@ V = --[[ alias ]]0;
 
 J = --[[ alias ]]0;
 
-exports = {}
+exports = {};
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
@@ -68,4 +68,5 @@ exports.V = V;
 exports.J = J;
 exports.f = f;
 exports.a = a;
+return exports;
 --[[ h Not a pure module ]]

@@ -1,11 +1,11 @@
-console = {log = print};
+__console = {log = print};
 
-List = require "../../lib/js/list";
-__Array = require "../../lib/js/array";
-Curry = require "../../lib/js/curry";
-Caml_array = require "../../lib/js/caml_array";
-Caml_option = require "../../lib/js/caml_option";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
+List = require "......lib.js.list";
+__Array = require "......lib.js.array";
+Curry = require "......lib.js.curry";
+Caml_array = require "......lib.js.caml_array";
+Caml_option = require "......lib.js.caml_option";
+Caml_builtin_exceptions = require "......lib.js.caml_builtin_exceptions";
 
 function reverse_range(a, i, len) do
   if (len == 0) then do
@@ -40,15 +40,15 @@ end end
 function reverse_of_list(l) do
   if (l) then do
     len = List.length(l);
-    a = Caml_array.caml_make_vect(len, l[0]);
+    a = Caml_array.caml_make_vect(len, l[1]);
     _i = 0;
-    _param = l[1];
+    _param = l[2];
     while(true) do
       param = _param;
       i = _i;
       if (param) then do
-        a[(len - i | 0) - 2 | 0] = param[0];
-        _param = param[1];
+        a[(len - i | 0) - 2 | 0] = param[1];
+        _param = param[2];
         _i = i + 1 | 0;
         ::continue:: ;
       end else do
@@ -168,8 +168,8 @@ end end
 
 function of_list_map(f, a) do
   if (a) then do
-    tl = a[1];
-    hd = Curry._1(f, a[0]);
+    tl = a[2];
+    hd = Curry._1(f, a[1]);
     len = List.length(tl) + 1 | 0;
     arr = Caml_array.caml_make_vect(len, hd);
     _i = 1;
@@ -178,8 +178,8 @@ function of_list_map(f, a) do
       param = _param;
       i = _i;
       if (param) then do
-        arr[i] = Curry._1(f, param[0]);
-        _param = param[1];
+        arr[i] = Curry._1(f, param[1]);
+        _param = param[2];
         _i = i + 1 | 0;
         ::continue:: ;
       end else do
@@ -296,7 +296,7 @@ function for_all2_no_exn(p, xs, ys) do
   end end 
 end end
 
-exports = {}
+exports = {};
 exports.reverse_range = reverse_range;
 exports.reverse_in_place = reverse_in_place;
 exports.reverse = reverse;
@@ -317,4 +317,5 @@ exports.exists = exists;
 exports.is_empty = is_empty;
 exports.unsafe_loop = unsafe_loop;
 exports.for_all2_no_exn = for_all2_no_exn;
+return exports;
 --[[ No side effect ]]

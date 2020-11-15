@@ -1,7 +1,7 @@
-console = {log = print};
+__console = {log = print};
 
-Hashtbl = require "../../lib/js/hashtbl";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
+Hashtbl = require "......lib.js.hashtbl";
+Caml_builtin_exceptions = require "......lib.js.caml_builtin_exceptions";
 
 function bench(param) do
   table = Hashtbl.create(nil, 1000000);
@@ -31,7 +31,8 @@ bench(--[[ () ]]0);
 
 count = 1000000;
 
-exports = {}
+exports = {};
 exports.count = count;
 exports.bench = bench;
+return exports;
 --[[  Not a pure module ]]

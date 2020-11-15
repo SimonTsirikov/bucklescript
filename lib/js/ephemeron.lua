@@ -1,18 +1,18 @@
-console = {log = print};
+__console = {log = print};
 
-Obj = require "./obj";
-Sys = require "./sys";
-__Array = require "./array";
-Curry = require "./curry";
-Random = require "./random";
-Hashtbl = require "./hashtbl";
-Caml_obj = require "./caml_obj";
-Caml_array = require "./caml_array";
-Caml_int32 = require "./caml_int32";
-Caml_option = require "./caml_option";
-Caml_primitive = require "./caml_primitive";
-CamlinternalLazy = require "./camlinternalLazy";
-Caml_builtin_exceptions = require "./caml_builtin_exceptions";
+Obj = require "..obj";
+Sys = require "..sys";
+__Array = require "..array";
+Curry = require "..curry";
+Random = require "..random";
+Hashtbl = require "..hashtbl";
+Caml_obj = require "..caml_obj";
+Caml_array = require "..caml_array";
+Caml_int32 = require "..caml_int32";
+Caml_option = require "..caml_option";
+Caml_primitive = require "..caml_primitive";
+CamlinternalLazy = require "..camlinternalLazy";
+Caml_builtin_exceptions = require "..caml_builtin_exceptions";
 
 function create(param) do
   return Obj.Ephemeron.create(1);
@@ -150,11 +150,11 @@ function MakeSeeded(H) do
       while(true) do
         param = _param;
         if (param) then do
-          rest = param[2];
-          c = param[1];
+          rest = param[3];
+          c = param[2];
           if (check_key(c)) then do
             return --[[ Cons ]]{
-                    param[0],
+                    param[1],
                     c,
                     do_bucket(rest)
                   };
@@ -184,12 +184,12 @@ function MakeSeeded(H) do
       h.data = ndata;
       insert_bucket = function(param) do
         if (param) then do
-          hkey = param[0];
-          insert_bucket(param[2]);
+          hkey = param[1];
+          insert_bucket(param[3]);
           nidx = key_index(h, hkey);
           return Caml_array.caml_array_set(ndata, nidx, --[[ Cons ]]{
                       hkey,
-                      param[1],
+                      param[2],
                       Caml_array.caml_array_get(ndata, nidx)
                     });
         end else do
@@ -228,9 +228,9 @@ function MakeSeeded(H) do
       while(true) do
         param = _param;
         if (param) then do
-          next = param[2];
-          c = param[1];
-          hk = param[0];
+          next = param[3];
+          c = param[2];
+          hk = param[1];
           if (hkey == hk) then do
             match = equal(c, key);
             local ___conditional___=(match);
@@ -273,9 +273,9 @@ function MakeSeeded(H) do
     while(true) do
       param = _param;
       if (param) then do
-        rest = param[2];
-        c = param[1];
-        if (hkey_1 == param[0]) then do
+        rest = param[3];
+        c = param[2];
+        if (hkey_1 == param[1]) then do
           match = equal(c, key_1);
           if (match ~= 0) then do
             _param = rest;
@@ -306,9 +306,9 @@ function MakeSeeded(H) do
     while(true) do
       param = _param;
       if (param) then do
-        rest = param[2];
-        c = param[1];
-        if (hkey_1 == param[0]) then do
+        rest = param[3];
+        c = param[2];
+        if (hkey_1 == param[1]) then do
           match = equal(c, key_1);
           if (match ~= 0) then do
             _param = rest;
@@ -337,9 +337,9 @@ function MakeSeeded(H) do
       while(true) do
         param = _param;
         if (param) then do
-          rest = param[2];
-          c = param[1];
-          if (hkey == param[0]) then do
+          rest = param[3];
+          c = param[2];
+          if (hkey == param[1]) then do
             match = equal(c, key);
             if (match ~= 0) then do
               _param = rest;
@@ -376,9 +376,9 @@ function MakeSeeded(H) do
       while(true) do
         param = _param;
         if (param) then do
-          next = param[2];
-          c = param[1];
-          if (hkey == param[0]) then do
+          next = param[3];
+          c = param[2];
+          if (hkey == param[1]) then do
             match = equal(c, key);
             if (match ~= 0) then do
               _param = next;
@@ -419,9 +419,9 @@ function MakeSeeded(H) do
     while(true) do
       param = _param;
       if (param) then do
-        rest = param[2];
-        if (param[0] == hkey) then do
-          match = equal(param[1], key);
+        rest = param[3];
+        if (param[1] == hkey) then do
+          match = equal(param[2], key);
           if (match ~= 0) then do
             _param = rest;
             ::continue:: ;
@@ -442,7 +442,7 @@ function MakeSeeded(H) do
       while(true) do
         param = _param;
         if (param) then do
-          c = param[1];
+          c = param[2];
           match = get_key(c);
           match_1 = get_data(c);
           if (match ~= nil) then do
@@ -452,7 +452,7 @@ function MakeSeeded(H) do
              end 
           end
            end 
-          _param = param[2];
+          _param = param[3];
           ::continue:: ;
         end else do
           return --[[ () ]]0;
@@ -471,12 +471,12 @@ function MakeSeeded(H) do
         accu = _accu;
         b = _b;
         if (b) then do
-          c = b[1];
+          c = b[2];
           match = get_key(c);
           match_1 = get_data(c);
           accu_1 = match ~= nil and match_1 ~= nil and Curry._3(f, Caml_option.valFromOption(match), Caml_option.valFromOption(match_1), accu) or accu;
           _accu = accu_1;
-          _b = b[2];
+          _b = b[3];
           ::continue:: ;
         end else do
           return accu;
@@ -495,8 +495,8 @@ function MakeSeeded(H) do
       while(true) do
         param = _param;
         if (param) then do
-          rest = param[2];
-          c = param[1];
+          rest = param[3];
+          c = param[2];
           match = get_key(c);
           match_1 = get_data(c);
           if (match ~= nil) then do
@@ -506,7 +506,7 @@ function MakeSeeded(H) do
               if (match_2 ~= nil) then do
                 set_key_data(c, k, Caml_option.valFromOption(match_2));
                 return --[[ Cons ]]{
-                        param[0],
+                        param[1],
                         c,
                         do_bucket(rest)
                       };
@@ -541,7 +541,7 @@ function MakeSeeded(H) do
       param = _param;
       accu = _accu;
       if (param) then do
-        _param = param[2];
+        _param = param[3];
         _accu = accu + 1 | 0;
         ::continue:: ;
       end else do
@@ -570,8 +570,8 @@ function MakeSeeded(H) do
       param = _param;
       accu = _accu;
       if (param) then do
-        rest = param[2];
-        if (check_key(param[1])) then do
+        rest = param[3];
+        if (check_key(param[2])) then do
           _param = rest;
           _accu = accu + 1 | 0;
           ::continue:: ;
@@ -702,11 +702,11 @@ function Make(H) do
       while(true) do
         param = _param;
         if (param) then do
-          rest = param[2];
-          c = param[1];
+          rest = param[3];
+          c = param[2];
           if (check_key(c)) then do
             return --[[ Cons ]]{
-                    param[0],
+                    param[1],
                     c,
                     do_bucket(rest)
                   };
@@ -736,12 +736,12 @@ function Make(H) do
       h.data = ndata;
       insert_bucket = function(param) do
         if (param) then do
-          hkey = param[0];
-          insert_bucket(param[2]);
+          hkey = param[1];
+          insert_bucket(param[3]);
           nidx = key_index(h, hkey);
           return Caml_array.caml_array_set(ndata, nidx, --[[ Cons ]]{
                       hkey,
-                      param[1],
+                      param[2],
                       Caml_array.caml_array_get(ndata, nidx)
                     });
         end else do
@@ -780,9 +780,9 @@ function Make(H) do
       while(true) do
         param = _param;
         if (param) then do
-          next = param[2];
-          c = param[1];
-          hk = param[0];
+          next = param[3];
+          c = param[2];
+          hk = param[1];
           if (hkey == hk) then do
             match = equal_1(c, key);
             local ___conditional___=(match);
@@ -825,9 +825,9 @@ function Make(H) do
     while(true) do
       param = _param;
       if (param) then do
-        rest = param[2];
-        c = param[1];
-        if (hkey_1 == param[0]) then do
+        rest = param[3];
+        c = param[2];
+        if (hkey_1 == param[1]) then do
           match = equal_1(c, key_1);
           if (match ~= 0) then do
             _param = rest;
@@ -858,9 +858,9 @@ function Make(H) do
     while(true) do
       param = _param;
       if (param) then do
-        rest = param[2];
-        c = param[1];
-        if (hkey_1 == param[0]) then do
+        rest = param[3];
+        c = param[2];
+        if (hkey_1 == param[1]) then do
           match = equal_1(c, key_1);
           if (match ~= 0) then do
             _param = rest;
@@ -889,9 +889,9 @@ function Make(H) do
       while(true) do
         param = _param;
         if (param) then do
-          rest = param[2];
-          c = param[1];
-          if (hkey == param[0]) then do
+          rest = param[3];
+          c = param[2];
+          if (hkey == param[1]) then do
             match = equal_1(c, key);
             if (match ~= 0) then do
               _param = rest;
@@ -928,9 +928,9 @@ function Make(H) do
       while(true) do
         param = _param;
         if (param) then do
-          next = param[2];
-          c = param[1];
-          if (hkey == param[0]) then do
+          next = param[3];
+          c = param[2];
+          if (hkey == param[1]) then do
             match = equal_1(c, key);
             if (match ~= 0) then do
               _param = next;
@@ -971,9 +971,9 @@ function Make(H) do
     while(true) do
       param = _param;
       if (param) then do
-        rest = param[2];
-        if (param[0] == hkey) then do
-          match = equal_1(param[1], key);
+        rest = param[3];
+        if (param[1] == hkey) then do
+          match = equal_1(param[2], key);
           if (match ~= 0) then do
             _param = rest;
             ::continue:: ;
@@ -994,7 +994,7 @@ function Make(H) do
       while(true) do
         param = _param;
         if (param) then do
-          c = param[1];
+          c = param[2];
           match = get_key(c);
           match_1 = get_data(c);
           if (match ~= nil) then do
@@ -1004,7 +1004,7 @@ function Make(H) do
              end 
           end
            end 
-          _param = param[2];
+          _param = param[3];
           ::continue:: ;
         end else do
           return --[[ () ]]0;
@@ -1023,12 +1023,12 @@ function Make(H) do
         accu = _accu;
         b = _b;
         if (b) then do
-          c = b[1];
+          c = b[2];
           match = get_key(c);
           match_1 = get_data(c);
           accu_1 = match ~= nil and match_1 ~= nil and Curry._3(f, Caml_option.valFromOption(match), Caml_option.valFromOption(match_1), accu) or accu;
           _accu = accu_1;
-          _b = b[2];
+          _b = b[3];
           ::continue:: ;
         end else do
           return accu;
@@ -1047,8 +1047,8 @@ function Make(H) do
       while(true) do
         param = _param;
         if (param) then do
-          rest = param[2];
-          c = param[1];
+          rest = param[3];
+          c = param[2];
           match = get_key(c);
           match_1 = get_data(c);
           if (match ~= nil) then do
@@ -1058,7 +1058,7 @@ function Make(H) do
               if (match_2 ~= nil) then do
                 set_key_data(c, k, Caml_option.valFromOption(match_2));
                 return --[[ Cons ]]{
-                        param[0],
+                        param[1],
                         c,
                         do_bucket(rest)
                       };
@@ -1093,7 +1093,7 @@ function Make(H) do
       param = _param;
       accu = _accu;
       if (param) then do
-        _param = param[2];
+        _param = param[3];
         _accu = accu + 1 | 0;
         ::continue:: ;
       end else do
@@ -1122,8 +1122,8 @@ function Make(H) do
       param = _param;
       accu = _accu;
       if (param) then do
-        rest = param[2];
-        if (check_key(param[1])) then do
+        rest = param[3];
+        if (check_key(param[2])) then do
           _param = rest;
           _accu = accu + 1 | 0;
           ::continue:: ;
@@ -1275,18 +1275,18 @@ function MakeSeeded_1(H1, H2) do
   create = function(param, d) do
     c = Obj.Ephemeron.create(2);
     Obj.Ephemeron.set_data(c, d);
-    set_key1(c, param[0]);
-    set_key2(c, param[1]);
+    set_key1(c, param[1]);
+    set_key2(c, param[2]);
     return c;
   end end;
   hash = function(seed, param) do
-    return Curry._2(H1.hash, seed, param[0]) + Caml_int32.imul(Curry._2(H2.hash, seed, param[1]), 65599) | 0;
+    return Curry._2(H1.hash, seed, param[1]) + Caml_int32.imul(Curry._2(H2.hash, seed, param[2]), 65599) | 0;
   end end;
   equal = function(c, param) do
     match = Obj.Ephemeron.get_key(c, 0);
     match_1 = Obj.Ephemeron.get_key(c, 1);
     if (match ~= nil and match_1 ~= nil) then do
-      if (Curry._2(H1.equal, param[0], Caml_option.valFromOption(match)) and Curry._2(H2.equal, param[1], Caml_option.valFromOption(match_1))) then do
+      if (Curry._2(H1.equal, param[1], Caml_option.valFromOption(match)) and Curry._2(H2.equal, param[2], Caml_option.valFromOption(match_1))) then do
         return --[[ ETrue ]]0;
       end else do
         return --[[ EFalse ]]1;
@@ -1308,8 +1308,8 @@ function MakeSeeded_1(H1, H2) do
   end end;
   set_key_data = function(c, param, d) do
     Obj.Ephemeron.unset_data(c);
-    set_key1(c, param[0]);
-    set_key2(c, param[1]);
+    set_key1(c, param[1]);
+    set_key2(c, param[2]);
     return Obj.Ephemeron.set_data(c, d);
   end end;
   check_key = function(c) do
@@ -1378,11 +1378,11 @@ function MakeSeeded_1(H1, H2) do
       while(true) do
         param = _param;
         if (param) then do
-          rest = param[2];
-          c = param[1];
+          rest = param[3];
+          c = param[2];
           if (check_key(c)) then do
             return --[[ Cons ]]{
-                    param[0],
+                    param[1],
                     c,
                     do_bucket(rest)
                   };
@@ -1412,12 +1412,12 @@ function MakeSeeded_1(H1, H2) do
       h.data = ndata;
       insert_bucket = function(param) do
         if (param) then do
-          hkey = param[0];
-          insert_bucket(param[2]);
+          hkey = param[1];
+          insert_bucket(param[3]);
           nidx = key_index(h, hkey);
           return Caml_array.caml_array_set(ndata, nidx, --[[ Cons ]]{
                       hkey,
-                      param[1],
+                      param[2],
                       Caml_array.caml_array_get(ndata, nidx)
                     });
         end else do
@@ -1456,9 +1456,9 @@ function MakeSeeded_1(H1, H2) do
       while(true) do
         param = _param;
         if (param) then do
-          next = param[2];
-          c = param[1];
-          hk = param[0];
+          next = param[3];
+          c = param[2];
+          hk = param[1];
           if (hkey == hk) then do
             match = equal(c, key);
             local ___conditional___=(match);
@@ -1501,9 +1501,9 @@ function MakeSeeded_1(H1, H2) do
     while(true) do
       param = _param;
       if (param) then do
-        rest = param[2];
-        c = param[1];
-        if (hkey_1 == param[0]) then do
+        rest = param[3];
+        c = param[2];
+        if (hkey_1 == param[1]) then do
           match = equal(c, key_1);
           if (match ~= 0) then do
             _param = rest;
@@ -1534,9 +1534,9 @@ function MakeSeeded_1(H1, H2) do
     while(true) do
       param = _param;
       if (param) then do
-        rest = param[2];
-        c = param[1];
-        if (hkey_1 == param[0]) then do
+        rest = param[3];
+        c = param[2];
+        if (hkey_1 == param[1]) then do
           match = equal(c, key_1);
           if (match ~= 0) then do
             _param = rest;
@@ -1565,9 +1565,9 @@ function MakeSeeded_1(H1, H2) do
       while(true) do
         param = _param;
         if (param) then do
-          rest = param[2];
-          c = param[1];
-          if (hkey == param[0]) then do
+          rest = param[3];
+          c = param[2];
+          if (hkey == param[1]) then do
             match = equal(c, key);
             if (match ~= 0) then do
               _param = rest;
@@ -1604,9 +1604,9 @@ function MakeSeeded_1(H1, H2) do
       while(true) do
         param = _param;
         if (param) then do
-          next = param[2];
-          c = param[1];
-          if (hkey == param[0]) then do
+          next = param[3];
+          c = param[2];
+          if (hkey == param[1]) then do
             match = equal(c, key);
             if (match ~= 0) then do
               _param = next;
@@ -1647,9 +1647,9 @@ function MakeSeeded_1(H1, H2) do
     while(true) do
       param = _param;
       if (param) then do
-        rest = param[2];
-        if (param[0] == hkey) then do
-          match = equal(param[1], key);
+        rest = param[3];
+        if (param[1] == hkey) then do
+          match = equal(param[2], key);
           if (match ~= 0) then do
             _param = rest;
             ::continue:: ;
@@ -1670,7 +1670,7 @@ function MakeSeeded_1(H1, H2) do
       while(true) do
         param = _param;
         if (param) then do
-          c = param[1];
+          c = param[2];
           match = get_key(c);
           match_1 = get_data_1(c);
           if (match ~= nil) then do
@@ -1680,7 +1680,7 @@ function MakeSeeded_1(H1, H2) do
              end 
           end
            end 
-          _param = param[2];
+          _param = param[3];
           ::continue:: ;
         end else do
           return --[[ () ]]0;
@@ -1699,12 +1699,12 @@ function MakeSeeded_1(H1, H2) do
         accu = _accu;
         b = _b;
         if (b) then do
-          c = b[1];
+          c = b[2];
           match = get_key(c);
           match_1 = get_data_1(c);
           accu_1 = match ~= nil and match_1 ~= nil and Curry._3(f, Caml_option.valFromOption(match), Caml_option.valFromOption(match_1), accu) or accu;
           _accu = accu_1;
-          _b = b[2];
+          _b = b[3];
           ::continue:: ;
         end else do
           return accu;
@@ -1723,8 +1723,8 @@ function MakeSeeded_1(H1, H2) do
       while(true) do
         param = _param;
         if (param) then do
-          rest = param[2];
-          c = param[1];
+          rest = param[3];
+          c = param[2];
           match = get_key(c);
           match_1 = get_data_1(c);
           if (match ~= nil) then do
@@ -1734,7 +1734,7 @@ function MakeSeeded_1(H1, H2) do
               if (match_2 ~= nil) then do
                 set_key_data(c, k, Caml_option.valFromOption(match_2));
                 return --[[ Cons ]]{
-                        param[0],
+                        param[1],
                         c,
                         do_bucket(rest)
                       };
@@ -1769,7 +1769,7 @@ function MakeSeeded_1(H1, H2) do
       param = _param;
       accu = _accu;
       if (param) then do
-        _param = param[2];
+        _param = param[3];
         _accu = accu + 1 | 0;
         ::continue:: ;
       end else do
@@ -1798,8 +1798,8 @@ function MakeSeeded_1(H1, H2) do
       param = _param;
       accu = _accu;
       if (param) then do
-        rest = param[2];
-        if (check_key(param[1])) then do
+        rest = param[3];
+        if (check_key(param[2])) then do
           _param = rest;
           _accu = accu + 1 | 0;
           ::continue:: ;
@@ -1866,18 +1866,18 @@ function Make_1(H1, H2) do
         create = function(param, d) do
           c = Obj.Ephemeron.create(2);
           Obj.Ephemeron.set_data(c, d);
-          set_key1(c, param[0]);
-          set_key2(c, param[1]);
+          set_key1(c, param[1]);
+          set_key2(c, param[2]);
           return c;
         end end;
         hash_2 = function(seed, param_1) do
-          return Curry._2(hash, seed, param_1[0]) + Caml_int32.imul(Curry._2(param.hash, seed, param_1[1]), 65599) | 0;
+          return Curry._2(hash, seed, param_1[1]) + Caml_int32.imul(Curry._2(param.hash, seed, param_1[2]), 65599) | 0;
         end end;
         equal = function(c, param_1) do
           match = Obj.Ephemeron.get_key(c, 0);
           match_1 = Obj.Ephemeron.get_key(c, 1);
           if (match ~= nil and match_1 ~= nil) then do
-            if (Curry._2(partial_arg_equal, param_1[0], Caml_option.valFromOption(match)) and Curry._2(param.equal, param_1[1], Caml_option.valFromOption(match_1))) then do
+            if (Curry._2(partial_arg_equal, param_1[1], Caml_option.valFromOption(match)) and Curry._2(param.equal, param_1[2], Caml_option.valFromOption(match_1))) then do
               return --[[ ETrue ]]0;
             end else do
               return --[[ EFalse ]]1;
@@ -1899,8 +1899,8 @@ function Make_1(H1, H2) do
         end end;
         set_key_data = function(c, param, d) do
           Obj.Ephemeron.unset_data(c);
-          set_key1(c, param[0]);
-          set_key2(c, param[1]);
+          set_key1(c, param[1]);
+          set_key2(c, param[2]);
           return Obj.Ephemeron.set_data(c, d);
         end end;
         check_key = function(c) do
@@ -1969,11 +1969,11 @@ function Make_1(H1, H2) do
             while(true) do
               param = _param;
               if (param) then do
-                rest = param[2];
-                c = param[1];
+                rest = param[3];
+                c = param[2];
                 if (Curry._1(check_key, c)) then do
                   return --[[ Cons ]]{
-                          param[0],
+                          param[1],
                           c,
                           do_bucket(rest)
                         };
@@ -2003,12 +2003,12 @@ function Make_1(H1, H2) do
             h.data = ndata;
             insert_bucket = function(param) do
               if (param) then do
-                hkey = param[0];
-                insert_bucket(param[2]);
+                hkey = param[1];
+                insert_bucket(param[3]);
                 nidx = key_index(h, hkey);
                 return Caml_array.caml_array_set(ndata, nidx, --[[ Cons ]]{
                             hkey,
-                            param[1],
+                            param[2],
                             Caml_array.caml_array_get(ndata, nidx)
                           });
               end else do
@@ -2047,9 +2047,9 @@ function Make_1(H1, H2) do
             while(true) do
               param = _param;
               if (param) then do
-                next = param[2];
-                c = param[1];
-                hk = param[0];
+                next = param[3];
+                c = param[2];
+                hk = param[1];
                 if (hkey == hk) then do
                   match = Curry._2(equal, c, key);
                   local ___conditional___=(match);
@@ -2092,9 +2092,9 @@ function Make_1(H1, H2) do
           while(true) do
             param = _param;
             if (param) then do
-              rest = param[2];
-              c = param[1];
-              if (hkey_1 == param[0]) then do
+              rest = param[3];
+              c = param[2];
+              if (hkey_1 == param[1]) then do
                 match = Curry._2(equal, c, key_1);
                 if (match ~= 0) then do
                   _param = rest;
@@ -2125,9 +2125,9 @@ function Make_1(H1, H2) do
           while(true) do
             param = _param;
             if (param) then do
-              rest = param[2];
-              c = param[1];
-              if (hkey_1 == param[0]) then do
+              rest = param[3];
+              c = param[2];
+              if (hkey_1 == param[1]) then do
                 match = Curry._2(equal, c, key_1);
                 if (match ~= 0) then do
                   _param = rest;
@@ -2156,9 +2156,9 @@ function Make_1(H1, H2) do
             while(true) do
               param = _param;
               if (param) then do
-                rest = param[2];
-                c = param[1];
-                if (hkey == param[0]) then do
+                rest = param[3];
+                c = param[2];
+                if (hkey == param[1]) then do
                   match = Curry._2(equal, c, key);
                   if (match ~= 0) then do
                     _param = rest;
@@ -2195,9 +2195,9 @@ function Make_1(H1, H2) do
             while(true) do
               param = _param;
               if (param) then do
-                next = param[2];
-                c = param[1];
-                if (hkey == param[0]) then do
+                next = param[3];
+                c = param[2];
+                if (hkey == param[1]) then do
                   match = Curry._2(equal, c, key);
                   if (match ~= 0) then do
                     _param = next;
@@ -2238,9 +2238,9 @@ function Make_1(H1, H2) do
           while(true) do
             param = _param;
             if (param) then do
-              rest = param[2];
-              if (param[0] == hkey) then do
-                match = Curry._2(equal, param[1], key);
+              rest = param[3];
+              if (param[1] == hkey) then do
+                match = Curry._2(equal, param[2], key);
                 if (match ~= 0) then do
                   _param = rest;
                   ::continue:: ;
@@ -2261,7 +2261,7 @@ function Make_1(H1, H2) do
             while(true) do
               param = _param;
               if (param) then do
-                c = param[1];
+                c = param[2];
                 match = Curry._1(get_key, c);
                 match_1 = Curry._1(get_data_1, c);
                 if (match ~= nil) then do
@@ -2271,7 +2271,7 @@ function Make_1(H1, H2) do
                    end 
                 end
                  end 
-                _param = param[2];
+                _param = param[3];
                 ::continue:: ;
               end else do
                 return --[[ () ]]0;
@@ -2290,12 +2290,12 @@ function Make_1(H1, H2) do
               accu = _accu;
               b = _b;
               if (b) then do
-                c = b[1];
+                c = b[2];
                 match = Curry._1(get_key, c);
                 match_1 = Curry._1(get_data_1, c);
                 accu_1 = match ~= nil and match_1 ~= nil and Curry._3(f, Caml_option.valFromOption(match), Caml_option.valFromOption(match_1), accu) or accu;
                 _accu = accu_1;
-                _b = b[2];
+                _b = b[3];
                 ::continue:: ;
               end else do
                 return accu;
@@ -2314,8 +2314,8 @@ function Make_1(H1, H2) do
             while(true) do
               param = _param;
               if (param) then do
-                rest = param[2];
-                c = param[1];
+                rest = param[3];
+                c = param[2];
                 match = Curry._1(get_key, c);
                 match_1 = Curry._1(get_data_1, c);
                 if (match ~= nil) then do
@@ -2325,7 +2325,7 @@ function Make_1(H1, H2) do
                     if (match_2 ~= nil) then do
                       Curry._3(set_key_data, c, k, Caml_option.valFromOption(match_2));
                       return --[[ Cons ]]{
-                              param[0],
+                              param[1],
                               c,
                               do_bucket(rest)
                             };
@@ -2360,7 +2360,7 @@ function Make_1(H1, H2) do
             param = _param;
             accu = _accu;
             if (param) then do
-              _param = param[2];
+              _param = param[3];
               _accu = accu + 1 | 0;
               ::continue:: ;
             end else do
@@ -2389,8 +2389,8 @@ function Make_1(H1, H2) do
             param = _param;
             accu = _accu;
             if (param) then do
-              rest = param[2];
-              if (Curry._1(check_key, param[1])) then do
+              rest = param[3];
+              if (Curry._1(check_key, param[2])) then do
                 _param = rest;
                 _accu = accu + 1 | 0;
                 ::continue:: ;
@@ -2543,8 +2543,8 @@ function MakeSeeded_2(H) do
   end end;
   equal = function(c, k) do
     len = #k;
-    len$prime = Obj.Ephemeron.length(c);
-    if (len ~= len$prime) then do
+    len_prime = Obj.Ephemeron.length(c);
+    if (len ~= len_prime) then do
       return --[[ EFalse ]]1;
     end else do
       k_1 = k;
@@ -2681,11 +2681,11 @@ function MakeSeeded_2(H) do
       while(true) do
         param = _param;
         if (param) then do
-          rest = param[2];
-          c = param[1];
+          rest = param[3];
+          c = param[2];
           if (check_key(c)) then do
             return --[[ Cons ]]{
-                    param[0],
+                    param[1],
                     c,
                     do_bucket(rest)
                   };
@@ -2715,12 +2715,12 @@ function MakeSeeded_2(H) do
       h.data = ndata;
       insert_bucket = function(param) do
         if (param) then do
-          hkey = param[0];
-          insert_bucket(param[2]);
+          hkey = param[1];
+          insert_bucket(param[3]);
           nidx = key_index(h, hkey);
           return Caml_array.caml_array_set(ndata, nidx, --[[ Cons ]]{
                       hkey,
-                      param[1],
+                      param[2],
                       Caml_array.caml_array_get(ndata, nidx)
                     });
         end else do
@@ -2759,9 +2759,9 @@ function MakeSeeded_2(H) do
       while(true) do
         param = _param;
         if (param) then do
-          next = param[2];
-          c = param[1];
-          hk = param[0];
+          next = param[3];
+          c = param[2];
+          hk = param[1];
           if (hkey == hk) then do
             match = equal(c, key);
             local ___conditional___=(match);
@@ -2804,9 +2804,9 @@ function MakeSeeded_2(H) do
     while(true) do
       param = _param;
       if (param) then do
-        rest = param[2];
-        c = param[1];
-        if (hkey_1 == param[0]) then do
+        rest = param[3];
+        c = param[2];
+        if (hkey_1 == param[1]) then do
           match = equal(c, key_1);
           if (match ~= 0) then do
             _param = rest;
@@ -2837,9 +2837,9 @@ function MakeSeeded_2(H) do
     while(true) do
       param = _param;
       if (param) then do
-        rest = param[2];
-        c = param[1];
-        if (hkey_1 == param[0]) then do
+        rest = param[3];
+        c = param[2];
+        if (hkey_1 == param[1]) then do
           match = equal(c, key_1);
           if (match ~= 0) then do
             _param = rest;
@@ -2868,9 +2868,9 @@ function MakeSeeded_2(H) do
       while(true) do
         param = _param;
         if (param) then do
-          rest = param[2];
-          c = param[1];
-          if (hkey == param[0]) then do
+          rest = param[3];
+          c = param[2];
+          if (hkey == param[1]) then do
             match = equal(c, key);
             if (match ~= 0) then do
               _param = rest;
@@ -2907,9 +2907,9 @@ function MakeSeeded_2(H) do
       while(true) do
         param = _param;
         if (param) then do
-          next = param[2];
-          c = param[1];
-          if (hkey == param[0]) then do
+          next = param[3];
+          c = param[2];
+          if (hkey == param[1]) then do
             match = equal(c, key);
             if (match ~= 0) then do
               _param = next;
@@ -2950,9 +2950,9 @@ function MakeSeeded_2(H) do
     while(true) do
       param = _param;
       if (param) then do
-        rest = param[2];
-        if (param[0] == hkey) then do
-          match = equal(param[1], key);
+        rest = param[3];
+        if (param[1] == hkey) then do
+          match = equal(param[2], key);
           if (match ~= 0) then do
             _param = rest;
             ::continue:: ;
@@ -2973,7 +2973,7 @@ function MakeSeeded_2(H) do
       while(true) do
         param = _param;
         if (param) then do
-          c = param[1];
+          c = param[2];
           match = get_key(c);
           match_1 = get_data_2(c);
           if (match ~= nil) then do
@@ -2983,7 +2983,7 @@ function MakeSeeded_2(H) do
              end 
           end
            end 
-          _param = param[2];
+          _param = param[3];
           ::continue:: ;
         end else do
           return --[[ () ]]0;
@@ -3002,12 +3002,12 @@ function MakeSeeded_2(H) do
         accu = _accu;
         b = _b;
         if (b) then do
-          c = b[1];
+          c = b[2];
           match = get_key(c);
           match_1 = get_data_2(c);
           accu_1 = match ~= nil and match_1 ~= nil and Curry._3(f, Caml_option.valFromOption(match), Caml_option.valFromOption(match_1), accu) or accu;
           _accu = accu_1;
-          _b = b[2];
+          _b = b[3];
           ::continue:: ;
         end else do
           return accu;
@@ -3026,8 +3026,8 @@ function MakeSeeded_2(H) do
       while(true) do
         param = _param;
         if (param) then do
-          rest = param[2];
-          c = param[1];
+          rest = param[3];
+          c = param[2];
           match = get_key(c);
           match_1 = get_data_2(c);
           if (match ~= nil) then do
@@ -3037,7 +3037,7 @@ function MakeSeeded_2(H) do
               if (match_2 ~= nil) then do
                 set_key_data(c, k, Caml_option.valFromOption(match_2));
                 return --[[ Cons ]]{
-                        param[0],
+                        param[1],
                         c,
                         do_bucket(rest)
                       };
@@ -3072,7 +3072,7 @@ function MakeSeeded_2(H) do
       param = _param;
       accu = _accu;
       if (param) then do
-        _param = param[2];
+        _param = param[3];
         _accu = accu + 1 | 0;
         ::continue:: ;
       end else do
@@ -3101,8 +3101,8 @@ function MakeSeeded_2(H) do
       param = _param;
       accu = _accu;
       if (param) then do
-        rest = param[2];
-        if (check_key(param[1])) then do
+        rest = param[3];
+        if (check_key(param[2])) then do
           _param = rest;
           _accu = accu + 1 | 0;
           ::continue:: ;
@@ -3176,8 +3176,8 @@ function Make_2(H) do
   end end;
   equal_1 = function(c, k) do
     len = #k;
-    len$prime = Obj.Ephemeron.length(c);
-    if (len ~= len$prime) then do
+    len_prime = Obj.Ephemeron.length(c);
+    if (len ~= len_prime) then do
       return --[[ EFalse ]]1;
     end else do
       k_1 = k;
@@ -3303,11 +3303,11 @@ function Make_2(H) do
       while(true) do
         param = _param;
         if (param) then do
-          rest = param[2];
-          c = param[1];
+          rest = param[3];
+          c = param[2];
           if (check_key(c)) then do
             return --[[ Cons ]]{
-                    param[0],
+                    param[1],
                     c,
                     do_bucket(rest)
                   };
@@ -3337,12 +3337,12 @@ function Make_2(H) do
       h.data = ndata;
       insert_bucket = function(param) do
         if (param) then do
-          hkey = param[0];
-          insert_bucket(param[2]);
+          hkey = param[1];
+          insert_bucket(param[3]);
           nidx = key_index(h, hkey);
           return Caml_array.caml_array_set(ndata, nidx, --[[ Cons ]]{
                       hkey,
-                      param[1],
+                      param[2],
                       Caml_array.caml_array_get(ndata, nidx)
                     });
         end else do
@@ -3381,9 +3381,9 @@ function Make_2(H) do
       while(true) do
         param = _param;
         if (param) then do
-          next = param[2];
-          c = param[1];
-          hk = param[0];
+          next = param[3];
+          c = param[2];
+          hk = param[1];
           if (hkey == hk) then do
             match = equal_1(c, key);
             local ___conditional___=(match);
@@ -3426,9 +3426,9 @@ function Make_2(H) do
     while(true) do
       param = _param;
       if (param) then do
-        rest = param[2];
-        c = param[1];
-        if (hkey_1 == param[0]) then do
+        rest = param[3];
+        c = param[2];
+        if (hkey_1 == param[1]) then do
           match = equal_1(c, key_1);
           if (match ~= 0) then do
             _param = rest;
@@ -3459,9 +3459,9 @@ function Make_2(H) do
     while(true) do
       param = _param;
       if (param) then do
-        rest = param[2];
-        c = param[1];
-        if (hkey_1 == param[0]) then do
+        rest = param[3];
+        c = param[2];
+        if (hkey_1 == param[1]) then do
           match = equal_1(c, key_1);
           if (match ~= 0) then do
             _param = rest;
@@ -3490,9 +3490,9 @@ function Make_2(H) do
       while(true) do
         param = _param;
         if (param) then do
-          rest = param[2];
-          c = param[1];
-          if (hkey == param[0]) then do
+          rest = param[3];
+          c = param[2];
+          if (hkey == param[1]) then do
             match = equal_1(c, key);
             if (match ~= 0) then do
               _param = rest;
@@ -3529,9 +3529,9 @@ function Make_2(H) do
       while(true) do
         param = _param;
         if (param) then do
-          next = param[2];
-          c = param[1];
-          if (hkey == param[0]) then do
+          next = param[3];
+          c = param[2];
+          if (hkey == param[1]) then do
             match = equal_1(c, key);
             if (match ~= 0) then do
               _param = next;
@@ -3572,9 +3572,9 @@ function Make_2(H) do
     while(true) do
       param = _param;
       if (param) then do
-        rest = param[2];
-        if (param[0] == hkey) then do
-          match = equal_1(param[1], key);
+        rest = param[3];
+        if (param[1] == hkey) then do
+          match = equal_1(param[2], key);
           if (match ~= 0) then do
             _param = rest;
             ::continue:: ;
@@ -3595,7 +3595,7 @@ function Make_2(H) do
       while(true) do
         param = _param;
         if (param) then do
-          c = param[1];
+          c = param[2];
           match = get_key(c);
           match_1 = get_data_2(c);
           if (match ~= nil) then do
@@ -3605,7 +3605,7 @@ function Make_2(H) do
              end 
           end
            end 
-          _param = param[2];
+          _param = param[3];
           ::continue:: ;
         end else do
           return --[[ () ]]0;
@@ -3624,12 +3624,12 @@ function Make_2(H) do
         accu = _accu;
         b = _b;
         if (b) then do
-          c = b[1];
+          c = b[2];
           match = get_key(c);
           match_1 = get_data_2(c);
           accu_1 = match ~= nil and match_1 ~= nil and Curry._3(f, Caml_option.valFromOption(match), Caml_option.valFromOption(match_1), accu) or accu;
           _accu = accu_1;
-          _b = b[2];
+          _b = b[3];
           ::continue:: ;
         end else do
           return accu;
@@ -3648,8 +3648,8 @@ function Make_2(H) do
       while(true) do
         param = _param;
         if (param) then do
-          rest = param[2];
-          c = param[1];
+          rest = param[3];
+          c = param[2];
           match = get_key(c);
           match_1 = get_data_2(c);
           if (match ~= nil) then do
@@ -3659,7 +3659,7 @@ function Make_2(H) do
               if (match_2 ~= nil) then do
                 set_key_data(c, k, Caml_option.valFromOption(match_2));
                 return --[[ Cons ]]{
-                        param[0],
+                        param[1],
                         c,
                         do_bucket(rest)
                       };
@@ -3694,7 +3694,7 @@ function Make_2(H) do
       param = _param;
       accu = _accu;
       if (param) then do
-        _param = param[2];
+        _param = param[3];
         _accu = accu + 1 | 0;
         ::continue:: ;
       end else do
@@ -3723,8 +3723,8 @@ function Make_2(H) do
       param = _param;
       accu = _accu;
       if (param) then do
-        rest = param[2];
-        if (check_key(param[1])) then do
+        rest = param[3];
+        if (check_key(param[2])) then do
           _param = rest;
           _accu = accu + 1 | 0;
           ::continue:: ;
@@ -3923,11 +3923,11 @@ GenHashTable = {
           while(true) do
             param = _param;
             if (param) then do
-              rest = param[2];
-              c = param[1];
+              rest = param[3];
+              c = param[2];
               if (Curry._1(H.check_key, c)) then do
                 return --[[ Cons ]]{
-                        param[0],
+                        param[1],
                         c,
                         do_bucket(rest)
                       };
@@ -3957,12 +3957,12 @@ GenHashTable = {
           h.data = ndata;
           insert_bucket = function(param) do
             if (param) then do
-              hkey = param[0];
-              insert_bucket(param[2]);
+              hkey = param[1];
+              insert_bucket(param[3]);
               nidx = key_index(h, hkey);
               return Caml_array.caml_array_set(ndata, nidx, --[[ Cons ]]{
                           hkey,
-                          param[1],
+                          param[2],
                           Caml_array.caml_array_get(ndata, nidx)
                         });
             end else do
@@ -4001,9 +4001,9 @@ GenHashTable = {
           while(true) do
             param = _param;
             if (param) then do
-              next = param[2];
-              c = param[1];
-              hk = param[0];
+              next = param[3];
+              c = param[2];
+              hk = param[1];
               if (hkey == hk) then do
                 match = Curry._2(H.equal, c, key);
                 local ___conditional___=(match);
@@ -4046,9 +4046,9 @@ GenHashTable = {
         while(true) do
           param = _param;
           if (param) then do
-            rest = param[2];
-            c = param[1];
-            if (hkey_1 == param[0]) then do
+            rest = param[3];
+            c = param[2];
+            if (hkey_1 == param[1]) then do
               match = Curry._2(H.equal, c, key_1);
               if (match ~= 0) then do
                 _param = rest;
@@ -4079,9 +4079,9 @@ GenHashTable = {
         while(true) do
           param = _param;
           if (param) then do
-            rest = param[2];
-            c = param[1];
-            if (hkey_1 == param[0]) then do
+            rest = param[3];
+            c = param[2];
+            if (hkey_1 == param[1]) then do
               match = Curry._2(H.equal, c, key_1);
               if (match ~= 0) then do
                 _param = rest;
@@ -4110,9 +4110,9 @@ GenHashTable = {
           while(true) do
             param = _param;
             if (param) then do
-              rest = param[2];
-              c = param[1];
-              if (hkey == param[0]) then do
+              rest = param[3];
+              c = param[2];
+              if (hkey == param[1]) then do
                 match = Curry._2(H.equal, c, key);
                 if (match ~= 0) then do
                   _param = rest;
@@ -4149,9 +4149,9 @@ GenHashTable = {
           while(true) do
             param = _param;
             if (param) then do
-              next = param[2];
-              c = param[1];
-              if (hkey == param[0]) then do
+              next = param[3];
+              c = param[2];
+              if (hkey == param[1]) then do
                 match = Curry._2(H.equal, c, key);
                 if (match ~= 0) then do
                   _param = next;
@@ -4192,9 +4192,9 @@ GenHashTable = {
         while(true) do
           param = _param;
           if (param) then do
-            rest = param[2];
-            if (param[0] == hkey) then do
-              match = Curry._2(H.equal, param[1], key);
+            rest = param[3];
+            if (param[1] == hkey) then do
+              match = Curry._2(H.equal, param[2], key);
               if (match ~= 0) then do
                 _param = rest;
                 ::continue:: ;
@@ -4215,7 +4215,7 @@ GenHashTable = {
           while(true) do
             param = _param;
             if (param) then do
-              c = param[1];
+              c = param[2];
               match = Curry._1(H.get_key, c);
               match_1 = Curry._1(H.get_data, c);
               if (match ~= nil) then do
@@ -4225,7 +4225,7 @@ GenHashTable = {
                  end 
               end
                end 
-              _param = param[2];
+              _param = param[3];
               ::continue:: ;
             end else do
               return --[[ () ]]0;
@@ -4244,12 +4244,12 @@ GenHashTable = {
             accu = _accu;
             b = _b;
             if (b) then do
-              c = b[1];
+              c = b[2];
               match = Curry._1(H.get_key, c);
               match_1 = Curry._1(H.get_data, c);
               accu_1 = match ~= nil and match_1 ~= nil and Curry._3(f, Caml_option.valFromOption(match), Caml_option.valFromOption(match_1), accu) or accu;
               _accu = accu_1;
-              _b = b[2];
+              _b = b[3];
               ::continue:: ;
             end else do
               return accu;
@@ -4268,8 +4268,8 @@ GenHashTable = {
           while(true) do
             param = _param;
             if (param) then do
-              rest = param[2];
-              c = param[1];
+              rest = param[3];
+              c = param[2];
               match = Curry._1(H.get_key, c);
               match_1 = Curry._1(H.get_data, c);
               if (match ~= nil) then do
@@ -4279,7 +4279,7 @@ GenHashTable = {
                   if (match_2 ~= nil) then do
                     Curry._3(H.set_key_data, c, k, Caml_option.valFromOption(match_2));
                     return --[[ Cons ]]{
-                            param[0],
+                            param[1],
                             c,
                             do_bucket(rest)
                           };
@@ -4314,7 +4314,7 @@ GenHashTable = {
           param = _param;
           accu = _accu;
           if (param) then do
-            _param = param[2];
+            _param = param[3];
             _accu = accu + 1 | 0;
             ::continue:: ;
           end else do
@@ -4343,8 +4343,8 @@ GenHashTable = {
           param = _param;
           accu = _accu;
           if (param) then do
-            rest = param[2];
-            if (Curry._1(H.check_key, param[1])) then do
+            rest = param[3];
+            if (Curry._1(H.check_key, param[2])) then do
               _param = rest;
               _accu = accu + 1 | 0;
               ::continue:: ;
@@ -4400,9 +4400,10 @@ GenHashTable = {
     end end)
 };
 
-exports = {}
+exports = {};
 exports.K1 = K1;
 exports.K2 = K2;
 exports.Kn = Kn;
 exports.GenHashTable = GenHashTable;
+return exports;
 --[[ No side effect ]]

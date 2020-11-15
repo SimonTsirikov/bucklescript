@@ -1,7 +1,7 @@
 
 
-import * as Belt_internalAVLset from "./belt_internalAVLset.lua";
-import * as Belt_internalSetString from "./belt_internalSetString.lua";
+local Belt_internalAVLset = require "..belt_internalAVLset.lua";
+local Belt_internalSetString = require "..belt_internalSetString.lua";
 
 function add(t, x) do
   if (t ~= nil) then do
@@ -104,8 +104,8 @@ function splitAuxNoPivot(n, x) do
     if (l ~= nil) then do
       match = splitAuxNoPivot(l, x);
       return --[[ tuple ]]{
-              match[0],
-              Belt_internalAVLset.joinShared(match[1], v, r)
+              match[1],
+              Belt_internalAVLset.joinShared(match[2], v, r)
             };
     end else do
       return --[[ tuple ]]{
@@ -116,8 +116,8 @@ function splitAuxNoPivot(n, x) do
   end else if (r ~= nil) then do
     match_1 = splitAuxNoPivot(r, x);
     return --[[ tuple ]]{
-            Belt_internalAVLset.joinShared(l, v, match_1[0]),
-            match_1[1]
+            Belt_internalAVLset.joinShared(l, v, match_1[1]),
+            match_1[2]
           };
   end else do
     return --[[ tuple ]]{
@@ -141,8 +141,8 @@ function splitAuxPivot(n, x, pres) do
     if (l ~= nil) then do
       match = splitAuxPivot(l, x, pres);
       return --[[ tuple ]]{
-              match[0],
-              Belt_internalAVLset.joinShared(match[1], v, r)
+              match[1],
+              Belt_internalAVLset.joinShared(match[2], v, r)
             };
     end else do
       return --[[ tuple ]]{
@@ -153,8 +153,8 @@ function splitAuxPivot(n, x, pres) do
   end else if (r ~= nil) then do
     match_1 = splitAuxPivot(r, x, pres);
     return --[[ tuple ]]{
-            Belt_internalAVLset.joinShared(l, v, match_1[0]),
-            match_1[1]
+            Belt_internalAVLset.joinShared(l, v, match_1[1]),
+            match_1[2]
           };
   end else do
     return --[[ tuple ]]{
@@ -198,7 +198,7 @@ function union(s1, s2) do
           v1 = s1.value;
           r1 = s1.right;
           match = splitAuxNoPivot(s2, v1);
-          return Belt_internalAVLset.joinShared(union(l1, match[0]), v1, union(r1, match[1]));
+          return Belt_internalAVLset.joinShared(union(l1, match[1]), v1, union(r1, match[2]));
         end end 
       end else if (h1 == 1) then do
         return add(s2, s1.value);
@@ -207,7 +207,7 @@ function union(s1, s2) do
         v2 = s2.value;
         r2 = s2.right;
         match_1 = splitAuxNoPivot(s1, v2);
-        return Belt_internalAVLset.joinShared(union(match_1[0], l2), v2, union(match_1[1], r2));
+        return Belt_internalAVLset.joinShared(union(match_1[1], l2), v2, union(match_1[2], r2));
       end end  end 
     end else do
       return s1;
@@ -226,8 +226,8 @@ function intersect(s1, s2) do
       contents = false
     };
     match = splitAuxPivot(s2, v1, pres);
-    ll = intersect(l1, match[0]);
-    rr = intersect(r1, match[1]);
+    ll = intersect(l1, match[1]);
+    rr = intersect(r1, match[2]);
     if (pres.contents) then do
       return Belt_internalAVLset.joinShared(ll, v1, rr);
     end else do
@@ -247,8 +247,8 @@ function diff(s1, s2) do
       contents = false
     };
     match = splitAuxPivot(s2, v1, pres);
-    ll = diff(l1, match[0]);
-    rr = diff(r1, match[1]);
+    ll = diff(l1, match[1]);
+    rr = diff(r1, match[2]);
     if (pres.contents) then do
       return Belt_internalAVLset.concatShared(ll, rr);
     end else do

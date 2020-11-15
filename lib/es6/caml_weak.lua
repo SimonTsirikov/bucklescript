@@ -1,11 +1,11 @@
 
 
-import * as Caml_obj from "./caml_obj.lua";
-import * as Caml_array from "./caml_array.lua";
-import * as Caml_option from "./caml_option.lua";
+local Caml_obj = require "..caml_obj.lua";
+local Caml_array = require "..caml_array.lua";
+local Caml_option = require "..caml_option.lua";
 
 function caml_weak_create(n) do
-  return new Array(n);
+  return new __Array(n);
 end end
 
 function caml_weak_set(xs, i, v) do

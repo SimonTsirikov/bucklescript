@@ -1,13 +1,13 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-List = require "../../lib/js/list";
-Block = require "../../lib/js/block";
-Curry = require "../../lib/js/curry";
-Scanf = require "../../lib/js/scanf";
-Printf = require "../../lib/js/printf";
-Mt_global = require "./mt_global";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
+Mt = require "..mt";
+List = require "......lib.js.list";
+Block = require "......lib.js.block";
+Curry = require "......lib.js.curry";
+Scanf = require "......lib.js.scanf";
+Printf = require "......lib.js.printf";
+Mt_global = require "..mt_global";
+Caml_builtin_exceptions = require "......lib.js.caml_builtin_exceptions";
 
 suites = {
   contents = --[[ [] ]]0
@@ -18,7 +18,7 @@ test_id = {
 };
 
 function eq(f, param) do
-  return Mt_global.collect_eq(test_id, suites, f, param[0], param[1]);
+  return Mt_global.collect_eq(test_id, suites, f, param[1], param[2]);
 end end
 
 function scan_rest(ib, accu) do
@@ -106,5 +106,6 @@ eq("File \"scanf_reference_error_regression_test.ml\", line 36, characters 5-12"
 
 Mt.from_pair_suites("Scanf_reference_error_regression_test", suites.contents);
 
-exports = {}
+exports = {};
+return exports;
 --[[  Not a pure module ]]

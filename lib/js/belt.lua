@@ -1,4 +1,4 @@
-console = {log = print};
+__console = {log = print};
 
 
 Id = --[[ alias ]]0;
@@ -37,7 +37,7 @@ Float = --[[ alias ]]0;
 
 Debug = --[[ alias ]]0;
 
-exports = {}
+exports = {};
 exports.Id = Id;
 exports.__Array = __Array;
 exports.SortArray = SortArray;
@@ -56,4 +56,5 @@ exports.Result = Result;
 exports.Int = Int;
 exports.Float = Float;
 exports.Debug = Debug;
+return exports;
 --[[ No side effect ]]

@@ -1,11 +1,11 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Block = require "../../lib/js/block";
-Curry = require "../../lib/js/curry";
-__String = require "../../lib/js/string";
-Filename = require "../../lib/js/filename";
-Caml_string = require "../../lib/js/caml_string";
+Mt = require "..mt";
+Block = require "......lib.js.block";
+Curry = require "......lib.js.curry";
+__String = require "......lib.js.string";
+Filename = require "......lib.js.filename";
+Caml_string = require "......lib.js.caml_string";
 
 function generic_basename(is_dir_sep, current_dir_name, name) do
   if (name == "") then do
@@ -61,8 +61,9 @@ suites = --[[ :: ]]{
 
 Mt.from_pair_suites("Inline_regression_test", suites);
 
-exports = {}
+exports = {};
 exports.generic_basename = generic_basename;
 exports.basename = basename;
 exports.suites = suites;
+return exports;
 --[[  Not a pure module ]]

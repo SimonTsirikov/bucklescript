@@ -1,6 +1,6 @@
-console = {log = print};
+__console = {log = print};
 
-__String = require "../../lib/js/string";
+__String = require "......lib.js.string";
 
 function v(u) do
   t({
@@ -15,8 +15,9 @@ end end
 
 s = __String;
 
-exports = {}
+exports = {};
 exports.v = v;
 exports.u = u;
 exports.s = s;
+return exports;
 --[[ No side effect ]]

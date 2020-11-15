@@ -1,8 +1,8 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Caml_obj = require "../../lib/js/caml_obj";
-Caml_int64 = require "../../lib/js/caml_int64";
+Mt = require "..mt";
+Caml_obj = require "......lib.js.caml_obj";
+Caml_int64 = require "......lib.js.caml_int64";
 
 aa = Caml_obj.caml_equal_null;
 
@@ -119,7 +119,7 @@ b("File \"equal_box_test.ml\", line 69, characters 4-11", not Caml_obj.caml_equa
 
 Mt.from_pair_suites("File \"equal_box_test.ml\", line 74, characters 23-30", suites.contents);
 
-exports = {}
+exports = {};
 exports.aa = aa;
 exports.bb = bb;
 exports.cc = cc;
@@ -129,4 +129,5 @@ exports.eq = eq;
 exports.b = b;
 exports.f = f;
 exports.shouldBeNull = shouldBeNull;
+return exports;
 --[[  Not a pure module ]]

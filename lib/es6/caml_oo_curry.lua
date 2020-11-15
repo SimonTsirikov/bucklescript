@@ -1,7 +1,7 @@
 
 
-import * as Curry from "./curry.lua";
-import * as Caml_oo from "./caml_oo.lua";
+local Curry = require "..curry.lua";
+local Caml_oo = require "..caml_oo.lua";
 
 function js(label, cacheid, obj, args) do
   meth = Caml_oo.caml_get_public_method(obj, label, cacheid);

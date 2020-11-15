@@ -1,6 +1,6 @@
-console = {log = print};
+__console = {log = print};
 
-Belt_Array = require "./belt_Array";
+Belt_Array = require "..belt_Array";
 
 function sortedLengthAuxMore(xs, _prec, _acc, len) do
   while(true) do
@@ -320,7 +320,7 @@ function stableSortInPlace(a) do
   end else do
     l1 = l / 2 | 0;
     l2 = l - l1 | 0;
-    t = new Array(l2);
+    t = new __Array(l2);
     sortTo(a, l1, t, 0, l2);
     sortTo(a, 0, a, l2, l1);
     return merge(a, l2, l1, t, 0, l2, a, 0);
@@ -384,7 +384,7 @@ function binarySearch(sorted, key) do
   end end 
 end end
 
-exports = {}
+exports = {};
 exports.strictlySortedLength = strictlySortedLength;
 exports.isSorted = isSorted;
 exports.stableSortInPlace = stableSortInPlace;
@@ -393,4 +393,5 @@ exports.binarySearch = binarySearch;
 exports.union = union;
 exports.intersect = intersect;
 exports.diff = diff;
+return exports;
 --[[ No side effect ]]

@@ -1,10 +1,10 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-__Array = require "../../lib/js/array";
-Block = require "../../lib/js/block";
-Curry = require "../../lib/js/curry";
-Caml_array = require "../../lib/js/caml_array";
+Mt = require "..mt";
+__Array = require "......lib.js.array";
+Block = require "......lib.js.block";
+Curry = require "......lib.js.curry";
+Caml_array = require "......lib.js.caml_array";
 
 function test(param) do
   v = {
@@ -112,8 +112,9 @@ Mt.from_pair_suites("Cps_test", --[[ :: ]]{
       }
     });
 
-exports = {}
+exports = {};
 exports.test = test;
 exports.test_closure = test_closure;
 exports.test_closure2 = test_closure2;
+return exports;
 --[[  Not a pure module ]]

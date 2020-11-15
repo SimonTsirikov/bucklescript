@@ -1,4 +1,4 @@
-console = {log = print};
+__console = {log = print};
 
 
 function fff(x) do
@@ -16,7 +16,8 @@ function ff(x, z) do
         };
 end end
 
-exports = {}
+exports = {};
 exports.fff = fff;
 exports.ff = ff;
+return exports;
 --[[ No side effect ]]

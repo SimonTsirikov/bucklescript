@@ -1,10 +1,10 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Block = require "../../lib/js/block";
-Curry = require "../../lib/js/curry";
-Caml_oo_curry = require "../../lib/js/caml_oo_curry";
-CamlinternalOO = require "../../lib/js/camlinternalOO";
+Mt = require "..mt";
+Block = require "......lib.js.block";
+Curry = require "......lib.js.curry";
+Caml_oo_curry = require "......lib.js.caml_oo_curry";
+CamlinternalOO = require "......lib.js.camlinternalOO";
 
 suites = {
   contents = --[[ [] ]]0
@@ -18,7 +18,7 @@ function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[[ :: ]]{
     --[[ tuple ]]{
-      loc .. (" id " .. String(test_id.contents)),
+      loc .. (" id " .. __String(test_id.contents)),
       (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     x,
@@ -38,7 +38,7 @@ class_tables = --[[ Cons ]]{
 };
 
 function create(param) do
-  if (not class_tables[0]) then do
+  if (not class_tables[1]) then do
     __class = CamlinternalOO.create_table({
           "add",
           "get"
@@ -48,18 +48,18 @@ function create(param) do
           "get",
           "add"
         }, {"data"});
-    get = ids[0];
-    add = ids[1];
-    data = ids[2];
+    get = ids[1];
+    add = ids[2];
+    data = ids[3];
     CamlinternalOO.set_methods(__class, {
           add,
-          (function(self$1, param) do
-              self$1[data] = self$1[data] + 1 | 0;
-              return self$1;
+          (function(self_1, param) do
+              self_1[data] = self_1[data] + 1 | 0;
+              return self_1;
             end end),
           get,
-          (function(self$1, param) do
-              return self$1[data];
+          (function(self_1, param) do
+              return self_1[data];
             end end)
         });
     env_init = function(env_1) do
@@ -72,7 +72,7 @@ function create(param) do
     class_tables[0] = env_init;
   end
    end 
-  return Curry._1(class_tables[0], 0);
+  return Curry._1(class_tables[1], 0);
 end end
 
 cxt1 = create(--[[ () ]]0);
@@ -95,7 +95,7 @@ eq("File \"gpr_2250_test.ml\", line 37, characters 5-12", result2, 2);
 
 Mt.from_pair_suites("Gpr_2250_test", suites.contents);
 
-exports = {}
+exports = {};
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
@@ -104,4 +104,5 @@ exports.cxt1 = cxt1;
 exports.result = result;
 exports.cxt2 = cxt2;
 exports.result2 = result2;
+return exports;
 --[[ cxt1 Not a pure module ]]

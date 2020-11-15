@@ -1,23 +1,23 @@
-console = {log = print};
+__console = {log = print};
 
-Curry = require "../../lib/js/curry";
-Caml_option = require "../../lib/js/caml_option";
+Curry = require "......lib.js.curry";
+Caml_option = require "......lib.js.caml_option";
 
-console.log(--[[ tuple ]]{
+__console.log(--[[ tuple ]]{
       "hello world",
       1
     });
 
-console.log(1337);
+__console.log(1337);
 
-console.log("hello world");
+__console.log("hello world");
 
 arg_string = --[[ `String ]]{
   -976970511,
   "hi runtime"
 };
 
-console.log(arg_string[1]);
+__console.log(arg_string[2]);
 
 arg_pair = --[[ `Pair ]]{
   892012602,
@@ -27,31 +27,37 @@ arg_pair = --[[ `Pair ]]{
   }
 };
 
-console.log(arg_pair[1]);
+__console.log(arg_pair[2]);
 
-console.log(--[[ () ]]0);
+__console.log(--[[ () ]]0);
 
-console.log(1, nil);
+__console.log(1, nil);
 
-console.log(2, "hi");
+__console.log(2, --[[ `String ]]{
+        -976970511,
+        "hi"
+      }[2]);
 
-console.log(3, "hi");
+__console.log(3, --[[ `String ]]{
+        -976970511,
+        "hi"
+      }[2]);
 
-console.log(4, nil);
+__console.log(4, nil);
 
 some_arg = --[[ `Bool ]]{
   737456202,
   true
 };
 
-console.log(5, some_arg ~= nil and Caml_option.valFromOption(some_arg)[1] or nil);
+__console.log(5, some_arg ~= nil and Caml_option.valFromOption(some_arg)[2] or nil);
 
-console.log(6, nil);
+__console.log(6, nil);
 
-console.log(7, Caml_option.option_get_unwrap((console.log("trace"), nil)));
+__console.log(7, Caml_option.option_get_unwrap((__console.log("trace"), nil)));
 
 function dyn_log3(prim, prim_1, prim_2) do
-  console.log(prim[1], prim_1 ~= nil and Caml_option.valFromOption(prim_1)[1] or nil);
+  __console.log(prim[2], prim_1 ~= nil and Caml_option.valFromOption(prim_1)[2] or nil);
   return --[[ () ]]0;
 end end
 
@@ -63,39 +69,39 @@ dyn_log3(--[[ `Int ]]{
       true
     }, --[[ () ]]0);
 
-console.log("foo");
+__console.log("foo");
 
-console.log({
+__console.log({
       foo = 1
     });
 
 function dyn_log4(prim) do
-  console.log(prim[1]);
+  __console.log(prim[2]);
   return --[[ () ]]0;
 end end
 
-console.log({
+__console.log({
       foo = 2
     });
 
 function f(x) do
-  console.log(x[1]);
+  __console.log(x[2]);
   return --[[ () ]]0;
 end end
 
 function ff0(x, p) do
-  console.log(x ~= nil and Caml_option.valFromOption(x)[1] or nil, p);
+  __console.log(x ~= nil and Caml_option.valFromOption(x)[2] or nil, p);
   return --[[ () ]]0;
 end end
 
 function ff1(x, p) do
-  console.log(Caml_option.option_get_unwrap(Curry._1(x, --[[ () ]]0)), p);
+  __console.log(Caml_option.option_get_unwrap(Curry._1(x, --[[ () ]]0)), p);
   return --[[ () ]]0;
 end end
 
 none_arg = nil;
 
-exports = {}
+exports = {};
 exports.arg_string = arg_string;
 exports.arg_pair = arg_pair;
 exports.some_arg = some_arg;
@@ -105,4 +111,5 @@ exports.dyn_log4 = dyn_log4;
 exports.f = f;
 exports.ff0 = ff0;
 exports.ff1 = ff1;
+return exports;
 --[[  Not a pure module ]]

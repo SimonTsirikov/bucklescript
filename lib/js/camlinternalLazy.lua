@@ -1,9 +1,9 @@
-console = {log = print};
+__console = {log = print};
 
-Obj = require "./obj";
-Curry = require "./curry";
-Caml_obj = require "./caml_obj";
-Caml_exceptions = require "./caml_exceptions";
+Obj = require "..obj";
+Curry = require "..curry";
+Caml_obj = require "..caml_obj";
+Caml_exceptions = require "..caml_exceptions";
 
 Undefined = Caml_exceptions.create("CamlinternalLazy.Undefined");
 
@@ -58,10 +58,11 @@ function force_val(lzv) do
   end end  end 
 end end
 
-exports = {}
+exports = {};
 exports.Undefined = Undefined;
 exports.force_lazy_block = force_lazy_block;
 exports.force_val_lazy_block = force_val_lazy_block;
 exports.force = force;
 exports.force_val = force_val;
+return exports;
 --[[ No side effect ]]

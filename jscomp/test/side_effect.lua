@@ -1,7 +1,8 @@
-console = {log = print};
+__console = {log = print};
 
 
-console.log("Side_effect");
+__console.log("Side_effect");
 
-exports = {}
+exports = {};
+return exports;
 --[[  Not a pure module ]]

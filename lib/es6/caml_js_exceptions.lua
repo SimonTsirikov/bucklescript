@@ -1,7 +1,7 @@
 
 
-import * as Caml_option from "./caml_option.lua";
-import * as Caml_exceptions from "./caml_exceptions.lua";
+local Caml_option = require "..caml_option.lua";
+local Caml_exceptions = require "..caml_exceptions.lua";
 
 __Error = Caml_exceptions.create("Caml_js_exceptions.Error");
 
@@ -17,8 +17,8 @@ function internalToOCamlException(e) do
 end end
 
 function caml_as_js_exn(exn) do
-  if (exn[0] == __Error) then do
-    return Caml_option.some(exn[1]);
+  if (exn[1] == __Error) then do
+    return Caml_option.some(exn[2]);
   end
    end 
 end end

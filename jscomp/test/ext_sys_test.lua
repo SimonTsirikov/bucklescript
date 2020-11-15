@@ -1,9 +1,10 @@
-console = {log = print};
+__console = {log = print};
 
-Sys = require "../../lib/js/sys";
+Sys = require "......lib.js.sys";
 
 is_windows_or_cygwin = Sys.win32 or false;
 
-exports = {}
+exports = {};
 exports.is_windows_or_cygwin = is_windows_or_cygwin;
+return exports;
 --[[ No side effect ]]

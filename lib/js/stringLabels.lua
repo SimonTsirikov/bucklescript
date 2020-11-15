@@ -1,6 +1,6 @@
-console = {log = print};
+__console = {log = print};
 
-__String = require "./string";
+__String = require "..string";
 
 make = __String.make;
 
@@ -72,7 +72,7 @@ equal = __String.equal;
 
 split_on_char = __String.split_on_char;
 
-exports = {}
+exports = {};
 exports.make = make;
 exports.init = init;
 exports.copy = copy;
@@ -108,4 +108,5 @@ exports.uncapitalize_ascii = uncapitalize_ascii;
 exports.compare = compare;
 exports.equal = equal;
 exports.split_on_char = split_on_char;
+return exports;
 --[[ No side effect ]]

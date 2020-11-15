@@ -1,8 +1,8 @@
-console = {log = print};
+__console = {log = print};
 
-Inner_define = require "./inner_define";
+Inner_define = require "..inner_define";
 
-console.log(Inner_define.N.add(1, 2));
+__console.log(Inner_define.N.add(1, 2));
 
 function f(x) do
   return --[[ tuple ]]{
@@ -13,6 +13,7 @@ function f(x) do
         };
 end end
 
-exports = {}
+exports = {};
 exports.f = f;
+return exports;
 --[[  Not a pure module ]]

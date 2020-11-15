@@ -1,22 +1,22 @@
-console = {log = print};
+__console = {log = print};
 
-List = require "./list";
-Block = require "./block";
-Curry = require "./curry";
-__Buffer = require "./buffer";
-Printf = require "./printf";
-__String = require "./string";
-Caml_bytes = require "./caml_bytes";
-Caml_int32 = require "./caml_int32";
-Pervasives = require "./pervasives";
-Caml_format = require "./caml_format";
-Caml_string = require "./caml_string";
-Caml_exceptions = require "./caml_exceptions";
-Caml_js_exceptions = require "./caml_js_exceptions";
-CamlinternalFormat = require "./camlinternalFormat";
-Caml_external_polyfill = require "./caml_external_polyfill";
-Caml_builtin_exceptions = require "./caml_builtin_exceptions";
-CamlinternalFormatBasics = require "./camlinternalFormatBasics";
+List = require "..list";
+Block = require "..block";
+Curry = require "..curry";
+__Buffer = require "..buffer";
+Printf = require "..printf";
+__String = require "..string";
+Caml_bytes = require "..caml_bytes";
+Caml_int32 = require "..caml_int32";
+Pervasives = require "..pervasives";
+Caml_format = require "..caml_format";
+Caml_string = require "..caml_string";
+Caml_exceptions = require "..caml_exceptions";
+Caml_js_exceptions = require "..caml_js_exceptions";
+CamlinternalFormat = require "..camlinternalFormat";
+Caml_external_polyfill = require "..caml_external_polyfill";
+Caml_builtin_exceptions = require "..caml_builtin_exceptions";
+CamlinternalFormatBasics = require "..camlinternalFormatBasics";
 
 function next_char(ib) do
   xpcall(function() do
@@ -69,14 +69,14 @@ end end
 
 function name_of_input(ib) do
   match = ib.ic_input_name;
-  if (typeof match == "number") then do
+  if (type(match) == "number") then do
     if (match == --[[ From_function ]]0) then do
       return "unnamed function";
     end else do
       return "unnamed character string";
     end end 
   end else if (match.tag) then do
-    return match[0];
+    return match[1];
   end else do
     return "unnamed Pervasives input channel";
   end end  end 
@@ -223,12 +223,12 @@ end end
 
 function close_in(ib) do
   match = ib.ic_input_name;
-  if (typeof match == "number") then do
+  if (type(match) == "number") then do
     return --[[ () ]]0;
   end else if (match.tag) then do
-    return Caml_external_polyfill.resolve("caml_ml_close_channel")(match[1]);
+    return Caml_external_polyfill.resolve("caml_ml_close_channel")(match[2]);
   end else do
-    return Caml_external_polyfill.resolve("caml_ml_close_channel")(match[0]);
+    return Caml_external_polyfill.resolve("caml_ml_close_channel")(match[1]);
   end end  end 
 end end
 
@@ -1439,8 +1439,8 @@ end end
 
 function scanf_bad_input(ib, x) do
   s;
-  if (x[0] == Scan_failure or x[0] == Caml_builtin_exceptions.failure) then do
-    s = x[1];
+  if (x[1] == Scan_failure or x[1] == Caml_builtin_exceptions.failure) then do
+    s = x[2];
   end else do
     error(x)
   end end 
@@ -1510,7 +1510,7 @@ end end
 function take_format_readers(k, _fmt) do
   while(true) do
     fmt = _fmt;
-    if (typeof fmt == "number") then do
+    if (type(fmt) == "number") then do
       return Curry._1(k, --[[ Nil ]]0);
     end else do
       local ___conditional___=(fmt.tag | 0);
@@ -1520,15 +1520,15 @@ function take_format_readers(k, _fmt) do
          or ___conditional___ == 6--[[ Nativeint ]]
          or ___conditional___ == 7--[[ Int64 ]]
          or ___conditional___ == 8--[[ Float ]] then do
-            _fmt = fmt[3];
+            _fmt = fmt[4];
             ::continue:: ; end end 
          if ___conditional___ == 14--[[ Format_subst ]] then do
-            return take_fmtty_format_readers(k, CamlinternalFormatBasics.erase_rel(CamlinternalFormat.symm(fmt[1])), fmt[2]); end end 
+            return take_fmtty_format_readers(k, CamlinternalFormatBasics.erase_rel(CamlinternalFormat.symm(fmt[2])), fmt[3]); end end 
          if ___conditional___ == 18--[[ Formatting_gen ]] then do
-            _fmt = CamlinternalFormatBasics.concat_fmt(fmt[0][0][0], fmt[1]);
+            _fmt = CamlinternalFormatBasics.concat_fmt(fmt[1][1][1], fmt[2]);
             ::continue:: ; end end 
          if ___conditional___ == 19--[[ Reader ]] then do
-            fmt_rest = fmt[0];
+            fmt_rest = fmt[1];
             return (function(fmt_rest)do
             return function (reader) do
               new_k = function(readers_rest) do
@@ -1546,13 +1546,13 @@ function take_format_readers(k, _fmt) do
          or ___conditional___ == 15--[[ Alpha ]]
          or ___conditional___ == 16--[[ Theta ]]
          or ___conditional___ == 22--[[ Scan_next_char ]] then do
-            _fmt = fmt[0];
+            _fmt = fmt[1];
             ::continue:: ; end end 
          if ___conditional___ == 23--[[ Ignored_param ]] then do
             k_1 = k;
-            ign = fmt[0];
-            fmt_1 = fmt[1];
-            if (typeof ign == "number") then do
+            ign = fmt[1];
+            fmt_1 = fmt[2];
+            if (type(ign) == "number") then do
               if (ign == --[[ Ignored_reader ]]2) then do
                 return (function(k_1,fmt_1)do
                 return function (reader) do
@@ -1569,16 +1569,16 @@ function take_format_readers(k, _fmt) do
                 return take_format_readers(k_1, fmt_1);
               end end 
             end else if (ign.tag == --[[ Ignored_format_subst ]]9) then do
-              return take_fmtty_format_readers(k_1, ign[1], fmt_1);
+              return take_fmtty_format_readers(k_1, ign[2], fmt_1);
             end else do
               return take_format_readers(k_1, fmt_1);
             end end  end  end end 
          if ___conditional___ == 13--[[ Format_arg ]]
          or ___conditional___ == 20--[[ Scan_char_set ]]
          or ___conditional___ == 24--[[ Custom ]] then do
-            _fmt = fmt[2];
+            _fmt = fmt[3];
             ::continue:: ; end end 
-        _fmt = fmt[1];
+        _fmt = fmt[2];
           ::continue:: ;
           
       end
@@ -1589,20 +1589,20 @@ end end
 function take_fmtty_format_readers(k, _fmtty, fmt) do
   while(true) do
     fmtty = _fmtty;
-    if (typeof fmtty == "number") then do
+    if (type(fmtty) == "number") then do
       return take_format_readers(k, fmt);
     end else do
       local ___conditional___=(fmtty.tag | 0);
       do
          if ___conditional___ == 8--[[ Format_arg_ty ]] then do
-            _fmtty = fmtty[1];
+            _fmtty = fmtty[2];
             ::continue:: ; end end 
          if ___conditional___ == 9--[[ Format_subst_ty ]] then do
-            ty = CamlinternalFormat.trans(CamlinternalFormat.symm(fmtty[0]), fmtty[1]);
-            _fmtty = CamlinternalFormatBasics.concat_fmtty(ty, fmtty[2]);
+            ty = CamlinternalFormat.trans(CamlinternalFormat.symm(fmtty[1]), fmtty[2]);
+            _fmtty = CamlinternalFormatBasics.concat_fmtty(ty, fmtty[3]);
             ::continue:: ; end end 
          if ___conditional___ == 13--[[ Reader_ty ]] then do
-            fmt_rest = fmtty[0];
+            fmt_rest = fmtty[1];
             return (function(fmt_rest)do
             return function (reader) do
               new_k = function(readers_rest) do
@@ -1615,7 +1615,7 @@ function take_fmtty_format_readers(k, _fmtty, fmt) do
             end end
             end end)(fmt_rest); end end 
          if ___conditional___ == 14--[[ Ignored_reader_ty ]] then do
-            fmt_rest_1 = fmtty[0];
+            fmt_rest_1 = fmtty[1];
             return (function(fmt_rest_1)do
             return function (reader) do
               new_k = function(readers_rest) do
@@ -1627,7 +1627,7 @@ function take_fmtty_format_readers(k, _fmtty, fmt) do
               return take_fmtty_format_readers(new_k, fmt_rest_1, fmt);
             end end
             end end)(fmt_rest_1); end end 
-        _fmtty = fmtty[0];
+        _fmtty = fmtty[1];
           ::continue:: ;
           
       end
@@ -1638,7 +1638,7 @@ end end
 function make_scanf(ib, _fmt, readers) do
   while(true) do
     fmt = _fmt;
-    if (typeof fmt == "number") then do
+    if (type(fmt) == "number") then do
       return --[[ Nil ]]0;
     end else do
       local ___conditional___=(fmt.tag | 0);
@@ -1648,48 +1648,48 @@ function make_scanf(ib, _fmt, readers) do
             c = Caml_string.get(token(ib), 0);
             return --[[ Cons ]]{
                     c,
-                    make_scanf(ib, fmt[0], readers)
+                    make_scanf(ib, fmt[1], readers)
                   }; end end 
          if ___conditional___ == 1--[[ Caml_char ]] then do
             scan_caml_char(0, ib);
             c_1 = Caml_string.get(token(ib), 0);
             return --[[ Cons ]]{
                     c_1,
-                    make_scanf(ib, fmt[0], readers)
+                    make_scanf(ib, fmt[1], readers)
                   }; end end 
          if ___conditional___ == 2--[[ String ]] then do
-            rest = fmt[1];
-            pad = fmt[0];
-            if (typeof rest ~= "number") then do
+            rest = fmt[2];
+            pad = fmt[1];
+            if (type(rest) ~= "number") then do
               local ___conditional___=(rest.tag | 0);
               do
                  if ___conditional___ == 17--[[ Formatting_lit ]] then do
-                    match = stopper_of_formatting_lit(rest[0]);
-                    stp = match[0];
+                    match = stopper_of_formatting_lit(rest[1]);
+                    stp = match[1];
                     scan = (function(stp)do
                     return function scan(width, param, ib) do
                       return scan_string(stp, width, ib);
                     end end
                     end end)(stp);
-                    str_rest_000 = match[1];
-                    str_rest_001 = rest[1];
+                    str_rest_000 = match[2];
+                    str_rest_001 = rest[2];
                     str_rest = --[[ String_literal ]]Block.__(11, {
                         str_rest_000,
                         str_rest_001
                       });
                     return pad_prec_scanf(ib, str_rest, readers, pad, --[[ No_precision ]]0, scan, token); end end 
                  if ___conditional___ == 18--[[ Formatting_gen ]] then do
-                    match_1 = rest[0];
+                    match_1 = rest[1];
                     if (match_1.tag) then do
                       scan_1 = function(width, param, ib) do
                         return scan_string(--[[ "[" ]]91, width, ib);
                       end end;
-                      return pad_prec_scanf(ib, CamlinternalFormatBasics.concat_fmt(match_1[0][0], rest[1]), readers, pad, --[[ No_precision ]]0, scan_1, token);
+                      return pad_prec_scanf(ib, CamlinternalFormatBasics.concat_fmt(match_1[1][1], rest[2]), readers, pad, --[[ No_precision ]]0, scan_1, token);
                     end else do
                       scan_2 = function(width, param, ib) do
                         return scan_string(--[[ "{" ]]123, width, ib);
                       end end;
-                      return pad_prec_scanf(ib, CamlinternalFormatBasics.concat_fmt(match_1[0][0], rest[1]), readers, pad, --[[ No_precision ]]0, scan_2, token);
+                      return pad_prec_scanf(ib, CamlinternalFormatBasics.concat_fmt(match_1[1][1], rest[2]), readers, pad, --[[ No_precision ]]0, scan_2, token);
                     end end  end end 
                 
               end
@@ -1703,65 +1703,65 @@ function make_scanf(ib, _fmt, readers) do
             scan_4 = function(width, param, ib) do
               return scan_caml_string(width, ib);
             end end;
-            return pad_prec_scanf(ib, fmt[1], readers, fmt[0], --[[ No_precision ]]0, scan_4, token); end end 
+            return pad_prec_scanf(ib, fmt[2], readers, fmt[1], --[[ No_precision ]]0, scan_4, token); end end 
          if ___conditional___ == 4--[[ Int ]] then do
-            c_2 = integer_conversion_of_char(CamlinternalFormat.char_of_iconv(fmt[0]));
+            c_2 = integer_conversion_of_char(CamlinternalFormat.char_of_iconv(fmt[1]));
             scan_5 = (function(c_2)do
             return function scan_5(width, param, ib) do
               return scan_int_conversion(c_2, width, ib);
             end end
             end end)(c_2);
-            return pad_prec_scanf(ib, fmt[3], readers, fmt[1], fmt[2], scan_5, (function(c_2)do
+            return pad_prec_scanf(ib, fmt[4], readers, fmt[2], fmt[3], scan_5, (function(c_2)do
                       return function (param) do
                         return Caml_format.caml_int_of_string(token_int_literal(c_2, param));
                       end end
                       end end)(c_2)); end end 
          if ___conditional___ == 5--[[ Int32 ]] then do
-            c_3 = integer_conversion_of_char(CamlinternalFormat.char_of_iconv(fmt[0]));
+            c_3 = integer_conversion_of_char(CamlinternalFormat.char_of_iconv(fmt[1]));
             scan_6 = (function(c_3)do
             return function scan_6(width, param, ib) do
               return scan_int_conversion(c_3, width, ib);
             end end
             end end)(c_3);
-            return pad_prec_scanf(ib, fmt[3], readers, fmt[1], fmt[2], scan_6, (function(c_3)do
+            return pad_prec_scanf(ib, fmt[4], readers, fmt[2], fmt[3], scan_6, (function(c_3)do
                       return function (param) do
                         return Caml_format.caml_int32_of_string(token_int_literal(c_3, param));
                       end end
                       end end)(c_3)); end end 
          if ___conditional___ == 6--[[ Nativeint ]] then do
-            c_4 = integer_conversion_of_char(CamlinternalFormat.char_of_iconv(fmt[0]));
+            c_4 = integer_conversion_of_char(CamlinternalFormat.char_of_iconv(fmt[1]));
             scan_7 = (function(c_4)do
             return function scan_7(width, param, ib) do
               return scan_int_conversion(c_4, width, ib);
             end end
             end end)(c_4);
-            return pad_prec_scanf(ib, fmt[3], readers, fmt[1], fmt[2], scan_7, (function(c_4)do
+            return pad_prec_scanf(ib, fmt[4], readers, fmt[2], fmt[3], scan_7, (function(c_4)do
                       return function (param) do
                         return Caml_format.caml_nativeint_of_string(token_int_literal(c_4, param));
                       end end
                       end end)(c_4)); end end 
          if ___conditional___ == 7--[[ Int64 ]] then do
-            c_5 = integer_conversion_of_char(CamlinternalFormat.char_of_iconv(fmt[0]));
+            c_5 = integer_conversion_of_char(CamlinternalFormat.char_of_iconv(fmt[1]));
             scan_8 = (function(c_5)do
             return function scan_8(width, param, ib) do
               return scan_int_conversion(c_5, width, ib);
             end end
             end end)(c_5);
-            return pad_prec_scanf(ib, fmt[3], readers, fmt[1], fmt[2], scan_8, (function(c_5)do
+            return pad_prec_scanf(ib, fmt[4], readers, fmt[2], fmt[3], scan_8, (function(c_5)do
                       return function (param) do
                         return Caml_format.caml_int64_of_string(token_int_literal(c_5, param));
                       end end
                       end end)(c_5)); end end 
          if ___conditional___ == 8--[[ Float ]] then do
-            match_2 = fmt[0];
+            match_2 = fmt[1];
             if (match_2 ~= 15) then do
               if (match_2 >= 16) then do
-                return pad_prec_scanf(ib, fmt[3], readers, fmt[1], fmt[2], scan_hex_float, token_float);
+                return pad_prec_scanf(ib, fmt[4], readers, fmt[2], fmt[3], scan_hex_float, token_float);
               end else do
-                return pad_prec_scanf(ib, fmt[3], readers, fmt[1], fmt[2], scan_float, token_float);
+                return pad_prec_scanf(ib, fmt[4], readers, fmt[2], fmt[3], scan_float, token_float);
               end end 
             end else do
-              return pad_prec_scanf(ib, fmt[3], readers, fmt[1], fmt[2], scan_caml_float, token_float);
+              return pad_prec_scanf(ib, fmt[4], readers, fmt[2], fmt[3], scan_caml_float, token_float);
             end end  end end 
          if ___conditional___ == 9--[[ Bool ]] then do
             scan_9 = function(param, param_1, ib) do
@@ -1792,10 +1792,10 @@ function make_scanf(ib, _fmt, readers) do
               end end 
               return scan_string(nil, m, ib_1);
             end end;
-            return pad_prec_scanf(ib, fmt[1], readers, fmt[0], --[[ No_precision ]]0, scan_9, token_bool); end end 
+            return pad_prec_scanf(ib, fmt[2], readers, fmt[1], --[[ No_precision ]]0, scan_9, token_bool); end end 
          if ___conditional___ == 10--[[ Flush ]] then do
             if (end_of_input(ib)) then do
-              _fmt = fmt[0];
+              _fmt = fmt[1];
               ::continue:: ;
             end else do
               error({
@@ -1806,25 +1806,25 @@ function make_scanf(ib, _fmt, readers) do
          if ___conditional___ == 11--[[ String_literal ]] then do
             __String.iter((function(param) do
                     return check_char(ib, param);
-                  end end), fmt[0]);
-            _fmt = fmt[1];
+                  end end), fmt[1]);
+            _fmt = fmt[2];
             ::continue:: ; end end 
          if ___conditional___ == 12--[[ Char_literal ]] then do
-            check_char(ib, fmt[0]);
-            _fmt = fmt[1];
+            check_char(ib, fmt[1]);
+            _fmt = fmt[2];
             ::continue:: ; end end 
          if ___conditional___ == 13--[[ Format_arg ]] then do
-            scan_caml_string(width_of_pad_opt(fmt[0]), ib);
+            scan_caml_string(width_of_pad_opt(fmt[1]), ib);
             s = token(ib);
             fmt_1;
             xpcall(function() do
-              fmt_1 = CamlinternalFormat.format_of_string_fmtty(s, fmt[1]);
+              fmt_1 = CamlinternalFormat.format_of_string_fmtty(s, fmt[2]);
             end end,function(raw_exn) do
               exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
-              if (exn[0] == Caml_builtin_exceptions.failure) then do
+              if (exn[1] == Caml_builtin_exceptions.failure) then do
                 error({
                   Scan_failure,
-                  exn[1]
+                  exn[2]
                 })
               end
                end 
@@ -1832,26 +1832,26 @@ function make_scanf(ib, _fmt, readers) do
             end end)
             return --[[ Cons ]]{
                     fmt_1,
-                    make_scanf(ib, fmt[2], readers)
+                    make_scanf(ib, fmt[3], readers)
                   }; end end 
          if ___conditional___ == 14--[[ Format_subst ]] then do
-            fmtty = fmt[1];
-            scan_caml_string(width_of_pad_opt(fmt[0]), ib);
+            fmtty = fmt[2];
+            scan_caml_string(width_of_pad_opt(fmt[1]), ib);
             s_1 = token(ib);
             match_3;
             xpcall(function() do
               match_4 = CamlinternalFormat.fmt_ebb_of_string(nil, s_1);
               match_5 = CamlinternalFormat.fmt_ebb_of_string(nil, s_1);
               match_3 = --[[ tuple ]]{
-                CamlinternalFormat.type_format(match_4[0], CamlinternalFormatBasics.erase_rel(fmtty)),
-                CamlinternalFormat.type_format(match_5[0], CamlinternalFormatBasics.erase_rel(CamlinternalFormat.symm(fmtty)))
+                CamlinternalFormat.type_format(match_4[1], CamlinternalFormatBasics.erase_rel(fmtty)),
+                CamlinternalFormat.type_format(match_5[1], CamlinternalFormatBasics.erase_rel(CamlinternalFormat.symm(fmtty)))
               };
             end end,function(raw_exn_1) do
               exn_1 = Caml_js_exceptions.internalToOCamlException(raw_exn_1);
-              if (exn_1[0] == Caml_builtin_exceptions.failure) then do
+              if (exn_1[1] == Caml_builtin_exceptions.failure) then do
                 error({
                   Scan_failure,
-                  exn_1[1]
+                  exn_1[2]
                 })
               end
                end 
@@ -1859,10 +1859,10 @@ function make_scanf(ib, _fmt, readers) do
             end end)
             return --[[ Cons ]]{
                     --[[ Format ]]{
-                      match_3[0],
+                      match_3[1],
                       s_1
                     },
-                    make_scanf(ib, CamlinternalFormatBasics.concat_fmt(match_3[1], fmt[2]), readers)
+                    make_scanf(ib, CamlinternalFormatBasics.concat_fmt(match_3[2], fmt[3]), readers)
                   }; end end 
          if ___conditional___ == 15--[[ Alpha ]] then do
             error({
@@ -1877,27 +1877,27 @@ function make_scanf(ib, _fmt, readers) do
          if ___conditional___ == 17--[[ Formatting_lit ]] then do
             __String.iter((function(param) do
                     return check_char(ib, param);
-                  end end), CamlinternalFormat.string_of_formatting_lit(fmt[0]));
-            _fmt = fmt[1];
+                  end end), CamlinternalFormat.string_of_formatting_lit(fmt[1]));
+            _fmt = fmt[2];
             ::continue:: ; end end 
          if ___conditional___ == 18--[[ Formatting_gen ]] then do
-            match_6 = fmt[0];
+            match_6 = fmt[1];
             check_char(ib, --[[ "@" ]]64);
             if (match_6.tag) then do
               check_char(ib, --[[ "[" ]]91);
-              _fmt = CamlinternalFormatBasics.concat_fmt(match_6[0][0], fmt[1]);
+              _fmt = CamlinternalFormatBasics.concat_fmt(match_6[1][1], fmt[2]);
               ::continue:: ;
             end else do
               check_char(ib, --[[ "{" ]]123);
-              _fmt = CamlinternalFormatBasics.concat_fmt(match_6[0][0], fmt[1]);
+              _fmt = CamlinternalFormatBasics.concat_fmt(match_6[1][1], fmt[2]);
               ::continue:: ;
             end end  end end 
          if ___conditional___ == 19--[[ Reader ]] then do
             if (readers) then do
-              x = Curry._1(readers[0], ib);
+              x = Curry._1(readers[1], ib);
               return --[[ Cons ]]{
                       x,
-                      make_scanf(ib, fmt[0], readers[1])
+                      make_scanf(ib, fmt[1], readers[2])
                     };
             end else do
               error({
@@ -1906,16 +1906,16 @@ function make_scanf(ib, _fmt, readers) do
               })
             end end  end end 
          if ___conditional___ == 20--[[ Scan_char_set ]] then do
-            rest_1 = fmt[2];
-            char_set = fmt[1];
-            width_opt = fmt[0];
-            if (typeof rest_1 ~= "number" and rest_1.tag == --[[ Formatting_lit ]]17) then do
-              match_7 = stopper_of_formatting_lit(rest_1[0]);
+            rest_1 = fmt[3];
+            char_set = fmt[2];
+            width_opt = fmt[1];
+            if (type(rest_1) ~= "number" and rest_1.tag == --[[ Formatting_lit ]]17) then do
+              match_7 = stopper_of_formatting_lit(rest_1[1]);
               width = width_of_pad_opt(width_opt);
-              scan_chars_in_char_set(char_set, match_7[0], width, ib);
+              scan_chars_in_char_set(char_set, match_7[1], width, ib);
               s_2 = token(ib);
-              str_rest_000_1 = match_7[1];
-              str_rest_001_1 = rest_1[1];
+              str_rest_000_1 = match_7[2];
+              str_rest_001_1 = rest_1[2];
               str_rest_1 = --[[ String_literal ]]Block.__(11, {
                   str_rest_000_1,
                   str_rest_001_1
@@ -1934,22 +1934,22 @@ function make_scanf(ib, _fmt, readers) do
                     make_scanf(ib, rest_1, readers)
                   }; end end 
          if ___conditional___ == 21--[[ Scan_get_counter ]] then do
-            count = get_counter(ib, fmt[0]);
+            count = get_counter(ib, fmt[1]);
             return --[[ Cons ]]{
                     count,
-                    make_scanf(ib, fmt[1], readers)
+                    make_scanf(ib, fmt[2], readers)
                   }; end end 
          if ___conditional___ == 22--[[ Scan_next_char ]] then do
             c_6 = checked_peek_char(ib);
             return --[[ Cons ]]{
                     c_6,
-                    make_scanf(ib, fmt[0], readers)
+                    make_scanf(ib, fmt[1], readers)
                   }; end end 
          if ___conditional___ == 23--[[ Ignored_param ]] then do
-            match_8 = CamlinternalFormat.param_format_of_ignored_format(fmt[0], fmt[1]);
-            match_9 = make_scanf(ib, match_8[0], readers);
+            match_8 = CamlinternalFormat.param_format_of_ignored_format(fmt[1], fmt[2]);
+            match_9 = make_scanf(ib, match_8[1], readers);
             if (match_9) then do
-              return match_9[1];
+              return match_9[2];
             end else do
               error({
                 Caml_builtin_exceptions.assert_failure,
@@ -1972,8 +1972,8 @@ function make_scanf(ib, _fmt, readers) do
 end end
 
 function pad_prec_scanf(ib, fmt, readers, pad, prec, scan, token) do
-  if (typeof pad == "number") then do
-    if (typeof prec == "number") then do
+  if (type(pad) == "number") then do
+    if (type(prec) == "number") then do
       if (prec ~= 0) then do
         error({
           Caml_builtin_exceptions.invalid_argument,
@@ -1988,7 +1988,7 @@ function pad_prec_scanf(ib, fmt, readers, pad, prec, scan, token) do
               make_scanf(ib, fmt, readers)
             };
     end else do
-      Curry._3(scan, Pervasives.max_int, prec[0], ib);
+      Curry._3(scan, Pervasives.max_int, prec[1], ib);
       x_1 = Curry._1(token, ib);
       return --[[ Cons ]]{
               x_1,
@@ -2000,9 +2000,9 @@ function pad_prec_scanf(ib, fmt, readers, pad, prec, scan, token) do
       Caml_builtin_exceptions.invalid_argument,
       "scanf: bad conversion \"%*\""
     })
-  end else if (pad[0] ~= 0) then do
-    w = pad[1];
-    if (typeof prec == "number") then do
+  end else if (pad[1] ~= 0) then do
+    w = pad[2];
+    if (type(prec) == "number") then do
       if (prec ~= 0) then do
         error({
           Caml_builtin_exceptions.invalid_argument,
@@ -2017,7 +2017,7 @@ function pad_prec_scanf(ib, fmt, readers, pad, prec, scan, token) do
               make_scanf(ib, fmt, readers)
             };
     end else do
-      Curry._3(scan, w, prec[0], ib);
+      Curry._3(scan, w, prec[1], ib);
       x_3 = Curry._1(token, ib);
       return --[[ Cons ]]{
               x_3,
@@ -2033,8 +2033,8 @@ function pad_prec_scanf(ib, fmt, readers, pad, prec, scan, token) do
 end end
 
 function kscanf(ib, ef, param) do
-  str = param[1];
-  fmt = param[0];
+  str = param[2];
+  fmt = param[1];
   k = function(readers, f) do
     __Buffer.reset(ib.ic_token_buffer);
     match;
@@ -2042,10 +2042,10 @@ function kscanf(ib, ef, param) do
       match = --[[ Args ]]Block.__(0, {make_scanf(ib, fmt, readers)});
     end end,function(raw_exc) do
       exc = Caml_js_exceptions.internalToOCamlException(raw_exc);
-      if (exc[0] == Scan_failure or exc[0] == Caml_builtin_exceptions.failure or exc == Caml_builtin_exceptions.end_of_file) then do
+      if (exc[1] == Scan_failure or exc[1] == Caml_builtin_exceptions.failure or exc == Caml_builtin_exceptions.end_of_file) then do
         match = --[[ Exc ]]Block.__(1, {exc});
-      end else if (exc[0] == Caml_builtin_exceptions.invalid_argument) then do
-        s = exc[1] .. (" in format \"" .. (__String.escaped(str) .. "\""));
+      end else if (exc[1] == Caml_builtin_exceptions.invalid_argument) then do
+        s = exc[2] .. (" in format \"" .. (__String.escaped(str) .. "\""));
         error({
           Caml_builtin_exceptions.invalid_argument,
           s
@@ -2055,16 +2055,16 @@ function kscanf(ib, ef, param) do
       end end  end 
     end end)
     if (match.tag) then do
-      return Curry._2(ef, ib, match[0]);
+      return Curry._2(ef, ib, match[1]);
     end else do
       _f = f;
-      _args = match[0];
+      _args = match[1];
       while(true) do
         args = _args;
         f_1 = _f;
         if (args) then do
-          _args = args[1];
-          _f = Curry._1(f_1, args[0]);
+          _args = args[2];
+          _f = Curry._1(f_1, args[1]);
           ::continue:: ;
         end else do
           return f_1;
@@ -2099,10 +2099,10 @@ function bscanf_format(ib, format, f) do
     tmp = CamlinternalFormat.format_of_string_format(str, format);
   end end,function(raw_exn) do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
-    if (exn[0] == Caml_builtin_exceptions.failure) then do
+    if (exn[1] == Caml_builtin_exceptions.failure) then do
       error({
         Scan_failure,
-        exn[1]
+        exn[2]
       })
     end
      end 
@@ -2173,7 +2173,7 @@ Scanning = {
   stdib = stdin
 };
 
-exports = {}
+exports = {};
 exports.Scanning = Scanning;
 exports.Scan_failure = Scan_failure;
 exports.bscanf = bscanf;
@@ -2187,4 +2187,5 @@ exports.format_from_string = format_from_string;
 exports.unescaped = unescaped;
 exports.fscanf = fscanf;
 exports.kfscanf = kfscanf;
+return exports;
 --[[ stdin Not a pure module ]]

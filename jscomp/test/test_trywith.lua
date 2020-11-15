@@ -1,8 +1,8 @@
-console = {log = print};
+__console = {log = print};
 
-Curry = require "../../lib/js/curry";
-Caml_js_exceptions = require "../../lib/js/caml_js_exceptions";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
+Curry = require "......lib.js.curry";
+Caml_js_exceptions = require "......lib.js.caml_js_exceptions";
+Caml_builtin_exceptions = require "......lib.js.caml_builtin_exceptions";
 
 function ff(g, x) do
   xpcall(function() do
@@ -25,7 +25,7 @@ function ff(g, x) do
     Curry._1(g, x);
   end end,function(raw_exn) do
     exn_2 = Caml_js_exceptions.internalToOCamlException(raw_exn);
-    if (exn_2[0] ~= Caml_builtin_exceptions.sys_error) then do
+    if (exn_2[1] ~= Caml_builtin_exceptions.sys_error) then do
       error(exn_2)
     end
      end 
@@ -34,7 +34,7 @@ function ff(g, x) do
     Curry._1(g, x);
   end end,function(raw_exn_1) do
     exn_3 = Caml_js_exceptions.internalToOCamlException(raw_exn_1);
-    if (exn_3[0] ~= Caml_builtin_exceptions.invalid_argument) then do
+    if (exn_3[1] ~= Caml_builtin_exceptions.invalid_argument) then do
       error(exn_3)
     end
      end 
@@ -51,7 +51,7 @@ function ff(g, x) do
     Curry._1(g, x);
   end end,function(raw_exn_2) do
     exn_5 = Caml_js_exceptions.internalToOCamlException(raw_exn_2);
-    if (exn_5[0] ~= Caml_builtin_exceptions.match_failure) then do
+    if (exn_5[1] ~= Caml_builtin_exceptions.match_failure) then do
       error(exn_5)
     end
      end 
@@ -76,7 +76,7 @@ function ff(g, x) do
     Curry._1(g, x);
   end end,function(raw_exn_3) do
     exn_8 = Caml_js_exceptions.internalToOCamlException(raw_exn_3);
-    if (exn_8[0] ~= Caml_builtin_exceptions.assert_failure) then do
+    if (exn_8[1] ~= Caml_builtin_exceptions.assert_failure) then do
       error(exn_8)
     end
      end 
@@ -85,7 +85,7 @@ function ff(g, x) do
     return Curry._1(g, x);
   end end,function(raw_exn_4) do
     exn_9 = Caml_js_exceptions.internalToOCamlException(raw_exn_4);
-    if (exn_9[0] == Caml_builtin_exceptions.undefined_recursive_module) then do
+    if (exn_9[1] == Caml_builtin_exceptions.undefined_recursive_module) then do
       return --[[ () ]]0;
     end else do
       error(exn_9)
@@ -98,7 +98,7 @@ function u(param) do
 end end
 
 function f(x) do
-  if (typeof x == "number") then do
+  if (type(x) == "number") then do
     return 2;
   end else if (x.tag) then do
     error({
@@ -118,10 +118,11 @@ u1 = "bad character decimal encoding \\";
 
 v = "bad character decimal encoding \\%c%c%c";
 
-exports = {}
+exports = {};
 exports.ff = ff;
 exports.u = u;
 exports.u1 = u1;
 exports.v = v;
 exports.f = f;
+return exports;
 --[[ No side effect ]]

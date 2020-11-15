@@ -1,6 +1,6 @@
-console = {log = print};
+__console = {log = print};
 
-__Array = require "./array";
+__Array = require "..array";
 
 init = __Array.init;
 
@@ -58,7 +58,7 @@ fast_sort = __Array.fast_sort;
 
 Floatarray = __Array.Floatarray;
 
-exports = {}
+exports = {};
 exports.init = init;
 exports.make_matrix = make_matrix;
 exports.create_matrix = create_matrix;
@@ -87,4 +87,5 @@ exports.sort = sort;
 exports.stable_sort = stable_sort;
 exports.fast_sort = fast_sort;
 exports.Floatarray = Floatarray;
+return exports;
 --[[ No side effect ]]

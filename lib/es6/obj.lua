@@ -1,12 +1,12 @@
 
 
-import * as Marshal from "./marshal.lua";
-import * as Caml_array from "./caml_array.lua";
-import * as Caml_external_polyfill from "./caml_external_polyfill.lua";
-import * as Caml_builtin_exceptions from "./caml_builtin_exceptions.lua";
+local Marshal = require "..marshal.lua";
+local Caml_array = require "..caml_array.lua";
+local Caml_external_polyfill = require "..caml_external_polyfill.lua";
+local Caml_builtin_exceptions = require "..caml_builtin_exceptions.lua";
 
 function is_block(a) do
-  return typeof a ~= "number";
+  return type(a) ~= "number";
 end end
 
 double_field = Caml_array.caml_array_get;
@@ -25,9 +25,9 @@ function unmarshal(str, pos) do
 end end
 
 function extension_constructor(x) do
-  slot = typeof x ~= "number" and (x.tag | 0) ~= 248 and #x >= 1 and x[0] or x;
+  slot = type(x) ~= "number" and (x.tag | 0) ~= 248 and #x >= 1 and x[0] or x;
   name;
-  if (typeof slot ~= "number" and slot.tag == 248) then do
+  if (type(slot) ~= "number" and slot.tag == 248) then do
     name = slot[0];
   end else do
     error({

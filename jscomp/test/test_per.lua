@@ -1,17 +1,17 @@
-console = {log = print};
+__console = {log = print};
 
-Curry = require "../../lib/js/curry";
-Caml_io = require "../../lib/js/caml_io";
-Caml_obj = require "../../lib/js/caml_obj";
-Caml_sys = require "../../lib/js/caml_sys";
-Caml_bytes = require "../../lib/js/caml_bytes";
-Caml_int64 = require "../../lib/js/caml_int64";
-Caml_format = require "../../lib/js/caml_format";
-Caml_string = require "../../lib/js/caml_string";
-Caml_exceptions = require "../../lib/js/caml_exceptions";
-Caml_external_polyfill = require "../../lib/js/caml_external_polyfill";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
-CamlinternalFormatBasics = require "../../lib/js/camlinternalFormatBasics";
+Curry = require "......lib.js.curry";
+Caml_io = require "......lib.js.caml_io";
+Caml_obj = require "......lib.js.caml_obj";
+Caml_sys = require "......lib.js.caml_sys";
+Caml_bytes = require "......lib.js.caml_bytes";
+Caml_int64 = require "......lib.js.caml_int64";
+Caml_format = require "......lib.js.caml_format";
+Caml_string = require "......lib.js.caml_string";
+Caml_exceptions = require "......lib.js.caml_exceptions";
+Caml_external_polyfill = require "......lib.js.caml_external_polyfill";
+Caml_builtin_exceptions = require "......lib.js.caml_builtin_exceptions";
+CamlinternalFormatBasics = require "......lib.js.camlinternalFormatBasics";
 
 function failwith(s) do
   error({
@@ -89,7 +89,7 @@ epsilon_float = Caml_int64.float_of_bits(--[[ int64 ]]{
       --[[ lo ]]0
     });
 
-function $caret(s1, s2) do
+function _caret(s1, s2) do
   l1 = #s1;
   l2 = #s2;
   s = Caml_bytes.caml_create_bytes(l1 + l2 | 0);
@@ -142,7 +142,7 @@ function valid_float_lexem(s) do
   while(true) do
     i = _i;
     if (i >= l) then do
-      return $caret(s, ".");
+      return _caret(s, ".");
     end else do
       match = Caml_string.get(s, i);
       if (match >= 48) then do
@@ -166,11 +166,11 @@ function string_of_float(f) do
   return valid_float_lexem(Caml_format.caml_format_float("%.12g", f));
 end end
 
-function $at(l1, l2) do
+function _at(l1, l2) do
   if (l1) then do
     return --[[ :: ]]{
-            l1[0],
-            $at(l1[1], l2)
+            l1[1],
+            _at(l1[2], l2)
           };
   end else do
     return l2;
@@ -225,11 +225,11 @@ function flush_all(param) do
     param_1 = _param;
     if (param_1) then do
       xpcall(function() do
-        Caml_io.caml_ml_flush(param_1[0]);
+        Caml_io.caml_ml_flush(param_1[1]);
       end end,function(exn) do
         
       end end)
-      _param = param_1[1];
+      _param = param_1[2];
       ::continue:: ;
     end else do
       return --[[ () ]]0;
@@ -366,10 +366,10 @@ function input_line(chan) do
       param = _param;
       pos = _pos;
       if (param) then do
-        hd = param[0];
+        hd = param[1];
         len = #hd;
         Caml_bytes.caml_blit_string(hd, 0, buf, pos - len | 0, len);
-        _param = param[1];
+        _param = param[2];
         _pos = pos - len | 0;
         ::continue:: ;
       end else do
@@ -501,13 +501,13 @@ end end
 LargeFile = { };
 
 function string_of_format(param) do
-  return param[1];
+  return param[2];
 end end
 
-function $caret$caret(param, param_1) do
+function _caret_caret(param, param_1) do
   return --[[ Format ]]{
-          CamlinternalFormatBasics.concat_fmt(param[0], param_1[0]),
-          $caret(param[1], $caret("%,", param_1[1]))
+          CamlinternalFormatBasics.concat_fmt(param[1], param_1[1]),
+          _caret(param[2], _caret("%,", param_1[2]))
         };
 end end
 
@@ -516,7 +516,7 @@ exit_function = {
 };
 
 function at_exit(f) do
-  g = exit_function[0];
+  g = exit_function[1];
   exit_function[0] = (function(param) do
       Curry._1(f, --[[ () ]]0);
       return Curry._1(g, --[[ () ]]0);
@@ -525,17 +525,17 @@ function at_exit(f) do
 end end
 
 function do_at_exit(param) do
-  return Curry._1(exit_function[0], --[[ () ]]0);
+  return Curry._1(exit_function[1], --[[ () ]]0);
 end end
 
 function exit(retcode) do
-  Curry._1(exit_function[0], --[[ () ]]0);
+  Curry._1(exit_function[1], --[[ () ]]0);
   return Caml_sys.caml_sys_exit(retcode);
 end end
 
 max_int = 2147483647;
 
-exports = {}
+exports = {};
 exports.failwith = failwith;
 exports.invalid_arg = invalid_arg;
 exports.Exit = Exit;
@@ -551,14 +551,14 @@ exports.nan = nan;
 exports.max_float = max_float;
 exports.min_float = min_float;
 exports.epsilon_float = epsilon_float;
-exports.$caret = $caret;
+exports._caret = _caret;
 exports.char_of_int = char_of_int;
 exports.string_of_bool = string_of_bool;
 exports.bool_of_string = bool_of_string;
 exports.string_of_int = string_of_int;
 exports.valid_float_lexem = valid_float_lexem;
 exports.string_of_float = string_of_float;
-exports.$at = $at;
+exports._at = _at;
 exports.stdin = stdin;
 exports.stdout = stdout;
 exports.stderr = stderr;
@@ -601,9 +601,10 @@ exports.read_int = read_int;
 exports.read_float = read_float;
 exports.LargeFile = LargeFile;
 exports.string_of_format = string_of_format;
-exports.$caret$caret = $caret$caret;
+exports._caret_caret = _caret_caret;
 exports.exit_function = exit_function;
 exports.at_exit = at_exit;
 exports.do_at_exit = do_at_exit;
 exports.exit = exit;
+return exports;
 --[[ No side effect ]]

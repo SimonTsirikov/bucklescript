@@ -1,6 +1,6 @@
-console = {log = print};
+__console = {log = print};
 
-Caml_exceptions = require "../../lib/js/caml_exceptions";
+Caml_exceptions = require "......lib.js.caml_exceptions";
 
 A = Caml_exceptions.create("Test_exception_escape.N.A");
 
@@ -19,6 +19,7 @@ N = {
   f = f
 };
 
-exports = {}
+exports = {};
 exports.N = N;
+return exports;
 --[[ f Not a pure module ]]

@@ -1,4 +1,4 @@
-console = {log = print};
+__console = {log = print};
 
 
 function tailcall(x) do
@@ -9,7 +9,7 @@ end end
 
 function non_length(x) do
   if (x) then do
-    return 1 + non_length(x[1]) | 0;
+    return 1 + non_length(x[2]) | 0;
   end else do
     return 0;
   end end 
@@ -20,9 +20,9 @@ function length(_acc, _x) do
     x = _x;
     acc = _acc;
     if (x) then do
-      tl = x[1];
+      tl = x[2];
       if (tl) then do
-        return 1 + length(acc + 1 | 0, tl[1]) | 0;
+        return 1 + length(acc + 1 | 0, tl[2]) | 0;
       end else do
         _x = tl;
         _acc = acc + 1 | 0;
@@ -34,8 +34,9 @@ function length(_acc, _x) do
   end;
 end end
 
-exports = {}
+exports = {};
 exports.tailcall = tailcall;
 exports.non_length = non_length;
 exports.length = length;
+return exports;
 --[[ No side effect ]]

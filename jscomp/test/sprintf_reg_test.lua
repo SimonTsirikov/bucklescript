@@ -1,10 +1,10 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Block = require "../../lib/js/block";
-Curry = require "../../lib/js/curry";
-Printf = require "../../lib/js/printf";
-Mt_global = require "./mt_global";
+Mt = require "..mt";
+Block = require "......lib.js.block";
+Curry = require "......lib.js.curry";
+Printf = require "......lib.js.printf";
+Mt_global = require "..mt_global";
 
 suites = {
   contents = --[[ [] ]]0
@@ -15,7 +15,7 @@ test_id = {
 };
 
 function eq(f, param) do
-  return Mt_global.collect_eq(test_id, suites, f, param[0], param[1]);
+  return Mt_global.collect_eq(test_id, suites, f, param[1], param[2]);
 end end
 
 s = Curry._1(Printf.sprintf(--[[ Format ]]{
@@ -77,8 +77,9 @@ eq("File \"sprintf_reg_test.ml\", line 14, characters 5-12", --[[ tuple ]]{
 
 Mt.from_pair_suites("Sprintf_reg_test", suites.contents);
 
-exports = {}
+exports = {};
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
+return exports;
 --[[ s Not a pure module ]]

@@ -1,8 +1,8 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Block = require "../../lib/js/block";
-Js_option = require "../../lib/js/js_option";
+Mt = require "..mt";
+Block = require "......lib.js.block";
+Js_option = require "......lib.js.js_option";
 
 function simpleEq(a, b) do
   return a == b;
@@ -283,7 +283,8 @@ option_suites = --[[ :: ]]{
 
 Mt.from_pair_suites("Js_option_test", option_suites);
 
-exports = {}
+exports = {};
 exports.simpleEq = simpleEq;
 exports.option_suites = option_suites;
+return exports;
 --[[  Not a pure module ]]

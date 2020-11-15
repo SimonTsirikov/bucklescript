@@ -1,6 +1,6 @@
-console = {log = print};
+__console = {log = print};
 
-Caml_builtin_exceptions = require "./caml_builtin_exceptions";
+Caml_builtin_exceptions = require "..caml_builtin_exceptions";
 
 function div(x, y) do
   if (y == 0) then do
@@ -32,11 +32,12 @@ imul = (Math.imul || function (x,y) {
 
 caml_nativeint_bswap = caml_int32_bswap;
 
-exports = {}
+exports = {};
 exports.div = div;
 exports.mod_ = mod_;
 exports.caml_bswap16 = caml_bswap16;
 exports.caml_int32_bswap = caml_int32_bswap;
 exports.caml_nativeint_bswap = caml_nativeint_bswap;
 exports.imul = imul;
+return exports;
 --[[ imul Not a pure module ]]

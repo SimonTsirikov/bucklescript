@@ -1,15 +1,15 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Belt_Id = require "../../lib/js/belt_Id";
-Belt_Map = require "../../lib/js/belt_Map";
-Belt_List = require "../../lib/js/belt_List";
-Belt_Array = require "../../lib/js/belt_Array";
-Belt_MapInt = require "../../lib/js/belt_MapInt";
-Belt_MapDict = require "../../lib/js/belt_MapDict";
-Belt_SetDict = require "../../lib/js/belt_SetDict";
-Caml_primitive = require "../../lib/js/caml_primitive";
-Array_data_util = require "./array_data_util";
+Mt = require "..mt";
+Belt_Id = require "......lib.js.belt_Id";
+Belt_Map = require "......lib.js.belt_Map";
+Belt_List = require "......lib.js.belt_List";
+Belt_Array = require "......lib.js.belt_Array";
+Belt_MapInt = require "......lib.js.belt_MapInt";
+Belt_MapDict = require "......lib.js.belt_MapDict";
+Belt_SetDict = require "......lib.js.belt_SetDict";
+Caml_primitive = require "......lib.js.caml_primitive";
+Array_data_util = require "..array_data_util";
 
 suites = {
   contents = --[[ [] ]]0
@@ -67,11 +67,11 @@ newm = {
   data = data_1
 };
 
-console.log(newm);
+__console.log(newm);
 
 m11 = Belt_MapDict.set(Belt_MapDict.empty, 1, 1, Icmp.cmp);
 
-console.log(m11);
+__console.log(m11);
 
 v = {
   cmp = Icmp2.cmp,
@@ -88,13 +88,13 @@ for i_1 = 0 , 100000 , 1 do
   data_2 = Belt_SetDict.add(data_2, i_1, cmp);
 end
 
-console.log(data_2);
+__console.log(data_2);
 
 function f(param) do
   return Belt_Map.fromArray(param, Icmp);
 end end
 
-function $eq$tilde(a, b) do
+function _eq_tilde(a, b) do
   return (function(param) do
       return Belt_Map.eq(a, b, param);
     end end);
@@ -115,8 +115,8 @@ b("File \"bs_map_set_dict_test.ml\", line 77, characters 4-11", Belt_Array.every
                         x
                       };
               end end)), (function(param, param_1) do
-            if (param[0] == param_1[0]) then do
-              return param[1] == param_1[1];
+            if (param[1] == param_1[1]) then do
+              return param[2] == param_1[2];
             end else do
               return false;
             end end 
@@ -128,8 +128,8 @@ b("File \"bs_map_set_dict_test.ml\", line 82, characters 4-11", Belt_List.every2
                             x
                           };
                   end end))), (function(param, param_1) do
-            if (param[0] == param_1[0]) then do
-              return param[1] == param_1[1];
+            if (param[1] == param_1[1]) then do
+              return param[2] == param_1[2];
             end else do
               return false;
             end end 
@@ -175,7 +175,7 @@ ISet = --[[ alias ]]0;
 
 S0 = --[[ alias ]]0;
 
-exports = {}
+exports = {};
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
@@ -197,5 +197,6 @@ exports.Md0 = Md0;
 exports.ISet = ISet;
 exports.S0 = S0;
 exports.f = f;
-exports.$eq$tilde = $eq$tilde;
+exports._eq_tilde = _eq_tilde;
+return exports;
 --[[ Icmp Not a pure module ]]

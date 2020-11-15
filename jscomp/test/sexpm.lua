@@ -1,24 +1,24 @@
-console = {log = print};
+__console = {log = print};
 
-Sys = require "../../lib/js/sys";
-Char = require "../../lib/js/char";
-List = require "../../lib/js/list";
-Block = require "../../lib/js/block";
-Bytes = require "../../lib/js/bytes";
-Curry = require "../../lib/js/curry";
-__Buffer = require "../../lib/js/buffer";
-Format = require "../../lib/js/format";
-Printf = require "../../lib/js/printf";
-__String = require "../../lib/js/string";
-Caml_io = require "../../lib/js/caml_io";
-Printexc = require "../../lib/js/printexc";
-Caml_bytes = require "../../lib/js/caml_bytes";
-Caml_int32 = require "../../lib/js/caml_int32";
-Pervasives = require "../../lib/js/pervasives";
-Caml_primitive = require "../../lib/js/caml_primitive";
-Caml_js_exceptions = require "../../lib/js/caml_js_exceptions";
-Caml_external_polyfill = require "../../lib/js/caml_external_polyfill";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
+Sys = require "......lib.js.sys";
+Char = require "......lib.js.char";
+List = require "......lib.js.list";
+Block = require "......lib.js.block";
+Bytes = require "......lib.js.bytes";
+Curry = require "......lib.js.curry";
+__Buffer = require "......lib.js.buffer";
+Format = require "......lib.js.format";
+Printf = require "......lib.js.printf";
+__String = require "......lib.js.string";
+Caml_io = require "......lib.js.caml_io";
+Printexc = require "......lib.js.printexc";
+Caml_bytes = require "......lib.js.caml_bytes";
+Caml_int32 = require "......lib.js.caml_int32";
+Pervasives = require "......lib.js.pervasives";
+Caml_primitive = require "......lib.js.caml_primitive";
+Caml_js_exceptions = require "......lib.js.caml_js_exceptions";
+Caml_external_polyfill = require "......lib.js.caml_external_polyfill";
+Caml_builtin_exceptions = require "......lib.js.caml_builtin_exceptions";
 
 function _with_in(filename, f) do
   ic = Pervasives.open_in_bin(filename);
@@ -95,17 +95,17 @@ function _must_escape(s) do
 end end
 
 function to_buf(b, t) do
-  if (t[0] >= 848054398) then do
-    l = t[1];
+  if (t[1] >= 848054398) then do
+    l = t[2];
     if (l) then do
-      if (l[1]) then do
+      if (l[2]) then do
         __Buffer.add_char(b, --[[ "(" ]]40);
-        List.iteri((function(i, t$prime) do
+        List.iteri((function(i, t_prime) do
                 if (i > 0) then do
                   __Buffer.add_char(b, --[[ " " ]]32);
                 end
                  end 
-                return to_buf(b, t$prime);
+                return to_buf(b, t_prime);
               end end), l);
         return __Buffer.add_char(b, --[[ ")" ]]41);
       end else do
@@ -118,13 +118,13 @@ function to_buf(b, t) do
                                   })})
                           }),
                         "(%a)"
-                      }), to_buf, l[0]);
+                      }), to_buf, l[1]);
       end end 
     end else do
       return __Buffer.add_string(b, "()");
     end end 
   end else do
-    s = t[1];
+    s = t[2];
     if (_must_escape(s)) then do
       return Curry._1(Printf.bprintf(b, --[[ Format ]]{
                       --[[ Char_literal ]]Block.__(12, {
@@ -152,10 +152,10 @@ function to_string(t) do
 end end
 
 function print(fmt, t) do
-  if (t[0] >= 848054398) then do
-    l = t[1];
+  if (t[1] >= 848054398) then do
+    l = t[2];
     if (l) then do
-      if (l[1]) then do
+      if (l[2]) then do
         Format.fprintf(fmt, --[[ Format ]]{
               --[[ Formatting_gen ]]Block.__(18, {
                   --[[ Open_box ]]Block.__(1, {--[[ Format ]]{
@@ -172,7 +172,7 @@ function print(fmt, t) do
                 }),
               "@[<hov1>("
             });
-        List.iteri((function(i, t$prime) do
+        List.iteri((function(i, t_prime) do
                 if (i > 0) then do
                   Format.fprintf(fmt, --[[ Format ]]{
                         --[[ Formatting_lit ]]Block.__(17, {
@@ -187,7 +187,7 @@ function print(fmt, t) do
                       });
                 end
                  end 
-                return print(fmt, t$prime);
+                return print(fmt, t_prime);
               end end), l);
         return Format.fprintf(fmt, --[[ Format ]]{
                     --[[ Char_literal ]]Block.__(12, {
@@ -221,13 +221,13 @@ function print(fmt, t) do
                               })
                           }),
                         "@[<hov2>(%a)@]"
-                      }), print, l[0]);
+                      }), print, l[1]);
       end end 
     end else do
       return Format.pp_print_string(fmt, "()");
     end end 
   end else do
-    s = t[1];
+    s = t[2];
     if (_must_escape(s)) then do
       return Curry._1(Format.fprintf(fmt, --[[ Format ]]{
                       --[[ Char_literal ]]Block.__(12, {
@@ -249,17 +249,17 @@ function print(fmt, t) do
 end end
 
 function print_noindent(fmt, t) do
-  if (t[0] >= 848054398) then do
-    l = t[1];
+  if (t[1] >= 848054398) then do
+    l = t[2];
     if (l) then do
-      if (l[1]) then do
+      if (l[2]) then do
         Format.pp_print_char(fmt, --[[ "(" ]]40);
-        List.iteri((function(i, t$prime) do
+        List.iteri((function(i, t_prime) do
                 if (i > 0) then do
                   Format.pp_print_char(fmt, --[[ " " ]]32);
                 end
                  end 
-                return print_noindent(fmt, t$prime);
+                return print_noindent(fmt, t_prime);
               end end), l);
         return Format.pp_print_char(fmt, --[[ ")" ]]41);
       end else do
@@ -272,13 +272,13 @@ function print_noindent(fmt, t) do
                                   })})
                           }),
                         "(%a)"
-                      }), print_noindent, l[0]);
+                      }), print_noindent, l[1]);
       end end 
     end else do
       return Format.pp_print_string(fmt, "()");
     end end 
   end else do
-    s = t[1];
+    s = t[2];
     if (_must_escape(s)) then do
       return Curry._1(Format.fprintf(fmt, --[[ Format ]]{
                       --[[ Char_literal ]]Block.__(12, {
@@ -336,13 +336,13 @@ function __return(x) do
   return x;
 end end
 
-function $great$great$eq(x, f) do
+function _great_great_eq(x, f) do
   return Curry._1(f, x);
 end end
 
 ID_MONAD = {
   __return = __return,
-  $great$great$eq = $great$great$eq
+  _great_great_eq = _great_great_eq
 };
 
 function make(bufsizeOpt, refill) do
@@ -427,10 +427,10 @@ function _error(t, msg) do
             "at %d, %d: "
           }), t.line, t.col);
   return Printf.kbprintf((function(b) do
-                msg$prime = __Buffer.contents(b);
+                msg_prime = __Buffer.contents(b);
                 return --[[ `Error ]]{
                         106380200,
-                        msg$prime
+                        msg_prime
                       };
               end end), b, msg);
 end end
@@ -875,7 +875,7 @@ function parse_string(s) do
   end end;
   d = make(n, refill);
   res = next(d);
-  if (typeof res == "number") then do
+  if (type(res) == "number") then do
     return --[[ `Error ]]{
             106380200,
             "unexpected end of file"
@@ -890,7 +890,7 @@ function parse_chan(bufsize, ic) do
           return Pervasives.input(ic, param, param_1, param_2);
         end end));
   res = next(d);
-  if (typeof res == "number") then do
+  if (type(res) == "number") then do
     return --[[ `Error ]]{
             106380200,
             "unexpected end of file"
@@ -906,7 +906,7 @@ function parse_chan_gen(bufsize, ic) do
         end end));
   return (function(param) do
       e = next(d);
-      if (typeof e == "number") then do
+      if (type(e) == "number") then do
         return ;
       end else do
         return e;
@@ -922,16 +922,16 @@ function parse_chan_list(bufsize, ic) do
   while(true) do
     acc = _acc;
     e = next(d);
-    if (typeof e == "number") then do
+    if (type(e) == "number") then do
       return --[[ `Ok ]]{
               17724,
               List.rev(acc)
             };
-    end else if (e[0] >= 106380200) then do
+    end else if (e[1] >= 106380200) then do
       return e;
     end else do
       _acc = --[[ :: ]]{
-        e[1],
+        e[2],
         acc
       };
       ::continue:: ;
@@ -952,7 +952,7 @@ function parse_file_list(filename) do
 end end
 
 function MakeDecode(funarg) do
-  $great$great$eq = funarg.$great$great$eq;
+  _great_great_eq = funarg._great_great_eq;
   make = function(bufsizeOpt, refill) do
     bufsize = bufsizeOpt ~= nil and bufsizeOpt or 1024;
     bufsize_1 = Caml_primitive.caml_int_min(bufsize > 16 and bufsize or 16, Sys.max_string_length);
@@ -974,7 +974,7 @@ function MakeDecode(funarg) do
     end end 
   end end;
   _refill = function(t, k_succ, k_fail) do
-    return Curry._2($great$great$eq, Curry._3(t.refill, t.buf, 0, #t.buf), (function(n) do
+    return Curry._2(_great_great_eq, Curry._3(t.refill, t.buf, 0, #t.buf), (function(n) do
                   t.i = 0;
                   t.len = n;
                   if (n == 0) then do
@@ -1032,10 +1032,10 @@ function MakeDecode(funarg) do
               "at %d, %d: "
             }), t.line, t.col);
     return Printf.kbprintf((function(b) do
-                  msg$prime = __Buffer.contents(b);
+                  msg_prime = __Buffer.contents(b);
                   return Curry._1(funarg.__return, --[[ `Error ]]{
                               106380200,
-                              msg$prime
+                              msg_prime
                             });
                 end end), b, msg);
   end end;
@@ -1461,7 +1461,7 @@ D = {
   next = next
 };
 
-exports = {}
+exports = {};
 exports.to_buf = to_buf;
 exports.to_string = to_string;
 exports.to_file = to_file;
@@ -1478,4 +1478,5 @@ exports.parse_chan_gen = parse_chan_gen;
 exports.parse_chan_list = parse_chan_list;
 exports.parse_file = parse_file;
 exports.parse_file_list = parse_file_list;
+return exports;
 --[[ Format Not a pure module ]]

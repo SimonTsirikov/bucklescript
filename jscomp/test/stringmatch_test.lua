@@ -1,6 +1,6 @@
-console = {log = print};
+__console = {log = print};
 
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
+Caml_builtin_exceptions = require "......lib.js.caml_builtin_exceptions";
 
 function tst01(s) do
   if (s == "") then do
@@ -4111,7 +4111,7 @@ if (tst06("") ~= -1) then do
 end
  end 
 
-exports = {}
+exports = {};
 exports.tst01 = tst01;
 exports.tst02 = tst02;
 exports.tst03 = tst03;
@@ -4302,4 +4302,5 @@ exports.t90 = t90;
 exports.s91 = s91;
 exports.t91 = t91;
 exports.tst06 = tst06;
+return exports;
 --[[  Not a pure module ]]

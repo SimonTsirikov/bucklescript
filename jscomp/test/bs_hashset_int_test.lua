@@ -1,12 +1,12 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Belt_Array = require "../../lib/js/belt_Array";
-Belt_SetInt = require "../../lib/js/belt_SetInt";
-Array_data_util = require "./array_data_util";
-Belt_HashSetInt = require "../../lib/js/belt_HashSetInt";
-Belt_SortArrayInt = require "../../lib/js/belt_SortArrayInt";
-Belt_internalBucketsType = require "../../lib/js/belt_internalBucketsType";
+Mt = require "..mt";
+Belt_Array = require "......lib.js.belt_Array";
+Belt_SetInt = require "......lib.js.belt_SetInt";
+Array_data_util = require "..array_data_util";
+Belt_HashSetInt = require "......lib.js.belt_HashSetInt";
+Belt_SortArrayInt = require "......lib.js.belt_SortArrayInt";
+Belt_internalBucketsType = require "......lib.js.belt_internalBucketsType";
 
 suites = {
   contents = --[[ [] ]]0
@@ -111,13 +111,13 @@ S = --[[ alias ]]0;
 
 I = --[[ alias ]]0;
 
-$plus$plus = Belt_Array.concat;
+_plus_plus = Belt_Array.concat;
 
 A = --[[ alias ]]0;
 
 SI = --[[ alias ]]0;
 
-exports = {}
+exports = {};
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
@@ -125,9 +125,10 @@ exports.b = b;
 exports.N = N;
 exports.S = S;
 exports.I = I;
-exports.$plus$plus = $plus$plus;
+exports._plus_plus = _plus_plus;
 exports.add = add;
 exports.sum2 = sum2;
 exports.A = A;
 exports.SI = SI;
+return exports;
 --[[ u Not a pure module ]]

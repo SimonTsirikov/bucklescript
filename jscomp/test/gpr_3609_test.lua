@@ -1,14 +1,15 @@
-console = {log = print};
+__console = {log = print};
 
 
 function func(state) do
-  if (typeof state == "number") then do
+  if (type(state) == "number") then do
     return 0;
   end else do
-    return 0 + state[0] | 0;
+    return 0 + state[1] | 0;
   end end 
 end end
 
-exports = {}
+exports = {};
 exports.func = func;
+return exports;
 --[[ No side effect ]]

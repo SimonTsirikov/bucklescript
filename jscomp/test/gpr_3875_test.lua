@@ -1,7 +1,7 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Curry = require "../../lib/js/curry";
+Mt = require "..mt";
+Curry = require "......lib.js.curry";
 
 result = {
   contents = ""
@@ -72,11 +72,12 @@ eq("File \"gpr_3875_test.ml\", line 36, characters 5-12", result.contents, "Some
 
 Mt.from_pair_suites("gpr_3875_test.ml", suites.contents);
 
-exports = {}
+exports = {};
 exports.result = result;
 exports.Xx = Xx;
 exports.compilerBug = compilerBug;
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
+return exports;
 --[[  Not a pure module ]]

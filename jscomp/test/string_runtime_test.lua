@@ -1,11 +1,11 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-List = require "../../lib/js/list";
-Block = require "../../lib/js/block";
-Bytes = require "../../lib/js/bytes";
-Caml_char = require "../../lib/js/caml_char";
-Caml_bytes = require "../../lib/js/caml_bytes";
+Mt = require "..mt";
+List = require "......lib.js.list";
+Block = require "......lib.js.block";
+Bytes = require "......lib.js.bytes";
+Caml_char = require "......lib.js.caml_char";
+Caml_bytes = require "......lib.js.caml_bytes";
 
 suites_000 = --[[ tuple ]]{
   "caml_is_printable",
@@ -54,8 +54,8 @@ suites_001 = --[[ :: ]]{
                   }
                 }));
         return --[[ Eq ]]Block.__(0, {
-                  match[0],
-                  match[1]
+                  match[1],
+                  match[2]
                 });
       end end)
   },
@@ -73,8 +73,9 @@ S = --[[ alias ]]0;
 
 B = --[[ alias ]]0;
 
-exports = {}
+exports = {};
 exports.S = S;
 exports.B = B;
 exports.suites = suites;
+return exports;
 --[[  Not a pure module ]]

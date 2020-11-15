@@ -1,12 +1,12 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Arg = require "../../lib/js/arg";
-List = require "../../lib/js/list";
-Block = require "../../lib/js/block";
-Curry = require "../../lib/js/curry";
-Printf = require "../../lib/js/printf";
-Caml_obj = require "../../lib/js/caml_obj";
+Mt = require "..mt";
+Arg = require "......lib.js.arg";
+List = require "......lib.js.list";
+Block = require "......lib.js.block";
+Curry = require "......lib.js.curry";
+Printf = require "......lib.js.printf";
+Caml_obj = require "......lib.js.caml_obj";
 
 current = {
   contents = 0
@@ -476,7 +476,7 @@ Mt.from_pair_suites("Libarg_test", --[[ [] ]]0);
 
 suites = --[[ [] ]]0;
 
-exports = {}
+exports = {};
 exports.current = current;
 exports.accum = accum;
 exports.record = record;
@@ -500,4 +500,5 @@ exports.error = error;
 exports.check = check;
 exports.test = test;
 exports.suites = suites;
+return exports;
 --[[  Not a pure module ]]

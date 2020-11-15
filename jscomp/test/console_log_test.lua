@@ -1,9 +1,9 @@
-console = {log = print};
+__console = {log = print};
 
-Caml_obj = require "../../lib/js/caml_obj";
+Caml_obj = require "......lib.js.caml_obj";
 
 function min_int(prim, prim_1) do
-  return Math.min(prim, prim_1);
+  return __Math.min(prim, prim_1);
 end end
 
 function say(prim, prim_1) do
@@ -12,8 +12,9 @@ end end
 
 v = Caml_obj.caml_compare;
 
-exports = {}
+exports = {};
 exports.min_int = min_int;
 exports.say = say;
 exports.v = v;
+return exports;
 --[[ No side effect ]]

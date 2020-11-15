@@ -1,7 +1,7 @@
 
 
-import * as Curry from "./curry.lua";
-import * as Belt_MapDict from "./belt_MapDict.lua";
+local Curry = require "..curry.lua";
+local Belt_MapDict = require "..belt_MapDict.lua";
 
 function fromArray(data, id) do
   cmp = id.cmp;
@@ -66,19 +66,19 @@ end end
 function split(m, x) do
   cmp = m.cmp;
   match = Belt_MapDict.split(m.data, x, cmp);
-  match_1 = match[0];
+  match_1 = match[1];
   return --[[ tuple ]]{
           --[[ tuple ]]{
             {
               cmp = cmp,
-              data = match_1[0]
+              data = match_1[1]
             },
             {
               cmp = cmp,
-              data = match_1[1]
+              data = match_1[2]
             }
           },
-          match[1]
+          match[2]
         };
 end end
 
@@ -162,11 +162,11 @@ function partitionU(m, p) do
   return --[[ tuple ]]{
           {
             cmp = cmp,
-            data = match[0]
+            data = match[1]
           },
           {
             cmp = cmp,
-            data = match[1]
+            data = match[2]
           }
         };
 end end

@@ -1,7 +1,7 @@
-console = {log = print};
+__console = {log = print};
 
-Block = require "../../lib/js/block";
-Caml_module = require "../../lib/js/caml_module";
+Block = require "......lib.js.block";
+Caml_module = require "......lib.js.caml_module";
 
 function Make(X) do
   f = function(param) do
@@ -47,8 +47,9 @@ Caml_module.update_mod(--[[ Module ]]Block.__(0, {{--[[ tuple ]]{
 
 A = --[[ () ]]0;
 
-exports = {}
+exports = {};
 exports.Make = Make;
 exports.A = A;
 exports.B = B;
+return exports;
 --[[ B Not a pure module ]]

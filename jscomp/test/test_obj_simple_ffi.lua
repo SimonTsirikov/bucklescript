@@ -1,6 +1,6 @@
-console = {log = print};
+__console = {log = print};
 
-Caml_option = require "../../lib/js/caml_option";
+Caml_option = require "......lib.js.caml_option";
 
 function v(displayName, param) do
   tmp = {
@@ -44,7 +44,7 @@ function f(x) do
   return x;
 end end
 
-exports = {}
+exports = {};
 exports.v = v;
 exports.v2 = v2;
 exports.v3 = v3;
@@ -52,4 +52,5 @@ exports.u = u;
 exports.ff = ff;
 exports.fff = fff;
 exports.f = f;
+return exports;
 --[[ No side effect ]]

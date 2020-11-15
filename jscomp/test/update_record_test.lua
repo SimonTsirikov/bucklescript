@@ -1,8 +1,8 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Block = require "../../lib/js/block";
-Caml_obj = require "../../lib/js/caml_obj";
+Mt = require "..mt";
+Block = require "......lib.js.block";
+Caml_obj = require "......lib.js.caml_obj";
 
 suites = {
   contents = --[[ [] ]]0
@@ -13,14 +13,14 @@ test_id = {
 };
 
 function eq(loc, x, y) do
-  console.log(--[[ tuple ]]{
+  __console.log(--[[ tuple ]]{
         x,
         y
       });
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[[ :: ]]{
     --[[ tuple ]]{
-      loc .. (" id " .. String(test_id.contents)),
+      loc .. (" id " .. __String(test_id.contents)),
       (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     x,
@@ -61,7 +61,7 @@ val0 = {
 
 function fff(x) do
   return {
-          "invalid_js_id'" = x["invalid_js_id'"] + 2 | 0,
+          "invalid_js_id'" = x.invalid_js_id_prime + 2 | 0,
           x = x.x
         };
 end end
@@ -70,11 +70,11 @@ val1 = fff(val0);
 
 eq("File \"update_record_test.ml\", line 42, characters 5-12", 3, 3);
 
-eq("File \"update_record_test.ml\", line 43, characters 5-12", val1["invalid_js_id'"], 5);
+eq("File \"update_record_test.ml\", line 43, characters 5-12", val1.invalid_js_id_prime, 5);
 
 Mt.from_pair_suites("Update_record_test", suites.contents);
 
-exports = {}
+exports = {};
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
@@ -82,4 +82,5 @@ exports.f = f;
 exports.val0 = val0;
 exports.fff = fff;
 exports.val1 = val1;
+return exports;
 --[[  Not a pure module ]]

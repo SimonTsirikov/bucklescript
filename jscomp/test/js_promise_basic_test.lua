@@ -1,12 +1,12 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-List = require "../../lib/js/list";
-Block = require "../../lib/js/block";
-Curry = require "../../lib/js/curry";
-Caml_array = require "../../lib/js/caml_array";
-Caml_exceptions = require "../../lib/js/caml_exceptions";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
+Mt = require "..mt";
+List = require "......lib.js.list";
+Block = require "......lib.js.block";
+Curry = require "......lib.js.curry";
+Caml_array = require "......lib.js.caml_array";
+Caml_exceptions = require "......lib.js.caml_exceptions";
+Caml_builtin_exceptions = require "......lib.js.caml_builtin_exceptions";
 
 suites = {
   contents = --[[ [] ]]0
@@ -20,7 +20,7 @@ function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[[ :: ]]{
     --[[ tuple ]]{
-      loc .. (" id " .. String(test_id.contents)),
+      loc .. (" id " .. __String(test_id.contents)),
       (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     x,
@@ -56,22 +56,22 @@ function fail(param) do
 end end
 
 function thenTest(param) do
-  p = Promise.resolve(4);
-  return p.then((function(x) do
-                return Promise.resolve(assert_bool(x == 4));
+  p = __Promise.resolve(4);
+  return p.__then((function(x) do
+                return __Promise.resolve(assert_bool(x == 4));
               end end));
 end end
 
 function andThenTest(param) do
-  p = Promise.resolve(6);
-  return p.then((function(param) do
-                  return Promise.resolve(12);
-                end end)).then((function(y) do
-                return Promise.resolve(assert_bool(y == 12));
+  p = __Promise.resolve(6);
+  return p.__then((function(param) do
+                  return __Promise.resolve(12);
+                end end)).__then((function(y) do
+                return __Promise.resolve(assert_bool(y == 12));
               end end));
 end end
 
-h = Promise.resolve(--[[ () ]]0);
+h = __Promise.resolve(--[[ () ]]0);
 
 function assertIsNotFound(x) do
   match = Caml_exceptions.caml_is_extension(x) and x == Caml_builtin_exceptions.not_found and 0 or nil;
@@ -90,51 +90,51 @@ function assertIsNotFound(x) do
 end end
 
 function catchTest(param) do
-  p = Promise.reject(Caml_builtin_exceptions.not_found);
-  return p.then(fail).catch(assertIsNotFound);
+  p = __Promise.reject(Caml_builtin_exceptions.not_found);
+  return p.__then(fail).__catch(assertIsNotFound);
 end end
 
 function orResolvedTest(param) do
-  p = Promise.resolve(42);
-  return p.catch((function(param) do
-                    return Promise.resolve(22);
-                  end end)).then((function(value) do
-                  return Promise.resolve(assert_bool(value == 42));
-                end end)).catch(fail);
+  p = __Promise.resolve(42);
+  return p.__catch((function(param) do
+                    return __Promise.resolve(22);
+                  end end)).__then((function(value) do
+                  return __Promise.resolve(assert_bool(value == 42));
+                end end)).__catch(fail);
 end end
 
 function orRejectedTest(param) do
-  p = Promise.reject(Caml_builtin_exceptions.not_found);
-  return p.catch((function(param) do
-                    return Promise.resolve(22);
-                  end end)).then((function(value) do
-                  return Promise.resolve(assert_bool(value == 22));
-                end end)).catch(fail);
+  p = __Promise.reject(Caml_builtin_exceptions.not_found);
+  return p.__catch((function(param) do
+                    return __Promise.resolve(22);
+                  end end)).__then((function(value) do
+                  return __Promise.resolve(assert_bool(value == 22));
+                end end)).__catch(fail);
 end end
 
 function orElseResolvedTest(param) do
-  p = Promise.resolve(42);
-  return p.catch((function(param) do
-                    return Promise.resolve(22);
-                  end end)).then((function(value) do
-                  return Promise.resolve(assert_bool(value == 42));
-                end end)).catch(fail);
+  p = __Promise.resolve(42);
+  return p.__catch((function(param) do
+                    return __Promise.resolve(22);
+                  end end)).__then((function(value) do
+                  return __Promise.resolve(assert_bool(value == 42));
+                end end)).__catch(fail);
 end end
 
 function orElseRejectedResolveTest(param) do
-  p = Promise.reject(Caml_builtin_exceptions.not_found);
-  return p.catch((function(param) do
-                    return Promise.resolve(22);
-                  end end)).then((function(value) do
-                  return Promise.resolve(assert_bool(value == 22));
-                end end)).catch(fail);
+  p = __Promise.reject(Caml_builtin_exceptions.not_found);
+  return p.__catch((function(param) do
+                    return __Promise.resolve(22);
+                  end end)).__then((function(value) do
+                  return __Promise.resolve(assert_bool(value == 22));
+                end end)).__catch(fail);
 end end
 
 function orElseRejectedRejectTest(param) do
-  p = Promise.reject(Caml_builtin_exceptions.not_found);
-  return p.catch((function(param) do
-                    return Promise.reject(Caml_builtin_exceptions.stack_overflow);
-                  end end)).then(fail).catch((function(error) do
+  p = __Promise.reject(Caml_builtin_exceptions.not_found);
+  return p.__catch((function(param) do
+                    return __Promise.reject(Caml_builtin_exceptions.stack_overflow);
+                  end end)).__then(fail).__catch((function(error) do
                 match = Caml_exceptions.caml_is_extension(error) and error == Caml_builtin_exceptions.stack_overflow and 0 or nil;
                 if (match ~= nil) then do
                   return h;
@@ -152,39 +152,39 @@ function orElseRejectedRejectTest(param) do
 end end
 
 function resolveTest(param) do
-  p1 = Promise.resolve(10);
-  return p1.then((function(x) do
-                return Promise.resolve(assert_bool(x == 10));
+  p1 = __Promise.resolve(10);
+  return p1.__then((function(x) do
+                return __Promise.resolve(assert_bool(x == 10));
               end end));
 end end
 
 function rejectTest(param) do
-  p = Promise.reject(Caml_builtin_exceptions.not_found);
-  return p.catch(assertIsNotFound);
+  p = __Promise.reject(Caml_builtin_exceptions.not_found);
+  return p.__catch(assertIsNotFound);
 end end
 
 function thenCatchChainResolvedTest(param) do
-  p = Promise.resolve(20);
-  return p.then((function(value) do
-                  return Promise.resolve(assert_bool(value == 20));
-                end end)).catch(fail);
+  p = __Promise.resolve(20);
+  return p.__then((function(value) do
+                  return __Promise.resolve(assert_bool(value == 20));
+                end end)).__catch(fail);
 end end
 
 function thenCatchChainRejectedTest(param) do
-  p = Promise.reject(Caml_builtin_exceptions.not_found);
-  return p.then(fail).catch(assertIsNotFound);
+  p = __Promise.reject(Caml_builtin_exceptions.not_found);
+  return p.__then(fail).__catch(assertIsNotFound);
 end end
 
 function allResolvedTest(param) do
-  p1 = Promise.resolve(1);
-  p2 = Promise.resolve(2);
-  p3 = Promise.resolve(3);
+  p1 = __Promise.resolve(1);
+  p2 = __Promise.resolve(2);
+  p3 = __Promise.resolve(3);
   promises = {
     p1,
     p2,
     p3
   };
-  return Promise.all(promises).then((function(resolved) do
+  return __Promise.all(promises).__then((function(resolved) do
                 assert_bool(Caml_array.caml_array_get(resolved, 0) == 1);
                 assert_bool(Caml_array.caml_array_get(resolved, 1) == 2);
                 assert_bool(Caml_array.caml_array_get(resolved, 2) == 3);
@@ -193,50 +193,50 @@ function allResolvedTest(param) do
 end end
 
 function allRejectTest(param) do
-  p1 = Promise.resolve(1);
-  p2 = Promise.resolve(3);
-  p3 = Promise.reject(Caml_builtin_exceptions.not_found);
+  p1 = __Promise.resolve(1);
+  p2 = __Promise.resolve(3);
+  p3 = __Promise.reject(Caml_builtin_exceptions.not_found);
   promises = {
     p1,
     p2,
     p3
   };
-  return Promise.all(promises).then(fail).catch((function(error) do
+  return __Promise.all(promises).__then(fail).__catch((function(error) do
                 assert_bool(error == Caml_builtin_exceptions.not_found);
                 return h;
               end end));
 end end
 
 function raceTest(param) do
-  p1 = Promise.resolve("first");
-  p2 = Promise.resolve("second");
-  p3 = Promise.resolve("third");
+  p1 = __Promise.resolve("first");
+  p2 = __Promise.resolve("second");
+  p3 = __Promise.resolve("third");
   promises = {
     p1,
     p2,
     p3
   };
-  return Promise.race(promises).then((function(resolved) do
+  return __Promise.race(promises).__then((function(resolved) do
                   return h;
-                end end)).catch(fail);
+                end end)).__catch(fail);
 end end
 
 function createPromiseRejectTest(param) do
-  return new Promise((function(resolve, reject) do
+  return new __Promise((function(resolve, reject) do
                   return reject(Caml_builtin_exceptions.not_found);
-                end end)).catch((function(error) do
+                end end)).__catch((function(error) do
                 assert_bool(error == Caml_builtin_exceptions.not_found);
                 return h;
               end end));
 end end
 
 function createPromiseFulfillTest(param) do
-  return new Promise((function(resolve, param) do
+  return new __Promise((function(resolve, param) do
                     return resolve("success");
-                  end end)).then((function(resolved) do
+                  end end)).__then((function(resolved) do
                   assert_bool(resolved == "success");
                   return h;
-                end end)).catch(fail);
+                end end)).__catch(fail);
 end end
 
 thenTest(--[[ () ]]0);
@@ -269,41 +269,41 @@ createPromiseRejectTest(--[[ () ]]0);
 
 createPromiseFulfillTest(--[[ () ]]0);
 
-Promise.all(--[[ tuple ]]{
-        Promise.resolve(2),
-        Promise.resolve(3)
-      }).then((function(param) do
+__Promise.all(--[[ tuple ]]{
+        __Promise.resolve(2),
+        __Promise.resolve(3)
+      }).__then((function(param) do
         eq("File \"js_promise_basic_test.ml\", line 169, characters 7-14", --[[ tuple ]]{
-              param[0],
-              param[1]
+              param[1],
+              param[2]
             }, --[[ tuple ]]{
               2,
               3
             });
-        return Promise.resolve(--[[ () ]]0);
+        return __Promise.resolve(--[[ () ]]0);
       end end));
 
-console.log(List.length(suites.contents));
+__console.log(List.length(suites.contents));
 
-console.log("hey");
+__console.log("hey");
 
 Mt.from_pair_suites("Js_promise_basic_test", suites.contents);
 
-twop = Promise.resolve(2);
+twop = __Promise.resolve(2);
 
 function then_(prim, prim_1) do
-  return prim_1.then(Curry.__1(prim));
+  return prim_1.__then(Curry.__1(prim));
 end end
 
 function re(prim) do
-  return Promise.resolve(prim);
+  return __Promise.resolve(prim);
 end end
 
 Mt.from_promise_suites("Js_promise_basic_test", --[[ :: ]]{
       --[[ tuple ]]{
         "File \"js_promise_basic_test.ml\", line 187, characters 4-11",
-        twop.then((function(x) do
-                return Promise.resolve(--[[ Eq ]]Block.__(0, {
+        twop.__then((function(x) do
+                return __Promise.resolve(--[[ Eq ]]Block.__(0, {
                               x,
                               2
                             }));
@@ -312,8 +312,8 @@ Mt.from_promise_suites("Js_promise_basic_test", --[[ :: ]]{
       --[[ :: ]]{
         --[[ tuple ]]{
           "File \"js_promise_basic_test.ml\", line 190, characters 4-11",
-          twop.then((function(x) do
-                  return Promise.resolve(--[[ Neq ]]Block.__(1, {
+          twop.__then((function(x) do
+                  return __Promise.resolve(--[[ Neq ]]Block.__(1, {
                                 x,
                                 3
                               }));
@@ -323,7 +323,7 @@ Mt.from_promise_suites("Js_promise_basic_test", --[[ :: ]]{
       }
     });
 
-exports = {}
+exports = {};
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
@@ -351,4 +351,5 @@ exports.createPromiseFulfillTest = createPromiseFulfillTest;
 exports.twop = twop;
 exports.then_ = then_;
 exports.re = re;
+return exports;
 --[[ h Not a pure module ]]

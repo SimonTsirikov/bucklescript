@@ -1,6 +1,6 @@
-console = {log = print};
+__console = {log = print};
 
-Curry = require "../../lib/js/curry";
+Curry = require "......lib.js.curry";
 
 function O(X) do
   cow = function(x) do
@@ -57,10 +57,11 @@ M = {
     end end)
 };
 
-exports = {}
+exports = {};
 exports.O = O;
 exports.F = F;
 exports.F1 = F1;
 exports.F2 = F2;
 exports.M = M;
+return exports;
 --[[ No side effect ]]

@@ -1,8 +1,8 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Block = require "../../lib/js/block";
-Int32 = require "../../lib/js/int32";
+Mt = require "..mt";
+Block = require "......lib.js.block";
+Int32 = require "......lib.js.int32";
 
 suites = {
   contents = --[[ [] ]]0
@@ -16,7 +16,7 @@ function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[[ :: ]]{
     --[[ tuple ]]{
-      loc .. (" id " .. String(test_id.contents)),
+      loc .. (" id " .. __String(test_id.contents)),
       (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     x,
@@ -31,21 +31,21 @@ end end
 
 function f(x) do
   for i = 0 , 100 , 1 do
-    console.log(".");
+    __console.log(".");
   end
   return -x | 0;
 end end
 
 function int32_f(x) do
   for i = 0 , 100 , 1 do
-    console.log(".");
+    __console.log(".");
   end
   return -x | 0;
 end end
 
 function nint32_f(x) do
   for i = 0 , 100 , 1 do
-    console.log(".");
+    __console.log(".");
   end
   return -x;
 end end
@@ -62,7 +62,7 @@ Mt.from_pair_suites("Gpr_977_test", suites.contents);
 
 min_32_int = -2147483648;
 
-exports = {}
+exports = {};
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
@@ -71,4 +71,5 @@ exports.int32_f = int32_f;
 exports.nint32_f = nint32_f;
 exports.min_32_int = min_32_int;
 exports.u = u;
+return exports;
 --[[ u Not a pure module ]]

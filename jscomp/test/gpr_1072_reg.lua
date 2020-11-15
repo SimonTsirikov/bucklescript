@@ -1,4 +1,4 @@
-console = {log = print};
+__console = {log = print};
 
 
 v1 = {
@@ -8,6 +8,7 @@ v1 = {
   timeZoneName = "short"
 };
 
-exports = {}
+exports = {};
 exports.v1 = v1;
+return exports;
 --[[ No side effect ]]

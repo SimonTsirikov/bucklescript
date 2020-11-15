@@ -1,13 +1,14 @@
-console = {log = print};
+__console = {log = print};
 
 
 ff = "B";
 
-console.log(--[[ tuple ]]{
+__console.log(--[[ tuple ]]{
       "A",
       ff,
       "A"
     });
 
-exports = {}
+exports = {};
+return exports;
 --[[  Not a pure module ]]

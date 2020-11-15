@@ -1,6 +1,6 @@
-console = {log = print};
+__console = {log = print};
 
-Sys = require "../../lib/js/sys";
+Sys = require "......lib.js.sys";
 
 match;
 
@@ -20,11 +20,12 @@ do
     
 end
 
-a = match[0];
+a = match[1];
 
-b = match[1];
+b = match[2];
 
-exports = {}
+exports = {};
 exports.a = a;
 exports.b = b;
+return exports;
 --[[ match Not a pure module ]]

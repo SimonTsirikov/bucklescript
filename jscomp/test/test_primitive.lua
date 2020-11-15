@@ -1,9 +1,9 @@
-console = {log = print};
+__console = {log = print};
 
-Curry = require "../../lib/js/curry";
-Caml_array = require "../../lib/js/caml_array";
-Pervasives = require "../../lib/js/pervasives";
-CamlinternalLazy = require "../../lib/js/camlinternalLazy";
+Curry = require "......lib.js.curry";
+Caml_array = require "......lib.js.caml_array";
+Pervasives = require "......lib.js.pervasives";
+CamlinternalLazy = require "......lib.js.camlinternalLazy";
 
 function a4(prim) do
   return --[[ tuple ]]{
@@ -33,7 +33,7 @@ end end
 
 test_float = 3;
 
-test_abs = Math.abs(3.0);
+test_abs = __Math.abs(3.0);
 
 v = {
   1.0,
@@ -98,7 +98,7 @@ xx = --[[ tuple ]]{
   0
 };
 
-exports = {}
+exports = {};
 exports.a0 = a0;
 exports.a1 = a1;
 exports.a2 = a2;
@@ -119,4 +119,5 @@ exports.gg = gg;
 exports.f = f;
 exports.is_lazy_force = is_lazy_force;
 exports.fib = fib;
+return exports;
 --[[ test_abs Not a pure module ]]

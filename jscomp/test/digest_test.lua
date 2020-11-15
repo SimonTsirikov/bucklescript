@@ -1,16 +1,16 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-__Array = require "../../lib/js/array";
-Block = require "../../lib/js/block";
-Bytes = require "../../lib/js/bytes";
-Curry = require "../../lib/js/curry";
-Digest = require "../../lib/js/digest";
-Printf = require "../../lib/js/printf";
-Caml_array = require "../../lib/js/caml_array";
-Caml_bytes = require "../../lib/js/caml_bytes";
-Pervasives = require "../../lib/js/pervasives";
-Ext_array_test = require "./ext_array_test";
+Mt = require "..mt";
+__Array = require "......lib.js.array";
+Block = require "......lib.js.block";
+Bytes = require "......lib.js.bytes";
+Curry = require "......lib.js.curry";
+Digest = require "......lib.js.digest";
+Printf = require "......lib.js.printf";
+Caml_array = require "......lib.js.caml_array";
+Caml_bytes = require "......lib.js.caml_bytes";
+Pervasives = require "......lib.js.pervasives";
+Ext_array_test = require "..ext_array_test";
 
 function f(x) do
   return Digest.to_hex(Digest.string(x));
@@ -149,7 +149,7 @@ ref = {
   "b325dc1c6f5e7a2b7cf465b9feab7948"
 };
 
-Mt.from_pair_suites("Digest_test", Pervasives.$at(--[[ :: ]]{
+Mt.from_pair_suites("Digest_test", Pervasives._at(--[[ :: ]]{
           --[[ tuple ]]{
             "File \"digest_test.ml\", line 6, characters 4-11",
             (function(param) do
@@ -235,6 +235,7 @@ Mt.from_pair_suites("Digest_test", Pervasives.$at(--[[ :: ]]{
                           };
                   end end), Ext_array_test.range(0, 129)))));
 
-exports = {}
+exports = {};
 exports.f = f;
+return exports;
 --[[  Not a pure module ]]

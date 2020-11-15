@@ -1,10 +1,10 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-List = require "../../lib/js/list";
-Caml_obj = require "../../lib/js/caml_obj";
-Caml_int32 = require "../../lib/js/caml_int32";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
+Mt = require "..mt";
+List = require "......lib.js.list";
+Caml_obj = require "......lib.js.caml_obj";
+Caml_int32 = require "......lib.js.caml_int32";
+Caml_builtin_exceptions = require "......lib.js.caml_builtin_exceptions";
 
 suites = {
   contents = --[[ [] ]]0
@@ -58,7 +58,7 @@ end end
 
 function hd(x) do
   if (x) then do
-    return x[--[[ content ]]0];
+    return x[--[[ content ]]1];
   end else do
     return 0;
   end end 
@@ -66,7 +66,7 @@ end end
 
 function tl_exn(x) do
   if (x) then do
-    return x[--[[ next ]]1];
+    return x[--[[ next ]]2];
   end else do
     error({
       Caml_builtin_exceptions.assert_failure,
@@ -108,7 +108,7 @@ eq("File \"recursive_records_test.ml\", line 77, characters 5-12", (List.hd(rec_
 
 Mt.from_pair_suites("recursive_records_test.ml", suites.contents);
 
-exports = {}
+exports = {};
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
@@ -121,4 +121,5 @@ exports.hd = hd;
 exports.tl_exn = tl_exn;
 exports.rec_cell3 = rec_cell3;
 exports.f3 = f3;
+return exports;
 --[[  Not a pure module ]]

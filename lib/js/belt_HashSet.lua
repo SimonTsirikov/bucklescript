@@ -1,7 +1,7 @@
-console = {log = print};
+__console = {log = print};
 
-Belt_internalSetBuckets = require "./belt_internalSetBuckets";
-Belt_internalBucketsType = require "./belt_internalBucketsType";
+Belt_internalSetBuckets = require "..belt_internalSetBuckets";
+Belt_internalBucketsType = require "..belt_internalBucketsType";
 
 function copyBucket(hash, h_buckets, ndata_tail, _old_bucket) do
   while(true) do
@@ -107,8 +107,8 @@ function add0(h, key, hash, eq) do
     osize = #odata;
     nsize = (osize << 1);
     if (nsize >= osize) then do
-      h_buckets_1 = new Array(nsize);
-      ndata_tail = new Array(nsize);
+      h_buckets_1 = new __Array(nsize);
+      ndata_tail = new __Array(nsize);
       h_1.buckets = h_buckets_1;
       for i_1 = 0 , osize - 1 | 0 , 1 do
         copyBucket(hash_1, h_buckets_1, ndata_tail, odata[i_1]);
@@ -214,7 +214,7 @@ toArray = Belt_internalSetBuckets.toArray;
 
 getBucketHistogram = Belt_internalSetBuckets.getBucketHistogram;
 
-exports = {}
+exports = {};
 exports.Int = Int;
 exports.__String = __String;
 exports.make = make;
@@ -234,4 +234,5 @@ exports.toArray = toArray;
 exports.fromArray = fromArray;
 exports.mergeMany = mergeMany;
 exports.getBucketHistogram = getBucketHistogram;
+return exports;
 --[[ No side effect ]]

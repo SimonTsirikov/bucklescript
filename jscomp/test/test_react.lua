@@ -1,17 +1,17 @@
-console = {log = print};
+__console = {log = print};
 
-C = require "";
-C_1 = require "";
-Xxx = require "";
+C = require "c";
+C_1 = require "b.c";
+Xxx = require "xxx";
 C_2 = require "a";
 React = require "r";
 ReactDom = require "react";
 
-console.log("hey");
+__console.log("hey");
 
 doc.getElementById("haha");
 
-console.log(32);
+__console.log(32);
 
 ReactDom.render(React.createClass({
           render = (function(param) do
@@ -19,7 +19,7 @@ ReactDom.render(React.createClass({
                           alt = "pic"
                         }, React.DOM.h1(nil, "hello react"), React.DOM.h2(nil, "type safe!"), React.DOM.h3(nil, "type safe!"));
             end end)
-        }), document.getElementById("hi"));
+        }), __document.getElementById("hi"));
 
 function f(param) do
   Xxx();
@@ -38,8 +38,9 @@ v = --[[ () ]]0;
 
 u = 33;
 
-exports = {}
+exports = {};
 exports.v = v;
 exports.u = u;
 exports.f = f;
+return exports;
 --[[  Not a pure module ]]

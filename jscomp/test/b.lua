@@ -1,12 +1,13 @@
-console = {log = print};
+__console = {log = print};
 
 
 function f(point) do
   y = point.y;
   x = point.x;
-  return Math.pow(x * x + y * y, 2);
+  return __Math.pow(x * x + y * y, 2);
 end end
 
-exports = {}
+exports = {};
 exports.f = f;
+return exports;
 --[[ No side effect ]]

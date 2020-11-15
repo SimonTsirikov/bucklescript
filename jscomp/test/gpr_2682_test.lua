@@ -1,4 +1,4 @@
-console = {log = print};
+__console = {log = print};
 
 
 function sum(a,b)do 
@@ -22,7 +22,7 @@ function forIn(o,foo)do
   end;
 
 function log(x) do
-  console.log(x);
+  __console.log(x);
   return --[[ () ]]0;
 end end
 
@@ -33,7 +33,7 @@ N = {
 forIn({
       x = 3
     }, (function(x) do
-        console.log(x);
+        __console.log(x);
         return --[[ () ]]0;
       end end));
 
@@ -41,7 +41,7 @@ forIn({
       x = 3,
       y = 3
     }, (function(x) do
-        console.log(x);
+        __console.log(x);
         return --[[ () ]]0;
       end end));
 
@@ -49,7 +49,7 @@ function f3()doreturn trueend;
 
 bbbb = f3();
 
-exports = {}
+exports = {};
 exports.sum = sum;
 exports.v = v;
 exports.f = f;
@@ -59,4 +59,5 @@ exports.forIn = forIn;
 exports.N = N;
 exports.f3 = f3;
 exports.bbbb = bbbb;
+return exports;
 --[[ v Not a pure module ]]

@@ -1,10 +1,10 @@
-console = {log = print};
+__console = {log = print};
 
-Curry = require "../../lib/js/curry";
-Lexing = require "../../lib/js/lexing";
+Curry = require "......lib.js.curry";
+Lexing = require "......lib.js.lexing";
 
 function l(prim) do
-  console.log(prim);
+  __console.log(prim);
   return --[[ () ]]0;
 end end
 
@@ -80,9 +80,10 @@ function token(l, lexbuf) do
   return __ocaml_lex_token_rec(l, lexbuf, 0);
 end end
 
-exports = {}
+exports = {};
 exports.l = l;
 exports.__ocaml_lex_tables = __ocaml_lex_tables;
 exports.token = token;
 exports.__ocaml_lex_token_rec = __ocaml_lex_token_rec;
+return exports;
 --[[ No side effect ]]

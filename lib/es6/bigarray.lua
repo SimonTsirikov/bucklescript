@@ -1,11 +1,11 @@
 
 
-import * as Sys from "./sys.lua";
-import * as __Array from "./array.lua";
-import * as Caml_array from "./caml_array.lua";
-import * as Caml_int32 from "./caml_int32.lua";
-import * as Caml_external_polyfill from "./caml_external_polyfill.lua";
-import * as Caml_builtin_exceptions from "./caml_builtin_exceptions.lua";
+local Sys = require "..sys.lua";
+local __Array = require "..array.lua";
+local Caml_array = require "..caml_array.lua";
+local Caml_int32 = require "..caml_int32.lua";
+local Caml_external_polyfill = require "..caml_external_polyfill.lua";
+local Caml_builtin_exceptions = require "..caml_builtin_exceptions.lua";
 
 function kind_size_in_bytes(param) do
   local ___conditional___=(param);

@@ -1,7 +1,7 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Block = require "../../lib/js/block";
+Mt = require "..mt";
+Block = require "......lib.js.block";
 
 function f(b, x, _n) do
   while(true) do
@@ -59,8 +59,9 @@ suites = --[[ :: ]]{
 
 Mt.from_pair_suites("And_or_tailcall_test", suites);
 
-exports = {}
+exports = {};
 exports.f = f;
 exports.or_f = or_f;
 exports.suites = suites;
+return exports;
 --[[  Not a pure module ]]

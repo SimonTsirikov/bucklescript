@@ -1,10 +1,10 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-List = require "../../lib/js/list";
-Block = require "../../lib/js/block";
-Genlex = require "../../lib/js/genlex";
-Stream = require "../../lib/js/stream";
+Mt = require "..mt";
+List = require "......lib.js.list";
+Block = require "......lib.js.block";
+Genlex = require "......lib.js.genlex";
+Stream = require "......lib.js.stream";
 
 lexer = Genlex.make_lexer(--[[ :: ]]{
       "+",
@@ -92,8 +92,9 @@ suites = --[[ :: ]]{
 
 Mt.from_pair_suites("Genlex_test", suites);
 
-exports = {}
+exports = {};
 exports.lexer = lexer;
 exports.to_list = to_list;
 exports.suites = suites;
+return exports;
 --[[ lexer Not a pure module ]]

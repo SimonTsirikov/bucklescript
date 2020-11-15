@@ -1,7 +1,8 @@
-console = {log = print};
+__console = {log = print};
 
 
-console.log(false);
+__console.log(false);
 
-exports = {}
+exports = {};
+return exports;
 --[[  Not a pure module ]]

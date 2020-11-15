@@ -1,9 +1,9 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-__Array = require "../../lib/js/array";
-Block = require "../../lib/js/block";
-Caml_array = require "../../lib/js/caml_array";
+Mt = require "..mt";
+__Array = require "......lib.js.array";
+Block = require "......lib.js.block";
+Caml_array = require "......lib.js.caml_array";
 
 function f(param) do
   f_1 = function(_acc, _n) do
@@ -80,7 +80,8 @@ suites = --[[ :: ]]{
 
 Mt.from_pair_suites("Tailcall_inline_test", suites);
 
-exports = {}
+exports = {};
 exports.f = f;
 exports.suites = suites;
+return exports;
 --[[  Not a pure module ]]

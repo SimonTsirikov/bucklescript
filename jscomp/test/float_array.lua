@@ -1,4 +1,4 @@
-console = {log = print};
+__console = {log = print};
 
 
 function small_float_array(x) do
@@ -60,7 +60,8 @@ function longer_float_array(x) do
         };
 end end
 
-exports = {}
+exports = {};
 exports.small_float_array = small_float_array;
 exports.longer_float_array = longer_float_array;
+return exports;
 --[[ No side effect ]]

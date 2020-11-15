@@ -1,13 +1,13 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Block = require "../../lib/js/block";
-Curry = require "../../lib/js/curry";
-Queue = require "../../lib/js/queue";
-Genlex = require "../../lib/js/genlex";
-Stream = require "../../lib/js/stream";
-Caml_int32 = require "../../lib/js/caml_int32";
-Caml_exceptions = require "../../lib/js/caml_exceptions";
+Mt = require "..mt";
+Block = require "......lib.js.block";
+Curry = require "......lib.js.curry";
+Queue = require "......lib.js.queue";
+Genlex = require "......lib.js.genlex";
+Stream = require "......lib.js.stream";
+Caml_int32 = require "......lib.js.caml_int32";
+Caml_exceptions = require "......lib.js.caml_exceptions";
 
 Parse_error = Caml_exceptions.create("Stream_parser_test.Parse_error");
 
@@ -33,7 +33,7 @@ function parse(token) do
     local ___conditional___=(e.tag | 0);
     do
        if ___conditional___ == 0--[[ Kwd ]] then do
-          if (e[0] == "(") then do
+          if (e[1] == "(") then do
             v = parse_expr_aux(parse_term_aux(parse_atom(--[[ () ]]0)));
             match = token_1(--[[ () ]]0);
             if (match.tag) then do
@@ -41,7 +41,7 @@ function parse(token) do
                 Parse_error,
                 "Unbalanced parens"
               })
-            end else if (match[0] == ")") then do
+            end else if (match[1] == ")") then do
               return v;
             end else do
               error({
@@ -57,7 +57,7 @@ function parse(token) do
             })
           end end  end end 
        if ___conditional___ == 2--[[ Int ]] then do
-          return e[0]; end end 
+          return e[1]; end end 
       Queue.push(e, look_ahead);
         error({
           Parse_error,
@@ -72,7 +72,7 @@ function parse(token) do
       Queue.push(e, look_ahead);
       return e1;
     end else do
-      local ___conditional___=(e[0]);
+      local ___conditional___=(e[1]);
       do
          if ___conditional___ == "*" then do
             return Caml_int32.imul(e1, parse_term_aux(parse_atom(--[[ () ]]0))); end end 
@@ -90,7 +90,7 @@ function parse(token) do
       Queue.push(e, look_ahead);
       return e1;
     end else do
-      local ___conditional___=(e[0]);
+      local ___conditional___=(e[1]);
       do
          if ___conditional___ == "+" then do
             return e1 + parse_expr_aux(parse_term_aux(parse_atom(--[[ () ]]0))) | 0; end end 
@@ -166,7 +166,7 @@ function l_parse(token) do
         Queue.push(t, look_ahead);
         return a;
       end else do
-        local ___conditional___=(t[0]);
+        local ___conditional___=(t[1]);
         do
            if ___conditional___ == "*" then do
               _a = Caml_int32.imul(a, parse_f(--[[ () ]]0));
@@ -186,7 +186,7 @@ function l_parse(token) do
     local ___conditional___=(t.tag | 0);
     do
        if ___conditional___ == 0--[[ Kwd ]] then do
-          if (t[0] == "(") then do
+          if (t[1] == "(") then do
             v = parse_t_aux(parse_f_aux(parse_f(--[[ () ]]0)));
             t_1 = token_1(--[[ () ]]0);
             if (t_1.tag) then do
@@ -194,7 +194,7 @@ function l_parse(token) do
                 Parse_error,
                 "Unbalanced )"
               })
-            end else if (t_1[0] == ")") then do
+            end else if (t_1[1] == ")") then do
               return v;
             end else do
               error({
@@ -209,7 +209,7 @@ function l_parse(token) do
             })
           end end  end end 
        if ___conditional___ == 2--[[ Int ]] then do
-          return t[0]; end end 
+          return t[1]; end end 
       error({
           Parse_error,
           "Unexpected token"
@@ -225,7 +225,7 @@ function l_parse(token) do
         Queue.push(t, look_ahead);
         return a;
       end else do
-        local ___conditional___=(t[0]);
+        local ___conditional___=(t[1]);
         do
            if ___conditional___ == "+" then do
               _a = a + parse_f_aux(parse_f(--[[ () ]]0)) | 0;
@@ -264,7 +264,7 @@ function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[[ :: ]]{
     --[[ tuple ]]{
-      loc .. (" id " .. String(test_id.contents)),
+      loc .. (" id " .. __String(test_id.contents)),
       (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     x,
@@ -280,8 +280,8 @@ end end
 match = parse(token(Stream.of_string("1 + 2 + (3  - 2) * 3 * 3  - 2 a")));
 
 eq("File \"stream_parser_test.ml\", line 132, characters 5-12", --[[ tuple ]]{
-      match[0],
-      match[1]
+      match[1],
+      match[2]
     }, --[[ tuple ]]{
       10,
       --[[ :: ]]{
@@ -308,7 +308,7 @@ eq("File \"stream_parser_test.ml\", line 134, characters 5-12", --[[ tuple ]]{
 
 Mt.from_pair_suites("Stream_parser_test", suites.contents);
 
-exports = {}
+exports = {};
 exports.Parse_error = Parse_error;
 exports.parse = parse;
 exports.lexer = lexer;
@@ -317,4 +317,5 @@ exports.l_parse = l_parse;
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
+return exports;
 --[[ lexer Not a pure module ]]

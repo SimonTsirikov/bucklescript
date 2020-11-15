@@ -1,26 +1,26 @@
-console = {log = print};
+__console = {log = print};
 
-Sys = require "./sys";
-List = require "./list";
-__Array = require "./array";
-Block = require "./block";
-Bytes = require "./bytes";
-Curry = require "./curry";
-__Buffer = require "./buffer";
-Printf = require "./printf";
-__String = require "./string";
-Caml_io = require "./caml_io";
-Caml_obj = require "./caml_obj";
-Caml_array = require "./caml_array";
-Caml_bytes = require "./caml_bytes";
-Pervasives = require "./pervasives";
-Caml_format = require "./caml_format";
-Caml_string = require "./caml_string";
-Caml_primitive = require "./caml_primitive";
-Caml_exceptions = require "./caml_exceptions";
-Caml_js_exceptions = require "./caml_js_exceptions";
-Caml_external_polyfill = require "./caml_external_polyfill";
-Caml_builtin_exceptions = require "./caml_builtin_exceptions";
+Sys = require "..sys";
+List = require "..list";
+__Array = require "..array";
+Block = require "..block";
+Bytes = require "..bytes";
+Curry = require "..curry";
+__Buffer = require "..buffer";
+Printf = require "..printf";
+__String = require "..string";
+Caml_io = require "..caml_io";
+Caml_obj = require "..caml_obj";
+Caml_array = require "..caml_array";
+Caml_bytes = require "..caml_bytes";
+Pervasives = require "..pervasives";
+Caml_format = require "..caml_format";
+Caml_string = require "..caml_string";
+Caml_primitive = require "..caml_primitive";
+Caml_exceptions = require "..caml_exceptions";
+Caml_js_exceptions = require "..caml_js_exceptions";
+Caml_external_polyfill = require "..caml_external_polyfill";
+Caml_builtin_exceptions = require "..caml_builtin_exceptions";
 
 Bad = Caml_exceptions.create("Arg.Bad");
 
@@ -32,11 +32,11 @@ function assoc3(x, _l) do
   while(true) do
     l = _l;
     if (l) then do
-      match = l[0];
-      if (Caml_obj.caml_equal(match[0], x)) then do
-        return match[1];
+      match = l[1];
+      if (Caml_obj.caml_equal(match[1], x)) then do
+        return match[2];
       end else do
-        _l = l[1];
+        _l = l[2];
         ::continue:: ;
       end end 
     end else do
@@ -58,7 +58,7 @@ function make_symlist(prefix, sep, suffix, l) do
   if (l) then do
     return List.fold_left((function(x, y) do
                   return x .. (sep .. y);
-                end end), prefix .. l[0], l[1]) .. suffix;
+                end end), prefix .. l[1], l[2]) .. suffix;
   end else do
     return "<none>";
   end end 
@@ -108,7 +108,7 @@ function add_help(speclist) do
       error(exn_1)
     end end 
   end end)
-  return Pervasives.$at(speclist, Pervasives.$at(add1, add2));
+  return Pervasives._at(speclist, Pervasives._at(add1, add2));
 end end
 
 function usage_b(buf, speclist, errmsg) do
@@ -125,10 +125,10 @@ function usage_b(buf, speclist, errmsg) do
   return List.iter((function(param) do
                 buf_1 = buf;
                 param_1 = param;
-                doc = param_1[2];
+                doc = param_1[3];
                 if (#doc ~= 0) then do
-                  spec = param_1[1];
-                  key = param_1[0];
+                  spec = param_1[2];
+                  key = param_1[1];
                   if (spec.tag == --[[ Symbol ]]11) then do
                     return Curry._3(Printf.bprintf(buf_1, --[[ Format ]]{
                                     --[[ String_literal ]]Block.__(11, {
@@ -151,7 +151,7 @@ function usage_b(buf, speclist, errmsg) do
                                           })
                                       }),
                                     "  %s %s%s\n"
-                                  }), key, make_symlist("{", "|", "}", spec[0]), doc);
+                                  }), key, make_symlist("{", "|", "}", spec[1]), doc);
                   end else do
                     return Curry._2(Printf.bprintf(buf_1, --[[ Format ]]{
                                     --[[ String_literal ]]Block.__(11, {
@@ -204,7 +204,7 @@ function bool_of_string_opt(x) do
     return Pervasives.bool_of_string(x);
   end end,function(raw_exn) do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
-    if (exn[0] == Caml_builtin_exceptions.invalid_argument) then do
+    if (exn[1] == Caml_builtin_exceptions.invalid_argument) then do
       return ;
     end else do
       error(exn)
@@ -217,7 +217,7 @@ function int_of_string_opt(x) do
     return Caml_format.caml_int_of_string(x);
   end end,function(raw_exn) do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
-    if (exn[0] == Caml_builtin_exceptions.failure) then do
+    if (exn[1] == Caml_builtin_exceptions.failure) then do
       return ;
     end else do
       error(exn)
@@ -230,7 +230,7 @@ function float_of_string_opt(x) do
     return Caml_format.caml_float_of_string(x);
   end end,function(raw_exn) do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
-    if (exn[0] == Caml_builtin_exceptions.failure) then do
+    if (exn[1] == Caml_builtin_exceptions.failure) then do
       return ;
     end else do
       error(exn)
@@ -246,7 +246,7 @@ function parse_and_expand_argv_dynamic_aux(allow_expand, current, argv, speclist
     local ___conditional___=(error.tag | 0);
     do
        if ___conditional___ == 0--[[ Unknown ]] then do
-          s = error[0];
+          s = error[1];
           local ___conditional___=(s);
           do
              if ___conditional___ == "--help"
@@ -298,7 +298,7 @@ function parse_and_expand_argv_dynamic_aux(allow_expand, current, argv, speclist
                           })
                       }),
                     "%s: wrong argument '%s'; option '%s' expects %s.\n"
-                  }), progname, error[1], error[0], error[2]); end else 
+                  }), progname, error[2], error[1], error[3]); end else 
        if ___conditional___ == 2--[[ Missing ]] then do
           Curry._2(Printf.bprintf(b, --[[ Format ]]{
                     --[[ String ]]Block.__(2, {
@@ -315,7 +315,7 @@ function parse_and_expand_argv_dynamic_aux(allow_expand, current, argv, speclist
                           })
                       }),
                     "%s: option '%s' needs an argument.\n"
-                  }), progname, error[0]); end else 
+                  }), progname, error[1]); end else 
        if ___conditional___ == 3--[[ Message ]] then do
           Curry._2(Printf.bprintf(b, --[[ Format ]]{
                     --[[ String ]]Block.__(2, {
@@ -332,7 +332,7 @@ function parse_and_expand_argv_dynamic_aux(allow_expand, current, argv, speclist
                           })
                       }),
                     "%s: %s.\n"
-                  }), progname, error[0]); end else 
+                  }), progname, error[1]); end else 
        end end end end end end end end
       
     end
@@ -365,8 +365,8 @@ function parse_and_expand_argv_dynamic_aux(allow_expand, current, argv, speclist
             xpcall(function() do
               match_1 = split(s);
               match = --[[ tuple ]]{
-                assoc3(match_1[0], speclist.contents),
-                match_1[1]
+                assoc3(match_1[1], speclist.contents),
+                match_1[2]
               };
             end end,function(exn_1) do
               if (exn_1 == Caml_builtin_exceptions.not_found) then do
@@ -382,7 +382,7 @@ function parse_and_expand_argv_dynamic_aux(allow_expand, current, argv, speclist
             error(exn)
           end end 
         end end)
-        follow = match[1];
+        follow = match[2];
         no_arg = (function(s,follow)do
         return function no_arg(param) do
           if (follow ~= nil) then do
@@ -428,12 +428,12 @@ function parse_and_expand_argv_dynamic_aux(allow_expand, current, argv, speclist
           local ___conditional___=(param.tag | 0);
           do
              if ___conditional___ == 0--[[ Unit ]] then do
-                return Curry._1(param[0], --[[ () ]]0); end end 
+                return Curry._1(param[1], --[[ () ]]0); end end 
              if ___conditional___ == 1--[[ Bool ]] then do
                 arg = get_arg(--[[ () ]]0);
                 match = bool_of_string_opt(arg);
                 if (match ~= nil) then do
-                  Curry._1(param[0], match);
+                  Curry._1(param[1], match);
                 end else do
                   error({
                     Stop,
@@ -447,24 +447,24 @@ function parse_and_expand_argv_dynamic_aux(allow_expand, current, argv, speclist
                 return consume_arg(--[[ () ]]0); end end 
              if ___conditional___ == 2--[[ Set ]] then do
                 no_arg(--[[ () ]]0);
-                param[0].contents = true;
+                param[1].contents = true;
                 return --[[ () ]]0; end end 
              if ___conditional___ == 3--[[ Clear ]] then do
                 no_arg(--[[ () ]]0);
-                param[0].contents = false;
+                param[1].contents = false;
                 return --[[ () ]]0; end end 
              if ___conditional___ == 4--[[ String ]] then do
                 arg_1 = get_arg(--[[ () ]]0);
-                Curry._1(param[0], arg_1);
+                Curry._1(param[1], arg_1);
                 return consume_arg(--[[ () ]]0); end end 
              if ___conditional___ == 5--[[ Set_string ]] then do
-                param[0].contents = get_arg(--[[ () ]]0);
+                param[1].contents = get_arg(--[[ () ]]0);
                 return consume_arg(--[[ () ]]0); end end 
              if ___conditional___ == 6--[[ Int ]] then do
                 arg_2 = get_arg(--[[ () ]]0);
                 match_1 = int_of_string_opt(arg_2);
                 if (match_1 ~= nil) then do
-                  Curry._1(param[0], match_1);
+                  Curry._1(param[1], match_1);
                 end else do
                   error({
                     Stop,
@@ -480,7 +480,7 @@ function parse_and_expand_argv_dynamic_aux(allow_expand, current, argv, speclist
                 arg_3 = get_arg(--[[ () ]]0);
                 match_2 = int_of_string_opt(arg_3);
                 if (match_2 ~= nil) then do
-                  param[0].contents = match_2;
+                  param[1].contents = match_2;
                 end else do
                   error({
                     Stop,
@@ -496,7 +496,7 @@ function parse_and_expand_argv_dynamic_aux(allow_expand, current, argv, speclist
                 arg_4 = get_arg(--[[ () ]]0);
                 match_3 = float_of_string_opt(arg_4);
                 if (match_3 ~= nil) then do
-                  Curry._1(param[0], match_3);
+                  Curry._1(param[1], match_3);
                 end else do
                   error({
                     Stop,
@@ -512,7 +512,7 @@ function parse_and_expand_argv_dynamic_aux(allow_expand, current, argv, speclist
                 arg_5 = get_arg(--[[ () ]]0);
                 match_4 = float_of_string_opt(arg_5);
                 if (match_4 ~= nil) then do
-                  param[0].contents = match_4;
+                  param[1].contents = match_4;
                 end else do
                   error({
                     Stop,
@@ -525,12 +525,12 @@ function parse_and_expand_argv_dynamic_aux(allow_expand, current, argv, speclist
                 end end 
                 return consume_arg(--[[ () ]]0); end end 
              if ___conditional___ == 10--[[ Tuple ]] then do
-                return List.iter(treat_action, param[0]); end end 
+                return List.iter(treat_action, param[1]); end end 
              if ___conditional___ == 11--[[ Symbol ]] then do
-                symb = param[0];
+                symb = param[1];
                 arg_6 = get_arg(--[[ () ]]0);
                 if (List.mem(arg_6, symb)) then do
-                  Curry._1(param[1], arg_6);
+                  Curry._1(param[2], arg_6);
                   return consume_arg(--[[ () ]]0);
                 end else do
                   error({
@@ -543,7 +543,7 @@ function parse_and_expand_argv_dynamic_aux(allow_expand, current, argv, speclist
                   })
                 end end  end end 
              if ___conditional___ == 12--[[ Rest ]] then do
-                f = param[0];
+                f = param[1];
                 while(current.contents < (#argv.contents - 1 | 0)) do
                   Curry._1(f, Caml_array.caml_array_get(argv.contents, current.contents + 1 | 0));
                   consume_arg(--[[ () ]]0);
@@ -558,7 +558,7 @@ function parse_and_expand_argv_dynamic_aux(allow_expand, current, argv, speclist
                 end
                  end 
                 arg_7 = get_arg(--[[ () ]]0);
-                newarg = Curry._1(param[0], arg_7);
+                newarg = Curry._1(param[1], arg_7);
                 consume_arg(--[[ () ]]0);
                 before = __Array.sub(argv.contents, 0, current.contents + 1 | 0);
                 after = __Array.sub(argv.contents, current.contents + 1 | 0, (#argv.contents - current.contents | 0) - 1 | 0);
@@ -577,18 +577,18 @@ function parse_and_expand_argv_dynamic_aux(allow_expand, current, argv, speclist
           end
         end end
         end end)(s);
-        treat_action(match[0]);
+        treat_action(match[1]);
       end else do
         Curry._1(anonfun, s);
       end end 
     end end,function(raw_exn) do
       exn_2 = Caml_js_exceptions.internalToOCamlException(raw_exn);
-      if (exn_2[0] == Bad) then do
-        error(convert_error(--[[ Message ]]Block.__(3, {exn_2[1]})))
+      if (exn_2[1] == Bad) then do
+        error(convert_error(--[[ Message ]]Block.__(3, {exn_2[2]})))
       end
        end 
-      if (exn_2[0] == Stop) then do
-        error(convert_error(exn_2[1]))
+      if (exn_2[1] == Stop) then do
+        error(convert_error(exn_2[2]))
       end
        end 
       error(exn_2)
@@ -621,23 +621,23 @@ function parse(l, f, msg) do
     return parse_argv(nil, Sys.argv, l, f, msg);
   end end,function(raw_exn) do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
-    if (exn[0] == Bad) then do
+    if (exn[1] == Bad) then do
       Curry._1(Printf.eprintf(--[[ Format ]]{
                 --[[ String ]]Block.__(2, {
                     --[[ No_padding ]]0,
                     --[[ End_of_format ]]0
                   }),
                 "%s"
-              }), exn[1]);
+              }), exn[2]);
       return Pervasives.exit(2);
-    end else if (exn[0] == Help) then do
+    end else if (exn[1] == Help) then do
       Curry._1(Printf.printf(--[[ Format ]]{
                 --[[ String ]]Block.__(2, {
                     --[[ No_padding ]]0,
                     --[[ End_of_format ]]0
                   }),
                 "%s"
-              }), exn[1]);
+              }), exn[2]);
       return Pervasives.exit(0);
     end else do
       error(exn)
@@ -650,23 +650,23 @@ function parse_dynamic(l, f, msg) do
     return parse_argv_dynamic(nil, Sys.argv, l, f, msg);
   end end,function(raw_exn) do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
-    if (exn[0] == Bad) then do
+    if (exn[1] == Bad) then do
       Curry._1(Printf.eprintf(--[[ Format ]]{
                 --[[ String ]]Block.__(2, {
                     --[[ No_padding ]]0,
                     --[[ End_of_format ]]0
                   }),
                 "%s"
-              }), exn[1]);
+              }), exn[2]);
       return Pervasives.exit(2);
-    end else if (exn[0] == Help) then do
+    end else if (exn[1] == Help) then do
       Curry._1(Printf.printf(--[[ Format ]]{
                 --[[ String ]]Block.__(2, {
                     --[[ No_padding ]]0,
                     --[[ End_of_format ]]0
                   }),
                 "%s"
-              }), exn[1]);
+              }), exn[2]);
       return Pervasives.exit(0);
     end else do
       error(exn)
@@ -688,23 +688,23 @@ function parse_expand(l, f, msg) do
     return parse_and_expand_argv_dynamic(current_1, argv, spec, f, msg);
   end end,function(raw_exn) do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
-    if (exn[0] == Bad) then do
+    if (exn[1] == Bad) then do
       Curry._1(Printf.eprintf(--[[ Format ]]{
                 --[[ String ]]Block.__(2, {
                     --[[ No_padding ]]0,
                     --[[ End_of_format ]]0
                   }),
                 "%s"
-              }), exn[1]);
+              }), exn[2]);
       return Pervasives.exit(2);
-    end else if (exn[0] == Help) then do
+    end else if (exn[1] == Help) then do
       Curry._1(Printf.printf(--[[ Format ]]{
                 --[[ String ]]Block.__(2, {
                     --[[ No_padding ]]0,
                     --[[ End_of_format ]]0
                   }),
                 "%s"
-              }), exn[1]);
+              }), exn[2]);
       return Pervasives.exit(0);
     end else do
       error(exn)
@@ -756,11 +756,11 @@ function second_word(s) do
 end end
 
 function max_arg_len(cur, param) do
-  kwd = param[0];
-  if (param[1].tag == --[[ Symbol ]]11) then do
+  kwd = param[1];
+  if (param[2].tag == --[[ Symbol ]]11) then do
     return Caml_primitive.caml_int_max(cur, #kwd);
   end else do
-    return Caml_primitive.caml_int_max(cur, #kwd + second_word(param[2]) | 0);
+    return Caml_primitive.caml_int_max(cur, #kwd + second_word(param[3]) | 0);
   end end 
 end end
 
@@ -786,12 +786,12 @@ function align(limitOpt, speclist) do
   return List.map((function(param) do
                 len_2 = len_1;
                 ksd = param;
-                spec = ksd[1];
-                kwd = ksd[0];
-                if (ksd[2] == "") then do
+                spec = ksd[2];
+                kwd = ksd[1];
+                if (ksd[3] == "") then do
                   return ksd;
                 end else if (spec.tag == --[[ Symbol ]]11) then do
-                  msg = ksd[2];
+                  msg = ksd[3];
                   cutcol = second_word(msg);
                   n = Caml_primitive.caml_int_max(0, len_2 - cutcol | 0) + 3 | 0;
                   spaces = Caml_bytes.bytes_to_string(Bytes.make(n, --[[ " " ]]32));
@@ -801,7 +801,7 @@ function align(limitOpt, speclist) do
                           "\n" .. (spaces .. replace_leading_tab(msg))
                         };
                 end else do
-                  msg_1 = ksd[2];
+                  msg_1 = ksd[3];
                   cutcol_1 = second_word(msg_1);
                   kwd_len = #kwd;
                   diff = (len_2 - kwd_len | 0) - cutcol_1 | 0;
@@ -908,7 +908,7 @@ function write_arg0(param, param_1) do
   return write_aux(--[[ "\000" ]]0, param, param_1);
 end end
 
-exports = {}
+exports = {};
 exports.parse = parse;
 exports.parse_dynamic = parse_dynamic;
 exports.parse_argv = parse_argv;
@@ -925,4 +925,5 @@ exports.read_arg = read_arg;
 exports.read_arg0 = read_arg0;
 exports.write_arg = write_arg;
 exports.write_arg0 = write_arg0;
+return exports;
 --[[ No side effect ]]

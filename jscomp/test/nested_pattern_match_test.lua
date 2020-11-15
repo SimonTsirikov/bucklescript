@@ -1,19 +1,19 @@
-console = {log = print};
+__console = {log = print};
 
 
 function f_list(x) do
   if (x) then do
-    match = x[1];
+    match = x[2];
     if (match) then do
-      match_1 = match[1];
+      match_1 = match[2];
       if (match_1) then do
-        match_2 = match_1[1];
+        match_2 = match_1[2];
         if (match_2) then do
-          match_3 = match_2[1];
+          match_3 = match_2[2];
           if (match_3) then do
-            match_4 = match_3[1];
+            match_4 = match_3[2];
             if (match_4) then do
-              return ((((x[0] + match[0] | 0) + match_1[0] | 0) + match_2[0] | 0) + match_3[0] | 0) + match_4[0] | 0;
+              return ((((x[1] + match[1] | 0) + match_1[1] | 0) + match_2[1] | 0) + match_3[1] | 0) + match_4[1] | 0;
             end else do
               return 0;
             end end 
@@ -55,19 +55,19 @@ function f_opion(x) do
       return 0;
     end else do
       match_1 = x.lo;
-      if (match_1 and match_1[0] == nil) then do
-        match_2 = match_1[1];
-        if (match_2 and match_2[0] == nil) then do
-          match_3 = match_2[1];
+      if (match_1 and match_1[1] == nil) then do
+        match_2 = match_1[2];
+        if (match_2 and match_2[1] == nil) then do
+          match_3 = match_2[2];
           if (match_3) then do
-            match_4 = match_3[0];
+            match_4 = match_3[1];
             if (match_4 == 2) then do
-              match_5 = match_3[1];
+              match_5 = match_3[2];
               if (match_5) then do
-                match_6 = match_5[0];
+                match_6 = match_5[1];
                 if (match_6 == 1) then do
-                  match_7 = match_5[1];
-                  if (match_7 and match_7[0] ~= nil) then do
+                  match_7 = match_5[2];
+                  if (match_7 and match_7[1] ~= nil) then do
                     return 2;
                   end else do
                     return 0;
@@ -93,19 +93,19 @@ function f_opion(x) do
     end end 
   end else do
     match_8 = x.lo;
-    if (match_8 and match_8[0] == nil) then do
-      match_9 = match_8[1];
-      if (match_9 and match_9[0] == nil) then do
-        match_10 = match_9[1];
+    if (match_8 and match_8[1] == nil) then do
+      match_9 = match_8[2];
+      if (match_9 and match_9[1] == nil) then do
+        match_10 = match_9[2];
         if (match_10) then do
-          match_11 = match_10[0];
+          match_11 = match_10[1];
           if (match_11 == 2) then do
-            match_12 = match_10[1];
+            match_12 = match_10[2];
             if (match_12) then do
-              match_13 = match_12[0];
+              match_13 = match_12[1];
               if (match_13 == 1) then do
-                match_14 = match_12[1];
-                if (match_14 and match_14[0] ~= nil) then do
+                match_14 = match_12[2];
+                if (match_14 and match_14[1] ~= nil) then do
                   return 3;
                 end else do
                   return 0;
@@ -131,8 +131,9 @@ function f_opion(x) do
   end end 
 end end
 
-exports = {}
+exports = {};
 exports.f_list = f_list;
 exports.f_arr = f_arr;
 exports.f_opion = f_opion;
+return exports;
 --[[ No side effect ]]

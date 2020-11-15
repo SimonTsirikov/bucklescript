@@ -1,6 +1,6 @@
-console = {log = print};
+__console = {log = print};
 
-List = require "../../lib/js/list";
+List = require "......lib.js.list";
 
 function v(x) do
   return --[[ tuple ]]{
@@ -11,7 +11,8 @@ end end
 
 L = --[[ alias ]]0;
 
-exports = {}
+exports = {};
 exports.L = L;
 exports.v = v;
+return exports;
 --[[ No side effect ]]

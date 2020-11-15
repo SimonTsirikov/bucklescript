@@ -1,8 +1,8 @@
 
 
-import * as Curry from "./curry.lua";
-import * as Belt_SortArray from "./belt_SortArray.lua";
-import * as Belt_internalAVLset from "./belt_internalAVLset.lua";
+local Curry = require "..curry.lua";
+local Belt_SortArray = require "..belt_SortArray.lua";
+local Belt_internalAVLset = require "..belt_internalAVLset.lua";
 
 function remove0(nt, x, cmp) do
   k = nt.value;
@@ -363,11 +363,11 @@ function partitionU(d, p) do
   return --[[ tuple ]]{
           {
             cmp = cmp,
-            data = match[0]
+            data = match[1]
           },
           {
             cmp = cmp,
-            data = match[1]
+            data = match[2]
           }
         };
 end end
@@ -389,7 +389,7 @@ function intersect(a, b) do
       sizea = Belt_internalAVLset.lengthNode(match);
       sizeb = Belt_internalAVLset.lengthNode(match_1);
       totalSize = sizea + sizeb | 0;
-      tmp = new Array(totalSize);
+      tmp = new __Array(totalSize);
       Belt_internalAVLset.fillArray(match, 0, tmp);
       Belt_internalAVLset.fillArray(match_1, sizea, tmp);
       if (cmp(tmp[sizea - 1 | 0], tmp[sizea]) < 0 or cmp(tmp[totalSize - 1 | 0], tmp[0]) < 0) then do
@@ -398,7 +398,7 @@ function intersect(a, b) do
                 data = nil
               };
       end else do
-        tmp2 = new Array(sizea < sizeb and sizea or sizeb);
+        tmp2 = new __Array(sizea < sizeb and sizea or sizeb);
         k = Belt_SortArray.intersectU(tmp, 0, sizea, tmp, sizea, sizeb, tmp2, 0, cmp);
         return {
                 cmp = cmp,
@@ -428,7 +428,7 @@ function diff(a, b) do
       sizea = Belt_internalAVLset.lengthNode(dataa);
       sizeb = Belt_internalAVLset.lengthNode(match);
       totalSize = sizea + sizeb | 0;
-      tmp = new Array(totalSize);
+      tmp = new __Array(totalSize);
       Belt_internalAVLset.fillArray(dataa, 0, tmp);
       Belt_internalAVLset.fillArray(match, sizea, tmp);
       if (cmp(tmp[sizea - 1 | 0], tmp[sizea]) < 0 or cmp(tmp[totalSize - 1 | 0], tmp[0]) < 0) then do
@@ -437,7 +437,7 @@ function diff(a, b) do
                 data = Belt_internalAVLset.copy(dataa)
               };
       end else do
-        tmp2 = new Array(sizea);
+        tmp2 = new __Array(sizea);
         k = Belt_SortArray.diffU(tmp, 0, sizea, tmp, sizea, sizeb, tmp2, 0, cmp);
         return {
                 cmp = cmp,
@@ -467,7 +467,7 @@ function union(a, b) do
       sizea = Belt_internalAVLset.lengthNode(dataa);
       sizeb = Belt_internalAVLset.lengthNode(datab);
       totalSize = sizea + sizeb | 0;
-      tmp = new Array(totalSize);
+      tmp = new __Array(totalSize);
       Belt_internalAVLset.fillArray(dataa, 0, tmp);
       Belt_internalAVLset.fillArray(datab, sizea, tmp);
       if (cmp(tmp[sizea - 1 | 0], tmp[sizea]) < 0) then do
@@ -476,7 +476,7 @@ function union(a, b) do
                 data = Belt_internalAVLset.fromSortedArrayAux(tmp, 0, totalSize)
               };
       end else do
-        tmp2 = new Array(totalSize);
+        tmp2 = new __Array(totalSize);
         k = Belt_SortArray.unionU(tmp, 0, sizea, tmp, sizea, sizeb, tmp2, 0, cmp);
         return {
                 cmp = cmp,

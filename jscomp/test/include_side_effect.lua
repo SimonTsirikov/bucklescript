@@ -1,7 +1,8 @@
-console = {log = print};
+__console = {log = print};
 
-Side_effect = require "./side_effect";
+Side_effect = require "..side_effect";
 
 
-exports = {}
+exports = {};
+return exports;
 --[[ Side_effect Not a pure module ]]

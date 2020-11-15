@@ -1,9 +1,9 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-List = require "../../lib/js/list";
-Block = require "../../lib/js/block";
-Stack = require "../../lib/js/stack";
+Mt = require "..mt";
+List = require "......lib.js.list";
+Block = require "......lib.js.block";
+Stack = require "......lib.js.stack";
 
 function to_list(v) do
   acc = --[[ [] ]]0;
@@ -53,8 +53,9 @@ suites = --[[ :: ]]{
 
 Mt.from_pair_suites("Stack_test", suites);
 
-exports = {}
+exports = {};
 exports.to_list = to_list;
 exports.v = v;
 exports.suites = suites;
+return exports;
 --[[  Not a pure module ]]

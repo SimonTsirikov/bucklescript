@@ -1,11 +1,12 @@
-console = {log = print};
+__console = {log = print};
 
 
 fib = 3;
 
 u = 3;
 
-exports = {}
+exports = {};
 exports.fib = fib;
 exports.u = u;
+return exports;
 --[[ No side effect ]]

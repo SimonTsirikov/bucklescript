@@ -1,12 +1,12 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Block = require "../../lib/js/block";
-Js_types = require "../../lib/js/js_types";
+Mt = require "..mt";
+Block = require "......lib.js.block";
+Js_types = require "......lib.js.js_types";
 
 function string_or_number(x) do
   ty = Js_types.classify(x);
-  if (typeof ty == "number") then do
+  if (type(ty) == "number") then do
     local ___conditional___=(ty);
     do
        if ___conditional___ == 0--[[ JSFalse ]]
@@ -19,13 +19,13 @@ function string_or_number(x) do
     local ___conditional___=(ty.tag | 0);
     do
        if ___conditional___ == 0--[[ JSNumber ]] then do
-          console.log(ty[0] + 3);
+          __console.log(ty[1] + 3);
           return true; end end 
        if ___conditional___ == 1--[[ JSString ]] then do
-          console.log(ty[0] .. "hei");
+          __console.log(ty[1] .. "hei");
           return true; end end 
        if ___conditional___ == 2--[[ JSFunction ]] then do
-          console.log("Function");
+          __console.log("Function");
           return false; end end 
       return false;
         
@@ -179,7 +179,8 @@ suites = --[[ :: ]]{
 
 Mt.from_pair_suites("Typeof_test", suites);
 
-exports = {}
+exports = {};
 exports.string_or_number = string_or_number;
 exports.suites = suites;
+return exports;
 --[[  Not a pure module ]]

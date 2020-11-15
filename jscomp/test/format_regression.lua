@@ -1,7 +1,7 @@
-console = {log = print};
+__console = {log = print};
 
-Curry = require "../../lib/js/curry";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
+Curry = require "......lib.js.curry";
+Caml_builtin_exceptions = require "......lib.js.caml_builtin_exceptions";
 
 function peek_queue(param) do
   error({
@@ -65,11 +65,12 @@ end end
 
 pp_infinity = 1000000010;
 
-exports = {}
+exports = {};
 exports.peek_queue = peek_queue;
 exports.int_of_size = int_of_size;
 exports.take_queue = take_queue;
 exports.format_pp_token = format_pp_token;
 exports.pp_infinity = pp_infinity;
 exports.advance_loop = advance_loop;
+return exports;
 --[[ No side effect ]]

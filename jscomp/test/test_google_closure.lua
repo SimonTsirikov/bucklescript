@@ -1,7 +1,7 @@
-console = {log = print};
+__console = {log = print};
 
-__Array = require "../../lib/js/array";
-Caml_array = require "../../lib/js/caml_array";
+__Array = require "......lib.js.array";
+Caml_array = require "......lib.js.caml_array";
 
 function f(a, b, param) do
   return a + b | 0;
@@ -13,7 +13,7 @@ function f2(a) do
     end end);
 end end
 
-a = String(3);
+a = __String(3);
 
 b = 101;
 
@@ -25,7 +25,7 @@ for i = 0 , 1 , 1 do
   Caml_array.caml_array_set(arr, i, i + 1 | 0);
 end
 
-console.log(--[[ tuple ]]{
+__console.log(--[[ tuple ]]{
       a,
       b,
       arr
@@ -33,10 +33,11 @@ console.log(--[[ tuple ]]{
 
 c = arr;
 
-exports = {}
+exports = {};
 exports.f = f;
 exports.f2 = f2;
 exports.a = a;
 exports.b = b;
 exports.c = c;
+return exports;
 --[[ a Not a pure module ]]

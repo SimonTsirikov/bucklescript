@@ -1,7 +1,7 @@
 
 
-import * as Curry from "./curry.lua";
-import * as Caml_option from "./caml_option.lua";
+local Curry = require "..curry.lua";
+local Caml_option = require "..caml_option.lua";
 
 function make(param) do
   return {

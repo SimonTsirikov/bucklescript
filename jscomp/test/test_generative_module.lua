@@ -1,7 +1,7 @@
-console = {log = print};
+__console = {log = print};
 
 
-function M($star) do
+function M(_star) do
   return {
           v = 3
         };
@@ -11,7 +11,8 @@ V = {
   v = 3
 };
 
-exports = {}
+exports = {};
 exports.M = M;
 exports.V = V;
+return exports;
 --[[ No side effect ]]

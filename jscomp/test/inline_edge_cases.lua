@@ -1,4 +1,4 @@
-console = {log = print};
+__console = {log = print};
 
 
 function test3(_n) do
@@ -50,6 +50,7 @@ v = test0(10);
 
 test0(10) + 2 | 0;
 
-exports = {}
+exports = {};
 exports.v = v;
+return exports;
 --[[ v Not a pure module ]]

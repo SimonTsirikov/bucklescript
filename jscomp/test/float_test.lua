@@ -1,15 +1,15 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-__Array = require "../../lib/js/array";
-Block = require "../../lib/js/block";
-Curry = require "../../lib/js/curry";
-Printf = require "../../lib/js/printf";
-Mt_global = require "./mt_global";
-Caml_float = require "../../lib/js/caml_float";
-Caml_int64 = require "../../lib/js/caml_int64";
-Pervasives = require "../../lib/js/pervasives";
-Caml_primitive = require "../../lib/js/caml_primitive";
+Mt = require "..mt";
+__Array = require "......lib.js.array";
+Block = require "......lib.js.block";
+Curry = require "......lib.js.curry";
+Printf = require "......lib.js.printf";
+Mt_global = require "..mt_global";
+Caml_float = require "......lib.js.caml_float";
+Caml_int64 = require "......lib.js.caml_int64";
+Pervasives = require "......lib.js.pervasives";
+Caml_primitive = require "......lib.js.caml_primitive";
 
 test_id = {
   contents = 0
@@ -44,7 +44,7 @@ match_2 = Caml_float.caml_frexp_float(-12.0);
 
 results = __Array.append({
       --[[ tuple ]]{
-        Math.log10(2),
+        __Math.log10(2),
         0.301029995663981198
       },
       --[[ tuple ]]{
@@ -92,40 +92,40 @@ results = __Array.append({
         1.00000000000000067e-15
       },
       --[[ tuple ]]{
-        Math.log1p(1e-10),
+        __Math.log1p(1e-10),
         9.9999999995000007e-11
       }
     }, {
-      --[[ tuple ]]{
-        match_1[0],
-        0
-      },
       --[[ tuple ]]{
         match_1[1],
         0
       },
       --[[ tuple ]]{
-        match[0],
-        0.75
+        match_1[2],
+        0
       },
       --[[ tuple ]]{
         match[1],
+        0.75
+      },
+      --[[ tuple ]]{
+        match[2],
         4
       },
       --[[ tuple ]]{
-        match_2[0],
+        match_2[1],
         -0.75
       },
       --[[ tuple ]]{
-        match_2[1],
+        match_2[2],
         4
       }
     });
 
 function from_pairs(ps) do
   return __Array.to_list(__Array.mapi((function(i, param) do
-                    b = param[1];
-                    a = param[0];
+                    b = param[2];
+                    a = param[1];
                     return --[[ tuple ]]{
                             Curry._1(Printf.sprintf(--[[ Format ]]{
                                       --[[ String_literal ]]Block.__(11, {
@@ -162,11 +162,11 @@ Mt_global.collect_eq(test_id, suites, "File \"float_test.ml\", line 48, characte
       -3
     });
 
-match_3 = Caml_float.caml_modf_float(Number.NaN);
+match_3 = Caml_float.caml_modf_float(__Number.__NaN);
 
-param_000 = isNaN(match_3[0]);
+param_000 = __isNaN(match_3[1]);
 
-param_001 = isNaN(match_3[1]);
+param_001 = __isNaN(match_3[2]);
 
 param_2 = --[[ tuple ]]{
   param_000,
@@ -193,7 +193,7 @@ param_4 = __Array.map((function(x) do
           return 0;
         end end  end 
       end end), __Array.map((function(param) do
-            return Caml_primitive.caml_float_compare(param[0], param[1]);
+            return Caml_primitive.caml_float_compare(param[1], param[2]);
           end end), {
           --[[ tuple ]]{
             1,
@@ -219,7 +219,7 @@ param_6 = Caml_float.caml_copysign_float(3, 0);
 
 Mt_global.collect_eq(test_id, suites, "File \"float_test.ml\", line 57, characters 5-12", param_6, 3);
 
-param_7 = Math.log10(10);
+param_7 = __Math.log10(10);
 
 Mt_global.collect_eq(test_id, suites, "File \"float_test.ml\", line 58, characters 5-12", param_7, 1);
 
@@ -227,7 +227,7 @@ param_8 = Caml_float.caml_expm1_float(0);
 
 Mt_global.collect_eq(test_id, suites, "File \"float_test.ml\", line 59, characters 5-12", param_8, 0);
 
-param_9 = Number("3.0");
+param_9 = __Number("3.0");
 
 Mt_global.collect_eq(test_id, suites, "File \"float_test.ml\", line 60, characters 5-12", param_9, 3.0);
 
@@ -237,11 +237,11 @@ Mt_global.collect_approx(test_id, suites, "File \"float_test.ml\", line 61, char
 
 match_4 = Caml_float.caml_modf_float(32.3);
 
-b = match_4[1];
+b = match_4[2];
 
-a = match_4[0];
+a = match_4[1];
 
-Mt.from_pair_suites("Float_test", Pervasives.$at(--[[ :: ]]{
+Mt.from_pair_suites("Float_test", Pervasives._at(--[[ :: ]]{
           --[[ tuple ]]{
             "mod_float",
             (function(param) do
@@ -285,9 +285,9 @@ Mt.from_pair_suites("Float_test", Pervasives.$at(--[[ :: ]]{
               }
             }
           }
-        }, Pervasives.$at(from_pairs(results), suites.contents)));
+        }, Pervasives._at(from_pairs(results), suites.contents)));
 
-exports = {}
+exports = {};
 exports.test_id = test_id;
 exports.suites = suites;
 exports.eq = eq;
@@ -296,4 +296,5 @@ exports.epsilon_float = epsilon_float;
 exports.results = results;
 exports.from_pairs = from_pairs;
 exports.float_compare = float_compare;
+return exports;
 --[[ results Not a pure module ]]

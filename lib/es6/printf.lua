@@ -1,26 +1,26 @@
 
 
-import * as Curry from "./curry.lua";
-import * as __Buffer from "./buffer.lua";
-import * as Pervasives from "./pervasives.lua";
-import * as CamlinternalFormat from "./camlinternalFormat.lua";
+local Curry = require "..curry.lua";
+local __Buffer = require "..buffer.lua";
+local Pervasives = require "..pervasives.lua";
+local CamlinternalFormat = require "..camlinternalFormat.lua";
 
 function kfprintf(k, o, param) do
   return CamlinternalFormat.make_printf((function(o, acc) do
                 CamlinternalFormat.output_acc(o, acc);
                 return Curry._1(k, o);
-              end end), o, --[[ End_of_acc ]]0, param[0]);
+              end end), o, --[[ End_of_acc ]]0, param[1]);
 end end
 
 function kbprintf(k, b, param) do
   return CamlinternalFormat.make_printf((function(b, acc) do
                 CamlinternalFormat.bufput_acc(b, acc);
                 return Curry._1(k, b);
-              end end), b, --[[ End_of_acc ]]0, param[0]);
+              end end), b, --[[ End_of_acc ]]0, param[1]);
 end end
 
 function ikfprintf(k, oc, param) do
-  return CamlinternalFormat.make_iprintf(k, oc, param[0]);
+  return CamlinternalFormat.make_iprintf(k, oc, param[1]);
 end end
 
 function fprintf(oc, fmt) do
@@ -50,12 +50,12 @@ function eprintf(fmt) do
 end end
 
 function ksprintf(k, param) do
-  k$prime = function(param, acc) do
+  k_prime = function(param, acc) do
     buf = __Buffer.create(64);
     CamlinternalFormat.strput_acc(buf, acc);
     return Curry._1(k, __Buffer.contents(buf));
   end end;
-  return CamlinternalFormat.make_printf(k$prime, --[[ () ]]0, --[[ End_of_acc ]]0, param[0]);
+  return CamlinternalFormat.make_printf(k_prime, --[[ () ]]0, --[[ End_of_acc ]]0, param[1]);
 end end
 
 function sprintf(fmt) do

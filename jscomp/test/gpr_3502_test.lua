@@ -1,4 +1,4 @@
-console = {log = print};
+__console = {log = print};
 
 
 function toString(param) do
@@ -20,9 +20,10 @@ shortName = "a";
 
 name_1 = 2;
 
-exports = {}
+exports = {};
 exports.Language = Language;
 exports.language = language;
 exports.shortName = shortName;
 exports.name = name_1;
+return exports;
 --[[ No side effect ]]

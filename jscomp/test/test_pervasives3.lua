@@ -1,7 +1,7 @@
-console = {log = print};
+__console = {log = print};
 
-List = require "../../lib/js/list";
-Pervasives = require "../../lib/js/pervasives";
+List = require "......lib.js.list";
+Pervasives = require "......lib.js.pervasives";
 
 Pervasives_1 = {
   invalid_arg = Pervasives.invalid_arg,
@@ -24,7 +24,7 @@ Pervasives_1 = {
   int_of_string_opt = Pervasives.int_of_string_opt,
   string_of_float = Pervasives.string_of_float,
   float_of_string_opt = Pervasives.float_of_string_opt,
-  $at = Pervasives.$at,
+  _at = Pervasives._at,
   stdin = Pervasives.stdin,
   stdout = Pervasives.stdout,
   stderr = Pervasives.stderr,
@@ -83,7 +83,7 @@ Pervasives_1 = {
   set_binary_mode_in = Pervasives.set_binary_mode_in,
   LargeFile = Pervasives.LargeFile,
   string_of_format = Pervasives.string_of_format,
-  $caret$caret = Pervasives.$caret$caret,
+  _caret_caret = Pervasives._caret_caret,
   exit = Pervasives.exit,
   at_exit = Pervasives.at_exit,
   valid_float_lexem = Pervasives.valid_float_lexem,
@@ -143,9 +143,10 @@ Pervasives_1 = {
   merge = List.merge
 };
 
-v = Pervasives.$at;
+v = Pervasives._at;
 
-exports = {}
+exports = {};
 exports.Pervasives = Pervasives_1;
 exports.v = v;
+return exports;
 --[[ No side effect ]]

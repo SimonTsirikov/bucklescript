@@ -1,13 +1,13 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Block = require "../../lib/js/block";
-Curry = require "../../lib/js/curry";
-Int64 = require "../../lib/js/int64";
-Printf = require "../../lib/js/printf";
-Random = require "../../lib/js/random";
-Mt_global = require "./mt_global";
-Caml_array = require "../../lib/js/caml_array";
+Mt = require "..mt";
+Block = require "......lib.js.block";
+Curry = require "......lib.js.curry";
+Int64 = require "......lib.js.int64";
+Printf = require "......lib.js.printf";
+Random = require "......lib.js.random";
+Mt_global = require "..mt_global";
+Caml_array = require "......lib.js.caml_array";
 
 id = {
   contents = 0
@@ -128,7 +128,7 @@ Curry._5(Printf.printf(--[[ Format ]]{
 
 Mt.from_pair_suites("Random_test", suites.contents);
 
-exports = {}
+exports = {};
 exports.id = id;
 exports.suites = suites;
 exports.eq = eq;
@@ -140,4 +140,5 @@ exports.h = h;
 exports.vv = vv;
 exports.xx = xx;
 exports.xxx = xxx;
+return exports;
 --[[  Not a pure module ]]

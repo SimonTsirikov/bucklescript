@@ -1,15 +1,15 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Lazy = require "../../lib/js/lazy";
-Block = require "../../lib/js/block";
-Curry = require "../../lib/js/curry";
-Caml_obj = require "../../lib/js/caml_obj";
-Caml_module = require "../../lib/js/caml_module";
-CamlinternalLazy = require "../../lib/js/camlinternalLazy";
-Caml_js_exceptions = require "../../lib/js/caml_js_exceptions";
-Caml_external_polyfill = require "../../lib/js/caml_external_polyfill";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
+Mt = require "..mt";
+Lazy = require "......lib.js.lazy";
+Block = require "......lib.js.block";
+Curry = require "......lib.js.curry";
+Caml_obj = require "......lib.js.caml_obj";
+Caml_module = require "......lib.js.caml_module";
+CamlinternalLazy = require "......lib.js.camlinternalLazy";
+Caml_js_exceptions = require "......lib.js.caml_js_exceptions";
+Caml_external_polyfill = require "......lib.js.caml_external_polyfill";
+Caml_builtin_exceptions = require "......lib.js.caml_builtin_exceptions";
 
 suites = {
   contents = --[[ [] ]]0
@@ -147,7 +147,7 @@ xpcall(function() do
   tmp_1 = 3;
 end end,function(raw_exn) do
   exn_1 = Caml_js_exceptions.internalToOCamlException(raw_exn);
-  if (exn_1[0] == Caml_builtin_exceptions.undefined_recursive_module) then do
+  if (exn_1[1] == Caml_builtin_exceptions.undefined_recursive_module) then do
     tmp_1 = 4;
   end else do
     error(exn_1)
@@ -162,7 +162,7 @@ Int32 = --[[ () ]]0;
 
 uuu = Xx.f;
 
-exports = {}
+exports = {};
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
@@ -173,4 +173,5 @@ exports.Int3 = Int3;
 exports.Inta = Inta;
 exports.Intb = Intb;
 exports.A = A;
+return exports;
 --[[ Int3 Not a pure module ]]

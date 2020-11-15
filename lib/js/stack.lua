@@ -1,7 +1,7 @@
-console = {log = print};
+__console = {log = print};
 
-List = require "./list";
-Caml_exceptions = require "./caml_exceptions";
+List = require "..list";
+Caml_exceptions = require "..caml_exceptions";
 
 Empty = Caml_exceptions.create("Stack.Empty");
 
@@ -37,9 +37,9 @@ end end
 function pop(s) do
   match = s.c;
   if (match) then do
-    s.c = match[1];
+    s.c = match[2];
     s.len = s.len - 1 | 0;
-    return match[0];
+    return match[1];
   end else do
     error(Empty)
   end end 
@@ -48,7 +48,7 @@ end end
 function top(s) do
   match = s.c;
   if (match) then do
-    return match[0];
+    return match[1];
   end else do
     error(Empty)
   end end 
@@ -70,7 +70,7 @@ function fold(f, acc, s) do
   return List.fold_left(f, acc, s.c);
 end end
 
-exports = {}
+exports = {};
 exports.Empty = Empty;
 exports.create = create;
 exports.push = push;
@@ -82,4 +82,5 @@ exports.is_empty = is_empty;
 exports.length = length;
 exports.iter = iter;
 exports.fold = fold;
+return exports;
 --[[ No side effect ]]

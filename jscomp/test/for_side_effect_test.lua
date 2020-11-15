@@ -1,10 +1,10 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Block = require "../../lib/js/block";
+Mt = require "..mt";
+Block = require "......lib.js.block";
 
 function tst(param) do
-  for i = console.log("hi"), 0 , console.log("hello"), 3 , 1 do
+  for i = __console.log("hi"), 0 , __console.log("hello"), 3 , 1 do
     
   end
   return --[[ () ]]0;
@@ -37,8 +37,9 @@ suites = --[[ :: ]]{
 
 Mt.from_pair_suites("For_side_effect_test", suites);
 
-exports = {}
+exports = {};
 exports.tst = tst;
 exports.test2 = test2;
 exports.suites = suites;
+return exports;
 --[[  Not a pure module ]]

@@ -1,11 +1,11 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Curry = require "../../lib/js/curry";
-Caml_obj = require "../../lib/js/caml_obj";
-Belt_Array = require "../../lib/js/belt_Array";
-Belt_MutableQueue = require "../../lib/js/belt_MutableQueue";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
+Mt = require "..mt";
+Curry = require "......lib.js.curry";
+Caml_obj = require "......lib.js.caml_obj";
+Belt_Array = require "......lib.js.belt_Array";
+Belt_MutableQueue = require "......lib.js.belt_MutableQueue";
+Caml_builtin_exceptions = require "......lib.js.caml_builtin_exceptions";
 
 suites = {
   contents = --[[ [] ]]0
@@ -32,7 +32,7 @@ function does_raise(f, q) do
   end end)
 end end
 
-function $plus$plus(q, x) do
+function _plus_plus(q, x) do
   Belt_MutableQueue.add(q, x);
   return q;
 end end
@@ -1183,7 +1183,7 @@ if (Belt_MutableQueue.reduce(q2_4, 0, (function(x, y) do
 end
  end 
 
-console.log("OK");
+__console.log("OK");
 
 q_6 = Belt_MutableQueue.fromArray({
       1,
@@ -1217,12 +1217,13 @@ Mt.from_pair_suites("Bs_queue_test", suites.contents);
 
 Q = --[[ alias ]]0;
 
-exports = {}
+exports = {};
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
 exports.b = b;
 exports.Q = Q;
 exports.does_raise = does_raise;
-exports.$plus$plus = $plus$plus;
+exports._plus_plus = _plus_plus;
+return exports;
 --[[ q Not a pure module ]]

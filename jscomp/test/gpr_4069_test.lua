@@ -1,6 +1,6 @@
-console = {log = print};
+__console = {log = print};
 
-Curry = require "../../lib/js/curry";
+Curry = require "......lib.js.curry";
 
 function f(value) do
   if (value == nil) then do
@@ -41,9 +41,10 @@ function fxxx3(v) do
   end end 
 end end
 
-exports = {}
+exports = {};
 exports.f = f;
 exports.fxx = fxx;
 exports.fxxx2 = fxxx2;
 exports.fxxx3 = fxxx3;
+return exports;
 --[[ No side effect ]]

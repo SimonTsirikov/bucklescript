@@ -1,10 +1,10 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Block = require "../../lib/js/block";
-Curry = require "../../lib/js/curry";
-Caml_oo_curry = require "../../lib/js/caml_oo_curry";
-CamlinternalOO = require "../../lib/js/camlinternalOO";
+Mt = require "..mt";
+Block = require "......lib.js.block";
+Curry = require "......lib.js.curry";
+Caml_oo_curry = require "......lib.js.caml_oo_curry";
+CamlinternalOO = require "......lib.js.camlinternalOO";
 
 function f(u) do
   return Caml_oo_curry.js2(5740587, 1, u, 32);
@@ -23,11 +23,11 @@ class_tables = --[[ Cons ]]{
 suites_000 = --[[ tuple ]]{
   "caml_obj",
   (function(param) do
-      if (not class_tables[0]) then do
+      if (not class_tables[1]) then do
         __class = CamlinternalOO.create_table({"say"});
         env = CamlinternalOO.new_variable(__class, "");
         say = CamlinternalOO.get_method_label(__class, "say");
-        CamlinternalOO.set_method(__class, say, (function(self$1, x) do
+        CamlinternalOO.set_method(__class, say, (function(self_1, x) do
                 return 1 + x | 0;
               end end));
         env_init = function(env_1) do
@@ -41,7 +41,7 @@ suites_000 = --[[ tuple ]]{
        end 
       return --[[ Eq ]]Block.__(0, {
                 33,
-                f(Curry._1(class_tables[0], 0))
+                f(Curry._1(class_tables[1], 0))
               });
     end end)
 };
@@ -80,7 +80,7 @@ suites_001 = --[[ :: ]]{
         (function(param) do
             return --[[ Eq ]]Block.__(0, {
                       0,
-                      #Object.keys({ })
+                      #__Object.keys({ })
                     });
           end end)
       },
@@ -92,7 +92,7 @@ suites_001 = --[[ :: ]]{
                         {
                           a = 1
                         },
-                        Object.assign({ }, {
+                        __Object.assign({ }, {
                               a = 1
                             })
                       });
@@ -111,8 +111,9 @@ suites = --[[ :: ]]{
 
 Mt.from_pair_suites("Js_obj_test", suites);
 
-exports = {}
+exports = {};
 exports.f = f;
 exports.f_js = f_js;
 exports.suites = suites;
+return exports;
 --[[  Not a pure module ]]

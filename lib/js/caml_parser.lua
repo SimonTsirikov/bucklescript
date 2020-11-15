@@ -1,4 +1,4 @@
-console = {log = print};
+__console = {log = print};
 
 
 /***********************************************************************/
@@ -296,7 +296,8 @@ caml_set_parser_trace = (function (v) {
     return old;
 });
 
-exports = {}
+exports = {};
 exports.caml_parse_engine = caml_parse_engine;
 exports.caml_set_parser_trace = caml_set_parser_trace;
+return exports;
 --[[  Not a pure module ]]

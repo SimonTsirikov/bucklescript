@@ -1,7 +1,7 @@
-console = {log = print};
+__console = {log = print};
 
-Curry = require "../../lib/js/curry";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
+Curry = require "......lib.js.curry";
+Caml_builtin_exceptions = require "......lib.js.caml_builtin_exceptions";
 
 function f(g, x) do
   xpcall(function() do
@@ -15,6 +15,7 @@ function f(g, x) do
   end end)
 end end
 
-exports = {}
+exports = {};
 exports.f = f;
+return exports;
 --[[ No side effect ]]

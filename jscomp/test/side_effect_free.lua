@@ -1,8 +1,9 @@
-console = {log = print};
+__console = {log = print};
 
 
 a = 3;
 
-exports = {}
+exports = {};
 exports.a = a;
+return exports;
 --[[ No side effect ]]

@@ -1,4 +1,4 @@
-console = {log = print};
+__console = {log = print};
 
 
 ____dirname = 1;
@@ -29,7 +29,7 @@ __setInterval = 13;
 
 __setTimeout = 14;
 
-exports = {}
+exports = {};
 exports.____dirname = ____dirname;
 exports.____filename = ____filename;
 exports.__clearImmediate = __clearImmediate;
@@ -44,4 +44,5 @@ exports.__require = __require;
 exports.__setImmediate = __setImmediate;
 exports.__setInterval = __setInterval;
 exports.__setTimeout = __setTimeout;
+return exports;
 --[[ No side effect ]]

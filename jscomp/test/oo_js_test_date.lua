@@ -1,16 +1,16 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Block = require "../../lib/js/block";
+Mt = require "..mt";
+Block = require "......lib.js.block";
 
-d = new Date(2016, 2);
+d = new __Date(2016, 2);
 
 function d2(param) do
   return (function(param_1, param_2) do
       prim = param;
       prim_1 = 2;
       prim_2 = param_1;
-      return new Date(prim, prim_1, prim_2);
+      return new __Date(prim, prim_1, prim_2);
     end end);
 end end
 
@@ -54,9 +54,10 @@ suites = --[[ :: ]]{
 
 Mt.from_pair_suites("Oo_js_test_date", suites);
 
-exports = {}
+exports = {};
 exports.d = d;
 exports.d2 = d2;
 exports.d3 = d3;
 exports.suites = suites;
+return exports;
 --[[ d Not a pure module ]]

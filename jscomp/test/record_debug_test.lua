@@ -1,7 +1,7 @@
-console = {log = print};
+__console = {log = print};
 
-Format = require "../../lib/js/format";
-Caml_exceptions = require "../../lib/js/caml_exceptions";
+Format = require "......lib.js.format";
+Caml_exceptions = require "......lib.js.caml_exceptions";
 
 v = {
   a = 3,
@@ -53,7 +53,7 @@ N0 = {
   f = N0_f
 };
 
-console.log(" hei " .. (String(v) .. " "));
+__console.log(" hei " .. (__String(v) .. " "));
 
 a = --[[ tuple ]]{
   1,
@@ -71,7 +71,7 @@ c = {
   5
 };
 
-console.log(" " .. (String(Format.std_formatter) .. (" " .. (String(a) .. (" " .. (String(c) .. " "))))));
+__console.log(" " .. (__String(Format.std_formatter) .. (" " .. (__String(a) .. (" " .. (__String(c) .. " "))))));
 
 h = --[[ :: ]]{
   1,
@@ -102,7 +102,7 @@ v3 = --[[ `C ]]{
 
 fmt = Format.std_formatter;
 
-exports = {}
+exports = {};
 exports.v = v;
 exports.u = u;
 exports.h = h;
@@ -117,4 +117,5 @@ exports.N0 = N0;
 exports.fmt = fmt;
 exports.a = a;
 exports.c = c;
+return exports;
 --[[  Not a pure module ]]

@@ -1,9 +1,9 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Block = require "../../lib/js/block";
-Caml_js_exceptions = require "../../lib/js/caml_js_exceptions";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
+Mt = require "..mt";
+Block = require "......lib.js.block";
+Caml_js_exceptions = require "......lib.js.caml_js_exceptions";
+Caml_builtin_exceptions = require "......lib.js.caml_builtin_exceptions";
 
 suites = {
   contents = --[[ [] ]]0
@@ -17,7 +17,7 @@ function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[[ :: ]]{
     --[[ tuple ]]{
-      loc .. (" id " .. String(test_id.contents)),
+      loc .. (" id " .. __String(test_id.contents)),
       (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     x,
@@ -39,8 +39,8 @@ xpcall(function() do
   })
 end end,function(raw_exn) do
   exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
-  if (exn[0] == Caml_builtin_exceptions.failure) then do
-    y = exn[1];
+  if (exn[1] == Caml_builtin_exceptions.failure) then do
+    y = exn[2];
   end else do
     error(exn)
   end end 
@@ -57,15 +57,15 @@ xpcall(function() do
   })
 end end,function(raw_exn_1) do
   exn_1 = Caml_js_exceptions.internalToOCamlException(raw_exn_1);
-  if (exn_1[0] == Caml_builtin_exceptions.failure) then do
-    x = exn_1[1];
+  if (exn_1[1] == Caml_builtin_exceptions.failure) then do
+    x = exn_1[2];
   end else do
     error(exn_1)
   end end 
 end end)
 
 if (exit == 1) then do
-  console.log("ok");
+  __console.log("ok");
   x = nil;
 end
  end 
@@ -76,10 +76,11 @@ eq("File \"gpr_2316_test.ml\", line 21, characters 5-12", x, "boo");
 
 Mt.from_pair_suites("Gpr_2316_test", suites.contents);
 
-exports = {}
+exports = {};
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
 exports.y = y;
 exports.x = x;
+return exports;
 --[[ y Not a pure module ]]

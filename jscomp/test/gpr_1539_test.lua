@@ -1,7 +1,7 @@
-console = {log = print};
+__console = {log = print};
 
-Block = require "../../lib/js/block";
-Caml_module = require "../../lib/js/caml_module";
+Block = require "......lib.js.block";
+Caml_module = require "......lib.js.caml_module";
 
 Point = Caml_module.init_mod(--[[ tuple ]]{
       "gpr_1539_test.ml",
@@ -25,8 +25,9 @@ CRS = --[[ () ]]0;
 
 Layer = --[[ () ]]0;
 
-exports = {}
+exports = {};
 exports.CRS = CRS;
 exports.Layer = Layer;
 exports.Point = Point;
+return exports;
 --[[ Point Not a pure module ]]

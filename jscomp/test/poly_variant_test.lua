@@ -1,8 +1,8 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Fs = require "";
-Block = require "../../lib/js/block";
+Mt = require "..mt";
+Fs = require "fs";
+Block = require "......lib.js.block";
 
 suites = {
   contents = --[[ [] ]]0
@@ -16,7 +16,7 @@ function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[[ :: ]]{
     --[[ tuple ]]{
-      loc .. (" id " .. String(test_id.contents)),
+      loc .. (" id " .. __String(test_id.contents)),
       (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     x,
@@ -87,11 +87,11 @@ hey_string("in");
 
 function register(readline) do
   readline.on("line", (function(s) do
-          console.log(s);
+          __console.log(s);
           return --[[ () ]]0;
         end end));
   readline.on("close", (function() do
-          console.log("finished");
+          __console.log("finished");
           return --[[ () ]]0;
         end end));
   return --[[ () ]]0;
@@ -107,7 +107,7 @@ end end
 
 function test(readline, x) do
   readline.on((function() do
-            local ___conditional___=(x[0]);
+            local ___conditional___=(x[1]);
             do
                if ___conditional___ == -944564236 then do
                   return "line"; end end 
@@ -115,12 +115,12 @@ function test(readline, x) do
                   return "close"; end end 
               
             end
-          end end)(), x[1]);
+          end end)(), x[2]);
   return --[[ () ]]0;
 end end
 
 function p_is_int_test(x) do
-  if (typeof x == "number") then do
+  if (type(x) == "number") then do
     return 2;
   end else do
     return 3;
@@ -138,7 +138,7 @@ Mt.from_pair_suites("Poly_variant_test", suites.contents);
 
 function on2(prim, prim_1) do
   prim.on2((function() do
-            local ___conditional___=(prim_1[0]);
+            local ___conditional___=(prim_1[1]);
             do
                if ___conditional___ == -944564236 then do
                   return "line"; end end 
@@ -146,13 +146,13 @@ function on2(prim, prim_1) do
                   return "close"; end end 
               
             end
-          end end)(), prim_1[1]);
+          end end)(), prim_1[2]);
   return --[[ () ]]0;
 end end
 
 readN = read_1;
 
-exports = {}
+exports = {};
 exports.uu = uu;
 exports.vv = vv;
 exports.register = register;
@@ -161,4 +161,5 @@ exports.on2 = on2;
 exports.read = read;
 exports.readN = readN;
 exports.p_is_int_test = p_is_int_test;
+return exports;
 --[[  Not a pure module ]]

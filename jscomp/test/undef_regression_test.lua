@@ -1,13 +1,13 @@
-console = {log = print};
+__console = {log = print};
 
 
 function f(obj) do
-  if (typeof obj == "function") then do
+  if (type(obj) == "function") then do
     return --[[ () ]]0;
   end else do
     size = obj.length;
     if (size ~= nil) then do
-      console.log(size);
+      __console.log(size);
       return --[[ () ]]0;
     end else do
       return --[[ () ]]0;
@@ -15,6 +15,7 @@ function f(obj) do
   end end 
 end end
 
-exports = {}
+exports = {};
 exports.f = f;
+return exports;
 --[[ No side effect ]]

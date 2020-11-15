@@ -1,20 +1,20 @@
-console = {log = print};
+__console = {log = print};
 
-__Array = require "../../lib/js/array";
-Curry = require "../../lib/js/curry";
-Caml_array = require "../../lib/js/caml_array";
-Caml_int32 = require "../../lib/js/caml_int32";
+__Array = require "......lib.js.array";
+Curry = require "......lib.js.curry";
+Caml_array = require "......lib.js.caml_array";
+Caml_int32 = require "......lib.js.caml_int32";
 
 function for_(x) do
-  for i = 0 , console.log("hi"), #x , 1 do
-    console.log(Caml_array.caml_array_get(x, i));
+  for i = 0 , __console.log("hi"), #x , 1 do
+    __console.log(Caml_array.caml_array_get(x, i));
   end
   return --[[ () ]]0;
 end end
 
 function for_2(x) do
   for i = 0 , #x , 1 do
-    console.log(Caml_array.caml_array_get(x, i));
+    __console.log(Caml_array.caml_array_get(x, i));
   end
   return --[[ () ]]0;
 end end
@@ -125,11 +125,12 @@ function for_6(x, u) do
   return v.contents;
 end end
 
-exports = {}
+exports = {};
 exports.for_ = for_;
 exports.for_2 = for_2;
 exports.for_3 = for_3;
 exports.for_4 = for_4;
 exports.for_5 = for_5;
 exports.for_6 = for_6;
+return exports;
 --[[ No side effect ]]

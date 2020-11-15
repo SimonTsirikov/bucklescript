@@ -1,8 +1,8 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Block = require "../../lib/js/block";
-Complex = require "../../lib/js/complex";
+Mt = require "..mt";
+Block = require "......lib.js.block";
+Complex = require "......lib.js.complex";
 
 suites_000 = --[[ tuple ]]{
   "basic_add",
@@ -24,6 +24,7 @@ suites = --[[ :: ]]{
 
 Mt.from_pair_suites("Complex_test", suites);
 
-exports = {}
+exports = {};
 exports.suites = suites;
+return exports;
 --[[  Not a pure module ]]

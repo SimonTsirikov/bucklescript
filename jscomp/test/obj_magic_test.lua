@@ -1,13 +1,13 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Obj = require "../../lib/js/obj";
-Block = require "../../lib/js/block";
+Mt = require "..mt";
+Obj = require "......lib.js.obj";
+Block = require "......lib.js.block";
 
 empty_backtrace = --[[ obj_block ]]Block.__(Obj.abstract_tag, {});
 
 function is_block(x) do
-  return typeof x ~= "number";
+  return type(x) ~= "number";
 end end
 
 suites_000 = --[[ tuple ]]{
@@ -26,10 +26,10 @@ suites_001 = --[[ :: ]]{
     (function(param) do
         return --[[ Eq ]]Block.__(0, {
                   true,
-                  typeof --[[ :: ]]{
+                  type(--[[ :: ]]{
                     3,
                     --[[ [] ]]0
-                  } ~= "number"
+                  }) ~= "number"
                 });
       end end)
   },
@@ -65,8 +65,9 @@ suites = --[[ :: ]]{
 
 Mt.from_pair_suites("Obj_magic_test", suites);
 
-exports = {}
+exports = {};
 exports.empty_backtrace = empty_backtrace;
 exports.is_block = is_block;
 exports.suites = suites;
+return exports;
 --[[  Not a pure module ]]

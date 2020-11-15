@@ -1,10 +1,11 @@
-console = {log = print};
+__console = {log = print};
 
 
 function x(prim, prim_1) do
   return prim % prim_1;
 end end
 
-exports = {}
+exports = {};
 exports.x = x;
+return exports;
 --[[ No side effect ]]

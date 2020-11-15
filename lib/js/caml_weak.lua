@@ -1,11 +1,11 @@
-console = {log = print};
+__console = {log = print};
 
-Caml_obj = require "./caml_obj";
-Caml_array = require "./caml_array";
-Caml_option = require "./caml_option";
+Caml_obj = require "..caml_obj";
+Caml_array = require "..caml_array";
+Caml_option = require "..caml_option";
 
 function caml_weak_create(n) do
-  return new Array(n);
+  return new __Array(n);
 end end
 
 function caml_weak_set(xs, i, v) do
@@ -35,11 +35,12 @@ end end
 
 caml_weak_blit = Caml_array.caml_array_blit;
 
-exports = {}
+exports = {};
 exports.caml_weak_create = caml_weak_create;
 exports.caml_weak_set = caml_weak_set;
 exports.caml_weak_get = caml_weak_get;
 exports.caml_weak_get_copy = caml_weak_get_copy;
 exports.caml_weak_check = caml_weak_check;
 exports.caml_weak_blit = caml_weak_blit;
+return exports;
 --[[ No side effect ]]

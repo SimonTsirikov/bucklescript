@@ -1,8 +1,8 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Block = require "../../lib/js/block";
-Pervasives = require "../../lib/js/pervasives";
+Mt = require "..mt";
+Block = require "......lib.js.block";
+Pervasives = require "......lib.js.pervasives";
 
 suites_000 = --[[ tuple ]]{
   "string_of_float_1",
@@ -20,7 +20,7 @@ suites_001 = --[[ :: ]]{
     (function(param) do
         return --[[ Eq ]]Block.__(0, {
                   "10",
-                  String(10)
+                  __String(10)
                 });
       end end)
   },
@@ -45,6 +45,7 @@ suites = --[[ :: ]]{
 
 Mt.from_pair_suites("Of_string_test", suites);
 
-exports = {}
+exports = {};
 exports.suites = suites;
+return exports;
 --[[  Not a pure module ]]

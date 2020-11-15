@@ -1,22 +1,22 @@
 
 
-import * as Sys from "./sys.lua";
-import * as Block from "./block.lua";
-import * as Bytes from "./bytes.lua";
-import * as Curry from "./curry.lua";
-import * as __Buffer from "./buffer.lua";
-import * as Printf from "./printf.lua";
-import * as Random from "./random.lua";
-import * as __String from "./string.lua";
-import * as Caml_obj from "./caml_obj.lua";
-import * as Caml_sys from "./caml_sys.lua";
-import * as Caml_bytes from "./caml_bytes.lua";
-import * as Pervasives from "./pervasives.lua";
-import * as Caml_string from "./caml_string.lua";
-import * as CamlinternalLazy from "./camlinternalLazy.lua";
-import * as Caml_js_exceptions from "./caml_js_exceptions.lua";
-import * as Caml_external_polyfill from "./caml_external_polyfill.lua";
-import * as Caml_builtin_exceptions from "./caml_builtin_exceptions.lua";
+local Sys = require "..sys.lua";
+local Block = require "..block.lua";
+local Bytes = require "..bytes.lua";
+local Curry = require "..curry.lua";
+local __Buffer = require "..buffer.lua";
+local Printf = require "..printf.lua";
+local Random = require "..random.lua";
+local __String = require "..string.lua";
+local Caml_obj = require "..caml_obj.lua";
+local Caml_sys = require "..caml_sys.lua";
+local Caml_bytes = require "..caml_bytes.lua";
+local Pervasives = require "..pervasives.lua";
+local Caml_string = require "..caml_string.lua";
+local CamlinternalLazy = require "..camlinternalLazy.lua";
+local Caml_js_exceptions = require "..caml_js_exceptions.lua";
+local Caml_external_polyfill = require "..caml_external_polyfill.lua";
+local Caml_builtin_exceptions = require "..caml_builtin_exceptions.lua";
 
 function generic_basename(is_dir_sep, current_dir_name, name) do
   if (name == "") then do
@@ -304,13 +304,13 @@ end end
 
 function dirname_1(s) do
   match = drive_and_path(s);
-  dir = generic_dirname(is_dir_sep_1, current_dir_name_1, match[1]);
-  return match[0] .. dir;
+  dir = generic_dirname(is_dir_sep_1, current_dir_name_1, match[2]);
+  return match[1] .. dir;
 end end
 
 function basename_1(s) do
   match = drive_and_path(s);
-  return generic_basename(is_dir_sep_1, current_dir_name_1, match[1]);
+  return generic_basename(is_dir_sep_1, current_dir_name_1, match[2]);
 end end
 
 current_dir_name_2 = ".";
@@ -372,11 +372,11 @@ do
     
 end
 
-temp_dir_name_2 = match[7];
+temp_dir_name_2 = match[8];
 
-is_dir_sep_2 = match[3];
+is_dir_sep_2 = match[4];
 
-dir_sep = match[2];
+dir_sep = match[3];
 
 function concat(dirname, filename) do
   l = #dirname;
@@ -515,7 +515,7 @@ function temp_file(temp_dirOpt, prefix, suffix) do
       return name;
     end end,function(raw_e) do
       e = Caml_js_exceptions.internalToOCamlException(raw_e);
-      if (e[0] == Caml_builtin_exceptions.sys_error) then do
+      if (e[1] == Caml_builtin_exceptions.sys_error) then do
         if (counter >= 1000) then do
           error(e)
         end
@@ -556,7 +556,7 @@ function open_temp_file(modeOpt, permsOpt, temp_dirOpt, prefix, suffix) do
             };
     end end,function(raw_e) do
       e = Caml_js_exceptions.internalToOCamlException(raw_e);
-      if (e[0] == Caml_builtin_exceptions.sys_error) then do
+      if (e[1] == Caml_builtin_exceptions.sys_error) then do
         if (counter >= 1000) then do
           error(e)
         end
@@ -570,21 +570,21 @@ function open_temp_file(modeOpt, permsOpt, temp_dirOpt, prefix, suffix) do
   end;
 end end
 
-current_dir_name_3 = match[0];
+current_dir_name_3 = match[1];
 
-parent_dir_name = match[1];
+parent_dir_name = match[2];
 
-is_relative_2 = match[4];
+is_relative_2 = match[5];
 
-is_implicit_2 = match[5];
+is_implicit_2 = match[6];
 
-check_suffix_2 = match[6];
+check_suffix_2 = match[7];
 
-basename_3 = match[9];
+basename_3 = match[10];
 
-dirname_3 = match[10];
+dirname_3 = match[11];
 
-quote_2 = match[8];
+quote_2 = match[9];
 
 export do
   current_dir_name_3 as current_dir_name,

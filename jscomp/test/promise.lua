@@ -1,16 +1,16 @@
-console = {log = print};
+__console = {log = print};
 
 SysBluebird = require "sys-blue";
 
 function f(p) do
-  return p.catch(3);
+  return p.__catch(3);
 end end
 
-p = new SysBluebird.Promise();
+p = new SysBluebird.__Promise();
 
-p.then((function(x) do
+p.__then((function(x) do
           return x + 3 | 0;
-        end end)).catch((function(reason) do
+        end end)).__catch((function(reason) do
         return reason;
       end end));
 
@@ -25,9 +25,10 @@ uu = {
 
 hh = uu["'x"];
 
-exports = {}
+exports = {};
 exports.f = f;
 exports.u = u;
 exports.uu = uu;
 exports.hh = hh;
+return exports;
 --[[ p Not a pure module ]]

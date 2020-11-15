@@ -1,9 +1,9 @@
-console = {log = print};
+__console = {log = print};
 
-__Array = require "../../lib/js/array";
-Curry = require "../../lib/js/curry";
-__String = require "../../lib/js/string";
-MoreLabels = require "../../lib/js/moreLabels";
+__Array = require "......lib.js.array";
+Curry = require "......lib.js.curry";
+__String = require "......lib.js.string";
+MoreLabels = require "......lib.js.moreLabels";
 
 function f(x) do
   return x;
@@ -47,9 +47,10 @@ ghh = Curry._2(MoreLabels.Hashtbl.create, nil, 30);
 
 hh = 1;
 
-exports = {}
+exports = {};
 exports.XX = XX;
 exports.u = u;
 exports.hh = hh;
 exports.ghh = ghh;
+return exports;
 --[[ ghh Not a pure module ]]

@@ -1,7 +1,7 @@
-console = {log = print};
+__console = {log = print};
 
-Block = require "../../lib/js/block";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
+Block = require "......lib.js.block";
+Caml_builtin_exceptions = require "......lib.js.caml_builtin_exceptions";
 
 function is_number(_expr) do
   while(true) do
@@ -9,13 +9,13 @@ function is_number(_expr) do
     local ___conditional___=(expr.tag | 0);
     do
        if ___conditional___ == 0--[[ Val ]] then do
-          if (expr[0].tag) then do
+          if (expr[1].tag) then do
             return false;
           end else do
             return true;
           end end  end end 
        if ___conditional___ == 1--[[ Neg ]] then do
-          _expr = expr[0];
+          _expr = expr[1];
           ::continue:: ; end end 
        if ___conditional___ == 2--[[ Sum ]]
        or ___conditional___ == 3--[[ Pow ]]
@@ -66,7 +66,7 @@ function compare(context, state, _a, _b) do
             
           end end else 
        if ___conditional___ == 1--[[ Neg ]] then do
-          _a = a[0];
+          _a = a[1];
           ::continue:: ; end end end end 
        if ___conditional___ == 2--[[ Sum ]]
        or ___conditional___ == 3--[[ Pow ]] then do
@@ -88,10 +88,10 @@ function compare(context, state, _a, _b) do
              if ___conditional___ == 2--[[ Sum ]] then do
                 exit_2 = 4; end else 
              if ___conditional___ == 4--[[ Frac ]] then do
-                na = a[0];
-                da = a[1];
-                nb = b[0];
-                db = b[1];
+                na = a[1];
+                da = a[2];
+                nb = b[1];
+                db = b[2];
                 exit = 2; end else 
              if ___conditional___ == 3--[[ Pow ]]
              or ___conditional___ == 5--[[ Gcd ]] then do
@@ -107,10 +107,10 @@ function compare(context, state, _a, _b) do
              if ___conditional___ == 2--[[ Sum ]] then do
                 exit_2 = 4; end else 
              if ___conditional___ == 5--[[ Gcd ]] then do
-                na = a[0];
-                da = a[1];
-                nb = b[0];
-                db = b[1];
+                na = a[1];
+                da = a[2];
+                nb = b[1];
+                db = b[2];
                 exit = 2; end else 
              end end end end end end
             exit_1 = 3;
@@ -121,7 +121,7 @@ function compare(context, state, _a, _b) do
     end
     if (exit_3 == 5) then do
       if (b.tag == --[[ Neg ]]1) then do
-        _b = b[0];
+        _b = b[1];
         ::continue:: ;
       end else if (a.tag == --[[ Sum ]]2 and is_number(b)) then do
         return 1;
@@ -189,9 +189,10 @@ a = --[[ Sum ]]Block.__(2, {--[[ :: ]]{
 
 b = --[[ Val ]]Block.__(0, {--[[ Symbol ]]Block.__(1, {"x"})});
 
-console.log(compare(--[[ InSum ]]0, {
+__console.log(compare(--[[ InSum ]]0, {
           complex = true
         }, a, b));
 
-exports = {}
+exports = {};
+return exports;
 --[[  Not a pure module ]]

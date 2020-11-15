@@ -1,12 +1,12 @@
-console = {log = print};
+__console = {log = print};
 
-Belt_MapInt = require "../../lib/js/belt_MapInt";
+Belt_MapInt = require "......lib.js.belt_MapInt";
 
 function should(b) do
   if (b) then do
     return 0;
   end else do
-    error(new Error("IMPOSSIBLE"))
+    error(new __Error("IMPOSSIBLE"))
   end end 
 end end
 
@@ -28,8 +28,9 @@ test(--[[ () ]]0);
 
 M = --[[ alias ]]0;
 
-exports = {}
+exports = {};
 exports.should = should;
 exports.M = M;
 exports.test = test;
+return exports;
 --[[  Not a pure module ]]

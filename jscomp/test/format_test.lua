@@ -1,14 +1,14 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-List = require "../../lib/js/list";
-Block = require "../../lib/js/block";
-Curry = require "../../lib/js/curry";
-Scanf = require "../../lib/js/scanf";
-Format = require "../../lib/js/format";
-Printf = require "../../lib/js/printf";
-Pervasives = require "../../lib/js/pervasives";
-Caml_format = require "../../lib/js/caml_format";
+Mt = require "..mt";
+List = require "......lib.js.list";
+Block = require "......lib.js.block";
+Curry = require "......lib.js.curry";
+Scanf = require "......lib.js.scanf";
+Format = require "......lib.js.format";
+Printf = require "......lib.js.printf";
+Pervasives = require "......lib.js.pervasives";
+Caml_format = require "......lib.js.caml_format";
 
 suites = {
   contents = --[[ [] ]]0
@@ -22,7 +22,7 @@ function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[[ :: ]]{
     --[[ tuple ]]{
-      loc .. (" id " .. String(test_id.contents)),
+      loc .. (" id " .. __String(test_id.contents)),
       (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     x,
@@ -42,7 +42,7 @@ function eq3(loc, a, b, c) do
 end end
 
 function u(param) do
-  return Pervasives.$caret$caret(--[[ Format ]]{
+  return Pervasives._caret_caret(--[[ Format ]]{
               --[[ String_literal ]]Block.__(11, {
                   "xx ",
                   --[[ String ]]Block.__(2, {
@@ -68,11 +68,11 @@ eq("File \"format_test.ml\", line 31, characters 5-12", 7.875, 7.875);
 
 eq("File \"format_test.ml\", line 34, characters 5-12", -7.875, -7.875);
 
-eq3("File \"format_test.ml\", line 38, characters 6-13", Infinity, Number.POSITIVE_INFINITY, Pervasives.infinity);
+eq3("File \"format_test.ml\", line 38, characters 6-13", Infinity, __Number.POSITIVE_INFINITY, Pervasives.infinity);
 
-eq3("File \"format_test.ml\", line 39, characters 6-13", -Infinity, Number.NEGATIVE_INFINITY, Pervasives.neg_infinity);
+eq3("File \"format_test.ml\", line 39, characters 6-13", -Infinity, __Number.NEGATIVE_INFINITY, Pervasives.neg_infinity);
 
-eq3("File \"format_test.ml\", line 40, characters 6-13", Pervasives.max_float, 1.79769313486231571e+308, Number.MAX_VALUE);
+eq3("File \"format_test.ml\", line 40, characters 6-13", Pervasives.max_float, 1.79769313486231571e+308, __Number.MAX_VALUE);
 
 eq("File \"format_test.ml\", line 41, characters 5-12", Pervasives.classify_float(Infinity), --[[ FP_infinite ]]3);
 
@@ -102,7 +102,7 @@ eq("File \"format_test.ml\", line 65, characters 5-12", (1 + 65535 / 65536) * 8,
 
 function f(loc, ls) do
   return List.iter((function(param) do
-                return eq(loc, Caml_format.caml_float_of_string(param[0]), param[1]);
+                return eq(loc, Caml_format.caml_float_of_string(param[1]), param[2]);
               end end), ls);
 end end
 
@@ -140,7 +140,7 @@ end end
 
 function aux_list(loc, ls) do
   return List.iter((function(param) do
-                return eq(loc, sl(param[0]), param[1]);
+                return eq(loc, sl(param[1]), param[2]);
               end end), ls);
 end end
 
@@ -235,12 +235,12 @@ scan_float("File \"format_test.ml\", line 118, characters 13-20", "0x3f.p1", 126
 scan_float("File \"format_test.ml\", line 119, characters 13-20", "0x1.3333333333333p-2", 0.3);
 
 List.iter((function(param) do
-        return scan_float("File \"format_test.ml\", line 121, characters 13-20", param[1], param[0]);
+        return scan_float("File \"format_test.ml\", line 121, characters 13-20", param[2], param[1]);
       end end), literals);
 
 Mt.from_pair_suites("Format_test", suites.contents);
 
-exports = {}
+exports = {};
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
@@ -252,4 +252,5 @@ exports.sl = sl;
 exports.aux_list = aux_list;
 exports.literals = literals;
 exports.scan_float = scan_float;
+return exports;
 --[[  Not a pure module ]]

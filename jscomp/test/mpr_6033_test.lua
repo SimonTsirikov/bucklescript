@@ -1,8 +1,8 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Block = require "../../lib/js/block";
-CamlinternalLazy = require "../../lib/js/camlinternalLazy";
+Mt = require "..mt";
+Block = require "......lib.js.block";
+CamlinternalLazy = require "......lib.js.camlinternalLazy";
 
 suites = {
   contents = --[[ [] ]]0
@@ -16,7 +16,7 @@ function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[[ :: ]]{
     --[[ tuple ]]{
-      loc .. (" id " .. String(test_id.contents)),
+      loc .. (" id " .. __String(test_id.contents)),
       (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     x,
@@ -44,10 +44,11 @@ eq("File \"mpr_6033_test.ml\", line 20, characters 6-13", u, "defabc");
 
 Mt.from_pair_suites("Mpr_6033_test", suites.contents);
 
-exports = {}
+exports = {};
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
 exports.f = f;
 exports.u = u;
+return exports;
 --[[  Not a pure module ]]

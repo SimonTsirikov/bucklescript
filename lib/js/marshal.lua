@@ -1,8 +1,8 @@
-console = {log = print};
+__console = {log = print};
 
-Caml_bytes = require "./caml_bytes";
-Caml_external_polyfill = require "./caml_external_polyfill";
-Caml_builtin_exceptions = require "./caml_builtin_exceptions";
+Caml_bytes = require "..caml_bytes";
+Caml_external_polyfill = require "..caml_external_polyfill";
+Caml_builtin_exceptions = require "..caml_builtin_exceptions";
 
 function to_buffer(buff, ofs, len, v, flags) do
   if (ofs < 0 or len < 0 or ofs > (#buff - len | 0)) then do
@@ -63,7 +63,7 @@ end end
 
 header_size = 20;
 
-exports = {}
+exports = {};
 exports.to_channel = to_channel;
 exports.to_buffer = to_buffer;
 exports.from_channel = from_channel;
@@ -72,4 +72,5 @@ exports.from_string = from_string;
 exports.header_size = header_size;
 exports.data_size = data_size;
 exports.total_size = total_size;
+return exports;
 --[[ No side effect ]]

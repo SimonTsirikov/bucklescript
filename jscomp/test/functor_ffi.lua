@@ -1,6 +1,6 @@
-console = {log = print};
+__console = {log = print};
 
-Caml_option = require "../../lib/js/caml_option";
+Caml_option = require "......lib.js.caml_option";
 
 function Make(S) do
   opt_get = function(f, i) do
@@ -26,8 +26,9 @@ function f(v) do
         };
 end end
 
-exports = {}
+exports = {};
 exports.Make = Make;
 exports.Int_arr = Int_arr;
 exports.f = f;
+return exports;
 --[[ No side effect ]]

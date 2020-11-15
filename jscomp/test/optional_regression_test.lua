@@ -1,7 +1,7 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Caml_option = require "../../lib/js/caml_option";
+Mt = require "..mt";
+Caml_option = require "......lib.js.caml_option";
 
 suites = {
   contents = --[[ [] ]]0
@@ -46,14 +46,15 @@ eq("File \"optional_regression_test.ml\", line 22, characters 6-13", Caml_option
 
 eq("File \"optional_regression_test.ml\", line 23, characters 6-13", Caml_option.undefined_to_opt(hh.i), 0);
 
-console.log(hh);
+__console.log(hh);
 
 Mt.from_pair_suites("Optional_regression_test", suites.contents);
 
-exports = {}
+exports = {};
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
 exports.make = make;
 exports.hh = hh;
+return exports;
 --[[  Not a pure module ]]

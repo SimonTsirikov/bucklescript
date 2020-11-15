@@ -1,7 +1,7 @@
 
 
-import * as Curry from "./curry.lua";
-import * as Caml_exceptions from "./caml_exceptions.lua";
+local Curry = require "..curry.lua";
+local Caml_exceptions = require "..caml_exceptions.lua";
 
 Empty = Caml_exceptions.create("Queue.Empty");
 
@@ -42,7 +42,7 @@ end end
 function peek(q) do
   match = q.first;
   if (match) then do
-    return match[--[[ content ]]0];
+    return match[--[[ content ]]1];
   end else do
     error(Empty)
   end end 
@@ -51,8 +51,8 @@ end end
 function take(q) do
   match = q.first;
   if (match) then do
-    content = match[--[[ content ]]0];
-    next = match[--[[ next ]]1];
+    content = match[--[[ content ]]1];
+    next = match[--[[ next ]]2];
     if (next) then do
       q.length = q.length - 1 | 0;
       q.first = next;
@@ -78,9 +78,9 @@ function copy(q) do
     cell = _cell;
     prev = _prev;
     if (cell) then do
-      next = cell[--[[ next ]]1];
+      next = cell[--[[ next ]]2];
       res = --[[ Cons ]]{
-        --[[ content ]]cell[--[[ content ]]0],
+        --[[ content ]]cell[--[[ content ]]1],
         --[[ next : Nil ]]0
       };
       if (prev) then do
@@ -112,8 +112,8 @@ function iter(f, q) do
   while(true) do
     cell = _cell;
     if (cell) then do
-      next = cell[--[[ next ]]1];
-      Curry._1(f_1, cell[--[[ content ]]0]);
+      next = cell[--[[ next ]]2];
+      Curry._1(f_1, cell[--[[ content ]]1]);
       _cell = next;
       ::continue:: ;
     end else do
@@ -130,8 +130,8 @@ function fold(f, accu, q) do
     cell = _cell;
     accu_1 = _accu;
     if (cell) then do
-      next = cell[--[[ next ]]1];
-      accu_2 = Curry._2(f_1, accu_1, cell[--[[ content ]]0]);
+      next = cell[--[[ next ]]2];
+      accu_2 = Curry._2(f_1, accu_1, cell[--[[ content ]]1]);
       _cell = next;
       _accu = accu_2;
       ::continue:: ;

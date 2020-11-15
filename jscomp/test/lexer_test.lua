@@ -1,15 +1,15 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-List = require "../../lib/js/list";
-Block = require "../../lib/js/block";
-Curry = require "../../lib/js/curry";
-Lexing = require "../../lib/js/lexing";
-Arith_lexer = require "./arith_lexer";
-Arith_parser = require "./arith_parser";
-Arith_syntax = require "./arith_syntax";
-Number_lexer = require "./number_lexer";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
+Mt = require "..mt";
+List = require "......lib.js.list";
+Block = require "......lib.js.block";
+Curry = require "......lib.js.curry";
+Lexing = require "......lib.js.lexing";
+Arith_lexer = require "..arith_lexer";
+Arith_parser = require "..arith_parser";
+Arith_syntax = require "..arith_syntax";
+Number_lexer = require "..number_lexer";
+Caml_builtin_exceptions = require "......lib.js.caml_builtin_exceptions";
 
 function get_tokens(lex, str) do
   buf = Lexing.from_string(str);
@@ -40,8 +40,8 @@ function from_tokens(lst) do
   return (function(param) do
       match = l.contents;
       if (match) then do
-        l.contents = match[1];
-        return match[0];
+        l.contents = match[2];
+        return match[1];
       end else do
         error(Caml_builtin_exceptions.end_of_file)
       end end 
@@ -194,9 +194,10 @@ lexer_suites = --[[ :: ]]{
 
 Mt.from_pair_suites("Lexer_test", lexer_suites);
 
-exports = {}
+exports = {};
 exports.get_tokens = get_tokens;
 exports.f = f;
 exports.from_tokens = from_tokens;
 exports.lexer_suites = lexer_suites;
+return exports;
 --[[  Not a pure module ]]

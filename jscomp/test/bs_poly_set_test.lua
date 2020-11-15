@@ -1,15 +1,15 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Belt_Id = require "../../lib/js/belt_Id";
-Belt_Set = require "../../lib/js/belt_Set";
-Caml_obj = require "../../lib/js/caml_obj";
-Belt_List = require "../../lib/js/belt_List";
-Belt_Array = require "../../lib/js/belt_Array";
-Belt_SetDict = require "../../lib/js/belt_SetDict";
-Belt_SortArray = require "../../lib/js/belt_SortArray";
-Caml_primitive = require "../../lib/js/caml_primitive";
-Array_data_util = require "./array_data_util";
+Mt = require "..mt";
+Belt_Id = require "......lib.js.belt_Id";
+Belt_Set = require "......lib.js.belt_Set";
+Caml_obj = require "......lib.js.caml_obj";
+Belt_List = require "......lib.js.belt_List";
+Belt_Array = require "......lib.js.belt_Array";
+Belt_SetDict = require "......lib.js.belt_SetDict";
+Belt_SortArray = require "......lib.js.belt_SortArray";
+Caml_primitive = require "......lib.js.caml_primitive";
+Array_data_util = require "..array_data_util";
 
 suites = {
   contents = --[[ [] ]]0
@@ -310,9 +310,9 @@ match = Belt_Set.partition(a0, (function(x) do
         return x % 2 == 0;
       end end));
 
-a4 = match[1];
+a4 = match[2];
 
-a3 = match[0];
+a3 = match[1];
 
 b("File \"bs_poly_set_test.ml\", line 129, characters 4-11", Belt_Set.eq(a1, a3));
 
@@ -338,15 +338,15 @@ b("File \"bs_poly_set_test.ml\", line 136, characters 4-11", not Belt_SetDict.is
 
 match_1 = Belt_Set.split(a0, 200);
 
-match_2 = match_1[0];
+match_2 = match_1[1];
 
-b("File \"bs_poly_set_test.ml\", line 138, characters 4-11", match_1[1]);
+b("File \"bs_poly_set_test.ml\", line 138, characters 4-11", match_1[2]);
 
-eq("File \"bs_poly_set_test.ml\", line 139, characters 5-12", Belt_SetDict.toArray(match_2[0].data), Belt_Array.makeBy(200, (function(i) do
+eq("File \"bs_poly_set_test.ml\", line 139, characters 5-12", Belt_SetDict.toArray(match_2[1].data), Belt_Array.makeBy(200, (function(i) do
             return i;
           end end)));
 
-eq("File \"bs_poly_set_test.ml\", line 140, characters 5-12", Belt_SetDict.toList(match_2[1].data), Belt_List.makeBy(800, (function(i) do
+eq("File \"bs_poly_set_test.ml\", line 140, characters 5-12", Belt_SetDict.toList(match_2[2].data), Belt_List.makeBy(800, (function(i) do
             return i + 201 | 0;
           end end)));
 
@@ -354,13 +354,13 @@ a7 = Belt_Set.remove(a0, 200);
 
 match_3 = Belt_Set.split(a7, 200);
 
-match_4 = match_3[0];
+match_4 = match_3[1];
 
-a9 = match_4[1];
+a9 = match_4[2];
 
-a8 = match_4[0];
+a8 = match_4[1];
 
-b("File \"bs_poly_set_test.ml\", line 143, characters 4-11", not match_3[1]);
+b("File \"bs_poly_set_test.ml\", line 143, characters 4-11", not match_3[2]);
 
 eq("File \"bs_poly_set_test.ml\", line 144, characters 5-12", Belt_SetDict.toArray(a8.data), Belt_Array.makeBy(200, (function(i) do
             return i;
@@ -406,13 +406,13 @@ match_5 = Belt_Set.split({
       data = Belt_SetDict.empty
     }, 0);
 
-match_6 = match_5[0];
+match_6 = match_5[1];
 
-b("File \"bs_poly_set_test.ml\", line 157, characters 4-11", Belt_SetDict.isEmpty(match_6[0].data));
+b("File \"bs_poly_set_test.ml\", line 157, characters 4-11", Belt_SetDict.isEmpty(match_6[1].data));
 
-b("File \"bs_poly_set_test.ml\", line 158, characters 4-11", Belt_SetDict.isEmpty(match_6[1].data));
+b("File \"bs_poly_set_test.ml\", line 158, characters 4-11", Belt_SetDict.isEmpty(match_6[2].data));
 
-b("File \"bs_poly_set_test.ml\", line 159, characters 4-11", not match_5[1]);
+b("File \"bs_poly_set_test.ml\", line 159, characters 4-11", not match_5[2]);
 
 Mt.from_pair_suites("Bs_poly_set_test", suites.contents);
 
@@ -428,7 +428,7 @@ S = --[[ alias ]]0;
 
 L = --[[ alias ]]0;
 
-exports = {}
+exports = {};
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
@@ -443,4 +443,5 @@ exports.IntCmp = IntCmp;
 exports.L = L;
 exports.testIterToList = testIterToList;
 exports.testIterToList2 = testIterToList2;
+return exports;
 --[[ IntCmp Not a pure module ]]

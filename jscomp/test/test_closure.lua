@@ -1,9 +1,9 @@
-console = {log = print};
+__console = {log = print};
 
-__Array = require "../../lib/js/array";
-Curry = require "../../lib/js/curry";
-Caml_array = require "../../lib/js/caml_array";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
+__Array = require "......lib.js.array";
+Curry = require "......lib.js.curry";
+Caml_array = require "......lib.js.caml_array";
+Caml_builtin_exceptions = require "......lib.js.caml_builtin_exceptions";
 
 v = {
   contents = 0
@@ -42,7 +42,8 @@ if (v.contents ~= 45) then do
 end
  end 
 
-exports = {}
+exports = {};
 exports.v = v;
 exports.f = f;
+return exports;
 --[[ u Not a pure module ]]

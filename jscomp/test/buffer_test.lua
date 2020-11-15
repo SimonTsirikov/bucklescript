@@ -1,10 +1,10 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Block = require "../../lib/js/block";
-Bytes = require "../../lib/js/bytes";
-__Buffer = require "../../lib/js/buffer";
-Caml_bytes = require "../../lib/js/caml_bytes";
+Mt = require "..mt";
+Block = require "......lib.js.block";
+Bytes = require "......lib.js.bytes";
+__Buffer = require "......lib.js.buffer";
+Caml_bytes = require "......lib.js.caml_bytes";
 
 v = "gso";
 
@@ -48,7 +48,7 @@ suites_001 = --[[ :: ]]{
       (function(param) do
           v = __Buffer.create(30);
           for i = 0 , 10 , 1 do
-            __Buffer.add_string(v, String(i));
+            __Buffer.add_string(v, __String(i));
           end
           return --[[ Eq ]]Block.__(0, {
                     __Buffer.contents(v),
@@ -67,7 +67,8 @@ suites = --[[ :: ]]{
 
 Mt.from_pair_suites("Buffer_test", suites);
 
-exports = {}
+exports = {};
 exports.v = v;
 exports.suites = suites;
+return exports;
 --[[  Not a pure module ]]

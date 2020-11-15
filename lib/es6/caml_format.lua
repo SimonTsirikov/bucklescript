@@ -1,9 +1,9 @@
 
 
-import * as Caml_int32 from "./caml_int32.lua";
-import * as Caml_int64 from "./caml_int64.lua";
-import * as Caml_utils from "./caml_utils.lua";
-import * as Caml_builtin_exceptions from "./caml_builtin_exceptions.lua";
+local Caml_int32 = require "..caml_int32.lua";
+local Caml_int64 = require "..caml_int64.lua";
+local Caml_utils = require "..caml_utils.lua";
+local Caml_builtin_exceptions = require "..caml_builtin_exceptions.lua";
 
 function parse_digit(c) do
   if (c >= 65) then do
@@ -56,7 +56,7 @@ function parse_sign_and_base(s) do
      end end end end
     
   end
-  if (s[i] == "0") then do
+  if (string.sub(s, i, i) == "0") then do
     match_1 = s.charCodeAt(i + 1 | 0);
     if (match_1 >= 89) then do
       if (match_1 >= 111) then do
@@ -127,8 +127,8 @@ end end
 
 function caml_int_of_string(s) do
   match = parse_sign_and_base(s);
-  i = match[0];
-  base = int_of_string_base(match[2]);
+  i = match[1];
+  base = int_of_string_base(match[3]);
   threshold = 4294967295;
   len = #s;
   c = i < len and s.charCodeAt(i) or --[[ "\000" ]]0;
@@ -175,7 +175,7 @@ function caml_int_of_string(s) do
       end end 
     end;
   end end;
-  res = match[1] * aux(d, i + 1 | 0);
+  res = match[2] * aux(d, i + 1 | 0);
   or_res = res | 0;
   if (base == 10 and res ~= or_res) then do
     error({
@@ -189,10 +189,10 @@ end end
 
 function caml_int64_of_string(s) do
   match = parse_sign_and_base(s);
-  hbase = match[2];
-  i = match[0];
+  hbase = match[3];
+  i = match[1];
   base = Caml_int64.of_int32(int_of_string_base(hbase));
-  sign = Caml_int64.of_int32(match[1]);
+  sign = Caml_int64.of_int32(match[2]);
   threshold;
   local ___conditional___=(hbase);
   do
@@ -396,7 +396,7 @@ function parse_format(fmt) do
         end else do
           f.signedconv = true;
           f.uppercase = true;
-          f.conv = String.fromCharCode(lowercase(c));
+          f.conv = __String.fromCharCode(lowercase(c));
           _i = i + 1 | 0;
           ::continue:: ;
         end end  end 
@@ -465,7 +465,7 @@ function parse_format(fmt) do
             _i = i + 1 | 0;
             ::continue:: ; end end 
          if ___conditional___ == 2 then do
-            f.signstyle = String.fromCharCode(c);
+            f.signstyle = __String.fromCharCode(c);
             _i = i + 1 | 0;
             ::continue:: ; end end 
          if ___conditional___ == 3 then do
@@ -489,7 +489,7 @@ function parse_format(fmt) do
             ::continue:: ; end end 
          if ___conditional___ == 5 then do
             f.signedconv = true;
-            f.conv = String.fromCharCode(c);
+            f.conv = __String.fromCharCode(c);
             _i = i + 1 | 0;
             ::continue:: ; end end 
         
@@ -564,7 +564,7 @@ end end
 
 function caml_format_int(fmt, i) do
   if (fmt == "%d") then do
-    return String(i);
+    return __String(i);
   end else do
     f = parse_format(fmt);
     f_1 = f;
@@ -611,31 +611,31 @@ function caml_int64_format(fmt, x) do
           quotient = Caml_int64.add(--[[ int64 ]]{
                 --[[ hi ]]268435456,
                 --[[ lo ]]0
-              }, match_1[0]);
-          modulus = match_1[1];
-          s = String.fromCharCode(cvtbl.charCodeAt(Caml_int64.to_int32(modulus))) .. s;
+              }, match_1[1]);
+          modulus = match_1[2];
+          s = __String.fromCharCode(cvtbl.charCodeAt(Caml_int64.to_int32(modulus))) .. s;
           while(Caml_int64.neq(quotient, --[[ int64 ]]{
                   --[[ hi ]]0,
                   --[[ lo ]]0
                 })) do
             match_2 = Caml_int64.div_mod(quotient, wbase);
-            quotient = match_2[0];
-            modulus = match_2[1];
-            s = String.fromCharCode(cvtbl.charCodeAt(Caml_int64.to_int32(modulus))) .. s;
+            quotient = match_2[1];
+            modulus = match_2[2];
+            s = __String.fromCharCode(cvtbl.charCodeAt(Caml_int64.to_int32(modulus))) .. s;
           end;
         end else do
           match_3 = Caml_int64.div_mod(x_1, wbase);
-          quotient_1 = match_3[0];
-          modulus_1 = match_3[1];
-          s = String.fromCharCode(cvtbl.charCodeAt(Caml_int64.to_int32(modulus_1))) .. s;
+          quotient_1 = match_3[1];
+          modulus_1 = match_3[2];
+          s = __String.fromCharCode(cvtbl.charCodeAt(Caml_int64.to_int32(modulus_1))) .. s;
           while(Caml_int64.neq(quotient_1, --[[ int64 ]]{
                   --[[ hi ]]0,
                   --[[ lo ]]0
                 })) do
             match_4 = Caml_int64.div_mod(quotient_1, wbase);
-            quotient_1 = match_4[0];
-            modulus_1 = match_4[1];
-            s = String.fromCharCode(cvtbl.charCodeAt(Caml_int64.to_int32(modulus_1))) .. s;
+            quotient_1 = match_4[1];
+            modulus_1 = match_4[2];
+            s = __String.fromCharCode(cvtbl.charCodeAt(Caml_int64.to_int32(modulus_1))) .. s;
           end;
         end end  end else 
      if ___conditional___ == 1--[[ Hex ]] then do
@@ -655,35 +655,35 @@ function caml_int64_format(fmt, x) do
           match_6 = Caml_int64.div_mod(Caml_int64.add(--[[ int64 ]]{
                     --[[ hi ]]0,
                     --[[ lo ]]8
-                  }, match_5[1]), wbase_1);
+                  }, match_5[2]), wbase_1);
           quotient_2 = Caml_int64.add(Caml_int64.add(--[[ int64 ]]{
                     --[[ hi ]]214748364,
                     --[[ lo ]]3435973836
-                  }, match_5[0]), match_6[0]);
-          modulus_2 = match_6[1];
-          s = String.fromCharCode(cvtbl_1.charCodeAt(Caml_int64.to_int32(modulus_2))) .. s;
+                  }, match_5[1]), match_6[1]);
+          modulus_2 = match_6[2];
+          s = __String.fromCharCode(cvtbl_1.charCodeAt(Caml_int64.to_int32(modulus_2))) .. s;
           while(Caml_int64.neq(quotient_2, --[[ int64 ]]{
                   --[[ hi ]]0,
                   --[[ lo ]]0
                 })) do
             match_7 = Caml_int64.div_mod(quotient_2, wbase_1);
-            quotient_2 = match_7[0];
-            modulus_2 = match_7[1];
-            s = String.fromCharCode(cvtbl_1.charCodeAt(Caml_int64.to_int32(modulus_2))) .. s;
+            quotient_2 = match_7[1];
+            modulus_2 = match_7[2];
+            s = __String.fromCharCode(cvtbl_1.charCodeAt(Caml_int64.to_int32(modulus_2))) .. s;
           end;
         end else do
           match_8 = Caml_int64.div_mod(x_1, wbase_1);
-          quotient_3 = match_8[0];
-          modulus_3 = match_8[1];
-          s = String.fromCharCode(cvtbl_1.charCodeAt(Caml_int64.to_int32(modulus_3))) .. s;
+          quotient_3 = match_8[1];
+          modulus_3 = match_8[2];
+          s = __String.fromCharCode(cvtbl_1.charCodeAt(Caml_int64.to_int32(modulus_3))) .. s;
           while(Caml_int64.neq(quotient_3, --[[ int64 ]]{
                   --[[ hi ]]0,
                   --[[ lo ]]0
                 })) do
             match_9 = Caml_int64.div_mod(quotient_3, wbase_1);
-            quotient_3 = match_9[0];
-            modulus_3 = match_9[1];
-            s = String.fromCharCode(cvtbl_1.charCodeAt(Caml_int64.to_int32(modulus_3))) .. s;
+            quotient_3 = match_9[1];
+            modulus_3 = match_9[2];
+            s = __String.fromCharCode(cvtbl_1.charCodeAt(Caml_int64.to_int32(modulus_3))) .. s;
           end;
         end end  end else 
      end end end end end end
@@ -706,17 +706,17 @@ function caml_format_float(fmt, x) do
   prec = f.prec < 0 and 6 or f.prec;
   x_1 = x < 0 and (f.sign = -1, -x) or x;
   s = "";
-  if (isNaN(x_1)) then do
+  if (__isNaN(x_1)) then do
     s = "nan";
     f.filter = " ";
-  end else if (isFinite(x_1)) then do
+  end else if (__isFinite(x_1)) then do
     match = f.conv;
     local ___conditional___=(match);
     do
        if ___conditional___ == "e" then do
           s = x_1.toExponential(prec);
           i = #s;
-          if (s[i - 3 | 0] == "e") then do
+          if (string.sub(s, i - 3 | 0, i - 3 | 0) == "e") then do
             s = s.slice(0, i - 1 | 0) .. ("0" .. s.slice(i - 1 | 0));
           end
            end  end else 
@@ -726,19 +726,19 @@ function caml_format_float(fmt, x) do
           prec_1 = prec ~= 0 and prec or 1;
           s = x_1.toExponential(prec_1 - 1 | 0);
           j = s.indexOf("e");
-          exp = Number(s.slice(j + 1 | 0)) | 0;
+          exp = __Number(s.slice(j + 1 | 0)) | 0;
           if (exp < -4 or x_1 >= 1e21 or #x_1.toFixed() > prec_1) then do
             i_1 = j - 1 | 0;
-            while(s[i_1] == "0") do
+            while(string.sub(s, i_1, i_1) == "0") do
               i_1 = i_1 - 1 | 0;
             end;
-            if (s[i_1] == ".") then do
+            if (string.sub(s, i_1, i_1) == ".") then do
               i_1 = i_1 - 1 | 0;
             end
              end 
             s = s.slice(0, i_1 + 1 | 0) .. s.slice(j);
             i_2 = #s;
-            if (s[i_2 - 3 | 0] == "e") then do
+            if (string.sub(s, i_2 - 3 | 0, i_2 - 3 | 0) == "e") then do
               s = s.slice(0, i_2 - 1 | 0) .. ("0" .. s.slice(i_2 - 1 | 0));
             end
              end 
@@ -757,10 +757,10 @@ function caml_format_float(fmt, x) do
             end end 
             if (p ~= 0) then do
               k = #s - 1 | 0;
-              while(s[k] == "0") do
+              while(string.sub(s, k, k) == "0") do
                 k = k - 1 | 0;
               end;
-              if (s[k] == ".") then do
+              if (string.sub(s, k, k) == ".") then do
                 k = k - 1 | 0;
               end
                end 

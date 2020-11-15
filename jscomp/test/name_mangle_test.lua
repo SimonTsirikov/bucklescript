@@ -1,7 +1,7 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Block = require "../../lib/js/block";
+Mt = require "..mt";
+Block = require "......lib.js.block";
 
 suites = {
   contents = --[[ [] ]]0
@@ -15,7 +15,7 @@ function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[[ :: ]]{
     --[[ tuple ]]{
-      loc .. (" id " .. String(test_id.contents)),
+      loc .. (" id " .. __String(test_id.contents)),
       (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     x,
@@ -35,9 +35,9 @@ function f0(x) do
 end end
 
 function f1(x) do
-  old = x.in;
-  x.in = old + 1 | 0;
-  return x.in;
+  old = x.__in;
+  x.__in = old + 1 | 0;
+  return x.__in;
 end end
 
 function f2(x) do
@@ -134,7 +134,7 @@ eq("File \"name_mangle_test.ml\", line 97, characters 7-14", f12(({__:0})), 1);
 
 Mt.from_pair_suites("File \"name_mangle_test.ml\", line 101, characters 23-30", suites.contents);
 
-exports = {}
+exports = {};
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
@@ -151,4 +151,5 @@ exports.f9 = f9;
 exports.f10 = f10;
 exports.f11 = f11;
 exports.f12 = f12;
+return exports;
 --[[  Not a pure module ]]

@@ -1,10 +1,10 @@
 
 
-import * as Bytes from "./bytes.lua";
-import * as Curry from "./curry.lua";
-import * as Caml_bytes from "./caml_bytes.lua";
-import * as Caml_primitive from "./caml_primitive.lua";
-import * as Caml_builtin_exceptions from "./caml_builtin_exceptions.lua";
+local Bytes = require "..bytes.lua";
+local Curry = require "..curry.lua";
+local Caml_bytes = require "..caml_bytes.lua";
+local Caml_primitive = require "..caml_primitive.lua";
+local Caml_builtin_exceptions = require "..caml_builtin_exceptions.lua";
 
 function make(n, c) do
   return Caml_bytes.bytes_to_string(Bytes.make(n, c));
@@ -38,8 +38,8 @@ function sum_lengths(_acc, seplen, _param) do
     param = _param;
     acc = _acc;
     if (param) then do
-      tl = param[1];
-      hd = param[0];
+      tl = param[2];
+      hd = param[1];
       if (tl) then do
         _param = tl;
         _acc = ensure_ge((#hd + seplen | 0) + acc | 0, acc);
@@ -58,8 +58,8 @@ function unsafe_blits(dst, _pos, sep, seplen, _param) do
     param = _param;
     pos = _pos;
     if (param) then do
-      tl = param[1];
-      hd = param[0];
+      tl = param[2];
+      hd = param[1];
       if (tl) then do
         Caml_bytes.caml_blit_string(hd, 0, dst, pos, #hd);
         Caml_bytes.caml_blit_string(sep, 0, dst, pos + #hd | 0, seplen);

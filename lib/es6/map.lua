@@ -1,13 +1,13 @@
 
 
-import * as Curry from "./curry.lua";
-import * as Caml_option from "./caml_option.lua";
-import * as Caml_builtin_exceptions from "./caml_builtin_exceptions.lua";
+local Curry = require "..curry.lua";
+local Caml_option = require "..caml_option.lua";
+local Caml_builtin_exceptions = require "..caml_builtin_exceptions.lua";
 
 function Make(funarg) do
   height = function(param) do
     if (param) then do
-      return param[--[[ h ]]4];
+      return param[--[[ h ]]5];
     end else do
       return 0;
     end end 
@@ -33,18 +33,18 @@ function Make(funarg) do
           };
   end end;
   bal = function(l, x, d, r) do
-    hl = l and l[--[[ h ]]4] or 0;
-    hr = r and r[--[[ h ]]4] or 0;
+    hl = l and l[--[[ h ]]5] or 0;
+    hr = r and r[--[[ h ]]5] or 0;
     if (hl > (hr + 2 | 0)) then do
       if (l) then do
-        lr = l[--[[ r ]]3];
-        ld = l[--[[ d ]]2];
-        lv = l[--[[ v ]]1];
-        ll = l[--[[ l ]]0];
+        lr = l[--[[ r ]]4];
+        ld = l[--[[ d ]]3];
+        lv = l[--[[ v ]]2];
+        ll = l[--[[ l ]]1];
         if (height(ll) >= height(lr)) then do
           return create(ll, lv, ld, create(lr, x, d, r));
         end else if (lr) then do
-          return create(create(ll, lv, ld, lr[--[[ l ]]0]), lr[--[[ v ]]1], lr[--[[ d ]]2], create(lr[--[[ r ]]3], x, d, r));
+          return create(create(ll, lv, ld, lr[--[[ l ]]1]), lr[--[[ v ]]2], lr[--[[ d ]]3], create(lr[--[[ r ]]4], x, d, r));
         end else do
           error({
             Caml_builtin_exceptions.invalid_argument,
@@ -59,14 +59,14 @@ function Make(funarg) do
       end end 
     end else if (hr > (hl + 2 | 0)) then do
       if (r) then do
-        rr = r[--[[ r ]]3];
-        rd = r[--[[ d ]]2];
-        rv = r[--[[ v ]]1];
-        rl = r[--[[ l ]]0];
+        rr = r[--[[ r ]]4];
+        rd = r[--[[ d ]]3];
+        rv = r[--[[ v ]]2];
+        rl = r[--[[ l ]]1];
         if (height(rr) >= height(rl)) then do
           return create(create(l, x, d, rl), rv, rd, rr);
         end else if (rl) then do
-          return create(create(l, x, d, rl[--[[ l ]]0]), rl[--[[ v ]]1], rl[--[[ d ]]2], create(rl[--[[ r ]]3], rv, rd, rr));
+          return create(create(l, x, d, rl[--[[ l ]]1]), rl[--[[ v ]]2], rl[--[[ d ]]3], create(rl[--[[ r ]]4], rv, rd, rr));
         end else do
           error({
             Caml_builtin_exceptions.invalid_argument,
@@ -98,10 +98,10 @@ function Make(funarg) do
   end end;
   add = function(x, data, m) do
     if (m) then do
-      r = m[--[[ r ]]3];
-      d = m[--[[ d ]]2];
-      v = m[--[[ v ]]1];
-      l = m[--[[ l ]]0];
+      r = m[--[[ r ]]4];
+      d = m[--[[ d ]]3];
+      v = m[--[[ v ]]2];
+      l = m[--[[ l ]]1];
       c = Curry._2(funarg.compare, x, v);
       if (c == 0) then do
         if (d == data) then do
@@ -112,7 +112,7 @@ function Make(funarg) do
                   --[[ v ]]x,
                   --[[ d ]]data,
                   --[[ r ]]r,
-                  --[[ h ]]m[--[[ h ]]4]
+                  --[[ h ]]m[--[[ h ]]5]
                 };
         end end 
       end else if (c < 0) then do
@@ -144,11 +144,11 @@ function Make(funarg) do
     while(true) do
       param = _param;
       if (param) then do
-        c = Curry._2(funarg.compare, x, param[--[[ v ]]1]);
+        c = Curry._2(funarg.compare, x, param[--[[ v ]]2]);
         if (c == 0) then do
-          return param[--[[ d ]]2];
+          return param[--[[ d ]]3];
         end else do
-          _param = c < 0 and param[--[[ l ]]0] or param[--[[ r ]]3];
+          _param = c < 0 and param[--[[ l ]]1] or param[--[[ r ]]4];
           ::continue:: ;
         end end 
       end else do
@@ -160,25 +160,25 @@ function Make(funarg) do
     while(true) do
       param = _param;
       if (param) then do
-        v = param[--[[ v ]]1];
+        v = param[--[[ v ]]2];
         if (Curry._1(f, v)) then do
           _v0 = v;
-          _d0 = param[--[[ d ]]2];
+          _d0 = param[--[[ d ]]3];
           f_1 = f;
-          _param_1 = param[--[[ l ]]0];
+          _param_1 = param[--[[ l ]]1];
           while(true) do
             param_1 = _param_1;
             d0 = _d0;
             v0 = _v0;
             if (param_1) then do
-              v_1 = param_1[--[[ v ]]1];
+              v_1 = param_1[--[[ v ]]2];
               if (Curry._1(f_1, v_1)) then do
-                _param_1 = param_1[--[[ l ]]0];
-                _d0 = param_1[--[[ d ]]2];
+                _param_1 = param_1[--[[ l ]]1];
+                _d0 = param_1[--[[ d ]]3];
                 _v0 = v_1;
                 ::continue:: ;
               end else do
-                _param_1 = param_1[--[[ r ]]3];
+                _param_1 = param_1[--[[ r ]]4];
                 ::continue:: ;
               end end 
             end else do
@@ -189,7 +189,7 @@ function Make(funarg) do
             end end 
           end;
         end else do
-          _param = param[--[[ r ]]3];
+          _param = param[--[[ r ]]4];
           ::continue:: ;
         end end 
       end else do
@@ -201,25 +201,25 @@ function Make(funarg) do
     while(true) do
       param = _param;
       if (param) then do
-        v = param[--[[ v ]]1];
+        v = param[--[[ v ]]2];
         if (Curry._1(f, v)) then do
           _v0 = v;
-          _d0 = param[--[[ d ]]2];
+          _d0 = param[--[[ d ]]3];
           f_1 = f;
-          _param_1 = param[--[[ l ]]0];
+          _param_1 = param[--[[ l ]]1];
           while(true) do
             param_1 = _param_1;
             d0 = _d0;
             v0 = _v0;
             if (param_1) then do
-              v_1 = param_1[--[[ v ]]1];
+              v_1 = param_1[--[[ v ]]2];
               if (Curry._1(f_1, v_1)) then do
-                _param_1 = param_1[--[[ l ]]0];
-                _d0 = param_1[--[[ d ]]2];
+                _param_1 = param_1[--[[ l ]]1];
+                _d0 = param_1[--[[ d ]]3];
                 _v0 = v_1;
                 ::continue:: ;
               end else do
-                _param_1 = param_1[--[[ r ]]3];
+                _param_1 = param_1[--[[ r ]]4];
                 ::continue:: ;
               end end 
             end else do
@@ -230,7 +230,7 @@ function Make(funarg) do
             end end 
           end;
         end else do
-          _param = param[--[[ r ]]3];
+          _param = param[--[[ r ]]4];
           ::continue:: ;
         end end 
       end else do
@@ -242,25 +242,25 @@ function Make(funarg) do
     while(true) do
       param = _param;
       if (param) then do
-        v = param[--[[ v ]]1];
+        v = param[--[[ v ]]2];
         if (Curry._1(f, v)) then do
           _v0 = v;
-          _d0 = param[--[[ d ]]2];
+          _d0 = param[--[[ d ]]3];
           f_1 = f;
-          _param_1 = param[--[[ r ]]3];
+          _param_1 = param[--[[ r ]]4];
           while(true) do
             param_1 = _param_1;
             d0 = _d0;
             v0 = _v0;
             if (param_1) then do
-              v_1 = param_1[--[[ v ]]1];
+              v_1 = param_1[--[[ v ]]2];
               if (Curry._1(f_1, v_1)) then do
-                _param_1 = param_1[--[[ r ]]3];
-                _d0 = param_1[--[[ d ]]2];
+                _param_1 = param_1[--[[ r ]]4];
+                _d0 = param_1[--[[ d ]]3];
                 _v0 = v_1;
                 ::continue:: ;
               end else do
-                _param_1 = param_1[--[[ l ]]0];
+                _param_1 = param_1[--[[ l ]]1];
                 ::continue:: ;
               end end 
             end else do
@@ -271,7 +271,7 @@ function Make(funarg) do
             end end 
           end;
         end else do
-          _param = param[--[[ l ]]0];
+          _param = param[--[[ l ]]1];
           ::continue:: ;
         end end 
       end else do
@@ -283,25 +283,25 @@ function Make(funarg) do
     while(true) do
       param = _param;
       if (param) then do
-        v = param[--[[ v ]]1];
+        v = param[--[[ v ]]2];
         if (Curry._1(f, v)) then do
           _v0 = v;
-          _d0 = param[--[[ d ]]2];
+          _d0 = param[--[[ d ]]3];
           f_1 = f;
-          _param_1 = param[--[[ r ]]3];
+          _param_1 = param[--[[ r ]]4];
           while(true) do
             param_1 = _param_1;
             d0 = _d0;
             v0 = _v0;
             if (param_1) then do
-              v_1 = param_1[--[[ v ]]1];
+              v_1 = param_1[--[[ v ]]2];
               if (Curry._1(f_1, v_1)) then do
-                _param_1 = param_1[--[[ r ]]3];
-                _d0 = param_1[--[[ d ]]2];
+                _param_1 = param_1[--[[ r ]]4];
+                _d0 = param_1[--[[ d ]]3];
                 _v0 = v_1;
                 ::continue:: ;
               end else do
-                _param_1 = param_1[--[[ l ]]0];
+                _param_1 = param_1[--[[ l ]]1];
                 ::continue:: ;
               end end 
             end else do
@@ -312,7 +312,7 @@ function Make(funarg) do
             end end 
           end;
         end else do
-          _param = param[--[[ l ]]0];
+          _param = param[--[[ l ]]1];
           ::continue:: ;
         end end 
       end else do
@@ -324,11 +324,11 @@ function Make(funarg) do
     while(true) do
       param = _param;
       if (param) then do
-        c = Curry._2(funarg.compare, x, param[--[[ v ]]1]);
+        c = Curry._2(funarg.compare, x, param[--[[ v ]]2]);
         if (c == 0) then do
-          return Caml_option.some(param[--[[ d ]]2]);
+          return Caml_option.some(param[--[[ d ]]3]);
         end else do
-          _param = c < 0 and param[--[[ l ]]0] or param[--[[ r ]]3];
+          _param = c < 0 and param[--[[ l ]]1] or param[--[[ r ]]4];
           ::continue:: ;
         end end 
       end else do
@@ -340,11 +340,11 @@ function Make(funarg) do
     while(true) do
       param = _param;
       if (param) then do
-        c = Curry._2(funarg.compare, x, param[--[[ v ]]1]);
+        c = Curry._2(funarg.compare, x, param[--[[ v ]]2]);
         if (c == 0) then do
           return true;
         end else do
-          _param = c < 0 and param[--[[ l ]]0] or param[--[[ r ]]3];
+          _param = c < 0 and param[--[[ l ]]1] or param[--[[ r ]]4];
           ::continue:: ;
         end end 
       end else do
@@ -356,14 +356,14 @@ function Make(funarg) do
     while(true) do
       param = _param;
       if (param) then do
-        l = param[--[[ l ]]0];
+        l = param[--[[ l ]]1];
         if (l) then do
           _param = l;
           ::continue:: ;
         end else do
           return --[[ tuple ]]{
-                  param[--[[ v ]]1],
-                  param[--[[ d ]]2]
+                  param[--[[ v ]]2],
+                  param[--[[ d ]]3]
                 };
         end end 
       end else do
@@ -375,14 +375,14 @@ function Make(funarg) do
     while(true) do
       param = _param;
       if (param) then do
-        l = param[--[[ l ]]0];
+        l = param[--[[ l ]]1];
         if (l) then do
           _param = l;
           ::continue:: ;
         end else do
           return --[[ tuple ]]{
-                  param[--[[ v ]]1],
-                  param[--[[ d ]]2]
+                  param[--[[ v ]]2],
+                  param[--[[ d ]]3]
                 };
         end end 
       end else do
@@ -394,14 +394,14 @@ function Make(funarg) do
     while(true) do
       param = _param;
       if (param) then do
-        r = param[--[[ r ]]3];
+        r = param[--[[ r ]]4];
         if (r) then do
           _param = r;
           ::continue:: ;
         end else do
           return --[[ tuple ]]{
-                  param[--[[ v ]]1],
-                  param[--[[ d ]]2]
+                  param[--[[ v ]]2],
+                  param[--[[ d ]]3]
                 };
         end end 
       end else do
@@ -413,14 +413,14 @@ function Make(funarg) do
     while(true) do
       param = _param;
       if (param) then do
-        r = param[--[[ r ]]3];
+        r = param[--[[ r ]]4];
         if (r) then do
           _param = r;
           ::continue:: ;
         end else do
           return --[[ tuple ]]{
-                  param[--[[ v ]]1],
-                  param[--[[ d ]]2]
+                  param[--[[ v ]]2],
+                  param[--[[ d ]]3]
                 };
         end end 
       end else do
@@ -430,11 +430,11 @@ function Make(funarg) do
   end end;
   remove_min_binding = function(param) do
     if (param) then do
-      l = param[--[[ l ]]0];
+      l = param[--[[ l ]]1];
       if (l) then do
-        return bal(remove_min_binding(l), param[--[[ v ]]1], param[--[[ d ]]2], param[--[[ r ]]3]);
+        return bal(remove_min_binding(l), param[--[[ v ]]2], param[--[[ d ]]3], param[--[[ r ]]4]);
       end else do
-        return param[--[[ r ]]3];
+        return param[--[[ r ]]4];
       end end 
     end else do
       error({
@@ -447,7 +447,7 @@ function Make(funarg) do
     if (t1) then do
       if (t2) then do
         match = min_binding(t2);
-        return bal(t1, match[0], match[1], remove_min_binding(t2));
+        return bal(t1, match[1], match[2], remove_min_binding(t2));
       end else do
         return t1;
       end end 
@@ -457,10 +457,10 @@ function Make(funarg) do
   end end;
   remove = function(x, m) do
     if (m) then do
-      r = m[--[[ r ]]3];
-      d = m[--[[ d ]]2];
-      v = m[--[[ v ]]1];
-      l = m[--[[ l ]]0];
+      r = m[--[[ r ]]4];
+      d = m[--[[ d ]]3];
+      v = m[--[[ v ]]2];
+      l = m[--[[ l ]]1];
       c = Curry._2(funarg.compare, x, v);
       if (c == 0) then do
         return merge(l, r);
@@ -485,10 +485,10 @@ function Make(funarg) do
   end end;
   update = function(x, f, m) do
     if (m) then do
-      r = m[--[[ r ]]3];
-      d = m[--[[ d ]]2];
-      v = m[--[[ v ]]1];
-      l = m[--[[ l ]]0];
+      r = m[--[[ r ]]4];
+      d = m[--[[ d ]]3];
+      v = m[--[[ v ]]2];
+      l = m[--[[ l ]]1];
       c = Curry._2(funarg.compare, x, v);
       if (c == 0) then do
         match = Curry._1(f, Caml_option.some(d));
@@ -502,7 +502,7 @@ function Make(funarg) do
                     --[[ v ]]x,
                     --[[ d ]]data,
                     --[[ r ]]r,
-                    --[[ h ]]m[--[[ h ]]4]
+                    --[[ h ]]m[--[[ h ]]5]
                   };
           end end 
         end else do
@@ -542,9 +542,9 @@ function Make(funarg) do
     while(true) do
       param = _param;
       if (param) then do
-        iter(f, param[--[[ l ]]0]);
-        Curry._2(f, param[--[[ v ]]1], param[--[[ d ]]2]);
-        _param = param[--[[ r ]]3];
+        iter(f, param[--[[ l ]]1]);
+        Curry._2(f, param[--[[ v ]]2], param[--[[ d ]]3]);
+        _param = param[--[[ r ]]4];
         ::continue:: ;
       end else do
         return --[[ () ]]0;
@@ -553,15 +553,15 @@ function Make(funarg) do
   end end;
   map = function(f, param) do
     if (param) then do
-      l$prime = map(f, param[--[[ l ]]0]);
-      d$prime = Curry._1(f, param[--[[ d ]]2]);
-      r$prime = map(f, param[--[[ r ]]3]);
+      l_prime = map(f, param[--[[ l ]]1]);
+      d_prime = Curry._1(f, param[--[[ d ]]3]);
+      r_prime = map(f, param[--[[ r ]]4]);
       return --[[ Node ]]{
-              --[[ l ]]l$prime,
-              --[[ v ]]param[--[[ v ]]1],
-              --[[ d ]]d$prime,
-              --[[ r ]]r$prime,
-              --[[ h ]]param[--[[ h ]]4]
+              --[[ l ]]l_prime,
+              --[[ v ]]param[--[[ v ]]2],
+              --[[ d ]]d_prime,
+              --[[ r ]]r_prime,
+              --[[ h ]]param[--[[ h ]]5]
             };
     end else do
       return --[[ Empty ]]0;
@@ -569,16 +569,16 @@ function Make(funarg) do
   end end;
   mapi = function(f, param) do
     if (param) then do
-      v = param[--[[ v ]]1];
-      l$prime = mapi(f, param[--[[ l ]]0]);
-      d$prime = Curry._2(f, v, param[--[[ d ]]2]);
-      r$prime = mapi(f, param[--[[ r ]]3]);
+      v = param[--[[ v ]]2];
+      l_prime = mapi(f, param[--[[ l ]]1]);
+      d_prime = Curry._2(f, v, param[--[[ d ]]3]);
+      r_prime = mapi(f, param[--[[ r ]]4]);
       return --[[ Node ]]{
-              --[[ l ]]l$prime,
+              --[[ l ]]l_prime,
               --[[ v ]]v,
-              --[[ d ]]d$prime,
-              --[[ r ]]r$prime,
-              --[[ h ]]param[--[[ h ]]4]
+              --[[ d ]]d_prime,
+              --[[ r ]]r_prime,
+              --[[ h ]]param[--[[ h ]]5]
             };
     end else do
       return --[[ Empty ]]0;
@@ -589,8 +589,8 @@ function Make(funarg) do
       accu = _accu;
       m = _m;
       if (m) then do
-        _accu = Curry._3(f, m[--[[ v ]]1], m[--[[ d ]]2], fold(f, m[--[[ l ]]0], accu));
-        _m = m[--[[ r ]]3];
+        _accu = Curry._3(f, m[--[[ v ]]2], m[--[[ d ]]3], fold(f, m[--[[ l ]]1], accu));
+        _m = m[--[[ r ]]4];
         ::continue:: ;
       end else do
         return accu;
@@ -601,8 +601,8 @@ function Make(funarg) do
     while(true) do
       param = _param;
       if (param) then do
-        if (Curry._2(p, param[--[[ v ]]1], param[--[[ d ]]2]) and for_all(p, param[--[[ l ]]0])) then do
-          _param = param[--[[ r ]]3];
+        if (Curry._2(p, param[--[[ v ]]2], param[--[[ d ]]3]) and for_all(p, param[--[[ l ]]1])) then do
+          _param = param[--[[ r ]]4];
           ::continue:: ;
         end else do
           return false;
@@ -616,10 +616,10 @@ function Make(funarg) do
     while(true) do
       param = _param;
       if (param) then do
-        if (Curry._2(p, param[--[[ v ]]1], param[--[[ d ]]2]) or exists(p, param[--[[ l ]]0])) then do
+        if (Curry._2(p, param[--[[ v ]]2], param[--[[ d ]]3]) or exists(p, param[--[[ l ]]1])) then do
           return true;
         end else do
-          _param = param[--[[ r ]]3];
+          _param = param[--[[ r ]]4];
           ::continue:: ;
         end end 
       end else do
@@ -629,14 +629,14 @@ function Make(funarg) do
   end end;
   add_min_binding = function(k, x, param) do
     if (param) then do
-      return bal(add_min_binding(k, x, param[--[[ l ]]0]), param[--[[ v ]]1], param[--[[ d ]]2], param[--[[ r ]]3]);
+      return bal(add_min_binding(k, x, param[--[[ l ]]1]), param[--[[ v ]]2], param[--[[ d ]]3], param[--[[ r ]]4]);
     end else do
       return singleton(k, x);
     end end 
   end end;
   add_max_binding = function(k, x, param) do
     if (param) then do
-      return bal(param[--[[ l ]]0], param[--[[ v ]]1], param[--[[ d ]]2], add_max_binding(k, x, param[--[[ r ]]3]));
+      return bal(param[--[[ l ]]1], param[--[[ v ]]2], param[--[[ d ]]3], add_max_binding(k, x, param[--[[ r ]]4]));
     end else do
       return singleton(k, x);
     end end 
@@ -644,12 +644,12 @@ function Make(funarg) do
   join = function(l, v, d, r) do
     if (l) then do
       if (r) then do
-        rh = r[--[[ h ]]4];
-        lh = l[--[[ h ]]4];
+        rh = r[--[[ h ]]5];
+        lh = l[--[[ h ]]5];
         if (lh > (rh + 2 | 0)) then do
-          return bal(l[--[[ l ]]0], l[--[[ v ]]1], l[--[[ d ]]2], join(l[--[[ r ]]3], v, d, r));
+          return bal(l[--[[ l ]]1], l[--[[ v ]]2], l[--[[ d ]]3], join(l[--[[ r ]]4], v, d, r));
         end else if (rh > (lh + 2 | 0)) then do
-          return bal(join(l, v, d, r[--[[ l ]]0]), r[--[[ v ]]1], r[--[[ d ]]2], r[--[[ r ]]3]);
+          return bal(join(l, v, d, r[--[[ l ]]1]), r[--[[ v ]]2], r[--[[ d ]]3], r[--[[ r ]]4]);
         end else do
           return create(l, v, d, r);
         end end  end 
@@ -664,7 +664,7 @@ function Make(funarg) do
     if (t1) then do
       if (t2) then do
         match = min_binding(t2);
-        return join(t1, match[0], match[1], remove_min_binding(t2));
+        return join(t1, match[1], match[2], remove_min_binding(t2));
       end else do
         return t1;
       end end 
@@ -681,10 +681,10 @@ function Make(funarg) do
   end end;
   split = function(x, param) do
     if (param) then do
-      r = param[--[[ r ]]3];
-      d = param[--[[ d ]]2];
-      v = param[--[[ v ]]1];
-      l = param[--[[ l ]]0];
+      r = param[--[[ r ]]4];
+      d = param[--[[ d ]]3];
+      v = param[--[[ v ]]2];
+      l = param[--[[ l ]]1];
       c = Curry._2(funarg.compare, x, v);
       if (c == 0) then do
         return --[[ tuple ]]{
@@ -695,16 +695,16 @@ function Make(funarg) do
       end else if (c < 0) then do
         match = split(x, l);
         return --[[ tuple ]]{
-                match[0],
                 match[1],
-                join(match[2], v, d, r)
+                match[2],
+                join(match[3], v, d, r)
               };
       end else do
         match_1 = split(x, r);
         return --[[ tuple ]]{
-                join(l, v, d, match_1[0]),
-                match_1[1],
-                match_1[2]
+                join(l, v, d, match_1[1]),
+                match_1[2],
+                match_1[3]
               };
       end end  end 
     end else do
@@ -717,10 +717,10 @@ function Make(funarg) do
   end end;
   merge_1 = function(f, s1, s2) do
     if (s1) then do
-      v1 = s1[--[[ v ]]1];
-      if (s1[--[[ h ]]4] >= height(s2)) then do
+      v1 = s1[--[[ v ]]2];
+      if (s1[--[[ h ]]5] >= height(s2)) then do
         match = split(v1, s2);
-        return concat_or_join(merge_1(f, s1[--[[ l ]]0], match[0]), v1, Curry._3(f, v1, Caml_option.some(s1[--[[ d ]]2]), match[1]), merge_1(f, s1[--[[ r ]]3], match[2]));
+        return concat_or_join(merge_1(f, s1[--[[ l ]]1], match[1]), v1, Curry._3(f, v1, Caml_option.some(s1[--[[ d ]]3]), match[2]), merge_1(f, s1[--[[ r ]]4], match[3]));
       end
        end 
     end else if (not s2) then do
@@ -728,9 +728,9 @@ function Make(funarg) do
     end
      end  end 
     if (s2) then do
-      v2 = s2[--[[ v ]]1];
+      v2 = s2[--[[ v ]]2];
       match_1 = split(v2, s1);
-      return concat_or_join(merge_1(f, match_1[0], s2[--[[ l ]]0]), v2, Curry._3(f, v2, match_1[1], Caml_option.some(s2[--[[ d ]]2])), merge_1(f, match_1[2], s2[--[[ r ]]3]));
+      return concat_or_join(merge_1(f, match_1[1], s2[--[[ l ]]1]), v2, Curry._3(f, v2, match_1[2], Caml_option.some(s2[--[[ d ]]3])), merge_1(f, match_1[3], s2[--[[ r ]]4]));
     end else do
       error({
         Caml_builtin_exceptions.assert_failure,
@@ -745,15 +745,15 @@ function Make(funarg) do
   union = function(f, s1, s2) do
     if (s1) then do
       if (s2) then do
-        d2 = s2[--[[ d ]]2];
-        v2 = s2[--[[ v ]]1];
-        d1 = s1[--[[ d ]]2];
-        v1 = s1[--[[ v ]]1];
-        if (s1[--[[ h ]]4] >= s2[--[[ h ]]4]) then do
+        d2 = s2[--[[ d ]]3];
+        v2 = s2[--[[ v ]]2];
+        d1 = s1[--[[ d ]]3];
+        v1 = s1[--[[ v ]]2];
+        if (s1[--[[ h ]]5] >= s2[--[[ h ]]5]) then do
           match = split(v1, s2);
-          d2_1 = match[1];
-          l = union(f, s1[--[[ l ]]0], match[0]);
-          r = union(f, s1[--[[ r ]]3], match[2]);
+          d2_1 = match[2];
+          l = union(f, s1[--[[ l ]]1], match[1]);
+          r = union(f, s1[--[[ r ]]4], match[3]);
           if (d2_1 ~= nil) then do
             return concat_or_join(l, v1, Curry._3(f, v1, d1, Caml_option.valFromOption(d2_1)), r);
           end else do
@@ -761,9 +761,9 @@ function Make(funarg) do
           end end 
         end else do
           match_1 = split(v2, s1);
-          d1_1 = match_1[1];
-          l_1 = union(f, match_1[0], s2[--[[ l ]]0]);
-          r_1 = union(f, match_1[2], s2[--[[ r ]]3]);
+          d1_1 = match_1[2];
+          l_1 = union(f, match_1[1], s2[--[[ l ]]1]);
+          r_1 = union(f, match_1[3], s2[--[[ r ]]4]);
           if (d1_1 ~= nil) then do
             return concat_or_join(l_1, v2, Curry._3(f, v2, Caml_option.valFromOption(d1_1), d2), r_1);
           end else do
@@ -779,21 +779,21 @@ function Make(funarg) do
   end end;
   filter = function(p, m) do
     if (m) then do
-      r = m[--[[ r ]]3];
-      d = m[--[[ d ]]2];
-      v = m[--[[ v ]]1];
-      l = m[--[[ l ]]0];
-      l$prime = filter(p, l);
+      r = m[--[[ r ]]4];
+      d = m[--[[ d ]]3];
+      v = m[--[[ v ]]2];
+      l = m[--[[ l ]]1];
+      l_prime = filter(p, l);
       pvd = Curry._2(p, v, d);
-      r$prime = filter(p, r);
+      r_prime = filter(p, r);
       if (pvd) then do
-        if (l == l$prime and r == r$prime) then do
+        if (l == l_prime and r == r_prime) then do
           return m;
         end else do
-          return join(l$prime, v, d, r$prime);
+          return join(l_prime, v, d, r_prime);
         end end 
       end else do
-        return concat(l$prime, r$prime);
+        return concat(l_prime, r_prime);
       end end 
     end else do
       return --[[ Empty ]]0;
@@ -801,15 +801,15 @@ function Make(funarg) do
   end end;
   partition = function(p, param) do
     if (param) then do
-      d = param[--[[ d ]]2];
-      v = param[--[[ v ]]1];
-      match = partition(p, param[--[[ l ]]0]);
-      lf = match[1];
-      lt = match[0];
+      d = param[--[[ d ]]3];
+      v = param[--[[ v ]]2];
+      match = partition(p, param[--[[ l ]]1]);
+      lf = match[2];
+      lt = match[1];
       pvd = Curry._2(p, v, d);
-      match_1 = partition(p, param[--[[ r ]]3]);
-      rf = match_1[1];
-      rt = match_1[0];
+      match_1 = partition(p, param[--[[ r ]]4]);
+      rf = match_1[2];
+      rt = match_1[1];
       if (pvd) then do
         return --[[ tuple ]]{
                 join(lt, v, d, rt),
@@ -834,12 +834,12 @@ function Make(funarg) do
       m = _m;
       if (m) then do
         _e = --[[ More ]]{
-          m[--[[ v ]]1],
-          m[--[[ d ]]2],
-          m[--[[ r ]]3],
+          m[--[[ v ]]2],
+          m[--[[ d ]]3],
+          m[--[[ r ]]4],
           e
         };
-        _m = m[--[[ l ]]0];
+        _m = m[--[[ l ]]1];
         ::continue:: ;
       end else do
         return e;
@@ -854,16 +854,16 @@ function Make(funarg) do
       e1 = _e1;
       if (e1) then do
         if (e2) then do
-          c = Curry._2(funarg.compare, e1[0], e2[0]);
+          c = Curry._2(funarg.compare, e1[1], e2[1]);
           if (c ~= 0) then do
             return c;
           end else do
-            c_1 = Curry._2(cmp, e1[1], e2[1]);
+            c_1 = Curry._2(cmp, e1[2], e2[2]);
             if (c_1 ~= 0) then do
               return c_1;
             end else do
-              _e2 = cons_enum(e2[2], e2[3]);
-              _e1 = cons_enum(e1[2], e1[3]);
+              _e2 = cons_enum(e2[3], e2[4]);
+              _e1 = cons_enum(e1[3], e1[4]);
               ::continue:: ;
             end end 
           end end 
@@ -884,9 +884,9 @@ function Make(funarg) do
       e2 = _e2;
       e1 = _e1;
       if (e1) then do
-        if (e2 and Curry._2(funarg.compare, e1[0], e2[0]) == 0 and Curry._2(cmp, e1[1], e2[1])) then do
-          _e2 = cons_enum(e2[2], e2[3]);
-          _e1 = cons_enum(e1[2], e1[3]);
+        if (e2 and Curry._2(funarg.compare, e1[1], e2[1]) == 0 and Curry._2(cmp, e1[2], e2[2])) then do
+          _e2 = cons_enum(e2[3], e2[4]);
+          _e1 = cons_enum(e1[3], e1[4]);
           ::continue:: ;
         end else do
           return false;
@@ -900,7 +900,7 @@ function Make(funarg) do
   end end;
   cardinal = function(param) do
     if (param) then do
-      return (cardinal(param[--[[ l ]]0]) + 1 | 0) + cardinal(param[--[[ r ]]3]) | 0;
+      return (cardinal(param[--[[ l ]]1]) + 1 | 0) + cardinal(param[--[[ r ]]4]) | 0;
     end else do
       return 0;
     end end 
@@ -910,13 +910,13 @@ function Make(funarg) do
       param = _param;
       accu = _accu;
       if (param) then do
-        _param = param[--[[ l ]]0];
+        _param = param[--[[ l ]]1];
         _accu = --[[ :: ]]{
           --[[ tuple ]]{
-            param[--[[ v ]]1],
-            param[--[[ d ]]2]
+            param[--[[ v ]]2],
+            param[--[[ d ]]3]
           },
-          bindings_aux(accu, param[--[[ r ]]3])
+          bindings_aux(accu, param[--[[ r ]]4])
         };
         ::continue:: ;
       end else do

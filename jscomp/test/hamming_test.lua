@@ -1,14 +1,14 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Block = require "../../lib/js/block";
-Curry = require "../../lib/js/curry";
-__Buffer = require "../../lib/js/buffer";
-Printf = require "../../lib/js/printf";
-Caml_obj = require "../../lib/js/caml_obj";
-Caml_int64 = require "../../lib/js/caml_int64";
-Caml_format = require "../../lib/js/caml_format";
-CamlinternalLazy = require "../../lib/js/camlinternalLazy";
+Mt = require "..mt";
+Block = require "......lib.js.block";
+Curry = require "......lib.js.curry";
+__Buffer = require "......lib.js.buffer";
+Printf = require "......lib.js.printf";
+Caml_obj = require "......lib.js.caml_obj";
+Caml_int64 = require "......lib.js.caml_int64";
+Caml_format = require "......lib.js.caml_format";
+CamlinternalLazy = require "......lib.js.camlinternalLazy";
 
 n0 = --[[ int64 ]]{
   --[[ hi ]]0,
@@ -35,34 +35,34 @@ n5 = --[[ int64 ]]{
   --[[ lo ]]5
 };
 
-$percent = Caml_int64.mod_;
+_percent = Caml_int64.mod_;
 
-$star = Caml_int64.mul;
+_star = Caml_int64.mul;
 
-$slash = Caml_int64.div;
+_slash = Caml_int64.div;
 
-$plus = Caml_int64.add;
+_plus = Caml_int64.add;
 
 digit = Caml_format.caml_int64_of_string("1000000000000000000");
 
 function mul(n, param) do
-  pl = param[0];
+  pl = param[1];
   return --[[ tuple ]]{
           Caml_int64.mod_(Caml_int64.mul(n, pl), digit),
-          Caml_int64.add(Caml_int64.mul(n, param[1]), Caml_int64.div(Caml_int64.mul(n, pl), digit))
+          Caml_int64.add(Caml_int64.mul(n, param[2]), Caml_int64.div(Caml_int64.mul(n, pl), digit))
         };
 end end
 
 function cmp(param, param_1) do
-  ph = param_1[1];
-  nh = param[1];
+  ph = param_1[2];
+  nh = param[2];
   if (Caml_obj.caml_lessthan(nh, ph)) then do
     return -1;
   end else if (Caml_obj.caml_greaterthan(nh, ph)) then do
     return 1;
   end else do
-    pl = param_1[0];
-    nl = param[0];
+    pl = param_1[1];
+    nl = param[1];
     if (Caml_obj.caml_lessthan(nl, pl)) then do
       return -1;
     end else if (Caml_obj.caml_greaterthan(nl, pl)) then do
@@ -93,8 +93,8 @@ nn1 = --[[ tuple ]]{
 buf = __Buffer.create(5000);
 
 function pr(param) do
-  nh = param[1];
-  nl = param[0];
+  nh = param[2];
+  nl = param[1];
   if (Caml_int64.compare(nh, n0) == 0) then do
     return Curry._1(Printf.bprintf(buf, --[[ Format ]]{
                     --[[ Int64 ]]Block.__(7, {
@@ -136,8 +136,8 @@ function map(f, l) do
   return Caml_obj.caml_lazy_make((function(param) do
                 match = CamlinternalLazy.force(l);
                 return --[[ Cons ]]{
-                        Curry._1(f, match[0]),
-                        map(f, match[1])
+                        Curry._1(f, match[1]),
+                        map(f, match[2])
                       };
               end end));
 end end
@@ -146,10 +146,10 @@ function merge(cmp, l1, l2) do
   return Caml_obj.caml_lazy_make((function(param) do
                 match = CamlinternalLazy.force(l1);
                 match_1 = CamlinternalLazy.force(l2);
-                ll2 = match_1[1];
-                x2 = match_1[0];
-                ll1 = match[1];
-                x1 = match[0];
+                ll2 = match_1[2];
+                x2 = match_1[1];
+                ll1 = match[2];
+                x1 = match[1];
                 c = Curry._2(cmp, x1, x2);
                 if (c == 0) then do
                   return --[[ Cons ]]{
@@ -174,21 +174,21 @@ function iter_interval(f, _l, _param) do
   while(true) do
     param = _param;
     l = _l;
-    stop = param[1];
+    stop = param[2];
     if (stop == 0) then do
       return --[[ () ]]0;
     end else do
-      start = param[0];
+      start = param[1];
       match = CamlinternalLazy.force(l);
       if (start <= 0) then do
-        Curry._1(f, match[0]);
+        Curry._1(f, match[1]);
       end
        end 
       _param = --[[ tuple ]]{
         start - 1 | 0,
         stop - 1 | 0
       };
-      _l = match[1];
+      _l = match[2];
       ::continue:: ;
     end end 
   end;
@@ -231,16 +231,16 @@ Mt.from_pair_suites("Hamming_test", --[[ :: ]]{
       --[[ [] ]]0
     });
 
-exports = {}
+exports = {};
 exports.n0 = n0;
 exports.n1 = n1;
 exports.n2 = n2;
 exports.n3 = n3;
 exports.n5 = n5;
-exports.$percent = $percent;
-exports.$star = $star;
-exports.$slash = $slash;
-exports.$plus = $plus;
+exports._percent = _percent;
+exports._star = _star;
+exports._slash = _slash;
+exports._plus = _plus;
 exports.digit = digit;
 exports.mul = mul;
 exports.cmp = cmp;
@@ -257,4 +257,5 @@ exports.hamming = hamming;
 exports.ham2 = ham2;
 exports.ham3 = ham3;
 exports.ham5 = ham5;
+return exports;
 --[[ digit Not a pure module ]]

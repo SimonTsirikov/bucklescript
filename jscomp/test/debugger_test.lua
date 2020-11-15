@@ -1,8 +1,8 @@
-console = {log = print};
+__console = {log = print};
 
 
 function f(x, y) do
-  console.log(--[[ tuple ]]{
+  __console.log(--[[ tuple ]]{
         x,
         y
       });
@@ -21,14 +21,15 @@ function exterme_g(param) do
   f(1, 2);
   debugger;
   v = --[[ () ]]0;
-  console.log(v);
+  __console.log(v);
   f(1, 2);
   debugger;
   return 3;
 end end
 
-exports = {}
+exports = {};
 exports.f = f;
 exports.g = g;
 exports.exterme_g = exterme_g;
+return exports;
 --[[ No side effect ]]

@@ -1,6 +1,6 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
+Mt = require "..mt";
 
 suites = {
   contents = --[[ [] ]]0
@@ -42,7 +42,7 @@ Mt.from_pair_suites("unboxed_attribute_test.ml", suites.contents);
 
 v0 = 3;
 
-exports = {}
+exports = {};
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
@@ -50,4 +50,5 @@ exports.v0 = v0;
 exports.make = make;
 exports.get = get;
 exports.y = y;
+return exports;
 --[[  Not a pure module ]]

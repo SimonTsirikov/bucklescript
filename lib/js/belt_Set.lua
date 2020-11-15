@@ -1,7 +1,7 @@
-console = {log = print};
+__console = {log = print};
 
-Curry = require "./curry";
-Belt_SetDict = require "./belt_SetDict";
+Curry = require "..curry";
+Belt_SetDict = require "..belt_SetDict";
 
 function fromArray(data, id) do
   cmp = id.cmp;
@@ -87,19 +87,19 @@ end end
 function split(m, e) do
   cmp = m.cmp;
   match = Belt_SetDict.split(m.data, e, cmp);
-  match_1 = match[0];
+  match_1 = match[1];
   return --[[ tuple ]]{
           --[[ tuple ]]{
             {
               cmp = cmp,
-              data = match_1[0]
+              data = match_1[1]
             },
             {
               cmp = cmp,
-              data = match_1[1]
+              data = match_1[2]
             }
           },
-          match[1]
+          match[2]
         };
 end end
 
@@ -172,11 +172,11 @@ function partitionU(m, f) do
   return --[[ tuple ]]{
           {
             cmp = cmp,
-            data = match[0]
+            data = match[1]
           },
           {
             cmp = cmp,
-            data = match[1]
+            data = match[2]
           }
         };
 end end
@@ -264,7 +264,7 @@ __String = --[[ alias ]]0;
 
 Dict = --[[ alias ]]0;
 
-exports = {}
+exports = {};
 exports.Int = Int;
 exports.__String = __String;
 exports.Dict = Dict;
@@ -310,4 +310,5 @@ exports.checkInvariantInternal = checkInvariantInternal;
 exports.getData = getData;
 exports.getId = getId;
 exports.packIdData = packIdData;
+return exports;
 --[[ No side effect ]]

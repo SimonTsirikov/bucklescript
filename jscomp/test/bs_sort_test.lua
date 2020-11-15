@@ -1,12 +1,12 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Belt_Array = require "../../lib/js/belt_Array";
-Belt_Range = require "../../lib/js/belt_Range";
-Belt_SortArray = require "../../lib/js/belt_SortArray";
-Caml_primitive = require "../../lib/js/caml_primitive";
-Array_data_util = require "./array_data_util";
-Belt_SortArrayInt = require "../../lib/js/belt_SortArrayInt";
+Mt = require "..mt";
+Belt_Array = require "......lib.js.belt_Array";
+Belt_Range = require "......lib.js.belt_Range";
+Belt_SortArray = require "......lib.js.belt_SortArray";
+Caml_primitive = require "......lib.js.caml_primitive";
+Array_data_util = require "..array_data_util";
+Belt_SortArrayInt = require "......lib.js.belt_SortArrayInt";
 
 suites = {
   contents = --[[ [] ]]0
@@ -31,7 +31,7 @@ end end
 function unions(xs, ys) do
   lenX = #xs;
   lenY = #ys;
-  o = new Array(lenX + lenY | 0);
+  o = new __Array(lenX + lenY | 0);
   v = Belt_SortArray.union(xs, 0, lenX, ys, 0, lenY, o, 0, cmp);
   o.length = v;
   return o;
@@ -40,7 +40,7 @@ end end
 function inters(xs, ys) do
   lenX = #xs;
   lenY = #ys;
-  o = new Array(lenX);
+  o = new __Array(lenX);
   v = Belt_SortArray.intersect(xs, 0, lenX, ys, 0, lenY, o, 0, cmp);
   o.length = v;
   return o;
@@ -49,7 +49,7 @@ end end
 function diffs(xs, ys) do
   lenX = #xs;
   lenY = #ys;
-  o = new Array(lenX);
+  o = new __Array(lenX);
   v = Belt_SortArray.diff(xs, 0, lenX, ys, 0, lenY, o, 0, cmp);
   o.length = v;
   return o;
@@ -123,27 +123,27 @@ u1 = u.slice(0);
 
 u2 = u.slice(0);
 
-console.time("test/bs_sort_test.ml 80");
+__console.time("test/bs_sort_test.ml 80");
 
 Belt_SortArray.stableSortInPlaceBy(u, cmp);
 
-console.timeEnd("test/bs_sort_test.ml 80");
+__console.timeEnd("test/bs_sort_test.ml 80");
 
 b("File \"bs_sort_test.ml\", line 81, characters 4-11", Belt_SortArray.isSorted(u, cmp));
 
-console.time("test/bs_sort_test.ml 82");
+__console.time("test/bs_sort_test.ml 82");
 
 Belt_SortArrayInt.stableSortInPlace(u2);
 
-console.timeEnd("test/bs_sort_test.ml 82");
+__console.timeEnd("test/bs_sort_test.ml 82");
 
 b("File \"bs_sort_test.ml\", line 83, characters 4-11", Belt_SortArray.isSorted(u2, cmp));
 
-console.time("test/bs_sort_test.ml 84");
+__console.time("test/bs_sort_test.ml 84");
 
 Belt_SortArray.stableSortInPlaceBy(u1, cmp);
 
-console.timeEnd("test/bs_sort_test.ml 84");
+__console.timeEnd("test/bs_sort_test.ml 84");
 
 b("File \"bs_sort_test.ml\", line 85, characters 4-11", Belt_SortArray.isSorted(u1, cmp));
 
@@ -163,7 +163,7 @@ u_1 = {
 };
 
 eq("File \"bs_sort_test.ml\", line 90, characters 5-12", Belt_SortArray.stableSortBy(u_1, (function(param, param_1) do
-            return param[0] - param_1[0] | 0;
+            return param[1] - param_1[1] | 0;
           end end)), {
       --[[ tuple ]]{
         1,
@@ -199,7 +199,7 @@ u_2 = {
 };
 
 eq("File \"bs_sort_test.ml\", line 96, characters 5-12", Belt_SortArray.stableSortBy(u_2, (function(param, param_1) do
-            return param[0] - param_1[0] | 0;
+            return param[1] - param_1[1] | 0;
           end end)), {
       --[[ tuple ]]{
         1,
@@ -247,7 +247,7 @@ u_3 = {
 };
 
 eq("File \"bs_sort_test.ml\", line 102, characters 5-12", Belt_SortArray.stableSortBy(u_3, (function(param, param_1) do
-            return param[0] - param_1[0] | 0;
+            return param[1] - param_1[1] | 0;
           end end)), {
       --[[ tuple ]]{
         1,
@@ -421,7 +421,7 @@ A = --[[ alias ]]0;
 
 SI = --[[ alias ]]0;
 
-exports = {}
+exports = {};
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
@@ -436,4 +436,5 @@ exports.inters = inters;
 exports.diffs = diffs;
 exports.SI = SI;
 exports.lt = lt;
+return exports;
 --[[  Not a pure module ]]

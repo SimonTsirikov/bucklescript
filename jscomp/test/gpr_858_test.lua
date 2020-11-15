@@ -1,4 +1,4 @@
-console = {log = print};
+__console = {log = print};
 
 
 direct = {
@@ -9,7 +9,8 @@ indirect = {
   contents = --[[ [] ]]0
 };
 
-exports = {}
+exports = {};
 exports.direct = direct;
 exports.indirect = indirect;
+return exports;
 --[[ No side effect ]]

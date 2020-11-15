@@ -1,8 +1,8 @@
 
 
-import * as Caml_bytes from "./caml_bytes.lua";
-import * as Caml_external_polyfill from "./caml_external_polyfill.lua";
-import * as Caml_builtin_exceptions from "./caml_builtin_exceptions.lua";
+local Caml_bytes = require "..caml_bytes.lua";
+local Caml_external_polyfill = require "..caml_external_polyfill.lua";
+local Caml_builtin_exceptions = require "..caml_builtin_exceptions.lua";
 
 function to_buffer(buff, ofs, len, v, flags) do
   if (ofs < 0 or len < 0 or ofs > (#buff - len | 0)) then do

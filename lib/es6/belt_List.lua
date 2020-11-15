@@ -1,37 +1,37 @@
 
 
-import * as Curry from "./curry.lua";
-import * as Belt_Array from "./belt_Array.lua";
-import * as Caml_option from "./caml_option.lua";
-import * as Belt_SortArray from "./belt_SortArray.lua";
+local Curry = require "..curry.lua";
+local Belt_Array = require "..belt_Array.lua";
+local Caml_option = require "..caml_option.lua";
+local Belt_SortArray = require "..belt_SortArray.lua";
 
 function head(x) do
   if (x) then do
-    return Caml_option.some(x[0]);
+    return Caml_option.some(x[1]);
   end
    end 
 end end
 
 function headExn(x) do
   if (x) then do
-    return x[0];
+    return x[1];
   end else do
-    error(new Error("headExn"))
+    error(new __Error("headExn"))
   end end 
 end end
 
 function tail(x) do
   if (x) then do
-    return x[1];
+    return x[2];
   end
    end 
 end end
 
 function tailExn(x) do
   if (x) then do
-    return x[1];
+    return x[2];
   end else do
-    error(new Error("tailExn"))
+    error(new __Error("tailExn"))
   end end 
 end end
 
@@ -53,10 +53,10 @@ function get(x, n) do
       x_1 = _x;
       if (x_1) then do
         if (n_1 == 0) then do
-          return Caml_option.some(x_1[0]);
+          return Caml_option.some(x_1[1]);
         end else do
           _n = n_1 - 1 | 0;
-          _x = x_1[1];
+          _x = x_1[2];
           ::continue:: ;
         end end 
       end else do
@@ -68,7 +68,7 @@ end end
 
 function getExn(x, n) do
   if (n < 0) then do
-    error(new Error("getExn"))
+    error(new __Error("getExn"))
   end
    end 
   _x = x;
@@ -78,14 +78,14 @@ function getExn(x, n) do
     x_1 = _x;
     if (x_1) then do
       if (n_1 == 0) then do
-        return x_1[0];
+        return x_1[1];
       end else do
         _n = n_1 - 1 | 0;
-        _x = x_1[1];
+        _x = x_1[2];
         ::continue:: ;
       end end 
     end else do
-      error(new Error("getExn"))
+      error(new __Error("getExn"))
     end end 
   end;
 end end
@@ -96,8 +96,8 @@ function partitionAux(p, _cell, _precX, _precY) do
     precX = _precX;
     cell = _cell;
     if (cell) then do
-      t = cell[1];
-      h = cell[0];
+      t = cell[2];
+      h = cell[1];
       next = --[[ :: ]]{
         h,
         --[[ [] ]]0
@@ -125,20 +125,20 @@ function splitAux(_cell, _precX, _precY) do
     precX = _precX;
     cell = _cell;
     if (cell) then do
-      match = cell[0];
+      match = cell[1];
       nextA = --[[ :: ]]{
-        match[0],
+        match[1],
         --[[ [] ]]0
       };
       nextB = --[[ :: ]]{
-        match[1],
+        match[2],
         --[[ [] ]]0
       };
       precX[1] = nextA;
       precY[1] = nextB;
       _precY = nextB;
       _precX = nextA;
-      _cell = cell[1];
+      _cell = cell[2];
       ::continue:: ;
     end else do
       return --[[ () ]]0;
@@ -152,12 +152,12 @@ function copyAuxCont(_cellX, _prec) do
     cellX = _cellX;
     if (cellX) then do
       next = --[[ :: ]]{
-        cellX[0],
+        cellX[1],
         --[[ [] ]]0
       };
       prec[1] = next;
       _prec = next;
-      _cellX = cellX[1];
+      _cellX = cellX[2];
       ::continue:: ;
     end else do
       return prec;
@@ -170,8 +170,8 @@ function copyAuxWitFilter(f, _cellX, _prec) do
     prec = _prec;
     cellX = _cellX;
     if (cellX) then do
-      t = cellX[1];
-      h = cellX[0];
+      t = cellX[2];
+      h = cellX[1];
       if (f(h)) then do
         next = --[[ :: ]]{
           h,
@@ -197,8 +197,8 @@ function copyAuxWithFilterIndex(f, _cellX, _prec, _i) do
     prec = _prec;
     cellX = _cellX;
     if (cellX) then do
-      t = cellX[1];
-      h = cellX[0];
+      t = cellX[2];
+      h = cellX[1];
       if (f(h, i)) then do
         next = --[[ :: ]]{
           h,
@@ -225,8 +225,8 @@ function copyAuxWitFilterMap(f, _cellX, _prec) do
     prec = _prec;
     cellX = _cellX;
     if (cellX) then do
-      t = cellX[1];
-      match = f(cellX[0]);
+      t = cellX[2];
+      match = f(cellX[1]);
       if (match ~= nil) then do
         next = --[[ :: ]]{
           Caml_option.valFromOption(match),
@@ -251,9 +251,9 @@ function removeAssocAuxWithMap(_cellX, x, _prec, f) do
     prec = _prec;
     cellX = _cellX;
     if (cellX) then do
-      t = cellX[1];
-      h = cellX[0];
-      if (f(h[0], x)) then do
+      t = cellX[2];
+      h = cellX[1];
+      if (f(h[1], x)) then do
         prec[1] = t;
         return true;
       end else do
@@ -277,9 +277,9 @@ function setAssocAuxWithMap(_cellX, x, k, _prec, eq) do
     prec = _prec;
     cellX = _cellX;
     if (cellX) then do
-      t = cellX[1];
-      h = cellX[0];
-      if (eq(h[0], x)) then do
+      t = cellX[2];
+      h = cellX[1];
+      if (eq(h[1], x)) then do
         prec[1] = --[[ :: ]]{
           --[[ tuple ]]{
             x,
@@ -310,12 +310,12 @@ function copyAuxWithMap(_cellX, _prec, f) do
     cellX = _cellX;
     if (cellX) then do
       next = --[[ :: ]]{
-        f(cellX[0]),
+        f(cellX[1]),
         --[[ [] ]]0
       };
       prec[1] = next;
       _prec = next;
-      _cellX = cellX[1];
+      _cellX = cellX[2];
       ::continue:: ;
     end else do
       return --[[ () ]]0;
@@ -331,15 +331,15 @@ function zipAux(_cellX, _cellY, _prec) do
     if (cellX and cellY) then do
       next = --[[ :: ]]{
         --[[ tuple ]]{
-          cellX[0],
-          cellY[0]
+          cellX[1],
+          cellY[1]
         },
         --[[ [] ]]0
       };
       prec[1] = next;
       _prec = next;
-      _cellY = cellY[1];
-      _cellX = cellX[1];
+      _cellY = cellY[2];
+      _cellX = cellX[2];
       ::continue:: ;
     end else do
       return --[[ () ]]0;
@@ -354,13 +354,13 @@ function copyAuxWithMap2(f, _cellX, _cellY, _prec) do
     cellX = _cellX;
     if (cellX and cellY) then do
       next = --[[ :: ]]{
-        f(cellX[0], cellY[0]),
+        f(cellX[1], cellY[1]),
         --[[ [] ]]0
       };
       prec[1] = next;
       _prec = next;
-      _cellY = cellY[1];
-      _cellX = cellX[1];
+      _cellY = cellY[2];
+      _cellX = cellX[2];
       ::continue:: ;
     end else do
       return --[[ () ]]0;
@@ -375,12 +375,12 @@ function copyAuxWithMapI(f, _i, _cellX, _prec) do
     i = _i;
     if (cellX) then do
       next = --[[ :: ]]{
-        f(i, cellX[0]),
+        f(i, cellX[1]),
         --[[ [] ]]0
       };
       prec[1] = next;
       _prec = next;
-      _cellX = cellX[1];
+      _cellX = cellX[2];
       _i = i + 1 | 0;
       ::continue:: ;
     end else do
@@ -398,12 +398,12 @@ function takeAux(_n, _cell, _prec) do
       return true;
     end else if (cell) then do
       cell_1 = --[[ :: ]]{
-        cell[0],
+        cell[1],
         --[[ [] ]]0
       };
       prec[1] = cell_1;
       _prec = cell_1;
-      _cell = cell[1];
+      _cell = cell[2];
       _n = n - 1 | 0;
       ::continue:: ;
     end else do
@@ -421,12 +421,12 @@ function splitAtAux(_n, _cell, _prec) do
       return cell;
     end else if (cell) then do
       cell_1 = --[[ :: ]]{
-        cell[0],
+        cell[1],
         --[[ [] ]]0
       };
       prec[1] = cell_1;
       _prec = cell_1;
-      _cell = cell[1];
+      _cell = cell[2];
       _n = n - 1 | 0;
       ::continue:: ;
     end else do
@@ -442,10 +442,10 @@ function take(lst, n) do
     return --[[ [] ]]0;
   end else if (lst) then do
     cell = --[[ :: ]]{
-      lst[0],
+      lst[1],
       --[[ [] ]]0
     };
-    has = takeAux(n - 1 | 0, lst[1], cell);
+    has = takeAux(n - 1 | 0, lst[2], cell);
     if (has) then do
       return cell;
     end else do
@@ -469,7 +469,7 @@ function drop(lst, n) do
         return l;
       end else if (l) then do
         _n = n_1 - 1 | 0;
-        _l = l[1];
+        _l = l[2];
         ::continue:: ;
       end else do
         return ;
@@ -488,10 +488,10 @@ function splitAt(lst, n) do
           };
   end else if (lst) then do
     cell = --[[ :: ]]{
-      lst[0],
+      lst[1],
       --[[ [] ]]0
     };
-    rest = splitAtAux(n - 1 | 0, lst[1], cell);
+    rest = splitAtAux(n - 1 | 0, lst[2], cell);
     if (rest ~= nil) then do
       return --[[ tuple ]]{
               cell,
@@ -508,10 +508,10 @@ end end
 function concat(xs, ys) do
   if (xs) then do
     cell = --[[ :: ]]{
-      xs[0],
+      xs[1],
       --[[ [] ]]0
     };
-    copyAuxCont(xs[1], cell)[1] = ys;
+    copyAuxCont(xs[2], cell)[1] = ys;
     return cell;
   end else do
     return ys;
@@ -521,10 +521,10 @@ end end
 function mapU(xs, f) do
   if (xs) then do
     cell = --[[ :: ]]{
-      f(xs[0]),
+      f(xs[1]),
       --[[ [] ]]0
     };
-    copyAuxWithMap(xs[1], cell, f);
+    copyAuxWithMap(xs[2], cell, f);
     return cell;
   end else do
     return --[[ [] ]]0;
@@ -538,10 +538,10 @@ end end
 function zipByU(l1, l2, f) do
   if (l1 and l2) then do
     cell = --[[ :: ]]{
-      f(l1[0], l2[0]),
+      f(l1[1], l2[1]),
       --[[ [] ]]0
     };
-    copyAuxWithMap2(f, l1[1], l2[1], cell);
+    copyAuxWithMap2(f, l1[2], l2[2], cell);
     return cell;
   end else do
     return --[[ [] ]]0;
@@ -555,10 +555,10 @@ end end
 function mapWithIndexU(xs, f) do
   if (xs) then do
     cell = --[[ :: ]]{
-      f(0, xs[0]),
+      f(0, xs[1]),
       --[[ [] ]]0
     };
-    copyAuxWithMapI(f, 1, xs[1], cell);
+    copyAuxWithMapI(f, 1, xs[2], cell);
     return cell;
   end else do
     return --[[ [] ]]0;
@@ -627,7 +627,7 @@ function length(xs) do
     x = _x;
     if (x) then do
       _acc = acc + 1 | 0;
-      _x = x[1];
+      _x = x[2];
       ::continue:: ;
     end else do
       return acc;
@@ -640,8 +640,8 @@ function fillAux(arr, _i, _x) do
     x = _x;
     i = _i;
     if (x) then do
-      arr[i] = x[0];
-      _x = x[1];
+      arr[i] = x[1];
+      _x = x[2];
       _i = i + 1 | 0;
       ::continue:: ;
     end else do
@@ -672,7 +672,7 @@ end end
 
 function toArray(x) do
   len = length(x);
-  arr = new Array(len);
+  arr = new __Array(len);
   fillAux(arr, 0, x);
   return arr;
 end end
@@ -689,10 +689,10 @@ function reverseConcat(_l1, _l2) do
     l1 = _l1;
     if (l1) then do
       _l2 = --[[ :: ]]{
-        l1[0],
+        l1[1],
         l2
       };
-      _l1 = l1[1];
+      _l1 = l1[2];
       ::continue:: ;
     end else do
       return l2;
@@ -709,8 +709,8 @@ function flattenAux(_prec, _xs) do
     xs = _xs;
     prec = _prec;
     if (xs) then do
-      _xs = xs[1];
-      _prec = copyAuxCont(xs[0], prec);
+      _xs = xs[2];
+      _prec = copyAuxCont(xs[1], prec);
       ::continue:: ;
     end else do
       prec[1] = --[[ [] ]]0;
@@ -723,16 +723,16 @@ function flatten(_xs) do
   while(true) do
     xs = _xs;
     if (xs) then do
-      match = xs[0];
+      match = xs[1];
       if (match) then do
         cell = --[[ :: ]]{
-          match[0],
+          match[1],
           --[[ [] ]]0
         };
-        flattenAux(copyAuxCont(match[1], cell), xs[1]);
+        flattenAux(copyAuxCont(match[2], cell), xs[2]);
         return cell;
       end else do
-        _xs = xs[1];
+        _xs = xs[2];
         ::continue:: ;
       end end 
     end else do
@@ -767,9 +767,9 @@ function mapReverseU(l, f) do
     xs = _xs;
     accu = _accu;
     if (xs) then do
-      _xs = xs[1];
+      _xs = xs[2];
       _accu = --[[ :: ]]{
-        f_1(xs[0]),
+        f_1(xs[1]),
         accu
       };
       ::continue:: ;
@@ -787,8 +787,8 @@ function forEachU(_xs, f) do
   while(true) do
     xs = _xs;
     if (xs) then do
-      f(xs[0]);
-      _xs = xs[1];
+      f(xs[1]);
+      _xs = xs[2];
       ::continue:: ;
     end else do
       return --[[ () ]]0;
@@ -808,9 +808,9 @@ function forEachWithIndexU(l, f) do
     i = _i;
     xs = _xs;
     if (xs) then do
-      f_1(i, xs[0]);
+      f_1(i, xs[1]);
       _i = i + 1 | 0;
-      _xs = xs[1];
+      _xs = xs[2];
       ::continue:: ;
     end else do
       return --[[ () ]]0;
@@ -827,8 +827,8 @@ function reduceU(_l, _accu, f) do
     accu = _accu;
     l = _l;
     if (l) then do
-      _accu = f(accu, l[0]);
-      _l = l[1];
+      _accu = f(accu, l[1]);
+      _l = l[2];
       ::continue:: ;
     end else do
       return accu;
@@ -842,7 +842,7 @@ end end
 
 function reduceReverseUnsafeU(l, accu, f) do
   if (l) then do
-    return f(reduceReverseUnsafeU(l[1], accu, f), l[0]);
+    return f(reduceReverseUnsafeU(l[2], accu, f), l[1]);
   end else do
     return accu;
   end end 
@@ -872,8 +872,8 @@ function reduceWithIndexU(l, acc, f) do
     l_1 = _l;
     if (l_1) then do
       _i = i + 1 | 0;
-      _acc = f_1(acc_1, l_1[0], i);
-      _l = l_1[1];
+      _acc = f_1(acc_1, l_1[1], i);
+      _l = l_1[2];
       ::continue:: ;
     end else do
       return acc_1;
@@ -896,11 +896,11 @@ function mapReverse2U(l1, l2, f) do
     l1_1 = _l1;
     if (l1_1 and l2_1) then do
       _accu = --[[ :: ]]{
-        f_1(l1_1[0], l2_1[0]),
+        f_1(l1_1[1], l2_1[1]),
         accu
       };
-      _l2 = l2_1[1];
-      _l1 = l1_1[1];
+      _l2 = l2_1[2];
+      _l1 = l1_1[2];
       ::continue:: ;
     end else do
       return accu;
@@ -917,9 +917,9 @@ function forEach2U(_l1, _l2, f) do
     l2 = _l2;
     l1 = _l1;
     if (l1 and l2) then do
-      f(l1[0], l2[0]);
-      _l2 = l2[1];
-      _l1 = l1[1];
+      f(l1[1], l2[1]);
+      _l2 = l2[2];
+      _l1 = l1[2];
       ::continue:: ;
     end else do
       return --[[ () ]]0;
@@ -937,9 +937,9 @@ function reduce2U(_l1, _l2, _accu, f) do
     l2 = _l2;
     l1 = _l1;
     if (l1 and l2) then do
-      _accu = f(accu, l1[0], l2[0]);
-      _l2 = l2[1];
-      _l1 = l1[1];
+      _accu = f(accu, l1[1], l2[1]);
+      _l2 = l2[2];
+      _l1 = l1[2];
       ::continue:: ;
     end else do
       return accu;
@@ -953,7 +953,7 @@ end end
 
 function reduceReverse2UnsafeU(l1, l2, accu, f) do
   if (l1 and l2) then do
-    return f(reduceReverse2UnsafeU(l1[1], l2[1], accu, f), l1[0], l2[0]);
+    return f(reduceReverse2UnsafeU(l1[2], l2[2], accu, f), l1[1], l2[1]);
   end else do
     return accu;
   end end 
@@ -976,8 +976,8 @@ function everyU(_xs, p) do
   while(true) do
     xs = _xs;
     if (xs) then do
-      if (p(xs[0])) then do
-        _xs = xs[1];
+      if (p(xs[1])) then do
+        _xs = xs[2];
         ::continue:: ;
       end else do
         return false;
@@ -996,10 +996,10 @@ function someU(_xs, p) do
   while(true) do
     xs = _xs;
     if (xs) then do
-      if (p(xs[0])) then do
+      if (p(xs[1])) then do
         return true;
       end else do
-        _xs = xs[1];
+        _xs = xs[2];
         ::continue:: ;
       end end 
     end else do
@@ -1017,9 +1017,9 @@ function every2U(_l1, _l2, p) do
     l2 = _l2;
     l1 = _l1;
     if (l1 and l2) then do
-      if (p(l1[0], l2[0])) then do
-        _l2 = l2[1];
-        _l1 = l1[1];
+      if (p(l1[1], l2[1])) then do
+        _l2 = l2[2];
+        _l1 = l1[2];
         ::continue:: ;
       end else do
         return false;
@@ -1040,8 +1040,8 @@ function cmpByLength(_l1, _l2) do
     l1 = _l1;
     if (l1) then do
       if (l2) then do
-        _l2 = l2[1];
-        _l1 = l1[1];
+        _l2 = l2[2];
+        _l1 = l1[2];
         ::continue:: ;
       end else do
         return 1;
@@ -1060,10 +1060,10 @@ function cmpU(_l1, _l2, p) do
     l1 = _l1;
     if (l1) then do
       if (l2) then do
-        c = p(l1[0], l2[0]);
+        c = p(l1[1], l2[1]);
         if (c == 0) then do
-          _l2 = l2[1];
-          _l1 = l1[1];
+          _l2 = l2[2];
+          _l1 = l1[2];
           ::continue:: ;
         end else do
           return c;
@@ -1088,9 +1088,9 @@ function eqU(_l1, _l2, p) do
     l2 = _l2;
     l1 = _l1;
     if (l1) then do
-      if (l2 and p(l1[0], l2[0])) then do
-        _l2 = l2[1];
-        _l1 = l1[1];
+      if (l2 and p(l1[1], l2[1])) then do
+        _l2 = l2[2];
+        _l1 = l1[2];
         ::continue:: ;
       end else do
         return false;
@@ -1112,11 +1112,11 @@ function some2U(_l1, _l2, p) do
     l2 = _l2;
     l1 = _l1;
     if (l1 and l2) then do
-      if (p(l1[0], l2[0])) then do
+      if (p(l1[1], l2[1])) then do
         return true;
       end else do
-        _l2 = l2[1];
-        _l1 = l1[1];
+        _l2 = l2[2];
+        _l1 = l1[2];
         ::continue:: ;
       end end 
     end else do
@@ -1133,10 +1133,10 @@ function hasU(_xs, x, eq) do
   while(true) do
     xs = _xs;
     if (xs) then do
-      if (eq(xs[0], x)) then do
+      if (eq(xs[1], x)) then do
         return true;
       end else do
-        _xs = xs[1];
+        _xs = xs[2];
         ::continue:: ;
       end end 
     end else do
@@ -1153,11 +1153,11 @@ function getAssocU(_xs, x, eq) do
   while(true) do
     xs = _xs;
     if (xs) then do
-      match = xs[0];
-      if (eq(match[0], x)) then do
-        return Caml_option.some(match[1]);
+      match = xs[1];
+      if (eq(match[1], x)) then do
+        return Caml_option.some(match[2]);
       end else do
-        _xs = xs[1];
+        _xs = xs[2];
         ::continue:: ;
       end end 
     end else do
@@ -1174,10 +1174,10 @@ function hasAssocU(_xs, x, eq) do
   while(true) do
     xs = _xs;
     if (xs) then do
-      if (eq(xs[0][0], x)) then do
+      if (eq(xs[1][1], x)) then do
         return true;
       end else do
-        _xs = xs[1];
+        _xs = xs[2];
         ::continue:: ;
       end end 
     end else do
@@ -1192,9 +1192,9 @@ end end
 
 function removeAssocU(xs, x, eq) do
   if (xs) then do
-    l = xs[1];
-    pair = xs[0];
-    if (eq(pair[0], x)) then do
+    l = xs[2];
+    pair = xs[1];
+    if (eq(pair[1], x)) then do
       return l;
     end else do
       cell = --[[ :: ]]{
@@ -1219,9 +1219,9 @@ end end
 
 function setAssocU(xs, x, k, eq) do
   if (xs) then do
-    l = xs[1];
-    pair = xs[0];
-    if (eq(pair[0], x)) then do
+    l = xs[2];
+    pair = xs[1];
+    if (eq(pair[1], x)) then do
       return --[[ :: ]]{
               --[[ tuple ]]{
                 x,
@@ -1276,11 +1276,11 @@ function getByU(_xs, p) do
   while(true) do
     xs = _xs;
     if (xs) then do
-      x = xs[0];
+      x = xs[1];
       if (p(x)) then do
         return Caml_option.some(x);
       end else do
-        _xs = xs[1];
+        _xs = xs[2];
         ::continue:: ;
       end end 
     end else do
@@ -1297,8 +1297,8 @@ function keepU(_xs, p) do
   while(true) do
     xs = _xs;
     if (xs) then do
-      t = xs[1];
-      h = xs[0];
+      t = xs[2];
+      h = xs[1];
       if (p(h)) then do
         cell = --[[ :: ]]{
           h,
@@ -1328,8 +1328,8 @@ function keepWithIndexU(xs, p) do
     i = _i;
     xs_1 = _xs;
     if (xs_1) then do
-      t = xs_1[1];
-      h = xs_1[0];
+      t = xs_1[2];
+      h = xs_1[1];
       if (p_1(h, i)) then do
         cell = --[[ :: ]]{
           h,
@@ -1356,8 +1356,8 @@ function keepMapU(_xs, p) do
   while(true) do
     xs = _xs;
     if (xs) then do
-      t = xs[1];
-      match = p(xs[0]);
+      t = xs[2];
+      match = p(xs[1]);
       if (match ~= nil) then do
         cell = --[[ :: ]]{
           Caml_option.valFromOption(match),
@@ -1381,7 +1381,7 @@ end end
 
 function partitionU(l, p) do
   if (l) then do
-    h = l[0];
+    h = l[1];
     nextX = --[[ :: ]]{
       h,
       --[[ [] ]]0
@@ -1391,15 +1391,15 @@ function partitionU(l, p) do
       --[[ [] ]]0
     };
     b = p(h);
-    partitionAux(p, l[1], nextX, nextY);
+    partitionAux(p, l[2], nextX, nextY);
     if (b) then do
       return --[[ tuple ]]{
               nextX,
-              nextY[1]
+              nextY[2]
             };
     end else do
       return --[[ tuple ]]{
-              nextX[1],
+              nextX[2],
               nextY
             };
     end end 
@@ -1417,16 +1417,16 @@ end end
 
 function unzip(xs) do
   if (xs) then do
-    match = xs[0];
+    match = xs[1];
     cellX = --[[ :: ]]{
-      match[0],
-      --[[ [] ]]0
-    };
-    cellY = --[[ :: ]]{
       match[1],
       --[[ [] ]]0
     };
-    splitAux(xs[1], cellX, cellY);
+    cellY = --[[ :: ]]{
+      match[2],
+      --[[ [] ]]0
+    };
+    splitAux(xs[2], cellX, cellY);
     return --[[ tuple ]]{
             cellX,
             cellY
@@ -1443,12 +1443,12 @@ function zip(l1, l2) do
   if (l1 and l2) then do
     cell = --[[ :: ]]{
       --[[ tuple ]]{
-        l1[0],
-        l2[0]
+        l1[1],
+        l2[1]
       },
       --[[ [] ]]0
     };
-    zipAux(l1[1], l2[1], cell);
+    zipAux(l1[2], l2[2], cell);
     return cell;
   end else do
     return --[[ [] ]]0;

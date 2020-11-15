@@ -1,9 +1,9 @@
-console = {log = print};
+__console = {log = print};
 
-Obj = require "./obj";
-Block = require "./block";
-Caml_obj = require "./caml_obj";
-CamlinternalLazy = require "./camlinternalLazy";
+Obj = require "..obj";
+Block = require "..block";
+Caml_obj = require "..caml_obj";
+CamlinternalLazy = require "..camlinternalLazy";
 
 function from_fun(f) do
   x = --[[ obj_block ]]Block.__(Obj.lazy_tag, {0});
@@ -34,7 +34,7 @@ lazy_from_val = from_val;
 
 lazy_is_val = is_val;
 
-exports = {}
+exports = {};
 exports.Undefined = Undefined;
 exports.force_val = force_val;
 exports.from_fun = from_fun;
@@ -43,4 +43,5 @@ exports.is_val = is_val;
 exports.lazy_from_fun = lazy_from_fun;
 exports.lazy_from_val = lazy_from_val;
 exports.lazy_is_val = lazy_is_val;
+return exports;
 --[[ No side effect ]]

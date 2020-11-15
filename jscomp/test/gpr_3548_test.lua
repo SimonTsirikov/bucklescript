@@ -1,6 +1,6 @@
-console = {log = print};
+__console = {log = print};
 
-Js_mapperRt = require "../../lib/js/js_mapperRt";
+Js_mapperRt = require "......lib.js.js_mapperRt";
 
 jsMapperConstantArray = {
   --[[ tuple ]]{
@@ -21,9 +21,10 @@ function orientationFromJs(param) do
   return Js_mapperRt.revSearch(2, jsMapperConstantArray, param);
 end end
 
-console.log(orientationToJs(--[[ Horizontal ]]208994564));
+__console.log(orientationToJs(--[[ Horizontal ]]208994564));
 
-exports = {}
+exports = {};
 exports.orientationToJs = orientationToJs;
 exports.orientationFromJs = orientationFromJs;
+return exports;
 --[[  Not a pure module ]]

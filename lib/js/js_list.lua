@@ -1,7 +1,7 @@
-console = {log = print};
+__console = {log = print};
 
-Js_vector = require "./js_vector";
-Caml_option = require "./caml_option";
+Js_vector = require "..js_vector";
+Caml_option = require "..caml_option";
 
 function length(l) do
   _len = 0;
@@ -10,7 +10,7 @@ function length(l) do
     param = _param;
     len = _len;
     if (param) then do
-      _param = param[1];
+      _param = param[2];
       _len = len + 1 | 0;
       ::continue:: ;
     end else do
@@ -32,14 +32,14 @@ end end
 
 function hd(param) do
   if (param) then do
-    return Caml_option.some(param[0]);
+    return Caml_option.some(param[1]);
   end
    end 
 end end
 
 function tl(param) do
   if (param) then do
-    return param[1];
+    return param[2];
   end
    end 
 end end
@@ -55,10 +55,10 @@ function nth(l, n) do
       l_1 = _l;
       if (l_1) then do
         if (n_1 == 0) then do
-          return Caml_option.some(l_1[0]);
+          return Caml_option.some(l_1[1]);
         end else do
           _n = n_1 - 1 | 0;
-          _l = l_1[1];
+          _l = l_1[2];
           ::continue:: ;
         end end 
       end else do
@@ -74,10 +74,10 @@ function revAppend(_l1, _l2) do
     l1 = _l1;
     if (l1) then do
       _l2 = --[[ :: ]]{
-        l1[0],
+        l1[1],
         l2
       };
-      _l1 = l1[1];
+      _l1 = l1[2];
       ::continue:: ;
     end else do
       return l2;
@@ -94,9 +94,9 @@ function mapRevAux(f, _acc, _ls) do
     ls = _ls;
     acc = _acc;
     if (ls) then do
-      _ls = ls[1];
+      _ls = ls[2];
       _acc = --[[ :: ]]{
-        f(ls[0]),
+        f(ls[1]),
         acc
       };
       ::continue:: ;
@@ -118,8 +118,8 @@ function iter(f, _param) do
   while(true) do
     param = _param;
     if (param) then do
-      f(param[0]);
-      _param = param[1];
+      f(param[1]);
+      _param = param[2];
       ::continue:: ;
     end else do
       return --[[ () ]]0;
@@ -135,8 +135,8 @@ function iteri(f, l) do
     param = _param;
     i = _i;
     if (param) then do
-      f_1(i, param[0]);
-      _param = param[1];
+      f_1(i, param[1]);
+      _param = param[2];
       _i = i + 1 | 0;
       ::continue:: ;
     end else do
@@ -150,8 +150,8 @@ function foldLeft(f, _accu, _l) do
     l = _l;
     accu = _accu;
     if (l) then do
-      _l = l[1];
-      _accu = f(accu, l[0]);
+      _l = l[2];
+      _accu = f(accu, l[1]);
       ::continue:: ;
     end else do
       return accu;
@@ -164,8 +164,8 @@ function tailLoop(f, _acc, _param) do
     param = _param;
     acc = _acc;
     if (param) then do
-      _param = param[1];
-      _acc = f(param[0], acc);
+      _param = param[2];
+      _acc = f(param[1], acc);
       ::continue:: ;
     end else do
       return acc;
@@ -176,8 +176,8 @@ end end
 function foldRight(f, l, init) do
   loop = function(n, param) do
     if (param) then do
-      t = param[1];
-      h = param[0];
+      t = param[2];
+      h = param[1];
       if (n < 1000) then do
         return f(h, loop(n + 1 | 0, t));
       end else do
@@ -197,8 +197,8 @@ function flatten(lx) do
     lx_1 = _lx;
     acc = _acc;
     if (lx_1) then do
-      _lx = lx_1[1];
-      _acc = revAppend(lx_1[0], acc);
+      _lx = lx_1[2];
+      _acc = revAppend(lx_1[1], acc);
       ::continue:: ;
     end else do
       return revAppend(acc, --[[ [] ]]0);
@@ -211,8 +211,8 @@ function filterRevAux(f, _acc, _xs) do
     xs = _xs;
     acc = _acc;
     if (xs) then do
-      ys = xs[1];
-      y = xs[0];
+      ys = xs[2];
+      y = xs[1];
       if (f(y)) then do
         _xs = ys;
         _acc = --[[ :: ]]{
@@ -239,8 +239,8 @@ function filterMapRevAux(f, _acc, _xs) do
     xs = _xs;
     acc = _acc;
     if (xs) then do
-      ys = xs[1];
-      match = f(xs[0]);
+      ys = xs[2];
+      match = f(xs[1]);
       _xs = ys;
       if (match ~= nil) then do
         _acc = --[[ :: ]]{
@@ -269,8 +269,8 @@ function countBy(f, xs) do
     xs_1 = _xs;
     acc = _acc;
     if (xs_1) then do
-      _xs = xs_1[1];
-      _acc = f_1(xs_1[0]) and acc + 1 | 0 or acc;
+      _xs = xs_1[2];
+      _acc = f_1(xs_1[1]) and acc + 1 | 0 or acc;
       ::continue:: ;
     end else do
       return acc;
@@ -284,15 +284,15 @@ end end
 
 function toVector(xs) do
   if (xs) then do
-    a = new Array(length(xs));
+    a = new __Array(length(xs));
     _i = 0;
     _param = xs;
     while(true) do
       param = _param;
       i = _i;
       if (param) then do
-        a[i] = param[0];
-        _param = param[1];
+        a[i] = param[1];
+        _param = param[2];
         _i = i + 1 | 0;
         ::continue:: ;
       end else do
@@ -309,9 +309,9 @@ function equal(cmp, _xs, _ys) do
     ys = _ys;
     xs = _xs;
     if (xs) then do
-      if (ys and cmp(xs[0], ys[0])) then do
-        _ys = ys[1];
-        _xs = xs[1];
+      if (ys and cmp(xs[1], ys[1])) then do
+        _ys = ys[2];
+        _xs = xs[2];
         ::continue:: ;
       end else do
         return false;
@@ -324,7 +324,7 @@ function equal(cmp, _xs, _ys) do
   end;
 end end
 
-exports = {}
+exports = {};
 exports.length = length;
 exports.cons = cons;
 exports.isEmpty = isEmpty;
@@ -346,4 +346,5 @@ exports.countBy = countBy;
 exports.init = init;
 exports.toVector = toVector;
 exports.equal = equal;
+return exports;
 --[[ No side effect ]]

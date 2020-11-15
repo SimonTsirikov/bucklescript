@@ -1,9 +1,9 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-__Array = require "../../lib/js/array";
-Block = require "../../lib/js/block";
-Js_mapperRt = require "../../lib/js/js_mapperRt";
+Mt = require "..mt";
+__Array = require "......lib.js.array";
+Block = require "......lib.js.block";
+Js_mapperRt = require "......lib.js.js_mapperRt";
 
 suites = {
   contents = --[[ [] ]]0
@@ -17,7 +17,7 @@ function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[[ :: ]]{
     --[[ tuple ]]{
-      loc .. (" id " .. String(test_id.contents)),
+      loc .. (" id " .. __String(test_id.contents)),
       (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     x,
@@ -263,9 +263,9 @@ eq("File \"ast_js_mapper_poly_test.ml\", line 89, characters 5-12", __Array.map(
 
 Mt.from_pair_suites("Ast_js_mapper_poly_test", suites.contents);
 
-$plus$great = __Array.append;
+_plus_great = __Array.append;
 
-exports = {}
+exports = {};
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
@@ -282,5 +282,6 @@ exports.v1ToJs = v1ToJs;
 exports.v1FromJs = v1FromJs;
 exports.v2ToJs = v2ToJs;
 exports.v2FromJs = v2FromJs;
-exports.$plus$great = $plus$great;
+exports._plus_great = _plus_great;
+return exports;
 --[[  Not a pure module ]]

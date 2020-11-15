@@ -1,7 +1,7 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Block = require "../../lib/js/block";
+Mt = require "..mt";
+Block = require "......lib.js.block";
 
 v = {
   contents = 1
@@ -23,7 +23,7 @@ function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[[ :: ]]{
     --[[ tuple ]]{
-      loc .. (" id " .. String(test_id.contents)),
+      loc .. (" id " .. __String(test_id.contents)),
       (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     x,
@@ -54,7 +54,7 @@ version = -1;
 
 ocaml_veriosn = "unknown";
 
-exports = {}
+exports = {};
 exports.b = b;
 exports.buffer_size = buffer_size;
 exports.vv = vv;
@@ -66,4 +66,5 @@ exports.ocaml_veriosn = ocaml_veriosn;
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
+return exports;
 --[[  Not a pure module ]]

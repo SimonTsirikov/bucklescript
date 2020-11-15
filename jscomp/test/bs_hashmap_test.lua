@@ -1,14 +1,14 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Belt_Id = require "../../lib/js/belt_Id";
-Hashtbl = require "../../lib/js/hashtbl";
-Belt_Array = require "../../lib/js/belt_Array";
-Belt_HashMap = require "../../lib/js/belt_HashMap";
-Belt_SortArray = require "../../lib/js/belt_SortArray";
-Caml_primitive = require "../../lib/js/caml_primitive";
-Array_data_util = require "./array_data_util";
-Belt_internalBucketsType = require "../../lib/js/belt_internalBucketsType";
+Mt = require "..mt";
+Belt_Id = require "......lib.js.belt_Id";
+Hashtbl = require "......lib.js.hashtbl";
+Belt_Array = require "......lib.js.belt_Array";
+Belt_HashMap = require "......lib.js.belt_HashMap";
+Belt_SortArray = require "......lib.js.belt_SortArray";
+Caml_primitive = require "......lib.js.caml_primitive";
+Array_data_util = require "..array_data_util";
+Belt_internalBucketsType = require "......lib.js.belt_internalBucketsType";
 
 suites = {
   contents = --[[ [] ]]0
@@ -107,13 +107,13 @@ S = --[[ alias ]]0;
 
 I = --[[ alias ]]0;
 
-$plus$plus = Belt_Array.concat;
+_plus_plus = Belt_Array.concat;
 
 A = --[[ alias ]]0;
 
 So = --[[ alias ]]0;
 
-exports = {}
+exports = {};
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eqx = eqx;
@@ -126,8 +126,9 @@ exports.cmp = cmp;
 exports.Y = Y;
 exports.empty = empty;
 exports.I = I;
-exports.$plus$plus = $plus$plus;
+exports._plus_plus = _plus_plus;
 exports.add = add;
 exports.A = A;
 exports.So = So;
+return exports;
 --[[ Y Not a pure module ]]

@@ -1,6 +1,6 @@
-console = {log = print};
+__console = {log = print};
 
-Caml_int32 = require "./caml_int32";
+Caml_int32 = require "..caml_int32";
 
 function rotl32(x, n) do
   return (x << n) | (x >>> (32 - n | 0));
@@ -45,8 +45,9 @@ function caml_hash_mix_string(h, s) do
   return hash;
 end end
 
-exports = {}
+exports = {};
 exports.caml_hash_mix_int = caml_hash_mix_int;
 exports.caml_hash_mix_string = caml_hash_mix_string;
 exports.caml_hash_final_mix = caml_hash_final_mix;
+return exports;
 --[[ No side effect ]]

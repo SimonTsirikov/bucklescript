@@ -1,15 +1,16 @@
-console = {log = print};
+__console = {log = print};
 
 
 function show(param) do
-  a = param[0];
-  if (a == 0 and param[1] == 0 and param[2] == 0) then do
+  a = param[1];
+  if (a == 0 and param[2] == 0 and param[3] == 0) then do
     return "zeroes";
   end
    end 
-  return String(a) .. String(param[1]);
+  return __String(a) .. __String(param[2]);
 end end
 
-exports = {}
+exports = {};
 exports.show = show;
+return exports;
 --[[ No side effect ]]

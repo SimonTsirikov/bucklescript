@@ -1,6 +1,6 @@
 
 
-import * as Caml_builtin_exceptions from "./caml_builtin_exceptions.lua";
+local Caml_builtin_exceptions = require "..caml_builtin_exceptions.lua";
 
 /***********************************************************************/
 /*                                                                     */

@@ -1,6 +1,6 @@
 
 
-import * as Caml_option from "./caml_option.lua";
+local Caml_option = require "..caml_option.lua";
 
 function bind(x, f) do
   if (x == nil) then do

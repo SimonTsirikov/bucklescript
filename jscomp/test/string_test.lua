@@ -1,13 +1,13 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-List = require "../../lib/js/list";
-Block = require "../../lib/js/block";
-Bytes = require "../../lib/js/bytes";
-__String = require "../../lib/js/string";
-Caml_bytes = require "../../lib/js/caml_bytes";
-Ext_string_test = require "./ext_string_test";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
+Mt = require "..mt";
+List = require "......lib.js.list";
+Block = require "......lib.js.block";
+Bytes = require "......lib.js.bytes";
+__String = require "......lib.js.string";
+Caml_bytes = require "......lib.js.caml_bytes";
+Ext_string_test = require "..ext_string_test";
+Caml_builtin_exceptions = require "......lib.js.caml_builtin_exceptions";
 
 function ff(x) do
   a;
@@ -58,10 +58,10 @@ end end
 function rev_split_by_char(c, s) do
   loop = function(i, l) do
     xpcall(function() do
-      i$prime = __String.index_from(s, i, c);
-      s$prime = __String.sub(s, i, i$prime - i | 0);
-      return loop(i$prime + 1 | 0, s$prime == "" and l or --[[ :: ]]{
-                    s$prime,
+      i_prime = __String.index_from(s, i, c);
+      s_prime = __String.sub(s, i, i_prime - i | 0);
+      return loop(i_prime + 1 | 0, s_prime == "" and l or --[[ :: ]]{
+                    s_prime,
                     l
                   });
     end end,function(exn) do
@@ -87,9 +87,9 @@ function xsplit(delim, s) do
       i = _i;
       l = _l;
       if (i ~= 0) then do
-        i$prime;
+        i_prime;
         xpcall(function() do
-          i$prime = __String.rindex_from(s, i - 1 | 0, delim);
+          i_prime = __String.rindex_from(s, i - 1 | 0, delim);
         end end,function(exn) do
           if (exn == Caml_builtin_exceptions.not_found) then do
             return --[[ :: ]]{
@@ -100,16 +100,16 @@ function xsplit(delim, s) do
             error(exn)
           end end 
         end end)
-        l_000 = __String.sub(s, i$prime + 1 | 0, (i - i$prime | 0) - 1 | 0);
+        l_000 = __String.sub(s, i_prime + 1 | 0, (i - i_prime | 0) - 1 | 0);
         l_1 = --[[ :: ]]{
           l_000,
           l
         };
-        l_2 = i$prime == 0 and --[[ :: ]]{
+        l_2 = i_prime == 0 and --[[ :: ]]{
             "",
             l_1
           } or l_1;
-        _i = i$prime;
+        _i = i_prime;
         _l = l_2;
         ::continue:: ;
       end else do
@@ -123,7 +123,7 @@ end end
 
 function string_of_chars(x) do
   return __String.concat("", List.map((function(prim) do
-                    return String.fromCharCode(prim);
+                    return __String.fromCharCode(prim);
                   end end), x));
 end end
 
@@ -316,7 +316,7 @@ Mt.from_pair_suites("String_test", --[[ :: ]]{
                                         "of_char",
                                         (function(param) do
                                             return --[[ Eq ]]Block.__(0, {
-                                                      String.fromCharCode(--[[ "0" ]]48),
+                                                      __String.fromCharCode(--[[ "0" ]]48),
                                                       Caml_bytes.bytes_to_string(Bytes.make(1, --[[ "0" ]]48))
                                                     });
                                           end end)
@@ -360,10 +360,11 @@ Mt.from_pair_suites("String_test", --[[ :: ]]{
       }
     });
 
-exports = {}
+exports = {};
 exports.ff = ff;
 exports.gg = gg;
 exports.rev_split_by_char = rev_split_by_char;
 exports.xsplit = xsplit;
 exports.string_of_chars = string_of_chars;
+return exports;
 --[[  Not a pure module ]]

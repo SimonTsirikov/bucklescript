@@ -1,20 +1,20 @@
-console = {log = print};
+__console = {log = print};
 
-List = require "../../lib/js/list";
-Block = require "../../lib/js/block";
-Bytes = require "../../lib/js/bytes";
-Curry = require "../../lib/js/curry";
-Scanf = require "../../lib/js/scanf";
-__Buffer = require "../../lib/js/buffer";
-Digest = require "../../lib/js/digest";
-Printf = require "../../lib/js/printf";
-Caml_io = require "../../lib/js/caml_io";
-Caml_obj = require "../../lib/js/caml_obj";
-Caml_bytes = require "../../lib/js/caml_bytes";
-Pervasives = require "../../lib/js/pervasives";
-Caml_js_exceptions = require "../../lib/js/caml_js_exceptions";
-Caml_external_polyfill = require "../../lib/js/caml_external_polyfill";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
+List = require "......lib.js.list";
+Block = require "......lib.js.block";
+Bytes = require "......lib.js.bytes";
+Curry = require "......lib.js.curry";
+Scanf = require "......lib.js.scanf";
+__Buffer = require "......lib.js.buffer";
+Digest = require "......lib.js.digest";
+Printf = require "......lib.js.printf";
+Caml_io = require "......lib.js.caml_io";
+Caml_obj = require "......lib.js.caml_obj";
+Caml_bytes = require "......lib.js.caml_bytes";
+Pervasives = require "......lib.js.pervasives";
+Caml_js_exceptions = require "......lib.js.caml_js_exceptions";
+Caml_external_polyfill = require "......lib.js.caml_external_polyfill";
+Caml_builtin_exceptions = require "......lib.js.caml_builtin_exceptions";
 
 tscanf_data_file = "tscanf_data";
 
@@ -34,7 +34,7 @@ function create_tscanf_data(ob, lines) do
                       --[[ End_of_format ]]0
                     }),
                   "%S"
-                }), param[0]));
+                }), param[1]));
     __Buffer.add_string(ob, " -> ");
     __Buffer.add_string(ob, Curry._1(Printf.sprintf(--[[ Format ]]{
                   --[[ Caml_string ]]Block.__(3, {
@@ -42,7 +42,7 @@ function create_tscanf_data(ob, lines) do
                       --[[ End_of_format ]]0
                     }),
                   "%S"
-                }), param[1]));
+                }), param[2]));
     return __Buffer.add_string(ob, ";\n");
   end end;
   return List.iter(add_line, lines);
@@ -96,7 +96,7 @@ function get_lines(fname) do
     return List.rev(l.contents);
   end end,function(raw_exn) do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
-    if (exn[0] == Scanf.Scan_failure) then do
+    if (exn[1] == Scanf.Scan_failure) then do
       s = Curry._2(Printf.sprintf(--[[ Format ]]{
                 --[[ String_literal ]]Block.__(11, {
                     "in file ",
@@ -112,7 +112,7 @@ function get_lines(fname) do
                       })
                   }),
                 "in file %s, %s"
-              }), fname, exn[1]);
+              }), fname, exn[2]);
       error({
         Caml_builtin_exceptions.failure,
         s
@@ -198,7 +198,7 @@ function test55(param) do
   return digest_file(tscanf_data_file) == tscanf_data_file_lines_digest;
 end end
 
-exports = {}
+exports = {};
 exports.tscanf_data_file = tscanf_data_file;
 exports.tscanf_data_file_lines = tscanf_data_file_lines;
 exports.create_tscanf_data = create_tscanf_data;
@@ -208,4 +208,5 @@ exports.add_digest_ib = add_digest_ib;
 exports.digest_file = digest_file;
 exports.test54 = test54;
 exports.test55 = test55;
+return exports;
 --[[ Scanf Not a pure module ]]

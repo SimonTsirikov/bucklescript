@@ -1,6 +1,6 @@
-console = {log = print};
+__console = {log = print};
 
-Caml_builtin_exceptions = require "./caml_builtin_exceptions";
+Caml_builtin_exceptions = require "..caml_builtin_exceptions";
 
 function caml_string_get(s, i) do
   if (i >= #s or i < 0) then do
@@ -32,9 +32,10 @@ function get(s, i) do
   return s.charCodeAt(i);
 end end
 
-exports = {}
+exports = {};
 exports.caml_string_get = caml_string_get;
 exports.caml_string_get16 = caml_string_get16;
 exports.caml_string_get32 = caml_string_get32;
 exports.get = get;
+return exports;
 --[[ No side effect ]]

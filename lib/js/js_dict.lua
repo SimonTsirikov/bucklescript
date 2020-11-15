@@ -1,6 +1,6 @@
-console = {log = print};
+__console = {log = print};
 
-Caml_option = require "./caml_option";
+Caml_option = require "..caml_option";
 
 function get(dict, k) do
   if ((k in dict)) then do
@@ -15,9 +15,9 @@ unsafeDeleteKey = (function (dict,key){
      });
 
 function entries(dict) do
-  keys = Object.keys(dict);
+  keys = __Object.keys(dict);
   l = keys.length;
-  values = new Array(l);
+  values = new __Array(l);
   for i = 0 , l - 1 | 0 , 1 do
     key = keys[i];
     values[i] = --[[ tuple ]]{
@@ -29,9 +29,9 @@ function entries(dict) do
 end end
 
 function values(dict) do
-  keys = Object.keys(dict);
+  keys = __Object.keys(dict);
   l = keys.length;
-  values_1 = new Array(l);
+  values_1 = new __Array(l);
   for i = 0 , l - 1 | 0 , 1 do
     values_1[i] = dict[keys[i]];
   end
@@ -44,9 +44,9 @@ function fromList(entries) do
   while(true) do
     param = _param;
     if (param) then do
-      match = param[0];
-      dict[match[0]] = match[1];
-      _param = param[1];
+      match = param[1];
+      dict[match[1]] = match[2];
+      _param = param[2];
       ::continue:: ;
     end else do
       return dict;
@@ -59,14 +59,14 @@ function fromArray(entries) do
   l = entries.length;
   for i = 0 , l - 1 | 0 , 1 do
     match = entries[i];
-    dict[match[0]] = match[1];
+    dict[match[1]] = match[2];
   end
   return dict;
 end end
 
 function map(f, source) do
   target = { };
-  keys = Object.keys(source);
+  keys = __Object.keys(source);
   l = keys.length;
   for i = 0 , l - 1 | 0 , 1 do
     key = keys[i];
@@ -75,7 +75,7 @@ function map(f, source) do
   return target;
 end end
 
-exports = {}
+exports = {};
 exports.get = get;
 exports.unsafeDeleteKey = unsafeDeleteKey;
 exports.entries = entries;
@@ -83,4 +83,5 @@ exports.values = values;
 exports.fromList = fromList;
 exports.fromArray = fromArray;
 exports.map = map;
+return exports;
 --[[ No side effect ]]

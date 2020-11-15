@@ -1,12 +1,12 @@
-console = {log = print};
+__console = {log = print};
 
 
 function u(rl) do
   return rl.on("line", (function(x) do
-                  console.log(x);
+                  __console.log(x);
                   return --[[ () ]]0;
                 end end)).on("close", (function() do
-                console.log("finished");
+                __console.log("finished");
                 return --[[ () ]]0;
               end end));
 end end
@@ -19,8 +19,9 @@ function yy(h) do
   return h.send("x");
 end end
 
-exports = {}
+exports = {};
 exports.u = u;
 exports.xx = xx;
 exports.yy = yy;
+return exports;
 --[[ No side effect ]]

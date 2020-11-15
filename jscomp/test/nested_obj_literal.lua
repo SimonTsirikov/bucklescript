@@ -1,4 +1,4 @@
-console = {log = print};
+__console = {log = print};
 
 
 structural_obj = {
@@ -17,7 +17,8 @@ f_record = {
   }
 };
 
-exports = {}
+exports = {};
 exports.structural_obj = structural_obj;
 exports.f_record = f_record;
+return exports;
 --[[ No side effect ]]

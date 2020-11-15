@@ -1,12 +1,12 @@
-console = {log = print};
+__console = {log = print};
 
-Bytes = require "./bytes";
-Curry = require "./curry";
-Caml_array = require "./caml_array";
-Caml_bytes = require "./caml_bytes";
-Caml_lexer = require "./caml_lexer";
-Pervasives = require "./pervasives";
-Caml_builtin_exceptions = require "./caml_builtin_exceptions";
+Bytes = require "..bytes";
+Curry = require "..curry";
+Caml_array = require "..caml_array";
+Caml_bytes = require "..caml_bytes";
+Caml_lexer = require "..caml_lexer";
+Pervasives = require "..pervasives";
+Caml_builtin_exceptions = require "..caml_builtin_exceptions";
 
 function engine(tbl, state, buf) do
   result = Caml_lexer.caml_lex_engine(tbl, state, buf);
@@ -213,7 +213,7 @@ dummy_pos = {
   pos_cnum = -1
 };
 
-exports = {}
+exports = {};
 exports.dummy_pos = dummy_pos;
 exports.from_channel = from_channel;
 exports.from_string = from_string;
@@ -232,4 +232,5 @@ exports.sub_lexeme_char = sub_lexeme_char;
 exports.sub_lexeme_char_opt = sub_lexeme_char_opt;
 exports.engine = engine;
 exports.new_engine = new_engine;
+return exports;
 --[[ No side effect ]]

@@ -1,16 +1,16 @@
-console = {log = print};
+__console = {log = print};
 
-__Array = require "./array";
-Curry = require "./curry";
-Int32 = require "./int32";
-Int64 = require "./int64";
-Digest = require "./digest";
-Caml_sys = require "./caml_sys";
-Nativeint = require "./nativeint";
-Caml_array = require "./caml_array";
-Caml_int64 = require "./caml_int64";
-Caml_string = require "./caml_string";
-Caml_builtin_exceptions = require "./caml_builtin_exceptions";
+__Array = require "..array";
+Curry = require "..curry";
+Int32 = require "..int32";
+Int64 = require "..int64";
+Digest = require "..digest";
+Caml_sys = require "..caml_sys";
+Nativeint = require "..nativeint";
+Caml_array = require "..caml_array";
+Caml_int64 = require "..caml_int64";
+Caml_string = require "..caml_string";
+Caml_builtin_exceptions = require "..caml_builtin_exceptions";
 
 function assign(st1, st2) do
   __Array.blit(st2.st, 0, st1.st, 0, 55);
@@ -20,7 +20,7 @@ end end
 
 function full_init(s, seed) do
   combine = function(accu, x) do
-    return Digest.string(accu .. String(x));
+    return Digest.string(accu .. __String(x));
   end end;
   extract = function(d) do
     return ((Caml_string.get(d, 0) + (Caml_string.get(d, 1) << 8) | 0) + (Caml_string.get(d, 2) << 16) | 0) + (Caml_string.get(d, 3) << 24) | 0;
@@ -288,7 +288,7 @@ State = {
   bool = bool
 };
 
-exports = {}
+exports = {};
 exports.init = init;
 exports.full_init = full_init_1;
 exports.self_init = self_init;
@@ -302,4 +302,5 @@ exports.bool = bool_1;
 exports.State = State;
 exports.get_state = get_state;
 exports.set_state = set_state;
+return exports;
 --[[ No side effect ]]

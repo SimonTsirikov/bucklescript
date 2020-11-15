@@ -1,14 +1,15 @@
-console = {log = print};
+__console = {log = print};
 
-Curry = require "../../lib/js/curry";
+Curry = require "......lib.js.curry";
 
-xx = document();
+xx = __document();
 
 alert("hehha");
 
 b = Curry._1(ff("x"), 3);
 
-exports = {}
+exports = {};
 exports.xx = xx;
 exports.b = b;
+return exports;
 --[[ xx Not a pure module ]]

@@ -1,11 +1,11 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Caml_obj = require "../../lib/js/caml_obj";
-Belt_List = require "../../lib/js/belt_List";
-Belt_Array = require "../../lib/js/belt_Array";
-Caml_int32 = require "../../lib/js/caml_int32";
-Caml_primitive = require "../../lib/js/caml_primitive";
+Mt = require "..mt";
+Caml_obj = require "......lib.js.caml_obj";
+Belt_List = require "......lib.js.belt_List";
+Belt_Array = require "......lib.js.belt_Array";
+Caml_int32 = require "......lib.js.caml_int32";
+Caml_primitive = require "......lib.js.caml_primitive";
 
 suites = {
   contents = --[[ [] ]]0
@@ -1767,7 +1767,7 @@ eq("File \"bs_list_test.ml\", line 269, characters 5-12", Belt_List.has(--[[ :: 
             }
           }
         }, "2", (function(x, s) do
-            return String(x) == s;
+            return __String(x) == s;
           end end)), true);
 
 eq("File \"bs_list_test.ml\", line 270, characters 5-12", Belt_List.has(--[[ :: ]]{
@@ -1780,7 +1780,7 @@ eq("File \"bs_list_test.ml\", line 270, characters 5-12", Belt_List.has(--[[ :: 
             }
           }
         }, "0", (function(x, s) do
-            return String(x) == s;
+            return __String(x) == s;
           end end)), false);
 
 b("File \"bs_list_test.ml\", line 272, characters 4-11", Belt_List.reduceReverse(--[[ :: ]]{
@@ -2523,7 +2523,7 @@ A = --[[ alias ]]0;
 
 J = --[[ alias ]]0;
 
-exports = {}
+exports = {};
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
@@ -2542,4 +2542,5 @@ exports.length_10_id = length_10_id;
 exports.length_8_id = length_8_id;
 exports.succx = succx;
 exports.makeTest = makeTest;
+return exports;
 --[[ u Not a pure module ]]

@@ -1,6 +1,6 @@
-console = {log = print};
+__console = {log = print};
 
-Curry = require "../../lib/js/curry";
+Curry = require "......lib.js.curry";
 
 v = {
   contents = 0
@@ -29,9 +29,10 @@ end end
 
 u = h;
 
-exports = {}
+exports = {};
 exports.u = u;
 exports.gen = gen;
 exports.not_real_escape = not_real_escape;
 exports.real_escape = real_escape;
+return exports;
 --[[ No side effect ]]

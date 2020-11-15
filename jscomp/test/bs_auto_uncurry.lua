@@ -1,13 +1,13 @@
-console = {log = print};
+__console = {log = print};
 
-Curry = require "../../lib/js/curry";
-Caml_splice_call = require "../../lib/js/caml_splice_call";
+Curry = require "......lib.js.curry";
+Caml_splice_call = require "......lib.js.caml_splice_call";
 
 Curry_1 = { };
 
 Block = { };
 
-xbs = Array.prototype.map.call({
+xbs = __Array.prototype.map.call({
       1,
       2,
       3,
@@ -17,7 +17,7 @@ xbs = Array.prototype.map.call({
       end end));
 
 function f(cb) do
-  return Array.prototype.map.call({
+  return __Array.prototype.map.call({
               1,
               2,
               3,
@@ -25,7 +25,7 @@ function f(cb) do
             }, Curry.__1(cb));
 end end
 
-xs = Array.prototype.map.call({
+xs = __Array.prototype.map.call({
       1,
       1,
       2
@@ -43,7 +43,7 @@ end end
 
 function f_01(param) do
   return hi((function() do
-                console.log("x");
+                __console.log("x");
                 return --[[ () ]]0;
               end end));
 end end
@@ -51,7 +51,7 @@ end end
 function f_02(xs) do
   return hi((function() do
                 xs.contents = --[[ () ]]0;
-                console.log("x");
+                __console.log("x");
                 return --[[ () ]]0;
               end end));
 end end
@@ -104,7 +104,7 @@ function h5(x) do
 end end
 
 function add(x, y) do
-  console.log(--[[ tuple ]]{
+  __console.log(--[[ tuple ]]{
         x,
         y
       });
@@ -116,8 +116,8 @@ function h6(x) do
 end end
 
 function unit_magic(param) do
-  console.log("noinline");
-  console.log("noinline");
+  __console.log("noinline");
+  __console.log("noinline");
   return 3;
 end end
 
@@ -133,7 +133,7 @@ function hh(xs) do
     end end);
 end end
 
-exports = {}
+exports = {};
 exports.Curry = Curry_1;
 exports.Block = Block;
 exports.xbs = xbs;
@@ -156,4 +156,5 @@ exports.h6 = h6;
 exports.unit_magic = unit_magic;
 exports.f_unit_magic = f_unit_magic;
 exports.hh = hh;
+return exports;
 --[[ xbs Not a pure module ]]

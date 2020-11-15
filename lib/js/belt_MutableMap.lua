@@ -1,8 +1,8 @@
-console = {log = print};
+__console = {log = print};
 
-Curry = require "./curry";
-Caml_option = require "./caml_option";
-Belt_internalAVLtree = require "./belt_internalAVLtree";
+Curry = require "..curry";
+Caml_option = require "..caml_option";
+Belt_internalAVLtree = require "..belt_internalAVLtree";
 
 function removeMutateAux(nt, x, cmp) do
   k = nt.key;
@@ -339,7 +339,7 @@ function mergeManyAux(t, xs, cmp) do
   v = t;
   for i = 0 , #xs - 1 | 0 , 1 do
     match = xs[i];
-    v = Belt_internalAVLtree.updateMutate(v, match[0], match[1], cmp);
+    v = Belt_internalAVLtree.updateMutate(v, match[1], match[2], cmp);
   end
   return v;
 end end
@@ -359,7 +359,7 @@ Int = --[[ alias ]]0;
 
 __String = --[[ alias ]]0;
 
-exports = {}
+exports = {};
 exports.Int = Int;
 exports.__String = __String;
 exports.make = make;
@@ -407,4 +407,5 @@ exports.mapU = mapU;
 exports.map = map;
 exports.mapWithKeyU = mapWithKeyU;
 exports.mapWithKey = mapWithKey;
+return exports;
 --[[ No side effect ]]

@@ -1,7 +1,7 @@
-console = {log = print};
+__console = {log = print};
 
-Curry = require "../../lib/js/curry";
-Caml_array = require "../../lib/js/caml_array";
+Curry = require "......lib.js.curry";
+Caml_array = require "......lib.js.caml_array";
 
 function f(_n, _acc) do
   while(true) do
@@ -12,7 +12,7 @@ function f(_n, _acc) do
     end else do
       _acc = (function(n,acc)do
       return function (param) do
-        console.log(String(n));
+        __console.log(__String(n));
         return Curry._1(acc, --[[ () ]]0);
       end end
       end end)(n,acc);
@@ -40,7 +40,8 @@ f(10, (function(param) do
         return --[[ () ]]0;
       end end));
 
-exports = {}
+exports = {};
 exports.f = f;
 exports.test_closure = test_closure;
+return exports;
 --[[  Not a pure module ]]

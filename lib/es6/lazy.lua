@@ -1,9 +1,9 @@
 
 
-import * as Obj from "./obj.lua";
-import * as Block from "./block.lua";
-import * as Caml_obj from "./caml_obj.lua";
-import * as CamlinternalLazy from "./camlinternalLazy.lua";
+local Obj = require "..obj.lua";
+local Block = require "..block.lua";
+local Caml_obj = require "..caml_obj.lua";
+local CamlinternalLazy = require "..camlinternalLazy.lua";
 
 function from_fun(f) do
   x = --[[ obj_block ]]Block.__(Obj.lazy_tag, {0});

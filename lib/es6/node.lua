@@ -2,7 +2,7 @@
 
 
 function test(x) do
-  if (typeof x == "string") then do
+  if (type(x) == "string") then do
     return --[[ tuple ]]{
             --[[ String ]]0,
             x

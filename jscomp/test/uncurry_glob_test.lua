@@ -1,6 +1,6 @@
-console = {log = print};
+__console = {log = print};
 
-Caml_utils = require "../../lib/js/caml_utils";
+Caml_utils = require "......lib.js.caml_utils";
 
 v = Caml_utils.repeat(100, "x");
 
@@ -17,18 +17,19 @@ end end
 
 f();
 
-function $plus$great(a, h) do
+function _plus_great(a, h) do
   return h(a);
 end end
 
 function u(h) do
-  return $plus$great(3, h);
+  return _plus_great(3, h);
 end end
 
-exports = {}
+exports = {};
 exports.v = v;
 exports.M = M;
 exports.f = f;
-exports.$plus$great = $plus$great;
+exports._plus_great = _plus_great;
 exports.u = u;
+return exports;
 --[[ v Not a pure module ]]

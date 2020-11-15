@@ -1,7 +1,7 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Caml_option = require "../../lib/js/caml_option";
+Mt = require "..mt";
+Caml_option = require "......lib.js.caml_option";
 
 suites = {
   contents = --[[ [] ]]0
@@ -34,12 +34,12 @@ function makeWrapper(foo, param) do
         end end)();
   end
    end 
-  console.log(tmp);
+  __console.log(tmp);
   return --[[ () ]]0;
 end end
 
 function makeWrapper2(foo, param) do
-  console.log({
+  __console.log({
         foo = (function() do
               local ___conditional___=(foo);
               do
@@ -57,7 +57,7 @@ end end
 makeWrapper2(--[[ a ]]97, --[[ () ]]0);
 
 function makeWrapper3(foo, param) do
-  console.log(2);
+  __console.log(2);
   tmp = { };
   if (foo ~= nil) then do
     tmp.foo = (function() do
@@ -76,7 +76,7 @@ function makeWrapper3(foo, param) do
 end end
 
 function makeWrapper4(foo, param) do
-  console.log(2);
+  __console.log(2);
   tmp = { };
   tmp_1 = foo > 100 and nil or (
       foo > 10 and --[[ b ]]98 or --[[ a ]]97
@@ -109,7 +109,7 @@ b("File \"gpr_2503_test.ml\", line 43, characters 5-12", nil == makeWrapper4(111
 
 Mt.from_pair_suites("Gpr_2503_test", suites.contents);
 
-exports = {}
+exports = {};
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
@@ -118,4 +118,5 @@ exports.makeWrapper = makeWrapper;
 exports.makeWrapper2 = makeWrapper2;
 exports.makeWrapper3 = makeWrapper3;
 exports.makeWrapper4 = makeWrapper4;
+return exports;
 --[[  Not a pure module ]]

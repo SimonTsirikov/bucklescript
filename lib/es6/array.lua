@@ -1,11 +1,11 @@
 
 
-import * as Curry from "./curry.lua";
-import * as Caml_obj from "./caml_obj.lua";
-import * as Caml_array from "./caml_array.lua";
-import * as Caml_exceptions from "./caml_exceptions.lua";
-import * as Caml_js_exceptions from "./caml_js_exceptions.lua";
-import * as Caml_builtin_exceptions from "./caml_builtin_exceptions.lua";
+local Curry = require "..curry.lua";
+local Caml_obj = require "..caml_obj.lua";
+local Caml_array = require "..caml_array.lua";
+local Caml_exceptions = require "..caml_exceptions.lua";
+local Caml_js_exceptions = require "..caml_js_exceptions.lua";
+local Caml_builtin_exceptions = require "..caml_builtin_exceptions.lua";
 
 make_float = Caml_array.caml_make_float_vect;
 
@@ -193,7 +193,7 @@ function list_length(_accu, _param) do
     param = _param;
     accu = _accu;
     if (param) then do
-      _param = param[1];
+      _param = param[2];
       _accu = accu + 1 | 0;
       ::continue:: ;
     end else do
@@ -204,15 +204,15 @@ end end
 
 function of_list(l) do
   if (l) then do
-    a = Caml_array.caml_make_vect(list_length(0, l), l[0]);
+    a = Caml_array.caml_make_vect(list_length(0, l), l[1]);
     _i = 1;
-    _param = l[1];
+    _param = l[2];
     while(true) do
       param = _param;
       i = _i;
       if (param) then do
-        a[i] = param[0];
-        _param = param[1];
+        a[i] = param[1];
+        _param = param[2];
         _i = i + 1 | 0;
         ::continue:: ;
       end else do
@@ -349,8 +349,8 @@ function sort(cmp, a) do
       end;
     end end,function(raw_exn) do
       exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
-      if (exn[0] == Bottom) then do
-        return Caml_array.caml_array_set(a, exn[1], e);
+      if (exn[1] == Bottom) then do
+        return Caml_array.caml_array_set(a, exn[2], e);
       end else do
         error(exn)
       end end 
@@ -369,8 +369,8 @@ function sort(cmp, a) do
       end;
     end end,function(raw_exn) do
       exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
-      if (exn[0] == Bottom) then do
-        return exn[1];
+      if (exn[1] == Bottom) then do
+        return exn[2];
       end else do
         error(exn)
       end end 

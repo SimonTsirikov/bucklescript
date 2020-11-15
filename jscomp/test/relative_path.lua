@@ -1,6 +1,6 @@
-console = {log = print};
+__console = {log = print};
 
-FileJs = require "./Fil";
+FileJs = require "..Fil";
 
 foo = FileJs.foo;
 
@@ -10,8 +10,9 @@ end end
 
 bar = foo;
 
-exports = {}
+exports = {};
 exports.foo = foo;
 exports.foo2 = foo2;
 exports.bar = bar;
+return exports;
 --[[ foo Not a pure module ]]

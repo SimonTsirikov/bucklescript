@@ -1,7 +1,7 @@
-console = {log = print};
+__console = {log = print};
 
-Js_mapperRt = require "../../lib/js/js_mapperRt";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
+Js_mapperRt = require "......lib.js.js_mapperRt";
+Caml_builtin_exceptions = require "......lib.js.caml_builtin_exceptions";
 
 jsMapperConstantArray = {
   --[[ tuple ]]{
@@ -8438,8 +8438,9 @@ if (not eq(tFromJs("xx"), nil)) then do
 end
  end 
 
-exports = {}
+exports = {};
 exports.tToJs = tToJs;
 exports.tFromJs = tFromJs;
 exports.eq = eq;
+return exports;
 --[[  Not a pure module ]]

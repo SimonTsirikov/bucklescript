@@ -1,9 +1,9 @@
 
 
-import * as Caml_builtin_exceptions from "./caml_builtin_exceptions.lua";
+local Caml_builtin_exceptions = require "..caml_builtin_exceptions.lua";
 
 function caml_array_sub(x, offset, len) do
-  result = new Array(len);
+  result = new __Array(len);
   j = 0;
   i = offset;
   while(j < len) do
@@ -19,8 +19,8 @@ function len(_acc, _l) do
     l = _l;
     acc = _acc;
     if (l) then do
-      _l = l[1];
-      _acc = #l[0] + acc | 0;
+      _l = l[2];
+      _acc = #l[1] + acc | 0;
       ::continue:: ;
     end else do
       return acc;
@@ -33,7 +33,7 @@ function fill(arr, _i, _l) do
     l = _l;
     i = _i;
     if (l) then do
-      x = l[0];
+      x = l[1];
       l_1 = #x;
       k = i;
       j = 0;
@@ -42,7 +42,7 @@ function fill(arr, _i, _l) do
         k = k + 1 | 0;
         j = j + 1 | 0;
       end;
-      _l = l[1];
+      _l = l[2];
       _i = k;
       ::continue:: ;
     end else do
@@ -53,7 +53,7 @@ end end
 
 function caml_array_concat(l) do
   v = len(0, l);
-  result = new Array(v);
+  result = new __Array(v);
   fill(result, 0, l);
   return result;
 end end
@@ -82,7 +82,7 @@ function caml_array_get(xs, index) do
 end end
 
 function caml_make_vect(len, init) do
-  b = new Array(len);
+  b = new __Array(len);
   for i = 0 , len - 1 | 0 , 1 do
     b[i] = init;
   end
@@ -90,7 +90,7 @@ function caml_make_vect(len, init) do
 end end
 
 function caml_make_float_vect(len) do
-  b = new Array(len);
+  b = new __Array(len);
   for i = 0 , len - 1 | 0 , 1 do
     b[i] = 0;
   end

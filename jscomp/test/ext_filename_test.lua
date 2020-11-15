@@ -1,24 +1,24 @@
-console = {log = print};
+__console = {log = print};
 
-Sys = require "../../lib/js/sys";
-List = require "../../lib/js/list";
-Block = require "../../lib/js/block";
-Bytes = require "../../lib/js/bytes";
-Curry = require "../../lib/js/curry";
-Format = require "../../lib/js/format";
-__String = require "../../lib/js/string";
-Caml_obj = require "../../lib/js/caml_obj";
-Caml_sys = require "../../lib/js/caml_sys";
-Filename = require "../../lib/js/filename";
-Caml_bytes = require "../../lib/js/caml_bytes";
-Pervasives = require "../../lib/js/pervasives";
-Test_literals = require "./test_literals";
-Ext_string_test = require "./ext_string_test";
-CamlinternalLazy = require "../../lib/js/camlinternalLazy";
-Caml_js_exceptions = require "../../lib/js/caml_js_exceptions";
-Ext_pervasives_test = require "./ext_pervasives_test";
-Caml_external_polyfill = require "../../lib/js/caml_external_polyfill";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
+Sys = require "......lib.js.sys";
+List = require "......lib.js.list";
+Block = require "......lib.js.block";
+Bytes = require "......lib.js.bytes";
+Curry = require "......lib.js.curry";
+Format = require "......lib.js.format";
+__String = require "......lib.js.string";
+Caml_obj = require "......lib.js.caml_obj";
+Caml_sys = require "......lib.js.caml_sys";
+Filename = require "......lib.js.filename";
+Caml_bytes = require "......lib.js.caml_bytes";
+Pervasives = require "......lib.js.pervasives";
+Test_literals = require "..test_literals";
+Ext_string_test = require "..ext_string_test";
+CamlinternalLazy = require "......lib.js.camlinternalLazy";
+Caml_js_exceptions = require "......lib.js.caml_js_exceptions";
+Ext_pervasives_test = require "..ext_pervasives_test";
+Caml_external_polyfill = require "......lib.js.caml_external_polyfill";
+Caml_builtin_exceptions = require "......lib.js.caml_builtin_exceptions";
 
 node_sep = "/";
 
@@ -67,7 +67,7 @@ function chop_extension(locOpt, name) do
     return Filename.chop_extension(name);
   end end,function(raw_exn) do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
-    if (exn[0] == Caml_builtin_exceptions.invalid_argument) then do
+    if (exn[1] == Caml_builtin_exceptions.invalid_argument) then do
       return Curry._2(Format.ksprintf(Pervasives.invalid_arg, --[[ Format ]]{
                       --[[ String_literal ]]Block.__(11, {
                           "Filename.chop_extension ( ",
@@ -98,7 +98,7 @@ function chop_extension_if_any(fname) do
     return Filename.chop_extension(fname);
   end end,function(raw_exn) do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
-    if (exn[0] == Caml_builtin_exceptions.invalid_argument) then do
+    if (exn[1] == Caml_builtin_exceptions.invalid_argument) then do
       return fname;
     end else do
       error(exn)
@@ -109,27 +109,27 @@ end end
 os_path_separator_char = Filename.dir_sep.charCodeAt(0);
 
 function relative_path(file_or_dir_1, file_or_dir_2) do
-  relevant_dir1 = file_or_dir_1[0] >= 781515420 and Curry._1(Filename.dirname, file_or_dir_1[1]) or file_or_dir_1[1];
-  relevant_dir2 = file_or_dir_2[0] >= 781515420 and Curry._1(Filename.dirname, file_or_dir_2[1]) or file_or_dir_2[1];
+  relevant_dir1 = file_or_dir_1[1] >= 781515420 and Curry._1(Filename.dirname, file_or_dir_1[2]) or file_or_dir_1[2];
+  relevant_dir2 = file_or_dir_2[1] >= 781515420 and Curry._1(Filename.dirname, file_or_dir_2[2]) or file_or_dir_2[2];
   dir1 = Ext_string_test.split(nil, relevant_dir1, os_path_separator_char);
   dir2 = Ext_string_test.split(nil, relevant_dir2, os_path_separator_char);
   go = function(_dir1, _dir2) do
     while(true) do
       dir2 = _dir2;
       dir1 = _dir1;
-      if (dir1 and dir2 and dir1[0] == dir2[0]) then do
-        _dir2 = dir2[1];
-        _dir1 = dir1[1];
+      if (dir1 and dir2 and dir1[1] == dir2[1]) then do
+        _dir2 = dir2[2];
+        _dir1 = dir1[2];
         ::continue:: ;
       end
        end 
-      return Pervasives.$at(List.map((function(param) do
+      return Pervasives._at(List.map((function(param) do
                         return node_parent;
                       end end), dir2), dir1);
     end;
   end end;
   ys = go(dir1, dir2);
-  if (ys and ys[0] == node_parent) then do
+  if (ys and ys[1] == node_parent) then do
     return __String.concat(node_sep, ys);
   end else do
     return __String.concat(node_sep, --[[ :: ]]{
@@ -140,7 +140,7 @@ function relative_path(file_or_dir_1, file_or_dir_2) do
 end end
 
 function node_relative_path(node_modules_shorten, file1, dep_file) do
-  file2 = dep_file[1];
+  file2 = dep_file[2];
   v = Ext_string_test.find(nil, Test_literals.node_modules, file2);
   len = #file2;
   if (node_modules_shorten and v >= 0) then do
@@ -171,18 +171,18 @@ function node_relative_path(node_modules_shorten, file1, dep_file) do
     end end;
     return Ext_string_test.tail_from(file2, skip(v + Test_literals.node_modules_length | 0));
   end else do
-    return relative_path(dep_file[0] >= 781515420 and --[[ `File ]]{
+    return relative_path(dep_file[1] >= 781515420 and --[[ `File ]]{
                   781515420,
-                  absolute_path(dep_file[1])
+                  absolute_path(dep_file[2])
                 } or --[[ `Dir ]]{
                   3405101,
-                  absolute_path(dep_file[1])
-                }, file1[0] >= 781515420 and --[[ `File ]]{
+                  absolute_path(dep_file[2])
+                }, file1[1] >= 781515420 and --[[ `File ]]{
                   781515420,
-                  absolute_path(file1[1])
+                  absolute_path(file1[2])
                 } or --[[ `Dir ]]{
                   3405101,
-                  absolute_path(file1[1])
+                  absolute_path(file1[2])
                 }) .. (node_sep .. Curry._1(Filename.basename, file2));
   end end 
 end end
@@ -193,9 +193,9 @@ function find_root_filename(_cwd, filename) do
     if (Caml_external_polyfill.resolve("caml_sys_file_exists")(Filename.concat(cwd, filename))) then do
       return cwd;
     end else do
-      cwd$prime = Curry._1(Filename.dirname, cwd);
-      if (#cwd$prime < #cwd) then do
-        _cwd = cwd$prime;
+      cwd_prime = Curry._1(Filename.dirname, cwd);
+      if (#cwd_prime < #cwd) then do
+        _cwd = cwd_prime;
         ::continue:: ;
       end else do
         return Curry._2(Ext_pervasives_test.failwithf("File \"ext_filename_test.ml\", line 205, characters 13-20", --[[ Format ]]{
@@ -279,20 +279,20 @@ end end
 function rel_normalized_absolute_path(from, to_) do
   match = split_aux(from);
   match_1 = split_aux(to_);
-  root2 = match_1[0];
-  if (match[0] ~= root2) then do
+  root2 = match_1[1];
+  if (match[1] ~= root2) then do
     return root2;
   end else do
-    _xss = match[1];
-    _yss = match_1[1];
+    _xss = match[2];
+    _yss = match_1[2];
     while(true) do
       yss = _yss;
       xss = _xss;
       if (xss) then do
-        xs = xss[1];
+        xs = xss[2];
         if (yss) then do
-          if (xss[0] == yss[0]) then do
-            _yss = yss[1];
+          if (xss[1] == yss[1]) then do
+            _yss = yss[2];
             _xss = xs;
             ::continue:: ;
           end else do
@@ -307,7 +307,7 @@ function rel_normalized_absolute_path(from, to_) do
                       end end), Ext_string_test.parent_dir_lit, xs);
         end end 
       end else if (yss) then do
-        return List.fold_left(Filename.concat, yss[0], yss[1]);
+        return List.fold_left(Filename.concat, yss[1], yss[2]);
       end else do
         return Ext_string_test.empty;
       end end  end 
@@ -318,7 +318,7 @@ end end
 function normalize_absolute_path(x) do
   drop_if_exist = function(xs) do
     if (xs) then do
-      return xs[1];
+      return xs[2];
     end else do
       return --[[ [] ]]0;
     end end 
@@ -328,8 +328,8 @@ function normalize_absolute_path(x) do
       paths = _paths;
       acc = _acc;
       if (paths) then do
-        xs = paths[1];
-        x = paths[0];
+        xs = paths[2];
+        x = paths[1];
         _paths = xs;
         if (x == Ext_string_test.current_dir_lit) then do
           ::continue:: ;
@@ -349,17 +349,17 @@ function normalize_absolute_path(x) do
     end;
   end end;
   match = split_aux(x);
-  root = match[0];
-  rev_paths = normalize_list(--[[ [] ]]0, match[1]);
+  root = match[1];
+  rev_paths = normalize_list(--[[ [] ]]0, match[2]);
   if (rev_paths) then do
-    _acc = rev_paths[0];
-    _rev_paths = rev_paths[1];
+    _acc = rev_paths[1];
+    _rev_paths = rev_paths[2];
     while(true) do
       rev_paths_1 = _rev_paths;
       acc = _acc;
       if (rev_paths_1) then do
-        _rev_paths = rev_paths_1[1];
-        _acc = Filename.concat(rev_paths_1[0], acc);
+        _rev_paths = rev_paths_1[2];
+        _acc = Filename.concat(rev_paths_1[1], acc);
         ::continue:: ;
       end else do
         return Filename.concat(root, acc);
@@ -395,14 +395,14 @@ end else do
   })
 end end  end 
 
-$slash$slash = Filename.concat;
+_slash_slash = Filename.concat;
 
-exports = {}
+exports = {};
 exports.node_sep = node_sep;
 exports.node_parent = node_parent;
 exports.node_current = node_current;
 exports.cwd = cwd;
-exports.$slash$slash = $slash$slash;
+exports._slash_slash = _slash_slash;
 exports.path_as_directory = path_as_directory;
 exports.absolute_path = absolute_path;
 exports.chop_extension = chop_extension;
@@ -421,4 +421,5 @@ exports.rel_normalized_absolute_path = rel_normalized_absolute_path;
 exports.normalize_absolute_path = normalize_absolute_path;
 exports.get_extension = get_extension;
 exports.simple_convert_node_path_to_os_path = simple_convert_node_path_to_os_path;
+return exports;
 --[[ simple_convert_node_path_to_os_path Not a pure module ]]

@@ -1,6 +1,6 @@
-console = {log = print};
+__console = {log = print};
 
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
+Caml_builtin_exceptions = require "......lib.js.caml_builtin_exceptions";
 
 function f(x) do
   return x + 1 | 0;
@@ -37,10 +37,11 @@ function compare(c1, c2) do
   return c1 - c2 | 0;
 end end
 
-exports = {}
+exports = {};
 exports.f = f;
 exports.chr = chr;
 exports.lowercase = lowercase;
 exports.uppercase = uppercase;
 exports.compare = compare;
+return exports;
 --[[ No side effect ]]

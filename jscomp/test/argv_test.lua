@@ -1,7 +1,7 @@
-console = {log = print};
+__console = {log = print};
 
-Arg = require "../../lib/js/arg";
-Block = require "../../lib/js/block";
+Arg = require "......lib.js.arg";
+Block = require "......lib.js.block";
 
 function anno_fun(arg) do
   return --[[ () ]]0;
@@ -39,10 +39,11 @@ arg_spec = --[[ :: ]]{
 
 Arg.parse(arg_spec, anno_fun, usage_msg);
 
-exports = {}
+exports = {};
 exports.anno_fun = anno_fun;
 exports.usage_msg = usage_msg;
 exports.compile = compile;
 exports.test = test;
 exports.arg_spec = arg_spec;
+return exports;
 --[[  Not a pure module ]]

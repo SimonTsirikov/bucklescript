@@ -1,13 +1,13 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Belt_Id = require "../../lib/js/belt_Id";
-Belt_Map = require "../../lib/js/belt_Map";
-Belt_Set = require "../../lib/js/belt_Set";
-Belt_Array = require "../../lib/js/belt_Array";
-Belt_MapDict = require "../../lib/js/belt_MapDict";
-Caml_primitive = require "../../lib/js/caml_primitive";
-Array_data_util = require "./array_data_util";
+Mt = require "..mt";
+Belt_Id = require "......lib.js.belt_Id";
+Belt_Map = require "......lib.js.belt_Map";
+Belt_Set = require "......lib.js.belt_Set";
+Belt_Array = require "......lib.js.belt_Array";
+Belt_MapDict = require "......lib.js.belt_MapDict";
+Caml_primitive = require "......lib.js.caml_primitive";
+Array_data_util = require "..array_data_util";
 
 suites = {
   contents = --[[ [] ]]0
@@ -255,9 +255,9 @@ v4 = Belt_Map.update(v3, -10, inc);
 
 match = Belt_Map.split(v3, 5000);
 
-pres = match[1];
+pres = match[2];
 
-match_1 = match[0];
+match_1 = match[1];
 
 match_2 = Belt_Map.get(v3, 10);
 
@@ -287,13 +287,13 @@ b("File \"bs_poly_map_test.ml\", line 130, characters 4-11", Belt_MapDict.isEmpt
 
 b("File \"bs_poly_map_test.ml\", line 131, characters 4-11", pres ~= nil and pres == 5000 or false);
 
-b("File \"bs_poly_map_test.ml\", line 132, characters 4-11", Belt_Array.eq(Belt_MapDict.keysToArray(match_1[0].data), Belt_Array.makeBy(5000, (function(i) do
+b("File \"bs_poly_map_test.ml\", line 132, characters 4-11", Belt_Array.eq(Belt_MapDict.keysToArray(match_1[1].data), Belt_Array.makeBy(5000, (function(i) do
                 return i;
               end end)), (function(prim, prim_1) do
             return prim == prim_1;
           end end)));
 
-b("File \"bs_poly_map_test.ml\", line 133, characters 4-11", Belt_Array.eq(Belt_MapDict.keysToArray(match_1[1].data), Belt_Array.makeBy(5000, (function(i) do
+b("File \"bs_poly_map_test.ml\", line 133, characters 4-11", Belt_Array.eq(Belt_MapDict.keysToArray(match_1[2].data), Belt_Array.makeBy(5000, (function(i) do
                 return 5001 + i | 0;
               end end)), (function(prim, prim_1) do
             return prim == prim_1;
@@ -303,17 +303,17 @@ v7 = Belt_Map.remove(v3, 5000);
 
 match_5 = Belt_Map.split(v7, 5000);
 
-match_6 = match_5[0];
+match_6 = match_5[1];
 
-b("File \"bs_poly_map_test.ml\", line 137, characters 4-11", match_5[1] == nil);
+b("File \"bs_poly_map_test.ml\", line 137, characters 4-11", match_5[2] == nil);
 
-b("File \"bs_poly_map_test.ml\", line 138, characters 4-11", Belt_Array.eq(Belt_MapDict.keysToArray(match_6[0].data), Belt_Array.makeBy(5000, (function(i) do
+b("File \"bs_poly_map_test.ml\", line 138, characters 4-11", Belt_Array.eq(Belt_MapDict.keysToArray(match_6[1].data), Belt_Array.makeBy(5000, (function(i) do
                 return i;
               end end)), (function(prim, prim_1) do
             return prim == prim_1;
           end end)));
 
-b("File \"bs_poly_map_test.ml\", line 139, characters 4-11", Belt_Array.eq(Belt_MapDict.keysToArray(match_6[1].data), Belt_Array.makeBy(5000, (function(i) do
+b("File \"bs_poly_map_test.ml\", line 139, characters 4-11", Belt_Array.eq(Belt_MapDict.keysToArray(match_6[2].data), Belt_Array.makeBy(5000, (function(i) do
                 return 5001 + i | 0;
               end end)), (function(prim, prim_1) do
             return prim == prim_1;
@@ -329,7 +329,7 @@ A = --[[ alias ]]0;
 
 I = --[[ alias ]]0;
 
-exports = {}
+exports = {};
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
@@ -347,4 +347,5 @@ exports.mergeUnion = mergeUnion;
 exports.mergeDiff = mergeDiff;
 exports.randomRange = randomRange;
 exports.acc = acc;
+return exports;
 --[[ Icmp Not a pure module ]]

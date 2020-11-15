@@ -1,6 +1,6 @@
-console = {log = print};
+__console = {log = print};
 
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
+Caml_builtin_exceptions = require "......lib.js.caml_builtin_exceptions";
 
 function f(x) do
   if (x > 3 or x < 1) then do
@@ -30,16 +30,17 @@ function f3(x) do
   do
      if ___conditional___ == 0--[[ A ]]
      or ___conditional___ == 2--[[ C ]] then do
-        return x[0] + 1 | 0; end end 
+        return x[1] + 1 | 0; end end 
      if ___conditional___ == 1--[[ B ]]
      or ___conditional___ == 3--[[ D ]] then do
-        return x[0] + 2 | 0; end end 
+        return x[1] + 2 | 0; end end 
     
   end
 end end
 
-exports = {}
+exports = {};
 exports.f = f;
 exports.f2 = f2;
 exports.f3 = f3;
+return exports;
 --[[ No side effect ]]

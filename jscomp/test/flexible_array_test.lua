@@ -1,12 +1,12 @@
-console = {log = print};
+__console = {log = print};
 
-__Array = require "../../lib/js/array";
-Block = require "../../lib/js/block";
-Curry = require "../../lib/js/curry";
-Format = require "../../lib/js/format";
-Caml_obj = require "../../lib/js/caml_obj";
-Caml_array = require "../../lib/js/caml_array";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
+__Array = require "......lib.js.array";
+Block = require "......lib.js.block";
+Curry = require "......lib.js.curry";
+Format = require "......lib.js.format";
+Caml_obj = require "......lib.js.caml_obj";
+Caml_array = require "......lib.js.caml_array";
+Caml_builtin_exceptions = require "......lib.js.caml_builtin_exceptions";
 
 function sub(_tr, _k) do
   while(true) do
@@ -14,14 +14,14 @@ function sub(_tr, _k) do
     tr = _tr;
     if (tr) then do
       if (k == 1) then do
-        return tr[0];
+        return tr[1];
       end else do
         _k = k / 2 | 0;
         if (k % 2 == 0) then do
-          _tr = tr[1];
+          _tr = tr[2];
           ::continue:: ;
         end else do
-          _tr = tr[2];
+          _tr = tr[3];
           ::continue:: ;
         end end 
       end end 
@@ -33,8 +33,8 @@ end end
 
 function update(tr, k, w) do
   if (tr) then do
-    r = tr[2];
-    l = tr[1];
+    r = tr[3];
+    l = tr[2];
     if (k == 1) then do
       return --[[ Br ]]{
               w,
@@ -42,7 +42,7 @@ function update(tr, k, w) do
               r
             };
     end else do
-      v = tr[0];
+      v = tr[1];
       if (k % 2 == 0) then do
         return --[[ Br ]]{
                 v,
@@ -73,9 +73,9 @@ function __delete(tr, n) do
     if (n == 1) then do
       return --[[ Lf ]]0;
     end else do
-      r = tr[2];
-      l = tr[1];
-      v = tr[0];
+      r = tr[3];
+      l = tr[2];
+      v = tr[1];
       if (n % 2 == 0) then do
         return --[[ Br ]]{
                 v,
@@ -99,8 +99,8 @@ function loext(tr, w) do
   if (tr) then do
     return --[[ Br ]]{
             w,
-            loext(tr[2], tr[0]),
-            tr[1]
+            loext(tr[3], tr[1]),
+            tr[2]
           };
   end else do
     return --[[ Br ]]{
@@ -113,14 +113,14 @@ end end
 
 function lorem(tr) do
   if (tr) then do
-    l = tr[1];
+    l = tr[2];
     if (l) then do
       return --[[ Br ]]{
-              l[0],
-              tr[2],
+              l[1],
+              tr[3],
               lorem(l)
             };
-    end else if (tr[2]) then do
+    end else if (tr[3]) then do
       error({
         Caml_builtin_exceptions.assert_failure,
         --[[ tuple ]]{
@@ -143,12 +143,12 @@ empty = --[[ tuple ]]{
 };
 
 function length(param) do
-  return param[1];
+  return param[2];
 end end
 
 function get(param, i) do
-  if (i >= 0 and i < param[1]) then do
-    return sub(param[0], i + 1 | 0);
+  if (i >= 0 and i < param[2]) then do
+    return sub(param[1], i + 1 | 0);
   end else do
     error({
       Caml_builtin_exceptions.invalid_argument,
@@ -158,10 +158,10 @@ function get(param, i) do
 end end
 
 function set(param, i, v) do
-  k = param[1];
+  k = param[2];
   if (i >= 0 and i < k) then do
     return --[[ tuple ]]{
-            update(param[0], i + 1 | 0, v),
+            update(param[1], i + 1 | 0, v),
             k
           };
   end else do
@@ -174,16 +174,16 @@ end end
 
 function push_front(param, v) do
   return --[[ tuple ]]{
-          loext(param[0], v),
-          param[1] + 1 | 0
+          loext(param[1], v),
+          param[2] + 1 | 0
         };
 end end
 
 function pop_front(param) do
-  k = param[1];
+  k = param[2];
   if (k > 0) then do
     return --[[ tuple ]]{
-            lorem(param[0]),
+            lorem(param[1]),
             k - 1 | 0
           };
   end else do
@@ -195,18 +195,18 @@ function pop_front(param) do
 end end
 
 function push_back(param, v) do
-  k = param[1];
+  k = param[2];
   return --[[ tuple ]]{
-          update(param[0], k + 1 | 0, v),
+          update(param[1], k + 1 | 0, v),
           k + 1 | 0
         };
 end end
 
 function pop_back(param) do
-  k = param[1];
+  k = param[2];
   if (k > 0) then do
     return --[[ tuple ]]{
-            __delete(param[0], k),
+            __delete(param[1], k),
             k - 1 | 0
           };
   end else do
@@ -220,7 +220,7 @@ end end
 function pp(fmt, s) do
   v = "[ ";
   for i = 0 , length(s) - 1 | 0 , 1 do
-    v = v .. (", " .. String(get(s, i)));
+    v = v .. (", " .. __String(get(s, i)));
   end
   v = v .. "]";
   return Curry._1(Format.fprintf(fmt, --[[ Format ]]{
@@ -296,7 +296,7 @@ Int_array = {
   equal = equal
 };
 
-function $eq$tilde(x, y) do
+function _eq_tilde(x, y) do
   return Caml_obj.caml_equal(x, of_array(y));
 end end
 
@@ -342,12 +342,13 @@ x_1 = sort(of_array(v));
 
 Caml_obj.caml_equal(x_1, of_array(y));
 
-exports = {}
+exports = {};
 exports.sub = sub;
 exports.update = update;
 exports.__delete = __delete;
 exports.loext = loext;
 exports.lorem = lorem;
 exports.Int_array = Int_array;
-exports.$eq$tilde = $eq$tilde;
+exports._eq_tilde = _eq_tilde;
+return exports;
 --[[ u Not a pure module ]]

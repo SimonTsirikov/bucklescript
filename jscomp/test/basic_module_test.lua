@@ -1,9 +1,9 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Curry = require "../../lib/js/curry";
-Offset = require "./offset";
-Mt_global = require "./mt_global";
+Mt = require "..mt";
+Curry = require "......lib.js.curry";
+Offset = require "..offset";
+Mt_global = require "..mt_global";
 
 count = {
   contents = 0
@@ -32,5 +32,6 @@ eq("File \"basic_module_test.ml\", line 39, characters 12-19", count.contents, 1
 
 Mt.from_pair_suites("Basic_module_test", suites.contents);
 
-exports = {}
+exports = {};
+return exports;
 --[[  Not a pure module ]]

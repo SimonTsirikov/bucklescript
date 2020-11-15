@@ -1,7 +1,7 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Block = require "../../lib/js/block";
+Mt = require "..mt";
+Block = require "......lib.js.block";
 
 keys = (function (x){return Object.keys(x)});
 
@@ -21,12 +21,12 @@ test_id = {
 };
 
 function eq(loc, param) do
-  y = param[1];
-  x = param[0];
+  y = param[2];
+  x = param[1];
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[[ :: ]]{
     --[[ tuple ]]{
-      loc .. (" id " .. String(test_id.contents)),
+      loc .. (" id " .. __String(test_id.contents)),
       (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     x,
@@ -83,28 +83,28 @@ same_type = --[[ tuple ]]{
 
 v_obj = {
   hi = (function() do
-      console.log("hei");
+      __console.log("hei");
       return --[[ () ]]0; end
     end)
 };
 
 eq("File \"ffi_js_test.ml\", line 44, characters 5-12", --[[ tuple ]]{
-      #Object.keys(int_config),
+      #__Object.keys(int_config),
       2
     });
 
 eq("File \"ffi_js_test.ml\", line 45, characters 5-12", --[[ tuple ]]{
-      #Object.keys(string_config),
+      #__Object.keys(string_config),
       2
     });
 
 eq("File \"ffi_js_test.ml\", line 46, characters 5-12", --[[ tuple ]]{
-      Object.keys(v_obj).indexOf("hi_x"),
+      __Object.keys(v_obj).indexOf("hi_x"),
       -1
     });
 
 eq("File \"ffi_js_test.ml\", line 47, characters 5-12", --[[ tuple ]]{
-      Object.keys(v_obj).indexOf("hi"),
+      __Object.keys(v_obj).indexOf("hi"),
       0
     });
 
@@ -157,15 +157,15 @@ function ffff(x) do
     3
   };
   match = x[3];
-  console.log(--[[ tuple ]]{
-        match[0],
-        match[1]
+  __console.log(--[[ tuple ]]{
+        match[1],
+        match[2]
       });
-  console.log(x.getGADT);
+  __console.log(x.getGADT);
   match_1 = x.getGADT2;
-  console.log(match_1[0], match_1[1]);
+  __console.log(match_1[1], match_1[2]);
   match_2 = x[0];
-  console.log(match_2[0], match_2[1]);
+  __console.log(match_2[1], match_2[2]);
   x[0] = --[[ tuple ]]{
     1,
     "x"
@@ -179,7 +179,7 @@ end end
 
 Mt.from_pair_suites("Ffi_js_test", suites.contents);
 
-exports = {}
+exports = {};
 exports.keys = keys;
 exports.suites = suites;
 exports.test_id = test_id;
@@ -196,4 +196,5 @@ exports.vvv = vvv;
 exports.vvvv = vvvv;
 exports.create_prim = create_prim;
 exports.ffff = ffff;
+return exports;
 --[[  Not a pure module ]]

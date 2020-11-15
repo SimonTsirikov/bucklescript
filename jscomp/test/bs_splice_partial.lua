@@ -1,11 +1,11 @@
-console = {log = print};
+__console = {log = print};
 
-Curry = require "../../lib/js/curry";
+Curry = require "......lib.js.curry";
 
 function test_hi(x) do
   match = x.hi(1, 2, 3);
   if (match ~= nil) then do
-    console.log(match);
+    __console.log(match);
     return 2;
   end else do
     return 1;
@@ -32,9 +32,10 @@ function f(x) do
   return --[[ () ]]0;
 end end
 
-exports = {}
+exports = {};
 exports.test_hi = test_hi;
 exports.test_hi__2 = test_hi__2;
 exports.test_cb = test_cb;
 exports.f = f;
+return exports;
 --[[ No side effect ]]

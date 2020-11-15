@@ -1,10 +1,10 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Block = require "../../lib/js/block";
-Curry = require "../../lib/js/curry";
-Caml_oo_curry = require "../../lib/js/caml_oo_curry";
-CamlinternalOO = require "../../lib/js/camlinternalOO";
+Mt = require "..mt";
+Block = require "......lib.js.block";
+Curry = require "......lib.js.curry";
+Caml_oo_curry = require "......lib.js.caml_oo_curry";
+CamlinternalOO = require "......lib.js.camlinternalOO";
 
 suites = {
   contents = --[[ [] ]]0
@@ -18,7 +18,7 @@ function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[[ :: ]]{
     --[[ tuple ]]{
-      loc .. (" id " .. String(test_id.contents)),
+      loc .. (" id " .. __String(test_id.contents)),
       (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     x,
@@ -44,16 +44,16 @@ class_tables_1 = --[[ Cons ]]{
 };
 
 function step1(param) do
-  if (not class_tables[0]) then do
+  if (not class_tables[1]) then do
     __class = CamlinternalOO.create_table({"step2"});
     env = CamlinternalOO.new_variable(__class, "");
     step2 = CamlinternalOO.get_method_label(__class, "step2");
-    CamlinternalOO.set_method(__class, step2, (function(self$1) do
-            if (not class_tables_1[0]) then do
+    CamlinternalOO.set_method(__class, step2, (function(self_1) do
+            if (not class_tables_1[1]) then do
               __class = CamlinternalOO.create_table({"step3"});
               env = CamlinternalOO.new_variable(__class, "");
               step3 = CamlinternalOO.get_method_label(__class, "step3");
-              CamlinternalOO.set_method(__class, step3, (function(self$2) do
+              CamlinternalOO.set_method(__class, step3, (function(self_2) do
                       return 33;
                     end end));
               env_init = function(env_1) do
@@ -65,7 +65,7 @@ function step1(param) do
               class_tables_1[0] = env_init;
             end
              end 
-            return Curry._1(class_tables_1[0], 0);
+            return Curry._1(class_tables_1[1], 0);
           end end));
     env_init = function(env_1) do
       self = CamlinternalOO.create_object_opt(0, __class);
@@ -76,7 +76,7 @@ function step1(param) do
     class_tables[0] = env_init;
   end
    end 
-  return Curry._1(class_tables[0], 0);
+  return Curry._1(class_tables[1], 0);
 end end
 
 tmp = step1(--[[ () ]]0);
@@ -89,10 +89,11 @@ eq("File \"gpr_1285_test.ml\", line 20, characters 5-12", x, 33);
 
 Mt.from_pair_suites("Gpr_1285_test", suites.contents);
 
-exports = {}
+exports = {};
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
 exports.step1 = step1;
 exports.x = x;
+return exports;
 --[[ x Not a pure module ]]

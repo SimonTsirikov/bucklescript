@@ -1,9 +1,9 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-List = require "../../lib/js/list";
-Block = require "../../lib/js/block";
-Ext_string_test = require "./ext_string_test";
+Mt = require "..mt";
+List = require "......lib.js.list";
+Block = require "......lib.js.block";
+Ext_string_test = require "..ext_string_test";
 
 suites_000 = --[[ tuple ]]{
   "split",
@@ -116,8 +116,9 @@ split = Ext_string_test.split;
 
 split_by = Ext_string_test.split_by;
 
-exports = {}
+exports = {};
 exports.split = split;
 exports.split_by = split_by;
 exports.suites = suites;
+return exports;
 --[[  Not a pure module ]]

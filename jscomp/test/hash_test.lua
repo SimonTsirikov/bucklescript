@@ -1,12 +1,12 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Char = require "../../lib/js/char";
-__Array = require "../../lib/js/array";
-Bytes = require "../../lib/js/bytes";
-Hashtbl = require "../../lib/js/hashtbl";
-Mt_global = require "./mt_global";
-Caml_bytes = require "../../lib/js/caml_bytes";
+Mt = require "..mt";
+Char = require "......lib.js.char";
+__Array = require "......lib.js.array";
+Bytes = require "......lib.js.bytes";
+Hashtbl = require "......lib.js.hashtbl";
+Mt_global = require "..mt_global";
+Caml_bytes = require "......lib.js.caml_bytes";
 
 suites = {
   contents = --[[ [] ]]0
@@ -172,7 +172,7 @@ Mt_global.collect_eq(test_id, suites, "File \"hash_test.ml\", line 39, character
 
 Mt.from_pair_suites("Hash_test", suites.contents);
 
-exports = {}
+exports = {};
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
@@ -180,4 +180,5 @@ exports.test_strings = test_strings;
 exports.test_strings_hash_results = test_strings_hash_results;
 exports.normalize = normalize;
 exports.caml_hash = caml_hash;
+return exports;
 --[[ test_strings Not a pure module ]]

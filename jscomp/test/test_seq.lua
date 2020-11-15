@@ -1,11 +1,11 @@
-console = {log = print};
+__console = {log = print};
 
-Block = require "../../lib/js/block";
-Curry = require "../../lib/js/curry";
-Caml_obj = require "../../lib/js/caml_obj";
-Pervasives = require "../../lib/js/pervasives";
-Caml_exceptions = require "../../lib/js/caml_exceptions";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
+Block = require "......lib.js.block";
+Curry = require "......lib.js.curry";
+Caml_obj = require "......lib.js.caml_obj";
+Pervasives = require "......lib.js.pervasives";
+Caml_exceptions = require "......lib.js.caml_exceptions";
+Caml_builtin_exceptions = require "......lib.js.caml_builtin_exceptions";
 
 Bad = Caml_exceptions.create("Test_seq.Bad");
 
@@ -17,11 +17,11 @@ function assoc3(x, _l) do
   while(true) do
     l = _l;
     if (l) then do
-      match = l[0];
-      if (Caml_obj.caml_equal(match[0], x)) then do
-        return match[1];
+      match = l[1];
+      if (Caml_obj.caml_equal(match[1], x)) then do
+        return match[2];
       end else do
-        _l = l[1];
+        _l = l[2];
         ::continue:: ;
       end end 
     end else do
@@ -83,10 +83,10 @@ function add_help(speclist) do
       error(exn_1)
     end end 
   end end)
-  return Pervasives.$at(speclist, Pervasives.$at(add1, add2));
+  return Pervasives._at(speclist, Pervasives._at(add1, add2));
 end end
 
-exports = {}
+exports = {};
 exports.Bad = Bad;
 exports.Help = Help;
 exports.Stop = Stop;
@@ -95,4 +95,5 @@ exports.help_action = help_action;
 exports.v = v;
 exports.f = f;
 exports.add_help = add_help;
+return exports;
 --[[ No side effect ]]

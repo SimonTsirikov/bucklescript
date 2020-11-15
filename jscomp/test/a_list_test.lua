@@ -1,8 +1,8 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Block = require "../../lib/js/block";
-Ext_list_test = require "./ext_list_test";
+Mt = require "..mt";
+Block = require "......lib.js.block";
+Ext_list_test = require "..ext_list_test";
 
 suites_000 = --[[ tuple ]]{
   "drop",
@@ -108,6 +108,7 @@ suites = --[[ :: ]]{
 
 Mt.from_pair_suites("A_list_test", suites);
 
-exports = {}
+exports = {};
 exports.suites = suites;
+return exports;
 --[[  Not a pure module ]]

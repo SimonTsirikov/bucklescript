@@ -1,6 +1,6 @@
-console = {log = print};
+__console = {log = print};
 
-Curry = require "../../lib/js/curry";
+Curry = require "......lib.js.curry";
 
 v = {
   contents = 0
@@ -48,7 +48,7 @@ function ikf(v) do
               end end), v);
 end end
 
-exports = {}
+exports = {};
 exports.v = v;
 exports.reset = reset;
 exports.incr = incr;
@@ -57,4 +57,5 @@ exports.incr2 = incr2;
 exports.f = f;
 exports.kf = kf;
 exports.ikf = ikf;
+return exports;
 --[[ No side effect ]]

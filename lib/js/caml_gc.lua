@@ -1,4 +1,4 @@
-console = {log = print};
+__console = {log = print};
 
 
 function caml_gc_counters(param) do
@@ -41,7 +41,7 @@ function caml_final_release(param) do
   return --[[ () ]]0;
 end end
 
-exports = {}
+exports = {};
 exports.caml_gc_counters = caml_gc_counters;
 exports.caml_gc_set = caml_gc_set;
 exports.caml_gc_minor = caml_gc_minor;
@@ -51,4 +51,5 @@ exports.caml_gc_full_major = caml_gc_full_major;
 exports.caml_gc_compaction = caml_gc_compaction;
 exports.caml_final_register = caml_final_register;
 exports.caml_final_release = caml_final_release;
+return exports;
 --[[ No side effect ]]

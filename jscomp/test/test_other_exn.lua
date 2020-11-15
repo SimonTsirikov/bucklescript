@@ -1,7 +1,7 @@
-console = {log = print};
+__console = {log = print};
 
 
-function Make($star) do
+function Make(_star) do
   return { };
 end end
 
@@ -9,8 +9,9 @@ U = { };
 
 V = { };
 
-exports = {}
+exports = {};
 exports.Make = Make;
 exports.U = U;
 exports.V = V;
+return exports;
 --[[ No side effect ]]

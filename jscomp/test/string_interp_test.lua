@@ -1,54 +1,54 @@
-console = {log = print};
+__console = {log = print};
 
 
 function hi2(xx, yy, zz) do
-  return "\n" .. (String(xx) .. (" " .. (String(yy) .. ("\n\n" .. (String(zz) .. "\n")))));
+  return "\n" .. (__String(xx) .. (" " .. (__String(yy) .. ("\n\n" .. (__String(zz) .. "\n")))));
 end end
 
 function hi(a0, b0, xx, yy, zz) do
-  return "\n零一二三四五六七八九 " .. (String(a0) .. ("\n零一二三四五六七八九 123456789 " .. (String(b0) .. ("\n测试一段中文 " .. (String(xx) .. (", " .. (String(yy) .. ("\n" .. (String(zz) .. "\n\n")))))))));
+  return "\n零一二三四五六七八九 " .. (__String(a0) .. ("\n零一二三四五六七八九 123456789 " .. (__String(b0) .. ("\n测试一段中文 " .. (__String(xx) .. (", " .. (__String(yy) .. ("\n" .. (__String(zz) .. "\n\n")))))))));
 end end
 
 function a3(world) do
-  return "Hello \\" .. (String(world) .. "");
+  return "Hello \\" .. (__String(world) .. "");
 end end
 
 function a5(x) do
-  return "" .. (String(x) .. "");
+  return "" .. (__String(x) .. "");
 end end
 
 function a6(x) do
-  return "" .. (String(x) .. "");
+  return "" .. (__String(x) .. "");
 end end
 
 function a7(x0, x3, x5) do
-  return "\\" .. (String(x0) .. (",\$x1,\\\$x2,\\\\" .. (String(x3) .. (", \\\\\$x4,\\\\\\" .. (String(x5) .. "")))));
+  return "\\" .. (__String(x0) .. (",\$x1,\\\$x2,\\\\" .. (__String(x3) .. (", \\\\\$x4,\\\\\\" .. (__String(x5) .. "")))));
 end end
 
 function ffff(a_1, a_2) do
-  return " hello " .. (String(a_1) .. (", wlecome to " .. (String(a_2) .. "  ")));
+  return " hello " .. (__String(a_1) .. (", wlecome to " .. (__String(a_2) .. "  ")));
 end end
 
 function f(x, y) do
   sum = x + y | 0;
-  console.log(" " .. (String(x) .. (" + " .. (String(y) .. (" = " .. (String(sum) .. " "))))));
+  __console.log(" " .. (__String(x) .. (" + " .. (__String(y) .. (" = " .. (__String(sum) .. " "))))));
   return --[[ () ]]0;
 end end
 
 world = "世界";
 
-hello_world = "你好，" .. (String(world) .. "");
+hello_world = "你好，" .. (__String(world) .. "");
 
 function test1(x0) do
-  return "你好，" .. (String(x0) .. "");
+  return "你好，" .. (__String(x0) .. "");
 end end
 
 function test3(_xg) do
-  return "你好，" .. (String(_xg) .. "");
+  return "你好，" .. (__String(_xg) .. "");
 end end
 
 function test5(x) do
-  return "" .. (String(x) .. "");
+  return "" .. (__String(x) .. "");
 end end
 
 b = "test";
@@ -65,7 +65,7 @@ a2 = "Hello \$";
 
 a4 = "";
 
-exports = {}
+exports = {};
 exports.hi2 = hi2;
 exports.hi = hi;
 exports.b = b;
@@ -86,4 +86,5 @@ exports.hello_world = hello_world;
 exports.test1 = test1;
 exports.test3 = test3;
 exports.test5 = test5;
+return exports;
 --[[ hello_world Not a pure module ]]

@@ -1,4 +1,4 @@
-console = {log = print};
+__console = {log = print};
 
 
 __ArrayBuffer = { };
@@ -23,7 +23,7 @@ __Float64Array = { };
 
 __DataView = { };
 
-exports = {}
+exports = {};
 exports.__ArrayBuffer = __ArrayBuffer;
 exports.__Int8Array = __Int8Array;
 exports.__Uint8Array = __Uint8Array;
@@ -35,4 +35,5 @@ exports.__Uint32Array = __Uint32Array;
 exports.__Float32Array = __Float32Array;
 exports.__Float64Array = __Float64Array;
 exports.__DataView = __DataView;
+return exports;
 --[[ No side effect ]]

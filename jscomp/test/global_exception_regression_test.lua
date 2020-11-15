@@ -1,8 +1,8 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Block = require "../../lib/js/block";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
+Mt = require "..mt";
+Block = require "......lib.js.block";
+Caml_builtin_exceptions = require "......lib.js.caml_builtin_exceptions";
 
 v = Caml_builtin_exceptions.not_found;
 
@@ -40,9 +40,10 @@ suites = --[[ :: ]]{
 
 Mt.from_pair_suites("Global_exception_regression_test", suites);
 
-exports = {}
+exports = {};
 exports.v = v;
 exports.u = u;
 exports.s = s;
 exports.suites = suites;
+return exports;
 --[[  Not a pure module ]]

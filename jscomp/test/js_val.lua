@@ -1,6 +1,6 @@
-console = {log = print};
+__console = {log = print};
 
-X = require "";
+X = require "x";
 
 h = u;
 
@@ -10,9 +10,10 @@ hhh = X.vv;
 
 hhhh = X.vvvv;
 
-exports = {}
+exports = {};
 exports.h = h;
 exports.hh = hh;
 exports.hhh = hhh;
 exports.hhhh = hhhh;
+return exports;
 --[[ h Not a pure module ]]

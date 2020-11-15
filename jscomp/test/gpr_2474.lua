@@ -1,6 +1,6 @@
-console = {log = print};
+__console = {log = print};
 
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
+Caml_builtin_exceptions = require "......lib.js.caml_builtin_exceptions";
 
 error({
   Caml_builtin_exceptions.match_failure,
@@ -11,6 +11,7 @@ error({
   }
 })
 
-exports = {}
+exports = {};
 exports.coordinates = coordinates;
+return exports;
 --[[  Not a pure module ]]

@@ -1,8 +1,8 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Block = require "../../lib/js/block";
-Caml_int32 = require "../../lib/js/caml_int32";
+Mt = require "..mt";
+Block = require "......lib.js.block";
+Caml_int32 = require "......lib.js.caml_int32";
 
 suites = {
   contents = --[[ [] ]]0
@@ -16,7 +16,7 @@ function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[[ :: ]]{
     --[[ tuple ]]{
-      loc .. (" id " .. String(test_id.contents)),
+      loc .. (" id " .. __String(test_id.contents)),
       (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     x,
@@ -33,7 +33,7 @@ function $$(x, y) do
   return x + y | 0;
 end end
 
-$$$plus = Caml_int32.imul;
+$$_plus = Caml_int32.imul;
 
 eq("File \"dollar_escape_test.ml\", line 20, characters 6-13", 3, 3);
 
@@ -45,12 +45,13 @@ v = 3;
 
 u = 3;
 
-exports = {}
+exports = {};
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
 exports.$$ = $$;
 exports.v = v;
-exports.$$$plus = $$$plus;
+exports.$$_plus = $$_plus;
 exports.u = u;
+return exports;
 --[[  Not a pure module ]]

@@ -1,6 +1,6 @@
-console = {log = print};
+__console = {log = print};
 
-Caml_exceptions = require "../../lib/js/caml_exceptions";
+Caml_exceptions = require "......lib.js.caml_exceptions";
 
 A = Caml_exceptions.create("Local_exception_test.A");
 
@@ -21,11 +21,12 @@ d = {
 
 u = B;
 
-exports = {}
+exports = {};
 exports.A = A;
 exports.v = v;
 exports.B = B;
 exports.u = u;
 exports.D = D;
 exports.d = d;
+return exports;
 --[[ No side effect ]]

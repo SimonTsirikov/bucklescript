@@ -1,13 +1,13 @@
 
 
-import * as Char from "./char.lua";
-import * as __String from "./string.lua";
-import * as Caml_md5 from "./caml_md5.lua";
-import * as Caml_bytes from "./caml_bytes.lua";
-import * as Pervasives from "./pervasives.lua";
-import * as Caml_string from "./caml_string.lua";
-import * as Caml_external_polyfill from "./caml_external_polyfill.lua";
-import * as Caml_builtin_exceptions from "./caml_builtin_exceptions.lua";
+local Char = require "..char.lua";
+local __String = require "..string.lua";
+local Caml_md5 = require "..caml_md5.lua";
+local Caml_bytes = require "..caml_bytes.lua";
+local Pervasives = require "..pervasives.lua";
+local Caml_string = require "..caml_string.lua";
+local Caml_external_polyfill = require "..caml_external_polyfill.lua";
+local Caml_builtin_exceptions = require "..caml_builtin_exceptions.lua";
 
 function string(str) do
   return Caml_md5.caml_md5_string(str, 0, #str);

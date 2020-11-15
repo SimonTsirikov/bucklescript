@@ -1,10 +1,10 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-List = require "../../lib/js/list";
-Block = require "../../lib/js/block";
-Caml_exceptions = require "../../lib/js/caml_exceptions";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
+Mt = require "..mt";
+List = require "......lib.js.list";
+Block = require "......lib.js.block";
+Caml_exceptions = require "......lib.js.caml_exceptions";
+Caml_builtin_exceptions = require "......lib.js.caml_builtin_exceptions";
 
 suites = {
   contents = --[[ [] ]]0
@@ -35,11 +35,11 @@ function f(x) do
   if (x.tag) then do
     return List.fold_left((function(prim, prim_1) do
                   return prim + prim_1 | 0;
-                end end), 0, x[--[[ more ]]0]);
+                end end), 0, x[--[[ more ]]1]);
   end else do
     return List.fold_left((function(prim, prim_1) do
                   return prim + prim_1 | 0;
-                end end), x[--[[ lbl ]]0], x[--[[ more ]]1]);
+                end end), x[--[[ lbl ]]1], x[--[[ more ]]2]);
   end end 
 end end
 
@@ -47,9 +47,9 @@ eq("File \"inline_record_test.ml\", line 25, characters 6-13", f(v), 3);
 
 eq("File \"inline_record_test.ml\", line 26, characters 6-13", f(v1), 3);
 
-console.log(f(v));
+__console.log(f(v));
 
-console.log(f(v1));
+__console.log(f(v1));
 
 A0 = Caml_exceptions.create("Inline_record_test.A0");
 
@@ -78,10 +78,10 @@ eq("File \"inline_record_test.ml\", line 51, characters 6-13", tmp, 3);
 
 function ff(x) do
   if (x.tag) then do
-    x[--[[ z ]]0] = x[--[[ z ]]0] + 2 | 0;
+    x[--[[ z ]]0] = x[--[[ z ]]1] + 2 | 0;
     return --[[ () ]]0;
   end else do
-    x[--[[ x ]]0] = x[--[[ x ]]0] + 1 | 0;
+    x[--[[ x ]]0] = x[--[[ x ]]1] + 1 | 0;
     return --[[ () ]]0;
   end end 
 end end
@@ -111,7 +111,7 @@ if (v4.tag) then do
     }
   })
 end else do
-  tmp_1 = v4[--[[ x ]]0];
+  tmp_1 = v4[--[[ x ]]1];
 end end 
 
 eq("File \"inline_record_test.ml\", line 69, characters 6-13", tmp_1, 11);
@@ -119,7 +119,7 @@ eq("File \"inline_record_test.ml\", line 69, characters 6-13", tmp_1, 11);
 tmp_2;
 
 if (v5.tag) then do
-  tmp_2 = v5[--[[ z ]]0];
+  tmp_2 = v5[--[[ z ]]1];
 end else do
   error({
     Caml_builtin_exceptions.assert_failure,
@@ -143,9 +143,9 @@ v6 = {
 };
 
 function ff0(x) do
-  if (x[0] == A4) then do
-    x[--[[ x ]]1] = x[--[[ x ]]1] + 1 | 0;
-    x[--[[ z ]]3] = x[--[[ z ]]3] + 1 | 0;
+  if (x[1] == A4) then do
+    x[--[[ x ]]1] = x[--[[ x ]]2] + 1 | 0;
+    x[--[[ z ]]3] = x[--[[ z ]]4] + 1 | 0;
     return --[[ () ]]0;
   end else do
     return --[[ () ]]0;
@@ -158,8 +158,8 @@ end
 
 tmp_3;
 
-if (v6[0] == A4) then do
-  tmp_3 = v6[--[[ x ]]1];
+if (v6[1] == A4) then do
+  tmp_3 = v6[--[[ x ]]2];
 end else do
   error({
     Caml_builtin_exceptions.assert_failure,
@@ -176,8 +176,8 @@ eq("File \"inline_record_test.ml\", line 87, characters 6-13", tmp_3, 11);
 function ff1(x) do
   if (x) then do
     return --[[ A0 ]]{
-            --[[ lbl ]]x[--[[ lbl ]]0] + 1 | 0,
-            --[[ more ]]x[--[[ more ]]1]
+            --[[ lbl ]]x[--[[ lbl ]]1] + 1 | 0,
+            --[[ more ]]x[--[[ more ]]2]
           };
   end else do
     return --[[ A1 ]]0;
@@ -196,7 +196,7 @@ vvv = --[[ A0 ]]{
   --[[ more : [] ]]0
 };
 
-exports = {}
+exports = {};
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
@@ -214,4 +214,5 @@ exports.A4 = A4;
 exports.v6 = v6;
 exports.ff0 = ff0;
 exports.ff1 = ff1;
+return exports;
 --[[  Not a pure module ]]

@@ -1,9 +1,9 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Block = require "../../lib/js/block";
-Bytes = require "../../lib/js/bytes";
-Caml_bytes = require "../../lib/js/caml_bytes";
+Mt = require "..mt";
+Block = require "......lib.js.block";
+Bytes = require "......lib.js.bytes";
+Caml_bytes = require "......lib.js.caml_bytes";
 
 function fib(n) do
   if (n ~= 1 and n ~= 23) then do
@@ -37,7 +37,7 @@ function escaped(s) do
   if (n == #s) then do
     return Bytes.copy(s);
   end else do
-    s$prime = Caml_bytes.caml_create_bytes(n);
+    s_prime = Caml_bytes.caml_create_bytes(n);
     n = 0;
     for i_1 = 0 , #s - 1 | 0 , 1 do
       c = s[i_1];
@@ -47,7 +47,7 @@ function escaped(s) do
           if (c >= 127) then do
             exit = 1;
           end else do
-            s$prime[n] = c;
+            s_prime[n] = c;
           end end 
         end else do
           exit = 2;
@@ -56,7 +56,7 @@ function escaped(s) do
         if (c >= 34) then do
           exit = 2;
         end else do
-          s$prime[n] = c;
+          s_prime[n] = c;
         end end 
       end else if (c >= 14) then do
         exit = 1;
@@ -64,17 +64,17 @@ function escaped(s) do
         local ___conditional___=(c);
         do
            if ___conditional___ == 8 then do
-              s$prime[n] = --[[ "\\" ]]92;
+              s_prime[n] = --[[ "\\" ]]92;
               n = n + 1 | 0;
-              s$prime[n] = --[[ "b" ]]98; end else 
+              s_prime[n] = --[[ "b" ]]98; end else 
            if ___conditional___ == 9 then do
-              s$prime[n] = --[[ "\\" ]]92;
+              s_prime[n] = --[[ "\\" ]]92;
               n = n + 1 | 0;
-              s$prime[n] = --[[ "t" ]]116; end else 
+              s_prime[n] = --[[ "t" ]]116; end else 
            if ___conditional___ == 10 then do
-              s$prime[n] = --[[ "\\" ]]92;
+              s_prime[n] = --[[ "\\" ]]92;
               n = n + 1 | 0;
-              s$prime[n] = --[[ "n" ]]110; end else 
+              s_prime[n] = --[[ "n" ]]110; end else 
            if ___conditional___ == 0
            or ___conditional___ == 1
            or ___conditional___ == 2
@@ -87,9 +87,9 @@ function escaped(s) do
            or ___conditional___ == 12 then do
               exit = 1; end else 
            if ___conditional___ == 13 then do
-              s$prime[n] = --[[ "\\" ]]92;
+              s_prime[n] = --[[ "\\" ]]92;
               n = n + 1 | 0;
-              s$prime[n] = --[[ "r" ]]114; end else 
+              s_prime[n] = --[[ "r" ]]114; end else 
            end end end end end end end end end end
           
         end
@@ -97,23 +97,23 @@ function escaped(s) do
       local ___conditional___=(exit);
       do
          if ___conditional___ == 1 then do
-            s$prime[n] = --[[ "\\" ]]92;
+            s_prime[n] = --[[ "\\" ]]92;
             n = n + 1 | 0;
-            s$prime[n] = 48 + (c / 100 | 0) | 0;
+            s_prime[n] = 48 + (c / 100 | 0) | 0;
             n = n + 1 | 0;
-            s$prime[n] = 48 + (c / 10 | 0) % 10 | 0;
+            s_prime[n] = 48 + (c / 10 | 0) % 10 | 0;
             n = n + 1 | 0;
-            s$prime[n] = 48 + c % 10 | 0; end else 
+            s_prime[n] = 48 + c % 10 | 0; end else 
          if ___conditional___ == 2 then do
-            s$prime[n] = --[[ "\\" ]]92;
+            s_prime[n] = --[[ "\\" ]]92;
             n = n + 1 | 0;
-            s$prime[n] = c; end else 
+            s_prime[n] = c; end else 
          end end end end
         
       end
       n = n + 1 | 0;
     end
-    return s$prime;
+    return s_prime;
   end end 
 end end
 
@@ -138,9 +138,10 @@ suites = --[[ :: ]]{
 
 Mt.from_pair_suites("Complex_if_test", suites);
 
-exports = {}
+exports = {};
 exports.fib = fib;
 exports.escaped = escaped;
 exports.string_escaped = string_escaped;
 exports.suites = suites;
+return exports;
 --[[  Not a pure module ]]

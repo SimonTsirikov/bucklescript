@@ -1,12 +1,12 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Lazy = require "../../lib/js/lazy";
-Block = require "../../lib/js/block";
-Caml_obj = require "../../lib/js/caml_obj";
-CamlinternalLazy = require "../../lib/js/camlinternalLazy";
-Caml_js_exceptions = require "../../lib/js/caml_js_exceptions";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
+Mt = require "..mt";
+Lazy = require "......lib.js.lazy";
+Block = require "......lib.js.block";
+Caml_obj = require "......lib.js.caml_obj";
+CamlinternalLazy = require "......lib.js.camlinternalLazy";
+Caml_js_exceptions = require "......lib.js.caml_js_exceptions";
+Caml_builtin_exceptions = require "......lib.js.caml_builtin_exceptions";
 
 u = {
   contents = 3
@@ -28,11 +28,11 @@ function lazy_test(param) do
 end end
 
 function f(param) do
-  CamlinternalLazy.force(param[0]);
-  match = param[2].contents;
+  CamlinternalLazy.force(param[1]);
+  match = param[3].contents;
   if (match ~= nil) then do
-    CamlinternalLazy.force(param[1]);
-    match_1 = param[2].contents;
+    CamlinternalLazy.force(param[2]);
+    match_1 = param[3].contents;
     if (match_1 ~= nil) then do
       return 1;
     end else do
@@ -74,7 +74,7 @@ xpcall(function() do
       });
 end end,function(raw_exn) do
   exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
-  if (exn[0] == Caml_builtin_exceptions.match_failure) then do
+  if (exn[1] == Caml_builtin_exceptions.match_failure) then do
     h = 2;
   end else do
     error(exn)
@@ -119,7 +119,7 @@ f007 = Caml_obj.caml_lazy_make((function(param) do
       end end));
 
 f008 = Caml_obj.caml_lazy_make((function(param) do
-        console.log("hi");
+        __console.log("hi");
         error(Caml_builtin_exceptions.not_found)
       end end));
 
@@ -206,7 +206,7 @@ Mt.from_pair_suites("Lazy_test", --[[ :: ]]{
       }
     });
 
-exports = {}
+exports = {};
 exports.v = v;
 exports.lazy_test = lazy_test;
 exports.f = f;
@@ -223,4 +223,5 @@ exports.f005 = f005;
 exports.f006 = f006;
 exports.f007 = f007;
 exports.f008 = f008;
+return exports;
 --[[ h Not a pure module ]]

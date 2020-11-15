@@ -1,8 +1,8 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Caml_option = require "../../lib/js/caml_option";
-Gpr_3566_test = require "./gpr_3566_test";
+Mt = require "..mt";
+Caml_option = require "......lib.js.caml_option";
+Gpr_3566_test = require "..gpr_3566_test";
 
 suites = {
   contents = --[[ [] ]]0
@@ -28,11 +28,12 @@ end end
 
 Mt.from_pair_suites("gpr_3566_drive_test.ml", suites.contents);
 
-exports = {}
+exports = {};
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
 exports.H = H;
 exports.Caml_option = Caml_option_1;
 exports.f = f;
+return exports;
 --[[ H Not a pure module ]]

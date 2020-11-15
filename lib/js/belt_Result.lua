@@ -1,13 +1,13 @@
-console = {log = print};
+__console = {log = print};
 
-Block = require "./block";
-Curry = require "./curry";
+Block = require "..block";
+Curry = require "..curry";
 
 function getExn(param) do
   if (param.tag) then do
-    error(new Error("getExn"))
+    error(new __Error("getExn"))
   end else do
-    return param[0];
+    return param[1];
   end end 
 end end
 
@@ -15,7 +15,7 @@ function mapWithDefaultU(opt, __default, f) do
   if (opt.tag) then do
     return __default;
   end else do
-    return f(opt[0]);
+    return f(opt[1]);
   end end 
 end end
 
@@ -25,9 +25,9 @@ end end
 
 function mapU(opt, f) do
   if (opt.tag) then do
-    return --[[ Error ]]Block.__(1, {opt[0]});
+    return --[[ Error ]]Block.__(1, {opt[1]});
   end else do
-    return --[[ Ok ]]Block.__(0, {f(opt[0])});
+    return --[[ Ok ]]Block.__(0, {f(opt[1])});
   end end 
 end end
 
@@ -37,9 +37,9 @@ end end
 
 function flatMapU(opt, f) do
   if (opt.tag) then do
-    return --[[ Error ]]Block.__(1, {opt[0]});
+    return --[[ Error ]]Block.__(1, {opt[1]});
   end else do
-    return f(opt[0]);
+    return f(opt[1]);
   end end 
 end end
 
@@ -51,7 +51,7 @@ function getWithDefault(opt, __default) do
   if (opt.tag) then do
     return __default;
   end else do
-    return opt[0];
+    return opt[1];
   end end 
 end end
 
@@ -81,7 +81,7 @@ function eqU(a, b, f) do
   end else if (b.tag) then do
     return false;
   end else do
-    return f(a[0], b[0]);
+    return f(a[1], b[1]);
   end end  end 
 end end
 
@@ -99,7 +99,7 @@ function cmpU(a, b, f) do
   end else if (b.tag) then do
     return 1;
   end else do
-    return f(a[0], b[0]);
+    return f(a[1], b[1]);
   end end  end 
 end end
 
@@ -107,7 +107,7 @@ function cmp(a, b, f) do
   return cmpU(a, b, Curry.__2(f));
 end end
 
-exports = {}
+exports = {};
 exports.getExn = getExn;
 exports.mapWithDefaultU = mapWithDefaultU;
 exports.mapWithDefault = mapWithDefault;
@@ -122,4 +122,5 @@ exports.eqU = eqU;
 exports.eq = eq;
 exports.cmpU = cmpU;
 exports.cmp = cmp;
+return exports;
 --[[ No side effect ]]

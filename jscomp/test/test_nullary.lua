@@ -1,11 +1,12 @@
-console = {log = print};
+__console = {log = print};
 
 
 function f(param) do
-  console.log("hey");
+  __console.log("hey");
   return --[[ () ]]0;
 end end
 
-exports = {}
+exports = {};
 exports.f = f;
+return exports;
 --[[ No side effect ]]

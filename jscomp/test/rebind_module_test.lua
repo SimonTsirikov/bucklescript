@@ -1,6 +1,6 @@
-console = {log = print};
+__console = {log = print};
 
-Rebind_module = require "./rebind_module";
+Rebind_module = require "..rebind_module";
 
 function x(v) do
   if (v == Rebind_module.AA) then do
@@ -10,6 +10,7 @@ function x(v) do
   end end 
 end end
 
-exports = {}
+exports = {};
 exports.x = x;
+return exports;
 --[[ No side effect ]]

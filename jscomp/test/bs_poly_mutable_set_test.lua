@@ -1,13 +1,13 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Belt_Id = require "../../lib/js/belt_Id";
-Belt_List = require "../../lib/js/belt_List";
-Belt_Array = require "../../lib/js/belt_Array";
-Caml_primitive = require "../../lib/js/caml_primitive";
-Array_data_util = require "./array_data_util";
-Belt_MutableSet = require "../../lib/js/belt_MutableSet";
-Belt_internalAVLset = require "../../lib/js/belt_internalAVLset";
+Mt = require "..mt";
+Belt_Id = require "......lib.js.belt_Id";
+Belt_List = require "......lib.js.belt_List";
+Belt_Array = require "......lib.js.belt_Array";
+Caml_primitive = require "......lib.js.caml_primitive";
+Array_data_util = require "..array_data_util";
+Belt_MutableSet = require "......lib.js.belt_MutableSet";
+Belt_internalAVLset = require "......lib.js.belt_internalAVLset";
 
 suites = {
   contents = --[[ [] ]]0
@@ -181,13 +181,13 @@ eq("File \"bs_poly_mutable_set_test.ml\", line 79, characters 5-12", Belt_Mutabl
 
 match = Belt_MutableSet.split(v, 1000);
 
-match_1 = match[0];
+match_1 = match[1];
 
-bb = match_1[1];
+bb = match_1[2];
 
-aa = match_1[0];
+aa = match_1[1];
 
-b("File \"bs_poly_mutable_set_test.ml\", line 81, characters 4-11", match[1]);
+b("File \"bs_poly_mutable_set_test.ml\", line 81, characters 4-11", match[2]);
 
 b("File \"bs_poly_mutable_set_test.ml\", line 82, characters 4-11", Belt_Array.eq(Belt_internalAVLset.toArray(aa.data), Array_data_util.range(500, 999), (function(prim, prim_1) do
             return prim == prim_1;
@@ -209,13 +209,13 @@ b("File \"bs_poly_mutable_set_test.ml\", line 88, characters 4-11", c);
 
 match_2 = Belt_MutableSet.split(v, 1000);
 
-match_3 = match_2[0];
+match_3 = match_2[1];
 
-bb_1 = match_3[1];
+bb_1 = match_3[2];
 
-aa_1 = match_3[0];
+aa_1 = match_3[1];
 
-b("File \"bs_poly_mutable_set_test.ml\", line 90, characters 4-11", not match_2[1]);
+b("File \"bs_poly_mutable_set_test.ml\", line 90, characters 4-11", not match_2[2]);
 
 b("File \"bs_poly_mutable_set_test.ml\", line 91, characters 4-11", Belt_Array.eq(Belt_internalAVLset.toArray(aa_1.data), Array_data_util.range(500, 999), (function(prim, prim_1) do
             return prim == prim_1;
@@ -298,9 +298,9 @@ match_4 = Belt_MutableSet.partition(a0, (function(x) do
         return x % 2 == 0;
       end end));
 
-a4 = match_4[1];
+a4 = match_4[2];
 
-a3 = match_4[0];
+a3 = match_4[1];
 
 b("File \"bs_poly_mutable_set_test.ml\", line 162, characters 4-11", Belt_MutableSet.eq(a1, a3));
 
@@ -335,13 +335,13 @@ A = --[[ alias ]]0;
 
 L = --[[ alias ]]0;
 
-$plus$plus = Belt_MutableSet.union;
+_plus_plus = Belt_MutableSet.union;
 
 f = fromArray;
 
-$eq$tilde = Belt_MutableSet.eq;
+_eq_tilde = Belt_MutableSet.eq;
 
-exports = {}
+exports = {};
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
@@ -353,7 +353,8 @@ exports.IntCmp = IntCmp;
 exports.L = L;
 exports.fromArray = fromArray;
 exports.empty = empty;
-exports.$plus$plus = $plus$plus;
+exports._plus_plus = _plus_plus;
 exports.f = f;
-exports.$eq$tilde = $eq$tilde;
+exports._eq_tilde = _eq_tilde;
+return exports;
 --[[ IntCmp Not a pure module ]]

@@ -1,8 +1,8 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Block = require "../../lib/js/block";
-Js_mapperRt = require "../../lib/js/js_mapperRt";
+Mt = require "..mt";
+Block = require "......lib.js.block";
+Js_mapperRt = require "......lib.js.js_mapperRt";
 
 suites = {
   contents = --[[ [] ]]0
@@ -16,7 +16,7 @@ function __throw(loc, x) do
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[[ :: ]]{
     --[[ tuple ]]{
-      loc .. (" id " .. String(test_id.contents)),
+      loc .. (" id " .. __String(test_id.contents)),
       (function(param) do
           return --[[ ThrowAny ]]Block.__(7, {x});
         end end)
@@ -32,7 +32,7 @@ end end
 
 function aFromJs(param) do
   if (not (param <= 2 and 0 <= param)) then do
-    error(new Error("ASSERT FAILURE"))
+    error(new __Error("ASSERT FAILURE"))
   end
    end 
   return param - 0 | 0;
@@ -92,7 +92,7 @@ __throw("File \"ast_mapper_defensive_test.ml\", line 30, characters 15-22", (fun
 
 Mt.from_pair_suites("Ast_mapper_defensive_test", suites.contents);
 
-exports = {}
+exports = {};
 exports.suites = suites;
 exports.test_id = test_id;
 exports.__throw = __throw;
@@ -102,4 +102,5 @@ exports.bToJs = bToJs;
 exports.bFromJs = bFromJs;
 exports.cToJs = cToJs;
 exports.cFromJs = cFromJs;
+return exports;
 --[[  Not a pure module ]]

@@ -1,6 +1,6 @@
-console = {log = print};
+__console = {log = print};
 
-Caml_option = require "./caml_option";
+Caml_option = require "..caml_option";
 
 function bind(x, f) do
   if (x == nil) then do
@@ -27,9 +27,10 @@ end end
 
 from_opt = fromOption;
 
-exports = {}
+exports = {};
 exports.bind = bind;
 exports.iter = iter;
 exports.fromOption = fromOption;
 exports.from_opt = from_opt;
+return exports;
 --[[ No side effect ]]

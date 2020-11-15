@@ -1,6 +1,6 @@
-console = {log = print};
+__console = {log = print};
 
-Belt_Array = require "../../lib/js/belt_Array";
+Belt_Array = require "......lib.js.belt_Array";
 
 function range(i, j) do
   return Belt_Array.makeBy((j - i | 0) + 1 | 0, (function(k) do
@@ -18,8 +18,9 @@ end end
 
 A = --[[ alias ]]0;
 
-exports = {}
+exports = {};
 exports.A = A;
 exports.range = range;
 exports.randomRange = randomRange;
+return exports;
 --[[ No side effect ]]

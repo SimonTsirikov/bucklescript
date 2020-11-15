@@ -1,6 +1,6 @@
 
 
-import * as Block from "./block.lua";
+local Block = require "..block.lua";
 
 setupChromeDebugger = (function(_){
  
@@ -137,21 +137,21 @@ end end
 function variant(meta, tag, xs) do
   setupOnce(--[[ () ]]0);
   xs.tag = tag;
-  return Object.defineProperty(xs, Symbol.for("BsVariant"), {
+  return __Object.defineProperty(xs, __Symbol.__for("BsVariant"), {
               value = meta
             });
 end end
 
 function simpleVariant(meta, xs) do
   setupOnce(--[[ () ]]0);
-  return Object.defineProperty(xs, Symbol.for("BsVariant"), {
+  return __Object.defineProperty(xs, __Symbol.__for("BsVariant"), {
               value = meta
             });
 end end
 
 function polyVar(meta, xs) do
   setupOnce(--[[ () ]]0);
-  return Object.defineProperty(xs, Symbol.for("BsPolyVar"), {
+  return __Object.defineProperty(xs, __Symbol.__for("BsPolyVar"), {
               value = meta
             });
 end end

@@ -1,10 +1,10 @@
 
 
-import * as Caml_gc from "./caml_gc.lua";
-import * as Caml_io from "./caml_io.lua";
-import * as Pervasives from "./pervasives.lua";
-import * as Caml_external_polyfill from "./caml_external_polyfill.lua";
-import * as Caml_builtin_exceptions from "./caml_builtin_exceptions.lua";
+local Caml_gc = require "..caml_gc.lua";
+local Caml_io = require "..caml_io.lua";
+local Pervasives = require "..pervasives.lua";
+local Caml_external_polyfill = require "..caml_external_polyfill.lua";
+local Caml_builtin_exceptions = require "..caml_builtin_exceptions.lua";
 
 function if_spacetime_enabled(f) do
   return --[[ () ]]0;

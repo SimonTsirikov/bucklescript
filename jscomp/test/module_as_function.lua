@@ -1,4 +1,4 @@
-console = {log = print};
+__console = {log = print};
 
 Nightmare = require "night";
 
@@ -6,6 +6,7 @@ v = Nightmare({
       show = true
     });
 
-exports = {}
+exports = {};
 exports.v = v;
+return exports;
 --[[ v Not a pure module ]]

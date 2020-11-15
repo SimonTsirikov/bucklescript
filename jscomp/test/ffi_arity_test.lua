@@ -1,9 +1,9 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Block = require "../../lib/js/block";
-Curry = require "../../lib/js/curry";
-Caml_int32 = require "../../lib/js/caml_int32";
+Mt = require "..mt";
+Block = require "......lib.js.block";
+Curry = require "......lib.js.curry";
+Caml_int32 = require "......lib.js.caml_int32";
 
 function f(v) do
   if (v % 2 == 0) then do
@@ -38,7 +38,7 @@ hh = {
     "2",
     "3"
   }.map((function(prim) do
-        return parseInt(prim);
+        return __parseInt(prim);
       end end));
 
 function u() do
@@ -50,8 +50,8 @@ vvv = {
 };
 
 function fff(param) do
-  console.log("x");
-  console.log("x");
+  __console.log("x");
+  __console.log("x");
   vvv.contents = vvv.contents + 1 | 0;
   return --[[ () ]]0;
 end end
@@ -61,8 +61,8 @@ function g() do
 end end
 
 function abc(x, y, z) do
-  console.log("xx");
-  console.log("yy");
+  __console.log("xx");
+  __console.log("yy");
   return (x + y | 0) + z | 0;
 end end
 
@@ -172,7 +172,7 @@ end end
 
 (Curry._1((function(){console.log("forgiving arity")}), --[[ () ]]0));
 
-exports = {}
+exports = {};
 exports.f = f;
 exports.v = v;
 exports.vv = vv;
@@ -184,4 +184,5 @@ exports.g = g;
 exports.abc = abc;
 exports.abc_u = abc_u;
 exports.bar = bar;
+return exports;
 --[[ v Not a pure module ]]

@@ -1,10 +1,10 @@
-console = {log = print};
+__console = {log = print};
 
-Curry = require "../../lib/js/curry";
-Js_exn = require "../../lib/js/js_exn";
-Caml_exceptions = require "../../lib/js/caml_exceptions";
-Caml_js_exceptions = require "../../lib/js/caml_js_exceptions";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
+Curry = require "......lib.js.curry";
+Js_exn = require "......lib.js.js_exn";
+Caml_exceptions = require "......lib.js.caml_exceptions";
+Caml_js_exceptions = require "......lib.js.caml_js_exceptions";
+Caml_builtin_exceptions = require "......lib.js.caml_builtin_exceptions";
 
 function f(param) do
   error(Caml_builtin_exceptions.not_found)
@@ -54,11 +54,11 @@ end end
 
 function test_js_error2(param) do
   xpcall(function() do
-    return JSON.parse(" {\"x\" : }");
+    return __JSON.parse(" {\"x\" : }");
   end end,function(raw_e) do
     e = Caml_js_exceptions.internalToOCamlException(raw_e);
-    if (e[0] == Js_exn.__Error) then do
-      console.log(e[1].stack);
+    if (e[1] == Js_exn.__Error) then do
+      __console.log(e[2].stack);
       error(e)
     end else do
       error(e)
@@ -68,14 +68,14 @@ end end
 
 function test_js_error3(param) do
   xpcall(function() do
-    JSON.parse(" {\"x\"}");
+    __JSON.parse(" {\"x\"}");
     return 1;
   end end,function(e) do
     return 0;
   end end)
 end end
 
-exports = {}
+exports = {};
 exports.f = f;
 exports.assert_f = assert_f;
 exports.hh = hh;
@@ -86,4 +86,5 @@ exports.u = u;
 exports.test_not_found = test_not_found;
 exports.test_js_error2 = test_js_error2;
 exports.test_js_error3 = test_js_error3;
+return exports;
 --[[ No side effect ]]

@@ -1,9 +1,9 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Block = require "../../lib/js/block";
-Caml_format = require "../../lib/js/caml_format";
-Caml_exceptions = require "../../lib/js/caml_exceptions";
+Mt = require "..mt";
+Block = require "......lib.js.block";
+Caml_format = require "......lib.js.caml_format";
+Caml_exceptions = require "......lib.js.caml_exceptions";
 
 suites = {
   contents = --[[ [] ]]0
@@ -20,8 +20,8 @@ end end
 Inline_record = Caml_exceptions.create("Record_extension_test.Inline_record");
 
 function f(x) do
-  if (x[0] == Inline_record) then do
-    return x[--[[ x ]]1] + Caml_format.caml_int_of_string(x[--[[ y ]]2]) | 0;
+  if (x[1] == Inline_record) then do
+    return x[--[[ x ]]2] + Caml_format.caml_int_of_string(x[--[[ y ]]3]) | 0;
   end
    end 
 end end
@@ -35,27 +35,27 @@ v0 = {
 eq("File \"record_extension_test.ml\", line 18, characters 6-13", f(v0), 7);
 
 function f2(x) do
-  if (typeof x == "number" or x.tag) then do
+  if (type(x) == "number" or x.tag) then do
     return 0;
   end else do
-    return x[--[[ x ]]0];
+    return x[--[[ x ]]1];
   end end 
 end end
 
 function f2_with(x) do
-  if (typeof x == "number" or x.tag) then do
+  if (type(x) == "number" or x.tag) then do
     return x;
   end else do
     return --[[ C ]]Block.__(0, {
               --[[ x ]]0,
-              --[[ y ]]x[--[[ y ]]1]
+              --[[ y ]]x[--[[ y ]]2]
             });
   end end 
 end end
 
 Mt.from_pair_suites("File \"record_extension_test.ml\", line 43, characters 22-29", suites.contents);
 
-exports = {}
+exports = {};
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
@@ -64,4 +64,5 @@ exports.f = f;
 exports.v0 = v0;
 exports.f2 = f2;
 exports.f2_with = f2_with;
+return exports;
 --[[  Not a pure module ]]

@@ -65,7 +65,7 @@ function toList(a) do
 end end
 
 function init(n, f) do
-  v = new Array(n);
+  v = new __Array(n);
   for i = 0 , n - 1 | 0 , 1 do
     v[i] = f(i);
   end
@@ -74,7 +74,7 @@ end end
 
 function copy(x) do
   len = #x;
-  b = new Array(len);
+  b = new __Array(len);
   for i = 0 , len - 1 | 0 , 1 do
     b[i] = x[i];
   end
@@ -83,7 +83,7 @@ end end
 
 function map(f, a) do
   l = a.length;
-  r = new Array(l);
+  r = new __Array(l);
   for i = 0 , l - 1 | 0 , 1 do
     r[i] = f(a[i]);
   end
@@ -111,7 +111,7 @@ function mapi(f, a) do
   if (l == 0) then do
     return {};
   end else do
-    r = new Array(l);
+    r = new __Array(l);
     for i = 0 , l - 1 | 0 , 1 do
       r[i] = f(i, a[i]);
     end

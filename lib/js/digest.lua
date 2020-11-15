@@ -1,13 +1,13 @@
-console = {log = print};
+__console = {log = print};
 
-Char = require "./char";
-__String = require "./string";
-Caml_md5 = require "./caml_md5";
-Caml_bytes = require "./caml_bytes";
-Pervasives = require "./pervasives";
-Caml_string = require "./caml_string";
-Caml_external_polyfill = require "./caml_external_polyfill";
-Caml_builtin_exceptions = require "./caml_builtin_exceptions";
+Char = require "..char";
+__String = require "..string";
+Caml_md5 = require "..caml_md5";
+Caml_bytes = require "..caml_bytes";
+Pervasives = require "..pervasives";
+Caml_string = require "..caml_string";
+Caml_external_polyfill = require "..caml_external_polyfill";
+Caml_builtin_exceptions = require "..caml_builtin_exceptions";
 
 function string(str) do
   return Caml_md5.caml_md5_string(str, 0, #str);
@@ -128,7 +128,7 @@ compare = __String.compare;
 
 equal = __String.equal;
 
-exports = {}
+exports = {};
 exports.compare = compare;
 exports.equal = equal;
 exports.string = string;
@@ -140,4 +140,5 @@ exports.output = output;
 exports.input = input;
 exports.to_hex = to_hex;
 exports.from_hex = from_hex;
+return exports;
 --[[ No side effect ]]

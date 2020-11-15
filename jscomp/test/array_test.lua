@@ -1,14 +1,14 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-List = require "../../lib/js/list";
-__Array = require "../../lib/js/array";
-Block = require "../../lib/js/block";
-Curry = require "../../lib/js/curry";
-Caml_obj = require "../../lib/js/caml_obj";
-Caml_array = require "../../lib/js/caml_array";
-Caml_primitive = require "../../lib/js/caml_primitive";
-Caml_exceptions = require "../../lib/js/caml_exceptions";
+Mt = require "..mt";
+List = require "......lib.js.list";
+__Array = require "......lib.js.array";
+Block = require "......lib.js.block";
+Curry = require "......lib.js.curry";
+Caml_obj = require "......lib.js.caml_obj";
+Caml_array = require "......lib.js.caml_array";
+Caml_primitive = require "......lib.js.caml_primitive";
+Caml_exceptions = require "......lib.js.caml_exceptions";
 
 function starts_with(xs, prefix, p) do
   H = Caml_exceptions.create("H");
@@ -77,8 +77,8 @@ array_suites_001 = --[[ :: ]]{
           return List.fold_left((function(acc, param) do
                         return --[[ :: ]]{
                                 --[[ tuple ]]{
-                                  __Array.to_list(param[0]),
-                                  param[1]
+                                  __Array.to_list(param[1]),
+                                  param[2]
                                 },
                                 acc
                               };
@@ -92,8 +92,8 @@ array_suites_001 = --[[ :: ]]{
                   --[[ [] ]]0
                 }));
         return --[[ Eq ]]Block.__(0, {
-                  match[0],
-                  match[1]
+                  match[1],
+                  match[2]
                 });
       end end)
   },
@@ -355,5 +355,6 @@ array_suites = --[[ :: ]]{
 
 Mt.from_pair_suites("Array_test", array_suites);
 
-exports = {}
+exports = {};
+return exports;
 --[[  Not a pure module ]]

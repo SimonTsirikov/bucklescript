@@ -1,8 +1,8 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Block = require "../../lib/js/block";
-Test_google_closure = require "./test_google_closure";
+Mt = require "..mt";
+Block = require "......lib.js.block";
+Test_google_closure = require "..test_google_closure";
 
 Mt.from_pair_suites("Closure", --[[ :: ]]{
       --[[ tuple ]]{
@@ -28,5 +28,6 @@ Mt.from_pair_suites("Closure", --[[ :: ]]{
       --[[ [] ]]0
     });
 
-exports = {}
+exports = {};
+return exports;
 --[[  Not a pure module ]]

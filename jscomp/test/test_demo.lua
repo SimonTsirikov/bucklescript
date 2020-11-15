@@ -1,7 +1,7 @@
-console = {log = print};
+__console = {log = print};
 
-List = require "../../lib/js/list";
-Curry = require "../../lib/js/curry";
+List = require "......lib.js.list";
+Curry = require "......lib.js.curry";
 
 function fib(n) do
   if (n == 2 or n == 1) then do
@@ -21,8 +21,8 @@ end end
 function map(f, param) do
   if (param) then do
     return --[[ Cons ]]{
-            Curry._1(f, param[0]),
-            map(f, param[1])
+            Curry._1(f, param[1]),
+            map(f, param[2])
           };
   end else do
     return --[[ Nil ]]0;
@@ -73,7 +73,7 @@ nil = --[[ Nil ]]0;
 
 len = List.length;
 
-exports = {}
+exports = {};
 exports.fib = fib;
 exports.nil = nil;
 exports.cons = cons;
@@ -85,4 +85,5 @@ exports.g = g;
 exports.g1 = g1;
 exports.x = x;
 exports.v = v;
+return exports;
 --[[ x Not a pure module ]]

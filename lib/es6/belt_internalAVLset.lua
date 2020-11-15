@@ -1,8 +1,8 @@
 
 
-import * as Curry from "./curry.lua";
-import * as Caml_option from "./caml_option.lua";
-import * as Belt_SortArray from "./belt_SortArray.lua";
+local Curry = require "..curry.lua";
+local Caml_option = require "..caml_option.lua";
+local Belt_SortArray = require "..belt_SortArray.lua";
 
 function treeHeight(n) do
   if (n ~= nil) then do
@@ -318,12 +318,12 @@ function partitionSharedU(n, p) do
   if (n ~= nil) then do
     value = n.value;
     match = partitionSharedU(n.left, p);
-    lf = match[1];
-    lt = match[0];
+    lf = match[2];
+    lt = match[1];
     pv = p(value);
     match_1 = partitionSharedU(n.right, p);
-    rf = match_1[1];
-    rt = match_1[0];
+    rf = match_1[2];
+    rt = match_1[1];
     if (pv) then do
       return --[[ tuple ]]{
               joinShared(lt, value, rt),
@@ -392,7 +392,7 @@ function checkInvariantInternal(_v) do
       r = v.right;
       diff = treeHeight(l) - treeHeight(r) | 0;
       if (not (diff <= 2 and diff >= -2)) then do
-        error(new Error("File \"belt_internalAVLset.ml\", line 304, characters 6-12"))
+        error(new __Error("File \"belt_internalAVLset.ml\", line 304, characters 6-12"))
       end
        end 
       checkInvariantInternal(l);
@@ -474,7 +474,7 @@ end end
 function toArray(n) do
   if (n ~= nil) then do
     size = lengthNode(n);
-    v = new Array(size);
+    v = new __Array(size);
     fillArray(n, 0, v);
     return v;
   end else do
@@ -585,7 +585,7 @@ end end
 function keepCopyU(n, p) do
   if (n ~= nil) then do
     size = lengthNode(n);
-    v = new Array(size);
+    v = new __Array(size);
     last = fillArrayWithFilter(n, 0, v, p);
     return fromSortedArrayAux(v, 0, last);
   end else do
@@ -600,7 +600,7 @@ end end
 function partitionCopyU(n, p) do
   if (n ~= nil) then do
     size = lengthNode(n);
-    v = new Array(size);
+    v = new __Array(size);
     backward = size - 1 | 0;
     cursor = {
       forward = 0,
@@ -653,12 +653,12 @@ function cmp(s1, s2, cmp_1) do
       e2 = _e2;
       e1 = _e1;
       if (e1 and e2) then do
-        h2 = e2[0];
-        h1 = e1[0];
+        h2 = e2[1];
+        h1 = e1[1];
         c = cmp_2(h1.value, h2.value);
         if (c == 0) then do
-          _e2 = stackAllLeft(h2.right, e2[1]);
-          _e1 = stackAllLeft(h1.right, e1[1]);
+          _e2 = stackAllLeft(h2.right, e2[2]);
+          _e1 = stackAllLeft(h1.right, e1[2]);
           ::continue:: ;
         end else do
           return c;
@@ -770,7 +770,7 @@ function getExn(_n, x, cmp) do
         ::continue:: ;
       end end 
     end else do
-      error(new Error("getExn0"))
+      error(new __Error("getExn0"))
     end end 
   end;
 end end

@@ -1,6 +1,6 @@
-console = {log = print};
+__console = {log = print};
 
-Caml_array = require "../../lib/js/caml_array";
+Caml_array = require "......lib.js.caml_array";
 
 function g(x) do
   return {
@@ -46,7 +46,7 @@ function f(x) do
   return --[[ () ]]0;
 end end
 
-exports = {}
+exports = {};
 exports.g = g;
 exports.ff = ff;
 exports.fff = fff;
@@ -55,4 +55,5 @@ exports.aa = aa;
 exports.aaa = aaa;
 exports.aaaa = aaaa;
 exports.f = f;
+return exports;
 --[[ No side effect ]]

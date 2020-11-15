@@ -1,8 +1,8 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Block = require "../../lib/js/block";
-Caml_option = require "../../lib/js/caml_option";
+Mt = require "..mt";
+Block = require "......lib.js.block";
+Caml_option = require "......lib.js.caml_option";
 
 suites = {
   contents = --[[ [] ]]0
@@ -13,12 +13,12 @@ test_id = {
 };
 
 function eq(loc, param) do
-  y = param[1];
-  x = param[0];
+  y = param[2];
+  x = param[1];
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[[ :: ]]{
     --[[ tuple ]]{
-      loc .. (" id " .. String(test_id.contents)),
+      loc .. (" id " .. __String(test_id.contents)),
       (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     x,
@@ -133,7 +133,7 @@ eq("File \"optional_ffi_test.ml\", line 58, characters 5-12", pair_1);
 
 Mt.from_pair_suites("Optional_ffi_test", suites.contents);
 
-exports = {}
+exports = {};
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
@@ -145,4 +145,5 @@ exports.bug_to_fix = bug_to_fix;
 exports.bug_to_fix2 = bug_to_fix2;
 exports.counter2 = counter2;
 exports.side_effect2 = side_effect2;
+return exports;
 --[[  Not a pure module ]]

@@ -1,10 +1,10 @@
-console = {log = print};
+__console = {log = print};
 
-Curry = require "../../lib/js/curry";
+Curry = require "......lib.js.curry";
 
 function on1(foo, __event) do
   foo.on((function() do
-            local ___conditional___=(__event[0]);
+            local ___conditional___=(__event[1]);
             do
                if ___conditional___ == 4895187 then do
                   return "bar"; end end 
@@ -12,13 +12,13 @@ function on1(foo, __event) do
                   return "foo"; end end 
               
             end
-          end end)(), __event[1]);
+          end end)(), __event[2]);
   return --[[ () ]]0;
 end end
 
 function on2(foo, h, __event) do
   foo.on((function() do
-            local ___conditional___=(Curry._1(h, __event)[0]);
+            local ___conditional___=(Curry._1(h, __event)[1]);
             do
                if ___conditional___ == 4895187 then do
                   return "bar"; end end 
@@ -26,11 +26,12 @@ function on2(foo, h, __event) do
                   return "foo"; end end 
               
             end
-          end end)(), Curry._1(h, __event)[1]);
+          end end)(), Curry._1(h, __event)[2]);
   return --[[ () ]]0;
 end end
 
-exports = {}
+exports = {};
 exports.on1 = on1;
 exports.on2 = on2;
+return exports;
 --[[ No side effect ]]

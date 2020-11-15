@@ -1,6 +1,6 @@
 
 
-import * as CamlinternalOO from "./camlinternalOO.lua";
+local CamlinternalOO = require "..camlinternalOO.lua";
 
 copy = CamlinternalOO.copy;
 

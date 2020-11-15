@@ -1,4 +1,4 @@
-console = {log = print};
+__console = {log = print};
 
 
 function test(x) do
@@ -6,6 +6,7 @@ function test(x) do
   return --[[ () ]]0;
 end end
 
-exports = {}
+exports = {};
 exports.test = test;
+return exports;
 --[[ No side effect ]]

@@ -1,10 +1,10 @@
-console = {log = print};
+__console = {log = print};
 
-Caml_gc = require "./caml_gc";
-Caml_io = require "./caml_io";
-Pervasives = require "./pervasives";
-Caml_external_polyfill = require "./caml_external_polyfill";
-Caml_builtin_exceptions = require "./caml_builtin_exceptions";
+Caml_gc = require "..caml_gc";
+Caml_io = require "..caml_io";
+Pervasives = require "..pervasives";
+Caml_external_polyfill = require "..caml_external_polyfill";
+Caml_builtin_exceptions = require "..caml_builtin_exceptions";
 
 function if_spacetime_enabled(f) do
   return --[[ () ]]0;
@@ -75,9 +75,10 @@ end end
 
 enabled = false;
 
-exports = {}
+exports = {};
 exports.enabled = enabled;
 exports.Series = Series;
 exports.Snapshot = Snapshot;
 exports.save_event_for_automatic_snapshots = save_event_for_automatic_snapshots;
+return exports;
 --[[ No side effect ]]

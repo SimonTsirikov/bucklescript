@@ -1,9 +1,9 @@
-console = {log = print};
+__console = {log = print};
 
 
-console.log("list");
+__console.log("list");
 
-console.log("list");
+__console.log("list");
 
 function f(param) do
   if (param ~= nil) then do
@@ -13,16 +13,17 @@ function f(param) do
   end end 
 end end
 
-console.log(--[[ tuple ]]{
+__console.log(--[[ tuple ]]{
       f(3),
       "None",
       "Some"
     });
 
-console.log(--[[ tuple ]]{
+__console.log(--[[ tuple ]]{
       "A",
       "A"
     });
 
-exports = {}
+exports = {};
+return exports;
 --[[  Not a pure module ]]

@@ -1,10 +1,10 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Block = require "../../lib/js/block";
-Curry = require "../../lib/js/curry";
-Caml_int32 = require "../../lib/js/caml_int32";
-Caml_module = require "../../lib/js/caml_module";
+Mt = require "..mt";
+Block = require "......lib.js.block";
+Curry = require "......lib.js.curry";
+Caml_int32 = require "......lib.js.caml_int32";
+Caml_module = require "......lib.js.caml_module";
 
 suites = {
   contents = --[[ [] ]]0
@@ -18,7 +18,7 @@ function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[[ :: ]]{
     --[[ tuple ]]{
-      loc .. (" id " .. String(test_id.contents)),
+      loc .. (" id " .. __String(test_id.contents)),
       (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     x,
@@ -98,11 +98,12 @@ add(--[[ tuple ]]{
 
 Mt.from_pair_suites("Recursive_module_test", suites.contents);
 
-exports = {}
+exports = {};
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
 exports.add = add;
 exports.Int3 = Int3;
 exports.Fact = Fact;
+return exports;
 --[[ Int3 Not a pure module ]]

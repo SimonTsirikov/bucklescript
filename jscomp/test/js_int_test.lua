@@ -1,7 +1,7 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Block = require "../../lib/js/block";
+Mt = require "..mt";
+Block = require "......lib.js.block";
 
 suites_000 = --[[ tuple ]]{
   "toExponential",
@@ -220,6 +220,7 @@ suites = --[[ :: ]]{
 
 Mt.from_pair_suites("Js_int_test", suites);
 
-exports = {}
+exports = {};
 exports.suites = suites;
+return exports;
 --[[  Not a pure module ]]

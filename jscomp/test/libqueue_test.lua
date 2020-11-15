@@ -1,10 +1,10 @@
-console = {log = print};
+__console = {log = print};
 
-List = require "../../lib/js/list";
-Curry = require "../../lib/js/curry";
-Queue = require "../../lib/js/queue";
-Caml_obj = require "../../lib/js/caml_obj";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
+List = require "......lib.js.list";
+Curry = require "......lib.js.curry";
+Queue = require "......lib.js.queue";
+Caml_obj = require "......lib.js.caml_obj";
+Caml_builtin_exceptions = require "......lib.js.caml_builtin_exceptions";
 
 function to_list(q) do
   return List.rev(Queue.fold((function(l, x) do
@@ -1381,9 +1381,10 @@ if (not Caml_obj.caml_equal(to_list(q2_4), --[[ :: ]]{
 end
  end 
 
-console.log("OK");
+__console.log("OK");
 
-exports = {}
+exports = {};
 exports.Q = Q;
 exports.does_raise = does_raise;
+return exports;
 --[[ q Not a pure module ]]

@@ -1,12 +1,12 @@
 
 
-import * as Bytes from "./bytes.lua";
-import * as Curry from "./curry.lua";
-import * as __String from "./string.lua";
-import * as Caml_bytes from "./caml_bytes.lua";
-import * as Pervasives from "./pervasives.lua";
-import * as Caml_string from "./caml_string.lua";
-import * as Caml_builtin_exceptions from "./caml_builtin_exceptions.lua";
+local Bytes = require "..bytes.lua";
+local Curry = require "..curry.lua";
+local __String = require "..string.lua";
+local Caml_bytes = require "..caml_bytes.lua";
+local Pervasives = require "..pervasives.lua";
+local Caml_string = require "..caml_string.lua";
+local Caml_builtin_exceptions = require "..caml_builtin_exceptions.lua";
 
 function create(n) do
   n_1 = n < 1 and 1 or n;
@@ -184,9 +184,9 @@ function add_utf_16be_uchar(b, u) do
     b.position = pos + 2 | 0;
     return --[[ () ]]0;
   end else if (u_1 <= 1114111) then do
-    u$prime = u_1 - 65536 | 0;
-    hi = 55296 | (u$prime >>> 10);
-    lo = 56320 | u$prime & 1023;
+    u_prime = u_1 - 65536 | 0;
+    hi = 55296 | (u_prime >>> 10);
+    lo = 56320 | u_prime & 1023;
     pos_1 = b.position;
     if ((pos_1 + 4 | 0) > b.length) then do
       resize(b, 4);
@@ -234,9 +234,9 @@ function add_utf_16le_uchar(b, u) do
     b.position = pos + 2 | 0;
     return --[[ () ]]0;
   end else if (u_1 <= 1114111) then do
-    u$prime = u_1 - 65536 | 0;
-    hi = 55296 | (u$prime >>> 10);
-    lo = 56320 | u$prime & 1023;
+    u_prime = u_1 - 65536 | 0;
+    hi = 55296 | (u_prime >>> 10);
+    lo = 56320 | u_prime & 1023;
     pos_1 = b.position;
     if ((pos_1 + 4 | 0) > b.length) then do
       resize(b, 4);
@@ -477,8 +477,8 @@ function add_substitute(b, f, s) do
       end else do
         j = i + 1 | 0;
         match = find_ident(s, j, lim);
-        add_string(b, Curry._1(f, match[0]));
-        _i = match[1];
+        add_string(b, Curry._1(f, match[1]));
+        _i = match[2];
         _previous = --[[ " " ]]32;
         ::continue:: ;
       end end  end 

@@ -1,9 +1,9 @@
-console = {log = print};
+__console = {log = print};
 
-Caml_option = require "../../lib/js/caml_option";
-Js_undefined = require "../../lib/js/js_undefined";
-Belt_MutableQueue = require "../../lib/js/belt_MutableQueue";
-Belt_MutableStack = require "../../lib/js/belt_MutableStack";
+Caml_option = require "......lib.js.caml_option";
+Js_undefined = require "......lib.js.js_undefined";
+Belt_MutableQueue = require "......lib.js.belt_MutableQueue";
+Belt_MutableStack = require "......lib.js.belt_MutableStack";
 
 function inOrder(v) do
   current = v;
@@ -102,15 +102,15 @@ test2 = n(Caml_option.some(n(Caml_option.some(n(Caml_option.some(n(Caml_option.s
 
 test3 = n(Caml_option.some(n(Caml_option.some(n(Caml_option.some(n(nil, nil, 4)), nil, 2)), nil, 5)), Caml_option.some(n(nil, nil, 3)), 1);
 
-console.log(inOrder(test1));
+__console.log(inOrder(test1));
 
-console.log(inOrder3(test1));
+__console.log(inOrder3(test1));
 
 S = --[[ alias ]]0;
 
 Q = --[[ alias ]]0;
 
-exports = {}
+exports = {};
 exports.S = S;
 exports.Q = Q;
 exports.inOrder = inOrder;
@@ -121,4 +121,5 @@ exports.test1 = test1;
 exports.pushAllLeft = pushAllLeft;
 exports.test2 = test2;
 exports.test3 = test3;
+return exports;
 --[[ test1 Not a pure module ]]

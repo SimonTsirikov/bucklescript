@@ -1,8 +1,8 @@
-console = {log = print};
+__console = {log = print};
 
-Curry = require "../../lib/js/curry";
-Caml_obj = require "../../lib/js/caml_obj";
-Caml_exceptions = require "../../lib/js/caml_exceptions";
+Curry = require "......lib.js.curry";
+Caml_obj = require "......lib.js.caml_obj";
+Caml_exceptions = require "......lib.js.caml_exceptions";
 
 Empty = Caml_exceptions.create("Queue_402.Empty");
 
@@ -73,10 +73,10 @@ function copy(q) do
           };
   end else do
     tail = q.tail;
-    tail$prime = { };
-    Caml_obj.caml_update_dummy(tail$prime, {
+    tail_prime = { };
+    Caml_obj.caml_update_dummy(tail_prime, {
           content = tail.content,
-          next = tail$prime
+          next = tail_prime
         });
     copy_1 = function(_prev, _cell) do
       while(true) do
@@ -85,7 +85,7 @@ function copy(q) do
         if (cell ~= tail) then do
           res = {
             content = cell.content,
-            next = tail$prime
+            next = tail_prime
           };
           prev.next = res;
           _cell = cell.next;
@@ -96,10 +96,10 @@ function copy(q) do
         end end 
       end;
     end end;
-    copy_1(tail$prime, tail.next);
+    copy_1(tail_prime, tail.next);
     return {
             length = q.length,
-            tail = tail$prime
+            tail = tail_prime
           };
   end end 
 end end
@@ -180,7 +180,7 @@ top = peek;
 
 pop = take;
 
-exports = {}
+exports = {};
 exports.Empty = Empty;
 exports.create = create;
 exports.clear = clear;
@@ -196,4 +196,5 @@ exports.length = length;
 exports.iter = iter;
 exports.fold = fold;
 exports.transfer = transfer;
+return exports;
 --[[ No side effect ]]

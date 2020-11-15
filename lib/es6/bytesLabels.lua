@@ -1,6 +1,6 @@
 
 
-import * as Bytes from "./bytes.lua";
+local Bytes = require "..bytes.lua";
 
 make = Bytes.make;
 

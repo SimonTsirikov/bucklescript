@@ -1,9 +1,9 @@
-console = {log = print};
+__console = {log = print};
 
-Caml_format = require "./caml_format";
-Caml_primitive = require "./caml_primitive";
-Caml_js_exceptions = require "./caml_js_exceptions";
-Caml_builtin_exceptions = require "./caml_builtin_exceptions";
+Caml_format = require "..caml_format";
+Caml_primitive = require "..caml_primitive";
+Caml_js_exceptions = require "..caml_js_exceptions";
+Caml_builtin_exceptions = require "..caml_builtin_exceptions";
 
 function succ(n) do
   return n + 1;
@@ -34,7 +34,7 @@ function of_string_opt(s) do
     return Caml_format.caml_nativeint_of_string(s);
   end end,function(raw_exn) do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
-    if (exn[0] == Caml_builtin_exceptions.failure) then do
+    if (exn[1] == Caml_builtin_exceptions.failure) then do
       return ;
     end else do
       error(exn)
@@ -60,7 +60,7 @@ max_int = 9007199254740991;
 
 min_int = -9007199254740991;
 
-exports = {}
+exports = {};
 exports.zero = zero;
 exports.one = one;
 exports.minus_one = minus_one;
@@ -75,4 +75,5 @@ exports.of_string_opt = of_string_opt;
 exports.to_string = to_string;
 exports.compare = compare;
 exports.equal = equal;
+return exports;
 --[[ No side effect ]]

@@ -1,7 +1,7 @@
-console = {log = print};
+__console = {log = print};
 
-Caml_primitive = require "../../lib/js/caml_primitive";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
+Caml_primitive = require "......lib.js.caml_primitive";
+Caml_builtin_exceptions = require "......lib.js.caml_builtin_exceptions";
 
 function getcompare(x) do
   return x;
@@ -18,7 +18,7 @@ Comparable = {
 
 function height(param) do
   if (param) then do
-    return param[4];
+    return param[5];
   end else do
     return 0;
   end end 
@@ -37,18 +37,18 @@ function create(l, x, d, r) do
 end end
 
 function bal(l, x, d, r) do
-  hl = l and l[4] or 0;
-  hr = r and r[4] or 0;
+  hl = l and l[5] or 0;
+  hr = r and r[5] or 0;
   if (hl > (hr + 2 | 0)) then do
     if (l) then do
-      lr = l[3];
-      ld = l[2];
-      lv = l[1];
-      ll = l[0];
+      lr = l[4];
+      ld = l[3];
+      lv = l[2];
+      ll = l[1];
       if (height(ll) >= height(lr)) then do
         return create(ll, lv, ld, create(lr, x, d, r));
       end else if (lr) then do
-        return create(create(ll, lv, ld, lr[0]), lr[1], lr[2], create(lr[3], x, d, r));
+        return create(create(ll, lv, ld, lr[1]), lr[2], lr[3], create(lr[4], x, d, r));
       end else do
         error({
           Caml_builtin_exceptions.invalid_argument,
@@ -63,14 +63,14 @@ function bal(l, x, d, r) do
     end end 
   end else if (hr > (hl + 2 | 0)) then do
     if (r) then do
-      rr = r[3];
-      rd = r[2];
-      rv = r[1];
-      rl = r[0];
+      rr = r[4];
+      rd = r[3];
+      rv = r[2];
+      rl = r[1];
       if (height(rr) >= height(rl)) then do
         return create(create(l, x, d, rl), rv, rd, rr);
       end else if (rl) then do
-        return create(create(l, x, d, rl[0]), rl[1], rl[2], create(rl[3], rv, rd, rr));
+        return create(create(l, x, d, rl[1]), rl[2], rl[3], create(rl[4], rv, rd, rr));
       end else do
         error({
           Caml_builtin_exceptions.invalid_argument,
@@ -96,10 +96,10 @@ end end
 
 function add(x, data, compare, param) do
   if (param) then do
-    r = param[3];
-    d = param[2];
-    v = param[1];
-    l = param[0];
+    r = param[4];
+    d = param[3];
+    v = param[2];
+    l = param[1];
     c = compare(x, v);
     if (c == 0) then do
       return --[[ Node ]]{
@@ -107,7 +107,7 @@ function add(x, data, compare, param) do
               x,
               data,
               r,
-              param[4]
+              param[5]
             };
     end else if (c < 0) then do
       return bal(add(x, data, compare, l), v, d, r);
@@ -164,9 +164,9 @@ v1 = {
 
 v3 = add_1(3, "a", v0);
 
-console.log(v3);
+__console.log(v3);
 
-exports = {}
+exports = {};
 exports.Comparable = Comparable;
 exports.height = height;
 exports.create = create;
@@ -178,4 +178,5 @@ exports.V1 = V1;
 exports.v0 = v0;
 exports.v1 = v1;
 exports.v3 = v3;
+return exports;
 --[[ v3 Not a pure module ]]

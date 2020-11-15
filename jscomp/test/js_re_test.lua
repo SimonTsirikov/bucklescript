@@ -1,9 +1,9 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Block = require "../../lib/js/block";
-Caml_array = require "../../lib/js/caml_array";
-Caml_option = require "../../lib/js/caml_option";
+Mt = require "..mt";
+Block = require "......lib.js.block";
+Caml_array = require "......lib.js.caml_array";
+Caml_option = require "......lib.js.caml_option";
 
 suites_000 = --[[ tuple ]]{
   "captures",
@@ -34,7 +34,7 @@ suites_001 = --[[ :: ]]{
     "fromString",
     (function(param) do
         contentOf = function(tag, xmlString) do
-          param = new RegExp("<" .. (tag .. (">(.*?)<\\/" .. (tag .. ">")))).exec(xmlString);
+          param = new __RegExp("<" .. (tag .. (">(.*?)<\\/" .. (tag .. ">")))).exec(xmlString);
           if (param ~= nil) then do
             return Caml_option.nullable_to_opt(Caml_array.caml_array_get(param, 1));
           end
@@ -77,7 +77,7 @@ suites_001 = --[[ :: ]]{
         --[[ tuple ]]{
           "test_str",
           (function(param) do
-              res = new RegExp("foo").test("#foo#");
+              res = new __RegExp("foo").test("#foo#");
               return --[[ Eq ]]Block.__(0, {
                         true,
                         res
@@ -88,10 +88,10 @@ suites_001 = --[[ :: ]]{
           --[[ tuple ]]{
             "fromStringWithFlags",
             (function(param) do
-                res = new RegExp("foo", "g");
+                res = new __RegExp("foo", "g");
                 return --[[ Eq ]]Block.__(0, {
                           true,
-                          res.global
+                          res.__global
                         });
               end end)
           },
@@ -99,7 +99,7 @@ suites_001 = --[[ :: ]]{
             --[[ tuple ]]{
               "result_index",
               (function(param) do
-                  match = new RegExp("zbar").exec("foobarbazbar");
+                  match = new __RegExp("zbar").exec("foobarbazbar");
                   if (match ~= nil) then do
                     return --[[ Eq ]]Block.__(0, {
                               8,
@@ -142,7 +142,7 @@ suites_001 = --[[ :: ]]{
                     (function(param) do
                         return --[[ Eq ]]Block.__(0, {
                                   true,
-                                  /./ig.global
+                                  /./ig.__global
                                 });
                       end end)
                   },
@@ -253,6 +253,7 @@ suites = --[[ :: ]]{
 
 Mt.from_pair_suites("Js_re_test", suites);
 
-exports = {}
+exports = {};
 exports.suites = suites;
+return exports;
 --[[  Not a pure module ]]

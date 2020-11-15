@@ -1,7 +1,7 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Block = require "../../lib/js/block";
+Mt = require "..mt";
+Block = require "......lib.js.block";
 
 suites = {
   contents = --[[ [] ]]0
@@ -15,7 +15,7 @@ function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[[ :: ]]{
     --[[ tuple ]]{
-      loc .. (" id " .. String(test_id.contents)),
+      loc .. (" id " .. __String(test_id.contents)),
       (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     x,
@@ -33,7 +33,7 @@ function f(x) do
 end end
 
 function ff(x) do
-  console.log(x);
+  __console.log(x);
   return --[[ () ]]0;
 end end
 
@@ -41,10 +41,11 @@ eq("File \"ignore_test.ml\", line 16, characters 5-12", --[[ () ]]0, --[[ () ]]0
 
 Mt.from_pair_suites("Ignore_test", suites.contents);
 
-exports = {}
+exports = {};
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
 exports.f = f;
 exports.ff = ff;
+return exports;
 --[[  Not a pure module ]]

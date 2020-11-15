@@ -1,8 +1,8 @@
-console = {log = print};
+__console = {log = print};
 
-Caml_format = require "./caml_format";
-Caml_primitive = require "./caml_primitive";
-Caml_builtin_exceptions = require "./caml_builtin_exceptions";
+Caml_format = require "..caml_format";
+Caml_primitive = require "..caml_primitive";
+Caml_builtin_exceptions = require "..caml_builtin_exceptions";
 
 function err_not_sv(i) do
   return Caml_format.caml_format_int("%X", i) .. " is not an Unicode scalar value";
@@ -114,7 +114,7 @@ function to_int(prim) do
   return prim;
 end end
 
-exports = {}
+exports = {};
 exports.min = min;
 exports.max = max;
 exports.bom = bom;
@@ -132,4 +132,5 @@ exports.unsafe_to_char = unsafe_to_char;
 exports.equal = equal;
 exports.compare = compare;
 exports.hash = hash;
+return exports;
 --[[ No side effect ]]

@@ -1,6 +1,6 @@
 
 
-import * as __String from "./string.lua";
+local __String = require "..string.lua";
 
 make = __String.make;
 

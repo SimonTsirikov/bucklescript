@@ -1,9 +1,9 @@
-console = {log = print};
+__console = {log = print};
 
-Caml_option = require "./caml_option";
-Caml_hash_primitive = require "./caml_hash_primitive";
-Belt_internalBuckets = require "./belt_internalBuckets";
-Belt_internalBucketsType = require "./belt_internalBucketsType";
+Caml_option = require "..caml_option";
+Caml_hash_primitive = require "..caml_hash_primitive";
+Belt_internalBuckets = require "..belt_internalBuckets";
+Belt_internalBucketsType = require "..belt_internalBucketsType";
 
 function copyBucketReHash(h_buckets, ndata_tail, _old_bucket) do
   while(true) do
@@ -73,8 +73,8 @@ function set(h, key, value) do
     osize = #odata;
     nsize = (osize << 1);
     if (nsize >= osize) then do
-      h_buckets_1 = new Array(nsize);
-      ndata_tail = new Array(nsize);
+      h_buckets_1 = new __Array(nsize);
+      ndata_tail = new __Array(nsize);
       h_1.buckets = h_buckets_1;
       for i_1 = 0 , osize - 1 | 0 , 1 do
         copyBucketReHash(h_buckets_1, ndata_tail, odata[i_1]);
@@ -218,7 +218,7 @@ function fromArray(arr) do
   v = Belt_internalBucketsType.make(--[[ () ]]0, --[[ () ]]0, len);
   for i = 0 , len - 1 | 0 , 1 do
     match = arr[i];
-    set(v, match[0], match[1]);
+    set(v, match[1], match[2]);
   end
   return v;
 end end
@@ -227,7 +227,7 @@ function mergeMany(h, arr) do
   len = #arr;
   for i = 0 , len - 1 | 0 , 1 do
     match = arr[i];
-    set(h, match[0], match[1]);
+    set(h, match[1], match[2]);
   end
   return --[[ () ]]0;
 end end
@@ -260,7 +260,7 @@ getBucketHistogram = Belt_internalBuckets.getBucketHistogram;
 
 logStats = Belt_internalBuckets.logStats;
 
-exports = {}
+exports = {};
 exports.make = make;
 exports.clear = clear;
 exports.isEmpty = isEmpty;
@@ -283,4 +283,5 @@ exports.fromArray = fromArray;
 exports.mergeMany = mergeMany;
 exports.getBucketHistogram = getBucketHistogram;
 exports.logStats = logStats;
+return exports;
 --[[ No side effect ]]

@@ -1,14 +1,14 @@
-console = {log = print};
+__console = {log = print};
 
-Block = require "../../lib/js/block";
-Curry = require "../../lib/js/curry";
-Caml_obj = require "../../lib/js/caml_obj";
-Caml_exceptions = require "../../lib/js/caml_exceptions";
-Caml_js_exceptions = require "../../lib/js/caml_js_exceptions";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
+Block = require "......lib.js.block";
+Curry = require "......lib.js.curry";
+Caml_obj = require "......lib.js.caml_obj";
+Caml_exceptions = require "......lib.js.caml_exceptions";
+Caml_js_exceptions = require "......lib.js.caml_js_exceptions";
+Caml_builtin_exceptions = require "......lib.js.caml_builtin_exceptions";
 
 function foo(param) do
-  if (typeof param == "number") then do
+  if (type(param) == "number") then do
     if (param == --[[ A1 ]]0) then do
       return 1;
     end else do
@@ -18,19 +18,19 @@ function foo(param) do
     local ___conditional___=(param.tag | 0);
     do
        if ___conditional___ == 0--[[ B ]] then do
-          return param[0]; end end 
+          return param[1]; end end 
        if ___conditional___ == 1--[[ C ]] then do
-          return param[0] + param[1] | 0; end end 
+          return param[1] + param[2] | 0; end end 
        if ___conditional___ == 2--[[ D ]] then do
-          match = param[0];
-          return match[0] + match[1] | 0; end end 
+          match = param[1];
+          return match[1] + match[2] | 0; end end 
       
     end
   end end 
 end end
 
 function fooA1(param) do
-  if (typeof param == "number" and param == 0) then do
+  if (type(param) == "number" and param == 0) then do
     return 1;
   end else do
     return 42;
@@ -38,10 +38,10 @@ function fooA1(param) do
 end end
 
 function fooC(param) do
-  if (typeof param == "number" or param.tag ~= --[[ C ]]1) then do
+  if (type(param) == "number" or param.tag ~= --[[ C ]]1) then do
     return 42;
   end else do
-    return param[0] + param[1] | 0;
+    return param[1] + param[2] | 0;
   end end 
 end end
 
@@ -124,13 +124,13 @@ function fooExn(f) do
       return 1;
     end else if (exn == EA2) then do
       return 2;
-    end else if (exn[0] == EB) then do
-      return exn[1];
-    end else if (exn[0] == EC) then do
-      return exn[1] + exn[2] | 0;
-    end else if (exn[0] == ED) then do
-      match = exn[1];
-      return match[0] + match[1] | 0;
+    end else if (exn[1] == EB) then do
+      return exn[2];
+    end else if (exn[1] == EC) then do
+      return exn[2] + exn[3] | 0;
+    end else if (exn[1] == ED) then do
+      match = exn[2];
+      return match[1] + match[2] | 0;
     end else do
       error(exn)
     end end  end  end  end  end 
@@ -153,7 +153,7 @@ d = --[[ D ]]Block.__(2, {--[[ tuple ]]{
       2
     }});
 
-exports = {}
+exports = {};
 exports.a1 = a1;
 exports.a2 = a2;
 exports.b = b;
@@ -173,4 +173,5 @@ exports.EB = EB;
 exports.EC = EC;
 exports.ED = ED;
 exports.fooExn = fooExn;
+return exports;
 --[[ No side effect ]]

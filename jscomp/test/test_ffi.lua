@@ -1,11 +1,12 @@
-console = {log = print};
+__console = {log = print};
 
 
 function v(u) do
-  console.log(u);
+  __console.log(u);
   return u;
 end end
 
-exports = {}
+exports = {};
 exports.v = v;
+return exports;
 --[[ No side effect ]]

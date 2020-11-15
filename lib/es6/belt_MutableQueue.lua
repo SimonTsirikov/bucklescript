@@ -1,7 +1,7 @@
 
 
-import * as Curry from "./curry.lua";
-import * as Caml_option from "./caml_option.lua";
+local Curry = require "..curry.lua";
+local Caml_option = require "..caml_option.lua";
 
 __null = nil;
 
@@ -60,7 +60,7 @@ function peekExn(q) do
   if (match ~= nil) then do
     return match.content;
   end else do
-    error(new Error("Belt.Queue.Empty"))
+    error(new __Error("Belt.Queue.Empty"))
   end end 
 end end
 
@@ -93,7 +93,7 @@ function popExn(q) do
       return match.content;
     end end 
   end else do
-    error(new Error("Empty"))
+    error(new __Error("Empty"))
   end end 
 end end
 
@@ -266,7 +266,7 @@ function fillAux(_i, arr, _cell) do
 end end
 
 function toArray(x) do
-  v = new Array(x.length);
+  v = new __Array(x.length);
   fillAux(0, v, x.first);
   return v;
 end end

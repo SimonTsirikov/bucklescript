@@ -1,4 +1,4 @@
-console = {log = print};
+__console = {log = print};
 
 
 function mk(param) do
@@ -8,6 +8,7 @@ function mk(param) do
         };
 end end
 
-exports = {}
+exports = {};
 exports.mk = mk;
+return exports;
 --[[ No side effect ]]

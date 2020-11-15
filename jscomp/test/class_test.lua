@@ -1,10 +1,10 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Block = require "../../lib/js/block";
-Curry = require "../../lib/js/curry";
-Caml_oo_curry = require "../../lib/js/caml_oo_curry";
-CamlinternalOO = require "../../lib/js/camlinternalOO";
+Mt = require "..mt";
+Block = require "......lib.js.block";
+Curry = require "......lib.js.curry";
+Caml_oo_curry = require "......lib.js.caml_oo_curry";
+CamlinternalOO = require "......lib.js.camlinternalOO";
 
 shared = {"x"};
 
@@ -15,17 +15,17 @@ shared_1 = {
 
 function point_init(__class) do
   ids = CamlinternalOO.new_methods_variables(__class, shared_1, shared);
-  move = ids[0];
-  get_x = ids[1];
-  x = ids[2];
+  move = ids[1];
+  get_x = ids[2];
+  x = ids[3];
   CamlinternalOO.set_methods(__class, {
         get_x,
-        (function(self$1) do
-            return self$1[x];
+        (function(self_1) do
+            return self_1[x];
           end end),
         move,
-        (function(self$1, d) do
-            self$1[x] = self$1[x] + d | 0;
+        (function(self_1, d) do
+            self_1[x] = self_1[x] + d | 0;
             return --[[ () ]]0;
           end end)
       });
@@ -38,7 +38,7 @@ end end
 
 point = CamlinternalOO.make_class(shared_1, point_init);
 
-p = Curry._1(point[0], 0);
+p = Curry._1(point[1], 0);
 
 zero = Caml_oo_curry.js1(291546447, 1, p);
 
@@ -52,17 +52,17 @@ x0 = {
 
 function point2_init(__class) do
   ids = CamlinternalOO.new_methods_variables(__class, shared_1, shared);
-  move = ids[0];
-  get_x = ids[1];
-  x = ids[2];
+  move = ids[1];
+  get_x = ids[2];
+  x = ids[3];
   CamlinternalOO.set_methods(__class, {
         get_x,
-        (function(self$2) do
-            return self$2[x];
+        (function(self_2) do
+            return self_2[x];
           end end),
         move,
-        (function(self$2, d) do
-            self$2[x] = self$2[x] + d | 0;
+        (function(self_2, d) do
+            self_2[x] = self_2[x] + d | 0;
             return --[[ () ]]0;
           end end)
       });
@@ -76,11 +76,11 @@ end end
 
 point2 = CamlinternalOO.make_class(shared_1, point2_init);
 
-tmp = Curry._1(point2[0], 0);
+tmp = Curry._1(point2[1], 0);
 
 one = Caml_oo_curry.js1(291546447, 4, tmp);
 
-tmp_1 = Curry._1(point2[0], 0);
+tmp_1 = Curry._1(point2[1], 0);
 
 two = Caml_oo_curry.js1(291546447, 5, tmp_1);
 
@@ -138,7 +138,7 @@ Mt.from_pair_suites("Class_test", --[[ :: ]]{
       }
     });
 
-exports = {}
+exports = {};
 exports.point = point;
 exports.p = p;
 exports.zero = zero;
@@ -148,4 +148,5 @@ exports.point2 = point2;
 exports.one = one;
 exports.two = two;
 exports.u = u;
+return exports;
 --[[ point Not a pure module ]]

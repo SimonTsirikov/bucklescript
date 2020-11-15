@@ -1,4 +1,4 @@
-console = {log = print};
+__console = {log = print};
 
 
 v = {
@@ -13,7 +13,8 @@ v = {
 
 u = v.x() + v.say(3) | 0;
 
-exports = {}
+exports = {};
 exports.v = v;
 exports.u = u;
+return exports;
 --[[ v Not a pure module ]]

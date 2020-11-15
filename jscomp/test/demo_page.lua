@@ -1,6 +1,6 @@
-console = {log = print};
+__console = {log = print};
 
-Curry = require "../../lib/js/curry";
+Curry = require "......lib.js.curry";
 React = require "r";
 ReactDom = require "react";
 
@@ -23,8 +23,8 @@ end end
 function map(f, param) do
   if (param) then do
     return --[[ Cons ]]{
-            Curry._1(f, param[0]),
-            map(f, param[1])
+            Curry._1(f, param[1]),
+            map(f, param[2])
           };
   end else do
     return --[[ Nil ]]0;
@@ -45,12 +45,13 @@ ReactDom.render(React.createClass({
                           alt = "pic"
                         }, React.DOM.h1(nil, "hello react"), React.DOM.h2(nil, "type safe!"));
             end end)
-        }), document.getElementById("hi"));
+        }), __document.getElementById("hi"));
 
-exports = {}
+exports = {};
 exports.fib = fib;
 exports.sum = sum;
 exports.map = map;
 exports.test_curry = test_curry;
 exports.f = f;
+return exports;
 --[[  Not a pure module ]]

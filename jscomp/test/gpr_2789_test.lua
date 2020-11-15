@@ -1,7 +1,7 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Caml_weak = require "../../lib/js/caml_weak";
+Mt = require "..mt";
+Caml_weak = require "......lib.js.caml_weak";
 
 suites = {
   contents = --[[ [] ]]0
@@ -21,8 +21,9 @@ eq("File \"gpr_2789_test.ml\", line 9, characters 5-12", 1, #Caml_weak.caml_weak
 
 Mt.from_pair_suites("Gpr_2789_test", suites.contents);
 
-exports = {}
+exports = {};
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
+return exports;
 --[[  Not a pure module ]]

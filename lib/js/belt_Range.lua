@@ -1,6 +1,6 @@
-console = {log = print};
+__console = {log = print};
 
-Curry = require "./curry";
+Curry = require "..curry";
 
 function forEachU(s, f, action) do
   for i = s , f , 1 do
@@ -101,7 +101,7 @@ function someBy(s, f, step, p) do
   return someByU(s, f, step, Curry.__1(p));
 end end
 
-exports = {}
+exports = {};
 exports.forEachU = forEachU;
 exports.forEach = forEach;
 exports.everyU = everyU;
@@ -112,4 +112,5 @@ exports.someU = someU;
 exports.some = some;
 exports.someByU = someByU;
 exports.someBy = someBy;
+return exports;
 --[[ No side effect ]]

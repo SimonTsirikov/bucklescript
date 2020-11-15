@@ -1,7 +1,7 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Block = require "../../lib/js/block";
+Mt = require "..mt";
+Block = require "......lib.js.block";
 
 suites = {
   contents = --[[ [] ]]0
@@ -15,7 +15,7 @@ function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[[ :: ]]{
     --[[ tuple ]]{
-      loc .. (" id " .. String(test_id.contents)),
+      loc .. (" id " .. __String(test_id.contents)),
       (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     x,
@@ -33,13 +33,13 @@ function test(dom) do
   if (elem == nil) then do
     return 1;
   end else do
-    console.log(elem);
+    __console.log(elem);
     return 2;
   end end 
 end end
 
 function f(x, y) do
-  console.log("no inline");
+  __console.log("no inline");
   return x + y | 0;
 end end
 
@@ -53,10 +53,11 @@ eq("File \"js_nullable_test.ml\", line 34, characters 3-10", false, false);
 
 Mt.from_pair_suites("Js_nullable_test", suites.contents);
 
-exports = {}
+exports = {};
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
 exports.test = test;
 exports.f = f;
+return exports;
 --[[  Not a pure module ]]

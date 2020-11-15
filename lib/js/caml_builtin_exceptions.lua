@@ -1,4 +1,4 @@
-console = {log = print};
+__console = {log = print};
 
 
 out_of_memory = --[[ tuple ]]{
@@ -85,7 +85,7 @@ assert_failure.tag = 248;
 
 undefined_recursive_module.tag = 248;
 
-exports = {}
+exports = {};
 exports.out_of_memory = out_of_memory;
 exports.sys_error = sys_error;
 exports.failure = failure;
@@ -98,4 +98,5 @@ exports.stack_overflow = stack_overflow;
 exports.sys_blocked_io = sys_blocked_io;
 exports.assert_failure = assert_failure;
 exports.undefined_recursive_module = undefined_recursive_module;
+return exports;
 --[[  Not a pure module ]]

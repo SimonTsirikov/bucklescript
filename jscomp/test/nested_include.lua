@@ -1,10 +1,11 @@
-console = {log = print};
+__console = {log = print};
 
 
 function f(x) do
   return x;
 end end
 
-exports = {}
+exports = {};
 exports.f = f;
+return exports;
 --[[ No side effect ]]

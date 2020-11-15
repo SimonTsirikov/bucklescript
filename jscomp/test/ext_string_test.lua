@@ -1,15 +1,15 @@
-console = {log = print};
+__console = {log = print};
 
-List = require "../../lib/js/list";
-Bytes = require "../../lib/js/bytes";
-Curry = require "../../lib/js/curry";
-__String = require "../../lib/js/string";
-Caml_bytes = require "../../lib/js/caml_bytes";
-Caml_int32 = require "../../lib/js/caml_int32";
-Caml_string = require "../../lib/js/caml_string";
-Ext_bytes_test = require "./ext_bytes_test";
-Caml_exceptions = require "../../lib/js/caml_exceptions";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
+List = require "......lib.js.list";
+Bytes = require "......lib.js.bytes";
+Curry = require "......lib.js.curry";
+__String = require "......lib.js.string";
+Caml_bytes = require "......lib.js.caml_bytes";
+Caml_int32 = require "......lib.js.caml_int32";
+Caml_string = require "......lib.js.caml_string";
+Ext_bytes_test = require "..ext_bytes_test";
+Caml_exceptions = require "......lib.js.caml_exceptions";
+Caml_builtin_exceptions = require "......lib.js.caml_builtin_exceptions";
 
 function split_by(keep_emptyOpt, is_delim, str) do
   keep_empty = keep_emptyOpt ~= nil and keep_emptyOpt or false;
@@ -107,7 +107,7 @@ function starts_with(s, beg) do
   s_len = #s;
   if (beg_len <= s_len) then do
     i = 0;
-    while(i < beg_len and s[i] == beg[i]) do
+    while(i < beg_len and string.sub(s, i, i) == string.sub(beg, i, i)) do
       i = i + 1 | 0;
     end;
     return i == beg_len;
@@ -129,7 +129,7 @@ function ends_with_index(s, end_) do
       j = _j;
       if (k < 0) then do
         return j + 1 | 0;
-      end else if (s[j] == end_[k]) then do
+      end else if (string.sub(s, j, j) == string.sub(end_, k, k)) then do
         _k = k - 1 | 0;
         _j = j - 1 | 0;
         ::continue:: ;
@@ -163,11 +163,11 @@ function check_any_suffix_case_then_chop(s, suffixes) do
   while(true) do
     suffixes_1 = _suffixes;
     if (suffixes_1) then do
-      id = ends_with_index(s, suffixes_1[0]);
+      id = ends_with_index(s, suffixes_1[1]);
       if (id >= 0) then do
         return __String.sub(s, 0, id);
       end else do
-        _suffixes = suffixes_1[1];
+        _suffixes = suffixes_1[2];
         ::continue:: ;
       end end 
     end else do
@@ -262,7 +262,7 @@ function unsafe_is_sub(sub, i, s, j, len) do
       k = _k;
       if (k == len) then do
         return true;
-      end else if (sub[i + k | 0] == s[j + k | 0]) then do
+      end else if (string.sub(sub, i + k | 0, i + k | 0) == string.sub(s, j + k | 0, j + k | 0)) then do
         _k = k + 1 | 0;
         ::continue:: ;
       end else do
@@ -352,7 +352,7 @@ end end
 function tail_from(s, x) do
   len = #s;
   if (x > len) then do
-    s_1 = "Ext_string_test.tail_from " .. (s .. (" : " .. String(x)));
+    s_1 = "Ext_string_test.tail_from " .. (s .. (" : " .. __String(x)));
     error({
       Caml_builtin_exceptions.invalid_argument,
       s_1
@@ -388,7 +388,7 @@ function starts_with_and_number(s, offset, beg) do
     return -1;
   end else do
     i = offset;
-    while(i < finish_delim and s[i] == beg[i - offset | 0]) do
+    while(i < finish_delim and string.sub(s, i, i) == string.sub(beg, i - offset | 0, i - offset | 0)) do
       i = i + 1 | 0;
     end;
     if (i == finish_delim) then do
@@ -405,7 +405,7 @@ end end
 
 function unsafe_concat_with_length(len, sep, l) do
   if (l) then do
-    hd = l[0];
+    hd = l[1];
     r = Caml_bytes.caml_create_bytes(len);
     hd_len = #hd;
     sep_len = #sep;
@@ -420,7 +420,7 @@ function unsafe_concat_with_length(len, sep, l) do
             Caml_bytes.caml_blit_string(s, 0, r, pos.contents, s_len);
             pos.contents = pos.contents + s_len | 0;
             return --[[ () ]]0;
-          end end), l[1]);
+          end end), l[2]);
     return Caml_bytes.bytes_to_string(r);
   end else do
     return "";
@@ -731,7 +731,7 @@ parent_dir_lit = "..";
 
 current_dir_lit = ".";
 
-exports = {}
+exports = {};
 exports.split_by = split_by;
 exports.trim = trim;
 exports.split = split;
@@ -787,4 +787,5 @@ exports.inter3 = inter3;
 exports.inter4 = inter4;
 exports.parent_dir_lit = parent_dir_lit;
 exports.current_dir_lit = current_dir_lit;
+return exports;
 --[[ Ext_bytes_test Not a pure module ]]

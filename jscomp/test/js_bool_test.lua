@@ -1,7 +1,7 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Block = require "../../lib/js/block";
+Mt = require "..mt";
+Block = require "......lib.js.block";
 
 function f(x) do
   if (x) then do
@@ -131,7 +131,7 @@ Mt.from_pair_suites("Js_bool_test", suites);
 
 f3 = true;
 
-exports = {}
+exports = {};
 exports.f = f;
 exports.f2 = f2;
 exports.f4 = f4;
@@ -148,4 +148,5 @@ exports.ss = ss;
 exports.bb = bb;
 exports.consts = consts;
 exports.bool_array = bool_array;
+return exports;
 --[[  Not a pure module ]]

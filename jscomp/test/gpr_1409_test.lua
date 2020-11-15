@@ -1,11 +1,11 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-__Array = require "../../lib/js/array";
-Block = require "../../lib/js/block";
-Curry = require "../../lib/js/curry";
-String_set = require "./string_set";
-Caml_option = require "../../lib/js/caml_option";
+Mt = require "..mt";
+__Array = require "......lib.js.array";
+Block = require "......lib.js.block";
+Curry = require "......lib.js.curry";
+String_set = require "..string_set";
+Caml_option = require "......lib.js.caml_option";
 
 suites = {
   contents = --[[ [] ]]0
@@ -19,7 +19,7 @@ function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[[ :: ]]{
     --[[ tuple ]]{
-      loc .. (" id " .. String(test_id.contents)),
+      loc .. (" id " .. __String(test_id.contents)),
       (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     x,
@@ -47,7 +47,7 @@ end end
 
 function make(foo) do
   partial_arg = map((function(prim) do
-          return String(prim);
+          return __String(prim);
         end end), foo);
   return (function(param) do
       tmp = { };
@@ -65,18 +65,18 @@ b_ = make(42)(--[[ () ]]0);
 
 eq("File \"gpr_1409_test.ml\", line 30, characters 6-13", b_.foo, "42");
 
-console.log(Object.keys(a_));
+__console.log(__Object.keys(a_));
 
-console.log(a, b, a_, b_);
+__console.log(a, b, a_, b_);
 
-eq("File \"gpr_1409_test.ml\", line 36, characters 6-13", #Object.keys(a_), 0);
+eq("File \"gpr_1409_test.ml\", line 36, characters 6-13", #__Object.keys(a_), 0);
 
 test2 = {
   hi = 2
 };
 
 function test3(_open, xx__hi) do
-  console.log("no inlin");
+  __console.log("no inlin");
   tmp = {
     hi = 2
   };
@@ -92,7 +92,7 @@ function test3(_open, xx__hi) do
 end end
 
 function test4(_open, xx__hi) do
-  console.log("no inlin");
+  __console.log("no inlin");
   tmp = {
     open = _open,
     hi = 2
@@ -105,7 +105,7 @@ function test4(_open, xx__hi) do
 end end
 
 function test5(f, x) do
-  console.log("no inline");
+  __console.log("no inline");
   tmp = {
     hi = 2
   };
@@ -123,7 +123,7 @@ function test5(f, x) do
 end end
 
 function test6(f, x) do
-  console.log("no inline");
+  __console.log("no inline");
   x_1 = {
     contents = 3
   };
@@ -150,7 +150,7 @@ end end
 eq("File \"gpr_1409_test.ml\", line 69, characters 6-13", keys(--[[ :: ]]{
           "hi",
           --[[ [] ]]0
-        }, Object.keys(test3(nil, nil))), true);
+        }, __Object.keys(test3(nil, nil))), true);
 
 eq("File \"gpr_1409_test.ml\", line 71, characters 6-13", keys(--[[ :: ]]{
           "hi",
@@ -158,7 +158,7 @@ eq("File \"gpr_1409_test.ml\", line 71, characters 6-13", keys(--[[ :: ]]{
             "open",
             --[[ [] ]]0
           }
-        }, Object.keys(test3(2, nil))), true);
+        }, __Object.keys(test3(2, nil))), true);
 
 eq("File \"gpr_1409_test.ml\", line 73, characters 6-13", keys(--[[ :: ]]{
           "hi",
@@ -169,11 +169,11 @@ eq("File \"gpr_1409_test.ml\", line 73, characters 6-13", keys(--[[ :: ]]{
               --[[ [] ]]0
             }
           }
-        }, Object.keys(test3(2, 2))), true);
+        }, __Object.keys(test3(2, 2))), true);
 
 Mt.from_pair_suites("Gpr_1409_test", suites.contents);
 
-exports = {}
+exports = {};
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
@@ -189,4 +189,5 @@ exports.test4 = test4;
 exports.test5 = test5;
 exports.test6 = test6;
 exports.keys = keys;
+return exports;
 --[[ a_ Not a pure module ]]

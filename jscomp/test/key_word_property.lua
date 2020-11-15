@@ -1,11 +1,11 @@
-console = {log = print};
+__console = {log = print};
 
 Vscode = require "vs";
 SomeEs6Module = require "some-es6-mo";
 
-__default = SomeEs6Module.default;
+__default = SomeEs6Module.__default;
 
-__window = Vscode.window;
+__window = Vscode.__window;
 
 function mk(__window, __default) do
   return {
@@ -26,8 +26,8 @@ end end
 
 function des(v) do
   return {
-          window = v.window,
-          default = v.default
+          window = v.__window,
+          default = v.__default
         };
 end end
 
@@ -37,12 +37,12 @@ test = {
 };
 
 function u(param) do
-  return __window.switch();
+  return __window.__switch();
 end end
 
 __case = 3;
 
-exports = {}
+exports = {};
 exports.__default = __default;
 exports.default = __default;
 exports.__esModule = true;
@@ -53,4 +53,5 @@ exports.des = des;
 exports.__case = __case;
 exports.test = test;
 exports.u = u;
+return exports;
 --[[ default Not a pure module ]]

@@ -1,10 +1,10 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Block = require "../../lib/js/block";
-Caml_obj = require "../../lib/js/caml_obj";
-Caml_js_exceptions = require "../../lib/js/caml_js_exceptions";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
+Mt = require "..mt";
+Block = require "......lib.js.block";
+Caml_obj = require "......lib.js.caml_obj";
+Caml_js_exceptions = require "......lib.js.caml_js_exceptions";
+Caml_builtin_exceptions = require "......lib.js.caml_builtin_exceptions";
 
 function_equal_test;
 
@@ -16,7 +16,7 @@ xpcall(function() do
         end end));
 end end,function(raw_exn) do
   exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
-  function_equal_test = exn[0] == Caml_builtin_exceptions.invalid_argument and exn[1] == "equal: functional value" and true or false;
+  function_equal_test = exn[1] == Caml_builtin_exceptions.invalid_argument and exn[2] == "equal: functional value" and true or false;
 end end)
 
 suites = {
@@ -1058,9 +1058,10 @@ eq("File \"caml_compare_test.ml\", line 116, characters 6-13", false, Caml_obj.c
 
 Mt.from_pair_suites("Caml_compare_test", suites.contents);
 
-exports = {}
+exports = {};
 exports.function_equal_test = function_equal_test;
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
+return exports;
 --[[ function_equal_test Not a pure module ]]

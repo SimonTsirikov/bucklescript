@@ -1,4 +1,4 @@
-console = {log = print};
+__console = {log = print};
 
 
 (function(x) do
@@ -7,5 +7,6 @@ console = {log = print};
           end end);
       end end)("")("");
 
-exports = {}
+exports = {};
+return exports;
 --[[  Not a pure module ]]

@@ -1,15 +1,15 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Block = require "../../lib/js/block";
+Mt = require "..mt";
+Block = require "......lib.js.block";
 
 suites_000 = --[[ tuple ]]{
   "setTimeout/clearTimeout sanity check",
   (function(param) do
-      handle = setTimeout((function(param) do
+      handle = __setTimeout((function(param) do
               return --[[ () ]]0;
             end end), 0);
-      clearTimeout(handle);
+      __clearTimeout(handle);
       return --[[ Ok ]]Block.__(4, {true});
     end end)
 };
@@ -18,10 +18,10 @@ suites_001 = --[[ :: ]]{
   --[[ tuple ]]{
     "setInerval/clearInterval sanity check",
     (function(param) do
-        handle = setInterval((function(param) do
+        handle = __setInterval((function(param) do
                 return --[[ () ]]0;
               end end), 0);
-        clearInterval(handle);
+        __clearInterval(handle);
         return --[[ Ok ]]Block.__(4, {true});
       end end)
   },
@@ -30,7 +30,7 @@ suites_001 = --[[ :: ]]{
       "encodeURI",
       (function(param) do
           return --[[ Eq ]]Block.__(0, {
-                    encodeURI("[-=-]"),
+                    __encodeURI("[-=-]"),
                     "%5B-=-%5D"
                   });
         end end)
@@ -40,7 +40,7 @@ suites_001 = --[[ :: ]]{
         "decodeURI",
         (function(param) do
             return --[[ Eq ]]Block.__(0, {
-                      decodeURI("%5B-=-%5D"),
+                      __decodeURI("%5B-=-%5D"),
                       "[-=-]"
                     });
           end end)
@@ -50,7 +50,7 @@ suites_001 = --[[ :: ]]{
           "encodeURIComponent",
           (function(param) do
               return --[[ Eq ]]Block.__(0, {
-                        encodeURIComponent("[-=-]"),
+                        __encodeURIComponent("[-=-]"),
                         "%5B-%3D-%5D"
                       });
             end end)
@@ -60,7 +60,7 @@ suites_001 = --[[ :: ]]{
             "decodeURIComponent",
             (function(param) do
                 return --[[ Eq ]]Block.__(0, {
-                          decodeURIComponent("%5B-%3D-%5D"),
+                          __decodeURIComponent("%5B-%3D-%5D"),
                           "[-=-]"
                         });
               end end)
@@ -79,6 +79,7 @@ suites = --[[ :: ]]{
 
 Mt.from_pair_suites("Js_global_test", suites);
 
-exports = {}
+exports = {};
 exports.suites = suites;
+return exports;
 --[[  Not a pure module ]]

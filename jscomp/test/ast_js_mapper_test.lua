@@ -1,6 +1,6 @@
-console = {log = print};
+__console = {log = print};
 
-Js_mapperRt = require "../../lib/js/js_mapperRt";
+Js_mapperRt = require "......lib.js.js_mapperRt";
 
 function tToJs(param) do
   return {
@@ -46,8 +46,8 @@ function searchForSureExists(xs, k) do
   while(true) do
     i = _i;
     match = xs_1[i];
-    if (match[0] == k_1) then do
-      return match[1];
+    if (match[1] == k_1) then do
+      return match[2];
     end else do
       _i = i + 1 | 0;
       ::continue:: ;
@@ -99,7 +99,7 @@ end end
 
 bToJs(--[[ b0 ]]21902);
 
-exports = {}
+exports = {};
 exports.tToJs = tToJs;
 exports.tFromJs = tFromJs;
 exports.searchForSureExists = searchForSureExists;
@@ -107,4 +107,5 @@ exports.aToJs = aToJs;
 exports.aFromJs = aFromJs;
 exports.bToJs = bToJs;
 exports.bFromJs = bFromJs;
+return exports;
 --[[ u Not a pure module ]]

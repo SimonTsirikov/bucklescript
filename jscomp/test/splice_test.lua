@@ -1,8 +1,8 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Caml_array = require "../../lib/js/caml_array";
-Caml_splice_call = require "../../lib/js/caml_splice_call";
+Mt = require "..mt";
+Caml_array = require "......lib.js.caml_array";
+Caml_splice_call = require "......lib.js.caml_splice_call";
 
 suites = {
   contents = --[[ [] ]]0
@@ -18,7 +18,7 @@ end end
 
 Caml_splice_call_1 = { };
 
-Math.max(1);
+__Math.max(1);
 
 function f00(a, b) do
   return a.send(b);
@@ -109,21 +109,21 @@ Pipe = {
 };
 
 function f1(c) do
-  return Caml_splice_call.spliceApply(Math.max, {
+  return Caml_splice_call.spliceApply(__Math.max, {
               1,
               c
             });
 end end
 
-eq("File \"splice_test.ml\", line 67, characters 6-13", Math.max(1, 2, 3), 3);
+eq("File \"splice_test.ml\", line 67, characters 6-13", __Math.max(1, 2, 3), 3);
 
-eq("File \"splice_test.ml\", line 68, characters 6-13", Math.max(1), 1);
+eq("File \"splice_test.ml\", line 68, characters 6-13", __Math.max(1), 1);
 
-eq("File \"splice_test.ml\", line 69, characters 6-13", Math.max(1, 1, 2, 3, 4, 5, 2, 3), 5);
+eq("File \"splice_test.ml\", line 69, characters 6-13", __Math.max(1, 1, 2, 3, 4, 5, 2, 3), 5);
 
 Mt.from_pair_suites("splice_test.ml", suites.contents);
 
-exports = {}
+exports = {};
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
@@ -132,4 +132,5 @@ exports.f00 = f00;
 exports.dynamic = dynamic;
 exports.Pipe = Pipe;
 exports.f1 = f1;
+return exports;
 --[[  Not a pure module ]]

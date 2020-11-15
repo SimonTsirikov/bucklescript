@@ -1,6 +1,6 @@
-console = {log = print};
+__console = {log = print};
 
-Belt_internalAVLset = require "./belt_internalAVLset";
+Belt_internalAVLset = require "..belt_internalAVLset";
 
 function add(t, x, cmp) do
   if (t ~= nil) then do
@@ -106,8 +106,8 @@ function splitAuxNoPivot(cmp, n, x) do
     if (l ~= nil) then do
       match = splitAuxNoPivot(cmp, l, x);
       return --[[ tuple ]]{
-              match[0],
-              Belt_internalAVLset.joinShared(match[1], v, r)
+              match[1],
+              Belt_internalAVLset.joinShared(match[2], v, r)
             };
     end else do
       return --[[ tuple ]]{
@@ -118,8 +118,8 @@ function splitAuxNoPivot(cmp, n, x) do
   end else if (r ~= nil) then do
     match_1 = splitAuxNoPivot(cmp, r, x);
     return --[[ tuple ]]{
-            Belt_internalAVLset.joinShared(l, v, match_1[0]),
-            match_1[1]
+            Belt_internalAVLset.joinShared(l, v, match_1[1]),
+            match_1[2]
           };
   end else do
     return --[[ tuple ]]{
@@ -144,8 +144,8 @@ function splitAuxPivot(cmp, n, x, pres) do
     if (l ~= nil) then do
       match = splitAuxPivot(cmp, l, x, pres);
       return --[[ tuple ]]{
-              match[0],
-              Belt_internalAVLset.joinShared(match[1], v, r)
+              match[1],
+              Belt_internalAVLset.joinShared(match[2], v, r)
             };
     end else do
       return --[[ tuple ]]{
@@ -156,8 +156,8 @@ function splitAuxPivot(cmp, n, x, pres) do
   end else if (r ~= nil) then do
     match_1 = splitAuxPivot(cmp, r, x, pres);
     return --[[ tuple ]]{
-            Belt_internalAVLset.joinShared(l, v, match_1[0]),
-            match_1[1]
+            Belt_internalAVLset.joinShared(l, v, match_1[1]),
+            match_1[2]
           };
   end else do
     return --[[ tuple ]]{
@@ -201,7 +201,7 @@ function union(s1, s2, cmp) do
           v1 = s1.value;
           r1 = s1.right;
           match = splitAuxNoPivot(cmp, s2, v1);
-          return Belt_internalAVLset.joinShared(union(l1, match[0], cmp), v1, union(r1, match[1], cmp));
+          return Belt_internalAVLset.joinShared(union(l1, match[1], cmp), v1, union(r1, match[2], cmp));
         end end 
       end else if (h1 == 1) then do
         return add(s2, s1.value, cmp);
@@ -210,7 +210,7 @@ function union(s1, s2, cmp) do
         v2 = s2.value;
         r2 = s2.right;
         match_1 = splitAuxNoPivot(cmp, s1, v2);
-        return Belt_internalAVLset.joinShared(union(match_1[0], l2, cmp), v2, union(match_1[1], r2, cmp));
+        return Belt_internalAVLset.joinShared(union(match_1[1], l2, cmp), v2, union(match_1[2], r2, cmp));
       end end  end 
     end else do
       return s1;
@@ -229,8 +229,8 @@ function intersect(s1, s2, cmp) do
       contents = false
     };
     match = splitAuxPivot(cmp, s2, v1, pres);
-    ll = intersect(l1, match[0], cmp);
-    rr = intersect(r1, match[1], cmp);
+    ll = intersect(l1, match[1], cmp);
+    rr = intersect(r1, match[2], cmp);
     if (pres.contents) then do
       return Belt_internalAVLset.joinShared(ll, v1, rr);
     end else do
@@ -250,8 +250,8 @@ function diff(s1, s2, cmp) do
       contents = false
     };
     match = splitAuxPivot(cmp, s2, v1, pres);
-    ll = diff(l1, match[0], cmp);
-    rr = diff(r1, match[1], cmp);
+    ll = diff(l1, match[1], cmp);
+    rr = diff(r1, match[2], cmp);
     if (pres.contents) then do
       return Belt_internalAVLset.concatShared(ll, rr);
     end else do
@@ -324,7 +324,7 @@ getExn = Belt_internalAVLset.getExn;
 
 checkInvariantInternal = Belt_internalAVLset.checkInvariantInternal;
 
-exports = {}
+exports = {};
 exports.empty = empty;
 exports.fromArray = fromArray;
 exports.fromSortedArrayUnsafe = fromSortedArrayUnsafe;
@@ -364,4 +364,5 @@ exports.getUndefined = getUndefined;
 exports.getExn = getExn;
 exports.split = split;
 exports.checkInvariantInternal = checkInvariantInternal;
+return exports;
 --[[ No side effect ]]

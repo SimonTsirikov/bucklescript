@@ -1,6 +1,6 @@
-console = {log = print};
+__console = {log = print};
 
-Curry = require "../../lib/js/curry";
+Curry = require "......lib.js.curry";
 
 v = {
   hd = 3,
@@ -49,7 +49,7 @@ function fx(v) do
   return v.x;
 end end
 
-exports = {}
+exports = {};
 exports.f = f;
 exports.uf = uf;
 exports.uf1 = uf1;
@@ -58,4 +58,5 @@ exports.uff = uff;
 exports.uff2 = uff2;
 exports.uff3 = uff3;
 exports.fx = fx;
+return exports;
 --[[  Not a pure module ]]

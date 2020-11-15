@@ -1,6 +1,6 @@
 
 
-import * as Caml_option from "./caml_option.lua";
+local Caml_option = require "..caml_option.lua";
 
 function some(x) do
   return Caml_option.some(x);
@@ -26,7 +26,7 @@ function getExn(x) do
   if (x ~= nil) then do
     return Caml_option.valFromOption(x);
   end else do
-    error(new Error("getExn"))
+    error(new __Error("getExn"))
   end end 
 end end
 

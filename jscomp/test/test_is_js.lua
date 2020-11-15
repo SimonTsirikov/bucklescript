@@ -1,6 +1,6 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
+Mt = require "..mt";
 
 suites = {
   contents = --[[ [] ]]0
@@ -22,5 +22,6 @@ b("File \"test_is_js.ml\", line 37, characters 2-9", true);
 
 Mt.from_pair_suites("Test_is_js", suites.contents);
 
-exports = {}
+exports = {};
+return exports;
 --[[  Not a pure module ]]

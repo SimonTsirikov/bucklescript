@@ -1,13 +1,13 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Belt_Id = require "../../lib/js/belt_Id";
-Belt_Set = require "../../lib/js/belt_Set";
-Belt_Array = require "../../lib/js/belt_Array";
-Caml_primitive = require "../../lib/js/caml_primitive";
-Array_data_util = require "./array_data_util";
-Belt_MutableMap = require "../../lib/js/belt_MutableMap";
-Belt_internalAVLtree = require "../../lib/js/belt_internalAVLtree";
+Mt = require "..mt";
+Belt_Id = require "......lib.js.belt_Id";
+Belt_Set = require "......lib.js.belt_Set";
+Belt_Array = require "......lib.js.belt_Array";
+Caml_primitive = require "......lib.js.caml_primitive";
+Array_data_util = require "..array_data_util";
+Belt_MutableMap = require "......lib.js.belt_MutableMap";
+Belt_internalAVLtree = require "......lib.js.belt_internalAVLtree";
 
 suites = {
   contents = --[[ [] ]]0
@@ -85,7 +85,7 @@ A = --[[ alias ]]0;
 
 I = --[[ alias ]]0;
 
-exports = {}
+exports = {};
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
@@ -98,4 +98,5 @@ exports.I = I;
 exports.f = f;
 exports.ff = ff;
 exports.randomRange = randomRange;
+return exports;
 --[[ Icmp Not a pure module ]]

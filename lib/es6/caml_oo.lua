@@ -1,12 +1,12 @@
 
 
-import * as Caml_array from "./caml_array.lua";
-import * as Caml_builtin_exceptions from "./caml_builtin_exceptions.lua";
+local Caml_array = require "..caml_array.lua";
+local Caml_builtin_exceptions = require "..caml_builtin_exceptions.lua";
 
 caml_methods_cache = Caml_array.caml_make_vect(1000, 0);
 
 function caml_get_public_method(obj, tag, cacheid) do
-  meths = obj[0];
+  meths = obj[1];
   offs = caml_methods_cache[cacheid];
   if (meths[offs] == tag) then do
     return meths[offs - 1 | 0];

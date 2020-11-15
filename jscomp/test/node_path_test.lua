@@ -1,8 +1,9 @@
-console = {log = print};
+__console = {log = print};
 
-Path = require "";
+Path = require "path";
 
-console.log(Path.join(".", "Node_path_test"));
+__console.log(Path.join(".", "Node_path_test"));
 
-exports = {}
+exports = {};
+return exports;
 --[[  Not a pure module ]]

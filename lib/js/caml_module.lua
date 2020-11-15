@@ -1,7 +1,7 @@
-console = {log = print};
+__console = {log = print};
 
-Caml_obj = require "./caml_obj";
-Caml_builtin_exceptions = require "./caml_builtin_exceptions";
+Caml_obj = require "..caml_obj";
+Caml_builtin_exceptions = require "..caml_builtin_exceptions";
 
 function init_mod(loc, shape) do
   undef_module = function(param) do
@@ -11,7 +11,7 @@ function init_mod(loc, shape) do
     })
   end end;
   loop = function(shape, struct_, idx) do
-    if (typeof shape == "number") then do
+    if (type(shape) == "number") then do
       local ___conditional___=(shape);
       do
          if ___conditional___ == 0--[[ Function ]]
@@ -29,16 +29,16 @@ function init_mod(loc, shape) do
         
       end
     end else if (shape.tag) then do
-      struct_[idx] = shape[0];
+      struct_[idx] = shape[1];
       return --[[ () ]]0;
     end else do
-      comps = shape[0];
+      comps = shape[1];
       v = { };
       struct_[idx] = v;
       len = #comps;
       for i = 0 , len - 1 | 0 , 1 do
         match = comps[i];
-        loop(match[0], v, match[1]);
+        loop(match[1], v, match[2]);
       end
       return --[[ () ]]0;
     end end  end 
@@ -51,7 +51,7 @@ end end
 
 function update_mod(shape, o, n) do
   aux = function(shape, o, n, parent, i) do
-    if (typeof shape == "number") then do
+    if (type(shape) == "number") then do
       local ___conditional___=(shape);
       do
          if ___conditional___ == 0--[[ Function ]] then do
@@ -65,16 +65,16 @@ function update_mod(shape, o, n) do
     end else if (shape.tag) then do
       return --[[ () ]]0;
     end else do
-      comps = shape[0];
+      comps = shape[1];
       for i_1 = 0 , #comps - 1 | 0 , 1 do
         match = comps[i_1];
-        name = match[1];
-        aux(match[0], o[name], n[name], o, name);
+        name = match[2];
+        aux(match[1], o[name], n[name], o, name);
       end
       return --[[ () ]]0;
     end end  end 
   end end;
-  if (typeof shape == "number") then do
+  if (type(shape) == "number") then do
     error({
       Caml_builtin_exceptions.assert_failure,
       --[[ tuple ]]{
@@ -93,17 +93,18 @@ function update_mod(shape, o, n) do
       }
     })
   end else do
-    comps = shape[0];
+    comps = shape[1];
     for i = 0 , #comps - 1 | 0 , 1 do
       match = comps[i];
-      name = match[1];
-      aux(match[0], o[name], n[name], o, name);
+      name = match[2];
+      aux(match[1], o[name], n[name], o, name);
     end
     return --[[ () ]]0;
   end end  end 
 end end
 
-exports = {}
+exports = {};
 exports.init_mod = init_mod;
 exports.update_mod = update_mod;
+return exports;
 --[[ No side effect ]]

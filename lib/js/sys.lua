@@ -1,7 +1,7 @@
-console = {log = print};
+__console = {log = print};
 
-Caml_sys = require "./caml_sys";
-Caml_exceptions = require "./caml_exceptions";
+Caml_sys = require "..caml_sys";
+Caml_exceptions = require "..caml_exceptions";
 
 match = Caml_sys.caml_sys_get_argv(--[[ () ]]0);
 
@@ -16,7 +16,7 @@ unix = Caml_sys.os_type(--[[ () ]]0) == "Unix";
 win32 = Caml_sys.os_type(--[[ () ]]0) == "Win32";
 
 function getenv_opt(s) do
-  match = typeof process == "undefined" and nil or process;
+  match = type(process) == "undefined" and nil or process;
   if (match ~= nil) then do
     return match.env[s];
   end
@@ -45,9 +45,9 @@ function runtime_warnings_enabled(param) do
   return false;
 end end
 
-argv = match[1];
+argv = match[2];
 
-executable_name = match[0];
+executable_name = match[1];
 
 cygwin = false;
 
@@ -117,7 +117,7 @@ sigxfsz = -28;
 
 ocaml_version = "4.06.2+BS";
 
-exports = {}
+exports = {};
 exports.argv = argv;
 exports.executable_name = executable_name;
 exports.getenv_opt = getenv_opt;
@@ -166,4 +166,5 @@ exports.catch_break = catch_break;
 exports.ocaml_version = ocaml_version;
 exports.enable_runtime_warnings = enable_runtime_warnings;
 exports.runtime_warnings_enabled = runtime_warnings_enabled;
+return exports;
 --[[ No side effect ]]

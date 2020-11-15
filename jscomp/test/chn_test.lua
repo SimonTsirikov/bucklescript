@@ -1,10 +1,10 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-__Array = require "../../lib/js/array";
-Block = require "../../lib/js/block";
-Caml_string = require "../../lib/js/caml_string";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
+Mt = require "..mt";
+__Array = require "......lib.js.array";
+Block = require "......lib.js.block";
+Caml_string = require "......lib.js.caml_string";
+Caml_builtin_exceptions = require "......lib.js.caml_builtin_exceptions";
 
 suites = {
   contents = --[[ [] ]]0
@@ -18,7 +18,7 @@ function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[[ :: ]]{
     --[[ tuple ]]{
-      loc .. (" id " .. String(test_id.contents)),
+      loc .. (" id " .. __String(test_id.contents)),
       (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     x,
@@ -31,12 +31,12 @@ function eq(loc, x, y) do
   return --[[ () ]]0;
 end end
 
-console.log("你好，\n世界");
+__console.log("你好，\n世界");
 
-console.log("\x3f\u003f\b\t\n\v\f\r\0\"\'");
+__console.log("\x3f\u003f\b\t\n\v\f\r\0\"\'");
 
 function convert(s) do
-  return __Array.to_list(Array.from(s, (function(x) do
+  return __Array.to_list(__Array.from(s, (function(x) do
                     match = x.codePointAt(0);
                     if (match ~= nil) then do
                       return match;
@@ -268,9 +268,10 @@ eq("File \"chn_test.ml\", line 89, characters 6-13", convert(" \b\t\n\v\f\r\"\'\
 
 Mt.from_pair_suites("Chn_test", suites.contents);
 
-exports = {}
+exports = {};
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
 exports.convert = convert;
+return exports;
 --[[  Not a pure module ]]

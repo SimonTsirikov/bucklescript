@@ -1,12 +1,12 @@
-console = {log = print};
+__console = {log = print};
 
-Marshal = require "./marshal";
-Caml_array = require "./caml_array";
-Caml_external_polyfill = require "./caml_external_polyfill";
-Caml_builtin_exceptions = require "./caml_builtin_exceptions";
+Marshal = require "..marshal";
+Caml_array = require "..caml_array";
+Caml_external_polyfill = require "..caml_external_polyfill";
+Caml_builtin_exceptions = require "..caml_builtin_exceptions";
 
 function is_block(a) do
-  return typeof a ~= "number";
+  return type(a) ~= "number";
 end end
 
 double_field = Caml_array.caml_array_get;
@@ -25,9 +25,9 @@ function unmarshal(str, pos) do
 end end
 
 function extension_constructor(x) do
-  slot = typeof x ~= "number" and (x.tag | 0) ~= 248 and #x >= 1 and x[0] or x;
+  slot = type(x) ~= "number" and (x.tag | 0) ~= 248 and #x >= 1 and x[0] or x;
   name;
-  if (typeof slot ~= "number" and slot.tag == 248) then do
+  if (type(slot) ~= "number" and slot.tag == 248) then do
     name = slot[0];
   end else do
     error({
@@ -160,7 +160,7 @@ Ephemeron = {
   blit_data = Ephemeron_blit_data
 };
 
-exports = {}
+exports = {};
 exports.is_block = is_block;
 exports.double_field = double_field;
 exports.set_double_field = set_double_field;
@@ -187,4 +187,5 @@ exports.extension_id = extension_id;
 exports.marshal = marshal;
 exports.unmarshal = unmarshal;
 exports.Ephemeron = Ephemeron;
+return exports;
 --[[ No side effect ]]

@@ -1,13 +1,13 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Block = require "../../lib/js/block";
-Curry = require "../../lib/js/curry";
-Caml_obj = require "../../lib/js/caml_obj";
-Caml_oo_curry = require "../../lib/js/caml_oo_curry";
-CamlinternalOO = require "../../lib/js/camlinternalOO";
-Caml_exceptions = require "../../lib/js/caml_exceptions";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
+Mt = require "..mt";
+Block = require "......lib.js.block";
+Curry = require "......lib.js.curry";
+Caml_obj = require "......lib.js.caml_obj";
+Caml_oo_curry = require "......lib.js.caml_oo_curry";
+CamlinternalOO = require "......lib.js.camlinternalOO";
+Caml_exceptions = require "......lib.js.caml_exceptions";
+Caml_builtin_exceptions = require "......lib.js.caml_builtin_exceptions";
 
 shared = {"x"};
 
@@ -30,7 +30,7 @@ function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[[ :: ]]{
     --[[ tuple ]]{
-      loc .. (" id " .. String(test_id.contents)),
+      loc .. (" id " .. __String(test_id.contents)),
       (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     x,
@@ -46,17 +46,17 @@ end end
 function point_init(__class) do
   x_init = CamlinternalOO.new_variable(__class, "");
   ids = CamlinternalOO.new_methods_variables(__class, shared_2, shared);
-  move = ids[0];
-  get_x = ids[1];
-  x = ids[2];
+  move = ids[1];
+  get_x = ids[2];
+  x = ids[3];
   CamlinternalOO.set_methods(__class, {
         get_x,
-        (function(self$1) do
-            return self$1[x];
+        (function(self_1) do
+            return self_1[x];
           end end),
         move,
-        (function(self$1, d) do
-            self$1[x] = self$1[x] + d | 0;
+        (function(self_1, d) do
+            self_1[x] = self_1[x] + d | 0;
             return --[[ () ]]0;
           end end)
       });
@@ -74,15 +74,15 @@ function colored_point_init(__class) do
   x = CamlinternalOO.new_variable(__class, "");
   c = CamlinternalOO.new_variable(__class, "");
   ids = CamlinternalOO.new_methods_variables(__class, {"color"}, {"c"});
-  color = ids[0];
-  c_1 = ids[1];
+  color = ids[1];
+  c_1 = ids[2];
   inh = CamlinternalOO.inherits(__class, shared, 0, {
         "get_x",
         "move"
       }, point, true);
-  obj_init = inh[0];
-  CamlinternalOO.set_method(__class, color, (function(self$2) do
-          return self$2[c_1];
+  obj_init = inh[1];
+  CamlinternalOO.set_method(__class, color, (function(self_2) do
+          return self_2[c_1];
         end end));
   return (function(env, self, x_1, c_2) do
       self_1 = CamlinternalOO.create_object_opt(self, __class);
@@ -104,19 +104,19 @@ function colored_point_to_point(cp) do
   return cp;
 end end
 
-p = Curry._2(point[0], 0, 3);
+p = Curry._2(point[1], 0, 3);
 
-q = Curry._3(colored_point[0], 0, 4, "blue");
+q = Curry._3(colored_point[1], 0, 4, "blue");
 
 function lookup_obj(obj, _param) do
   while(true) do
     param = _param;
     if (param) then do
-      obj$prime = param[0];
-      if (Caml_obj.caml_equal(obj, obj$prime)) then do
-        return obj$prime;
+      obj_prime = param[1];
+      if (Caml_obj.caml_equal(obj, obj_prime)) then do
+        return obj_prime;
       end else do
-        _param = param[1];
+        _param = param[2];
         ::continue:: ;
       end end 
     end else do
@@ -127,7 +127,7 @@ end end
 
 function c_init(__class) do
   m = CamlinternalOO.get_method_label(__class, "m");
-  CamlinternalOO.set_method(__class, m, (function(self$3) do
+  CamlinternalOO.set_method(__class, m, (function(self_3) do
           return 1;
         end end));
   return (function(env, self) do
@@ -142,18 +142,18 @@ function d_init(__class) do
         "n",
         "as_c"
       });
-  n = ids[0];
-  as_c = ids[1];
+  n = ids[1];
+  as_c = ids[2];
   inh = CamlinternalOO.inherits(__class, 0, 0, shared_1, c, true);
-  obj_init = inh[0];
+  obj_init = inh[1];
   CamlinternalOO.set_methods(__class, {
         n,
-        (function(self$4) do
+        (function(self_4) do
             return 2;
           end end),
         as_c,
-        (function(self$4) do
-            return self$4;
+        (function(self_4) do
+            return self_4;
           end end)
       });
   return (function(env, self) do
@@ -182,16 +182,16 @@ d = --[[ class ]]{
   0
 };
 
-function c2$prime_001(__class) do
+function c2_prime_001(__class) do
   CamlinternalOO.get_method_label(__class, "m");
   return (function(env, self) do
       return CamlinternalOO.create_object_opt(self, __class);
     end end);
 end end
 
-c2$prime = --[[ class ]]{
+c2_prime = --[[ class ]]{
   0,
-  c2$prime_001,
+  c2_prime_001,
   0,
   0
 };
@@ -199,18 +199,18 @@ c2$prime = --[[ class ]]{
 function functional_point_init(__class) do
   y = CamlinternalOO.new_variable(__class, "");
   ids = CamlinternalOO.new_methods_variables(__class, shared_2, shared);
-  move = ids[0];
-  get_x = ids[1];
-  x = ids[2];
+  move = ids[1];
+  get_x = ids[2];
+  x = ids[3];
   CamlinternalOO.set_methods(__class, {
         get_x,
-        (function(self$6) do
-            return self$6[x];
+        (function(self_6) do
+            return self_6[x];
           end end),
         move,
-        (function(self$6, d) do
-            copy = Caml_exceptions.caml_set_oo_id(Caml_obj.caml_obj_dup(self$6));
-            copy[x] = self$6[x] + d | 0;
+        (function(self_6, d) do
+            copy = Caml_exceptions.caml_set_oo_id(Caml_obj.caml_obj_dup(self_6));
+            copy[x] = self_6[x] + d | 0;
             return copy;
           end end)
       });
@@ -224,7 +224,7 @@ end end
 
 functional_point = CamlinternalOO.make_class(shared_2, functional_point_init);
 
-p_1 = Curry._2(functional_point[0], 0, 7);
+p_1 = Curry._2(functional_point[1], 0, 7);
 
 tmp = Caml_oo_curry.js2(-933174511, 2, p_1, 3);
 
@@ -241,17 +241,17 @@ eq("File \"class6_test.ml\", line 60, characters 5-12", --[[ tuple ]]{
 function bad_functional_point_init(__class) do
   y = CamlinternalOO.new_variable(__class, "");
   ids = CamlinternalOO.new_methods_variables(__class, shared_2, shared);
-  move = ids[0];
-  get_x = ids[1];
-  x = ids[2];
+  move = ids[1];
+  get_x = ids[2];
+  x = ids[3];
   CamlinternalOO.set_methods(__class, {
         get_x,
-        (function(self$7) do
-            return self$7[x];
+        (function(self_7) do
+            return self_7[x];
           end end),
         move,
-        (function(self$7, d) do
-            return Curry._2(bad_functional_point[0], 0, self$7[x] + d | 0);
+        (function(self_7, d) do
+            return Curry._2(bad_functional_point[1], 0, self_7[x] + d | 0);
           end end)
       });
   return (function(env, self, y_1) do
@@ -277,7 +277,7 @@ bad_functional_point = --[[ class ]]{
   0
 };
 
-p_2 = Curry._2(bad_functional_point_000, 0, 7);
+p_2 = Curry._2(bad_functional_point_init, 0, 7);
 
 tmp_1 = Caml_oo_curry.js2(-933174511, 6, p_2, 3);
 
@@ -293,7 +293,7 @@ eq("File \"class6_test.ml\", line 74, characters 5-12", --[[ tuple ]]{
 
 Mt.from_pair_suites("Class6_test", suites.contents);
 
-exports = {}
+exports = {};
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
@@ -305,7 +305,8 @@ exports.q = q;
 exports.lookup_obj = lookup_obj;
 exports.c = c;
 exports.d = d;
-exports.c2$prime = c2$prime;
+exports.c2_prime = c2_prime;
 exports.functional_point = functional_point;
 exports.bad_functional_point = bad_functional_point;
+return exports;
 --[[ point Not a pure module ]]

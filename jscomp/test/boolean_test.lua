@@ -1,7 +1,7 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Test_bool_equal = require "./test_bool_equal";
+Mt = require "..mt";
+Test_bool_equal = require "..test_bool_equal";
 
 Mt.from_suites("boolean", --[[ :: ]]{
       --[[ tuple ]]{
@@ -11,5 +11,6 @@ Mt.from_suites("boolean", --[[ :: ]]{
       --[[ [] ]]0
     });
 
-exports = {}
+exports = {};
+return exports;
 --[[  Not a pure module ]]

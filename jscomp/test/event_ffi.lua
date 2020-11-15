@@ -1,8 +1,8 @@
-console = {log = print};
+__console = {log = print};
 
-List = require "../../lib/js/list";
-Curry = require "../../lib/js/curry";
-Caml_int32 = require "../../lib/js/caml_int32";
+List = require "......lib.js.list";
+Curry = require "......lib.js.curry";
+Caml_int32 = require "......lib.js.caml_int32";
 
 function h0(x) do
   return x();
@@ -43,7 +43,7 @@ function ocaml_run(param, param_1) do
 end end
 
 function a0() do
-  console.log("hi");
+  __console.log("hi");
   return --[[ () ]]0;
 end end
 
@@ -86,14 +86,14 @@ end end
 
 function xx(param) do
   return (function(param) do
-      console.log(3);
+      __console.log(3);
       return --[[ () ]]0;
     end end);
 end end
 
 test_as = List.map;
 
-exports = {}
+exports = {};
 exports.h0 = h0;
 exports.h00 = h00;
 exports.h1 = h1;
@@ -111,4 +111,5 @@ exports.a44 = a44;
 exports.b44 = b44;
 exports.test_as = test_as;
 exports.xx = xx;
+return exports;
 --[[ No side effect ]]

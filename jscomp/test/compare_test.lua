@@ -1,4 +1,4 @@
-console = {log = print};
+__console = {log = print};
 
 
 function compare(x, y) do
@@ -31,8 +31,9 @@ function compare3(x, y) do
   return x == y;
 end end
 
-exports = {}
+exports = {};
 exports.compare = compare;
 exports.compare2 = compare2;
 exports.compare3 = compare3;
+return exports;
 --[[ No side effect ]]

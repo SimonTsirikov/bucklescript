@@ -1,7 +1,7 @@
 
 
-import * as Curry from "./curry.lua";
-import * as Caml_option from "./caml_option.lua";
+local Curry = require "..curry.lua";
+local Caml_option = require "..caml_option.lua";
 
 function forEachU(opt, f) do
   if (opt ~= nil) then do
@@ -19,7 +19,7 @@ function getExn(param) do
   if (param ~= nil) then do
     return Caml_option.valFromOption(param);
   end else do
-    error(new Error("getExn"))
+    error(new __Error("getExn"))
   end end 
 end end
 

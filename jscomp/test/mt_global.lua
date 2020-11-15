@@ -1,12 +1,12 @@
-console = {log = print};
+__console = {log = print};
 
-Block = require "../../lib/js/block";
+Block = require "......lib.js.block";
 
 function collect_eq(test_id, suites, loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[[ :: ]]{
     --[[ tuple ]]{
-      loc .. (" id " .. String(test_id.contents)),
+      loc .. (" id " .. __String(test_id.contents)),
       (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     x,
@@ -23,7 +23,7 @@ function collect_neq(test_id, suites, loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[[ :: ]]{
     --[[ tuple ]]{
-      loc .. (" id " .. String(test_id.contents)),
+      loc .. (" id " .. __String(test_id.contents)),
       (function(param) do
           return --[[ Neq ]]Block.__(1, {
                     x,
@@ -40,7 +40,7 @@ function collect_approx(test_id, suites, loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[[ :: ]]{
     --[[ tuple ]]{
-      loc .. (" id " .. String(test_id.contents)),
+      loc .. (" id " .. __String(test_id.contents)),
       (function(param) do
           return --[[ Approx ]]Block.__(5, {
                     x,
@@ -53,8 +53,9 @@ function collect_approx(test_id, suites, loc, x, y) do
   return --[[ () ]]0;
 end end
 
-exports = {}
+exports = {};
 exports.collect_eq = collect_eq;
 exports.collect_neq = collect_neq;
 exports.collect_approx = collect_approx;
+return exports;
 --[[ No side effect ]]

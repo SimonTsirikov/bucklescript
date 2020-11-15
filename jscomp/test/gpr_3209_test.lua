@@ -1,8 +1,8 @@
-console = {log = print};
+__console = {log = print};
 
 
 function f9(param) do
-  if (typeof param == "number") then do
+  if (type(param) == "number") then do
     local ___conditional___=(param);
     do
        if ___conditional___ == 0--[[ T60 ]]
@@ -24,6 +24,7 @@ function f9(param) do
   end end 
 end end
 
-exports = {}
+exports = {};
 exports.f9 = f9;
+return exports;
 --[[ No side effect ]]

@@ -1,11 +1,11 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Sys = require "../../lib/js/sys";
-Block = require "../../lib/js/block";
-Caml_sys = require "../../lib/js/caml_sys";
-Node_process = require "../../lib/js/node_process";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
+Mt = require "..mt";
+Sys = require "......lib.js.sys";
+Block = require "......lib.js.block";
+Caml_sys = require "......lib.js.caml_sys";
+Node_process = require "......lib.js.node_process";
+Caml_builtin_exceptions = require "......lib.js.caml_builtin_exceptions";
 
 suites = {
   contents = --[[ [] ]]0
@@ -19,7 +19,7 @@ function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[[ :: ]]{
     --[[ tuple ]]{
-      loc .. (" id " .. String(test_id.contents)),
+      loc .. (" id " .. __String(test_id.contents)),
       (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     x,
@@ -60,7 +60,7 @@ end end)
 
 eq("File \"caml_sys_poly_fill_test.ml\", line 23, characters 5-12", "Z", tmp);
 
-console.log(--[[ tuple ]]{
+__console.log(--[[ tuple ]]{
       Caml_sys.caml_sys_getcwd(--[[ () ]]0),
       Caml_sys.caml_sys_time(--[[ () ]]0),
       Sys.argv,
@@ -69,8 +69,9 @@ console.log(--[[ tuple ]]{
 
 Mt.from_pair_suites("Caml_sys_poly_fill_test", suites.contents);
 
-exports = {}
+exports = {};
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
+return exports;
 --[[  Not a pure module ]]

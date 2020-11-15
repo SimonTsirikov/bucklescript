@@ -1,10 +1,10 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Block = require "../../lib/js/block";
-Int64 = require "../../lib/js/int64";
-Caml_int64 = require "../../lib/js/caml_int64";
-Pervasives = require "../../lib/js/pervasives";
+Mt = require "..mt";
+Block = require "......lib.js.block";
+Int64 = require "......lib.js.int64";
+Caml_int64 = require "......lib.js.caml_int64";
+Pervasives = require "......lib.js.pervasives";
 
 suites = {
   contents = --[[ [] ]]0
@@ -18,7 +18,7 @@ function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[[ :: ]]{
     --[[ tuple ]]{
-      loc .. (" id " .. String(test_id.contents)),
+      loc .. (" id " .. __String(test_id.contents)),
       (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     x,
@@ -59,7 +59,7 @@ eq("File \"gpr_1154_test.ml\", line 27, characters 12-19", v.contents, 1);
 
 Mt.from_pair_suites("Gpr_1154_test", suites.contents);
 
-exports = {}
+exports = {};
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
@@ -69,4 +69,5 @@ exports.v = v;
 exports.f2 = f2;
 exports.g2 = g2;
 exports.a = a;
+return exports;
 --[[ a Not a pure module ]]

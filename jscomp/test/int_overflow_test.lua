@@ -1,10 +1,10 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Block = require "../../lib/js/block";
-Int32 = require "../../lib/js/int32";
-Caml_int32 = require "../../lib/js/caml_int32";
-Caml_string = require "../../lib/js/caml_string";
+Mt = require "..mt";
+Block = require "......lib.js.block";
+Int32 = require "......lib.js.int32";
+Caml_int32 = require "......lib.js.caml_int32";
+Caml_string = require "......lib.js.caml_string";
 
 function hash_variant(s) do
   accu = 0;
@@ -164,7 +164,7 @@ Mt.from_pair_suites("Int_overflow_test", --[[ :: ]]{
                                 "File \"int_overflow_test.ml\", line 44, characters 3-10",
                                 (function(param) do
                                     return --[[ Eq ]]Block.__(0, {
-                                              Number("3") | 0,
+                                              __Number("3") | 0,
                                               3
                                             });
                                   end end)
@@ -174,7 +174,7 @@ Mt.from_pair_suites("Int_overflow_test", --[[ :: ]]{
                                   "File \"int_overflow_test.ml\", line 46, characters 3-10",
                                   (function(param) do
                                       return --[[ Eq ]]Block.__(0, {
-                                                Number("3.2") | 0,
+                                                __Number("3.2") | 0,
                                                 3
                                               });
                                     end end)
@@ -195,8 +195,9 @@ Mt.from_pair_suites("Int_overflow_test", --[[ :: ]]{
       }
     });
 
-exports = {}
+exports = {};
 exports.hash_variant = hash_variant;
 exports.hash_variant2 = hash_variant2;
 exports.fib = fib;
+return exports;
 --[[  Not a pure module ]]

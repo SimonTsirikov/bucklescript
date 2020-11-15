@@ -1,24 +1,24 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-List = require "../../lib/js/list";
-Block = require "../../lib/js/block";
-Bytes = require "../../lib/js/bytes";
-Curry = require "../../lib/js/curry";
-Scanf = require "../../lib/js/scanf";
-__Buffer = require "../../lib/js/buffer";
-Printf = require "../../lib/js/printf";
-__String = require "../../lib/js/string";
-Testing = require "./testing";
-Caml_obj = require "../../lib/js/caml_obj";
-Mt_global = require "./mt_global";
-Caml_bytes = require "../../lib/js/caml_bytes";
-Caml_int64 = require "../../lib/js/caml_int64";
-Pervasives = require "../../lib/js/pervasives";
-Caml_format = require "../../lib/js/caml_format";
-Caml_string = require "../../lib/js/caml_string";
-Caml_js_exceptions = require "../../lib/js/caml_js_exceptions";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
+Mt = require "..mt";
+List = require "......lib.js.list";
+Block = require "......lib.js.block";
+Bytes = require "......lib.js.bytes";
+Curry = require "......lib.js.curry";
+Scanf = require "......lib.js.scanf";
+__Buffer = require "......lib.js.buffer";
+Printf = require "......lib.js.printf";
+__String = require "......lib.js.string";
+Testing = require "..testing";
+Caml_obj = require "......lib.js.caml_obj";
+Mt_global = require "..mt_global";
+Caml_bytes = require "......lib.js.caml_bytes";
+Caml_int64 = require "......lib.js.caml_int64";
+Pervasives = require "......lib.js.pervasives";
+Caml_format = require "......lib.js.caml_format";
+Caml_string = require "......lib.js.caml_string";
+Caml_js_exceptions = require "......lib.js.caml_js_exceptions";
+Caml_builtin_exceptions = require "......lib.js.caml_builtin_exceptions";
 
 suites = {
   contents = --[[ [] ]]0
@@ -29,7 +29,7 @@ test_id = {
 };
 
 function eq(f, param) do
-  return Mt_global.collect_eq(test_id, suites, f, param[0], param[1]);
+  return Mt_global.collect_eq(test_id, suites, f, param[1], param[2]);
 end end
 
 function test(loc, b) do
@@ -1508,7 +1508,7 @@ function scan_elems_2(ib, accu) do
                               });
                   end
                    end  end 
-                  console.log(Caml_bytes.bytes_to_string(Bytes.make(1, c)));
+                  __console.log(Caml_bytes.bytes_to_string(Bytes.make(1, c)));
                   error({
                     Caml_builtin_exceptions.failure,
                     "scan_elems"
@@ -1516,7 +1516,7 @@ function scan_elems_2(ib, accu) do
                 end end));
   end end,function(raw_exn) do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
-    if (exn[0] == Scanf.Scan_failure) then do
+    if (exn[1] == Scanf.Scan_failure) then do
       Curry._1(Scanf.bscanf(ib, --[[ Format ]]{
                 --[[ Char_literal ]]Block.__(12, {
                     --[[ "]" ]]93,
@@ -1991,7 +1991,7 @@ function scan_elems_5(ib, scan_elem, accu) do
                 end end));
   end end,function(raw_exn) do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
-    if (exn[0] == Scanf.Scan_failure) then do
+    if (exn[1] == Scanf.Scan_failure) then do
       return accu;
     end else do
       error(exn)
@@ -3716,7 +3716,7 @@ function send_string(ob, s) do
 end end
 
 function send_int(ob, i) do
-  return send_string(ob, String(i));
+  return send_string(ob, __String(i));
 end end
 
 function writer(ib, ob) do
@@ -3748,7 +3748,7 @@ function writer(ib, ob) do
                                     return i;
                                   end end)); end end 
                   i = Caml_format.caml_int_of_string(s);
-                    send_string(ob, String(i));
+                    send_string(ob, __String(i));
                     return reader(ib, ob);
                     
                 end
@@ -3784,9 +3784,9 @@ function reader(ib, ob) do
                     count.contents = l + count.contents | 0;
                     if (count.contents >= 100) then do
                       send_string(ob, "stop");
-                      send_string(ob, String(count.contents));
+                      send_string(ob, __String(count.contents));
                     end else do
-                      send_string(ob, String(l));
+                      send_string(ob, __String(l));
                     end end 
                     return writer(ib, ob);
                   end end 
@@ -4579,7 +4579,7 @@ tscanf_data_file_lines = --[[ :: ]]{
   --[[ [] ]]0
 };
 
-exports = {}
+exports = {};
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
@@ -4683,4 +4683,5 @@ exports.tscanf_data_file_lines = tscanf_data_file_lines;
 exports.test57 = test57;
 exports.test58 = test58;
 exports.test60 = test60;
+return exports;
 --[[  Not a pure module ]]

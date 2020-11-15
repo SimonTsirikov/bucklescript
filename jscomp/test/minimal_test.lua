@@ -1,4 +1,4 @@
-console = {log = print};
+__console = {log = print};
 
 
 fake_y = --[[ :: ]]{
@@ -14,7 +14,8 @@ fake_z = --[[ :: ]]{
   fake_y
 };
 
-exports = {}
+exports = {};
 exports.fake_y = fake_y;
 exports.fake_z = fake_z;
+return exports;
 --[[ No side effect ]]

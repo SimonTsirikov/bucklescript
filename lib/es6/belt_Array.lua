@@ -1,9 +1,9 @@
 
 
-import * as Curry from "./curry.lua";
-import * as Js_math from "./js_math.lua";
-import * as Caml_option from "./caml_option.lua";
-import * as Caml_primitive from "./caml_primitive.lua";
+local Curry = require "..curry.lua";
+local Js_math = require "..js_math.lua";
+local Caml_option = require "..caml_option.lua";
+local Caml_primitive = require "..caml_primitive.lua";
 
 function get(arr, i) do
   if (i >= 0 and i < #arr) then do
@@ -14,7 +14,7 @@ end end
 
 function getExn(arr, i) do
   if (not (i >= 0 and i < #arr)) then do
-    error(new Error("File \"belt_Array.ml\", line 25, characters 6-12"))
+    error(new __Error("File \"belt_Array.ml\", line 25, characters 6-12"))
   end
    end 
   return arr[i];
@@ -31,7 +31,7 @@ end end
 
 function setExn(arr, i, v) do
   if (not (i >= 0 and i < #arr)) then do
-    error(new Error("File \"belt_Array.ml\", line 31, characters 4-10"))
+    error(new __Error("File \"belt_Array.ml\", line 31, characters 4-10"))
   end
    end 
   arr[i] = v;
@@ -72,7 +72,7 @@ end end
 
 function reverse(xs) do
   len = #xs;
-  result = new Array(len);
+  result = new __Array(len);
   for i = 0 , len - 1 | 0 , 1 do
     result[i] = xs[(len - 1 | 0) - i | 0];
   end
@@ -83,7 +83,7 @@ function make(l, f) do
   if (l <= 0) then do
     return {};
   end else do
-    res = new Array(l);
+    res = new __Array(l);
     for i = 0 , l - 1 | 0 , 1 do
       res[i] = f;
     end
@@ -95,7 +95,7 @@ function makeByU(l, f) do
   if (l <= 0) then do
     return {};
   end else do
-    res = new Array(l);
+    res = new __Array(l);
     for i = 0 , l - 1 | 0 , 1 do
       res[i] = f(i);
     end
@@ -122,7 +122,7 @@ function range(start, finish) do
   if (cut < 0) then do
     return {};
   end else do
-    arr = new Array(cut + 1 | 0);
+    arr = new __Array(cut + 1 | 0);
     for i = 0 , cut , 1 do
       arr[i] = start + i | 0;
     end
@@ -136,7 +136,7 @@ function rangeBy(start, finish, step) do
     return {};
   end else do
     nb = (cut / step | 0) + 1 | 0;
-    arr = new Array(nb);
+    arr = new __Array(nb);
     cur = start;
     for i = 0 , nb - 1 | 0 , 1 do
       arr[i] = cur;
@@ -150,7 +150,7 @@ function zip(xs, ys) do
   lenx = #xs;
   leny = #ys;
   len = lenx < leny and lenx or leny;
-  s = new Array(len);
+  s = new __Array(len);
   for i = 0 , len - 1 | 0 , 1 do
     s[i] = --[[ tuple ]]{
       xs[i],
@@ -164,7 +164,7 @@ function zipByU(xs, ys, f) do
   lenx = #xs;
   leny = #ys;
   len = lenx < leny and lenx or leny;
-  s = new Array(len);
+  s = new __Array(len);
   for i = 0 , len - 1 | 0 , 1 do
     s[i] = f(xs[i], ys[i]);
   end
@@ -178,7 +178,7 @@ end end
 function concat(a1, a2) do
   l1 = #a1;
   l2 = #a2;
-  a1a2 = new Array(l1 + l2 | 0);
+  a1a2 = new __Array(l1 + l2 | 0);
   for i = 0 , l1 - 1 | 0 , 1 do
     a1a2[i] = a1[i];
   end
@@ -194,7 +194,7 @@ function concatMany(arrs) do
   for i = 0 , lenArrs - 1 | 0 , 1 do
     totalLen = totalLen + #arrs[i] | 0;
   end
-  result = new Array(totalLen);
+  result = new __Array(totalLen);
   totalLen = 0;
   for j = 0 , lenArrs - 1 | 0 , 1 do
     cur = arrs[j];
@@ -217,7 +217,7 @@ function slice(a, offset, len) do
     if (copyLength <= 0) then do
       return {};
     end else do
-      result = new Array(copyLength);
+      result = new __Array(copyLength);
       for i = 0 , copyLength - 1 | 0 , 1 do
         result[i] = a[ofs + i | 0];
       end
@@ -230,7 +230,7 @@ function sliceToEnd(a, offset) do
   lena = #a;
   ofs = offset < 0 and Caml_primitive.caml_int_max(lena + offset | 0, 0) or offset;
   len = lena - ofs | 0;
-  result = new Array(len);
+  result = new __Array(len);
   for i = 0 , len - 1 | 0 , 1 do
     result[i] = a[ofs + i | 0];
   end
@@ -302,7 +302,7 @@ end end
 
 function mapU(a, f) do
   l = #a;
-  r = new Array(l);
+  r = new __Array(l);
   for i = 0 , l - 1 | 0 , 1 do
     r[i] = f(a[i]);
   end
@@ -353,7 +353,7 @@ end end
 
 function keepU(a, f) do
   l = #a;
-  r = new Array(l);
+  r = new __Array(l);
   j = 0;
   for i = 0 , l - 1 | 0 , 1 do
     v = a[i];
@@ -373,7 +373,7 @@ end end
 
 function keepWithIndexU(a, f) do
   l = #a;
-  r = new Array(l);
+  r = new __Array(l);
   j = 0;
   for i = 0 , l - 1 | 0 , 1 do
     v = a[i];
@@ -393,7 +393,7 @@ end end
 
 function keepMapU(a, f) do
   l = #a;
-  r = new Array(l);
+  r = new __Array(l);
   j = 0;
   for i = 0 , l - 1 | 0 , 1 do
     v = a[i];
@@ -425,7 +425,7 @@ end end
 
 function mapWithIndexU(a, f) do
   l = #a;
-  r = new Array(l);
+  r = new __Array(l);
   for i = 0 , l - 1 | 0 , 1 do
     r[i] = f(i, a[i]);
   end
@@ -628,8 +628,8 @@ function partitionU(a, f) do
   l = #a;
   i = 0;
   j = 0;
-  a1 = new Array(l);
-  a2 = new Array(l);
+  a1 = new __Array(l);
+  a2 = new __Array(l);
   for ii = 0 , l - 1 | 0 , 1 do
     v = a[ii];
     if (f(v)) then do
@@ -654,12 +654,12 @@ end end
 
 function unzip(a) do
   l = #a;
-  a1 = new Array(l);
-  a2 = new Array(l);
+  a1 = new __Array(l);
+  a2 = new __Array(l);
   for i = 0 , l - 1 | 0 , 1 do
     match = a[i];
-    a1[i] = match[0];
-    a2[i] = match[1];
+    a1[i] = match[1];
+    a2[i] = match[2];
   end
   return --[[ tuple ]]{
           a1,

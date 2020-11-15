@@ -1,20 +1,20 @@
-console = {log = print};
+__console = {log = print};
 
-Arg = require "../../lib/js/arg";
-Obj = require "../../lib/js/obj";
-List = require "../../lib/js/list";
-__Array = require "../../lib/js/array";
-Block = require "../../lib/js/block";
-Curry = require "../../lib/js/curry";
-Format = require "../../lib/js/format";
-Printf = require "../../lib/js/printf";
-__String = require "../../lib/js/string";
-Caml_obj = require "../../lib/js/caml_obj";
-Caml_int32 = require "../../lib/js/caml_int32";
-Pervasives = require "../../lib/js/pervasives";
-Caml_string = require "../../lib/js/caml_string";
-Caml_exceptions = require "../../lib/js/caml_exceptions";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
+Arg = require "......lib.js.arg";
+Obj = require "......lib.js.obj";
+List = require "......lib.js.list";
+__Array = require "......lib.js.array";
+Block = require "......lib.js.block";
+Curry = require "......lib.js.curry";
+Format = require "......lib.js.format";
+Printf = require "......lib.js.printf";
+__String = require "......lib.js.string";
+Caml_obj = require "......lib.js.caml_obj";
+Caml_int32 = require "......lib.js.caml_int32";
+Pervasives = require "......lib.js.pervasives";
+Caml_string = require "......lib.js.caml_string";
+Caml_exceptions = require "......lib.js.caml_exceptions";
+Caml_builtin_exceptions = require "......lib.js.caml_builtin_exceptions";
 
 function __finally(v, action, f) do
   e;
@@ -94,8 +94,8 @@ function bad_argf(fmt) do
 end end
 
 function dump(r) do
-  if (typeof r == "number") then do
-    return String(r);
+  if (type(r) == "number") then do
+    return __String(r);
   end else do
     get_fields = function(_acc, _n) do
       while(true) do
@@ -117,7 +117,7 @@ function dump(r) do
     is_list = function(_r) do
       while(true) do
         r = _r;
-        if (typeof r == "number") then do
+        if (type(r) == "number") then do
           return Caml_obj.caml_equal(r, 0);
         end else do
           s = #r;
@@ -132,7 +132,7 @@ function dump(r) do
       end;
     end end;
     get_list = function(r) do
-      if (typeof r == "number") then do
+      if (type(r) == "number") then do
         return --[[ [] ]]0;
       end else do
         h = r[0];
@@ -157,12 +157,12 @@ function dump(r) do
         fields_1 = get_fields(--[[ [] ]]0, s);
         match;
         if (fields_1) then do
-          match_1 = fields_1[1];
+          match_1 = fields_1[2];
           if (match_1) then do
             match = --[[ tuple ]]{
-              fields_1[0],
-              match_1[0],
-              match_1[1]
+              fields_1[1],
+              match_1[1],
+              match_1[2]
             };
           end else do
             error({
@@ -184,14 +184,14 @@ function dump(r) do
             }
           })
         end end 
-        return "Object #" .. (dump(match[1]) .. (" (" .. (__String.concat(", ", List.map(dump, match[2])) .. ")")));
+        return "Object #" .. (dump(match[2]) .. (" (" .. (__String.concat(", ", List.map(dump, match[3])) .. ")")));
       end else if (t == Obj.infix_tag) then do
         return "<infix>";
       end else if (t == Obj.forward_tag) then do
         return "<forward>";
       end else if (t < Obj.no_scan_tag) then do
         fields_2 = get_fields(--[[ [] ]]0, s);
-        return "Tag" .. (String(t) .. (" (" .. (__String.concat(", ", List.map(dump, fields_2)) .. ")")));
+        return "Tag" .. (__String(t) .. (" (" .. (__String.concat(", ", List.map(dump, fields_2)) .. ")")));
       end else if (t == Obj.string_tag) then do
         return "\"" .. (__String.escaped(r) .. "\"");
       end else if (t == Obj.double_tag) then do
@@ -268,7 +268,7 @@ function hash_variant(s) do
   end end 
 end end
 
-exports = {}
+exports = {};
 exports.__finally = __finally;
 exports.with_file_as_chan = with_file_as_chan;
 exports.with_file_as_pp = with_file_as_pp;
@@ -279,4 +279,5 @@ exports.bad_argf = bad_argf;
 exports.dump = dump_1;
 exports.pp_any = pp_any;
 exports.hash_variant = hash_variant;
+return exports;
 --[[ Format Not a pure module ]]

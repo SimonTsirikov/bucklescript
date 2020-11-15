@@ -1,9 +1,9 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Block = require "../../lib/js/block";
-Js_vector = require "../../lib/js/js_vector";
-Caml_option = require "../../lib/js/caml_option";
+Mt = require "..mt";
+Block = require "......lib.js.block";
+Js_vector = require "......lib.js.js_vector";
+Caml_option = require "......lib.js.caml_option";
 
 suites_000 = --[[ tuple ]]{
   "File \"js_array_test.ml\", line 3, characters 4-11",
@@ -52,7 +52,7 @@ suites_001 = --[[ :: ]]{
       (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     true,
-                    Array.isArray({})
+                    __Array.isArray({})
                   });
         end end)
     },
@@ -62,7 +62,7 @@ suites_001 = --[[ :: ]]{
         (function(param) do
             return --[[ Eq ]]Block.__(0, {
                       false,
-                      Array.isArray(34)
+                      __Array.isArray(34)
                     });
           end end)
       },
@@ -1134,6 +1134,7 @@ suites = --[[ :: ]]{
 
 Mt.from_pair_suites("Js_array_test", suites);
 
-exports = {}
+exports = {};
 exports.suites = suites;
+return exports;
 --[[  Not a pure module ]]

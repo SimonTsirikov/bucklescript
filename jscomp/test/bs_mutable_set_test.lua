@@ -1,14 +1,14 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Belt_List = require "../../lib/js/belt_List";
-Belt_Array = require "../../lib/js/belt_Array";
-Belt_Range = require "../../lib/js/belt_Range";
-Caml_array = require "../../lib/js/caml_array";
-Array_data_util = require "./array_data_util";
-Belt_MutableSetInt = require "../../lib/js/belt_MutableSetInt";
-Belt_internalAVLset = require "../../lib/js/belt_internalAVLset";
-Belt_internalSetInt = require "../../lib/js/belt_internalSetInt";
+Mt = require "..mt";
+Belt_List = require "......lib.js.belt_List";
+Belt_Array = require "......lib.js.belt_Array";
+Belt_Range = require "......lib.js.belt_Range";
+Caml_array = require "......lib.js.caml_array";
+Array_data_util = require "..array_data_util";
+Belt_MutableSetInt = require "......lib.js.belt_MutableSetInt";
+Belt_internalAVLset = require "......lib.js.belt_internalAVLset";
+Belt_internalSetInt = require "......lib.js.belt_internalSetInt";
 
 suites = {
   contents = --[[ [] ]]0
@@ -176,13 +176,13 @@ eq("File \"bs_mutable_set_test.ml\", line 81, characters 5-12", Belt_internalSet
 
 match = Belt_MutableSetInt.split(v, 1000);
 
-match_1 = match[0];
+match_1 = match[1];
 
-bb = match_1[1];
+bb = match_1[2];
 
-aa = match_1[0];
+aa = match_1[1];
 
-b("File \"bs_mutable_set_test.ml\", line 83, characters 4-11", match[1]);
+b("File \"bs_mutable_set_test.ml\", line 83, characters 4-11", match[2]);
 
 b("File \"bs_mutable_set_test.ml\", line 84, characters 4-11", Belt_Array.eq(Belt_internalAVLset.toArray(aa.data), Array_data_util.range(500, 999), (function(x, y) do
             return x == y;
@@ -204,13 +204,13 @@ b("File \"bs_mutable_set_test.ml\", line 90, characters 4-11", c);
 
 match_2 = Belt_MutableSetInt.split(v, 1000);
 
-match_3 = match_2[0];
+match_3 = match_2[1];
 
-bb_1 = match_3[1];
+bb_1 = match_3[2];
 
-aa_1 = match_3[0];
+aa_1 = match_3[1];
 
-b("File \"bs_mutable_set_test.ml\", line 92, characters 4-11", not match_2[1]);
+b("File \"bs_mutable_set_test.ml\", line 92, characters 4-11", not match_2[2]);
 
 b("File \"bs_mutable_set_test.ml\", line 93, characters 4-11", Belt_Array.eq(Belt_internalAVLset.toArray(aa_1.data), Array_data_util.range(500, 999), (function(prim, prim_1) do
             return prim == prim_1;
@@ -389,9 +389,9 @@ match_4 = Belt_MutableSetInt.partition(a0, (function(x) do
         return x % 2 == 0;
       end end));
 
-a4 = match_4[1];
+a4 = match_4[2];
 
-a3 = match_4[0];
+a3 = match_4[1];
 
 b("File \"bs_mutable_set_test.ml\", line 164, characters 4-11", Belt_MutableSetInt.eq(a1, a3));
 
@@ -621,9 +621,9 @@ eq("File \"bs_mutable_set_test.ml\", line 251, characters 5-12", Belt_internalAV
 
 eq("File \"bs_mutable_set_test.ml\", line 252, characters 5-12", Belt_internalAVLset.size(v_5.data), 800);
 
-b("File \"bs_mutable_set_test.ml\", line 253, characters 4-11", Belt_MutableSetInt.eq(copyV, match_5[0]));
+b("File \"bs_mutable_set_test.ml\", line 253, characters 4-11", Belt_MutableSetInt.eq(copyV, match_5[1]));
 
-b("File \"bs_mutable_set_test.ml\", line 254, characters 4-11", Belt_MutableSetInt.eq(cc_1, match_5[1]));
+b("File \"bs_mutable_set_test.ml\", line 254, characters 4-11", Belt_MutableSetInt.eq(cc_1, match_5[2]));
 
 xs_27 = Array_data_util.randomRange(0, 1000);
 
@@ -633,17 +633,17 @@ v_6 = {
 
 match_6 = Belt_MutableSetInt.split(v_6, 400);
 
-match_7 = match_6[0];
+match_7 = match_6[1];
 
 xs_28 = Array_data_util.randomRange(0, 399);
 
-b("File \"bs_mutable_set_test.ml\", line 259, characters 4-11", Belt_MutableSetInt.eq(match_7[0], {
+b("File \"bs_mutable_set_test.ml\", line 259, characters 4-11", Belt_MutableSetInt.eq(match_7[1], {
           data = Belt_internalSetInt.fromArray(xs_28)
         }));
 
 xs_29 = Array_data_util.randomRange(401, 1000);
 
-b("File \"bs_mutable_set_test.ml\", line 260, characters 4-11", Belt_MutableSetInt.eq(match_7[1], {
+b("File \"bs_mutable_set_test.ml\", line 260, characters 4-11", Belt_MutableSetInt.eq(match_7[2], {
           data = Belt_internalSetInt.fromArray(xs_29)
         }));
 
@@ -657,13 +657,13 @@ d = {
 
 match_8 = Belt_MutableSetInt.split(d, 1001);
 
-match_9 = match_8[0];
+match_9 = match_8[1];
 
 xs_31 = Belt_Array.makeBy(501, (function(x) do
         return (x << 1);
       end end));
 
-b("File \"bs_mutable_set_test.ml\", line 263, characters 4-11", Belt_MutableSetInt.eq(match_9[0], {
+b("File \"bs_mutable_set_test.ml\", line 263, characters 4-11", Belt_MutableSetInt.eq(match_9[1], {
           data = Belt_internalSetInt.fromArray(xs_31)
         }));
 
@@ -671,7 +671,7 @@ xs_32 = Belt_Array.makeBy(500, (function(x) do
         return 1002 + (x << 1) | 0;
       end end));
 
-b("File \"bs_mutable_set_test.ml\", line 264, characters 4-11", Belt_MutableSetInt.eq(match_9[1], {
+b("File \"bs_mutable_set_test.ml\", line 264, characters 4-11", Belt_MutableSetInt.eq(match_9[2], {
           data = Belt_internalSetInt.fromArray(xs_32)
         }));
 
@@ -836,13 +836,13 @@ empty = Belt_MutableSetInt.make;
 
 fromArray = Belt_MutableSetInt.fromArray;
 
-$plus$plus = Belt_MutableSetInt.union;
+_plus_plus = Belt_MutableSetInt.union;
 
 f = Belt_MutableSetInt.fromArray;
 
-$eq$tilde = Belt_MutableSetInt.eq;
+_eq_tilde = Belt_MutableSetInt.eq;
 
-exports = {}
+exports = {};
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
@@ -854,7 +854,8 @@ exports.A = A;
 exports.L = L;
 exports.empty = empty;
 exports.fromArray = fromArray;
-exports.$plus$plus = $plus$plus;
+exports._plus_plus = _plus_plus;
 exports.f = f;
-exports.$eq$tilde = $eq$tilde;
+exports._eq_tilde = _eq_tilde;
+return exports;
 --[[ u Not a pure module ]]

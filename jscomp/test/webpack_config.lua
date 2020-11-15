@@ -1,12 +1,12 @@
-console = {log = print};
+__console = {log = print};
 
-List = require "../../lib/js/list";
-List_1 = require "";
+List = require "......lib.js.list";
+List_1 = require "List";
 List_2 = require "re";
 List_3 = require "re";
-Local = require "./l";
-WebpackConfigJs = require "../../../webpack.confi";
-WebpackMiddlewareConfigJs = require "../../../webpack.middleware.confi";
+Local = require "..l";
+WebpackConfigJs = require ".........webpack.confi";
+WebpackMiddlewareConfigJs = require ".........webpack.middleware.confi";
 
 configx = WebpackConfigJs;
 
@@ -73,7 +73,7 @@ function ff(prim) do
   return Local.ff();
 end end
 
-exports = {}
+exports = {};
 exports.WebpackConfig = WebpackConfig;
 exports.WebpackDevMiddlewareConfig = WebpackDevMiddlewareConfig;
 exports.configX = configX;
@@ -82,4 +82,5 @@ exports.A = A;
 exports.B = B;
 exports.f = f;
 exports.ff = ff;
+return exports;
 --[[ configx Not a pure module ]]

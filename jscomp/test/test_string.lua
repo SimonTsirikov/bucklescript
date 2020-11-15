@@ -1,8 +1,8 @@
-console = {log = print};
+__console = {log = print};
 
-Caml_bytes = require "../../lib/js/caml_bytes";
-Caml_string = require "../../lib/js/caml_string";
-Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
+Caml_bytes = require "......lib.js.caml_bytes";
+Caml_string = require "......lib.js.caml_string";
+Caml_builtin_exceptions = require "......lib.js.caml_builtin_exceptions";
 
 function f(param) do
   local ___conditional___=(param);
@@ -45,11 +45,12 @@ end end
 
 v = 2;
 
-exports = {}
+exports = {};
 exports.f = f;
 exports.a = a;
 exports.b = b;
 exports.c = c;
 exports.v = v;
 exports.h = h;
+return exports;
 --[[ No side effect ]]

@@ -1,31 +1,31 @@
-console = {log = print};
+__console = {log = print};
 
 
-console.log(2);
+__console.log(2);
 
 function a0(x, y) do
   return (x + y | 0) + 1 | 0;
 end end
 
-console.log(5);
+__console.log(5);
 
 function a1(x, y) do
   return a0(x, y) + 1 | 0;
 end end
 
-console.log(8);
+__console.log(8);
 
 function a2(x, y) do
   return a1(x, y) + 1 | 0;
 end end
 
-console.log(11);
+__console.log(11);
 
 function a3(x, y) do
   return a2(x, y) + 1 | 0;
 end end
 
-console.log(14);
+__console.log(14);
 
 function a4(x, y) do
   return a3(x, y) + 1 | 0;
@@ -65,11 +65,12 @@ v4 = a4(1, 2);
 
 v0 = 4;
 
-exports = {}
+exports = {};
 exports.A0 = A0;
 exports.v0 = v0;
 exports.v1 = v1;
 exports.v2 = v2;
 exports.v3 = v3;
 exports.v4 = v4;
+return exports;
 --[[  Not a pure module ]]

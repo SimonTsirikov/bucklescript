@@ -1,9 +1,9 @@
-console = {log = print};
+__console = {log = print};
 
-Block = require "./block";
-Curry = require "./curry";
-Printf = require "./printf";
-Caml_gc = require "./caml_gc";
+Block = require "..block";
+Curry = require "..curry";
+Printf = require "..printf";
+Caml_gc = require "..caml_gc";
 
 dummy_stat = {
   minor_words = 0,
@@ -315,7 +315,7 @@ end end
 
 function allocated_bytes(param) do
   match = Caml_gc.caml_gc_counters(--[[ () ]]0);
-  return (match[0] + match[2] - match[1]) * 4;
+  return (match[1] + match[3] - match[2]) * 4;
 end end
 
 function finalise_last(param, param_1) do
@@ -352,7 +352,7 @@ finalise = Caml_gc.caml_final_register;
 
 finalise_release = Caml_gc.caml_final_release;
 
-exports = {}
+exports = {};
 exports.stat = stat;
 exports.quick_stat = quick_stat;
 exports.get = get;
@@ -363,4 +363,5 @@ exports.finalise_last = finalise_last;
 exports.finalise_release = finalise_release;
 exports.create_alarm = create_alarm;
 exports.delete_alarm = delete_alarm;
+return exports;
 --[[ No side effect ]]

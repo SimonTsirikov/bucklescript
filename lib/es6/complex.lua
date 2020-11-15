@@ -42,7 +42,7 @@ function mul(x, y) do
 end end
 
 function div(x, y) do
-  if (Math.abs(y.re) >= Math.abs(y.im)) then do
+  if (__Math.abs(y.re) >= __Math.abs(y.im)) then do
     r = y.im / y.re;
     d = y.re + r * y.im;
     return {
@@ -68,29 +68,29 @@ function norm2(x) do
 end end
 
 function norm(x) do
-  r = Math.abs(x.re);
-  i = Math.abs(x.im);
+  r = __Math.abs(x.re);
+  i = __Math.abs(x.im);
   if (r == 0.0) then do
     return i;
   end else if (i == 0.0) then do
     return r;
   end else if (r >= i) then do
     q = i / r;
-    return r * Math.sqrt(1.0 + q * q);
+    return r * __Math.sqrt(1.0 + q * q);
   end else do
     q_1 = r / i;
-    return i * Math.sqrt(1.0 + q_1 * q_1);
+    return i * __Math.sqrt(1.0 + q_1 * q_1);
   end end  end  end 
 end end
 
 function arg(x) do
-  return Math.atan2(x.im, x.re);
+  return __Math.atan2(x.im, x.re);
 end end
 
 function polar(n, a) do
   return {
-          re = Math.cos(a) * n,
-          im = Math.sin(a) * n
+          re = __Math.cos(a) * n,
+          im = __Math.sin(a) * n
         };
 end end
 
@@ -101,15 +101,15 @@ function sqrt(x) do
             im = 0.0
           };
   end else do
-    r = Math.abs(x.re);
-    i = Math.abs(x.im);
+    r = __Math.abs(x.re);
+    i = __Math.abs(x.im);
     w;
     if (r >= i) then do
       q = i / r;
-      w = Math.sqrt(r) * Math.sqrt(0.5 * (1.0 + Math.sqrt(1.0 + q * q)));
+      w = __Math.sqrt(r) * __Math.sqrt(0.5 * (1.0 + __Math.sqrt(1.0 + q * q)));
     end else do
       q_1 = r / i;
-      w = Math.sqrt(i) * Math.sqrt(0.5 * (q_1 + Math.sqrt(1.0 + q_1 * q_1)));
+      w = __Math.sqrt(i) * __Math.sqrt(0.5 * (q_1 + __Math.sqrt(1.0 + q_1 * q_1)));
     end end 
     if (x.re >= 0.0) then do
       return {
@@ -126,17 +126,17 @@ function sqrt(x) do
 end end
 
 function exp(x) do
-  e = Math.exp(x.re);
+  e = __Math.exp(x.re);
   return {
-          re = e * Math.cos(x.im),
-          im = e * Math.sin(x.im)
+          re = e * __Math.cos(x.im),
+          im = e * __Math.sin(x.im)
         };
 end end
 
 function log(x) do
   return {
-          re = Math.log(norm(x)),
-          im = Math.atan2(x.im, x.re)
+          re = __Math.log(norm(x)),
+          im = __Math.atan2(x.im, x.re)
         };
 end end
 

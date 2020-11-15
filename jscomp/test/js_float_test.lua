@@ -1,15 +1,15 @@
-console = {log = print};
+__console = {log = print};
 
-Mt = require "./mt";
-Block = require "../../lib/js/block";
-Pervasives = require "../../lib/js/pervasives";
+Mt = require "..mt";
+Block = require "......lib.js.block";
+Pervasives = require "......lib.js.pervasives";
 
 suites_000 = --[[ tuple ]]{
   "_NaN <> _NaN",
   (function(param) do
       return --[[ Eq ]]Block.__(0, {
                 false,
-                NaN == NaN
+                __NaN == __NaN
               });
     end end)
 };
@@ -20,7 +20,7 @@ suites_001 = --[[ :: ]]{
     (function(param) do
         return --[[ Eq ]]Block.__(0, {
                   true,
-                  isNaN(NaN)
+                  __isNaN(__NaN)
                 });
       end end)
   },
@@ -30,7 +30,7 @@ suites_001 = --[[ :: ]]{
       (function(param) do
           return --[[ Eq ]]Block.__(0, {
                     false,
-                    isNaN(0)
+                    __isNaN(0)
                   });
         end end)
     },
@@ -40,7 +40,7 @@ suites_001 = --[[ :: ]]{
         (function(param) do
             return --[[ Eq ]]Block.__(0, {
                       false,
-                      isFinite(Pervasives.infinity)
+                      __isFinite(Pervasives.infinity)
                     });
           end end)
       },
@@ -50,7 +50,7 @@ suites_001 = --[[ :: ]]{
           (function(param) do
               return --[[ Eq ]]Block.__(0, {
                         false,
-                        isFinite(Pervasives.neg_infinity)
+                        __isFinite(Pervasives.neg_infinity)
                       });
             end end)
         },
@@ -60,7 +60,7 @@ suites_001 = --[[ :: ]]{
             (function(param) do
                 return --[[ Eq ]]Block.__(0, {
                           false,
-                          isFinite(NaN)
+                          __isFinite(__NaN)
                         });
               end end)
           },
@@ -70,7 +70,7 @@ suites_001 = --[[ :: ]]{
               (function(param) do
                   return --[[ Eq ]]Block.__(0, {
                             true,
-                            isFinite(0)
+                            __isFinite(0)
                           });
                 end end)
             },
@@ -370,7 +370,7 @@ suites_001 = --[[ :: ]]{
                                                                           (function(param) do
                                                                               return --[[ Eq ]]Block.__(0, {
                                                                                         123,
-                                                                                        Number("123")
+                                                                                        __Number("123")
                                                                                       });
                                                                             end end)
                                                                         },
@@ -380,7 +380,7 @@ suites_001 = --[[ :: ]]{
                                                                             (function(param) do
                                                                                 return --[[ Eq ]]Block.__(0, {
                                                                                           12.3,
-                                                                                          Number("12.3")
+                                                                                          __Number("12.3")
                                                                                         });
                                                                               end end)
                                                                           },
@@ -390,7 +390,7 @@ suites_001 = --[[ :: ]]{
                                                                               (function(param) do
                                                                                   return --[[ Eq ]]Block.__(0, {
                                                                                             0,
-                                                                                            Number("")
+                                                                                            __Number("")
                                                                                           });
                                                                                 end end)
                                                                             },
@@ -400,7 +400,7 @@ suites_001 = --[[ :: ]]{
                                                                                 (function(param) do
                                                                                     return --[[ Eq ]]Block.__(0, {
                                                                                               17,
-                                                                                              Number("0x11")
+                                                                                              __Number("0x11")
                                                                                             });
                                                                                   end end)
                                                                               },
@@ -410,7 +410,7 @@ suites_001 = --[[ :: ]]{
                                                                                   (function(param) do
                                                                                       return --[[ Eq ]]Block.__(0, {
                                                                                                 3,
-                                                                                                Number("0b11")
+                                                                                                __Number("0b11")
                                                                                               });
                                                                                     end end)
                                                                                 },
@@ -420,7 +420,7 @@ suites_001 = --[[ :: ]]{
                                                                                     (function(param) do
                                                                                         return --[[ Eq ]]Block.__(0, {
                                                                                                   9,
-                                                                                                  Number("0o11")
+                                                                                                  __Number("0o11")
                                                                                                 });
                                                                                       end end)
                                                                                   },
@@ -430,7 +430,7 @@ suites_001 = --[[ :: ]]{
                                                                                       (function(param) do
                                                                                           return --[[ Eq ]]Block.__(0, {
                                                                                                     true,
-                                                                                                    isNaN(Number("foo"))
+                                                                                                    __isNaN(__Number("foo"))
                                                                                                   });
                                                                                         end end)
                                                                                     },
@@ -485,6 +485,7 @@ suites = --[[ :: ]]{
 
 Mt.from_pair_suites("Js_float_test", suites);
 
-exports = {}
+exports = {};
 exports.suites = suites;
+return exports;
 --[[  Not a pure module ]]
