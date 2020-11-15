@@ -24,30 +24,30 @@
 
 
 type global 
-let  getGlobalThis : unit -> global [@bs]= [%raw{| function() do
-  if (type(globalThis) ~= 'nil') then return globalThis end;
-	if (type(self) ~= 'nil') then return self end;
-	if (type(window) ~= 'nil') then return window end;
-	if (type(global) ~= 'nil') then return global end;
-	if (type(this) ~= 'nil') then return this end;
-	error('Unable to locate global `this`');
-end end|}]
+let  getGlobalThis : unit -> global [@bs]= [%raw{| function(){
+  if (typeof globalThis !== 'undefined') return globalThis;
+	if (typeof self !== 'undefined') return self;
+	if (typeof window !== 'undefined') return window;
+	if (typeof global !== 'undefined') return global;
+	if (typeof this !== 'undefined') return this;
+	throw new Error('Unable to locate global `this`');
+}|}]
 
 type dyn
-let resolve : string -> dyn [@bs] = [%raw {|function(s) do
-  myGlobal = getGlobalThis();
-  if (myGlobal[s] == nil) then
-    error(s .. " not polyfilled by BuckleScript yet\n")
-  end
+let resolve : string -> dyn [@bs] = [%raw {|function(s){
+  var myGlobal = getGlobalThis();
+  if (myGlobal[s] === undefined){
+    throw new Error(s + " not polyfilled by BuckleScript yet\n")
+  }
   return myGlobal[s]
-end end|}]
+}|}]
   
 (* FIXME: it does not have to global states *)
 type fn 
 
 
-let register : string -> fn -> unit = [%raw{| function(s,fn) do
-  myGlobal = getGlobalThis();
-  myGlobal[s] = fn;
+let register : string -> fn -> unit = [%raw{| function(s,fn){
+  var myGlobal = getGlobalThis();
+  myGlobal[s] = fn 
   return 0
-end end|}]
+}|}]
