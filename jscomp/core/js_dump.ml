@@ -940,8 +940,8 @@ and expression_desc cxt ~(level:int) f x : cxt  =
         let cxt = expression ~level:15 cxt f e in
         P.bracket_group f 1 (fun _ ->
         P.string f "1 + ";
-        let cxt = expression ~level:0 cxt f p in)
-        cxt))
+        let cxt = expression ~level:0 cxt f p in
+        cxt)))
   | String_index (e,p)
     ->
     P.cond_paren_group f (level > 15) 1 (fun _ -> 
