@@ -146,7 +146,7 @@ let imports  cxt f (modules : (Ident.t * string) list ) =
       P.space f ; (* local xx = require 'xx' *)
       P.string f L.require ;
       P.space f ;
-      Js_dump_string.pp_string 0  f file ;
+      P.string f (Str.global_replace (Str.regexp "/") "." file);
       P.string f L.semi ;
       P.newline f ;
     ) ;
