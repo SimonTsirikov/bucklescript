@@ -671,6 +671,7 @@ let sorted_keywords = [|
   "process";
   "protected";
   "public";
+  "repeat";
   "require";
   "return";
   "setImmediate";
