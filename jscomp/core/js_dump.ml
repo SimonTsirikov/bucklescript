@@ -963,6 +963,13 @@ and expression_desc cxt ~(level:int) f x : cxt  =
         *)
         cxt) 
 
+  | Length (e, Function) ->
+    (** Todo: check parens *)
+    P.cond_paren_group f (level > 15) 1 (fun _ -> 
+      P.string f "debug.getinfo(";
+      let cxt = expression ~level:15 cxt f e in
+      P.string f ", \"u\").nparams";
+      cxt)
   | Length (e, _) ->
     (** Todo: check parens *)
     P.cond_paren_group f (level > 15) 1 (fun _ -> 
