@@ -949,9 +949,9 @@ and expression_desc cxt ~(level:int) f x : cxt  =
         P.string f "string.sub";
         P.paren_group f 1 (fun _ ->
         let cxt = expression ~level:15 cxt f e in  
-        P.string f ", 1 + ";
+        P.string f ", ";
         let cxt = expression ~level:0 cxt f p in
-        P.string f ", 1 + ";
+        P.string f ", ";
         let cxt = expression ~level:0 cxt f p in
         cxt)))
   | Static_index (e, s,_) ->
