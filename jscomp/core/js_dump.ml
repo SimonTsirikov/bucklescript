@@ -737,9 +737,11 @@ and expression_desc cxt ~(level:int) f x : cxt  =
     )
   | Typeof e
     ->
-    P.string f "typeof";
-    P.space f;
-    expression ~level:13 cxt f e
+    P.string f "type";
+    P.string f "(";
+    let cxt_ = expression ~level:13 cxt f e;
+    P.string f ")";
+    cxt_
  
   | Bin (Eq, ({expression_desc = Array_index({expression_desc = Var i; _},
                                        {expression_desc = Number (Int {i = k0 })}
