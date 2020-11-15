@@ -390,9 +390,9 @@ let array_index_by_int ?comment (e : t)  (pos : int32) : t =
     (match Ext_list.nth_opt l  (Int32.to_int pos)  with
     | Some x-> x 
     | None -> 
-      { expression_desc = Array_index (e, int ?comment (pos + 1)); comment = None}     
+      { expression_desc = Array_index (e, int ?comment pos); comment = None}     
     )
-  | _ -> { expression_desc = Array_index (e, int ?comment (pos + 1)); comment = None}   
+  | _ -> { expression_desc = Array_index (e, int ?comment pos); comment = None}     
 let record_access (e : t) (name : string) (pos : int32) = 
   let rname = Ext_ident.convert name in
   match e.expression_desc with

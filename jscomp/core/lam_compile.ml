@@ -1142,7 +1142,7 @@ and compile_send  (meth_kind : Lam_compat.meth_kind)
         (* TODO: horrible hack -- fixed later -- CHECK*)
         cont3 nobj (fun aobj -> E.call ~info:Js_call_info.dummy
                        (Js_of_lam_array.ref_array
-                          (E.array_index_by_int aobj 0l) label )
+                          (E.array_index_by_int aobj 1l) label )
                        (aobj :: args))
       (* [E.small_int 1] is because we use array,
           when we change the runtime represenation, it needs to be adapted

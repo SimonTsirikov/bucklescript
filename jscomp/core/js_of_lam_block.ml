@@ -59,7 +59,7 @@ let field (field_info : Lam_compat.field_dbg_info) e i =
   | Fld_extension_slot
     -> 
     E.array_index_by_int  
-      ?comment:(Lam_compat.str_of_field_info field_info) e i 
+      ?comment:(Lam_compat.str_of_field_info field_info) e (i + 1) 
   | Fld_record {name}
     -> E.record_access e name i
   | Fld_module {name}
