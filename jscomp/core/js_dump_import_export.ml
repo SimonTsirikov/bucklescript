@@ -119,7 +119,7 @@ let requires require_lit cxt f (modules : (Ident.t * string) list ) =
       P.space f;
       P.string f require_lit;
       P.space f;
-      Js_dump_string.pp_string 4  f file;
+      P.string f ( String.concat "." (List.map (fun x -> if x = "\"bs-platform" then "\"" else x) (String.split_on_char '/' (String.substring file 0 (String.length file - 4)))));
       P.string f L.semi;
       P.newline f ;
     ) ;
@@ -146,7 +146,7 @@ let imports  cxt f (modules : (Ident.t * string) list ) =
       P.space f ; (* local xx = require 'xx' *)
       P.string f L.require ;
       P.space f ;
-      P.string f (Str.global_replace (Str.regexp "/") "." file);
+      P.string f ( String.concat "." (List.map (fun x -> if x = "\"bs-platform" then "\"" else x) (String.split_on_char '/' file)));
       P.string f L.semi ;
       P.newline f ;
     ) ;
