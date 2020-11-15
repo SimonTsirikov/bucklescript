@@ -120,7 +120,7 @@ let requires require_lit cxt f (modules : (Ident.t * string) list ) =
       P.string f require_lit;
       P.space f;
       P.string f "\"";
-      P.string f ( String.concat "." (List.map (fun x -> if x = "bs-platform" then "" else x) (String.split_on_char '/' (String.sub file 0 (if String.length > 5 then String.length file - 5 else String.length)))));
+      P.string f ( String.concat "." (List.map (fun x -> if x = "bs-platform" then "" else x) (String.split_on_char '/' (String.sub file 0 (if String.length file > 5 then String.length file - 5 else String.length)))));
       P.string f "\"";
       P.string f L.semi;
       P.newline f ;
