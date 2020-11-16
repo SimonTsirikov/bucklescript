@@ -1,6 +1,6 @@
 
 
-external new_uninitialized : int -> 'a array = "{}"
+external new_uninitialized : int -> 'a array = "Array" [@@bs.new]
 external append : 'a array -> 'a array -> 'a array = "concat" [@@bs.send]
 external unsafe_get : 'a array -> int -> 'a = "%array_unsafe_get"
 external unsafe_set : 'a array -> int -> 'a -> unit = "%array_unsafe_set"
