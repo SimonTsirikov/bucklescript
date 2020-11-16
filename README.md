@@ -7,7 +7,11 @@ Use instructions from [CONTRIBUTING.md](CONTRIBUTING.md).
 # Use
 
 From bucklescript folder, run `./bsc -I jscomp/stdlib-406 <filename>` or `./bsc -I jscomp/stdlib-406 -bs-eval <expression>` to get translation to Lua code.
-Redirect output like `> ./lib/js/<filename>` to save code to file. It is necessary to save file in `./lib/js/` directory, otherwise imports won't work properly. To run Lua code, run `lua <filename>` from `./lib/js/` directory using lua with version >= 5.3.  
+Redirect output like `> ./lib/js/<filename>` to save code to file. It is necessary to save file in `./lib/js/` directory, otherwise imports won't work properly. To run Lua code, run `lua <filename>` from `./lib/js/` directory using lua with version >= 5.3.
+
+# Test
+
+There are some files named `_test_*.ml` in `./lib/js/` directory for example. 
 
 # [BuckleScript](https://bucklescript.github.io)
 
