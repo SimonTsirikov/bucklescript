@@ -23,7 +23,7 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA. *)
 
 let function_ = "function"
-let var = "var" (* should be able to switch to [let] easily*)
+let var = "" (* should be able to switch to [let] easily*)
 let return = "return"
 (* let eq = "=" *)
 let require = "require"
@@ -42,8 +42,8 @@ let throw = "error"
 let default = "default"
 let length = "#"
 let char_code_at = "charCodeAt"
-let new_ = "new"
-let array = "Array"
+let new_ = ""
+let array = "{}"
 let question = "?"      
 let plusplus = "++"
 let minusminus = "--"
