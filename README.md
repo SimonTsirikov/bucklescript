@@ -1,5 +1,14 @@
 This fork is attempt to change target language from JavaScript to Lua.
 
+# Installation
+
+Use instructions from [CONTRIBUTING.md](CONTRIBUTING.md).
+
+# Use
+
+From bucklescript folder, run `./bsc -I jscomp/stdlib-406 <filename>` or `./bsc -I jscomp/stdlib-406 -bs-eval <expression>` to get translation to Lua code.
+Redirect output like `> ./lib/js/<filename>` to save code to file. It is necessary to save file in `./lib/js/` directory, otherwise imports won't work properly. To run Lua code, run `lua <filename>` from `./lib/js/` directory using lua with version >= 5.3.  
+
 # [BuckleScript](https://bucklescript.github.io)
 
 > A JavaScript backend for [OCaml](https://ocaml.org/) focused on smooth integration and clean generated code.
