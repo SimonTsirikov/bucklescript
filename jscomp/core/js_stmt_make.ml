@@ -127,11 +127,7 @@ let int_switch
        block (declare_variable ?comment ~kind did :: continuation)
      | None, _ -> block continuation)    
   | _ -> 
-    match declaration with 
-    | Some (kind, did) -> 
-      block [declare_variable ?comment ~kind did ;
-             { statement_desc = J.Int_switch (e,clauses, default); comment}]
-    | None ->  { statement_desc = J.Int_switch (e,clauses, default); comment}    
+    { statement_desc = J.Int_switch (e,clauses, default); comment}    
 
 let string_switch 
   ?(comment:string option) 
@@ -163,11 +159,7 @@ let string_switch
        block @@ declare_variable ?comment ~kind did :: continuation
      | None, _ -> block continuation)    
   | _  -> 
-    match declaration with 
-    | Some (kind,did) -> 
-      block [declare_variable ?comment ~kind did ;
-             { statement_desc = String_switch (e,clauses, default); comment}]
-    | None -> { statement_desc = String_switch (e,clauses, default); comment}
+    { statement_desc = String_switch (e,clauses, default); comment}
 
 
 (* TODO: it also make sense  to extract some common statements 
