@@ -531,7 +531,7 @@ and pp_one_case_clause : 'a .
                   P.space f;
                   P.string f L.else_;
                   P.space f;
-                  depth + 1
+                  depth
                  end
               else
                 begin
